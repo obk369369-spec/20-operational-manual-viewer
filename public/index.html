@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>20번 도구 · Ops Manual Display · 운영 매뉴얼 디스플레이</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card-bg: #ffffff;
+      --border: #dde2ee;
+      --border-strong: #c3c9dd;
+      --text-main: #1f2933;
+      --text-sub: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #e0edff;
+      --danger: #dc2626;
+      --warning: #ea580c;
+      --success: #16a34a;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
+      --shadow-sm: 0 3px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #eef2ff, #f9fafb);
+      color: var(--text-main);
+    }
+
+    .app-root {
+      max-width: 1120px;
+      margin: 24px auto 40px;
+      padding: 0 16px 24px;
+    }
+
+    header.app-header {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tool-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-pill {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .tool-subtitle {
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    .header-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .header-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(15, 23, 42, 0.16);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-tag span.key {
+      opacity: 0.8;
+    }
+
+    .header-tag span.val {
+      font-weight: 600;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .layout-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-title span.index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: #eff3ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      border: 1px solid #d4ddff;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--text-sub);
+    }
+
+    .badge.status-ok {
+      border-color: rgba(34, 197, 94, 0.3);
+      background: rgba(34, 197, 94, 0.04);
+      color: #15803d;
+    }
+
+    .badge.status-warn {
+      border-color: rgba(249, 115, 22, 0.35);
+      background: rgba(249, 115, 22, 0.04);
+      color: #b45309;
+    }
+
+    .badge.status-error {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.04);
+      color: #b91c1c;
+    }
+
+    .pill-small {
+      display: inline-flex;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 10px;
+      border: 1px solid var(--border);
+      background: #f3f4ff;
+      color: #4b5563;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .summary-item {
+      padding: 7px 9px;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-strong);
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .summary-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .summary-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .field-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 6px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .field-label span.req {
+      color: #dc2626;
+      font-size: 11px;
+    }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 7px 8px;
+      font-size: 12px;
+      font-family: inherit;
+      outline: none;
+      background: #ffffff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+      background: #ffffff;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      padding: 5px 12px;
+      font-size: 11px;
+      background: #f9fafb;
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s ease, box-shadow 0.15s ease,
+        transform 0.05s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      border-color: rgba(15, 23, 42, 0.2);
+      color: #ffffff;
+    }
+
+    .btn-ghost {
+      background: transparent;
+    }
+
+    .btn-subtle {
+      background: #eef2ff;
+      border-style: dashed;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn.icon-only {
+      padding-inline: 8px;
+      border-radius: 999px;
+      min-width: 28px;
+      justify-content: center;
+    }
+
+    .section-divider {
+      border-top: 1px dashed var(--border);
+      margin: 4px 0 8px;
+    }
+
+    .manual-preview-box {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      padding: 8px 9px;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      max-height: 190px;
+      overflow: auto;
+    }
+
+    .manual-preview-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .manual-preview-meta-left,
+    .manual-preview-meta-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .manual-preview-tag {
+      font-size: 11px;
+      background: #eef2ff;
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid #d4ddff;
+      color: #374151;
+    }
+
+    .manual-list {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      max-height: 220px;
+      overflow: auto;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .manual-list-empty {
+      padding: 10px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .manual-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: #ffffff;
+      font-size: 12px;
+      transition: background 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .manual-item:hover {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .manual-item.selected {
+      background: #e0edff;
+      border-color: #2563eb;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .manual-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .manual-item-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .manual-item-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .manual-item-pill {
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #f3f4ff;
+      border: 1px solid #d4ddff;
+      color: #4b5563;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      margin-right: 2px;
+      background: #9ca3af;
+    }
+
+    .status-dot.ok {
+      background: #22c55e;
+    }
+
+    .status-dot.warn {
+      background: #f97316;
+    }
+
+    .status-dot.err {
+      background: #ef4444;
+    }
+
+    .log-box {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: #e5e7eb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 7px 8px;
+      max-height: 200px;
+      overflow: auto;
+    }
+
+    .log-line {
+      padding: 1px 0;
+      display: flex;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    .log-time {
+      min-width: 74px;
+      color: #9ca3af;
+    }
+
+    .log-level {
+      min-width: 44px;
+      font-weight: 600;
+    }
+
+    .log-level.INFO {
+      color: #22c55e;
+    }
+
+    .log-level.WARN {
+      color: #f97316;
+    }
+
+    .log-level.ERROR {
+      color: #f87171;
+    }
+
+    .log-msg {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .log-extra {
+      color: #9ca3af;
+      font-size: 10px;
+    }
+
+    .meta-box {
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-strong);
+      background: #f9fafb;
+      padding: 6px 8px;
+      font-size: 11px;
+      color: var(--text-sub);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .error-banner {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      background: rgba(254, 242, 242, 0.95);
+      color: #991b1b;
+      padding: 6px 8px;
+      font-size: 11px;
+      display: none;
+      margin-bottom: 4px;
+    }
+
+    .error-banner.visible {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .error-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #ef4444;
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 40;
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(15, 23, 42, 0.94);
+      color: #e5e7eb;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .toast.show {
+      display: inline-flex;
+      animation: fadein 0.18s ease-out;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-root">
+    <header class="app-header">
+      <div class="header-top">
+        <div>
+          <div class="tool-title">
+            <span>20번 도구 · Ops Manual Display</span>
+            <span class="tool-pill">운영 매뉴얼 디스플레이 · Local-only · Safe DOM</span>
+          </div>
+          <div class="tool-subtitle">
+            각 도구의 사용법과 주의사항을 블록 단위로 저장·검색·복사하는 전용 매뉴얼 보드입니다.
+          </div>
+        </div>
+        <div class="header-tags">
+          <div class="header-tag">
+            <span class="key">저장:</span>
+            <span class="val">localStorage(JSON)</span>
+          </div>
+          <div class="header-tag">
+            <span class="key">관리:</span>
+            <span class="val">7번 Setting · 6번 Optimizer · 15번 Tester</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout-grid" aria-label="Ops Manual Display main layout">
+      <!-- Left: Summary + Manual Editor + Preview -->
+      <section class="left-column" aria-label="Editor column">
+        <!-- Summary -->
+        <section class="card" aria-label="Summary card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="index">0</span>
+                <span>요약 상태</span>
+              </div>
+              <div class="card-subtitle">
+                저장된 매뉴얼 수, 최근 수정 시간, 오류 여부를 한눈에 봅니다.
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost" id="btnRefreshSummary">
+                🔄 요약 새로고침
+              </button>
+            </div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">저장된 매뉴얼</div>
+              <div class="summary-value" id="summaryManualCount">0개</div>
+              <div class="summary-sub" id="summarySelectedTool">선택된 도구: 없음</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">최근 수정</div>
+              <div class="summary-value" id="summaryLastUpdated">-</div>
+              <div class="summary-sub" id="summaryLastUpdatedTool">도구 기준: -</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">최근 오류</div>
+              <div class="summary-value" id="summaryLastError">없음</div>
+              <div class="summary-sub" id="summaryLastErrorTime">-</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Error banner -->
+        <section class="error-banner" id="errorBanner" aria-live="polite">
+          <span class="error-dot"></span>
+          <span id="errorBannerText">입력 오류가 있습니다.</span>
+        </section>
+
+        <!-- 1. Tool Info -->
+        <section class="card" aria-label="Tool info and basic fields">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="index">1</span>
+                <span>대상 도구 선택 · 기본 정보</span>
+              </div>
+              <div class="card-subtitle">
+                도구 번호와 이름, 버전만 정확히 적어 두면 매뉴얼 구조는 자동으로 따라갑니다.
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-subtle" id="btnFillExampleTool">
+                💡 예시 채우기
+              </button>
+              <button type="button" class="btn btn-ghost" id="btnResetTool">
+                ♻️ 기본정보 초기화
+              </button>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="toolNumberInput" class="field-label">
+                도구 번호<span class="req">*</span>
+              </label>
+              <input
+                id="toolNumberInput"
+                type="number"
+                min="1"
+                step="1"
+                placeholder="예: 1, 7, 20"
+              />
+              <div class="field-hint">숫자만 입력합니다. (예: 20)</div>
+            </div>
+            <div class="field-group">
+              <label for="toolNameInput" class="field-label">
+                도구 이름<span class="req">*</span>
+              </label>
+              <input
+                id="toolNameInput"
+                type="text"
+                placeholder="예: Ops Manual Display"
+              />
+              <div class="field-hint">영문 이름 또는 한글 이름 모두 가능합니다.</div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="toolVersionInput" class="field-label">
+                버전
+              </label>
+              <input
+                id="toolVersionInput"
+                type="text"
+                placeholder="예: v1.0"
+              />
+              <div class="field-hint">입력하지 않으면 자동으로 v1.0으로 기록됩니다.</div>
+            </div>
+            <div class="field-group">
+              <label for="toolCategoryInput" class="field-label">
+                도구 종류 / 카테고리
+              </label>
+              <select id="toolCategoryInput">
+                <option value="">선택 안 함</option>
+                <option value="guide">고객 안내 / 가이드</option>
+                <option value="bid">입찰 / 행정</option>
+                <option value="dev">개발 / 테스트</option>
+                <option value="finance">재무 / 회계</option>
+                <option value="promo">홍보 / 마케팅</option>
+                <option value="ops">운영 / 내부 관리</option>
+                <option value="etc">기타</option>
+              </select>
+              <div class="field-hint">대략적인 용도만 선택해도 충분합니다.</div>
+            </div>
+          </div>
+
+          <div class="meta-box">
+            <div>📎 현재 대상 상태: <span id="currentTargetState">미설정</span></div>
+            <div>도구 번호·이름을 입력하면 자동으로 “20번 Ops Manual Display”와 같은 형식으로 표시됩니다.</div>
+          </div>
+        </section>
+
+        <!-- 2. Manual content -->
+        <section class="card" aria-label="Manual content editor">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="index">2</span>
+                <span>운영 매뉴얼 내용 (블록 단위)</span>
+              </div>
+              <div class="card-subtitle">
+                한 화면에서 개요·사용 단계·주의사항을 모두 적고, 그대로 저장합니다.
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost" id="btnClearManualFields">
+                🧹 매뉴얼 입력 초기화
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="manualTypeInput" class="field-label">
+              매뉴얼 유형
+            </label>
+            <select id="manualTypeInput">
+              <option value="basic">기본 사용법</option>
+              <option value="screen">화면 구성 설명</option>
+              <option value="step">사용 단계 (절차)</option>
+              <option value="warning">주의·제한 사항</option>
+              <option value="trouble">오류·문제 대응</option>
+              <option value="combo">통합 매뉴얼 (추천)</option>
+            </select>
+            <div class="field-hint">
+              대부분의 도구는 <b>통합 매뉴얼 (추천)</b> 하나만 만들어도 충분합니다.
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="manualSummaryInput" class="field-label">
+              ① 한 줄 요약<span class="req">*</span>
+            </label>
+            <input
+              id="manualSummaryInput"
+              type="text"
+              placeholder="예: 7번 도구들의 GitHub / Deno / 업로드 주소를 한 화면에서 관리하는 세팅 보드입니다."
+            />
+            <div class="field-hint">
+              이 도구가 무엇을 하는지, 한 줄로 설명합니다. (목록에서 요약으로 보입니다.)
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="manualStepsInput" class="field-label">
+              ② 사용 단계 (번호 순서로 적기)<span class="req">*</span>
+            </label>
+            <textarea
+              id="manualStepsInput"
+              placeholder="예:&#10;1) 브라우저에서 도구 페이지를 연다.&#10;2) 화면 상단에서 도구 번호와 이름을 확인한다.&#10;3) 필수 항목만 채우고 [저장] 버튼을 누른다.&#10;4) 하단 로그에서 상태를 확인한다."
+            ></textarea>
+            <div class="field-hint">
+              한 줄에 한 단계씩 적으면 됩니다. (번호는 1), 2) 형식 또는 - 사용 모두 가능합니다.)
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="manualNotesInput" class="field-label">
+              ③ 주의·팁·내부 메모
+            </label>
+            <textarea
+              id="manualNotesInput"
+              placeholder="예: 처음에는 예시 데이터로 테스트한 뒤, 실제 고객 데이터는 별도 브라우저 창에서 복사해 오는 것이 안전합니다."
+            ></textarea>
+            <div class="field-hint">
+              실무에서 헷갈렸던 점, 나중에 다시 봐야 할 팁 등을 자유롭게 적습니다.
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="btnSaveManual">
+              💾 이 도구 매뉴얼 저장
+            </button>
+            <button type="button" class="btn" id="btnCopyCurrentManual">
+              📋 현재 매뉴얼 복사
+            </button>
+          </div>
+        </section>
+
+        <!-- 3. Preview -->
+        <section class="card" aria-label="Manual preview">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="index">3</span>
+                <span>미리보기 · 한 번도 안 써도 읽히는 형식</span>
+              </div>
+              <div class="card-subtitle">
+                상식 수준으로 읽히도록, 핵심만 모아 한눈에 보여줍니다.
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost" id="btnRefreshPreview">
+                🔄 미리보기 새로고침
+              </button>
+            </div>
+          </div>
+
+          <div class="manual-preview-meta">
+            <div class="manual-preview-meta-left">
+              <span class="manual-preview-tag" id="previewToolTag">도구: -</span>
+              <span class="manual-preview-tag" id="previewTypeTag">유형: -</span>
+            </div>
+            <div class="manual-preview-meta-right">
+              <span class="pill-small" id="previewUpdatedAt">수정: -</span>
+            </div>
+          </div>
+
+          <div class="manual-preview-box" id="manualPreviewBox">
+예시:
+- “20번 Ops Manual Display · 운영 매뉴얼 디스플레이”
+- 역할: 각 도구의 사용법을 한 줄 요약 + 단계 + 주의사항으로 적어두는 전용 보드
+- 사용: 화면 상단에서 도구 번호·이름을 선택 → 아래에 단계와 메모만 적고 [저장] 버튼
+- 특징: 한 번 만들어 두면, 나중에 다시 봐도 바로 사용할 수 있는 형태만 남깁니다.
+          </div>
+        </section>
+      </section>
+
+      <!-- Right: Manual List, Search, Logs -->
+      <section class="right-column" aria-label="List and logs column">
+        <!-- 4. Manual list & search -->
+        <section class="card" aria-label="Saved manuals list">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="index">4</span>
+                <span>저장된 매뉴얼 목록 & 검색</span>
+              </div>
+              <div class="card-subtitle">
+                도구 번호·이름·요약 문구로 빠르게 찾습니다.
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost" id="btnRefreshManualList">
+                🔄 목록 새로고침
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="manualSearchInput" class="field-label">
+              검색 (번호 / 이름 / 요약)
+            </label>
+            <input
+              id="manualSearchInput"
+              type="text"
+              placeholder="예: 7, 세팅, Finance, Promo"
+            />
+          </div>
+
+          <div class="manual-list" id="manualList" aria-label="Saved manuals">
+            <div class="manual-list-empty">
+              아직 저장된 매뉴얼이 없습니다. 왼쪽에서 ①~③만 채우고 [이 도구 매뉴얼 저장]을 눌러 보세요.
+            </div>
+          </div>
+
+          <div class="btn-row" style="margin-top: 6px;">
+            <button type="button" class="btn" id="btnCopyAllManuals">
+              📋 전체 매뉴얼 텍스트 복사
+            </button>
+            <button type="button" class="btn btn-ghost" id="btnDeleteSelectedManual">
+              🗑️ 선택 매뉴얼 삭제
+            </button>
+          </div>
+        </section>
+
+        <!-- 5. Logs & meta -->
+        <section class="card" aria-label="Logs and meta">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="index">5</span>
+                <span>내부 로그 · 상태 스냅샷</span>
+              </div>
+              <div class="card-subtitle">
+                6번 Optimizer, 15번 Tester가 읽을 수 있도록 JSON 구조로 쌓입니다.
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost" id="btnRefreshLogs">
+                🔄 로그 새로고침
+              </button>
+              <button type="button" class="btn btn-ghost" id="btnClearLogs">
+                🧹 로그 전체 삭제
+              </button>
+            </div>
+          </div>
+
+          <div class="log-box" id="logBox" aria-label="Recent logs">
+            <div class="log-line">
+              <span class="log-time">-</span>
+              <span class="log-level">INFO</span>
+              <span class="log-msg">[system] 아직 저장된 로그가 없습니다.</span>
+            </div>
+          </div>
+
+          <div class="meta-box" style="margin-top: 6px;">
+            <div>
+              🧩 <b>localStorage 키</b>:
+              <code>wic_ops_manual_docs_v1</code>,
+              <code>wic_ops_manual_logs_v1</code>
+            </div>
+            <div>
+              🔐 내부 메타:
+              <code>{"toolId":20,"toolName":"Ops Manual Display","module":"ops_manual","logsKey":"wic_ops_manual_logs_v1","docsKey":"wic_ops_manual_docs_v1"}</code>
+            </div>
+            <div>
+              모든 데이터는 이 브라우저에만 저장되며, 서버로 전송되지 않습니다.
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast">
+      <span class="toast-dot"></span>
+      <span id="toastText">완료되었습니다.</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const DOCS_KEY = "wic_ops_manual_docs_v1";
+      const LOGS_KEY = "wic_ops_manual_logs_v1";
+      const LAST_SELECTED_KEY = "wic_ops_manual_last_selected_v1";
+
+      /** @type {Array<{id:string, toolNumber:number, toolName:string, version:string, category:string, type:string, summary:string, steps:string, notes:string, updatedAt:string}>} */
+      let manuals = [];
+      /** @type {Array<{time:string, level:string, message:string, extra?:any}>} */
+      let logs = [];
+      /** @type {string|null} */
+      let selectedManualId = null;
+
+      // DOM refs
+      const toolNumberInput = document.getElementById("toolNumberInput");
+      const toolNameInput = document.getElementById("toolNameInput");
+      const toolVersionInput = document.getElementById("toolVersionInput");
+      const toolCategoryInput = document.getElementById("toolCategoryInput");
+
+      const manualTypeInput = document.getElementById("manualTypeInput");
+      const manualSummaryInput = document.getElementById("manualSummaryInput");
+      const manualStepsInput = document.getElementById("manualStepsInput");
+      const manualNotesInput = document.getElementById("manualNotesInput");
+
+      const currentTargetState = document.getElementById("currentTargetState");
+      const errorBanner = document.getElementById("errorBanner");
+      const errorBannerText = document.getElementById("errorBannerText");
+      const manualPreviewBox = document.getElementById("manualPreviewBox");
+      const previewToolTag = document.getElementById("previewToolTag");
+      const previewTypeTag = document.getElementById("previewTypeTag");
+      const previewUpdatedAt = document.getElementById("previewUpdatedAt");
+
+      const manualList = document.getElementById("manualList");
+      const manualSearchInput = document.getElementById("manualSearchInput");
+      const logBox = document.getElementById("logBox");
+
+      const summaryManualCount = document.getElementById(
+        "summaryManualCount"
+      );
+      const summarySelectedTool = document.getElementById(
+        "summarySelectedTool"
+      );
+      const summaryLastUpdated = document.getElementById(
+        "summaryLastUpdated"
+      );
+      const summaryLastUpdatedTool = document.getElementById(
+        "summaryLastUpdatedTool"
+      );
+      const summaryLastError = document.getElementById("summaryLastError");
+      const summaryLastErrorTime = document.getElementById(
+        "summaryLastErrorTime"
+      );
+
+      const toast = document.getElementById("toast");
+      const toastText = document.getElementById("toastText");
+
+      // Buttons
+      const btnRefreshSummary = document.getElementById("btnRefreshSummary");
+      const btnFillExampleTool = document.getElementById(
+        "btnFillExampleTool"
+      );
+      const btnResetTool = document.getElementById("btnResetTool");
+      const btnClearManualFields = document.getElementById(
+        "btnClearManualFields"
+      );
+      const btnSaveManual = document.getElementById("btnSaveManual");
+      const btnCopyCurrentManual = document.getElementById(
+        "btnCopyCurrentManual"
+      );
+      const btnRefreshPreview = document.getElementById("btnRefreshPreview");
+      const btnRefreshManualList = document.getElementById(
+        "btnRefreshManualList"
+      );
+      const btnCopyAllManuals = document.getElementById("btnCopyAllManuals");
+      const btnDeleteSelectedManual = document.getElementById(
+        "btnDeleteSelectedManual"
+      );
+      const btnRefreshLogs = document.getElementById("btnRefreshLogs");
+      const btnClearLogs = document.getElementById("btnClearLogs");
+
+      function showToast(message) {
+        toastText.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 1800);
+      }
+
+      function nowISO() {
+        return new Date().toISOString();
+      }
+
+      function formatTime(iso) {
+        if (!iso) return "-";
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return iso;
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        const h = String(d.getHours()).padStart(2, "0");
+        const min = String(d.getMinutes()).padStart(2, "0");
+        return `${y}-${m}-${day} ${h}:${min}`;
+      }
+
+      function addLog(level, message, extra) {
+        const entry = {
+          time: nowISO(),
+          level,
+          message: String(message || ""),
+        };
+        if (extra !== undefined) {
+          entry.extra = extra;
+        }
+        logs.push(entry);
+        if (logs.length > 200) {
+          logs.splice(0, logs.length - 200);
+        }
+        try {
+          localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
+        } catch (e) {
+          // ignore
+        }
+        renderLogs();
+      }
+
+      function setErrorBanner(text) {
+        if (!text) {
+          errorBanner.classList.remove("visible");
+          return;
+        }
+        errorBannerText.textContent = text;
+        errorBanner.classList.add("visible");
+      }
+
+      function clearErrorBanner() {
+        setErrorBanner("");
+      }
+
+      function saveManualFromForm() {
+        clearErrorBanner();
+        const rawNumber = toolNumberInput.value.trim();
+        const toolNumber = parseInt(rawNumber, 10);
+        const toolName = toolNameInput.value.trim();
+        let version = toolVersionInput.value.trim();
+        const category = toolCategoryInput.value.trim();
+        const type = manualTypeInput.value || "combo";
+        const summary = manualSummaryInput.value.trim();
+        const steps = manualStepsInput.value.trim();
+        const notes = manualNotesInput.value.trim();
+
+        if (!rawNumber || Number.isNaN(toolNumber) || toolNumber <= 0) {
+          setErrorBanner("도구 번호를 숫자로 정확히 입력해 주세요.");
+          addLog("ERROR", "Invalid tool number", { rawNumber });
+          return;
+        }
+        if (!toolName) {
+          setErrorBanner("도구 이름을 입력해 주세요.");
+          addLog("ERROR", "Tool name missing", { toolNumber });
+          return;
+        }
+        if (!summary) {
+          setErrorBanner("한 줄 요약은 필수입니다.");
+          addLog("ERROR", "Summary missing", { toolNumber, toolName });
+          return;
+        }
+        if (!steps) {
+          setErrorBanner("사용 단계 내용을 한 줄 이상 입력해 주세요.");
+          addLog("ERROR", "Steps missing", { toolNumber, toolName });
+          return;
+        }
+        if (!version) version = "v1.0";
+
+        const id =
+          selectedManualId ||
+          `ops_${toolNumber}_${toolName.replace(/\s+/g, "_")}`.toLowerCase();
+
+        const updatedAt = nowISO();
+
+        const existingIndex = manuals.findIndex((m) => m.id === id);
+        const doc = {
+          id,
+          toolNumber,
+          toolName,
+          version,
+          category,
+          type,
+          summary,
+          steps,
+          notes,
+          updatedAt,
+        };
+
+        if (existingIndex >= 0) {
+          manuals[existingIndex] = doc;
+        } else {
+          manuals.push(doc);
+        }
+
+        selectedManualId = id;
+
+        try {
+          localStorage.setItem(DOCS_KEY, JSON.stringify(manuals));
+          localStorage.setItem(LAST_SELECTED_KEY, selectedManualId);
+        } catch (e) {
+          addLog("ERROR", "localStorage save failed", {
+            error: String(e),
+          });
+          setErrorBanner("브라우저 저장공간 문제로 저장에 실패했습니다.");
+          return;
+        }
+
+        updateTargetState();
+        renderManualList();
+        renderPreview();
+        renderSummary();
+
+        addLog("INFO", "Manual saved", {
+          id,
+          toolNumber,
+          toolName,
+          type,
+        });
+        showToast("매뉴얼이 저장되었습니다.");
+      }
+
+      function generatePreviewText(doc) {
+        if (!doc) {
+          return (
+            "예시:\n" +
+            "- “20번 Ops Manual Display · 운영 매뉴얼 디스플레이”\n" +
+            "- 역할: 각 도구의 사용법을 한 줄 요약 + 단계 + 주의사항으로 적어두는 전용 보드\n" +
+            "- 사용: 화면 상단에서 도구 번호·이름을 선택 → 아래에 단계와 메모만 적고 [저장] 버튼\n" +
+            "- 특징: 한 번 만들어 두면, 나중에 다시 봐도 바로 사용할 수 있는 형태만 남깁니다."
+          );
+        }
+
+        const headerLine = `▶ ${doc.toolNumber}번 ${doc.toolName} · ${doc.version || "v1.0"} (${doc.type})`;
+        const summaryLine = `- 한 줄 요약: ${doc.summary}`;
+        const stepsLines = doc.steps
+          .split(/\r?\n/)
+          .filter((l) => l.trim())
+          .map((l, idx) => {
+            const trimmed = l.trim();
+            if (/^\d+[\.\)]/.test(trimmed) || /^[-•]/.test(trimmed)) {
+              return trimmed;
+            }
+            return `${idx + 1}) ${trimmed}`;
+          });
+        const notesLines = doc.notes
+          ? doc.notes.split(/\r?\n/).map((l) => l.trim())
+          : [];
+
+        const parts = [headerLine, summaryLine];
+        if (stepsLines.length) {
+          parts.push("", "① 사용 단계:");
+          parts.push(...stepsLines);
+        }
+        if (notesLines.length) {
+          parts.push("", "② 주의·팁:", ...notesLines);
+        }
+
+        return parts.join("\n");
+      }
+
+      function renderPreview() {
+        const doc = manuals.find((m) => m.id === selectedManualId);
+        manualPreviewBox.textContent = generatePreviewText(doc);
+        if (!doc) {
+          previewToolTag.textContent = "도구: -";
+          previewTypeTag.textContent = "유형: -";
+          previewUpdatedAt.textContent = "수정: -";
+          return;
+        }
+        previewToolTag.textContent = `도구: ${doc.toolNumber}번 ${doc.toolName}`;
+        previewTypeTag.textContent = `유형: ${doc.type}`;
+        previewUpdatedAt.textContent = `수정: ${formatTime(doc.updatedAt)}`;
+      }
+
+      function renderManualList() {
+        const search = (manualSearchInput.value || "").trim().toLowerCase();
+        manualList.innerHTML = "";
+
+        let filtered = manuals.slice().sort((a, b) => {
+          if (a.toolNumber === b.toolNumber) {
+            return a.toolName.localeCompare(b.toolName);
+          }
+          return a.toolNumber - b.toolNumber;
+        });
+
+        if (search) {
+          filtered = filtered.filter((m) => {
+            const combined = `${m.toolNumber} ${m.toolName} ${m.summary}`.toLowerCase();
+            return combined.includes(search);
+          });
+        }
+
+        if (!filtered.length) {
+          const empty = document.createElement("div");
+          empty.className = "manual-list-empty";
+          empty.textContent =
+            "조건에 맞는 매뉴얼이 없습니다. 검색어를 지우거나 새 매뉴얼을 추가해 보세요.";
+          manualList.appendChild(empty);
+          return;
+        }
+
+        filtered.forEach((doc) => {
+          const item = document.createElement("div");
+          item.className =
+            "manual-item" +
+            (doc.id === selectedManualId ? " selected" : "");
+          item.dataset.id = doc.id;
+
+          const top = document.createElement("div");
+          top.className = "manual-item-top";
+
+          const title = document.createElement("div");
+          title.className = "manual-item-title";
+          const statusDot = document.createElement("span");
+          statusDot.className = "status-dot ok";
+          title.appendChild(statusDot);
+          const text = document.createElement("span");
+          text.textContent = `${doc.toolNumber}번 · ${doc.toolName}`;
+          title.appendChild(text);
+          top.appendChild(title);
+
+          const pill = document.createElement("div");
+          pill.className = "manual-item-pill";
+          pill.textContent = doc.type;
+          top.appendChild(pill);
+
+          const sub = document.createElement("div");
+          sub.className = "manual-item-sub";
+          sub.textContent = doc.summary;
+
+          const time = document.createElement("div");
+          time.className = "manual-item-sub";
+          time.textContent = `수정: ${formatTime(doc.updatedAt)}`;
+
+          item.appendChild(top);
+          item.appendChild(sub);
+          item.appendChild(time);
+
+          item.addEventListener("click", () => {
+            selectedManualId = doc.id;
+            try {
+              localStorage.setItem(LAST_SELECTED_KEY, selectedManualId);
+            } catch {}
+            // load into form
+            toolNumberInput.value = String(doc.toolNumber);
+            toolNameInput.value = doc.toolName;
+            toolVersionInput.value = doc.version || "v1.0";
+            toolCategoryInput.value = doc.category || "";
+            manualTypeInput.value = doc.type || "combo";
+            manualSummaryInput.value = doc.summary;
+            manualStepsInput.value = doc.steps;
+            manualNotesInput.value = doc.notes || "";
+            updateTargetState();
+            renderManualList();
+            renderPreview();
+            renderSummary();
+          });
+
+          manualList.appendChild(item);
+        });
+      }
+
+      function renderLogs() {
+        logBox.innerHTML = "";
+        if (!logs.length) {
+          const line = document.createElement("div");
+          line.className = "log-line";
+          line.innerHTML =
+            '<span class="log-time">-</span>' +
+            '<span class="log-level">INFO</span>' +
+            '<span class="log-msg">[system] 아직 저장된 로그가 없습니다.</span>';
+          logBox.appendChild(line);
+          return;
+        }
+
+        const recent = logs.slice(-40);
+        recent.forEach((entry) => {
+          const line = document.createElement("div");
+          line.className = "log-line";
+
+          const time = document.createElement("span");
+          time.className = "log-time";
+          time.textContent = formatTime(entry.time);
+
+          const level = document.createElement("span");
+          level.className = "log-level " + entry.level;
+          level.textContent = entry.level;
+
+          const msg = document.createElement("span");
+          msg.className = "log-msg";
+          msg.textContent = entry.message;
+
+          line.appendChild(time);
+          line.appendChild(level);
+          line.appendChild(msg);
+
+          if (entry.extra) {
+            const extra = document.createElement("div");
+            extra.className = "log-extra";
+            extra.textContent = JSON.stringify(entry.extra);
+            line.appendChild(extra);
+          }
+
+          logBox.appendChild(line);
+        });
+
+        logBox.scrollTop = logBox.scrollHeight;
+      }
+
+      function renderSummary() {
+        summaryManualCount.textContent = `${manuals.length}개`;
+
+        const selected = manuals.find((m) => m.id === selectedManualId);
+        if (selected) {
+          summarySelectedTool.textContent = `선택된 도구: ${selected.toolNumber}번 · ${selected.toolName}`;
+        } else {
+          summarySelectedTool.textContent = "선택된 도구: 없음";
+        }
+
+        if (manuals.length) {
+          const latest = manuals.reduce((acc, cur) => {
+            if (!acc) return cur;
+            if (new Date(cur.updatedAt) > new Date(acc.updatedAt)) return cur;
+            return acc;
+          }, null);
+          summaryLastUpdated.textContent = formatTime(latest.updatedAt);
+          summaryLastUpdatedTool.textContent = `${latest.toolNumber}번 · ${latest.toolName}`;
+        } else {
+          summaryLastUpdated.textContent = "-";
+          summaryLastUpdatedTool.textContent = "-";
+        }
+
+        const lastError = [...logs].reverse().find((l) => l.level === "ERROR");
+        if (lastError) {
+          summaryLastError.textContent = lastError.message || "오류 기록 있음";
+          summaryLastError.classList.remove("status-ok");
+          summaryLastError.classList.add("status-error");
+          summaryLastErrorTime.textContent = formatTime(lastError.time);
+        } else {
+          summaryLastError.textContent = "없음";
+          summaryLastError.classList.remove("status-error");
+          summaryLastError.classList.add("status-ok");
+          summaryLastErrorTime.textContent = "-";
+        }
+      }
+
+      function updateTargetState() {
+        const rawNumber = toolNumberInput.value.trim();
+        const toolName = toolNameInput.value.trim();
+        if (!rawNumber || !toolName) {
+          currentTargetState.textContent = "대상 미설정";
+          return;
+        }
+        currentTargetState.textContent = `${rawNumber}번 · ${toolName}`;
+      }
+
+      function loadFromStorage() {
+        try {
+          const docsRaw = localStorage.getItem(DOCS_KEY);
+          if (docsRaw) {
+            const parsed = JSON.parse(docsRaw);
+            if (Array.isArray(parsed)) {
+              manuals = parsed;
+            }
+          }
+        } catch (e) {
+          manuals = [];
+        }
+        try {
+          const logsRaw = localStorage.getItem(LOGS_KEY);
+          if (logsRaw) {
+            const parsed = JSON.parse(logsRaw);
+            if (Array.isArray(parsed)) {
+              logs = parsed;
+            }
+          }
+        } catch (e) {
+          logs = [];
+        }
+        try {
+          const last = localStorage.getItem(LAST_SELECTED_KEY);
+          if (last) {
+            selectedManualId = last;
+          }
+        } catch {}
+
+        // if nothing selected but manuals exist, select first by number
+        if (!selectedManualId && manuals.length) {
+          const sorted = manuals.slice().sort((a, b) => {
+            if (a.toolNumber === b.toolNumber) {
+              return a.toolName.localeCompare(b.toolName);
+            }
+            return a.toolNumber - b.toolNumber;
+          });
+          selectedManualId = sorted[0].id;
+        }
+
+        // if we have a selected one, load into form
+        const selected = manuals.find((m) => m.id === selectedManualId);
+        if (selected) {
+          toolNumberInput.value = String(selected.toolNumber);
+          toolNameInput.value = selected.toolName;
+          toolVersionInput.value = selected.version || "v1.0";
+          toolCategoryInput.value = selected.category || "";
+          manualTypeInput.value = selected.type || "combo";
+          manualSummaryInput.value = selected.summary;
+          manualStepsInput.value = selected.steps;
+          manualNotesInput.value = selected.notes || "";
+        }
+
+        updateTargetState();
+        renderManualList();
+        renderLogs();
+        renderSummary();
+        renderPreview();
+      }
+
+      function copyToClipboard(text) {
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            () => {
+              showToast("클립보드에 복사되었습니다.");
+            },
+            () => {
+              fallbackCopy(text);
+            }
+          );
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast("클립보드에 복사되었습니다.");
+        } catch (e) {
+          addLog("WARN", "execCommand copy failed", { error: String(e) });
+        } finally {
+          document.body.removeChild(ta);
+        }
+      }
+
+      function buildCurrentManualText() {
+        const doc = manuals.find((m) => m.id === selectedManualId);
+        return generatePreviewText(doc);
+      }
+
+      function buildAllManualsText() {
+        if (!manuals.length) return "";
+        const sorted = manuals.slice().sort((a, b) => {
+          if (a.toolNumber === b.toolNumber) {
+            return a.toolName.localeCompare(b.toolName);
+          }
+          return a.toolNumber - b.toolNumber;
+        });
+        const parts = [];
+        sorted.forEach((doc, index) => {
+          parts.push(
+            `# ${index + 1}. ${doc.toolNumber}번 ${doc.toolName} (${doc.version || "v1.0"}, ${doc.type})`
+          );
+          parts.push("");
+          parts.push(generatePreviewText(doc));
+          parts.push("");
+          parts.push("--------------------------------------------------");
+          parts.push("");
+        });
+        return parts.join("\n");
+      }
+
+      // Event bindings
+      btnRefreshSummary.addEventListener("click", () => {
+        renderSummary();
+        showToast("요약 상태를 새로고침했습니다.");
+      });
+
+      btnFillExampleTool.addEventListener("click", () => {
+        toolNumberInput.value = "20";
+        toolNameInput.value = "Ops Manual Display";
+        toolVersionInput.value = "v1.0";
+        toolCategoryInput.value = "ops";
+        manualTypeInput.value = "combo";
+        manualSummaryInput.value =
+          "각 도구의 사용법을 한 줄 요약 + 단계 + 주의사항으로 적어두는 운영 매뉴얼 전용 보드입니다.";
+        manualStepsInput.value =
+          "1) 브라우저에서 20번 Ops Manual Display 페이지를 연다.\n" +
+          "2) 상단에서 도구 번호와 이름을 입력한다. (예: 7번 WIC Setting Tool)\n" +
+          "3) 한 줄 요약과 사용 단계, 주의·팁을 간단히 적는다.\n" +
+          "4) [이 도구 매뉴얼 저장] 버튼을 눌러 저장한다.\n" +
+          "5) 오른쪽 목록에서 매뉴얼을 선택해 다시 읽거나 복사한다.";
+        manualNotesInput.value =
+          "· 처음 도입할 때는 각 도구당 1개의 통합 매뉴얼만 만들어도 충분합니다.\n" +
+          "· 실제 고객 데이터 대신, 예시 텍스트로 먼저 작성해 보는 것이 안전합니다.";
+        updateTargetState();
+        clearErrorBanner();
+        showToast("예시가 채워졌습니다.");
+      });
+
+      btnResetTool.addEventListener("click", () => {
+        toolNumberInput.value = "";
+        toolNameInput.value = "";
+        toolVersionInput.value = "";
+        toolCategoryInput.value = "";
+        updateTargetState();
+        clearErrorBanner();
+      });
+
+      btnClearManualFields.addEventListener("click", () => {
+        manualTypeInput.value = "combo";
+        manualSummaryInput.value = "";
+        manualStepsInput.value = "";
+        manualNotesInput.value = "";
+        clearErrorBanner();
+      });
+
+      btnSaveManual.addEventListener("click", () => {
+        saveManualFromForm();
+      });
+
+      btnCopyCurrentManual.addEventListener("click", () => {
+        const text = buildCurrentManualText();
+        if (!text) {
+          showToast("복사할 매뉴얼이 없습니다.");
+          return;
+        }
+        copyToClipboard(text);
+      });
+
+      btnRefreshPreview.addEventListener("click", () => {
+        renderPreview();
+        showToast("미리보기를 새로고침했습니다.");
+      });
+
+      manualSearchInput.addEventListener("input", () => {
+        renderManualList();
+      });
+
+      btnRefreshManualList.addEventListener("click", () => {
+        renderManualList();
+        showToast("목록을 새로고침했습니다.");
+      });
+
+      btnCopyAllManuals.addEventListener("click", () => {
+        const text = buildAllManualsText();
+        if (!text) {
+          showToast("복사할 매뉴얼이 없습니다.");
+          return;
+        }
+        copyToClipboard(text);
+      });
+
+      btnDeleteSelectedManual.addEventListener("click", () => {
+        if (!selectedManualId) {
+          showToast("선택된 매뉴얼이 없습니다.");
+          return;
+        }
+        const idx = manuals.findIndex((m) => m.id === selectedManualId);
+        if (idx < 0) {
+          showToast("선택된 매뉴얼이 없습니다.");
+          return;
+        }
+        const removed = manuals.splice(idx, 1)[0];
+        selectedManualId = manuals.length ? manuals[0].id : null;
+        try {
+          localStorage.setItem(DOCS_KEY, JSON.stringify(manuals));
+          if (selectedManualId) {
+            localStorage.setItem(LAST_SELECTED_KEY, selectedManualId);
+          } else {
+            localStorage.removeItem(LAST_SELECTED_KEY);
+          }
+        } catch {}
+        renderManualList();
+        renderPreview();
+        renderSummary();
+        addLog("INFO", "Manual deleted", {
+          toolNumber: removed.toolNumber,
+          toolName: removed.toolName,
+        });
+        showToast("매뉴얼이 삭제되었습니다.");
+      });
+
+      btnRefreshLogs.addEventListener("click", () => {
+        renderLogs();
+        showToast("로그를 새로고침했습니다.");
+      });
+
+      btnClearLogs.addEventListener("click", () => {
+        logs = [];
+        try {
+          localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
+        } catch {}
+        renderLogs();
+        renderSummary();
+        showToast("로그를 모두 삭제했습니다.");
+      });
+
+      toolNumberInput.addEventListener("input", updateTargetState);
+      toolNameInput.addEventListener("input", updateTargetState);
+
+      // Initial load
+      loadFromStorage();
+      addLog("INFO", "Ops Manual Display ready", {
+        toolId: 20,
+        module: "ops_manual",
+      });
+    })();
+  </script>
+</body>
+</html>
