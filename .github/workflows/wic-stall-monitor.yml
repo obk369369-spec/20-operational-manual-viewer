@@ -1,0 +1,70 @@
+name: WIC Stall Heartbeat Monitor
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-observer-heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check observer status age
+        id: age
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE='WIC_LIVE_OBSERVER_STATUS.md'
+          MAX_AGE_MINUTES=35
+          LAST_TS=$(git log -1 --format=%ct -- "$FILE")
+          NOW_TS=$(date +%s)
+          AGE_MIN=$(( (NOW_TS - LAST_TS) / 60 ))
+          echo "age_minutes=$AGE_MIN" >> "$GITHUB_OUTPUT"
+          echo "last_commit_epoch=$LAST_TS" >> "$GITHUB_OUTPUT"
+          if [ "$AGE_MIN" -gt "$MAX_AGE_MINUTES" ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            echo "::error::WIC observer status is stale: ${AGE_MIN} minutes (limit ${MAX_AGE_MINUTES})."
+          else
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+            echo "WIC observer status age: ${AGE_MIN} minutes."
+          fi
+
+      - name: Open or update single stall issue
+        if: steps.age.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGE_MIN: ${{ steps.age.outputs.age_minutes }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TITLE='[WIC STALL] Observer heartbeat stale'
+          BODY="Observer status has not advanced for ${AGE_MIN} minutes. Automated recovery tasks must resume from the saved restart point; do not repeat unchanged evidence."
+          ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+          if [ -z "$ISSUE" ]; then
+            gh issue create --title "$TITLE" --body "$BODY"
+          else
+            gh issue comment "$ISSUE" --body "$BODY"
+          fi
+          exit 1
+
+      - name: Close resolved stall issue
+        if: steps.age.outputs.stale == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TITLE='[WIC STALL] Observer heartbeat stale'
+          ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$ISSUE" ]; then
+            gh issue close "$ISSUE" --comment 'Observer heartbeat is fresh again; stall condition cleared.'
+          fi
