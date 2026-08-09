@@ -1,0 +1,95 @@
+{
+  "state_type": "execution_state_only_not_rules",
+  "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
+  "updated_kst": "2026-08-09 21:58",
+  "scope": "WIC observer-mode overnight completion",
+  "office_readiness_priority": [
+    "email_collection",
+    "tool_7_customer_contact",
+    "tool_1_intermediate_guide",
+    "metadata_37_13",
+    "tool_6_toc",
+    "tool_2_bid",
+    "publisher_28_31",
+    "remaining_tools_and_chats"
+  ],
+  "verified_findings": [
+    {
+      "id": "email_collection",
+      "status": "PASS_RULES_HOLD_E2E_SAMPLE",
+      "performed": "Compared Library V5 email collection rules with the GitHub central master.",
+      "evidence": [
+        "Library: 이메일 수집(분야별) 공통 운영 규칙 V5.0 (범용판)",
+        "GitHub master section 8"
+      ],
+      "verified": "Central master already contains field completeness, same-person verification, dedupe, hold/tracking, distribution and no-mid-approval rules. Library V5 additionally confirms that customer-contact wording must be based on actual sellable reports before wording is generated; this requirement is already locked under central section 9 for contact execution.",
+      "blocker": "No specific new customer/industry input exists in this run for a fresh end-to-end collection sample.",
+      "next": "On next real customer collection request, execute official-source collection through output gate without asking for repeated instructions."
+    },
+    {
+      "id": "tool_7_customer_contact",
+      "status": "HOLD_GITHUB_UI_ACTIVE_CHAT_NATIVE",
+      "performed": "Compared historical 7 rules, current central master and current GitHub UI purpose.",
+      "evidence": [
+        "Library: 7번 고객 컨택 판단.doc",
+        "GitHub master section 9",
+        "GitHub repo 07-wic-setting-tool-v1 public/index.html previously read back"
+      ],
+      "verified": "Historical 7 documents contain the customer-contact execution/rule accumulation purpose. A historical statement assigning 29 as a customer-contact rule engine conflicts with the current 29 publisher partnership/contract role and must not be inherited. Current GitHub repo 07 remains a settings/address string-check UI, so executable UI is purpose-mismatched. Chat-native customer-contact pipeline is operationally allowed by the central master.",
+      "blocker": "Replacing the 07 UI with a real contact engine still requires implementing and independently executing an end-to-end customer case; UI replacement alone is not PASS.",
+      "next": "Inspect 07 repository files and replace settings-only main path only when a real customer-input to contact-output E2E test can be attached. Until then use Chat-native pipeline for office work."
+    },
+    {
+      "id": "tool_1_intermediate_guide",
+      "status": "HOLD_E2E",
+      "performed": "Compared central section 10 against historical 1 guide rules and locked guide templates.",
+      "evidence": [
+        "GitHub master section 10",
+        "Library: 1번 고객 자동화 안내서 8/12",
+        "Library: locked market/domestic/engineering guide template records"
+      ],
+      "verified": "Manual field-by-field typing is deprecated; automatic mapping is the intended path. The central master correctly bans fabricated report values and preserves original guide layout/slots. Historical layout-only completion statements are not functional E2E evidence.",
+      "blocker": "Current 01 repository main file path could not be read at public/index.html, so current executable code state is not yet independently verified in this run.",
+      "next": "Discover actual repository paths, read current code, identify synthetic-data paths, then run one real report -> mapped guide -> field comparison E2E."
+    },
+    {
+      "id": "metadata_37_13",
+      "status": "PASS_RULES_HOLD_TOOL_EXECUTION",
+      "performed": "Compared 37 integrated rules, product-name/ISBN-CODE lock and 13 historical upload state against central section 11.",
+      "evidence": [
+        "Library: 34번_공통보완_37번메타데이터_통합운영규칙.txt",
+        "Library: 37번_메타데이터_상품명_ISBNCODE_누락방지_잠금보완사항.txt",
+        "Library: 37번_메타데이터_통합규칙관리.xlsx",
+        "Library: 13번 엑셀 자동 업로드 11.doc",
+        "GitHub master section 11"
+      ],
+      "verified": "37 is the integrated production+verification chat; historical 39 independent verification is deprecated. Product name = Korean translation, 한글명 = original English title is locked. 13 historical state explicitly records upload scaffolding without real upload API/trigger, so old claims of complete auto-upload must not be reused. Central master correctly requires date-serial regression testing and original-result direct comparison.",
+      "blocker": "No current 13 executable upload run was performed in this run; historical evidence shows structure-only autoUpload with TODO connection.",
+      "next": "Inspect current 13 repository implementation and verify whether upload trigger/API is now real; add regression case for Excel date serial rendering before PASS."
+    },
+    {
+      "id": "tool_6_toc",
+      "status": "PASS_RULES_HOLD_REAL_ANSWERSET",
+      "performed": "Compared central section 12 with historical 34 expansion rules for TOC patterns.",
+      "evidence": [
+        "Library: 34번 통합+자동화.txt TOC expansion",
+        "GitHub master section 12"
+      ],
+      "verified": "Historical rule explicitly says internal simulation cannot grant PASS; PASS requires comparison to real guide answer sets. The central master already locks structure preservation, error grouping and regression reuse.",
+      "blocker": "No fresh real publisher TOC answer-set comparison executed in this run.",
+      "next": "Use existing real publisher original/final pairs as answer sets and record exact pass/fail cases rather than synthetic combinations."
+    }
+  ],
+  "conflicts_locked_for_next_master_update": [
+    {
+      "conflict": "Historical 7 document: 29 = customer contact rule engine",
+      "current_resolution": "DEPRECATED historical role. Current 29 remains publisher partnership/contract/commission/settlement management."
+    },
+    {
+      "conflict": "Historical 13 documents imply near-complete automatic upload",
+      "current_resolution": "Do not treat as complete; historical code explicitly contained TODO upload connection. Require current execution evidence."
+    }
+  ],
+  "restart_point": "Continue by discovering current 01 and 13 repository file paths and executable entry points; then inspect 07 files for replacement boundary. After that process 2 and 28-31, then remaining registered tools/chats. Do not repeat completed rule comparison above unless contradictory new evidence appears.",
+  "completion_policy": "No tool is marked functionally PASS from code presence, UI presence, historical claims, or commit alone. Functional PASS requires actual input -> execution -> output -> expected comparison."
+}
