@@ -1,0 +1,72 @@
+name: WIC Rule Governance Audit
+
+on:
+  push:
+    paths:
+      - 'WIC_GLOBAL_OPERATING_RULES.md'
+      - '.github/workflows/rule-governance-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate single source
+        shell: bash
+        run: |
+          set -euo pipefail
+          f='WIC_GLOBAL_OPERATING_RULES.md'
+          test -s "$f"
+          grep -q 'SINGLE SOURCE OF TRUTH' "$f"
+          grep -q '관찰자 모드' "$f"
+          grep -q 'PASS / HOLD / FAIL' "$f"
+          grep -q '껍데기 차단 규칙' "$f"
+          grep -q '도구 번호별 단일 등록표' "$f"
+          grep -q '사용자 부담 카운터' "$f"
+          echo 'CENTRAL_RULES=PASS'
+      - name: Validate public repository pointers
+        shell: bash
+        run: |
+          set -euo pipefail
+          repos=(
+            01-auto-guide-v1
+            02-auto-bid-narajangter-v1
+            03-coding_practice
+            05-report-generator
+            06-toc-check
+            07-wic-setting-tool-v1
+            08-English-Verb-Exercise
+            09-contents-making-tool
+            10-WIC-Finance-Dashboard
+            11-obk-finance-planner
+            12-wic-subwebsite-builder
+            13-excel-upload
+            14-wic-homepage-editor
+            19-wic-business-promotion
+            21-Sales-Route-Planner
+            22-Common-Item-kit
+            23-world-advisor
+            24-Easy-Video-Maker
+            25-free-content-maker
+            26-online-item-shop
+            27-technical-book-verifier
+          )
+          fail=0
+          for repo in "${repos[@]}"; do
+            url="https://raw.githubusercontent.com/obk369369-spec/${repo}/main/WIC_RULE_SOURCE.md"
+            if curl -fsSL "$url" | grep -q 'WIC_GLOBAL_OPERATING_RULES.md'; then
+              echo "PASS ${repo}"
+            else
+              echo "FAIL ${repo}"
+              fail=1
+            fi
+          done
+          test "$fail" -eq 0
+      - name: Private repository note
+        run: |
+          echo '04-research-funding-generator is private; pointer is verified through the connected GitHub tool, not public curl.'
+          echo '15-18 have no dedicated GitHub repositories currently; central master keeps them HOLD.'
