@@ -1,27 +1,32 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-10 06:43 KST
-상태: ACTIVE — 3단 재개 펄스 + 5분 GitHub heartbeat 감시 추가
+최종 확인: 2026-08-10 06:49 KST
+상태: ACTIVE — 3단 재개 펄스 + 5분 GitHub heartbeat + 자기개선/충돌방지 잠금
 
 이 파일은 사용자가 직접 테스트하지 않고 진행을 관찰하기 위한 외부 상태판이다. 실제 외부 증거가 있을 때만 진행으로 기록한다.
 
-## 이번 회차 실제 작업 — 06:43
-- 본 작업 `WIC Overnight Completion`은 매시 50분 실행 유지.
-- `WIC Stall Watchdog`은 매시 10분 실행으로 재배치했다.
-- 새 보조 재개 작업 `WIC Recovery Pulse`를 매시 30분에 추가했다.
-- 따라서 ChatGPT 측 재개 기회는 `:10 → :30 → :50`으로 20분 간격이다. 스케줄러가 정상 실행된다는 전제에서 멈춤 후 다음 재개 시도까지 이론상 최대 약 20분이다.
-- GitHub 외부 보완으로 `.github/workflows/wic-stall-monitor.yml`을 새로 추가했다. GitHub Actions가 5분 cron으로 observer 파일의 마지막 commit 시각을 확인하고, 35분 이상 stale이면 단일 `[WIC STALL] Observer heartbeat stale` 이슈를 생성/갱신하며 workflow를 FAIL로 남긴다.
-- GitHub heartbeat는 외부 감지 증거를 만드는 역할이며 ChatGPT 작업 자체를 직접 재시작하지는 못한다. 실제 재개는 :10/:30/:50의 세 자동화가 수행한다.
-- GitHub monitor 생성 commit: `0f8a3e4f15e45ffcb275b07d4c15a89ef8d2d3ec`.
+## 이번 회차 실제 작업 — 06:49
+- 사용자가 매번 자동화의 단점·누락·개선점을 대신 찾아 지적해야 하는 구조 자체를 운영 결함으로 판정했다.
+- 본 작업 `WIC Overnight Completion`, `WIC Stall Watchdog`, `WIC Recovery Pulse` 세 자동화 모두에 `SELF-IMPROVEMENT RULE`을 추가했다.
+- 반복 비효율, 중복 자동화, 불필요한 대화/크레딧 사용, race/state conflict, stale 상태, 반복 HOLD 루프, 예방 가능한 운영 실수를 발견하면 사용자의 추가 지시를 기다리지 않고 원인 진단 → 안전한 개선 → 검증 → 상태판 기록까지 수행한다.
+- 단, 감시 비활성화, 증거 삭제, 유료 비용 발생, 위험의 실질적 증가가 필요한 변경은 자동 강행하지 않는다.
+- Watchdog과 Recovery Pulse에는 `COLLISION GUARD`를 추가했다. 다른 WIC 실행이 최근 12분 이내에 실제 새 증거 또는 재시작점 변경을 남겼다면 겹치는 복구 작업을 시작하지 않고 조용히 종료한다.
+- 구조 변경마다 원인, 변경내용, 장점, 새 단점/위험, rollback 조건, 검증결과를 반드시 기록하도록 잠갔다.
 
 ## 구조 변경의 장점과 새 단점
-- 장점: 기존 30~40분 수준의 재개 공백을 스케줄상 최대 약 20분으로 줄였다. GitHub 쪽에는 5분 단위 별도 heartbeat 감시 증거가 생긴다.
-- 단점 1: 자동화 작업이 3개가 되어 자동 실행 대화 항목이 더 생길 수 있다.
-- 단점 2: 장시간 실행이 서로 겹치면 중복 실행·race condition·상태판 동시갱신 충돌 가능성이 있다. 각 recovery prompt는 unchanged evidence를 SKIP하고 saved restart point를 우선하도록 제한했다.
-- 단점 3: 실행 횟수가 늘어 크레딧/도구 사용량이 증가할 수 있다.
-- 단점 4: GitHub Actions cron은 정확히 5분마다 즉시 실행된다고 보장할 수 없고 지연될 수 있다.
-- 단점 5: GitHub Actions heartbeat는 stall을 외부에서 표시할 수 있지만 ChatGPT 자동화를 직접 호출하여 즉시 재시작시키는 기능은 없다. 따라서 실제 재개 보장은 현재 :10/:30/:50 자동화에 의존한다.
-- 단점 6: GitHub Actions 사용량이 계정/저장소 조건에 따라 Actions minutes를 소비할 수 있다.
+- 장점: 사용자가 매번 문제점을 직접 찾아 지시해야 하는 부담을 줄이고, 반복되는 운영 결함을 자동으로 진단·개선 대상으로 승격한다.
+- 장점: 3개 자동화가 동시에 같은 작업을 잡는 위험을 최근 12분 실제 증거 기준 충돌방지로 낮춘다.
+- 단점 1: 12분 collision guard 때문에 실제로는 한 실행이 새 증거를 남긴 직후 다른 복구 펄스가 정상적으로 SKIP될 수 있다. 이는 의도된 중복방지이며 작업 누락으로 계산하지 않는다.
+- 단점 2: 서로 다른 자동화가 거의 동시에 상태판을 읽는 극단적 경우에는 완전한 원자적 lock이 아니므로 race 가능성이 0은 아니다.
+- 단점 3: 자동화 3개 자체는 유지되므로 자동 대화 항목과 크레딧 사용 가능성은 여전히 존재한다. 실제 stall 복구 실증 후 20분 복구 간격을 유지하면서 자동화 수를 줄일 수 있는 구조가 확인되면 스스로 통합안을 평가한다. 감시 장치는 사용자 승인 없이 임의로 끄지 않는다.
+
+## 직전 06:43 구조
+- 본 작업 `WIC Overnight Completion`은 매시 50분 실행 유지.
+- `WIC Stall Watchdog`은 매시 10분 실행.
+- `WIC Recovery Pulse`는 매시 30분 실행.
+- 따라서 ChatGPT 측 재개 기회는 `:10 → :30 → :50`으로 20분 간격이다. 스케줄러가 정상 실행된다는 전제에서 멈춤 후 다음 재개 시도까지 이론상 최대 약 20분이다.
+- GitHub 외부 보완 `.github/workflows/wic-stall-monitor.yml`은 5분 cron으로 observer 파일의 마지막 commit 시각을 확인하고, 35분 이상 stale이면 단일 `[WIC STALL] Observer heartbeat stale` 이슈를 생성/갱신하도록 구성됐다.
+- GitHub heartbeat는 외부 감지 증거를 만드는 역할이며 ChatGPT 작업 자체를 직접 재시작하지는 못한다.
 
 ## 영구 주의사항 / 재발방지 잠금
 1. 중간에 멈추면 최대한 다시 이어가도록 하는 감시·재개 장치를 임의로 끄지 않는다.
@@ -31,19 +36,16 @@
 5. 사용자의 주의사항은 임시 대화 기억으로만 두지 않고 중앙 단일원본 `WIC_GLOBAL_OPERATING_RULES.md`에 흡수한다. 긴 파일의 안전한 부분수정 수단이 없는 회차에는 이 상태판에 먼저 증거로 저장하고, 다음 안전한 병합 가능 회차에 중앙원본으로 이동·통합한다.
 6. 같은 파일/같은 부분을 새 증거 없이 다시 처리하지 않는다. 반복 확인이 필요한 경우 새 commit/file/evidence/state change 또는 코드수정·실행테스트·회귀검증·독립검증처럼 다른 단계여야 한다.
 7. 감시 장치를 끄거나 실행 구조를 단순화하는 변경은 사용자의 명시적 지시 없이 하지 않는다.
+8. 사용자가 문제점을 매번 직접 찾아 지적해야만 개선되는 운영을 금지한다. 실행 중 발견되는 비효율·중복·낭비·충돌·반복 HOLD·예방 가능한 실수는 자동으로 개선 후보로 판정하고 안전 범위 안에서 스스로 수정·보완한다.
+9. 자기개선으로 구조를 바꿀 때도 새 단점이나 위험을 숨기지 않고 반드시 상태판과 사용자 보고에 포함한다.
 
 ## 이번 회차 판정
 | 작업 묶음 | 상태 | 외부 증거 | blocker / 개선 | 다음 실행 |
 |---|---|---|---|---|
+| 자기개선 규칙 | PASS(설정) | 본 작업/Watchdog/Recovery Pulse 프롬프트 갱신 | 실제 자동 자기개선 사례 검증 필요 | 다음 비효율 발견 시 자동 개선 수행 및 증거 기록 |
+| collision guard | PASS(설정) / HOLD(실전 race 검증) | Watchdog/Recovery Pulse 최근 12분 새 증거 기준 guard | 원자적 lock 아님 | 실제 겹침 상황에서 중복 억제 여부 확인 |
 | 3단 재개 펄스 | PASS(설정) / HOLD(실제 stall 복구 실증) | Automations :10/:30/:50 설정 | 실제 stall 발생 시 복구 성공 로그 필요 | 첫 stall에서 실제 재개 및 상태판 read-back 확인 |
-| GitHub 5분 heartbeat | PASS(파일 생성) / HOLD(첫 scheduled run 실증) | `.github/workflows/wic-stall-monitor.yml`, commit `0f8a3e4f...` | cron 지연 가능, ChatGPT 직접 재시작 불가 | 첫 scheduled run/FAIL 또는 healthy 결과 확인 |
-| 자동 재개 기능 | PASS(프롬프트 설정) / HOLD(실제 재개 실행증거) | watchdog/recovery prompts | 다음 stall 전 실증 불가 | stall 발생 시 보고+즉시재개 동시 수행 |
-| 운영 실수 기록 | PASS | 이 상태판 commit/read-back | 중앙원본 직접 병합은 긴 파일 안전수정 문제 | 안전 병합 가능 회차에 `WIC_GLOBAL_OPERATING_RULES.md`로 흡수 |
-
-## 직전 작업 요약
-- 6번 v2.26 `classifyHold()`/`runInternalSimulation()` 구조 확인. 최신 100건 실제 실행증거는 없어 HOLD 유지.
-- 2번 `obk369369-spec/02-auto-bid-narajangter-v1` 저장소 존재·push 권한 확인. 현재 GitHub 실행본 미식별 HOLD.
-- 과거 2번 HTML/규칙에서 예정가격·낙찰하한율 기반 하한가와 추천가 계산, PDF·Excel 공고 분석, 공고유형 분류, 세금/면세 계산 규칙 회수.
+| GitHub 5분 heartbeat | PASS(파일 생성) / HOLD(첫 scheduled run 실증) | `.github/workflows/wic-stall-monitor.yml` | cron 지연 가능, ChatGPT 직접 재시작 불가 | 첫 scheduled run 결과 확인 |
 
 ## 번호 혼동 금지
 - 37번 = 메타데이터 생산·통합검증만.
@@ -67,9 +69,9 @@
 
 ## 재시작 지점
 1. 현재 우선 작업 흐름을 유지한다.
-2. 첫 GitHub heartbeat scheduled run을 확인해 실제 5분 감시가 동작하는지 검증한다.
-3. 첫 실제 stall에서 `보고 → 즉시 재개 → 상태판 기록`이 모두 이뤄졌는지 검증한다.
-4. 중앙원본 `WIC_GLOBAL_OPERATING_RULES.md`의 안전한 병합 수단이 확보되면 위 영구 주의사항과 2026-08-10 Watchdog 비활성화 실수를 단일원본에 흡수한다.
-5. 구조 변경 시 새 단점·공백·중복 위험을 반드시 상태판에 먼저 기록한다.
+2. 첫 GitHub heartbeat scheduled run과 첫 실제 stall recovery를 검증한다.
+3. 이후 자동화 간 중복·크레딧 낭비·상태 충돌 징후를 사용자 지적 없이 자체 탐지하고 안전한 개선을 수행한다.
+4. 중앙원본 `WIC_GLOBAL_OPERATING_RULES.md` 안전 병합이 가능해지는 즉시 위 자기개선·구조변경 단점보고·운영실수 재발방지 규칙을 흡수한다.
+5. 20분 수준 재개 성능을 유지하면서 자동화 수를 줄일 수 있는 실제 실행 가능한 구조가 확인되면 장단점과 rollback 조건을 먼저 기록하고 개선한다.
 
 실행시간: duration not exposed
