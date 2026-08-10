@@ -62,11 +62,50 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 - 37번 = metadata production/integrated verification only.
 - 결합 금지.
 
+## Cross-chat feedback ingestion — implemented 2026-08-10 15:37 KST
+### User requirement absorbed
+- 모든 관련 대화창의 WIC 피드백을 사용자가 다시 전달하지 않게 한다.
+- 접근 가능한 prior-interaction/personal-context에서 새 피드백을 회수하고 중앙 마스터/관련 도구/GitHub로 흡수한다.
+- 대화창 전체를 서로 합치지 않고 `feedback event`만 중앙으로 승격한다.
+
+### Actual implementation
+- deterministic processor: `feedback_pipeline/cross_chat_feedback_ingest.py`
+  - commit: `4d917ae0765612273416b536115e13b46078b97f`
+  - functions: classification / tool routing / semantic dedupe id / PII redaction / central-master candidate / regression-fixture candidate / Work gate.
+- persistent cursor/dedupe state: `feedback_pipeline/state.json`
+  - commit: `8acc109f2cd53562517e1acfa686db3b9b79e663`
+  - seeds the 2026-08-07 cross-chat auto-collection instruction and the 2026-08-10 explicit implementation instruction as processed constraints.
+- CI audit: `.github/workflows/cross-chat-feedback-audit.yml`
+  - commit: `0dfc46375b5999189766d5c7a7e52eb2364de63d`
+  - verifies deterministic fixtures, state schema, duplicate IDs, and PII persistence ban on relevant pushes/PRs.
+- runtime collector: active scheduled task `WIC 대화창 피드백 수집`, hourly at `:20` KST.
+  - source method: accessible prior-interaction/personal-context retrieval; no Chat UI scraping claim.
+  - delta only: load state cursor -> recover new WIC feedback -> normalize/dedupe -> master/fixture/implementation routing -> GitHub read-back -> advance state.
+  - no-new-feedback behavior: `SKIP — no new cross-chat feedback`, no fake activity commit.
+
+### Safety / direction control
+- ordinary CORRECTION/CONSTRAINT/NEW_FIXTURE is absorbed into the existing target and resumes the saved priority; it does not merge whole chat contexts or redirect the program.
+- only explicit `PRIORITY_CHANGE` may reorder the fixed office-customer priority stack.
+- raw customer PII/private contract text/confidential transaction content is not persisted in the central feedback log; only sanitized rule-level excerpts, hashes, references, and state.
+- central normative updates target only `WIC_GLOBAL_OPERATING_RULES.md`; this ledger remains non-normative.
+
+### Work/credit gate
+- collection, history retrieval, classification, rule merge, fixture creation, GitHub patching, and ordinary-runtime deterministic tests are `WORK_DEFER_DENIED` whenever Chat/Files/GitHub/runtime can perform them.
+- historical re-analysis or terminal-suitable work sent to Work is `CREDIT_WASTE_FAIL`.
+- Work receives only exact Work-only blockers with source files + known-good baseline + failing fixture + expected output + error signature + PASS criteria + attempted Chat/runtime work + no-reanalysis scope.
+
+### Verification state
+- GitHub storage/read-back: PASS for processor/state/workflow creation commits listed above.
+- deterministic processor functional verification: pending CI/ordinary runtime evidence after workflow run; code presence alone is not functional PASS.
+- cross-chat collector end-to-end proof requires at least one NEW feedback item from another conversation to be retrieved, deduped, and persisted without manual forwarding. Until that external event occurs, runtime E2E = HOLD, implementation = ACTIVE.
+- user forwarding requirement: removed from operating path; user remains observer-only.
+
 ## exact restart point
-1. P3: real customer + real tradable report가 포함된 과거 사용자 승인 fixture를 신규 evidence로 회수.
-2. stable mapper의 실제 DOM/slot id를 그 payload와 비교하여 synthetic 0건 조건으로 guide fixture 생성.
-3. actual input -> rendered output -> expected comparison 전 Tool1 생산 PASS 금지.
-4. P4 TOC가 필요한 실보고서가 식별되면 해당 publisher golden fixture 적용 후 P3 복귀.
+1. Cross-chat collector: next hourly `:20` run must search only after `feedback_pipeline/state.json:last_context_cursor`; if a new feedback item exists, persist one end-to-end proof and advance cursor.
+2. P3: real customer + real tradable report가 포함된 과거 사용자 승인 fixture를 신규 evidence로 회수.
+3. stable mapper의 실제 DOM/slot id를 그 payload와 비교하여 synthetic 0건 조건으로 guide fixture 생성.
+4. actual input -> rendered output -> expected comparison 전 Tool1 생산 PASS 금지.
+5. P4 TOC가 필요한 실보고서가 식별되면 해당 publisher golden fixture 적용 후 P3 복귀.
 
 ## 사용자 역할
-관찰자. 과거 오류 재설명, 동일 파일 재전송, 반복 테스트, PASS/FAIL 판정, 규칙 정리, Work 이관 판단을 요구하지 않는다.
+관찰자. 과거 오류 재설명, 동일 파일 재전송, 반복 테스트, PASS/FAIL 판정, 규칙 정리, Work 이관 판단, 대화창 피드백 수동 전달을 요구하지 않는다.
