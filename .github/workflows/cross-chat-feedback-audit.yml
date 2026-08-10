@@ -1,0 +1,45 @@
+name: Cross-chat feedback pipeline audit
+
+on:
+  push:
+    paths:
+      - 'feedback_pipeline/**'
+      - 'WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md'
+      - 'WIC_GLOBAL_OPERATING_RULES.md'
+      - '.github/workflows/cross-chat-feedback-audit.yml'
+  pull_request:
+    paths:
+      - 'feedback_pipeline/**'
+      - 'WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md'
+      - 'WIC_GLOBAL_OPERATING_RULES.md'
+      - '.github/workflows/cross-chat-feedback-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run deterministic feedback fixtures
+        run: python feedback_pipeline/cross_chat_feedback_ingest.py
+      - name: Validate collector state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('feedback_pipeline/state.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          assert data['schema_version'] == 1
+          assert data['pipeline_status'] == 'ACTIVE'
+          assert data['normative_master'] == 'WIC_GLOBAL_OPERATING_RULES.md'
+          ids = data.get('processed_feedback_ids', [])
+          assert len(ids) == len(set(ids)), 'duplicate processed feedback ids'
+          assert all(isinstance(x, str) and len(x) == 20 for x in ids)
+          assert data['privacy']['persist_raw_customer_pii'] is False
+          print('PASS: state schema + dedupe + privacy gate')
+          PY
