@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-11 07:19 KST
+최종 갱신: 2026-08-11 08:18 KST
 상태: ACTIVE
 목적: 사용자가 링크 하나에서 실제 진행상태를 쉽게 확인하도록 하는 사람용 상태판. 운영 규칙 원본은 `WIC_GLOBAL_OPERATING_RULES.md` 하나만 사용한다.
 
@@ -14,15 +14,13 @@
 
 ## 이번 자동 재개 회차에서 실제 확인된 것
 
-1. 최신 restart point를 먼저 읽고 24번부터 재개했다.
-2. `obk369369-spec/24-Easy-Video-Maker` 저장소는 public/main, size 15로 실제 존재한다. 그러나 현재 기본 브랜치의 `README.md`와 `index.html`은 모두 404라서 실행자산을 특정하지 못했다. PASS 금지, HOLD.
-3. `obk369369-spec/25-free-content-maker` 저장소는 public/main, size 15로 실제 존재한다. 현재 기본 브랜치의 `README.md`와 `index.html`은 모두 404다. PASS 금지, HOLD.
-4. `obk369369-spec/26-online-item-shop` 저장소는 public/main, size 19로 실제 존재한다. 현재 기본 브랜치의 `README.md`와 `index.html`은 모두 404다. PASS 금지, HOLD.
-5. `obk369369-spec/27-technical-book-verifier` 저장소는 public/main, size 703으로 실제 존재한다. 최신 커밋 `4e8b3d47a7ec26524d37e0494f4c07acfc512223`는 `WIC_RULE_SOURCE.md`를 추가하여 중앙 단일 규칙원본을 연결한 기록이다.
-6. 27번은 과거 커밋 `b72b79ea5f5d0d6e5d5101d5477e80b3e82c6b0d`에서 실제 `index.html` 실행 UI가 확인됐다. CSV 다중 업로드, persist, DB 초기화, 오류 재계산, X/WARN 리스트, 테이블/카드 복사, category-keyword drilldown 등의 UI/로컬 처리 기능이 존재했다.
-7. 그러나 현재 기본 브랜치에서 `index.html` fetch는 404이므로, 과거 실행자산이 현재 배포 가능한 형태로 유지된다고 볼 수 없다. 과거 코드 존재는 증거지만 현재 PASS가 아니다. 27번은 **과거 실행자산 확인 / 현재 실행판 HOLD**로 기록한다.
-8. 32번·34번 이름 기반 설치 저장소 검색에서는 결과가 없어, 구체 저장소 참조가 생기기 전까지 반복검색하지 않는다.
-9. 이번 회차에는 외부 서비스가 실제 생성한 WIC run/result URL이 없으므로 제3자 외부검증 연결 수는 0개 그대로 유지한다.
+1. 최신 `WIC_OBSERVER_STATUS.md`와 restart point를 먼저 읽고 27번 현재 실행판 복구 근거부터 재개했다.
+2. `27-technical-book-verifier`의 최근 커밋 목록을 확인했다. 최신은 `4e8b3d47a7ec26524d37e0494f4c07acfc512223`(중앙 규칙 연결)이고, 그 이전 `index.html` 갱신 기록은 2026-03-02의 `b72b79ea5f5d0d6e5d5101d5477e80b3e82c6b0d`까지 확인된다.
+3. 현재 기본 브랜치의 코드 검색에서 `CSV` 관련 결과가 0건이고, 현재 `index.html`은 이전 회차에서 404 확인 상태다. 따라서 과거 HTML을 현재판으로 임의 복원하지 않았다. 27번은 **과거 실행자산 확인 / 현재 실행판 HOLD** 유지.
+4. 현재 기본 브랜치의 `WIC_RULE_SOURCE.md`는 실제 존재하며 중앙 단일 규칙원본 `20-operational-manual-viewer/WIC_GLOBAL_OPERATING_RULES.md`를 참조한다. 규칙 연결 증거는 유지된다.
+5. GitHub 사용자 저장소 전체 목록을 다시 가져와 아직 상태판에 흡수되지 않은 후보를 특정했다. 확인된 미흡수 후보는 `04-research-funding-generator`, `03-coding_practice`, `05-report-generator`, `09-contents-making-tool`, `08-English-Verb-Exercise`, `11-obk-finance-planner` 등이다.
+6. 다음 후보인 `04-research-funding-generator`를 바로 확인했다. 저장소는 private/main, size 44로 실제 존재하지만 현재 `README.md`와 `index.html`은 모두 404다. 실행자산 특정 실패로 PASS 금지, HOLD.
+7. 이번 회차에도 제3자 외부 서비스가 생성한 실제 WIC run/result URL은 없으므로 외부검증 실제 연결은 **0개 / HOLD** 그대로다.
 
 ## 우선 작업 상태
 
@@ -42,7 +40,8 @@
 | 12 | 24번 Easy Video Maker | HOLD | 저장소 존재 확인 | README/index 현재 404 | 과거 커밋 또는 구체 실행파일 참조 발견 시 재개 |
 | 13 | 25번 Free Content Maker | HOLD | 저장소 존재 확인 | README/index 현재 404 | 과거 커밋 또는 구체 실행파일 참조 발견 시 재개 |
 | 14 | 26번 Online Item Shop | HOLD | 저장소 존재 확인 | README/index 현재 404 | 과거 커밋 또는 구체 실행파일 참조 발견 시 재개 |
-| 15 | 27번 Technical Book Verifier | PARTIAL/HOLD | 과거 `index.html` 실행 UI와 중앙규칙 연결 커밋 확인 | 현재 기본 브랜치 index 404, 현재 run/result URL 없음 | 현재 실행판 복구 가능 근거 또는 배포자산 위치 확인 |
+| 15 | 27번 Technical Book Verifier | PARTIAL/HOLD | 과거 `index.html` 실행 UI + 현재 중앙규칙 연결 파일 + 최근 커밋 이력 확인 | 현재 기본 브랜치 index 404, 현재 run/result URL 없음 | 구체 현재 실행자산 경로가 새로 발견될 때만 재개 |
+| 16 | 04 Research Funding Generator | HOLD | 저장소 실제 존재 확인 | README/index 현재 404, 실행자산 위치 미특정 | 커밋/구체 파일명 근거가 없으면 반복 금지, 03으로 이동 |
 
 ## 외부검증 도입 상태
 
@@ -60,9 +59,9 @@
 
 ## 재개점
 
-완료된 외부후보 조사, 이메일/7번 저장소 검색, 01 존재확인/오류 종류 확인, 13 업로드 버튼 실동작 확인, 6 golden fixture 1차 검색, 2번 현재 UI/배포 확인, 28~31 중앙/저장소 이름 검색, 12/21/23 일반 실행자산 검색, 24~26 README/index 확인, 27 과거 실행 UI 확인, 32/34 이름검색은 반복하지 않는다.
+완료된 외부후보 조사, 이메일/7번 저장소 검색, 01 존재확인/오류 종류 확인, 13 업로드 버튼 실동작 확인, 6 golden fixture 1차 검색, 2번 현재 UI/배포 확인, 28~31 중앙/저장소 이름 검색, 12/21/23 일반 실행자산 검색, 24~26 README/index 확인, 27 과거 실행 UI/현재 규칙파일/최근 커밋 확인, 32/34 이름검색, 04 README/index 확인은 반복하지 않는다.
 
-**다음 즉시 재개 위치: 아직 상태판에 흡수되지 않은 등록 저장소/주요 업무창 중 구체 GitHub 저장소가 확인되는 다음 대상의 실제 파일·실행자산·배포 증거 확인. 우선 27번 현재 실행판 복구 근거를 찾되, 구체 근거가 없으면 즉시 다음 등록 저장소로 이동한다.**
+**다음 즉시 재개 위치: `03-coding_practice`의 실제 역할·파일·실행자산을 확인한다. 실행자산이 특정되지 않으면 HOLD 기록 후 `05-report-generator` → `09-contents-making-tool` → `08-English-Verb-Exercise` → `11-obk-finance-planner` 순으로 이동한다.**
 - 과거 자산은 현재 자산과 구분한다.
 - 현재 실행 성공 run/result URL 또는 동등한 증거가 없으면 완료/PASS 금지.
 - 상태판은 새 파일을 늘리지 않고 이 파일 하나를 계속 덮어쓴다.
