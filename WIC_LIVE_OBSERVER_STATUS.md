@@ -1,61 +1,55 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-10 12:50 KST
-상태: ACTIVE — 사무실 고객응대 P0~P5 최우선 / 과거피드백→회귀테스트 선순환 병행
+최종 확인: 2026-08-10 13:14 KST
+상태: ACTIVE — watchdog recovery / 고객응대 P1 구현 우선
 
-이 파일은 관찰용 상태판이다. 실제 외부 증거가 있을 때만 진행으로 기록한다. 규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`, 과거증거 처리 인덱스는 `WIC_HISTORICAL_EVIDENCE_INDEX.md`, 피드백→회귀/Work 이관 감사장부는 `WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md`에서 관리한다.
+규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`. 이 파일은 실제 외부 증거와 재시작점만 기록한다. 37번=metadata production/integrated verification, 13번=Excel automatic upload로 분리 유지.
 
-## 현재 우선순위
-P0 오늘 고객응대 blocker → P1 이메일/3고객군/발송대기 DB → P2 7번 고객 컨택 판단 → P3 1번 정식·중간 안내서 → P4 해당 고객 TOC → P5 고객응답/CRM → P6 직접지원 역사자료 흡수 → P7 37 → P8 13 → P9 6 대량TOC → P10 2/28~31/기타.
+## stall / collision guard
+- 직전 observer: 12:50 KST. 현재 확인시각 13:14 KST로 12분 collision window를 초과했다.
+- GitHub 최신 concrete evidence도 12:52 KST commit `15378a62...` 이후 새 commit이 없었다. 따라서 겹침 실행이 아니라 stale/no-advance로 판정하고 같은 회차에서 복구했다.
+- 직전 P1 스키마/과거 V5/V4 규칙은 재처리하지 않았다: `SKIP — unchanged evidence`.
 
-## 이번 회차 실제 작업 — 12:50
-- 직전 상태판을 읽고 과거 1번/6번 fixture 작업을 반복하지 않았다.
-- File Library에서 이메일 수집 V5.0/V4.0 및 7번 고객 컨택 판단 과거기록을 신규 회수했다.
-- 회수 규칙: 공식출처 검증, 영구 고객번호, 분야별 독립 DB, 기존고객 재등록 금지, 실제 담당업무 우선, 회사소개서·명함 발송상태/버전 관리, 2단계 유선연락 준비, 고객 직접반응을 다음 행동 규칙으로 축적.
-- 위 규칙을 실제 고객업무용 기계 판정 스키마 `WIC_CUSTOMER_RESPONSE_PIPELINE_SCHEMA_V1.json`으로 생성했다.
-- 세 고객군 `NEW_ONLINE / DORMANT_LEDGER / RECENT_TRADE`, MAIN_DB/HOLD gate, 중복키, 소개서·명함 SEND_READY/SENT 상태, Tool7 handoff, 통화후 분기, P1/P2/P5 회귀 fixture 6개를 포함했다.
-- Work gate도 같은 파일에 기록했다: P1 규칙/스키마/fixture 작업은 Chat+Files+GitHub로 가능하므로 `WORK_DEFER_DENIED`. 이 작업을 Work로 넘기지 않는다.
-- 생성 commit: `2cd3d49f565ea9839a5a876cf5479d9e3631cbad`.
-- read-back 완료: 파일 존재와 전체 스키마 저장을 확인했다. 저장 성공은 구조 PASS이며 실제 고객 DB 실행 PASS는 아직 아니다.
+## 이번 복구 실제 작업
+- 저장된 재시작점 `P1 실제 고객 DB/send-ready target 연결`에서 시작.
+- GitHub 중앙 repo에서 기존 customer DB 구현을 검색했으나 별도 구현 target을 식별하지 못했다.
+- File Library 검색에서는 V5.0/V4.0 규칙 문서만 재확인되어 규칙 재흡수는 SKIP했다. 실제 DB artifact는 검색결과에서 식별되지 않았다.
+- 껍데기 fixture 누적을 막기 위해 중앙 repo에 실행 가능한 결정형 P1 gate `customer_pipeline/customer_db_state_machine.py`를 구현했다.
+- 구현: 필수필드/공식출처/실담당업무/email 검증 → `MAIN_DB / TRACKING_HOLD`; 기관+이름+email 중복 → `UPDATE_EXISTING`; 영구ID 미할당 → `MAIN_DB_PENDING_ID`; 소개서/명함 `SENT` 무근거 재발송 차단; `SEND_READY`는 명시적 발송권한 대기. 외부 발송 side effect는 항상 false.
+- 코드 내 4개 결정형 fixture를 포함했다: 정상 MAIN_DB, 담당업무 누락 HOLD, 중복 UPDATE_EXISTING, 소개서 재발송/SEND_READY lock.
+- 생성 commit: `9d66624b742aac678703ed89886dc3431fa3a994`.
+- 독립 read-back: GitHub에서 생성 파일 전체와 blob sha `d1c7f50e...` 확인. 이 runtime에는 Python 실행 GitHub action이 없어 실제 실행 PASS는 아직 주장하지 않는다.
 
-## 이번 회차 외부 증거
-| 작업 | 판정 | 증거 | 의미 |
+## 판정
+| 작업 | 상태 | 증거/블로커 | 다음 실행 |
 |---|---|---|---|
-| 이메일/고객DB 과거규칙 회수 | PASS | File Library V5.0/V4.0/7번 기록 | 사용자 재설명 없이 과거자산 흡수 |
-| 3고객군 운영 스키마 | PASS — 저장/read-back | `WIC_CUSTOMER_RESPONSE_PIPELINE_SCHEMA_V1.json`, commit `2cd3d49...` | 고객 발견→검증→발송대기→7번→통화분기 데이터형 고정 |
-| P1 회귀 fixture | PASS — 저장 | 같은 JSON 내 6개 fixture | MAIN_DB/HOLD/중복/재발송/가짜추천/직접발언 분기 재검증 기반 |
-| 실제 고객 DB 연결 | HOLD | 기존 이메일 수집 구현/실제 DB target 확인 필요 | 다음 P1 작업 |
-| Work 이관 | DENIED | Chat/Files/GitHub에서 현재 단계 처리 가능 | 시간/크레딧 낭비 차단 |
+| P1 과거규칙 | SKIP — unchanged evidence | V5/V4 이미 흡수 | 반복 금지 |
+| 기존 실제 customer DB target 탐색 | HOLD | GitHub/Library 검색에서 구현 artifact 미식별 | 새 증거가 생기기 전 같은 검색 반복 금지 |
+| P1 결정형 DB gate 구현 | PASS — code stored/read-back | `customer_pipeline/customer_db_state_machine.py`, commit `9d66624...` | 실행 가능한 runner/test hook 연결 |
+| P1 실제 실행 | HOLD | 현재 connector는 파일 read/write만 가능, 실행증거 없음 | 일반 runtime/CI hook 식별 시 4 fixture 실행 |
+| 외부 고객 발송 | NOT EXECUTED | 자동 발송 금지 | SEND_READY까지만 관리 |
 
-## 과거피드백 → 도구 선순환 누적
-- 1번: 과거 피드백 7개 → `tests/historical_regression_fixtures.json`, commit `6dd6a220...`; 자동 runner/E2E는 HOLD.
-- 6번: MarketsandMarkets 오류 6개 → `tests/marketsandmarkets_historical_fixtures.json`, commit `11be9c01...`; user-approved golden pair와 자동 회귀연결은 HOLD.
-- 이번 회차 P1: 이메일/7번 과거규칙 → 실제 고객응대 운영 스키마 + 회귀 fixture로 전환.
-- fixture만 늘고 구현이 따라오지 않는 껍데기화를 막기 위해 다음 회차부터 P1은 실제 DB/send-ready target 또는 기존 이메일수집 구현과 연결한다.
+## self-improvement / structure change
+- 원인: fixture와 스키마만 누적되고 실제 판정 구현이 따라오지 않으면 껍데기화와 반복 HOLD가 발생한다.
+- 변경: P1을 `문서/fixture 추가`에서 `결정형 state-machine 코드 + fixture` 우선으로 전환했다.
+- 이점: 실제 DB 연결 전에도 MAIN_DB/HOLD/중복/발송대기 규칙을 한 함수 경계에서 재사용·회귀검증할 수 있고, 불필요한 규칙 재검색/채팅 사용을 줄인다.
+- 새 단점/위험: 아직 실제 회사 DB 저장소와 연결되지 않았고, Python runner 실행증거가 없어 저장된 코드와 실제 운영 데이터 사이에 integration gap이 있다.
+- rollback 조건: 실제 고객 DB의 기존 엔진이 발견되어 필드/ID 정책과 충돌하거나 fixture 실행에서 현행 규칙과 불일치가 확인되면 이 파일을 adapter/test helper로 강등하고 기존 엔진을 우선한다. 자동 발송 기능은 추가하지 않는다.
+- 검증결과: GitHub create commit + read-back PASS; execution HOLD.
 
-## 고객응대 고정 파이프라인
-`NEW_ONLINE / DORMANT_LEDGER / RECENT_TRADE` → 공식 검증 → MAIN_DB 또는 TRACKING_HOLD → 회사소개서·명함 SEND_READY/SENT → 7번 판단 → 실제 최근활동 기반 전화멘트 → 직접 고객발언 기반 분기 → FULL_GUIDE / INTERMEDIATE_GUIDE / OTHER_MATERIAL / PRICE_BUDGET / INTERNAL_FORWARD / FOLLOW_UP_DATE / NO_INTEREST / STOP / PURCHASE_PROCUREMENT → TOC/안내서 → 고객응답 → NEXT_ACTION/CRM.
-
-## Chat / Work 경계
-### Chat/Files/GitHub/일반 실행에서 먼저 끝낼 것
-- 과거자료 증분 회수·규칙/fixture/error_hash 변환
-- 고객 DB 스키마/중복/발송대기 로직
-- Tool7 deterministic input/output fixture
-- 1번 실데이터 mapping/test hook
-- 개별 source-verified TOC
-- 13 날짜 회귀의 결정형 로직/fixture
-
-### Work 후보
-Chat/GitHub/일반 runtime으로 안정적으로 끝낼 수 없는 durable multi-file 구현, 실제 브라우저 통합 E2E, 대량 반복 통합회귀만 후보. 과거 규칙 재정리·문서요약·터미널 가능한 수정은 Work 금지.
-
-## 사용자 역할
-사용자는 관찰자다. 과거 오류 재설명, 같은 파일 재전송, 반복 테스트, 스크린샷 재제공, PASS/FAIL 판정, Work 이관 판단, `계속` 반복 입력을 요구하지 않는다.
+## 누적 우선순위
+P1 이메일/3고객군/발송대기 DB: IN PROGRESS — schema + deterministic gate 저장, 실제 DB/runner 연결 HOLD.
+P2 7 고객-contact 판단: NEXT.
+P3 1 정식/중간 안내서: P2 handoff 이후.
+P4 개별 TOC: P3 이후.
+P5 reply/CRM: state branch schema 있음, 실연결 HOLD.
+P7 37 metadata: 별도 작업 유지.
+P8 13 Excel upload: 별도 작업 유지.
 
 ## 재시작 지점
-1. P1: 기존 이메일 수집/고객DB 구현 또는 저장 target을 GitHub/Library에서 찾아 `WIC_CUSTOMER_RESPONSE_PIPELINE_SCHEMA_V1.json`과 연결.
-2. P1: 실제 DB row/output schema와 MAIN_DB/TRACKING_HOLD/SEND_READY 결정 로직을 fixture 실행 가능한 형태로 구현/검증.
-3. P2: 7번 과거 실제 고객 사례를 기대출력 fixture로 변환하고 P1 handoff와 연결.
-4. P3: 1번 기존 fixture를 현행 코드 test hook과 연결하고 실제 검증 보고서 입력 샘플로 E2E 준비.
-5. 18:00에는 오늘 사무실에서 실제 사용 가능한 단계/HOLD/Work-only를 정식 보고.
+1. P1: 새 evidence가 없다면 기존 target 검색을 반복하지 말고 `SKIP — unchanged evidence`.
+2. P2: 7번 historical actual-customer 사례를 회수해 deterministic input→expected-output fixture로 만들고 `customer_db_state_machine.py` 출력과 handoff 연결.
+3. P3: P2 fixture가 저장되면 1번 FULL/INTERMEDIATE guide mapping으로 이동.
+4. runner/CI가 식별되는 즉시 P1 4 fixture 실제 실행 후 PASS/HOLD 갱신.
 
 실행시간: duration not exposed
