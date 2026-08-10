@@ -1,79 +1,67 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-10 15:40 KST
-상태: ACTIVE — 각 대화창 피드백 자동수집→중앙 마스터→GitHub 반영 파이프라인 구현/실행 시작
+최종 확인: 2026-08-10 15:49 KST
+상태: ACTIVE — P3 Tool1 verified-data/feedback guard 실제 Tool1 저장소 반영
 
-규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`. 이 파일은 외부 증거와 재시작점만 기록한다. 37번=metadata production/integrated verification, 13번=Excel automatic upload로 분리 유지.
+규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`. 37번=metadata production/integrated verification, 13번=Excel automatic upload로 분리 유지.
 
-## 현재 최우선
-- P0~P5 실제 사무실 고객응대 업무 우선은 유지.
-- 이번 사용자 지시는 `CONSTRAINT`로 흡수: 각 대화창의 WIC 피드백을 사용자가 다시 전달하지 않게 자동수집/중앙흡수한다.
-- 대화창 전체 문맥을 서로 합치지 않고 피드백 이벤트만 중앙에 승격한다. 명시적 `PRIORITY_CHANGE`가 아니면 기존 우선순위를 바꾸지 않는다.
+## 현재 우선순위
+- P0 live customer blocker: 현재 새 입력 증거 없음.
+- P1/P2/P1→P2: 기존 deterministic fixture PASS 범위 유지; 실제 회사 DB/오늘 고객 E2E는 HOLD.
+- 현재 실행: **P3 Tool1**.
+- 이번 새 피드백/과거증거 분류: `CONSTRAINT + NEW_FIXTURE`, absorbed target=`TOOL001`; 명시적 PRIORITY_CHANGE가 아니므로 기존 P0~P10 순서 유지.
 
-## Cross-chat feedback pipeline 실제 구현
-| 구성 | 상태 | 증거 |
+## 이번 회차 새로 처리한 과거 증거
+- `1번 고객 자동화 안내서 8.doc`: 고객 DB/직접 옵션/온라인 조건을 받아도 실제 검증된 데이터만 각 안내서 슬롯에 넣고, 잘못된 title/link 등의 수정은 오류 수집→판단 코어 개선으로 이어져야 한다는 규칙 회수.
+- `1번 고객 자동화 안내서 23.txt`: 실제 공개 URL, 실제 제목·링크·발행사·발행일·가격·TOC 공개범위 검증 전 PASS 금지; 로그인/캡차/비공개는 HOLD; 오른쪽 안정판 재구성 금지.
+- processed chain 8/12/16/23은 다음 회차부터 충돌 증거 없으면 재독해 금지.
+
+## 실제 구현/검증
+| 항목 | 상태 | 증거 |
 |---|---|---|
-| deterministic ingest core | 저장 PASS | `feedback_pipeline/cross_chat_feedback_ingest.py` |
-| Korean prohibition classification fix | 저장 PASS | commit `2b5db963f1d18ab6ba0b378dbc8a057a21558750` |
-| ordinary runtime regression | PASS | `PASS: 11 deterministic cross-chat feedback fixtures` |
-| cursor/dedupe state | 저장/read-back PASS | `feedback_pipeline/state.json`, blob `cc2bc0360b2e5168e3c3501ebc7b290922622321` |
-| CI audit workflow | 저장/read-back PASS | `.github/workflows/cross-chat-feedback-audit.yml`, blob `18825b81cf039eb0162eed2662a33fb72db8fedf` |
-| runtime collector | ACTIVE | `WIC 대화창 피드백 수집`, 매시 :20 KST |
-| user manual forwarding | 제거 | collector가 accessible prior-interaction/personal-context delta를 직접 회수 |
+| Tool1 실제 저장소 regression guard | 저장/read-back PASS | `obk369369-spec/01-auto-guide-v1/regression/tool1_verified_data_contract.py` |
+| commit | PASS | `78d92ac9a1aa06639bdce2f278bcbe973ab3f9af` |
+| read-back blob | PASS | `1243533ab80cfcf3f8b04e9fc20d09a550afe04c` |
+| ordinary runtime fixtures | PASS | `PASS: 12 deterministic Tool1 verified-data/feedback fixtures` |
+| CI workflow | 저장 PASS | `.github/workflows/tool1-verified-data-regression.yml`, commit `5948cc7a6fff016b37bd429f87f85e98ed9119b3` |
+| Deno deployment on workflow commit | **FAIL/HOLD** | combined status `deploy/obk369369-spec/01-auto-guide-v1 = failure` |
+| real customer/report rendered guide E2E | HOLD | real approved payload + DOM/render expected comparison 아직 없음 |
 
-## 파이프라인
-`prior-interaction delta -> sanitize -> classify -> route -> semantic feedback_id dedupe -> central-master candidate / fixture candidate -> actual patch/test -> GitHub read-back -> state cursor advance`
+## 새 error_hash / guard
+- `TOOL001_REAL_REPORT_VERIFICATION_GATE`
+- `TOOL001_CUSTOMER_CONTEXT_UNVERIFIED`
+- `TOOL001_UNKNOWN_FEEDBACK_AREA`
+- `TOOL001_FEEDBACK_EVENT_INCOMPLETE`
 
-분류:
-- `CORRECTION`
-- `CONSTRAINT`
-- `NEW_FIXTURE`
-- `PRIORITY_CHANGE`
-- `SIDE_REQUEST`
+## 기능 경계
+- title_en/title_ko/publisher/date/pages/list price/supply price/report link/TOC 중 빈값 또는 미검증 필드가 있으면 HOLD.
+- `example.com`, placeholder, synthetic report tokens는 HOLD.
+- 고객 실제 담당업무/근거가 검증되지 않으면 고객 맞춤 안내서 생성 HOLD.
+- 가이드의 개별 영역 수정은 guide/report/area/observed/corrected 값을 가진 `CORRECTION` event로 변환하는 contract를 추가.
+- 이 회차에서는 안정 HTML/오른쪽 원본 구조를 재작성하지 않음.
 
-도구 라우팅 초기 범위:
-- TOOL001 안내서
-- TOOL006 TOC
-- TOOL007 고객 컨택
-- TOOL013 Excel upload
-- TOOL037 metadata
-- EMAIL_DB
-- WORK_GATE
-- CENTRAL
+## Cross-chat collector 상태
+- `WIC 대화창 피드백 수집`은 15:37경 생성되어 15:20 예정시각을 이미 지난 뒤였으므로 15:48 현재 `last_run_time=null`은 누락 실행으로 판정하지 않음.
+- 첫 eligible scheduled run: 16:20 KST.
+- 별도 대화창 신규 피드백 자동회수→GitHub 반영 실E2E는 여전히 HOLD.
 
-## 개인정보/기밀 게이트
-- raw customer PII, private contract text, confidential transaction content는 중앙 피드백 로그에 저장 금지.
-- 이메일/전화/긴 식별번호는 redaction 후 규칙 수준 excerpt/hash/reference만 저장.
+## Work gate
+- G1 Chat/Files=YES, G2 GitHub=YES, G3 ordinary runtime=YES.
+- 판정: `WORK_DEFER_DENIED`.
+- 이번 회차 Work credit 사용 없음.
 
-## Work/크레딧 게이트
-- Chat/Files 가능 -> `WORK_DEFER_DENIED`.
-- GitHub 가능 -> `WORK_DEFER_DENIED`.
-- ordinary terminal/runtime 가능 -> `WORK_DEFER_DENIED`.
-- 위 3개 모두 불가 + concrete Work-only blocker + exact handoff package일 때만 `WORK_ELIGIBLE`.
-- 과거대화 재독해/규칙정리/터미널 가능한 테스트를 Work로 보내면 `CREDIT_WASTE_FAIL`.
+## self-improvement
+- 원인: 과거 Tool1 오류 중 title/link mismatch와 사용자의 반복 수동수정 부담이 규칙문구로만 남으면 재발 가능.
+- 변경: 실제 Tool1 저장소에 production-data gate + structured feedback-event fixture를 추가.
+- 이점: 검증되지 않은 실제값/placeholder가 안내서 생산 단계로 넘어가는 것을 결정형으로 차단 가능.
+- 새 위험: fixture PASS는 실제 브라우저 렌더/배포 성공을 증명하지 않음. 현재 Deno deploy는 failure 상태.
+- rollback: 사용자 승인 안정판과 의미 충돌이 확인될 때만 guard를 조정; synthetic 생성 복구 금지.
 
-## 검증 중 발견 및 즉시 수정
-첫 ordinary-runtime fixture에서 `터미널에서 가능한 일은 Work로 넘기지 마`가 `SIDE_REQUEST`로 오분류되는 오류 발견.
-- 원인: 금지 표현 탐지가 `하지 마`에 치우쳐 `지 마/말고`를 놓침.
-- 수정: Korean prohibition tokens에 `하지 말/하지말/지 마/지마/말고` 추가.
-- 수정 후 regression: `PASS: 11 deterministic cross-chat feedback fixtures`.
-- 사용자 재테스트 요구 없음.
+## 정확한 재시작 지점
+1. P0 live customer blocker가 새로 나타나면 즉시 전환.
+2. P3 real customer + real tradable report 승인 사례를 신규 evidence에서 계속 회수하되 processed 8/12/16/23 chain은 건너뜀.
+3. 실제 payload를 verified-data gate에 통과시킨 뒤 stable mapper DOM/slot에 넣고 rendered output↔expected 비교.
+4. P4 TOC가 필요한 실보고서면 해당 publisher golden fixture 적용 후 P3 복귀.
+5. 16:20 이후 cross-chat collector 첫 실제 run/evidence를 별도 확인.
 
-## 아직 HOLD인 부분
-- **Cross-chat E2E 증명:** 현재 코드/스케줄/상태/회귀검증은 실제 구현됨. 그러나 별도의 다른 대화창에서 새 WIC 피드백이 발생한 뒤 collector가 그것을 자동 회수→dedupe→GitHub 반영한 첫 실사례는 아직 발생 전이므로 E2E는 HOLD.
-- CI workflow의 실제 Actions run 결과는 현재 별도 확인 증거가 아직 없음. workflow 파일 저장/read-back은 PASS, CI 실행 PASS는 미판정.
-
-## 기존 고객응대 개발 상태 유지
-- P1 customer DB/send-order: fixture PASS 범위 유지.
-- P2 Tool7: fixture PASS 범위 유지.
-- P1->P2 handoff: fixture PASS 범위 유지.
-- P3 Tool1 historical contract: fixture PASS 범위 유지.
-- Tool1 actual customer/report rendered guide E2E: HOLD.
-
-## 정확한 재시작점
-1. Cross-chat collector: 다음 :20 회차에서 `feedback_pipeline/state.json:last_context_cursor` 이후 새 WIC 피드백만 회수. 새 피드백이 있으면 자동으로 중앙/관련 도구 반영 후 cursor advance.
-2. P0~P5 고객응대 실무 차단사항이 있으면 그 작업이 background ingestion보다 우선.
-3. P3 Tool1: real customer + real tradable report 승인 fixture 회수 -> stable mapper actual DOM/slot -> rendered output -> expected 비교.
-4. P4 TOC 필요 시 publisher golden fixture 적용 후 P3 복귀.
-
-사용자 역할: 관찰자. 대화창 피드백 수동 전달, 과거 오류 재설명, 동일 파일 재전송, 반복 테스트, PASS/FAIL 판정, 규칙 정리, Work 이관 판단을 요구하지 않는다.
+사용자 역할: 관찰자. 재설명·재전송·반복 테스트·PASS/FAIL 판정·Work 이관 판단을 요구하지 않는다.
