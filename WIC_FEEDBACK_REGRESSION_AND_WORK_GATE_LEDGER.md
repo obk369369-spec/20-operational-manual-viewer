@@ -27,31 +27,39 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 - still HOLD: 실제 회사 customer DB 입력.
 - Work gate: `WORK_DEFER_DENIED`.
 
-## P3 TOOL001 — processed evidence through 2026-08-10 15:10 KST
+## P3 TOOL001 — processed evidence through 2026-08-10 15:49 KST
 ### synthetic quarantine
 - historical evidence: `안내서_전체_연결버전.html` mapper candidate vs v14 synthetic report generation.
 - regression asset: `customer_pipeline/tool1_synthetic_data_guard.py`, commit `456fbf27d41a2ba109de9536c8cfe91101522406`.
 - error_hash: `TOOL001_SYNTHETIC_REPORT_DATA`, `TOOL001_REAL_REPORT_FIELDS_MISSING`.
 - verification: `PASS: 4 deterministic Tool1 quarantine fixtures`.
 
-### newly recovered historical contract — 15:10 recovery
-- new Library evidence processed: `1번 고객 자동화 안내서 12.doc`, `1번 고객 자동화 안내서 16.doc` and duplicate historical chain only as corroboration.
-- recovered user-approved contract:
-  - stable/right guide baseline must not be rebuilt; minimum modification only.
-  - left side fixed to 9 fields: English title, Korean title, publisher, publication date, pages, list price, supply price, report link, TOC.
-  - one Generate button only.
-  - right-side slot contract includes `TITLE.EN`, `META.PUBLISHER`, `META.DATE`, `META.PAGES`, `META.PRICE`, `LINK.TEXT`, `TOC.TEXT`.
-  - diagnostics history establishes `THREE_AREA_VALUE_GAP` when middle/right values diverge and mutation target can identify disappearance point (historically guideDate/guideLink issues).
-- regression asset created: `customer_pipeline/tool1_historical_contract.py`.
-- commit: `c797c5dd1e52610b7c61ab59845544be476e4023`.
-- GitHub read-back blob: `0a745bcd3d757962b47b1ce31b0f0c2141392d8f`.
-- error_hash assets: `TOOL001_LEFT_9_FIELDS_ONE_BUTTON_CONTRACT`, `TOOL001_RIGHT_SLOT_MAPPING_MISMATCH`, `TOOL001_STABLE_BASELINE_SCOPE_VIOLATION`, `THREE_AREA_VALUE_GAP`.
-- ordinary Python runtime verification: `PASS: 8 deterministic Tool1 historical-contract fixtures`.
-- benefit: prior user corrections are now executable regression contracts instead of prose-only history; new shell/rebuild drift can be blocked before production PASS.
-- downside/risk: this contract does not itself render the HTML or prove a real customer/report guide E2E.
-- rollback: remove only this regression asset if a later user-approved stable baseline proves a conflicting contract; never relax the baseline based on synthetic/demo output.
-- Tool1 production status: HOLD — real verified report payload -> stable mapper -> actual guide output -> expected comparison still required.
-- next_unprocessed_evidence: real customer + real tradable report approved fixture; then DOM/slot output comparison. Do not reread the processed 12/16 chain unless a conflicting baseline is found.
+### historical stable-layout contract
+- processed Library evidence: `1번 고객 자동화 안내서 12.doc`, `1번 고객 자동화 안내서 16.doc` and duplicate historical chain only as corroboration.
+- recovered contract: stable/right guide baseline minimum modification only; left 9 fields; one Generate button; right slot ids; `THREE_AREA_VALUE_GAP`.
+- regression asset: `customer_pipeline/tool1_historical_contract.py`, commit `c797c5dd1e52610b7c61ab59845544be476e4023`.
+- verification: `PASS: 8 deterministic Tool1 historical-contract fixtures`.
+
+### newly processed verified-data + feedback-loop evidence — 15:49 KST
+- new Library evidence: `1번 고객 자동화 안내서 8.doc` and `1번 고객 자동화 안내서 23.txt`.
+- classification: `CONSTRAINT + NEW_FIXTURE`, absorbed target `TOOL001`; fixed P0-P5 priority unchanged.
+- recovered rules:
+  1. customer input may come from uploaded DB, prior verified customer table, or explicit tool options, but guide output may use only verified report data.
+  2. report title/link/publisher/date/pages/list price/supply price/TOC must be explicit and verified before production guide PASS; unavailable values remain HOLD, never fabricated.
+  3. public source path preferred; login/captcha/private-only data remains HOLD.
+  4. right-side stable guide structure is not rebuilt for this data-quality patch.
+  5. user correction from a guide area becomes one structured feedback event; it must identify guide/report/area/observed/corrected values and route as `CORRECTION` to TOOL001 rather than merge whole chat context.
+- actual tool-repo regression asset: `obk369369-spec/01-auto-guide-v1/regression/tool1_verified_data_contract.py`.
+- commit: `78d92ac9a1aa06639bdce2f278bcbe973ab3f9af`.
+- read-back blob: `1243533ab80cfcf3f8b04e9fc20d09a550afe04c`.
+- CI workflow added in actual Tool1 repo: `.github/workflows/tool1-verified-data-regression.yml`, commit `5948cc7a6fff016b37bd429f87f85e98ed9119b3`.
+- error_hash assets: `TOOL001_REAL_REPORT_VERIFICATION_GATE`, `TOOL001_CUSTOMER_CONTEXT_UNVERIFIED`, `TOOL001_UNKNOWN_FEEDBACK_AREA`, `TOOL001_FEEDBACK_EVENT_INCOMPLETE`.
+- ordinary Python runtime verification: `PASS: 12 deterministic Tool1 verified-data/feedback fixtures`.
+- external deployment status on workflow commit: existing `deploy/obk369369-spec/01-auto-guide-v1` status = FAILURE; therefore deployment/production E2E remains HOLD and is not confused with regression-storage PASS.
+- benefit: exact historical user complaints about wrong title/link and repeated manual correction are now executable production guards in the actual Tool1 repository.
+- downside/risk: fixture PASS does not prove DOM rendering or live deployment; the verified sample in fixture is deterministic test data, not a real tradable report/customer.
+- rollback: remove/relax only this guard if a later user-approved production contract conflicts; do not restore synthetic generation.
+- next_unprocessed_evidence: a real customer + real tradable report approved case, then stable mapper DOM/slot render comparison; do not reread 8/12/16/23 unless conflicting evidence appears.
 - Work gate: G1=YES/G2=YES/G3=YES -> `WORK_DEFER_DENIED`.
 
 ## TOOL006
@@ -63,55 +71,19 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 - 결합 금지.
 
 ## Cross-chat feedback ingestion — implemented 2026-08-10 15:40 KST
-### User requirement absorbed
-- 모든 관련 대화창의 WIC 피드백을 사용자가 다시 전달하지 않게 한다.
-- 접근 가능한 prior-interaction/personal-context에서 새 피드백을 회수하고 중앙 마스터/관련 도구/GitHub로 흡수한다.
-- 대화창 전체를 서로 합치지 않고 `feedback event`만 중앙으로 승격한다.
-
-### Actual implementation
-- deterministic processor: `feedback_pipeline/cross_chat_feedback_ingest.py`
-  - initial commit: `4d917ae0765612273416b536115e13b46078b97f`.
-  - Korean prohibition-classification fix: commit `2b5db963f1d18ab6ba0b378dbc8a057a21558750`.
-  - functions: classification / tool routing / semantic dedupe id / PII redaction / central-master candidate / regression-fixture candidate / Work gate.
-- persistent cursor/dedupe state: `feedback_pipeline/state.json`
-  - commit: `8acc109f2cd53562517e1acfa686db3b9b79e663`.
-  - read-back blob: `cc2bc0360b2e5168e3c3501ebc7b290922622321`.
-  - seeds the 2026-08-07 cross-chat auto-collection instruction and the 2026-08-10 explicit implementation instruction as processed constraints.
-- CI audit: `.github/workflows/cross-chat-feedback-audit.yml`
-  - commit: `0dfc46375b5999189766d5c7a7e52eb2364de63d`.
-  - read-back blob: `18825b81cf039eb0162eed2662a33fb72db8fedf`.
-  - verifies deterministic fixtures, state schema, duplicate IDs, and PII persistence ban on relevant pushes/PRs.
-- runtime collector: active scheduled task `WIC 대화창 피드백 수집`, hourly at `:20` KST.
-  - source method: accessible prior-interaction/personal-context retrieval; no Chat UI scraping claim.
-  - delta only: load state cursor -> recover new WIC feedback -> normalize/dedupe -> master/fixture/implementation routing -> GitHub read-back -> advance state.
-  - no-new-feedback behavior: `SKIP — no new cross-chat feedback`, no fake activity commit.
-
-### Safety / direction control
-- ordinary CORRECTION/CONSTRAINT/NEW_FIXTURE is absorbed into the existing target and resumes the saved priority; it does not merge whole chat contexts or redirect the program.
-- only explicit `PRIORITY_CHANGE` may reorder the fixed office-customer priority stack.
-- raw customer PII/private contract text/confidential transaction content is not persisted in the central feedback log; only sanitized rule-level excerpts, hashes, references, and state.
-- central normative updates target only `WIC_GLOBAL_OPERATING_RULES.md`; this ledger remains non-normative.
-
-### Work/credit gate
-- collection, history retrieval, classification, rule merge, fixture creation, GitHub patching, and ordinary-runtime deterministic tests are `WORK_DEFER_DENIED` whenever Chat/Files/GitHub/runtime can perform them.
-- historical re-analysis or terminal-suitable work sent to Work is `CREDIT_WASTE_FAIL`.
-- Work receives only exact Work-only blockers with source files + known-good baseline + failing fixture + expected output + error signature + PASS criteria + attempted Chat/runtime work + no-reanalysis scope.
-
-### Verification state
-- GitHub storage/read-back: PASS for processor/state/workflow files.
-- first ordinary-runtime test caught a real classifier bug: `터미널에서 가능한 일은 Work로 넘기지 마` was misclassified as SIDE_REQUEST because only `하지 마`-style prohibitions were recognized.
-- correction: added `하지 말/하지말/지 마/지마/말고` prohibition patterns and committed the fix.
-- deterministic processor ordinary-runtime verification after fix: `PASS: 11 deterministic cross-chat feedback fixtures`.
-- CI workflow file is installed/read-back PASS; actual Actions run result is not yet independently verified, so CI execution = HOLD.
-- cross-chat collector end-to-end proof requires at least one NEW feedback item from another conversation to be retrieved, deduped, and persisted without manual forwarding. Until that external event occurs, runtime E2E = HOLD, implementation = ACTIVE.
-- user forwarding requirement: removed from operating path; user remains observer-only.
+- deterministic processor: `feedback_pipeline/cross_chat_feedback_ingest.py`; runtime regression `PASS: 11 deterministic cross-chat feedback fixtures`.
+- persistent cursor/dedupe state: `feedback_pipeline/state.json`.
+- CI audit: `.github/workflows/cross-chat-feedback-audit.yml`.
+- runtime collector: scheduled `WIC 대화창 피드백 수집`, hourly `:20` KST.
+- collector was created after the 15:20 slot; at 15:48 KST `last_run_time=null` is not a missed-run failure. First eligible scheduled run is 16:20 KST.
+- cross-chat E2E remains HOLD until a NEW feedback item from another conversation is retrieved/deduped/persisted automatically.
 
 ## exact restart point
-1. Cross-chat collector: next hourly `:20` run must search only after `feedback_pipeline/state.json:last_context_cursor`; if a new feedback item exists, persist one end-to-end proof and advance cursor.
-2. P3: real customer + real tradable report가 포함된 과거 사용자 승인 fixture를 신규 evidence로 회수.
-3. stable mapper의 실제 DOM/slot id를 그 payload와 비교하여 synthetic 0건 조건으로 guide fixture 생성.
-4. actual input -> rendered output -> expected comparison 전 Tool1 생산 PASS 금지.
-5. P4 TOC가 필요한 실보고서가 식별되면 해당 publisher golden fixture 적용 후 P3 복귀.
+1. P0 live customer blocker가 나타나면 즉시 최우선.
+2. P3: real customer + real tradable report가 포함된 과거 사용자 승인 fixture를 신규 evidence로 계속 탐색하되 8/12/16/23 processed chain 재독해 금지.
+3. 해당 실제 payload를 `tool1_verified_data_contract.py` gate에 통과시킨 뒤 stable mapper actual DOM/slot과 rendered output을 expected 값에 비교.
+4. P4 TOC가 필요한 실보고서가 식별되면 해당 publisher golden fixture 적용 후 P3 복귀.
+5. cross-chat collector는 16:20 KST 첫 eligible run 이후 last_run/evidence 확인.
 
 ## 사용자 역할
 관찰자. 과거 오류 재설명, 동일 파일 재전송, 반복 테스트, PASS/FAIL 판정, 규칙 정리, Work 이관 판단, 대화창 피드백 수동 전달을 요구하지 않는다.
