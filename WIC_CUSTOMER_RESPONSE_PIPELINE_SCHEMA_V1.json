@@ -1,0 +1,163 @@
+{
+  "status": "ACTIVE_OPERATIONAL_SCHEMA",
+  "normative_rule_source": "WIC_GLOBAL_OPERATING_RULES.md",
+  "purpose": "Operational schema for today's customer-response routine. This is not a duplicate normative rule document; it defines machine-usable input/output/state fields and regression expectations.",
+  "cohorts": ["NEW_ONLINE", "DORMANT_LEDGER", "RECENT_TRADE"],
+  "customer_identity": {
+    "permanent_customer_id": "required_after_first_verified_registration",
+    "industry_domain": "required",
+    "organization": "required",
+    "department": "required_for_main_db",
+    "person_name": "required_for_main_db",
+    "title": "required_for_main_db",
+    "actual_duty": "required_for_main_db",
+    "email": "required_for_main_db",
+    "official_contact": "required_for_main_db",
+    "official_source_url": "required_for_main_db",
+    "source_verified_at": "required_for_main_db",
+    "source_cohort": "required",
+    "dedupe_key": ["organization", "person_name", "email"]
+  },
+  "verification_gate": {
+    "MAIN_DB": [
+      "official source verified",
+      "actual duty verified",
+      "email verified from official/public source",
+      "required identity fields present"
+    ],
+    "TRACKING_HOLD": [
+      "missing department",
+      "missing person",
+      "missing duty",
+      "missing email",
+      "source not official enough",
+      "industry relevance uncertain"
+    ],
+    "forbidden": [
+      "guess email pattern and promote to MAIN_DB",
+      "duplicate permanent customer registration",
+      "mix unrelated industry-domain records",
+      "infer actual duty from title alone"
+    ]
+  },
+  "intro_card_state": {
+    "company_intro": {
+      "status": ["NOT_READY", "SEND_READY", "SENT", "HOLD"],
+      "version": "nullable until ready",
+      "sent_at": "nullable",
+      "resend_reason": "required when resending"
+    },
+    "business_card": {
+      "status": ["NOT_READY", "SEND_READY", "SENT", "HOLD"],
+      "version": "nullable until ready",
+      "sent_at": "nullable",
+      "resend_reason": "required when resending"
+    },
+    "rule": "Do not blindly resend already-sent intro/card without recorded update reason. No external send is executed automatically without explicit authority and verified recipient/attachments."
+  },
+  "contact_judgment_handoff": {
+    "target": "TOOL007_CUSTOMER_CONTACT_JUDGMENT",
+    "required_input": [
+      "permanent_customer_id",
+      "organization",
+      "department",
+      "person_name",
+      "title",
+      "actual_duty",
+      "official_source_url",
+      "source_cohort",
+      "intro_card_state",
+      "recent_official_activity_or_explicit_none"
+    ],
+    "expected_output": [
+      "customer_type",
+      "PASS_HOLD_FAIL",
+      "current_action",
+      "personalized_phone_script",
+      "forbidden_phrasing",
+      "verified_report_core",
+      "verified_report_expand",
+      "verified_report_safe"
+    ],
+    "report_recommendation_gate": "Only real report title/publisher/year/link/tradability may be recommended. If not verified, HOLD that slot rather than fabricate."
+  },
+  "customer_state_machine": [
+    "DISCOVERED",
+    "VERIFIED",
+    "INTRO_CARD_READY",
+    "INTRO_CARD_SENT",
+    "CONTACT_JUDGMENT",
+    "CALLED",
+    "FULL_GUIDE",
+    "INTERMEDIATE_GUIDE",
+    "OTHER_MATERIAL",
+    "PRICE_BUDGET",
+    "INTERNAL_FORWARD",
+    "FOLLOW_UP_DATE",
+    "NO_INTEREST",
+    "STOP",
+    "PURCHASE_PROCUREMENT",
+    "RESPONSE_BRANCH",
+    "NEXT_ACTION"
+  ],
+  "phone_outcome_rule": {
+    "source_of_truth": "direct customer statement only",
+    "forbidden": "infer hidden intent",
+    "branch_targets": [
+      "FULL_GUIDE",
+      "INTERMEDIATE_GUIDE",
+      "OTHER_MATERIAL",
+      "PRICE_BUDGET",
+      "INTERNAL_FORWARD",
+      "FOLLOW_UP_DATE",
+      "NO_INTEREST",
+      "STOP",
+      "PURCHASE_PROCUREMENT"
+    ]
+  },
+  "regression_fixtures": [
+    {
+      "id": "P1_OFFICIAL_MAIN_DB_GATE",
+      "input": "official organization page verifies person, department, duty, email and contact",
+      "expected": "MAIN_DB + permanent_customer_id"
+    },
+    {
+      "id": "P1_MISSING_DUTY_HOLD",
+      "input": "name/title/email exist but actual duty is unverified",
+      "expected": "TRACKING_HOLD; do not promote to MAIN_DB"
+    },
+    {
+      "id": "P1_DUPLICATE_CUSTOMER",
+      "input": "same organization + person + email already has permanent ID",
+      "expected": "update existing record; never create second permanent ID"
+    },
+    {
+      "id": "P1_RESEND_LOCK",
+      "input": "intro/card already SENT and no version/update reason",
+      "expected": "do not create blind resend action"
+    },
+    {
+      "id": "P2_NO_FAKE_REPORT",
+      "input": "customer relevant but report metadata/tradability not verified",
+      "expected": "recommendation slot HOLD; no fabricated title/link/price/page"
+    },
+    {
+      "id": "P5_DIRECT_STATEMENT_BRANCH",
+      "input": "customer explicitly asks for different topic/material",
+      "expected": "OTHER_MATERIAL; preserve original customer ID/history"
+    }
+  ],
+  "historical_sources_absorbed": [
+    "이메일 수집(분야별) 공통 운영 규칙 V5.0 (범용판)",
+    "34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판",
+    "7번 고객 컨택 판단 historical records"
+  ],
+  "work_gate": {
+    "chat_files_possible": "YES for rule recovery, schema, official-source verification, fixture construction",
+    "github_possible": "YES for storing schema/tests/patches/read-back",
+    "terminal_possible": "YES for deterministic validation/parsers where code is available",
+    "current_work_decision": "WORK_DEFER_DENIED for P1 schema/rule/fixture work",
+    "work_only_candidate": "Only later durable integrated runtime/E2E if Chat/GitHub/ordinary runtime cannot reliably finish and exact failing fixture+PASS criteria are prepared"
+  },
+  "next_restart_point": "Connect this schema to actual customer DB/send-ready artifact or existing email-collection implementation, then convert TOOL007 historical cases into deterministic expected-output fixtures."
+}
