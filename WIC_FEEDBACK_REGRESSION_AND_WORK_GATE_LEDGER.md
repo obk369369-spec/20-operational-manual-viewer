@@ -12,11 +12,28 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 
 ## 처리 장부
 ### P1 customer DB
-- last_processed_evidence: 이메일수집 V5/V4 규칙 + P1 schema/state-machine 구현.
+- last_processed_evidence: 이메일수집 V5/V4 규칙 + P1 schema/state-machine 구현 + 2026-08-10 사용자 재지적 스팸 회피 규칙.
 - implementation: `customer_pipeline/customer_db_state_machine.py`.
 - verification: GitHub 저장/read-back PASS; runtime fixture 실행 HOLD.
-- next_unprocessed_evidence: 실제 회사 customer DB artifact 또는 runner/CI hook이 새로 식별될 때만 재개. 같은 target 검색 반복 금지.
+- next_unprocessed_evidence: 실제 회사 customer DB artifact 또는 runner/CI hook, 발송 제목/첫문장 변형 모듈이 새로 식별될 때 재개.
 - Work gate: `WORK_DEFER_DENIED`.
+
+#### 2026-08-10 13:55 KST — P1 spam-avoidance omission correction
+- before_priority: P2 (직전 상태판), 단 사용자 질문이 P1의 실제 누락을 지적하여 P1 correction을 즉시 흡수 후 기존 재시작점으로 복귀.
+- feedback_classification: `CORRECTION` + 기존 `CONSTRAINT` 재확인.
+- historical_evidence newly processed:
+  - `[이메일 수집 범용 공통 지시문 V5.0].txt`: 원본표/발송표 분리, 발송표에 기관·부서·도메인·직책·기관군 분산 적용.
+  - `이메일 수집 대화창용 범용 공통 지시문 v4.0 (스팸 회피 강화형).doc`: 동일 기관 3행, 동일 부서 4행, 동일 도메인 5행, 최소 6개 기관(권장 8~10), 기관 최대 20% 규칙.
+  - `[이메일 수집 대화창 공통 지시문 / 본표 등재·누락 방지·스팸 회피 규칙].txt`: 발송 정렬표와 스팸 회피용 기관·도메인 분산이 이메일 수집 역할에 포함됨.
+- root_cause: P1의 이전 구현은 DB 등재/중복/소개서·명함 상태까지만 코드화했고, 과거 문서에 존재하는 발송 정렬 스팸 회피 gate를 실제 코드로 흡수하지 않았다. 직전 보고에서도 이 누락이 표시되지 않았다.
+- expected_output: 발송 후보가 최소 기관수/기관·부서·도메인 간격/기관 집중도 조건을 통과하지 못하면 `HOLD`; 원본 행 데이터는 재조합하지 않고 순서만 변경 가능.
+- actual_patch: `customer_pipeline/customer_db_state_machine.py`, commit `61052ebbd9e5bf1c8c12bab40e7f0c481cd84430`.
+- regression fixtures added: valid 10기관 mix PASS; 기관 간격 위반 HOLD; 부서 간격 위반 HOLD; 도메인 간격 위반 HOLD; 최소 6기관 미달 HOLD; invalid cohort HOLD.
+- error_signatures: `MIN_6_ORGANIZATIONS_NOT_MET`, `ORGANIZATION_SPACING_VIOLATION`, `DEPARTMENT_SPACING_VIOLATION`, `DOMAIN_SPACING_VIOLATION`, `ORGANIZATION_RATIO_OVER_20_PERCENT`.
+- verification: GitHub write 완료. Functional PASS는 일반 runtime fixture 실행 전까지 HOLD.
+- remaining spam-related HOLD: 과거 사용자 고정 규칙 중 제목/첫 문장 3종 분산은 발송 콘텐츠 모듈/실제 send-ready formatter가 아직 식별되지 않아 이번 DB 정렬 코드에는 임의로 끼워 넣지 않음. 해당 모듈 발견 즉시 별도 fixture로 연결.
+- Work gate: G1=YES, G2=YES, G3=YES 가능 → `WORK_DEFER_DENIED`.
+- resume_point: P1 runtime fixtures 실행 -> P1 output/P2 input handoff -> P2 기존 재시작점.
 
 ### P2 TOOL007 고객 컨택 판단 — 2026-08-10 13:50 KST
 - source_file_or_chat:
