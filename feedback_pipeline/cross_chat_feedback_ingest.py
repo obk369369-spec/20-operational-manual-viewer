@@ -84,7 +84,10 @@ def classify(text: str) -> str:
         return "PRIORITY_CHANGE"
     if any(k in t for k in ("그게 아니라", "아니고", "잘못", "틀렸", "정정", "수정해")):
         return "CORRECTION"
-    if any(k in t for k in ("반드시", "금지", "하지 마", "하지마", "없애라", "유지해", "고정", "관찰자")):
+    if any(k in t for k in (
+        "반드시", "금지", "하지 마", "하지마", "하지 말", "하지말",
+        "지 마", "지마", "말고", "없애라", "유지해", "고정", "관찰자",
+    )):
         return "CONSTRAINT"
     if any(k in t for k in ("오류", "실패", "재현", "예시", "이 경우", "이렇게 나오", "사진", "스크린샷")):
         return "NEW_FIXTURE"
