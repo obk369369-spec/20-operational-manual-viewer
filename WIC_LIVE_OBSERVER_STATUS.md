@@ -1,35 +1,38 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-10 10:13 KST
-상태: ACTIVE — watchdog stall 복구 / 28번 기존관계 제외표 확장 / MarketsandMarkets 직접 파트너 증거 승격
+최종 확인: 2026-08-10 10:31 KST
+상태: ACTIVE — watchdog stall 복구 / 28번 기존관계 제외표 원문등급화 진행
 
 이 파일은 사용자가 직접 테스트하지 않고 진행을 관찰하기 위한 외부 상태판이다. 실제 외부 증거가 있을 때만 진행으로 기록한다.
 
-## 이번 회차 실제 작업 — 10:13
-- COLLISION GUARD: 직전 observer 갱신은 09:50 KST로 현재 시각 기준 12분을 초과했고, 본 작업 `WIC Overnight Completion`의 최신 실행 흔적도 09:50대 이후 observer에 새 외부증거를 남기지 못했다. 따라서 중복실행이 아닌 stall 복구 대상으로 판정했다.
-- stall 탐지: 09:50 회차는 BlueWeave 등급화라는 coherent package를 완료했지만, 저장된 다음 재시작점인 `2026-05-29 커미션표의 다음 상위 업체 원문 등급화`가 이후 진행되지 않았다. 확인 가능한 원인은 `다음 실행에서 이어갈 restart point만 저장되고 새 observer commit이 생성되지 않은 상태`이며, 런타임 내부 종료원인은 노출되지 않아 추정하지 않는다.
-- 저장된 재시작점에 따라 28번 기존관계 제외표의 다음 업체를 원문 우선으로 확인했다. 13번·6번·2번 및 이미 등급화한 TMR/Allied/QY/BCC/BlueWeave는 새 상태변화가 없어 재검사하지 않았다.
-- MarketsandMarkets에서 2026-07-23 `reseller@marketsandmarkets.com` 주소로 WIC에 직접 발송된 `MarketsandMarkets Revamped Research Report Submission: 23072026` 원문 EML을 확인했다. 헤더에는 SPF/DKIM/DMARC 통과가 기록되고, 본문은 `Dear Partner`로 시작하며 여러 revamped report와 메타데이터 Excel/TOC 첨부파일을 WIC에 직접 전달한다.
-- 이 원문은 단순 WIC 자체 메모나 고객발송 흔적보다 강한 `발행사 공식 reseller 채널 → WIC 직접 파트너 자료공급` 증거다. 따라서 MarketsandMarkets의 기존관계는 `B`에서 `B+ (2026-07-23 공식 reseller 발신 + Dear Partner + 실제 메타데이터 공급)`로 승격하고 28번 신규 발행사 후보에서는 기존관계 제외 대상으로 유지한다.
-- 다만 2026-05-29 내부 커미션표의 `50% commission` 숫자는 이번 공식 메일 본문에 나타나지 않는다. 따라서 MarketsandMarkets의 현재 커미션은 `C-HOLD`를 유지하며, 최신 계약서·커미션 직접확인 메일·인보이스가 발견될 때만 상향한다.
-- 별도 재검색 과정에서 2026-05-29 커미션표 원문 전체를 다시 확보해 다음 후보군(Research in China, Technavio, Future Markets, RNCOS, Transparency, GlobalData, INKWOOD 등)의 내부 주장과 HOLD 표식을 재확인했다. 그러나 내부표만으로는 등급을 올리지 않고 다음 회차부터 실제 원문이 잡히는 업체만 처리한다.
+## 이번 회차 실제 작업 — 10:31
+- COLLISION GUARD: 직전 observer 갱신은 10:13 KST였고 현재 시각 기준 12분을 초과했다. 10:13 이후 concrete new evidence 또는 restart-point 변경이 observer에 없으므로 중복 실행이 아닌 stale/stall 복구 대상으로 판정했다.
+- stall 보고: 10:13 회차는 MarketsandMarkets B+ 승격이라는 coherent package를 완료했으나, 저장된 다음 재시작점 `Research in China / Technavio / Future Markets / RNCOS / Transparency / GlobalData / INKWOOD 직접 원문 확인`이 이후 진행되지 않았다. 확인 가능한 원인은 restart point만 저장되고 새 observer evidence가 생성되지 않은 상태다. 런타임 내부 종료원인은 노출되지 않아 추정하지 않는다.
+- ANTI-REPEAT: 13번·6번·2번, MarketsandMarkets 2026-07-23 메일, 이미 등급화한 TMR/Allied/QY/BCC/BlueWeave/GMI는 새 상태변화가 없어 `SKIP — unchanged evidence`로 처리했다.
+- 저장된 재시작점 7개 업체를 직접원문 우선으로 확인했다. 연결 Gmail에서 `from:researchinchina.com`, `from:technavio.com`, `from:futuremarketsinc.com`, `from:transparencymarketresearch.com`, `from:globaldata.com`, `from:inkwoodresearch.com`, `from:rncos.com`에 해당하는 직접 발신 메일은 현재 연결 계정에서 0건이었다.
+- File Library 정밀검색에서는 Research in China의 2026년 WIC 안내서/인터페이스 취급 화면과 2026-05-29 내부 `외국 주요 거래처` 커미션표(Research in China 40%·계약서X, Technavio 30%, Future Markets 35%, RNCOS 35%, Transparency 50%, GlobalData 30%, INKWOOD 35%·Secret partnership 주장)를 재확인했다. 이는 WIC 내부 주장/취급 흔적이므로 직접 계약·발행사 발신 원문과 동급으로 승격하지 않는다.
+- 판정: Research in China는 `취급/내부 기존관계 주장 B-`, 계약·40% 조건 `C-HOLD`; Technavio/Future Markets/RNCOS/Transparency/GlobalData/INKWOOD는 이번 직접원문 검색 실패로 기존 내부표 상태를 유지하고 `SKIP — no direct evidence found`로 닫았다. 같은 검색은 source/메일/commit 상태가 바뀌기 전 반복하지 않는다.
 
 ## 이번 회차 판정
 | 작업 묶음 | 상태 | 외부 증거 | blocker / 개선 | 다음 실행 |
 |---|---|---|---|---|
-| stall 감지·복구 | PASS | observer 09:50 → 10:13 공백, completion 최신 실행 09:50대 | 내부 런타임 종료원인 미노출 | restart point에서 즉시 재개 완료 |
-| 13·6·2 기존 HOLD | SKIP — unchanged evidence | 직전 observer 완료기록 | 새 commit/실행증거 없음 | 새 증거 발생 시만 재개 |
-| MarketsandMarkets 기존관계 | PASS — B+ | 2026-07-23 `reseller@marketsandmarkets.com` 공식 EML, `Dear Partner`, metadata/TOC attachments | 서명계약은 미확인 | 28번 신규후보에서 제외 유지 |
-| MarketsandMarkets 커미션 | HOLD — C | 2026-05-29 내부표의 50% 주장 | 공식 메일에 커미션 수치 없음 | 계약/직접메일/인보이스 발견 시만 승격 |
-| 다음 커미션표 후보군 | READY | 2026-05-29 내부 커미션표 재확보 | 내부표는 확정근거 아님 | 원문 검색이 성공하는 업체만 묶어서 등급화 |
+| stall 감지·복구 | PASS | observer 10:13 → 10:31 공백 | 내부 런타임 종료원인 미노출 | restart point에서 즉시 재개 완료 |
+| 13·6·2 및 기존 HOLD | SKIP — unchanged evidence | 직전 observer 완료기록 | 새 commit/실행증거 없음 | 새 증거 발생 시만 재개 |
+| Research in China | HOLD — B-/C | 2026 WIC 취급 화면 + 2026-05-29 내부표 `40%, 계약서X`; Gmail 직접 발신 0건 | 직접 계약/발행사 메일 없음 | 신규 직접증거 발생 시만 재개 |
+| Technavio | SKIP — no direct evidence found | 내부표 30% 주장; Gmail 직접 발신 0건 | 직접 원문 없음 | 같은 검색 반복 금지 |
+| Future Markets | SKIP — no direct evidence found | 내부 거래 취급 기록; Gmail 직접 발신 0건 | 직접 계약/발행사 메일 없음 | 같은 검색 반복 금지 |
+| RNCOS | SKIP — no direct evidence found | 내부표 35% 주장; Gmail 직접 발신 0건 | 직접 원문 없음 | 같은 검색 반복 금지 |
+| Transparency Market Research | SKIP — no direct evidence found | 메타데이터 보유/내부표 50% 주장; Gmail 직접 발신 0건 | 계약·커미션 직접근거 없음 | 신규 직접증거 시만 재개 |
+| GlobalData | SKIP — no direct evidence found | 내부표 30% 주장; Gmail 직접 발신 0건 | 직접 원문 없음 | 같은 검색 반복 금지 |
+| INKWOOD Research | SKIP — no direct evidence found | 내부표 35%/Secret partnership 주장; Gmail 직접 발신 0건 | 발행사 직접 원문 없음 | 같은 검색 반복 금지 |
 
 ## 구조 자기개선 상태
-- 원인: 과거 `메타데이터 파일이 존재한다`는 사실과 `발행사가 WIC를 파트너로 직접 취급한다`는 사실이 같은 B등급으로 뭉쳐 있었다.
-- 변경: 공식 발행사 도메인의 reseller 채널, 인증된 메일 헤더, `Dear Partner` 표현, 실제 메타데이터/TOC 공급이 함께 확인되면 `B+ active-partner evidence`로 분리한다. 커미션 등급은 별도로 유지한다.
-- 장점: 단순 데이터 보유와 현재 파트너 직접 공급을 구분해 28번 신규 후보 중복접촉을 줄이고, 실제 관계가 살아 있는 발행사를 더 정확히 제외할 수 있다.
-- 새 단점: 이메일 헤더·본문·첨부 성격까지 확인해야 해서 초기 등급화 시간이 늘어난다. 또한 `Dear Partner`만으로 계약조건 전체가 유효하다고 오인할 위험이 있어 커미션·계약 효력은 별도 HOLD가 필요하다.
-- rollback 조건: 발행사 직접자료가 대량 자동메일/일반 마케팅 배포로 확인되거나 WIC 특정 파트너 관계가 아니라는 반대증거가 나오면 B+를 B로 되돌린다. 커미션 분리 구조는 유지한다.
-- 감시 자동화 수·간격·크레딧 구조는 이번 회차 변경하지 않았다.
+- 원인: 커미션표 후보를 매 watchdog 회차마다 다시 검색하면 동일 0건/HOLD 결과를 반복하여 대화·도구 호출·크레딧을 낭비할 수 있다.
+- 변경: `direct-evidence search closure`를 적용한다. 후보별 Gmail 발행사-domain 검색 + File Library 직접계약/발신 원문 검색을 1회 완료한 뒤 실패하면 `SKIP — no direct evidence found`로 닫고, source file·메일·commit·blocker 상태 변화가 있을 때만 재개한다.
+- 장점: 동일 HOLD 루프와 중복 검색을 차단하고 다음 신규 후보/다른 업무 패키지로 더 빨리 이동한다.
+- 새 단점/위험: 연결 Gmail 계정 밖의 사내 메일, 아직 File Library에 없는 로컬 계약서가 존재하면 실제 관계를 놓칠 수 있다. 따라서 `없음`이 아니라 `현재 연결 증거에서 직접 원문 미발견`으로만 판정한다.
+- rollback 조건: 새 EML/계약/인보이스/메타데이터 발신 원문이 업로드·연결되거나 관련 GitHub commit이 생기면 해당 업체 closure를 해제하고 재검증한다.
+- 검증 결과: 7개 업체 검색 종료 기준과 재개 조건을 이번 observer에 저장했다. 감시 자동화 수·간격 자체는 변경하지 않아 모니터링 공백을 새로 만들지 않았다.
 
 ## 번호 혼동 금지
 - 37번 = 메타데이터 생산·통합검증만.
@@ -47,7 +50,7 @@
 - 13번 엑셀 자동 업로드: 46145 회귀 FAIL 유지 / 새 commit 없음으로 재실행 SKIP
 - 6번 TOC: v2.26 구조 PASS / 최신 실제 100건 실행 HOLD / 새 commit 없음으로 재검사 SKIP
 - 2번 입찰: 저장소 존재 PASS / 현재 실행본 식별 HOLD / 새 commit 없음으로 재검사 SKIP
-- 28번 해외 신규 발행사 발굴: 기존관계 제외표 등급화 진행 / Gardner-CompositesWorld 제외 PASS / GIA 관계·30% 직접근거 A / TMR 관계 B·현재조건 HOLD / Allied·QY·BCC 관계 B, 커미션 C-HOLD / MarketsandMarkets 관계 B+·커미션 C-HOLD / BlueWeave 관계 B+·조건 B-HOLD / Global Market Insights 취급 B·계약/조건 C-HOLD
+- 28번 해외 신규 발행사 발굴: 기존관계 제외표 등급화 진행. Gardner-CompositesWorld 제외 PASS / GIA 관계·30% 직접근거 A / TMR 관계 B·현재조건 HOLD / Allied·QY·BCC 관계 B, 커미션 C-HOLD / MarketsandMarkets 관계 B+·커미션 C-HOLD / BlueWeave 관계 B+·조건 B-HOLD / Global Market Insights 취급 B·계약/조건 C-HOLD / Research in China 취급·내부관계 B-, 계약·40% C-HOLD / Technavio·Future Markets·RNCOS·Transparency·GlobalData·INKWOOD 직접원문 검색 closure
 - 29번 발행사 계약·정산: 관계·취급·커미션조건 근거 분리 구조 적용 / 공식 reseller 채널은 active-partner B+ 보조등급 적용
 - 30번 일본 계약·정산: 역할 경계 PASS / 과거 거래자료 씨앗 확인 / 개별 최신 계약상태 정규화 대기
 - 31번 일본 신규 발행사 발굴: 역할 경계 PASS / 실제 후보조사 미착수
@@ -58,9 +61,9 @@
 사용자는 이 상태판을 보기만 한다. 테스트, 비교, 캡처, PASS/FAIL 판정, 규칙 저장, 새 대화창 인계문 작성, `계속/진행` 반복 입력을 요구하지 않는다.
 
 ## 재시작 지점
-1. 2026-05-29 내부 커미션표에서 아직 원문등급화하지 않은 상위 업체 중 `Research in China / Technavio / Future Markets / RNCOS / Transparency / GlobalData / INKWOOD` 순으로 실제 계약·직접발신·주문·메타데이터 원문이 잡히는 업체만 처리한다.
-2. 원문 검색이 실패한 업체는 같은 회차에서 반복검색하지 않고 `SKIP — no direct evidence found` 후 다음 업체로 이동한다.
-3. MarketsandMarkets는 최신 계약/커미션 직접메일이 발견될 때만 50% 조건을 상향한다. 2026-07-23 metadata 메일 반복검사는 금지한다.
+1. 2026-05-29 내부 커미션표의 다음 미등급 업체 `Accuray Research → Global Info Research → KBV Research → Coherent Market Insights → Grand View Research → Kuick Research → Prismane Consulting` 순으로 직접 계약·발행사 메일·주문·인보이스 원문이 실제로 잡히는 업체만 등급화한다.
+2. 이번에 closure한 Research in China/Technavio/Future Markets/RNCOS/Transparency/GlobalData/INKWOOD는 새 source/메일/commit이 생기기 전 반복검색 금지.
+3. 원문 검색 실패 업체는 즉시 `SKIP — no direct evidence found` 후 다음 업체로 이동한다.
 4. 제외표가 충분해지면 28번 실제 신규 후보 조사로 이동한다.
 5. 중앙 `WIC_GLOBAL_OPERATING_RULES.md`는 전체 내용 보존이 가능한 안전 병합이 확보될 때만 갱신한다.
 
