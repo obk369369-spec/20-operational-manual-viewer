@@ -1,43 +1,37 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-10 09:10 KST
-상태: ACTIVE — watchdog stall 복구 + 28/29 발행사 관계근거 등급화 진행
+최종 확인: 2026-08-10 09:31 KST
+상태: ACTIVE — recovery pulse 복구 + TMR 1회 정밀검색 종료 + 기존 발행사 근거등급 확장
 
 이 파일은 사용자가 직접 테스트하지 않고 진행을 관찰하기 위한 외부 상태판이다. 실제 외부 증거가 있을 때만 진행으로 기록한다.
 
-## 이번 회차 실제 작업 — 09:10
-- COLLISION GUARD 확인: 직전 상태판 갱신은 08:48 KST로 12분 보호구간을 초과했다.
-- `WIC Overnight Completion`은 08:49 KST에 실행된 기록이 있으나 09:10 현재 observer에는 그 실행의 새 작업묶음/새 재시작점/새 외부증거가 저장되지 않았다. 따라서 `stalled — completion run did not persist new observer evidence`로 판정하고 저장된 재시작점에서 복구했다.
-- 이전 회차에서 이미 판정한 13번·6번·2번 HOLD와 28번 Gardner/CompositesWorld 근거는 새 증거가 없어 재검사하지 않았다: `SKIP — unchanged evidence`.
-- 29번/28번 재시작점에 따라 Global Industry Analysts(GIA)와 Transparency Market Research(TMR)의 과거 커미션 근거를 File Library 원문에서 다시 등급화했다.
-- GIA는 2020-10-20 `info411@strategyr.com` 원문 EML에서 Global Industry Analysts, Inc. Sales Team이 WIC 문의에 대해 해당 보고서 판매 시 `30% commission`을 직접 제안한 원문을 확인했다. 따라서 `EXCLUDE — existing direct transaction/commission evidence`, 근거등급 A(발행사 발신 원문)로 승격한다. 다만 이 메일은 특정 판매건 조건이므로 현재 전상품/장기계약 30%가 지금도 유효하다고 자동 확장하지 않는다.
-- TMR은 2026-07-08 WIC가 전 TMR 담당자에게 보낸 메일에서 `When we collaborated at Transparency Market Research, we operated under a 50% commission structure`라는 과거 거래조건 진술을 확인했고, 별도 과거 거래처 현황 파일에도 `Transparency Market Research (50% commission)`이 반복 기록돼 있다. 따라서 `EXCLUDE — existing historical business relationship`, 근거등급 B(복수 내부기록 + 후속 이메일의 과거 거래 진술)로 유지한다. 이번 검색에서는 TMR 자체가 발신한 50% 원문 EML/계약서는 아직 식별되지 않아 현재 조건 확정은 HOLD다.
-- 증거등급을 A=`발행사 발신 원문/계약/주문서`, B=`복수 내부기록 + 실제 거래맥락`, C=`추천목록/단일 요약기록`으로 구분해 28번 신규후보 제외판정에 적용했다.
+## 이번 회차 실제 작업 — 09:31
+- COLLISION GUARD 확인: 직전 observer 갱신은 09:10 KST로 12분 보호구간을 초과했다.
+- 09:31 현재 observer에는 09:10 이후 새 작업묶음/새 재시작점/새 외부증거가 없어 `stalled — no persisted observer evidence after prior recovery`로 판정하고 저장된 재시작점에서 복구했다.
+- 이전 13번·6번·2번 HOLD, Gardner/CompositesWorld, GIA A등급, TMR B등급 판정은 새 증거가 없어 다시 열지 않았다: `SKIP — unchanged evidence`.
+- TMR 자체 발신 50% 원문 EML/계약서를 찾기 위해 File Library에서 발행사명+50% commission+contract/email 조합으로 1회 정밀검색했다. 결과는 2026-05-29 내부 커미션 현황표와 WIC 발신 파트너 소개 메일 등 기존 내부/자체발신 근거만 다시 확인됐고 TMR 자체 발신 50% 원문은 식별되지 않았다. 따라서 TMR은 `B — 기존관계 확인 / 현재 50% 조건 HOLD`로 고정하며 동일 검색을 반복하지 않는다.
+- Allied Market Research, QY Research, BCC Research, MarketsandMarkets를 다음 등급화 대상으로 검색했다. 2026-05-29 내부 커미션 현황표에는 Allied 50%, QY 50%, MarketsandMarkets 50%, BCC 40%가 기록돼 있다. 이 표 자체는 발행사 원문이 아니므로 커미션율 확정 근거는 C 수준이다.
+- 한편 2026년 메타데이터 샘플검증 자료에는 Allied Market Research와 BCC Research의 실제 메타데이터 원본 파일명이 존재하고, MarketsandMarkets는 2025~2026 실제 metadata 파일 구조 기록이 다수 존재한다. 이는 단순 추천목록보다 강한 `실제 데이터 수령/업무관계 맥락` 근거이므로 기존관계 판정은 B 수준으로 올릴 수 있으나, 각 커미션율(50/50/40 등)은 발행사 발신 계약·메일이 없으므로 C/HOLD로 분리한다.
+- QY Research는 이번 검색에서 실제 거래사로 사용했다는 과거 업무문서와 내부 50% 표는 확인됐지만 발행사 자체 발신 원문 계약/메일은 식별되지 않았다. 따라서 `기존관계 B / 50% 조건 C-HOLD`로 분리한다.
+- SELF-IMPROVEMENT 적용: 앞으로 `관계 존재 등급`과 `커미션 조건 등급`을 한 칸에 섞지 않고 별도 판정한다. 실제 데이터 파일이 있어 관계는 B여도 커미션 숫자는 C/HOLD일 수 있다.
 
 ## 이번 회차 판정
 | 작업 묶음 | 상태 | 외부 증거 | blocker / 개선 | 다음 실행 |
 |---|---|---|---|---|
-| stall 감지/복구 | PASS | observer 08:48 이후 미갱신 + completion 08:49 실행기록 대비 새 observer evidence 없음 | completion run 자체 내부 종료원인은 노출되지 않음 | 저장 성공 여부를 다음 watchdog에서도 동일 기준으로 판정 |
-| GIA 관계근거 | PASS — A등급 | 2020-10-20 `info411@strategyr.com` EML, GIA Sales Team 30% commission 직접 제안 | 현재 장기계약/현재율 유효성은 별도 HOLD | 29번 타임라인에 historical 30% direct evidence로 사용 |
-| TMR 관계근거 | PASS — 기존관계 / HOLD — 원문 조건 | 2026-07-08 후속 EML의 과거 50% 거래 진술 + 복수 거래처 현황 기록 | TMR 발신 50% 원문 계약/메일 미식별 | TMR 원문 발견 시 B→A 승격, 없으면 현재조건 HOLD 유지 |
-| 28번 제외표 등급화 | PASS(구조) | A/B/C evidence gate 적용 | 검증 단계가 늘어 단순 이름복사보다 느림 | 다음 발행사도 같은 등급으로만 추가 |
+| stall 감지/복구 | PASS | observer 09:10 이후 09:31까지 새 persisted evidence 없음 | completion 내부 종료원인은 노출되지 않음 | 동일 기준 유지 |
+| TMR 50% 원문 정밀검색 | PASS(검색 종료) / HOLD(원문 조건) | 내부 50% 현황표 + WIC 발신 파트너 목록만 재확인 | TMR 자체 발신 50% EML/계약 미식별 | 동일 검색 반복 금지, B/HOLD 고정 |
+| Allied 기존관계 | PASS — B / 커미션 HOLD-C | 2026 메타데이터 원본 파일 존재 + 내부 50% 표 | 발행사 발신 50% 원문 미식별 | 원문 발견 시 조건만 승격 |
+| QY Research 기존관계 | PASS — B / 커미션 HOLD-C | 과거 실사용 업무문서 + 내부 50% 표 | 발행사 발신 원문 미식별 | 원문 발견 시 조건만 승격 |
+| MarketsandMarkets 기존관계 | PASS — B / 커미션 HOLD-C | 2025~2026 metadata 파일 구조 기록 + 내부 50% 표 | 발행사 발신 원문 미식별 | 원문 발견 시 조건만 승격 |
+| BCC Research 기존관계 | PASS — B / 커미션 HOLD-C | 2026 BCC metadata 원본 파일 기록 + 내부 40% 표 | 발행사 발신 원문 미식별 | 원문 발견 시 조건만 승격 |
 
 ## 구조 자기개선 상태
-- 원인: 과거 거래처 요약표에는 실제 발행사 원문, 내부기록, 추천목록이 혼합되어 있어 모두 같은 신뢰도로 자동 승계하면 잘못된 제외/계약조건 확정 위험이 있다.
-- 변경: 28/29 발행사 관계근거를 A/B/C 3등급으로 분리하고 `현재 조건`은 역사적 관계와 별도 필드로 취급한다.
-- 장점: 오래된 커미션 수치를 현재 계약조건으로 오인하거나 추천목록만으로 거래사 판정하는 오류를 줄인다.
-- 새 단점: 발행사별 원문 확인 단계가 추가되어 초기 정규화 속도가 느려진다.
-- rollback 조건: 더 신뢰도 높은 최신 계약/발행사 원문이 들어오면 해당 발행사 행만 최신 근거로 재판정한다. 등급 체계 자체는 원문보다 낮은 근거를 상위로 올리지 않는 한 유지한다.
+- 원인: `기존 거래관계가 실제로 있었는가`와 `커미션 숫자가 정확한가`는 증거 강도가 서로 다른데 과거 표에서는 한 줄로 섞여 있었다.
+- 변경: `relationship_evidence_grade`와 `commission_evidence_grade/current_terms_status`를 분리 판정한다.
+- 장점: 실제 메타데이터 수령 같은 강한 관계근거가 있어도 오래된 커미션 수치를 현재 계약조건으로 자동 승계하는 오류를 막는다.
+- 새 단점: 발행사별 판정 필드가 늘어 초기 정규화가 조금 느려진다.
+- rollback 조건: 최신 발행사 계약/직접 발신 메일이 확인되면 해당 발행사의 조건 필드만 A로 승격한다. 관계/조건 분리 자체는 유지한다.
 - 감시 자동화 수·간격·크레딧 구조는 이번 회차 변경하지 않았다.
-
-## 직전 회차 실제 작업 — 08:48
-- 직전 재시작 지점 `28번 기존 거래·접촉·협상·판매 발행사 제외표 미통합`에서 시작했다.
-- File Library의 28·29·30 운영문서와 실제 거래/메일 자료를 교차 검색했다.
-- 28번 원문은 신규 후보를 조사하기 전에 거래대장·이메일·계약 목록·29/30/31/37 상태와 대조하고, 최소 2개 식별자 또는 원문 기록이 있어야 제외 확정하도록 규정한다.
-- 29번 원문은 기존 거래·접촉·협상 발행사를 관리 범위로 두고 있으나 최신 계약서와 자동 대조 전이므로 전체 확정 목록은 HOLD 상태다. 따라서 과거 추천용 VENDOR 목록을 곧바로 '기존 거래사'로 승격하지 않는다.
-- 30번 근거자료에서 일본 과거 거래/관리 씨앗으로 씨엠씨출판, 후지키메라, 후지경제, 야노리서치, 기술정보협회, NTS, TRICEPS 및 관련 일본 발행사 거래자료가 존재함을 확인했다. 이들은 28번 신규후보에서 우선 제외/관계확인 대상으로 사용하되 현재 계약 유효성은 별도 HOLD한다.
-- Gardner Business Media / CompositesWorld는 2026-06-24 실제 reseller terms 문의 회신과 2026-07 주문서에 20% reseller discount를 반영한 기록을 회수했다. 따라서 28번 신규 발행사 후보로 재추천하지 않고 `EXCLUDE — existing contact/transaction evidence` 씨앗으로 분류한다. 현재 장기 파트너 계약 전체 조건까지 확정한 것은 아니다.
-- 과거 1번 도구의 VENDOR 배열이나 고객 추천 문서에 등장한 MarketsandMarkets, Technavio, Grand View Research, Fortune Business Insights 등은 '추천/검색 대상에 등장'했다는 사실만으로 기존 거래사 판정을 하지 않는다. 거래·계약·접촉 원문이 별도로 확인될 때만 제외표에 승격한다.
 
 ## 번호 혼동 금지
 - 37번 = 메타데이터 생산·통합검증만.
@@ -55,8 +49,8 @@
 - 13번 엑셀 자동 업로드: 46145 회귀 FAIL 유지 / 새 commit 없음으로 재실행 SKIP
 - 6번 TOC: v2.26 구조 PASS / 최신 실제 100건 실행 HOLD / 새 commit 없음으로 재검사 SKIP
 - 2번 입찰: 저장소 존재 PASS / 현재 실행본 식별 HOLD / 새 commit 없음으로 재검사 SKIP
-- 28번 해외 신규 발행사 발굴: 기존관계 제외표 씨앗 등급화 진행 / Gardner-CompositesWorld 제외 씨앗 PASS / GIA A등급 PASS / TMR 기존관계 B등급 PASS·현재조건 HOLD / 일본 과거 거래사 씨앗 PASS-HOLD
-- 29번 발행사 계약·정산: 역할 경계 PASS / Gardner-CompositesWorld·GIA 실제 접촉/거래 원문 타임라인 이관 가능 / TMR 현재조건 원문 HOLD / 나머지 발행사 근거 정규화 진행 필요
+- 28번 해외 신규 발행사 발굴: 기존관계 제외표 등급화 진행 / Gardner-CompositesWorld 제외 씨앗 PASS / GIA 관계·30% 직접근거 A / TMR 관계 B·현재조건 HOLD / Allied·QY·MarketsandMarkets·BCC 관계 B, 커미션 C-HOLD
+- 29번 발행사 계약·정산: 관계근거와 커미션조건 근거 분리 구조 적용 / TMR 현재조건 원문 HOLD / Allied·QY·MarketsandMarkets·BCC 조건 원문 정규화 대기
 - 30번 일본 계약·정산: 역할 경계 PASS / 과거 거래자료 씨앗 확인 / 개별 최신 계약상태 정규화 대기
 - 31번 일본 신규 발행사 발굴: 역할 경계 PASS / 실제 후보조사 미착수
 - 나머지 도구/업무대화: 미순환
@@ -66,10 +60,10 @@
 사용자는 이 상태판을 보기만 한다. 테스트, 비교, 캡처, PASS/FAIL 판정, 규칙 저장, 새 대화창 인계문 작성, `계속/진행` 반복 입력을 요구하지 않는다.
 
 ## 재시작 지점
-1. 28/29 제외표를 A/B/C 근거등급으로 계속 확장한다. GIA는 A, TMR은 현재 B로 고정한다.
-2. TMR 자체 발신 50% 원문 EML/계약서가 있는지 1회 정밀검색하고, 없으면 동일 검색을 반복하지 않고 HOLD 고정한다.
-3. 다음으로 Allied Market Research, QY Research, MarketsandMarkets, BCC Research 등 상위 기존 거래처의 발행사 원문/계약 근거를 A/B/C로 분류한다.
-4. 실사용 가능한 기존관계 제외표가 확보되면 28번 실제 신규 후보 조사로 이동한다.
+1. TMR 자체 발신 50% 원문 검색은 이번 회차로 종료하고 동일 검색 반복 금지.
+2. Allied/QY/MarketsandMarkets/BCC는 `관계 B / 커미션 C-HOLD`로 임시 고정하고, 별도 새 원문이 발견될 때만 조건 등급을 승격한다.
+3. 다음은 내부 커미션표의 다른 상위 발행사 중 실제 데이터 파일/주문/메일 근거가 있는 업체를 묶어서 등급화해 28번 제외표의 실사용 범위를 넓힌다.
+4. 제외표가 충분해지면 28번 실제 신규 후보 조사로 이동한다.
 5. 중앙 `WIC_GLOBAL_OPERATING_RULES.md`는 전체 내용 보존이 가능한 안전 병합이 확보될 때만 갱신한다.
 
 실행시간: duration not exposed
