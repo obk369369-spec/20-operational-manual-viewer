@@ -1,77 +1,68 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-10 13:57 KST
-상태: ACTIVE — P1 스팸 회피 누락 보완 후 고객응대 루틴 계속
+최종 확인: 2026-08-10 14:05 KST
+상태: ACTIVE — P1/P2 runtime 검증 PASS, P3 Tool1 실데이터 격리 단계
 
-규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`. 이 파일은 실제 외부 증거와 재시작점만 기록한다. 37번=metadata production/integrated verification, 13번=Excel automatic upload로 분리 유지.
+규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`. 이 파일은 외부 증거와 재시작점만 기록한다. 37번=metadata production/integrated verification, 13번=Excel automatic upload로 분리 유지.
 
-## 대화창 계보 / 이름 관리
-- 기준 부모 대화창: `워크 전 준비`
-- GitHub 관리명 규칙: 새/파생 작업 세션은 항상 부모 이름을 앞에 이어서 기록한다.
-- 현재 작업 세션 GitHub 관리명: `워크 전 준비 → WIC observer-mode 고객응대 루틴`
-- 주의: GitHub 관리명은 ChatGPT 사이드바의 실제 대화창 제목을 변경하는 기능이 아니다. 현재 시스템에서 assistant가 사용자의 Chat 목록에 새 대화창을 직접 생성하거나 사이드바 제목을 직접 변경했다고 확인할 수 없다.
-- 사용자가 ChatGPT에서 대화창을 삭제했는지 여부를 GitHub connector/assistant가 자동 감지하는 기능은 현재 확인되지 않았다. 따라서 삭제 감지를 전제로 운영하지 않는다.
+## 현재 우선순위 / 피드백
+- 시작 우선순위: P1 correction 검증 -> P2 runtime -> P1→P2 handoff -> P3 Tool1.
+- 사용자 피드백 분류: 기존 P1 스팸회피 누락은 `CORRECTION`; 의도 추론 금지/Chat-first/관찰자 역할은 `CONSTRAINT`. PRIORITY_CHANGE 없음.
+- 현재 우선순위: **P3 Tool1 full/intermediate guide with real verified data**.
 
-## PERSIST-BEFORE-SESSION 고정 규칙
-- 앞으로 새 Work/파생/자동 생성 작업 세션을 전제로 할 때는, 그 세션에서 필요한 핵심 상태를 먼저 GitHub에 저장한 뒤에만 새 세션을 임시 실행창으로 취급한다.
-- 선저장 필수 항목: 부모 대화창=`워크 전 준비`, 작업 목적, 적용 규칙/잠금, 현재 코드·fixture 위치, PASS/HOLD, 마지막 검증 증거, 정확한 재시작점, 아직 GitHub에 흡수되지 않은 사용자 교정사항.
-- 저장 후 반드시 GitHub read-back으로 실제 보존을 확인한다.
-- 새 세션/대화 자체의 전체 원문이 GitHub에 자동 복제된다고 간주하지 않는다. 작업에 필요한 규칙·증거·상태만 명시적으로 흡수한다.
-- 사용자가 임시 작업 대화창을 삭제하더라도 GitHub에 선저장+read-back된 상태에서 재시작할 수 있게 한다.
-- 사용자에게 같은 오류·규칙을 다시 설명하도록 요구하지 않는다. 삭제된 대화창에서 GitHub에 흡수되지 않은 내용은 자동 복구 가능하다고 주장하지 않는다.
+## 이번 회차 실제 실행
+| 항목 | 실제 결과 | 범위 |
+|---|---|---|
+| P1 customer DB/send-order | `PASS: 9 deterministic P1 fixtures` | 일반 Python runtime 실제 실행 |
+| P2 Tool7 judgment | `PASS: 8 deterministic P2 fixtures` | 일반 Python runtime 실제 실행 |
+| P1→P2 handoff | `PASS: 6 deterministic P1->P2 handoff fixtures` | 신규 adapter + runtime |
+| P3 synthetic quarantine | `PASS: 4 deterministic Tool1 quarantine fixtures` | synthetic 탐지/real field gate fixture |
 
-## 이번 회차 우선순위 / 피드백
-- 직전 우선순위: P2 Tool7 고객 컨택 판단.
-- 사용자 피드백 분류: `CORRECTION` — P1 이메일 수집·3고객군·발송대기 DB에서 과거에 반복 고정된 스팸 회피 구조가 현재 구현/보고에 빠져 있는지 지적.
-- absorbed target: P1 customer DB/send-order gate.
-- resume point: P1 correction 검증 후 P1->P2 handoff, 이후 P2 기존 재시작점.
+## GitHub 실제 변경 / read-back
+- P1 send-order: `customer_pipeline/customer_db_state_machine.py`, commit `61052ebbd9e5bf1c8c12bab40e7f0c481cd84430`.
+- P2 Tool7: `customer_pipeline/tool7_contact_judgment.py`, commit `84497e2c6e4e6778f8482bdbeec84ce45ee37346`.
+- P1→P2 adapter: `customer_pipeline/p1_to_p2_handoff.py`, commit `1adbcfef1d2b0ad54f87157b9fb8b96b01cabaf2`, blob `fe815f4875817e32bdd4c696cae41bacc05b2089`.
+- Tool1 quarantine fixture: `customer_pipeline/tool1_synthetic_data_guard.py`, commit `456fbf27d41a2ba109de9536c8cfe91101522406`, blob `d731d6cf78230c2c69dd028504e6e4ac6e033b5b`.
+- feedback/work ledger updated this run: commit `48311e0827e2a701d771ab84ffedded39dabc4cf`.
 
-## 새로 처리한 과거 증거
-- `[이메일 수집 범용 공통 지시문 V5.0].txt`: 원본 수집표와 발송 정렬표 분리; 발송표에는 기관/부서/도메인/직책/기관군 분산을 적용.
-- `이메일 수집 대화창용 범용 공통 지시문 v4.0 (스팸 회피 강화형).doc`: 동일 기관 최소 3행, 동일 부서 4행, 동일 도메인 5행, 최소 6개 기관(권장 8~10), 한 기관 최대 20% 규칙.
-- `[이메일 수집 대화창 공통 지시문 / 본표 등재·누락 방지·스팸 회피 규칙].txt`: 이메일 수집 단계의 역할에 발송 정렬표 및 기관·도메인 분산이 명시됨.
-- `SKIP — unchanged evidence`: 이미 처리한 Tool7 3계열은 이번 P1 correction에서 재독해하지 않음.
+## 새로 처리한 역사 증거 — P3만, 기존 P1/P2는 재독해 안 함
+- `안내서_전체_연결버전.html`: 실제 입력 필드(영문/한글 타이틀, 발행사, 발행일, 페이지, 가격, 링크, TOC)를 안내서 슬롯에 직접 매핑하는 stable candidate.
+- 과거 사용자 기록: 임의로 새 디자인을 만들지 말고 원래 만들어진 안내서 버전 위에 필요한 연결만 붙이는 방향을 요구.
+- `1번도구_정상미리보기_좌중우_5안내서_v14.html`: `${kw} Market Report`, 임의 페이지/가격, 공통 worldic 링크 등 synthetic generation 존재 확인.
+- 판정: v14/RUN은 production-safe 기준이 아니라 historical development evidence; synthetic report generation은 격리 유지.
+- `SKIP — unchanged evidence`: 직전 처리한 이메일 V4/V5와 Tool7 3계열은 이번 회차 재독해하지 않음.
 
-## 실제 구현
-- 수정 코드: `customer_pipeline/customer_db_state_machine.py`
-- commit: `61052ebbd9e5bf1c8c12bab40e7f0c481cd84430`
-- 추가된 결정형 gate:
-  1. 세 고객군 `NEW_ONLINE / DORMANT_LEDGER / RECENT_TRADE` 외 source cohort HOLD.
-  2. 발송표 최소 6개 기관, 권장 목표 8~10개.
-  3. 동일 기관 최소 3행 간격.
-  4. 동일 부서 최소 4행 간격.
-  5. 동일 이메일 도메인 최소 5행 간격.
-  6. 한 기관이 전체 발송표 20% 초과 시 HOLD.
-  7. 원본 행 데이터 재조합 없이 발송 순서만 다루는 validator.
-  8. 스팸 회피 관련 회귀 fixture 추가.
-- feedback/work ledger 업데이트: commit `02bc5e5d3e7a07bbb28f4690b7186da51e8381c6`.
-
-## 판정
-| 작업 | 상태 | 증거/블로커 | 다음 실행 |
-|---|---|---|---|
-| P1 과거 스팸 회피 규칙 회수 | PASS — evidence recovered | Library V5/V4/공통지시문 | 처리 인덱스 갱신 |
-| P1 스팸 회피 코드 저장 | PASS — GitHub stored | `customer_db_state_machine.py`, commit `61052ebb...` | read-back/runtime |
-| P1 기능 PASS | HOLD | 실제 runtime fixture 실행 전 | 일반 runtime 실행 |
-| 제목/첫 문장 3종 분산 | HOLD | 실제 send-ready formatter/content module 미식별 | 해당 모듈 발견 후 fixture/patch |
-| P2 Tool7 코드 | STORED / FUNCTIONAL HOLD | 직전 8 fixture runtime 미실행 | P1 correction 검증 후 이어서 실행 |
-| Work 이관 | WORK_DEFER_DENIED | Chat/Files/GitHub/일반 runtime으로 가능 | Work 사용 금지 |
-
-## 사용자 혼란 방지 구조 설명
-- `P0~P10`은 새 대화창 이름이 아니라 업무 우선순위 표식이다.
-- assistant는 현재 시스템에서 사용자 Chat 목록에 새 대화창을 직접 생성하거나 이름 붙일 수 있다고 확인되지 않는다.
-- GitHub는 실제 connector로 연결되어 있으며 이 상태판/코드 파일은 직접 fetch/update/read-back 대상으로 사용한다. 단, GitHub 저장 성공은 기능 실행 성공과 동일하지 않으므로 runtime 전에는 HOLD한다.
+## PASS / HOLD
+| 작업 | 상태 | 이유 |
+|---|---|---|
+| P1 결정형 DB/send-order gate | PASS — fixture 범위 | 실제 input->runtime->assert 비교 완료 |
+| P1 실제 회사 DB 연결 | HOLD | 실제 회사 customer DB/runner 미식별 |
+| 제목/첫 문장 3종 분산 | HOLD | send-ready formatter 미식별 |
+| P2 결정형 Tool7 gate | PASS — fixture 범위 | 8 fixture runtime PASS |
+| P1→P2 handoff | PASS — fixture 범위 | 세 cohort + missing verification + no-inference 검증 |
+| P2 실고객 end-to-end | HOLD | 실제 오늘 고객 레코드 연결 전 |
+| Tool1 synthetic quarantine test | PASS | historical synthetic signatures 탐지 fixture runtime PASS |
+| Tool1 실제 안내서 생산 | HOLD | real report input -> actual guide output -> expected 비교 전 |
+| Work 이관 | `WORK_DEFER_DENIED` | G1 Chat/Files=YES, G2 GitHub=YES, G3 runtime=YES |
 
 ## self-improvement
-- 원인: 대화창/세션 생성과 GitHub 보존 순서가 명확히 잠기지 않아 사용자가 임시 대화창을 삭제할 때 미흡수 정보 손실 위험이 있었다.
-- 변경: `PERSIST-BEFORE-SESSION`을 고정하고 부모 이름을 `워크 전 준비`로 수정.
-- 이점: 임시 작업창 삭제와 무관하게 핵심 규칙·증거·재시작점은 GitHub에서 이어갈 수 있다.
-- 남은 위험: 삭제 전에 GitHub로 한 번도 흡수되지 않은 대화 원문은 자동 복구할 수 없다. Chat 삭제 자체도 자동 감지하지 못한다.
-- rollback: 없음. 더 강한 자동 보존 경로가 실제 연결되면 이 규칙을 최소 보존 규칙으로 유지한다.
+- 원인: 과거 Tool1 개발판에는 실제 보고서가 없어도 제목·페이지·가격·링크를 생성하는 경로가 있어 shell/미리보기 성공이 실제 안내서 성공처럼 보일 위험이 있음.
+- 변경: `TOOL001_SYNTHETIC_REPORT_DATA` quarantine fixture를 실제 GitHub 자산으로 만들고 runtime PASS 확인.
+- 이점: 이후 Tool1 후보가 synthetic 생성 패턴을 포함하면 production PASS 전에 차단 가능.
+- 단점/남은 위험: quarantine test는 실제 HTML UI를 수정하지 않으며 실보고서 출력 E2E를 대신하지 않음.
+- rollback: 사용자 승인 실데이터 생성 규칙이 별도로 증명되지 않는 한 synthetic 허용으로 되돌리지 않음.
 
-## 재시작 지점
-1. P1 `customer_db_state_machine.py`의 전체 fixture를 일반 runtime에서 실제 실행.
-2. PASS면 P1 output -> P2 input handoff adapter 연결.
-3. P2 `tool7_contact_judgment.py` 8 fixture 실제 실행.
-4. 이어서 P3 Tool1 FULL/INTERMEDIATE guide 실제 mapping.
+## Work gate
+- G1 Chat/Files: YES.
+- G2 GitHub connector: YES.
+- G3 ordinary runtime: YES.
+- 결정: `WORK_DEFER_DENIED`.
+- 현재 Work 사용 시 historical re-analysis/terminal-suitable test에 해당하므로 `CREDIT_WASTE_FAIL` 위험.
+
+## 정확한 재시작점
+1. **P3** 실제 고객 + 실제 거래가능 보고서가 포함된 과거 Tool1 사용자 승인 fixture를 신규 evidence로 회수.
+2. `안내서_전체_연결버전.html`의 slot mapping을 실데이터 payload와 비교.
+3. real input -> actual guide output -> expected comparison fixture 생성 및 실행.
+4. TOC가 필요한 실보고서가 식별되면 P4로 잠시 들어가 해당 publisher golden fixture를 적용한 뒤 P3로 복귀.
 
 실행시간: duration not exposed
