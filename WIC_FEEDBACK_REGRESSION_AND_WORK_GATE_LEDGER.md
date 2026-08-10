@@ -62,7 +62,7 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 - 37번 = metadata production/integrated verification only.
 - 결합 금지.
 
-## Cross-chat feedback ingestion — implemented 2026-08-10 15:37 KST
+## Cross-chat feedback ingestion — implemented 2026-08-10 15:40 KST
 ### User requirement absorbed
 - 모든 관련 대화창의 WIC 피드백을 사용자가 다시 전달하지 않게 한다.
 - 접근 가능한 prior-interaction/personal-context에서 새 피드백을 회수하고 중앙 마스터/관련 도구/GitHub로 흡수한다.
@@ -70,13 +70,16 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 
 ### Actual implementation
 - deterministic processor: `feedback_pipeline/cross_chat_feedback_ingest.py`
-  - commit: `4d917ae0765612273416b536115e13b46078b97f`
+  - initial commit: `4d917ae0765612273416b536115e13b46078b97f`.
+  - Korean prohibition-classification fix: commit `2b5db963f1d18ab6ba0b378dbc8a057a21558750`.
   - functions: classification / tool routing / semantic dedupe id / PII redaction / central-master candidate / regression-fixture candidate / Work gate.
 - persistent cursor/dedupe state: `feedback_pipeline/state.json`
-  - commit: `8acc109f2cd53562517e1acfa686db3b9b79e663`
+  - commit: `8acc109f2cd53562517e1acfa686db3b9b79e663`.
+  - read-back blob: `cc2bc0360b2e5168e3c3501ebc7b290922622321`.
   - seeds the 2026-08-07 cross-chat auto-collection instruction and the 2026-08-10 explicit implementation instruction as processed constraints.
 - CI audit: `.github/workflows/cross-chat-feedback-audit.yml`
-  - commit: `0dfc46375b5999189766d5c7a7e52eb2364de63d`
+  - commit: `0dfc46375b5999189766d5c7a7e52eb2364de63d`.
+  - read-back blob: `18825b81cf039eb0162eed2662a33fb72db8fedf`.
   - verifies deterministic fixtures, state schema, duplicate IDs, and PII persistence ban on relevant pushes/PRs.
 - runtime collector: active scheduled task `WIC 대화창 피드백 수집`, hourly at `:20` KST.
   - source method: accessible prior-interaction/personal-context retrieval; no Chat UI scraping claim.
@@ -95,8 +98,11 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 - Work receives only exact Work-only blockers with source files + known-good baseline + failing fixture + expected output + error signature + PASS criteria + attempted Chat/runtime work + no-reanalysis scope.
 
 ### Verification state
-- GitHub storage/read-back: PASS for processor/state/workflow creation commits listed above.
-- deterministic processor functional verification: pending CI/ordinary runtime evidence after workflow run; code presence alone is not functional PASS.
+- GitHub storage/read-back: PASS for processor/state/workflow files.
+- first ordinary-runtime test caught a real classifier bug: `터미널에서 가능한 일은 Work로 넘기지 마` was misclassified as SIDE_REQUEST because only `하지 마`-style prohibitions were recognized.
+- correction: added `하지 말/하지말/지 마/지마/말고` prohibition patterns and committed the fix.
+- deterministic processor ordinary-runtime verification after fix: `PASS: 11 deterministic cross-chat feedback fixtures`.
+- CI workflow file is installed/read-back PASS; actual Actions run result is not yet independently verified, so CI execution = HOLD.
 - cross-chat collector end-to-end proof requires at least one NEW feedback item from another conversation to be retrieved, deduped, and persisted without manual forwarding. Until that external event occurs, runtime E2E = HOLD, implementation = ACTIVE.
 - user forwarding requirement: removed from operating path; user remains observer-only.
 
