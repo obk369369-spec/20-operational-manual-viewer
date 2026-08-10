@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-11 01:24 KST
+최종 갱신: 2026-08-11 02:24 KST
 상태: ACTIVE
 목적: 사용자가 링크 하나에서 실제 진행상태를 쉽게 확인하도록 하는 사람용 상태판. 운영 규칙 원본은 `WIC_GLOBAL_OPERATING_RULES.md` 하나만 사용한다.
 
@@ -10,44 +10,31 @@
 - 제3자 외부검증 후보 공식 확인: **CircleCI / Codacy / BrowserStack 3개**
 - 제3자 외부검증 실제 WIC 연결: **0개 / HOLD**
 - 기존 GitHub 내부 검증: **PR / GitHub Actions / artifact / Pages 증거는 일부 존재**
-- 중요: 기존 GitHub Actions 구조를 사용자가 요구한 `GitHub 밖 제3자 독립 외부검증`으로 계산하지 않는다.
+- 중요: GitHub Actions 자체를 사용자가 요구한 `GitHub 밖 제3자 독립 외부검증`으로 계산하지 않는다.
 - assistant 자체 외부검증 설계 문서: **삭제 완료** (`4c4fa0a32648fc3192b48ebffffa07f02a9daac7`)
 
 ## 이번 자동 재개 회차에서 실제 확인된 것
 
-1. 저장된 restart point에 따라 01 `index.html`의 JavaScript 오류 위치 특정부터 재개했다.
-2. GitHub 코드 검색으로 기존 Actions 오류 문자열과 관련된 실제 소스 위치를 신뢰성 있게 특정하지 못했다. 같은 진단 반복은 중단하고 01 HOLD를 유지했다.
-3. 01의 최신 확인 커밋 `5948cc7a6fff016b37bd429f87f85e98ed9119b3`의 combined status를 확인했으며 Deno deploy status는 **failure**다. target URL: `https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/wxnm5kanh9wk`.
-4. 13 `index.html` 실제 코드를 읽어 CSV/XLSX 입력 → 헤더 감지 → 필드 매핑 → 미리보기 → XLSX 파일 생성 흐름이 존재함을 확인했다.
-5. 그러나 13의 `업로드` 버튼 실제 동작은 `downloadCSV('upload')`이며, 이 함수는 `XLSX.writeFile(... 'tool13_upload.xlsx')`로 **로컬 다운로드 파일을 생성할 뿐 외부 홈페이지/업로드 대상에 전송하지 않는다.** 따라서 현재 13은 `엑셀 업로드 준비파일 생성기` 수준이고 `엑셀 자동 업로드` 기능 PASS가 아니다.
-6. 13의 실제 업로드 대상 endpoint/API/브라우저 자동화/로그인 연결 코드는 이번 확인 범위에서 발견되지 않았다. **HOLD**.
-7. 6번 `06-toc-check` 저장소 존재를 다시 확인했고 `golden fixture / MarketsandMarkets / expected output / regression` 검색을 실시했으나 현재 코드 검색 결과로는 golden fixture를 확인하지 못했다. 같은 검색 반복 금지.
-
-## 기존 GitHub 검증 증거와 제3자 외부검증 구분
-
-| 층 | 실제 존재 | 무엇을 증명 | 현재 판정 |
-|---|---|---|---|
-| GitHub PR / Actions | 01·02·06·13 일부 존재 | 코드 체크아웃, 정적 검사, workflow 실행 여부 | **존재 확인** |
-| GitHub artifact / evidence branch | 02·06·13 과거 기록 존재 | 검사 JSON 보존 | **구조 증거** |
-| GitHub Pages | 06·13 과거 HTTP 200 기록, 02 과거 404 기록 | 배포 화면 접근 여부 | **배포 증거** |
-| CircleCI | 공식 기능 확인 | GitHub 밖 별도 CI 실행 가능 | **미연결 / HOLD** |
-| Codacy | 공식 기능 확인 | GitHub PR 외부 정적분석/quality gate 가능 | **미연결 / HOLD** |
-| BrowserStack | 공식 기능 확인 | 외부 브라우저/디바이스에서 Playwright E2E 가능 | **미연결 / HOLD** |
-
-GitHub Actions 자체 실행을 제3자 외부독립검증으로 가장하지 않는다.
+1. 저장된 restart point에 따라 2번 `02-auto-bid-narajangter-v1`부터 재개했다.
+2. 현재 main의 최신 커밋은 `d208f7a045d750815bcf04d7c1f81100a5ccfaef`이며, 내용은 중앙 규칙 원본 연결 문서 추가다. 실제 입찰 엔진 개선 커밋은 아니다.
+3. 실제 UI 파일은 `index(예전 버전).html`로 남아 있다. 코드상 기관·제목·마감일·품목 등을 사용자가 직접 입력하고 `window.localStorage`에 저장/검색/불러오기 하는 브라우저 내부 관리 화면이다.
+4. 이번 확인 범위에서 나라장터 API 호출, 공고 자동수집, 로그인 자동화, 제출/투찰, 외부 endpoint 전송 코드는 확인되지 않았다. 따라서 `2번 자동 입찰` PASS가 아니라 **수동 입찰안건 관리 화면 수준 / HOLD**다.
+5. 최신 커밋의 combined status에서 Deno 배포는 **failure**다. target URL: `https://console.deno.com/obk369369-spec/02-auto-bid-narajangter-v1/builds/wp6z61be6d0a`.
+6. 과거 `External collaboration evidence` workflow는 GitHub Actions에서 정적 HTML 구조를 검사하고 artifact/Pages를 만드는 구조다. 이것은 GitHub 내부 검사이며 제3자 외부독립검증으로 계산하지 않는다.
+7. 28번 번호 및 `publisher` 키워드로 현재 GitHub 조직 저장소를 검색했으나 28~31 전용 저장소를 확인하지 못했다. 같은 검색 반복 금지.
 
 ## 우선 작업 상태
 
-| 우선 | 대상 | 현재 상태 | 이번에 실제 확인/개선 | blocker | 다음 실행 |
+| 우선 | 대상 | 현재 상태 | 실제 확인/개선 | blocker | 다음 실행 |
 |---|---|---|---|---|---|
-| 1 | 이메일 수집 | HOLD | 전용 GitHub 실행 저장소 미확인 상태 유지 | 실행자산 위치 미확인 | 반복 검색 금지, 다른 근거가 생기면 재개 |
+| 1 | 이메일 수집 | HOLD | 전용 GitHub 실행 저장소 미확인 상태 유지 | 실행자산 위치 미확인 | 다른 근거가 생기면 재개 |
 | 2 | 7번 고객 컨택 판단 | HOLD | `07-wic-setting-tool-v1`은 다른 목적이라 사용 금지 유지 | 올바른 실행판 미확인 | 다른 근거가 생기면 재개 |
-| 3 | 1번 중간/최종 안내서 | **HOLD** | 오류 위치 검색 재개 + 최신 Deno deploy failure 확인 | JS 오류 줄 위치 미특정, deploy failure | 위치를 특정할 새 근거가 생길 때만 재개 |
-| 4 | 37 메타데이터 | HOLD | 전용 저장소 이름 검색에서 미확인 | 실행자산 미확인 | 반복 검색 금지, 다음 항목으로 이동 |
-| 5 | 13 엑셀 자동 업로드 | **HOLD** | 실제 파일입력/매핑/미리보기/XLSX 생성 코드는 존재. `업로드` 버튼은 실제 업로드가 아니라 `tool13_upload.xlsx` 다운로드임을 확인 | 외부 업로드 endpoint/API/브라우저 자동화 미연결 | 실제 홈페이지 업로드 대상/기존 자동화 코드 근거를 찾아 재사용, 없으면 새 연결 필요 |
-| 6 | 6번 목차 정리 | **PARTIAL/HOLD** | 저장소 존재 재확인, golden fixture 검색 실시 | golden fixture/expected output 세트 미확인 | 저장소의 실제 실행파일/과거 승인 샘플 근거 확인 |
-| 7 | 2번 입찰 | PARTIAL/HOLD | 과거 Actions 구조 성공, Pages는 과거 404 기록 | 실제 업무 E2E/현재 배포 미확인 | **다음 즉시 작업: 현재 저장소·배포 상태 확인** |
-| 8 | 28~31 | HOLD | 역할 분리 기록만 존재 | 실행/외부검증 범위 미확정 | 상위 실행 가능 항목 후 조사 |
+| 3 | 1번 중간/최종 안내서 | HOLD | 최신 Deno deploy failure 확인됨 | JS 오류 위치 미특정, deploy failure | 새 근거가 생길 때만 재개 |
+| 4 | 37 메타데이터 | HOLD | 전용 저장소 이름 검색에서 미확인 | 실행자산 미확인 | 다른 근거가 생기면 재개 |
+| 5 | 13 엑셀 자동 업로드 | HOLD | 파일입력/매핑/미리보기/XLSX 생성 존재. 실제 업로드는 없음 | 외부 업로드 endpoint/API/브라우저 자동화 미연결 | 기존 실제 업로드 코드 근거 발견 시 재사용 |
+| 6 | 6번 목차 정리 | PARTIAL/HOLD | 저장소 존재, golden fixture 1차 검색 완료 | 승인 fixture/expected output 미확인 | 새 승인 샘플 근거 발견 시 재개 |
+| 7 | 2번 입찰 | **HOLD** | 실제 UI 코드와 최신 배포 상태 확인. localStorage 기반 수동 안건관리 화면임을 확정 | 나라장터 자동수집/API/로그인/투찰 엔진 미확인 + Deno deploy failure | 기존 실제 자동입찰 자산이 다른 위치에 있는지 근거 기반 검색, 없으면 새 연결 필요 |
+| 8 | 28~31 | HOLD | 28 번호 및 publisher 저장소 검색 실시 | 전용 저장소 미확인 | **다음 즉시 작업: 중앙 GitHub 규칙/상태에서 28~31의 실제 파일·저장소 참조를 찾아 기존 자산 재사용 가능 여부 확인** |
 
 ## 외부검증 도입 상태
 
@@ -56,7 +43,7 @@ GitHub Actions 자체 실행을 제3자 외부독립검증으로 가장하지 �
 - Codacy 실제 WIC 연결: **0 / HOLD**
 - BrowserStack 실제 WIC 연결: **0 / HOLD**
 - 위 서비스가 실제 생성한 WIC run/status/log: **아직 없음**
-- 직접 커넥터/Plugin도 현재 환경에서 확인되지 않아, 계정/App 설치가 필요한 연결은 임의로 완료 처리하지 않는다.
+- GitHub Actions 기반 자체 정적검사는 제3자 외부독립검증으로 인정하지 않는다.
 
 ## 막힌 항목 처리 방식
 
@@ -64,10 +51,10 @@ GitHub Actions 자체 실행을 제3자 외부독립검증으로 가장하지 �
 
 ## 재개점
 
-완료된 외부후보 조사, 이메일/7번 저장소 검색, 01 존재확인/오류 종류 확인, 13의 업로드 버튼 실동작 확인, 6 golden fixture 1차 검색은 반복하지 않는다.
+완료된 외부후보 조사, 이메일/7번 저장소 검색, 01 존재확인/오류 종류 확인, 13 업로드 버튼 실동작 확인, 6 golden fixture 1차 검색, 2번 현재 UI/배포 확인은 반복하지 않는다.
 
-**다음 즉시 재개 위치: 2번 입찰 `02-auto-bid-narajangter-v1`의 현재 저장소·배포 상태와 실제 실행경로 확인.**
-- 현재 실행판과 배포 URL이 살아 있으면 실제 입력→출력 경로를 확인한다.
-- 화면/상태표만 있고 실제 업무 실행이 없으면 HOLD 기록 후 28~31로 이동한다.
+**다음 즉시 재개 위치: 중앙 GitHub 규칙·상태 파일에서 28~31 실제 저장소/파일/실행자산 참조를 찾아 재사용 가능 여부 확인.**
+- 참조가 있으면 해당 실제 자산을 직접 읽고 실행 가능 여부 확인.
+- 참조가 없으면 HOLD 기록 후 다음 등록 도구/주요 업무창으로 이동.
 
 상태판은 새 파일을 늘리지 않고 이 파일 하나를 계속 덮어쓴다.
