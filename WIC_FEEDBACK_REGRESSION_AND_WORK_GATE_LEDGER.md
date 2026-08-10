@@ -78,12 +78,29 @@ G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_
 - collector was created after the 15:20 slot; at 15:48 KST `last_run_time=null` is not a missed-run failure. First eligible scheduled run is 16:20 KST.
 - cross-chat E2E remains HOLD until a NEW feedback item from another conversation is retrieved/deduped/persisted automatically.
 
+## Chat proliferation guard — implemented 2026-08-10 16:11 KST
+- user feedback classification: `CONSTRAINT + STRUCTURE_CORRECTION`.
+- cause: similar preparation/observer/development chats increase navigation burden and force the user to repeat feedback instead of reducing it.
+- routing ledger: `WIC_CHAT_ROUTING_REGISTRY.md`, commit `80ae661bd9ac97ffed875e00945263dd2c672241`.
+- default: `NO_NEW_CHAT`.
+- allowed logical lanes only: `CONTROL / EMAIL_COLLECTION / TOOL007 / TOOL001 / TOOL006 / CRM_RESPONSE`.
+- ambiguous work stays in CONTROL instead of creating another chat role.
+- duplicate/similar historical chats are `EVIDENCE_SOURCE_ONLY`, not additional active destinations.
+- development/observer/Work-gate/feedback-ingestion reports consolidate to CONTROL only; specialist output stays in its existing specialist lane.
+- cross-chat collector and stop-watch automation updated to load this registry and forbid inventing/renaming/proposing extra preparation/observer/development chats.
+- user is never asked to choose between similar chats or forward the same feedback.
+- benefit: active navigation burden is capped; feedback continues to flow centrally without merging whole chat contexts.
+- downside/risk: Chat UI may still contain old similar chats because assistant cannot delete/rename UI conversations; the guard controls routing and future behavior, not the existing sidebar contents.
+- rollback: only if the user explicitly requests a new independent chat lane for a genuinely distinct workflow.
+- Work gate: G1=YES/G2=YES -> `WORK_DEFER_DENIED`.
+
 ## exact restart point
 1. P0 live customer blocker가 나타나면 즉시 최우선.
 2. P3: real customer + real tradable report가 포함된 과거 사용자 승인 fixture를 신규 evidence로 계속 탐색하되 8/12/16/23 processed chain 재독해 금지.
 3. 해당 실제 payload를 `tool1_verified_data_contract.py` gate에 통과시킨 뒤 stable mapper actual DOM/slot과 rendered output을 expected 값에 비교.
 4. P4 TOC가 필요한 실보고서가 식별되면 해당 publisher golden fixture 적용 후 P3 복귀.
-5. cross-chat collector는 16:20 KST 첫 eligible run 이후 last_run/evidence 확인.
+5. cross-chat collector는 첫 eligible run 이후 last_run/evidence 확인.
+6. chat routing은 `NO_NEW_CHAT`; 새 유사창 대신 CONTROL 또는 기존 전문 lane 재사용.
 
 ## 사용자 역할
-관찰자. 과거 오류 재설명, 동일 파일 재전송, 반복 테스트, PASS/FAIL 판정, 규칙 정리, Work 이관 판단, 대화창 피드백 수동 전달을 요구하지 않는다.
+관찰자. 과거 오류 재설명, 동일 파일 재전송, 반복 테스트, PASS/FAIL 판정, 규칙 정리, Work 이관 판단, 대화창 피드백 수동 전달, 비슷한 대화창 선택을 요구하지 않는다.
