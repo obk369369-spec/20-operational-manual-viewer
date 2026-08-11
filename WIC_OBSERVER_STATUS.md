@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-11 23:59 KST
+최종 갱신: 2026-08-12 00:19 KST
 상태: ACTIVE
 목적: 각 WIC 도구·업무·주요 대화창의 실제 진행, 증거, blocker, 다음 작업을 한 파일에서 직관적으로 확인한다.
 운영 규칙 원본: `WIC_GLOBAL_OPERATING_RULES.md`
@@ -16,6 +16,7 @@
 - 평가 기준: `정체성·규칙 20 + 실제 입력/자산 20 + 기능/업무흐름 구현 20 + 현재 실행/출력 증거 20 + 독립검증·실업무 PASS 20`.
 - 따라서 예를 들어 60점은 “60% 완성”을 뜻하지 않고, **5개 준비단계 중 증거가 있는 3단계 수준**이라는 뜻이다.
 - 원칙: 완료작업 반복 금지 → blocker는 HOLD 기록 → 즉시 다음 실행 가능 항목으로 이동 → 새 근거가 생기면 우선도구로 복귀.
+- 이번 회차 새 근거: **6번 목차 정리의 commit별 GitHub 내부 검증 산출물 `static-validation.json`을 external-evidence-archive에서 실제 read-back함. 6번 현재 실행/출력 증거 20점 인정, 60→80/100. 독립검증 점수는 0점 유지.**
 
 상태: 🟢 PASS = 실제 입력→실행→출력→검증 / 🟠 PARTIAL-HOLD = 실제 개선·실행 근거 있으나 E2E/독립검증 미완료 / 🔴 HOLD = blocker / ⚪ NEXT = 다음 실행 대상
 
@@ -30,7 +31,7 @@
 | 3 | 1번 중간/최종 안내서 | **60/100** | 🟠 PARTIAL-HOLD | 규칙 + 실제 HTML 자산 + 기능흐름/오류지점/CircleCI gate 존재 | 현재 정상 실행·배포 **20**, 외부 actual run + 실데이터 E2E **20** |
 | 4 | 37번 메타데이터 | **40/100** | 🔴 HOLD | 생산 규칙·칼럼 규칙 존재 | 실제 생산 실행자산 **20**, 현재 원본→결과 run **20**, 독립검증 PASS **20** |
 | 5 | 13번 엑셀 자동 업로드 | **60/100** | 🟠 PARTIAL-HOLD | 규칙 + 실제 UI/파일처리/XLSX·CSV 생성 흐름 존재 | 실제 홈페이지 uploader/backend 실행 **20**, 독립검증/실업로드 성공 **20** |
-| 6 | 6번 목차 정리 | **60/100** | 🟠 PARTIAL-HOLD | 실제 저장소/엔진 + 규칙 + 내부 검증 workflow 존재 | 승인 golden fixture 기반 현재 run **20**, 독립 외부검증 PASS **20** |
+| 6 | 6번 목차 정리 | **80/100** | 🟠 PARTIAL-HOLD | 실제 저장소/엔진 + 규칙 + 내부 검증 workflow + commit `0b307cc9...`의 실제 `static-validation.json` read-back (`STRUCTURE_PASS`) | 승인 golden fixture/업무 기대값 비교 및 제3자 독립검증·실업무 PASS **20** |
 | 7 | 2번 입찰 | **40/100** | 🔴 HOLD | 규칙/목표 + 실제 UI 자산 확인 | 나라장터 실연동 기능 **20**, 실제 제출/조회 실행 **20**, 독립검증 **20** |
 | 8 | 28~31 발행사 업무 | **40/100** | 🔴 HOLD | 역할분리·업무규칙 존재 | 실제 실행자산 **20**, 현재 자동 실행 **20**, 검증 PASS **20** |
 | - | 09 컨텐츠 자료 안내 | **60/100** | 🟠 PARTIAL-HOLD | 실제 index + synthetic blocker 특정 + 내부 gate/workflow_dispatch | production synthetic 제거 후 정상 run **20**, 독립검증 **20** |
@@ -50,7 +51,7 @@
 | - | 25 Free Content Maker | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | README/index/실행/검증 미확인 |
 | - | 26 Online Item Shop | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | README/index/실행/검증 미확인 |
 
-> 주의: 위 숫자는 **증거 기반 운영준비도**이며 “코드가 몇 % 작성됐다”는 의미가 아니다. 실제 실행·검증 증거가 생겨야 마지막 40점이 올라간다.
+> 주의: 위 숫자는 **증거 기반 운영준비도**이며 “코드가 몇 % 작성됐다”는 의미가 아니다. 실제 실행·검증 증거가 생겨야 마지막 점수가 올라간다.
 
 ---
 
@@ -91,25 +92,37 @@
 | 구조 | 준비도 | 현재 상태 | 실제 증거 | 다음 필요한 것 |
 |---|---:|---|---|---|
 | CircleCI | **60/100** | GitHub OAuth 연결 + 1번 config/gate 존재 | OAuth 연결 화면 확인, config commit/read-back | 실제 Project 활성화 + 최초 external run/result URL **20**, WIC E2E PASS **20** |
+| GitHub Actions / 6번 | **내부 증거 확인** | 실제 push 기반 결과 archive 존재 | `external-evidence-archive/runs/0b307cc9.../static-validation.json`, result=`STRUCTURE_PASS` | 제3자 독립검증으로 계산 금지; 승인 golden fixture 또는 실제 업무 기대값 비교 필요 |
 | Codacy | **20/100** | 후보 선정만 완료 | 공식 기능 확인 | GitHub App 승인/연결 → 실제 분석 result |
 | BrowserStack | **20/100** | 후보 선정만 완료 | 공식 기능 확인 | 계정/연결 승인 → UI E2E actual run |
 
-제3자 서비스의 실제 run/result URL이 없으면 마지막 40점을 주지 않는다. GitHub Actions/Deno/assistant 판단은 제3자 독립검증으로 계산하지 않는다.
+제3자 서비스의 실제 run/result URL이 없으면 독립검증 점수를 주지 않는다. GitHub Actions/Deno/assistant 판단은 제3자 독립검증으로 계산하지 않는다.
 
 ---
 
-# 5. 지금 가장 큰 병목
+# 5. 이번 회차 실제 수행 / 개선 / blocker
+
+1. 중앙 `WIC_OBSERVER_STATUS.md`를 먼저 read-back하고 최신 restart point를 확인했다.
+2. 1번 `index.html`에서 `function defaultToc(...)`와 `if (!firstNormalized.toc) firstNormalized.toc = defaultToc(...)`가 현재도 실제로 남아 있음을 read-back했다. 기존 CircleCI gate가 이 production synthetic 경로를 차단하도록 설정된 사실도 확인했다. 대형 HTML 안전 부분 patch 수단이 없어 본체는 HOLD 유지.
+3. 37번과 13번은 설치 저장소 검색에서 신규 실행자산이 식별되지 않아 기존 검색을 더 반복하지 않고 HOLD 유지.
+4. 6번 저장소 `obk369369-spec/06-toc-check`의 기존 검증 commit `0b307cc9...`를 추적해 `external-evidence-archive`의 `runs/0b307cc9.../static-validation.json`을 실제 read-back했다.
+5. 해당 JSON은 `checkedAt=2026-08-11T09:19:55.509Z`, `entry=index.html`, `result=STRUCTURE_PASS`, `failures=[]`를 기록하고 있었다. 따라서 **현재 실행/출력 증거 20점만 추가 인정해 6번 준비도를 80/100으로 조정**했다.
+6. 이 결과는 GitHub Actions 내부 플랫폼 산출물이므로 **제3자 독립검증으로 올리지 않았다.** PASS도 부여하지 않았다.
+
+---
+
+# 6. 지금 가장 큰 병목
 
 1. **기능 수정 → 실제 실행 → 실제 출력 → 기대값 비교 → PASS** 폐쇄루프가 핵심 도구에서 아직 완성되지 않았다.
 2. CircleCI는 OAuth까지 연결됐지만 **실제 WIC Project/run URL이 아직 없다.**
 3. 1번은 synthetic 생성과 Deno failure가 남아 있다.
 4. 13번은 실제 홈페이지 업로드 엔진이 없다.
-5. 6번은 승인 golden fixture + 현재 회귀 run이 부족하다.
+5. 6번은 현재 구조 실행 증거는 확보했지만, **승인 golden fixture/실업무 기대값 비교와 제3자 독립검증**이 남아 있다.
 6. 이메일 수집/7/37은 중앙 규칙은 올라왔지만 실제 실행판 연결이 부족하다.
 
 ---
 
-# 6. 자동 이동 규칙
+# 7. 자동 이동 규칙
 
 `우선도구 재시도 → 실제 개선 가능하면 계속 → 현재 환경에서 더 이상 진전이 없으면 blocker·개선방법·재개조건 기록 → HOLD → 즉시 다음 도구 → 다른 도구 처리 후 새 근거/외부승인이 생기면 우선도구로 복귀`
 
@@ -118,20 +131,20 @@
 - 한 도구를 무한정 붙잡기
 - 파일/commit 존재만으로 완료율 상승
 - 상태판만 고치고 기능진전으로 계산
-- 실행/검증 증거 없이 마지막 40점 부여
+- 실행/검증 증거 없이 마지막 점수 부여
 
 ---
 
-# 7. 현재 restart point
+# 8. 현재 restart point
 
 - **이메일 수집 / 7번:** 새로운 실행 저장소·스크립트·DB·브라우저 자산 근거가 생기면 최우선 복귀.
-- **01:** 안전한 부분 patch/checkout 경로를 확보해 synthetic 생성부 제거 → Deno 정상화 → CircleCI actual run.
+- **01:** production `defaultToc` fallback이 실제 남아 있음. 안전한 부분 patch/checkout 경로를 확보해 synthetic 생성부 제거 → Deno 정상화 → CircleCI actual run.
 - **37:** 기존 생산 실행자산 식별 시 즉시 원본→결과 E2E.
 - **13:** 실제 uploader/backend/worldic endpoint/API 식별 시 연결.
-- **06:** 승인 golden fixture 또는 신뢰 가능한 run 근거 확보 시 회귀검증.
+- **06:** commit `0b307cc9...`의 `STRUCTURE_PASS` archive read-back은 완료. 같은 run 확인 반복 금지. 다음은 **승인 golden fixture/실업무 기대값과 실제 결과 비교** 또는 제3자 검증 actual URL 확보 시 재개.
 - **02 / 28~31:** 새 실제 엔진 근거 없으면 반복하지 않고 다음 도구로 이동.
 - **09:** 안전 부분 patch 경로 확보 시 `createInitialSampleData()` 제거 → 빈 상태 fail-closed → actual run.
 - **대화창:** 41~41-15 각 창의 고유 규칙/데이터 흡수 증거를 순차 확인하고, 이미 중앙화된 공통규칙은 반복 추출하지 않는다.
-- **외부검증:** CircleCI 실제 Project/run URL 확보가 1순위. 사용자 클릭이 필요한 승인 항목은 따로 모아 한꺼번에 제시한다.
+- **외부검증:** CircleCI 실제 Project/run URL 확보가 1순위. 제3자 서비스 결과 URL이 있을 때만 독립검증으로 인정한다.
 
 이 파일은 앞으로도 새 파일을 만들지 않고 같은 `WIC_OBSERVER_STATUS.md`를 덮어쓴다.
