@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-12 02:19 KST
+최종 갱신: 2026-08-12 03:17 KST
 상태: ACTIVE
 목적: 각 WIC 도구·업무·주요 대화창의 실제 진행, 증거, blocker, 개선방법, restart point를 한 파일에서 확인한다.
 운영 규칙 원본: `WIC_GLOBAL_OPERATING_RULES.md`
@@ -16,8 +16,9 @@
 - 평가 기준: `정체성·규칙 20 + 실제 입력/자산 20 + 기능/업무흐름 구현 20 + 현재 실행/출력 증거 20 + 독립검증·실업무 PASS 20`.
 - 완료작업 반복 금지 → blocker는 HOLD → 다음 실행 가능 항목으로 이동 → 새 근거가 생기면 우선항목으로 복귀.
 - 2026-08-13 Work 1순위: 개별 도구보다 먼저 모든 도구·대화창이 재사용하는 **WIC 전체 자동 통합 기반 구조 자체**를 구현한다.
-- 이번 회차 새 사실: 현재 `07-wic-setting-tool-v1`은 중앙 포인터 파일 자체가 최신 7번 `고객 컨택 판단` 목적과 불일치한다고 명시한다. **7번 실행판으로 사용 금지 / HOLD 유지.**
-- 이번 회차 새 사실: `13-excel-upload` 루트에는 `.github`, `WIC_RULE_SOURCE.md`, `index.html`이 확인됐으나 실제 홈페이지 uploader/backend/API 실행자산은 식별되지 않았다. **13번 점수 상승 없음.**
+- 이번 회차 새 사실: 이메일 수집 전용 `email collector` 설치 저장소와 중앙 repo의 `playwright/selenium/scraper/collector` 실행자산 검색에서 결과가 없었다. **실제 자동수집 엔진이 있다고 추정하지 않는다.**
+- 이번 회차 실제 개선: 1번의 기존 verified-data 회귀 workflow에 `workflow_dispatch`를 추가해 동일 회귀검사를 이후 Work/Chat에서 재사용 가능한 수동 실행 경로로 만들었다. commit `709abde13265a1a42ab50057712e0dd4850bbef9`, read-back blob `d458794b37435c7c4078edf85a6673219dcfea97`.
+- 같은 1번 commit의 현재 GitHub combined status에서 Deno deploy failure가 실제 확인됐다: `https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/drs0dkqd4syj`. **실패 증거이므로 PASS가 아니다.**
 
 상태: 🟢 PASS = 실제 입력→실행→출력→검증 / 🟠 PARTIAL-HOLD = 실제 개선·실행 근거 있으나 E2E/독립검증 미완료 / 🔴 HOLD = blocker / ⚪ NEXT = 다음 실행 대상
 
@@ -27,11 +28,11 @@
 
 | 우선 | 도구/업무 | 준비도 | 상태 | 현재 핵심 근거 / blocker |
 |---|---|---:|---|---|
-| 1 | 이메일 수집 | **60/100** | 🟠 PARTIAL-HOLD | 중앙 공통 규칙·업무흐름 존재. 실제 자동수집 실행자산/current run 미식별 |
-| 2 | 7번 고객 컨택 판단 | **40/100** | 🔴 HOLD | 중앙 규칙은 존재. `07-wic-setting-tool-v1`의 `WIC_RULE_SOURCE.md`가 기존 실행물이 세팅 도구이며 최신 7번 목적과 불일치한다고 명시 |
-| 3 | 1번 중간/최종 안내서 | **60/100** | 🟠 PARTIAL-HOLD | 실제 HTML/규칙/CircleCI gate 존재. production synthetic 및 Deno failure 남음 |
+| 1 | 이메일 수집 | **60/100** | 🟠 PARTIAL-HOLD | 중앙 공통 규칙·업무흐름 존재. 전용 저장소/중앙 repo 실행자산 검색에서도 actual collector 미식별 |
+| 2 | 7번 고객 컨택 판단 | **40/100** | 🔴 HOLD | 중앙 규칙은 존재. `07-wic-setting-tool-v1`은 최신 7번 목적과 불일치하므로 실행판 사용 금지 |
+| 3 | 1번 중간/최종 안내서 | **60/100** | 🟠 PARTIAL-HOLD | 실제 HTML/규칙/CircleCI gate + verified-data regression script/workflow 존재. manual trigger 추가 완료. production synthetic 및 Deno failure 남음 |
 | 4 | 37번 메타데이터 | **40/100** | 🔴 HOLD | 생산 규칙 존재. 실제 생산 실행자산 미식별 |
-| 5 | 13번 엑셀 자동 업로드 | **60/100** | 🟠 PARTIAL-HOLD | `13-excel-upload` 실제 repo/index 존재. 루트 read-back 결과 backend/uploader/API 자산 미식별 |
+| 5 | 13번 엑셀 자동 업로드 | **60/100** | 🟠 PARTIAL-HOLD | `13-excel-upload` 실제 repo/index 존재. backend/uploader/API 자산 미식별 |
 | 6 | 6번 목차 정리 | **80/100** | 🟠 PARTIAL-HOLD | commit `0b307cc9...`의 `static-validation.json` 실제 read-back, `STRUCTURE_PASS`; 제3자 독립검증 아님 |
 | 7 | 2번 입찰 | **40/100** | 🔴 HOLD | local-only UI 확인. 나라장터 실연동 엔진 미식별 |
 | 8 | 28~31 발행사 업무 | **40/100** | 🔴 HOLD | 역할/규칙 존재. 실제 전용 실행자산 근거 부족 |
@@ -77,6 +78,7 @@
 | 구조 | 준비도 | 실제 상태 |
 |---|---:|---|
 | CircleCI | **60/100** | GitHub OAuth + 1번 config/gate 존재. 실제 WIC Project/run/result URL 없음 → HOLD |
+| GitHub Actions / 1번 | 내부 검증 경로 | verified-data regression workflow + `workflow_dispatch` 존재. actual successful run/result URL은 이번 회차 미확보. **독립검증으로 계산 금지** |
 | GitHub Actions / 6번 | 내부 증거 | `static-validation.json` read-back 존재. **제3자 독립검증으로 계산 금지** |
 | Codacy | **20/100** | 후보만 선정. 실제 연결/result 없음 |
 | BrowserStack | **20/100** | 후보만 선정. 실제 연결/run 없음 |
@@ -88,24 +90,28 @@
 # 5. 이번 회차 실제 수행 / 새 증거
 
 1. 기존 `WIC_OBSERVER_STATUS.md`를 먼저 read-back하고 최신 restart point를 확인했다.
-2. 완료된 6번 archive 검증, 1번 synthetic blocker 확인 등을 반복하지 않았다.
-3. 이메일 수집/7번 실행자산 탐색에서 `07-wic-setting-tool-v1`을 확인했다.
-4. `07-wic-setting-tool-v1/WIC_RULE_SOURCE.md` read-back 결과: **기존 실행물은 '세팅 도구' 성격이며 최신 7번 '고객 컨택 판단' 목적과 불일치, 실행판 HOLD**라는 중앙 경고를 확인했다. 따라서 잘못된 저장소를 7번 실행판으로 재사용하지 않는다.
-5. 13번은 `13-excel-upload` 저장소를 재식별하고 루트 contents를 read-back했다. 확인된 루트 자산은 `.github`, `WIC_RULE_SOURCE.md`, `index.html`이며 실제 홈페이지 uploader/backend/API 파일은 식별되지 않았다.
-6. 13번 repo 코드검색에서 `fetch/axios/XMLHttpRequest/endpoint/API/upload/worldic/form action` 실행연동 후보는 검색되지 않았다. **실제 업로드 엔진이 있다고 추정하지 않는다.**
-7. 위 두 새 사실은 실행자산 확인 결과이므로 상태판에 기록했지만, 실제 기능 실행/PASS 증거가 아니므로 운영준비도 점수를 올리지 않았다.
-8. 자동 통합 구조 본체 구현은 2026-08-13 Work 첫 작업으로 유지하며, 오늘은 재분석 대신 기존 도구 blocker를 더 정확히 좁혔다.
+2. 완료된 6번 archive 검증, 7번 잘못된 실행판 판정, 13번 backend/API 검색을 반복하지 않았다.
+3. 이메일 수집은 설치 저장소 검색 `email collector`와 중앙 repo 코드검색 `이메일 수집 자동수집 playwright selenium scraper collector`를 수행했으나 actual 실행자산이 식별되지 않았다. 이것은 부재 확정이 아니라 **현재 연결 GitHub 범위에서 미식별**로만 기록한다.
+4. 1번 루트에서 `tests/historical_regression_fixtures.json`, `regression/tool1_verified_data_contract.py`, `.github/workflows/tool1-verified-data-regression.yml` 실제 자산을 새로 확인했다.
+5. 회귀 스크립트 read-back에서 실제 보고서 필드 검증, synthetic token 차단, 고객 맥락 검증, feedback event contract 및 deterministic fixture assertions가 구현돼 있음을 확인했다.
+6. 기존 workflow는 push/pull_request만 지원했다. 검증 로직은 변경하지 않고 `workflow_dispatch`를 추가했다.
+   - commit: `709abde13265a1a42ab50057712e0dd4850bbef9`
+   - read-back blob: `d458794b37435c7c4078edf85a6673219dcfea97`
+7. 해당 commit의 combined status read-back에서 Deno deploy failure와 실제 result URL `https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/drs0dkqd4syj`를 확인했다. 실패이므로 PASS로 올리지 않았다.
+8. GitHub Actions commit-run 조회는 현재 connector 특성상 push run을 제공하지 않았고 별도 GitHub API 조회도 인증서 오류가 발생했다. 따라서 workflow actual success를 추정하지 않고 HOLD 유지했다.
+9. 자동 통합 구조 본체 구현은 2026-08-13 Work 첫 작업으로 유지하며, 오늘의 변경은 이후 같은 regression을 재사용하기 위한 실행 경로 개선이다.
 
 ---
 
 # 6. 가장 큰 병목 / 개선방법
 
 1. **자동 통합 구조:** 아직 구현 전. 개선: 13일에 registry → normalizer → router → conflict/dedup → canonical writer → revision cache → test/evidence recorder를 한 core로 구현하고 실제 피드백 1건으로 E2E 검증.
-2. **7번:** 현재 발견 repo가 잘못된 목적. 개선: 새 껍데기 생성 금지. 실제 고객 컨택 실행판이 발견되거나 구조 PASS 후 중앙 규칙을 읽는 최소 실행판을 구현할 때까지 HOLD.
-3. **13번:** UI/index는 있으나 실제 홈페이지 backend/API 없음. 개선: worldic 실제 업로드 endpoint/backend 자산을 식별하거나 Work에서 실제 연결 가능한 uploader를 구현하고 실업로드 결과로 검증.
-4. **1번:** synthetic 생성 + Deno failure. 개선: 안전한 부분 patch/checkout 경로 확보 후 synthetic 제거 → Deno 정상화 → CircleCI actual run.
-5. **6번:** 내부 구조 검증은 확보. 개선: 승인 golden fixture/실업무 기대값 비교 또는 실제 제3자 run URL 확보.
-6. **외부검증:** CircleCI OAuth 이후 actual project/run 없음. 개선: 실제 project 활성화 및 result URL 확보.
+2. **이메일 수집:** 실제 collector 실행자산이 현재 GitHub 범위에서 미식별. 개선: 구조 PASS 후 첫 연결 대상으로 중앙 규칙을 읽는 실제 수집 executor/DB/browser 자산을 연결하거나 구현하고 current run 증거 확보.
+3. **7번:** 현재 발견 repo가 잘못된 목적. 개선: 새 껍데기 생성 금지. 실제 고객 컨택 실행판이 발견되거나 구조 PASS 후 중앙 규칙을 읽는 최소 실행판을 구현할 때까지 HOLD.
+4. **13번:** UI/index는 있으나 실제 홈페이지 backend/API 없음. 개선: worldic 실제 업로드 endpoint/backend 자산을 식별하거나 Work에서 실제 연결 가능한 uploader를 구현하고 실업로드 결과로 검증.
+5. **1번:** verified-data regression 재사용 경로는 개선됐지만 production synthetic 생성 + Deno failure가 남음. 개선: 안전한 부분 patch/checkout 경로로 synthetic 제거 → Deno 정상화 → regression actual run/result → CircleCI actual run.
+6. **6번:** 내부 구조 검증은 확보. 개선: 승인 golden fixture/실업무 기대값 비교 또는 실제 제3자 run URL 확보.
+7. **외부검증:** CircleCI OAuth 이후 actual project/run 없음. 개선: 실제 project 활성화 및 result URL 확보.
 
 ---
 
@@ -153,9 +159,9 @@
 # 8. 현재 restart point
 
 - **자동 통합 구조:** 2026-08-13 Work 첫 작업. 기존 규칙 재독해·재요약·저장소 재검색에 크레딧 사용 금지. `registry/normalizer/router/conflict-dedup/canonical writer/revision cache/test-evidence recorder` 구현부터 시작. 실제 피드백 1건 E2E 전 PASS 금지.
-- **이메일 수집:** 구조 PASS 후 첫 연결 대상. 실제 자동수집 실행자산/current run 근거가 생기면 즉시 복귀.
+- **이메일 수집:** 전용 저장소/중앙 repo 실행자산 검색까지 수행했으나 actual collector 미식별. 같은 검색어 반복 금지. 구조 PASS 후 실제 executor/DB/browser 연결·구현으로 전환.
 - **7번:** `07-wic-setting-tool-v1`은 최신 목적과 불일치함이 read-back으로 확인됨. 이 repo를 실행판으로 다시 검토하지 않는다. 올바른 실행판 근거 또는 구조 PASS 후 새 최소 실행판 구현 시 재개.
-- **01:** production `defaultToc` fallback 제거 → Deno 정상화 → CircleCI actual run.
+- **01:** verified-data regression script/workflow와 manual trigger 확보 완료. 같은 workflow 존재 확인 반복 금지. 다음은 production `defaultToc`/synthetic fallback 안전 제거 → Deno failure 해소 → actual regression run/result → CircleCI actual run.
 - **37:** 실제 생산 실행자산 식별 시 원본→결과 E2E.
 - **13:** `13-excel-upload` 루트/코드에서 실제 homepage backend/API 미식별. 동일 검색 반복 금지. 실제 endpoint/backend 자산이 발견되거나 Work에서 연결 구현할 때 재개.
 - **06:** `STRUCTURE_PASS` archive 확인은 완료. 같은 확인 반복 금지. 다음은 golden fixture/실업무 기대값 비교 또는 제3자 actual URL.
