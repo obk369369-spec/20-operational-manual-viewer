@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-11 12:24 KST
+최종 갱신: 2026-08-11 13:17 KST
 상태: ACTIVE
 목적: 링크 하나에서 각 도구의 현재 상태·개선된 부분·막힌 부분·다음 작업을 바로 이해할 수 있게 보여주는 사람용 관찰판.
 운영 규칙 원본: `WIC_GLOBAL_OPERATING_RULES.md` 단일 원본만 사용.
@@ -10,7 +10,7 @@
 # 1. 지금 한눈에 보기
 
 - 제3자 외부검증 실제 run 증거: **0개 / HOLD**
-- CircleCI: 사용자 화면 기준 GitHub OAuth는 `obk369369-spec` 연결됨. **그러나 WIC 저장소의 실제 외부 CI run/result URL은 아직 없음. 따라서 독립검증 PASS 금지.**
+- CircleCI: GitHub OAuth는 `obk369369-spec` 연결됨. 이번 회차에 **1번 저장소 `.circleci/config.yml` 실제 commit + read-back 완료**. 그러나 CircleCI 실제 run/result URL은 아직 없음.
 - 현재 기능 PASS 도구: **확정 가능한 PASS 없음**
 - 전체 완료율: **산정중(HOLD)** — 검증 완료 작업단위 전수 수치화 전에는 임의 % 금지
 - 진행 원칙: **우선도구 실제 개선 시도 → 더 못 나가면 HOLD 기록 → 즉시 다음 실행 가능한 도구 → 새 근거가 생기면 우선도구로 복귀**
@@ -21,18 +21,19 @@
 
 # 2. 이번 회차 실제 수행·증거
 
-1. 기존 `WIC_OBSERVER_STATUS.md`와 최신 restart point를 먼저 읽었다. 이전 회차의 05 쓰기 재시도 → 불가하면 09 이동 지점에서 재개했다.
-2. `05-report-generator/index.html` 원본을 다시 읽고, 입력하지 않은 시장동향·기업동향·정책·수요전망·기술동향 등을 고정 본문으로 생성하던 코드를 실제 수정했다.
-3. **05 실제 개선 commit:** `b2af1f445477b7c7fbdbebbe36b26418dbd49276`
-   - 검증된 요약문을 필수 입력으로 변경
-   - 입력하지 않은 사실 자동 생성 제거
-   - 결과는 사용자가 입력한 제목·키워드·검증된 요약만 구조화
-   - 화면에도 `입력 내용만 사용 / 입력하지 않은 사실은 자동 생성하지 않음` 표시
-4. 05 수정 후 GitHub read-back으로 새 파일 blob `5bf19ce1fd9d31319c80a0230ee4c46102881f85`를 확인했다.
-5. 단, 이번 환경에서 05의 실제 브라우저 입력→클릭→출력 E2E run/result URL은 확보하지 못했다. 따라서 **PASS가 아니라 PARTIAL-HOLD**다.
-6. restart 규칙에 따라 09번으로 즉시 이동하여 `09-contents-making-tool/index.html` 실제 코드를 읽었다.
-7. **09 새 blocker 특정:** localStorage가 비었거나 파싱 오류가 나면 `createInitialSampleData()`가 자동 실행되어 검증되지 않은 예시 데이터를 실제 목록에 주입한다. 예시에는 후지경제/SK 스페셜티 수요 분석, Global Insight Services SF6 보고서, `조용준 박사님 요청 후보 1순위`, `WIC 무료 요약 자료` 등의 구체 주장이 포함돼 있다.
-8. 09는 대형 단일 HTML이고 현재 connector가 전체 파일을 한 번에 안전하게 재구성하기 어려워, 이번 회차에는 부분 지식만으로 덮어쓰지 않았다. **수정 방향은 `loadState()`의 fallback을 `contents=[]`로 바꾸고 검증되지 않은 sample data 자동주입을 제거하는 것.**
+1. 기존 `WIC_OBSERVER_STATUS.md`를 먼저 읽고 최신 restart point를 확인했다. 05 완료 수정 반복 없이 09의 sample fallback 제거 지점에서 재개했다.
+2. `09-contents-making-tool/index.html`에서 `loadState()`가 localStorage 없음/파싱 오류 시 `createInitialSampleData()`를 호출하는 실제 코드를 다시 확인했다. 예시 고객·발행사·자료 자동주입 위험은 기존 판정과 동일하다.
+3. 현재 GitHub connector에는 대형 기존 파일의 부분 patch 기능이 없고 `update_file`은 전체 UTF-8 파일 교체만 가능하다. 전체 파일을 안전하게 재구성하지 못한 상태에서 09를 덮어쓰면 손상 위험이 있으므로 **09 수정은 HOLD 유지**했다. 같은 조사 반복 금지.
+4. 우선순위가 높은 **1번 안내서**로 즉시 이동해 실제 Deno 응답 처리 코드를 읽었다.
+5. **1번 synthetic TOC 실제 경로 재확인:** `firstNormalized.toc`가 비어 있으면 `defaultToc(...)`를 호출해 시장개요·시장동향·기술·정책·기업·전망 형식의 목차를 임의 생성한다. 이는 원자료 검증 원칙과 충돌한다.
+6. 1번 기존 `.circleci/config.yml`이 없는 것을 404로 확인한 뒤, 외부검증 준비를 실제로 추가했다.
+7. **1번 CircleCI validation gate commit:** `ec69102f276cb319c9e4b7aa939e359bf8847190`
+   - `index.html`, `guide_template.html` 존재 검사
+   - `firstNormalized.toc = defaultToc`가 남아 있으면 FAIL
+   - `function defaultToc`가 남아 있으면 FAIL
+   - Deno `fetch(endpoint)` 및 결과없음 HOLD 경로 존재 확인
+8. GitHub read-back으로 `.circleci/config.yml` blob `eb2f944cb3a94911120babe3cfd7a418b81ada31`을 확인했다.
+9. 단, CircleCI 사이트에서 WIC 저장소 Project/파이프라인 실제 실행은 아직 연결되지 않아 **외부 run/result URL은 0개**다. 따라서 독립검증 PASS 금지.
 
 ---
 
@@ -42,7 +43,7 @@
 |---|---|---|---|---|---|
 | 1 | 이메일 수집 | 🔴 HOLD | 공통 규칙·검증기준 | 전용 실행자산 미확인 | 새 실행파일/run URL 근거 발견 시 복귀 |
 | 2 | 7번 고객 컨택 판단 | 🔴 HOLD | 잘못된 `07-wic-setting-tool-v1` 배제 | 실제 실행판 미확인 | 올바른 실행자산 근거 발견 시 복귀 |
-| 3 | 1번 중간/최종 안내서 | 🔴 HOLD | 실제 HTML + Deno POST 코드 + synthetic TOC fallback 위험 | endpoint 성공증거 없음, 브라우저 E2E 미확보 | 실행환경에서 synthetic TOC 제거→TOC 없음 HOLD→실제 입력 E2E |
+| 3 | 1번 중간/최종 안내서 | 🟠 PARTIAL-HOLD | 실제 HTML + Deno POST 코드 + synthetic TOC fallback 위험 + CircleCI gate commit | synthetic TOC 본체 제거 미완료, CircleCI 실제 run 없음, 브라우저 E2E 미확보 | 부분 patch 가능한 쓰기 경로에서 synthetic TOC 제거 → CircleCI 실제 run → 입력 E2E |
 | 4 | 37번 메타데이터 | 🔴 HOLD | 규칙 존재 | 생산 실행자산 미확인 | 실행자산 근거 발견 시 E2E |
 | 5 | 13번 엑셀 자동 업로드 | 🟠 PARTIAL-HOLD | 입력→매핑→미리보기→XLSX 생성 | 실제 홈페이지 업로드 endpoint/API 없음 | endpoint/브라우저 자동화 근거 발견 시 복귀 |
 | 6 | 6번 목차 정리 | 🟠 PARTIAL-HOLD | 저장소·엔진 흔적 | 승인 golden fixture/expected output 부족 | 승인 fixture 발견 시 회귀검증 |
@@ -55,11 +56,11 @@
 
 | 도구 | 상태 | 이번 판단 | 다음 행동 |
 |---|---|---|---|
-| 05 Report Generator | 🟠 PARTIAL-HOLD | **안전 수정 commit + read-back 완료** | 외부/브라우저 E2E가 생기면 실제 입력 검증 후 PASS 판단 |
-| 09 Contents Making Tool | 🟠 PARTIAL-HOLD | **검증되지 않은 sample data 자동주입 위험 특정** | 안전한 전체파일 쓰기 경로 확보 시 sample fallback 제거. 불가하면 다음 실행 가능한 업무 도구로 이동 |
-| 08 English Verb Exercise | 🟠 PARTIAL-HOLD | Local-only | 업무 우선순위 낮음 |
-| 27 Technical Book Verifier | 🟠 PARTIAL-HOLD | 과거 실행 UI만 확인 | 현재 실행자산 새 근거 있을 때 복귀 |
-| 나머지 03/04/10/11/12/14/19/21/22/23/24/25/26 | 🔴 HOLD | 기존 확인 반복금지 | 새 파일명/run URL/기능근거가 생길 때만 재개 |
+| 01 Auto Guide | 🟠 PARTIAL-HOLD | **CircleCI 검증 게이트 commit + read-back 완료** | CircleCI Project 연결 후 최초 실제 run URL 확보. 본체 synthetic TOC 제거는 안전한 부분 patch 경로 확보 시 수행 |
+| 05 Report Generator | 🟠 PARTIAL-HOLD | 안전 수정 commit + read-back 완료 | 외부/브라우저 E2E가 생기면 실제 입력 검증 후 PASS 판단 |
+| 09 Contents Making Tool | 🟠 PARTIAL-HOLD | sample data 자동주입 위험 특정 | 부분 patch 가능한 쓰기 경로 확보 시 fallback을 `contents=[]`로 변경. 그 전에는 전체파일 덮어쓰기 금지 |
+| 13 Excel Upload | 🟠 PARTIAL-HOLD | 로컬 XLSX 기능 존재 | 실제 업로드 endpoint/API 근거 탐색 시 복귀 |
+| 06 TOC Check | 🟠 PARTIAL-HOLD | 엔진 흔적 존재 | 승인 fixture 발견 시 회귀검증 |
 
 ---
 
@@ -67,29 +68,29 @@
 
 | 외부구조 | 현재 | 실제 증거 | 다음 단계 |
 |---|---|---|---|
-| CircleCI | 🟠 OAuth 연결 / run 0 | 사용자 화면에서 GitHub OAuth `Connected to obk369369-spec`; 외부 run URL 없음 | WIC 저장소 1개를 실제 Project/파이프라인으로 연결해 최초 외부 run URL 확보 |
+| CircleCI | 🟠 OAuth 연결 + config commit / run 0 | OAuth 연결 사용자 화면 + 1번 `.circleci/config.yml` commit `ec69102f...` + read-back | CircleCI에서 `01-auto-guide-v1` Project/파이프라인을 실제 연결해 최초 외부 run URL 확보 |
 | Codacy | 🔴 0 | 연결 증거 없음 | CircleCI 실 run이 막힐 때 사용자 승인 묶음 후보 |
 | BrowserStack | 🔴 0 | 연결 증거 없음 | UI E2E가 필요한 우선도구에 후순위 연결 |
 
-GitHub Actions와 자체 코드 추론은 내부검증으로만 사용하며 제3자 독립검증으로 가장하지 않는다.
+GitHub Actions·상태판·자체 코드 추론은 내부검증으로만 사용하며 제3자 독립검증으로 가장하지 않는다. CircleCI도 실제 run URL이 생기기 전에는 독립검증 완료로 계산하지 않는다.
 
 ---
 
-# 6. 이번 실제 개선점과 남은 핵심
+# 6. 실제 개선됨 / 남음
 
 **실제 개선됨**
-- 05에서 입력 밖 사실을 자동 생성하던 본문을 제거하는 실제 GitHub commit 생성.
-- 수정 결과를 GitHub read-back으로 확인.
-- 09에서 단순 UI 점검을 넘어 검증되지 않은 고객·발행사·자료 sample data의 자동주입 경로를 코드 수준에서 특정.
-- CircleCI는 `미승인`이 아니라 `GitHub OAuth 연결됨 / 실제 외부 run 미완료`로 상태를 정확히 정정.
+- 05 입력 밖 사실 자동 생성 제거 commit 및 read-back은 이전 회차 완료 상태 유지.
+- 1번 synthetic TOC 발생 코드 위치를 실제 Deno 성공 경로에서 다시 확인.
+- 1번 저장소에 CircleCI 검증 게이트를 실제 commit으로 추가하고 read-back 확인.
+- 외부검증은 설명 수준에서 벗어나, 실제 파이프라인 config 자산 1개가 생김.
 
 **남음**
-- 05 실제 브라우저 E2E run/result URL
+- CircleCI `01-auto-guide-v1` 최초 실제 run/result URL
+- 1번 synthetic TOC fallback 본체 제거 commit + E2E
 - 09 sample fallback 실제 제거 commit + E2E
-- 1번 synthetic TOC fallback 실제 제거 commit + E2E
+- 05 실제 브라우저 E2E run/result URL
 - 13 실제 업로드 연결
 - 6 승인 fixture 확보
-- CircleCI WIC 저장소 최초 외부 run URL
 - 이메일/7/37 실제 실행자산 식별
 
 ---
@@ -104,10 +105,10 @@ GitHub Actions와 자체 코드 추론은 내부검증으로만 사용하며 제
 
 # 8. 현재 restart point
 
+- **01:** `.circleci/config.yml` commit `ec69102f276cb319c9e4b7aa939e359bf8847190`, read-back blob `eb2f944cb3a94911120babe3cfd7a418b81ada31`. 같은 config 생성 반복 금지. 다음 목표는 CircleCI 실제 Project 연결/run URL 또는 안전한 부분 patch 경로에서 synthetic TOC 제거.
 - **05:** 안전 수정 commit `b2af1f445477b7c7fbdbebbe36b26418dbd49276` 및 read-back 완료. 같은 코드수정 반복 금지. 외부/브라우저 E2E가 확보될 때만 복귀.
-- **09:** `loadState()`에서 localStorage 없음/오류 시 `createInitialSampleData()`로 검증되지 않은 예시 데이터를 주입하는 경로 특정 완료. 동일 조사 반복 금지. 다음 실제 수정점은 fallback을 빈 배열로 변경하고 sample 자동주입을 제거하는 것.
-- 09 전체파일 안전 수정이 현재 연결에서 막히면 HOLD로 두고 즉시 다음 실행 가능한 업무 도구로 이동.
-- **우선도구 복귀 조건:** 이메일/7/37 실행자산, 1번 실행환경, 13 endpoint, 6 fixture 중 새 근거가 생길 때 즉시 우선순위로 복귀.
-- **외부검증:** CircleCI OAuth 승인은 끝났으므로 다음 목표는 설명/설정이 아니라 WIC 저장소의 실제 최초 외부 run/result URL 1개를 확보하는 것.
+- **09:** `loadState()` sample fallback 위험 확인 완료. 현재 connector 전체파일 교체만 가능하여 안전수정 HOLD. 부분 patch 가능한 쓰기 경로가 생길 때까지 동일 조사 반복 금지.
+- **우선도구 복귀 조건:** 이메일/7/37 실행자산, 13 endpoint, 6 fixture 중 새 근거가 생기면 즉시 우선순위로 복귀.
+- **외부검증:** CircleCI OAuth 승인과 1번 config 준비는 끝났다. 다음 사용자 개입이 필요하다면 여러 번 나누지 말고 `01-auto-guide-v1` 실제 Project 연결에 필요한 클릭을 승인 묶음으로 제시한다.
 
 이 파일은 새 파일을 만들지 않고 계속 같은 파일을 덮어쓴다.
