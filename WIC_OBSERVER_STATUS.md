@@ -1,114 +1,107 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-11 13:17 KST
+최종 갱신: 2026-08-11 14:17 KST
 상태: ACTIVE
-목적: 링크 하나에서 각 도구의 현재 상태·개선된 부분·막힌 부분·다음 작업을 바로 이해할 수 있게 보여주는 사람용 관찰판.
-운영 규칙 원본: `WIC_GLOBAL_OPERATING_RULES.md` 단일 원본만 사용.
+목적: 각 WIC 도구·업무의 실제 진행, 증거, blocker, 다음 작업을 한 파일에서 확인한다.
+운영 규칙 원본: `WIC_GLOBAL_OPERATING_RULES.md`
+고객업무 공통 원본: `CUSTOMER_WORKFLOW_MASTER.md`
 
 ---
 
 # 1. 지금 한눈에 보기
 
-- 제3자 외부검증 실제 run 증거: **0개 / HOLD**
-- CircleCI: GitHub OAuth는 `obk369369-spec` 연결됨. 이번 회차에 **1번 저장소 `.circleci/config.yml` 실제 commit + read-back 완료**. 그러나 CircleCI 실제 run/result URL은 아직 없음.
-- 현재 기능 PASS 도구: **확정 가능한 PASS 없음**
-- 전체 완료율: **산정중(HOLD)** — 검증 완료 작업단위 전수 수치화 전에는 임의 % 금지
-- 진행 원칙: **우선도구 실제 개선 시도 → 더 못 나가면 HOLD 기록 → 즉시 다음 실행 가능한 도구 → 새 근거가 생기면 우선도구로 복귀**
+- 제3자 독립검증 실제 run 증거: **0개 / HOLD**
+- CircleCI: GitHub OAuth 연결 + 1번 `.circleci/config.yml` commit/read-back까지 완료, 실제 CircleCI run/result URL은 아직 없음.
+- GitHub/Deno 실행 증거는 독립검증으로 계산하지 않는다.
+- 현재 확정 PASS 도구: **없음**
+- 전체 완료율: **산정중(HOLD)** — 실제 검증 완료 작업단위 전수 집계 전 임의 % 금지.
+- 원칙: 완료된 작업 반복 금지 → blocker면 HOLD 기록 → 즉시 다음 실행 가능 항목으로 이동.
 
-상태: 🟢 PASS = 실제 입력→실행→출력→검증 / 🟠 PARTIAL-HOLD = 일부 실기능 존재 또는 코드 개선 commit 확보했으나 E2E 미검증 / 🔴 HOLD = 현재 blocker / ⚪ NEXT = 다음 실행 대상
-
----
-
-# 2. 이번 회차 실제 수행·증거
-
-1. 기존 `WIC_OBSERVER_STATUS.md`를 먼저 읽고 최신 restart point를 확인했다. 05 완료 수정 반복 없이 09의 sample fallback 제거 지점에서 재개했다.
-2. `09-contents-making-tool/index.html`에서 `loadState()`가 localStorage 없음/파싱 오류 시 `createInitialSampleData()`를 호출하는 실제 코드를 다시 확인했다. 예시 고객·발행사·자료 자동주입 위험은 기존 판정과 동일하다.
-3. 현재 GitHub connector에는 대형 기존 파일의 부분 patch 기능이 없고 `update_file`은 전체 UTF-8 파일 교체만 가능하다. 전체 파일을 안전하게 재구성하지 못한 상태에서 09를 덮어쓰면 손상 위험이 있으므로 **09 수정은 HOLD 유지**했다. 같은 조사 반복 금지.
-4. 우선순위가 높은 **1번 안내서**로 즉시 이동해 실제 Deno 응답 처리 코드를 읽었다.
-5. **1번 synthetic TOC 실제 경로 재확인:** `firstNormalized.toc`가 비어 있으면 `defaultToc(...)`를 호출해 시장개요·시장동향·기술·정책·기업·전망 형식의 목차를 임의 생성한다. 이는 원자료 검증 원칙과 충돌한다.
-6. 1번 기존 `.circleci/config.yml`이 없는 것을 404로 확인한 뒤, 외부검증 준비를 실제로 추가했다.
-7. **1번 CircleCI validation gate commit:** `ec69102f276cb319c9e4b7aa939e359bf8847190`
-   - `index.html`, `guide_template.html` 존재 검사
-   - `firstNormalized.toc = defaultToc`가 남아 있으면 FAIL
-   - `function defaultToc`가 남아 있으면 FAIL
-   - Deno `fetch(endpoint)` 및 결과없음 HOLD 경로 존재 확인
-8. GitHub read-back으로 `.circleci/config.yml` blob `eb2f944cb3a94911120babe3cfd7a418b81ada31`을 확인했다.
-9. 단, CircleCI 사이트에서 WIC 저장소 Project/파이프라인 실제 실행은 아직 연결되지 않아 **외부 run/result URL은 0개**다. 따라서 독립검증 PASS 금지.
+상태: 🟢 PASS = 실제 입력→실행→출력→검증 / 🟠 PARTIAL-HOLD = 실제 개선·실행 근거 있으나 E2E/독립검증 미완료 / 🔴 HOLD = blocker / ⚪ NEXT = 다음 실행 대상
 
 ---
 
-# 3. 최우선 도구
+# 2. 이번 회차 실제 확인·수행·증거
 
-| 우선 | 도구 | 상태 | 실제 확인된 것 | blocker | 개선방법 / 복귀조건 |
+1. 기존 `WIC_OBSERVER_STATUS.md`를 먼저 읽고 restart point를 확인했다. 기존 05 수정, 09 blocker, 1번 CircleCI config 생성은 반복하지 않았다.
+2. 상태판 이후 중앙 고객업무 통합 commit 3건이 새로 존재하는 것을 확인했다.
+   - `ec64757ab2193262829bbb6a6d15836e73bc8ed3` — 모든 이메일 수집·고객 안내·7번 공통마스터 생성
+   - `be44080cde3d858216f3b06e53cfcb7f30ee2b88` — 34번 V4.0·범용 수집 규칙·분야별 영구번호·2단계 연락 적합도 반영
+   - `e1236e07c58c529d805bd4edd6e50534e4a1b3e4` — 고객안내 범용 최종판·중복검증·방산 산업맥락·7번 정체성 보완
+3. `CUSTOMER_WORKFLOW_MASTER.md` read-back으로 이메일 수집 / 고객 안내 / 7번 역할 분리, 고객번호 영구키, 검증·추적목록·스팸회피·추천자료 3개·7번 판단 규칙이 실제 중앙 원본에 들어간 것을 확인했다.
+4. 1번 저장소 최신 commit `c75bdee5713e8e34ff212f6c94215d85fa600a4c`가 `WIC_CUSTOMER_RULE_SOURCE.md`를 추가해 중앙 고객업무 마스터를 참조하도록 연결한 것을 확인했다.
+5. 1번 최신 commit의 GitHub combined status에서 Deno 배포가 **failure**인 것을 실제 확인했다.
+   - result URL: `https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/c9m99wf67d8n`
+   - 따라서 1번은 PASS 금지. 다음 복귀 시 Deno build failure 원인 확인이 우선이다.
+6. 13번 저장소의 과거 외부검사/증거보존 workflow commit `a45c75eef54d5053a700913a81b921e89cb6684b`를 실제 확인했다. 이는 GitHub Actions 기반 내부/플랫폼 검증 구조이며 제3자 독립검증으로 계산하지 않는다.
+7. 13번 최신 commit `cfd31664f3d667c11d65ecc39b134880a0e45f93`의 GitHub combined status에서 Deno 배포 **success**를 실제 확인했다.
+   - result URL: `https://console.deno.com/obk369369-spec/13-excel-upload/builds/416xvftmkhwv`
+   - 배포 성공은 확인했지만 실제 홈페이지 업로드 endpoint/API E2E는 미검증이므로 PARTIAL-HOLD 유지.
+8. 6번 최신 commit `11be9c01dbaef65d22b365f31e451f75931ab178`의 combined status는 status 0건이었다. 실제 외부 run 결과가 없으므로 PASS 승격 금지.
+9. 이 `WIC_OBSERVER_STATUS.md`를 새 파일 생성 없이 같은 경로에 덮어쓰기 갱신했다.
+
+---
+
+# 3. 최우선 업무/도구 상태
+
+| 우선 | 업무/도구 | 상태 | 실제 새 근거 | blocker | 다음 행동 |
 |---|---|---|---|---|---|
-| 1 | 이메일 수집 | 🔴 HOLD | 공통 규칙·검증기준 | 전용 실행자산 미확인 | 새 실행파일/run URL 근거 발견 시 복귀 |
-| 2 | 7번 고객 컨택 판단 | 🔴 HOLD | 잘못된 `07-wic-setting-tool-v1` 배제 | 실제 실행판 미확인 | 올바른 실행자산 근거 발견 시 복귀 |
-| 3 | 1번 중간/최종 안내서 | 🟠 PARTIAL-HOLD | 실제 HTML + Deno POST 코드 + synthetic TOC fallback 위험 + CircleCI gate commit | synthetic TOC 본체 제거 미완료, CircleCI 실제 run 없음, 브라우저 E2E 미확보 | 부분 patch 가능한 쓰기 경로에서 synthetic TOC 제거 → CircleCI 실제 run → 입력 E2E |
-| 4 | 37번 메타데이터 | 🔴 HOLD | 규칙 존재 | 생산 실행자산 미확인 | 실행자산 근거 발견 시 E2E |
-| 5 | 13번 엑셀 자동 업로드 | 🟠 PARTIAL-HOLD | 입력→매핑→미리보기→XLSX 생성 | 실제 홈페이지 업로드 endpoint/API 없음 | endpoint/브라우저 자동화 근거 발견 시 복귀 |
-| 6 | 6번 목차 정리 | 🟠 PARTIAL-HOLD | 저장소·엔진 흔적 | 승인 golden fixture/expected output 부족 | 승인 fixture 발견 시 회귀검증 |
-| 7 | 2번 입찰 | 🔴 HOLD | 수동 UI 확인 | 나라장터 자동수집/API/로그인/투찰 엔진 없음 | 기존 실엔진 근거 발견 시 재사용 |
-| 8 | 28~31 | 🔴 HOLD | 역할·규칙 분리 | 실행 저장소/파일 참조 없음 | 구체 실행자산 발견 시 복귀 |
+| 1 | 이메일 수집 | 🟠 PARTIAL-HOLD | 중앙 공통마스터 실제 생성·보완 commit 3건 + read-back | 실제 자동 수집 실행자산/실행 URL 미확인 | 실행 가능한 수집기·DB·브라우저 작업자산 발견 시 즉시 연결 |
+| 2 | 7번 고객 컨택 판단 | 🟠 PARTIAL-HOLD | 중앙 공통마스터에 7번 정체성·입출력·분기 규칙 실제 반영 | 올바른 7번 실행판 미확인, `07-wic-setting-tool-v1`은 7번 컨택판 아님 | 7번 실제 실행자산 식별 후 중앙마스터 연결 및 E2E |
+| 3 | 1번 중간/최종 안내서 | 🟠 PARTIAL-HOLD | 중앙 고객마스터 연결 commit + CircleCI config + Deno 실제 failure URL | Deno build failure, synthetic TOC 본체 미제거, CircleCI actual run 0 | Deno failure 원인 확인 → synthetic TOC 안전 제거 → CircleCI 실제 run |
+| 4 | 37번 메타데이터 | 🔴 HOLD | 규칙 존재 | 생산 실행자산 미확인 | 실행자산 식별 즉시 원본→결과 E2E |
+| 5 | 13번 엑셀 자동 업로드 | 🟠 PARTIAL-HOLD | Deno 실제 deploy success URL 확보 | 실제 홈페이지 업로드 endpoint/API E2E 없음 | 배포본에서 실제 업로드 연결 근거 추적 |
+| 6 | 6번 목차 정리 | 🟠 PARTIAL-HOLD | 최신 회귀 fixture commit 존재 | latest combined status 0건, 승인 golden output 부족 | 승인 fixture/expected output 확보 후 실제 회귀 run |
+| 7 | 2번 입찰 | 🔴 HOLD | 수동 UI 흔적 | 나라장터 자동수집/API/로그인/투찰 실엔진 없음 | 기존 실엔진 근거 발견 시 재사용 |
+| 8 | 28~31 | 🔴 HOLD | 역할·규칙 존재 | 구체 실행 저장소/파일 참조 미확인 | 실행자산 식별부터 진행 |
 
 ---
 
-# 4. 다음 실행 가능한 도구
+# 4. 외부검증 도입 — 2026-08-13 마감 병행
 
-| 도구 | 상태 | 이번 판단 | 다음 행동 |
+| 구조 | 현재 상태 | 실제 증거 | 판정 |
 |---|---|---|---|
-| 01 Auto Guide | 🟠 PARTIAL-HOLD | **CircleCI 검증 게이트 commit + read-back 완료** | CircleCI Project 연결 후 최초 실제 run URL 확보. 본체 synthetic TOC 제거는 안전한 부분 patch 경로 확보 시 수행 |
-| 05 Report Generator | 🟠 PARTIAL-HOLD | 안전 수정 commit + read-back 완료 | 외부/브라우저 E2E가 생기면 실제 입력 검증 후 PASS 판단 |
-| 09 Contents Making Tool | 🟠 PARTIAL-HOLD | sample data 자동주입 위험 특정 | 부분 patch 가능한 쓰기 경로 확보 시 fallback을 `contents=[]`로 변경. 그 전에는 전체파일 덮어쓰기 금지 |
-| 13 Excel Upload | 🟠 PARTIAL-HOLD | 로컬 XLSX 기능 존재 | 실제 업로드 endpoint/API 근거 탐색 시 복귀 |
-| 06 TOC Check | 🟠 PARTIAL-HOLD | 엔진 흔적 존재 | 승인 fixture 발견 시 회귀검증 |
+| CircleCI | OAuth 연결 + 1번 config 존재 | config commit `ec69102f276cb319c9e4b7aa939e359bf8847190`, read-back blob `eb2f944cb3a94911120babe3cfd7a418b81ada31` | actual run URL 0 → HOLD |
+| GitHub Actions | 일부 저장소 workflow 존재 | 13번 `a45c75e...`, 6번 `baa7878...` | 내부/플랫폼 검증, 독립검증으로 계산 금지 |
+| Deno Deploy | 실제 배포 상태 존재 | 1번 failure URL / 13번 success URL | 배포 증거일 뿐 독립검증 아님 |
+| Codacy | 미연결 | 증거 없음 | HOLD |
+| BrowserStack | 미연결 | 증거 없음 | HOLD |
+
+자체 추론, GitHub 상태, Deno 배포, GitHub Actions를 제3자 독립검증으로 가장하지 않는다.
 
 ---
 
-# 5. 외부검증 도입 상태 — 2026-08-13 기준 병행
+# 5. 실제 개선됨 / 남은 부분
 
-| 외부구조 | 현재 | 실제 증거 | 다음 단계 |
-|---|---|---|---|
-| CircleCI | 🟠 OAuth 연결 + config commit / run 0 | OAuth 연결 사용자 화면 + 1번 `.circleci/config.yml` commit `ec69102f...` + read-back | CircleCI에서 `01-auto-guide-v1` Project/파이프라인을 실제 연결해 최초 외부 run URL 확보 |
-| Codacy | 🔴 0 | 연결 증거 없음 | CircleCI 실 run이 막힐 때 사용자 승인 묶음 후보 |
-| BrowserStack | 🔴 0 | 연결 증거 없음 | UI E2E가 필요한 우선도구에 후순위 연결 |
-
-GitHub Actions·상태판·자체 코드 추론은 내부검증으로만 사용하며 제3자 독립검증으로 가장하지 않는다. CircleCI도 실제 run URL이 생기기 전에는 독립검증 완료로 계산하지 않는다.
-
----
-
-# 6. 실제 개선됨 / 남음
-
-**실제 개선됨**
-- 05 입력 밖 사실 자동 생성 제거 commit 및 read-back은 이전 회차 완료 상태 유지.
-- 1번 synthetic TOC 발생 코드 위치를 실제 Deno 성공 경로에서 다시 확인.
-- 1번 저장소에 CircleCI 검증 게이트를 실제 commit으로 추가하고 read-back 확인.
-- 외부검증은 설명 수준에서 벗어나, 실제 파이프라인 config 자산 1개가 생김.
+**실제 개선·확인됨**
+- 이메일 수집·고객 안내·7번의 중앙 공통마스터가 실제 GitHub commit과 read-back으로 존재함.
+- 1번이 중앙 고객업무 마스터를 참조하는 연결 파일을 실제 commit으로 보유함.
+- 1번 최신 Deno 배포 failure를 실제 result URL로 확인하여 막힘을 구체화함.
+- 13번 최신 Deno 배포 success를 실제 result URL로 확인함.
+- 6번은 최신 commit에 외부 status가 없음을 확인하여 허위 PASS를 차단함.
 
 **남음**
-- CircleCI `01-auto-guide-v1` 최초 실제 run/result URL
-- 1번 synthetic TOC fallback 본체 제거 commit + E2E
-- 09 sample fallback 실제 제거 commit + E2E
-- 05 실제 브라우저 E2E run/result URL
-- 13 실제 업로드 연결
-- 6 승인 fixture 확보
-- 이메일/7/37 실제 실행자산 식별
+- 이메일 수집 실제 실행자산/수집 run
+- 7번 실제 실행판 식별 및 고객장부 입력 E2E
+- 1번 Deno build failure 원인 제거
+- 1번 synthetic TOC fallback 본체 제거
+- CircleCI 최초 actual run/result URL
+- 37번 생산 실행자산 식별
+- 13번 실제 홈페이지 업로드 endpoint/API E2E
+- 6번 승인 golden fixture + 회귀 run
+- 2번 실엔진
+- 28~31 실행자산 연결
 
 ---
 
-# 7. 막힘 처리 규칙
+# 6. 현재 restart point
 
-`원인 확인 → 가능한 최소 수정 1회 → 실행/검증 → 실패하면 HOLD + 개선방법 + restart point → 즉시 다음 도구`
+- **이메일 수집 / 7번:** 중앙 규칙 통합은 완료된 사실로 보존하고 반복하지 않는다. 다음은 문서가 아니라 실제 실행자산 식별·연결이다.
+- **01:** 중앙마스터 연결 commit `c75bdee...` 이후 Deno build가 실패했다. 다음 작업은 failure URL `c9m99wf67d8n`의 원인 확인. 기존 CircleCI config 생성 반복 금지.
+- **13:** Deno deploy success URL `416xvftmkhwv` 확보. 다음은 실제 홈페이지 업로드 endpoint/API 연결 여부 확인. 단순 재배포 반복 금지.
+- **06:** latest combined status 0. 승인 fixture/actual run 근거가 생기기 전 PASS 금지.
+- **05:** 안전 수정 commit `b2af1f445477b7c7fbdbebbe36b26418dbd49276` 완료 상태 유지. 외부/브라우저 E2E가 생길 때만 복귀.
+- **09:** sample fallback 위험 확인 완료. 안전한 부분 수정 경로 없이는 전체 파일 덮어쓰기 금지.
+- **외부검증:** CircleCI actual run이 최우선. 사용자 개입이 필요하면 여러 번 나누지 않고 승인/클릭을 묶어서 제시한다.
 
-같은 404/같은 저장소 검색/같은 HOLD 진단 반복 금지. 상태판 변경만 기능개선으로 계산하지 않는다.
-
----
-
-# 8. 현재 restart point
-
-- **01:** `.circleci/config.yml` commit `ec69102f276cb319c9e4b7aa939e359bf8847190`, read-back blob `eb2f944cb3a94911120babe3cfd7a418b81ada31`. 같은 config 생성 반복 금지. 다음 목표는 CircleCI 실제 Project 연결/run URL 또는 안전한 부분 patch 경로에서 synthetic TOC 제거.
-- **05:** 안전 수정 commit `b2af1f445477b7c7fbdbebbe36b26418dbd49276` 및 read-back 완료. 같은 코드수정 반복 금지. 외부/브라우저 E2E가 확보될 때만 복귀.
-- **09:** `loadState()` sample fallback 위험 확인 완료. 현재 connector 전체파일 교체만 가능하여 안전수정 HOLD. 부분 patch 가능한 쓰기 경로가 생길 때까지 동일 조사 반복 금지.
-- **우선도구 복귀 조건:** 이메일/7/37 실행자산, 13 endpoint, 6 fixture 중 새 근거가 생기면 즉시 우선순위로 복귀.
-- **외부검증:** CircleCI OAuth 승인과 1번 config 준비는 끝났다. 다음 사용자 개입이 필요하다면 여러 번 나누지 말고 `01-auto-guide-v1` 실제 Project 연결에 필요한 클릭을 승인 묶음으로 제시한다.
-
-이 파일은 새 파일을 만들지 않고 계속 같은 파일을 덮어쓴다.
+이 파일은 앞으로도 새 파일을 만들지 않고 같은 파일을 덮어쓴다.
