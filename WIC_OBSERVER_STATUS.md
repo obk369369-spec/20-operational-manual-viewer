@@ -1,8 +1,8 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-11 23:23 KST
+최종 갱신: 2026-08-11 23:59 KST
 상태: ACTIVE
-목적: 각 WIC 도구·업무의 실제 진행, 증거, blocker, 다음 작업을 한 파일에서 확인한다.
+목적: 각 WIC 도구·업무·주요 대화창의 실제 진행, 증거, blocker, 다음 작업을 한 파일에서 직관적으로 확인한다.
 운영 규칙 원본: `WIC_GLOBAL_OPERATING_RULES.md`
 고객업무 공통 원본: `CUSTOMER_WORKFLOW_MASTER.md`
 
@@ -12,101 +12,126 @@
 
 - 제3자 독립검증 실제 run 증거: **0개 / HOLD**
 - 현재 확정 PASS 도구: **없음**
-- 전체 완료율: **산정중(HOLD)** — 검증 완료 단위를 전수 확인하기 전 임의 % 금지.
-- 원칙: 완료작업 반복 금지 → blocker는 HOLD 기록 → 즉시 다음 실행 가능 항목으로 이동.
-- GitHub Actions/Deno/GitHub 상태는 제3자 독립검증으로 계산하지 않는다.
+- 표시 방식: **완료율을 임의로 만들지 않고 `운영준비도 평가치 0~100`을 사용**한다.
+- 평가 기준: `정체성·규칙 20 + 실제 입력/자산 20 + 기능/업무흐름 구현 20 + 현재 실행/출력 증거 20 + 독립검증·실업무 PASS 20`.
+- 따라서 예를 들어 60점은 “60% 완성”을 뜻하지 않고, **5개 준비단계 중 증거가 있는 3단계 수준**이라는 뜻이다.
+- 원칙: 완료작업 반복 금지 → blocker는 HOLD 기록 → 즉시 다음 실행 가능 항목으로 이동 → 새 근거가 생기면 우선도구로 복귀.
 
 상태: 🟢 PASS = 실제 입력→실행→출력→검증 / 🟠 PARTIAL-HOLD = 실제 개선·실행 근거 있으나 E2E/독립검증 미완료 / 🔴 HOLD = blocker / ⚪ NEXT = 다음 실행 대상
 
 ---
 
-# 2. 이번 회차 실제 수행 및 새 증거
+# 2. 도구별 운영준비도 — 전체 100 기준
 
-1. 기존 `WIC_OBSERVER_STATUS.md`를 먼저 read-back하고 최신 restart point를 확인했다. 기존 이메일/7번 중앙마스터 통합, 13번 uploadBtn 판정, 6번 workflow 오표기 수정, 2번 local-only 판정은 반복하지 않았다.
-2. 09번 `index.html`에서 실제 blocker 구간을 다시 정확히 확인했다.
-   - 저장 데이터가 없으면 `contents = createInitialSampleData();`
-   - 예외 발생 시에도 `contents = createInitialSampleData();`
-   - `createInitialSampleData()` 안에 `sample-1` 등 embedded sample record가 존재.
-3. 09번 production synthetic 제거를 위해 안전한 checkout/patch 경로를 시도했으나 현재 실행 환경의 로컬 Git checkout은 `Could not resolve host: github.com`으로 실패했다. GitHub connector는 현재 파일 전체 replace는 가능하지만 대형 `index.html`의 부분 patch primitive가 없어 전체 덮어쓰기는 안전하지 않다고 판단했다.
-4. 따라서 09번 synthetic 본체 제거는 **HOLD**로 남기고, 같은 실패를 반복하지 않도록 restart point를 갱신했다.
-5. 09번 내부 플랫폼 게이트 commit `f28840d3...`에 연결된 workflow run을 조회했으나 connector가 제공하는 commit-run 조회는 PR-triggered run만 반환하며 결과는 0개였다. 이것을 actual run 부재의 절대 증거로 과장하지 않는다.
-6. 다음 실행 가능한 개선으로 09번 `.github/workflows/platform-evidence.yml`에 `workflow_dispatch`를 추가해 수동 실행 가능한 내부 플랫폼 증거 경로를 만들었다.
-   - commit: `1c0c1609ee4a53104c00d5ca94b93293db4a9d33`
-   - read-back blob: `237d6a03f41fd28196a2a668932e89628c5e6d14`
-   - 분류 문구는 그대로 `Internal platform validation`, `not independent validation` 유지.
-7. CircleCI public search에서 `01-auto-guide-v1`의 공개 actual run/result URL은 식별되지 않았다. CircleCI API 기반 자동 project setup은 token/write 권한이 필요하므로 현재 연결 구조만으로는 신규 project/run 생성 불가.
-8. 28번 저장소명 검색 및 `publisher` 관련 설치 저장소 검색에서도 신규 전용 실행자산은 식별되지 않았다.
-9. 이 파일은 새 파일을 만들지 않고 기존 `WIC_OBSERVER_STATUS.md`를 같은 경로에서 덮어쓰기 갱신한다.
+| 우선 | 도구/업무 | 준비도 | 직관적 상태 | 점수를 받은 근거 | 아직 못 받은 핵심 20점 단위 |
+|---|---|---:|---|---|---|
+| 1 | 이메일 수집 | **60/100** | 🟠 PARTIAL-HOLD | 공통 규칙·검증기준 + 중앙마스터 + 실제 업무흐름 존재 | 실제 자동수집 실행자산/현재 run **20**, 독립검증·office-ready E2E **20** |
+| 2 | 7번 고객 컨택 판단 | **40/100** | 🟠 PARTIAL-HOLD | 역할/규칙 + 중앙마스터 참조 확인 | 올바른 실제 실행판 **20**, 고객 입력→판정 실행증거 **20**, 독립검증 **20** |
+| 3 | 1번 중간/최종 안내서 | **60/100** | 🟠 PARTIAL-HOLD | 규칙 + 실제 HTML 자산 + 기능흐름/오류지점/CircleCI gate 존재 | 현재 정상 실행·배포 **20**, 외부 actual run + 실데이터 E2E **20** |
+| 4 | 37번 메타데이터 | **40/100** | 🔴 HOLD | 생산 규칙·칼럼 규칙 존재 | 실제 생산 실행자산 **20**, 현재 원본→결과 run **20**, 독립검증 PASS **20** |
+| 5 | 13번 엑셀 자동 업로드 | **60/100** | 🟠 PARTIAL-HOLD | 규칙 + 실제 UI/파일처리/XLSX·CSV 생성 흐름 존재 | 실제 홈페이지 uploader/backend 실행 **20**, 독립검증/실업로드 성공 **20** |
+| 6 | 6번 목차 정리 | **60/100** | 🟠 PARTIAL-HOLD | 실제 저장소/엔진 + 규칙 + 내부 검증 workflow 존재 | 승인 golden fixture 기반 현재 run **20**, 독립 외부검증 PASS **20** |
+| 7 | 2번 입찰 | **40/100** | 🔴 HOLD | 규칙/목표 + 실제 UI 자산 확인 | 나라장터 실연동 기능 **20**, 실제 제출/조회 실행 **20**, 독립검증 **20** |
+| 8 | 28~31 발행사 업무 | **40/100** | 🔴 HOLD | 역할분리·업무규칙 존재 | 실제 실행자산 **20**, 현재 자동 실행 **20**, 검증 PASS **20** |
+| - | 09 컨텐츠 자료 안내 | **60/100** | 🟠 PARTIAL-HOLD | 실제 index + synthetic blocker 특정 + 내부 gate/workflow_dispatch | production synthetic 제거 후 정상 run **20**, 독립검증 **20** |
+| - | 05 Report Generator | **60/100** | 🟠 PARTIAL-HOLD | 실제 index + 생성 UI + synthetic 문구 제거 commit/read-back | 실제 업무규칙 E2E run **20**, 외부검증 **20** |
+| - | 08 English Verb Exercise | **60/100** | 🟠 PARTIAL-HOLD | 실제 local-only index/기능 존재 | 현재 실행증거의 정식 보존 **20**, 필요한 경우 검증 PASS **20** |
+| - | 27 Technical Book Verifier | **40/100** | 🟠 PARTIAL-HOLD | 규칙 + 과거 실행 UI 확인 | 현재 실행판 복구 **20**, 현재 run **20**, 검증 **20** |
+| - | 03 Coding Practice | **20/100** | 🔴 HOLD | 저장소 정체성만 확인 | 실제 자산/기능/실행/검증 각 미확인 |
+| - | 04 Research Funding Generator | **20/100** | 🔴 HOLD | 저장소 정체성만 확인 | 실제 자산/기능/실행/검증 각 미확인 |
+| - | 10 Finance Dashboard | **20/100** | 🔴 HOLD | 저장소 정체성만 확인 | 실행자산 이후 단계 미확인 |
+| - | 11 OBK Finance Planner | **20/100** | 🔴 HOLD | 저장소 정체성만 확인 | 실행자산 이후 단계 미확인 |
+| - | 12 서브웹사이트 빌더 | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | 실행파일 이후 단계 미확인 |
+| - | 14 홈페이지 편집 | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | 실행파일 이후 단계 미확인 |
+| - | 19 사업홍보 | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | 실행파일 이후 단계 미확인 |
+| - | 21 Sales Route Planner | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | 실행엔진 이후 단계 미확인 |
+| - | 23 World Advisor | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | 실행엔진 이후 단계 미확인 |
+| - | 24 Easy Video Maker | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | README/index/실행/검증 미확인 |
+| - | 25 Free Content Maker | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | README/index/실행/검증 미확인 |
+| - | 26 Online Item Shop | **20/100** | 🔴 HOLD | 저장소 정체성 확인 | README/index/실행/검증 미확인 |
+
+> 주의: 위 숫자는 **증거 기반 운영준비도**이며 “코드가 몇 % 작성됐다”는 의미가 아니다. 실제 실행·검증 증거가 생겨야 마지막 40점이 올라간다.
 
 ---
 
-# 3. 최우선 업무/도구 상태
+# 3. 41계열 주요 대화창 운영준비도 — 전체 100 기준
 
-| 우선 | 업무/도구 | 상태 | 실제 근거 | blocker | 다음 행동 |
-|---|---|---|---|---|---|
-| 1 | 이메일 수집 | 🟠 PARTIAL-HOLD | 중앙 공통마스터 commit/read-back 존재 | 실제 자동수집 실행자산/실행 URL 미식별 | 새로운 실행 저장소·스크립트·DB·브라우저 자산 발견 시 즉시 연결 |
-| 2 | 7번 고객 컨택 판단 | 🟠 PARTIAL-HOLD | 중앙마스터 참조 확인 | 실제 7번 실행판 미확인 | 실행판 식별 후 고객 입력→판정 E2E |
-| 3 | 1번 중간/최종 안내서 | 🟠 PARTIAL-HOLD | production synthetic 경로 확인 + CircleCI 차단게이트 commit `fca0955c...` / read-back `49f0832...` | 대형 단일 HTML 안전 수정경로 미확보, CircleCI actual run/result URL 미확보 | 안전한 patch/checkout 경로 확보 후 synthetic 생성 제거 → CircleCI 실제 project/run URL 기록 |
-| 4 | 37번 메타데이터 | 🔴 HOLD | 규칙 존재, GitHub App 설치 목록에서 전용 실행 저장소 미식별 | 생산 실행자산 미확인 | 기존 파일/저장소/외부구조 증거 발견 시 원본→결과 E2E |
-| 5 | 13번 엑셀 자동 업로드 | 🟠 PARTIAL-HOLD | `uploadBtn → downloadCSV('upload')`; workflow 오표기 수정 commit `c3f43ce...`, read-back `0943d2f...` | 실제 홈페이지 uploader/backend/endpoint 미식별 | 별도 uploader/backend/worldic endpoint 자산 발견 시 연결. 현재 UI 재배포 반복 금지 |
-| 6 | 6번 목차 정리 | 🟠 PARTIAL-HOLD | workflow 오표기 수정 commit `0b307cc...` | 승인 golden output 및 신뢰 가능한 actual run/result URL 부족 | 승인 golden fixture 확보 후 회귀 run |
-| 7 | 2번 입찰 | 🔴 HOLD | current body localStorage 기반 Local-only UI | 나라장터 실조회/로그인/수집/제출 엔진 미식별 | 별도 실엔진 자산 발견 시에만 연결 |
-| 8 | 28~31 | 🔴 HOLD | 28/publisher 설치 저장소 검색에서도 신규 전용 실행자산 미식별 | 기존 실행자산 근거 부족 | 기존 외부구조/파일/저장소 근거 발견 시 연결; 새 껍데기 생성 금지 |
-| 9 | 09번 컨텐츠 자료 안내 | 🟠 PARTIAL-HOLD | synthetic fallback 실코드 확인 + 내부 gate `f28840d3...`; manual trigger 추가 commit `1c0c1609...`, read-back `237d6a0...` | production synthetic 함수 제거용 안전 부분 patch 경로 없음; 로컬 checkout DNS 실패 | 안전한 부분 patch 가능 connector/checkout 경로 확보 후 `createInitialSampleData()` 제거/빈 상태 fail-closed 처리 → 내부 run URL 기록 |
+대화창은 도구와 조금 다르게 `대화창 이름/역할 고정 20 + 분야별 규칙·과거업무 축적 20 + 중앙 공통마스터 연결 20 + 현재 send-ready 데이터/실업무 출력 20 + 자동 실행·독립검증/office-ready 20`으로 평가한다.
+
+| 새 번호 | 실제 대화창 이름 | 현재 준비도 | 현재 판단 | 다음 핵심 |
+|---|---|---:|---|---|
+| **41** | 이메일 수집 (방산) | **60/100** | 이름/역할·분야 규칙·공통 이메일수집 마스터 축은 확보 | 현재 인력 DB 실행자산/자동수집 run + 검증 연결 |
+| **41-1** | 고객 안내 (방산) | **60/100** | 이름/역할·방산 안내 규칙·고객안내 공통축 존재 | 현재 고객 1건 end-to-end 안내 생성/검증 |
+| **41-2** | 이메일 수집 (이차전지) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-3** | 이메일 수집 (섬유) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-4** | 이메일 수집 (원자력) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-5** | 이메일 수집 (태양광) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-6** | 이메일 수집 (바이오) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-7** | 이메일 수집 (로봇) | **40/100** | 이름/역할은 확정, 이메일수집 공통규칙 적용 대상 | 로봇 분야 기존 데이터/규칙 흡수 확인 + 실행 DB 연결 |
+| **41-8** | 고객 안내 (반도체) | **60/100** | 반도체 안내 규칙·고객안내 공통축 존재 | 현재 고객 1건 end-to-end 안내 생성/검증 |
+| **41-9** | 이메일 수집 (탄소) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-10** | 이메일 수집 (인공지능) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-11** | 이메일 수집 (풍력) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-12** | 이메일 수집 (조선) | **60/100** | 분야별 수집 규칙·공통마스터 적용 가능 | 현재 send-ready DB 실행/검증 |
+| **41-13** | 고객 안내 (탄소) | **60/100** | 탄소 안내 규칙·추천자료 오류교정 축적 + 공통축 존재 | 실제 최신 고객건 E2E/중복방지 검증 |
+| **41-14** | 고객 안내 (조선) | **60/100** | 조선 안내 규칙·발송구조 축적 + 공통축 존재 | 실제 최신 고객건 E2E/추천검증 |
+| **41-15** | 고객 안내 (인공지능) | **60/100** | AI 안내 규칙·추천 정밀화 축적 + 공통축 존재 | 실제 최신 고객건 E2E/추천검증 |
+
+### 대화창 번호 처리 원칙
+- 위 표는 사용자가 지정한 **임시 새 번호를 그대로 사용**한다.
+- 실제 대화창 이름은 임의 변경하지 않는다.
+- 이름/번호/역할을 새로 발명하지 않는다.
+- 통합이 실제 완료되기 전에는 기존 대화창을 삭제·병합 완료로 표시하지 않는다.
+- 각 창의 고유 규칙·오류·데이터가 중앙마스터에 흡수되고 read-back된 뒤에만 통합 준비도가 올라간다.
 
 ---
 
 # 4. 외부검증 도입 — 2026-08-13 마감 병행
 
-| 구조 | 현재 상태 | 실제 증거 | 판정 |
-|---|---|---|---|
-| CircleCI | 1번 config 존재 + synthetic-data gate 강화 | commit `fca0955c5e12ce1c25886c6ba6595aac1601ab86`, read-back `49f08323e12eb551e57ff874e8a521c7d6f15347` | 공개 actual run/result URL 미식별 → HOLD |
-| GitHub Actions / 6번 | 독립검증 오표기 수정 완료 | commit `0b307cc...` | 내부/플랫폼 검증으로만 표기 |
-| GitHub Actions / 13번 | 독립검증 오표기 수정 완료 | commit `c3f43ce...`, read-back `0943d2f...` | 내부/플랫폼 검증으로만 표기 |
-| GitHub Actions / 09번 | synthetic fallback 차단 gate + manual trigger 경로 | commits `f28840d3...`, `1c0c1609...`; read-back `237d6a0...` | 내부/플랫폼 검증이며 actual result URL 전 PASS 금지 |
-| Deno Deploy | 실제 배포 상태 존재 | 1번 failure / 13번 success 근거 기존 보존 | 배포 증거일 뿐 독립검증 아님 |
-| Codacy | 미연결 | 증거 없음 | HOLD |
-| BrowserStack | 미연결 | 증거 없음 | HOLD |
+| 구조 | 준비도 | 현재 상태 | 실제 증거 | 다음 필요한 것 |
+|---|---:|---|---|---|
+| CircleCI | **60/100** | GitHub OAuth 연결 + 1번 config/gate 존재 | OAuth 연결 화면 확인, config commit/read-back | 실제 Project 활성화 + 최초 external run/result URL **20**, WIC E2E PASS **20** |
+| Codacy | **20/100** | 후보 선정만 완료 | 공식 기능 확인 | GitHub App 승인/연결 → 실제 분석 result |
+| BrowserStack | **20/100** | 후보 선정만 완료 | 공식 기능 확인 | 계정/연결 승인 → UI E2E actual run |
 
-자체 추론, GitHub 상태, Deno 배포, GitHub Actions를 제3자 독립검증으로 가장하지 않는다.
+제3자 서비스의 실제 run/result URL이 없으면 마지막 40점을 주지 않는다. GitHub Actions/Deno/assistant 판단은 제3자 독립검증으로 계산하지 않는다.
 
 ---
 
-# 5. 실제 개선됨 / 남음
+# 5. 지금 가장 큰 병목
 
-**실제 개선·확인됨**
-- 중앙 상태와 restart point를 가장 먼저 read-back했다.
-- 09번 synthetic 제거를 안전한 checkout/patch 방식으로 시도했고, 현재 로컬 checkout DNS blocker와 connector의 부분 patch 부재를 실제로 확인했다.
-- 위험한 대형 HTML 전체 덮어쓰기를 하지 않았다.
-- 09번 내부 플랫폼 workflow에 `workflow_dispatch`를 실제 추가해 이후 수동 run 경로를 확보했다.
-- commit `1c0c1609...` 및 read-back blob `237d6a0...` 증거를 확보했다.
-- GitHub Actions를 독립검증으로 오표기하지 않았다.
-
-**남음**
-- 이메일 수집 실제 실행자산/수집 run
-- 7번 실제 실행판 및 고객 입력 E2E
-- 1번 production synthetic TOC/template/catalog/link 안전 제거
-- 1번 CircleCI 최초 actual run/result URL
-- 37번 생산 실행자산
-- 13번 실제 홈페이지 uploader/backend/endpoint/API
-- 6번 승인 golden fixture + 회귀 run
-- 2번 나라장터 실연동 엔진
-- 28~31 기존 실행자산 근거 연결
-- 09번 production `createInitialSampleData()` 제거 + actual GitHub Actions run/result URL
-- 실제 제3자 독립검증 구조 run 증거
+1. **기능 수정 → 실제 실행 → 실제 출력 → 기대값 비교 → PASS** 폐쇄루프가 핵심 도구에서 아직 완성되지 않았다.
+2. CircleCI는 OAuth까지 연결됐지만 **실제 WIC Project/run URL이 아직 없다.**
+3. 1번은 synthetic 생성과 Deno failure가 남아 있다.
+4. 13번은 실제 홈페이지 업로드 엔진이 없다.
+5. 6번은 승인 golden fixture + 현재 회귀 run이 부족하다.
+6. 이메일 수집/7/37은 중앙 규칙은 올라왔지만 실제 실행판 연결이 부족하다.
 
 ---
 
-# 6. 현재 restart point
+# 6. 자동 이동 규칙
 
-- **이메일 수집 / 7번:** 중앙 규칙 통합 완료 사실은 보존. 같은 문서 검색 반복 금지. 새로운 실행 저장소·스크립트·DB·브라우저 자산 근거가 생길 때만 복귀.
-- **01:** synthetic blocker와 CircleCI gate는 확인 완료. 전체 HTML 덮어쓰기가 아닌 안전한 부분 patch/checkout 경로를 확보해 synthetic 생성부를 fail-closed/HOLD 방식으로 제거. 실제 CircleCI project/run URL 없이는 PASS 금지.
-- **37:** GitHub App 설치 검색에서 전용 실행 저장소 미식별. 기존 파일·외부구조·저장소 증거 발견 시 즉시 생산 E2E로 전환.
-- **13:** 실제 uploader/backend/worldic endpoint/API 미식별. 신규 자산 근거 없이는 반복 검색/재배포 금지.
-- **06:** 승인 golden fixture 또는 신뢰 가능한 새 run 근거가 생길 때 복귀.
-- **02:** current body는 local-only localStorage UI. 별도 나라장터 실연동 엔진 근거 식별 전 PASS 금지.
-- **28~31:** 28/publisher 검색에서도 신규 전용 실행 저장소 미식별. 새 껍데기 저장소 생성 금지.
-- **09:** 내부 gate와 `workflow_dispatch` 추가까지 완료. production synthetic 제거는 현재 안전 부분 patch 경로 부재 때문에 HOLD. 다음 회차에는 같은 checkout 실패를 반복하지 말고, connector에서 부분 수정 primitive가 제공되거나 기존 외부 checkout 자산이 식별될 때 즉시 `createInitialSampleData()` 두 호출+함수+embedded sample records를 제거하고 빈 배열/fail-closed로 전환한다.
-- **외부검증:** CircleCI actual run/result URL 또는 다른 실제 제3자 서비스 run/result URL 확보가 최우선. 제3자 검증은 실제 외부 서비스 결과 URL이 있을 때만 인정한다.
+`우선도구 재시도 → 실제 개선 가능하면 계속 → 현재 환경에서 더 이상 진전이 없으면 blocker·개선방법·재개조건 기록 → HOLD → 즉시 다음 도구 → 다른 도구 처리 후 새 근거/외부승인이 생기면 우선도구로 복귀`
 
-이 파일은 앞으로도 새 파일을 만들지 않고 같은 파일을 덮어쓴다.
+금지:
+- 같은 404/같은 검색 반복
+- 한 도구를 무한정 붙잡기
+- 파일/commit 존재만으로 완료율 상승
+- 상태판만 고치고 기능진전으로 계산
+- 실행/검증 증거 없이 마지막 40점 부여
+
+---
+
+# 7. 현재 restart point
+
+- **이메일 수집 / 7번:** 새로운 실행 저장소·스크립트·DB·브라우저 자산 근거가 생기면 최우선 복귀.
+- **01:** 안전한 부분 patch/checkout 경로를 확보해 synthetic 생성부 제거 → Deno 정상화 → CircleCI actual run.
+- **37:** 기존 생산 실행자산 식별 시 즉시 원본→결과 E2E.
+- **13:** 실제 uploader/backend/worldic endpoint/API 식별 시 연결.
+- **06:** 승인 golden fixture 또는 신뢰 가능한 run 근거 확보 시 회귀검증.
+- **02 / 28~31:** 새 실제 엔진 근거 없으면 반복하지 않고 다음 도구로 이동.
+- **09:** 안전 부분 patch 경로 확보 시 `createInitialSampleData()` 제거 → 빈 상태 fail-closed → actual run.
+- **대화창:** 41~41-15 각 창의 고유 규칙/데이터 흡수 증거를 순차 확인하고, 이미 중앙화된 공통규칙은 반복 추출하지 않는다.
+- **외부검증:** CircleCI 실제 Project/run URL 확보가 1순위. 사용자 클릭이 필요한 승인 항목은 따로 모아 한꺼번에 제시한다.
+
+이 파일은 앞으로도 새 파일을 만들지 않고 같은 `WIC_OBSERVER_STATUS.md`를 덮어쓴다.
