@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 20:18",
+  "updated_kst": "2026-08-12 21:20",
   "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": ["EVENT","NORMALIZE","ROUTE_EXISTING_REGISTRY","CONFLICT_DEDUP","CANONICAL_WRITE","READ_BACK","TARGET_REVISION_READ_APPLY","TEST_EVIDENCE","RESTART_OR_HOLD"],
@@ -27,14 +27,27 @@
     "integration-core evidence artifact 9137534969 creation",
     "EMAIL_DB/TOOL037/WORK_GATE lane ACK actual workflow evidence",
     "revision-aware multi-target SKIP_UNCHANGED actual workflow evidence",
-    "controlled rollback/restart checkpoint fixture actual workflow evidence"
+    "controlled rollback/restart checkpoint fixture actual workflow evidence",
+    "TOOL001 verified-data deterministic fixture path inspection",
+    "TOOL002 archived static STRUCTURE_PASS evidence read-back for commit 88848edb6df13a59f6b690248d9948a128b5fb36",
+    "TOOL001 canonical apply commit Deno deployment failure confirmation",
+    "TOOL002 canonical apply commit Deno deployment failure confirmation"
   ],
   "current_evidence": {
     "feedback_id": "f2aeb4e8f5fac3c9618f",
     "canonical_revision": "fa09bcdec96669d97ef3a18f",
     "canonical_write_commit": "50d0ca22a5427293c6cdf1987d83110f3e0dbfd4",
     "tool001_target_apply_commit": "74e418cd5bccf71e6f5a839fdc83bc9179b1cad7",
+    "tool001_fixture_path": "regression/tool1_verified_data_contract.py",
+    "tool001_fixture_scope": "12 deterministic code-internal fixtures; not actual business target E2E",
+    "tool001_deno_deploy_result": "failure",
+    "tool001_deno_deploy_url": "https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/0ztwbfp0bt5t",
     "tool002_target_apply_commit": "88848edb6df13a59f6b690248d9948a128b5fb36",
+    "tool002_static_validation_result": "STRUCTURE_PASS",
+    "tool002_static_validation_archive": "external-evidence-archive/runs/88848edb6df13a59f6b690248d9948a128b5fb36/static-validation.json",
+    "tool002_static_validation_scope": "static structure only; not bid business E2E",
+    "tool002_deno_deploy_result": "failure",
+    "tool002_deno_deploy_url": "https://console.deno.com/obk369369-spec/02-auto-bid-narajangter-v1/builds/4b2nhxnd5d26",
     "tool006_test_result": "completed/success",
     "tool013_test_result": "STRUCTURE_PASS",
     "target_revision_cache_commit": "c99eef6861f48e3ff2d438d1c12ce42000d12f8e",
@@ -49,9 +62,12 @@
     "external_independent_verification": false
   },
   "current_blockers": {
-    "integration_core": "TOOL001/002 actual target tests, TOOL007 latest-purpose target/adapter, and real cross-target repository rollback/read-back + last_success_stage restart E2E remain HOLD.",
-    "independent_verification": "No third-party actual run/result evidence is recorded."
+    "tool001": "Actual business target input->run->output->expected evidence remains HOLD. Existing deterministic fixtures are not sufficient. Latest Deno deploy status is failure.",
+    "tool002": "Actual bid input->run->output->expected evidence remains HOLD. Archived static STRUCTURE_PASS is insufficient. Latest Deno deploy status is failure.",
+    "tool007": "No verified repository/adapter matching latest customer-contact-judgment purpose.",
+    "rollback": "Real cross-target repository failure->rollback read-back->last_success_stage restart E2E remains unverified.",
+    "independent_verification": "No third-party successful actual run/result evidence is recorded."
   },
-  "restart_point": "Do not repeat canonical/dispatcher/revision-cache/audit evidence work. TOOL001 and TOOL002 actual target test/evidence are next. Keep TOOL007 HOLD until a customer-contact-judgment purpose target is verified. Then run a real controlled cross-target repository failure with rollback read-back and last_success_stage restart before overall structure PASS.",
-  "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence; documentation or commit alone is not PASS."
+  "restart_point": "Do not repeat canonical/dispatcher/revision-cache/audit evidence work. Reuse TOOL001 deterministic guard and TOOL002 archived static evidence without rebuilding them. Next obtain actual TOOL001 and TOOL002 business E2E evidence and separate the confirmed Deno deployment failures from internal GitHub validation. Keep TOOL007 HOLD until a purpose-matching target is verified. Then run real controlled cross-target repository rollback/read-back and last_success_stage restart before overall structure PASS.",
+  "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence; documentation, deterministic fixture, static structure validation, or commit alone is not PASS."
 }
