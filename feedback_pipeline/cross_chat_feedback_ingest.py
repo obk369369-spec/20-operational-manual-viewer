@@ -9,14 +9,20 @@ a regression-fixture candidate, or both.
 It does NOT scrape ChatGPT UI conversations directly. Collection is performed by the
 scheduled WIC cross-chat collector, which retrieves accessible prior-interaction
 context and feeds normalized events through this contract before GitHub persistence.
+
+Routing keywords are NOT duplicated here. The existing WIC_CHAT_ROUTING_REGISTRY.md
+is the executable route source; parsing failure is treated as an error rather than a
+silent fallback so configuration drift becomes visible.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict
+from functools import lru_cache
 from hashlib import sha256
 import json
+from pathlib import Path
 import re
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 CLASSIFICATIONS = (
     "CORRECTION",
@@ -26,17 +32,8 @@ CLASSIFICATIONS = (
     "SIDE_REQUEST",
 )
 
-TOOL_KEYWORDS = {
-    "TOOL001": ("1번", "안내서", "full_guide", "intermediate_guide", "고객 자동화 안내서"),
-    "TOOL002": ("2번", "입찰", "입찰 도구", "bid", "tender"),
-    "TOOL006": ("6번", "목차", "toc", "marketsandmarkets", "marketandmarket"),
-    "TOOL007": ("7번", "고객 컨택", "컨택 판단", "전화 멘트", "유선 멘트"),
-    "TOOL013": ("13번", "엑셀 자동 업로드", "46145"),
-    "TOOL037": ("37번", "메타데이터", "상품명", "한글명", "isbn", "code"),
-    "EMAIL_DB": ("메일 수집", "이메일 수집", "new_online", "dormant_ledger", "recent_trade", "고객 db"),
-    "WORK_GATE": ("워크", "work", "크레딧", "credit", "이관"),
-    "CENTRAL": ("중앙 마스터", "깃허브", "github", "대화창", "피드백", "관찰자"),
-}
+REGISTRY_PATH = Path(__file__).resolve().parents[1] / "WIC_CHAT_ROUTING_REGISTRY.md"
+ROUTE_LINE_RE = re.compile(r"^route:\s*([A-Z0-9_]+)\s*=\s*(.+?)\s*$", re.I)
 
 EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE_RE = re.compile(r"(?<!\d)(?:\+?82[- .]?)?(?:0\d{1,2}[- .]?)?\d{3,4}[- .]?\d{4}(?!\d)")
@@ -79,6 +76,40 @@ def redact_sensitive(text: str) -> str:
     return text[:500]
 
 
+def parse_route_registry(text: str) -> dict[str, tuple[str, ...]]:
+    """Parse machine-readable route lines from the existing central chat registry."""
+    routes: dict[str, tuple[str, ...]] = {}
+    for raw_line in text.splitlines():
+        match = ROUTE_LINE_RE.match(raw_line.strip())
+        if not match:
+            continue
+        target = match.group(1).upper()
+        keywords = tuple(
+            dict.fromkeys(
+                keyword.strip().lower()
+                for keyword in match.group(2).split("|")
+                if keyword.strip()
+            )
+        )
+        if not keywords:
+            raise ValueError(f"empty route keywords for {target}")
+        if target in routes:
+            raise ValueError(f"duplicate route target in registry: {target}")
+        routes[target] = keywords
+    required = {"CENTRAL", "WORK_GATE"}
+    missing = required - routes.keys()
+    if missing:
+        raise ValueError(f"registry missing required route target(s): {sorted(missing)}")
+    return routes
+
+
+@lru_cache(maxsize=1)
+def load_route_registry() -> dict[str, tuple[str, ...]]:
+    if not REGISTRY_PATH.exists():
+        raise FileNotFoundError(f"route registry missing: {REGISTRY_PATH}")
+    return parse_route_registry(REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
 def classify(text: str) -> str:
     t = _canonical_text(text)
     if any(k in t for k in (
@@ -98,12 +129,13 @@ def classify(text: str) -> str:
     return "SIDE_REQUEST"
 
 
-def route_targets(text: str) -> tuple[str, ...]:
+def route_targets(text: str, route_map: Mapping[str, Iterable[str]] | None = None) -> tuple[str, ...]:
     t = _canonical_text(text)
+    routes = route_map if route_map is not None else load_route_registry()
     hits = []
-    for target, keys in TOOL_KEYWORDS.items():
-        if any(k.lower() in t for k in keys):
-            hits.append(target)
+    for target, keys in routes.items():
+        if any(str(k).lower() in t for k in keys):
+            hits.append(str(target).upper())
     return tuple(sorted(set(hits or ["CENTRAL"])))
 
 
@@ -170,6 +202,11 @@ def to_json_record(item: NormalizedFeedback) -> dict[str, Any]:
 
 
 def run_fixtures() -> str:
+    route_map = load_route_registry()
+    assert len(route_map) >= 9
+    assert "TOOL002" in route_map and "입찰" in route_map["TOOL002"]
+    assert "TOOL013" in route_map and "13번" in route_map["TOOL013"]
+
     events = [
         FeedbackEvent("2026-08-10T15:32:00+09:00", "current", "각 대화창 피드백 자동수집해서 중앙 마스터와 GitHub에 반영해. 사용자가 다시 전달하지 않게 고정해."),
         FeedbackEvent("2026-08-10T15:33:00+09:00", "toc", "MarketsandMarkets 목차에서 숫자만 떨어진 줄이 또 남는 오류가 있다."),
@@ -198,7 +235,15 @@ def run_fixtures() -> str:
     redacted = redact_sensitive("a@b.com 010-1234-5678")
     assert "a@b.com" not in redacted and "010-1234-5678" not in redacted
     json.dumps([to_json_record(x) for x in batch], ensure_ascii=False)
-    return "PASS: 15 deterministic cross-chat feedback fixtures"
+
+    malformed = "route: CENTRAL = central\nroute: WORK_GATE ="
+    try:
+        parse_route_registry(malformed)
+        raise AssertionError("malformed registry must fail")
+    except ValueError:
+        pass
+
+    return "PASS: registry-source routing + deterministic cross-chat feedback fixtures"
 
 
 if __name__ == "__main__":
