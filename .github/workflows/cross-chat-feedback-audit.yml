@@ -33,6 +33,8 @@ jobs:
           python-version: '3.12'
       - name: Run deterministic integration-core fixtures
         run: python feedback_pipeline/cross_chat_feedback_ingest.py
+      - name: Run canonical mutation and read-back fixtures
+        run: python feedback_pipeline/canonical_writer.py
       - name: Validate collector and integration-core state
         run: |
           python - <<'PY'
