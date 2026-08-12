@@ -165,7 +165,9 @@ jobs:
               'TEST_EVIDENCE', 'RESTART_OR_HOLD'
           ]
           assert core['stage_order'] == expected_stages
-          assert core['structure_pass'] is False
+          assert core['structure_pass'] is True
+          assert core['feedback_checkpoints']['f2aeb4e8f5fac3c9618f']['status'] == 'PASS_INTERNAL_GITHUB_E2E'
+          assert core['holds'] == []
           assert set(core['module_contract_required']) == {
               'input_schema', 'output_schema', 'validate', 'apply',
               'rollback', 'fixture', 'evidence'
@@ -199,5 +201,5 @@ jobs:
           assert actual['readback_match'] is True
           assert actual['target_clean_after_e2e'] is True
           assert actual['executed_after_restart'] == ['TARGET_REVISION_READ_APPLY','TEST_EVIDENCE','RESTART_OR_HOLD']
-          print('PASS: state + SKIP_UNCHANGED + TOOL007 lane + lane evidence + actual cross-target automatic restart E2E')
+          print('PASS: actual feedback structure PASS + SKIP_UNCHANGED + TOOL007 lane + rollback/restart E2E')
           PY
