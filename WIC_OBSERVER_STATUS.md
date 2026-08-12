@@ -1,100 +1,115 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-12 11:31 KST
-상태: ACTIVE / STRUCTURE_FIRST / PREWORK_LOCKED
+최종 갱신: 2026-08-12 12:19 KST
+상태: ACTIVE / STRUCTURE_FIRST / PREWORK_LOCKED / CORE_BACKEND_ADVANCED
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
 
 ## 현재 결론
 - 2026-08-13 Work 1순위는 개별 도구가 아니라 **WIC 전체 재사용 자동 통합 구조 + Chat 기반 실제 도구개발 코어**의 실제 구현과 E2E 검증이다.
-- 목표는 단순 규칙 통합이 아니라 **이후 Work 없이도 Chat+GitHub에서 도구 기능을 추가·교체·수정·검증할 수 있는 공통 개발 기반**을 확보하는 것이다.
+- 목표는 이후 Work 없이도 Chat+GitHub에서 도구 기능을 추가·교체·수정·검증할 수 있는 공통 개발 기반을 확보하는 것이다.
 - 새 registry는 만들지 않는다. 기존 `WIC_CHAT_ROUTING_REGISTRY.md`를 재사용한다.
-- 실제 새 피드백 1건과 실제 도구 기능변경 1건이 전체 체인을 통과하기 전 구조 PASS 금지.
-- 구조 PASS 후 우선순위는 **6번 목차 정리 → 13번 엑셀 자동 업로드 → 7번 고객 컨택 판단 → 2번 입찰**이다.
-- 이메일 수집, 1번, 37번은 이번 Work 개발 우선순위에서 제외한다.
-- 4개 우선도구 완료 뒤 크레딧이 남아도 임의로 다른 도구/규칙 작업에 사용하지 않고 사용자 지시를 기다린다.
+- 실제 새 피드백 1건이 `자동 분류 → route → conflict/dedup → canonical GitHub write/read-back → target apply → target test/evidence → restart/rollback` 전체를 통과하기 전 구조 PASS 금지.
+- 구조 PASS 후 최신 우선순위는 **이메일 수집 → 7번 고객 컨택 판단 → 1번 중간/최종 안내서 → 37 메타데이터 → 13번 엑셀 자동 업로드 → 6번 목차 정리 → 2번 입찰 → 28~31 → 나머지 등록 도구/주요 업무창**이다.
 
-## 13일 전 Chat+GitHub에서 끝내야 하는 준비 — Work 크레딧 절약 잠금
-1. 기존 ingest / registry / state / audit workflow 재사용 범위 확정 — 완료된 부분 재개발 금지.
-2. conflict / supersede / HOLD 우선순위와 판정 조건을 구현 가능한 형태로 고정.
-3. canonical writer가 갱신할 단일 원본과 금지 대상(민감데이터/중복규칙)을 명확히 고정.
-4. revision cache / changed-scope apply / feedback_id idempotency / stage checkpoint / rollback state schema를 Work가 바로 구현할 수 있게 준비.
-5. 공통 기능모듈 계약을 `input schema / output schema / validation / apply hook / rollback hook / fixture / evidence hook`으로 고정.
-6. 대형 단일 HTML 전체 덮어쓰기 금지, 안전한 부분 patch 또는 module/adapter 교체 우선 원칙 고정.
-7. 실제 E2E 시험 입력 2개를 미리 고정:
-   - 통합구조 시험: 실제 새 피드백 1건 → route → conflict/dedup → canonical write → target apply → test/evidence.
-   - 개발코어 시험: 실제 작은 기능변경 1건 → module/adapter 추가 → apply → test → 실패 시 rollback.
-8. 13번 자동 칼럼판별/자동매핑은 통합코어 기능이 아니라 13번 전용 module 후보로 두고, 공통 개발코어 시험용으로 최소 범위만 사용 가능.
-9. 6번 parser/normalizer의 작은 규칙 1건도 개발코어 시험용 대체 후보로 유지.
-10. Work에서는 기존 규칙 재독해·재요약·저장소 재검색·새 규칙문서 만들기에 크레딧 사용 금지.
+## 이번 실행에서 실제 개선된 부분
+### 1. 완료 작업 재개발 방지
+- 기존 ingest / registry-source routing / state / audit workflow의 앞단은 재작성하지 않았다.
+- 기존 route source인 `WIC_CHAT_ROUTING_REGISTRY.md`를 그대로 사용한다.
 
-## 최소 성공선 — Work가 60~80%에서 끝나도 이후 Chat 개발이 빨라져야 함
-- 반드시 살아 있어야 하는 체인:
-  `Chat 피드백 → registry route → conflict/dedup → GitHub canonical write/read-back → 대상 changed-scope 식별 → 안전한 코드 수정 진입`
-- 위 체인까지 되면 Work가 끝나도 Chat+GitHub에서 6/13/7/2 기능개발을 계속 진행할 수 있어야 한다.
-- 자동테스트/rollback/외부독립검증 일부가 남더라도 다음 Work까지 아무것도 못 하는 구조는 실패로 본다.
+### 2. 후반 코어 결정 로직 실제 코드 추가
+`feedback_pipeline/cross_chat_feedback_ingest.py`에 다음을 실제 구현했다.
+- `ACCEPT / DUPLICATE / SUPERSEDE / HOLD_CONFLICT` 충돌판정
+- 최신 PRIORITY_CHANGE가 이전 겹치는 PRIORITY_CHANGE를 supersede하는 규칙
+- 명시적 CORRECTION이 이전 겹치는 규범 규칙을 supersede하는 규칙
+- 같은 우선순위의 상충 CONSTRAINT는 silent overwrite하지 않고 HOLD_CONFLICT
+- canonical layer 영향범위 계산: `GLOBAL / WORKGROUP / TOOL_OR_DOMAIN_OVERRIDE / DATA_OR_EXECUTION_ASSET`
+- canonical revision fingerprint
+- target revision cache 비교: `APPLY_CHANGED_SCOPE / SKIP_UNCHANGED`
+- 단계별 checkpoint + 마지막 성공지점 재개 계약
+- 공통 기능모듈 계약 검증: `input_schema / output_schema / validate / apply / rollback / fixture / evidence`
+- 실제 기능코드 commit: `ad50baf1564800972f31a242221bb8a52f0e0b2c`
+- read-back blob: `aa18cf8970249a72b3391a9354156376e3053e46`
 
-## 100% 구조 PASS 조건
-### A. 자동 통합 코어
-- registry 기반 대상 등록
-- 증분 ingest
-- conflict/supersede/HOLD 판정
-- dedup/idempotency
-- canonical single-source write/read-back
-- revision cache / changed-scope apply
-- restart/checkpoint/rollback
-- evidence recorder / regression test
+### 3. 실행상태 스키마 확장
+`feedback_pipeline/state.json`을 schema v2로 확장했다.
+- stage order
+- canonical layers
+- feedback checkpoints
+- target revision cache
+- HOLD 저장소
+- module contract required keys
+- structure_pass=false 명시
+- 최신 구조 PASS 후 우선순위 반영
+- commit: `34f440cf83dce850c43b48dff6eba3ed73803825`
 
-### B. Chat 기반 실제 도구개발 코어
-- 새 기능은 통합코어 본체를 수정하지 않고 도구별 module/adapter만 추가·교체 가능.
-- 기능모듈 표준 계약: `input schema / output schema / validation / apply / rollback / fixture / evidence`.
-- 기능 추가 시 영향범위만 테스트하고 실패하면 기존 정상 버전으로 rollback.
-- 실제 도구 기능변경 1건을 Chat 지시 → GitHub 반영 → 도구 적용 → 테스트/증거까지 E2E 성공.
-- 최악의 경우 Work 크레딧이 구조에 모두 소진돼도 이후 Chat+GitHub에서 실제 도구개선과 완료 작업이 계속 가능해야 한다.
+### 4. CI 계약 확장
+`.github/workflows/cross-chat-feedback-audit.yml`에서 다음을 검증하도록 확장했다.
+- conflict/dedup fixture
+- revision/cache fixture
+- checkpoint/restart fixture
+- module contract fixture
+- state schema v2
+- 최신 post-structure priority
+- commit: `b0557da24c2d3c5e9fa0386cb0ce92e3412b2f31`
+- 현재 이 commit의 deploy status는 `pending`이며 target URL은 Deno build URL로 확인됨. 완료 결과 전 CI/배포 PASS 주장 금지.
 
-## 현재 실제 증거
-- 기존 `WIC_CHAT_ROUTING_REGISTRY.md`에 machine-readable `route:` map 존재.
-- `feedback_pipeline/cross_chat_feedback_ingest.py`는 registry를 직접 읽어 routing.
-- registry 누락/중복 target/필수 route 누락 시 silent fallback 없이 error.
-- `.github/workflows/cross-chat-feedback-audit.yml`은 registry 변경에도 실행.
-- commits: registry `8cfafa09b022df0c6718b61e1b1924045866f577`, runtime `71f44ca32eee6cd68872a7df61d073c0720ef5e2`, workflow `974e3a16a5a1c00e225bf22486a6a3f79a00fe12`.
-- runtime read-back blob `0d6c58f39b49a1de796807e8dd036b7bb9f60491`.
-- GitHub Actions `Cross-chat feedback pipeline audit` run `31556600820`, job `93990199519` completed/success.
-- `Run deterministic feedback fixtures`, `Validate collector state` success.
-- 따라서 registry를 실제 route source로 연결하는 앞단은 PASS.
-- 후반 core 전체 E2E와 Chat 기반 기능개발 module contract actual E2E는 아직 HOLD.
+### 5. 중앙 restart point 갱신
+`WIC_EXECUTION_STATE.json`을 실제 남은 지점으로 이동했다.
+- 다음 시작점은 `CANONICAL_WRITE`.
+- 이미 구현한 routing/conflict/revision/checkpoint/module-contract는 Work에서 다시 만들지 않는다.
+- commit: `64cd123da3d40590066cc2b3746b27c79a77a5f4`
+
+## Work 크레딧 절약을 위한 남은 실제 구현 순서
+1. 실제 canonical single-source writer 연결.
+2. writer 결과 GitHub commit SHA 저장 + 즉시 read-back.
+3. target별 canonical revision cache 영속화.
+4. 변경된 scope만 실제 target module/adapter에 apply.
+5. target 실제 run/test 결과와 URL/file/artifact 기록.
+6. 실패 시 last_success_stage에서 재개하고 rollback 증거 저장.
+7. 실제 새 피드백 1건으로 전체 E2E 수행.
+8. 실제 작은 도구 기능변경 1건으로 module/adapter 추가 → apply → test → rollback E2E 수행.
+9. 위 증거가 모두 생긴 뒤에만 구조 PASS.
+
+## 최소 성공선 — Work가 60~80%에서 끝날 경우
+반드시 아래 체인은 실제로 살아 있어야 한다.
+`Chat feedback → registry route → conflict/dedup → canonical GitHub write/read-back → changed-scope 식별 → 안전한 target 코드수정 진입`
+이 체인이 되면 Work 크레딧이 끝나도 Chat+GitHub에서 후속 도구 기능개발을 계속할 수 있다. 다음 Work까지 아무것도 못 하는 상태면 구조 실패다.
+
+## 아직 HOLD인 부분
+- 실제 GitHub canonical writer/read-back 자동 체인: HOLD
+- target revision cache의 실제 영속 저장/읽기: HOLD
+- target module/adapter 실제 적용: HOLD
+- 실제 target run/test/evidence URL: HOLD
+- 실제 rollback 실행증거: HOLD
+- 전체 새 피드백 E2E: HOLD
+- 구조 PASS: HOLD
+
+## blocker / 개선방법
+- **blocker:** GitHub connector를 통해 파일 갱신은 가능하지만, 현재 repository 내부 Python runtime 자체가 GitHub contents write 권한으로 canonical commit을 만들고 target repo까지 자동 적용하는 E2E runner는 아직 연결되지 않았다.
+- **개선:** Work에서는 이 writer/apply runner와 실제 E2E에만 크레딧 사용. 기존 규칙 재독해·재요약·registry 재생성·이미 구현한 conflict/revision/checkpoint 로직 재개발 금지.
+- **독립검증:** GitHub 내부 fixture/CI와 제3자 외부검증을 구분한다. 실제 외부 run/result 증거가 생기기 전 `독립검증 PASS` 금지.
 
 ## 반복 금지
 - 기존 feedback ingest 기본 기능 재개발 금지.
-- 기존 state schema와 audit workflow 재작성 금지.
-- TOOL002 키워드/최신 우선순위 classifier 보강 반복 금지.
-- registry route-source 연결 반복 금지.
+- registry-source routing 재개발 금지.
 - 새 routing registry 생성 금지.
-- 1번 defaultToc 위치 재검색 금지.
-- 6번 STRUCTURE_PASS archive 재확인 금지.
-- 7번 저장소 목적 불일치 재판정 금지.
-- 13번 backend/API 동일 검색 반복 금지.
-- 이메일 수집/1번/37번을 이번 Work 우선순위로 재등록 금지.
-- 새 기능마다 통합코어를 다시 뜯어고치는 구조 금지.
-- 단순 기능규칙 문서 추가를 도구개발 완료로 계산 금지.
+- conflict/dedup 계약 재설계 반복 금지.
+- revision fingerprint / changed-scope decision 계약 재설계 반복 금지.
+- checkpoint/module-contract 계약 재설계 반복 금지.
+- 기존 규칙 재독해·재요약에 Work 크레딧 사용 금지.
+- 단순 문서/스크립트 존재를 구조 PASS로 계산 금지.
 
 ## 최신 restart point
-1. 기존 ingest + registry-source routing을 그대로 재사용.
-2. **conflict/supersede/HOLD 판정 + canonical single-source write/read-back** 구현.
-3. per-target revision cache + changed-scope apply + test/evidence recorder 연결.
-4. feedback_id idempotency + partial failure stage checkpoint/restart/rollback 연결.
-5. 공통 기능모듈 계약을 실제 코드로 구현.
-6. 실제 새 피드백 1건으로 통합구조 E2E 검증.
-7. 실제 작은 도구 기능변경 1건으로 module/adapter 적용/테스트/rollback E2E 검증.
-8. 전체 성공 증거가 생긴 뒤에만 구조 PASS.
-9. 구조 PASS 후 **6 → 13 → 7 → 2** 개발완료 목표.
-10. 2번까지 완료 후 크레딧이 남으면 임의 진행 금지.
-
-## blocker / 개선방법
-- 자동 통합 후반 core actual E2E 없음 → Work 구현 범위를 후반 core에 집중.
-- Chat 기반 실제 도구개발 module contract actual E2E 없음 → 실제 작은 기능변경 1건으로 검증.
-- restart/rollback stage checkpoint 증거 없음 → last_success_stage 기반 재개와 rollback 구현.
-- 제3자 독립검증 actual external run/result 없음 → 실제 외부 run/result URL 전 독립검증 PASS 금지.
+1. `CANONICAL_WRITE` 실제 runner 연결부터 시작.
+2. GitHub commit/read-back 증거 확보.
+3. target revision cache 영속화 + changed-scope apply 연결.
+4. target test/evidence recorder 연결.
+5. failure checkpoint/rollback actual run 연결.
+6. 실제 새 피드백 1건 전체 E2E.
+7. 실제 작은 도구 기능변경 1건 module/adapter E2E.
+8. 전체 성공 후 구조 PASS.
+9. 구조 PASS 후 **이메일 수집 → 7 → 1 → 37 → 13 → 6 → 2 → 28~31 → 나머지** 순으로 진행.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
