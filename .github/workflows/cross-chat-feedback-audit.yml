@@ -35,8 +35,10 @@ jobs:
         run: python feedback_pipeline/cross_chat_feedback_ingest.py
       - name: Run canonical mutation and read-back fixtures
         run: python feedback_pipeline/canonical_writer.py
-      - name: Build and validate deterministic target dispatch plan
+      - name: Build and validate revision-aware target dispatch plan
         run: python feedback_pipeline/target_dispatcher.py
+      - name: Run controlled rollback and restart checkpoint fixture
+        run: python feedback_pipeline/restart_rollback_fixture.py
       - name: Execute central lane ACKs and create evidence
         run: |
           python - <<'PY'
@@ -80,11 +82,14 @@ jobs:
           assert {x['lane'] for x in records} == set(required)
           print('PASS: EMAIL_DB / TOOL037 / WORK_GATE central lane ACK execution + evidence')
           PY
-      - name: Upload central lane ACK evidence
+      - name: Upload integration-core evidence
         uses: actions/upload-artifact@v4
         with:
-          name: central-lane-ack-evidence
-          path: feedback_pipeline/lane_apply_evidence.json
+          name: integration-core-evidence
+          path: |
+            feedback_pipeline/lane_apply_evidence.json
+            feedback_pipeline/restart_rollback_evidence.json
+            feedback_pipeline/target_dispatch_plan.json
       - name: Validate collector and integration-core state
         run: |
           python - <<'PY'
@@ -117,13 +122,19 @@ jobs:
               'tool_13_excel_upload', 'tool_6_toc', 'tool_2_bid'
           ]
           plan = json.loads(Path('feedback_pipeline/target_dispatch_plan.json').read_text(encoding='utf-8'))
-          action_targets = {x['target'] for x in plan['actions']}
-          assert {'TOOL001','TOOL002','TOOL006','TOOL013','EMAIL_DB','TOOL037','WORK_GATE'}.issubset(action_targets)
+          by_target = {x['target']: x for x in plan['actions']}
+          for target in ('TOOL001','TOOL002','TOOL006','TOOL013'):
+              assert by_target[target]['action'] == 'SKIP_UNCHANGED'
+          for target in ('EMAIL_DB','TOOL037','WORK_GATE'):
+              assert by_target[target]['action'] == 'LANE_ACK'
           held_targets = {x['target'] for x in plan['holds']}
           assert held_targets == {'TOOL007'}
           lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
           assert lane['result'] == 'PASS_INTERNAL_GITHUB'
           assert lane['failures'] == []
           assert {x['lane'] for x in lane['records']} == {'EMAIL_DB','TOOL037','WORK_GATE'}
-          print('PASS: state schema + dedupe + privacy + integration-core contract + dispatcher + lane evidence')
+          rr = json.loads(Path('feedback_pipeline/restart_rollback_evidence.json').read_text(encoding='utf-8'))
+          assert rr['result'] == 'PASS_INTERNAL_FIXTURE'
+          assert rr['after']['restart_from_stage'] == 'TARGET_REVISION_READ_APPLY'
+          print('PASS: state + multi-target SKIP_UNCHANGED + lane evidence + rollback/restart fixture')
           PY
