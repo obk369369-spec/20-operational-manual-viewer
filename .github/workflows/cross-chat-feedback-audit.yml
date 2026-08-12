@@ -39,6 +39,10 @@ jobs:
         run: python feedback_pipeline/target_dispatcher.py
       - name: Run controlled rollback and restart checkpoint fixture
         run: python feedback_pipeline/restart_rollback_fixture.py
+      - name: Run actual cross-target controlled failure and rollback
+        run: python feedback_pipeline/cross_target_restart_e2e.py fail
+      - name: Restart automatically from persisted last_success_stage checkpoint
+        run: python feedback_pipeline/cross_target_restart_e2e.py restart
       - name: Execute central lane ACKs and create evidence
         run: |
           python - <<'PY'
@@ -89,6 +93,7 @@ jobs:
           path: |
             feedback_pipeline/lane_apply_evidence.json
             feedback_pipeline/restart_rollback_evidence.json
+            feedback_pipeline/cross_target_restart_e2e_evidence.json
             feedback_pipeline/target_dispatch_plan.json
       - name: Validate collector and integration-core state
         run: |
@@ -136,5 +141,12 @@ jobs:
           rr = json.loads(Path('feedback_pipeline/restart_rollback_evidence.json').read_text(encoding='utf-8'))
           assert rr['result'] == 'PASS_INTERNAL_FIXTURE'
           assert rr['after']['restart_from_stage'] == 'TARGET_REVISION_READ_APPLY'
-          print('PASS: state + multi-target SKIP_UNCHANGED + lane evidence + rollback/restart fixture')
+          actual = json.loads(Path('feedback_pipeline/cross_target_restart_e2e_evidence.json').read_text(encoding='utf-8'))
+          assert actual['result'] == 'PASS_INTERNAL_GITHUB_RUN'
+          assert actual['checkpoint_read'] is True
+          assert actual['restart_from_stage'] == 'TARGET_REVISION_READ_APPLY'
+          assert actual['readback_match'] is True
+          assert actual['target_clean_after_e2e'] is True
+          assert actual['executed_after_restart'] == ['TARGET_REVISION_READ_APPLY','TEST_EVIDENCE','RESTART_OR_HOLD']
+          print('PASS: state + SKIP_UNCHANGED + lane evidence + actual cross-target automatic restart E2E')
           PY
