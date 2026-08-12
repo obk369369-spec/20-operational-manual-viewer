@@ -3,8 +3,8 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 12:19",
-  "scope": "WIC reusable integration-core preparation and execution restart state",
+  "updated_kst": "2026-08-12 16:24",
+  "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": [
     "EVENT",
@@ -63,15 +63,29 @@
     "canonical revision fingerprint and changed-scope apply decision contract implementation",
     "stage checkpoint/restart state contract implementation",
     "tool-module contract validation implementation",
+    "canonical GitHub write/read-back for feedback f2aeb4e8f5fac3c9618f",
+    "TOOL006 central rule pointer verification",
+    "TOOL006 canonical revision fa09bcdec96669d97ef3a18f target-state apply and internal GitHub test success",
     "tool_1 defaultToc synthetic fallback location discovery",
     "tool_6 STRUCTURE_PASS archive verification",
     "tool_7 07-wic-setting-tool-v1 purpose mismatch finding",
     "tool_13 backend/API not identified in prior inspection"
   ],
+  "current_evidence": {
+    "feedback_id": "f2aeb4e8f5fac3c9618f",
+    "canonical_revision": "fa09bcdec96669d97ef3a18f",
+    "canonical_write_commit": "50d0ca22a5427293c6cdf1987d83110f3e0dbfd4",
+    "tool006_target_apply_commit": "3961fd8c59b8dc08100204d4437e217460f292b2",
+    "tool006_target_state_commit": "d3d49c57b4415dcd93377f517fb111c44f9f4526",
+    "tool006_workflow_run_id": 31573547418,
+    "tool006_validation_job_id": 94040506272,
+    "tool006_test_result": "completed/success",
+    "external_independent_verification": false
+  },
   "current_blockers": {
-    "integration_core": "Deterministic conflict/dedup, revision-cache decision, checkpoint/restart, and module-contract logic now exists, but actual canonical GitHub writer/read-back -> target apply -> target test/evidence E2E for a new real feedback event is still missing.",
+    "integration_core": "First real cross-repository target E2E passed for TOOL006, but the other routed targets/lanes do not yet have reusable apply adapters/evidence and failure rollback/restart has not been exercised.",
     "independent_verification": "No third-party actual run/result URL is currently recorded. Do not claim independent verification."
   },
-  "restart_point": "Reuse the existing ingest/registry/conflict/revision/checkpoint/module-contract code. Next concrete implementation starts at CANONICAL_WRITE: connect a real canonical single-source writer with read-back, then persist target revision cache, apply only changed scopes through the target module/adapter, record actual target test evidence, and exercise failure rollback/restart. Use one real new feedback event for the full chain. Do not spend Work credit re-reading rules, recreating routing/conflict logic, or repeating completed searches.",
+  "restart_point": "Do not repeat canonical writer or TOOL006 apply. Next implement/reuse the common target dispatcher/adapter pattern for the remaining routed targets, prioritizing TOOL013 as the second repository target and defining non-repository lane adapters for EMAIL_DB/TOOL037/WORK_GATE. Persist each last_applied_revision, apply only changed scope, run actual target validation, and return evidence to the central manifest/cache. Then exercise one controlled failure to prove rollback/restart. Structure remains HOLD until the routed-target/lane and failure-path gates are satisfied.",
   "completion_policy": "No structure or tool is functionally PASS from documentation, code presence, UI presence, historical claims, or commit alone. PASS requires actual input -> execution -> output -> expected comparison with reusable evidence."
 }
