@@ -51,8 +51,9 @@
     "TOOL007": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "Existing repository 07-wic-setting-tool-v1 explicitly states its current execution artifact is a setting tool and does not match the latest TOOL007 customer-contact-judgment purpose.",
-      "status": "HOLD_TARGET_PURPOSE_MISMATCH"
+      "apply_mode": "CENTRAL_LANE_ACK",
+      "status": "CI_EXECUTION_WIRED_PENDING_RUN_EVIDENCE",
+      "reason": "Purpose-matching central adapter customer_pipeline/tool7_contact_judgment.py passed deterministic local fixtures and is now routed through the existing central audit workflow; GitHub run evidence is still required before full PASS."
     },
     "TOOL013": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
