@@ -1,27 +1,31 @@
 {
-  "schema_version": 2,
-  "pipeline_status": "ACTIVE",
-  "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "audit_ledger": "WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md",
-  "collector_mode": "scheduled_personal_context_delta",
   "collector_frequency": "hourly",
-  "last_context_cursor": "2026-08-10T15:32:00+09:00",
-  "processed_feedback_ids": [
-    "dc42d6f20b042305490b",
-    "a783a76f2537c6c907ca"
-  ],
-  "privacy": {
-    "persist_raw_customer_pii": false,
-    "persist_rule_excerpt_only": true,
-    "max_excerpt_chars": 500
-  },
-  "work_gate": {
-    "chat_files_first": true,
-    "github_second": true,
-    "ordinary_runtime_third": true,
-    "work_only_after_all_three_no": true
-  },
+  "collector_mode": "scheduled_personal_context_delta",
   "integration_core": {
+    "canonical_layers": [
+      "GLOBAL",
+      "WORKGROUP",
+      "TOOL_OR_DOMAIN_OVERRIDE",
+      "DATA_OR_EXECUTION_ASSET"
+    ],
+    "feedback_checkpoints": {
+      "f2aeb4e8f5fac3c9618f": {
+        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
+        "last_stage": "TARGET_REVISION_READ_APPLY",
+        "status": "HOLD"
+      }
+    },
+    "holds": [],
+    "module_contract_required": [
+      "input_schema",
+      "output_schema",
+      "validate",
+      "apply",
+      "rollback",
+      "fixture",
+      "evidence"
+    ],
     "stage_order": [
       "EVENT",
       "NORMALIZE",
@@ -33,27 +37,14 @@
       "TEST_EVIDENCE",
       "RESTART_OR_HOLD"
     ],
-    "canonical_layers": [
-      "GLOBAL",
-      "WORKGROUP",
-      "TOOL_OR_DOMAIN_OVERRIDE",
-      "DATA_OR_EXECUTION_ASSET"
-    ],
-    "feedback_checkpoints": {},
-    "target_revision_cache": {},
-    "holds": [],
-    "module_contract_required": [
-      "input_schema",
-      "output_schema",
-      "validate",
-      "apply",
-      "rollback",
-      "fixture",
-      "evidence"
-    ],
     "structure_pass": false,
-    "structure_pass_reason": "Actual canonical GitHub writer/read-back -> target apply -> test evidence E2E has not yet completed for a new real feedback event."
+    "structure_pass_reason": "Canonical mutation/read-back prepared; cross-repository target apply/test evidence remains HOLD.",
+    "target_revision_cache": {}
   },
+  "last_context_cursor": "2026-08-12T15:20:47+09:00",
+  "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
+  "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
+  "pipeline_status": "ACTIVE",
   "post_structure_priority": [
     "email_collection",
     "tool_7_customer_contact",
@@ -65,5 +56,21 @@
     "publisher_28_31",
     "remaining_registered_tools_and_chats"
   ],
-  "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only."
+  "privacy": {
+    "max_excerpt_chars": 500,
+    "persist_raw_customer_pii": false,
+    "persist_rule_excerpt_only": true
+  },
+  "processed_feedback_ids": [
+    "dc42d6f20b042305490b",
+    "a783a76f2537c6c907ca",
+    "f2aeb4e8f5fac3c9618f"
+  ],
+  "schema_version": 2,
+  "work_gate": {
+    "chat_files_first": true,
+    "github_second": true,
+    "ordinary_runtime_third": true,
+    "work_only_after_all_three_no": true
+  }
 }

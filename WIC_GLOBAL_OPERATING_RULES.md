@@ -497,3 +497,37 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - 2026-08-09 17:32 KST: 외부작업 자기판정 금지와 read-back/실행증거 원칙, 한 번의 오더로 가능한 범위까지 연속 처리, 7번 Chat-native 실행 파이프라인, 안내서 콘텐츠 확장 규칙, 분노·피로 신호의 구조 실패 판정을 추가.
 - 2026-08-09 16:20 KST: 사용자가 과거 수행해온 반복 작업 24종을 제거 대상으로 명시. 1~27 도구 등록표, 28~39 주요 업무 대화창 등록표, Chat 실제 연결상태, 단일 원본/포인터 방식, 대화결과의 INPUT/RULE/OUTPUT/VALIDATION/ERROR_HASH/REUSE 구조를 추가.
 - 2026-08-09: 단일 운영 원본 생성. 관찰자 모드, 결과 게이트, 외부증거, Chat/Work/Codex 분리, 껍데기 차단, 이메일 수집, 고객 컨택, 안내서, 메타데이터, 도구개발 규칙을 최초 통합.
+
+<!-- WIC_CANONICAL_FEEDBACK_START -->
+```json
+{
+  "records": [
+    {
+      "active": true,
+      "classification": "PRIORITY_CHANGE",
+      "feedback_id": "f2aeb4e8f5fac3c9618f",
+      "impacted_layers": [
+        "GLOBAL",
+        "WORKGROUP",
+        "TOOL_OR_DOMAIN_OVERRIDE",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "GitHub 중앙 상태의 최신 restart point와 WIC_OBSERVER_STATUS.md를 먼저 읽고 완료 작업은 반복하지 마라. 2026-08-13부터 Work를 사용할 때의 최우선 1순위는 개별 도구 개발이 아니라 WIC 전체 자동 통합 기반 구조 자체를 실제로 완성하는 것이다. 이 구조는 모든 주요 대화창/도구의 새 피드백·오류·규칙을 최소 재분석으로 흡수하고, 공통마스터→업무군→분야/도구 예외→데이터/실행자산 계층에 자동 라우팅하며, 기존 규칙과 충돌검사·중복제거·deprecated/HOLD 판정·단일원본 갱신·해당 도구 즉시 참조·read-back/테스트·restart point까지 한 파이프라인으로 처리해야 한다. 단순 스크립트/문서 존재는 완료가 아니며 실제 새 피드백 1건 이상을 넣어 자동 분류→충돌검사→중앙 GitHub 반영→대상 도구 read-back/적용→테스트 증거까지 성공해야 구조 PASS다. 이 구조가 실제 PASS한 뒤 우선순위는 이메일 수집→7번",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL",
+        "EMAIL_DB",
+        "TOOL001",
+        "TOOL002",
+        "TOOL006",
+        "TOOL007",
+        "TOOL013",
+        "TOOL037",
+        "WORK_GATE"
+      ]
+    }
+  ],
+  "schema_version": 1
+}
+```
+<!-- WIC_CANONICAL_FEEDBACK_END -->

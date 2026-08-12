@@ -1,0 +1,54 @@
+{
+  "canonical_revision": "fa09bcdec96669d97ef3a18f",
+  "classification": "PRIORITY_CHANGE",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "f2aeb4e8f5fac3c9618f",
+    "impacted_layers": [
+      "GLOBAL",
+      "WORKGROUP",
+      "TOOL_OR_DOMAIN_OVERRIDE",
+      "DATA_OR_EXECUTION_ASSET"
+    ],
+    "impacted_targets": [
+      "EMAIL_DB",
+      "TOOL001",
+      "TOOL002",
+      "TOOL006",
+      "TOOL007",
+      "TOOL013",
+      "TOOL037",
+      "WORK_GATE"
+    ],
+    "reason": "no active duplicate or unresolved same-priority conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "f2aeb4e8f5fac3c9618f",
+  "observed_at": "2026-08-12T15:20:47+09:00",
+  "read_back": {
+    "intended_hash": "60db18f159920dddbd8b5755214d0bec55418b4d3764628684e3f848d1168638",
+    "read_back_hash": "60db18f159920dddbd8b5755214d0bec55418b4d3764628684e3f848d1168638",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "GitHub 중앙 상태의 최신 restart point와 WIC_OBSERVER_STATUS.md를 먼저 읽고 완료 작업은 반복하지 마라. 2026-08-13부터 Work를 사용할 때의 최우선 1순위는 개별 도구 개발이 아니라 WIC 전체 자동 통합 기반 구조 자체를 실제로 완성하는 것이다. 이 구조는 모든 주요 대화창/도구의 새 피드백·오류·규칙을 최소 재분석으로 흡수하고, 공통마스터→업무군→분야/도구 예외→데이터/실행자산 계층에 자동 라우팅하며, 기존 규칙과 충돌검사·중복제거·deprecated/HOLD 판정·단일원본 갱신·해당 도구 즉시 참조·read-back/테스트·restart point까지 한 파이프라인으로 처리해야 한다. 단순 스크립트/문서 존재는 완료가 아니며 실제 새 피드백 1건 이상을 넣어 자동 분류→충돌검사→중앙 GitHub 반영→대상 도구 read-back/적용→테스트 증거까지 성공해야 구조 PASS다. 이 구조가 실제 PASS한 뒤 우선순위는 이메일 수집→7번",
+  "schema_version": 1,
+  "source_chat": "CONTROL_PRIMARY",
+  "source_ref": "automation-run-2026-08-12-1520",
+  "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+  "targets": [
+    "CENTRAL",
+    "EMAIL_DB",
+    "TOOL001",
+    "TOOL002",
+    "TOOL006",
+    "TOOL007",
+    "TOOL013",
+    "TOOL037",
+    "WORK_GATE"
+  ]
+}
