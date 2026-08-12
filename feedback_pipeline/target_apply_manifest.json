@@ -1,26 +1,27 @@
 {
   "canonical_revision": "fa09bcdec96669d97ef3a18f",
   "feedback_id": "f2aeb4e8f5fac3c9618f",
-  "generated_at_utc": "2026-08-12T06:24:25.551266+00:00",
+  "generated_at_utc": "2026-08-12T08:17:24+00:00",
   "schema_version": 1,
   "targets": {
     "EMAIL_DB": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "apply_mode": "CENTRAL_LANE_ACK",
+      "status": "ADAPTER_DEFINED_PENDING_EXECUTION",
+      "reason": "Non-repository lane adapter is now defined; actual lane apply/evidence has not executed yet."
     },
     "TOOL001": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "reason": "No verified target repository/adapter is registered; fail closed instead of guessing.",
+      "status": "HOLD_NO_VERIFIED_ADAPTER"
     },
     "TOOL002": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "reason": "No verified target repository/adapter is registered; fail closed instead of guessing.",
+      "status": "HOLD_NO_VERIFIED_ADAPTER"
     },
     "TOOL006": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
@@ -40,26 +41,34 @@
     "TOOL007": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "reason": "No verified target repository/adapter is registered; fail closed instead of guessing.",
+      "status": "HOLD_NO_VERIFIED_ADAPTER"
     },
     "TOOL013": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "apply_mode": "CENTRAL_RULE_REFERENCE_REVISION_ACK",
+      "changed_scope": ["GLOBAL_PRIORITY_AND_WORK_GATE"],
+      "target_repository": "obk369369-spec/13-excel-upload",
+      "target_apply_commit": "8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b",
+      "target_read_back_blob": "eeaa796667dd2c78bb2913f5cbf01bf6d11f8052",
+      "status": "APPLIED_PENDING_TEST_EVIDENCE",
+      "reason": "Target state write/read-back completed; push-triggered workflow run/result has not yet been confirmed through the connector.",
+      "external_independent_verification": false
     },
     "TOOL037": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "apply_mode": "CENTRAL_LANE_ACK",
+      "status": "ADAPTER_DEFINED_PENDING_EXECUTION",
+      "reason": "Non-repository lane adapter is now defined; actual lane apply/evidence has not executed yet."
     },
     "WORK_GATE": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "apply_mode": "CENTRAL_LANE_ACK",
+      "status": "ADAPTER_DEFINED_PENDING_EXECUTION",
+      "reason": "Non-repository lane adapter is now defined; actual lane apply/evidence has not executed yet."
     }
   }
 }
