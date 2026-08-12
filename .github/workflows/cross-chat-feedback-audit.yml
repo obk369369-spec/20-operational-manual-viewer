@@ -118,9 +118,9 @@ jobs:
           ]
           plan = json.loads(Path('feedback_pipeline/target_dispatch_plan.json').read_text(encoding='utf-8'))
           action_targets = {x['target'] for x in plan['actions']}
-          assert {'TOOL006', 'TOOL013', 'EMAIL_DB', 'TOOL037', 'WORK_GATE'}.issubset(action_targets)
+          assert {'TOOL001','TOOL002','TOOL006','TOOL013','EMAIL_DB','TOOL037','WORK_GATE'}.issubset(action_targets)
           held_targets = {x['target'] for x in plan['holds']}
-          assert {'TOOL001', 'TOOL002', 'TOOL007'}.issubset(held_targets)
+          assert held_targets == {'TOOL007'}
           lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
           assert lane['result'] == 'PASS_INTERNAL_GITHUB'
           assert lane['failures'] == []
