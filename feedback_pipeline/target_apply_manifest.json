@@ -25,8 +25,17 @@
     "TOOL006": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "status": "APPLIED_TEST_PASS_INTERNAL_GITHUB",
+      "apply_mode": "CENTRAL_RULE_REFERENCE_REVISION_ACK",
+      "changed_scope": ["GLOBAL_PRIORITY_AND_WORK_GATE"],
+      "target_repository": "obk369369-spec/06-toc-check",
+      "target_apply_commit": "3961fd8c59b8dc08100204d4437e217460f292b2",
+      "target_state_commit": "d3d49c57b4415dcd93377f517fb111c44f9f4526",
+      "target_read_back_blob": "cb508b04baf13bbdc3ae5c0ae0614a99ea591a0f",
+      "workflow_run_id": 31573547418,
+      "validation_job_id": 94040506272,
+      "test_result": "completed/success",
+      "external_independent_verification": false
     },
     "TOOL007": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
