@@ -35,6 +35,8 @@ jobs:
         run: python feedback_pipeline/cross_chat_feedback_ingest.py
       - name: Run canonical mutation and read-back fixtures
         run: python feedback_pipeline/canonical_writer.py
+      - name: Build and validate deterministic target dispatch plan
+        run: python feedback_pipeline/target_dispatcher.py
       - name: Validate collector and integration-core state
         run: |
           python - <<'PY'
@@ -66,5 +68,10 @@ jobs:
               'tool_1_intermediate_final_guide', 'metadata_37',
               'tool_13_excel_upload', 'tool_6_toc', 'tool_2_bid'
           ]
-          print('PASS: state schema + dedupe + privacy + integration-core contract')
+          plan = json.loads(Path('feedback_pipeline/target_dispatch_plan.json').read_text(encoding='utf-8'))
+          action_targets = {x['target'] for x in plan['actions']}
+          assert {'TOOL006', 'TOOL013', 'EMAIL_DB', 'TOOL037', 'WORK_GATE'}.issubset(action_targets)
+          held_targets = {x['target'] for x in plan['holds']}
+          assert {'TOOL001', 'TOOL002', 'TOOL007'}.issubset(held_targets)
+          print('PASS: state schema + dedupe + privacy + integration-core contract + dispatcher plan')
           PY
