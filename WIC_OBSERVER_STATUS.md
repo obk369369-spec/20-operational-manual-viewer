@@ -1,7 +1,7 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-12 16:26 KST
-상태: ACTIVE / STRUCTURE_FIRST / CANONICAL_TRANSPORT_PASS / TOOL006_TARGET_E2E_PASS / OVERALL_HOLD
+최종 갱신: 2026-08-12 17:17 KST
+상태: ACTIVE / STRUCTURE_FIRST / TOOL006_TARGET_E2E_PASS / TOOL013_APPLY_PENDING_TEST / DISPATCHER_IMPLEMENTED / OVERALL_HOLD
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
@@ -13,95 +13,109 @@
 - 구조 PASS 후 우선순위는 **이메일 수집 → 7번 고객 컨택 판단 → 1번 중간/최종 안내서 → 37 메타데이터 → 13 엑셀 자동 업로드 → 6번 목차 정리 → 2번 입찰 → 28~31 → 나머지 등록 도구/주요 업무창**이다.
 
 ## 이번 실행에서 실제 개선한 부분
-### 1. 최신 restart point를 먼저 읽고 완료 작업 반복 금지 준수
+### 1. 최신 restart point 기준으로만 재개
 - `WIC_OBSERVER_STATUS.md`와 `WIC_EXECUTION_STATE.json`을 먼저 read-back했다.
-- observer가 더 최신이었고 중앙 실행상태는 `CANONICAL_WRITE`에 머물러 있어 stale 상태임을 확인했다.
-- 이미 PASS된 ingest / registry-source routing / conflict-dedup / canonical writer / canonical GitHub transport는 재개발하지 않았다.
-- 실제 시작점은 최신 observer의 `TARGET_REVISION_READ_APPLY = HOLD`였다.
+- 이미 PASS된 ingest / registry routing / conflict-dedup / canonical writer / canonical GitHub transport / TOOL006 target E2E는 반복하지 않았다.
+- 시작점은 `MULTI_TARGET_AND_ROLLBACK = HOLD`였다.
 
-### 2. 첫 실제 cross-repository target apply 수행 — TOOL006
-- 대상 저장소: `obk369369-spec/06-toc-check`
-- 기존 `WIC_RULE_SOURCE.md`가 중앙 단일원본을 가리키는 것을 read-back했다.
-- 현재 피드백은 `PRIORITY_CHANGE`이므로 TOOL006 기능코드를 억지로 수정하지 않고, 중앙 규칙 복제 없이 해당 canonical revision을 실제 소비했다는 target state만 영속화했다.
-- 새 상태파일: `WIC_TARGET_APPLY_STATE.json`
-- canonical revision: `fa09bcdec96669d97ef3a18f`
-- feedback_id: `f2aeb4e8f5fac3c9618f`
-- target apply commit: `3961fd8c59b8dc08100204d4437e217460f292b2`
-- 최초 read-back blob: `cb508b04baf13bbdc3ae5c0ae0614a99ea591a0f`
-- 로컬 규칙 복제본은 생성하지 않았다.
+### 2. 두 번째 실제 repository target TOOL013 apply/read-back
+- 대상 저장소: `obk369369-spec/13-excel-upload`.
+- 기존 `WIC_RULE_SOURCE.md`가 중앙 `WIC_GLOBAL_OPERATING_RULES.md` 단일원본을 가리키는 것을 read-back했다.
+- 이번 피드백은 기능변경이 아니라 global priority/work-gate 변경이므로 `index.html` 기능을 억지 수정하지 않았다.
+- `WIC_TARGET_APPLY_STATE.json`을 생성해 canonical revision `fa09bcdec96669d97ef3a18f` 소비 상태를 실제 영속화했다.
+- feedback_id: `f2aeb4e8f5fac3c9618f`.
+- target apply commit: `8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b`.
+- read-back blob: `eeaa796667dd2c78bb2913f5cbf01bf6d11f8052`.
+- 현재 커넥터에서 push-triggered workflow run/result가 아직 확인되지 않아 **TOOL013 TEST PASS는 HOLD**다.
 
-### 3. TOOL006 실제 target test 성공
-- target apply push로 기존 실제 검증 workflow가 자동 실행됐다.
-- workflow: `GitHub platform evidence (not independent)`
-- run: `31573547418`
-- validation job: `94040506272`
-- 결과: `completed / success`
-- 실제 성공 단계: checkout → Node setup → real source static validation → artifact preserve → internal gate.
-- Pages deployment job `94040536319`: success.
-- permanent GitHub evidence archive job `94040536379`: success.
-- target state에 이 실행증거를 기록한 commit: `d3d49c57b4415dcd93377f517fb111c44f9f4526`.
-- 이는 **GitHub 내부 실행증거**이며 제3자 독립검증으로 표시하지 않는다.
+### 3. 범용 target/lane adapter registry 실제 추가
+- 새 파일: `feedback_pipeline/target_adapter_registry.json`.
+- 실제 확인된 repository target만 등록:
+  - TOOL006 → `obk369369-spec/06-toc-check`
+  - TOOL013 → `obk369369-spec/13-excel-upload`
+- repository가 없는 lane은 별도 adapter로 정의:
+  - EMAIL_DB
+  - TOOL037
+  - WORK_GATE
+- TOOL001 / TOOL002 / TOOL007은 저장소를 추측하지 않고 unresolved/fail-closed로 유지.
+- commit: `d2053d31878cfa7aa950743a1ee460e6bbcfb28f`.
 
-### 4. 중앙 manifest / revision cache에 TOOL006 결과 환류
-- `feedback_pipeline/target_apply_manifest.json`에서 TOOL006을 `APPLIED_TEST_PASS_INTERNAL_GITHUB`로 갱신했다.
-- manifest commit: `0fc35179862e071805c6452df0105f4febb215e0`.
-- `feedback_pipeline/state.json`의 `target_revision_cache.TOOL006`에 canonical revision, target commit/read-back, workflow run/job 결과를 영속화했다.
-- central state commit: `631039fd52c3f37c6ec9a7d4662351f0622a474d`.
-- checkpoint는 `TEST_EVIDENCE`까지 전진했지만 다른 routed target/lane과 rollback 증거가 남아 status는 HOLD를 유지했다.
+### 4. 범용 deterministic dispatcher 실제 구현
+- 새 파일: `feedback_pipeline/target_dispatcher.py`.
+- 기능:
+  - manifest + verified adapter registry를 읽어 target별 실행계획 생성
+  - repository target / non-repository lane 분리
+  - `SKIP_UNCHANGED` 지원
+  - 검증되지 않은 target은 `HOLD_NO_VERIFIED_ADAPTER`로 fail-closed
+  - 중복 target/누락 revision/잘못된 action 검증
+- commit: `706695f3d6cce83bc526e9f514554b55d3a1a12c`.
+- `.github/workflows/cross-chat-feedback-audit.yml`에 dispatcher fixture 실행을 연결했다.
+- workflow wiring commit: `0edee4ba5c92953fe1735efb587c3ae8407e2e97`.
+- 실제 workflow run/result가 확인되기 전 **dispatcher CI PASS 주장 금지**.
 
-### 5. stale 중앙 restart state 교정
-- `WIC_EXECUTION_STATE.json`을 실제 최신 상태로 갱신했다.
-- TOOL006 target E2E를 완료 작업 목록에 추가하고 다시 수행하지 않도록 잠갔다.
-- execution-state commit: `d1c31ad145348c90703f43fbf2ce88c8b3609899`.
+### 5. 중앙 manifest / revision cache / restart state 환류
+- `target_apply_manifest.json`에 TOOL013 apply/read-back을 `APPLIED_PENDING_TEST_EVIDENCE`로 기록.
+- EMAIL_DB / TOOL037 / WORK_GATE는 `ADAPTER_DEFINED_PENDING_EXECUTION`.
+- TOOL001 / TOOL002 / TOOL007은 `HOLD_NO_VERIFIED_ADAPTER`.
+- manifest commit: `9265654aa6d811057f612c11890879aeb57b3b1a`.
+- `feedback_pipeline/state.json` target revision cache에 TOOL013 pending evidence를 추가.
+- state commit: `291f6e9d2f5168bc4ff97cde7339376c44e517be`.
+- `WIC_EXECUTION_STATE.json` restart point도 최신으로 전진.
+- execution-state commit: `e94394239f98c641099a1790b961eba336180094`.
 
 ## 현재 운영준비도
-### PASS된 부분
-- 실제 새 피드백 ingest/normalize/route.
-- conflict/dedup 판정.
-- canonical single-source GitHub write.
-- canonical GitHub read-back.
+### 실제 PASS
+- 새 피드백 ingest/normalize/route.
+- conflict/dedup.
+- canonical single-source GitHub write/read-back.
 - canonical revision 생성.
-- 실제 cross-repository target 1개(TOOL006)의 revision apply/read-back.
-- TOOL006 actual GitHub validation/test/evidence.
-- TOOL006 target revision cache 중앙 환류.
+- TOOL006 repository target apply/read-back/actual GitHub validation/test/evidence.
+- TOOL006 결과 중앙 cache 환류.
 
-### 아직 HOLD인 부분
-1. TOOL001 / TOOL002 / TOOL007 / TOOL013 등 나머지 독립 저장소 target의 범용 apply adapter/dispatcher 및 실제 증거.
-2. EMAIL_DB / TOOL037 / WORK_GATE처럼 독립 저장소가 아닌 lane의 apply 방식.
-3. 변경이 없으면 SKIP하고 변경된 scope만 적용하는 공통 dispatcher의 다중 target 실제 증거.
-4. 실패 target에 대한 rollback hook 실제 실행증거.
-5. last_success_stage부터 restart되는 실패→재개 실제 증거.
-6. 위 조건 충족 전 구조 전체 PASS 금지.
+### 실제 진행 중
+- TOOL013 canonical revision target apply/read-back: 완료.
+- TOOL013 actual target workflow test/evidence: 확인 대기/HOLD.
+- 범용 dispatcher/adapter code + CI wiring: 구현 완료, actual CI run evidence 확인 전 HOLD.
+
+### 아직 HOLD
+1. EMAIL_DB / TOOL037 / WORK_GATE lane adapter actual apply/evidence.
+2. TOOL001 / TOOL002 / TOOL007 verified target adapter/repository 확인 및 actual apply/test.
+3. `SKIP_UNCHANGED` 다중 target actual evidence.
+4. 통제된 실패 target의 rollback hook actual evidence.
+5. `last_success_stage`부터 실패→재개 actual evidence.
+6. 위 gate 충족 전 전체 구조 PASS 금지.
 
 ## blocker
-### MULTI_TARGET_AND_ROLLBACK = HOLD
-- 원인: TOOL006 한 대상의 실제 apply/test는 성공했지만, 하나의 피드백이 route한 나머지 target/lane으로 같은 패턴을 재사용하는 자동 dispatcher와 실패경로 증거가 아직 없다.
-- 따라서 첫 cross-repository target E2E는 PASS지만 **WIC 전체 자동 통합 구조 자체는 아직 PASS가 아니다.**
+### MULTI_TARGET_TEST_AND_FAILURE_PATH = HOLD
+- TOOL013 state write/read-back은 성공했지만 actual push workflow run/result 증거가 아직 없다.
+- lane adapter는 정의했지만 실제 실행증거가 없다.
+- TOOL001/002/007은 검증된 저장소가 없어 fail-closed 상태다.
+- rollback/restart 실패경로를 실제로 실행하지 않았다.
 
 ## 개선방법
-- TOOL006에서 검증된 `central revision → target state → target actual test → central evidence/cache` 패턴을 범용 dispatcher/adapter contract로 일반화한다.
-- 다음 독립 저장소 target은 TOOL013을 우선 사용한다.
-- 독립 저장소가 없는 EMAIL_DB / TOOL037 / WORK_GATE는 repository write를 억지로 만들지 않고 lane-specific apply/evidence adapter를 정의한다.
-- 같은 canonical revision이면 `SKIP_UNCHANGED`; 바뀐 경우만 impacted scope를 적용한다.
-- 통제된 실패 fixture 1건을 만들어 rollback/restart가 실제로 작동하는지 증거를 남긴다.
+- TOOL013 commit `8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b`의 actual GitHub workflow run/result를 먼저 확인하고 중앙 cache에 환류한다.
+- EMAIL_DB / TOOL037 / WORK_GATE는 저장소를 새로 만들지 않고 central lane ack/evidence 방식으로 실제 실행한다.
+- TOOL001/002/007은 기존 증거에서 실제 target을 확인하기 전 adapter를 만들지 않는다.
+- 통제된 실패 fixture 1건으로 rollback + last_success_stage restart를 실제 검증한다.
 
 ## 최신 restart point
-1. `apply_feedback_event.py`, `canonical_writer.py`, TOOL006 target apply를 다시 만들지 않는다.
-2. TOOL006에서 성공한 패턴을 재사용해 **공통 target dispatcher/adapter**를 다음 실행 가능한 범위에서 구현한다.
-3. 두 번째 실제 repository target은 TOOL013을 우선한다.
-4. TOOL013에서 `canonical revision read → last_applied 비교 → changed-scope apply/ack → actual target test → evidence → central cache`를 실제 실행한다.
-5. EMAIL_DB / TOOL037 / WORK_GATE lane adapter를 저장소 생성 없이 정의/실행 가능한 형태로 연결한다.
-6. 통제된 실패 1건으로 rollback + last_success_stage restart를 실제 검증한다.
-7. routed target/lane과 failure-path gate를 충족한 뒤에만 구조 PASS를 검토한다.
+1. canonical writer / canonical transport / TOOL006 apply / TOOL013 state write / dispatcher 설계는 반복하지 않는다.
+2. **TOOL013 actual workflow run/result 확인**부터 시작한다.
+3. 성공이면 target state + central manifest/cache에 run/job/result 증거를 환류한다.
+4. 다음으로 EMAIL_DB / TOOL037 / WORK_GATE lane adapter를 실제 실행/증거화한다.
+5. TOOL001/002/007은 verified target 증거가 있을 때만 연결한다.
+6. 이후 controlled failure 1건으로 rollback/restart actual E2E를 검증한다.
+7. routed target/lane + failure-path gate 충족 뒤에만 구조 PASS 검토.
 
 ## Work 크레딧 사용 게이트
-- 기존 규칙 재독해/재요약/저장소 반복검색에는 사용 금지.
-- 이미 PASS된 ingest/registry/conflict/canonical writer/canonical transport/TOOL006 apply 재개발 금지.
-- Work는 다중 target cross-repository apply, 실제 target 실행/E2E, 외부 권한/환경 때문에 Chat+GitHub에서 막히는 구간에만 사용한다.
+- 기존 규칙 재독해/재요약/저장소 반복검색에는 Work 사용 금지.
+- 이미 PASS된 앞단이나 TOOL006 재개발 금지.
+- Work는 Chat/GitHub에서 실제로 막히는 cross-target 실행, 실제 E2E, 외부 권한/환경 구간에만 사용.
 
 ## 독립검증 상태
-- GitHub 내부 Actions/run/read-back: 실제 증거 있음.
+- GitHub 내부 Actions/run/read-back: TOOL006에 실제 증거 있음.
+- TOOL013: read-back 증거는 있으나 actual workflow result 확인 전 HOLD.
 - 제3자 외부검증: **없음 / HOLD**.
-- 실제 외부 run/result URL이 생기기 전 독립검증 PASS 금지.
+- 실제 외부 run/result URL 전 독립검증 PASS 금지.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
