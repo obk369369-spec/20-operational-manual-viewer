@@ -16,6 +16,7 @@
     "TOOL037 guessed repository creation/search while available repository inventory is unchanged",
     "TOOL013 static/internal validation as a substitute for business E2E",
     "TOOL013 repeated File Library search while actual xlsx binary injection path is unavailable",
+    "TOOL006 historical/synthetic fixture validation as a substitute for business E2E",
     "TOOL002 business E2E re-run"
   ],
   "current_evidence": {
@@ -32,6 +33,7 @@
     "tool006_repository": "obk369369-spec/06-toc-check",
     "tool006_index_blob": "6d3fef9325e75b188b84d9c1a4888fce5ba112c9",
     "tool006_fixture": "tests/marketsandmarkets_historical_fixtures.json",
+    "tool006_golden_pair_status": "HOLD",
     "external_independent_verification": false
   },
   "current_blockers": {
@@ -40,9 +42,9 @@
     "tool001_business_e2e": "Chromium rerun dispatch remains blocked: runtime gh unavailable and connector has no workflow_dispatch action.",
     "tool037_business_e2e": "No purpose-matching actual metadata production repository/runner identified; central lane ACK alone is not business E2E.",
     "tool013_business_e2e": "Actual metadata spreadsheets are visible in File Library, but current GitHub/runtime path cannot inject those xlsx binaries into the existing browser/workflow execution. Existing workflow is static/internal validation only.",
-    "tool006_business_e2e": "Repository, historical fixture and workflow exist, but it is not yet verified that they preserve actual business TOC input and perform input-to-output expected comparison.",
+    "tool006_business_e2e": "The existing MarketsandMarkets file explicitly preserves historical failure classes and sample invariants; actual original-to-user-approved-final golden pair remains HOLD, so it is not actual business E2E evidence.",
     "independent_verification": "No third-party successful actual run/result evidence is recorded."
   },
-  "restart_point": "Do not revisit structure PASS or unchanged EMAIL_COLLECTION/TOOL007/TOOL001/TOOL037 blockers. TOOL013 is HOLD because actual File Library xlsx binaries cannot currently be injected into the GitHub/browser execution path; do not substitute synthetic/static validation. Proceed with TOOL006 by reading tests/marketsandmarkets_historical_fixtures.json and the existing workflow/scripts to determine whether actual business TOC input -> normalization -> output/read-back expected comparison is already executable. If historical/synthetic-only, record HOLD and skip already-PASS TOOL002 to 28-31.",
-  "completion_policy": "Downstream business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Static/internal fixture validation alone is not business PASS."
+  "restart_point": "Do not revisit structure PASS or unchanged EMAIL_COLLECTION/TOOL007/TOOL001/TOOL037 blockers. TOOL013 is HOLD due unavailable actual xlsx binary injection path. TOOL006 is HOLD because existing regression fixture is historical/sample-only and its actual original-to-approved-final golden pair remains HOLD. TOOL002 is already business PASS and must not be rerun. Proceed to priority group 28-31: identify existing registered repositories/execution assets, do not create guessed replacements, and test only assets that support actual business input -> execution -> output -> expected comparison evidence.",
+  "completion_policy": "Downstream business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Static/internal/historical fixture validation alone is not business PASS."
 }
