@@ -4,12 +4,14 @@ on:
   push:
     paths:
       - 'feedback_pipeline/**'
+      - 'WIC_CHAT_ROUTING_REGISTRY.md'
       - 'WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md'
       - 'WIC_GLOBAL_OPERATING_RULES.md'
       - '.github/workflows/cross-chat-feedback-audit.yml'
   pull_request:
     paths:
       - 'feedback_pipeline/**'
+      - 'WIC_CHAT_ROUTING_REGISTRY.md'
       - 'WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md'
       - 'WIC_GLOBAL_OPERATING_RULES.md'
       - '.github/workflows/cross-chat-feedback-audit.yml'
