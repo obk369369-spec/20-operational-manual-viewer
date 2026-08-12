@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "repository_targets": {
+    "TOOL006": {
+      "repository": "obk369369-spec/06-toc-check",
+      "mode": "CENTRAL_RULE_REFERENCE_REVISION_ACK",
+      "state_path": "WIC_TARGET_APPLY_STATE.json",
+      "verified": true
+    },
+    "TOOL013": {
+      "repository": "obk369369-spec/13-excel-upload",
+      "mode": "CENTRAL_RULE_REFERENCE_REVISION_ACK",
+      "state_path": "WIC_TARGET_APPLY_STATE.json",
+      "verified": true
+    }
+  },
+  "lane_targets": {
+    "EMAIL_DB": {
+      "mode": "CENTRAL_LANE_ACK",
+      "evidence": "central_state_and_ledger",
+      "repository_required": false
+    },
+    "TOOL037": {
+      "mode": "CENTRAL_LANE_ACK",
+      "evidence": "central_state_and_ledger",
+      "repository_required": false
+    },
+    "WORK_GATE": {
+      "mode": "CENTRAL_LANE_ACK",
+      "evidence": "central_state_and_ledger",
+      "repository_required": false
+    }
+  },
+  "unresolved_targets": ["TOOL001", "TOOL002", "TOOL007"]
+}
