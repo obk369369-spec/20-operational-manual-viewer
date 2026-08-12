@@ -6,16 +6,20 @@
     "canonical_layers": ["GLOBAL","WORKGROUP","TOOL_OR_DOMAIN_OVERRIDE","DATA_OR_EXECUTION_ASSET"],
     "feedback_checkpoints": {
       "f2aeb4e8f5fac3c9618f": {
-        "blocker": "TOOL006 and TOOL013 repository target E2E have internal GitHub evidence; EMAIL_DB/TOOL037/WORK_GATE lane execution, TOOL001/002/007 verified adapters, and rollback/restart failure-path evidence remain HOLD.",
-        "last_stage": "TEST_EVIDENCE",
-        "status": "HOLD"
+        "blocker": "",
+        "last_stage": "RESTART_OR_HOLD",
+        "status": "PASS_INTERNAL_GITHUB_E2E"
       }
     },
     "holds": [],
     "module_contract_required": ["input_schema","output_schema","validate","apply","rollback","fixture","evidence"],
     "stage_order": ["EVENT","NORMALIZE","ROUTE_EXISTING_REGISTRY","CONFLICT_DEDUP","CANONICAL_WRITE","READ_BACK","TARGET_REVISION_READ_APPLY","TEST_EVIDENCE","RESTART_OR_HOLD"],
-    "structure_pass": false,
-    "structure_pass_reason": "Two repository targets now have actual apply/read-back/internal GitHub test evidence, but lane coverage, unresolved target adapters, and failure-path rollback/restart remain HOLD.",
+    "structure_pass": true,
+    "structure_pass_reason": "Actual user feedback f2aeb4e8f5fac3c9618f was classified and conflict-checked, routed across all four canonical layers, written to the canonical source and hash read-back verified; the same canonical revision has actual target apply/read-back/internal GitHub test evidence on TOOL006/TOOL013, central lane execution evidence including TOOL007, revision-aware SKIP_UNCHANGED, and actual cross-target rollback/restart evidence. GitHub audit run 31642395087 completed success with artifact 9159365670 and no dispatch holds.",
+    "structure_pass_run_id": 31642395087,
+    "structure_pass_job_id": 94267844534,
+    "structure_pass_artifact_id": 9159365670,
+    "external_independent_verification": false,
     "target_revision_cache": {
       "TOOL006": {
         "canonical_revision": "fa09bcdec96669d97ef3a18f",
