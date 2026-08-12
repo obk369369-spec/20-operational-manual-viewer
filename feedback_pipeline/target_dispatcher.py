@@ -90,12 +90,10 @@ def main() -> None:
     by_target = {x["target"]: x for x in plan["actions"]}
     for target in ("TOOL001", "TOOL002", "TOOL006", "TOOL013"):
         assert by_target[target]["action"] == "SKIP_UNCHANGED"
-    assert by_target["EMAIL_DB"]["action"] == "LANE_ACK"
-    assert by_target["TOOL037"]["action"] == "LANE_ACK"
-    assert by_target["WORK_GATE"]["action"] == "LANE_ACK"
-    held = {x["target"] for x in plan["holds"]}
-    assert held == {"TOOL007"}
-    print("PASS: revision-cache multi-target SKIP_UNCHANGED + lane ACK + fail-closed TOOL007")
+    for target in ("EMAIL_DB", "TOOL007", "TOOL037", "WORK_GATE"):
+        assert by_target[target]["action"] == "LANE_ACK"
+    assert plan["holds"] == []
+    print("PASS: revision-cache multi-target SKIP_UNCHANGED + verified lane ACK including TOOL007")
 
 
 if __name__ == "__main__":
