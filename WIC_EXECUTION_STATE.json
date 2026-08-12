@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 06:20",
+  "updated_kst": "2026-08-12 12:19",
   "scope": "WIC reusable integration-core preparation and execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": [
@@ -26,10 +26,11 @@
   "reuse_constraints": [
     "Do not create a new routing registry; reuse WIC_CHAT_ROUTING_REGISTRY.md.",
     "New tools/chats register into the existing registry instead of cloning the core.",
-    "Add adapters only for genuinely new input formats.",
+    "Add adapters only for genuinely new input formats or tool-specific execution behavior.",
     "Store each target's last applied canonical revision and skip full re-analysis when unchanged.",
     "When a revision changes, re-apply only impacted scopes.",
-    "Merge semantic duplicates, supersede/deprecate older explicit rules, and HOLD_CONFLICT same-priority unresolved conflicts.",
+    "Merge exact/semantic duplicates, supersede older explicit priority/correction rules, and HOLD_CONFLICT unresolved same-priority constraints.",
+    "Every tool module follows input/output schema, validate, apply, rollback, fixture, evidence contract.",
     "Core changes require regression tests across registered targets."
   ],
   "structure_pass_gate": [
@@ -57,15 +58,20 @@
   ],
   "completed_findings_do_not_repeat": [
     "WIC_CHAT_ROUTING_REGISTRY.md existence and read-back",
+    "registry-source routing implementation and CI proof",
+    "conflict/dedup decision contract implementation",
+    "canonical revision fingerprint and changed-scope apply decision contract implementation",
+    "stage checkpoint/restart state contract implementation",
+    "tool-module contract validation implementation",
     "tool_1 defaultToc synthetic fallback location discovery",
     "tool_6 STRUCTURE_PASS archive verification",
     "tool_7 07-wic-setting-tool-v1 purpose mismatch finding",
     "tool_13 backend/API not identified in prior inspection"
   ],
   "current_blockers": {
-    "integration_core": "Existing registry and canonical documents exist, but no automatic normalizer/conflict-dedup/canonical-writer/revision-cache/target-apply/test-evidence execution core has current E2E proof.",
+    "integration_core": "Deterministic conflict/dedup, revision-cache decision, checkpoint/restart, and module-contract logic now exists, but actual canonical GitHub writer/read-back -> target apply -> target test/evidence E2E for a new real feedback event is still missing.",
     "independent_verification": "No third-party actual run/result URL is currently recorded. Do not claim independent verification."
   },
-  "restart_point": "Use WIC_CHAT_ROUTING_REGISTRY.md as the existing route source. Next implementation work starts directly at normalizer -> conflict/dedup -> canonical writer -> revision cache -> target apply -> test/evidence recorder. Do not spend Work credit re-reading rules, re-summarizing prior chats, recreating the registry, or repeating completed tool searches. Structure PASS only after one real new feedback event completes the full E2E evidence chain.",
+  "restart_point": "Reuse the existing ingest/registry/conflict/revision/checkpoint/module-contract code. Next concrete implementation starts at CANONICAL_WRITE: connect a real canonical single-source writer with read-back, then persist target revision cache, apply only changed scopes through the target module/adapter, record actual target test evidence, and exercise failure rollback/restart. Use one real new feedback event for the full chain. Do not spend Work credit re-reading rules, recreating routing/conflict logic, or repeating completed searches.",
   "completion_policy": "No structure or tool is functionally PASS from documentation, code presence, UI presence, historical claims, or commit alone. PASS requires actual input -> execution -> output -> expected comparison with reusable evidence."
 }
