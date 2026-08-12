@@ -1,115 +1,67 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-12 12:19 KST
-상태: ACTIVE / STRUCTURE_FIRST / PREWORK_LOCKED / CORE_BACKEND_ADVANCED
+최종 갱신: 2026-08-12 13:17 KST
+상태: ACTIVE / STRUCTURE_FIRST / CANONICAL_CORE_ADVANCED
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
 
 ## 현재 결론
-- 2026-08-13 Work 1순위는 개별 도구가 아니라 **WIC 전체 재사용 자동 통합 구조 + Chat 기반 실제 도구개발 코어**의 실제 구현과 E2E 검증이다.
-- 목표는 이후 Work 없이도 Chat+GitHub에서 도구 기능을 추가·교체·수정·검증할 수 있는 공통 개발 기반을 확보하는 것이다.
-- 새 registry는 만들지 않는다. 기존 `WIC_CHAT_ROUTING_REGISTRY.md`를 재사용한다.
-- 실제 새 피드백 1건이 `자동 분류 → route → conflict/dedup → canonical GitHub write/read-back → target apply → target test/evidence → restart/rollback` 전체를 통과하기 전 구조 PASS 금지.
-- 구조 PASS 후 최신 우선순위는 **이메일 수집 → 7번 고객 컨택 판단 → 1번 중간/최종 안내서 → 37 메타데이터 → 13번 엑셀 자동 업로드 → 6번 목차 정리 → 2번 입찰 → 28~31 → 나머지 등록 도구/주요 업무창**이다.
+- 2026-08-13 Work 1순위는 개별 도구가 아니라 **WIC 전체 자동 통합 기반 구조의 실제 완성 + E2E 검증**이다.
+- 구조 PASS 후 우선순위는 **이메일 수집 → 7번 고객 컨택 판단 → 1번 중간/최종 안내서 → 37 메타데이터 → 13번 엑셀 자동 업로드 → 6번 목차 정리 → 2번 입찰 → 28~31 → 나머지 등록 도구/주요 업무창**이다.
+- 단순 코드/문서 존재는 PASS가 아니다. 실제 새 피드백 1건이 `자동 분류 → 충돌/중복 → canonical GitHub write/read-back → 대상 적용 → 실제 테스트/증거 → restart/rollback` 전체를 통과해야 구조 PASS다.
 
-## 이번 실행에서 실제 개선된 부분
-### 1. 완료 작업 재개발 방지
-- 기존 ingest / registry-source routing / state / audit workflow의 앞단은 재작성하지 않았다.
-- 기존 route source인 `WIC_CHAT_ROUTING_REGISTRY.md`를 그대로 사용한다.
+## 이번 실행에서 실제 개선한 부분
+### 1. 최신 restart point를 먼저 읽고 완료된 앞단은 반복하지 않음
+- 기존 ingest / registry-source routing / conflict-dedup / revision fingerprint / checkpoint / module-contract 코드는 재개발하지 않았다.
+- 시작 지점은 기존 중앙 상태에 기록된 `CANONICAL_WRITE`를 그대로 사용했다.
 
-### 2. 후반 코어 결정 로직 실제 코드 추가
-`feedback_pipeline/cross_chat_feedback_ingest.py`에 다음을 실제 구현했다.
-- `ACCEPT / DUPLICATE / SUPERSEDE / HOLD_CONFLICT` 충돌판정
-- 최신 PRIORITY_CHANGE가 이전 겹치는 PRIORITY_CHANGE를 supersede하는 규칙
-- 명시적 CORRECTION이 이전 겹치는 규범 규칙을 supersede하는 규칙
-- 같은 우선순위의 상충 CONSTRAINT는 silent overwrite하지 않고 HOLD_CONFLICT
-- canonical layer 영향범위 계산: `GLOBAL / WORKGROUP / TOOL_OR_DOMAIN_OVERRIDE / DATA_OR_EXECUTION_ASSET`
-- canonical revision fingerprint
-- target revision cache 비교: `APPLY_CHANGED_SCOPE / SKIP_UNCHANGED`
-- 단계별 checkpoint + 마지막 성공지점 재개 계약
-- 공통 기능모듈 계약 검증: `input_schema / output_schema / validate / apply / rollback / fixture / evidence`
-- 실제 기능코드 commit: `ad50baf1564800972f31a242221bb8a52f0e0b2c`
-- read-back blob: `aa18cf8970249a72b3391a9354156376e3053e46`
+### 2. canonical single-source 변환/read-back 코어 실제 추가
+- 새 파일: `feedback_pipeline/canonical_writer.py`
+- 역할:
+  - 기존 human-owned 규칙은 보존하고 machine-managed canonical section만 교체
+  - 동일 입력 재적용 시 결과가 바뀌지 않는 idempotency
+  - canonical record 정렬/정규화
+  - 의도한 내용과 read-back 내용의 SHA-256 hash 검증
+  - GitHub 인증정보는 저장소 코드에 넣지 않고 connector/Work transport가 담당하도록 분리
+- commit: `c560759751dcd03ece8ac7d722e3114842eab4bc`
+- read-back blob: `ea949dc2f9a4a3ec6d5aaba33dd2aa773011ca91`
+- read-back에서 preserve/replace/idempotency/hash fixture 코드 존재 확인.
 
-### 3. 실행상태 스키마 확장
-`feedback_pipeline/state.json`을 schema v2로 확장했다.
-- stage order
-- canonical layers
-- feedback checkpoints
-- target revision cache
-- HOLD 저장소
-- module contract required keys
-- structure_pass=false 명시
-- 최신 구조 PASS 후 우선순위 반영
-- commit: `34f440cf83dce850c43b48dff6eba3ed73803825`
+### 3. CI에 canonical writer fixture 연결
+- `.github/workflows/cross-chat-feedback-audit.yml`에 `python feedback_pipeline/canonical_writer.py` 단계 추가.
+- commit: `39e97e2c5b9f5878e338c9021c792d4ac86c6994`
+- 현재 이 commit에 대한 workflow run은 조회 시 아직 반환되지 않아 **CI PASS 주장 금지**.
 
-### 4. CI 계약 확장
-`.github/workflows/cross-chat-feedback-audit.yml`에서 다음을 검증하도록 확장했다.
-- conflict/dedup fixture
-- revision/cache fixture
-- checkpoint/restart fixture
-- module contract fixture
-- state schema v2
-- 최신 post-structure priority
-- commit: `b0557da24c2d3c5e9fa0386cb0ce92e3412b2f31`
-- 현재 이 commit의 deploy status는 `pending`이며 target URL은 Deno build URL로 확인됨. 완료 결과 전 CI/배포 PASS 주장 금지.
-
-### 5. 중앙 restart point 갱신
-`WIC_EXECUTION_STATE.json`을 실제 남은 지점으로 이동했다.
-- 다음 시작점은 `CANONICAL_WRITE`.
-- 이미 구현한 routing/conflict/revision/checkpoint/module-contract는 Work에서 다시 만들지 않는다.
-- commit: `64cd123da3d40590066cc2b3746b27c79a77a5f4`
-
-## Work 크레딧 절약을 위한 남은 실제 구현 순서
-1. 실제 canonical single-source writer 연결.
-2. writer 결과 GitHub commit SHA 저장 + 즉시 read-back.
-3. target별 canonical revision cache 영속화.
-4. 변경된 scope만 실제 target module/adapter에 apply.
-5. target 실제 run/test 결과와 URL/file/artifact 기록.
-6. 실패 시 last_success_stage에서 재개하고 rollback 증거 저장.
-7. 실제 새 피드백 1건으로 전체 E2E 수행.
-8. 실제 작은 도구 기능변경 1건으로 module/adapter 추가 → apply → test → rollback E2E 수행.
-9. 위 증거가 모두 생긴 뒤에만 구조 PASS.
-
-## 최소 성공선 — Work가 60~80%에서 끝날 경우
-반드시 아래 체인은 실제로 살아 있어야 한다.
-`Chat feedback → registry route → conflict/dedup → canonical GitHub write/read-back → changed-scope 식별 → 안전한 target 코드수정 진입`
-이 체인이 되면 Work 크레딧이 끝나도 Chat+GitHub에서 후속 도구 기능개발을 계속할 수 있다. 다음 Work까지 아무것도 못 하는 상태면 구조 실패다.
-
-## 아직 HOLD인 부분
-- 실제 GitHub canonical writer/read-back 자동 체인: HOLD
-- target revision cache의 실제 영속 저장/읽기: HOLD
-- target module/adapter 실제 적용: HOLD
-- 실제 target run/test/evidence URL: HOLD
-- 실제 rollback 실행증거: HOLD
-- 전체 새 피드백 E2E: HOLD
-- 구조 PASS: HOLD
+## 실제로 아직 남은 부분
+1. 실제 새 피드백 1건을 canonical record로 만들어 `WIC_GLOBAL_OPERATING_RULES.md`의 machine-managed section에 connector/runner로 실제 write.
+2. write commit SHA 저장 후 즉시 GitHub read-back하여 hash 일치 증거 확보.
+3. target별 canonical revision cache 실제 영속화.
+4. changed-scope만 대상 module/adapter에 실제 적용.
+5. 대상 도구의 실제 run/test 결과와 URL/file/artifact 저장.
+6. 실패 시 last_success_stage부터 재개 + rollback 실제 증거 저장.
+7. 실제 작은 도구 기능변경 1건으로 module/adapter E2E.
+8. 모든 조건 충족 후에만 구조 PASS.
 
 ## blocker / 개선방법
-- **blocker:** GitHub connector를 통해 파일 갱신은 가능하지만, 현재 repository 내부 Python runtime 자체가 GitHub contents write 권한으로 canonical commit을 만들고 target repo까지 자동 적용하는 E2E runner는 아직 연결되지 않았다.
-- **개선:** Work에서는 이 writer/apply runner와 실제 E2E에만 크레딧 사용. 기존 규칙 재독해·재요약·registry 재생성·이미 구현한 conflict/revision/checkpoint 로직 재개발 금지.
-- **독립검증:** GitHub 내부 fixture/CI와 제3자 외부검증을 구분한다. 실제 외부 run/result 증거가 생기기 전 `독립검증 PASS` 금지.
-
-## 반복 금지
-- 기존 feedback ingest 기본 기능 재개발 금지.
-- registry-source routing 재개발 금지.
-- 새 routing registry 생성 금지.
-- conflict/dedup 계약 재설계 반복 금지.
-- revision fingerprint / changed-scope decision 계약 재설계 반복 금지.
-- checkpoint/module-contract 계약 재설계 반복 금지.
-- 기존 규칙 재독해·재요약에 Work 크레딧 사용 금지.
-- 단순 문서/스크립트 존재를 구조 PASS로 계산 금지.
+- **현재 blocker:** canonical 변환·hash 검증 코어는 생겼지만, GitHub 인증 transport와 대상 도구 apply/test까지 연결한 실제 전체 E2E runner는 아직 없다.
+- **개선방법:** 13일 Work에서는 기존 로직 재독해/재작성 없이 `실제 GitHub write/read-back transport → revision cache → changed-scope target apply → test/evidence → rollback` 연결에만 크레딧 사용.
+- **제3자 독립검증:** 아직 없음. GitHub 내부 fixture/CI와 외부 독립검증을 구분하고 실제 외부 run/result 증거 전에는 독립검증 PASS 금지.
 
 ## 최신 restart point
-1. `CANONICAL_WRITE` 실제 runner 연결부터 시작.
-2. GitHub commit/read-back 증거 확보.
-3. target revision cache 영속화 + changed-scope apply 연결.
-4. target test/evidence recorder 연결.
-5. failure checkpoint/rollback actual run 연결.
-6. 실제 새 피드백 1건 전체 E2E.
-7. 실제 작은 도구 기능변경 1건 module/adapter E2E.
-8. 전체 성공 후 구조 PASS.
-9. 구조 PASS 후 **이메일 수집 → 7 → 1 → 37 → 13 → 6 → 2 → 28~31 → 나머지** 순으로 진행.
+1. `canonical_writer.py`를 재사용하고 다시 만들지 않는다.
+2. 실제 GitHub canonical write transport를 연결한다.
+3. 실제 새 피드백 1건으로 canonical write → commit SHA → read-back hash 검증을 수행한다.
+4. target revision cache 영속화 + changed-scope apply를 연결한다.
+5. target actual test/evidence recorder와 rollback/restart actual run을 연결한다.
+6. 실제 새 피드백 전체 E2E와 실제 도구 기능변경 module/adapter E2E를 각각 1건 성공시킨다.
+7. 전체 성공 후 구조 PASS.
+
+## 반복 금지
+- ingest / registry-source routing 재개발 금지.
+- conflict/dedup/revision/checkpoint/module-contract 재설계 반복 금지.
+- canonical_writer.py 재작성 금지.
+- 기존 규칙 재독해·재요약에 Work 크레딧 사용 금지.
+- commit이나 파일 존재만으로 PASS 처리 금지.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
