@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-13 04:21 KST
+최종 갱신: 2026-08-13 05:23 KST
 상태: ACTIVE / STRUCTURE_FIRST / OVERALL_HOLD
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
@@ -27,11 +27,11 @@
 
 ## 이번 실행 실제 개선
 - 최신 restart point와 이 파일을 먼저 읽고 완료 항목은 반복하지 않았다.
-- TOOL001 기존 repair run `31612083645`는 confirmed corruption patch 자체는 success였지만 parse-check가 실패해 commit이 차단된 사실을 다시 확인했다.
-- 기존 repair workflow가 parse 실패 위치를 artifact로 남기지 않아 다음 실행에서 정확한 좌표를 재수집해야 하는 약점을 확인했다.
-- `.github/workflows/tool1-minimal-syntax-repair.yml`을 최소 수정하여 모든 inline script의 `node --check` stderr와 실패 script를 `tool001-parse-failure-evidence` artifact로 항상 보존하도록 변경했다.
-- 실제 commit: `a7ef312d685878780e88b39a1ca73fcf3bc541bb`.
-- 새 workflow run `31632183270`이 생성되어 현재 queued 상태다. 결과/artifact 확인 전에는 PASS 처리 금지.
+- TOOL001 run `31632183270`은 completed/failure였고 artifact `9155511655`를 실제 다운로드해 parse 실패 6개 script를 확인했다: `001/002/008/010/012/015`.
+- 이 artifact 좌표만 대상으로 최소 repair를 추가했다. 최초 workflow 갱신 commit `c6d3ab166b8745e5131937bd7010418e91d02611`은 YAML block indentation 문제로 job 생성 전 실패하여 PASS 처리하지 않았다.
+- YAML 자체를 바로 보정한 commit `c53a9909bfcf0e588ce8c1a056cf7d17c2d21147`의 run `31637266179`, job `94250625720`은 실제 patch 단계 2개와 parse-check까지 실행되었고 artifact `9157441336`을 생성했다.
+- 새 artifact를 실제 읽은 결과 parse 실패가 6개 script에서 2개 script로 감소했다: `script-001.js` latent TOC anchor regex 1건, `script-002.js` latent contentDocument 오류문자열 1건.
+- 이 두 latent 좌표만 추가한 commit `7835f1edf59211463c8a86340e4bd907d61b68fd`을 반영했고 run `31637362355`, job `94250941871`이 생성되었다. 현재 queued이므로 결과 확인 전 PASS 금지.
 
 ## 현재 실제 PASS
 - 중앙 integration core의 기존 PASS 항목 유지.
@@ -47,16 +47,17 @@
 5. 위 gate 전 전체 구조 PASS 금지.
 
 ## blocker / 개선방법
-- TOOL001: 전체 재작성 금지. 새 run의 parse artifact에서 정확한 남은 좌표를 읽고 그 좌표만 최소 수정 → `node --check` 0 error → 기존 Chromium business E2E 재실행.
+- TOOL001: 전체 재작성 금지. run `31637362355` 결과를 먼저 확인한다. parse 0이면 실제 commit/read-back 확인 후 기존 Chromium business E2E를 재실행한다. 추가 parse 실패면 새 artifact의 정확한 좌표만 다시 최소 수정한다.
 - TOOL007: 현재 07 저장소 실행판 재사용 금지. 목적 일치 verified target/adapter가 실제로 생길 때까지 HOLD.
 - 제3자 검증: 실제 외부 run/result가 생길 때만 독립검증 PASS.
 
 ## 최신 restart point
-1. run `31632183270` 완료 여부와 `tool001-parse-failure-evidence` artifact를 먼저 읽는다.
-2. 정확한 남은 parse 좌표만 최소 수정하고 `node --check` 0 error를 확인한다.
+1. run `31637362355` / job `94250941871` 완료 여부를 먼저 확인한다.
+2. 성공이면 index.html repair commit/read-back과 `node --check` 0 error artifact를 확인한다.
 3. 그 뒤 기존 Chromium actual business E2E를 재실행한다.
-4. TOOL001이 막히면 원인/HOLD를 기록하고 TOOL007 purpose-matching target/adapter로 이동한다.
-5. 모든 남은 구조 gate 통과 후에만 전체 구조 PASS 검토.
+4. 실패이면 새 parse artifact의 정확한 남은 좌표만 최소 수정한다.
+5. TOOL001이 막히면 원인/HOLD를 기록하고 TOOL007 purpose-matching target/adapter로 이동한다.
+6. 모든 남은 구조 gate 통과 후에만 전체 구조 PASS 검토.
 
 ## Work 크레딧 사용 게이트
 - 기존 규칙 재독해·재요약·반복검색에 사용 금지.
