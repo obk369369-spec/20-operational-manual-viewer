@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-13 05:23 KST
+최종 갱신: 2026-08-13 05:27 KST
 상태: ACTIVE / STRUCTURE_FIRST / OVERALL_HOLD
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
@@ -19,52 +19,54 @@
 - TOOL001/002/006/013 revision-aware SKIP_UNCHANGED actual workflow evidence.
 - controlled rollback/restart checkpoint fixture actual workflow evidence.
 - integration-core evidence artifact actual 생성.
-- TOOL001 actual browser E2E 실패 증거 확인.
+- TOOL001 initial actual browser E2E 실패 증거 확인.
 - TOOL002 actual bid business E2E PASS.
 - TOOL007 purpose verification 완료: 현재 07 저장소는 최신 고객 컨택 판단 목적과 불일치/HOLD.
 - TOOL006 cross-target 실제 probe 생성→read-back→rollback 삭제→post-rollback 404 read-back 완료.
 - 실제 cross-target controlled failure → rollback → persisted checkpoint → automatic restart → read-back/test E2E PASS. run `31627296985`, job `94216883222`, artifact `9153611362`.
+- TOOL001 inline-script syntax repair gate PASS: run `31637362355`, job `94250941871`, zero parse failure, repair commit `68be059a86d0776697a9404abf5cd902e2d60599`.
 
 ## 이번 실행 실제 개선
-- 최신 restart point와 이 파일을 먼저 읽고 완료 항목은 반복하지 않았다.
-- TOOL001 run `31632183270`은 completed/failure였고 artifact `9155511655`를 실제 다운로드해 parse 실패 6개 script를 확인했다: `001/002/008/010/012/015`.
-- 이 artifact 좌표만 대상으로 최소 repair를 추가했다. 최초 workflow 갱신 commit `c6d3ab166b8745e5131937bd7010418e91d02611`은 YAML block indentation 문제로 job 생성 전 실패하여 PASS 처리하지 않았다.
-- YAML 자체를 바로 보정한 commit `c53a9909bfcf0e588ce8c1a056cf7d17c2d21147`의 run `31637266179`, job `94250625720`은 실제 patch 단계 2개와 parse-check까지 실행되었고 artifact `9157441336`을 생성했다.
-- 새 artifact를 실제 읽은 결과 parse 실패가 6개 script에서 2개 script로 감소했다: `script-001.js` latent TOC anchor regex 1건, `script-002.js` latent contentDocument 오류문자열 1건.
-- 이 두 latent 좌표만 추가한 commit `7835f1edf59211463c8a86340e4bd907d61b68fd`을 반영했고 run `31637362355`, job `94250941871`이 생성되었다. 현재 queued이므로 결과 확인 전 PASS 금지.
+- run `31632183270` artifact `9155511655`를 실제 다운로드하여 6개 parse failure script를 좌표화했다.
+- 첫 보정 후 run `31637266179` / job `94250625720` / artifact `9157441336`에서 실패 script를 6개→2개로 줄였다.
+- 남은 latent 2좌표만 다시 최소 수정했고 run `31637362355` / job `94250941871`의 모든 patch·parse-check·zero-parse gate·commit 단계가 실제 success였다.
+- 실제 index.html repair commit은 `68be059a86d0776697a9404abf5cd902e2d60599`, 이어진 GitHub Pages run `31637376806`도 success였다.
+- 기존 Chromium workflow는 `workflow_dispatch` 또는 index.html/workflow push로 실행되지만, GitHub Actions bot이 만든 index.html commit은 다른 workflow를 재귀적으로 trigger하지 않아 새 browser E2E run이 자동 생성되지 않았다.
+- GitHub connector에서 workflow dispatch action을 검색했으나 제공되지 않았다. workflow 파일을 최소 수정해 trigger하려는 write도 safety gate에서 차단되어 이번 실행에서는 새 Chromium E2E를 만들지 못했다.
 
 ## 현재 실제 PASS
 - 중앙 integration core의 기존 PASS 항목 유지.
+- TOOL001 inline-script syntax repair / `node --check` zero-error gate PASS.
 - TOOL002 actual bid E2E PASS 유지.
 - cross-target repository rollback/read-back actual GitHub PASS 유지.
 - cross-target controlled failure 이후 persisted last_success_stage automatic restart E2E PASS 유지.
 
 ## 아직 HOLD
-1. TOOL001 actual business browser E2E/minimal syntax repair.
+1. TOOL001 repaired commit 기준 actual Chromium business E2E 재실행.
 2. TOOL001 실제 공개 보고서 데이터 진위/상세페이지/가격 검증.
 3. TOOL007 최신 고객 컨택 판단 목적에 맞는 actual target/adapter 부재.
 4. 제3자 외부검증 actual run/result.
 5. 위 gate 전 전체 구조 PASS 금지.
 
 ## blocker / 개선방법
-- TOOL001: 전체 재작성 금지. run `31637362355` 결과를 먼저 확인한다. parse 0이면 실제 commit/read-back 확인 후 기존 Chromium business E2E를 재실행한다. 추가 parse 실패면 새 artifact의 정확한 좌표만 다시 최소 수정한다.
-- TOOL007: 현재 07 저장소 실행판 재사용 금지. 목적 일치 verified target/adapter가 실제로 생길 때까지 HOLD.
+- TOOL001: syntax 자체는 해결됨. 남은 blocker는 repaired commit `68be059...` 기준 browser E2E dispatch 경로다. GitHub connector에 workflow_dispatch가 없고 workflow-file write trigger가 safety gate에 막혔으므로 다음 실행에서 안전한 실제 dispatch 경로가 생겼는지 먼저 확인한다. 같은 parse repair는 반복 금지.
+- TOOL007: 현재 07 저장소 실행판 재사용 금지. 중앙 `customer_pipeline/tool7_contact_judgment.py`가 purpose-matching adapter로 실제 사용 가능한지 read/test한 뒤 증거가 있으면 target 후보로 승격하고, 아니면 HOLD 유지.
 - 제3자 검증: 실제 외부 run/result가 생길 때만 독립검증 PASS.
 
 ## 최신 restart point
-1. run `31637362355` / job `94250941871` 완료 여부를 먼저 확인한다.
-2. 성공이면 index.html repair commit/read-back과 `node --check` 0 error artifact를 확인한다.
-3. 그 뒤 기존 Chromium actual business E2E를 재실행한다.
-4. 실패이면 새 parse artifact의 정확한 남은 좌표만 최소 수정한다.
-5. TOOL001이 막히면 원인/HOLD를 기록하고 TOOL007 purpose-matching target/adapter로 이동한다.
-6. 모든 남은 구조 gate 통과 후에만 전체 구조 PASS 검토.
+1. TOOL001 parse repair는 반복하지 않는다.
+2. repaired commit `68be059a86d0776697a9404abf5cd902e2d60599` 기준 Chromium E2E를 실제 dispatch할 수 있는 경로가 있으면 즉시 실행하고 artifact까지 확인한다.
+3. dispatch가 계속 막히면 TOOL001은 정확한 원인으로 HOLD 유지하고 즉시 중앙 `customer_pipeline/tool7_contact_judgment.py`를 목적 일치 adapter 후보로 read/test한다.
+4. TOOL007도 실행 증거가 없으면 PASS 금지.
+5. 모든 남은 구조 gate 통과 후에만 전체 구조 PASS 검토.
 
 ## Work 크레딧 사용 게이트
 - 기존 규칙 재독해·재요약·반복검색에 사용 금지.
-- Chat+GitHub에서 막히는 actual 실행/E2E와 확인된 TOOL001 SyntaxError 최소수정에만 사용.
+- Chat+GitHub에서 막히는 actual 실행/E2E에만 사용.
 
 ## 독립검증 상태
 - GitHub 내부 actual run/read-back/commit 증거: 있음.
+- TOOL001 syntax repair gate: PASS_INTERNAL_GITHUB_RUN.
 - TOOL002 actual business E2E: PASS.
 - cross-target repository rollback/read-back: PASS actual GitHub.
 - automatic last_success_stage restart E2E: PASS_INTERNAL_GITHUB_RUN.
