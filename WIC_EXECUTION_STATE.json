@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 18:20",
+  "updated_kst": "2026-08-12 19:17",
   "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": ["EVENT","NORMALIZE","ROUTE_EXISTING_REGISTRY","CONFLICT_DEDUP","CANONICAL_WRITE","READ_BACK","TARGET_REVISION_READ_APPLY","TEST_EVIDENCE","RESTART_OR_HOLD"],
@@ -18,28 +18,31 @@
     "TOOL001 verified repository identification and canonical revision apply/read-back",
     "TOOL002 verified repository identification and canonical revision apply/read-back",
     "TOOL007 existing repository purpose mismatch verification",
-    "deterministic fail-closed target dispatcher code",
-    "EMAIL_DB/TOOL037/WORK_GATE lane ACK execution and artifact generation workflow wiring"
+    "deterministic fail-closed target dispatcher base code",
+    "EMAIL_DB/TOOL037/WORK_GATE lane ACK execution and artifact generation workflow wiring",
+    "persistent target revision cache implementation",
+    "revision-aware multi-target SKIP_UNCHANGED implementation",
+    "controlled rollback/restart fixture implementation and workflow wiring"
   ],
   "current_evidence": {
     "feedback_id": "f2aeb4e8f5fac3c9618f",
     "canonical_revision": "fa09bcdec96669d97ef3a18f",
     "canonical_write_commit": "50d0ca22a5427293c6cdf1987d83110f3e0dbfd4",
     "tool001_target_apply_commit": "74e418cd5bccf71e6f5a839fdc83bc9179b1cad7",
-    "tool001_read_back_blob": "72f7af7dbbc0f3d38fbdef79c533d42baca2fbd3",
     "tool002_target_apply_commit": "88848edb6df13a59f6b690248d9948a128b5fb36",
-    "tool002_read_back_blob": "740fde5efe52c877460d85cd35a4a2e235d0f33c",
     "tool006_test_result": "completed/success",
     "tool013_test_result": "STRUCTURE_PASS",
-    "adapter_registry_commit": "2091bfda8d400d9b5555a7cb86936fa458991b19",
-    "dispatcher_commit": "0dcaec192c021343611a7d564add0d9d38da9321",
-    "lane_workflow_commit": "6a4c221b99eae0bf0687b2c48e0bf4b626d5cfaf",
+    "target_revision_cache_commit": "c99eef6861f48e3ff2d438d1c12ce42000d12f8e",
+    "revision_aware_dispatcher_commit": "fccceb97c425f2e47607611d45af3ada5c415b74",
+    "rollback_fixture_commit": "6b0dbc47d2dab02d693ff75f6296c21fd4b08f94",
+    "audit_workflow_commit": "feef20eec8b800f5f44231c7721bbf85b69c0f07",
+    "audit_workflow_actual_run_evidence": "PENDING",
     "external_independent_verification": false
   },
   "current_blockers": {
-    "integration_core": "Lane workflow actual run/job/artifact evidence, TOOL001/002 actual target tests, TOOL007 latest-purpose target, SKIP_UNCHANGED actual multi-target evidence, and controlled rollback/restart failure-path evidence remain HOLD.",
+    "integration_core": "Actual GitHub Actions run/job/artifact evidence for the new revision-aware audit is pending; TOOL001/002 actual target tests, TOOL007 latest-purpose target, and real cross-target controlled rollback/restart evidence remain HOLD.",
     "independent_verification": "No third-party actual run/result URL is recorded."
   },
-  "restart_point": "Do not repeat canonical writer, TOOL006, TOOL013, TOOL001/002 repository verification/apply, or dispatcher base design. Next confirm lane workflow actual run/job/artifact evidence, then obtain TOOL001/002 actual target test evidence. Keep TOOL007 HOLD until a target matching latest customer-contact-judgment purpose is verified. Then prove SKIP_UNCHANGED and one controlled rollback + last_success_stage restart. Structure remains HOLD until these gates pass.",
+  "restart_point": "Do not repeat completed canonical/dispatcher/revision-cache implementation. First confirm actual run/job/artifact for audit workflow commit feef20eec8b800f5f44231c7721bbf85b69c0f07. If successful, record multi-target SKIP_UNCHANGED, lane ACK and rollback/restart fixture as internal GitHub evidence. Then obtain TOOL001/002 actual target test evidence. Keep TOOL007 HOLD until a repository matching the customer-contact-judgment purpose is verified. Finally run a real controlled target failure with rollback + last_success_stage restart before overall structure PASS.",
   "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence; documentation or commit alone is not PASS."
 }
