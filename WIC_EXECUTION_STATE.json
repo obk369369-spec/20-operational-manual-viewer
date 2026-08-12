@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 16:24",
+  "updated_kst": "2026-08-12 17:17",
   "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": [
@@ -66,6 +66,10 @@
     "canonical GitHub write/read-back for feedback f2aeb4e8f5fac3c9618f",
     "TOOL006 central rule pointer verification",
     "TOOL006 canonical revision fa09bcdec96669d97ef3a18f target-state apply and internal GitHub test success",
+    "TOOL013 central rule pointer verification",
+    "TOOL013 canonical revision fa09bcdec96669d97ef3a18f target-state apply/read-back; test evidence still pending",
+    "verified adapter registry for TOOL006/TOOL013 and lane adapters for EMAIL_DB/TOOL037/WORK_GATE",
+    "deterministic fail-closed target dispatcher code and CI wiring",
     "tool_1 defaultToc synthetic fallback location discovery",
     "tool_6 STRUCTURE_PASS archive verification",
     "tool_7 07-wic-setting-tool-v1 purpose mismatch finding",
@@ -80,12 +84,18 @@
     "tool006_workflow_run_id": 31573547418,
     "tool006_validation_job_id": 94040506272,
     "tool006_test_result": "completed/success",
+    "tool013_target_apply_commit": "8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b",
+    "tool013_target_read_back_blob": "eeaa796667dd2c78bb2913f5cbf01bf6d11f8052",
+    "tool013_test_result": "PENDING_EVIDENCE",
+    "adapter_registry_commit": "d2053d31878cfa7aa950743a1ee460e6bbcfb28f",
+    "dispatcher_commit": "706695f3d6cce83bc526e9f514554b55d3a1a12c",
+    "dispatcher_ci_wiring_commit": "0edee4ba5c92953fe1735efb587c3ae8407e2e97",
     "external_independent_verification": false
   },
   "current_blockers": {
-    "integration_core": "First real cross-repository target E2E passed for TOOL006, but the other routed targets/lanes do not yet have reusable apply adapters/evidence and failure rollback/restart has not been exercised.",
+    "integration_core": "TOOL013 apply/read-back succeeded but push-triggered actual workflow run/result evidence has not yet been confirmed. EMAIL_DB/TOOL037/WORK_GATE adapters are defined but not executed. TOOL001/TOOL002/TOOL007 remain fail-closed because no verified target adapter/repository is registered. Controlled rollback/restart failure-path evidence is still missing.",
     "independent_verification": "No third-party actual run/result URL is currently recorded. Do not claim independent verification."
   },
-  "restart_point": "Do not repeat canonical writer or TOOL006 apply. Next implement/reuse the common target dispatcher/adapter pattern for the remaining routed targets, prioritizing TOOL013 as the second repository target and defining non-repository lane adapters for EMAIL_DB/TOOL037/WORK_GATE. Persist each last_applied_revision, apply only changed scope, run actual target validation, and return evidence to the central manifest/cache. Then exercise one controlled failure to prove rollback/restart. Structure remains HOLD until the routed-target/lane and failure-path gates are satisfied.",
+  "restart_point": "Do not repeat canonical writer, TOOL006 apply, TOOL013 state write, or dispatcher design. First confirm TOOL013 actual GitHub workflow run/result for commit 8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b and return evidence to the central manifest/cache. Then execute the defined EMAIL_DB/TOOL037/WORK_GATE lane adapters without inventing repositories. Keep TOOL001/TOOL002/TOOL007 HOLD until verified targets are found through existing evidence, not guesses. Finally exercise one controlled failure to prove rollback and last_success_stage restart. Structure remains HOLD until these gates are satisfied.",
   "completion_policy": "No structure or tool is functionally PASS from documentation, code presence, UI presence, historical claims, or commit alone. PASS requires actual input -> execution -> output -> expected comparison with reusable evidence."
 }
