@@ -1,0 +1,20 @@
+{
+  "evidence_type": "TOOL007_PURPOSE_MATCH_ADAPTER_CANDIDATE_LOCAL_EXECUTION",
+  "source_repository": "obk369369-spec/20-operational-manual-viewer",
+  "source_path": "customer_pipeline/tool7_contact_judgment.py",
+  "source_blob_sha": "c5e8434398256ea8afb40418760c07714a898363",
+  "executed_at_kst": "2026-08-13 06:20",
+  "execution_environment": "automation runtime local Python",
+  "network_side_effects": false,
+  "tests": {
+    "py_compile": "PASS",
+    "run_fixtures": "PASS: 8 deterministic P2 fixtures",
+    "unverified_employment": "HOLD / copy_generation_allowed=false",
+    "explicit_stop": "FAIL / copy_generation_allowed=false",
+    "material_first": "PASS / channel=MATERIAL_FIRST",
+    "missing_report_link": "HOLD"
+  },
+  "purpose_match_observation": "Candidate implements customer-contact judgment, current employment/company-direction gates, direct-vs-one-way history handling, channel decision, copy-generation gate, and recommendation metadata gate.",
+  "promotion_status": "HOLD_PENDING_GITHUB_RUN_OR_TARGET_ADAPTER_E2E",
+  "independent_external_verification": false
+}
