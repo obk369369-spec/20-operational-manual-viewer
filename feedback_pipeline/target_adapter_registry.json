@@ -34,6 +34,13 @@
       "evidence": "central_state_and_ledger",
       "repository_required": false
     },
+    "TOOL007": {
+      "mode": "CENTRAL_LANE_ACK",
+      "evidence": "customer_pipeline/tool7_contact_judgment.py + feedback_pipeline/tool007_adapter_evidence.json",
+      "repository_required": false,
+      "verified": true,
+      "verification_source": "customer_pipeline/tool7_contact_judgment.py blob c5e8434398256ea8afb40418760c07714a898363; local deterministic fixtures PASS recorded in evidence/tool007_adapter_candidate_20260813_0620.json"
+    },
     "TOOL037": {
       "mode": "CENTRAL_LANE_ACK",
       "evidence": "central_state_and_ledger",
@@ -45,10 +52,6 @@
       "repository_required": false
     }
   },
-  "unresolved_targets": ["TOOL007"],
-  "hold_targets": {
-    "TOOL007": {
-      "reason": "Existing repository 07-wic-setting-tool-v1 explicitly states its current execution artifact is a setting tool and does not match the latest TOOL007 customer-contact-judgment purpose."
-    }
-  }
+  "unresolved_targets": [],
+  "hold_targets": {}
 }
