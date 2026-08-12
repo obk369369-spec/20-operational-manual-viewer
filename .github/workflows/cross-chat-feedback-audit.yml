@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'feedback_pipeline/**'
+      - 'customer_pipeline/**'
       - 'WIC_CHAT_ROUTING_REGISTRY.md'
       - 'WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md'
       - 'WIC_GLOBAL_OPERATING_RULES.md'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - 'feedback_pipeline/**'
+      - 'customer_pipeline/**'
       - 'WIC_CHAT_ROUTING_REGISTRY.md'
       - 'WIC_FEEDBACK_REGRESSION_AND_WORK_GATE_LEDGER.md'
       - 'WIC_GLOBAL_OPERATING_RULES.md'
@@ -33,6 +35,56 @@ jobs:
         run: python feedback_pipeline/canonical_writer.py
       - name: Build and validate revision-aware target dispatch plan
         run: python feedback_pipeline/target_dispatcher.py
+      - name: Execute TOOL007 purpose-matching central adapter fixture
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from customer_pipeline.tool7_contact_judgment import judge_contact, recommendation_gate, run_fixtures
+
+          fixture_result = run_fixtures()
+          probes = {
+              'unverified_employment': judge_contact({
+                  'current_employment_verified': False,
+                  'company_direction_verified': True
+              }),
+              'explicit_stop': judge_contact({
+                  'current_employment_verified': True,
+                  'company_direction_verified': True,
+                  'explicit_stop_or_rejection': True
+              }),
+              'material_first': judge_contact({
+                  'current_employment_verified': True,
+                  'company_direction_verified': True,
+                  'research_or_enterprise_customer': True,
+                  'direct_inquiry': True
+              }),
+              'missing_report_link': recommendation_gate({
+                  'title': 'T', 'publisher': 'P', 'publication_date': '2026-08',
+                  'link': '', 'paid': True, 'tradable': True
+              })
+          }
+          assert fixture_result == 'PASS: 8 deterministic P2 fixtures'
+          assert probes['unverified_employment']['decision'] == 'HOLD'
+          assert probes['explicit_stop']['decision'] == 'FAIL'
+          assert probes['material_first']['channel'] == 'MATERIAL_FIRST'
+          assert probes['missing_report_link']['state'] == 'HOLD'
+          evidence = {
+              'schema_version': 1,
+              'generated_at_utc': datetime.now(timezone.utc).isoformat(),
+              'target': 'TOOL007',
+              'adapter': 'customer_pipeline/tool7_contact_judgment.py',
+              'fixture_result': fixture_result,
+              'probes': probes,
+              'result': 'PASS_INTERNAL_GITHUB_RUN',
+              'external_independent_verification': False
+          }
+          Path('feedback_pipeline/tool007_adapter_evidence.json').write_text(
+              json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          print('PASS: TOOL007 purpose-matching central adapter actual GitHub execution')
+          PY
       - name: Run controlled rollback and restart checkpoint fixture
         run: python feedback_pipeline/restart_rollback_fixture.py
       - name: Run actual cross-target controlled failure and rollback
@@ -48,7 +100,7 @@ jobs:
           root = Path('feedback_pipeline')
           manifest = json.loads((root/'target_apply_manifest.json').read_text(encoding='utf-8'))
           adapters = json.loads((root/'target_adapter_registry.json').read_text(encoding='utf-8'))
-          required = ('EMAIL_DB','TOOL037','WORK_GATE')
+          required = ('EMAIL_DB','TOOL007','TOOL037','WORK_GATE')
           records = []
           for lane in required:
               target = manifest['targets'][lane]
@@ -80,7 +132,7 @@ jobs:
           }
           (root/'lane_apply_evidence.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
           assert {x['lane'] for x in records} == set(required)
-          print('PASS: EMAIL_DB / TOOL037 / WORK_GATE central lane ACK execution + evidence')
+          print('PASS: EMAIL_DB / TOOL007 / TOOL037 / WORK_GATE central lane ACK execution + evidence')
           PY
       - name: Upload integration-core evidence
         uses: actions/upload-artifact@v4
@@ -88,6 +140,7 @@ jobs:
           name: integration-core-evidence
           path: |
             feedback_pipeline/lane_apply_evidence.json
+            feedback_pipeline/tool007_adapter_evidence.json
             feedback_pipeline/restart_rollback_evidence.json
             feedback_pipeline/cross_target_restart_e2e_evidence.json
             feedback_pipeline/target_dispatch_plan.json
@@ -126,14 +179,16 @@ jobs:
           by_target = {x['target']: x for x in plan['actions']}
           for target in ('TOOL001','TOOL002','TOOL006','TOOL013'):
               assert by_target[target]['action'] == 'SKIP_UNCHANGED'
-          for target in ('EMAIL_DB','TOOL037','WORK_GATE'):
+          for target in ('EMAIL_DB','TOOL007','TOOL037','WORK_GATE'):
               assert by_target[target]['action'] == 'LANE_ACK'
-          held_targets = {x['target'] for x in plan['holds']}
-          assert held_targets == {'TOOL007'}
+          assert plan['holds'] == []
           lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
           assert lane['result'] == 'PASS_INTERNAL_GITHUB'
           assert lane['failures'] == []
-          assert {x['lane'] for x in lane['records']} == {'EMAIL_DB','TOOL037','WORK_GATE'}
+          assert {x['lane'] for x in lane['records']} == {'EMAIL_DB','TOOL007','TOOL037','WORK_GATE'}
+          tool7 = json.loads(Path('feedback_pipeline/tool007_adapter_evidence.json').read_text(encoding='utf-8'))
+          assert tool7['target'] == 'TOOL007'
+          assert tool7['result'] == 'PASS_INTERNAL_GITHUB_RUN'
           rr = json.loads(Path('feedback_pipeline/restart_rollback_evidence.json').read_text(encoding='utf-8'))
           assert rr['result'] == 'PASS_INTERNAL_FIXTURE'
           assert rr['after']['restart_from_stage'] == 'TARGET_REVISION_READ_APPLY'
@@ -144,5 +199,5 @@ jobs:
           assert actual['readback_match'] is True
           assert actual['target_clean_after_e2e'] is True
           assert actual['executed_after_restart'] == ['TARGET_REVISION_READ_APPLY','TEST_EVIDENCE','RESTART_OR_HOLD']
-          print('PASS: state + SKIP_UNCHANGED + lane evidence + actual cross-target automatic restart E2E')
+          print('PASS: state + SKIP_UNCHANGED + TOOL007 lane + lane evidence + actual cross-target automatic restart E2E')
           PY
