@@ -1,18 +1,12 @@
-"""WIC cross-chat feedback ingestion core.
+"""WIC cross-chat feedback ingestion and integration-core contract.
 
-This module is deliberately deterministic. It receives feedback events recovered from
-ChatGPT personal-context/history retrieval, removes sensitive customer details,
-deduplicates semantically repeated instructions, classifies the feedback, routes it
-to the proper tool/workflow, and decides whether it is a central-master candidate,
-a regression-fixture candidate, or both.
+Deterministic core for normalized feedback, registry-source routing, privacy redaction,
+conflict/dedup decisions, canonical-layer impact planning, revision-cache decisions,
+stage checkpoints, and Chat/GitHub tool-module contracts.
 
-It does NOT scrape ChatGPT UI conversations directly. Collection is performed by the
-scheduled WIC cross-chat collector, which retrieves accessible prior-interaction
-context and feeds normalized events through this contract before GitHub persistence.
-
-Routing keywords are NOT duplicated here. The existing WIC_CHAT_ROUTING_REGISTRY.md
-is the executable route source; parsing failure is treated as an error rather than a
-silent fallback so configuration drift becomes visible.
+This module does NOT claim GitHub write or target-tool E2E completion by itself.
+Actual canonical commit/read-back, target apply, test evidence, and rollback evidence
+remain required before STRUCTURE_PASS.
 """
 from __future__ import annotations
 
@@ -22,7 +16,7 @@ from hashlib import sha256
 import json
 from pathlib import Path
 import re
-from typing import Any, Iterable, Mapping
+from typing import Any, Iterable, Mapping, Sequence
 
 CLASSIFICATIONS = (
     "CORRECTION",
@@ -31,10 +25,35 @@ CLASSIFICATIONS = (
     "PRIORITY_CHANGE",
     "SIDE_REQUEST",
 )
+DECISION_ACTIONS = (
+    "ACCEPT",
+    "DUPLICATE",
+    "SUPERSEDE",
+    "HOLD_CONFLICT",
+)
+STAGE_ORDER = (
+    "EVENT",
+    "NORMALIZE",
+    "ROUTE_EXISTING_REGISTRY",
+    "CONFLICT_DEDUP",
+    "CANONICAL_WRITE",
+    "READ_BACK",
+    "TARGET_REVISION_READ_APPLY",
+    "TEST_EVIDENCE",
+    "RESTART_OR_HOLD",
+)
+MODULE_CONTRACT_KEYS = (
+    "input_schema",
+    "output_schema",
+    "validate",
+    "apply",
+    "rollback",
+    "fixture",
+    "evidence",
+)
 
 REGISTRY_PATH = Path(__file__).resolve().parents[1] / "WIC_CHAT_ROUTING_REGISTRY.md"
 ROUTE_LINE_RE = re.compile(r"^route:\s*([A-Z0-9_]+)\s*=\s*(.+?)\s*$", re.I)
-
 EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE_RE = re.compile(r"(?<!\d)(?:\+?82[- .]?)?(?:0\d{1,2}[- .]?)?\d{3,4}[- .]?\d{4}(?!\d)")
 LONG_NUMBER_RE = re.compile(r"(?<!\d)\d{7,}(?!\d)")
@@ -63,6 +82,17 @@ class NormalizedFeedback:
     priority_change: bool
 
 
+@dataclass(frozen=True)
+class ConflictDecision:
+    feedback_id: str
+    action: str
+    reason: str
+    supersedes: tuple[str, ...]
+    conflicts_with: tuple[str, ...]
+    impacted_layers: tuple[str, ...]
+    impacted_targets: tuple[str, ...]
+
+
 def _canonical_text(text: str) -> str:
     return WS_RE.sub(" ", text.strip().lower())
 
@@ -77,20 +107,17 @@ def redact_sensitive(text: str) -> str:
 
 
 def parse_route_registry(text: str) -> dict[str, tuple[str, ...]]:
-    """Parse machine-readable route lines from the existing central chat registry."""
     routes: dict[str, tuple[str, ...]] = {}
     for raw_line in text.splitlines():
         match = ROUTE_LINE_RE.match(raw_line.strip())
         if not match:
             continue
         target = match.group(1).upper()
-        keywords = tuple(
-            dict.fromkeys(
-                keyword.strip().lower()
-                for keyword in match.group(2).split("|")
-                if keyword.strip()
-            )
-        )
+        keywords = tuple(dict.fromkeys(
+            keyword.strip().lower()
+            for keyword in match.group(2).split("|")
+            if keyword.strip()
+        ))
         if not keywords:
             raise ValueError(f"empty route keywords for {target}")
         if target in routes:
@@ -176,6 +203,140 @@ def process_batch(events: Iterable[FeedbackEvent], processed_ids: set[str]) -> l
     return out
 
 
+def _record_value(record: Any, key: str, default: Any = None) -> Any:
+    if isinstance(record, Mapping):
+        return record.get(key, default)
+    return getattr(record, key, default)
+
+
+def impacted_layers(item: NormalizedFeedback) -> tuple[str, ...]:
+    layers: list[str] = []
+    if item.central_master_candidate or item.priority_change or "CENTRAL" in item.targets:
+        layers.append("GLOBAL")
+    if any(t in {"EMAIL_DB", "CRM_RESPONSE"} for t in item.targets):
+        layers.append("WORKGROUP")
+    if any(t.startswith("TOOL") for t in item.targets):
+        layers.append("TOOL_OR_DOMAIN_OVERRIDE")
+    if item.regression_fixture_candidate:
+        layers.append("DATA_OR_EXECUTION_ASSET")
+    return tuple(dict.fromkeys(layers or ["DATA_OR_EXECUTION_ASSET"]))
+
+
+def decide_conflict(item: NormalizedFeedback, existing: Sequence[Any]) -> ConflictDecision:
+    """Conservative deterministic conflict policy.
+
+    - exact normalized rule => DUPLICATE
+    - newer PRIORITY_CHANGE supersedes older overlapping priority rules
+    - explicit CORRECTION supersedes older overlapping normative rules
+    - differing same-priority CONSTRAINT on overlapping targets => HOLD_CONFLICT
+    - otherwise ACCEPT
+
+    HOLD is preferred over silent overwrite when intent cannot be safely inferred.
+    """
+    duplicate_ids: list[str] = []
+    supersedes: list[str] = []
+    conflicts: list[str] = []
+    item_text = _canonical_text(item.sanitized_excerpt)
+    item_targets = set(item.targets)
+
+    for old in existing:
+        old_id = str(_record_value(old, "feedback_id", ""))
+        old_text = _canonical_text(str(_record_value(old, "sanitized_excerpt", "")))
+        old_class = str(_record_value(old, "classification", ""))
+        old_targets = set(_record_value(old, "targets", ()) or ())
+        active = _record_value(old, "active", True)
+        if not active:
+            continue
+        if old_text == item_text and old_class == item.classification and old_targets == item_targets:
+            duplicate_ids.append(old_id)
+            continue
+        overlap = bool(item_targets & old_targets)
+        if not overlap:
+            continue
+        if item.classification == "PRIORITY_CHANGE" and old_class == "PRIORITY_CHANGE":
+            supersedes.append(old_id)
+        elif item.classification == "CORRECTION" and old_class in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"}:
+            supersedes.append(old_id)
+        elif item.classification == "CONSTRAINT" and old_class == "CONSTRAINT":
+            conflicts.append(old_id)
+
+    if duplicate_ids:
+        action = "DUPLICATE"
+        reason = "same normalized classification/targets/excerpt already active"
+    elif conflicts:
+        action = "HOLD_CONFLICT"
+        reason = "same-priority overlapping constraint differs; no silent overwrite"
+    elif supersedes:
+        action = "SUPERSEDE"
+        reason = "new explicit priority/correction supersedes older overlapping normative rule"
+    else:
+        action = "ACCEPT"
+        reason = "no active duplicate or unresolved same-priority conflict"
+
+    return ConflictDecision(
+        feedback_id=item.feedback_id,
+        action=action,
+        reason=reason,
+        supersedes=tuple(x for x in supersedes if x),
+        conflicts_with=tuple(x for x in conflicts if x),
+        impacted_layers=impacted_layers(item),
+        impacted_targets=tuple(t for t in item.targets if t != "CENTRAL"),
+    )
+
+
+def canonical_revision(records: Sequence[Any]) -> str:
+    """Stable revision fingerprint for canonical read/apply cache."""
+    normalized = []
+    for record in records:
+        normalized.append({
+            "feedback_id": str(_record_value(record, "feedback_id", "")),
+            "classification": str(_record_value(record, "classification", "")),
+            "targets": sorted(_record_value(record, "targets", ()) or ()),
+            "sanitized_excerpt": _canonical_text(str(_record_value(record, "sanitized_excerpt", ""))),
+            "active": bool(_record_value(record, "active", True)),
+        })
+    payload = json.dumps(sorted(normalized, key=lambda x: x["feedback_id"]), ensure_ascii=False, sort_keys=True)
+    return sha256(payload.encode("utf-8")).hexdigest()[:24]
+
+
+def target_apply_decision(target: str, canonical_rev: str, revision_cache: Mapping[str, str]) -> str:
+    return "SKIP_UNCHANGED" if revision_cache.get(target) == canonical_rev else "APPLY_CHANGED_SCOPE"
+
+
+def checkpoint_state(state: Mapping[str, Any], *, feedback_id: str, stage: str,
+                     status: str = "PASS", blocker: str = "") -> dict[str, Any]:
+    if stage not in STAGE_ORDER:
+        raise ValueError(f"unknown integration stage: {stage}")
+    if status not in {"PASS", "HOLD", "FAIL"}:
+        raise ValueError(f"unknown stage status: {status}")
+    checkpoints = dict(state.get("feedback_checkpoints", {}))
+    prior = dict(checkpoints.get(feedback_id, {}))
+    prior.update({"last_stage": stage, "status": status})
+    if blocker:
+        prior["blocker"] = blocker
+    elif "blocker" in prior and status == "PASS":
+        prior.pop("blocker", None)
+    checkpoints[feedback_id] = prior
+    return {**state, "feedback_checkpoints": checkpoints}
+
+
+def next_stage(state: Mapping[str, Any], feedback_id: str) -> str:
+    cp = state.get("feedback_checkpoints", {}).get(feedback_id)
+    if not cp:
+        return STAGE_ORDER[0]
+    last = cp.get("last_stage")
+    status = cp.get("status")
+    if status in {"HOLD", "FAIL"}:
+        return str(last)
+    idx = STAGE_ORDER.index(last)
+    return STAGE_ORDER[min(idx + 1, len(STAGE_ORDER) - 1)]
+
+
+def validate_module_contract(contract: Mapping[str, Any]) -> tuple[bool, tuple[str, ...]]:
+    missing = tuple(key for key in MODULE_CONTRACT_KEYS if key not in contract)
+    return (not missing, missing)
+
+
 def work_gate(*, chat_files_possible: bool, github_possible: bool, terminal_possible: bool,
               concrete_work_only_blocker: bool, handoff_complete: bool) -> str:
     if chat_files_possible or github_possible or terminal_possible:
@@ -189,7 +350,7 @@ def state_after(state: dict[str, Any], processed: Iterable[NormalizedFeedback], 
     ids = list(dict.fromkeys([*state.get("processed_feedback_ids", []), *(x.feedback_id for x in processed)]))
     return {
         **state,
-        "schema_version": 1,
+        "schema_version": max(2, int(state.get("schema_version", 1))),
         "last_context_cursor": cursor,
         "processed_feedback_ids": ids[-2000:],
     }
@@ -211,27 +372,50 @@ def run_fixtures() -> str:
         FeedbackEvent("2026-08-10T15:32:00+09:00", "current", "각 대화창 피드백 자동수집해서 중앙 마스터와 GitHub에 반영해. 사용자가 다시 전달하지 않게 고정해."),
         FeedbackEvent("2026-08-10T15:33:00+09:00", "toc", "MarketsandMarkets 목차에서 숫자만 떨어진 줄이 또 남는 오류가 있다."),
         FeedbackEvent("2026-08-10T15:34:00+09:00", "work", "터미널에서 가능한 일은 Work로 넘기지 마."),
-        FeedbackEvent("2026-08-12T08:30:00+09:00", "priority", "우선순위는 6번 목차 정리 → 13번 엑셀 자동 업로드 → 7번 고객 컨택 판단 → 2번 입찰로 하고 이메일 수집과 1번, 37번은 제외해."),
+        FeedbackEvent("2026-08-12T12:19:00+09:00", "priority", "구조 PASS 뒤 우선순위는 이메일 수집 → 7번 고객 컨택 판단 → 1번 중간/최종 안내서 → 37 메타데이터 → 13번 엑셀 자동 업로드 → 6번 목차 정리 → 2번 입찰 → 28~31 → 나머지 등록 도구 순서다."),
     ]
     batch = process_batch(events, set())
     assert len(batch) == 4
-    assert batch[0].classification == "CONSTRAINT"
-    assert "CENTRAL" in batch[0].targets
-    assert batch[0].central_master_candidate is True
-    assert batch[1].classification == "NEW_FIXTURE"
-    assert "TOOL006" in batch[1].targets
-    assert batch[1].regression_fixture_candidate is True
-    assert batch[2].classification == "CONSTRAINT"
-    assert "WORK_GATE" in batch[2].targets
+    assert batch[0].classification == "CONSTRAINT" and "CENTRAL" in batch[0].targets
+    assert batch[1].classification == "NEW_FIXTURE" and "TOOL006" in batch[1].targets
+    assert batch[2].classification == "CONSTRAINT" and "WORK_GATE" in batch[2].targets
     assert batch[3].classification == "PRIORITY_CHANGE"
     assert {"TOOL002", "TOOL006", "TOOL007", "TOOL013", "TOOL001", "TOOL037", "EMAIL_DB"}.issubset(set(batch[3].targets))
-    assert batch[3].priority_change is True
+
+    duplicate = decide_conflict(batch[0], [to_json_record(batch[0])])
+    assert duplicate.action == "DUPLICATE"
+
+    old_priority = normalize(FeedbackEvent("2026-08-12T08:30:00+09:00", "old", "우선순위는 6번 → 13번 → 7번 → 2번이다."))
+    supersede = decide_conflict(batch[3], [to_json_record(old_priority)])
+    assert supersede.action == "SUPERSEDE" and old_priority.feedback_id in supersede.supersedes
+
+    c1 = normalize(FeedbackEvent("2026-08-12T09:00:00+09:00", "a", "13번은 자동매핑 기능을 반드시 사용해."))
+    c2 = normalize(FeedbackEvent("2026-08-12T09:01:00+09:00", "b", "13번은 자동매핑 기능을 반드시 사용하지 마."))
+    hold = decide_conflict(c2, [to_json_record(c1)])
+    assert hold.action == "HOLD_CONFLICT" and c1.feedback_id in hold.conflicts_with
+
+    rev1 = canonical_revision([to_json_record(batch[0])])
+    rev2 = canonical_revision([to_json_record(batch[0]), to_json_record(batch[3])])
+    assert rev1 != rev2 and len(rev1) == 24
+    assert target_apply_decision("TOOL013", rev2, {}) == "APPLY_CHANGED_SCOPE"
+    assert target_apply_decision("TOOL013", rev2, {"TOOL013": rev2}) == "SKIP_UNCHANGED"
+
+    s0: dict[str, Any] = {"feedback_checkpoints": {}}
+    s1 = checkpoint_state(s0, feedback_id=batch[0].feedback_id, stage="NORMALIZE")
+    assert next_stage(s1, batch[0].feedback_id) == "ROUTE_EXISTING_REGISTRY"
+    s2 = checkpoint_state(s1, feedback_id=batch[0].feedback_id, stage="CANONICAL_WRITE", status="HOLD", blocker="writer unavailable")
+    assert next_stage(s2, batch[0].feedback_id) == "CANONICAL_WRITE"
+
+    valid, missing = validate_module_contract({key: {} for key in MODULE_CONTRACT_KEYS})
+    assert valid and missing == ()
+    valid2, missing2 = validate_module_contract({"input_schema": {}, "output_schema": {}})
+    assert not valid2 and "rollback" in missing2 and "evidence" in missing2
+
     assert work_gate(chat_files_possible=True, github_possible=False, terminal_possible=False,
                      concrete_work_only_blocker=False, handoff_complete=False) == "WORK_DEFER_DENIED"
     assert work_gate(chat_files_possible=False, github_possible=False, terminal_possible=False,
                      concrete_work_only_blocker=True, handoff_complete=True) == "WORK_ELIGIBLE"
-    duplicate = process_batch([events[0]], {batch[0].feedback_id})
-    assert duplicate == []
+    assert process_batch([events[0]], {batch[0].feedback_id}) == []
     redacted = redact_sensitive("a@b.com 010-1234-5678")
     assert "a@b.com" not in redacted and "010-1234-5678" not in redacted
     json.dumps([to_json_record(x) for x in batch], ensure_ascii=False)
@@ -243,7 +427,7 @@ def run_fixtures() -> str:
     except ValueError:
         pass
 
-    return "PASS: registry-source routing + deterministic cross-chat feedback fixtures"
+    return "PASS: routing + conflict/dedup + revision/cache + checkpoint + module-contract fixtures"
 
 
 if __name__ == "__main__":
