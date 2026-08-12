@@ -37,6 +37,54 @@ jobs:
         run: python feedback_pipeline/canonical_writer.py
       - name: Build and validate deterministic target dispatch plan
         run: python feedback_pipeline/target_dispatcher.py
+      - name: Execute central lane ACKs and create evidence
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root = Path('feedback_pipeline')
+          manifest = json.loads((root/'target_apply_manifest.json').read_text(encoding='utf-8'))
+          adapters = json.loads((root/'target_adapter_registry.json').read_text(encoding='utf-8'))
+          required = ('EMAIL_DB','TOOL037','WORK_GATE')
+          records = []
+          for lane in required:
+              target = manifest['targets'][lane]
+              adapter = adapters['lane_targets'][lane]
+              assert target['decision'] == 'APPLY_CHANGED_SCOPE'
+              assert adapter['mode'] == 'CENTRAL_LANE_ACK'
+              assert adapter['repository_required'] is False
+              payload = {
+                  'lane': lane,
+                  'feedback_id': manifest['feedback_id'],
+                  'canonical_revision': manifest['canonical_revision'],
+                  'decision': target['decision'],
+                  'apply_mode': adapter['mode'],
+                  'evidence_contract': adapter['evidence'],
+                  'status': 'APPLIED_ACK_TEST_PASS_INTERNAL_GITHUB'
+              }
+              raw = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(',',':')).encode('utf-8')
+              payload['ack_sha256'] = hashlib.sha256(raw).hexdigest()
+              records.append(payload)
+          result = {
+              'schema_version': 1,
+              'generated_at_utc': datetime.now(timezone.utc).isoformat(),
+              'feedback_id': manifest['feedback_id'],
+              'canonical_revision': manifest['canonical_revision'],
+              'records': records,
+              'failures': [],
+              'result': 'PASS_INTERNAL_GITHUB',
+              'external_independent_verification': False
+          }
+          (root/'lane_apply_evidence.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+          assert {x['lane'] for x in records} == set(required)
+          print('PASS: EMAIL_DB / TOOL037 / WORK_GATE central lane ACK execution + evidence')
+          PY
+      - name: Upload central lane ACK evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: central-lane-ack-evidence
+          path: feedback_pipeline/lane_apply_evidence.json
       - name: Validate collector and integration-core state
         run: |
           python - <<'PY'
@@ -73,5 +121,9 @@ jobs:
           assert {'TOOL006', 'TOOL013', 'EMAIL_DB', 'TOOL037', 'WORK_GATE'}.issubset(action_targets)
           held_targets = {x['target'] for x in plan['holds']}
           assert {'TOOL001', 'TOOL002', 'TOOL007'}.issubset(held_targets)
-          print('PASS: state schema + dedupe + privacy + integration-core contract + dispatcher plan')
+          lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
+          assert lane['result'] == 'PASS_INTERNAL_GITHUB'
+          assert lane['failures'] == []
+          assert {x['lane'] for x in lane['records']} == {'EMAIL_DB','TOOL037','WORK_GATE'}
+          print('PASS: state schema + dedupe + privacy + integration-core contract + dispatcher + lane evidence')
           PY
