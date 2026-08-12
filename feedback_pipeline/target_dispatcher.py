@@ -77,14 +77,16 @@ def main() -> None:
     out.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     by_target = {x["target"]: x for x in plan["actions"]}
+    assert by_target["TOOL001"]["repository"] == "obk369369-spec/01-auto-guide-v1"
+    assert by_target["TOOL002"]["repository"] == "obk369369-spec/02-auto-bid-narajangter-v1"
     assert by_target["TOOL006"]["repository"] == "obk369369-spec/06-toc-check"
     assert by_target["TOOL013"]["repository"] == "obk369369-spec/13-excel-upload"
     assert by_target["EMAIL_DB"]["action"] == "LANE_ACK"
     assert by_target["TOOL037"]["action"] == "LANE_ACK"
     assert by_target["WORK_GATE"]["action"] == "LANE_ACK"
     held = {x["target"] for x in plan["holds"]}
-    assert {"TOOL001", "TOOL002", "TOOL007"}.issubset(held)
-    print("PASS: deterministic target dispatcher plan + fail-closed unresolved targets")
+    assert held == {"TOOL007"}
+    print("PASS: deterministic target dispatcher plan + verified TOOL001/002 + fail-closed TOOL007")
 
 
 if __name__ == "__main__":
