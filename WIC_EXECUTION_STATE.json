@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 19:17",
+  "updated_kst": "2026-08-12 20:18",
   "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": ["EVENT","NORMALIZE","ROUTE_EXISTING_REGISTRY","CONFLICT_DEDUP","CANONICAL_WRITE","READ_BACK","TARGET_REVISION_READ_APPLY","TEST_EVIDENCE","RESTART_OR_HOLD"],
@@ -19,10 +19,15 @@
     "TOOL002 verified repository identification and canonical revision apply/read-back",
     "TOOL007 existing repository purpose mismatch verification",
     "deterministic fail-closed target dispatcher base code",
-    "EMAIL_DB/TOOL037/WORK_GATE lane ACK execution and artifact generation workflow wiring",
     "persistent target revision cache implementation",
     "revision-aware multi-target SKIP_UNCHANGED implementation",
-    "controlled rollback/restart fixture implementation and workflow wiring"
+    "controlled rollback/restart fixture implementation and workflow wiring",
+    "audit workflow actual run 31587057240 success",
+    "audit job 94083205492 success",
+    "integration-core evidence artifact 9137534969 creation",
+    "EMAIL_DB/TOOL037/WORK_GATE lane ACK actual workflow evidence",
+    "revision-aware multi-target SKIP_UNCHANGED actual workflow evidence",
+    "controlled rollback/restart checkpoint fixture actual workflow evidence"
   ],
   "current_evidence": {
     "feedback_id": "f2aeb4e8f5fac3c9618f",
@@ -36,13 +41,17 @@
     "revision_aware_dispatcher_commit": "fccceb97c425f2e47607611d45af3ada5c415b74",
     "rollback_fixture_commit": "6b0dbc47d2dab02d693ff75f6296c21fd4b08f94",
     "audit_workflow_commit": "feef20eec8b800f5f44231c7721bbf85b69c0f07",
-    "audit_workflow_actual_run_evidence": "PENDING",
+    "audit_workflow_run": "31587057240",
+    "audit_workflow_job": "94083205492",
+    "audit_workflow_result": "completed/success",
+    "integration_core_evidence_artifact": "9137534969",
+    "integration_core_evidence_digest": "sha256:b3d1ba6206cb2017d48ded68c4b5590ac25695527f27cf4c799e11a946f45c0e",
     "external_independent_verification": false
   },
   "current_blockers": {
-    "integration_core": "Actual GitHub Actions run/job/artifact evidence for the new revision-aware audit is pending; TOOL001/002 actual target tests, TOOL007 latest-purpose target, and real cross-target controlled rollback/restart evidence remain HOLD.",
-    "independent_verification": "No third-party actual run/result URL is recorded."
+    "integration_core": "TOOL001/002 actual target tests, TOOL007 latest-purpose target/adapter, and real cross-target repository rollback/read-back + last_success_stage restart E2E remain HOLD.",
+    "independent_verification": "No third-party actual run/result evidence is recorded."
   },
-  "restart_point": "Do not repeat completed canonical/dispatcher/revision-cache implementation. First confirm actual run/job/artifact for audit workflow commit feef20eec8b800f5f44231c7721bbf85b69c0f07. If successful, record multi-target SKIP_UNCHANGED, lane ACK and rollback/restart fixture as internal GitHub evidence. Then obtain TOOL001/002 actual target test evidence. Keep TOOL007 HOLD until a repository matching the customer-contact-judgment purpose is verified. Finally run a real controlled target failure with rollback + last_success_stage restart before overall structure PASS.",
+  "restart_point": "Do not repeat canonical/dispatcher/revision-cache/audit evidence work. TOOL001 and TOOL002 actual target test/evidence are next. Keep TOOL007 HOLD until a customer-contact-judgment purpose target is verified. Then run a real controlled cross-target repository failure with rollback read-back and last_success_stage restart before overall structure PASS.",
   "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence; documentation or commit alone is not PASS."
 }
