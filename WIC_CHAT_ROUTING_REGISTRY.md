@@ -35,6 +35,26 @@
 
 새 개발/관찰/준비 대화창은 사용자가 명시적으로 분리 요청하기 전까지 만들지 않는다.
 
+## 3-A. MACHINE ROUTE MAP — 실행기가 읽는 기존 registry 내부 원본
+아래 `route:` 행은 `feedback_pipeline/cross_chat_feedback_ingest.py`가 직접 읽는다. 새 라우팅 registry를 만들지 않는다.
+형식: `route: TARGET = keyword | keyword | ...`
+
+route: TOOL001 = 1번 | 안내서 | full_guide | intermediate_guide | 고객 자동화 안내서
+route: TOOL002 = 2번 | 입찰 | 입찰 도구 | bid | tender
+route: TOOL006 = 6번 | 목차 | toc | marketsandmarkets | marketandmarket
+route: TOOL007 = 7번 | 고객 컨택 | 컨택 판단 | 전화 멘트 | 유선 멘트
+route: TOOL013 = 13번 | 엑셀 자동 업로드 | 46145
+route: TOOL037 = 37번 | 메타데이터 | 상품명 | 한글명 | isbn | code
+route: EMAIL_DB = 메일 수집 | 이메일 수집 | new_online | dormant_ledger | recent_trade | 고객 db
+route: WORK_GATE = 워크 | work | 크레딧 | credit | 이관
+route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 | 관찰자
+
+운영 규칙:
+- 실행 시 이 map을 우선 읽는다.
+- registry가 없거나 파싱 실패하면 조용히 임의 fallback하지 않고 테스트/실행에서 FAIL 또는 HOLD 증거를 남긴다.
+- route target 추가는 이 기존 파일을 수정하고 read-back/test한다.
+- 규범 규칙의 우선순위나 내용은 이 map이 아니라 `WIC_GLOBAL_OPERATING_RULES.md`가 결정한다.
+
 ## 4. ROUTING RULE
 1. 개발·관찰·통합 피드백·중앙 상태는 CONTROL_PRIMARY로 귀속한다.
 2. Work 직전 준비·Work-only 판정·exact handoff는 WORK_PREP로 귀속한다.
