@@ -11,8 +11,8 @@
     ],
     "feedback_checkpoints": {
       "f2aeb4e8f5fac3c9618f": {
-        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
-        "last_stage": "TARGET_REVISION_READ_APPLY",
+        "blocker": "TOOL006 target apply/read-back/internal test passed; remaining routed targets/lane adapters and failure rollback evidence are still required before structure PASS.",
+        "last_stage": "TEST_EVIDENCE",
         "status": "HOLD"
       }
     },
@@ -38,10 +38,23 @@
       "RESTART_OR_HOLD"
     ],
     "structure_pass": false,
-    "structure_pass_reason": "Canonical mutation/read-back prepared; cross-repository target apply/test evidence remains HOLD.",
-    "target_revision_cache": {}
+    "structure_pass_reason": "First real cross-repository target E2E succeeded for TOOL006, but remaining routed target/lane application and rollback/restart evidence remain HOLD.",
+    "target_revision_cache": {
+      "TOOL006": {
+        "canonical_revision": "fa09bcdec96669d97ef3a18f",
+        "status": "APPLIED_TEST_PASS_INTERNAL_GITHUB",
+        "target_repository": "obk369369-spec/06-toc-check",
+        "target_apply_commit": "3961fd8c59b8dc08100204d4437e217460f292b2",
+        "target_state_commit": "d3d49c57b4415dcd93377f517fb111c44f9f4526",
+        "target_read_back_blob": "cb508b04baf13bbdc3ae5c0ae0614a99ea591a0f",
+        "workflow_run_id": 31573547418,
+        "validation_job_id": 94040506272,
+        "test_result": "completed/success",
+        "external_independent_verification": false
+      }
+    }
   },
-  "last_context_cursor": "2026-08-12T15:20:47+09:00",
+  "last_context_cursor": "2026-08-12T16:18:17+09:00",
   "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
   "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "pipeline_status": "ACTIVE",
