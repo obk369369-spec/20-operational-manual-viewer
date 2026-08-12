@@ -1,6 +1,6 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-12 20:18 KST
+최종 갱신: 2026-08-12 21:20 KST
 상태: ACTIVE / STRUCTURE_FIRST / OVERALL_HOLD
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
@@ -13,13 +13,14 @@
 
 ## 이번 실행 실제 개선
 - 최신 중앙 상태와 restart point를 먼저 읽고 완료 작업은 반복하지 않았다.
-- 이전 HOLD였던 audit workflow commit `feef20eec8b800f5f44231c7721bbf85b69c0f07`의 actual run을 확인했다.
-- GitHub Actions run `31587057240`은 `completed/success`.
-- job `94083205492` (`deterministic-audit`)도 `completed/success`.
-- revision-aware dispatch plan, controlled rollback/restart checkpoint fixture, central lane ACK, evidence upload, collector/integration-core state validation 단계가 모두 success.
-- evidence artifact `9137534969` (`integration-core-evidence`) 실제 생성 확인. digest `sha256:b3d1ba6206cb2017d48ded68c4b5590ac25695527f27cf4c799e11a946f45c0e`.
-- 따라서 EMAIL_DB/TOOL037/WORK_GATE lane ACK, revision-aware multi-target SKIP_UNCHANGED, controlled rollback/restart fixture의 GitHub 내부 actual workflow evidence는 PASS로 승격한다.
-- 단 controlled fixture는 실제 cross-target repository failure/rollback E2E가 아니므로 전체 rollback PASS로 간주하지 않는다.
+- TOOL001 실제 저장소 `obk369369-spec/01-auto-guide-v1`의 기존 검증경로를 확인했다.
+- TOOL001 `regression/tool1_verified_data_contract.py`에는 12개 결정형 verified-data/feedback fixture가 있으나 입력은 코드 내부 fixture이므로 실제 고객/보고서 target run 증거로 승격하지 않는다.
+- TOOL001 최신 canonical apply commit `74e418cd5bccf71e6f5a839fdc83bc9179b1cad7`의 GitHub combined status에서 Deno deploy가 `failure`임을 실제 확인했다. target URL: `https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/0ztwbfp0bt5t`.
+- TOOL002 실제 저장소 `obk369369-spec/02-auto-bid-narajangter-v1`의 archive evidence를 직접 read-back했다.
+- TOOL002 canonical apply commit `88848edb6df13a59f6b690248d9948a128b5fb36`에 대해 `external-evidence-archive/runs/88848ed.../static-validation.json`이 존재하고 `STRUCTURE_PASS`, failures 0, inputs 14, buttons 12임을 확인했다.
+- 단 이 증거는 정적 구조 검증이므로 실제 입찰 input→run→output→expected 업무 E2E PASS로 승격하지 않는다.
+- TOOL002 같은 commit의 GitHub combined status에서 Deno deploy가 `failure`임을 실제 확인했다. target URL: `https://console.deno.com/obk369369-spec/02-auto-bid-narajangter-v1/builds/4b2nhxnd5d26`.
+- 따라서 TOOL001/002는 '미확인'이 아니라 '내부 fixture/정적검증 증거 있음 + 실제 외부 배포 실패 있음 + 실제 업무 E2E 미완료'로 blocker를 정밀화했다.
 
 ## 현재 실제 PASS
 - 실제 새 피드백 ingest/normalize/route.
@@ -32,25 +33,31 @@
 - TOOL001/002/006/013 revision-aware SKIP_UNCHANGED actual workflow evidence.
 - controlled rollback/restart checkpoint fixture actual workflow evidence.
 - integration-core evidence artifact actual 생성.
+- TOOL002 canonical apply commit에 대한 archived static STRUCTURE_PASS evidence read-back.
 
 ## 아직 HOLD
-1. TOOL001 / TOOL002 실제 target test/evidence.
-2. TOOL007 최신 고객 컨택 판단 목적에 맞는 actual target/adapter.
-3. 실제 cross-target controlled failure → repository rollback/read-back → last_success_stage restart E2E.
-4. 위 gate 전 전체 구조 PASS 금지.
+1. TOOL001 실제 target input→run→output→expected 테스트 증거. 기존 fixture만으로 PASS 금지.
+2. TOOL002 실제 입찰 target input→run→output→expected 테스트 증거. static STRUCTURE_PASS만으로 PASS 금지.
+3. TOOL001/002 최신 canonical apply commit의 Deno deploy failure 원인 확인 및 실제 실행경로와의 관계 판정.
+4. TOOL007 최신 고객 컨택 판단 목적에 맞는 actual target/adapter.
+5. 실제 cross-target controlled failure → repository rollback/read-back → last_success_stage restart E2E.
+6. 위 gate 전 전체 구조 PASS 금지.
 
 ## blocker / 개선방법
-- TOOL001/002: 적용/read-back은 끝났지만 실제 input→run→output→expected 테스트 증거가 없다. 기존 검증경로를 재사용해 actual test evidence 확보.
+- TOOL001: 결정형 fixture는 존재하지만 실제 target 업무 입력 실행 증거가 아니다. 기존 verified-data 검증경로를 재사용해 실제 입력 기반 증거를 확보해야 한다. Deno deploy failure도 별도 blocker로 기록한다.
+- TOOL002: archived static validation은 PASS지만 업무 실행 검증이 아니다. 실제 공고 입력→분기/계산/결과 expected 비교가 필요하다. Deno deploy failure도 별도 blocker로 기록한다.
 - TOOL007: 기존 저장소 목적 불일치. 목적 일치 target 확인 전 추측 adapter 연결 금지.
 - rollback: fixture actual workflow는 PASS했지만 실제 cross-target repository rollback은 미검증. 안전한 테스트 target에서 통제 실패→rollback→read-back→restart 증거 필요.
+- Deno 실패는 제3자 외부검증 PASS가 아니라 실제 외부 실패 증거다. 원인을 확인하기 전 내부 GitHub PASS와 혼동하지 않는다.
 
 ## 최신 restart point
 1. canonical writer / TOOL006 / TOOL013 / TOOL001/002 apply / dispatcher / revision cache / audit workflow 구현 반복 금지.
-2. audit run `31587057240`, job `94083205492`, artifact `9137534969`는 확보 완료. 재검증 반복 금지.
-3. TOOL001 / TOOL002 actual target test/evidence 확보.
-4. TOOL007은 목적 일치 verified target 확인 전 HOLD.
-5. 실제 cross-target controlled failure → repository rollback/read-back → last_success_stage restart E2E.
-6. 전체 gate 통과 후에만 구조 PASS 검토.
+2. audit run `31587057240`, job `94083205492`, artifact `9137534969` 재검증 반복 금지.
+3. TOOL001은 기존 verified-data 검증경로를 재사용해 실제 target 업무 입력 증거를 확보하고, 최신 Deno failure 원인을 분리 확인한다.
+4. TOOL002는 archived static STRUCTURE_PASS를 재사용하되 실제 공고 업무 E2E 증거를 추가하고, 최신 Deno failure 원인을 분리 확인한다.
+5. TOOL007은 목적 일치 verified target 확인 전 HOLD.
+6. 실제 cross-target controlled failure → repository rollback/read-back → last_success_stage restart E2E.
+7. 전체 gate 통과 후에만 구조 PASS 검토.
 
 ## Work 크레딧 사용 게이트
 - 기존 규칙 재독해·재요약·반복검색에 Work 사용 금지.
@@ -59,6 +66,7 @@
 
 ## 독립검증 상태
 - GitHub 내부 actual run/read-back/artifact 증거: 있음.
-- 제3자 외부검증: 없음 / HOLD.
+- Deno actual deploy status: TOOL001 failure / TOOL002 failure.
+- 제3자 외부 PASS 증거: 없음 / HOLD.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
