@@ -1,16 +1,15 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-13 06:34 KST
+최종 갱신: 2026-08-13 07:29 KST
 상태: ACTIVE / STRUCTURE_PASS / POST_STRUCTURE_PRIORITY
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
 
 ## WIC 전체 자동 통합 기반 구조 — PASS
-- 실제 사용자 피드백 `f2aeb4e8f5fac3c9618f`가 자동 분류(`PRIORITY_CHANGE`) → 충돌검사(충돌 없음) → 공통마스터/업무군/도구·분야예외/데이터·실행자산 4계층 라우팅 → canonical write → hash read-back 일치까지 실제 처리됐다.
-- 같은 canonical revision `fa09bcdec96669d97ef3a18f`가 TOOL006/TOOL013 actual target에 적용/read-back/test 증거를 보유하고, TOOL001/002는 revision cache로 SKIP_UNCHANGED, EMAIL_DB/TOOL007/TOOL037/WORK_GATE는 중앙 lane ACK로 처리된다.
-- TOOL007 목적 일치 중앙 adapter `customer_pipeline/tool7_contact_judgment.py`를 기존 audit workflow에 재사용 연결했고, GitHub Actions run `31642395087` / job `94267844534` / artifact `9159365670`에서 adapter 실행·lane ACK·검증이 모두 success였다.
-- `feedback_pipeline/state.json`은 `structure_pass=true`이며 검증 run `31642596092` / job `94268523138`에서 구조 PASS 상태 자체가 success로 재검증됐다.
+- 실제 사용자 피드백 `f2aeb4e8f5fac3c9618f`가 자동 분류(`PRIORITY_CHANGE`) → 충돌검사 → 4계층 라우팅 → canonical write → hash read-back까지 실제 처리됐다.
+- `feedback_pipeline/state.json`의 `structure_pass=true`와 검증 run `31642596092` / job `94268523138`은 그대로 유효하다.
+- 구조 PASS 재검증은 반복하지 않는다.
 
 ## 완료 작업 — 반복 금지
 - integration core 구현/재구축/재요약.
@@ -26,14 +25,13 @@
 - 구조 PASS 재검증 run `31642596092`.
 - P1 customer DB deterministic fixtures 및 P1→P2 deterministic handoff fixtures.
 
-## 이번 실행 실제 개선
-- WIC 구조를 실제 PASS로 승격하고 `WIC_EXECUTION_STATE.json` commit `80fb5062f2ab90bd7cc4d84d421fe87899bf2323`까지 같은 restart point로 맞춘 뒤 read-back했다.
-- 구조 PASS 후 1순위인 이메일 수집으로 이동했다. File Library에서 실제 회사 고객 원본 `고객 매일 장부 2026.xlsx`가 존재함을 확인했고, 2025 장부 시트에 실제 고객/기관/연구분야 등이 포함돼 있음을 확인했다.
-- 과거 실행자산 기록에서는 로컬 고객 DB 경로가 `I:\customer_tracking_tool\DB\고객_DB.xlsx`, 출력 경로가 `I:\customer_tracking_tool\Push Package\...`로 정의돼 있었으나 GitHub에서 `generate_push_list/export_push_package/load_customer_db` 실제 runner 구현은 찾지 못했다. 따라서 이메일 수집 실제 business E2E는 HOLD다.
-- 다음 7번 actual customer E2E를 위해 연결 Gmail의 최근 고객 문의 후보를 검색했으나 최근 결과가 광고/내부성 메일 위주여서 검증 가능한 실제 고객 레코드를 확정하지 못했다. TOOL007 business E2E는 HOLD 유지한다.
-- TOOL001은 기존 동일 dispatch blocker(`gh` 없음 + connector workflow_dispatch 없음)가 변하지 않았으므로 반복하지 않고 건너뛰었다.
-- TOOL037은 중앙 lane ACK 외에 목적 일치 실제 저장소/runner를 GitHub 설치 저장소와 중앙 코드 검색에서 식별하지 못해 HOLD로 기록한다.
-- 다음 실행 가능한 자산으로 TOOL013 실제 저장소 `obk369369-spec/13-excel-upload`를 확인했다. `index.html` 실제 본체와 GitHub Actions 이력이 존재하며 최신 내부 validation run `31578147961`은 success지만 이는 business input E2E가 아니므로 전체 business PASS로 올리지 않았다.
+## 이번 실행 실제 확인/개선
+- 최신 restart point를 먼저 읽고 구조 PASS 및 기존 HOLD 항목은 반복하지 않았다.
+- TOOL013 실제 저장소 `obk369369-spec/13-excel-upload`의 본체 `index.html` blob `1277d2460f7790db40321248078522c19b62cbf1`과 기존 workflow를 다시 확인했다.
+- 기존 `.github/workflows/external-evidence.yml`은 `validate-static-tool.mjs` 기반 정적/내부 validation 및 Pages 배포만 수행하며, 실제 업무 Excel 파일을 주입해 변환 결과를 비교하는 browser/business E2E 단계는 없다.
+- File Library에서 실제 업무 메타데이터 자산과 규칙관리 자산은 확인했다. 특히 `37번_메타데이터_통합규칙관리.xlsx`에는 LP Information 1,148행, Market Monitor Global 2,582행, MarketsandMarkets 헤더행 2 등 실제 발행사별 구조 정보가 존재하고, `해외시장보고서_28개발행사_메타데이터_샘플검증_규칙잠금_V2.xlsx`에는 실제 원본 파일명/컬럼매핑이 존재한다.
+- 그러나 현재 GitHub connector/runtime에서는 File Library의 실제 `.xlsx` 바이너리를 `13-excel-upload` 브라우저 실행에 직접 주입할 수 있는 file mount/connector 경로가 없고, 기존 GitHub workflow에도 실제 Excel fixture가 없다. 따라서 synthetic/static 파일을 새로 만들어 PASS로 위장하지 않고 TOOL013 BUSINESS E2E를 HOLD로 확정했다.
+- 지시대로 TOOL013에서 막힌 뒤 즉시 TOOL006으로 이동했다. 실제 저장소 `obk369369-spec/06-toc-check`에서 본체 `index.html` blob `6d3fef9325e75b188b84d9c1a4888fce5ba112c9`, 기존 `tests/marketsandmarkets_historical_fixtures.json`, `external-evidence.yml` 존재를 확인했다. 현재 테스트 자산은 historical fixture 중심이므로 actual business TOC input E2E인지 추가 판정이 필요하다.
 
 ## 현재 실제 PASS
 - WIC reusable automatic integration core: `PASS_INTERNAL_GITHUB_E2E`.
@@ -45,29 +43,28 @@
 
 ## 구조 PASS 후 현재 HOLD
 1. EMAIL_COLLECTION: 실제 고객 원본은 확인됐지만 GitHub/runtime에서 해당 로컬 DB를 읽는 actual runner/send-ready formatter가 식별되지 않음.
-2. TOOL007 BUSINESS E2E: 실제 현재 고객 레코드가 연결 Gmail 검색에서 검증되지 않음.
+2. TOOL007 BUSINESS E2E: 목적 일치 adapter는 검증됐으나 실제 현재 고객 레코드 기반 업무 E2E 증거 없음.
 3. TOOL001 BUSINESS E2E: repaired commit 기준 Chromium 재실행 dispatch 경로가 현재 capability에서 막힘.
-4. TOOL037 BUSINESS E2E: 실제 목적 일치 repository/runner 미식별.
-5. TOOL013 BUSINESS E2E: repository는 실제 확인됐으나 현재 확보된 success는 내부/static validation이며 실제 업무용 Excel 입력→변환→출력 비교 증거가 아님.
-6. 제3자 외부검증 actual run/result 없음.
+4. TOOL037 BUSINESS E2E: 실제 목적 일치 production repository/runner 미식별.
+5. TOOL013 BUSINESS E2E: 실제 업무 메타데이터 자산은 File Library에서 확인했지만 현재 runtime이 해당 `.xlsx` 바이너리를 GitHub/browser E2E에 주입할 수 없음. 기존 workflow는 static/internal validation뿐임.
+6. TOOL006 BUSINESS E2E: 저장소/fixture/workflow는 확인했으나 historical fixture가 실제 업무 입력을 보존한 것인지, 실제 TOC input→정리→output/read-back 비교를 수행하는지 아직 검증 필요.
+7. 제3자 외부검증 actual run/result 없음.
 
 ## 개선방법
-- EMAIL_COLLECTION: 새 P1 코드를 만들지 말고 실제 고객 DB가 실행환경에서 접근 가능한 connector/file mount로 나타나는 즉시 기존 state machine + send-order formatter에 연결한다.
-- TOOL007: 실제 신규 문의/거래 고객 레코드가 확인되는 순간 중앙 adapter에 넣어 judgment/channel/copy output을 비교한다. raw PII는 GitHub에 저장하지 않는다.
-- TOOL001: 동일 dispatch 탐색 반복 금지. connector/runtime capability가 달라졌을 때만 Chromium E2E 재시도한다.
-- TOOL037: 추측 저장소 생성 금지. 실제 metadata production asset이 식별될 때만 연결한다.
-- TOOL013: 기존 `13-excel-upload/index.html`을 재사용해 실제 업무용 Excel input→output E2E를 우선 확보한다. synthetic/static만으로 PASS 금지.
+- TOOL013: 새 synthetic fixture를 만들지 않는다. 실제 발행사 `.xlsx`가 connector file mount 또는 실행환경 파일로 접근 가능해지는 즉시 기존 `index.html`에 주입하고 input row/header → output row/header/content를 비교한다.
+- TOOL006: 기존 historical fixture와 workflow를 먼저 읽어 실제 업무 원문 보존 여부 및 input→output 비교 여부를 판정한다. 실제 업무 기반이면 그대로 재사용하고, 단순 fixture이면 HOLD 후 다음 우선순위로 이동한다.
+- EMAIL_COLLECTION/TOOL007/TOOL001/TOOL037: blocker 변화 없이는 동일 탐색 반복 금지.
 
 ## 최신 restart point
 1. 구조 PASS는 재검증하지 않는다.
-2. EMAIL_COLLECTION / TOOL007 / TOOL001 / TOOL037의 위 blocker가 그대로면 동일 탐색을 반복하지 않는다.
-3. 다음 실행 가능한 항목은 TOOL013 actual business E2E다.
-4. `obk369369-spec/13-excel-upload/index.html`에 실제 업무용 Excel input을 넣고 output/read-back을 expected와 비교할 실행경로를 기존 workflow/브라우저 자산에서 우선 재사용한다.
-5. 실제 Excel input 접근 또는 browser E2E가 막히면 HOLD + 원인 + 개선방법을 기록하고 TOOL006으로 이동한다.
+2. TOOL013 BUSINESS E2E는 `actual Excel binary injection path unavailable`로 HOLD; 동일 File Library 검색을 반복하지 않는다.
+3. 다음 실행 항목은 TOOL006 actual business E2E 판정이다.
+4. `obk369369-spec/06-toc-check/tests/marketsandmarkets_historical_fixtures.json`과 existing workflow/script가 실제 업무 TOC 입력→정리→출력 expected 비교를 하는지 read-back한다.
+5. actual business evidence이면 run/job/artifact까지 확인한다. synthetic/historical-only이면 HOLD + 원인 + 개선방법을 기록하고, TOOL002는 이미 business PASS이므로 반복하지 않고 28~31로 이동한다.
 
 ## Work 크레딧 사용 게이트
 - 구조는 PASS이므로 구조 재독해·재요약·재검색에 Work 사용 금지.
-- 현재 Work 후보는 TOOL013 actual Excel browser E2E처럼 Chat/GitHub/일반 runtime으로 실제 막히는 실행만 해당한다.
+- 현재 Work 후보는 실제 파일 주입/브라우저 E2E처럼 Chat+GitHub connector로 실행이 막히는 부분만 해당한다.
 
 ## 독립검증 상태
 - GitHub 내부 actual run/read-back/commit/artifact 증거: 있음.
