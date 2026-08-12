@@ -1,0 +1,66 @@
+name: WIC feedback event apply
+
+on:
+  push:
+    paths:
+      - 'feedback_pipeline/pending_event.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wic-feedback-event-main
+  cancel-in-progress: false
+
+jobs:
+  apply-feedback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run existing ingest fixtures
+        run: python feedback_pipeline/cross_chat_feedback_ingest.py
+
+      - name: Run existing canonical writer fixtures
+        run: python feedback_pipeline/canonical_writer.py
+
+      - name: Apply pending real feedback event
+        run: python feedback_pipeline/apply_feedback_event.py | tee /tmp/wic-event-result.json
+
+      - name: Verify generated canonical section and evidence
+        run: |
+          test -f feedback_pipeline/target_apply_manifest.json
+          test -d feedback_pipeline/evidence
+          grep -q 'WIC_CANONICAL_FEEDBACK_START' WIC_GLOBAL_OPERATING_RULES.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('feedback_pipeline/state.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
+          fid = manifest['feedback_id']
+          cp = state['integration_core']['feedback_checkpoints'][fid]
+          assert cp['last_stage'] == 'TARGET_REVISION_READ_APPLY'
+          assert cp['status'] == 'HOLD'
+          assert state['integration_core']['structure_pass'] is False
+          print('PASS: canonical write/read-back prepared; target apply correctly remains HOLD')
+          PY
+
+      - name: Commit canonical mutation and evidence
+        run: |
+          git config user.name 'wic-integration-bot'
+          git config user.email 'wic-integration-bot@users.noreply.github.com'
+          git add WIC_GLOBAL_OPERATING_RULES.md feedback_pipeline/state.json feedback_pipeline/target_apply_manifest.json feedback_pipeline/evidence
+          if git diff --cached --quiet; then
+            echo 'No canonical changes to commit.'
+          else
+            git commit -m 'wic: apply pending feedback event [skip ci]'
+            git push
+          fi
