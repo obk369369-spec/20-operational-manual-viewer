@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 00:24",
+  "updated_kst": "2026-08-13 01:27",
   "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": ["EVENT","NORMALIZE","ROUTE_EXISTING_REGISTRY","CONFLICT_DEDUP","CANONICAL_WRITE","READ_BACK","TARGET_REVISION_READ_APPLY","TEST_EVIDENCE","RESTART_OR_HOLD"],
@@ -15,7 +15,8 @@
     "TOOL001 and TOOL002 verified repository and canonical apply/read-back",
     "audit run 31587057240 job 94083205492 artifact 9137534969",
     "TOOL001 Pages success and TOOL002 Pages/static evidence checks",
-    "TOOL001 browser E2E run 31606697361 artifact 9145425244"
+    "TOOL001 browser E2E run 31606697361 artifact 9145425244",
+    "TOOL002 actual business E2E run 31617559119 job 94184066712 artifact 9149892303"
   ],
   "current_evidence": {
     "tool001_browser_e2e_run": "31606697361",
@@ -34,16 +35,25 @@
       "script-012 line24 damaged map[pub]||map.",
       "script-015 line63 truncated array string"
     ],
-    "observer_commit": "b00237c5f3af68d0001d8217b9ead6e0d8319312",
+    "tool001_safe_old_version_restore": false,
+    "tool002_actual_e2e_workflow_commit": "e3e060ee8de733341a0ad0420b8af560db702a3a",
+    "tool002_verifier_fix_commit": "b79bd62777e67b952b33b9c1927c0c751cb97a1b",
+    "tool002_first_e2e_run": "31617456764",
+    "tool002_first_e2e_job": "94183728815",
+    "tool002_first_e2e_result": "FAIL_verifier_ERR_MODULE_NOT_FOUND_not_app_failure",
+    "tool002_actual_e2e_run": "31617559119",
+    "tool002_actual_e2e_job": "94184066712",
+    "tool002_actual_e2e_artifact": "9149892303",
+    "tool002_actual_e2e_result": "PASS_summaryCount_1_itemCount_1_visible_readback_true_pageErrors_0",
+    "observer_commit": "6c224645c2092b68bc7d984da6c72c668630704e",
     "external_independent_verification": false
   },
   "current_blockers": {
-    "tool001": "Six inline-script parse failures remain. Minimal repair workflow correctly blocks index commit until all node --check tests pass.",
-    "tool002": "Actual bid input->run->output->expected evidence remains HOLD.",
+    "tool001": "Six inline-script parse failures remain. Older compared commits retain at least the same chapterNodes corruption, so safe old-version restore is unavailable; minimal repair only.",
     "tool007": "No verified repository/adapter matching latest customer-contact-judgment purpose.",
     "rollback": "Real cross-target repository failure->rollback read-back->last_success_stage restart E2E remains unverified.",
     "independent_verification": "No third-party successful actual run/result evidence is recorded."
   },
-  "restart_point": "Resume from Tool001 minimal parse repair run 31612083645. Do not rerun earlier browser E2E or prior integration-core evidence. Repair only the six logged parse coordinates, require node --check zero errors before committing index.html, then let existing Tool1 browser E2E run automatically and read back its artifact. Preserve the already-working middle-to-right propagation. If this blocks, keep exact HOLD coordinates and move immediately to TOOL002 real bid E2E, then TOOL007 purpose-matching target, then real cross-target rollback/read-back/restart E2E.",
+  "restart_point": "Do not repeat TOOL002 actual E2E or earlier integration-core evidence. Keep TOOL001 on exact six-parse-coordinate HOLD and only resume minimal repair when safe. Next executable item is TOOL007 purpose-matching verified target/adapter discovery and actual read-back/apply evidence. If TOOL007 blocks, record exact HOLD and move immediately to real cross-target repository controlled failure -> rollback read-back -> last_success_stage restart E2E. Only after remaining gates pass may overall structure become PASS.",
   "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence. Documentation, static validation, deployment success, or a repair script alone is not PASS."
 }
