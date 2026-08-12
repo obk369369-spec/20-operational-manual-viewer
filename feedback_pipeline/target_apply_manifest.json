@@ -8,20 +8,30 @@
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
       "apply_mode": "CENTRAL_LANE_ACK",
-      "status": "ADAPTER_DEFINED_PENDING_EXECUTION",
-      "reason": "Non-repository lane adapter is now defined; actual lane apply/evidence has not executed yet."
+      "status": "CI_EXECUTION_WIRED_PENDING_RUN_EVIDENCE",
+      "reason": "Central lane ACK execution and artifact generation are wired into the audit workflow; actual GitHub Actions run evidence must be confirmed before PASS."
     },
     "TOOL001": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "No verified target repository/adapter is registered; fail closed instead of guessing.",
-      "status": "HOLD_NO_VERIFIED_ADAPTER"
+      "apply_mode": "CENTRAL_RULE_REFERENCE_REVISION_ACK",
+      "changed_scope": ["GLOBAL_PRIORITY_AND_WORK_GATE"],
+      "target_repository": "obk369369-spec/01-auto-guide-v1",
+      "target_apply_commit": "74e418cd5bccf71e6f5a839fdc83bc9179b1cad7",
+      "target_read_back_blob": "72f7af7dbbc0f3d38fbdef79c533d42baca2fbd3",
+      "status": "APPLIED_READBACK_PENDING_TEST_EVIDENCE",
+      "external_independent_verification": false
     },
     "TOOL002": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "No verified target repository/adapter is registered; fail closed instead of guessing.",
-      "status": "HOLD_NO_VERIFIED_ADAPTER"
+      "apply_mode": "CENTRAL_RULE_REFERENCE_REVISION_ACK",
+      "changed_scope": ["GLOBAL_PRIORITY_AND_WORK_GATE"],
+      "target_repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+      "target_apply_commit": "88848edb6df13a59f6b690248d9948a128b5fb36",
+      "target_read_back_blob": "740fde5efe52c877460d85cd35a4a2e235d0f33c",
+      "status": "APPLIED_READBACK_PENDING_TEST_EVIDENCE",
+      "external_independent_verification": false
     },
     "TOOL006": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
@@ -41,8 +51,8 @@
     "TOOL007": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "No verified target repository/adapter is registered; fail closed instead of guessing.",
-      "status": "HOLD_NO_VERIFIED_ADAPTER"
+      "reason": "Existing repository 07-wic-setting-tool-v1 explicitly states its current execution artifact is a setting tool and does not match the latest TOOL007 customer-contact-judgment purpose.",
+      "status": "HOLD_TARGET_PURPOSE_MISMATCH"
     },
     "TOOL013": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
@@ -64,15 +74,15 @@
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
       "apply_mode": "CENTRAL_LANE_ACK",
-      "status": "ADAPTER_DEFINED_PENDING_EXECUTION",
-      "reason": "Non-repository lane adapter is now defined; actual lane apply/evidence has not executed yet."
+      "status": "CI_EXECUTION_WIRED_PENDING_RUN_EVIDENCE",
+      "reason": "Central lane ACK execution and artifact generation are wired into the audit workflow; actual GitHub Actions run evidence must be confirmed before PASS."
     },
     "WORK_GATE": {
       "canonical_revision": "fa09bcdec96669d97ef3a18f",
       "decision": "APPLY_CHANGED_SCOPE",
       "apply_mode": "CENTRAL_LANE_ACK",
-      "status": "ADAPTER_DEFINED_PENDING_EXECUTION",
-      "reason": "Non-repository lane adapter is now defined; actual lane apply/evidence has not executed yet."
+      "status": "CI_EXECUTION_WIRED_PENDING_RUN_EVIDENCE",
+      "reason": "Central lane ACK execution and artifact generation are wired into the audit workflow; actual GitHub Actions run evidence must be confirmed before PASS."
     }
   }
 }
