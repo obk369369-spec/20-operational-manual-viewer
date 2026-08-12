@@ -1,7 +1,7 @@
 {
   "canonical_revision": "fa09bcdec96669d97ef3a18f",
   "feedback_id": "f2aeb4e8f5fac3c9618f",
-  "generated_at_utc": "2026-08-12T08:17:24+00:00",
+  "generated_at_utc": "2026-08-12T08:22:00+00:00",
   "schema_version": 1,
   "targets": {
     "EMAIL_DB": {
@@ -51,9 +51,13 @@
       "changed_scope": ["GLOBAL_PRIORITY_AND_WORK_GATE"],
       "target_repository": "obk369369-spec/13-excel-upload",
       "target_apply_commit": "8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b",
+      "target_state_commit": "ae7d4dd99f81fd6ac955e27ff0df38e66e6d520e",
       "target_read_back_blob": "eeaa796667dd2c78bb2913f5cbf01bf6d11f8052",
-      "status": "APPLIED_PENDING_TEST_EVIDENCE",
-      "reason": "Target state write/read-back completed; push-triggered workflow run/result has not yet been confirmed through the connector.",
+      "status": "APPLIED_TEST_PASS_INTERNAL_GITHUB",
+      "test_evidence_archive": "external-evidence-archive:runs/8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b/static-validation.json",
+      "test_evidence_blob": "6cef68b0ae4c3469842e02fe92549856eff96713",
+      "test_result": "STRUCTURE_PASS",
+      "failures": [],
       "external_independent_verification": false
     },
     "TOOL037": {
