@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 07:29",
+  "updated_kst": "2026-08-13 08:17",
   "scope": "WIC post-structure execution restart state",
   "structure_status": "PASS_INTERNAL_GITHUB_E2E",
   "post_structure_priority": ["email_collection","tool_7_customer_contact","tool_1_intermediate_final_guide","metadata_37","tool_13_excel_upload","tool_6_toc","tool_2_bid","publisher_28_31","remaining_registered_tools_and_chats"],
@@ -17,7 +17,10 @@
     "TOOL013 static/internal validation as a substitute for business E2E",
     "TOOL013 repeated File Library search while actual xlsx binary injection path is unavailable",
     "TOOL006 historical/synthetic fixture validation as a substitute for business E2E",
-    "TOOL002 business E2E re-run"
+    "TOOL002 business E2E re-run",
+    "TOOL028-031 guessed repository creation/search while repository inventory is unchanged",
+    "TOOL027 repeated root inventory",
+    "TOOL026 repeated root inventory"
   ],
   "current_evidence": {
     "structure_pass_run": "31642596092",
@@ -29,22 +32,30 @@
     "tool013_repository": "obk369369-spec/13-excel-upload",
     "tool013_index_blob": "1277d2460f7790db40321248078522c19b62cbf1",
     "tool013_existing_workflow": ".github/workflows/external-evidence.yml",
-    "tool013_actual_file_library_assets": ["37번_메타데이터_통합규칙관리.xlsx", "해외시장보고서_28개발행사_메타데이터_샘플검증_규칙잠금_V2.xlsx"],
     "tool006_repository": "obk369369-spec/06-toc-check",
     "tool006_index_blob": "6d3fef9325e75b188b84d9c1a4888fce5ba112c9",
     "tool006_fixture": "tests/marketsandmarkets_historical_fixtures.json",
     "tool006_golden_pair_status": "HOLD",
+    "repo_inventory_owner": "obk369369-spec",
+    "repo_inventory_check": "search_repositories user:obk369369-spec",
+    "tool028_031_repository_status": "HOLD_NO_REGISTERED_REPOSITORY",
+    "tool027_repository": "obk369369-spec/27-technical-book-verifier",
+    "tool027_index_blob": "085b1de8b169222bfdb9428ca6227d9c5598b47d",
+    "tool026_repository": "obk369369-spec/26-online-item-shop",
     "external_independent_verification": false
   },
   "current_blockers": {
-    "email_collection": "Actual company customer source exists, but no executable GitHub/runtime runner or send-ready formatter connected to that local customer DB is identifiable.",
+    "email_collection": "No executable GitHub/runtime runner or send-ready formatter connected to the actual customer DB is identifiable.",
     "tool007_business_e2e": "Purpose-matching adapter is verified, but no reliable actual current-customer record has been executed through business E2E.",
     "tool001_business_e2e": "Chromium rerun dispatch remains blocked: runtime gh unavailable and connector has no workflow_dispatch action.",
     "tool037_business_e2e": "No purpose-matching actual metadata production repository/runner identified; central lane ACK alone is not business E2E.",
-    "tool013_business_e2e": "Actual metadata spreadsheets are visible in File Library, but current GitHub/runtime path cannot inject those xlsx binaries into the existing browser/workflow execution. Existing workflow is static/internal validation only.",
-    "tool006_business_e2e": "The existing MarketsandMarkets file explicitly preserves historical failure classes and sample invariants; actual original-to-user-approved-final golden pair remains HOLD, so it is not actual business E2E evidence.",
+    "tool013_business_e2e": "Actual metadata spreadsheets exist, but current runtime cannot inject xlsx binaries into the existing browser/workflow execution.",
+    "tool006_business_e2e": "Actual original-to-user-approved-final golden pair remains HOLD.",
+    "tool028_031": "No numbered 28/29/30/31 repositories exist in the current accessible GitHub repository inventory; guessed replacements are forbidden.",
+    "tool027_business_e2e": "HTML assets exist, but no actual business E2E workflow/result evidence was identified in repository-level inventory.",
+    "tool026_business_e2e": "Repository-level inventory shows rule source and public directory only; no actual business input-to-expected-comparison evidence identified.",
     "independent_verification": "No third-party successful actual run/result evidence is recorded."
   },
-  "restart_point": "Do not revisit structure PASS or unchanged EMAIL_COLLECTION/TOOL007/TOOL001/TOOL037 blockers. TOOL013 is HOLD due unavailable actual xlsx binary injection path. TOOL006 is HOLD because existing regression fixture is historical/sample-only and its actual original-to-approved-final golden pair remains HOLD. TOOL002 is already business PASS and must not be rerun. Proceed to priority group 28-31: identify existing registered repositories/execution assets, do not create guessed replacements, and test only assets that support actual business input -> execution -> output -> expected comparison evidence.",
+  "restart_point": "Do not revisit structure PASS or unchanged blockers. Do not search/create guessed TOOL028-031 repositories unless repository inventory changes. TOOL027 and TOOL026 root inventories are already checked. Continue remaining registered repositories in descending number order; only run tests where actual business input -> execution -> output -> expected comparison is supported, otherwise record HOLD and advance.",
   "completion_policy": "Downstream business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Static/internal/historical fixture validation alone is not business PASS."
 }
