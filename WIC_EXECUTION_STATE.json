@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-12 21:20",
+  "updated_kst": "2026-08-12 22:17",
   "scope": "WIC reusable integration-core execution restart state",
   "top_priority_before_tool_work": "Build and E2E-verify one reusable WIC automatic integration core before individual tool development.",
   "integration_core_pipeline": ["EVENT","NORMALIZE","ROUTE_EXISTING_REGISTRY","CONFLICT_DEDUP","CANONICAL_WRITE","READ_BACK","TARGET_REVISION_READ_APPLY","TEST_EVIDENCE","RESTART_OR_HOLD"],
@@ -31,7 +31,12 @@
     "TOOL001 verified-data deterministic fixture path inspection",
     "TOOL002 archived static STRUCTURE_PASS evidence read-back for commit 88848edb6df13a59f6b690248d9948a128b5fb36",
     "TOOL001 canonical apply commit Deno deployment failure confirmation",
-    "TOOL002 canonical apply commit Deno deployment failure confirmation"
+    "TOOL002 canonical apply commit Deno deployment failure confirmation",
+    "TOOL001 canonical apply commit GitHub Pages build/deployment run 31582808758 success",
+    "TOOL001 GitHub Pages status built/public/https-enforced confirmation",
+    "TOOL002 GitHub Pages status built/public/https-enforced confirmation",
+    "TOOL002 canonical apply commit external-evidence workflow run 31582824329 success",
+    "TOOL001 historical fixture file explicitly classified as test evidence not PASS"
   ],
   "current_evidence": {
     "feedback_id": "f2aeb4e8f5fac3c9618f",
@@ -40,12 +45,20 @@
     "tool001_target_apply_commit": "74e418cd5bccf71e6f5a839fdc83bc9179b1cad7",
     "tool001_fixture_path": "regression/tool1_verified_data_contract.py",
     "tool001_fixture_scope": "12 deterministic code-internal fixtures; not actual business target E2E",
+    "tool001_pages_run": "31582808758",
+    "tool001_pages_result": "completed/success",
+    "tool001_pages_url": "https://obk369369-spec.github.io/01-auto-guide-v1/",
+    "tool001_pages_status": "built",
     "tool001_deno_deploy_result": "failure",
     "tool001_deno_deploy_url": "https://console.deno.com/obk369369-spec/01-auto-guide-v1/builds/0ztwbfp0bt5t",
     "tool002_target_apply_commit": "88848edb6df13a59f6b690248d9948a128b5fb36",
     "tool002_static_validation_result": "STRUCTURE_PASS",
     "tool002_static_validation_archive": "external-evidence-archive/runs/88848edb6df13a59f6b690248d9948a128b5fb36/static-validation.json",
     "tool002_static_validation_scope": "static structure only; not bid business E2E",
+    "tool002_external_evidence_run": "31582824329",
+    "tool002_external_evidence_result": "completed/success",
+    "tool002_pages_url": "https://obk369369-spec.github.io/02-auto-bid-narajangter-v1/",
+    "tool002_pages_status": "built",
     "tool002_deno_deploy_result": "failure",
     "tool002_deno_deploy_url": "https://console.deno.com/obk369369-spec/02-auto-bid-narajangter-v1/builds/4b2nhxnd5d26",
     "tool006_test_result": "completed/success",
@@ -62,12 +75,12 @@
     "external_independent_verification": false
   },
   "current_blockers": {
-    "tool001": "Actual business target input->run->output->expected evidence remains HOLD. Existing deterministic fixtures are not sufficient. Latest Deno deploy status is failure.",
-    "tool002": "Actual bid input->run->output->expected evidence remains HOLD. Archived static STRUCTURE_PASS is insufficient. Latest Deno deploy status is failure.",
+    "tool001": "GitHub Pages deployment is built/success, but actual business target input->run->output->expected evidence remains HOLD. Existing deterministic/historical fixtures are insufficient. Deno is a separate failing deployment path.",
+    "tool002": "GitHub Pages is built and external-evidence workflow succeeds, but actual bid input->run->output->expected evidence remains HOLD. Archived static STRUCTURE_PASS is insufficient. Deno is a separate failing deployment path.",
     "tool007": "No verified repository/adapter matching latest customer-contact-judgment purpose.",
     "rollback": "Real cross-target repository failure->rollback read-back->last_success_stage restart E2E remains unverified.",
     "independent_verification": "No third-party successful actual run/result evidence is recorded."
   },
-  "restart_point": "Do not repeat canonical/dispatcher/revision-cache/audit evidence work. Reuse TOOL001 deterministic guard and TOOL002 archived static evidence without rebuilding them. Next obtain actual TOOL001 and TOOL002 business E2E evidence and separate the confirmed Deno deployment failures from internal GitHub validation. Keep TOOL007 HOLD until a purpose-matching target is verified. Then run real controlled cross-target repository rollback/read-back and last_success_stage restart before overall structure PASS.",
-  "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence; documentation, deterministic fixture, static structure validation, or commit alone is not PASS."
+  "restart_point": "Do not repeat canonical/dispatcher/revision-cache/audit evidence or TOOL001/002 Pages deployment checks. Reuse TOOL001 deterministic guard and TOOL002 archived/static evidence. Next obtain actual TOOL001 customer/report business E2E and TOOL002 real bid business E2E. Keep Deno failures as separate deployment-path issues, not whole-repository deployment failures. Keep TOOL007 HOLD until a purpose-matching target is verified. Then run real controlled cross-target repository rollback/read-back and last_success_stage restart before overall structure PASS.",
+  "completion_policy": "PASS requires actual input -> execution -> output -> expected comparison with reusable evidence; documentation, deterministic fixture, static structure validation, deployment success, or commit alone is not business E2E PASS."
 }
