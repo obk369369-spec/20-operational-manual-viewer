@@ -28,6 +28,7 @@ CLASSIFICATIONS = (
 
 TOOL_KEYWORDS = {
     "TOOL001": ("1번", "안내서", "full_guide", "intermediate_guide", "고객 자동화 안내서"),
+    "TOOL002": ("2번", "입찰", "입찰 도구", "bid", "tender"),
     "TOOL006": ("6번", "목차", "toc", "marketsandmarkets", "marketandmarket"),
     "TOOL007": ("7번", "고객 컨택", "컨택 판단", "전화 멘트", "유선 멘트"),
     "TOOL013": ("13번", "엑셀 자동 업로드", "46145"),
@@ -80,7 +81,10 @@ def redact_sensitive(text: str) -> str:
 
 def classify(text: str) -> str:
     t = _canonical_text(text)
-    if any(k in t for k in ("우선순위 바꿔", "우선순위를 바꿔", "이것부터", "먼저 처리", "최우선으로")):
+    if any(k in t for k in (
+        "우선순위 바꿔", "우선순위를 바꿔", "우선순위는", "우선순위 아래에",
+        "이것부터", "먼저 처리", "최우선으로", "제외시켜", "제외해",
+    )):
         return "PRIORITY_CHANGE"
     if any(k in t for k in ("그게 아니라", "아니고", "잘못", "틀렸", "정정", "수정해")):
         return "CORRECTION"
@@ -170,9 +174,10 @@ def run_fixtures() -> str:
         FeedbackEvent("2026-08-10T15:32:00+09:00", "current", "각 대화창 피드백 자동수집해서 중앙 마스터와 GitHub에 반영해. 사용자가 다시 전달하지 않게 고정해."),
         FeedbackEvent("2026-08-10T15:33:00+09:00", "toc", "MarketsandMarkets 목차에서 숫자만 떨어진 줄이 또 남는 오류가 있다."),
         FeedbackEvent("2026-08-10T15:34:00+09:00", "work", "터미널에서 가능한 일은 Work로 넘기지 마."),
+        FeedbackEvent("2026-08-12T08:30:00+09:00", "priority", "우선순위는 6번 목차 정리 → 13번 엑셀 자동 업로드 → 7번 고객 컨택 판단 → 2번 입찰로 하고 이메일 수집과 1번, 37번은 제외해."),
     ]
     batch = process_batch(events, set())
-    assert len(batch) == 3
+    assert len(batch) == 4
     assert batch[0].classification == "CONSTRAINT"
     assert "CENTRAL" in batch[0].targets
     assert batch[0].central_master_candidate is True
@@ -181,6 +186,9 @@ def run_fixtures() -> str:
     assert batch[1].regression_fixture_candidate is True
     assert batch[2].classification == "CONSTRAINT"
     assert "WORK_GATE" in batch[2].targets
+    assert batch[3].classification == "PRIORITY_CHANGE"
+    assert {"TOOL002", "TOOL006", "TOOL007", "TOOL013", "TOOL001", "TOOL037", "EMAIL_DB"}.issubset(set(batch[3].targets))
+    assert batch[3].priority_change is True
     assert work_gate(chat_files_possible=True, github_possible=False, terminal_possible=False,
                      concrete_work_only_blocker=False, handoff_complete=False) == "WORK_DEFER_DENIED"
     assert work_gate(chat_files_possible=False, github_possible=False, terminal_possible=False,
@@ -190,7 +198,7 @@ def run_fixtures() -> str:
     redacted = redact_sensitive("a@b.com 010-1234-5678")
     assert "a@b.com" not in redacted and "010-1234-5678" not in redacted
     json.dumps([to_json_record(x) for x in batch], ensure_ascii=False)
-    return "PASS: 11 deterministic cross-chat feedback fixtures"
+    return "PASS: 15 deterministic cross-chat feedback fixtures"
 
 
 if __name__ == "__main__":
