@@ -1,46 +1,41 @@
 {
   "schema_version": 1,
-  "updated_kst": "2026-08-13 23:06",
+  "updated_kst": "2026-08-14 00:05",
   "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
-  "progress_percent": 44,
+  "progress_percent": 46,
   "stall_detected": false,
-  "stall_reason": "The 22:07 checkpoint and current recovery ledger were readable, and this run added a new verified held identity to the central ledger.",
+  "stall_reason": "The prior checkpoint was readable and this run made a concrete central-data change by integrating ten verified SEM-071..SEM-080 numbered customer rows instead of keeping only the range marker.",
   "auto_resume": "CONTINUED_FROM_CHECKPOINT",
   "last_verified_completed": [
     "SEM-001 historical existence confirmed",
     "SEM-071..SEM-080 preserved as existing permanent IDs",
-    "SEM-071..SEM-080 company introduction/business-card sent cohort dated 2026-07-08",
+    "SEM-071..SEM-080 ten numbered customer rows centrally integrated with organization/department/name/title/status and 2026-07-08 introduction-card send date",
     "sector prefixes SEM/ROB/DEF/SHP/BAT/CAR confirmed",
-    "three previously held legacy interaction identities centrally fingerprinted without renumbering",
-    "connected sent/handoff history previously added for one held repeated purchaser",
-    "fourth privacy-safe held repeat-purchase identity persisted without inventing a customer number or sector"
+    "four held legacy interaction identities centrally fingerprinted without renumbering"
   ],
   "this_run_actual_changes": [
-    "Read back the 22:07 execution checkpoint and the existing recovery ledger before new work.",
-    "Recovered explicit repeat-purchase evidence for a Korea Fire Institute hazardous-materials technical customer: 2024 purchase request stated it was another purchase like the prior transaction, requested World plus comparison quotation, and required phone-triggered ordering.",
-    "Cross-checked historical customer-contact evidence showing repeated 2023 and 2024 purchase/administrative flow and ASME/ISO-IEC standards purchasing.",
-    "Persisted the identity as privacy-safe fingerprint 7b25f360782f7df880ad in EMAIL_COLLECTION_RECOVERY_LEDGER.json.",
-    "Did not assign a permanent customer number or sector prefix because no direct number-bearing legacy source was found.",
-    "Broad connected Gmail search for 2021 purchase/quotation mail did not yield a reliable new permanent-number label, so unrelated hits were rejected."
+    "Read back EMAIL_COLLECTION_EXECUTION_STATE.json and EMAIL_COLLECTION_RECOVERY_LEDGER.json before new work.",
+    "Searched File Library for direct number-bearing SEM-002..SEM-070 rows and for the four held identities against permanent-number evidence.",
+    "Recovered no new direct SEM-002..SEM-070 permanent-number row and no verified permanent-number match for the four held identities in this pass.",
+    "Confirmed the full SEM-071..SEM-080 numbered customer table from legacy handoff files and integrated all ten actual rows into EMAIL_COLLECTION_RECOVERY_LEDGER.json.",
+    "Did not assign any new customer number or sector without direct evidence."
   ],
   "evidence": {
     "recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
-    "recovery_ledger_commit": "c2a5a6c9d9ff2f7051e1fbe577cc8483c5c32d4a",
-    "recovery_ledger_blob_sha": "89ad1e7e65fc8fc3b36d17c53dba614028cab589",
+    "recovery_ledger_commit": "51d5018c87840da74b81b5787eb89d480632a858",
     "file_library_findings": [
-      "Re 견적서 6월 7일 ( ISO_IEC 80079-49 2024 ), 한국소방산업기술원 강기민 과장님-3.eml: repeat purchase wording, comparison quotation request and phone-triggered ordering",
-      "7번 고객 컨택 판단.doc: repeated 2023/2024 institutional purchase-flow evidence and ISO/IEC-ASME standards context",
-      "Re 견적서 (ASME B31.3-2020 외 4종) 첨부 드립니다, 한국소방산업기술원 강기민님.eml: earlier standards quotation-chain evidence"
-    ],
-    "gmail_search_result": "No reliable new permanent-number label recovered in this pass; unrelated broad purchase/quotation hits were rejected."
+      "붙여넣은 텍스트 (1).txt: verified SEM-071..SEM-080 numbered customer rows and 2026-07-08 company-introduction/business-card send cohort",
+      "34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt: same numbered legacy handoff rows",
+      "Direct SEM-002..SEM-070 searches returned no reliable numbered customer rows in this pass"
+    ]
   },
   "remaining": [
     "Match all four held candidates against existing permanent IDs using legacy customer ledgers/handoff records.",
-    "Recover detailed SEM-002..SEM-070 if evidence exists.",
+    "Recover detailed SEM-002..SEM-070 if direct evidence exists.",
     "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
     "Recover additional historical handoff/duplicate and sent/bounce history only after identity linkage is verified.",
     "Collision-check SEM-081 before assignment."
   ],
-  "restart_point": "Continue explicit number-bearing legacy ledger/handoff search for the four held fingerprints, prioritizing direct customer-number rows over already-processed mail threads. Do not infer sector from topic and do not assign any number without direct evidence.",
-  "estimated_completion": "HOLD — permanent-number ledgers and other-sector last-used-number evidence remain incomplete, so a reliable finish time cannot yet be measured."
+  "restart_point": "Continue direct number-bearing legacy ledger/handoff search for SEM-002..SEM-070 and the four held fingerprints, then first numbered rows for DEF/SHP/CAR/ROB/BAT. Do not infer sector or assign numbers without direct evidence.",
+  "estimated_completion": "HOLD — legacy permanent-number sources for SEM-002..SEM-070 and non-SEM sectors remain incomplete, so a reliable finish time cannot yet be measured."
 }
