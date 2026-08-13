@@ -139,8 +139,9 @@
 - 값이 안 보이면 `확인되지 않음`으로 두고, 다른 곳에서 추정해 채우지 않는다.
 
 ## 6. 현재 오류의 회귀 방지
-- `Industrial Safety Market`처럼 공식 고객용 제목이 `Industrial Safety Market Size & Share Analysis - Growth Trends and Forecast (2026 - 2031)`로 표시되는 경우 전체 제목을 그대로 표시한다.
-- `Semiconductor Materials Market` Technavio 사례처럼 검색/메타데이터에 `Growth Analysis - Size and Forecast` 문구가 잡히더라도, 사용자가 실제 상세페이지 화면에서 `Semiconductor Materials Market Analysis, Size, and Forecast 2026-2030`를 확인하면 화면 표시 제목을 기준으로 재검증하고 그 제목을 사용한다.
+- Mordor Intelligence처럼 실제 화면에 `Industrial Safety Market Size & Share Analysis - Growth Trends and Forecast (2026 - 2031)`가 보고서 제목으로 표시되면 그 전체 제목을 그대로 사용한다.
+- Technavio `Semiconductor Materials Market` 사례에서 검색/메타데이터에 `Growth Analysis - Size and Forecast` 문구가 잡히더라도 실제 상세페이지 화면이 `Semiconductor Materials Market Analysis, Size, and Forecast 2026-2030`이면 화면 표시 제목만 사용한다.
+- 360iResearch `Workplace Safety` 사례에서 페이지 설명/메타영역에 긴 세분화 문구가 있어도 실제 보고서 H1이 `Workplace Safety Market - Global Forecast 2026-2032`이면 H1만 영문 자료명으로 사용한다.
 - 360iResearch의 `1-5 Users License $3,939`처럼 가격은 해당 페이지의 PURCHASE OPTIONS에 실제 표시되는 경우에만 사용한다. 사용자가 화면에서 못 찾는 경우 위치를 설명할 수 있어야 하며, 페이지에 없으면 즉시 삭제한다.
 - 타이틀 일부만 잘라 표시한 출력은 FAIL 후 재작성한다.
 - 자료 1~3 중 하나라도 항목명이 빠지거나 순서가 달라지면 출력 스키마 FAIL로 판정하고 동일 스키마로 다시 작성한다.
@@ -161,7 +162,7 @@
 1. VENDOR_PASS: 발행사가 고정 거래 발행사 풀에 정확히 존재하는가.
 2. YEAR_PASS: 신규 가능성 고객이면 현재 연도 자료 우선 규칙을 만족하는가.
 3. URL_PASS: 공식 발행사 상세페이지 URL인가.
-4. TITLE_PASS: 고객이 링크를 열었을 때 화면에 보이는 실제 보고서 제목과 영문 자료명이 글자 단위로 일치하는가.
+4. TITLE_PASS: 고객이 링크를 열었을 때 화면에 보이는 실제 보고서 제목과 영문 자료명이 일치하는가.
 5. PAGE_PASS: 페이지 수가 같은 상세페이지에서 직접 확인되었는가. 없으면 `확인되지 않음`으로만 표시했는가.
 6. PRICE_PASS: 가격이 같은 상세페이지의 실제 구매옵션에서 직접 확인되었는가. 없으면 `확인되지 않음`으로만 표시했는가.
 7. DATE_PASS: 발행일 또는 업데이트일이 같은 상세페이지에서 직접 확인되었는가.
@@ -183,3 +184,21 @@
 금지: 검색 결과 제목, SEO title, 브라우저 탭 title, URL slug, 페이지 설명문, 세분화 문구를 보고서 제목으로 승격.
 
 예외 없이 고객이 공식 링크를 눌렀을 때 가장 먼저 보고서명으로 인식하는 제목과 고객 안내서 영문 자료명이 같아야 한다.
+
+## 10. 강제 실행 시점 — 최종 답변 생성 직전 반드시 재검사
+- 자료를 찾은 직후 한 번 확인했다고 끝내지 않는다.
+- 고객용 답변을 실제로 출력하기 직전에 자료 1 → 자료 2 → 자료 3 순으로 PRE-OUTPUT GATE 10개를 다시 실행한다.
+- 이 마지막 검사는 생략할 수 없는 HARD GATE다.
+- 마지막 검사 중 제목/가격/발행일/페이지/목차/링크 중 하나라도 처음 수집값과 달라지면 최신 상세페이지 값으로 교체한 뒤 처음부터 다시 검사한다.
+- 자료 3종 전체가 PASS라는 내부 판정이 끝나기 전에는 `완료`, `최종`, `보내도 됨`이라고 말하지 않는다.
+- 검사 결과가 애매하면 값을 지어내지 않고 HOLD하거나 다른 거래 발행사 자료로 교체한다.
+- 특히 검색엔진/메타데이터에서 가져온 제목을 최종 출력 직전에 다시 공식 화면 H1과 대조하지 않은 상태는 무조건 FAIL이다.
+
+## 11. 대화창 길이 초과·새 대화창 이동 시 인계 규칙
+- 기존 대화창의 전체 내용을 매번 처음부터 GitHub에 다시 옮기지 않는다.
+- 마지막 GitHub 반영 이후 새로 생긴 사용자 피드백, 고객 상태변경, 확정 규칙만 증분으로 canonical 원본에 반영한다.
+- 이미 중앙 원본에 존재하는 규칙은 중복 저장하지 않는다.
+- 대화창 이름은 사용자가 정한 이름을 유지하며 Assistant/Agent가 임의 생성·변경하지 않는다.
+- 새 대화창에서는 먼저 GitHub 중앙 원본과 해당 분야 고객 상태를 읽고 마지막 작업지점 다음부터 즉시 재개한다.
+- 자동 피드백 흡수 구조가 완성되기 전까지는 대화창 이동 직전 새로 생긴 미반영 피드백이 있는지 확인해 증분 반영한다.
+- 자동 통합 구조가 완성되면 이 수동 이동 전 반영 절차도 제거하고 자동 route/conflict/dedup/canonical write/read-back으로 전환한다.
