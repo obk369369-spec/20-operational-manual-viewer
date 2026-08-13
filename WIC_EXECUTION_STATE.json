@@ -3,58 +3,60 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 13:19",
-  "scope": "WIC post-structure execution restart state",
-  "structure_status": "PASS_INTERNAL_GITHUB_E2E",
+  "updated_kst": "2026-08-13 15:10",
+  "scope": "WIC structure-first actual feedback E2E restart state",
+  "structure_status": "HOLD_CROSS_REPOSITORY_TARGET_APPLY",
   "latest_feedback": {
-    "feedback_id": "b6acdbfd3bc4d0de1b66",
-    "canonical_revision": "11f7a751685aeaaf10cab428",
-    "canonical_run": "31663661298",
-    "tool006_internal_validation_run": "31663710333",
-    "tool006_internal_validation_job": "94333736626",
-    "tool006_internal_validation_result": "PASS_INTERNAL_GITHUB_RUN",
-    "tool001_functional_target_test": "HOLD_WORK_BROWSER_E2E"
+    "feedback_id": "37a4a2166bb5e2a08a8c",
+    "canonical_revision": "3f0c83fe635a4067354e8456",
+    "queue_commit": "ba70ebffac4df56c3f85d77d66ff2562215e822c",
+    "canonical_commit": "59f388df9601503cd205885f6fa4e839aacd9f03",
+    "canonical_run": "31670039251",
+    "canonical_job": "94352602812",
+    "canonical_run_result": "SUCCESS",
+    "canonical_read_back": "VERIFIED",
+    "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+    "target_apply_result": "HOLD_TARGET_APPLY"
   },
-  "do_not_repeat": [
-    "integration-core implementation/rebuild/revalidation",
-    "repository inventory already completed through registered TOOL003",
-    "TOOL002 actual bid business E2E",
-    "cross-target rollback/read-back/restart E2E",
-    "TOOL006 run 31663710333 internal validation",
-    "Work gate reimplementation while run 31660617974 evidence remains valid",
-    "EMAIL_COLLECTION/TOOL007/TOOL037/TOOL006 BUSINESS checks while blockers are unchanged"
+  "verified_completed": [
+    "pending real feedback normalized/classified/routed",
+    "conflict and supersede decision generated",
+    "canonical WIC_GLOBAL_OPERATING_RULES.md mutation committed",
+    "canonical read-back hash verified",
+    "target apply manifest generated",
+    "GitHub Actions run 31670039251 and job 94352602812 completed successfully"
   ],
-  "pre_work_status": {
-    "work_gate": "PASS_INTERNAL_GITHUB_RUN",
-    "work_gate_run": "31660617974",
-    "work_gate_job": "94324484253",
-    "work_gate_artifact": "9166037482",
-    "work_eligible_order": [
-      "TOOL001 browser business E2E",
-      "TOOL013 actual .xlsx injection business E2E"
-    ],
-    "deferred_not_work_only": [
-      "EMAIL_COLLECTION",
-      "TOOL007 BUSINESS",
-      "TOOL037 BUSINESS",
-      "TOOL006 BUSINESS"
+  "do_not_repeat": [
+    "integration-core implementation/rebuild already completed",
+    "existing Antigravity RULE_PACKET/STATE_PACKET extraction",
+    "canonical ingestion for feedback 37a4a2166bb5e2a08a8c",
+    "canonical conflict/supersede decision for feedback 37a4a2166bb5e2a08a8c",
+    "canonical write/read-back for revision 3f0c83fe635a4067354e8456",
+    "GitHub Actions run 31670039251"
+  ],
+  "blockers": {
+    "CROSS_REPOSITORY_TARGET_APPLY": "Current central GitHub Actions GITHUB_TOKEN only has contents:write for the central repository. TOOL001/TOOL002/TOOL006 and other repository targets require an actual cross-repository write/read-back/test transport or a verified runtime that reads the central revision and produces target test evidence.",
+    "AUTOMATIC_TRIGGER": "The current workflow finalizes only verified CENTRAL_LANE_ACK targets. It intentionally leaves repository targets HOLD; no verified automatic cross-repository dispatch credential/transport is recorded.",
+    "INDEPENDENT_VERIFICATION": "No third-party external run/result evidence is recorded. GitHub internal validation must not be labeled independent verification."
+  },
+  "work_gate": {
+    "credit_policy": "Use Work only for the remaining execution/E2E blocker, not for rereading, resummarizing, or repository rediscovery.",
+    "work_required_now": true,
+    "exact_work_scope": [
+      "establish one real cross-repository target transport or equivalent central-revision runtime consumption path",
+      "apply canonical revision 3f0c83fe635a4067354e8456 to at least one verified repository target from the actual manifest",
+      "read back the applied revision from that target",
+      "run the target-side deterministic test and retain run/result evidence",
+      "feed the target result back to central state and persist restart point",
+      "only after this actual feedback E2E succeeds may structure status become STRUCTURE_PASS_INTERNAL_GITHUB_E2E"
     ]
   },
-  "blockers": {
-    "TOOL001": "Actual browser functional E2E is not executable through the current connected GitHub interface.",
-    "TOOL013": "Actual .xlsx binary cannot be injected through the current connected GitHub execution path.",
-    "TOOL006_BUSINESS": "Actual original-to-user-approved-final golden pair is unavailable.",
-    "EMAIL_COLLECTION": "Verified company customer DB/runner is not identified.",
-    "TOOL007_BUSINESS": "Actual current-customer record E2E evidence is not recorded.",
-    "TOOL037": "No verified purpose-matching production runner is identified.",
-    "INDEPENDENT_VERIFICATION": "No third-party actual external run/result evidence is recorded."
-  },
   "restart_point": [
-    "Do not repeat TOOL006 internal validation; it is now success.",
-    "When Work is explicitly entered, run TOOL001 browser business E2E first and verify global-title filtering, TOC max depth two, one-level child indentation, and text-only report-info sourcing.",
-    "After TOOL001 completes or reaches a clear HOLD, run TOOL013 actual .xlsx injection business E2E.",
-    "Before Work exits, persist actual evidence, rollback point, blocker, and exact_next_step into the WORK_EXIT_RESUMABLE checkpoint from artifact 9166037482 and read it back.",
-    "Do not spend Work credit on lanes whose missing input/runner/golden evidence can only be resolved outside Work."
+    "Do not rerun feedback ingest or canonical run 31670039251.",
+    "Start at cross-repository target transport for target manifest revision 3f0c83fe635a4067354e8456.",
+    "Prefer TOOL001 or another already verified repository adapter solely as the first actual cross-repo proof; this is structure E2E, not a change in the user's post-structure tool priority.",
+    "If transport cannot be established, record the exact permission/credential/runtime blocker as HOLD and do not spend credits on unrelated tool development.",
+    "After structure PASS, resume user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats."
   ],
-  "completion_policy": "Business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Internal GitHub validation is not third-party independent validation."
+  "completion_policy": "Structure PASS requires actual new feedback -> automatic classification/conflict handling -> canonical GitHub write/read-back -> actual target apply/read-back/test -> reusable evidence -> restart point. Internal GitHub validation is not third-party independent validation."
 }
