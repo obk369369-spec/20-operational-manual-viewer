@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_kst": "2026-08-14 02:04",
+  "updated_kst": "2026-08-14 02:55",
   "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
   "progress_percent": 46,
-  "stall_detected": true,
-  "stall_reason": "The prior email checkpoint was 2026-08-14 00:57, more than one hour before this run. Work was resumed from that checkpoint and a concrete central-ledger change was completed.",
-  "auto_resume": "RESUMED_FROM_LAST_NORMAL_CHECKPOINT",
+  "stall_detected": false,
+  "stall_reason": "No current stall: latest WIC stall monitor run 31727212002 completed successfully at 2026-08-14 02:44 KST and the prior email checkpoint was 02:04 KST, below the one-hour automation threshold at run start.",
+  "auto_resume": "CONTINUED_FROM_VERIFIED_CHECKPOINT_NO_STALL",
   "last_verified_completed": [
     "SEM-001 historical existence confirmed",
     "SEM-071..SEM-080 preserved and centrally integrated as existing permanent IDs",
@@ -14,33 +14,33 @@
     "Sangbo Kim Jin Sol history linked to 2026 existing-customer ledger row 359 without assigning a permanent number"
   ],
   "this_run_actual_changes": [
-    "Read back WIC_EXECUTION_STATE.json, EMAIL_COLLECTION_EXECUTION_STATE.json and EMAIL_COLLECTION_RECOVERY_LEDGER.json.",
-    "Detected stale email checkpoint (>1 hour) and resumed from the stored Sangbo-first restart point.",
-    "Verified from File Library that Park Ye Rim's 2023 Sangbo interaction progressed to 948,000 KRW subscription approval, transaction-statement/tax-invoice request and delivery continuation.",
-    "Verified from the 2026 existing-customer analysis workbook that Kim Jin Sol appears in customer ledger row 359 as a prior 2022 industrial-material/Convertech quotation customer with June 2026 recontact attempts.",
-    "Checked connected Gmail for mailer-daemon/postmaster matches for the two verified Sangbo identities; no matching bounce evidence was returned.",
-    "Updated EMAIL_COLLECTION_RECOVERY_LEDGER.json without assigning or renumbering any customer ID."
+    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json.",
+    "Verified latest scheduled stall monitor run 31727212002 completed successfully at 2026-08-14 02:44 KST.",
+    "Searched File Library again for direct number-bearing SEM-002..SEM-070 records, Sangbo Park Ye Rim/Kim Jin Sol permanent IDs, and DEF/SHP/CAR/ROB/BAT number rows.",
+    "Recovered additional direct continuity evidence for Sangbo Park Ye Rim and Kim Jin Sol, including Park Ye Rim's 2023 subscription/delivery correspondence and Kim Jin Sol's 2026 existing-customer ledger continuity, but no direct permanent-number row was found.",
+    "Confirmed the available semiconductor handoff/rule files explicitly preserve SEM-071..SEM-080 and warn not to assign SEM-081 until prior-number collision risk is resolved.",
+    "No customer number was inferred, assigned, renumbered or reused; progress remains 46% because no new permanent-number row was recovered."
   ],
   "evidence": {
     "recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
     "recovery_ledger_commit": "feb25bfa3a9d1deccd27a798da37bdeb4dae9d67",
+    "latest_stall_monitor_run": "31727212002",
+    "latest_stall_monitor_result": "success",
     "file_library_findings": [
-      "Re (주)상보 CMS 개발 2팀 박예림 선임님 잡지 구독 및 배리어 시장 보고서 문의건-2.eml: 948,000 KRW internal approval and transaction-statement/tax-invoice request",
-      "Re (주)상보 CMS 개발 2팀 박예림 선임님 잡지 구독 및 배리어 시장 보고서 문의건.eml: delivery continuation confirmed",
-      "38번_2026년_기존고객_전수분석_실행보고.xlsx: customer ledger 2026 (2) row 359 continuity for Kim Jin Sol"
-    ],
-    "connected_gmail_findings": [
-      "Sangbo Park Ye Rim and Kim Jin Sol historical messages remain directly verified",
-      "No matching mailer-daemon/postmaster result for the two verified Sangbo identities in this pass"
+      "34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt: direct rows SEM-071..SEM-080 and collision warning for SEM-081",
+      "Re (주)상보 CMS 개발 2팀 박예림 선임님 잡지 구독 및 배리어 시장 보고서 문의건.eml: verified Sangbo Park Ye Rim identity and delivery continuity",
+      "38번_2026년_기존고객_전수분석_실행보고.xlsx: customer ledger row 359 continuity for Sangbo Kim Jin Sol",
+      "No directly numbered SEM-002..SEM-070 or Sangbo permanent-ID row found in this search pass",
+      "No directly numbered DEF/SHP/CAR/ROB/BAT customer row found in this search pass"
     ]
   },
   "remaining": [
     "Match all six held candidates against existing permanent IDs using direct number-bearing legacy ledgers/handoff records.",
-    "Recover SEM-002..SEM-070 if direct evidence exists, prioritizing Sangbo because existing-customer ledger continuity is now confirmed.",
+    "Recover SEM-002..SEM-070 if direct evidence exists, prioritizing number-bearing source material rather than interaction-only records.",
     "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
     "Recover additional historical handoff/duplicate and sent/bounce history after identity linkage is verified.",
     "Collision-check SEM-081 before any future assignment."
   ],
-  "restart_point": "Search number-bearing legacy customer ledgers/handoff records for the two Sangbo identities now tied to verified existing-customer history, then continue SEM-002..SEM-070 and first actual DEF/SHP/CAR/ROB/BAT numbered rows. Do not infer or assign numbers without direct evidence.",
+  "restart_point": "Continue direct-number search beyond interaction-only Sangbo evidence: locate number-bearing legacy ledgers/handoff exports for SEM-002..SEM-070 and the six HOLD identities, then first actual DEF/SHP/CAR/ROB/BAT numbered rows. Do not infer or assign numbers without direct evidence.",
   "estimated_completion": "HOLD — permanent-number sources for SEM-002..SEM-070 and non-SEM sectors remain incomplete, so a reliable finish time cannot yet be measured."
 }
