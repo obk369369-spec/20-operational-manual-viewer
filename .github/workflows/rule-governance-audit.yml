@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'WIC_GLOBAL_OPERATING_RULES.md'
+      - 'WIC_CHAT_ROUTING_REGISTRY.md'
+      - 'CHAT_WINDOW_OWNERSHIP_LOCK.md'
+      - 'feedback_pipeline/**'
       - '.github/workflows/rule-governance-audit.yml'
   workflow_dispatch:
 
@@ -15,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Validate single source
         shell: bash
         run: |
@@ -28,6 +34,35 @@ jobs:
           grep -q '도구 번호별 단일 등록표' "$f"
           grep -q '사용자 부담 카운터' "$f"
           echo 'CENTRAL_RULES=PASS'
+      - name: Enforce NO_NEW_CHAT and UI-title identity gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          r='WIC_CHAT_ROUTING_REGISTRY.md'
+          o='CHAT_WINDOW_OWNERSHIP_LOCK.md'
+          test -s "$r"
+          test -s "$o"
+          grep -q 'NO_NEW_CHAT' "$r"
+          grep -q 'EXPLICIT_NEW_CHAT_APPROVAL' "$r"
+          grep -q 'FAIL-NO_NEW_CHAT-VIOLATION' "$r"
+          grep -q 'CHAT IDENTITY VERIFICATION GATE' "$r"
+          grep -q 'WORK_PREP | `워크 전 준비` | `UI_TITLE_HOLD`' "$r"
+          grep -q 'CONTROL_PRIMARY | `(개발 관찰자 모드 유지) 지피티 도구` | `UI_TITLE_HOLD`' "$r"
+          grep -q '대화창 생성은 사용자(관찰자)만 수행한다.' "$o"
+          grep -q '대화창 이름은 사용자(관찰자)만 변경할 수 있다.' "$o"
+          grep -q '무단 새 대화창 생성: FAIL' "$o"
+          grep -q '무단 대화창 이름 변경 또는 다른 이름으로 취급: FAIL' "$o"
+          echo 'CHAT_IDENTITY_GATE=PASS'
+      - name: Run deterministic integration and restart recovery fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python feedback_pipeline/cross_chat_feedback_ingest.py
+          python feedback_pipeline/canonical_writer.py
+          python feedback_pipeline/target_dispatcher.py
+          python feedback_pipeline/restart_rollback_fixture.py
+          python feedback_pipeline/cross_target_restart_e2e.py fail
+          python feedback_pipeline/cross_target_restart_e2e.py restart
       - name: Validate public repository pointers
         shell: bash
         run: |
