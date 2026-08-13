@@ -1,7 +1,7 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-13 23:42 KST
-상태: ACTIVE / STRUCTURE_FIRST / HOLD_CROSS_REPOSITORY_TARGET_APPLY
+최종 갱신: 2026-08-14 00:12 KST
+상태: ACTIVE / STRUCTURE_FIRST / PRE_WORK_PREFLIGHT
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
@@ -17,54 +17,92 @@
 |---|---|---|---|
 | 기존 안티그래비티 추출본 | 재사용 LOCK | 기존 RULE_PACKET/STATE_PACKET 계열은 재추출 금지 | 이후 누적 규칙만 차분 통합 |
 | integration core 재구축 | 반복 금지 | 기존 구현/fixtures 존재 | 완료 단계 재실행 금지 |
-| 실제 새 feedback canonical E2E | 실제 실행 완료 | feedback `37a4a2166bb5e2a08a8c`, run `31670039251`, job `94352602812`, conclusion `success` | target apply로 이동 |
+| 실제 새 feedback canonical E2E | 실제 실행 완료 | feedback `37a4a2166bb5e2a08a8c`, run `31670039251`, job `94352602812`, conclusion `success` | 반복 금지 |
 | 중앙 GitHub write/read-back | 실제 실행 완료 | canonical commit `59f388df9601503cd205885f6fa4e839aacd9f03`, revision `3f0c83fe635a4067354e8456`, hash read-back verified | 반복 금지 |
-| 대상 저장소 apply/read-back/test | HOLD | `target_apply_manifest.json`의 repository targets가 `HOLD_TARGET_APPLY` | 교차 저장소 실제 실행 통로 필요 |
-| 구조 최종 PASS | 아직 아님 | 사용자 PASS 기준의 target apply/read-back/test 미완료 | 이 단계 성공 후에만 PASS 승격 |
+| 승인 없는 구조변경 사전차단 guard | 실제 fixture PASS | run `31712529019`의 `Deny structural changes without explicit user-directive provenance` step success | 전체 WIC material change 공통 preflight로 확대 |
+| 대상 저장소 apply/read-back/test | HOLD | 교차 저장소 실제 통로 검증 필요 | Chat/GitHub에서 가능한 준비 종료 후 Work-only 여부 판정 |
+| 구조 최종 PASS | 아직 아님 | Work 전 준비 체크 미완료 항목 존재 | 아래 PRE-WORK CHECKLIST를 모두 닫거나 WORK_ONLY_HOLD로 고정 |
 | 제3자 독립검증 | 없음 | external independent run/result 증거 없음 | 내부 GitHub E2E와 분리 유지 |
 
-## 이번 실제 개선
+## 사용자 지시 대조 최상위 게이트 — USER DIRECTIVE PROVENANCE GUARD
+- WIC의 모든 대화창·도구·규칙·자동화·GitHub 구조에서 **새 구조/새 기능/기능변경/규칙변경/우선순위변경/대화창 생성·이름변경·자동이전/새 registry/새 파일구조 등 중요한 변경**은 실행 전에 사용자 지시 기록과 대조한다.
+- 사용자의 실제 지시 원문 또는 이미 승인된 중앙 운영규칙에서 근거를 찾지 못하면 `STRUCTURAL_ERROR_UNAUTHORIZED` 또는 `UNAUTHORIZED_CHANGE`로 분류하고 먼저 `DENY_HOLD`한다.
+- DENY된 변경은 정상 구조로 승계하거나 다음 작업의 전제로 사용하지 않는다.
+- DENY 발생 시 관찰자인 사용자에게 `무엇을 막았는지 / 왜 사용자 지시와 불일치했는지 / 어떤 작업에는 영향이 없는지`를 보고한다.
+- 단순 업무 실행처럼 기존 승인 규칙 안에서 데이터만 처리하는 것은 새 구조 변경으로 보지 않는다. **구조·규칙·기능·자동화 방식이 달라지는 material mutation만** 이 게이트의 대상이다.
+- 기존 사용자가 명시한 금지/제외 지시는 승인으로 해석하지 않는다.
+- 승인 근거가 애매하면 추정하여 실행하지 않고 HOLD한다.
+- 동일 유형이 실제 1회 발생하면 회귀테스트로 승격한다.
+
+## 구조적 오류 감지 게이트 — 현재 실제 적용 범위
+| 대상 | 현재 상태 | 실제 근거 | 남은 작업 |
+|---|---|---|---|
+| 새 대화창 생성 | DENY fixture PASS | `unauthorized_structure_guard.py`, run `31712529019` guard step success | 실제 operation preflight 호출지점 확대 |
+| 대화창 이름 변경 | DENY fixture PASS | negative rename fixture | 동일 |
+| 새 registry 생성 | DENY fixture PASS | negative registry fixture | 동일 |
+| 사용자 기록에 없는 구조 생성 | DENY fixture PASS | not-in-record fixture | 동일 |
+| 전체 feedback pipeline 선행 게이트 | 연결됨 | `.github/workflows/cross-chat-feedback-audit.yml`에서 integration audit 전 guard 실행 | 전체 run 최종 state validation 별도 정리 |
+| 모든 개별 도구 저장소의 직접 mutation | 부분 적용 | 중앙 규칙 포인터/target 구조 사용 | 공통 adapter 호출 규격으로 연결 필요 |
+| 모든 대화창의 실제 ChatGPT 앱 레벨 생성/rename | 직접 실행 제어 불가 | GitHub guard는 WIC 운영구조 승인 여부 판정 가능 | 미승인 사건 감지 시 DENY 보고, 앱 객체 삭제는 사용자 권한 범위 |
+
+## DENY 관찰자 보고 규칙
+- `DENY_HOLD`가 발생하면 다음 사용자 보고에 반드시 포함한다.
+  - 차단 대상 action/target
+  - 사용자 승인 근거를 찾지 못한 이유
+  - `STRUCTURAL_ERROR_UNAUTHORIZED` 여부
+  - 실제 변경이 실행되기 전에 막혔는지 여부
+  - 이미 생성된 GitHub 자산이면 rollback/delete/read-back 결과
+- DENY를 조용히 삼키지 않는다.
+- DENY된 것을 실패한 정상 기능처럼 수정해서 살리지 않는다. 사용자 지시가 없었던 구조 자체라면 제거/미승계가 기본이다.
+
+## 현재 실제 개선
 | 작업 | 상태 | 실제 증거 |
 |---|---|---|
-| 중앙 workflow의 실제 feedback 실행 완료 확인 | 완료 | Actions run `31670039251` = completed/success |
-| job 단계 전체 확인 | 완료 | job `94352602812`, ingest/canonical/apply/finalize/verify/commit 단계 success |
-| canonical 실제 반영 확인 | 완료 | commit `59f388df9601503cd205885f6fa4e839aacd9f03` |
-| canonical read-back 증거 확인 | 완료 | evidence `feedback_pipeline/evidence/37a4a2166bb5e2a08a8c.json`, intended/read_back hash 동일 |
-| target manifest 확인 | 완료 | revision `3f0c83fe635a4067354e8456`; repository targets `HOLD_TARGET_APPLY` |
-| stale execution state 정정 | 완료 | 과거 구조 PASS 표기를 최신 HOLD 기준으로 교체; commit `07258b4e3dc29504fb61122a2caee9e3eeed7a64` |
+| 승인 없는 구조 변경 guard 최초 구현 | 완료 | `feedback_pipeline/unauthorized_structure_guard.py` |
+| guard를 중앙 audit 첫 단계로 연결 | 완료 | workflow commit `6abddab1031bc3e8537f1cc358eb0c1c607785c6` |
+| fixture 오류 수정 | 완료 | commit `ab5f1b558ee2859a71791fbfc744729415b2d13d` |
+| 수정 후 guard step | PASS | run `31712529019`, step `Deny structural changes without explicit user-directive provenance` success |
+| 기존 integration 단계 | PASS 유지 | 동일 run에서 integration core/rollback/restart/lane ACK 단계 success |
+| 전체 run final state validation | HOLD/FAIL | 동일 run 마지막 `Validate collector and integration-core state` failure | 원인만 분리 수정, 이미 PASS한 guard/core는 반복 금지 |
+| evidence artifact | 생성 완료 | artifact `9185853930` |
 
-## 구조적 오류 감지 게이트 — UNAUTHORIZED STRUCTURE GUARD
-- 사용자에게서 명시적으로 지시되지 않은 새 대화창 생성, 새 관리/보고 대화창 생성, 대화창 자동 이전, 대화창 이름 변경, 새 구조/새 registry/새 운영분기 생성 시도를 모두 `STRUCTURAL_ERROR_UNAUTHORIZED` 후보로 먼저 분류한다.
-- 실행 전 반드시 `사용자 명시 승인 목록 + 기존 registry + 기존 conversation/도구 식별자`와 diff 비교한다.
-- 승인 근거가 없으면 생성/변경을 실행하지 않고 `DENY + HOLD`한다.
-- GitHub 안에서 생긴 승인 없는 구조/규칙/파일은 가능한 경우 즉시 rollback/delete 대상으로 표시하고, 삭제 가능한 경우 삭제 후 read-back으로 부재를 검증한다.
-- ChatGPT 앱 대화창처럼 현재 연결도구로 직접 삭제할 수 없는 객체는 `STRUCTURAL_ERROR_UNAUTHORIZED / USER_DELETE_REQUIRED`로 즉시 보고한다. 사용자가 만들었다고 간주하거나 정상 구조로 승계하지 않는다.
-- 감지 대상 키워드/행동: `새 대화창`, `다음 대화창`, `자동 이전`, `별도 관리창`, `별도 보고창`, `새 이름`, `rename`, `create conversation`, `new chat`, `new registry`, `새 운영 구조`.
-- 단순 키워드만으로 삭제하지 않고, 사용자 명시 지시와 실제 diff를 함께 대조한다.
-- 동일 유형이 1회라도 실제 발생하면 회귀테스트 항목으로 승격하고, 이후 구조 변경 전 preflight에서 반드시 검사한다.
-- 이 게이트를 통과하지 못한 구조 변경은 기능상 정상이어도 PASS 금지.
+## PRE-WORK CHECKLIST — Work 진입 전 반드시 확인
+| 체크항목 | 상태 | Work 전 목표 |
+|---|---|---|
+| 사용자 지시 출처 없는 구조/규칙/기능 변경 DENY | PASS fixture / 범용연결 진행중 | 모든 material mutation의 공통 preflight 계약 고정 |
+| DENY 시 관찰자 보고 | 규칙 고정 | evidence/ledger에서 다음 보고에 자동 포함되는 계약 고정 |
+| Chat 피드백 → conflict/dedup → canonical write/read-back | PASS 증거 있음 | 반복 금지 |
+| revision cache / SKIP_UNCHANGED | PASS 증거 있음 | 반복 금지 |
+| checkpoint / restart / rollback | PASS 증거 있음 | 반복 금지 |
+| 공통 module/adapter 계약 | 기반 있음 | 새 도구 기능 변경이 같은 계약을 사용하도록 범용 적용점 고정 |
+| Chat에서 기능수정 → 테스트 → rollback | 부분 완료 | Work 없이 가능한 범위를 최대화하고 Work-only blocker만 남기기 |
+| Work 종료 시 handoff | 준비 필요 | 마지막 성공 checkpoint + 남은 항목 + blocker + 수정파일 + 다음 테스트 + rollback 지점을 자동 기록 |
+| Work 크레딧 사용범위 | LOCK | Chat/GitHub에서 불가능한 실제 실행/E2E만 허용 |
+| Work 진입판정 | 아직 HOLD | Chat/GitHub 선행작업을 더 이상 진행할 수 없는 지점까지 완료 후 사용자에게 보고 |
 
 ## 현재 blocker
 | blocker | 원인 | 개선방법 | Work 크레딧 |
 |---|---|---|---|
-| CROSS_REPOSITORY_TARGET_APPLY | 중앙 workflow 권한은 중앙 저장소 `contents: write`이며 repository target 자동 write/read-back/test 통로가 검증되지 않음 | 실제 cross-repo dispatch/credential 또는 target runtime의 중앙 revision 직접 소비 경로를 1개 실제 연결하고 E2E 증거 생성 | 필요 가능성이 높음 — 이 구간에만 사용 |
-| AUTOMATIC_TRIGGER | 현재 workflow는 CENTRAL_LANE_ACK만 자동 final PASS 가능하며 repo targets는 fail-closed HOLD | 실제 repo target trigger와 결과 회수까지 연결 | 필요 가능성이 높음 |
-| INDEPENDENT_VERIFICATION | 제3자 run/result 없음 | 외부 실제 runner가 생겼을 때 별도 증거로 기록 | 현재 필수 PASS 기준과 분리 |
-| UNAUTHORIZED_STRUCTURE_DETECTION | 기존 규칙은 임의 생성/이름변경 금지 문구만 있고 구조 변경 preflight 감지/deny gate가 없었음 | 승인목록 diff → DENY/HOLD → rollback/delete → read-back → 회귀테스트 체인을 실제 구현/검증 | Chat+GitHub 선행 가능 |
+| MATERIAL_GUARD_COMMON_CALLSITE | guard는 중앙 audit에서 실제 실행되지만 모든 개별 tool mutation의 공통 callsite까지 완전히 강제되지 않음 | 중앙 adapter/module 계약의 validate 이전 단계에 guard 호출 규격 고정 | Chat+GitHub 선행 가능 |
+| FINAL_STATE_VALIDATION | run `31712529019` 마지막 state assertion이 현재 state와 불일치 | 로그에서 정확한 assertion만 찾아 최신 사용자 우선순위/상태와 충돌 없이 수정 | Chat+GitHub 선행 가능 |
+| CROSS_REPOSITORY_TARGET_APPLY | 실제 repo target 자동 write/read-back/test 통로는 환경/권한 의존 | Chat/GitHub 선행준비 후 실제 Work-only인지 확정 | Work 필요 가능성 있음 |
+| INDEPENDENT_VERIFICATION | 제3자 run/result 없음 | 외부 실제 runner가 있을 때 별도 증거로 기록 | 구조 내부 PASS와 분리 |
 
 ## Work 크레딧 사용 잠금
 - 기존 규칙 재독해·재요약·저장소 재검색·안티그래비티 재추출에는 Work 크레딧을 사용하지 않는다.
-- 이번 Work가 필요하다면 **교차 저장소 target 실제 apply/read-back/test E2E를 성립시키는 구간만** 사용한다.
-- 구조 PASS 전 개별 도구 기능개발로 우선순위를 바꾸지 않는다.
+- Chat/GitHub에서 가능한 guard 범용화·state 정합성·handoff/restart 준비는 Work 전에 끝낸다.
+- Work에 들어가면 **Chat/GitHub에서 실제로 불가능하다고 확인된 실행·E2E**부터 시작한다.
+- 이미 PASS한 canonical/revision cache/restart/rollback/guard fixture는 Work에서 반복하지 않는다.
+- Work 크레딧이 끝나도 `WORK_ONLY_HOLD`만 남도록 하고, 나머지는 Chat+GitHub에서 계속 개발 가능해야 한다.
 
 ## 최신 restart point
-1. feedback `37a4a2166bb5e2a08a8c`의 ingest/canonical/run `31670039251`은 재실행하지 않는다.
-2. canonical revision `3f0c83fe635a4067354e8456`의 `target_apply_manifest.json`에서 시작한다.
-3. 실제 repository target 1개 이상에 revision 적용 → target read-back → target-side deterministic test → run/result evidence → 중앙 상태 회수까지 한 E2E로 연결한다.
-4. 동시에 `UNAUTHORIZED STRUCTURE GUARD`를 preflight 단계에 연결하고 승인 없는 구조 생성/이름변경/자동이전 fixture를 DENY시키는 회귀테스트를 만든다.
-5. 성공 시 동일 구조를 나머지 target에 재사용할 수 있는지 확인하고 `STRUCTURE_PASS_INTERNAL_GITHUB_E2E`로 승격한다.
-6. 실패 시 permission/credential/runner/trigger 중 최초 실제 blocker를 HOLD로 기록하고, 완료된 canonical 단계는 반복하지 않는다.
-7. 구조 PASS 뒤 사용자 지정 우선순위는 최신 사용자 지시를 다시 읽어 적용하며, 과거 우선순위 목록을 자동 승계하지 않는다.
-8. 오후 1시·5시 메일 통합 예약은 별도 예약 작업이며 이 개발 restart point와 혼동하지 않는다.
+1. 승인 없는 구조변경 guard fixture와 중앙 audit 첫 단계 연결은 재실행하지 않는다.
+2. run `31712529019` 마지막 `Validate collector and integration-core state` 실패 assertion을 정확히 확인한다.
+3. 사용자 최신 우선순위와 충돌하는 stale state assertion만 최소 수정한다.
+4. material mutation 공통 계약을 `PRECHECK_USER_DIRECTIVE -> VALIDATE -> APPLY -> TEST -> EVIDENCE -> ROLLBACK/HOLD` 순서로 고정한다.
+5. DENY evidence를 observer report 대상으로 남기는 계약을 고정한다.
+6. Work 종료 handoff 스키마를 checkpoint/state에 연결한다.
+7. Chat/GitHub에서 더 진행할 수 없는 실제 blocker만 `WORK_ONLY_HOLD`로 분류한다.
+8. 그 시점에 사용자에게 `사전준비 완료율 / 남은 Work-only 항목 / Work 첫 작업 / 예상 크레딧 사용처 / Work 중단 시 재개점`을 한 번에 보고한다.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
