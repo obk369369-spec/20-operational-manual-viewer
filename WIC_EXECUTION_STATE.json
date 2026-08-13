@@ -3,113 +3,58 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 11:24",
+  "updated_kst": "2026-08-13 13:19",
   "scope": "WIC post-structure execution restart state",
   "structure_status": "PASS_INTERNAL_GITHUB_E2E",
-  "post_structure_priority": ["email_collection","tool_7_customer_contact","tool_1_intermediate_final_guide","metadata_37","tool_13_excel_upload","tool_6_toc","tool_2_bid","publisher_28_31","remaining_registered_tools_and_chats"],
+  "latest_feedback": {
+    "feedback_id": "b6acdbfd3bc4d0de1b66",
+    "canonical_revision": "11f7a751685aeaaf10cab428",
+    "canonical_run": "31663661298",
+    "tool006_internal_validation_run": "31663710333",
+    "tool006_internal_validation_job": "94333736626",
+    "tool006_internal_validation_result": "PASS_INTERNAL_GITHUB_RUN",
+    "tool001_functional_target_test": "HOLD_WORK_BROWSER_E2E"
+  },
   "do_not_repeat": [
     "integration-core implementation/rebuild/revalidation",
-    "TOOL002 business E2E re-run",
-    "TOOL028-031 guessed repository creation/search while repository inventory is unchanged",
-    "TOOL027-003 repeated repository-level inventory unless repository contents or blockers change",
-    "Work gate reimplementation while run 31660617974 evidence remains valid"
+    "repository inventory already completed through registered TOOL003",
+    "TOOL002 actual bid business E2E",
+    "cross-target rollback/read-back/restart E2E",
+    "TOOL006 run 31663710333 internal validation",
+    "Work gate reimplementation while run 31660617974 evidence remains valid",
+    "EMAIL_COLLECTION/TOOL007/TOOL037/TOOL006 BUSINESS checks while blockers are unchanged"
   ],
-  "current_evidence": {
-    "structure_pass_run": "31642596092",
-    "structure_pass_job": "94268523138",
-    "structure_pass_result": "PASS_INTERNAL_GITHUB_E2E",
-    "tool007_adapter_run": "31642395087",
-    "tool007_adapter_job": "94267844534",
-    "tool007_adapter_artifact": "9159365670",
-    "remaining_registered_repository_inventory_status": "COMPLETE_TO_TOOL003",
-    "tool009_validation_classification": "INTERNAL_PLATFORM_ONLY_NOT_BUSINESS_E2E",
-    "work_gate_commit": "fbcaeaff8b0ffcace7733726e6d8c04935978f17",
+  "pre_work_status": {
+    "work_gate": "PASS_INTERNAL_GITHUB_RUN",
     "work_gate_run": "31660617974",
     "work_gate_job": "94324484253",
     "work_gate_artifact": "9166037482",
-    "work_gate_artifact_digest": "sha256:0ae387fe6b6f448a37ec800b22d5567bbdd63e7d98966ffac3bc0e5137e188ca",
-    "work_gate_verified_eligible": ["tool001_business_e2e", "tool013_business_e2e"],
-    "work_gate_verified_deferred": ["email_collection", "tool007_business_e2e", "tool037_business_e2e", "tool006_business_e2e"],
-    "external_independent_verification": false
+    "work_eligible_order": [
+      "TOOL001 browser business E2E",
+      "TOOL013 actual .xlsx injection business E2E"
+    ],
+    "deferred_not_work_only": [
+      "EMAIL_COLLECTION",
+      "TOOL007 BUSINESS",
+      "TOOL037 BUSINESS",
+      "TOOL006 BUSINESS"
+    ]
   },
-  "current_blockers": {
-    "email_collection": "No verified executable business runner is currently identified.",
-    "tool007_business_e2e": "Adapter is verified but actual current-customer business E2E is not recorded.",
-    "tool001_business_e2e": "Browser E2E rerun path is not currently available through the connected GitHub actions interface.",
-    "tool037_business_e2e": "No verified purpose-matching production runner is identified.",
-    "tool013_business_e2e": "Actual spreadsheet input cannot currently be injected into the existing execution path.",
-    "tool006_business_e2e": "Actual original-to-user-approved-final golden pair is still unavailable.",
-    "tool028_031": "No numbered 28/29/30/31 repositories exist in the accessible repository inventory.",
-    "remaining_registered_tools": "Repository-level inventory is complete through TOOL003; static or internal-only assets are not business E2E.",
-    "independent_verification": "No third-party successful actual run/result evidence is recorded."
+  "blockers": {
+    "TOOL001": "Actual browser functional E2E is not executable through the current connected GitHub interface.",
+    "TOOL013": "Actual .xlsx binary cannot be injected through the current connected GitHub execution path.",
+    "TOOL006_BUSINESS": "Actual original-to-user-approved-final golden pair is unavailable.",
+    "EMAIL_COLLECTION": "Verified company customer DB/runner is not identified.",
+    "TOOL007_BUSINESS": "Actual current-customer record E2E evidence is not recorded.",
+    "TOOL037": "No verified purpose-matching production runner is identified.",
+    "INDEPENDENT_VERIFICATION": "No third-party actual external run/result evidence is recorded."
   },
-  "work_gate_candidates": {
-    "email_collection": {
-      "gates": {"chat_files": true, "github": true, "ordinary_runtime": true},
-      "blocker": "Verified company customer DB/runner is not identified yet; this is an asset-identification blocker, not a Work-only execution blocker.",
-      "restart_point": "Resume only when an official customer DB/runner is identified; then run actual send-order business E2E.",
-      "target_repository": "obk369369-spec/20-operational-manual-viewer",
-      "target_assets": ["customer_pipeline/customer_db_state_machine.py", "customer_pipeline/p1_to_p2_handoff.py"],
-      "execution_goal": "real customer DB -> normalized send order -> P2 handoff",
-      "success_evidence": ["actual input reference", "run/result", "output read-back", "expected comparison"],
-      "rollback_point": "current central customer_pipeline HEAD"
-    },
-    "tool007_business_e2e": {
-      "gates": {"chat_files": true, "github": true, "ordinary_runtime": true},
-      "blocker": "Purpose-matching adapter exists; actual current-customer record is still missing from recorded E2E evidence.",
-      "restart_point": "Use an actual current customer record when available and execute P1->P2->Tool7 output comparison.",
-      "target_repository": "obk369369-spec/20-operational-manual-viewer",
-      "target_assets": ["customer_pipeline/tool7_contact_judgment.py", "customer_pipeline/p1_to_p2_handoff.py"],
-      "execution_goal": "actual current customer -> contact judgment -> phone/recommendation output -> expected comparison",
-      "success_evidence": ["actual customer input reference", "run/result", "output read-back", "expected comparison"],
-      "rollback_point": "current central customer_pipeline HEAD"
-    },
-    "tool001_business_e2e": {
-      "gates": {"chat_files": false, "github": false, "ordinary_runtime": false},
-      "blocker": "Repaired TOOL001 needs a safe real browser E2E rerun, but the connected GitHub interface cannot dispatch that execution path and prior trigger attempts were safety-blocked.",
-      "restart_point": "Open the repaired TOOL001 working tree in Work, capture pre-run HEAD, execute the existing Chromium business E2E against the repaired build, and compare rendered guide slots/candidate count/pageErrors with expected values.",
-      "target_repository": "obk369369-spec/01-auto-guide-v1",
-      "target_assets": ["index.html", "regression/tool1_verified_data_contract.py", ".github/workflows/tool1-verified-data-regression.yml"],
-      "execution_goal": "real customer/report fixture -> browser input -> guide render -> DOM/slot/output comparison with pageErrors=0",
-      "success_evidence": ["pre-run commit", "browser run/job", "artifact", "rendered output read-back", "expected comparison", "pageErrors=0"],
-      "rollback_point": "repair commit 68be059a (syntax zero-error repaired baseline)"
-    },
-    "tool037_business_e2e": {
-      "gates": {"chat_files": true, "github": true, "ordinary_runtime": true},
-      "blocker": "No verified purpose-matching production runner is identified; Work must not be used to guess one.",
-      "restart_point": "Resume only when an official TOOL037 metadata runner/mapping is identified.",
-      "target_repository": "HOLD_NO_VERIFIED_TARGET",
-      "target_assets": ["official TOOL037 runner required"],
-      "execution_goal": "actual metadata input -> production metadata output -> expected comparison",
-      "success_evidence": ["official mapping", "actual input", "run/result", "output read-back", "expected comparison"],
-      "rollback_point": "none until official target exists"
-    },
-    "tool013_business_e2e": {
-      "gates": {"chat_files": false, "github": false, "ordinary_runtime": false},
-      "blocker": "Actual .xlsx binary input exists outside the current GitHub execution path and cannot be injected through the connected GitHub interface.",
-      "restart_point": "In Work, mount the actual workbook, capture repository HEAD and workbook hash, load it through TOOL013 index.html, run the real conversion/upload path, export output, and compare rows/fields with expected business values.",
-      "target_repository": "obk369369-spec/13-excel-upload",
-      "target_assets": ["index.html", "WIC_RULE_SOURCE.md", "WIC_TARGET_APPLY_STATE.json", "actual .xlsx workbook from user files"],
-      "execution_goal": "actual .xlsx -> TOOL013 execution -> generated upload output -> row/field expected comparison",
-      "success_evidence": ["input workbook hash", "pre-run commit", "run/result", "output artifact", "output read-back", "row/field expected comparison"],
-      "rollback_point": "current TOOL013 main HEAD before Work execution"
-    },
-    "tool006_business_e2e": {
-      "gates": {"chat_files": true, "github": true, "ordinary_runtime": true},
-      "blocker": "Actual original-to-user-approved-final golden pair is unavailable; Work cannot manufacture approval evidence.",
-      "restart_point": "Resume only when a real original TOC and user-approved final TOC pair is available.",
-      "target_repository": "obk369369-spec/06-toc-check",
-      "target_assets": ["existing TOOL006 regression assets", "real original TOC required", "user-approved final TOC required"],
-      "execution_goal": "original TOC -> TOOL006 transform -> approved-final exact comparison",
-      "success_evidence": ["original source", "approved final source", "run/result", "exact diff/read-back"],
-      "rollback_point": "current TOOL006 verified baseline"
-    }
-  },
-  "work_gate_policy": {
-    "eligible_rule": "WORK_ELIGIBLE only when chat_files=false AND github=false AND ordinary_runtime=false AND exact handoff package is complete.",
-    "credit_waste_rule": "Never spend Work credit on rule rereading, repository inventory, missing source evidence, or a lane still executable in Chat/GitHub/ordinary runtime.",
-    "work_exit_rule": "Before Work credit/run ends, persist last successful checkpoint, remaining blocker, modified assets, evidence, rollback point, and exact next restart step so a later Work session never restarts from zero."
-  },
-  "restart_point": "Pre-Work gate is verified. Do not rebuild/re-audit it. Until a lower-cost blocker changes, do not revisit EMAIL_COLLECTION/TOOL007/TOOL037/TOOL006. When Work is explicitly entered, execute TOOL001 browser business E2E first, then TOOL013 actual .xlsx injection E2E. Before each Work session ends, persist a WORK_EXIT_RESUMABLE checkpoint using artifact 9166037482 and resume later from exact_next_step only.",
-  "completion_policy": "Business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Static, internal, or historical validation alone is not business PASS."
+  "restart_point": [
+    "Do not repeat TOOL006 internal validation; it is now success.",
+    "When Work is explicitly entered, run TOOL001 browser business E2E first and verify global-title filtering, TOC max depth two, one-level child indentation, and text-only report-info sourcing.",
+    "After TOOL001 completes or reaches a clear HOLD, run TOOL013 actual .xlsx injection business E2E.",
+    "Before Work exits, persist actual evidence, rollback point, blocker, and exact_next_step into the WORK_EXIT_RESUMABLE checkpoint from artifact 9166037482 and read it back.",
+    "Do not spend Work credit on lanes whose missing input/runner/golden evidence can only be resolved outside Work."
+  ],
+  "completion_policy": "Business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Internal GitHub validation is not third-party independent validation."
 }
