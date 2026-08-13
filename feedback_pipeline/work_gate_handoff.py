@@ -1,8 +1,11 @@
-"""Deterministic WIC Chat/GitHub -> Work credit gate.
+"""Deterministic WIC Chat/GitHub -> Work credit gate and resumable exit contract.
 
 Work is eligible only when Chat/Files, GitHub, and ordinary runtime are all unable
 to perform the concrete execution AND an exact restart package is complete.
-This module does not execute Work and does not upgrade business PASS.
+If a Work session stops before completion, a checkpoint must preserve the last
+successful stage, evidence, rollback point, and exact next step so later Work does
+not restart from zero.
+This module does not execute Work and does not upgrade business PASS by itself.
 """
 from __future__ import annotations
 
@@ -19,6 +22,16 @@ REQUIRED_HANDOFF = (
     "execution_goal",
     "success_evidence",
     "rollback_point",
+)
+REQUIRED_EXIT_CHECKPOINT = (
+    "lane",
+    "status",
+    "last_success_stage",
+    "remaining_blocker",
+    "modified_assets",
+    "evidence",
+    "rollback_point",
+    "exact_next_step",
 )
 
 
@@ -55,6 +68,35 @@ def evaluate_candidate(candidate: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def validate_exit_checkpoint(checkpoint: Mapping[str, Any]) -> dict[str, Any]:
+    missing = []
+    for key in REQUIRED_EXIT_CHECKPOINT:
+        value = checkpoint.get(key)
+        if value in (None, "", [], {}):
+            missing.append(key)
+    status = str(checkpoint.get("status", ""))
+    if status and status not in {"PASS", "HOLD", "FAIL"}:
+        return {
+            "valid": False,
+            "decision": "WORK_EXIT_CHECKPOINT_INVALID",
+            "missing": missing,
+            "reason": "status must be PASS, HOLD, or FAIL",
+        }
+    if missing:
+        return {
+            "valid": False,
+            "decision": "WORK_EXIT_CHECKPOINT_INCOMPLETE",
+            "missing": missing,
+            "reason": "Work exit is not resumable until every checkpoint field is persisted.",
+        }
+    return {
+        "valid": True,
+        "decision": "WORK_EXIT_RESUMABLE",
+        "missing": [],
+        "reason": "Checkpoint is sufficient to resume without repeating completed stages.",
+    }
+
+
 def build_handoff(state: Mapping[str, Any]) -> dict[str, Any]:
     candidates = state.get("work_gate_candidates", {})
     evaluated: dict[str, Any] = {}
@@ -75,13 +117,36 @@ def build_handoff(state: Mapping[str, Any]) -> dict[str, Any]:
             held.append(lane)
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "structure_status": state.get("structure_status"),
         "eligible_work_lanes": eligible,
         "deferred_lower_cost_lanes": deferred,
         "held_incomplete_handoff_lanes": held,
         "candidates": evaluated,
         "policy": "Use Work only for WORK_ELIGIBLE lanes; never repeat prior PASS or repository inventory.",
+        "work_exit_policy": "Before Work stops, persist a WORK_EXIT_RESUMABLE checkpoint or mark the lane incomplete; never restart from zero.",
+    }
+
+
+def build_exit_templates(handoff: Mapping[str, Any]) -> dict[str, Any]:
+    templates = {}
+    for lane in handoff.get("eligible_work_lanes", []):
+        candidate = handoff["candidates"][lane]
+        templates[lane] = {
+            "lane": lane,
+            "status": "HOLD",
+            "last_success_stage": "PRE_WORK_BASELINE_CAPTURED",
+            "remaining_blocker": candidate["blocker"],
+            "modified_assets": ["NONE_YET"],
+            "evidence": ["record pre-run commit/hash before first Work change"],
+            "rollback_point": candidate["rollback_point"],
+            "exact_next_step": candidate["restart_point"],
+        }
+    return {
+        "schema_version": 1,
+        "templates": templates,
+        "required_fields": list(REQUIRED_EXIT_CHECKPOINT),
+        "rule": "Replace placeholders with actual executed evidence before a Work session ends.",
     }
 
 
@@ -116,13 +181,33 @@ def self_test() -> None:
     combined = build_handoff({"structure_status": "PASS", "work_gate_candidates": {"a": cheap, "b": complete}})
     assert combined["eligible_work_lanes"] == ["b"]
     assert combined["deferred_lower_cost_lanes"] == ["a"]
-    print("PASS: 4 deterministic Work-gate/handoff fixtures")
+
+    bad_exit = {"lane": "b", "status": "HOLD"}
+    assert validate_exit_checkpoint(bad_exit)["decision"] == "WORK_EXIT_CHECKPOINT_INCOMPLETE"
+
+    good_exit = {
+        "lane": "b",
+        "status": "HOLD",
+        "last_success_stage": "INPUT_HASH_CAPTURED",
+        "remaining_blocker": "browser step pending",
+        "modified_assets": ["index.html"],
+        "evidence": ["commit abc", "input sha256:def"],
+        "rollback_point": "commit 123",
+        "exact_next_step": "run chromium fixture from stage BROWSER_EXECUTION",
+    }
+    assert validate_exit_checkpoint(good_exit)["decision"] == "WORK_EXIT_RESUMABLE"
+
+    templates = build_exit_templates(combined)
+    assert list(templates["templates"]) == ["b"]
+    print("PASS: 7 deterministic Work-gate/handoff/exit-checkpoint fixtures")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--state", default="WIC_EXECUTION_STATE.json")
     parser.add_argument("--output", default="work-handoff.json")
+    parser.add_argument("--exit-template-output", default="")
+    parser.add_argument("--validate-exit", default="")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
 
@@ -130,9 +215,18 @@ def main() -> None:
         self_test()
         return
 
+    if args.validate_exit:
+        checkpoint = json.loads(Path(args.validate_exit).read_text(encoding="utf-8"))
+        result = validate_exit_checkpoint(checkpoint)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        raise SystemExit(0 if result["valid"] else 2)
+
     state = json.loads(Path(args.state).read_text(encoding="utf-8"))
     output = build_handoff(state)
     Path(args.output).write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if args.exit_template_output:
+        templates = build_exit_templates(output)
+        Path(args.exit_template_output).write_text(json.dumps(templates, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(output, ensure_ascii=False, indent=2))
 
 
