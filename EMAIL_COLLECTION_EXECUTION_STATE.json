@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_kst": "2026-08-13 21:06",
+  "updated_kst": "2026-08-13 22:07",
   "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
   "progress_percent": 44,
   "stall_detected": false,
-  "stall_reason": "The 20:04 checkpoint was readable and the recovery ledger advanced in this run, so no new stall was recorded.",
+  "stall_reason": "The 21:06 checkpoint was readable and new legacy evidence was verified in this run.",
   "auto_resume": "CONTINUED_FROM_CHECKPOINT",
   "last_verified_completed": [
     "SEM-001 historical existence confirmed",
@@ -12,38 +12,32 @@
     "SEM-071..SEM-080 company introduction/business-card sent cohort dated 2026-07-08",
     "sector prefixes SEM/ROB/DEF/SHP/BAT/CAR confirmed",
     "three held legacy interaction identities centrally fingerprinted without renumbering",
-    "connected Gmail sent/handoff history added for the Korea Carbon Industry Promotion Agency held identity"
+    "connected sent/handoff history previously added for one held repeated purchaser"
   ],
   "this_run_actual_changes": [
-    "Read back the 20:04 execution checkpoint and recovery ledger before new work.",
-    "Searched File Library for SEM-002..SEM-070 permanent-number evidence and DEF/SHP/CAR/ROB/BAT numbered rows; no new reliable numbered rows were recovered in this pass.",
-    "Searched connected Gmail for the three held identities and recovered 2021-11-17 purchase-wish-list handoff, 2022-03-10 order handoff, and 2026-03-23 outbound material-guide send evidence for the Korea Carbon Industry Promotion Agency identity.",
-    "Searched connected Gmail for bounce/failure evidence tied to the three held names; no matching bounce evidence was found in this pass.",
-    "Updated the central recovery ledger without assigning any new permanent customer number."
+    "Read back the 21:06 execution checkpoint and recovery ledger before new work.",
+    "Searched File Library again for explicit SEM-002..SEM-070 and ROB/DEF/SHP/BAT/CAR numbered customer rows; only numbering templates and already-known SEM-071..SEM-080 rows were found.",
+    "Rejected broad connected-mail prefix hits because they were unrelated to customer-number rows.",
+    "Recovered one additional legacy repeat-purchase identity from private historical mail evidence: an initial purchase request, a later quotation acceptance, and confirmed document delivery were all present.",
+    "No permanent number or sector prefix was assigned because no direct number-bearing legacy source was found."
   ],
   "evidence": {
-    "recovery_ledger_commit": "fbc40306be1a2ea46db292afda639e82e6459c60",
-    "recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
-    "recovery_ledger_blob_sha": "512ab77e2725bbde6602e6e49ddce5b507e58032",
-    "file_library_sources": [
-      "붙여넣은 텍스트 (1).txt",
-      "34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt",
-      "Re 견적서 ( Global Sports Composites Market Growth 2021-2026 외 1종) , 한국탄소산업진...원 송현도님.eml"
-    ],
-    "connected_gmail_findings": [
-      "2021-11-17 송현도님 자료 구매 희망 리스트",
-      "2022-03-10 송현도 팀장 주문건",
-      "2026-03-23 문의 분야 자료 안내 (한국탄소산업진흥원 송현도 책임님 드림)"
+    "prior_recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
+    "prior_recovery_ledger_blob_sha": "512ab77e2725bbde6602e6e49ddce5b507e58032",
+    "file_library_findings": [
+      "SEM-071..SEM-080 explicit numbered rows remain the only detailed numbered block recovered in this pass",
+      "other-sector searches returned numbering rules/templates rather than actual customer rows",
+      "one additional private historical purchase/quotation/delivery chain was verified"
     ]
   },
   "remaining": [
-    "Match the three held candidates against existing permanent IDs using legacy customer ledgers/handoff records rather than already-processed email threads.",
+    "Persist the newly verified repeat-purchase identity into the privacy-safe recovery ledger when an allowed write path is available.",
+    "Match held candidates against existing permanent IDs using legacy customer ledgers/handoff records.",
     "Recover detailed SEM-002..SEM-070 if evidence exists.",
     "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
-    "Recover historical handoff/duplicate ledger beyond the currently held identities.",
-    "Recover sent/bounce history tied to additional verified permanent or held identities.",
+    "Recover additional historical handoff/duplicate and sent/bounce history only after identity linkage is verified.",
     "Collision-check SEM-081 before assignment."
   ],
-  "restart_point": "Continue legacy permanent-number/handoff-ledger search for fingerprints 049d00b489ed83abb228, 593e15964842643ee5c0, cbc24788f66662dc07f2 and search actual numbered rows for SEM-002..SEM-070 plus DEF/SHP/CAR/ROB/BAT. Do not reread already-processed email threads and do not assign a number without direct evidence.",
+  "restart_point": "Continue explicit number-bearing legacy ledger/handoff search. Do not reread already-processed mail threads and do not assign a customer number or sector without direct evidence. A newly verified repeat-purchase identity remains pending privacy-safe ledger persistence.",
   "estimated_completion": "HOLD — legacy permanent-number and other-sector ledgers are still incomplete, so a reliable finish time cannot yet be measured."
 }
