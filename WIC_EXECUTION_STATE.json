@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 15:10",
+  "updated_kst": "2026-08-13 17:04",
   "scope": "WIC structure-first actual feedback E2E restart state",
   "structure_status": "HOLD_CROSS_REPOSITORY_TARGET_APPLY",
   "latest_feedback": {
@@ -32,8 +32,46 @@
     "canonical ingestion for feedback 37a4a2166bb5e2a08a8c",
     "canonical conflict/supersede decision for feedback 37a4a2166bb5e2a08a8c",
     "canonical write/read-back for revision 3f0c83fe635a4067354e8456",
-    "GitHub Actions run 31670039251"
+    "GitHub Actions run 31670039251",
+    "SEM-071 through SEM-080 semiconductor legacy ID recovery from File Library"
   ],
+  "email_collection_checkpoint": {
+    "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
+    "stall_detected": true,
+    "stall_reason": "Email collection rules and routing were centralized, but actual historical customer ID/delivery data had not been persisted in central GitHub state.",
+    "auto_resume": "RESUMED_FROM_LEGACY_DATA_RECOVERY",
+    "semiconductor": {
+      "confirmed_prefix": "SEM",
+      "confirmed_legacy_range": "SEM-071..SEM-080",
+      "confirmed_last_number": "SEM-080",
+      "next_candidate_number": "SEM-081",
+      "company_intro_and_business_card_sent_date": "2026-07-08",
+      "source_evidence": [
+        "File Library: 34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt",
+        "File Library: 34번 공통 보완 추가 — [이메일 수집 — 기존 작업 승계 및 계속 진행 지시문].txt"
+      ],
+      "privacy_safe_identity_fingerprints": [
+        {"id":"SEM-071","org_name_fingerprint":"079b4e73b5c7e4eb4978","status":"existing"},
+        {"id":"SEM-072","org_name_fingerprint":"59651d1bac8d4c71565e","status":"existing"},
+        {"id":"SEM-073","org_name_fingerprint":"ebd105c432a86297ca7a","status":"tracking_title_unverified"},
+        {"id":"SEM-074","org_name_fingerprint":"ea104b227114f34560be","status":"existing"},
+        {"id":"SEM-075","org_name_fingerprint":"0a465d0576253e31064c","status":"existing"},
+        {"id":"SEM-076","org_name_fingerprint":"068f7cdf529f10ad1c98","status":"c_grade_verify_work"},
+        {"id":"SEM-077","org_name_fingerprint":"68659da2017d536494b6","status":"existing"},
+        {"id":"SEM-078","org_name_fingerprint":"813008009a615f3d55ad","status":"b_c_verify_work"},
+        {"id":"SEM-079","org_name_fingerprint":"38c16eca5256d95ffca4","status":"existing"},
+        {"id":"SEM-080","org_name_fingerprint":"67cbeaa2a3bd79a74a20","status":"b_c_verify_work"}
+      ],
+      "recovery_result": "10 legacy customer IDs recovered without renumbering; direct personal data not copied into public central state.",
+      "remaining": [
+        "recover SEM-001..SEM-070 if available",
+        "recover other sector prefixes and last-used numbers",
+        "recover historical handoff/duplicate ledger",
+        "recover sent/bounce history where verifiable",
+        "cross-check next-number collision before assigning SEM-081"
+      ]
+    }
+  },
   "blockers": {
     "CROSS_REPOSITORY_TARGET_APPLY": "Current central GitHub Actions GITHUB_TOKEN only has contents:write for the central repository. TOOL001/TOOL002/TOOL006 and other repository targets require an actual cross-repository write/read-back/test transport or a verified runtime that reads the central revision and produces target test evidence.",
     "AUTOMATIC_TRIGGER": "The current workflow finalizes only verified CENTRAL_LANE_ACK targets. It intentionally leaves repository targets HOLD; no verified automatic cross-repository dispatch credential/transport is recorded.",
@@ -56,7 +94,8 @@
     "Start at cross-repository target transport for target manifest revision 3f0c83fe635a4067354e8456.",
     "Prefer TOOL001 or another already verified repository adapter solely as the first actual cross-repo proof; this is structure E2E, not a change in the user's post-structure tool priority.",
     "If transport cannot be established, record the exact permission/credential/runtime blocker as HOLD and do not spend credits on unrelated tool development.",
-    "After structure PASS, resume user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats."
+    "After structure PASS, resume user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats.",
+    "For EMAIL_COLLECTION resume at legacy data recovery beyond confirmed SEM-071..SEM-080; do not rediscover or renumber these 10 records."
   ],
   "completion_policy": "Structure PASS requires actual new feedback -> automatic classification/conflict handling -> canonical GitHub write/read-back -> actual target apply/read-back/test -> reusable evidence -> restart point. Internal GitHub validation is not third-party independent validation."
 }
