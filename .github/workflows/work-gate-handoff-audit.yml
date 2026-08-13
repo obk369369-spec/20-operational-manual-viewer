@@ -18,20 +18,24 @@ jobs:
       - uses: actions/checkout@v4
       - name: Deterministic Work gate fixtures
         run: python feedback_pipeline/work_gate_handoff.py --self-test
-      - name: Generate exact Work handoff
-        run: python feedback_pipeline/work_gate_handoff.py --state WIC_EXECUTION_STATE.json --output work-handoff.json
+      - name: Generate exact Work handoff and exit template
+        run: python feedback_pipeline/work_gate_handoff.py --state WIC_EXECUTION_STATE.json --output work-handoff.json --exit-template-output work-exit-checkpoint-template.json
       - name: Validate eligible lanes are exact packages
         run: |
           python - <<'PY'
           import json
-          data=json.load(open('work-handoff.json', encoding='utf-8'))
-          for lane in data['eligible_work_lanes']:
-              row=data['candidates'][lane]
+          handoff=json.load(open('work-handoff.json', encoding='utf-8'))
+          exit_template=json.load(open('work-exit-checkpoint-template.json', encoding='utf-8'))
+          for lane in handoff['eligible_work_lanes']:
+              row=handoff['candidates'][lane]
               assert row['decision']=='WORK_ELIGIBLE'
               assert not row['missing_handoff']
-          print('PASS: exact Work handoff validation')
+              assert lane in exit_template['templates']
+          print('PASS: exact Work handoff + resumable exit template validation')
           PY
       - uses: actions/upload-artifact@v4
         with:
           name: wic-work-handoff
-          path: work-handoff.json
+          path: |
+            work-handoff.json
+            work-exit-checkpoint-template.json
