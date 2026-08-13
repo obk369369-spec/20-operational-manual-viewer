@@ -1,0 +1,40 @@
+{
+  "canonical_revision": "11f7a751685aeaaf10cab428",
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "b6acdbfd3bc4d0de1b66",
+    "impacted_layers": [
+      "GLOBAL",
+      "TOOL_OR_DOMAIN_OVERRIDE",
+      "DATA_OR_EXECUTION_ASSET"
+    ],
+    "impacted_targets": [
+      "TOOL001",
+      "TOOL006"
+    ],
+    "reason": "no active duplicate or unresolved same-priority conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "b6acdbfd3bc4d0de1b66",
+  "observed_at": "2026-08-13T12:08:38+09:00",
+  "read_back": {
+    "intended_hash": "5c1dc8cad74ea0021c5bd3b11a5b12b02f7a2aa9e3f66c2324cc5fab2ece36c5",
+    "read_back_hash": "5c1dc8cad74ea0021c5bd3b11a5b12b02f7a2aa9e3f66c2324cc5fab2ece36c5",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "고객 안내서 추천 보고서는 타이틀 자체가 글로벌 시장 범위를 대상으로 해야 하며 Asia Pacific, North America, Europe처럼 단일 지역만 대상으로 한 타이틀은 제외한다. 단 글로벌 보고서 제목 뒤에 여러 지역이 함께 나열되는 것은 허용한다. 목차는 상위 목차와 하위 목차까지만 표시하고 하하위 목차는 제외하며, 하위 목차는 상위 목차보다 한 단계 오른쪽으로 들여쓴다. 보고서 정보는 공식 상세페이지의 실제 텍스트 문단만 한국어로 번역하고 그래프·차트·이미지·도표를 모델이 해석해 문장으로 재구성하는 것은 금지한다. 표시한 섹션/위치/줄 번호의 실제 원문과 번역 내용이 직접 대응해야 한다.",
+  "schema_version": 1,
+  "source_chat": "CONTROL_PRIMARY",
+  "source_ref": "central-commit-177a3159816e090e2a3d94ef7a927e32c05ae455",
+  "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+  "targets": [
+    "TOOL001",
+    "TOOL006"
+  ]
+}

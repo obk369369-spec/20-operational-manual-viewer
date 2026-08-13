@@ -504,6 +504,22 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
   "records": [
     {
       "active": true,
+      "classification": "CONSTRAINT",
+      "feedback_id": "b6acdbfd3bc4d0de1b66",
+      "impacted_layers": [
+        "GLOBAL",
+        "TOOL_OR_DOMAIN_OVERRIDE",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "고객 안내서 추천 보고서는 타이틀 자체가 글로벌 시장 범위를 대상으로 해야 하며 Asia Pacific, North America, Europe처럼 단일 지역만 대상으로 한 타이틀은 제외한다. 단 글로벌 보고서 제목 뒤에 여러 지역이 함께 나열되는 것은 허용한다. 목차는 상위 목차와 하위 목차까지만 표시하고 하하위 목차는 제외하며, 하위 목차는 상위 목차보다 한 단계 오른쪽으로 들여쓴다. 보고서 정보는 공식 상세페이지의 실제 텍스트 문단만 한국어로 번역하고 그래프·차트·이미지·도표를 모델이 해석해 문장으로 재구성하는 것은 금지한다. 표시한 섹션/위치/줄 번호의 실제 원문과 번역 내용이 직접 대응해야 한다.",
+      "supersedes": [],
+      "targets": [
+        "TOOL001",
+        "TOOL006"
+      ]
+    },
+    {
+      "active": true,
       "classification": "PRIORITY_CHANGE",
       "feedback_id": "f2aeb4e8f5fac3c9618f",
       "impacted_layers": [
