@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Deny structural changes without explicit user-directive provenance
+        run: python feedback_pipeline/unauthorized_structure_guard.py
       - name: Run deterministic integration-core fixtures
         run: python feedback_pipeline/cross_chat_feedback_ingest.py
       - name: Run canonical mutation and read-back fixtures
@@ -139,6 +141,7 @@ jobs:
         with:
           name: integration-core-evidence
           path: |
+            feedback_pipeline/unauthorized_structure_guard_evidence.json
             feedback_pipeline/lane_apply_evidence.json
             feedback_pipeline/tool007_adapter_evidence.json
             feedback_pipeline/restart_rollback_evidence.json
@@ -191,6 +194,14 @@ jobs:
           tool7 = json.loads(Path('feedback_pipeline/tool007_adapter_evidence.json').read_text(encoding='utf-8'))
           assert tool7['target'] == 'TOOL007'
           assert tool7['result'] == 'PASS_INTERNAL_GITHUB_RUN'
+          guard = json.loads(Path('feedback_pipeline/unauthorized_structure_guard_evidence.json').read_text(encoding='utf-8'))
+          assert guard['guard'] == 'UNAUTHORIZED_STRUCTURE_GUARD'
+          assert guard['result'] == 'PASS_INTERNAL_FIXTURE'
+          assert guard['cases']['missing_provenance']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['not_in_record']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['negative_rename']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['negative_registry']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['explicit_create']['decision'] == 'ALLOW'
           rr = json.loads(Path('feedback_pipeline/restart_rollback_evidence.json').read_text(encoding='utf-8'))
           assert rr['result'] == 'PASS_INTERNAL_FIXTURE'
           assert rr['after']['restart_from_stage'] == 'TARGET_REVISION_READ_APPLY'
@@ -201,5 +212,5 @@ jobs:
           assert actual['readback_match'] is True
           assert actual['target_clean_after_e2e'] is True
           assert actual['executed_after_restart'] == ['TARGET_REVISION_READ_APPLY','TEST_EVIDENCE','RESTART_OR_HOLD']
-          print('PASS: actual feedback structure PASS + SKIP_UNCHANGED + TOOL007 lane + rollback/restart E2E')
+          print('PASS: actual feedback structure + unauthorized guard + SKIP_UNCHANGED + TOOL007 lane + rollback/restart E2E')
           PY
