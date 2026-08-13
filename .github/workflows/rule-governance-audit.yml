@@ -6,6 +6,9 @@ on:
       - 'WIC_GLOBAL_OPERATING_RULES.md'
       - 'WIC_CHAT_ROUTING_REGISTRY.md'
       - 'CHAT_WINDOW_OWNERSHIP_LOCK.md'
+      - 'WIC_OBSERVER_STATUS.md'
+      - 'WIC_EXECUTION_STATE.json'
+      - 'WIC_LIVE_OBSERVER_STATUS.md'
       - 'feedback_pipeline/**'
       - '.github/workflows/rule-governance-audit.yml'
   workflow_dispatch:
@@ -53,6 +56,49 @@ jobs:
           grep -q '무단 새 대화창 생성: FAIL' "$o"
           grep -q '무단 대화창 이름 변경 또는 다른 이름으로 취급: FAIL' "$o"
           echo 'CHAT_IDENTITY_GATE=PASS'
+      - name: Reject unauthorized structure mutation fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          forbidden = {
+              'create_conversation',
+              'rename_conversation',
+              'create_preparation_chat',
+              'create_observer_chat',
+              'adopt_unverified_alias',
+              'promote_logical_role_to_ui_title',
+              'auto_move_to_new_chat',
+          }
+
+          def structure_gate(action, explicit_user_approval=False, direct_ui_title_evidence=False):
+              if action == 'promote_logical_role_to_ui_title' and not direct_ui_title_evidence:
+                  return 'UI_TITLE_HOLD'
+              if action in forbidden and not explicit_user_approval:
+                  return 'DENY_HOLD'
+              return 'ALLOW'
+
+          unauthorized = [
+              'create_conversation',
+              'rename_conversation',
+              'create_preparation_chat',
+              'create_observer_chat',
+              'adopt_unverified_alias',
+              'auto_move_to_new_chat',
+          ]
+          for action in unauthorized:
+              result = structure_gate(action)
+              assert result == 'DENY_HOLD', (action, result)
+
+          assert structure_gate('promote_logical_role_to_ui_title') == 'UI_TITLE_HOLD'
+          assert structure_gate('create_conversation', explicit_user_approval=True) == 'ALLOW'
+          assert structure_gate(
+              'promote_logical_role_to_ui_title',
+              explicit_user_approval=True,
+              direct_ui_title_evidence=True,
+          ) == 'ALLOW'
+          print('UNAUTHORIZED_STRUCTURE_PREFLIGHT=PASS')
+          PY
       - name: Run deterministic integration and restart recovery fixtures
         shell: bash
         run: |
