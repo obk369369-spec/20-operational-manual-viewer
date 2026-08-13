@@ -1,57 +1,39 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-13 13:19 KST
-상태: ACTIVE / CORE_STRUCTURE_PASS / PRE_WORK_GATE_VERIFIED / LATEST_FEEDBACK_PARTIAL_TARGET_PASS
+최종 갱신: 2026-08-13 14:21 KST
+상태: ACTIVE / STRUCTURE_FIRST / ACTUAL_FEEDBACK_E2E_IN_PROGRESS
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
 
-## WIC 전체 자동 통합 기반 구조
-- reusable integration core PASS 증거 유지: run `31642596092` / job `94268523138`.
-- 구조 재구축·repository inventory·기존 PASS 재검증 반복 금지.
-- 새 feedback cycle은 canonical→target apply→target test까지 별도 증거가 필요하다.
+## 운영준비도
+- 기존 integration core 재구축/재검증은 반복 금지.
+- 기존 내부 구조 E2E 증거는 유지하되, 현재 사용자 PASS 기준은 `실제 새 feedback -> canonical write/read-back -> target apply/read-back/test -> restart point` 전체 성공이다.
+- 이전 최신 feedback `b6acdbfd3bc4d0de1b66`은 TOOL001 BUSINESS E2E HOLD가 남아 있어 현재 기준의 최종 구조 PASS 근거로 사용하지 않는다.
 
-## 최신 feedback cycle
-- feedback id: `b6acdbfd3bc4d0de1b66`.
-- canonical revision: `11f7a751685aeaaf10cab428`.
-- canonical event run `31663661298`: success.
-- 영향 대상: TOOL001, TOOL006.
+## 이번 실제 개선
+- 원인 확인: `.github/workflows/wic-feedback-event.yml`이 실제 event를 canonical 반영한 뒤 target apply를 무조건 HOLD하도록 되어 있어, 같은 중앙 저장소에서 검증 가능한 lane도 끝까지 PASS하지 못했다.
+- 개선 commit: `e5f7f3f4a773f7ae138d59cf9e7628309fa36da2`.
+- 개선 내용: verified `CENTRAL_LANE_ACK` target은 같은 workflow 안에서 apply/read-back/test evidence와 checkpoint를 실제 생성하고, cross-repository/미검증 target은 계속 HOLD하도록 fail-closed 유지.
+- 새 실제 feedback queued commit: `ba70ebffac4df56c3f85d77d66ff2562215e822c`.
+- 새 feedback 내용: 2026-08-13 구조 우선, 실제 feedback E2E 성공 전 구조 PASS 금지, Work credit는 Chat/GitHub blocker 실행/E2E에만 사용, 구조 PASS 후 사용자 지정 우선순위 유지.
 
-## 이번 실행 실제 확인
-- TOOL006 internal validation run `31663710333` 결과를 다시 확인했다.
-- job `94333736626` `Internal platform validation`: completed/success.
-- job `94333769001` `Permanent GitHub evidence archive`: completed/success.
-- job `94333769073` `GitHub Pages deployment`: completed/success.
-- 따라서 TOOL006의 latest revision ACK/internal test evidence는 PASS로 판정 가능하다.
-- 다만 실제 original→user-approved-final golden pair가 없으므로 TOOL006 BUSINESS E2E는 기존 HOLD를 유지한다.
-- 제3자 독립검증 증거는 없으므로 external independent PASS로 표시하지 않는다.
+## 현재 실행
+- GitHub Actions run: `31670039251` (`WIC feedback event apply`).
+- job: `94352602812` (`apply-feedback`).
+- 마지막 확인 상태: `in_progress`.
+- 현재는 완료/PASS로 표시하지 않는다.
 
-## 현재 실제 PASS
-- reusable automatic integration core: `PASS_INTERNAL_GITHUB_E2E`.
-- latest feedback canonical route/write/read-back: PASS.
-- TOOL006 latest feedback revision ACK + internal GitHub validation: PASS.
-- Work credit gate + exact handoff generator: PASS_INTERNAL_GITHUB_RUN.
-- resumable Work exit checkpoint contract/template: PASS_INTERNAL_GITHUB_RUN.
-- TOOL002 actual bid business E2E: PASS.
-- cross-target rollback/read-back/restart E2E: PASS.
-
-## 현재 HOLD
-- TOOL001 latest feedback target functional BUSINESS E2E: Work에서 browser actual E2E 필요.
-- TOOL013 actual `.xlsx` binary injection business E2E: Work eligible.
-- TOOL006 BUSINESS E2E: 실제 original→user-approved-final golden pair 없음.
-- EMAIL_COLLECTION / TOOL007 BUSINESS / TOOL037: 공식 input/runner/actual customer evidence가 생길 때까지 Work credit 사용 금지.
-- 제3자 독립검증: actual external run/result 없음.
+## 현재 blocker
+- 없음(실행 중). 실행 실패 시 job log를 원인으로 기록하고 해당 단계부터 수정/재시작한다.
+- 제3자 독립검증 증거는 없음. 내부 GitHub E2E와 구분한다.
 
 ## 최신 restart point
-1. 완료된 TOOL006 internal validation은 반복하지 않는다.
-2. Work 진입 시 첫 실행은 TOOL001 browser business E2E다. 이번 새 feedback의 글로벌 타이틀 필터·TOC 2단계·text-only source 규칙을 실제 브라우저 출력에서 검증한다.
-3. TOOL001 완료 또는 명확 HOLD 후 TOOL013 actual `.xlsx` injection business E2E를 실행한다.
-4. Work 종료 전 artifact `9166037482`의 WORK_EXIT_RESUMABLE checkpoint에 실제 evidence/rollback/exact_next_step을 채워 read-back한다.
-5. EMAIL_COLLECTION/TOOL007/TOOL037/TOOL006 BUSINESS는 blocker 변화가 없으면 반복하지 않는다.
-
-## Work 크레딧 게이트
-- rule reread/re-summary/repository re-search에 사용 금지.
-- Chat/GitHub에서 가능한 ACK/read-back/internal validation은 Work 전에 끝낸다.
-- browser/file injection처럼 현재 연결에서 실제 막히는 E2E에만 Work 사용.
+1. run `31670039251` 완료 결과를 확인한다.
+2. success면 새 feedback id/revision, canonical GitHub commit, evidence file, target apply/read-back/test checkpoint를 read-back한다.
+3. 위 전체가 실제 일치할 때만 `STRUCTURE_PASS_INTERNAL_GITHUB_E2E`로 승격한다.
+4. failure면 job `94352602812` 로그에서 최초 실패 step만 수정하고 완료 단계는 반복하지 않는다.
+5. 구조 PASS 뒤 우선순위: 이메일 수집 -> TOOL007 -> TOOL001 중간/최종 안내서 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> 나머지 등록 도구/주요 업무창.
+6. Work credit는 Chat/GitHub에서 실제 막힌 실행/E2E에만 사용한다.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
