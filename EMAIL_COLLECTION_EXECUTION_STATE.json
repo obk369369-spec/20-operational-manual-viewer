@@ -1,41 +1,47 @@
 {
   "schema_version": 1,
-  "updated_kst": "2026-08-14 00:05",
+  "updated_kst": "2026-08-14 00:57",
   "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
   "progress_percent": 46,
   "stall_detected": false,
-  "stall_reason": "The prior checkpoint was readable and this run made a concrete central-data change by integrating ten verified SEM-071..SEM-080 numbered customer rows instead of keeping only the range marker.",
+  "stall_reason": "The 00:05 checkpoint was readable and less than one hour old; this run made a concrete central-data change before the stall threshold by adding two newly verified Sangbo legacy interaction identities.",
   "auto_resume": "CONTINUED_FROM_CHECKPOINT",
   "last_verified_completed": [
     "SEM-001 historical existence confirmed",
     "SEM-071..SEM-080 preserved as existing permanent IDs",
-    "SEM-071..SEM-080 ten numbered customer rows centrally integrated with organization/department/name/title/status and 2026-07-08 introduction-card send date",
+    "SEM-071..SEM-080 ten numbered customer rows centrally integrated",
     "sector prefixes SEM/ROB/DEF/SHP/BAT/CAR confirmed",
-    "four held legacy interaction identities centrally fingerprinted without renumbering"
+    "four previously held legacy interaction identities centrally fingerprinted without renumbering",
+    "two additional Sangbo SEM legacy interaction identities verified from connected Gmail and centrally fingerprinted without assigning numbers"
   ],
   "this_run_actual_changes": [
     "Read back EMAIL_COLLECTION_EXECUTION_STATE.json and EMAIL_COLLECTION_RECOVERY_LEDGER.json before new work.",
-    "Searched File Library for direct number-bearing SEM-002..SEM-070 rows and for the four held identities against permanent-number evidence.",
-    "Recovered no new direct SEM-002..SEM-070 permanent-number row and no verified permanent-number match for the four held identities in this pass.",
-    "Confirmed the full SEM-071..SEM-080 numbered customer table from legacy handoff files and integrated all ten actual rows into EMAIL_COLLECTION_RECOVERY_LEDGER.json.",
-    "Did not assign any new customer number or sector without direct evidence."
+    "Re-ran direct File Library searches for SEM-002..SEM-070 and CAR/DEF/SHP/ROB/BAT number-bearing legacy rows; no reliable new permanent-number row was recovered.",
+    "Connected Gmail verified a 2023-07-12 Sangbo CMS development-team barrier-market research document request with business-card context.",
+    "Connected Gmail verified a 2022-03-21 Sangbo CMS development-team technical-book quotation request and a separate business-card handoff record.",
+    "Added both identities to the central privacy-safe recovery ledger as SEM hold candidates for matching against existing SEM-002..SEM-070 or other pre-existing numbers.",
+    "Preserved all prior recovery evidence and did not assign or renumber any customer ID."
   ],
   "evidence": {
     "recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
-    "recovery_ledger_commit": "51d5018c87840da74b81b5787eb89d480632a858",
+    "recovery_ledger_commit": "bca69c2e928d31bf45896e7b6e2633e623e39685",
+    "connected_gmail_findings": [
+      "2023-07-12: (주)상보 CMS개발팀 박예림 배리어 시장조사 — verified market-research literature request and business-card context",
+      "2022-03-21: 김진솔 견적요청건 — verified technical-book quotation request after prior-week contact",
+      "2022-03-16: 상보 cms개발 1팀 김진솔님 명함 — separate business-card handoff evidence"
+    ],
     "file_library_findings": [
-      "붙여넣은 텍스트 (1).txt: verified SEM-071..SEM-080 numbered customer rows and 2026-07-08 company-introduction/business-card send cohort",
-      "34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt: same numbered legacy handoff rows",
-      "Direct SEM-002..SEM-070 searches returned no reliable numbered customer rows in this pass"
+      "Direct SEM-002..SEM-070 searches returned no reliable new number-bearing row in this pass",
+      "Direct CAR/DEF/SHP/ROB/BAT searches returned prefix rules/examples but no verified actual numbered customer row in this pass"
     ]
   },
   "remaining": [
-    "Match all four held candidates against existing permanent IDs using legacy customer ledgers/handoff records.",
-    "Recover detailed SEM-002..SEM-070 if direct evidence exists.",
+    "Match all six held candidates against existing permanent IDs using legacy customer ledgers/handoff records.",
+    "Recover detailed SEM-002..SEM-070 if direct evidence exists, prioritizing Sangbo because two verified legacy identities are now recovered.",
     "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
     "Recover additional historical handoff/duplicate and sent/bounce history only after identity linkage is verified.",
-    "Collision-check SEM-081 before assignment."
+    "Collision-check SEM-081 before any future assignment."
   ],
-  "restart_point": "Continue direct number-bearing legacy ledger/handoff search for SEM-002..SEM-070 and the four held fingerprints, then first numbered rows for DEF/SHP/CAR/ROB/BAT. Do not infer sector or assign numbers without direct evidence.",
-  "estimated_completion": "HOLD — legacy permanent-number sources for SEM-002..SEM-070 and non-SEM sectors remain incomplete, so a reliable finish time cannot yet be measured."
+  "restart_point": "Prioritize legacy Sangbo handoff/customer-number records to match the two newly verified identities, then continue direct SEM-002..SEM-070 number-bearing evidence and first actual DEF/SHP/CAR/ROB/BAT rows. Do not infer sector or assign numbers without direct evidence.",
+  "estimated_completion": "HOLD — permanent-number sources for SEM-002..SEM-070 and non-SEM sectors remain incomplete, so a reliable finish time cannot yet be measured."
 }
