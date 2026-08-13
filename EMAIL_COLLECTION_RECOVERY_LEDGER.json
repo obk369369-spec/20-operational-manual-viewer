@@ -1,129 +1,41 @@
 {
   "schema_version": 1,
   "purpose": "privacy-safe central recovery ledger for legacy email-collection customer-number and duplicate-history reconciliation",
-  "updated_kst": "2026-08-13 23:06",
+  "updated_kst": "2026-08-14 00:05",
   "assignment_policy": "Do not assign or renumber customer IDs from this ledger alone. Match against existing permanent-number evidence first.",
   "confirmed_existing_number_evidence": {
-    "SEM": [
-      "SEM-001",
-      "SEM-071..SEM-080"
-    ],
+    "SEM": ["SEM-001", "SEM-071..SEM-080"],
     "ROB": [],
     "DEF": [],
     "SHP": [],
     "BAT": [],
     "CAR": []
   },
+  "confirmed_sem_071_080_rows": [
+    {"customer_number":"SEM-071","organization":"한국산업기술시험원","department":"재료기술센터","name":"전민석","title":"책임연구원","status":"기존 고객","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-072","organization":"한국반도체산업협회","department":"상생협력실","name":"김동현","title":"PM","status":"기존 고객","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-073","organization":"한국나노기술원","department":"기업지원실","name":"차효선","title":"직책 미검증","status":"추적목록","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-074","organization":"구미전자정보기술원","department":"소프트웨어 기반 지능형 SoC/FPGA 모듈화 지원사업","name":"강병호","title":"선임연구원","status":"기존 고객","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-075","organization":"한국세라믹기술원","department":"양자·반도체연구단","name":"박지현","title":"책임연구원","status":"기존 고객","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-076","organization":"나노종합기술원","department":"모아팹 관련","name":"임건우","title":"행정원","status":"C등급 가능","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-077","organization":"한국반도체산업협회","department":"화학안전교육센터","name":"김미지","title":"PM","status":"기존 고객","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-078","organization":"한국전자통신연구원","department":"반도체소부장기술센터","name":"구정민","title":"선임기술원","status":"B~C등급","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-079","organization":"한국세라믹기술원","department":"양자·반도체연구단","name":"전대우","title":"책임연구원","status":"기존 고객","intro_card_sent":"2026-07-08"},
+    {"customer_number":"SEM-080","organization":"한국반도체산업협회","department":"반도체아카데미","name":"강민정","title":"PM","status":"B~C등급","intro_card_sent":"2026-07-08"}
+  ],
   "recovered_interaction_candidates": [
-    {
-      "sector": "CAR",
-      "identity_fingerprint": "049d00b489ed83abb228",
-      "organization_class": "Korea Carbon Industry Promotion Agency",
-      "event_date": "2021-12-08",
-      "event_type": "PURCHASE_ORDER_CONFIRMED",
-      "evidence": [
-        "File Library: 보고서 (RAIL COMPOSITES MARKET) - 한국탄소산업진흥원 송현도님.eml",
-        "File Library: Re Fwd 8월 7일 견적서 ( 수처리·수이용 기술과 시장 2022 외 7종) 첨부 , 한국탄소산업진흥원 송현도님.eml",
-        "File Library: 7번 고객 컨택 판단 도구 6.txt",
-        "Connected Gmail: 2021-11-17 송현도님 자료 구매 희망 리스트",
-        "Connected Gmail: 2022-03-10 송현도 팀장 주문건",
-        "Connected Gmail: 2026-03-23 문의 분야 자료 안내 (한국탄소산업진흥원 송현도 책임님 드림)"
-      ],
-      "details": [
-        "2021 purchase-order history already recovered",
-        "2021-11-17 purchase-wish-list handoff found in connected Gmail",
-        "2022-03-10 order handoff found in connected Gmail",
-        "2023-08-24 additional purchase order for quoted technical books confirmed",
-        "2023-08-31 report delivery to the verified customer email confirmed",
-        "2026-03-23 outbound material-guide send evidence found in connected Gmail",
-        "historical record classifies this identity as repeated real purchaser"
-      ],
-      "history_status": "REPEATED_PURCHASE_HANDOFF_DELIVERY_AND_SENT_GUIDE_CONFIRMED",
-      "bounce_status": "NO_MATCHING_BOUNCE_EVIDENCE_FOUND_IN_CONNECTED_GMAIL_SEARCH_2026_08_13_2106",
-      "number_status": "HOLD_MATCH_EXISTING_CAR_NUMBER"
-    },
-    {
-      "sector": "SEM",
-      "identity_fingerprint": "593e15964842643ee5c0",
-      "organization_class": "Hunetplus",
-      "event_date": "2025-12-01",
-      "event_type": "PURCHASE_PROCESS_CONFIRMED",
-      "evidence": [
-        "File Library: Re 견적서 12월 1일 (2025년 반도체 재료 시장의 현상과 장래 전망), (주)휴넷플러스 김기완님 드림-1.eml",
-        "File Library: Re 견적서 12월 1일 (2025년 반도체 재료 시장의 현상과 장래 전망), (주)휴넷플러스 김기완님 드림-3.eml"
-      ],
-      "details": [
-        "purchase requested",
-        "customer follow-up on delivery schedule confirmed",
-        "invoice and shipping process continued through 2025-12-12"
-      ],
-      "history_status": "PURCHASE_PROCESS_CONFIRMED",
-      "number_status": "HOLD_MATCH_EXISTING_SEM_002_070_OR_OTHER_EXISTING_NUMBER"
-    },
-    {
-      "sector": "CAR",
-      "identity_fingerprint": "cbc24788f66662dc07f2",
-      "organization_class": "HS Hyosung R&D",
-      "event_date": "2026-07-06",
-      "event_type": "MARKET_REPORT_INQUIRY_CONFIRMED",
-      "evidence": [
-        "File Library: Re [HS효성종합기술원] 시장 자료 구입 관련 문의의 건.eml",
-        "File Library: Re 견적서 7월 10일 ( Aramid Fibers - A Global Strategic Business,Report), HS효성...선영 PM님.eml"
-      ],
-      "details": [
-        "verified corporate reply chain",
-        "2026-07-10 negotiated quotation requested and sent",
-        "2026-07-22 order/end-user information exchange confirmed",
-        "delivery-recipient information was supplied for report fulfillment"
-      ],
-      "history_status": "ORDER_FULFILLMENT_PROCESS_CONFIRMED",
-      "number_status": "HOLD_MATCH_EXISTING_CAR_NUMBER"
-    },
-    {
-      "sector": "HOLD_UNMAPPED_SECTOR",
-      "identity_fingerprint": "7b25f360782f7df880ad",
-      "organization_class": "Korea Fire Institute / hazardous-materials technical function",
-      "event_date": "2024-06-07",
-      "event_type": "REPEAT_STANDARDS_PURCHASE_PROCESS_CONFIRMED",
-      "evidence": [
-        "File Library: Re 견적서 6월 7일 ( ISO_IEC 80079-49 2024 ), 한국소방산업기술원 강기민 과장님-3.eml",
-        "File Library: 7번 고객 컨택 판단.doc (repeat 2023/2024 purchase-flow evidence)",
-        "File Library: Re 견적서 (ASME B31.3-2020 외 4종) 첨부 드립니다, 한국소방산업기술원 강기민님.eml"
-      ],
-      "details": [
-        "2024-06-07 customer explicitly said this was another purchase like the prior transaction",
-        "requested both World quotation and higher comparison quotation before phone-triggered ordering",
-        "purchase topic includes ISO/IEC 80079-49:2024 flame-arrester/explosive-atmosphere standard",
-        "historical customer-contact record documents repeated 2023 and 2024 purchase/administrative flow and ASME-standard purchase history"
-      ],
-      "history_status": "REPEATED_PURCHASE_QUOTE_COMPARISON_AND_ORDER_TRIGGER_CONFIRMED",
-      "number_status": "HOLD_MATCH_EXISTING_PERMANENT_NUMBER_AND_SECTOR"
-    }
+    {"sector":"CAR","identity_fingerprint":"049d00b489ed83abb228","organization_class":"Korea Carbon Industry Promotion Agency","event_date":"2021-12-08","event_type":"PURCHASE_ORDER_CONFIRMED","evidence":["File Library: 보고서 (RAIL COMPOSITES MARKET) - 한국탄소산업진흥원 송현도님.eml","File Library: Re Fwd 8월 7일 견적서 ( 수처리·수이용 기술과 시장 2022 외 7종) 첨부 , 한국탄소산업진흥원 송현도님.eml","File Library: 7번 고객 컨택 판단 도구 6.txt","Connected Gmail: 2021-11-17 송현도님 자료 구매 희망 리스트","Connected Gmail: 2022-03-10 송현도 팀장 주문건","Connected Gmail: 2026-03-23 문의 분야 자료 안내 (한국탄소산업진흥원 송현도 책임님 드림)"],"details":["2021 purchase-order history already recovered","2021-11-17 purchase-wish-list handoff found in connected Gmail","2022-03-10 order handoff found in connected Gmail","2023-08-24 additional purchase order for quoted technical books confirmed","2023-08-31 report delivery to the verified customer email confirmed","2026-03-23 outbound material-guide send evidence found in connected Gmail","historical record classifies this identity as repeated real purchaser"],"history_status":"REPEATED_PURCHASE_HANDOFF_DELIVERY_AND_SENT_GUIDE_CONFIRMED","bounce_status":"NO_MATCHING_BOUNCE_EVIDENCE_FOUND_IN_CONNECTED_GMAIL_SEARCH_2026_08_13_2106","number_status":"HOLD_MATCH_EXISTING_CAR_NUMBER"},
+    {"sector":"SEM","identity_fingerprint":"593e15964842643ee5c0","organization_class":"Hunetplus","event_date":"2025-12-01","event_type":"PURCHASE_PROCESS_CONFIRMED","evidence":["File Library: Re 견적서 12월 1일 (2025년 반도체 재료 시장의 현상과 장래 전망), (주)휴넷플러스 김기완님 드림-1.eml","File Library: Re 견적서 12월 1일 (2025년 반도체 재료 시장의 현상과 장래 전망), (주)휴넷플러스 김기완님 드림-3.eml"],"details":["purchase requested","customer follow-up on delivery schedule confirmed","invoice and shipping process continued through 2025-12-12"],"history_status":"PURCHASE_PROCESS_CONFIRMED","number_status":"HOLD_MATCH_EXISTING_SEM_002_070_OR_OTHER_EXISTING_NUMBER"},
+    {"sector":"CAR","identity_fingerprint":"cbc24788f66662dc07f2","organization_class":"HS Hyosung R&D","event_date":"2026-07-06","event_type":"MARKET_REPORT_INQUIRY_CONFIRMED","evidence":["File Library: Re [HS효성종합기술원] 시장 자료 구입 관련 문의의 건.eml","File Library: Re 견적서 7월 10일 ( Aramid Fibers - A Global Strategic Business,Report), HS효성...선영 PM님.eml"],"details":["verified corporate reply chain","2026-07-10 negotiated quotation requested and sent","2026-07-22 order/end-user information exchange confirmed","delivery-recipient information was supplied for report fulfillment"],"history_status":"ORDER_FULFILLMENT_PROCESS_CONFIRMED","number_status":"HOLD_MATCH_EXISTING_CAR_NUMBER"},
+    {"sector":"HOLD_UNMAPPED_SECTOR","identity_fingerprint":"7b25f360782f7df880ad","organization_class":"Korea Fire Institute / hazardous-materials technical function","event_date":"2024-06-07","event_type":"REPEAT_STANDARDS_PURCHASE_PROCESS_CONFIRMED","evidence":["File Library: Re 견적서 6월 7일 ( ISO_IEC 80079-49 2024 ), 한국소방산업기술원 강기민 과장님-3.eml","File Library: 7번 고객 컨택 판단.doc (repeat 2023/2024 purchase-flow evidence)","File Library: Re 견적서 (ASME B31.3-2020 외 4종) 첨부 드립니다, 한국소방산업기술원 강기민님.eml"],"details":["2024-06-07 customer explicitly said this was another purchase like the prior transaction","requested both World quotation and higher comparison quotation before phone-triggered ordering","purchase topic includes ISO/IEC 80079-49:2024 flame-arrester/explosive-atmosphere standard","historical customer-contact record documents repeated 2023 and 2024 purchase/administrative flow and ASME-standard purchase history"],"history_status":"REPEATED_PURCHASE_QUOTE_COMPARISON_AND_ORDER_TRIGGER_CONFIRMED","number_status":"HOLD_MATCH_EXISTING_PERMANENT_NUMBER_AND_SECTOR"}
   ],
-  "duplicate_matching_keys": [
-    "existing permanent customer number",
-    "organization + person identity",
-    "email identity where available in private source",
-    "historical purchase/quote thread continuity"
-  ],
-  "duplicate_match_search_result_2026_08_13_2106": {
-    "049d00b489ed83abb228": "NO_VERIFIED_PERMANENT_NUMBER_MATCH_YET",
-    "593e15964842643ee5c0": "NO_VERIFIED_PERMANENT_NUMBER_MATCH_YET",
-    "cbc24788f66662dc07f2": "NO_VERIFIED_PERMANENT_NUMBER_MATCH_YET",
-    "sem_002_070_range_search": "NO_ADDITIONAL_VERIFIED_NUMBERED_ROWS_RECOVERED_IN_THIS_PASS",
-    "other_sector_number_search": "NO_VERIFIED_DEF_SHP_CAR_ROB_BAT_NUMBERED_ROWS_RECOVERED_IN_THIS_PASS",
-    "note": "Searches added real sent/handoff history for the CAR held identity but still did not produce a reliable permanent-number label. No new number assigned."
+  "duplicate_matching_keys": ["existing permanent customer number","organization + person identity","email identity where available in private source","historical purchase/quote thread continuity"],
+  "duplicate_match_search_result_2026_08_14_0005": {
+    "sem_071_080": "10 VERIFIED NUMBERED ROWS INTEGRATED INTO CENTRAL RECOVERY LEDGER FROM FILE LIBRARY",
+    "sem_002_070_range_search": "NO DIRECT NUMBER-BEARING ROWS RECOVERED IN THIS PASS",
+    "held_identity_matches": "NO VERIFIED PERMANENT-NUMBER MATCH FOR THE FOUR HELD IDENTITIES IN THIS PASS",
+    "other_sector_number_search": "NO VERIFIED DEF/SHP/CAR/ROB/BAT NUMBERED ROWS RECOVERED IN THIS PASS",
+    "source": "File Library: 붙여넣은 텍스트 (1).txt and 34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt"
   },
-  "duplicate_match_search_result_2026_08_13_2306": {
-    "7b25f360782f7df880ad": "NEW_PRIVACY_SAFE_HELD_IDENTITY_ADDED_NO_VERIFIED_PERMANENT_NUMBER",
-    "sem_002_070_range_search": "NO_NEW_NUMBER_ASSIGNMENT_THIS_RUN",
-    "other_sector_number_search": "NO_SECTOR_PREFIX_ASSIGNED_TO_NEW_IDENTITY_WITHOUT_DIRECT_NUMBER_EVIDENCE",
-    "note": "Added verified repeat-purchase administrative-flow identity without inventing a customer number or sector."
-  },
-  "next_restart_point": [
-    "Match four held identities against legacy permanent-number evidence; do not infer sector from business topic alone.",
-    "Continue SEM-002..SEM-070 recovery without renumbering SEM-071..SEM-080.",
-    "Recover first verified actual rows for DEF/SHP/CAR/ROB/BAT.",
-    "Expand sent/bounce history only after identity linkage is verified."
-  ]
+  "next_restart_point": ["Match four held identities against legacy permanent-number evidence; do not infer sector from business topic alone.","Continue SEM-002..SEM-070 recovery without renumbering SEM-071..SEM-080.","Recover first verified actual rows for DEF/SHP/CAR/ROB/BAT.","Expand sent/bounce history only after identity linkage is verified."]
 }
