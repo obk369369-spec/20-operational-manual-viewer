@@ -1,47 +1,46 @@
 {
   "schema_version": 1,
-  "updated_kst": "2026-08-14 00:57",
+  "updated_kst": "2026-08-14 02:04",
   "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
   "progress_percent": 46,
-  "stall_detected": false,
-  "stall_reason": "The 00:05 checkpoint was readable and less than one hour old; this run made a concrete central-data change before the stall threshold by adding two newly verified Sangbo legacy interaction identities.",
-  "auto_resume": "CONTINUED_FROM_CHECKPOINT",
+  "stall_detected": true,
+  "stall_reason": "The prior email checkpoint was 2026-08-14 00:57, more than one hour before this run. Work was resumed from that checkpoint and a concrete central-ledger change was completed.",
+  "auto_resume": "RESUMED_FROM_LAST_NORMAL_CHECKPOINT",
   "last_verified_completed": [
     "SEM-001 historical existence confirmed",
-    "SEM-071..SEM-080 preserved as existing permanent IDs",
-    "SEM-071..SEM-080 ten numbered customer rows centrally integrated",
-    "sector prefixes SEM/ROB/DEF/SHP/BAT/CAR confirmed",
-    "four previously held legacy interaction identities centrally fingerprinted without renumbering",
-    "two additional Sangbo SEM legacy interaction identities verified from connected Gmail and centrally fingerprinted without assigning numbers"
+    "SEM-071..SEM-080 preserved and centrally integrated as existing permanent IDs",
+    "six legacy interaction identities centrally fingerprinted without renumbering",
+    "Sangbo Park Ye Rim history strengthened from inquiry to approved subscription/billing/delivery flow",
+    "Sangbo Kim Jin Sol history linked to 2026 existing-customer ledger row 359 without assigning a permanent number"
   ],
   "this_run_actual_changes": [
-    "Read back EMAIL_COLLECTION_EXECUTION_STATE.json and EMAIL_COLLECTION_RECOVERY_LEDGER.json before new work.",
-    "Re-ran direct File Library searches for SEM-002..SEM-070 and CAR/DEF/SHP/ROB/BAT number-bearing legacy rows; no reliable new permanent-number row was recovered.",
-    "Connected Gmail verified a 2023-07-12 Sangbo CMS development-team barrier-market research document request with business-card context.",
-    "Connected Gmail verified a 2022-03-21 Sangbo CMS development-team technical-book quotation request and a separate business-card handoff record.",
-    "Added both identities to the central privacy-safe recovery ledger as SEM hold candidates for matching against existing SEM-002..SEM-070 or other pre-existing numbers.",
-    "Preserved all prior recovery evidence and did not assign or renumber any customer ID."
+    "Read back WIC_EXECUTION_STATE.json, EMAIL_COLLECTION_EXECUTION_STATE.json and EMAIL_COLLECTION_RECOVERY_LEDGER.json.",
+    "Detected stale email checkpoint (>1 hour) and resumed from the stored Sangbo-first restart point.",
+    "Verified from File Library that Park Ye Rim's 2023 Sangbo interaction progressed to 948,000 KRW subscription approval, transaction-statement/tax-invoice request and delivery continuation.",
+    "Verified from the 2026 existing-customer analysis workbook that Kim Jin Sol appears in customer ledger row 359 as a prior 2022 industrial-material/Convertech quotation customer with June 2026 recontact attempts.",
+    "Checked connected Gmail for mailer-daemon/postmaster matches for the two verified Sangbo identities; no matching bounce evidence was returned.",
+    "Updated EMAIL_COLLECTION_RECOVERY_LEDGER.json without assigning or renumbering any customer ID."
   ],
   "evidence": {
     "recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
-    "recovery_ledger_commit": "bca69c2e928d31bf45896e7b6e2633e623e39685",
-    "connected_gmail_findings": [
-      "2023-07-12: (주)상보 CMS개발팀 박예림 배리어 시장조사 — verified market-research literature request and business-card context",
-      "2022-03-21: 김진솔 견적요청건 — verified technical-book quotation request after prior-week contact",
-      "2022-03-16: 상보 cms개발 1팀 김진솔님 명함 — separate business-card handoff evidence"
-    ],
+    "recovery_ledger_commit": "feb25bfa3a9d1deccd27a798da37bdeb4dae9d67",
     "file_library_findings": [
-      "Direct SEM-002..SEM-070 searches returned no reliable new number-bearing row in this pass",
-      "Direct CAR/DEF/SHP/ROB/BAT searches returned prefix rules/examples but no verified actual numbered customer row in this pass"
+      "Re (주)상보 CMS 개발 2팀 박예림 선임님 잡지 구독 및 배리어 시장 보고서 문의건-2.eml: 948,000 KRW internal approval and transaction-statement/tax-invoice request",
+      "Re (주)상보 CMS 개발 2팀 박예림 선임님 잡지 구독 및 배리어 시장 보고서 문의건.eml: delivery continuation confirmed",
+      "38번_2026년_기존고객_전수분석_실행보고.xlsx: customer ledger 2026 (2) row 359 continuity for Kim Jin Sol"
+    ],
+    "connected_gmail_findings": [
+      "Sangbo Park Ye Rim and Kim Jin Sol historical messages remain directly verified",
+      "No matching mailer-daemon/postmaster result for the two verified Sangbo identities in this pass"
     ]
   },
   "remaining": [
-    "Match all six held candidates against existing permanent IDs using legacy customer ledgers/handoff records.",
-    "Recover detailed SEM-002..SEM-070 if direct evidence exists, prioritizing Sangbo because two verified legacy identities are now recovered.",
+    "Match all six held candidates against existing permanent IDs using direct number-bearing legacy ledgers/handoff records.",
+    "Recover SEM-002..SEM-070 if direct evidence exists, prioritizing Sangbo because existing-customer ledger continuity is now confirmed.",
     "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
-    "Recover additional historical handoff/duplicate and sent/bounce history only after identity linkage is verified.",
+    "Recover additional historical handoff/duplicate and sent/bounce history after identity linkage is verified.",
     "Collision-check SEM-081 before any future assignment."
   ],
-  "restart_point": "Prioritize legacy Sangbo handoff/customer-number records to match the two newly verified identities, then continue direct SEM-002..SEM-070 number-bearing evidence and first actual DEF/SHP/CAR/ROB/BAT rows. Do not infer sector or assign numbers without direct evidence.",
+  "restart_point": "Search number-bearing legacy customer ledgers/handoff records for the two Sangbo identities now tied to verified existing-customer history, then continue SEM-002..SEM-070 and first actual DEF/SHP/CAR/ROB/BAT numbered rows. Do not infer or assign numbers without direct evidence.",
   "estimated_completion": "HOLD — permanent-number sources for SEM-002..SEM-070 and non-SEM sectors remain incomplete, so a reliable finish time cannot yet be measured."
 }
