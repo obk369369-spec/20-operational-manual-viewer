@@ -1,7 +1,7 @@
 # WIC OBSERVER STATUS
 
-최종 갱신: 2026-08-13 10:18 KST
-상태: ACTIVE / STRUCTURE_PASS / POST_STRUCTURE_PRIORITY
+최종 갱신: 2026-08-13 11:23 KST
+상태: ACTIVE / STRUCTURE_PASS / PRE_WORK_GATE_VERIFIED
 운영 규칙: `WIC_GLOBAL_OPERATING_RULES.md`
 라우팅: `WIC_CHAT_ROUTING_REGISTRY.md`
 실행상태: `WIC_EXECUTION_STATE.json`
@@ -24,17 +24,19 @@
 - TOOL007 중앙 purpose-matching adapter GitHub 실행.
 - 구조 PASS 재검증 run `31642596092`.
 - P1 customer DB deterministic fixtures 및 P1→P2 deterministic handoff fixtures.
+- 접근 가능한 TOOL027~003 repository-level inventory.
 
-## 이번 실행 실제 확인/개선
-- 최신 `WIC_OBSERVER_STATUS.md`와 `WIC_EXECUTION_STATE.json`의 restart point를 먼저 read-back하고 기존 PASS/HOLD를 반복하지 않았다.
-- TOOL011 `11-obk-finance-planner`: 루트는 `WIC_RULE_SOURCE.md` + `public/`뿐이며 actual business input→execution→output→expected comparison 증거가 식별되지 않았다. HOLD.
-- TOOL010 `10-WIC-Finance-Dashboard`: 루트는 `WIC_RULE_SOURCE.md` + `public/`뿐이며 actual business E2E 증거가 식별되지 않았다. HOLD.
-- TOOL009 `09-contents-making-tool`: `index.html`과 `.github/workflows/platform-evidence.yml`이 있으나 workflow 자체가 `Internal platform validation` 및 `classification=GitHub platform evidence; not independent validation`로 명시되어 있고 실제 업무 input→output→expected 비교가 없다. BUSINESS PASS 금지, HOLD.
-- TOOL008 `08-English-Verb-Exercise`: `WIC_RULE_SOURCE.md` + 단일 `index.html`이며 actual business E2E workflow/result 증거가 식별되지 않았다. HOLD.
-- TOOL005 `05-report-generator`: `WIC_RULE_SOURCE.md` + 단일 `index.html`이며 actual business E2E workflow/result 증거가 식별되지 않았다. HOLD.
-- TOOL004 `04-research-funding-generator`: 루트는 `WIC_RULE_SOURCE.md` + `public/`뿐이며 actual business E2E 증거가 식별되지 않았다. HOLD.
-- TOOL003 `03-coding_practice`: 루트는 `WIC_RULE_SOURCE.md` + `public/`뿐이며 actual business E2E 증거가 식별되지 않았다. HOLD.
-- 이로써 현재 접근 가능한 등록 저장소의 번호 역순 repository-level inventory는 완료했다. static/mock/internal-only 증거를 BUSINESS PASS로 승격하지 않았다.
+## 이번 실행 실제 개선 — Work 크레딧 낭비 차단
+- 최신 `WIC_OBSERVER_STATUS.md`와 `WIC_EXECUTION_STATE.json` restart point를 먼저 read-back했고 기존 PASS/inventory를 반복하지 않았다.
+- `feedback_pipeline/work_gate_handoff.py`를 추가해 G1 Chat/Files → G2 GitHub → G3 ordinary runtime 중 하나라도 가능하면 `WORK_DEFER_DENIED`, 세 경로가 모두 불가하고 exact handoff가 완성된 경우에만 `WORK_ELIGIBLE`로 판정하도록 했다.
+- `WIC_EXECUTION_STATE.json`에 각 주요 HOLD lane별 구조화된 Work gate를 추가했다.
+- 현재 Work 후보는 `TOOL001_BROWSER_E2E`와 `TOOL013_XLSX_INJECTION_E2E` 두 개로 제한했다.
+- EMAIL_COLLECTION / TOOL007 / TOOL037 / TOOL006은 아직 missing official input/runner/golden evidence 문제이므로 Work credit 사용 금지 상태로 유지했다.
+- `.github/workflows/work-gate-handoff-audit.yml`을 추가하고 actual GitHub run `31660547988` / job `94324275254`에서 deterministic gate + handoff generation + validation + artifact upload가 모두 success했다.
+- 이후 Work가 중간 종료되어도 처음부터 반복하지 않도록 exit checkpoint 계약을 추가했다. 필수 필드: lane/status/last_success_stage/remaining_blocker/modified_assets/evidence/rollback_point/exact_next_step.
+- exit checkpoint template까지 생성하는 run `31660617974` / job `94324484253`가 success했고 artifact `9166037482`가 생성됐다.
+- artifact에는 `work-handoff.json`과 `work-exit-checkpoint-template.json`이 함께 들어간다.
+- 이 증거는 GitHub 내부 actual run 증거이며 제3자 독립검증으로 분류하지 않는다.
 
 ## 현재 실제 PASS
 - WIC reusable automatic integration core: `PASS_INTERNAL_GITHUB_E2E`.
@@ -43,38 +45,44 @@
 - cross-target rollback/read-back/restart: PASS.
 - TOOL002 actual bid business E2E: PASS.
 - TOOL001 syntax repair gate: PASS.
+- Work credit gate + exact handoff generator: `PASS_INTERNAL_GITHUB_RUN`.
+- resumable Work exit checkpoint contract/template: `PASS_INTERNAL_GITHUB_RUN`.
 
 ## 구조 PASS 후 주요 HOLD
-- EMAIL_COLLECTION, TOOL007 BUSINESS E2E, TOOL001 BUSINESS E2E, TOOL037 BUSINESS E2E, TOOL013 BUSINESS E2E, TOOL006 BUSINESS E2E.
+- EMAIL_COLLECTION: official business DB/runner 미식별. Work 사용 금지, source/runner 변화 시 재개.
+- TOOL007 BUSINESS E2E: adapter PASS이나 actual current-customer input 증거 미기록. Work 사용 금지.
+- TOOL001 BUSINESS E2E: repaired build actual browser E2E 필요. `WORK_ELIGIBLE` 후보.
+- TOOL037 BUSINESS E2E: verified production runner 미식별. Work 사용 금지.
+- TOOL013 BUSINESS E2E: actual `.xlsx` binary injection 필요. `WORK_ELIGIBLE` 후보.
+- TOOL006 BUSINESS E2E: actual original→user-approved-final golden pair 없음. Work 사용 금지.
 - TOOL028~031: 등록 저장소 없음.
-- TOOL027~026: repository-level inventory 확인 완료, actual business E2E evidence 없음.
-- TOOL025,024,023,022,021,019,014,012: rule source + static `public/` 수준 또는 actual business E2E evidence 미식별.
-- TOOL011,010,009,008,005,004,003: repository-level inventory 확인 완료. TOOL009의 workflow는 internal platform validation일 뿐 business E2E가 아니며, 나머지도 actual input→execution→output→expected comparison evidence 미식별.
-- TOOL018~015: 현재 접근 가능한 등록 저장소 inventory에 없음.
+- 나머지 등록 도구: repository-level inventory 완료, actual business E2E evidence 없음.
 - 제3자 외부검증 actual run/result 없음.
 
-## 개선방법
-- static/public/index-only 저장소는 실제 업무 입력·실행·출력·expected 비교를 수행할 runner/workflow/fixture가 생기거나 공식 매핑 근거가 생길 때만 재개한다.
-- TOOL009는 기존 internal platform validation이 아니라 실제 콘텐츠 업무 입력→생성/처리→출력→expected 비교 E2E가 연결될 때 재개한다.
-- TOOL013은 actual `.xlsx` binary injection 경로가 생길 때 재개한다.
-- TOOL006은 실제 original→user-approved-final golden pair가 확보될 때 재개한다.
-- EMAIL_COLLECTION/TOOL007/TOOL001/TOOL037은 blocker 변화 없이는 동일 탐색 반복 금지.
+## Work 진입/종료 규칙
+1. Work에서는 `WORK_ELIGIBLE` 두 lane 외에는 기존 규칙 재독해·저장소 재검색·inventory에 credit을 쓰지 않는다.
+2. 각 lane 시작 직전 pre-run commit/input hash를 먼저 기록한다.
+3. 실제 input→execution→output→expected comparison 증거가 있어야 BUSINESS PASS다.
+4. Work가 중간 종료되면 `WORK_EXIT_RESUMABLE` checkpoint를 먼저 저장한다.
+5. checkpoint 없이 세션을 끝내면 완료율을 올리지 않으며 다음 Work에서 앞 단계 반복을 금지한다.
 
 ## 최신 restart point
-1. 구조 PASS 재검증 금지.
-2. 현재 접근 가능한 등록 저장소 TOOL027~003의 repository-level inventory는 완료했으므로 blocker 변화 없으면 반복하지 않는다.
-3. TOOL020은 중앙 운영 저장소로 취급하고 개별 업무도구 E2E 반복 금지.
-4. 다음 실행은 우선순위상 아직 BUSINESS HOLD인 주요 업무군 중 **blocker가 실제로 변했거나 새 실행자산/공식 매핑이 생긴 항목만** 재개한다: EMAIL_COLLECTION → TOOL007 → TOOL001 → TOOL037 → TOOL013 → TOOL006. 변화가 없으면 즉시 건너뛴다.
-5. 위 항목 모두 blocker 변화가 없으면, 중앙 routing registry에 등록된 주요 업무창 중 아직 actual business E2E가 없고 공식 실행자산이 식별되는 항목만 다음 대상으로 선택한다. 추측 저장소/추측 adapter 생성 금지.
-6. actual business input→execution→output→expected comparison 가능한 실행자산이 있는 경우에만 테스트하고, static/mock/internal-only 수준이면 HOLD + 원인 + 개선방법만 기록한다.
+1. 구조 PASS 및 repository inventory 재검증 금지.
+2. Chat/GitHub 사전준비의 다음 우선순위는 새 blocker 변화가 있는지 확인하는 것뿐이다.
+3. blocker 변화가 없다면 EMAIL_COLLECTION/TOOL007/TOOL037/TOOL006 재검색 금지.
+4. Work로 이동할 시 첫 실행은 `TOOL001 browser business E2E`; 성공/명확 HOLD 후 `TOOL013 actual .xlsx injection business E2E`.
+5. 각 Work lane 종료 전 artifact `9166037482`의 exit checkpoint template 필드를 실제 evidence로 채우고 read-back한다.
+6. Work가 끝나도 미완료면 checkpoint의 `exact_next_step`부터 Chat/GitHub에서 가능한 작업을 재개하고, 다시 Work-only가 될 때만 다음 Work를 사용한다.
 
 ## Work 크레딧 사용 게이트
 - 구조 재독해·재요약·재검색 금지.
-- 실제 file injection/browser E2E 등 Chat+GitHub connector로 막히는 실행에만 Work 후보로 남긴다.
+- 실제 file injection/browser E2E 등 Chat+GitHub connector로 막히는 실행에만 Work를 사용한다.
+- run `31660617974` / job `94324484253` / artifact `9166037482`가 현재 handoff 기준 증거다.
 
 ## 독립검증 상태
 - GitHub 내부 actual run/read-back/commit/artifact 증거: 있음.
 - WIC 전체 구조: PASS_INTERNAL_GITHUB_E2E.
+- Work gate/exit checkpoint: PASS_INTERNAL_GITHUB_RUN.
 - 제3자 외부 PASS 증거: 없음 / 독립검증 HOLD.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
