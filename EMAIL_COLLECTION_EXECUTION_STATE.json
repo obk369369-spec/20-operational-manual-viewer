@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "updated_kst": "2026-08-13 19:04",
+  "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
+  "progress_percent": 42,
+  "stall_detected": true,
+  "stall_reason": "Central execution state had not advanced past the 2026-08-13 17:09 checkpoint; SEM-002..SEM-070 and other-sector actual-number recovery remained untouched.",
+  "auto_resume": "RESUMED_AND_ADVANCED",
+  "last_verified_completed": [
+    "SEM-001 historical existence confirmed",
+    "SEM-071..SEM-080 preserved as existing permanent IDs",
+    "SEM-071..SEM-080 company introduction/business-card sent cohort dated 2026-07-08",
+    "sector prefixes SEM/ROB/DEF/SHP/BAT/CAR confirmed"
+  ],
+  "this_run_actual_changes": [
+    "Created EMAIL_COLLECTION_RECOVERY_LEDGER.json in the central GitHub repository and verified read-back.",
+    "Recovered one CAR historical purchase-order identity from a 2021 Korea Carbon Industry Promotion Agency email thread without assigning a new permanent number.",
+    "Recovered one SEM historical purchase-process identity from a 2025 Hunetplus semiconductor-material report purchase thread without assigning a new permanent number.",
+    "Recovered one CAR historical market-report inquiry identity from a 2026 HS Hyosung R&D reply thread without assigning a new permanent number.",
+    "Converted the three recovered identities to privacy-safe fingerprints and HOLD_MATCH_EXISTING_* states for later duplicate/permanent-number reconciliation."
+  ],
+  "evidence": {
+    "central_ledger_commit": "ae50a66778b842e4dffc109ce3bbf60ad75b7bdc",
+    "central_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
+    "central_ledger_readback_sha": "0792986d22a3b14d73f0f03a925093ff0ec09d74",
+    "file_library_sources": [
+      "보고서 (RAIL COMPOSITES MARKET) - 한국탄소산업진흥원 송현도님.eml",
+      "Re 견적서 12월 1일 (2025년 반도체 재료 시장의 현상과 장래 전망), (주)휴넷플러스 김기완님 드림-1.eml",
+      "Re_ [HS효성종합기술원] 시장 자료 구입 관련 문의의 건.eml"
+    ]
+  },
+  "remaining": [
+    "Match the three recovered candidates against existing permanent IDs before any new numbering.",
+    "Recover detailed SEM-002..SEM-070 if evidence exists.",
+    "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
+    "Recover historical handoff/duplicate ledger.",
+    "Recover sent/bounce history tied to verified permanent or held candidate identities.",
+    "Collision-check SEM-081 before assignment."
+  ],
+  "restart_point": "Start with permanent-number match search for fingerprints 049d00b489ed83abb228, 593e15964842643ee5c0, cbc24788f66662dc07f2; then continue SEM-002..SEM-070 and other-sector actual-number recovery. Do not rediscover SEM-001 or SEM-071..SEM-080.",
+  "estimated_completion": "HOLD — source evidence volume and unrecovered legacy numbering are not yet measurable enough for a reliable completion time."
+}
