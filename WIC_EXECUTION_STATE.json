@@ -2,10 +2,47 @@
   "state_type": "execution_state_only_not_rules",
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
-  "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 17:09",
-  "scope": "WIC structure-first actual feedback E2E restart state",
+  "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
+  "updated_kst": "2026-08-13 22:05",
+  "scope": "WIC central integration, chat identity lock, stall recovery, and priority restart state",
   "structure_status": "HOLD_CROSS_REPOSITORY_TARGET_APPLY",
+  "state_sync": {
+    "status": "SYNCHRONIZED_FROM_EXISTING_CENTRAL_FILES",
+    "email_state_path": "EMAIL_COLLECTION_EXECUTION_STATE.json",
+    "email_state_updated_kst": "2026-08-13 22:07",
+    "email_progress_percent": 44,
+    "live_observer_path": "WIC_LIVE_OBSERVER_STATUS.md",
+    "live_observer_last_confirmed_kst": "2026-08-13 21:18",
+    "reason": "WIC_EXECUTION_STATE.json had remained at 17:09 while live observer and email checkpoints had advanced. This update removes central restart-state drift without creating a new state file."
+  },
+  "chat_identity_lock": {
+    "status": "PASS_INTERNAL_GITHUB",
+    "rules": [
+      "NO_NEW_CHAT",
+      "EXPLICIT_NEW_CHAT_APPROVAL defaults FALSE",
+      "logical role is not a verified UI title",
+      "unverified UI title remains UI_TITLE_HOLD",
+      "unauthorized new chat, role, rename, alias adoption, or title mutation is FAIL"
+    ],
+    "ci_workflow": ".github/workflows/rule-governance-audit.yml",
+    "verified_run": "31699196474",
+    "verified_result": "success",
+    "limitation": "GitHub cannot technically disable ChatGPT UI controls; enforcement scope is WIC routing, automation behavior, central rules, and CI acceptance."
+  },
+  "stall_recovery": {
+    "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
+    "schedule": "*/5 * * * *",
+    "threshold_minutes": 35,
+    "latest_observed_run": "31698512165",
+    "latest_observed_run_head": "2f1ca7d42ec76784198c7a8f16b33222f75da2ec",
+    "latest_observed_result": "failure",
+    "failure_step": "Open or update single stall issue",
+    "failure_cause": "The executed old workflow revision intentionally ended the stall-issue step with exit 1, so later recovery dispatch could not run.",
+    "fixed_workflow_commit": "6aeb4a734aab994abfa1145fb3ad4148fd445ae1",
+    "fixed_code_status": "PRESENT_ON_MAIN_NOT_YET_VERIFIED_BY_A_NEW_MONITOR_RUN",
+    "current_gate": "HOLD_MONITOR_NEXT_RUN_VERIFY",
+    "restart_rule": "If the next monitor run still fails, fix the same existing workflow; do not create another workflow, chat, role, file, or state board."
+  },
   "latest_feedback": {
     "feedback_id": "37a4a2166bb5e2a08a8c",
     "canonical_revision": "3f0c83fe635a4067354e8456",
@@ -24,7 +61,11 @@
     "canonical WIC_GLOBAL_OPERATING_RULES.md mutation committed",
     "canonical read-back hash verified",
     "target apply manifest generated",
-    "GitHub Actions run 31670039251 and job 94352602812 completed successfully"
+    "GitHub Actions run 31670039251 completed successfully",
+    "chat identity gate is implemented in existing routing/ownership files and CI",
+    "chat identity gate GitHub run 31699196474 succeeded",
+    "SEM-001 and SEM-071..SEM-080 legacy checkpoints preserved without renumbering",
+    "EMAIL_COLLECTION execution checkpoint advanced to 44% with direct-evidence-only numbering policy"
   ],
   "do_not_repeat": [
     "integration-core implementation/rebuild already completed",
@@ -33,93 +74,46 @@
     "canonical conflict/supersede decision for feedback 37a4a2166bb5e2a08a8c",
     "canonical write/read-back for revision 3f0c83fe635a4067354e8456",
     "GitHub Actions run 31670039251",
-    "SEM-071 through SEM-080 semiconductor legacy ID recovery from File Library"
+    "SEM-001 rediscovery",
+    "SEM-071 through SEM-080 rediscovery",
+    "already processed private mail threads without new direct number evidence"
   ],
   "email_collection_checkpoint": {
     "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
-    "progress_percent": 38,
-    "stall_detected": true,
-    "stall_reason": "After SEM-071..SEM-080 were persisted, no further legacy customer data had been added before this run. Resume was required from the saved legacy recovery checkpoint.",
-    "auto_resume": "RESUMED_AND_ADVANCED",
-    "this_run_changes": [
-      "Confirmed historical existence of SEM-001 from a File Library screenshot; no renumbering performed.",
-      "Confirmed legacy sector prefix registry evidence for SEM, ROB, DEF, SHP, BAT, CAR.",
-      "Re-searched defense, shipbuilding, carbon/composites, robot and semiconductor legacy-number evidence; no verified other-sector customer ledger rows were found in this run.",
-      "Preserved SEM-081 as candidate only; collision check remains required before assignment."
-    ],
-    "sector_prefix_registry": {
-      "SEM": "semiconductor",
-      "ROB": "robot",
-      "DEF": "defense",
-      "SHP": "shipbuilding",
-      "BAT": "battery",
-      "CAR": "carbon_composites"
-    },
-    "semiconductor": {
-      "confirmed_prefix": "SEM",
-      "confirmed_legacy_points": ["SEM-001", "SEM-071..SEM-080"],
-      "confirmed_legacy_range": "SEM-071..SEM-080",
-      "confirmed_last_number": "SEM-080",
-      "next_candidate_number": "SEM-081",
-      "company_intro_and_business_card_sent_date": "2026-07-08",
-      "source_evidence": [
-        "File Library image.png created 2026-04-06: visible historical label SEM-001",
-        "File Library: 34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt",
-        "File Library: 34번 공통 보완 추가 — [이메일 수집 — 기존 작업 승계 및 계속 진행 지시문].txt"
-      ],
-      "privacy_safe_identity_fingerprints": [
-        {"id":"SEM-071","org_name_fingerprint":"079b4e73b5c7e4eb4978","status":"existing"},
-        {"id":"SEM-072","org_name_fingerprint":"59651d1bac8d4c71565e","status":"existing"},
-        {"id":"SEM-073","org_name_fingerprint":"ebd105c432a86297ca7a","status":"tracking_title_unverified"},
-        {"id":"SEM-074","org_name_fingerprint":"ea104b227114f34560be","status":"existing"},
-        {"id":"SEM-075","org_name_fingerprint":"0a465d0576253e31064c","status":"existing"},
-        {"id":"SEM-076","org_name_fingerprint":"068f7cdf529f10ad1c98","status":"c_grade_verify_work"},
-        {"id":"SEM-077","org_name_fingerprint":"68659da2017d536494b6","status":"existing"},
-        {"id":"SEM-078","org_name_fingerprint":"813008009a615f3d55ad","status":"b_c_verify_work"},
-        {"id":"SEM-079","org_name_fingerprint":"38c16eca5256d95ffca4","status":"existing"},
-        {"id":"SEM-080","org_name_fingerprint":"67cbeaa2a3bd79a74a20","status":"b_c_verify_work"}
-      ],
-      "recovery_result": "Historical SEM-001 existence plus 10 detailed legacy customer IDs SEM-071..SEM-080 are now centrally checkpointed without renumbering; direct personal data not copied into public central state.",
-      "remaining": [
-        "recover detailed SEM-002..SEM-070 if available",
-        "recover other sector actual customer numbers and last-used numbers",
-        "recover historical handoff/duplicate ledger",
-        "recover sent/bounce history where verifiable",
-        "cross-check next-number collision before assigning SEM-081"
-      ]
-    },
-    "other_sectors": {
-      "DEF": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
-      "SHP": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
-      "CAR": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
-      "ROB": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
-      "BAT": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED"
-    }
+    "progress_percent": 44,
+    "source_of_truth": "EMAIL_COLLECTION_EXECUTION_STATE.json",
+    "restart_point": "Continue explicit number-bearing legacy ledger/handoff search; match held candidates to existing permanent IDs; recover SEM-002..SEM-070 and first actual DEF/SHP/CAR/ROB/BAT permanent-number rows; do not assign a number or sector without direct evidence.",
+    "remaining": [
+      "persist newly verified repeat-purchase identity into the existing privacy-safe recovery ledger",
+      "match held candidates against existing permanent IDs",
+      "recover SEM-002..SEM-070 if evidence exists",
+      "recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT",
+      "recover additional handoff/duplicate and sent/bounce history after identity linkage",
+      "collision-check SEM-081 before assignment"
+    ]
   },
   "blockers": {
-    "CROSS_REPOSITORY_TARGET_APPLY": "Current central GitHub Actions GITHUB_TOKEN only has contents:write for the central repository. TOOL001/TOOL002/TOOL006 and other repository targets require an actual cross-repository write/read-back/test transport or a verified runtime that reads the central revision and produces target test evidence.",
-    "AUTOMATIC_TRIGGER": "The current workflow finalizes only verified CENTRAL_LANE_ACK targets. It intentionally leaves repository targets HOLD; no verified automatic cross-repository dispatch credential/transport is recorded.",
-    "INDEPENDENT_VERIFICATION": "No third-party external run/result evidence is recorded. GitHub internal validation must not be labeled independent verification."
+    "CROSS_REPOSITORY_TARGET_APPLY": "Central GitHub Actions still lacks verified cross-repository target write/read-back/test transport.",
+    "STALL_MONITOR_NEXT_RUN_VERIFY": "The latest actual scheduled run used the old workflow revision and failed before recovery dispatch. Main now contains the revised recovery-dispatch version, but a new monitor run has not yet provided execution evidence.",
+    "INDEPENDENT_VERIFICATION": "GitHub internal validation is not third-party independent verification."
   },
   "work_gate": {
-    "credit_policy": "Use Work only for the remaining execution/E2E blocker, not for rereading, resummarizing, or repository rediscovery.",
+    "credit_policy": "Use Work only for a concrete Work-only E2E blocker, not rereading, resummarizing, rule extraction, repository rediscovery, or status reporting.",
     "work_required_now": true,
     "exact_work_scope": [
-      "establish one real cross-repository target transport or equivalent central-revision runtime consumption path",
-      "apply canonical revision 3f0c83fe635a4067354e8456 to at least one verified repository target from the actual manifest",
+      "establish one real cross-repository target transport or equivalent runtime consumption path",
+      "apply canonical revision 3f0c83fe635a4067354e8456 to one verified repository target",
       "read back the applied revision from that target",
-      "run the target-side deterministic test and retain run/result evidence",
-      "feed the target result back to central state and persist restart point",
-      "only after this actual feedback E2E succeeds may structure status become STRUCTURE_PASS_INTERNAL_GITHUB_E2E"
+      "run target-side deterministic test and retain run/result evidence",
+      "feed target result back to central state"
     ]
   },
   "restart_point": [
-    "Do not rerun feedback ingest or canonical run 31670039251.",
-    "Start at cross-repository target transport for target manifest revision 3f0c83fe635a4067354e8456.",
-    "Prefer TOOL001 or another already verified repository adapter solely as the first actual cross-repo proof; this is structure E2E, not a change in the user's post-structure tool priority.",
-    "If transport cannot be established, record the exact permission/credential/runtime blocker as HOLD and do not spend credits on unrelated tool development.",
-    "After structure PASS, resume user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats.",
-    "For EMAIL_COLLECTION resume at detailed SEM-002..SEM-070 recovery and other-sector actual customer-number recovery; do not rediscover SEM-001 or SEM-071..SEM-080."
+    "Do not rerun completed canonical feedback ingestion or identity-gate verification.",
+    "First verify the next actual WIC Stall Heartbeat Monitor run against the fixed main-branch workflow; if it fails, repair the same existing workflow.",
+    "Continue EMAIL_COLLECTION from the 44% direct-evidence checkpoint without rediscovering SEM-001 or SEM-071..SEM-080.",
+    "Continue cross-repository target transport from canonical revision 3f0c83fe635a4067354e8456 when an executable transport path is available.",
+    "After structure PASS, preserve user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats."
   ],
-  "completion_policy": "Structure PASS requires actual new feedback -> automatic classification/conflict handling -> canonical GitHub write/read-back -> actual target apply/read-back/test -> reusable evidence -> restart point. Internal GitHub validation is not third-party independent validation."
+  "completion_policy": "PASS requires actual execution evidence. Storage/read-back alone proves persistence, not functional behavior. New chat/title/role creation is never an acceptable recovery mechanism without explicit user approval."
 }
