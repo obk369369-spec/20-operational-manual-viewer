@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 17:04",
+  "updated_kst": "2026-08-13 17:09",
   "scope": "WIC structure-first actual feedback E2E restart state",
   "structure_status": "HOLD_CROSS_REPOSITORY_TARGET_APPLY",
   "latest_feedback": {
@@ -37,16 +37,33 @@
   ],
   "email_collection_checkpoint": {
     "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
+    "progress_percent": 38,
     "stall_detected": true,
-    "stall_reason": "Email collection rules and routing were centralized, but actual historical customer ID/delivery data had not been persisted in central GitHub state.",
-    "auto_resume": "RESUMED_FROM_LEGACY_DATA_RECOVERY",
+    "stall_reason": "After SEM-071..SEM-080 were persisted, no further legacy customer data had been added before this run. Resume was required from the saved legacy recovery checkpoint.",
+    "auto_resume": "RESUMED_AND_ADVANCED",
+    "this_run_changes": [
+      "Confirmed historical existence of SEM-001 from a File Library screenshot; no renumbering performed.",
+      "Confirmed legacy sector prefix registry evidence for SEM, ROB, DEF, SHP, BAT, CAR.",
+      "Re-searched defense, shipbuilding, carbon/composites, robot and semiconductor legacy-number evidence; no verified other-sector customer ledger rows were found in this run.",
+      "Preserved SEM-081 as candidate only; collision check remains required before assignment."
+    ],
+    "sector_prefix_registry": {
+      "SEM": "semiconductor",
+      "ROB": "robot",
+      "DEF": "defense",
+      "SHP": "shipbuilding",
+      "BAT": "battery",
+      "CAR": "carbon_composites"
+    },
     "semiconductor": {
       "confirmed_prefix": "SEM",
+      "confirmed_legacy_points": ["SEM-001", "SEM-071..SEM-080"],
       "confirmed_legacy_range": "SEM-071..SEM-080",
       "confirmed_last_number": "SEM-080",
       "next_candidate_number": "SEM-081",
       "company_intro_and_business_card_sent_date": "2026-07-08",
       "source_evidence": [
+        "File Library image.png created 2026-04-06: visible historical label SEM-001",
         "File Library: 34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt",
         "File Library: 34번 공통 보완 추가 — [이메일 수집 — 기존 작업 승계 및 계속 진행 지시문].txt"
       ],
@@ -62,14 +79,21 @@
         {"id":"SEM-079","org_name_fingerprint":"38c16eca5256d95ffca4","status":"existing"},
         {"id":"SEM-080","org_name_fingerprint":"67cbeaa2a3bd79a74a20","status":"b_c_verify_work"}
       ],
-      "recovery_result": "10 legacy customer IDs recovered without renumbering; direct personal data not copied into public central state.",
+      "recovery_result": "Historical SEM-001 existence plus 10 detailed legacy customer IDs SEM-071..SEM-080 are now centrally checkpointed without renumbering; direct personal data not copied into public central state.",
       "remaining": [
-        "recover SEM-001..SEM-070 if available",
-        "recover other sector prefixes and last-used numbers",
+        "recover detailed SEM-002..SEM-070 if available",
+        "recover other sector actual customer numbers and last-used numbers",
         "recover historical handoff/duplicate ledger",
         "recover sent/bounce history where verifiable",
         "cross-check next-number collision before assigning SEM-081"
       ]
+    },
+    "other_sectors": {
+      "DEF": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
+      "SHP": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
+      "CAR": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
+      "ROB": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED",
+      "BAT": "PREFIX_CONFIRMED_ACTUAL_ROWS_NOT_YET_RECOVERED"
     }
   },
   "blockers": {
@@ -95,7 +119,7 @@
     "Prefer TOOL001 or another already verified repository adapter solely as the first actual cross-repo proof; this is structure E2E, not a change in the user's post-structure tool priority.",
     "If transport cannot be established, record the exact permission/credential/runtime blocker as HOLD and do not spend credits on unrelated tool development.",
     "After structure PASS, resume user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats.",
-    "For EMAIL_COLLECTION resume at legacy data recovery beyond confirmed SEM-071..SEM-080; do not rediscover or renumber these 10 records."
+    "For EMAIL_COLLECTION resume at detailed SEM-002..SEM-070 recovery and other-sector actual customer-number recovery; do not rediscover SEM-001 or SEM-071..SEM-080."
   ],
   "completion_policy": "Structure PASS requires actual new feedback -> automatic classification/conflict handling -> canonical GitHub write/read-back -> actual target apply/read-back/test -> reusable evidence -> restart point. Internal GitHub validation is not third-party independent validation."
 }
