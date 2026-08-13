@@ -1,10 +1,13 @@
 {
   "schema_version": 1,
   "purpose": "privacy-safe central recovery ledger for legacy email-collection customer-number and duplicate-history reconciliation",
-  "updated_kst": "2026-08-13 21:06",
+  "updated_kst": "2026-08-13 23:06",
   "assignment_policy": "Do not assign or renumber customer IDs from this ledger alone. Match against existing permanent-number evidence first.",
   "confirmed_existing_number_evidence": {
-    "SEM": ["SEM-001", "SEM-071..SEM-080"],
+    "SEM": [
+      "SEM-001",
+      "SEM-071..SEM-080"
+    ],
     "ROB": [],
     "DEF": [],
     "SHP": [],
@@ -75,6 +78,26 @@
       ],
       "history_status": "ORDER_FULFILLMENT_PROCESS_CONFIRMED",
       "number_status": "HOLD_MATCH_EXISTING_CAR_NUMBER"
+    },
+    {
+      "sector": "HOLD_UNMAPPED_SECTOR",
+      "identity_fingerprint": "7b25f360782f7df880ad",
+      "organization_class": "Korea Fire Institute / hazardous-materials technical function",
+      "event_date": "2024-06-07",
+      "event_type": "REPEAT_STANDARDS_PURCHASE_PROCESS_CONFIRMED",
+      "evidence": [
+        "File Library: Re 견적서 6월 7일 ( ISO_IEC 80079-49 2024 ), 한국소방산업기술원 강기민 과장님-3.eml",
+        "File Library: 7번 고객 컨택 판단.doc (repeat 2023/2024 purchase-flow evidence)",
+        "File Library: Re 견적서 (ASME B31.3-2020 외 4종) 첨부 드립니다, 한국소방산업기술원 강기민님.eml"
+      ],
+      "details": [
+        "2024-06-07 customer explicitly said this was another purchase like the prior transaction",
+        "requested both World quotation and higher comparison quotation before phone-triggered ordering",
+        "purchase topic includes ISO/IEC 80079-49:2024 flame-arrester/explosive-atmosphere standard",
+        "historical customer-contact record documents repeated 2023 and 2024 purchase/administrative flow and ASME-standard purchase history"
+      ],
+      "history_status": "REPEATED_PURCHASE_QUOTE_COMPARISON_AND_ORDER_TRIGGER_CONFIRMED",
+      "number_status": "HOLD_MATCH_EXISTING_PERMANENT_NUMBER_AND_SECTOR"
     }
   ],
   "duplicate_matching_keys": [
@@ -91,10 +114,16 @@
     "other_sector_number_search": "NO_VERIFIED_DEF_SHP_CAR_ROB_BAT_NUMBERED_ROWS_RECOVERED_IN_THIS_PASS",
     "note": "Searches added real sent/handoff history for the CAR held identity but still did not produce a reliable permanent-number label. No new number assigned."
   },
+  "duplicate_match_search_result_2026_08_13_2306": {
+    "7b25f360782f7df880ad": "NEW_PRIVACY_SAFE_HELD_IDENTITY_ADDED_NO_VERIFIED_PERMANENT_NUMBER",
+    "sem_002_070_range_search": "NO_NEW_NUMBER_ASSIGNMENT_THIS_RUN",
+    "other_sector_number_search": "NO_SECTOR_PREFIX_ASSIGNED_TO_NEW_IDENTITY_WITHOUT_DIRECT_NUMBER_EVIDENCE",
+    "note": "Added verified repeat-purchase administrative-flow identity without inventing a customer number or sector."
+  },
   "next_restart_point": [
-    "Continue permanent-number match search for the three held identities using legacy customer ledgers and handoff records, not generic email threads already processed.",
+    "Match four held identities against legacy permanent-number evidence; do not infer sector from business topic alone.",
     "Continue SEM-002..SEM-070 recovery without renumbering SEM-071..SEM-080.",
     "Recover first verified actual rows for DEF/SHP/CAR/ROB/BAT.",
-    "Search sent/bounce history for additional held or permanent identities only after identity linkage is verified."
+    "Expand sent/bounce history only after identity linkage is verified."
   ]
 }
