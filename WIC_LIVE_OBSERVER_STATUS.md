@@ -1,53 +1,53 @@
 # WIC LIVE OBSERVER STATUS
 
-최종 확인: 2026-08-13 22:56 KST
-상태: ACTIVE — 중앙 통합 계속 진행 / CHAT IDENTITY LOCK 유지 / stall 자동 재실행 실제 검증 PASS
+최종 확인: 2026-08-14 00:07 KST
+상태: ACTIVE — 중앙 통합 계속 진행 / CHAT IDENTITY LOCK + UNAUTHORIZED STRUCTURE PREFLIGHT 실제 검증 PASS / stall 자동복구 유지
 
 규범 원본은 `WIC_GLOBAL_OPERATING_RULES.md`. 37번=metadata production/integrated verification, 13번=Excel automatic upload로 분리 유지.
 
 ## 현재 우선순위 및 restart
-- 직전 실제 데이터 체크포인트: `EMAIL_COLLECTION_EXECUTION_STATE.json` 2026-08-13 22:07 KST, 진행 상태 `IN_PROGRESS_LEGACY_DATA_RECOVERY`, progress 44%.
-- 22:46 KST GitHub scheduled monitor가 기존 observer를 stale로 판단했고, 같은 기존 `wic-stall-monitor.yml`에서 stall issue 갱신과 기존 `WIC Rule Governance Audit` 재-dispatch를 실제 수행했다.
-- EMAIL_COLLECTION 정확한 restart point: 기존 HOLD fingerprint의 영구번호/인계대장 대조, SEM-002..070 실제 번호행, DEF/SHP/CAR/ROB/BAT 실제 영구번호행 회수. 이미 처리한 이메일 스레드는 재독해하지 않고 직접 번호 증거 없이는 새 번호를 부여하지 않는다.
+- EMAIL_COLLECTION source of truth: `EMAIL_COLLECTION_EXECUTION_STATE.json`, 2026-08-13 23:06 KST, progress 44%, `IN_PROGRESS_LEGACY_DATA_RECOVERY`.
+- 정확한 EMAIL_COLLECTION restart: 기존 4개 HOLD fingerprint를 번호가 직접 적힌 과거 ledger/handoff와 대조 → SEM-002..070 직접 번호행 → DEF/SHP/CAR/ROB/BAT 실제 영구번호행 및 last-used number 회수. 직접 번호 증거 없이는 새 번호/분야를 추론하지 않는다.
+- cross-repository target apply는 canonical revision `3f0c83fe635a4067354e8456`의 실제 target write→read-back→target test 증거 전까지 HOLD.
 
 ## 이번 회차 실제 개선
 | 항목 | 상태 | 증거 |
 |---|---|---|
-| 5분 stall 감시 실제 scheduled run | PASS | `WIC Stall Heartbeat Monitor` run `31706654693`, event=`schedule`, conclusion=`success` |
-| stale 분기 실제 감지 | PASS | job `94468789203`에서 `Open or update single stall issue` 성공 |
-| stall 후 실제 재실행 | PASS | 동일 job에서 `Re-dispatch existing recovery audit` 성공 |
-| 재실행된 기존 audit | PASS | `WIC Rule Governance Audit` run `31706666428`, conclusion=`success` |
-| CHAT IDENTITY 검증 재실행 | PASS | recovery audit의 `Enforce NO_NEW_CHAT and UI-title identity gate` 성공 |
-| restart fixture 재실행 | PASS | recovery audit의 `Run deterministic integration and restart recovery fixtures` 성공 |
-| EMAIL_COLLECTION 번호대장 추가 탐색 | HOLD / 진행 계속 | File Library에서 SEM-002/010/020/030/070 및 CAR-001/ROB-001/DEF-001/SHP-001/BAT-001 직접 검색. 실제 고객번호행은 추가 회수되지 않아 번호 미부여 |
+| 기존 중앙 상태 read-back | PASS | `WIC_EXECUTION_STATE.json`, `WIC_LIVE_OBSERVER_STATUS.md`, `EMAIL_COLLECTION_EXECUTION_STATE.json` 확인 |
+| 최신 5분 stall monitor | PASS | run `31711914014`, job `94486770717`, scheduled, conclusion=`success`; stale 분기에서 기존 recovery audit 재-dispatch 성공 |
+| 구조오류 감지 문서 | PASS | commit `fe95ea34462b5b4e4d3a6f68d17fe19b087f481a`의 `UNAUTHORIZED STRUCTURE GUARD` 확인 |
+| 구조오류 감지 CI 연결 | PASS | 기존 `.github/workflows/rule-governance-audit.yml`만 수정한 commit `95ee7994807f9689f3208d9f7bc8561d63dacfe6` |
+| 승인 없는 구조변경 fixture | PASS | run `31713697498`, job `94492896053`, `Reject unauthorized structure mutation fixtures` 성공 |
+| 기존 identity gate | PASS | 같은 run에서 `Enforce NO_NEW_CHAT and UI-title identity gate` 성공 |
+| restart 회귀 fixture | PASS | 같은 run에서 `Run deterministic integration and restart recovery fixtures` 성공 |
+| 상태파일 변경 audit trigger 확대 | PASS | `WIC_OBSERVER_STATUS.md`, `WIC_EXECUTION_STATE.json`, `WIC_LIVE_OBSERVER_STATUS.md`를 기존 audit trigger에 추가 |
+| 중앙 실행상태 동기화 | PASS | `WIC_EXECUTION_STATE.json` commit `19c61c8c4df068b49c2649bc34c52196f02bbcad` |
 
-## CHAT IDENTITY LOCK 판정
-- 사용자 명시 승인 없는 새 대화창/새 역할/새 준비창/새 관찰창/재명명/별칭 승계: `FAIL-NO_NEW_CHAT-VIOLATION` 또는 `CHAT_IDENTITY_MUTATION_FAIL`.
-- `CONTROL_PRIMARY`, `WORK_PREP` 등 내부 논리 role을 실제 UI 제목으로 승격하면 CI FAIL.
-- 실제 UI 대화창 제목은 직접 UI/접근 가능한 대화 기록 근거가 없으면 `UI_TITLE_HOLD`.
-- 이번 recovery audit에서도 위 게이트가 실제 PASS했다.
-- GitHub는 ChatGPT UI 자체의 생성 버튼을 기술적으로 차단할 수는 없으므로, 실제 강제 범위는 WIC 라우팅·자동화·GitHub 실행이 새 이름을 생성/채택/승계하지 못하게 하는 검증 게이트다.
+## CHAT IDENTITY / STRUCTURE 판정
+- 사용자 명시 승인 없는 `create_conversation`, `rename_conversation`, 새 준비창/관찰창, unverified alias 채택, 자동 새 대화창 이동은 `DENY_HOLD`.
+- 논리 role을 직접 UI 제목 근거 없이 실제 대화창 이름으로 승격하면 `UI_TITLE_HOLD`.
+- 사용자 명시 승인 + 필요한 직접 UI 근거가 있는 경우만 ALLOW fixture가 통과한다.
+- GitHub는 ChatGPT UI 버튼 자체를 제거할 수는 없지만 WIC 라우팅·자동화·중앙 상태·CI에서 무단 구조를 정상으로 승계하거나 PASS시키지 못하게 한다.
 
 ## stall 복구 구조
-- GitHub `WIC Stall Heartbeat Monitor`는 cron `*/5 * * * *`, threshold 35분.
-- run `31706654693`에서 stale 분기를 실제 통과했고, 기존 single stall issue 단계와 기존 `WIC Rule Governance Audit` 재-dispatch 단계가 모두 성공했다.
-- 재-dispatch된 run `31706666428`도 성공하여, 이전 `NEXT-RUN VERIFY` HOLD는 해소됐다.
-- 새 workflow/새 대화창/새 역할은 생성하지 않았다.
-- 이 자동화는 GitHub monitor 실패/누락 시 2차 복구 경로로 기존 restart point부터 계속한다.
+- 기존 `.github/workflows/wic-stall-monitor.yml`만 사용, cron `*/5 * * * *`, threshold 35분.
+- 최신 확인 run `31711914014`는 stale을 감지하고 issue 처리 및 기존 recovery audit 재-dispatch까지 성공했다.
+- monitor 실패/누락 시 현재 전체통합 자동화가 2차 복구 경로로 기존 restart point부터 계속한다.
+- 복구를 위해 새 workflow/새 대화창/새 역할/새 상태판을 만들지 않는다.
 
 ## PASS / HOLD / FAIL
-- PASS: 중앙 identity gate 코드 + 실제 recovery audit 재검증.
-- PASS: stall 감지 → issue 처리 → 기존 audit 재-dispatch → audit 성공의 실제 연속 실행 증거 확보.
-- PASS: 새 대화창/새 역할/새 이름 생성 없이 기존 구조만 재사용.
-- HOLD: legacy permanent-number/other-sector ledger 복구는 계속 미완료.
-- HOLD: cross-repository target apply/read-back/test transport는 아직 미완료.
-- FAIL 없음: 이번 회차 새 무단 대화창/이름 변경 실행 없음.
+- PASS: 대화창/이름 임의 생성·변경 금지가 문구 수준을 넘어 실제 CI deny fixture로 검증됨.
+- PASS: 기존 상태파일 변경도 identity/structure audit를 다시 실행하도록 trigger 범위 보완.
+- PASS: stall 감지→기존 recovery 재실행 경로 정상.
+- HOLD: legacy permanent-number/other-sector ledger 복구.
+- HOLD: cross-repository target apply/read-back/test transport.
+- FAIL 없음: 이번 회차 무단 새 대화창/이름/역할 생성 없음.
 
 ## 정확한 다음 restart point
-1. EMAIL_COLLECTION 44% 체크포인트에서 번호가 직접 적힌 과거 customer ledger/handoff record만 계속 추적한다.
-2. SEM-002..SEM-070 및 DEF/SHP/CAR/ROB/BAT 실제 영구번호행이 확인될 때만 기존 번호에 연결한다.
-3. cross-repository target transport는 canonical revision `3f0c83fe635a4067354e8456`에서 계속하고, 실제 target write→read-back→test 증거 전에는 PASS하지 않는다.
-4. identity gate와 stall monitor는 기존 workflow에서 계속 검증하며 새 workflow/대화창/역할/이름을 만들지 않는다.
-5. 완료 단계는 반복하지 않고 우선순위의 다음 미완료 단계로 이동한다.
+1. 완료한 structure preflight/run은 반복하지 않는다.
+2. EMAIL_COLLECTION 44%에서 기존 4개 HOLD fingerprint의 직접 번호 ledger/handoff 매칭부터 계속한다.
+3. SEM-002..070 및 DEF/SHP/CAR/ROB/BAT 실제 번호행을 직접 증거로만 회수한다.
+4. cross-repository transport가 실행 가능해지면 canonical revision `3f0c83fe635a4067354e8456`을 실제 target 1개에 write→read-back→test한다.
+5. 기존 stall monitor를 계속 1차 감시로 두고 실패/누락 시 이 자동화가 2차 복구한다.
 
 사용자 역할: 관찰자. 재설명·복사/붙여넣기·터미널·대화창 선택·반복 테스트를 요구하지 않는다.
