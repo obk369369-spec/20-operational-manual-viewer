@@ -48,7 +48,7 @@ jobs:
         run: |
           set -euo pipefail
           TITLE='[WIC STALL] Observer heartbeat stale'
-          BODY="Observer status has not advanced for ${AGE_MIN} minutes. Existing recovery workflow is being re-dispatched from the saved restart point; unchanged evidence must not be repeated."
+          BODY="Observer status has not advanced for ${AGE_MIN} minutes. Existing recovery audit is being re-dispatched from the saved restart point; unchanged evidence must not be repeated."
           ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
           if [ -z "$ISSUE" ]; then
             gh issue create --title "$TITLE" --body "$BODY"
@@ -56,15 +56,15 @@ jobs:
             gh issue comment "$ISSUE" --body "$BODY"
           fi
 
-      - name: Re-dispatch existing integration recovery workflow
+      - name: Re-dispatch existing recovery audit
         if: steps.age.outputs.stale == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          gh workflow run cross-chat-feedback-audit.yml --ref "${GITHUB_REF_NAME}"
-          echo 'Recovery workflow dispatched from the existing repository; no new chat or new workflow created.'
+          gh workflow run rule-governance-audit.yml --ref "${GITHUB_REF_NAME}"
+          echo 'Existing recovery audit dispatched; no new chat, role, file, or workflow created.'
 
       - name: Close resolved stall issue
         if: steps.age.outputs.stale == 'false'
