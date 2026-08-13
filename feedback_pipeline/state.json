@@ -11,6 +11,11 @@
     ],
     "external_independent_verification": false,
     "feedback_checkpoints": {
+      "37a4a2166bb5e2a08a8c": {
+        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
+        "last_stage": "TARGET_REVISION_READ_APPLY",
+        "status": "HOLD"
+      },
       "b6acdbfd3bc4d0de1b66": {
         "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
         "last_stage": "TARGET_REVISION_READ_APPLY",
@@ -75,7 +80,7 @@
       }
     }
   },
-  "last_context_cursor": "2026-08-13T12:08:38+09:00",
+  "last_context_cursor": "2026-08-13T13:39:00+09:00",
   "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
   "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "pipeline_status": "ACTIVE",
@@ -99,7 +104,8 @@
     "dc42d6f20b042305490b",
     "a783a76f2537c6c907ca",
     "f2aeb4e8f5fac3c9618f",
-    "b6acdbfd3bc4d0de1b66"
+    "b6acdbfd3bc4d0de1b66",
+    "37a4a2166bb5e2a08a8c"
   ],
   "schema_version": 2,
   "work_gate": {

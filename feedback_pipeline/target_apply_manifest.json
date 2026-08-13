@@ -1,17 +1,47 @@
 {
-  "canonical_revision": "11f7a751685aeaaf10cab428",
-  "feedback_id": "b6acdbfd3bc4d0de1b66",
-  "generated_at_utc": "2026-08-13T03:21:14.169175+00:00",
+  "canonical_revision": "3f0c83fe635a4067354e8456",
+  "feedback_id": "37a4a2166bb5e2a08a8c",
+  "generated_at_utc": "2026-08-13T05:21:31.956612+00:00",
   "schema_version": 1,
   "targets": {
+    "EMAIL_DB": {
+      "canonical_revision": "3f0c83fe635a4067354e8456",
+      "decision": "APPLY_CHANGED_SCOPE",
+      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "status": "HOLD_TARGET_APPLY"
+    },
     "TOOL001": {
-      "canonical_revision": "11f7a751685aeaaf10cab428",
+      "canonical_revision": "3f0c83fe635a4067354e8456",
+      "decision": "APPLY_CHANGED_SCOPE",
+      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "status": "HOLD_TARGET_APPLY"
+    },
+    "TOOL002": {
+      "canonical_revision": "3f0c83fe635a4067354e8456",
       "decision": "APPLY_CHANGED_SCOPE",
       "reason": "cross-repository target write/read-back/test has not executed yet",
       "status": "HOLD_TARGET_APPLY"
     },
     "TOOL006": {
-      "canonical_revision": "11f7a751685aeaaf10cab428",
+      "canonical_revision": "3f0c83fe635a4067354e8456",
+      "decision": "APPLY_CHANGED_SCOPE",
+      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "status": "HOLD_TARGET_APPLY"
+    },
+    "TOOL007": {
+      "canonical_revision": "3f0c83fe635a4067354e8456",
+      "decision": "APPLY_CHANGED_SCOPE",
+      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "status": "HOLD_TARGET_APPLY"
+    },
+    "TOOL037": {
+      "canonical_revision": "3f0c83fe635a4067354e8456",
+      "decision": "APPLY_CHANGED_SCOPE",
+      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "status": "HOLD_TARGET_APPLY"
+    },
+    "WORK_GATE": {
+      "canonical_revision": "3f0c83fe635a4067354e8456",
       "decision": "APPLY_CHANGED_SCOPE",
       "reason": "cross-repository target write/read-back/test has not executed yet",
       "status": "HOLD_TARGET_APPLY"

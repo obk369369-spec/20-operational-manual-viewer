@@ -504,6 +504,31 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
   "records": [
     {
       "active": true,
+      "classification": "PRIORITY_CHANGE",
+      "feedback_id": "37a4a2166bb5e2a08a8c",
+      "impacted_layers": [
+        "GLOBAL",
+        "WORKGROUP",
+        "TOOL_OR_DOMAIN_OVERRIDE",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다.",
+      "supersedes": [
+        "f2aeb4e8f5fac3c9618f"
+      ],
+      "targets": [
+        "CENTRAL",
+        "EMAIL_DB",
+        "TOOL001",
+        "TOOL002",
+        "TOOL006",
+        "TOOL007",
+        "TOOL037",
+        "WORK_GATE"
+      ]
+    },
+    {
+      "active": true,
       "classification": "CONSTRAINT",
       "feedback_id": "b6acdbfd3bc4d0de1b66",
       "impacted_layers": [
@@ -519,7 +544,7 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       ]
     },
     {
-      "active": true,
+      "active": false,
       "classification": "PRIORITY_CHANGE",
       "feedback_id": "f2aeb4e8f5fac3c9618f",
       "impacted_layers": [
