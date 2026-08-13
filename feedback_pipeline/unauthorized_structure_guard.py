@@ -108,7 +108,7 @@ def run_fixtures() -> str:
 """
     cases = {
         "missing_provenance": StructuralProposal("CREATE_CONVERSATION", "chat-x", "", ""),
-        "not_in_record": StructuralProposal("CREATE_CONVERSATION", "chat-x", "새 대화창을 만들어.", "user:999"),
+        "not_in_record": StructuralProposal("CREATE_CONVERSATION", "chat-x", "새 고객관리 대화창을 만들어.", "user:999"),
         "negative_rename": StructuralProposal("RENAME_CONVERSATION", "chat-x", "기존 대화창 이름 변경은 하지 마.", "user:2"),
         "negative_registry": StructuralProposal("CREATE_REGISTRY", "registry-x", "새 registry를 임의로 만들지 마.", "user:3"),
         "explicit_create": StructuralProposal("CREATE_CONVERSATION", "chat-test", "테스트용 새 대화창을 만들어.", "user:1"),
