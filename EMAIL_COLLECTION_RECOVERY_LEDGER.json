@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "purpose": "privacy-safe central recovery ledger for legacy email-collection customer-number and duplicate-history reconciliation",
-  "updated_kst": "2026-08-13 20:04",
+  "updated_kst": "2026-08-13 21:06",
   "assignment_policy": "Do not assign or renumber customer IDs from this ledger alone. Match against existing permanent-number evidence first.",
   "confirmed_existing_number_evidence": {
     "SEM": ["SEM-001", "SEM-071..SEM-080"],
@@ -21,15 +21,22 @@
       "evidence": [
         "File Library: 보고서 (RAIL COMPOSITES MARKET) - 한국탄소산업진흥원 송현도님.eml",
         "File Library: Re Fwd 8월 7일 견적서 ( 수처리·수이용 기술과 시장 2022 외 7종) 첨부 , 한국탄소산업진흥원 송현도님.eml",
-        "File Library: 7번 고객 컨택 판단 도구 6.txt"
+        "File Library: 7번 고객 컨택 판단 도구 6.txt",
+        "Connected Gmail: 2021-11-17 송현도님 자료 구매 희망 리스트",
+        "Connected Gmail: 2022-03-10 송현도 팀장 주문건",
+        "Connected Gmail: 2026-03-23 문의 분야 자료 안내 (한국탄소산업진흥원 송현도 책임님 드림)"
       ],
       "details": [
         "2021 purchase-order history already recovered",
+        "2021-11-17 purchase-wish-list handoff found in connected Gmail",
+        "2022-03-10 order handoff found in connected Gmail",
         "2023-08-24 additional purchase order for quoted technical books confirmed",
         "2023-08-31 report delivery to the verified customer email confirmed",
+        "2026-03-23 outbound material-guide send evidence found in connected Gmail",
         "historical record classifies this identity as repeated real purchaser"
       ],
-      "history_status": "REPEATED_PURCHASE_AND_DELIVERY_CONFIRMED",
+      "history_status": "REPEATED_PURCHASE_HANDOFF_DELIVERY_AND_SENT_GUIDE_CONFIRMED",
+      "bounce_status": "NO_MATCHING_BOUNCE_EVIDENCE_FOUND_IN_CONNECTED_GMAIL_SEARCH_2026_08_13_2106",
       "number_status": "HOLD_MATCH_EXISTING_CAR_NUMBER"
     },
     {
@@ -76,16 +83,18 @@
     "email identity where available in private source",
     "historical purchase/quote thread continuity"
   ],
-  "duplicate_match_search_result_2026_08_13_2004": {
+  "duplicate_match_search_result_2026_08_13_2106": {
     "049d00b489ed83abb228": "NO_VERIFIED_PERMANENT_NUMBER_MATCH_YET",
     "593e15964842643ee5c0": "NO_VERIFIED_PERMANENT_NUMBER_MATCH_YET",
     "cbc24788f66662dc07f2": "NO_VERIFIED_PERMANENT_NUMBER_MATCH_YET",
-    "note": "File Library searches recovered richer purchase/delivery history but no reliable CAR/SEM permanent-number label for these three identities. No new number assigned."
+    "sem_002_070_range_search": "NO_ADDITIONAL_VERIFIED_NUMBERED_ROWS_RECOVERED_IN_THIS_PASS",
+    "other_sector_number_search": "NO_VERIFIED_DEF_SHP_CAR_ROB_BAT_NUMBERED_ROWS_RECOVERED_IN_THIS_PASS",
+    "note": "Searches added real sent/handoff history for the CAR held identity but still did not produce a reliable permanent-number label. No new number assigned."
   },
   "next_restart_point": [
     "Continue permanent-number match search for the three held identities using legacy customer ledgers and handoff records, not generic email threads already processed.",
     "Continue SEM-002..SEM-070 recovery without renumbering SEM-071..SEM-080.",
     "Recover first verified actual rows for DEF/SHP/CAR/ROB/BAT.",
-    "Add bounce/sent history only when tied to a verified permanent or held candidate identity."
+    "Search sent/bounce history for additional held or permanent identities only after identity linkage is verified."
   ]
 }
