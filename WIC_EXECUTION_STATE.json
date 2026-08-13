@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 11:18",
+  "updated_kst": "2026-08-13 11:24",
   "scope": "WIC post-structure execution restart state",
   "structure_status": "PASS_INTERNAL_GITHUB_E2E",
   "post_structure_priority": ["email_collection","tool_7_customer_contact","tool_1_intermediate_final_guide","metadata_37","tool_13_excel_upload","tool_6_toc","tool_2_bid","publisher_28_31","remaining_registered_tools_and_chats"],
@@ -11,7 +11,8 @@
     "integration-core implementation/rebuild/revalidation",
     "TOOL002 business E2E re-run",
     "TOOL028-031 guessed repository creation/search while repository inventory is unchanged",
-    "TOOL027-003 repeated repository-level inventory unless repository contents or blockers change"
+    "TOOL027-003 repeated repository-level inventory unless repository contents or blockers change",
+    "Work gate reimplementation while run 31660617974 evidence remains valid"
   ],
   "current_evidence": {
     "structure_pass_run": "31642596092",
@@ -22,6 +23,13 @@
     "tool007_adapter_artifact": "9159365670",
     "remaining_registered_repository_inventory_status": "COMPLETE_TO_TOOL003",
     "tool009_validation_classification": "INTERNAL_PLATFORM_ONLY_NOT_BUSINESS_E2E",
+    "work_gate_commit": "fbcaeaff8b0ffcace7733726e6d8c04935978f17",
+    "work_gate_run": "31660617974",
+    "work_gate_job": "94324484253",
+    "work_gate_artifact": "9166037482",
+    "work_gate_artifact_digest": "sha256:0ae387fe6b6f448a37ec800b22d5567bbdd63e7d98966ffac3bc0e5137e188ca",
+    "work_gate_verified_eligible": ["tool001_business_e2e", "tool013_business_e2e"],
+    "work_gate_verified_deferred": ["email_collection", "tool007_business_e2e", "tool037_business_e2e", "tool006_business_e2e"],
     "external_independent_verification": false
   },
   "current_blockers": {
@@ -102,6 +110,6 @@
     "credit_waste_rule": "Never spend Work credit on rule rereading, repository inventory, missing source evidence, or a lane still executable in Chat/GitHub/ordinary runtime.",
     "work_exit_rule": "Before Work credit/run ends, persist last successful checkpoint, remaining blocker, modified assets, evidence, rollback point, and exact next restart step so a later Work session never restarts from zero."
   },
-  "restart_point": "Run the deterministic work-gate audit. If it passes, only TOOL001 browser E2E and TOOL013 actual .xlsx injection E2E are Work candidates. Continue EMAIL_COLLECTION -> TOOL007 -> TOOL037 -> TOOL006 only when their missing official input/runner/golden evidence appears; do not spend Work credit on those source blockers.",
+  "restart_point": "Pre-Work gate is verified. Do not rebuild/re-audit it. Until a lower-cost blocker changes, do not revisit EMAIL_COLLECTION/TOOL007/TOOL037/TOOL006. When Work is explicitly entered, execute TOOL001 browser business E2E first, then TOOL013 actual .xlsx injection E2E. Before each Work session ends, persist a WORK_EXIT_RESUMABLE checkpoint using artifact 9166037482 and resume later from exact_next_step only.",
   "completion_policy": "Business PASS requires actual business input -> execution -> output -> expected comparison with reusable evidence. Static, internal, or historical validation alone is not business PASS."
 }
