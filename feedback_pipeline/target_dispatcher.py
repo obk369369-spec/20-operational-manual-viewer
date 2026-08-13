@@ -77,6 +77,31 @@ def validate_plan(plan: dict) -> None:
             raise AssertionError(f"unknown action: {action['action']}")
 
 
+def validate_against_inputs(plan: dict, manifest: dict, adapters: dict, revision_cache: dict) -> None:
+    revision = manifest["canonical_revision"]
+    repository_targets = adapters.get("repository_targets", {})
+    lane_targets = adapters.get("lane_targets", {})
+    cached_targets = revision_cache.get("targets", {})
+    actions = {x["target"]: x for x in plan["actions"]}
+    holds = {x["target"]: x for x in plan["holds"]}
+
+    expected_targets = set(manifest.get("targets", {}))
+    actual_targets = set(actions) | set(holds)
+    assert actual_targets == expected_targets, "dispatch plan target set differs from manifest"
+
+    for target, item in manifest.get("targets", {}).items():
+        decision = item.get("decision")
+        cached = cached_targets.get(target, {})
+        if decision == "SKIP_UNCHANGED" or cached.get("applied_revision") == revision:
+            assert actions[target]["action"] == "SKIP_UNCHANGED"
+        elif target in repository_targets:
+            assert actions[target]["action"] == "REPOSITORY_REVISION_ACK"
+        elif target in lane_targets:
+            assert actions[target]["action"] == "LANE_ACK"
+        else:
+            assert holds[target]["status"] == "HOLD_NO_VERIFIED_ADAPTER"
+
+
 def main() -> None:
     manifest = load(MANIFEST)
     adapters = load(ADAPTERS)
@@ -84,16 +109,10 @@ def main() -> None:
     assert revision_cache["schema_version"] == 1
     plan = build_plan(manifest, adapters, revision_cache)
     validate_plan(plan)
+    validate_against_inputs(plan, manifest, adapters, revision_cache)
     out = ROOT / "target_dispatch_plan.json"
     out.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    by_target = {x["target"]: x for x in plan["actions"]}
-    for target in ("TOOL001", "TOOL002", "TOOL006", "TOOL013"):
-        assert by_target[target]["action"] == "SKIP_UNCHANGED"
-    for target in ("EMAIL_DB", "TOOL007", "TOOL037", "WORK_GATE"):
-        assert by_target[target]["action"] == "LANE_ACK"
-    assert plan["holds"] == []
-    print("PASS: revision-cache multi-target SKIP_UNCHANGED + verified lane ACK including TOOL007")
+    print("PASS: dispatch plan matches current manifest, adapter registry, and revision cache")
 
 
 if __name__ == "__main__":
