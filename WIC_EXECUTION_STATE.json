@@ -3,16 +3,9 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 03:56",
-  "scope": "WIC central integration, chat identity lock, unauthorized-structure preflight, stall recovery, priority restart state, email legacy-data recovery, and verified target/lane application",
-  "structure_status": "PARTIAL_PASS_WITH_STALL_RECOVERY_VERIFIED_EMAIL46_TOOL001_TOOL007_VERIFIED_TOOL013_STRUCTURE_ACK_ONLY",
-  "state_sync": {
-    "status": "SYNCHRONIZED_FROM_EXISTING_CENTRAL_FILES",
-    "email_state_path": "EMAIL_COLLECTION_EXECUTION_STATE.json",
-    "email_state_updated_kst": "2026-08-14 03:56",
-    "email_progress_percent": 46,
-    "live_observer_path": "WIC_LIVE_OBSERVER_STATUS.md"
-  },
+  "updated_kst": "2026-08-14 04:55",
+  "scope": "WIC central integration, chat identity lock, stall recovery, priority restart, email legacy-data recovery, and functional evidence gating",
+  "structure_status": "PARTIAL_PASS_STALL_RECOVERY_VERIFIED_EMAIL46_TOOL001_TOOL007_VERIFIED_OTHER_FUNCTIONAL_GATES_HOLD",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": [
@@ -22,111 +15,88 @@
       "unverified UI title remains UI_TITLE_HOLD",
       "unauthorized new chat, role, rename, alias adoption, automatic move, or title mutation is DENY/HOLD"
     ],
-    "ci_workflow": ".github/workflows/rule-governance-audit.yml",
-    "latest_verified_run": "31732065325",
-    "latest_verified_result": "success",
-    "limitation": "GitHub cannot technically disable ChatGPT UI controls; enforcement scope is WIC routing, automation behavior, central state changes and CI acceptance."
+    "limitation": "GitHub cannot technically disable ChatGPT UI controls; enforcement covers WIC routing, automation behavior, central-state mutation and CI acceptance."
   },
   "stall_recovery": {
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
     "schedule": "*/5 * * * *",
     "threshold_minutes": 35,
-    "latest_observed_run": "31732051349",
-    "latest_observed_job": "94554625893",
+    "latest_observed_run": "31737496641",
+    "latest_observed_job": "94572553554",
     "latest_observed_result": "success",
-    "latest_observed_event": "schedule",
-    "latest_observed_at_kst": "2026-08-14 03:41",
+    "latest_observed_at_kst": "2026-08-14 04:46",
     "stall_detected": true,
-    "primary_recovery_result": "STALE_BRANCH_EXECUTED_STALL_ISSUE_AND_EXISTING_AUDIT_REDISPATCH",
-    "redispatched_audit_run": "31732065325",
+    "primary_recovery_result": "STALE_BRANCH_EXECUTED_AND_EXISTING_AUDIT_REDISPATCHED",
+    "redispatched_audit_run": "31737510955",
     "redispatched_audit_result": "success",
-    "secondary_recovery": "This run continued from the saved restart point after the monitor redispatch and updated the existing central state; no new recovery workflow/chat/file was created."
+    "secondary_recovery": "This automation resumed from the existing restart point and continued target verification without creating a new chat, workflow, repository, or status board."
   },
-  "latest_feedback": {
-    "feedback_id": "37a4a2166bb5e2a08a8c",
-    "canonical_revision": "3f0c83fe635a4067354e8456",
-    "canonical_commit": "59f388df9601503cd205885f6fa4e839aacd9f03",
-    "target_manifest": "feedback_pipeline/target_apply_manifest.json",
-    "verified_targets": {
-      "TOOL001": {
-        "mode": "REPOSITORY_TARGET",
-        "repository": "obk369369-spec/01-auto-guide-v1",
-        "apply_commit": "9f2b1297387d4089cdb55973a89bf4b0349d110f",
-        "read_back": "VERIFIED",
-        "target_test_run": "31718378457",
-        "target_test_result": "success"
-      },
-      "TOOL007": {
-        "mode": "CENTRAL_LANE_ACK",
-        "repository_required": false,
-        "implementation_path": "customer_pipeline/tool7_contact_judgment.py",
-        "read_back": "VERIFIED",
-        "verification_run": "31732065325",
-        "verification_result": "success"
-      },
-      "TOOL013": {
-        "mode": "EXISTING_REPOSITORY_TARGET_STATE",
-        "repository": "obk369369-spec/13-excel-upload",
-        "target_state_path": "WIC_TARGET_APPLY_STATE.json",
-        "target_state_status": "APPLIED_TEST_PASS_INTERNAL_GITHUB",
-        "target_state_revision": "fa09bcdec96669d97ef3a18f",
-        "evidence_result": "STRUCTURE_PASS",
-        "functional_e2e_status": "HOLD_NOT_PROVEN_BY_STRUCTURE_PASS_ALONE"
-      }
-    }
+  "verified_completed": {
+    "TOOL001": "repository target write/read-back/test previously verified",
+    "TOOL007": "central-lane acknowledgement and deterministic integration verification previously verified"
   },
-  "this_run_actual_changes": [
-    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json.",
-    "Confirmed monitor run 31732051349 entered the stale branch and successfully redispatched existing rule-governance audit run 31732065325.",
-    "Continued EMAIL_COLLECTION from 46% with a direct-number-only File Library pass; no new permanent-number row was found and no number was inferred.",
-    "Checked TOOL037 route/manifest after the unchanged EMAIL_COLLECTION slice; TOOL037 remains HOLD because no target-appropriate implementation or functional evidence was found in the existing central tree/org search.",
-    "Checked existing TOOL013 target repository and found WIC_TARGET_APPLY_STATE.json with internal GitHub STRUCTURE_PASS evidence; this is recorded as structure/reference acknowledgement only, not functional E2E PASS.",
-    "Updated EMAIL_COLLECTION_EXECUTION_STATE.json in commit b283a92af1dbf341049dcb05e722d57a09645fa0."
-  ],
-  "verified_completed": [
-    "canonical feedback ingestion and read-back",
-    "chat identity gate implementation and CI verification",
-    "stall monitor stale detection plus existing audit redispatch",
-    "SEM-001 and SEM-071..SEM-080 preservation without renumbering",
-    "EMAIL_COLLECTION checkpoint at 46% with direct-evidence-only numbering",
-    "TOOL001 repository target write/read-back/test",
-    "TOOL007 central-lane acknowledgement and deterministic integration verification"
-  ],
-  "do_not_repeat": [
-    "integration-core implementation/rebuild already completed",
-    "existing Antigravity RULE_PACKET/STATE_PACKET extraction",
-    "old stall-monitor failure diagnosis",
-    "unauthorized-structure preflight implementation",
-    "SEM-001 rediscovery",
-    "SEM-071 through SEM-080 rediscovery",
-    "interaction-only legacy searches that do not contain permanent-number evidence",
-    "TOOL001 transport proof",
-    "TOOL007 repository discovery"
-  ],
   "email_collection_checkpoint": {
     "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
     "progress_percent": 46,
     "source_of_truth": "EMAIL_COLLECTION_EXECUTION_STATE.json",
     "latest_verified_update_kst": "2026-08-14 03:56",
     "held_candidate_count": 6,
-    "restart_point": "Resume only with number-bearing legacy ledgers/handoff exports for the six HOLD identities and SEM-002..SEM-070, then actual DEF/SHP/CAR/ROB/BAT numbered rows. Do not infer numbers."
+    "restart_point": "Resume only when new number-bearing legacy ledgers/handoff exports are available for the six HOLD identities, SEM-002..SEM-070, or DEF/SHP/CAR/ROB/BAT. Do not repeat interaction-only searches or infer numbers."
   },
-  "blockers": {
-    "TOOL037": "Existing routing defines TOOL037, but this run found no target-appropriate implementation/repository evidence sufficient for functional PASS.",
-    "TOOL013_FUNCTIONAL_E2E": "Existing target state proves internal GitHub structure/reference validation only; actual Excel upload input->execution->output->expected comparison remains unproven in this run.",
-    "LEGACY_NUMBER_LEDGER_GAP": "No direct number-bearing rows were found for SEM-002..SEM-070, Sangbo held identities, or verified DEF/SHP/CAR/ROB/BAT customer rows.",
-    "INDEPENDENT_VERIFICATION": "GitHub internal validation is not third-party independent verification."
+  "priority_packages": {
+    "TOOL037": {
+      "status": "HOLD",
+      "reason": "Organization-wide code search again found no target-appropriate implementation or functional evidence."
+    },
+    "TOOL013": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/13-excel-upload",
+      "pages_status": "built",
+      "existing_ci": "STRUCTURE_ONLY",
+      "evidence": "validate-static-tool.mjs checks HTML controls and script parseability only; it does not perform file-input -> execution -> output -> expected comparison.",
+      "this_run_attempt": "Headless Chromium attempt against the live GitHub Pages URL was blocked by the runtime organization policy; CDN xlsx dependency was also unreachable from the local runtime, so no functional PASS was claimed."
+    },
+    "TOOL006": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/06-toc-check",
+      "evidence": "Latest GitHub platform evidence run succeeds, but current evidence lane is internal/static validation and is insufficient for functional TOC input->output PASS."
+    },
+    "TOOL002": {
+      "status": "HOLD_FUNCTIONAL_E2E_CORRECTED_FALSE_COMPLETE_RISK",
+      "repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+      "latest_run": "31617559130",
+      "latest_run_result": "success",
+      "correction": "The commit/run title says E2E, but the workflow actually invokes validate-static-tool.mjs and deploy/archive jobs only. Therefore this evidence is structural/platform validation, not functional bidding-tool E2E."
+    }
   },
+  "this_run_actual_changes": [
+    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json.",
+    "Verified stall monitor run 31737496641 at 04:46 KST entered stale handling and successfully redispatched existing governance audit run 31737510955, which also succeeded.",
+    "Rechecked TOOL037 and preserved HOLD because no existing functional implementation evidence was found.",
+    "Inspected TOOL013 repository, Pages status, workflow and validation script; confirmed its current CI proves structure only, not functional E2E.",
+    "Attempted TOOL013 live functional execution with headless Chromium; runtime policy blocked the GitHub Pages domain and local runtime could not resolve the external xlsx CDN, so no functional PASS was asserted.",
+    "Inspected TOOL006 latest evidence and kept functional E2E HOLD because current evidence is internal/static.",
+    "Inspected TOOL002 successful run 31617559130 and corrected a false-complete risk: despite the E2E wording in the commit title, the workflow only performs static validation/deploy/archive, so TOOL002 functional E2E is HOLD."
+  ],
+  "do_not_repeat": [
+    "identity/NO_NEW_CHAT implementation unless new failure evidence appears",
+    "old stall-monitor failure diagnosis",
+    "SEM-001 or SEM-071..SEM-080 rediscovery",
+    "interaction-only legacy searches without permanent-number evidence",
+    "TOOL001 transport proof",
+    "TOOL007 repository discovery",
+    "treating static HTML validation or successful Pages deployment as functional E2E"
+  ],
   "work_gate": {
     "work_required_now": false,
-    "reason": "Current remaining work is still executable through connected File Library/GitHub lanes; no concrete Work-only blocker is proven."
+    "reason": "The current blockers are evidence/runtime access gaps that can continue to be investigated through existing GitHub and ordinary runtime lanes; no proven Work-only blocker yet."
   },
   "restart_point": [
-    "Do not rerun completed identity/structure/stall/TOOL001/TOOL007 packages unless new failure evidence appears.",
-    "EMAIL_COLLECTION remains 46% HOLD on direct permanent-number evidence; avoid repeating interaction-only searches.",
-    "Next executable package: TOOL037 target discovery/functional evidence if an existing implementation can be located; otherwise preserve HOLD and continue TOOL013 functional E2E using the existing 13-excel-upload repository/workflow without creating new structure.",
-    "After TOOL013, continue TOOL006 then TOOL002 using existing repositories/adapters/tests only.",
-    "Keep existing stall monitor as primary recovery and this run path as secondary recovery."
+    "Do not rerun completed identity/structure/TOOL001/TOOL007 packages unless new failure evidence appears.",
+    "EMAIL_COLLECTION remains 46% and resumes only on new direct-number source material.",
+    "Keep TOOL037 HOLD until an existing implementation/evidence target is found.",
+    "For TOOL013/TOOL006/TOOL002, require actual input -> execution -> output -> expected comparison; static-validation success is not PASS.",
+    "Next executable work: locate an existing browser/runtime E2E harness or deterministic engine-level test inside the existing TOOL013/TOOL006/TOOL002 repositories before modifying implementation. Do not create new workflow/chat/repository merely to manufacture evidence."
   ],
-  "completion_policy": "PASS requires actual execution evidence. Storage/read-back or STRUCTURE_PASS alone does not prove functional behavior. New chat/title/role creation is never an acceptable recovery mechanism without explicit user approval."
+  "completion_policy": "PASS requires actual execution evidence. Storage/read-back, STRUCTURE_PASS, successful static validation, or successful Pages deployment alone do not prove functional behavior."
 }
