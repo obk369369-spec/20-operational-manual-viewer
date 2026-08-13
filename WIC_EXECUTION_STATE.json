@@ -3,18 +3,12 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 04:55",
+  "updated_kst": "2026-08-14 04:56",
   "scope": "WIC central integration, chat identity lock, stall recovery, priority restart, email legacy-data recovery, and functional evidence gating",
   "structure_status": "PARTIAL_PASS_STALL_RECOVERY_VERIFIED_EMAIL46_TOOL001_TOOL007_VERIFIED_OTHER_FUNCTIONAL_GATES_HOLD",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
-    "rules": [
-      "NO_NEW_CHAT",
-      "EXPLICIT_NEW_CHAT_APPROVAL defaults FALSE",
-      "logical role is not a verified UI title",
-      "unverified UI title remains UI_TITLE_HOLD",
-      "unauthorized new chat, role, rename, alias adoption, automatic move, or title mutation is DENY/HOLD"
-    ],
+    "rules": ["NO_NEW_CHAT","EXPLICIT_NEW_CHAT_APPROVAL defaults FALSE","logical role is not a verified UI title","unverified UI title remains UI_TITLE_HOLD","unauthorized new chat, role, rename, alias adoption, automatic move, or title mutation is DENY/HOLD"],
     "limitation": "GitHub cannot technically disable ChatGPT UI controls; enforcement covers WIC routing, automation behavior, central-state mutation and CI acceptance."
   },
   "stall_recovery": {
@@ -44,59 +38,37 @@
     "restart_point": "Resume only when new number-bearing legacy ledgers/handoff exports are available for the six HOLD identities, SEM-002..SEM-070, or DEF/SHP/CAR/ROB/BAT. Do not repeat interaction-only searches or infer numbers."
   },
   "priority_packages": {
-    "TOOL037": {
-      "status": "HOLD",
-      "reason": "Organization-wide code search again found no target-appropriate implementation or functional evidence."
-    },
-    "TOOL013": {
-      "status": "HOLD_FUNCTIONAL_E2E",
-      "repository": "obk369369-spec/13-excel-upload",
-      "pages_status": "built",
-      "existing_ci": "STRUCTURE_ONLY",
-      "evidence": "validate-static-tool.mjs checks HTML controls and script parseability only; it does not perform file-input -> execution -> output -> expected comparison.",
-      "this_run_attempt": "Headless Chromium attempt against the live GitHub Pages URL was blocked by the runtime organization policy; CDN xlsx dependency was also unreachable from the local runtime, so no functional PASS was claimed."
-    },
-    "TOOL006": {
-      "status": "HOLD_FUNCTIONAL_E2E",
-      "repository": "obk369369-spec/06-toc-check",
-      "evidence": "Latest GitHub platform evidence run succeeds, but current evidence lane is internal/static validation and is insufficient for functional TOC input->output PASS."
-    },
-    "TOOL002": {
-      "status": "HOLD_FUNCTIONAL_E2E_CORRECTED_FALSE_COMPLETE_RISK",
-      "repository": "obk369369-spec/02-auto-bid-narajangter-v1",
-      "latest_run": "31617559130",
-      "latest_run_result": "success",
-      "correction": "The commit/run title says E2E, but the workflow actually invokes validate-static-tool.mjs and deploy/archive jobs only. Therefore this evidence is structural/platform validation, not functional bidding-tool E2E."
-    }
+    "TOOL037": {"status":"HOLD","reason":"Organization-wide code search again found no target-appropriate implementation or functional evidence."},
+    "TOOL013": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/13-excel-upload","pages_status":"built","existing_ci":"STRUCTURE_ONLY","evidence":"validate-static-tool.mjs checks HTML controls and script parseability only; it does not perform file-input -> execution -> output -> expected comparison.","this_run_attempt":"Headless Chromium against live GitHub Pages was blocked by runtime organization policy; the external xlsx CDN was also unreachable from the local runtime, so no functional PASS was claimed."},
+    "TOOL006": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/06-toc-check","evidence":"Latest successful GitHub platform evidence is internal/static validation and does not prove functional TOC input->output behavior."},
+    "TOOL002": {"status":"HOLD_FUNCTIONAL_E2E_CORRECTED_FALSE_COMPLETE_RISK","repository":"obk369369-spec/02-auto-bid-narajangter-v1","latest_run":"31617559130","latest_run_result":"success","correction":"The commit/run title says E2E, but the workflow invokes validate-static-tool.mjs and deploy/archive jobs only; this is structural/platform validation, not functional bidding-tool E2E."}
   },
   "this_run_actual_changes": [
     "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json.",
     "Verified stall monitor run 31737496641 at 04:46 KST entered stale handling and successfully redispatched existing governance audit run 31737510955, which also succeeded.",
     "Rechecked TOOL037 and preserved HOLD because no existing functional implementation evidence was found.",
     "Inspected TOOL013 repository, Pages status, workflow and validation script; confirmed its current CI proves structure only, not functional E2E.",
-    "Attempted TOOL013 live functional execution with headless Chromium; runtime policy blocked the GitHub Pages domain and local runtime could not resolve the external xlsx CDN, so no functional PASS was asserted.",
+    "Attempted TOOL013 live functional execution with headless Chromium; runtime policy blocked GitHub Pages and the local runtime could not resolve the xlsx CDN, so no functional PASS was asserted.",
     "Inspected TOOL006 latest evidence and kept functional E2E HOLD because current evidence is internal/static.",
-    "Inspected TOOL002 successful run 31617559130 and corrected a false-complete risk: despite the E2E wording in the commit title, the workflow only performs static validation/deploy/archive, so TOOL002 functional E2E is HOLD."
+    "Inspected TOOL002 run 31617559130 and corrected a false-complete risk: despite E2E wording in the commit title, the workflow performs static validation/deploy/archive only.",
+    "Attempted to update existing WIC_LIVE_OBSERVER_STATUS.md; the write was blocked by the tool safety gate. The blocker is recorded here and the observer write is deferred rather than retried repeatedly in the same run."
   ],
-  "do_not_repeat": [
-    "identity/NO_NEW_CHAT implementation unless new failure evidence appears",
-    "old stall-monitor failure diagnosis",
-    "SEM-001 or SEM-071..SEM-080 rediscovery",
-    "interaction-only legacy searches without permanent-number evidence",
-    "TOOL001 transport proof",
-    "TOOL007 repository discovery",
-    "treating static HTML validation or successful Pages deployment as functional E2E"
-  ],
-  "work_gate": {
-    "work_required_now": false,
-    "reason": "The current blockers are evidence/runtime access gaps that can continue to be investigated through existing GitHub and ordinary runtime lanes; no proven Work-only blocker yet."
+  "blockers": {
+    "OBSERVER_WRITE": "Updating existing WIC_LIVE_OBSERVER_STATUS.md was blocked by the tool safety gate in this run; central execution state was updated and read back successfully.",
+    "TOOL037": "No target-appropriate implementation/functional evidence found.",
+    "TOOL013_FUNCTIONAL_E2E": "Live page/runtime access and external dependency access were blocked in this runtime; existing CI is structure-only.",
+    "TOOL006_FUNCTIONAL_E2E": "Current evidence lane is static/internal only.",
+    "TOOL002_FUNCTIONAL_E2E": "Successful run is static/platform validation only, not actual bidding behavior E2E."
   },
+  "do_not_repeat": ["identity/NO_NEW_CHAT implementation unless new failure evidence appears","old stall-monitor failure diagnosis","SEM-001 or SEM-071..SEM-080 rediscovery","interaction-only legacy searches without permanent-number evidence","TOOL001 transport proof","TOOL007 repository discovery","treating static HTML validation or successful Pages deployment as functional E2E","repeated observer write retries in the same run after safety-gate block"],
+  "work_gate": {"work_required_now":false,"reason":"Current blockers remain investigable through existing GitHub and ordinary runtime lanes; no proven Work-only blocker yet."},
   "restart_point": [
     "Do not rerun completed identity/structure/TOOL001/TOOL007 packages unless new failure evidence appears.",
     "EMAIL_COLLECTION remains 46% and resumes only on new direct-number source material.",
     "Keep TOOL037 HOLD until an existing implementation/evidence target is found.",
     "For TOOL013/TOOL006/TOOL002, require actual input -> execution -> output -> expected comparison; static-validation success is not PASS.",
-    "Next executable work: locate an existing browser/runtime E2E harness or deterministic engine-level test inside the existing TOOL013/TOOL006/TOOL002 repositories before modifying implementation. Do not create new workflow/chat/repository merely to manufacture evidence."
+    "Next executable work: locate an existing browser/runtime E2E harness or deterministic engine-level test inside the existing TOOL013/TOOL006/TOOL002 repositories before modifying implementation.",
+    "Retry WIC_LIVE_OBSERVER_STATUS.md update on a later run only if the safety gate permits; do not create a replacement observer file."
   ],
   "completion_policy": "PASS requires actual execution evidence. Storage/read-back, STRUCTURE_PASS, successful static validation, or successful Pages deployment alone do not prove functional behavior."
 }
