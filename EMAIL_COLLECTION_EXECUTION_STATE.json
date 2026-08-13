@@ -1,47 +1,47 @@
 {
-  "schema_version": 1,
-  "updated_kst": "2026-08-14 03:56",
-  "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
-  "progress_percent": 46,
-  "stall_detected": true,
-  "stall_reason": "Observer heartbeat remained unchanged from the 02:55 KST checkpoint long enough for WIC Stall Heartbeat Monitor run 31732051349 at 03:41 KST to enter the stale branch.",
-  "auto_resume": "PRIMARY_MONITOR_REDISPATCHED_AUDIT_AND_SECONDARY_RECOVERY_CONTINUED",
-  "last_verified_completed": [
-    "SEM-001 historical existence confirmed",
-    "SEM-071..SEM-080 preserved and centrally integrated as existing permanent IDs",
-    "six legacy interaction identities centrally fingerprinted without renumbering",
-    "Sangbo Park Ye Rim history strengthened from inquiry to approved subscription/billing/delivery flow",
-    "Sangbo Kim Jin Sol history linked to 2026 existing-customer ledger row 359 without assigning a permanent number"
-  ],
-  "this_run_actual_changes": [
-    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json.",
-    "Verified WIC Stall Heartbeat Monitor run 31732051349 detected stale observer state and successfully executed both stall-issue handling and the existing recovery-audit redispatch step.",
-    "Verified redispatched WIC Rule Governance Audit run 31732065325 completed successfully.",
-    "Executed a new File Library pass focused only on direct number-bearing legacy evidence for SEM-002..SEM-070, Sangbo held identities and DEF/SHP/CAR/ROB/BAT rows.",
-    "The search again returned SEM-071..SEM-080 preservation evidence and interaction history but no new direct permanent-number row, so no number was inferred or assigned.",
-    "Progress remains 46% because no new permanent-number row was recovered."
-  ],
-  "evidence": {
-    "recovery_ledger_path": "EMAIL_COLLECTION_RECOVERY_LEDGER.json",
-    "latest_stall_monitor_run": "31732051349",
-    "latest_stall_monitor_job": "94554625893",
-    "latest_stall_monitor_result": "success",
-    "latest_recovery_audit_run": "31732065325",
-    "latest_recovery_audit_result": "success",
-    "file_library_findings": [
-      "34번 공통 보완 추가 — 이메일 수집(분야별) 고객 DB 구축·발송 정렬·2단계 연락 적합도·관심 유도 멘트·기존 고객 승계 통합 규칙 V4.0 최종판.txt still directly confirms SEM-071..SEM-080 only",
-      "No directly numbered SEM-002..SEM-070 row found in this pass",
-      "No directly numbered Sangbo permanent-ID row found in this pass",
-      "No directly numbered DEF/SHP/CAR/ROB/BAT customer row found in this pass"
+  "schema_version": 2,
+  "updated_kst": "2026-08-14 06:58",
+  "status": "RULE_ONLY_CONSOLIDATION_PASS",
+  "scope": "Rules only. Historical chat transcripts, customer records, permanent-number recovery, and past handoff/message history are outside this completion scope.",
+  "single_source": "EMAIL_COLLECTION_COMMON_RULES.md",
+  "single_source_commit": "18c3816445eaa14349e1d9f14b0196d5f4d519bd",
+  "rule_consolidation": {
+    "status": "PASS",
+    "covered": [
+      "latest user instruction precedence",
+      "university/professor default exclusion",
+      "practical research/business personnel priority",
+      "name+email+title mandatory",
+      "department OR responsibility minimum one",
+      "phone optional when unavailable",
+      "official-source verification",
+      "duplicate suppression",
+      "row integrity",
+      "chat identity protection"
+    ],
+    "retired_conflicts": [
+      "old seven-field-all-mandatory rule",
+      "phone mandatory rule",
+      "university/professor default inclusion",
+      "department AND responsibility both mandatory"
     ]
   },
-  "remaining": [
-    "Match all six held candidates against existing permanent IDs using direct number-bearing legacy ledgers/handoff records.",
-    "Recover SEM-002..SEM-070 if direct evidence exists, prioritizing number-bearing source material rather than interaction-only records.",
-    "Recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT.",
-    "Recover additional historical handoff/duplicate and sent/bounce history after identity linkage is verified.",
-    "Collision-check SEM-081 before any future assignment."
-  ],
-  "restart_point": "Do not repeat interaction-only searches. Resume with number-bearing legacy ledgers/handoff exports for the six HOLD identities and SEM-002..SEM-070; if the next direct-number slice is unchanged, continue the next executable priority package while preserving this HOLD.",
-  "estimated_completion": "HOLD — permanent-number sources remain incomplete, so a reliable finish time cannot yet be measured."
+  "unified_output_schema": {
+    "user_table": "분야 | 기관 | 부서 | 이름 | 직책 | 담당업무 | 이메일 | 전화 | 검증결과 | 출처",
+    "internal_extension": "관리번호 | 기관군 | 이메일유형 | 도메인 | 기존DB상태 | 이전전달여부 | 산업키워드 | 비고",
+    "tracking_table": "분야 | 기관 | 이름 | 확인된 정보 | 부족한 정보 | 재검색 키워드/경로 | 출처 | 상태"
+  },
+  "legacy_data_recovery": {
+    "status": "DEFERRED_OUT_OF_CURRENT_SCOPE",
+    "previous_progress_percent": 46,
+    "preserve_existing_evidence": true,
+    "do_not_continue_automatically": true,
+    "resume_condition": "User supplies archived chat/data or explicitly requests legacy-data recovery."
+  },
+  "verification": {
+    "github_rule_write": "PASS",
+    "rule_read_back": "PASS",
+    "central_rule_blob_sha": "1582be9afb5bcf413640a20a6f168bf63581cfa7"
+  },
+  "restart_point": "EMAIL_COLLECTION rule integration is complete under the rules-only scope. Apply the unified schema to future supplied data. Do not resume legacy-number/data mining automatically."
 }
