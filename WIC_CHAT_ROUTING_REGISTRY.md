@@ -26,6 +26,16 @@
 - 같은 지시를 사용자가 반복해서 말하게 만드는 것 자체를 운영 실패로 본다. 이미 중앙 규칙에 존재하는 이 잠금을 다음 실행에서 다시 질문하거나 재확인하지 않는다.
 - 2026-08-13 반복 위반으로 중요도를 재승격했으며, 대화창 라우팅·Work·자동화·외부 에이전트·고객업무·도구개발보다 우선 적용한다.
 
+### 0-B. CHAT IDENTITY VERIFICATION GATE — LOGICAL ROLE ≠ VERIFIED UI TITLE
+- `CONTROL_PRIMARY`, `WORK_PREP`, `EMAIL_COLLECTION`, `TOOL001`, `TOOL006`, `TOOL007` 등은 내부 논리 역할 ID다. 이것만으로 실제 ChatGPT UI 대화창 제목이 존재한다고 주장하지 않는다.
+- GitHub 문서의 별칭, role name, route target, automation title, task title, restart label은 `VERIFIED_UI_CHAT_TITLE` 증거가 아니다.
+- 실제 대화창 제목을 사용자에게 말하기 전에는 현재 대화/접근 가능한 대화기록/파일 등에서 그 제목이 실제 UI 제목이었다는 직접 근거를 확인해야 한다. 직접 근거가 없으면 `UI_TITLE_HOLD`로 보고한다.
+- `WORK_PREP = 워크 전 준비`처럼 과거에 논리 역할명과 UI 제목을 동일시해 저장한 값은 검증 전까지 실제 UI 제목으로 취급하지 않는다.
+- 사용자가 “그 대화창 어디 있냐/찾아라”라고 요청하면 내부 role registry를 답으로 내지 말고 실제 제목 근거를 먼저 찾는다. 못 찾으면 역할명만 존재한다고 명시한다.
+- 자동화는 별도 실행공간/대화 항목을 만들 가능성이 있으므로 `NO_NEW_CHAT`가 활성인 동안 새 WIC 자동화 생성·활성화·재활성화를 금지한다. 이미 존재하는 WIC 자동화도 사용자의 명시적 재활성화 지시가 없으면 OFF를 유지한다.
+- 자동화로 별도 실행공간이 생긴 사실이 확인되면 `FAIL-AUTOMATION-CHAT-SPRAWL`로 기록하고 해당 자동화를 즉시 OFF한 뒤 같은 방식의 자동화를 추가 생성하지 않는다.
+- 이 게이트를 통과하지 않은 이름은 사용자에게 “실제 대화창 이름”으로 표시하지 않는다.
+
 ## 1. CHAT PROLIFERATION GUARD
 - 기본값: `NO_NEW_CHAT`.
 - 사용자가 명시적으로 새 대화창 분리를 요청하지 않는 한 새 역할/새 이름/새 준비창/새 관찰창을 만들거나 만들도록 유도하지 않는다.
@@ -34,13 +44,15 @@
 - 이름이 비슷한 중복 대화창은 active destination으로 늘리지 않고 `EVIDENCE_SOURCE_ONLY`로 취급한다.
 - 대화창 이름과 논리적 역할 ID를 분리한다.
 
-## 2. CORE CHATS — 사용자 지정 2개만 유지
-| chat_id | 실제 대화창 이름 | 역할 | 상태 |
-|---|---|---|---|
-| CONTROL_PRIMARY | `(개발 관찰자 모드 유지) 지피티 도구` | 전체 개발 관찰, 실질 도구 구현 방향, 중앙규칙, 상태, 피드백 흡수, 우선순위 통제 | KEEP / ACTIVE |
-| WORK_PREP | `워크 전 준비` | Work 투입 전 최대 준비, exact handoff, Work credit 절약, 재시작점 관리 | KEEP / ACTIVE |
+## 2. CORE LOGICAL ROLES — UI TITLE 검증 전 이름 단정 금지
+| role_id | 과거 registry 별칭 | 실제 UI 제목 검증 상태 | 역할 | 상태 |
+|---|---|---|---|---|
+| CONTROL_PRIMARY | `(개발 관찰자 모드 유지) 지피티 도구` | `UI_TITLE_HOLD` — 직접 UI 제목 근거 없이는 실제 제목으로 사용 금지 | 전체 개발 관찰, 실질 도구 구현 방향, 중앙규칙, 상태, 피드백 흡수, 우선순위 통제 | LOGICAL ROLE ONLY |
+| WORK_PREP | `워크 전 준비` | `UI_TITLE_HOLD` — 직접 UI 제목 근거 없이는 실제 제목으로 사용 금지 | Work 투입 전 최대 준비, exact handoff, Work credit 절약, 재시작점 관리 | LOGICAL ROLE ONLY |
 
-- 목표: `ACTIVE_CORE_CHATS = 2`, `MANUAL_FEEDBACK_FORWARDING = 0`.
+- 과거 registry의 별칭은 라우팅 보조값일 뿐 실제 UI 대화창 존재 증거가 아니다.
+- `ACTIVE_CORE_CHATS = 2` 같은 수치도 UI 대화창 2개가 실제 존재한다는 뜻이 아니라 논리 역할 2개를 뜻한다.
+- 실제 UI 대화창을 지칭할 때는 반드시 별도 검증을 거친다.
 
 ## 3. SPECIALIST LANES — 기존 창 재사용, 규칙은 중앙 단일화
 | lane_id | 역할 | 새 대화창 생성 여부 | 필수 중앙 규칙 |
@@ -81,17 +93,18 @@ route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 |
 - 규범 규칙의 최상위 우선순위는 `WIC_GLOBAL_OPERATING_RULES.md`가 결정한다.
 
 ## 4. ROUTING RULE
-1. 개발·관찰·통합 피드백·중앙 상태는 CONTROL_PRIMARY로 귀속한다.
-2. Work 직전 준비·Work-only 판정·exact handoff는 WORK_PREP로 귀속한다.
+1. 개발·관찰·통합 피드백·중앙 상태는 CONTROL_PRIMARY 논리 역할로 귀속한다.
+2. Work 직전 준비·Work-only 판정·exact handoff는 WORK_PREP 논리 역할로 귀속한다.
 3. 실제 전문업무는 기존 specialist lane을 재사용한다.
 4. 분야별 이메일 수집 창은 모두 EMAIL_COLLECTION 동일 lane으로 취급하고 중앙 범용 규칙만 공유한다.
 5. 새 feedback은 사용자가 여러 창에 반복 전달하지 않도록 중앙 GitHub에 event 단위로 흡수한다.
 6. 중앙 규칙/fixture/error_hash/patch 반영 후 원래 lane의 다음 작업에 재사용한다.
 7. 동일 오류/규칙은 새로운 대화창을 만들 이유가 되지 않는다.
 8. 새로운 역할이 필요해 보여도 기존 lane 재사용 가능성을 먼저 검사하고, 새 대화창/새 이름이 필요하면 관찰자 승인 전에는 실행하지 않는다.
+9. 논리 역할 ID를 실제 UI 대화창명으로 변환·단정하지 않는다.
 
 ## 5. DUPLICATE / LATER CHAT HANDLING
-- 두 핵심 대화창과 목적이 겹치는 개발/관찰/상태보고/준비 계열 창은 기본적으로 `EVIDENCE_SOURCE_ONLY` / DELETE_CANDIDATE다.
+- 논리 역할과 목적이 겹치는 개발/관찰/상태보고/준비 계열 창은 기본적으로 `EVIDENCE_SOURCE_ONLY` / DELETE_CANDIDATE다.
 - 삭제 전 고유 지시, 오류, fixture, 상태, restart point가 중앙 GitHub에 흡수됐는지 확인한다.
 - 흡수/read-back 완료 후 중복 대화창을 active destination으로 사용하지 않는다.
 - UI 삭제 자체를 assistant가 수행할 수 있다고 주장하지 않는다.
@@ -104,10 +117,11 @@ route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 |
 - 단, 등록은 새 작업창 생성 허가가 아니다. 관찰자 승인 전에는 생성·이름부여·이동·삭제를 실행하지 않는다.
 
 ## 7. REPORTING CONSOLIDATION
-- 개발 진행/관찰/통합 피드백은 CONTROL_PRIMARY에 모은다.
-- Work 직전 준비와 handoff는 WORK_PREP에 모은다.
+- 개발 진행/관찰/통합 피드백은 CONTROL_PRIMARY 논리 역할에 귀속한다.
+- Work 직전 준비와 handoff는 WORK_PREP 논리 역할에 귀속한다.
 - 전문업무 산출물은 해당 전문 lane에서 출력한다.
 - 같은 상태보고를 여러 대화창에 반복 게시하지 않는다.
+- UI 제목이 검증되지 않았으면 role_id만 사용하고 실제 대화창 제목처럼 표현하지 않는다.
 
 ## 8. USER BURDEN FAIL CONDITIONS
 다음 발생 시 구조 FAIL이다.
@@ -120,10 +134,13 @@ route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 |
 - 관찰자 승인 없이 대화창/도구/자동화/파일/폴더/경로/저장소/브랜치 이름을 바꿈.
 - 관찰자 승인 없이 새 작업 대화창·준비창·관찰창·상태창·개발창을 추가하거나 추가하도록 유도함.
 - 관찰자 승인 없이 파일/폴더/경로를 이동·삭제·이름변경하거나 새 운영용 파일을 불필요하게 만듦.
+- 논리 역할명/자동화명/별칭을 실제 UI 대화창 제목으로 허위 단정함.
+- NO_NEW_CHAT 상태에서 WIC 자동화를 새로 생성·활성화하여 별도 실행공간을 발생시킴.
 
 ## 9. CURRENT DECISION
-- 개발 핵심 2창은 유지한다.
+- CONTROL_PRIMARY와 WORK_PREP는 논리 역할로만 유지한다. 실제 UI 대화창 제목은 직접 검증 전까지 HOLD다.
 - 이메일 수집은 기존 분야별 UI 창을 사용할 수 있으나 논리적으로는 단 하나의 `EMAIL_COLLECTION` lane이다.
 - 범용 규칙은 `EMAIL_COLLECTION_COMMON_RULES.md` 한 곳에서만 갱신하고 분야별 복제본을 만들지 않는다.
-- Work gate: Chat/GitHub/automation으로 처리 가능한 규칙 통합은 Work로 미루지 않는다.
+- Work gate: Chat/GitHub로 처리 가능한 규칙 통합은 Work로 미루지 않는다.
+- `NO_NEW_CHAT` 상태에서는 WIC 자동화 생성·활성화를 재발 방지 차원에서 금지하고 기존 WIC 자동화는 OFF를 유지한다.
 - 관찰자는 변경 승인권자이며, GPT/assistant/agent는 이름·구조·파일·대화창 변경 필요성을 발견하면 `CHANGE_PROPOSAL`로 보고만 하고 명시적 승인 전에는 실행하지 않는다.
