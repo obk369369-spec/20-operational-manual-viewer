@@ -1,0 +1,37 @@
+name: WIC Work Gate Handoff Audit
+
+on:
+  push:
+    paths:
+      - 'feedback_pipeline/work_gate_handoff.py'
+      - 'WIC_EXECUTION_STATE.json'
+      - '.github/workflows/work-gate-handoff-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  work-gate-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deterministic Work gate fixtures
+        run: python feedback_pipeline/work_gate_handoff.py --self-test
+      - name: Generate exact Work handoff
+        run: python feedback_pipeline/work_gate_handoff.py --state WIC_EXECUTION_STATE.json --output work-handoff.json
+      - name: Validate eligible lanes are exact packages
+        run: |
+          python - <<'PY'
+          import json
+          data=json.load(open('work-handoff.json', encoding='utf-8'))
+          for lane in data['eligible_work_lanes']:
+              row=data['candidates'][lane]
+              assert row['decision']=='WORK_ELIGIBLE'
+              assert not row['missing_handoff']
+          print('PASS: exact Work handoff validation')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wic-work-handoff
+          path: work-handoff.json
