@@ -3,16 +3,16 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 00:07",
-  "scope": "WIC central integration, chat identity lock, unauthorized-structure preflight, stall recovery, and priority restart state",
-  "structure_status": "HOLD_CROSS_REPOSITORY_TARGET_APPLY",
+  "updated_kst": "2026-08-14 01:00",
+  "scope": "WIC central integration, chat identity lock, unauthorized-structure preflight, stall recovery, priority restart state, and verified cross-repository target application",
+  "structure_status": "PARTIAL_PASS_TOOL001_TARGET_APPLY_VERIFIED_REMAINING_TARGETS_HOLD",
   "state_sync": {
     "status": "SYNCHRONIZED_FROM_EXISTING_CENTRAL_FILES",
     "email_state_path": "EMAIL_COLLECTION_EXECUTION_STATE.json",
-    "email_state_updated_kst": "2026-08-13 23:06",
-    "email_progress_percent": 44,
+    "email_state_updated_kst": "2026-08-14 00:05",
+    "email_progress_percent": 46,
     "live_observer_path": "WIC_LIVE_OBSERVER_STATUS.md",
-    "reason": "Latest real change is the verified unauthorized-structure preflight fixture in the existing rule-governance workflow; EMAIL_COLLECTION progress remains unchanged."
+    "reason": "EMAIL_COLLECTION advanced to 46%, and this run completed one real cross-repository write/read-back/target-test path for TOOL001."
   },
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
@@ -54,11 +54,11 @@
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
     "schedule": "*/5 * * * *",
     "threshold_minutes": 35,
-    "latest_observed_run": "31711914014",
-    "latest_observed_run_head": "fe95ea34462b5b4e4d3a6f68d17fe19b087f481a",
+    "latest_observed_run": "31717102473",
+    "latest_observed_run_head": "4fc43f6f3cd40d667f11177d039b9b83c999216b",
     "latest_observed_result": "success",
     "latest_observed_event": "schedule",
-    "latest_observed_job": "94486770717",
+    "latest_observed_job": "94504473421",
     "stall_detected": true,
     "stall_issue_step": "success",
     "recovery_dispatch_step": "success",
@@ -76,7 +76,17 @@
     "canonical_run_result": "SUCCESS",
     "canonical_read_back": "VERIFIED",
     "target_manifest": "feedback_pipeline/target_apply_manifest.json",
-    "target_apply_result": "HOLD_TARGET_APPLY"
+    "target_apply_result": "TOOL001_APPLIED_READBACK_TEST_VERIFIED_OTHER_TARGETS_HOLD",
+    "verified_target": {
+      "target": "TOOL001",
+      "repository": "obk369369-spec/01-auto-guide-v1",
+      "apply_commit": "9f2b1297387d4089cdb55973a89bf4b0349d110f",
+      "evidence_commit": "5286e5f3c3d1220ad383e68929b5301fca2fdc36",
+      "read_back": "VERIFIED",
+      "target_test_run": "31718378457",
+      "target_test_job": "94508576446",
+      "target_test_result": "success"
+    }
   },
   "verified_completed": [
     "pending real feedback normalized/classified/routed",
@@ -90,7 +100,10 @@
     "unauthorized structure mutation preflight fixtures are implemented in the existing rule-governance workflow and passed run 31713697498",
     "central observer/execution/live-status changes now trigger rule-governance audit",
     "SEM-001 and SEM-071..SEM-080 legacy checkpoints preserved without renumbering",
-    "EMAIL_COLLECTION execution checkpoint remains 44% with direct-evidence-only numbering policy"
+    "EMAIL_COLLECTION execution checkpoint advanced to 46% with direct-evidence-only numbering policy",
+    "TOOL001 canonical revision 3f0c83fe635a4067354e8456 applied to target repository and read back",
+    "TOOL001 target-side verified-data regression run 31718378457 completed successfully",
+    "TOOL001 target apply state changes now automatically trigger target regression"
   ],
   "do_not_repeat": [
     "integration-core implementation/rebuild already completed",
@@ -103,14 +116,15 @@
     "unauthorized-structure preflight implementation and run 31713697498",
     "SEM-001 rediscovery",
     "SEM-071 through SEM-080 rediscovery",
-    "already processed private mail threads without new direct number evidence"
+    "already processed private mail threads without new direct number evidence",
+    "TOOL001 cross-repository transport proof for canonical revision 3f0c83fe635a4067354e8456"
   ],
   "email_collection_checkpoint": {
     "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
-    "progress_percent": 44,
+    "progress_percent": 46,
     "source_of_truth": "EMAIL_COLLECTION_EXECUTION_STATE.json",
-    "latest_verified_update_kst": "2026-08-13 23:06",
-    "restart_point": "Continue explicit number-bearing legacy ledger/handoff search for the four held fingerprints, prioritizing direct customer-number rows over already-processed mail threads. Do not infer sector from topic and do not assign any number without direct evidence.",
+    "latest_verified_update_kst": "2026-08-14 00:05",
+    "restart_point": "Continue direct number-bearing legacy ledger/handoff search for SEM-002..SEM-070 and the four held fingerprints, then first numbered rows for DEF/SHP/CAR/ROB/BAT. Do not infer sector or assign numbers without direct evidence.",
     "remaining": [
       "match all four held candidates against existing permanent IDs",
       "recover SEM-002..SEM-070 if direct evidence exists",
@@ -120,27 +134,25 @@
     ]
   },
   "blockers": {
-    "CROSS_REPOSITORY_TARGET_APPLY": "Central GitHub Actions still lacks verified cross-repository target write/read-back/test transport.",
+    "CROSS_REPOSITORY_REMAINING_TARGETS": "TOOL001 transport is verified; EMAIL_DB, TOOL002, TOOL006, TOOL007, TOOL037 and WORK_GATE still need the same write/read-back/target-test proof.",
     "LEGACY_NUMBER_LEDGER_GAP": "Accessible evidence has not yet produced direct number-bearing rows for SEM-002..SEM-070 or verified DEF/SHP/CAR/ROB/BAT customer rows.",
     "INDEPENDENT_VERIFICATION": "GitHub internal validation is not third-party independent verification."
   },
   "work_gate": {
-    "credit_policy": "Use Work only for a concrete Work-only E2E blocker, not rereading, resummarizing, rule extraction, repository rediscovery, or status reporting.",
-    "work_required_now": true,
-    "exact_work_scope": [
-      "establish one real cross-repository target transport or equivalent runtime consumption path",
-      "apply canonical revision 3f0c83fe635a4067354e8456 to one verified repository target",
-      "read back the applied revision from that target",
-      "run target-side deterministic test and retain run/result evidence",
-      "feed target result back to central state"
+    "credit_policy": "Use Work only for a concrete Work-only E2E blocker, not rereading, resummarizing, rule extraction, repository rediscovery, status reporting, or GitHub target application now proven possible via connector.",
+    "work_required_now": false,
+    "reason": "One real cross-repository target write/read-back/test path was completed through the GitHub connector, so this blocker is no longer Work-only.",
+    "next_scope": [
+      "reuse the verified TOOL001 target pattern for remaining registered targets where an existing target-state file and deterministic test exist",
+      "keep unsupported targets HOLD rather than inventing new files/workflows"
     ]
   },
   "restart_point": [
-    "Do not rerun completed canonical feedback ingestion, identity-gate checks, unauthorized-structure fixtures, or resolved stall-monitor diagnosis.",
-    "Continue EMAIL_COLLECTION from the 44% direct-evidence checkpoint without rediscovering SEM-001 or SEM-071..SEM-080.",
-    "Continue cross-repository target transport from canonical revision 3f0c83fe635a4067354e8456 when an executable transport path is available.",
+    "Do not rerun completed canonical feedback ingestion, identity-gate checks, unauthorized-structure fixtures, resolved stall-monitor diagnosis, or TOOL001 target transport proof.",
+    "Continue EMAIL_COLLECTION from the 46% direct-evidence checkpoint without rediscovering SEM-001 or SEM-071..SEM-080.",
+    "Reuse TOOL001 cross-repository transport pattern for the next existing supported target, preferring TOOL007 then TOOL037/TOOL013/TOOL006/TOOL002 according to user priority and available deterministic tests.",
     "Keep the existing stall monitor active as the primary recovery path; this automation remains the secondary recovery path if scheduled recovery fails.",
-    "After structure PASS, preserve user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats."
+    "Preserve user priority: EMAIL_COLLECTION -> TOOL007 -> TOOL001 -> TOOL037 -> TOOL013 -> TOOL006 -> TOOL002 -> 28~31 -> remaining registered tools/major work chats."
   ],
   "completion_policy": "PASS requires actual execution evidence. Storage/read-back alone proves persistence, not functional behavior. New chat/title/role creation is never an acceptable recovery mechanism without explicit user approval."
 }
