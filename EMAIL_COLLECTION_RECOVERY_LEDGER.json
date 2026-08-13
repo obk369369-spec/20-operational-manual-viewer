@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "purpose": "privacy-safe central recovery ledger for legacy email-collection customer-number and duplicate-history reconciliation",
+  "updated_kst": "2026-08-13 19:04",
+  "assignment_policy": "Do not assign or renumber customer IDs from this ledger alone. Match against existing permanent-number evidence first.",
+  "confirmed_existing_number_evidence": {
+    "SEM": ["SEM-001", "SEM-071..SEM-080"],
+    "ROB": [],
+    "DEF": [],
+    "SHP": [],
+    "BAT": [],
+    "CAR": []
+  },
+  "recovered_interaction_candidates": [
+    {
+      "sector": "CAR",
+      "identity_fingerprint": "049d00b489ed83abb228",
+      "organization_class": "Korea Carbon Industry Promotion Agency",
+      "event_date": "2021-12-08",
+      "event_type": "PURCHASE_ORDER_CONFIRMED",
+      "evidence": "File Library: 보고서 (RAIL COMPOSITES MARKET) - 한국탄소산업진흥원 송현도님.eml",
+      "details": ["3 report titles requested for purchase", "subsequent report delivery email exists"],
+      "number_status": "HOLD_MATCH_EXISTING_CAR_NUMBER"
+    },
+    {
+      "sector": "SEM",
+      "identity_fingerprint": "593e15964842643ee5c0",
+      "organization_class": "Hunetplus",
+      "event_date": "2025-12-01",
+      "event_type": "PURCHASE_PROCESS_CONFIRMED",
+      "evidence": "File Library: Re 견적서 12월 1일 (2025년 반도체 재료 시장의 현상과 장래 전망), (주)휴넷플러스 김기완님 드림-1.eml",
+      "details": ["purchase requested", "invoice and shipping process continued through 2025-12-12"],
+      "number_status": "HOLD_MATCH_EXISTING_SEM_002_070_OR_OTHER_EXISTING_NUMBER"
+    },
+    {
+      "sector": "CAR",
+      "identity_fingerprint": "cbc24788f66662dc07f2",
+      "organization_class": "HS Hyosung R&D",
+      "event_date": "2026-07-06",
+      "event_type": "MARKET_REPORT_INQUIRY_CONFIRMED",
+      "evidence": "File Library: Re_ [HS효성종합기술원] 시장 자료 구입 관련 문의의 건.eml",
+      "details": ["verified corporate reply chain", "market-report purchase inquiry context"],
+      "number_status": "HOLD_MATCH_EXISTING_CAR_NUMBER"
+    }
+  ],
+  "duplicate_matching_keys": [
+    "existing permanent customer number",
+    "organization + person identity",
+    "email identity where available in private source",
+    "historical purchase/quote thread continuity"
+  ],
+  "next_restart_point": [
+    "Search File Library/GitHub for permanent number matches for the three recovered candidates.",
+    "Continue SEM-002..SEM-070 recovery without renumbering SEM-071..SEM-080.",
+    "Recover first verified actual rows for DEF/SHP/CAR/ROB/BAT.",
+    "Add bounce/sent history only when tied to a verified permanent or held candidate identity."
+  ]
+}
