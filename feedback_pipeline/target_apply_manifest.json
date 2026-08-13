@@ -1,7 +1,7 @@
 {
   "canonical_revision": "3f0c83fe635a4067354e8456",
   "feedback_id": "37a4a2166bb5e2a08a8c",
-  "generated_at_utc": "2026-08-13T05:21:31.956612+00:00",
+  "generated_at_utc": "2026-08-13T17:07:00Z",
   "schema_version": 1,
   "targets": {
     "EMAIL_DB": {
@@ -36,19 +36,26 @@
     "TOOL007": {
       "canonical_revision": "3f0c83fe635a4067354e8456",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
+      "reason": "TOOL007 is a verified central lane, not a repository target. customer_pipeline/tool7_contact_judgment.py is registered as the existing implementation and the latest WIC Rule Governance Audit run 31721875746 passed deterministic integration/restart fixtures together with the NO_NEW_CHAT/UI-title gate.",
+      "status": "CENTRAL_LANE_ACK_TEST_VERIFIED",
+      "target_mode": "CENTRAL_LANE_ACK",
+      "target_repository_required": false,
+      "implementation_path": "customer_pipeline/tool7_contact_judgment.py",
+      "implementation_blob": "c5e8434398256ea8afb40418760c07714a898363",
+      "verification_run": 31721875746,
+      "verification_job": 94520587462,
+      "verification_result": "success"
     },
     "TOOL037": {
       "canonical_revision": "3f0c83fe635a4067354e8456",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "reason": "central-lane acknowledgement and functional evidence are not yet sufficient for PASS",
       "status": "HOLD_TARGET_APPLY"
     },
     "WORK_GATE": {
       "canonical_revision": "3f0c83fe635a4067354e8456",
       "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
+      "reason": "central-lane acknowledgement and functional evidence are not yet sufficient for PASS",
       "status": "HOLD_TARGET_APPLY"
     }
   }
