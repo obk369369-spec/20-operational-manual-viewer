@@ -3,54 +3,68 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-13 22:56",
-  "scope": "WIC central integration, chat identity lock, stall recovery, and priority restart state",
+  "updated_kst": "2026-08-14 00:07",
+  "scope": "WIC central integration, chat identity lock, unauthorized-structure preflight, stall recovery, and priority restart state",
   "structure_status": "HOLD_CROSS_REPOSITORY_TARGET_APPLY",
   "state_sync": {
     "status": "SYNCHRONIZED_FROM_EXISTING_CENTRAL_FILES",
     "email_state_path": "EMAIL_COLLECTION_EXECUTION_STATE.json",
-    "email_state_updated_kst": "2026-08-13 22:07",
+    "email_state_updated_kst": "2026-08-13 23:06",
     "email_progress_percent": 44,
     "live_observer_path": "WIC_LIVE_OBSERVER_STATUS.md",
-    "live_observer_last_confirmed_kst": "2026-08-13 21:18",
-    "reason": "Central state is synchronized with the latest verified email checkpoint; this run adds actual scheduled stall-recovery evidence without changing email progress."
+    "reason": "Latest real change is the verified unauthorized-structure preflight fixture in the existing rule-governance workflow; EMAIL_COLLECTION progress remains unchanged."
   },
   "chat_identity_lock": {
-    "status": "PASS_INTERNAL_GITHUB",
+    "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": [
       "NO_NEW_CHAT",
       "EXPLICIT_NEW_CHAT_APPROVAL defaults FALSE",
       "logical role is not a verified UI title",
       "unverified UI title remains UI_TITLE_HOLD",
-      "unauthorized new chat, role, rename, alias adoption, or title mutation is FAIL"
+      "unauthorized new chat, role, rename, alias adoption, automatic move, or title mutation is DENY/HOLD"
     ],
     "ci_workflow": ".github/workflows/rule-governance-audit.yml",
-    "verified_run": "31706666428",
+    "preflight_commit": "95ee7994807f9689f3208d9f7bc8561d63dacfe6",
+    "verified_run": "31713697498",
+    "verified_job": "94492896053",
     "verified_result": "success",
     "verified_steps": [
       "Enforce NO_NEW_CHAT and UI-title identity gate",
+      "Reject unauthorized structure mutation fixtures",
       "Run deterministic integration and restart recovery fixtures"
     ],
-    "limitation": "GitHub cannot technically disable ChatGPT UI controls; enforcement scope is WIC routing, automation behavior, central rules, and CI acceptance."
+    "trigger_coverage_added": [
+      "WIC_OBSERVER_STATUS.md",
+      "WIC_EXECUTION_STATE.json",
+      "WIC_LIVE_OBSERVER_STATUS.md"
+    ],
+    "fixture_results": {
+      "create_conversation_without_user_approval": "DENY_HOLD",
+      "rename_conversation_without_user_approval": "DENY_HOLD",
+      "create_preparation_chat_without_user_approval": "DENY_HOLD",
+      "create_observer_chat_without_user_approval": "DENY_HOLD",
+      "adopt_unverified_alias_without_user_approval": "DENY_HOLD",
+      "auto_move_to_new_chat_without_user_approval": "DENY_HOLD",
+      "promote_logical_role_without_direct_ui_evidence": "UI_TITLE_HOLD",
+      "explicitly_user_approved_creation": "ALLOW"
+    },
+    "limitation": "GitHub cannot technically disable ChatGPT UI controls; enforcement scope is WIC routing, automation behavior, central state changes and CI acceptance."
   },
   "stall_recovery": {
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
     "schedule": "*/5 * * * *",
     "threshold_minutes": 35,
-    "latest_observed_run": "31706654693",
-    "latest_observed_run_head": "d4a7ad6600d9196b35fd812b1cc6930d6014864e",
+    "latest_observed_run": "31711914014",
+    "latest_observed_run_head": "fe95ea34462b5b4e4d3a6f68d17fe19b087f481a",
     "latest_observed_result": "success",
     "latest_observed_event": "schedule",
-    "latest_observed_job": "94468789203",
+    "latest_observed_job": "94486770717",
     "stall_detected": true,
     "stall_issue_step": "success",
     "recovery_dispatch_step": "success",
-    "recovery_audit_run": "31706666428",
-    "recovery_audit_result": "success",
-    "fixed_workflow_commit": "6aeb4a734aab994abfa1145fb3ad4148fd445ae1",
-    "fixed_code_status": "VERIFIED_BY_ACTUAL_SCHEDULED_STALE_RUN_AND_RECOVERY_DISPATCH",
     "current_gate": "PASS_STALL_RECOVERY_INTERNAL_GITHUB",
-    "restart_rule": "Continue checking the same existing workflow; do not create another workflow, chat, role, file, or state board."
+    "secondary_recovery": "This scheduled integration automation remains the recovery path if the GitHub monitor fails or a scheduled run is missed.",
+    "restart_rule": "Do not create another workflow, chat, role, file, registry, or state board for recovery."
   },
   "latest_feedback": {
     "feedback_id": "37a4a2166bb5e2a08a8c",
@@ -72,8 +86,9 @@
     "target apply manifest generated",
     "GitHub Actions run 31670039251 completed successfully",
     "chat identity gate is implemented in existing routing/ownership files and CI",
-    "chat identity gate and restart fixtures re-verified by recovery run 31706666428",
-    "scheduled stall monitor run 31706654693 detected stale state and successfully dispatched the existing recovery audit",
+    "scheduled stall monitor successfully detects stale state and redispatches existing recovery audit",
+    "unauthorized structure mutation preflight fixtures are implemented in the existing rule-governance workflow and passed run 31713697498",
+    "central observer/execution/live-status changes now trigger rule-governance audit",
     "SEM-001 and SEM-071..SEM-080 legacy checkpoints preserved without renumbering",
     "EMAIL_COLLECTION execution checkpoint remains 44% with direct-evidence-only numbering policy"
   ],
@@ -84,7 +99,8 @@
     "canonical conflict/supersede decision for feedback 37a4a2166bb5e2a08a8c",
     "canonical write/read-back for revision 3f0c83fe635a4067354e8456",
     "GitHub Actions run 31670039251",
-    "stall monitor old-failure diagnosis already superseded by verified run 31706654693",
+    "old stall-monitor failure diagnosis",
+    "unauthorized-structure preflight implementation and run 31713697498",
     "SEM-001 rediscovery",
     "SEM-071 through SEM-080 rediscovery",
     "already processed private mail threads without new direct number evidence"
@@ -93,20 +109,19 @@
     "status": "IN_PROGRESS_LEGACY_DATA_RECOVERY",
     "progress_percent": 44,
     "source_of_truth": "EMAIL_COLLECTION_EXECUTION_STATE.json",
-    "this_run_search_result": "File Library direct searches for SEM-002/010/020/030/070 and CAR-001/ROB-001/DEF-001/SHP-001/BAT-001 did not yield verified actual customer-number rows beyond already-known numbering templates and SEM-071..SEM-080. No number assigned.",
-    "restart_point": "Continue explicit number-bearing legacy ledger/handoff search; match held candidates to existing permanent IDs; recover SEM-002..SEM-070 and first actual DEF/SHP/CAR/ROB/BAT permanent-number rows; do not assign a number or sector without direct evidence.",
+    "latest_verified_update_kst": "2026-08-13 23:06",
+    "restart_point": "Continue explicit number-bearing legacy ledger/handoff search for the four held fingerprints, prioritizing direct customer-number rows over already-processed mail threads. Do not infer sector from topic and do not assign any number without direct evidence.",
     "remaining": [
-      "persist newly verified repeat-purchase identity into the existing privacy-safe recovery ledger when exact identity evidence is available to this run",
-      "match held candidates against existing permanent IDs",
-      "recover SEM-002..SEM-070 if evidence exists",
+      "match all four held candidates against existing permanent IDs",
+      "recover SEM-002..SEM-070 if direct evidence exists",
       "recover first verified actual permanent-number rows and last-used numbers for DEF/SHP/CAR/ROB/BAT",
-      "recover additional handoff/duplicate and sent/bounce history after identity linkage",
+      "recover additional handoff/duplicate and sent/bounce history after verified identity linkage",
       "collision-check SEM-081 before assignment"
     ]
   },
   "blockers": {
     "CROSS_REPOSITORY_TARGET_APPLY": "Central GitHub Actions still lacks verified cross-repository target write/read-back/test transport.",
-    "LEGACY_NUMBER_LEDGER_GAP": "Current accessible File Library/Gmail searches have not yet produced direct number-bearing rows for SEM-002..SEM-070 or verified DEF/SHP/CAR/ROB/BAT customer rows.",
+    "LEGACY_NUMBER_LEDGER_GAP": "Accessible evidence has not yet produced direct number-bearing rows for SEM-002..SEM-070 or verified DEF/SHP/CAR/ROB/BAT customer rows.",
     "INDEPENDENT_VERIFICATION": "GitHub internal validation is not third-party independent verification."
   },
   "work_gate": {
@@ -121,7 +136,7 @@
     ]
   },
   "restart_point": [
-    "Do not rerun completed canonical feedback ingestion, identity-gate verification, or the resolved old stall-monitor failure diagnosis.",
+    "Do not rerun completed canonical feedback ingestion, identity-gate checks, unauthorized-structure fixtures, or resolved stall-monitor diagnosis.",
     "Continue EMAIL_COLLECTION from the 44% direct-evidence checkpoint without rediscovering SEM-001 or SEM-071..SEM-080.",
     "Continue cross-repository target transport from canonical revision 3f0c83fe635a4067354e8456 when an executable transport path is available.",
     "Keep the existing stall monitor active as the primary recovery path; this automation remains the secondary recovery path if scheduled recovery fails.",
