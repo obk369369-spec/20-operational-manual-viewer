@@ -32,6 +32,45 @@ jobs:
       - name: Run existing canonical writer fixtures
         run: python feedback_pipeline/canonical_writer.py
 
+      - name: PRECHECK_USER_DIRECTIVE before material mutation
+        run: |
+          python - <<'PY'
+          import json
+          from dataclasses import asdict
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, 'feedback_pipeline')
+          from unauthorized_structure_guard import ChangeProposal, build_observer_report, evaluate
+
+          event_path = Path('feedback_pipeline/pending_event.json')
+          event = json.loads(event_path.read_text(encoding='utf-8'))
+          proposal = ChangeProposal(
+              action=str(event.get('mutation_action', '')).strip(),
+              target='WIC_GLOBAL_OPERATING_RULES.md',
+              directive_text=str(event.get('directive_text', event.get('text', ''))).strip(),
+              directive_source_ref=str(event.get('directive_source_ref', event.get('source_ref', ''))).strip(),
+          )
+          decision = evaluate(proposal)
+          evidence = {
+              'schema_version': 1,
+              'stage': 'PRECHECK_USER_DIRECTIVE',
+              'decision': asdict(decision),
+              'blocked_before_mutation': decision.decision != 'ALLOW',
+          }
+          if decision.decision == 'DENY_HOLD':
+              evidence['observer_report'] = build_observer_report(decision)
+          out = Path('feedback_pipeline/preflight_evidence.json')
+          out.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          read_back = json.loads(out.read_text(encoding='utf-8'))
+          assert read_back['stage'] == 'PRECHECK_USER_DIRECTIVE'
+          assert read_back['decision']['decision'] == decision.decision
+          if decision.decision != 'ALLOW':
+              print(json.dumps(evidence, ensure_ascii=False))
+              raise SystemExit('DENY_HOLD: material mutation blocked before APPLY')
+          print('PASS: PRECHECK_USER_DIRECTIVE allowed exact approved user directive before APPLY')
+          PY
+
       - name: Apply pending real feedback event
         run: python feedback_pipeline/apply_feedback_event.py | tee /tmp/wic-event-result.json
 
@@ -151,7 +190,7 @@ jobs:
         run: |
           git config user.name 'wic-integration-bot'
           git config user.email 'wic-integration-bot@users.noreply.github.com'
-          git add WIC_GLOBAL_OPERATING_RULES.md feedback_pipeline/state.json feedback_pipeline/target_apply_manifest.json feedback_pipeline/evidence
+          git add WIC_GLOBAL_OPERATING_RULES.md feedback_pipeline/state.json feedback_pipeline/target_apply_manifest.json feedback_pipeline/evidence feedback_pipeline/preflight_evidence.json
           if git diff --cached --quiet; then
             echo 'No canonical changes to commit.'
           else
