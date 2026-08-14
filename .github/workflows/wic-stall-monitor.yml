@@ -25,7 +25,7 @@ jobs:
         run: |
           set -euo pipefail
           FILE='WIC_LIVE_OBSERVER_STATUS.md'
-          MAX_AGE_MINUTES=35
+          MAX_AGE_MINUTES=5
           LAST_TS=$(git log -1 --format=%ct -- "$FILE")
           NOW_TS=$(date +%s)
           AGE_MIN=$(( (NOW_TS - LAST_TS) / 60 ))
