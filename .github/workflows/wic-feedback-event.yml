@@ -36,7 +36,9 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import subprocess
           from dataclasses import asdict
+          from datetime import datetime, timezone
           from pathlib import Path
           import sys
 
@@ -53,7 +55,7 @@ jobs:
           )
           decision = evaluate(proposal)
           evidence = {
-              'schema_version': 1,
+              'schema_version': 2,
               'stage': 'PRECHECK_USER_DIRECTIVE',
               'decision': asdict(decision),
               'blocked_before_mutation': decision.decision != 'ALLOW',
@@ -65,9 +67,57 @@ jobs:
           read_back = json.loads(out.read_text(encoding='utf-8'))
           assert read_back['stage'] == 'PRECHECK_USER_DIRECTIVE'
           assert read_back['decision']['decision'] == decision.decision
+
           if decision.decision != 'ALLOW':
+              report = evidence['observer_report']
+              observer_path = Path('WIC_OBSERVER_STATUS.md')
+              observer_text = observer_path.read_text(encoding='utf-8')
+              start = '<!-- WIC_DENY_OBSERVER_AUTO_START -->'
+              end = '<!-- WIC_DENY_OBSERVER_AUTO_END -->'
+              generated = datetime.now(timezone.utc).isoformat()
+              auto_block = (
+                  f"{start}\n"
+                  "## 최근 DENY 자동 관찰자 보고\n"
+                  f"- generated_at_utc: `{generated}`\n"
+                  f"- decision: `{decision.decision}`\n"
+                  f"- action: `{decision.action}`\n"
+                  f"- target: `{decision.target}`\n"
+                  f"- reason: `{decision.reason}`\n"
+                  f"- error_class: `{report.get('error_class', '')}`\n"
+                  f"- blocked_before_mutation: `{str(bool(report.get('blocked_before_mutation', True))).lower()}`\n"
+                  f"- directive_source_ref: `{decision.directive_source_ref}`\n"
+                  f"{end}"
+              )
+              if start in observer_text and end in observer_text:
+                  before = observer_text.split(start, 1)[0].rstrip()
+                  after = observer_text.split(end, 1)[1].lstrip('\n')
+                  observer_text = before + '\n\n' + auto_block + ('\n\n' + after if after else '\n')
+              else:
+                  observer_text = observer_text.rstrip() + '\n\n' + auto_block + '\n'
+              observer_path.write_text(observer_text, encoding='utf-8')
+
+              # Persist DENY evidence before the workflow stops. This is the observer path,
+              # not a new structure: overwrite the existing observer status and evidence file.
+              subprocess.run(['git', 'config', 'user.name', 'wic-integration-bot'], check=True)
+              subprocess.run(['git', 'config', 'user.email', 'wic-integration-bot@users.noreply.github.com'], check=True)
+              subprocess.run(['git', 'add', 'WIC_OBSERVER_STATUS.md', 'feedback_pipeline/preflight_evidence.json'], check=True)
+              subprocess.run(['git', 'commit', '-m', 'wic: persist denied preflight observer evidence [skip ci]'], check=True)
+              subprocess.run(['git', 'push'], check=True)
+              subprocess.run(['git', 'fetch', 'origin', 'main'], check=True)
+              remote_observer = subprocess.run(
+                  ['git', 'show', 'origin/main:WIC_OBSERVER_STATUS.md'],
+                  check=True, capture_output=True, text=True
+              ).stdout
+              remote_evidence = subprocess.run(
+                  ['git', 'show', 'origin/main:feedback_pipeline/preflight_evidence.json'],
+                  check=True, capture_output=True, text=True
+              ).stdout
+              assert start in remote_observer and decision.action in remote_observer
+              remote_evidence_json = json.loads(remote_evidence)
+              assert remote_evidence_json['decision']['decision'] == 'DENY_HOLD'
+              assert remote_evidence_json['blocked_before_mutation'] is True
               print(json.dumps(evidence, ensure_ascii=False))
-              raise SystemExit('DENY_HOLD: material mutation blocked before APPLY')
+              raise SystemExit('DENY_HOLD: evidence persisted to observer before APPLY')
           print('PASS: PRECHECK_USER_DIRECTIVE allowed exact approved user directive before APPLY')
           PY
 
