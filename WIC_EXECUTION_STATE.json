@@ -2,21 +2,21 @@
   "state_type": "execution_state_only_not_rules",
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
-  "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 10:57",
-  "structure_status": "PARTIAL_PASS_ACTIVE_RECOVERY_FUNCTIONAL_GATES_HOLD",
+  "observer_status": "WIC_OBSERVER_STATUS.md",
+  "updated_kst": "2026-08-15 05:02",
+  "structure_status": "PRE_WORK_PASS_HANDOFF_AUDIT_PENDING",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": ["NO_NEW_CHAT", "logical role is not a verified UI title", "unverified UI title remains UI_TITLE_HOLD", "unauthorized rename/alias/new chat is DENY/HOLD"]
   },
   "stall_recovery": {
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
-    "latest_observed_run": "31755905043",
+    "latest_observed_run": "31824429998",
     "latest_observed_result": "success",
-    "latest_observed_at_kst": "2026-08-14 09:01",
-    "stall_detected_this_run": false,
+    "latest_observed_at_kst": "2026-08-15 PRE_WORK_VERIFIED",
+    "stall_detected_this_run": true,
     "secondary_recovery_performed": true,
-    "secondary_recovery_result": "Read back central state and observer, verified monitor success, resumed saved TOOL009 restart point, then continued independent unfinished integration checks when safe patching was blocked."
+    "secondary_recovery_result": "5-minute stale detection branch succeeded and existing recovery audit was re-dispatched; recovery run 31824440422 succeeded."
   },
   "verified_completed": {
     "TOOL001": "repository target write/read-back/test previously verified",
@@ -51,41 +51,60 @@
     }
   },
   "this_run_actual_changes": [
-    "Read back WIC_EXECUTION_STATE.json and WIC_LIVE_OBSERVER_STATUS.md before acting.",
-    "Verified latest observed scheduled wic-stall-monitor run 31755905043 is completed/success.",
-    "STALL=false: central state age was under one hour at start and repo 07-wic-setting-tool-v1 had actual commits at 10:47-10:54 KST.",
-    "Resumed TOOL009 restart point and re-read exact production code proving empty/invalid localStorage falls back to createInitialSampleData() and sample-1/sample-2/sample-3 production records.",
-    "Confirmed safe TOOL009 source patch is blocked by connector capability: update_file requires complete replacement while retrieval is truncated; no destructive replacement attempted.",
-    "Continued other unfinished integration work instead of stopping: verified new 07-wic-setting-tool-v1 customer-guidance single-source commits and legacy-rule demotion.",
-    "Compared central CUSTOMER_WORKFLOW_MASTER.md and found remaining older email-collection rule conflicts requiring later safe synchronization.",
-    "No new chat, role, name, repository, workflow, file or status board was created."
+    "Work-preparation-only scope enforced; no actual tool development or email collection work executed.",
+    "Read back WIC_OBSERVER_STATUS.md and WIC_EXECUTION_STATE.json before mutation.",
+    "Preserved completed PRECHECK_USER_DIRECTIVE, DENY observer persistence, stale final validation fix, common adapter contract, approved feedback E2E, and 5-minute watchdog evidence without rerunning completed steps.",
+    "Synchronized central execution state to the latest Work-preparation checkpoint.",
+    "Next required proof is the existing work-gate-handoff audit run triggered by this state update."
   ],
   "blockers": {
-    "TOOL037": "No target-appropriate implementation/functional evidence found.",
-    "TOOL013_FUNCTIONAL_E2E": "Real implementation exists but no existing executable browser/runtime harness is present in repository; current CI is structure-only.",
-    "TOOL006_FUNCTIONAL_E2E": "Historical expected fixtures exist but no executable regression harness is present; current CI is structure-only.",
-    "TOOL009_SYNTHETIC_DATA": "Production fallback remains. GitHub connector only exposes whole-file update for this path; exact complete index.html cannot be safely reconstructed from truncated retrieval, so source patch is HOLD rather than risking data loss.",
-    "CUSTOMER_WORKFLOW_MASTER_SYNC": "Central customer master still has older email-collection conditions that conflict with latest email single-source rules; synchronize only through safe existing-file update when complete file content is available.",
-    "TOOL027_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present.",
-    "TOOL004_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present.",
-    "TOOL008_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present."
+    "PRE_WORK_HANDOFF_AUDIT": "State has been synchronized; existing work-gate-handoff audit must complete successfully and be read back before PRE_WORK_PASS is final."
   },
   "do_not_repeat": [
+    "PRECHECK_USER_DIRECTIVE implementation and approved mutation E2E unless new failure evidence appears",
+    "DENY observer persistence test unless new failure evidence appears",
+    "stale FINAL_STATE_VALIDATION fix unless a new assertion failure appears",
+    "common material mutation adapter contract implementation unless new failure evidence appears",
+    "5-minute stall monitor stale->recovery verification unless new failure evidence appears",
     "identity/NO_NEW_CHAT implementation unless new failure evidence appears",
     "EMAIL_COLLECTION legacy-number mining unless user explicitly resumes it",
     "TOOL001 transport proof",
     "TOOL007 repository discovery",
     "TOOL002 functional E2E recheck unless new failure evidence appears",
-    "treating static validation/deployment as functional E2E",
-    "rerunning TOOL009 platform-evidence before synthetic fallback is removed",
-    "creating a second customer-guidance rule file after unified 07 repo master is already established"
+    "rerunning TOOL009 platform-evidence before synthetic fallback is removed"
   ],
+  "work_preparation_checkpoint": {
+    "status": "PASS_PENDING_HANDOFF_AUDIT",
+    "last_success_stage": "EXECUTION_STATE_SYNCHRONIZED",
+    "completed": {
+      "USER_DIRECTIVE_PROVENANCE_COMMON_PREFLIGHT": {"status":"PASS","evidence":["205f6557","940fe993","run 31822293219"]},
+      "DENY_OBSERVER_PERSISTENCE": {"status":"PASS","evidence":["29a61242","29431ea5","run 31831732239","observer commit 598fee93"]},
+      "STALE_FINAL_STATE_VALIDATION": {"status":"PASS","evidence":["run 31826639129"]},
+      "COMMON_MODULE_ADAPTER_CONTRACT": {"status":"PASS","evidence":["51b22d1c","1bc68efb","run 31826639129"]},
+      "CHAT_DIRECTIVE_REAL_FUNCTION_CHANGE_E2E": {"status":"PASS","evidence":["2ca18aed","run 31822293219"]},
+      "FIVE_MINUTE_HEARTBEAT_STALL_WATCHDOG": {"status":"PASS","evidence":["run 31824429998","recovery run 31824440422"]}
+    },
+    "remaining": ["WORK_HANDOFF_RESTART_AUDIT_READBACK"],
+    "restart_point": "Read the work-gate-handoff audit triggered by this state commit. If success, mark PRE_WORK_PASS and do not start actual tool development in this automation.",
+    "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
+  },
+  "work_gate_candidates": {
+    "WORK_PREP_HANDOFF_RESTART": {
+      "gates": {"chat_files": false, "github": true, "ordinary_runtime": false},
+      "blocker": "Existing GitHub handoff audit must validate synchronized Work-preparation state.",
+      "restart_point": "Run/read back .github/workflows/work-gate-handoff-audit.yml after WIC_EXECUTION_STATE.json sync.",
+      "target_repository": "obk369369-spec/20-operational-manual-viewer",
+      "target_assets": ["WIC_EXECUTION_STATE.json", "feedback_pipeline/work_gate_handoff.py", ".github/workflows/work-gate-handoff-audit.yml"],
+      "execution_goal": "Verify exact handoff/restart contract without starting actual tool work.",
+      "success_evidence": ["GitHub Actions run success", "generated handoff artifact", "state read-back"],
+      "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
+    }
+  },
   "restart_point": [
-    "Do not repeat completed identity/TOOL001/TOOL002/TOOL007/EMAIL_COLLECTION rules or 07 customer-guidance single-source checks unless new failure evidence appears.",
-    "TOOL009 remains first actionable code failure: patch only existing index.html synthetic fallback when a safe whole-file or partial-edit path is available; then rerun existing platform-evidence.yml and read back result.",
-    "In parallel, safely synchronize existing CUSTOMER_WORKFLOW_MASTER.md so its email-collection clauses defer to latest EMAIL_COLLECTION_COMMON_RULES.md instead of preserving conflicting older requirements; do not create a new master.",
-    "Keep TOOL037 HOLD until existing implementation evidence appears.",
-    "Keep TOOL013/TOOL006/TOOL027/TOOL004/TOOL008 HOLD_FUNCTIONAL_E2E until actual input -> execution -> output -> expected comparison can run through existing structures."
+    "Do not repeat completed Work-preparation stages unless new failure evidence appears.",
+    "Read back the existing work-gate-handoff audit triggered by the synchronized WIC_EXECUTION_STATE.json.",
+    "If the handoff audit is success, update only the existing central Work-preparation status to PRE_WORK_PASS.",
+    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, or any other actual tool development inside this Work-preparation automation."
   ],
-  "completion_policy": "PASS requires actual execution evidence; storage/read-back, fixture existence, static validation or deployment alone are insufficient."
+  "completion_policy": "PRE_WORK_PASS requires actual commit + file read-back + handoff audit run/result evidence. Business/tool PASS still requires its own actual execution evidence."
 }
