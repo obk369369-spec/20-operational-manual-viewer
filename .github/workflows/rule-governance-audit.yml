@@ -31,13 +31,14 @@ jobs:
           f='WIC_GLOBAL_OPERATING_RULES.md'
           test -s "$f"
           grep -q 'SINGLE SOURCE OF TRUTH' "$f"
+          grep -q '운영 규칙은 이 파일 하나' "$f"
           grep -q '관찰자 모드' "$f"
           grep -q 'PASS / HOLD / FAIL' "$f"
           grep -q '껍데기 차단 규칙' "$f"
           grep -q '도구 번호별 단일 등록표' "$f"
           grep -q '사용자 부담 카운터' "$f"
           echo 'CENTRAL_RULES=PASS'
-      - name: Enforce NO_NEW_CHAT and UI-title identity gate
+      - name: Validate auxiliary chat-governance files are non-normative
         shell: bash
         run: |
           set -euo pipefail
@@ -45,6 +46,17 @@ jobs:
           o='CHAT_WINDOW_OWNERSHIP_LOCK.md'
           test -s "$r"
           test -s "$o"
+          grep -q 'NON-NORMATIVE ROUTING LEDGER' "$r"
+          grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$r"
+          grep -q 'NON-NORMATIVE COMPATIBILITY REFERENCE / EXECUTION SOURCE 아님' "$o"
+          grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$o"
+          echo 'AUXILIARY_CHAT_GOVERNANCE=NON_NORMATIVE_PASS'
+      - name: Validate legacy compatibility chat guards remain coherent during migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          r='WIC_CHAT_ROUTING_REGISTRY.md'
+          o='CHAT_WINDOW_OWNERSHIP_LOCK.md'
           grep -q 'NO_NEW_CHAT' "$r"
           grep -q 'EXPLICIT_NEW_CHAT_APPROVAL' "$r"
           grep -q 'FAIL-NO_NEW_CHAT-VIOLATION' "$r"
@@ -55,7 +67,7 @@ jobs:
           grep -q '대화창 이름은 사용자(관찰자)만 변경할 수 있다.' "$o"
           grep -q '무단 새 대화창 생성: FAIL' "$o"
           grep -q '무단 대화창 이름 변경 또는 다른 이름으로 취급: FAIL' "$o"
-          echo 'CHAT_IDENTITY_GATE=PASS'
+          echo 'LEGACY_CHAT_GUARD_COMPATIBILITY=PASS'
       - name: Reject unauthorized structure mutation fixtures
         shell: bash
         run: |
