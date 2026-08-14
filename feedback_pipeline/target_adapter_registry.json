@@ -1,5 +1,24 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "common_mutation_contract": {
+    "contract_id": "WIC_MATERIAL_MUTATION_V1",
+    "required_stage_order": [
+      "PRECHECK_USER_DIRECTIVE",
+      "VALIDATE",
+      "APPLY",
+      "TEST",
+      "EVIDENCE",
+      "ROLLBACK_OR_HOLD"
+    ],
+    "fail_closed": true,
+    "apply_requires_precheck_allow": true,
+    "deny_decision": "DENY_HOLD",
+    "deny_observer_report_required": true,
+    "deny_observer_delivery_target": "WIC_OBSERVER_STATUS.md",
+    "deny_must_be_blocked_before_mutation": true,
+    "rollback_or_hold_required_on_post_apply_failure": true,
+    "evidence_required_before_pass": true
+  },
   "repository_targets": {
     "TOOL001": {
       "repository": "obk369369-spec/01-auto-guide-v1",
