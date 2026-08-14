@@ -106,3 +106,15 @@
 8. 그 시점에 사용자에게 `사전준비 완료율 / 남은 Work-only 항목 / Work 첫 작업 / 예상 크레딧 사용처 / Work 중단 시 재개점`을 한 번에 보고한다.
 
 이 파일은 계속 같은 `WIC_OBSERVER_STATUS.md`를 덮어써서 유지한다.
+
+<!-- WIC_DENY_OBSERVER_AUTO_START -->
+## 최근 DENY 자동 관찰자 보고
+- generated_at_utc: `2026-08-14T19:04:31.846930+00:00`
+- decision: `DENY_HOLD`
+- action: `CREATE_NEW_CHAT`
+- target: `WIC_GLOBAL_OPERATING_RULES.md`
+- reason: `unknown or unregistered change action`
+- error_class: ``
+- blocked_before_mutation: `true`
+- directive_source_ref: ``
+<!-- WIC_DENY_OBSERVER_AUTO_END -->
