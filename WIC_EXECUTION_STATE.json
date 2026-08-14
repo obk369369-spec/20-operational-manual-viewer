@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 10:00",
+  "updated_kst": "2026-08-14 10:57",
   "structure_status": "PARTIAL_PASS_ACTIVE_RECOVERY_FUNCTIONAL_GATES_HOLD",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
@@ -16,13 +16,14 @@
     "latest_observed_at_kst": "2026-08-14 09:01",
     "stall_detected_this_run": false,
     "secondary_recovery_performed": true,
-    "secondary_recovery_result": "Restart point read back; completed packages skipped; next incomplete existing repositories inspected and TOOL009 failure root cause verified."
+    "secondary_recovery_result": "Read back central state and observer, verified monitor success, resumed saved TOOL009 restart point, then continued independent unfinished integration checks when safe patching was blocked."
   },
   "verified_completed": {
     "TOOL001": "repository target write/read-back/test previously verified",
     "TOOL002": "PASS_FUNCTIONAL_E2E: Playwright run 31617559119 executed real input -> add item -> save -> localStorage read-back -> visible list -> expected-value assertions successfully.",
     "TOOL007": "central-lane acknowledgement and deterministic integration verification previously verified",
-    "EMAIL_COLLECTION_RULES": "rules-only consolidation PASS; historical data recovery remains intentionally deferred"
+    "EMAIL_COLLECTION_RULES": "rules-only consolidation PASS; historical data recovery remains intentionally deferred",
+    "CUSTOMER_GUIDANCE_RULE_SINGLE_SOURCE": "repo 07-wic-setting-tool-v1 commits bc2dc2df1f4f01f636434d37638a698848c64f50 and 3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc establish docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md as single source and demote legacy COMMON_CUSTOMER_OUTPUT_RULES.md."
   },
   "email_collection_checkpoint": {
     "status": "RULE_ONLY_CONSOLIDATION_PASS",
@@ -33,28 +34,38 @@
     "TOOL037": {"status":"HOLD","reason":"No existing target-appropriate implementation or functional evidence located."},
     "TOOL013": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/13-excel-upload","evidence":"Real CSV/XLSX load, transform, preview and XLSX download implementation exists, but no existing executable browser/runtime input -> execution -> output -> expected comparison harness was found."},
     "TOOL006": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/06-toc-check","evidence":"MarketsandMarkets historical regression fixtures with expected invariants exist, but no executable regression harness was found; current CI remains static validation."},
-    "TOOL002": {"status":"PASS_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","workflow":".github/workflows/actual-bid-business-e2e.yml","run_id":"31617559119","job_id":"94184066712","evidence":"Real Chromium/Playwright flow fills bid fields, adds item, saves, reads localStorage state, checks saved budget/item count and visible list; workflow/job and evidence upload steps all succeeded."},
-    "TOOL009": {"status":"FAIL_SYNTHETIC_FALLBACK_PRESENT","repository":"obk369369-spec/09-contents-making-tool","workflow":".github/workflows/platform-evidence.yml","run_id":"31501486551","job_id":"93812322777","evidence":"Existing workflow failed at Block synthetic fallback data. Job log proves index.html still calls createInitialSampleData(); source inspection shows sample-1/sample-2/sample-3 production fallback records. Workflow explicitly classifies itself as platform evidence, not functional E2E."},
-    "TOOL027": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/27-technical-book-verifier","evidence":"Production index.html contains real CSV upload, persistence, category/keyword drilldown and X/WARN verification implementation; repository has no executable workflow/test harness in tree. WIC_RULE_SOURCE correctly points to central master."},
-    "TOOL004": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/04-research-funding-generator","evidence":"Production public/index.html exists and central WIC_RULE_SOURCE exists, but repository tree has no executable test/workflow harness."},
-    "TOOL008": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/08-English-Verb-Exercise","evidence":"Production index.html and central WIC_RULE_SOURCE exist, but repository tree has no executable test/workflow harness."}
+    "TOOL002": {"status":"PASS_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","workflow":".github/workflows/actual-bid-business-e2e.yml","run_id":"31617559119","job_id":"94184066712"},
+    "TOOL009": {"status":"FAIL_SYNTHETIC_FALLBACK_PRESENT_PATCH_BLOCKED","repository":"obk369369-spec/09-contents-making-tool","workflow":".github/workflows/platform-evidence.yml","run_id":"31501486551","job_id":"93812322777","evidence":"production index.html lines around 1030-1350 still call createInitialSampleData() when storage is empty or parsing fails and define sample-1/sample-2/sample-3 records. Existing connector exposes whole-file replacement only; safe partial patch is unavailable and full file content is truncated by retrieval, so destructive full replacement was not attempted."},
+    "TOOL027": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/27-technical-book-verifier"},
+    "TOOL004": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/04-research-funding-generator"},
+    "TOOL008": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/08-English-Verb-Exercise"}
+  },
+  "integration_checks": {
+    "CUSTOMER_GUIDANCE_07_REPO": {
+      "status": "PASS_RULE_SINGLE_SOURCE",
+      "evidence": ["bc2dc2df1f4f01f636434d37638a698848c64f50", "3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc"]
+    },
+    "CENTRAL_CUSTOMER_WORKFLOW_ALIGNMENT": {
+      "status": "HOLD_CONFLICT_REMAINING",
+      "evidence": "CUSTOMER_WORKFLOW_MASTER.md still contains older email-collection conditions such as direct contact/complete-field requirements and university handling that differ from latest EMAIL_COLLECTION_COMMON_RULES.md. No unsafe rewrite was attempted in this run."
+    }
   },
   "this_run_actual_changes": [
     "Read back WIC_EXECUTION_STATE.json and WIC_LIVE_OBSERVER_STATUS.md before acting.",
-    "Verified latest scheduled wic-stall-monitor run 31755905043 and job 94631453002 succeeded; stale/recovery steps were skipped and resolved-stall cleanup succeeded.",
-    "No >1h actual-change gap existed at run start; STALL=false.",
-    "Skipped completed CHAT IDENTITY / EMAIL_COLLECTION rules / TOOL001 / TOOL002 / TOOL007 packages.",
-    "Inspected TOOL027 repository and confirmed central-master pointer plus real production functionality, but no executable functional harness; kept HOLD_FUNCTIONAL_E2E.",
-    "Inspected TOOL004 and TOOL008 repository trees; implementation exists but no executable functional harness; kept HOLD_FUNCTIONAL_E2E.",
-    "Inspected TOOL009 existing platform-evidence workflow, latest failed run 31501486551 and job logs.",
-    "Verified TOOL009 production index.html still contains createInitialSampleData() and sample-1/sample-2/sample-3 fallback records; classified FAIL_SYNTHETIC_FALLBACK_PRESENT rather than PASS.",
-    "No new chat, role, name, repository, workflow or status board was created."
+    "Verified latest observed scheduled wic-stall-monitor run 31755905043 is completed/success.",
+    "STALL=false: central state age was under one hour at start and repo 07-wic-setting-tool-v1 had actual commits at 10:47-10:54 KST.",
+    "Resumed TOOL009 restart point and re-read exact production code proving empty/invalid localStorage falls back to createInitialSampleData() and sample-1/sample-2/sample-3 production records.",
+    "Confirmed safe TOOL009 source patch is blocked by connector capability: update_file requires complete replacement while retrieval is truncated; no destructive replacement attempted.",
+    "Continued other unfinished integration work instead of stopping: verified new 07-wic-setting-tool-v1 customer-guidance single-source commits and legacy-rule demotion.",
+    "Compared central CUSTOMER_WORKFLOW_MASTER.md and found remaining older email-collection rule conflicts requiring later safe synchronization.",
+    "No new chat, role, name, repository, workflow, file or status board was created."
   ],
   "blockers": {
     "TOOL037": "No target-appropriate implementation/functional evidence found.",
     "TOOL013_FUNCTIONAL_E2E": "Real implementation exists but no existing executable browser/runtime harness is present in repository; current CI is structure-only.",
     "TOOL006_FUNCTIONAL_E2E": "Historical expected fixtures exist but no executable regression harness is present; current CI is structure-only.",
-    "TOOL009_SYNTHETIC_DATA": "Production index.html still contains createInitialSampleData() and sample-* fallback records; existing platform-evidence run 31501486551 fails on this exact gate.",
+    "TOOL009_SYNTHETIC_DATA": "Production fallback remains. GitHub connector only exposes whole-file update for this path; exact complete index.html cannot be safely reconstructed from truncated retrieval, so source patch is HOLD rather than risking data loss.",
+    "CUSTOMER_WORKFLOW_MASTER_SYNC": "Central customer master still has older email-collection conditions that conflict with latest email single-source rules; synchronize only through safe existing-file update when complete file content is available.",
     "TOOL027_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present.",
     "TOOL004_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present.",
     "TOOL008_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present."
@@ -66,15 +77,15 @@
     "TOOL007 repository discovery",
     "TOOL002 functional E2E recheck unless new failure evidence appears",
     "treating static validation/deployment as functional E2E",
-    "rerunning TOOL009 platform-evidence before synthetic fallback is removed"
+    "rerunning TOOL009 platform-evidence before synthetic fallback is removed",
+    "creating a second customer-guidance rule file after unified 07 repo master is already established"
   ],
   "restart_point": [
-    "Do not rerun completed identity/TOOL001/TOOL002/TOOL007/EMAIL_COLLECTION rules-only consolidation unless new failure evidence appears.",
-    "TOOL009 is the first newly evidenced actionable failure: remove only the production synthetic fallback/sample-data path using the existing index.html and existing platform-evidence workflow; do not create a new workflow.",
-    "After TOOL009 synthetic fallback removal, rerun the existing platform-evidence workflow and read back its result; this is still not functional E2E by itself.",
+    "Do not repeat completed identity/TOOL001/TOOL002/TOOL007/EMAIL_COLLECTION rules or 07 customer-guidance single-source checks unless new failure evidence appears.",
+    "TOOL009 remains first actionable code failure: patch only existing index.html synthetic fallback when a safe whole-file or partial-edit path is available; then rerun existing platform-evidence.yml and read back result.",
+    "In parallel, safely synchronize existing CUSTOMER_WORKFLOW_MASTER.md so its email-collection clauses defer to latest EMAIL_COLLECTION_COMMON_RULES.md instead of preserving conflicting older requirements; do not create a new master.",
     "Keep TOOL037 HOLD until existing implementation evidence appears.",
-    "Keep TOOL013/TOOL006/TOOL027/TOOL004/TOOL008 HOLD_FUNCTIONAL_E2E until actual input -> execution -> output -> expected comparison can run through existing structures.",
-    "If TOOL009 source update is blocked by connector safety or inability to patch the existing large index.html safely, record the blocker and continue inspecting the next existing registered repository with an executable harness."
+    "Keep TOOL013/TOOL006/TOOL027/TOOL004/TOOL008 HOLD_FUNCTIONAL_E2E until actual input -> execution -> output -> expected comparison can run through existing structures."
   ],
   "completion_policy": "PASS requires actual execution evidence; storage/read-back, fixture existence, static validation or deployment alone are insufficient."
 }
