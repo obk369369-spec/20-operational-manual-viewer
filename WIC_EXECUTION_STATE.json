@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 08:59",
+  "updated_kst": "2026-08-14 10:00",
   "structure_status": "PARTIAL_PASS_ACTIVE_RECOVERY_FUNCTIONAL_GATES_HOLD",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
@@ -11,12 +11,12 @@
   },
   "stall_recovery": {
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
-    "latest_observed_run": "31752832687",
+    "latest_observed_run": "31755905043",
     "latest_observed_result": "success",
-    "latest_observed_at_kst": "2026-08-14 08:10",
+    "latest_observed_at_kst": "2026-08-14 09:01",
     "stall_detected_this_run": false,
     "secondary_recovery_performed": true,
-    "secondary_recovery_result": "Restart point read back and next incomplete functional-evidence package TOOL002 was actually rechecked; no new chat/workflow/repository/status board created."
+    "secondary_recovery_result": "Restart point read back; completed packages skipped; next incomplete existing repositories inspected and TOOL009 failure root cause verified."
   },
   "verified_completed": {
     "TOOL001": "repository target write/read-back/test previously verified",
@@ -33,20 +33,31 @@
     "TOOL037": {"status":"HOLD","reason":"No existing target-appropriate implementation or functional evidence located."},
     "TOOL013": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/13-excel-upload","evidence":"Real CSV/XLSX load, transform, preview and XLSX download implementation exists, but no existing executable browser/runtime input -> execution -> output -> expected comparison harness was found."},
     "TOOL006": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/06-toc-check","evidence":"MarketsandMarkets historical regression fixtures with expected invariants exist, but no executable regression harness was found; current CI remains static validation."},
-    "TOOL002": {"status":"PASS_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","workflow":".github/workflows/actual-bid-business-e2e.yml","run_id":"31617559119","job_id":"94184066712","evidence":"Real Chromium/Playwright flow fills bid fields, adds item, saves, reads localStorage state, checks saved budget/item count and visible list; workflow/job and evidence upload steps all succeeded."}
+    "TOOL002": {"status":"PASS_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","workflow":".github/workflows/actual-bid-business-e2e.yml","run_id":"31617559119","job_id":"94184066712","evidence":"Real Chromium/Playwright flow fills bid fields, adds item, saves, reads localStorage state, checks saved budget/item count and visible list; workflow/job and evidence upload steps all succeeded."},
+    "TOOL009": {"status":"FAIL_SYNTHETIC_FALLBACK_PRESENT","repository":"obk369369-spec/09-contents-making-tool","workflow":".github/workflows/platform-evidence.yml","run_id":"31501486551","job_id":"93812322777","evidence":"Existing workflow failed at Block synthetic fallback data. Job log proves index.html still calls createInitialSampleData(); source inspection shows sample-1/sample-2/sample-3 production fallback records. Workflow explicitly classifies itself as platform evidence, not functional E2E."},
+    "TOOL027": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/27-technical-book-verifier","evidence":"Production index.html contains real CSV upload, persistence, category/keyword drilldown and X/WARN verification implementation; repository has no executable workflow/test harness in tree. WIC_RULE_SOURCE correctly points to central master."},
+    "TOOL004": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/04-research-funding-generator","evidence":"Production public/index.html exists and central WIC_RULE_SOURCE exists, but repository tree has no executable test/workflow harness."},
+    "TOOL008": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/08-English-Verb-Exercise","evidence":"Production index.html and central WIC_RULE_SOURCE exist, but repository tree has no executable test/workflow harness."}
   },
   "this_run_actual_changes": [
-    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json before acting.",
-    "Verified latest scheduled wic-stall-monitor run 31752832687 completed successfully at 08:10 KST; no >1h actual-change gap at run start, so STALL=false.",
-    "Inspected TOOL002 repository tree and actual-bid-business-e2e.yml.",
-    "Verified TOOL002 workflow run 31617559119 and job 94184066712: Install browser runtime, start local page, real bid create-save-readback flow, and evidence preservation all succeeded.",
-    "Corrected TOOL002 from REQUIRES_RECHECK_FUNCTIONAL_E2E to PASS_FUNCTIONAL_E2E based on actual input -> execution -> output -> expected comparison evidence.",
-    "Advanced restart point without repeating completed EMAIL_COLLECTION/identity/TOOL001/TOOL007 packages."
+    "Read back WIC_EXECUTION_STATE.json and WIC_LIVE_OBSERVER_STATUS.md before acting.",
+    "Verified latest scheduled wic-stall-monitor run 31755905043 and job 94631453002 succeeded; stale/recovery steps were skipped and resolved-stall cleanup succeeded.",
+    "No >1h actual-change gap existed at run start; STALL=false.",
+    "Skipped completed CHAT IDENTITY / EMAIL_COLLECTION rules / TOOL001 / TOOL002 / TOOL007 packages.",
+    "Inspected TOOL027 repository and confirmed central-master pointer plus real production functionality, but no executable functional harness; kept HOLD_FUNCTIONAL_E2E.",
+    "Inspected TOOL004 and TOOL008 repository trees; implementation exists but no executable functional harness; kept HOLD_FUNCTIONAL_E2E.",
+    "Inspected TOOL009 existing platform-evidence workflow, latest failed run 31501486551 and job logs.",
+    "Verified TOOL009 production index.html still contains createInitialSampleData() and sample-1/sample-2/sample-3 fallback records; classified FAIL_SYNTHETIC_FALLBACK_PRESENT rather than PASS.",
+    "No new chat, role, name, repository, workflow or status board was created."
   ],
   "blockers": {
     "TOOL037": "No target-appropriate implementation/functional evidence found.",
     "TOOL013_FUNCTIONAL_E2E": "Real implementation exists but no existing executable browser/runtime harness is present in repository; current CI is structure-only.",
-    "TOOL006_FUNCTIONAL_E2E": "Historical expected fixtures exist but no executable regression harness is present; current CI is structure-only."
+    "TOOL006_FUNCTIONAL_E2E": "Historical expected fixtures exist but no executable regression harness is present; current CI is structure-only.",
+    "TOOL009_SYNTHETIC_DATA": "Production index.html still contains createInitialSampleData() and sample-* fallback records; existing platform-evidence run 31501486551 fails on this exact gate.",
+    "TOOL027_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present.",
+    "TOOL004_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present.",
+    "TOOL008_FUNCTIONAL_E2E": "Implementation exists but no executable workflow/test harness is present."
   },
   "do_not_repeat": [
     "identity/NO_NEW_CHAT implementation unless new failure evidence appears",
@@ -54,14 +65,16 @@
     "TOOL001 transport proof",
     "TOOL007 repository discovery",
     "TOOL002 functional E2E recheck unless new failure evidence appears",
-    "treating static validation/deployment as functional E2E"
+    "treating static validation/deployment as functional E2E",
+    "rerunning TOOL009 platform-evidence before synthetic fallback is removed"
   ],
   "restart_point": [
     "Do not rerun completed identity/TOOL001/TOOL002/TOOL007/EMAIL_COLLECTION rules-only consolidation unless new failure evidence appears.",
+    "TOOL009 is the first newly evidenced actionable failure: remove only the production synthetic fallback/sample-data path using the existing index.html and existing platform-evidence workflow; do not create a new workflow.",
+    "After TOOL009 synthetic fallback removal, rerun the existing platform-evidence workflow and read back its result; this is still not functional E2E by itself.",
     "Keep TOOL037 HOLD until existing implementation evidence appears.",
-    "Keep TOOL013 HOLD_FUNCTIONAL_E2E until an actual input -> execution -> output -> expected comparison can run.",
-    "Keep TOOL006 HOLD_FUNCTIONAL_E2E; its historical fixtures are reusable evidence inputs but are not executable tests by themselves.",
-    "Next executable work: inspect the next existing registered tool/work package after TOOL002 that has an implementation and can be functionally verified without creating a new repository/workflow; if none is executable, continue resolving TOOL013/TOOL006 only through existing structures."
+    "Keep TOOL013/TOOL006/TOOL027/TOOL004/TOOL008 HOLD_FUNCTIONAL_E2E until actual input -> execution -> output -> expected comparison can run through existing structures.",
+    "If TOOL009 source update is blocked by connector safety or inability to patch the existing large index.html safely, record the blocker and continue inspecting the next existing registered repository with an executable harness."
   ],
   "completion_policy": "PASS requires actual execution evidence; storage/read-back, fixture existence, static validation or deployment alone are insufficient."
 }
