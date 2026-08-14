@@ -83,7 +83,7 @@ jobs:
                   f"- action: `{decision.action}`\n"
                   f"- target: `{decision.target}`\n"
                   f"- reason: `{decision.reason}`\n"
-                  f"- error_class: `{report.get('error_class', '')}`\n"
+                  f"- error_class: `{'STRUCTURAL_ERROR_UNAUTHORIZED' if report.get('structural_error_unauthorized') else ''}`\n"
                   f"- blocked_before_mutation: `{str(bool(report.get('blocked_before_mutation', True))).lower()}`\n"
                   f"- directive_source_ref: `{decision.directive_source_ref}`\n"
                   f"{end}"
