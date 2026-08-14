@@ -101,6 +101,22 @@ def deny(reason: str, p: ChangeProposal) -> GuardDecision:
     return GuardDecision("DENY_HOLD", reason, p.action, p.target, p.directive_source_ref, True)
 
 
+def build_observer_report(decision: GuardDecision) -> dict:
+    if decision.decision != "DENY_HOLD" or not decision.observer_report_required:
+        raise ValueError("observer report payload is only valid for DENY_HOLD decisions")
+    return {
+        "report_type": "DENY_OBSERVER_REPORT",
+        "action": decision.action,
+        "target": decision.target,
+        "reason": decision.reason,
+        "directive_source_ref": decision.directive_source_ref,
+        "structural_error_unauthorized": True,
+        "blocked_before_mutation": True,
+        "observer_report_required": True,
+        "normal_unaffected_work_may_continue": True,
+    }
+
+
 def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) -> GuardDecision:
     if proposal.action not in PROTECTED_ACTIONS:
         return deny("unknown or unregistered change action", proposal)
@@ -137,24 +153,45 @@ def run_fixtures() -> str:
         "approved_program": ChangeProposal("MODIFY_PROGRAM", "program-13", "13번 프로그램 수정을 해라.", "user:5"),
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
-    for name in ("missing_provenance", "unauthorized_chat", "unauthorized_tool", "unauthorized_program", "negative_rename", "negative_registry"):
+    deny_names = (
+        "missing_provenance", "unauthorized_chat", "unauthorized_tool",
+        "unauthorized_program", "negative_rename", "negative_registry",
+    )
+    for name in deny_names:
         assert result[name]["decision"] == "DENY_HOLD"
         assert result[name]["observer_report_required"] is True
     for name in ("approved_chat", "approved_tool", "approved_program"):
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
+
+    observer_reports = [build_observer_report(evaluate(cases[name], approved)) for name in deny_names]
+    assert len(observer_reports) == len(deny_names)
+    assert all(x["structural_error_unauthorized"] is True for x in observer_reports)
+    assert all(x["blocked_before_mutation"] is True for x in observer_reports)
+    assert all(x["observer_report_required"] is True for x in observer_reports)
+
     evidence = {
-        "schema_version": 3,
+        "schema_version": 4,
         "guard": "UNAUTHORIZED_CHANGE_GUARD",
         "scope": "ALL_WIC_CHAT_TOOL_PROGRAM_AUTOMATION_RULE_WORKFLOW_CHANGES",
         "cases": result,
+        "observer_reports": observer_reports,
+        "observer_report_contract": {
+            "required_fields": [
+                "action", "target", "reason", "directive_source_ref",
+                "structural_error_unauthorized", "blocked_before_mutation",
+                "observer_report_required", "normal_unaffected_work_may_continue",
+            ],
+            "delivery_target": "WIC observer status/report lane",
+            "rule": "Every DENY_HOLD must be surfaced to the observer; never silently swallow denied mutation evidence.",
+        },
         "result": "PASS_INTERNAL_FIXTURE",
         "external_independent_verification": False,
     }
     (Path(__file__).resolve().parent / "unauthorized_structure_guard_evidence.json").write_text(
         json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    return "PASS: universal WIC user-directive provenance guard fixtures"
+    return "PASS: universal WIC user-directive provenance guard + observer report fixtures"
 
 
 if __name__ == "__main__":
