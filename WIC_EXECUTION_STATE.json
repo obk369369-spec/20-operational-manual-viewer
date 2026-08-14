@@ -3,8 +3,8 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-15 05:02",
-  "structure_status": "PRE_WORK_PASS_HANDOFF_AUDIT_PENDING",
+  "updated_kst": "2026-08-15 05:04",
+  "structure_status": "PRE_WORK_PASS",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": ["NO_NEW_CHAT", "logical role is not a verified UI title", "unverified UI title remains UI_TITLE_HOLD", "unauthorized rename/alias/new chat is DENY/HOLD"]
@@ -54,18 +54,18 @@
     "Work-preparation-only scope enforced; no actual tool development or email collection work executed.",
     "Read back WIC_OBSERVER_STATUS.md and WIC_EXECUTION_STATE.json before mutation.",
     "Preserved completed PRECHECK_USER_DIRECTIVE, DENY observer persistence, stale final validation fix, common adapter contract, approved feedback E2E, and 5-minute watchdog evidence without rerunning completed steps.",
-    "Synchronized central execution state to the latest Work-preparation checkpoint.",
-    "Next required proof is the existing work-gate-handoff audit run triggered by this state update."
+    "Synchronized central execution state to the latest Work-preparation checkpoint in commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41.",
+    "Existing WIC Work Gate Handoff Audit run 31836111313 completed successfully for that synchronized state.",
+    "Marked Work-preparation state PRE_WORK_PASS after actual commit, state read-back, deterministic handoff fixtures, exact handoff generation, validation, and successful run result."
   ],
-  "blockers": {
-    "PRE_WORK_HANDOFF_AUDIT": "State has been synchronized; existing work-gate-handoff audit must complete successfully and be read back before PRE_WORK_PASS is final."
-  },
+  "blockers": {},
   "do_not_repeat": [
     "PRECHECK_USER_DIRECTIVE implementation and approved mutation E2E unless new failure evidence appears",
     "DENY observer persistence test unless new failure evidence appears",
     "stale FINAL_STATE_VALIDATION fix unless a new assertion failure appears",
     "common material mutation adapter contract implementation unless new failure evidence appears",
     "5-minute stall monitor stale->recovery verification unless new failure evidence appears",
+    "Work-preparation handoff audit unless new failure evidence appears",
     "identity/NO_NEW_CHAT implementation unless new failure evidence appears",
     "EMAIL_COLLECTION legacy-number mining unless user explicitly resumes it",
     "TOOL001 transport proof",
@@ -74,37 +74,37 @@
     "rerunning TOOL009 platform-evidence before synthetic fallback is removed"
   ],
   "work_preparation_checkpoint": {
-    "status": "PASS_PENDING_HANDOFF_AUDIT",
-    "last_success_stage": "EXECUTION_STATE_SYNCHRONIZED",
+    "status": "PASS",
+    "last_success_stage": "WORK_HANDOFF_RESTART_AUDIT_READBACK_PASS",
     "completed": {
       "USER_DIRECTIVE_PROVENANCE_COMMON_PREFLIGHT": {"status":"PASS","evidence":["205f6557","940fe993","run 31822293219"]},
       "DENY_OBSERVER_PERSISTENCE": {"status":"PASS","evidence":["29a61242","29431ea5","run 31831732239","observer commit 598fee93"]},
       "STALE_FINAL_STATE_VALIDATION": {"status":"PASS","evidence":["run 31826639129"]},
       "COMMON_MODULE_ADAPTER_CONTRACT": {"status":"PASS","evidence":["51b22d1c","1bc68efb","run 31826639129"]},
       "CHAT_DIRECTIVE_REAL_FUNCTION_CHANGE_E2E": {"status":"PASS","evidence":["2ca18aed","run 31822293219"]},
+      "WORK_HANDOFF_RESTART": {"status":"PASS","evidence":["state commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41","run 31836111313","job 94882665880"]},
       "FIVE_MINUTE_HEARTBEAT_STALL_WATCHDOG": {"status":"PASS","evidence":["run 31824429998","recovery run 31824440422"]}
     },
-    "remaining": ["WORK_HANDOFF_RESTART_AUDIT_READBACK"],
-    "restart_point": "Read the work-gate-handoff audit triggered by this state commit. If success, mark PRE_WORK_PASS and do not start actual tool development in this automation.",
+    "remaining": [],
+    "restart_point": "PRE_WORK_PASS. This automation must not start actual tool development. A later explicitly scoped Work execution may begin from the selected target package without repeating these pre-work stages.",
     "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
   },
   "work_gate_candidates": {
     "WORK_PREP_HANDOFF_RESTART": {
       "gates": {"chat_files": false, "github": true, "ordinary_runtime": false},
-      "blocker": "Existing GitHub handoff audit must validate synchronized Work-preparation state.",
-      "restart_point": "Run/read back .github/workflows/work-gate-handoff-audit.yml after WIC_EXECUTION_STATE.json sync.",
+      "blocker": "Resolved by GitHub handoff audit run 31836111313.",
+      "restart_point": "No further pre-work execution required unless new failure evidence appears.",
       "target_repository": "obk369369-spec/20-operational-manual-viewer",
       "target_assets": ["WIC_EXECUTION_STATE.json", "feedback_pipeline/work_gate_handoff.py", ".github/workflows/work-gate-handoff-audit.yml"],
       "execution_goal": "Verify exact handoff/restart contract without starting actual tool work.",
-      "success_evidence": ["GitHub Actions run success", "generated handoff artifact", "state read-back"],
+      "success_evidence": ["run 31836111313 success", "job 94882665880 handoff fixture/generation/validation success", "state read-back"],
       "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
     }
   },
   "restart_point": [
-    "Do not repeat completed Work-preparation stages unless new failure evidence appears.",
-    "Read back the existing work-gate-handoff audit triggered by the synchronized WIC_EXECUTION_STATE.json.",
-    "If the handoff audit is success, update only the existing central Work-preparation status to PRE_WORK_PASS.",
-    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, or any other actual tool development inside this Work-preparation automation."
+    "PRE_WORK_PASS: do not repeat completed Work-preparation stages unless new failure evidence appears.",
+    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, or any other actual tool development inside this Work-preparation automation.",
+    "When an actual Work target is explicitly selected elsewhere, use its existing target package and preserve the handoff/exit checkpoint contract."
   ],
-  "completion_policy": "PRE_WORK_PASS requires actual commit + file read-back + handoff audit run/result evidence. Business/tool PASS still requires its own actual execution evidence."
+  "completion_policy": "PRE_WORK_PASS requires actual commit + file read-back + handoff audit run/result evidence; satisfied by state commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41, read-back blob 494901cb22da599b1d6db602169eeed020a9a078, and run 31836111313 success. Business/tool PASS still requires its own actual execution evidence."
 }
