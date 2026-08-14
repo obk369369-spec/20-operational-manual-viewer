@@ -24,7 +24,7 @@ PROTECTED_ACTIONS = {
     "AUTO_TRANSFER_CONVERSATION": ("자동 이전", "다음 대화창", "auto transfer"),
     "CREATE_MANAGEMENT_CHAT": ("관리 대화창", "보고 대화창", "별도 관리창", "별도 보고창"),
     "CREATE_TOOL": ("도구 생성", "새 도구", "tool create", "new tool"),
-    "MODIFY_TOOL": ("도구 수정", "기능 수정", "기능 추가", "도구 보완", "modify tool"),
+    "MODIFY_TOOL": ("도구 수정", "기능 수정", "기능 수정을", "기능 추가", "도구 보완", "modify tool"),
     "CREATE_PROGRAM": ("프로그램 생성", "새 프로그램", "program create", "new program"),
     "MODIFY_PROGRAM": ("프로그램 수정", "프로그램 수정을", "프로그램 보완", "코드 수정", "modify program"),
     "CREATE_AUTOMATION": ("자동화 생성", "예약 작업", "automation create"),
