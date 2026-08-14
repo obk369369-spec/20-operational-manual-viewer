@@ -3,7 +3,7 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_LIVE_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-14 08:00",
+  "updated_kst": "2026-08-14 08:59",
   "structure_status": "PARTIAL_PASS_ACTIVE_RECOVERY_FUNCTIONAL_GATES_HOLD",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
@@ -11,15 +11,16 @@
   },
   "stall_recovery": {
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
-    "latest_observed_run": "31749460211",
+    "latest_observed_run": "31752832687",
     "latest_observed_result": "success",
-    "latest_observed_at_kst": "2026-08-14 07:19",
+    "latest_observed_at_kst": "2026-08-14 08:10",
     "stall_detected_this_run": false,
     "secondary_recovery_performed": true,
-    "secondary_recovery_result": "Restart point read back and next incomplete functional-evidence packages inspected without creating new chat/workflow/repository/status board."
+    "secondary_recovery_result": "Restart point read back and next incomplete functional-evidence package TOOL002 was actually rechecked; no new chat/workflow/repository/status board created."
   },
   "verified_completed": {
     "TOOL001": "repository target write/read-back/test previously verified",
+    "TOOL002": "PASS_FUNCTIONAL_E2E: Playwright run 31617559119 executed real input -> add item -> save -> localStorage read-back -> visible list -> expected-value assertions successfully.",
     "TOOL007": "central-lane acknowledgement and deterministic integration verification previously verified",
     "EMAIL_COLLECTION_RULES": "rules-only consolidation PASS; historical data recovery remains intentionally deferred"
   },
@@ -30,29 +31,37 @@
   },
   "priority_packages": {
     "TOOL037": {"status":"HOLD","reason":"No existing target-appropriate implementation or functional evidence located."},
-    "TOOL013": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/13-excel-upload","evidence":"Repository tree contains only index.html, structure validator, workflow and state/rule files; no existing Playwright/browser E2E harness. index.html contains real CSV/XLSX load, transform, preview and XLSX download logic, but current repository evidence does not execute input -> run -> output -> expected comparison."},
-    "TOOL006": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/06-toc-check","evidence":"Repository contains MarketsandMarkets historical regression fixtures with expected invariants, but no executable regression harness was found in the repository tree; existing CI remains static validation."},
-    "TOOL002": {"status":"REQUIRES_RECHECK_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","reason":"Must distinguish actual Playwright/localStorage behavior evidence from earlier static-validation run before changing status."}
+    "TOOL013": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/13-excel-upload","evidence":"Real CSV/XLSX load, transform, preview and XLSX download implementation exists, but no existing executable browser/runtime input -> execution -> output -> expected comparison harness was found."},
+    "TOOL006": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/06-toc-check","evidence":"MarketsandMarkets historical regression fixtures with expected invariants exist, but no executable regression harness was found; current CI remains static validation."},
+    "TOOL002": {"status":"PASS_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","workflow":".github/workflows/actual-bid-business-e2e.yml","run_id":"31617559119","job_id":"94184066712","evidence":"Real Chromium/Playwright flow fills bid fields, adds item, saves, reads localStorage state, checks saved budget/item count and visible list; workflow/job and evidence upload steps all succeeded."}
   },
   "this_run_actual_changes": [
-    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json.",
-    "Verified latest scheduled wic-stall-monitor run 31749460211 completed successfully at 07:19 KST.",
-    "Inspected full TOOL013 repository tree and confirmed there is no existing browser E2E harness; inspected index.html and confirmed real file-input/transform/preview/download implementation exists, so HOLD is specifically missing executable comparison evidence rather than missing implementation.",
-    "Inspected full TOOL006 repository tree and its MarketsandMarkets historical fixture file; reusable expected invariants exist, but no executable harness is present, so functional PASS remains HOLD.",
-    "Advanced restart point to TOOL002 evidence recheck rather than repeating completed EMAIL_COLLECTION/identity packages."
+    "Read back WIC_EXECUTION_STATE.json, WIC_LIVE_OBSERVER_STATUS.md and EMAIL_COLLECTION_EXECUTION_STATE.json before acting.",
+    "Verified latest scheduled wic-stall-monitor run 31752832687 completed successfully at 08:10 KST; no >1h actual-change gap at run start, so STALL=false.",
+    "Inspected TOOL002 repository tree and actual-bid-business-e2e.yml.",
+    "Verified TOOL002 workflow run 31617559119 and job 94184066712: Install browser runtime, start local page, real bid create-save-readback flow, and evidence preservation all succeeded.",
+    "Corrected TOOL002 from REQUIRES_RECHECK_FUNCTIONAL_E2E to PASS_FUNCTIONAL_E2E based on actual input -> execution -> output -> expected comparison evidence.",
+    "Advanced restart point without repeating completed EMAIL_COLLECTION/identity/TOOL001/TOOL007 packages."
   ],
   "blockers": {
     "TOOL037": "No target-appropriate implementation/functional evidence found.",
     "TOOL013_FUNCTIONAL_E2E": "Real implementation exists but no existing executable browser/runtime harness is present in repository; current CI is structure-only.",
     "TOOL006_FUNCTIONAL_E2E": "Historical expected fixtures exist but no executable regression harness is present; current CI is structure-only."
   },
-  "do_not_repeat": ["identity/NO_NEW_CHAT implementation unless new failure evidence appears", "EMAIL_COLLECTION legacy-number mining unless user explicitly resumes it", "TOOL001 transport proof", "TOOL007 repository discovery", "treating static validation/deployment as functional E2E"],
+  "do_not_repeat": [
+    "identity/NO_NEW_CHAT implementation unless new failure evidence appears",
+    "EMAIL_COLLECTION legacy-number mining unless user explicitly resumes it",
+    "TOOL001 transport proof",
+    "TOOL007 repository discovery",
+    "TOOL002 functional E2E recheck unless new failure evidence appears",
+    "treating static validation/deployment as functional E2E"
+  ],
   "restart_point": [
-    "Do not rerun completed identity/TOOL001/TOOL007/EMAIL_COLLECTION rules-only consolidation unless new failure evidence appears.",
+    "Do not rerun completed identity/TOOL001/TOOL002/TOOL007/EMAIL_COLLECTION rules-only consolidation unless new failure evidence appears.",
     "Keep TOOL037 HOLD until existing implementation evidence appears.",
     "Keep TOOL013 HOLD_FUNCTIONAL_E2E until an actual input -> execution -> output -> expected comparison can run.",
     "Keep TOOL006 HOLD_FUNCTIONAL_E2E; its historical fixtures are reusable evidence inputs but are not executable tests by themselves.",
-    "Next executable work: recheck TOOL002 repository for genuine browser/localStorage functional E2E evidence and correct central status from that evidence."
+    "Next executable work: inspect the next existing registered tool/work package after TOOL002 that has an implementation and can be functionally verified without creating a new repository/workflow; if none is executable, continue resolving TOOL013/TOOL006 only through existing structures."
   ],
   "completion_policy": "PASS requires actual execution evidence; storage/read-back, fixture existence, static validation or deployment alone are insufficient."
 }
