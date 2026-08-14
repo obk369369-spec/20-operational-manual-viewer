@@ -33,11 +33,12 @@ PROTECTED_ACTIONS = {
     "MODIFY_RULE": ("규칙 수정", "규칙 추가", "규칙 변경", "modify rule"),
     "MODIFY_WORKFLOW": ("workflow 수정", "workflow 변경", "워크플로 수정", "modify workflow"),
     "CREATE_OPERATING_BRANCH": ("새 운영 구조", "새 운영분기", "new operating branch"),
+    "APPLY_FEEDBACK": ("피드백", "반영", "적용", "통합", "우선순위", "최우선"),
 }
 
 POSITIVE_APPROVAL = (
     "만들어", "생성해", "생성하라", "바꿔", "변경해", "변경하라", "수정해", "수정해라", "수정을 해라", "수정하라",
-    "보완해", "추가해", "추가하라", "옮겨", "이전해", "적용해", "적용하라",
+    "보완해", "추가해", "추가하라", "옮겨", "이전해", "적용해", "적용하라", "해야",
     "create", "rename", "move", "transfer", "add", "modify", "update", "apply",
 )
 NEGATION = (
@@ -71,9 +72,34 @@ def _record_text(line: str) -> str:
     return _norm(re.sub(r"^[\s#>*+-]+", "", line))
 
 
+def _canonical_record_directives(source: str) -> set[str]:
+    """Read exact canonical sanitized excerpts without falling back to substring matching."""
+    match = re.search(
+        r"<!-- WIC_CANONICAL_FEEDBACK_START -->\s*```json\s*(.*?)\s*```\s*<!-- WIC_CANONICAL_FEEDBACK_END -->",
+        source,
+        re.S,
+    )
+    if not match:
+        return set()
+    try:
+        payload = json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return set()
+    records = payload.get("records", [])
+    if not isinstance(records, list):
+        return set()
+    return {
+        _norm(str(record.get("sanitized_excerpt", "")))
+        for record in records
+        if isinstance(record, dict) and str(record.get("sanitized_excerpt", "")).strip()
+    }
+
+
 def _directive_recorded(directive: str, source: str) -> bool:
     wanted = _norm(directive)
-    return any(_record_text(line) == wanted for line in source.splitlines())
+    if any(_record_text(line) == wanted for line in source.splitlines()):
+        return True
+    return wanted in _canonical_record_directives(source)
 
 
 def load_approved_source_text(paths: Iterable[Path] = APPROVED_SOURCE_PATHS) -> str:
@@ -140,6 +166,11 @@ def run_fixtures() -> str:
 - 13번 프로그램 수정을 해라.
 - 기존 대화창 이름 변경은 하지 마.
 - 새 registry를 임의로 만들지 마.
+<!-- WIC_CANONICAL_FEEDBACK_START -->
+```json
+{"schema_version":1,"records":[{"sanitized_excerpt":"피드백은 중앙 규칙에 반영해야 한다."}]}
+```
+<!-- WIC_CANONICAL_FEEDBACK_END -->
 """
     cases = {
         "missing_provenance": ChangeProposal("CREATE_TOOL", "tool-x", "", ""),
@@ -151,6 +182,7 @@ def run_fixtures() -> str:
         "approved_chat": ChangeProposal("CREATE_CONVERSATION", "chat-test", "테스트용 새 대화창을 만들어.", "user:1"),
         "approved_tool": ChangeProposal("MODIFY_TOOL", "tool-6", "6번 도구 기능 수정을 해라.", "user:4"),
         "approved_program": ChangeProposal("MODIFY_PROGRAM", "program-13", "13번 프로그램 수정을 해라.", "user:5"),
+        "approved_canonical_feedback": ChangeProposal("APPLY_FEEDBACK", "WIC_GLOBAL_OPERATING_RULES.md", "피드백은 중앙 규칙에 반영해야 한다.", "canonical:test"),
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
     deny_names = (
@@ -160,7 +192,7 @@ def run_fixtures() -> str:
     for name in deny_names:
         assert result[name]["decision"] == "DENY_HOLD"
         assert result[name]["observer_report_required"] is True
-    for name in ("approved_chat", "approved_tool", "approved_program"):
+    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback"):
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
 
@@ -171,7 +203,7 @@ def run_fixtures() -> str:
     assert all(x["observer_report_required"] is True for x in observer_reports)
 
     evidence = {
-        "schema_version": 4,
+        "schema_version": 5,
         "guard": "UNAUTHORIZED_CHANGE_GUARD",
         "scope": "ALL_WIC_CHAT_TOOL_PROGRAM_AUTOMATION_RULE_WORKFLOW_CHANGES",
         "cases": result,
@@ -185,13 +217,15 @@ def run_fixtures() -> str:
             "delivery_target": "WIC observer status/report lane",
             "rule": "Every DENY_HOLD must be surfaced to the observer; never silently swallow denied mutation evidence.",
         },
+        "canonical_exact_match": True,
+        "substring_approval_forbidden": True,
         "result": "PASS_INTERNAL_FIXTURE",
         "external_independent_verification": False,
     }
     (Path(__file__).resolve().parent / "unauthorized_structure_guard_evidence.json").write_text(
         json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    return "PASS: universal WIC user-directive provenance guard + observer report fixtures"
+    return "PASS: universal WIC user-directive provenance guard + canonical exact-match + observer report fixtures"
 
 
 if __name__ == "__main__":
