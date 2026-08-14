@@ -109,12 +109,12 @@
 
 <!-- WIC_DENY_OBSERVER_AUTO_START -->
 ## 최근 DENY 자동 관찰자 보고
-- generated_at_utc: `2026-08-14T19:04:31.846930+00:00`
+- generated_at_utc: `2026-08-14T19:06:09.881815+00:00`
 - decision: `DENY_HOLD`
-- action: `CREATE_NEW_CHAT`
+- action: `CREATE_CONVERSATION`
 - target: `WIC_GLOBAL_OPERATING_RULES.md`
-- reason: `unknown or unregistered change action`
-- error_class: ``
+- reason: `missing explicit user directive provenance`
+- error_class: `STRUCTURAL_ERROR_UNAUTHORIZED`
 - blocked_before_mutation: `true`
 - directive_source_ref: ``
 <!-- WIC_DENY_OBSERVER_AUTO_END -->
