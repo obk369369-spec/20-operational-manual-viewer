@@ -3,8 +3,8 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-15 05:04",
-  "structure_status": "PRE_WORK_PASS",
+  "updated_kst": "2026-08-15 08:02",
+  "structure_status": "PRE_WORK_ADDITIONAL_SCOPE_IN_PROGRESS",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": ["NO_NEW_CHAT", "logical role is not a verified UI title", "unverified UI title remains UI_TITLE_HOLD", "unauthorized rename/alias/new chat is DENY/HOLD"]
@@ -56,9 +56,18 @@
     "Preserved completed PRECHECK_USER_DIRECTIVE, DENY observer persistence, stale final validation fix, common adapter contract, approved feedback E2E, and 5-minute watchdog evidence without rerunning completed steps.",
     "Synchronized central execution state to the latest Work-preparation checkpoint in commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41.",
     "Existing WIC Work Gate Handoff Audit run 31836111313 completed successfully for that synchronized state.",
-    "Marked Work-preparation state PRE_WORK_PASS after actual commit, state read-back, deterministic handoff fixtures, exact handoff generation, validation, and successful run result."
+    "Marked prior Work-preparation state PRE_WORK_PASS after actual commit, state read-back, deterministic handoff fixtures, exact handoff generation, validation, and successful run result.",
+    "Verified the historical Antigravity/WIC34 rule-asset location from retained evidence: WIC34_STATE/conversation_records/raw -> tool_mapped -> extracted_rules -> tool-specific RULE_INBOX, with source_originals kept separate from conversation records.",
+    "Verified historical baseline counts: RAW=224 and tool_mapped=487 are retained provenance values; the 2026-06-01 crosscheck reports 100% only for its listed extraction scope TOOL001/TOOL006/TOOL013/TOOL007/TOOL002 and must not be expanded into a claim that every currently registered tool is complete.",
+    "Verified WIC_GLOBAL_OPERATING_RULES.md clauses 1.10-1.11 already require reuse of the Antigravity baseline and incremental-only absorption after the baseline; no duplicate normative rule was added.",
+    "Verified WIC_UNIVERSAL_INTEGRATION_ARCHITECTURE.md already locks common-master -> workgroup -> field/tool exception -> data hierarchy, so no new registry or parallel master was created.",
+    "Reviewed central GitHub rule commits after the historical evidence-index checkpoint and confirmed multiple post-baseline Chat-derived rule integrations through 2026-08-15, including current email/customer-rule consolidation activity.",
+    "Detected a concrete post-baseline delta candidate: File Library contains 2026-08-09 evidence for the user-approved 40번 출시 앱 도구, while central-repository search returned no TOOL040/40번 출시 앱 routing entry. This is recorded as a tool-exception delta HOLD rather than inventing rules from screenshots."
   ],
-  "blockers": {},
+  "blockers": {
+    "ANTIGRAVITY_ALL_CURRENT_TOOLS_COMPLETENESS": "The retained Antigravity crosscheck proves the June extraction scope, not completeness for every tool that exists now. No authoritative all-current-tools manifest/hash set has been located yet; therefore all-current-tools completeness remains HOLD.",
+    "POST_EXTRACTION_TOOL040_RULE_INGEST": "TOOL040 existence and observer/external-evidence-gate screenshots are verified in File Library, but no central TOOL040 routing/rule entry was found. Exact reusable rule text must be recovered from an existing source before central tool-exception integration; do not infer missing details from screenshots."
+  },
   "do_not_repeat": [
     "PRECHECK_USER_DIRECTIVE implementation and approved mutation E2E unless new failure evidence appears",
     "DENY observer persistence test unless new failure evidence appears",
@@ -71,7 +80,9 @@
     "TOOL001 transport proof",
     "TOOL007 repository discovery",
     "TOOL002 functional E2E recheck unless new failure evidence appears",
-    "rerunning TOOL009 platform-evidence before synthetic fallback is removed"
+    "rerunning TOOL009 platform-evidence before synthetic fallback is removed",
+    "Antigravity RAW 224 full reanalysis or all-tool reclassification",
+    "recreating common-master/workgroup/tool-exception hierarchy in a new file or registry"
   ],
   "work_preparation_checkpoint": {
     "status": "PASS",
@@ -86,14 +97,32 @@
       "FIVE_MINUTE_HEARTBEAT_STALL_WATCHDOG": {"status":"PASS","evidence":["run 31824429998","recovery run 31824440422"]}
     },
     "remaining": [],
-    "restart_point": "PRE_WORK_PASS. This automation must not start actual tool development. A later explicitly scoped Work execution may begin from the selected target package without repeating these pre-work stages.",
+    "restart_point": "Prior PRE_WORK_PASS remains valid for the original pre-work gates. Additional rule-asset/delta scope is tracked separately below and must not cause completed gates to be repeated.",
     "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
+  },
+  "additional_work_preparation_checkpoint": {
+    "status": "HOLD_DELTA_RECONCILIATION",
+    "completed": {
+      "ANTIGRAVITY_BASELINE_LOCATION": {"status":"PASS","evidence":["File Library WIC34 retained path evidence: WIC34_STATE/conversation_records/raw -> tool_mapped -> extracted_rules -> RULE_INBOX","RAW=224","tool_mapped=487"]},
+      "ANTIGRAVITY_BASELINE_SCOPE": {"status":"PASS_SCOPED","evidence":["2026-06-01 WIC34 crosscheck 100% for listed TOOL001/TOOL006/TOOL013/TOOL007/TOOL002 scope"]},
+      "INCREMENTAL_ONLY_RULE_POLICY": {"status":"PASS","evidence":["WIC_GLOBAL_OPERATING_RULES.md 1.10-1.11"]},
+      "CENTRAL_HIERARCHY": {"status":"PASS","evidence":["WIC_UNIVERSAL_INTEGRATION_ARCHITECTURE.md common-master -> workgroup -> field/tool exception -> data"]},
+      "POST_BASELINE_GITHUB_DELTA_PRESENCE": {"status":"PASS","evidence":["central rule commits after 2026-08-10 historical-index checkpoint through 2026-08-15"]}
+    },
+    "remaining": [
+      "Locate an authoritative current-tool manifest or equivalent retained evidence sufficient to distinguish June baseline completeness from current all-tool completeness without re-extracting RAW 224.",
+      "Recover exact reusable TOOL040 rule text from existing Chat/File evidence and integrate only the verified tool-exception delta into the existing central hierarchy.",
+      "Run targeted delta-only omission checks for other post-baseline Chat feedback; do not reread the historical corpus already covered by the baseline.",
+      "After delta reconciliation, update this existing state and rerun only the existing governance/handoff validation required by the changed central assets."
+    ],
+    "restart_point": "Continue from TOOL040 exact-rule-source recovery plus current-tool-manifest lookup. Do not repeat Antigravity RAW extraction, prior Work preflight gates, or hierarchy creation.",
+    "work_entry": "HOLD until additional rule-asset/delta scope is reconciled; prior original pre-work gates remain PASS."
   },
   "work_gate_candidates": {
     "WORK_PREP_HANDOFF_RESTART": {
       "gates": {"chat_files": false, "github": true, "ordinary_runtime": false},
-      "blocker": "Resolved by GitHub handoff audit run 31836111313.",
-      "restart_point": "No further pre-work execution required unless new failure evidence appears.",
+      "blocker": "Resolved by GitHub handoff audit run 31836111313 for the original pre-work gate set; additional rule-asset/delta scope is tracked separately.",
+      "restart_point": "Do not rerun the original handoff fixture until the additional delta reconciliation changes a central handoff-relevant asset.",
       "target_repository": "obk369369-spec/20-operational-manual-viewer",
       "target_assets": ["WIC_EXECUTION_STATE.json", "feedback_pipeline/work_gate_handoff.py", ".github/workflows/work-gate-handoff-audit.yml"],
       "execution_goal": "Verify exact handoff/restart contract without starting actual tool work.",
@@ -102,9 +131,10 @@
     }
   },
   "restart_point": [
-    "PRE_WORK_PASS: do not repeat completed Work-preparation stages unless new failure evidence appears.",
-    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, or any other actual tool development inside this Work-preparation automation.",
-    "When an actual Work target is explicitly selected elsewhere, use its existing target package and preserve the handoff/exit checkpoint contract."
+    "ADDITIONAL_PRE_WORK_HOLD: continue only the rule-asset/delta reconciliation recorded in additional_work_preparation_checkpoint.",
+    "PRE_WORK_PASS original gates remain locked; do not repeat completed stages unless new failure evidence appears.",
+    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, TOOL040, or any other actual tool development inside this Work-preparation automation.",
+    "When the additional delta scope passes, generate the exact Work handoff from existing central sources without re-analyzing the historical raw corpus."
   ],
-  "completion_policy": "PRE_WORK_PASS requires actual commit + file read-back + handoff audit run/result evidence; satisfied by state commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41, read-back blob 494901cb22da599b1d6db602169eeed020a9a078, and run 31836111313 success. Business/tool PASS still requires its own actual execution evidence."
+  "completion_policy": "Original PRE_WORK_PASS required actual commit + file read-back + handoff audit run/result evidence and remains satisfied. Additional rule-asset/delta scope requires targeted evidence of baseline location/scope, post-baseline omission reconciliation, central-hierarchy integration without duplicate normative rules, file read-back, and existing governance/handoff run evidence before Work entry is restored to PASS."
 }
