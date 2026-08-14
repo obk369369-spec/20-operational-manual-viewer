@@ -112,7 +112,7 @@ def run_fixtures() -> str:
 사용자 지시 기록:
 - 테스트용 새 대화창을 만들어.
 - 6번 도구 기능 수정을 해라.
-- 13번 프로그램 자동매핑 기능을 추가해라.
+- 13번 프로그램 수정을 해라.
 - 기존 대화창 이름 변경은 하지 마.
 - 새 registry를 임의로 만들지 마.
 """
@@ -125,7 +125,7 @@ def run_fixtures() -> str:
         "negative_registry": ChangeProposal("CREATE_REGISTRY", "registry-x", "새 registry를 임의로 만들지 마.", "user:3"),
         "approved_chat": ChangeProposal("CREATE_CONVERSATION", "chat-test", "테스트용 새 대화창을 만들어.", "user:1"),
         "approved_tool": ChangeProposal("MODIFY_TOOL", "tool-6", "6번 도구 기능 수정을 해라.", "user:4"),
-        "approved_program": ChangeProposal("MODIFY_TOOL", "tool-13", "13번 프로그램 자동매핑 기능을 추가해라.", "user:5"),
+        "approved_program": ChangeProposal("MODIFY_PROGRAM", "program-13", "13번 프로그램 수정을 해라.", "user:5"),
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
     for name in ("missing_provenance", "unauthorized_chat", "unauthorized_tool", "unauthorized_program", "negative_rename", "negative_registry"):
