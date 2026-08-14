@@ -8,9 +8,32 @@ MANIFEST = ROOT / "target_apply_manifest.json"
 ADAPTERS = ROOT / "target_adapter_registry.json"
 REVISION_CACHE = ROOT / "target_revision_cache.json"
 
+REQUIRED_MUTATION_STAGES = [
+    "PRECHECK_USER_DIRECTIVE",
+    "VALIDATE",
+    "APPLY",
+    "TEST",
+    "EVIDENCE",
+    "ROLLBACK_OR_HOLD",
+]
+
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def validate_common_mutation_contract(adapters: dict) -> None:
+    contract = adapters.get("common_mutation_contract", {})
+    assert contract.get("contract_id") == "WIC_MATERIAL_MUTATION_V1", "missing common material mutation contract"
+    assert contract.get("required_stage_order") == REQUIRED_MUTATION_STAGES, "material mutation stage order drift"
+    assert contract.get("fail_closed") is True, "material mutation contract must fail closed"
+    assert contract.get("apply_requires_precheck_allow") is True, "APPLY must require PRECHECK_USER_DIRECTIVE ALLOW"
+    assert contract.get("deny_decision") == "DENY_HOLD", "unauthorized mutation must DENY_HOLD"
+    assert contract.get("deny_observer_report_required") is True, "DENY evidence must reach observer report lane"
+    assert contract.get("deny_observer_delivery_target") == "WIC_OBSERVER_STATUS.md", "DENY observer delivery target drift"
+    assert contract.get("deny_must_be_blocked_before_mutation") is True, "DENY must occur before material mutation"
+    assert contract.get("rollback_or_hold_required_on_post_apply_failure") is True, "post-APPLY failure must rollback or hold"
+    assert contract.get("evidence_required_before_pass") is True, "PASS requires evidence"
 
 
 def build_plan(manifest: dict, adapters: dict, revision_cache: dict) -> dict:
@@ -107,12 +130,13 @@ def main() -> None:
     adapters = load(ADAPTERS)
     revision_cache = load(REVISION_CACHE)
     assert revision_cache["schema_version"] == 1
+    validate_common_mutation_contract(adapters)
     plan = build_plan(manifest, adapters, revision_cache)
     validate_plan(plan)
     validate_against_inputs(plan, manifest, adapters, revision_cache)
     out = ROOT / "target_dispatch_plan.json"
     out.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("PASS: dispatch plan matches current manifest, adapter registry, and revision cache")
+    print("PASS: common material mutation contract + dispatch plan match current manifest, adapter registry, and revision cache")
 
 
 if __name__ == "__main__":
