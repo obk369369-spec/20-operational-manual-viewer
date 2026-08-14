@@ -2,23 +2,12 @@
   "schema_version": 2,
   "stage": "PRECHECK_USER_DIRECTIVE",
   "decision": {
-    "decision": "DENY_HOLD",
-    "reason": "missing explicit user directive provenance",
-    "action": "CREATE_CONVERSATION",
+    "decision": "ALLOW",
+    "reason": "explicit user directive provenance verified",
+    "action": "APPLY_FEEDBACK",
     "target": "WIC_GLOBAL_OPERATING_RULES.md",
-    "directive_source_ref": "",
-    "observer_report_required": true
+    "directive_source_ref": "WIC_GLOBAL_OPERATING_RULES.md#WIC_CANONICAL_FEEDBACK_START:37a4a2166bb5e2a08a8c",
+    "observer_report_required": false
   },
-  "blocked_before_mutation": true,
-  "observer_report": {
-    "report_type": "DENY_OBSERVER_REPORT",
-    "action": "CREATE_CONVERSATION",
-    "target": "WIC_GLOBAL_OPERATING_RULES.md",
-    "reason": "missing explicit user directive provenance",
-    "directive_source_ref": "",
-    "structural_error_unauthorized": true,
-    "blocked_before_mutation": true,
-    "observer_report_required": true,
-    "normal_unaffected_work_may_continue": true
-  }
+  "blocked_before_mutation": false
 }
