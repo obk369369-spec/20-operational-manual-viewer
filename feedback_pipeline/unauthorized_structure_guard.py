@@ -67,6 +67,15 @@ def _norm(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip().lower())
 
 
+def _record_text(line: str) -> str:
+    return _norm(re.sub(r"^[\s#>*+-]+", "", line))
+
+
+def _directive_recorded(directive: str, source: str) -> bool:
+    wanted = _norm(directive)
+    return any(_record_text(line) == wanted for line in source.splitlines())
+
+
 def load_approved_source_text(paths: Iterable[Path] = APPROVED_SOURCE_PATHS) -> str:
     chunks = []
     for path in paths:
@@ -98,8 +107,8 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
     if not proposal.directive_text.strip() or not proposal.directive_source_ref.strip():
         return deny("missing explicit user directive provenance", proposal)
     source = approved_source_text if approved_source_text is not None else load_approved_source_text()
-    if _norm(proposal.directive_text) not in _norm(source):
-        return deny("directive text not found in approved user-record source", proposal)
+    if not _directive_recorded(proposal.directive_text, source):
+        return deny("directive text not found as an exact approved user-record entry", proposal)
     if not _mentions_action(proposal.action, proposal.directive_text):
         return deny("directive does not explicitly name the proposed change", proposal)
     if not _explicit_approval(proposal.directive_text):
@@ -135,7 +144,7 @@ def run_fixtures() -> str:
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
     evidence = {
-        "schema_version": 2,
+        "schema_version": 3,
         "guard": "UNAUTHORIZED_CHANGE_GUARD",
         "scope": "ALL_WIC_CHAT_TOOL_PROGRAM_AUTOMATION_RULE_WORKFLOW_CHANGES",
         "cases": result,
