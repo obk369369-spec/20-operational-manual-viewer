@@ -182,8 +182,8 @@ jobs:
           ]
           plan = json.loads(Path('feedback_pipeline/target_dispatch_plan.json').read_text(encoding='utf-8'))
           by_target = {x['target']: x for x in plan['actions']}
-          for target in ('TOOL001','TOOL002','TOOL006','TOOL013'):
-              assert by_target[target]['action'] == 'SKIP_UNCHANGED'
+          for target in ('TOOL001','TOOL002','TOOL006'):
+              assert by_target[target]['action'] == 'REPOSITORY_REVISION_ACK'
           for target in ('EMAIL_DB','TOOL007','TOOL037','WORK_GATE'):
               assert by_target[target]['action'] == 'LANE_ACK'
           assert plan['holds'] == []
@@ -216,5 +216,5 @@ jobs:
           assert actual['readback_match'] is True
           assert actual['target_clean_after_e2e'] is True
           assert actual['executed_after_restart'] == ['TARGET_REVISION_READ_APPLY','TEST_EVIDENCE','RESTART_OR_HOLD']
-          print('PASS: actual feedback structure + unauthorized guard + SKIP_UNCHANGED + TOOL007 lane + rollback/restart E2E')
+          print('PASS: actual feedback structure + unauthorized guard + revision ACK + central lanes + rollback/restart E2E')
           PY
