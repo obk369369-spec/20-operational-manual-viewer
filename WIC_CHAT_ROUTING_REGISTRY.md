@@ -70,6 +70,7 @@
 | TOOL007 | 고객 컨택 판단·전화 멘트·추천자료 | 금지 — 기존 7번 관련 대화창 재사용 | 중앙 고객업무 마스터 |
 | TOOL001 | FULL/INTERMEDIATE 안내서 | 금지 — 기존 1번 관련 대화창 재사용 | 중앙 고객업무 마스터 |
 | TOOL006 | TOC 정리·golden fixture | 금지 — 기존 6번/TOC 대화창 재사용 | 해당 중앙 규칙 |
+| TOOL040 | 사용자가 지정한 `40번 출시 앱 도구`: 아이디어→실제 출시, 모바일 관찰, 외부구조 협업·증거 게이트 | 금지 — 기존 40번 관련 대화/작업 흐름 재사용 | 공통마스터 + 아래 TOOL040 도구예외 |
 | CRM_RESPONSE | 통화/회신 후 분기·다음행동 | 금지 — 기존 고객후속/CRM 대화창 재사용 | 중앙 고객업무 마스터 |
 
 ### EMAIL_COLLECTION 완전범용 잠금
@@ -80,8 +81,18 @@
 - 기존 분야별 지시문이 중앙 범용 규칙과 충돌하면 이메일 수집 실행에서는 최신 `EMAIL_COLLECTION_COMMON_RULES.md`가 우선한다.
 - 중앙 파일을 읽지 못하면 기존 대화창 기억이나 복사본으로 임의 fallback하지 않고 HOLD/FAIL한다.
 
+### TOOL040 VERIFIED TOOL-EXCEPTION DELTA — 2026-08-09 retained evidence
+- 이 항목은 기존 공통 규칙을 복제하지 않고 TOOL040에만 필요한 검증된 예외만 둔다.
+- 관찰자 모드는 개발 시작부터 출시·배포·사후 고객 피드백/수정요구 처리까지 유지한다.
+- 작업은 외부구조와 협업하고 외부 기록·테스트·배포 증거가 없으면 완료/PASS로 표시하지 않는다.
+- 기존 TOOL001·WIC34 코드를 새 본체에 직접 삽입하지 않는다. 재사용은 기존 중앙 검증/격리 규칙을 따른다.
+- 사용자 모바일 관찰 명령은 `진행 승인 / 보류 / 중단`으로 제한하며, 명령은 외부 기록에 남고 증거 게이트를 우회하지 않는다.
+- 외부 증거가 없으면 자동 `HOLD`이며, 모바일 관찰 전용 흐름을 우선한다.
+- 아이디어만 제시하는 것으로 완료하지 않고 `아이디어 → 출시 게이트`를 통해 실제 작동 기능·배포 가능 증거까지 연결한다.
+
 ## 3-A. MACHINE ROUTE MAP — 실행기가 읽는 기존 registry 내부 원본
 아래 `route:` 행은 `feedback_pipeline/cross_chat_feedback_ingest.py`가 직접 읽는다. 새 라우팅 registry를 만들지 않는다.
+
 형식: `route: TARGET = keyword | keyword | ...`
 
 route: TOOL001 = 1번 | 안내서 | full_guide | intermediate_guide | 고객 자동화 안내서
@@ -90,6 +101,7 @@ route: TOOL006 = 6번 | 목차 | toc | marketsandmarkets | marketandmarket
 route: TOOL007 = 7번 | 고객 컨택 | 컨택 판단 | 전화 멘트 | 유선 멘트
 route: TOOL013 = 13번 | 엑셀 자동 업로드 | 46145
 route: TOOL037 = 37번 | 메타데이터 | 상품명 | 한글명 | isbn | code
+route: TOOL040 = 40번 | 출시 앱 도구 | 앱 출시 | 모바일 관찰 | 아이디어 출시 | 외부 증거 게이트
 route: EMAIL_DB = 메일 수집 | 이메일 수집 | email collection | new_online | dormant_ledger | recent_trade | 고객 db
 route: WORK_GATE = 워크 | work | 크레딧 | credit | 이관
 route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 | 관찰자
