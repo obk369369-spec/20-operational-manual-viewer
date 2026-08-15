@@ -1,62 +1,7 @@
 {
-  "canonical_revision": "3f0c83fe635a4067354e8456",
-  "feedback_id": "37a4a2166bb5e2a08a8c",
-  "generated_at_utc": "2026-08-13T17:07:00Z",
+  "canonical_revision": "15edd6beb4987f82e2550e6e",
+  "feedback_id": "686c809c68d37af1540f",
+  "generated_at_utc": "2026-08-15T01:32:23.965755+00:00",
   "schema_version": 1,
-  "targets": {
-    "EMAIL_DB": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
-    },
-    "TOOL001": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "Applied to obk369369-spec/01-auto-guide-v1 WIC_TARGET_APPLY_STATE.json, read back verified, and target-side verified-data regression passed.",
-      "status": "APPLIED_READBACK_TEST_VERIFIED",
-      "target_repository": "obk369369-spec/01-auto-guide-v1",
-      "target_apply_commit": "9f2b1297387d4089cdb55973a89bf4b0349d110f",
-      "target_evidence_commit": "5286e5f3c3d1220ad383e68929b5301fca2fdc36",
-      "target_test_run": 31718378457,
-      "target_test_result": "success"
-    },
-    "TOOL002": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
-    },
-    "TOOL006": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "cross-repository target write/read-back/test has not executed yet",
-      "status": "HOLD_TARGET_APPLY"
-    },
-    "TOOL007": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "TOOL007 is a verified central lane, not a repository target. customer_pipeline/tool7_contact_judgment.py is registered as the existing implementation and the latest WIC Rule Governance Audit run 31721875746 passed deterministic integration/restart fixtures together with the NO_NEW_CHAT/UI-title gate.",
-      "status": "CENTRAL_LANE_ACK_TEST_VERIFIED",
-      "target_mode": "CENTRAL_LANE_ACK",
-      "target_repository_required": false,
-      "implementation_path": "customer_pipeline/tool7_contact_judgment.py",
-      "implementation_blob": "c5e8434398256ea8afb40418760c07714a898363",
-      "verification_run": 31721875746,
-      "verification_job": 94520587462,
-      "verification_result": "success"
-    },
-    "TOOL037": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "central-lane acknowledgement and functional evidence are not yet sufficient for PASS",
-      "status": "HOLD_TARGET_APPLY"
-    },
-    "WORK_GATE": {
-      "canonical_revision": "3f0c83fe635a4067354e8456",
-      "decision": "APPLY_CHANGED_SCOPE",
-      "reason": "central-lane acknowledgement and functional evidence are not yet sufficient for PASS",
-      "status": "HOLD_TARGET_APPLY"
-    }
-  }
+  "targets": {}
 }
