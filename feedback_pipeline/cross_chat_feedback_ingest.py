@@ -1,12 +1,9 @@
-"""WIC cross-chat feedback ingestion and integration-core contract.
+"""WIC cross-chat feedback ingestion and deterministic integration-core contract.
 
-Deterministic core for normalized feedback, registry-source routing, privacy redaction,
-conflict/dedup decisions, canonical-layer impact planning, revision-cache decisions,
-stage checkpoints, and Chat/GitHub tool-module contracts.
-
-This module does NOT claim GitHub write or target-tool E2E completion by itself.
-Actual canonical commit/read-back, target apply, test evidence, and rollback evidence
-remain required before STRUCTURE_PASS.
+The core is deliberately conservative: a generic CENTRAL route is not sufficient
+proof that two rules describe the same scope.  Tool/domain corrections may replace
+older rules only when they share a specific non-CENTRAL target.  This prevents an
+unrelated global correction from silently disabling normal operating rules.
 """
 from __future__ import annotations
 
@@ -98,12 +95,10 @@ def _canonical_text(text: str) -> str:
 
 
 def redact_sensitive(text: str) -> str:
-    """Do not persist customer PII/private transaction details in the central log."""
     text = EMAIL_RE.sub("[REDACTED_EMAIL]", text)
     text = PHONE_RE.sub("[REDACTED_PHONE]", text)
     text = LONG_NUMBER_RE.sub("[REDACTED_NUMBER]", text)
-    text = WS_RE.sub(" ", text).strip()
-    return text[:500]
+    return WS_RE.sub(" ", text).strip()[:500]
 
 
 def parse_route_registry(text: str) -> dict[str, tuple[str, ...]]:
@@ -159,10 +154,11 @@ def classify(text: str) -> str:
 def route_targets(text: str, route_map: Mapping[str, Iterable[str]] | None = None) -> tuple[str, ...]:
     t = _canonical_text(text)
     routes = route_map if route_map is not None else load_route_registry()
-    hits = []
-    for target, keys in routes.items():
-        if any(str(k).lower() in t for k in keys):
-            hits.append(str(target).upper())
+    hits = [
+        str(target).upper()
+        for target, keys in routes.items()
+        if any(str(k).lower() in t for k in keys)
+    ]
     return tuple(sorted(set(hits or ["CENTRAL"])))
 
 
@@ -174,20 +170,17 @@ def _feedback_id(classification: str, targets: Iterable[str], text: str) -> str:
 def normalize(event: FeedbackEvent) -> NormalizedFeedback:
     classification = classify(event.text)
     targets = route_targets(event.text)
-    feedback_id = _feedback_id(classification, targets, event.text)
-    central = classification in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"} or "CENTRAL" in targets
-    fixture = classification in {"CORRECTION", "NEW_FIXTURE"} or any(t.startswith("TOOL") for t in targets)
     return NormalizedFeedback(
-        feedback_id=feedback_id,
+        feedback_id=_feedback_id(classification, targets, event.text),
         observed_at=event.observed_at,
         source_chat=event.source_chat,
         source_ref=event.source_ref,
         classification=classification,
         targets=targets,
         sanitized_excerpt=redact_sensitive(event.text),
-        central_master_candidate=central,
-        regression_fixture_candidate=fixture,
-        priority_change=classification == "PRIORITY_CHANGE",
+        central_master_candidate=(classification in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"} or "CENTRAL" in targets),
+        regression_fixture_candidate=(classification in {"CORRECTION", "NEW_FIXTURE"} or any(t.startswith("TOOL") for t in targets)),
+        priority_change=(classification == "PRIORITY_CHANGE"),
     )
 
 
@@ -195,11 +188,11 @@ def process_batch(events: Iterable[FeedbackEvent], processed_ids: set[str]) -> l
     out: list[NormalizedFeedback] = []
     seen = set(processed_ids)
     for event in events:
-        n = normalize(event)
-        if n.feedback_id in seen:
+        item = normalize(event)
+        if item.feedback_id in seen:
             continue
-        seen.add(n.feedback_id)
-        out.append(n)
+        seen.add(item.feedback_id)
+        out.append(item)
     return out
 
 
@@ -222,16 +215,18 @@ def impacted_layers(item: NormalizedFeedback) -> tuple[str, ...]:
     return tuple(dict.fromkeys(layers or ["DATA_OR_EXECUTION_ASSET"]))
 
 
+def _specific_target_overlap(left: set[str], right: set[str]) -> bool:
+    """CENTRAL is a storage/routing lane, not proof that rule subjects match."""
+    return bool((left - {"CENTRAL"}) & (right - {"CENTRAL"}))
+
+
 def decide_conflict(item: NormalizedFeedback, existing: Sequence[Any]) -> ConflictDecision:
     """Conservative deterministic conflict policy.
 
-    - exact normalized rule => DUPLICATE
-    - newer PRIORITY_CHANGE supersedes older overlapping priority rules
-    - explicit CORRECTION supersedes older overlapping normative rules
-    - differing same-priority CONSTRAINT on overlapping targets => HOLD_CONFLICT
-    - otherwise ACCEPT
-
-    HOLD is preferred over silent overwrite when intent cannot be safely inferred.
+    Exact normalized rules are duplicates. Priority changes may supersede older
+    priority rules when their routed scopes overlap. Corrections/constraints only
+    conflict or supersede when a specific non-CENTRAL target overlaps; CENTRAL by
+    itself never authorizes cross-scope deactivation.
     """
     duplicate_ids: list[str] = []
     supersedes: list[str] = []
@@ -244,20 +239,19 @@ def decide_conflict(item: NormalizedFeedback, existing: Sequence[Any]) -> Confli
         old_text = _canonical_text(str(_record_value(old, "sanitized_excerpt", "")))
         old_class = str(_record_value(old, "classification", ""))
         old_targets = set(_record_value(old, "targets", ()) or ())
-        active = _record_value(old, "active", True)
-        if not active:
+        if not _record_value(old, "active", True):
             continue
         if old_text == item_text and old_class == item.classification and old_targets == item_targets:
             duplicate_ids.append(old_id)
             continue
-        overlap = bool(item_targets & old_targets)
-        if not overlap:
-            continue
-        if item.classification == "PRIORITY_CHANGE" and old_class == "PRIORITY_CHANGE":
+
+        any_overlap = bool(item_targets & old_targets)
+        specific_overlap = _specific_target_overlap(item_targets, old_targets)
+        if item.classification == "PRIORITY_CHANGE" and old_class == "PRIORITY_CHANGE" and any_overlap:
             supersedes.append(old_id)
-        elif item.classification == "CORRECTION" and old_class in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"}:
+        elif item.classification == "CORRECTION" and old_class in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"} and specific_overlap:
             supersedes.append(old_id)
-        elif item.classification == "CONSTRAINT" and old_class == "CONSTRAINT":
+        elif item.classification == "CONSTRAINT" and old_class == "CONSTRAINT" and specific_overlap:
             conflicts.append(old_id)
 
     if duplicate_ids:
@@ -265,13 +259,13 @@ def decide_conflict(item: NormalizedFeedback, existing: Sequence[Any]) -> Confli
         reason = "same normalized classification/targets/excerpt already active"
     elif conflicts:
         action = "HOLD_CONFLICT"
-        reason = "same-priority overlapping constraint differs; no silent overwrite"
+        reason = "same-priority constraint differs within the same specific target; no silent overwrite"
     elif supersedes:
         action = "SUPERSEDE"
-        reason = "new explicit priority/correction supersedes older overlapping normative rule"
+        reason = "new explicit priority/correction supersedes an older rule in the same specific scope"
     else:
         action = "ACCEPT"
-        reason = "no active duplicate or unresolved same-priority conflict"
+        reason = "no active duplicate or proven same-scope conflict"
 
     return ConflictDecision(
         feedback_id=item.feedback_id,
@@ -285,16 +279,13 @@ def decide_conflict(item: NormalizedFeedback, existing: Sequence[Any]) -> Confli
 
 
 def canonical_revision(records: Sequence[Any]) -> str:
-    """Stable revision fingerprint for canonical read/apply cache."""
-    normalized = []
-    for record in records:
-        normalized.append({
-            "feedback_id": str(_record_value(record, "feedback_id", "")),
-            "classification": str(_record_value(record, "classification", "")),
-            "targets": sorted(_record_value(record, "targets", ()) or ()),
-            "sanitized_excerpt": _canonical_text(str(_record_value(record, "sanitized_excerpt", ""))),
-            "active": bool(_record_value(record, "active", True)),
-        })
+    normalized = [{
+        "feedback_id": str(_record_value(record, "feedback_id", "")),
+        "classification": str(_record_value(record, "classification", "")),
+        "targets": sorted(_record_value(record, "targets", ()) or ()),
+        "sanitized_excerpt": _canonical_text(str(_record_value(record, "sanitized_excerpt", ""))),
+        "active": bool(_record_value(record, "active", True)),
+    } for record in records]
     payload = json.dumps(sorted(normalized, key=lambda x: x["feedback_id"]), ensure_ascii=False, sort_keys=True)
     return sha256(payload.encode("utf-8")).hexdigest()[:24]
 
@@ -314,7 +305,7 @@ def checkpoint_state(state: Mapping[str, Any], *, feedback_id: str, stage: str,
     prior.update({"last_stage": stage, "status": status})
     if blocker:
         prior["blocker"] = blocker
-    elif "blocker" in prior and status == "PASS":
+    elif status == "PASS":
         prior.pop("blocker", None)
     checkpoints[feedback_id] = prior
     return {**state, "feedback_checkpoints": checkpoints}
@@ -325,8 +316,7 @@ def next_stage(state: Mapping[str, Any], feedback_id: str) -> str:
     if not cp:
         return STAGE_ORDER[0]
     last = cp.get("last_stage")
-    status = cp.get("status")
-    if status in {"HOLD", "FAIL"}:
+    if cp.get("status") in {"HOLD", "FAIL"}:
         return str(last)
     idx = STAGE_ORDER.index(last)
     return STAGE_ORDER[min(idx + 1, len(STAGE_ORDER) - 1)]
@@ -357,9 +347,9 @@ def state_after(state: dict[str, Any], processed: Iterable[NormalizedFeedback], 
 
 
 def to_json_record(item: NormalizedFeedback) -> dict[str, Any]:
-    d = asdict(item)
-    d["targets"] = list(item.targets)
-    return d
+    record = asdict(item)
+    record["targets"] = list(item.targets)
+    return record
 
 
 def run_fixtures() -> str:
@@ -394,6 +384,13 @@ def run_fixtures() -> str:
     hold = decide_conflict(c2, [to_json_record(c1)])
     assert hold.action == "HOLD_CONFLICT" and c1.feedback_id in hold.conflicts_with
 
+    # Regression: a CENTRAL-only chat-governance correction must not deactivate
+    # unrelated CENTRAL-only reporting/work/priority rules merely because CENTRAL overlaps.
+    reporting = normalize(FeedbackEvent("2026-08-13T08:00:00+09:00", "report", "진행상황 보고는 표를 사용해."))
+    chat_fix = normalize(FeedbackEvent("2026-08-15T10:00:00+09:00", "chat", "정정: 대화창 이름 오류를 수정해."))
+    isolated = decide_conflict(chat_fix, [to_json_record(reporting)])
+    assert isolated.action == "ACCEPT" and isolated.supersedes == ()
+
     rev1 = canonical_revision([to_json_record(batch[0])])
     rev2 = canonical_revision([to_json_record(batch[0]), to_json_record(batch[3])])
     assert rev1 != rev2 and len(rev1) == 24
@@ -427,7 +424,7 @@ def run_fixtures() -> str:
     except ValueError:
         pass
 
-    return "PASS: routing + conflict/dedup + revision/cache + checkpoint + module-contract fixtures"
+    return "PASS: routing + conflict/dedup + scope-isolation + revision/cache + checkpoint + module-contract fixtures"
 
 
 if __name__ == "__main__":
