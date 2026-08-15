@@ -1,0 +1,39 @@
+{
+  "canonical_revision": "6b9a9c6f50513e93f234006e",
+  "classification": "CORRECTION",
+  "decision": {
+    "action": "SUPERSEDE",
+    "conflicts_with": [],
+    "feedback_id": "686c809c68d37af1540f",
+    "impacted_layers": [
+      "GLOBAL",
+      "DATA_OR_EXECUTION_ASSET"
+    ],
+    "impacted_targets": [],
+    "reason": "new explicit priority/correction supersedes older overlapping normative rule",
+    "supersedes": [
+      "20260813_work_rule_split",
+      "20260813_table_reporting",
+      "37a4a2166bb5e2a08a8c"
+    ]
+  },
+  "external_independent_verification": false,
+  "feedback_id": "686c809c68d37af1540f",
+  "observed_at": "2026-08-15T10:28:00+09:00",
+  "read_back": {
+    "intended_hash": "762e409a7341366a21fca7a42857ea9e73a01b8a119fd781f56e6e88faa77f84",
+    "read_back_hash": "762e409a7341366a21fca7a42857ea9e73a01b8a119fd781f56e6e88faa77f84",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "정정: 무허가 작업·예약·대화창 생성 및 중복 작업의 근본 해결 규칙은 WIC_GLOBAL_OPERATING_RULES.md 단일 원본에 통합해야 한다. 사용자의 명시적 승인 없이 새 대화창 생성·명명·변경을 금지하고, 보고·계속·재개·검증 지시나 예약 허가를 새 대화창 권한으로 확대하지 않는다. 직접 확인한 UI 제목 증거가 없으면 UI_TITLE_HOLD로 처리한다. 동일 목적의 규칙·감시·복구·보고 작업은 새로 만들지 않고 기존 대표 규칙과 대조해 중복 제거한다. WIC_CHAT_ROUTING_REGISTRY.md 같은 비규범 문서에는 새로운 실행 규칙이나 TOOL별 DELTA를 추가하지 말고 라우팅·호환 정보만 유지한다. 무허가 새 대화창·이름변경 0건, 신규 중복규칙 0건, 기존 정상 작업 영향 0건을 실제 검증하기 전에는 최종 PASS로 처리하지 않는다.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_CHAT",
+  "source_ref": "user-directive-current-chat-2026-08-15T10:28:00+09:00",
+  "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+  "targets": [
+    "CENTRAL"
+  ]
+}

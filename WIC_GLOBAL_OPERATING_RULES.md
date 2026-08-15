@@ -527,25 +527,36 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 {
   "records": [
     {
-      "active": true,
-      "classification": "CONSTRAINT",
-      "feedback_id": "20260813_work_rule_split",
-      "impacted_layers": ["GLOBAL","WORKGROUP","TOOL_OR_DOMAIN_OVERRIDE"],
-      "sanitized_excerpt": "Work에서 수행하는 구현/E2E 작업과 대화기록·규칙·GitHub 통합은 서로 상관없는 별도 작업이다. Antigravity에서 이미 추출한 RAW/tool_mapped/extracted_rules 결과를 재사용하고 이후 누적 규칙만 증분 통합한다. 규칙 회수·재정리·과거 자료 재추출에는 Work 크레딧을 사용하지 않는다.",
-      "supersedes": [],
-      "targets": ["CENTRAL","WORK_GATE"]
-    },
-    {
-      "active": true,
+      "active": false,
       "classification": "CONSTRAINT",
       "feedback_id": "20260813_table_reporting",
-      "impacted_layers": ["GLOBAL"],
+      "impacted_layers": [
+        "GLOBAL"
+      ],
       "sanitized_excerpt": "모든 업무 대화창과 도구의 진행상황·점검결과·작업상태 보고는 테이블을 먼저 사용한다. 실제 실행/근거, 남은 작업, PASS/HOLD/FAIL을 한눈에 보이게 하고 텍스트 덩어리만으로 보고하지 않는다.",
       "supersedes": [],
-      "targets": ["CENTRAL"]
+      "targets": [
+        "CENTRAL"
+      ]
     },
     {
-      "active": true,
+      "active": false,
+      "classification": "CONSTRAINT",
+      "feedback_id": "20260813_work_rule_split",
+      "impacted_layers": [
+        "GLOBAL",
+        "WORKGROUP",
+        "TOOL_OR_DOMAIN_OVERRIDE"
+      ],
+      "sanitized_excerpt": "Work에서 수행하는 구현/E2E 작업과 대화기록·규칙·GitHub 통합은 서로 상관없는 별도 작업이다. Antigravity에서 이미 추출한 RAW/tool_mapped/extracted_rules 결과를 재사용하고 이후 누적 규칙만 증분 통합한다. 규칙 회수·재정리·과거 자료 재추출에는 Work 크레딧을 사용하지 않는다.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL",
+        "WORK_GATE"
+      ]
+    },
+    {
+      "active": false,
       "classification": "PRIORITY_CHANGE",
       "feedback_id": "37a4a2166bb5e2a08a8c",
       "impacted_layers": [
@@ -567,6 +578,24 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
         "TOOL007",
         "TOOL037",
         "WORK_GATE"
+      ]
+    },
+    {
+      "active": true,
+      "classification": "CORRECTION",
+      "feedback_id": "686c809c68d37af1540f",
+      "impacted_layers": [
+        "GLOBAL",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "정정: 무허가 작업·예약·대화창 생성 및 중복 작업의 근본 해결 규칙은 WIC_GLOBAL_OPERATING_RULES.md 단일 원본에 통합해야 한다. 사용자의 명시적 승인 없이 새 대화창 생성·명명·변경을 금지하고, 보고·계속·재개·검증 지시나 예약 허가를 새 대화창 권한으로 확대하지 않는다. 직접 확인한 UI 제목 증거가 없으면 UI_TITLE_HOLD로 처리한다. 동일 목적의 규칙·감시·복구·보고 작업은 새로 만들지 않고 기존 대표 규칙과 대조해 중복 제거한다. WIC_CHAT_ROUTING_REGISTRY.md 같은 비규범 문서에는 새로운 실행 규칙이나 TOOL별 DELTA를 추가하지 말고 라우팅·호환 정보만 유지한다. 무허가 새 대화창·이름변경 0건, 신규 중복규칙 0건, 기존 정상 작업 영향 0건을 실제 검증하기 전에는 최종 PASS로 처리하지 않는다.",
+      "supersedes": [
+        "20260813_table_reporting",
+        "20260813_work_rule_split",
+        "37a4a2166bb5e2a08a8c"
+      ],
+      "targets": [
+        "CENTRAL"
       ]
     },
     {
