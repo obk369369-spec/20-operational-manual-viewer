@@ -51,6 +51,17 @@ jobs:
           grep -q 'NON-NORMATIVE COMPATIBILITY REFERENCE / EXECUTION SOURCE 아님' "$o"
           grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$o"
           echo 'AUXILIARY_CHAT_GOVERNANCE=NON_NORMATIVE_PASS'
+      - name: Reject new normative rule drift in routing ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          r='WIC_CHAT_ROUTING_REGISTRY.md'
+          if grep -Eq '^### TOOL[0-9]+ .*DELTA' "$r"; then
+            echo 'FAIL-NON_NORMATIVE_RULE_DRIFT: tool-specific execution DELTA found in routing ledger'
+            grep -En '^### TOOL[0-9]+ .*DELTA' "$r" || true
+            exit 1
+          fi
+          echo 'ROUTING_LEDGER_NORMATIVE_DRIFT=PASS'
       - name: Validate legacy compatibility chat guards remain coherent during migration
         shell: bash
         run: |
