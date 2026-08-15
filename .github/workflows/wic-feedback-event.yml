@@ -223,7 +223,7 @@ jobs:
           fid = manifest['feedback_id']
           cp = state['integration_core']['feedback_checkpoints'][fid]
           targets = set(manifest.get('targets', {}))
-          same_repo_lanes = targets and targets <= set(adapters.get('lane_targets', {}))
+          same_repo_lanes = targets <= set(adapters.get('lane_targets', {}))
           if same_repo_lanes:
               assert cp['last_stage'] == 'RESTART_OR_HOLD'
               assert cp['status'] == 'PASS_INTERNAL_GITHUB_E2E'
