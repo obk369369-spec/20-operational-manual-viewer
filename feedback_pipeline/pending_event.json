@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-13T13:39:00+09:00",
-  "source_chat": "CONTROL_PRIMARY",
-  "source_ref": "priority-update-2026-08-13",
+  "observed_at": "2026-08-15T10:22:31+09:00",
+  "source_chat": "CURRENT_CHAT",
+  "source_ref": "user-directive-current-chat-2026-08-15T10:22:31+09:00",
   "mutation_action": "APPLY_FEEDBACK",
   "directive_source_ref": "WIC_GLOBAL_OPERATING_RULES.md#WIC_CANONICAL_FEEDBACK_START:37a4a2166bb5e2a08a8c",
   "directive_text": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다.",
-  "text": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다."
+  "text": "정정: 무허가 작업·예약·대화창 생성 및 중복 작업의 근본 해결 규칙은 WIC_GLOBAL_OPERATING_RULES.md 단일 원본에 통합해야 한다. 사용자의 명시적 승인 없이 새 대화창 생성·명명·변경을 금지하고, 보고·계속·재개·검증 지시나 예약 허가를 새 대화창 권한으로 확대하지 않는다. 직접 확인한 UI 제목 증거가 없으면 UI_TITLE_HOLD로 처리한다. 동일 목적의 규칙·감시·복구·보고 작업은 새로 만들지 않고 기존 대표 규칙과 대조해 중복 제거한다. WIC_CHAT_ROUTING_REGISTRY.md 같은 비규범 문서에는 새로운 실행 규칙이나 TOOL별 DELTA를 추가하지 말고 라우팅·호환 정보만 유지한다. 무허가 새 대화창·이름변경 0건, 신규 중복규칙 0건, 기존 정상 작업 영향 0건을 실제 검증하기 전에는 최종 PASS로 처리하지 않는다."
 }
