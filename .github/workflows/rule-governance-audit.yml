@@ -24,7 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate single source
+
+      - name: Validate single canonical source
         shell: bash
         run: |
           set -euo pipefail
@@ -34,94 +35,49 @@ jobs:
           grep -q '운영 규칙은 이 파일 하나' "$f"
           grep -q '관찰자 모드' "$f"
           grep -q 'PASS / HOLD / FAIL' "$f"
-          grep -q '껍데기 차단 규칙' "$f"
-          grep -q '도구 번호별 단일 등록표' "$f"
-          grep -q '사용자 부담 카운터' "$f"
+          grep -q '무허가 작업·예약·대화창 생성' "$f"
+          grep -q 'UI_TITLE_HOLD' "$f"
+          grep -q '비규범 문서에는 새로운 실행 규칙' "$f"
           echo 'CENTRAL_RULES=PASS'
-      - name: Validate auxiliary chat-governance files are non-normative
+
+      - name: Validate registry is routing-only
         shell: bash
         run: |
           set -euo pipefail
           r='WIC_CHAT_ROUTING_REGISTRY.md'
-          o='CHAT_WINDOW_OWNERSHIP_LOCK.md'
           test -s "$r"
-          test -s "$o"
           grep -q 'NON-NORMATIVE ROUTING LEDGER' "$r"
           grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$r"
-          grep -q 'NON-NORMATIVE COMPATIBILITY REFERENCE / EXECUTION SOURCE 아님' "$o"
-          grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$o"
-          echo 'AUXILIARY_CHAT_GOVERNANCE=NON_NORMATIVE_PASS'
-      - name: Reject new normative rule drift in routing ledger
-        shell: bash
-        run: |
-          set -euo pipefail
-          r='WIC_CHAT_ROUTING_REGISTRY.md'
-          if grep -Eq '^### TOOL[0-9]+ .*DELTA' "$r"; then
-            echo 'FAIL-NON_NORMATIVE_RULE_DRIFT: tool-specific execution DELTA found in routing ledger'
-            grep -En '^### TOOL[0-9]+ .*DELTA' "$r" || true
+          grep -q '^route: TOOL040 = ' "$r"
+          grep -q '^route: CENTRAL = ' "$r"
+          if grep -Eq '^### TOOL[0-9]+ .*DELTA|CRITICAL EXECUTION LOCK|FAIL-NO_NEW_CHAT-VIOLATION' "$r"; then
+            echo 'FAIL-NON_NORMATIVE_RULE_DRIFT'
             exit 1
           fi
-          echo 'ROUTING_LEDGER_NORMATIVE_DRIFT=PASS'
-      - name: Validate legacy compatibility chat guards remain coherent during migration
+          python - <<'PY'
+          from feedback_pipeline.cross_chat_feedback_ingest import load_route_registry
+          routes = load_route_registry()
+          assert 'CENTRAL' in routes and 'WORK_GATE' in routes and 'TOOL040' in routes
+          assert len(routes) >= 9
+          print('ROUTING_LEDGER=PASS')
+          PY
+
+      - name: Validate ownership file remains non-normative compatibility only
         shell: bash
         run: |
           set -euo pipefail
-          r='WIC_CHAT_ROUTING_REGISTRY.md'
           o='CHAT_WINDOW_OWNERSHIP_LOCK.md'
-          grep -q 'NO_NEW_CHAT' "$r"
-          grep -q 'EXPLICIT_NEW_CHAT_APPROVAL' "$r"
-          grep -q 'FAIL-NO_NEW_CHAT-VIOLATION' "$r"
-          grep -q 'CHAT IDENTITY VERIFICATION GATE' "$r"
-          grep -q 'WORK_PREP | `워크 전 준비` | `UI_TITLE_HOLD`' "$r"
-          grep -q 'CONTROL_PRIMARY | `(개발 관찰자 모드 유지) 지피티 도구` | `UI_TITLE_HOLD`' "$r"
-          grep -q '대화창 생성은 사용자(관찰자)만 수행한다.' "$o"
-          grep -q '대화창 이름은 사용자(관찰자)만 변경할 수 있다.' "$o"
-          grep -q '무단 새 대화창 생성: FAIL' "$o"
-          grep -q '무단 대화창 이름 변경 또는 다른 이름으로 취급: FAIL' "$o"
-          echo 'LEGACY_CHAT_GUARD_COMPATIBILITY=PASS'
+          test -s "$o"
+          grep -q 'NON-NORMATIVE COMPATIBILITY REFERENCE / EXECUTION SOURCE 아님' "$o"
+          grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$o"
+          echo 'OWNERSHIP_COMPATIBILITY=PASS'
+
       - name: Reject unauthorized structure mutation fixtures
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          forbidden = {
-              'create_conversation',
-              'rename_conversation',
-              'create_preparation_chat',
-              'create_observer_chat',
-              'adopt_unverified_alias',
-              'promote_logical_role_to_ui_title',
-              'auto_move_to_new_chat',
-          }
+          python feedback_pipeline/unauthorized_structure_guard.py
 
-          def structure_gate(action, explicit_user_approval=False, direct_ui_title_evidence=False):
-              if action == 'promote_logical_role_to_ui_title' and not direct_ui_title_evidence:
-                  return 'UI_TITLE_HOLD'
-              if action in forbidden and not explicit_user_approval:
-                  return 'DENY_HOLD'
-              return 'ALLOW'
-
-          unauthorized = [
-              'create_conversation',
-              'rename_conversation',
-              'create_preparation_chat',
-              'create_observer_chat',
-              'adopt_unverified_alias',
-              'auto_move_to_new_chat',
-          ]
-          for action in unauthorized:
-              result = structure_gate(action)
-              assert result == 'DENY_HOLD', (action, result)
-
-          assert structure_gate('promote_logical_role_to_ui_title') == 'UI_TITLE_HOLD'
-          assert structure_gate('create_conversation', explicit_user_approval=True) == 'ALLOW'
-          assert structure_gate(
-              'promote_logical_role_to_ui_title',
-              explicit_user_approval=True,
-              direct_ui_title_evidence=True,
-          ) == 'ALLOW'
-          print('UNAUTHORIZED_STRUCTURE_PREFLIGHT=PASS')
-          PY
       - name: Run deterministic integration and restart recovery fixtures
         shell: bash
         run: |
@@ -132,6 +88,7 @@ jobs:
           python feedback_pipeline/restart_rollback_fixture.py
           python feedback_pipeline/cross_target_restart_e2e.py fail
           python feedback_pipeline/cross_target_restart_e2e.py restart
+
       - name: Validate public repository pointers
         shell: bash
         run: |
@@ -170,6 +127,7 @@ jobs:
             fi
           done
           test "$fail" -eq 0
+
       - name: Private repository note
         run: |
           echo '04-research-funding-generator is private; pointer is verified through the connected GitHub tool, not public curl.'
