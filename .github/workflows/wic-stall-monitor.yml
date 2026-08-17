@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
   actions: write
 
@@ -18,6 +18,67 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Sync canonical observer from execution state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          state_path = Path("WIC_EXECUTION_STATE.json")
+          observer_path = Path("WIC_OBSERVER_STATUS.md")
+          state = json.loads(state_path.read_text(encoding="utf-8"))
+          observer = observer_path.read_text(encoding="utf-8")
+
+          status = state.get("structure_status", "확인 필요")
+          updated = state.get("updated_kst", "확인 필요")
+          identity = state.get("chat_identity_lock", {})
+          checkpoint = state.get("additional_work_preparation_checkpoint") or state.get("work_preparation_checkpoint") or {}
+          restart = checkpoint.get("restart_point") or state.get("restart_point") or "확인 필요"
+          if isinstance(restart, list):
+              restart = " / ".join(str(item) for item in restart)
+          blockers = state.get("blockers", {})
+          blocker_text = "없음" if not blockers else " / ".join(f"{key}: {value}" for key, value in blockers.items())
+
+          begin = "<!-- WIC_EXECUTION_STATE_SYNC_START -->"
+          end = "<!-- WIC_EXECUTION_STATE_SYNC_END -->"
+          block = f"""<!-- WIC_EXECUTION_STATE_SYNC_START -->
+          ## 중앙 실행상태 자동 동기화
+
+          | 항목 | 실제 값 |
+          |---|---|
+          | 중앙 상태 | `{status}` |
+          | 중앙 상태 갱신 | `{updated} KST` |
+          | checkpoint | `{checkpoint.get('status', '확인 필요')}` |
+          | 대화 identity 보호 | `{identity.get('status', '확인 필요')}` |
+          | restart point | {restart} |
+          | blocker | {blocker_text} |
+
+          - 이 구역은 `WIC_EXECUTION_STATE.json`에서 자동 생성한다.
+          - Observer가 자체적으로 RUNNING을 추정하지 않고 중앙 실행상태를 그대로 표시한다.
+          <!-- WIC_EXECUTION_STATE_SYNC_END -->"""
+
+          if begin in observer and end in observer:
+              prefix, rest = observer.split(begin, 1)
+              _, suffix = rest.split(end, 1)
+              observer = prefix + block + suffix
+          else:
+              observer = observer.rstrip() + "\n\n" + block + "\n"
+
+          observer_path.write_text(observer, encoding="utf-8")
+          PY
+          if git diff --quiet -- WIC_OBSERVER_STATUS.md; then
+            echo 'Observer already matches the central execution state.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add WIC_OBSERVER_STATUS.md
+          git commit -m 'Sync Observer from central execution state'
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Check active execution state age
         id: age
