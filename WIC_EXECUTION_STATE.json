@@ -3,8 +3,8 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-17 23:10",
-  "structure_status": "WIC_COMMON_STRUCTURE_IN_PROGRESS",
+  "updated_kst": "2026-08-18 02:01",
+  "structure_status": "HOLD_EXTERNAL_RUNTIME_ACCESS",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": [
@@ -21,7 +21,12 @@
     "latest_observed_at_kst": "2026-08-15 PRE_WORK_VERIFIED",
     "stall_detected_this_run": true,
     "secondary_recovery_performed": true,
-    "secondary_recovery_result": "5-minute stale detection branch succeeded and existing recovery audit was re-dispatched; recovery run 31824440422 succeeded."
+    "secondary_recovery_result": "5-minute stale detection branch succeeded and existing recovery audit was re-dispatched; recovery run 31824440422 succeeded.",
+    "current_hold_normalization": {
+      "status": "PASS_PENDING_OBSERVER_READBACK",
+      "reason": "WIC34 external runtime is inaccessible, so IN_PROGRESS was inaccurate and caused false stall issue #8.",
+      "expected_monitor_behavior": "HOLD is inactive for stale detection; scheduled monitor must close issue #8 and must not dispatch recovery."
+    }
   },
   "verified_completed": {
     "CENTRAL_STATE_TO_CANONICAL_OBSERVER": "PASS: workflow commit ec90b7acbe1f298bf0be00803f3d64f9dbf2dfca connected WIC_EXECUTION_STATE.json to WIC_OBSERVER_STATUS.md; automated sync/read-back commit 2295fdd4529c40a99f50480bcc4b16735cab643e verified the derived status, checkpoint, identity lock, restart point and blockers.",
@@ -102,6 +107,10 @@
     "CENTRAL_CUSTOMER_WORKFLOW_ALIGNMENT": {
       "status": "HOLD_CONFLICT_REMAINING",
       "evidence": "CUSTOMER_WORKFLOW_MASTER.md still contains older email-collection conditions such as direct contact/complete-field requirements and university handling that differ from latest EMAIL_COLLECTION_COMMON_RULES.md. No unsafe rewrite was attempted in this run."
+    },
+    "WATCHDOG_HOLD_SEMANTICS": {
+      "status": "PASS_PENDING_SCHEDULED_READBACK",
+      "evidence": "Central status changed from WIC_COMMON_STRUCTURE_IN_PROGRESS to HOLD_EXTERNAL_RUNTIME_ACCESS so the existing monitor's IN_PROGRESS-only gate will not classify an intentional external-access HOLD as STALL."
     }
   },
   "this_run_actual_changes": [
