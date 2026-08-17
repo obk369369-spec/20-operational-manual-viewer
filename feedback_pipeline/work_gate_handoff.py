@@ -25,13 +25,18 @@ REQUIRED_HANDOFF = (
 )
 REQUIRED_EXIT_CHECKPOINT = (
     "lane",
+    "actual_purpose",
     "status",
     "last_success_stage",
+    "last_actual_commit",
+    "last_success_run",
     "remaining_blocker",
     "modified_assets",
     "evidence",
     "rollback_point",
     "exact_next_step",
+    "ui_chat_identity",
+    "ui_chat_identity_evidence",
 )
 
 
@@ -134,13 +139,18 @@ def build_exit_templates(handoff: Mapping[str, Any]) -> dict[str, Any]:
         candidate = handoff["candidates"][lane]
         templates[lane] = {
             "lane": lane,
+            "actual_purpose": candidate["execution_goal"],
             "status": "HOLD",
             "last_success_stage": "PRE_WORK_BASELINE_CAPTURED",
+            "last_actual_commit": candidate["rollback_point"],
+            "last_success_run": "NONE_YET",
             "remaining_blocker": candidate["blocker"],
             "modified_assets": ["NONE_YET"],
             "evidence": ["record pre-run commit/hash before first Work change"],
             "rollback_point": candidate["rollback_point"],
             "exact_next_step": candidate["restart_point"],
+            "ui_chat_identity": "UI_TITLE_HOLD",
+            "ui_chat_identity_evidence": "No verified UI title evidence is required for logical Work resumption.",
         }
     return {
         "schema_version": 1,
@@ -187,13 +197,18 @@ def self_test() -> None:
 
     good_exit = {
         "lane": "b",
+        "actual_purpose": "input -> execution -> output compare",
         "status": "HOLD",
         "last_success_stage": "INPUT_HASH_CAPTURED",
+        "last_actual_commit": "abc123",
+        "last_success_run": "run 456 success",
         "remaining_blocker": "browser step pending",
         "modified_assets": ["index.html"],
         "evidence": ["commit abc", "input sha256:def"],
         "rollback_point": "commit 123",
         "exact_next_step": "run chromium fixture from stage BROWSER_EXECUTION",
+        "ui_chat_identity": "UI_TITLE_HOLD",
+        "ui_chat_identity_evidence": "No direct UI title evidence available",
     }
     assert validate_exit_checkpoint(good_exit)["decision"] == "WORK_EXIT_RESUMABLE"
 
