@@ -24,6 +24,8 @@
 | TOOL007 | 고객 컨택 판단·전화 멘트·추천자료 | 기존 7번 흐름 재사용 |
 | TOOL001 | FULL/INTERMEDIATE 안내서 | 기존 1번 흐름 재사용 |
 | TOOL006 | TOC 정리 | 기존 6번/TOC 흐름 재사용 |
+| TOOL027 | 기술도서 검증·추천·1번 이관 | 기존 27번 기술도서 검증 흐름 재사용 |
+| TOOL042 | 고객 안내·추천자료·메일 문안·중간/최종 안내서 | `docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md` 흐름 재사용 |
 | TOOL043 | `43번 소형 앱 출시 실행도구` | 기존 `소형 앱 출시` 흐름 재사용 |
 | CRM_RESPONSE | 통화/회신 후 분기·다음행동 | 기존 고객후속/CRM 흐름 재사용 |
 
@@ -39,7 +41,9 @@ route: TOOL002 = 2번 | 입찰 | 입찰 도구 | bid | tender
 route: TOOL006 = 6번 | 목차 | toc | marketsandmarkets | marketandmarket
 route: TOOL007 = 7번 | 고객 컨택 | 컨택 판단 | 전화 멘트 | 유선 멘트
 route: TOOL013 = 13번 | 엑셀 자동 업로드 | 46145
+route: TOOL027 = 27번 | 기술도서 | 기술 도서 | technical book | technical-book-verifier | 도서 검증
 route: TOOL037 = 37번 | 메타데이터 | 상품명 | 한글명 | isbn | code
+route: TOOL042 = 42번 | 고객 안내 | 고객 안내 대화창 | customer guidance | unified customer guidance | 추천자료 | 중간 안내서 | 최종 안내서
 route: TOOL043 = 43번 | 소형 앱 출시 실행도구 | 소형 앱 출시 | 앱 출시 | 모바일 관찰 | 아이디어 출시 | 외부 증거 게이트
 route: EMAIL_DB = 메일 수집 | 이메일 수집 | email collection | new_online | dormant_ledger | recent_trade | 고객 db
 route: WORK_GATE = 워크 | work | 크레딧 | credit | 이관
