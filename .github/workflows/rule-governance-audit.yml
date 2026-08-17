@@ -48,7 +48,7 @@ jobs:
           test -s "$r"
           grep -q 'NON-NORMATIVE ROUTING LEDGER' "$r"
           grep -q '규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`' "$r"
-          grep -q '^route: TOOL040 = ' "$r"
+          grep -q '^route: TOOL043 = ' "$r"
           grep -q '^route: CENTRAL = ' "$r"
           if grep -Eq '^### TOOL[0-9]+ .*DELTA|CRITICAL EXECUTION LOCK|FAIL-NO_NEW_CHAT-VIOLATION' "$r"; then
             echo 'FAIL-NON_NORMATIVE_RULE_DRIFT'
@@ -57,7 +57,7 @@ jobs:
           python - <<'PY'
           from feedback_pipeline.cross_chat_feedback_ingest import load_route_registry
           routes = load_route_registry()
-          assert 'CENTRAL' in routes and 'WORK_GATE' in routes and 'TOOL040' in routes
+          assert 'CENTRAL' in routes and 'WORK_GATE' in routes and 'TOOL043' in routes
           assert len(routes) >= 9
           print('ROUTING_LEDGER=PASS')
           PY
