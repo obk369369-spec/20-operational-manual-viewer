@@ -58,13 +58,17 @@ jobs:
         run: |
           set -euo pipefail
           TITLE='[WIC STALL] Active execution state stale'
+          LEGACY_TITLE='[WIC STALL] Observer heartbeat stale'
           ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+          if [ -z "$ISSUE" ]; then
+            ISSUE=$(gh issue list --state open --search "$LEGACY_TITLE in:title" --json number --jq '.[0].number // empty')
+          fi
           if [ -z "$ISSUE" ]; then
             gh issue create --title "$TITLE" --body "Active execution state '${STRUCTURE_STATUS}' has not advanced for ${AGE_MIN} minutes. Resume from the saved restart point; do not repeat completed evidence."
             echo "created=true" >> "$GITHUB_OUTPUT"
           else
             echo "created=false" >> "$GITHUB_OUTPUT"
-            echo "Existing stall issue #$ISSUE remains open; no duplicate comment or recovery dispatch."
+            echo "Existing stall issue #$ISSUE represents this incident; no duplicate comment or recovery dispatch."
           fi
 
       - name: Re-dispatch existing recovery audit once
