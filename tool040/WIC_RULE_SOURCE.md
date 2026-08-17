@@ -1,15 +1,16 @@
-# TOOL040 Rule Source Pointer
+# 소형 앱 출시 실행도구 Rule Source Pointer
 
 상태: ACTIVE POINTER
-도구: 40번 출시 앱 도구 (TOOL040)
+도구명: `소형 앱 출시 실행도구`
+대화창 제목: `소형 앱 출시`
 
 규범 실행 원본은 이 디렉터리에 복제하지 않는다.
 
 - Global SOT: `../WIC_GLOBAL_OPERATING_RULES.md`
 - Routing ledger: `../WIC_CHAT_ROUTING_REGISTRY.md`
-- Route key: `TOOL040`
+- Legacy route key: `TOOL040` — 기존 자동 라우팅 호환용 machine key이며 사용자 도구 번호가 아님
 
-TOOL040의 전용 구현은 이 디렉터리에서 관리하되, 공통 운영 규칙은 Global SOT를 따른다.
+현재 `tool040/` 경로 역시 legacy 기술 경로다. 사용자-facing 이름이나 정식 번호로 해석하지 않는다.
 
 현재 최소 구현 범위:
 1. 모바일 관찰자 화면
