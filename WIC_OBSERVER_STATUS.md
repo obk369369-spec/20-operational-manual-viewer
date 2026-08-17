@@ -118,3 +118,19 @@
 - blocked_before_mutation: `true`
 - directive_source_ref: ``
 <!-- WIC_DENY_OBSERVER_AUTO_END -->
+
+<!-- WIC_EXECUTION_STATE_SYNC_START -->
+## 중앙 실행상태 자동 동기화
+
+| 항목 | 실제 값 |
+|---|---|
+| 중앙 상태 | `PRE_WORK_ADDITIONAL_SCOPE_IN_PROGRESS` |
+| 중앙 상태 갱신 | `2026-08-15 08:02 KST` |
+| checkpoint | `HOLD_DELTA_RECONCILIATION` |
+| 대화 identity 보호 | `PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED` |
+| restart point | Continue from TOOL040 exact-rule-source recovery plus current-tool-manifest lookup. Do not repeat Antigravity RAW extraction, prior Work preflight gates, or hierarchy creation. |
+| blocker | ANTIGRAVITY_ALL_CURRENT_TOOLS_COMPLETENESS: The retained Antigravity crosscheck proves the June extraction scope, not completeness for every tool that exists now. No authoritative all-current-tools manifest/hash set has been located yet; therefore all-current-tools completeness remains HOLD. / POST_EXTRACTION_TOOL040_RULE_INGEST: TOOL040 existence and observer/external-evidence-gate screenshots are verified in File Library, but no central TOOL040 routing/rule entry was found. Exact reusable rule text must be recovered from an existing source before central tool-exception integration; do not infer missing details from screenshots. |
+
+- 이 구역은 `WIC_EXECUTION_STATE.json`에서 자동 생성한다.
+- Observer가 자체적으로 RUNNING을 추정하지 않고 중앙 실행상태를 그대로 표시한다.
+<!-- WIC_EXECUTION_STATE_SYNC_END -->
