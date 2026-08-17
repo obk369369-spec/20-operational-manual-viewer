@@ -3,11 +3,16 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-17 22:16",
+  "updated_kst": "2026-08-17 23:10",
   "structure_status": "WIC_COMMON_STRUCTURE_IN_PROGRESS",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
-    "rules": ["NO_NEW_CHAT", "logical role is not a verified UI title", "unverified UI title remains UI_TITLE_HOLD", "unauthorized rename/alias/new chat is DENY/HOLD"]
+    "rules": [
+      "NO_NEW_CHAT",
+      "logical role is not a verified UI title",
+      "unverified UI title remains UI_TITLE_HOLD",
+      "unauthorized rename/alias/new chat is DENY/HOLD"
+    ]
   },
   "stall_recovery": {
     "monitor_workflow": ".github/workflows/wic-stall-monitor.yml",
@@ -24,7 +29,8 @@
     "TOOL002": "PASS_FUNCTIONAL_E2E: Playwright run 31617559119 executed real input -> add item -> save -> localStorage read-back -> visible list -> expected-value assertions successfully.",
     "TOOL007": "central-lane acknowledgement and deterministic integration verification previously verified",
     "EMAIL_COLLECTION_RULES": "rules-only consolidation PASS; historical data recovery remains intentionally deferred",
-    "CUSTOMER_GUIDANCE_RULE_SINGLE_SOURCE": "repo 07-wic-setting-tool-v1 commits bc2dc2df1f4f01f636434d37638a698848c64f50 and 3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc establish docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md as single source and demote legacy COMMON_CUSTOMER_OUTPUT_RULES.md."
+    "CUSTOMER_GUIDANCE_RULE_SINGLE_SOURCE": "repo 07-wic-setting-tool-v1 commits bc2dc2df1f4f01f636434d37638a698848c64f50 and 3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc establish docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md as single source and demote legacy COMMON_CUSTOMER_OUTPUT_RULES.md.",
+    "OBSERVER_SYNC_AND_STALL_CLEAR": "PASS: automated Observer sync commit 0efb85106f915a6046c6c8433dfe996e15530b90 read back WIC_COMMON_STRUCTURE_IN_PROGRESS and CONTROL_TOWER_34_ASSET_LOCATION; legacy stall issue #6 closed automatically at 2026-08-17 22:59 KST."
   },
   "email_collection_checkpoint": {
     "status": "RULE_ONLY_CONSOLIDATION_PASS",
@@ -32,27 +38,66 @@
     "restart_point": "Apply unified rules/schema to future supplied data; do not automatically resume legacy-number/data mining."
   },
   "priority_packages": {
-    "TOOL037": {"status":"HOLD","reason":"No existing target-appropriate implementation or functional evidence located."},
-    "TOOL013": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/13-excel-upload","evidence":"Real CSV/XLSX load, transform, preview and XLSX download implementation exists, but no existing executable browser/runtime input -> execution -> output -> expected comparison harness was found."},
-    "TOOL006": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/06-toc-check","evidence":"MarketsandMarkets historical regression fixtures with expected invariants exist, but no executable regression harness was found; current CI remains static validation."},
-    "TOOL002": {"status":"PASS_FUNCTIONAL_E2E","repository":"obk369369-spec/02-auto-bid-narajangter-v1","workflow":".github/workflows/actual-bid-business-e2e.yml","run_id":"31617559119","job_id":"94184066712"},
-    "TOOL009": {"status":"FAIL_SYNTHETIC_FALLBACK_PRESENT_PATCH_BLOCKED","repository":"obk369369-spec/09-contents-making-tool","workflow":".github/workflows/platform-evidence.yml","run_id":"31501486551","job_id":"93812322777","evidence":"production index.html lines around 1030-1350 still call createInitialSampleData() when storage is empty or parsing fails and define sample-1/sample-2/sample-3 records. Existing connector exposes whole-file replacement only; safe partial patch is unavailable and full file content is truncated by retrieval, so destructive full replacement was not attempted."},
-    "TOOL027": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/27-technical-book-verifier"},
-    "TOOL004": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/04-research-funding-generator"},
-    "TOOL008": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/08-English-Verb-Exercise"}
+    "TOOL037": {
+      "status": "HOLD",
+      "reason": "No existing target-appropriate implementation or functional evidence located."
+    },
+    "TOOL013": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/13-excel-upload",
+      "evidence": "Real CSV/XLSX load, transform, preview and XLSX download implementation exists, but no existing executable browser/runtime input -> execution -> output -> expected comparison harness was found."
+    },
+    "TOOL006": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/06-toc-check",
+      "evidence": "MarketsandMarkets historical regression fixtures with expected invariants exist, but no executable regression harness was found; current CI remains static validation."
+    },
+    "TOOL002": {
+      "status": "PASS_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+      "workflow": ".github/workflows/actual-bid-business-e2e.yml",
+      "run_id": "31617559119",
+      "job_id": "94184066712"
+    },
+    "TOOL009": {
+      "status": "FAIL_SYNTHETIC_FALLBACK_PRESENT_PATCH_BLOCKED",
+      "repository": "obk369369-spec/09-contents-making-tool",
+      "workflow": ".github/workflows/platform-evidence.yml",
+      "run_id": "31501486551",
+      "job_id": "93812322777",
+      "evidence": "production index.html lines around 1030-1350 still call createInitialSampleData() when storage is empty or parsing fails and define sample-1/sample-2/sample-3 records. Existing connector exposes whole-file replacement only; safe partial patch is unavailable and full file content is truncated by retrieval, so destructive full replacement was not attempted."
+    },
+    "TOOL027": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/27-technical-book-verifier"
+    },
+    "TOOL004": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/04-research-funding-generator"
+    },
+    "TOOL008": {
+      "status": "HOLD_FUNCTIONAL_E2E",
+      "repository": "obk369369-spec/08-English-Verb-Exercise"
+    }
   },
   "integration_checks": {
     "CENTRAL_STATE_OBSERVER_SYNC": {
       "status": "PASS_AUTOMATED_READBACK",
-      "evidence": ["ec90b7acbe1f298bf0be00803f3d64f9dbf2dfca", "2295fdd4529c40a99f50480bcc4b16735cab643e"]
+      "evidence": [
+        "ec90b7acbe1f298bf0be00803f3d64f9dbf2dfca",
+        "2295fdd4529c40a99f50480bcc4b16735cab643e"
+      ]
     },
     "OBSERVER_TO_CONTROL_TOWER_34": {
-      "status": "HOLD_EXISTING_ASSET_LOCATION_UNVERIFIED",
-      "evidence": "No TOOL034/WIC34/CONTROL TOWER runtime asset exists in the currently accessible central repository or 07-wic-setting-tool-v1 checkout. Do not create a replacement UI; locate and reuse the retained Antigravity WIC34 asset before wiring it to the canonical Observer."
+      "status": "HOLD_EXTERNAL_RUNTIME_ACCESS",
+      "evidence": "Historical retained evidence identifies the existing runtime root as D:\\오부장 AI (인공지능)\\WIC34_C_REBUILD. It is not present in the accessible GitHub repositories or current Work filesystem. Reuse is mandatory; no replacement UI or duplicate control tower may be created."
     },
     "CUSTOMER_GUIDANCE_07_REPO": {
       "status": "PASS_RULE_SINGLE_SOURCE",
-      "evidence": ["bc2dc2df1f4f01f636434d37638a698848c64f50", "3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc"]
+      "evidence": [
+        "bc2dc2df1f4f01f636434d37638a698848c64f50",
+        "3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc"
+      ]
     },
     "CENTRAL_CUSTOMER_WORKFLOW_ALIGNMENT": {
       "status": "HOLD_CONFLICT_REMAINING",
@@ -75,7 +120,7 @@
   ],
   "blockers": {
     "ANTIGRAVITY_ALL_CURRENT_TOOLS_COMPLETENESS": "The retained Antigravity crosscheck proves the June extraction scope, not completeness for every tool that exists now. No authoritative all-current-tools manifest/hash set has been located yet; therefore all-current-tools completeness remains HOLD.",
-    "CONTROL_TOWER_34_ASSET_LOCATION": "Existing WIC34/CONTROL TOWER must be reused, but its runtime asset is not present in the accessible 20-operational-manual-viewer or 07-wic-setting-tool-v1 repository checkout. Creating a replacement UI is prohibited; resume by locating the retained Antigravity asset and then connect it to WIC_OBSERVER_STATUS.md."
+    "CONTROL_TOWER_34_ASSET_LOCATION": "Existing WIC34/CONTROL TOWER runtime root is D:\\오부장 AI (인공지능)\\WIC34_C_REBUILD. The current Work cannot access that external Windows path. Resume when the existing asset is made accessible to this Work or an approved external runner exposes its state; do not create a replacement."
   },
   "do_not_repeat": [
     "PRECHECK_USER_DIRECTIVE implementation and approved mutation E2E unless new failure evidence appears",
@@ -97,13 +142,59 @@
     "status": "PASS",
     "last_success_stage": "WORK_HANDOFF_RESTART_AUDIT_READBACK_PASS",
     "completed": {
-      "USER_DIRECTIVE_PROVENANCE_COMMON_PREFLIGHT": {"status":"PASS","evidence":["205f6557","940fe993","run 31822293219"]},
-      "DENY_OBSERVER_PERSISTENCE": {"status":"PASS","evidence":["29a61242","29431ea5","run 31831732239","observer commit 598fee93"]},
-      "STALE_FINAL_STATE_VALIDATION": {"status":"PASS","evidence":["run 31826639129"]},
-      "COMMON_MODULE_ADAPTER_CONTRACT": {"status":"PASS","evidence":["51b22d1c","1bc68efb","run 31826639129"]},
-      "CHAT_DIRECTIVE_REAL_FUNCTION_CHANGE_E2E": {"status":"PASS","evidence":["2ca18aed","run 31822293219"]},
-      "WORK_HANDOFF_RESTART": {"status":"PASS","evidence":["state commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41","run 31836111313","job 94882665880"]},
-      "FIVE_MINUTE_HEARTBEAT_STALL_WATCHDOG": {"status":"PASS","evidence":["run 31824429998","recovery run 31824440422"]}
+      "USER_DIRECTIVE_PROVENANCE_COMMON_PREFLIGHT": {
+        "status": "PASS",
+        "evidence": [
+          "205f6557",
+          "940fe993",
+          "run 31822293219"
+        ]
+      },
+      "DENY_OBSERVER_PERSISTENCE": {
+        "status": "PASS",
+        "evidence": [
+          "29a61242",
+          "29431ea5",
+          "run 31831732239",
+          "observer commit 598fee93"
+        ]
+      },
+      "STALE_FINAL_STATE_VALIDATION": {
+        "status": "PASS",
+        "evidence": [
+          "run 31826639129"
+        ]
+      },
+      "COMMON_MODULE_ADAPTER_CONTRACT": {
+        "status": "PASS",
+        "evidence": [
+          "51b22d1c",
+          "1bc68efb",
+          "run 31826639129"
+        ]
+      },
+      "CHAT_DIRECTIVE_REAL_FUNCTION_CHANGE_E2E": {
+        "status": "PASS",
+        "evidence": [
+          "2ca18aed",
+          "run 31822293219"
+        ]
+      },
+      "WORK_HANDOFF_RESTART": {
+        "status": "PASS",
+        "evidence": [
+          "state commit e9cc0c6541341f8cfdc8f72340cd13a9b0042d41",
+          "run 31836111313",
+          "job 94882665880"
+        ]
+      },
+      "FIVE_MINUTE_HEARTBEAT_STALL_WATCHDOG": {
+        "status": "PASS",
+        "evidence": [
+          "run 31824429998",
+          "recovery run 31824440422"
+        ]
+      }
     },
     "remaining": [],
     "restart_point": "Prior PRE_WORK_PASS remains valid for the original pre-work gates. Additional rule-asset/delta scope is tracked separately below and must not cause completed gates to be repeated.",
@@ -112,12 +203,47 @@
   "additional_work_preparation_checkpoint": {
     "status": "HOLD_DELTA_RECONCILIATION",
     "completed": {
-      "ANTIGRAVITY_BASELINE_LOCATION": {"status":"PASS","evidence":["File Library WIC34 retained path evidence: WIC34_STATE/conversation_records/raw -> tool_mapped -> extracted_rules -> RULE_INBOX","RAW=224","tool_mapped=487"]},
-      "ANTIGRAVITY_BASELINE_SCOPE": {"status":"PASS_SCOPED","evidence":["2026-06-01 WIC34 crosscheck 100% for listed TOOL001/TOOL006/TOOL013/TOOL007/TOOL002 scope"]},
-      "INCREMENTAL_ONLY_RULE_POLICY": {"status":"PASS","evidence":["WIC_GLOBAL_OPERATING_RULES.md 1.10-1.11"]},
-      "CENTRAL_HIERARCHY": {"status":"PASS","evidence":["WIC_UNIVERSAL_INTEGRATION_ARCHITECTURE.md common-master -> workgroup -> field/tool exception -> data"]},
-      "POST_BASELINE_GITHUB_DELTA_PRESENCE": {"status":"PASS","evidence":["central rule commits after 2026-08-10 historical-index checkpoint through 2026-08-15"]},
-      "TOOL040_TO_TOOL043_MIGRATION": {"status":"PASS","evidence":["19e6f041e2bf94017ba562cfe44541aebaf43b6c", "9c4b383eea5b4458f66cd20c99626a4bfb5d955a", "c629a11f12a9e28ab5af639f3ba9ec8ae00f87e4", "WIC_CHAT_ROUTING_REGISTRY.md TOOL043 route read-back"]}
+      "ANTIGRAVITY_BASELINE_LOCATION": {
+        "status": "PASS",
+        "evidence": [
+          "File Library WIC34 retained path evidence: WIC34_STATE/conversation_records/raw -> tool_mapped -> extracted_rules -> RULE_INBOX",
+          "RAW=224",
+          "tool_mapped=487"
+        ]
+      },
+      "ANTIGRAVITY_BASELINE_SCOPE": {
+        "status": "PASS_SCOPED",
+        "evidence": [
+          "2026-06-01 WIC34 crosscheck 100% for listed TOOL001/TOOL006/TOOL013/TOOL007/TOOL002 scope"
+        ]
+      },
+      "INCREMENTAL_ONLY_RULE_POLICY": {
+        "status": "PASS",
+        "evidence": [
+          "WIC_GLOBAL_OPERATING_RULES.md 1.10-1.11"
+        ]
+      },
+      "CENTRAL_HIERARCHY": {
+        "status": "PASS",
+        "evidence": [
+          "WIC_UNIVERSAL_INTEGRATION_ARCHITECTURE.md common-master -> workgroup -> field/tool exception -> data"
+        ]
+      },
+      "POST_BASELINE_GITHUB_DELTA_PRESENCE": {
+        "status": "PASS",
+        "evidence": [
+          "central rule commits after 2026-08-10 historical-index checkpoint through 2026-08-15"
+        ]
+      },
+      "TOOL040_TO_TOOL043_MIGRATION": {
+        "status": "PASS",
+        "evidence": [
+          "19e6f041e2bf94017ba562cfe44541aebaf43b6c",
+          "9c4b383eea5b4458f66cd20c99626a4bfb5d955a",
+          "c629a11f12a9e28ab5af639f3ba9ec8ae00f87e4",
+          "WIC_CHAT_ROUTING_REGISTRY.md TOOL043 route read-back"
+        ]
+      }
     },
     "remaining": [
       "Locate an authoritative current-tool manifest or equivalent retained evidence sufficient to distinguish June baseline completeness from current all-tool completeness without re-extracting RAW 224.",
@@ -129,19 +255,31 @@
   },
   "work_gate_candidates": {
     "WORK_PREP_HANDOFF_RESTART": {
-      "gates": {"chat_files": false, "github": true, "ordinary_runtime": false},
+      "gates": {
+        "chat_files": false,
+        "github": true,
+        "ordinary_runtime": false
+      },
       "blocker": "Resolved by GitHub handoff audit run 31836111313 for the original pre-work gate set; additional rule-asset/delta scope is tracked separately.",
       "restart_point": "Do not rerun the original handoff fixture until the additional delta reconciliation changes a central handoff-relevant asset.",
       "target_repository": "obk369369-spec/20-operational-manual-viewer",
-      "target_assets": ["WIC_EXECUTION_STATE.json", "feedback_pipeline/work_gate_handoff.py", ".github/workflows/work-gate-handoff-audit.yml"],
+      "target_assets": [
+        "WIC_EXECUTION_STATE.json",
+        "feedback_pipeline/work_gate_handoff.py",
+        ".github/workflows/work-gate-handoff-audit.yml"
+      ],
       "execution_goal": "Verify exact handoff/restart contract without starting actual tool work.",
-      "success_evidence": ["run 31836111313 success", "job 94882665880 handoff fixture/generation/validation success", "state read-back"],
+      "success_evidence": [
+        "run 31836111313 success",
+        "job 94882665880 handoff fixture/generation/validation success",
+        "state read-back"
+      ],
       "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
     }
   },
   "restart_point": [
     "CENTRAL_STATE_TO_OBSERVER is PASS with automated GitHub read-back; do not repeat it unless new failure evidence appears.",
-    "Locate the existing retained WIC34/CONTROL TOWER runtime asset without creating a new UI or repository, then wire it to canonical WIC_OBSERVER_STATUS.md.",
+    "Use the retained WIC34 runtime at D:\\오부장 AI (인공지능)\\WIC34_C_REBUILD; once accessible, wire its existing reader to canonical WIC_OBSERVER_STATUS.md without creating a new UI or repository.",
     "PRE_WORK_PASS original gates remain locked; do not repeat completed stages unless new failure evidence appears.",
     "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, TOOL043, or any other individual tool development while completing the common integration structure.",
     "When the additional delta scope passes, generate the exact Work handoff from existing central sources without re-analyzing the historical raw corpus."
