@@ -19,52 +19,63 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check observer status age
+      - name: Check active execution state age
         id: age
         shell: bash
         run: |
           set -euo pipefail
-          FILE='WIC_LIVE_OBSERVER_STATUS.md'
-          MAX_AGE_MINUTES=5
+          FILE='WIC_EXECUTION_STATE.json'
+          MAX_AGE_MINUTES=60
           LAST_TS=$(git log -1 --format=%ct -- "$FILE")
           NOW_TS=$(date +%s)
           AGE_MIN=$(( (NOW_TS - LAST_TS) / 60 ))
-          echo "age_minutes=$AGE_MIN" >> "$GITHUB_OUTPUT"
-          echo "last_commit_epoch=$LAST_TS" >> "$GITHUB_OUTPUT"
-          if [ "$AGE_MIN" -gt "$MAX_AGE_MINUTES" ]; then
-            echo "stale=true" >> "$GITHUB_OUTPUT"
-            echo "::warning::WIC observer status is stale: ${AGE_MIN} minutes (limit ${MAX_AGE_MINUTES})."
+          STRUCTURE_STATUS=$(python -c "import json; print(json.load(open('$FILE', encoding='utf-8')).get('structure_status', ''))")
+          if [[ "$STRUCTURE_STATUS" == *"IN_PROGRESS"* ]]; then
+            ACTIVE=true
           else
-            echo "stale=false" >> "$GITHUB_OUTPUT"
-            echo "WIC observer status age: ${AGE_MIN} minutes."
+            ACTIVE=false
           fi
+          if [ "$ACTIVE" = true ] && [ "$AGE_MIN" -gt "$MAX_AGE_MINUTES" ]; then
+            STALE=true
+            echo "::warning::Active WIC execution state is stale: ${AGE_MIN} minutes (limit ${MAX_AGE_MINUTES})."
+          else
+            STALE=false
+            echo "WIC state active=${ACTIVE}, age=${AGE_MIN} minutes, status=${STRUCTURE_STATUS}."
+          fi
+          echo "active=$ACTIVE" >> "$GITHUB_OUTPUT"
+          echo "stale=$STALE" >> "$GITHUB_OUTPUT"
+          echo "age_minutes=$AGE_MIN" >> "$GITHUB_OUTPUT"
+          echo "structure_status=$STRUCTURE_STATUS" >> "$GITHUB_OUTPUT"
 
-      - name: Open or update single stall issue
+      - name: Open one stall issue
+        id: issue
         if: steps.age.outputs.stale == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           AGE_MIN: ${{ steps.age.outputs.age_minutes }}
+          STRUCTURE_STATUS: ${{ steps.age.outputs.structure_status }}
         shell: bash
         run: |
           set -euo pipefail
-          TITLE='[WIC STALL] Observer heartbeat stale'
-          BODY="Observer status has not advanced for ${AGE_MIN} minutes. Existing recovery audit is being re-dispatched from the saved restart point; unchanged evidence must not be repeated."
+          TITLE='[WIC STALL] Active execution state stale'
           ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
           if [ -z "$ISSUE" ]; then
-            gh issue create --title "$TITLE" --body "$BODY"
+            gh issue create --title "$TITLE" --body "Active execution state '${STRUCTURE_STATUS}' has not advanced for ${AGE_MIN} minutes. Resume from the saved restart point; do not repeat completed evidence."
+            echo "created=true" >> "$GITHUB_OUTPUT"
           else
-            gh issue comment "$ISSUE" --body "$BODY"
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            echo "Existing stall issue #$ISSUE remains open; no duplicate comment or recovery dispatch."
           fi
 
-      - name: Re-dispatch existing recovery audit
-        if: steps.age.outputs.stale == 'true'
+      - name: Re-dispatch existing recovery audit once
+        if: steps.age.outputs.stale == 'true' && steps.issue.outputs.created == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           gh workflow run rule-governance-audit.yml --ref "${GITHUB_REF_NAME}"
-          echo 'Existing recovery audit dispatched; no new chat, role, file, or workflow created.'
+          echo 'Existing recovery audit dispatched once for this stall incident.'
 
       - name: Close resolved stall issue
         if: steps.age.outputs.stale == 'false'
@@ -73,8 +84,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          TITLE='[WIC STALL] Observer heartbeat stale'
-          ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
-          if [ -n "$ISSUE" ]; then
-            gh issue close "$ISSUE" --comment 'Observer heartbeat is fresh again; stall condition cleared.'
-          fi
+          for TITLE in '[WIC STALL] Active execution state stale' '[WIC STALL] Observer heartbeat stale'; do
+            ISSUE=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+            if [ -n "$ISSUE" ]; then
+              gh issue close "$ISSUE" --comment 'Execution state is fresh or no longer active; stall condition cleared.'
+            fi
+          done
