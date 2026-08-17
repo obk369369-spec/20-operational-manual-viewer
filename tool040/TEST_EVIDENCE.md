@@ -1,17 +1,19 @@
-# TOOL040 Minimal Runtime Evidence
+# 소형 앱 출시 실행도구 Minimal Runtime Evidence
 
 검증일: 2026-08-17 KST
-대상: `tool040/index.html`
+대상: `tool040/index.html` (legacy 기술 경로)
+사용자-facing 도구명: `소형 앱 출시 실행도구`
+대화창 제목: `소형 앱 출시`
+
+`TOOL040` 및 `tool040`은 기존 자동 라우팅/저장 호환을 위한 legacy machine key/path이며 사용자 도구 번호가 아니다.
 
 ## GitHub 저장/read-back
-- 규칙 포인터 commit: `f3ccf9bf5c19530431adc3424a858d00f362c2ca`
-- 실행본 commit: `8a6234253fa26d0d998b62937ffba726081d8fe2`
-- GitHub read-back blob SHA: `edae9ba4113aa5ea916166311285e8b227cbe600`
+- 최초 규칙 포인터 commit: `f3ccf9bf5c19530431adc3424a858d00f362c2ca`
+- 최초 실행본 commit: `8a6234253fa26d0d998b62937ffba726081d8fe2`
+- 명칭 정정 후 실행본 commit: `89c89496a83c8582fc72dfdba9e5d44f904763f4`
 
 ## 최소 실행 검증
-GitHub read-back된 실행본과 동일한 코드의 상태 전이 로직을 로컬 Node 런타임에서 검증했다.
-
-검증 결과:
+GitHub read-back된 실행본과 동일한 상태 전이 로직 기준:
 - 최초 판정: `HOLD`
 - 아이디어 입력 + 잠금 후: `PARTIAL PASS`
 - `진행 승인` 후 마지막 명령: `진행`
@@ -19,11 +21,14 @@ GitHub read-back된 실행본과 동일한 코드의 상태 전이 로직을 로
 - evidence JSON의 `external_launch`: `HOLD`
 - 기록 시각 생성: PASS
 
-## 판정
-- GitHub 규칙 포인터: PASS
-- GitHub 최소 실행본 존재/read-back: PASS
-- 최소 상태 전이 로직: PASS
-- 별도 TOOL040 repository 객체: HOLD — 현재 연결된 GitHub connector에는 repository 생성 액션이 없고 현재 런타임에는 `gh` CLI가 없음
-- 실제 외부 배포/앱스토어 출시: HOLD — 이 최소 구현 검증 범위 밖
+## 이름 중복 검증
+- Library/대화 자료에서 `소형 앱 출시 실행도구` 정확 명칭의 기존 도구 사용 기록 없음
+- GitHub 저장소/코드 검색에서 동일 명칭 기존 사용 없음
+- `소형 앱 출시`는 실제 대화창 제목으로 확인되므로 대화창 제목은 변경하지 않음
+- 과거 `40번 출시 앱 도구` 표기는 사용자 지정 번호 근거가 없어 사용자-facing 명칭에서 폐기
 
-따라서 기존의 `GitHub 실행본 자체가 없음` HOLD는 해소되었고, 남은 HOLD는 별도 저장소 분리와 실제 외부 출시 검증으로 좁혀진다.
+## 판정
+- 도구명: `소형 앱 출시 실행도구` — PASS
+- 대화창 제목: `소형 앱 출시` — 유지
+- `TOOL040`: legacy machine key only — 사용자 번호로 사용 금지
+- 실제 외부 배포/앱스토어 출시: HOLD — 별도 실행 검증 범위
