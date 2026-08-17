@@ -3,8 +3,8 @@
   "master_rules": "WIC_GLOBAL_OPERATING_RULES.md",
   "routing_registry": "WIC_CHAT_ROUTING_REGISTRY.md",
   "observer_status": "WIC_OBSERVER_STATUS.md",
-  "updated_kst": "2026-08-15 08:02",
-  "structure_status": "PRE_WORK_ADDITIONAL_SCOPE_IN_PROGRESS",
+  "updated_kst": "2026-08-17 22:16",
+  "structure_status": "WIC_COMMON_STRUCTURE_IN_PROGRESS",
   "chat_identity_lock": {
     "status": "PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED",
     "rules": ["NO_NEW_CHAT", "logical role is not a verified UI title", "unverified UI title remains UI_TITLE_HOLD", "unauthorized rename/alias/new chat is DENY/HOLD"]
@@ -19,6 +19,7 @@
     "secondary_recovery_result": "5-minute stale detection branch succeeded and existing recovery audit was re-dispatched; recovery run 31824440422 succeeded."
   },
   "verified_completed": {
+    "CENTRAL_STATE_TO_CANONICAL_OBSERVER": "PASS: workflow commit ec90b7acbe1f298bf0be00803f3d64f9dbf2dfca connected WIC_EXECUTION_STATE.json to WIC_OBSERVER_STATUS.md; automated sync/read-back commit 2295fdd4529c40a99f50480bcc4b16735cab643e verified the derived status, checkpoint, identity lock, restart point and blockers.",
     "TOOL001": "repository target write/read-back/test previously verified",
     "TOOL002": "PASS_FUNCTIONAL_E2E: Playwright run 31617559119 executed real input -> add item -> save -> localStorage read-back -> visible list -> expected-value assertions successfully.",
     "TOOL007": "central-lane acknowledgement and deterministic integration verification previously verified",
@@ -41,6 +42,14 @@
     "TOOL008": {"status":"HOLD_FUNCTIONAL_E2E","repository":"obk369369-spec/08-English-Verb-Exercise"}
   },
   "integration_checks": {
+    "CENTRAL_STATE_OBSERVER_SYNC": {
+      "status": "PASS_AUTOMATED_READBACK",
+      "evidence": ["ec90b7acbe1f298bf0be00803f3d64f9dbf2dfca", "2295fdd4529c40a99f50480bcc4b16735cab643e"]
+    },
+    "OBSERVER_TO_CONTROL_TOWER_34": {
+      "status": "HOLD_EXISTING_ASSET_LOCATION_UNVERIFIED",
+      "evidence": "No TOOL034/WIC34/CONTROL TOWER runtime asset exists in the currently accessible central repository or 07-wic-setting-tool-v1 checkout. Do not create a replacement UI; locate and reuse the retained Antigravity WIC34 asset before wiring it to the canonical Observer."
+    },
     "CUSTOMER_GUIDANCE_07_REPO": {
       "status": "PASS_RULE_SINGLE_SOURCE",
       "evidence": ["bc2dc2df1f4f01f636434d37638a698848c64f50", "3c8cd6bef42efbf00e2586b3d0d5c61b18a29ffc"]
@@ -66,7 +75,7 @@
   ],
   "blockers": {
     "ANTIGRAVITY_ALL_CURRENT_TOOLS_COMPLETENESS": "The retained Antigravity crosscheck proves the June extraction scope, not completeness for every tool that exists now. No authoritative all-current-tools manifest/hash set has been located yet; therefore all-current-tools completeness remains HOLD.",
-    "POST_EXTRACTION_TOOL040_RULE_INGEST": "TOOL040 existence and observer/external-evidence-gate screenshots are verified in File Library, but no central TOOL040 routing/rule entry was found. Exact reusable rule text must be recovered from an existing source before central tool-exception integration; do not infer missing details from screenshots."
+    "CONTROL_TOWER_34_ASSET_LOCATION": "Existing WIC34/CONTROL TOWER must be reused, but its runtime asset is not present in the accessible 20-operational-manual-viewer or 07-wic-setting-tool-v1 repository checkout. Creating a replacement UI is prohibited; resume by locating the retained Antigravity asset and then connect it to WIC_OBSERVER_STATUS.md."
   },
   "do_not_repeat": [
     "PRECHECK_USER_DIRECTIVE implementation and approved mutation E2E unless new failure evidence appears",
@@ -107,15 +116,15 @@
       "ANTIGRAVITY_BASELINE_SCOPE": {"status":"PASS_SCOPED","evidence":["2026-06-01 WIC34 crosscheck 100% for listed TOOL001/TOOL006/TOOL013/TOOL007/TOOL002 scope"]},
       "INCREMENTAL_ONLY_RULE_POLICY": {"status":"PASS","evidence":["WIC_GLOBAL_OPERATING_RULES.md 1.10-1.11"]},
       "CENTRAL_HIERARCHY": {"status":"PASS","evidence":["WIC_UNIVERSAL_INTEGRATION_ARCHITECTURE.md common-master -> workgroup -> field/tool exception -> data"]},
-      "POST_BASELINE_GITHUB_DELTA_PRESENCE": {"status":"PASS","evidence":["central rule commits after 2026-08-10 historical-index checkpoint through 2026-08-15"]}
+      "POST_BASELINE_GITHUB_DELTA_PRESENCE": {"status":"PASS","evidence":["central rule commits after 2026-08-10 historical-index checkpoint through 2026-08-15"]},
+      "TOOL040_TO_TOOL043_MIGRATION": {"status":"PASS","evidence":["19e6f041e2bf94017ba562cfe44541aebaf43b6c", "9c4b383eea5b4458f66cd20c99626a4bfb5d955a", "c629a11f12a9e28ab5af639f3ba9ec8ae00f87e4", "WIC_CHAT_ROUTING_REGISTRY.md TOOL043 route read-back"]}
     },
     "remaining": [
       "Locate an authoritative current-tool manifest or equivalent retained evidence sufficient to distinguish June baseline completeness from current all-tool completeness without re-extracting RAW 224.",
-      "Recover exact reusable TOOL040 rule text from existing Chat/File evidence and integrate only the verified tool-exception delta into the existing central hierarchy.",
       "Run targeted delta-only omission checks for other post-baseline Chat feedback; do not reread the historical corpus already covered by the baseline.",
       "After delta reconciliation, update this existing state and rerun only the existing governance/handoff validation required by the changed central assets."
     ],
-    "restart_point": "Continue from TOOL040 exact-rule-source recovery plus current-tool-manifest lookup. Do not repeat Antigravity RAW extraction, prior Work preflight gates, or hierarchy creation.",
+    "restart_point": "TOOL040 legacy delta is closed by verified TOOL043 migration. Continue current-tool-manifest lookup and targeted post-baseline omission checks without repeating Antigravity RAW extraction, prior Work preflight gates, or hierarchy creation.",
     "work_entry": "HOLD until additional rule-asset/delta scope is reconciled; prior original pre-work gates remain PASS."
   },
   "work_gate_candidates": {
@@ -131,9 +140,10 @@
     }
   },
   "restart_point": [
-    "ADDITIONAL_PRE_WORK_HOLD: continue only the rule-asset/delta reconciliation recorded in additional_work_preparation_checkpoint.",
+    "CENTRAL_STATE_TO_OBSERVER is PASS with automated GitHub read-back; do not repeat it unless new failure evidence appears.",
+    "Locate the existing retained WIC34/CONTROL TOWER runtime asset without creating a new UI or repository, then wire it to canonical WIC_OBSERVER_STATUS.md.",
     "PRE_WORK_PASS original gates remain locked; do not repeat completed stages unless new failure evidence appears.",
-    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, TOOL040, or any other actual tool development inside this Work-preparation automation.",
+    "Do not start email collection, TOOL001, TOOL009, TOOL006, TOOL013, TOOL007, TOOL002, TOOL043, or any other individual tool development while completing the common integration structure.",
     "When the additional delta scope passes, generate the exact Work handoff from existing central sources without re-analyzing the historical raw corpus."
   ],
   "completion_policy": "Original PRE_WORK_PASS required actual commit + file read-back + handoff audit run/result evidence and remains satisfied. Additional rule-asset/delta scope requires targeted evidence of baseline location/scope, post-baseline omission reconciliation, central-hierarchy integration without duplicate normative rules, file read-back, and existing governance/handoff run evidence before Work entry is restored to PASS."
