@@ -24,7 +24,7 @@
 | TOOL007 | 고객 컨택 판단·전화 멘트·추천자료 | 기존 7번 흐름 재사용 |
 | TOOL001 | FULL/INTERMEDIATE 안내서 | 기존 1번 흐름 재사용 |
 | TOOL006 | TOC 정리 | 기존 6번/TOC 흐름 재사용 |
-| TOOL040 | 사용자가 지정한 `40번 출시 앱 도구` | 기존 40번 관련 흐름 재사용 |
+| TOOL040 | `소형 앱 출시 실행도구` (legacy machine key; 사용자 도구 번호 아님) | 기존 `소형 앱 출시` 흐름 재사용 |
 | CRM_RESPONSE | 통화/회신 후 분기·다음행동 | 기존 고객후속/CRM 흐름 재사용 |
 
 도구·업무별 실행 규칙과 예외는 이 파일에 두지 않는다. 해당 규범은 Global 단일 원본 및 Global이 명시적으로 가리키는 현재 업무군 원본에서 관리한다.
@@ -40,7 +40,7 @@ route: TOOL006 = 6번 | 목차 | toc | marketsandmarkets | marketandmarket
 route: TOOL007 = 7번 | 고객 컨택 | 컨택 판단 | 전화 멘트 | 유선 멘트
 route: TOOL013 = 13번 | 엑셀 자동 업로드 | 46145
 route: TOOL037 = 37번 | 메타데이터 | 상품명 | 한글명 | isbn | code
-route: TOOL040 = 40번 | 출시 앱 도구 | 앱 출시 | 모바일 관찰 | 아이디어 출시 | 외부 증거 게이트
+route: TOOL040 = 소형 앱 출시 실행도구 | 소형 앱 출시 | 앱 출시 | 모바일 관찰 | 아이디어 출시 | 외부 증거 게이트
 route: EMAIL_DB = 메일 수집 | 이메일 수집 | email collection | new_online | dormant_ledger | recent_trade | 고객 db
 route: WORK_GATE = 워크 | work | 크레딧 | credit | 이관
 route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 | 관찰자
@@ -55,5 +55,7 @@ route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 |
 ## 5. LEGACY MIGRATION NOTE
 
 과거 이 Registry에 있던 `NO_NEW_CHAT`, UI-title gate, pointed-issue scope lock, 이메일 공통 규칙, TOOL040 실행 DELTA 등의 규범 문구는 라우팅 데이터와 섞여 있던 legacy 내용이다. 현재 실행 기준으로 사용하지 않으며, 최신 확정 규칙은 `WIC_GLOBAL_OPERATING_RULES.md` 단일 원본에서 관리한다.
+
+`TOOL040`은 과거에 잘못 붙은 사용자 도구 번호를 뜻하지 않는다. 기존 자동 라우팅 호환성을 위해 남겨 둔 legacy machine key이며, 사용자-facing 도구명은 `소형 앱 출시 실행도구`로 고정한다.
 
 이 Registry의 PASS 기준은 **필요한 route 데이터가 파싱되고, 규범 실행 규칙이 다시 유입되지 않는 것**이다.
