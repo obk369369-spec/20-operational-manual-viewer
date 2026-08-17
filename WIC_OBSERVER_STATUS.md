@@ -124,8 +124,8 @@
 
 | 항목 | 실제 값 |
 |---|---|
-| 중앙 상태 | `WIC_COMMON_STRUCTURE_IN_PROGRESS` |
-| 중앙 상태 갱신 | `2026-08-17 23:10 KST` |
+| 중앙 상태 | `HOLD_EXTERNAL_RUNTIME_ACCESS` |
+| 중앙 상태 갱신 | `2026-08-18 02:01 KST` |
 | checkpoint | `HOLD_DELTA_RECONCILIATION` |
 | 대화 identity 보호 | `PASS_INTERNAL_GITHUB_PREFLIGHT_VERIFIED` |
 | restart point | TOOL040 legacy delta is closed by verified TOOL043 migration. Continue current-tool-manifest lookup and targeted post-baseline omission checks without repeating Antigravity RAW extraction, prior Work preflight gates, or hierarchy creation. |
