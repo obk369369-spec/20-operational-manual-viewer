@@ -151,6 +151,7 @@
 - 과거 규칙 재독해, 대화기록 정리, 전체 도구 규칙 회수, 기존 추출물 재분석, 중앙 규칙 통합에는 Work 크레딧을 사용하지 않는다.
 - 이미 존재하는 Antigravity/WIC34 추출물·백업본·GitHub 기록을 먼저 검색·재사용하지 않은 상태에서는 Work 사용 금지다.
 - 규칙 회수/통합/대화기록 정리/과거 자료 재추출 목적은 `WORK_REQUIRED=false`로 잠근다.
+- Work 실행 전에는 실제 Work-only blocker와 `WORK_REQUIRED=true` 근거가 있어야 한다.
 - 이 규칙을 어기고 Work/Antigravity 크레딧을 불필요한 전체 규칙 재추출에 쓰는 것은 `CRITICAL_RESOURCE_MISUSE` / `CREDIT_WASTE_FAIL`로 분류한다.
 
 ### Chat 우선 — 최대 처리
@@ -533,7 +534,7 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - **영구 운영규칙/지속 적용만 중앙마스터·해당 도구 마스터에 반영**한다. 일회성 질문, 현재 크레딧/초기화 시각, 단발성 사실조회처럼 다음 작업 기준을 바꾸지 않는 내용은 중앙마스터에 저장하지 않는다.
 - 한 메시지에 영구규칙과 일회성 질문이 섞여 있으면 영구규칙 부분만 분리하여 반영하고, 일회성 부분은 답변만 한다.
 - 일회성인지 영구규칙인지 불명확하면 임의 영구화하지 않고 HOLD/분류 후 다음 실행 규칙을 오염시키지 않는다.
-- 이미 같은 규칙이 있으면 중복 추가하지 않고 기존 규칙을 강화·재사용한다. 기존 규칙과 충돌하면 최신 명시적 사용자 지시를 기준으로 충돌을 해소하되, 자동 해소가 불가능하면 HOLD한다.
+- 이미 같은 규칙이 있으면 중복 추가하지 않고 기존 규칙을 강화·재사용한다. 기존 규칙과 충돌하면 임의 병합하지 않고 HOLD한다.
 
 ### 기존·신규 도구 재사용 규칙
 - 기존 도구는 등록된 route와 기존 중앙마스터·게이트·체크포인트를 SKIP-REUSE하며 전수조사하거나 전체 회귀검증하지 않는다.
@@ -558,64 +559,135 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       "active": true,
       "classification": "CONSTRAINT",
       "feedback_id": "20260820_persistent_feedback_only",
-      "impacted_layers": ["GLOBAL"],
+      "impacted_layers": [
+        "GLOBAL"
+      ],
       "sanitized_excerpt": "모든 자연어 지적·정정·누락·형식변경·금지사항·운영변경을 피드백 후보로 분류하되, 영구 운영규칙/지속 적용만 중앙마스터에 반영한다. 일회성 질문·정보조회·현재 상태 확인은 저장하지 않으며, 한 메시지에 섞여 있으면 영구 부분만 분리 반영한다. 애매하면 HOLD한다.",
       "supersedes": [],
-      "targets": ["CENTRAL"]
+      "targets": [
+        "CENTRAL"
+      ]
     },
     {
       "active": true,
       "classification": "CONSTRAINT",
       "feedback_id": "20260813_table_reporting",
-      "impacted_layers": ["GLOBAL"],
+      "impacted_layers": [
+        "GLOBAL"
+      ],
       "sanitized_excerpt": "모든 업무 대화창과 도구의 진행상황·점검결과·작업상태 보고는 테이블을 먼저 사용한다. 실제 실행/근거, 남은 작업, PASS/HOLD/FAIL을 한눈에 보이게 하고 텍스트 덩어리만으로 보고하지 않는다.",
       "supersedes": [],
-      "targets": ["CENTRAL"]
+      "targets": [
+        "CENTRAL"
+      ]
     },
     {
       "active": true,
       "classification": "CONSTRAINT",
       "feedback_id": "20260813_work_rule_split",
-      "impacted_layers": ["GLOBAL","WORKGROUP","TOOL_OR_DOMAIN_OVERRIDE"],
+      "impacted_layers": [
+        "GLOBAL",
+        "WORKGROUP",
+        "TOOL_OR_DOMAIN_OVERRIDE"
+      ],
       "sanitized_excerpt": "Work에서 수행하는 구현/E2E 작업과 대화기록·규칙·GitHub 통합은 서로 상관없는 별도 작업이다. Antigravity에서 이미 추출한 RAW/tool_mapped/extracted_rules 결과를 재사용하고 이후 누적 규칙만 증분 통합한다. 규칙 회수·재정리·과거 자료 재추출에는 Work 크레딧을 사용하지 않는다.",
       "supersedes": [],
-      "targets": ["CENTRAL","WORK_GATE"]
+      "targets": [
+        "CENTRAL",
+        "WORK_GATE"
+      ]
     },
     {
       "active": true,
       "classification": "PRIORITY_CHANGE",
       "feedback_id": "37a4a2166bb5e2a08a8c",
-      "impacted_layers": ["GLOBAL","WORKGROUP","TOOL_OR_DOMAIN_OVERRIDE","DATA_OR_EXECUTION_ASSET"],
-      "sanitized_excerpt": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다.",
-      "supersedes": ["f2aeb4e8f5fac3c9618f"],
-      "targets": ["CENTRAL","EMAIL_DB","TOOL001","TOOL002","TOOL006","TOOL007","TOOL037","WORK_GATE"]
+      "impacted_layers": [
+        "GLOBAL",
+        "WORKGROUP",
+        "TOOL_OR_DOMAIN_OVERRIDE",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다.",
+      "supersedes": [
+        "f2aeb4e8f5fac3c9618f"
+      ],
+      "targets": [
+        "CENTRAL",
+        "EMAIL_DB",
+        "TOOL001",
+        "TOOL002",
+        "TOOL006",
+        "TOOL007",
+        "TOOL037",
+        "WORK_GATE"
+      ]
     },
     {
       "active": true,
       "classification": "CORRECTION",
       "feedback_id": "686c809c68d37af1540f",
-      "impacted_layers": ["GLOBAL","DATA_OR_EXECUTION_ASSET"],
-      "sanitized_excerpt": "정정: 무허가 작업·예약·대화창 생성 및 중복 작업의 근본 해결 규칙은 WIC_GLOBAL_OPERATING_RULES.md 단일 원본에 통합해야 한다.",
+      "impacted_layers": [
+        "GLOBAL",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "정정: 무허가 작업·예약·대화창 생성 및 중복 작업의 근본 해결 규칙은 WIC_GLOBAL_OPERATING_RULES.md 단일 원본에 통합해야 한다. 사용자의 명시적 승인 없이 새 대화창 생성·명명·변경을 금지하고, 보고·계속·재개·검증 지시나 예약 허가를 새 대화창 권한으로 확대하지 않는다. 직접 확인한 UI 제목 증거가 없으면 UI_TITLE_HOLD로 처리한다. 동일 목적의 규칙·감시·복구·보고 작업은 새로 만들지 않고 기존 대표 규칙과 대조해 중복 제거한다. WIC_CHAT_ROUTING_REGISTRY.md 같은 비규범 문서에는 새로운 실행 규칙이나 TOOL별 DELTA를 추가하지 말고 라우팅·호환 정보만 유지한다. 무허가 새 대화창·이름변경 0건, 신규 중복규칙 0건, 기존 정상 작업 영향 0건을 실제 검증하기 전에는 최종 PASS로 처리하지 않는다.",
       "supersedes": [],
-      "targets": ["CENTRAL"]
+      "targets": [
+        "CENTRAL"
+      ]
     },
     {
       "active": true,
       "classification": "CONSTRAINT",
       "feedback_id": "7372f5d45a6e681d4add",
-      "impacted_layers": ["GLOBAL"],
-      "sanitized_excerpt": "모든 기존 및 앞으로 만드는 일반·도구 대화창은 새 작업 시작 시 해당 중앙마스터와 최신 체크포인트를 먼저 읽도록 고정하라. 피드백은 업무군 식별, 중앙마스터 중복·충돌 검사, 최소 수정, 실행 오류 게이트 수정, 체크포인트, commit/push, 원격 read-back, Commit SHA 확인까지 처리하고 사용자가 이전 규칙을 다시 복사하지 않게 하라.",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "sanitized_excerpt": "모든 기존 및 앞으로 만드는 일반·도구 대화창은 새 작업 시작 시 해당 중앙마스터와 최신 체크포인트를 먼저 읽도록 고정하라. 피드백은 업무군 식별, 중앙마스터 중복·충돌 검사, 최소 수정, 실행 오류 게이트 수정, 체크포인트, commit/push, 원격 read-back, Commit SHA 확인까지 처리하고 사용자가 이전 규칙을 다시 복사하지 않게 하라. 기존 도구는 재사용하고 미등록 신규 도구는 기존 공통 구조로 먼저 분류하라.",
       "supersedes": [],
-      "targets": ["CENTRAL"]
+      "targets": [
+        "CENTRAL"
+      ]
     },
     {
       "active": true,
       "classification": "CONSTRAINT",
       "feedback_id": "b6acdbfd3bc4d0de1b66",
-      "impacted_layers": ["GLOBAL","TOOL_OR_DOMAIN_OVERRIDE","DATA_OR_EXECUTION_ASSET"],
-      "sanitized_excerpt": "고객 안내서 추천 보고서는 타이틀 자체가 글로벌 시장 범위를 대상으로 해야 하며 Asia Pacific, North America, Europe처럼 단일 지역만 대상으로 한 타이틀은 제외한다. 목차는 상위 목차와 하위 목차까지만 표시하고 하하위 목차는 제외하며, 하위 목차는 상위 목차보다 한 단계 오른쪽으로 들여쓴다.",
+      "impacted_layers": [
+        "GLOBAL",
+        "TOOL_OR_DOMAIN_OVERRIDE",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "고객 안내서 추천 보고서는 타이틀 자체가 글로벌 시장 범위를 대상으로 해야 하며 Asia Pacific, North America, Europe처럼 단일 지역만 대상으로 한 타이틀은 제외한다. 단 글로벌 보고서 제목 뒤에 여러 지역이 함께 나열되는 것은 허용한다. 목차는 상위 목차와 하위 목차까지만 표시하고 하하위 목차는 제외하며, 하위 목차는 상위 목차보다 한 단계 오른쪽으로 들여쓴다. 보고서 정보는 공식 상세페이지의 실제 텍스트 문단만 한국어로 번역하고 그래프·차트·이미지·도표를 모델이 해석해 문장으로 재구성하는 것은 금지한다. 표시한 섹션/위치/줄 번호의 실제 원문과 번역 내용이 직접 대응해야 한다.",
       "supersedes": [],
-      "targets": ["TOOL001","TOOL006"]
+      "targets": [
+        "TOOL001",
+        "TOOL006"
+      ]
+    },
+    {
+      "active": false,
+      "classification": "PRIORITY_CHANGE",
+      "feedback_id": "f2aeb4e8f5fac3c9618f",
+      "impacted_layers": [
+        "GLOBAL",
+        "WORKGROUP",
+        "TOOL_OR_DOMAIN_OVERRIDE",
+        "DATA_OR_EXECUTION_ASSET"
+      ],
+      "sanitized_excerpt": "GitHub 중앙 상태의 최신 restart point와 WIC_OBSERVER_STATUS.md를 먼저 읽고 완료 작업은 반복하지 마라. 2026-08-13부터 Work를 사용할 때의 최우선 1순위는 개별 도구 개발이 아니라 WIC 전체 자동 통합 기반 구조 자체를 실제로 완성하는 것이다. 이 구조는 모든 주요 대화창/도구의 새 피드백·오류·규칙을 최소 재분석으로 흡수하고, 공통마스터→업무군→분야/도구 예외→데이터/실행자산 계층에 자동 라우팅하며, 기존 규칙과 충돌검사·중복제거·deprecated/HOLD 판정·단일원본 갱신·해당 도구 즉시 참조·read-back/테스트·restart point까지 한 파이프라인으로 처리해야 한다. 단순 스크립트/문서 존재는 완료가 아니며 실제 새 피드백 1건 이상을 넣어 자동 분류→충돌검사→중앙 GitHub 반영→대상 도구 read-back/적용→테스트 증거까지 성공해야 구조 PASS다. 이 구조가 실제 PASS한 뒤 우선순위는 이메일 수집→7번",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL",
+        "EMAIL_DB",
+        "TOOL001",
+        "TOOL002",
+        "TOOL006",
+        "TOOL007",
+        "TOOL013",
+        "TOOL037",
+        "WORK_GATE"
+      ]
     }
   ],
   "schema_version": 1
