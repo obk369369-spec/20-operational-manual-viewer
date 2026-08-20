@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-20T16:45:00+09:00",
+  "observed_at": "2026-08-20T17:00:00+09:00",
   "source_chat": "CURRENT_CHAT",
   "source_ref": "user-directive-current-chat-2026-08-20-observer-feedback-report-lock",
   "mutation_action": "APPLY_FEEDBACK",
   "directive_source_ref": "WIC_GLOBAL_OPERATING_RULES.md#WIC_CANONICAL_FEEDBACK_START:37a4a2166bb5e2a08a8c",
   "directive_text": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다.",
-  "text": "앞으로 반드시 적용할 운영규칙: 여러 피드백은 각각 분류·반영·commit·read-back하되 정상 및 SKIP-REUSE 처리는 합산하여 한 줄로만 자동 보고한다. 실패나 HOLD가 있을 때만 해당 항목과 정확한 원인을 추가하고, 가능한 자동 복구 뒤 미반영 피드백을 재처리하여 commit/push와 원격 read-back까지 완료한다. 자동 복구가 불가능할 때만 정확한 원인과 필요한 최소 사용자 행동을 한 줄로 보고한다. 사용자가 중앙마스터 반영 여부를 다시 질문하거나 GitHub를 직접 확인해야 하는 구조는 FAIL이다."
+  "text": "앞으로 반드시 실패나 HOLD가 있을 때만 해당 항목과 정확한 원인을 추가 보고한다. 반드시 가능한 범위에서 자동 복구한 뒤 미반영 피드백을 재처리하여 commit/push와 원격 read-back까지 완료한다. 반드시 자동 복구가 불가능할 때만 정확한 원인과 필요한 최소 사용자 행동을 한 줄로 보고한다. 반드시 사용자가 중앙마스터 반영 여부를 다시 질문하거나 GitHub를 직접 확인해야 하는 구조는 FAIL로 판정한다."
 }
