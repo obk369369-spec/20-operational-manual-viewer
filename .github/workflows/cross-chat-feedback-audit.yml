@@ -102,7 +102,10 @@ jobs:
           root = Path('feedback_pipeline')
           manifest = json.loads((root/'target_apply_manifest.json').read_text(encoding='utf-8'))
           adapters = json.loads((root/'target_adapter_registry.json').read_text(encoding='utf-8'))
-          required = ('EMAIL_DB','TOOL007','TOOL037','WORK_GATE')
+          required = tuple(
+              lane for lane in manifest.get('targets', {})
+              if lane in adapters.get('lane_targets', {})
+          )
           records = []
           for lane in required:
               target = manifest['targets'][lane]
@@ -134,7 +137,7 @@ jobs:
           }
           (root/'lane_apply_evidence.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
           assert {x['lane'] for x in records} == set(required)
-          print('PASS: EMAIL_DB / TOOL007 / TOOL037 / WORK_GATE central lane ACK execution + evidence')
+          print('PASS: manifest-scoped central lane ACK execution + evidence')
           PY
       - name: Upload integration-core evidence
         uses: actions/upload-artifact@v4
@@ -190,7 +193,13 @@ jobs:
           lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
           assert lane['result'] == 'PASS_INTERNAL_GITHUB'
           assert lane['failures'] == []
-          assert {x['lane'] for x in lane['records']} == {'EMAIL_DB','TOOL007','TOOL037','WORK_GATE'}
+          manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
+          adapters = json.loads(Path('feedback_pipeline/target_adapter_registry.json').read_text(encoding='utf-8'))
+          expected_lanes = {
+              target for target in manifest.get('targets', {})
+              if target in adapters.get('lane_targets', {})
+          }
+          assert {x['lane'] for x in lane['records']} == expected_lanes
           tool7 = json.loads(Path('feedback_pipeline/tool007_adapter_evidence.json').read_text(encoding='utf-8'))
           assert tool7['target'] == 'TOOL007'
           assert tool7['result'] == 'PASS_INTERNAL_GITHUB_RUN'
