@@ -247,7 +247,10 @@ jobs:
             echo 'No canonical changes to commit.'
           else
             git commit -m 'wic: apply pending feedback event [skip ci]'
-            git push
+            if ! git push; then
+              git pull --rebase origin "${GITHUB_REF_NAME}"
+              git push
+            fi
           fi
 
       - name: Verify remote read-back and Commit SHA
@@ -274,13 +277,7 @@ jobs:
           from pathlib import Path
 
           if os.environ.get('READBACK_OUTCOME') == 'success' and os.environ.get('COMMIT_SHA'):
-              manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
-              evidence = json.loads(Path(f"feedback_pipeline/evidence/{manifest['feedback_id']}.json").read_text(encoding='utf-8'))
-              print(
-                  '중앙마스터 반영 완료 / 대상: WIC_GLOBAL_OPERATING_RULES.md'
-                  f" / 반영내용: {evidence['sanitized_excerpt']}"
-                  f" / Commit SHA: {os.environ['COMMIT_SHA']} / 원격 read-back: PASS"
-              )
+              print('피드백 1건 처리 완료 / 중앙마스터 반영 1건 / 실패 0건')
           else:
-              print('중앙마스터 반영 실패 / 원인: commit/push 또는 원격 read-back 실패 / 코드: REMOTE_READBACK_HOLD / 업무 규칙 반영 미완료')
+              print('실패 1건 — 원인: commit/push 또는 원격 read-back 자동복구 실패 / 필요한 최소 사용자 행동: 저장소 쓰기 권한 확인')
           PY
