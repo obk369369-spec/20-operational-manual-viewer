@@ -1,0 +1,42 @@
+{
+  "canonical_revision": "374c797092e57c72e2a891b0",
+  "central_master_destructive_update_gate": {
+    "human_owned_preserved": true,
+    "lost_record_ids": [],
+    "missing_expected_record_ids": [],
+    "unexpected_new_record_ids": [],
+    "unintentionally_changed_record_ids": [],
+    "verified": true
+  },
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "b51d5eda93f7bece6b5f",
+    "impacted_layers": [
+      "GLOBAL"
+    ],
+    "impacted_targets": [],
+    "reason": "no active duplicate or proven same-scope conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "b51d5eda93f7bece6b5f",
+  "observed_at": "2026-08-20T15:00:00+09:00",
+  "read_back": {
+    "intended_hash": "154adf16b86a5c0aa0c23b013ccef5e4ddf2fa275a592bf2fcf2b67e9bb51783",
+    "read_back_hash": "154adf16b86a5c0aa0c23b013ccef5e4ddf2fa275a592bf2fcf2b67e9bb51783",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "앞으로 중앙마스터 피드백 수정은 기존 규칙과 canonical feedback record를 손상시키지 않고 DIFF ONLY로 반영해야 한다. 수정 전 기준선 해시와 수정 후 목록·해시를 비교하여 의도하지 않은 삭제·축약·변경이 하나라도 있으면 push를 금지하고 원상복구한다.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_CHAT",
+  "source_ref": "user-directive-current-chat-2026-08-20-central-master-destructive-update",
+  "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+  "targets": [
+    "CENTRAL"
+  ]
+}

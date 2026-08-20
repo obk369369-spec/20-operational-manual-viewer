@@ -558,19 +558,6 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
     {
       "active": true,
       "classification": "CONSTRAINT",
-      "feedback_id": "20260820_persistent_feedback_only",
-      "impacted_layers": [
-        "GLOBAL"
-      ],
-      "sanitized_excerpt": "모든 자연어 지적·정정·누락·형식변경·금지사항·운영변경을 피드백 후보로 분류하되, 영구 운영규칙/지속 적용만 중앙마스터에 반영한다. 일회성 질문·정보조회·현재 상태 확인은 저장하지 않으며, 한 메시지에 섞여 있으면 영구 부분만 분리 반영한다. 애매하면 HOLD한다.",
-      "supersedes": [],
-      "targets": [
-        "CENTRAL"
-      ]
-    },
-    {
-      "active": true,
-      "classification": "CONSTRAINT",
       "feedback_id": "20260813_table_reporting",
       "impacted_layers": [
         "GLOBAL"
@@ -595,6 +582,19 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       "targets": [
         "CENTRAL",
         "WORK_GATE"
+      ]
+    },
+    {
+      "active": true,
+      "classification": "CONSTRAINT",
+      "feedback_id": "20260820_persistent_feedback_only",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "sanitized_excerpt": "모든 자연어 지적·정정·누락·형식변경·금지사항·운영변경을 피드백 후보로 분류하되, 영구 운영규칙/지속 적용만 중앙마스터에 반영한다. 일회성 질문·정보조회·현재 상태 확인은 저장하지 않으며, 한 메시지에 섞여 있으면 영구 부분만 분리 반영한다. 애매하면 HOLD한다.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL"
       ]
     },
     {
@@ -644,6 +644,19 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
         "GLOBAL"
       ],
       "sanitized_excerpt": "모든 기존 및 앞으로 만드는 일반·도구 대화창은 새 작업 시작 시 해당 중앙마스터와 최신 체크포인트를 먼저 읽도록 고정하라. 피드백은 업무군 식별, 중앙마스터 중복·충돌 검사, 최소 수정, 실행 오류 게이트 수정, 체크포인트, commit/push, 원격 read-back, Commit SHA 확인까지 처리하고 사용자가 이전 규칙을 다시 복사하지 않게 하라. 기존 도구는 재사용하고 미등록 신규 도구는 기존 공통 구조로 먼저 분류하라.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL"
+      ]
+    },
+    {
+      "active": true,
+      "classification": "CONSTRAINT",
+      "feedback_id": "b51d5eda93f7bece6b5f",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "sanitized_excerpt": "앞으로 중앙마스터 피드백 수정은 기존 규칙과 canonical feedback record를 손상시키지 않고 DIFF ONLY로 반영해야 한다. 수정 전 기준선 해시와 수정 후 목록·해시를 비교하여 의도하지 않은 삭제·축약·변경이 하나라도 있으면 push를 금지하고 원상복구한다.",
       "supersedes": [],
       "targets": [
         "CENTRAL"
