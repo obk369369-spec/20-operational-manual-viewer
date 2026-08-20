@@ -20,8 +20,16 @@
     "read_back_hash": "7268784f638e7cc8539fd9c9ef23d45988223990ad674e2589ef3af51e1bd28a",
     "verified": true
   },
-  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
-  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "restart_point": "new chats read WIC_GLOBAL_OPERATING_RULES.md, route registry, target master and latest checkpoint before work",
+  "result": "PASS_GLOBAL_PROTOCOL",
+  "remote_read_back": {
+    "commit_sha": "42bad84f66ffcfa87dc6679669debfa0ca0635bd",
+    "commit_match": true,
+    "master_blob": "7fcb62c2467aed8bedddbf41fae0040d947a1850",
+    "state_blob": "5c8e8547e7e075938b4f49bf929a189c36042bb1",
+    "workflow_blob": "f019b394fb9247afcd8861b68d9388b6091cec09",
+    "verified": true
+  },
   "runner": "feedback_pipeline/apply_feedback_event.py",
   "sanitized_excerpt": "모든 기존 및 앞으로 만드는 일반·도구 대화창은 새 작업 시작 시 해당 중앙마스터와 최신 체크포인트를 먼저 읽도록 고정하라. 피드백은 업무군 식별, 중앙마스터 중복·충돌 검사, 최소 수정, 실행 오류 게이트 수정, 체크포인트, commit/push, 원격 read-back, Commit SHA 확인까지 처리하고 사용자가 이전 규칙을 다시 복사하지 않게 하라. 기존 도구는 재사용하고 미등록 신규 도구는 기존 공통 구조로 먼저 분류하라.",
   "schema_version": 1,

@@ -21,9 +21,10 @@
         "status": "PASS_INTERNAL_GITHUB_E2E"
       },
       "7372f5d45a6e681d4add": {
-        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
-        "last_stage": "TARGET_REVISION_READ_APPLY",
-        "status": "HOLD"
+        "commit_sha": "42bad84f66ffcfa87dc6679669debfa0ca0635bd",
+        "last_stage": "RESTART_OR_HOLD",
+        "remote_read_back": true,
+        "status": "PASS_GLOBAL_PROTOCOL"
       },
       "b6acdbfd3bc4d0de1b66": {
         "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
@@ -57,10 +58,10 @@
       "TEST_EVIDENCE",
       "RESTART_OR_HOLD"
     ],
-    "structure_pass": false,
+    "structure_pass": true,
     "structure_pass_artifact_id": 9159365670,
     "structure_pass_job_id": 94267844534,
-    "structure_pass_reason": "Canonical mutation/read-back prepared; cross-repository target apply/test evidence remains HOLD.",
+    "structure_pass_reason": "Universal feedback protocol completed canonical write, gate update, checkpoint, main push, remote read-back and Commit SHA confirmation; registered tools reuse existing adapters and unregistered work falls back to CENTRAL.",
     "structure_pass_run_id": 31642395087,
     "target_revision_cache": {
       "TOOL006": {
