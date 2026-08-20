@@ -26,6 +26,10 @@
         "remote_read_back": true,
         "status": "PASS_GLOBAL_PROTOCOL"
       },
+      "7c4d66fcf8e5c2bb6308": {
+        "last_stage": "RESTART_OR_HOLD",
+        "status": "PASS_INTERNAL_GITHUB_E2E"
+      },
       "b51d5eda93f7bece6b5f": {
         "last_stage": "RESTART_OR_HOLD",
         "status": "PASS_INTERNAL_GITHUB_E2E"
@@ -98,7 +102,7 @@
       }
     }
   },
-  "last_context_cursor": "2026-08-20T16:45:00+09:00",
+  "last_context_cursor": "2026-08-20T17:00:00+09:00",
   "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
   "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "pipeline_status": "ACTIVE",
@@ -127,7 +131,8 @@
     "686c809c68d37af1540f",
     "7372f5d45a6e681d4add",
     "b51d5eda93f7bece6b5f",
-    "cff0dce8eb43805530bf"
+    "cff0dce8eb43805530bf",
+    "7c4d66fcf8e5c2bb6308"
   ],
   "schema_version": 2,
   "work_gate": {

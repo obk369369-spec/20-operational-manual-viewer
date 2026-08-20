@@ -1,0 +1,43 @@
+{
+  "canonical_revision": "232e714bf3c1508473bf6649",
+  "central_master_destructive_update_gate": {
+    "diff_only_match": true,
+    "human_owned_preserved": true,
+    "lost_record_ids": [],
+    "missing_expected_record_ids": [],
+    "unexpected_new_record_ids": [],
+    "unintentionally_changed_record_ids": [],
+    "verified": true
+  },
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "7c4d66fcf8e5c2bb6308",
+    "impacted_layers": [
+      "GLOBAL"
+    ],
+    "impacted_targets": [],
+    "reason": "no active duplicate or proven same-scope conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "7c4d66fcf8e5c2bb6308",
+  "observed_at": "2026-08-20T17:00:00+09:00",
+  "read_back": {
+    "intended_hash": "370c8889e3a26a58edb0718d7faf79f7999bdf87dd170346ba8b9aadd8ad71ff",
+    "read_back_hash": "370c8889e3a26a58edb0718d7faf79f7999bdf87dd170346ba8b9aadd8ad71ff",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "앞으로 반드시 실패나 HOLD가 있을 때만 해당 항목과 정확한 원인을 추가 보고한다. 반드시 가능한 범위에서 자동 복구한 뒤 미반영 피드백을 재처리하여 commit/push와 원격 read-back까지 완료한다. 반드시 자동 복구가 불가능할 때만 정확한 원인과 필요한 최소 사용자 행동을 한 줄로 보고한다. 반드시 사용자가 중앙마스터 반영 여부를 다시 질문하거나 GitHub를 직접 확인해야 하는 구조는 FAIL로 판정한다.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_CHAT",
+  "source_ref": "user-directive-current-chat-2026-08-20-observer-feedback-report-lock",
+  "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+  "targets": [
+    "CENTRAL"
+  ]
+}
