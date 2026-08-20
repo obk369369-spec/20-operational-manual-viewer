@@ -1,0 +1,43 @@
+{
+  "canonical_revision": "18bb5881e83f3186512a83b1",
+  "central_master_destructive_update_gate": {
+    "diff_only_match": true,
+    "human_owned_preserved": true,
+    "lost_record_ids": [],
+    "missing_expected_record_ids": [],
+    "unexpected_new_record_ids": [],
+    "unintentionally_changed_record_ids": [],
+    "verified": true
+  },
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "cff0dce8eb43805530bf",
+    "impacted_layers": [
+      "GLOBAL"
+    ],
+    "impacted_targets": [],
+    "reason": "no active duplicate or proven same-scope conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "cff0dce8eb43805530bf",
+  "observed_at": "2026-08-20T16:45:00+09:00",
+  "read_back": {
+    "intended_hash": "c35edcfb13f9f6292098190b529068a3c95a6f7795056245dccc859dbe7a9b0b",
+    "read_back_hash": "c35edcfb13f9f6292098190b529068a3c95a6f7795056245dccc859dbe7a9b0b",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "앞으로 반드시 적용할 운영규칙: 여러 피드백은 각각 분류·반영·commit·read-back하되 정상 및 SKIP-REUSE 처리는 합산하여 한 줄로만 자동 보고한다.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_CHAT",
+  "source_ref": "user-directive-current-chat-2026-08-20-observer-feedback-report-lock",
+  "target_manifest": "feedback_pipeline/target_apply_manifest.json",
+  "targets": [
+    "CENTRAL"
+  ]
+}

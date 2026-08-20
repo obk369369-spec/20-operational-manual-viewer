@@ -701,6 +701,19 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       "targets": [
         "CENTRAL"
       ]
+    },
+    {
+      "active": true,
+      "classification": "CONSTRAINT",
+      "feedback_id": "cff0dce8eb43805530bf",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "sanitized_excerpt": "앞으로 반드시 적용할 운영규칙: 여러 피드백은 각각 분류·반영·commit·read-back하되 정상 및 SKIP-REUSE 처리는 합산하여 한 줄로만 자동 보고한다.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL"
+      ]
     }
   ],
   "schema_version": 1
