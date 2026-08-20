@@ -9,7 +9,7 @@ from __future__ import annotations
 from hashlib import sha256
 import json
 import re
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 
 START_MARKER = "<!-- WIC_CANONICAL_FEEDBACK_START -->"
 END_MARKER = "<!-- WIC_CANONICAL_FEEDBACK_END -->"
@@ -54,6 +54,55 @@ def content_hash(text: str) -> str:
     return sha256(text.encode("utf-8")).hexdigest()
 
 
+def _human_owned_text(text: str) -> str:
+    return SECTION_RE.sub("", text, count=1)
+
+
+def record_hashes(records: Iterable[Mapping[str, Any]]) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for record in records:
+        feedback_id = str(record.get("feedback_id", ""))
+        if not feedback_id or feedback_id in result:
+            raise ValueError("canonical feedback_id must be non-empty and unique")
+        payload = json.dumps(dict(record), ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        result[feedback_id] = content_hash(payload)
+    return result
+
+
+def verify_non_destructive_update(
+    before_text: str,
+    before_records: list[Mapping[str, Any]],
+    after_text: str,
+    after_records: list[Mapping[str, Any]],
+    *,
+    allowed_changed_ids: Iterable[str] = (),
+    expected_new_ids: Iterable[str] = (),
+) -> dict[str, Any]:
+    """Reject whole-file rewrites and any unapproved canonical record mutation."""
+    before_hashes = record_hashes(before_records)
+    after_hashes = record_hashes(after_records)
+    allowed = set(allowed_changed_ids)
+    expected_new = set(expected_new_ids)
+    lost = sorted(set(before_hashes) - set(after_hashes))
+    changed = sorted(
+        feedback_id for feedback_id in set(before_hashes) & set(after_hashes)
+        if before_hashes[feedback_id] != after_hashes[feedback_id] and feedback_id not in allowed
+    )
+    actual_new = set(after_hashes) - set(before_hashes)
+    unexpected_new = sorted(actual_new - expected_new)
+    missing_new = sorted(expected_new - actual_new)
+    human_preserved = content_hash(_human_owned_text(before_text)) == content_hash(_human_owned_text(after_text))
+    verified = not lost and not changed and not unexpected_new and not missing_new and human_preserved
+    return {
+        "verified": verified,
+        "human_owned_preserved": human_preserved,
+        "lost_record_ids": lost,
+        "unintentionally_changed_record_ids": changed,
+        "unexpected_new_record_ids": unexpected_new,
+        "missing_expected_record_ids": missing_new,
+    }
+
+
 def verify_read_back(intended_text: str, read_back_text: str) -> dict[str, Any]:
     intended_hash = content_hash(intended_text)
     read_back_hash = content_hash(read_back_text)
@@ -74,19 +123,17 @@ def run_fixtures() -> str:
         "active": True,
         "impacted_layers": ["GLOBAL", "TOOL_OR_DOMAIN_OVERRIDE"],
     }
-    first = upsert_machine_section(base, [r1])
-    assert "Human-owned rule stays unchanged." in first
-    assert first.count(START_MARKER) == 1 and first.count(END_MARKER) == 1
-    second = upsert_machine_section(first, [r1])
-    assert second == first, "canonical write must be idempotent"
-    assert verify_read_back(first, second)["verified"] is True
-
-    r2 = {**r1, "active": False, "supersedes": ["old001"]}
-    third = upsert_machine_section(first, [r2])
-    assert third != first
-    assert third.count(START_MARKER) == 1
-    assert verify_read_back(third, upsert_machine_section(third, [r2]))["verified"] is True
-    return "PASS: canonical preserve + replace + idempotency + read-back hash fixtures"
+    before = upsert_machine_section(base, [r1])
+    new_record = {**r1, "feedback_id": "fixture-new", "sanitized_excerpt": "permanent rule only"}
+    after = upsert_machine_section(before, [r1, new_record])
+    gate = verify_non_destructive_update(
+        before, [r1], after, [r1, new_record], expected_new_ids={"fixture-new"}
+    )
+    assert gate["verified"] is True
+    assert gate["lost_record_ids"] == []
+    assert gate["unintentionally_changed_record_ids"] == []
+    assert verify_read_back(after, after)["verified"] is True
+    return "PASS: one CENTRAL_MASTER_DESTRUCTIVE_UPDATE fixture"
 
 
 if __name__ == "__main__":

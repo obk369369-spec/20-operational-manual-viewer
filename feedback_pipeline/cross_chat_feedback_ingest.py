@@ -55,6 +55,12 @@ EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE_RE = re.compile(r"(?<!\d)(?:\+?82[- .]?)?(?:0\d{1,2}[- .]?)?\d{3,4}[- .]?\d{4}(?!\d)")
 LONG_NUMBER_RE = re.compile(r"(?<!\d)\d{7,}(?!\d)")
 WS_RE = re.compile(r"\s+")
+CLAUSE_RE = re.compile(r"(?<=[.!?。])\s+|[\r\n]+")
+PERMANENT_MARKERS = (
+    "정정", "잘못", "틀렸", "오류", "누락", "형식", "변경", "금지", "운영", "반복", "앞으로",
+    "항상", "반드시", "규칙", "기준", "고정", "하지 마", "하지마", "하지 말", "하지말",
+)
+TRANSIENT_MARKERS = ("현재 상태", "크레딧", "오늘 날짜", "지금 날짜", "몇 시", "조회해", "알려줘")
 
 
 @dataclass(frozen=True)
@@ -99,6 +105,20 @@ def redact_sensitive(text: str) -> str:
     text = PHONE_RE.sub("[REDACTED_PHONE]", text)
     text = LONG_NUMBER_RE.sub("[REDACTED_NUMBER]", text)
     return WS_RE.sub(" ", text).strip()[:500]
+
+
+def persistent_feedback_text(text: str) -> str:
+    """Keep only future-facing rule changes from mixed natural-language messages."""
+    clauses = [part.strip() for part in CLAUSE_RE.split(text) if part.strip()]
+    kept = [
+        clause for clause in clauses
+        if any(marker in _canonical_text(clause) for marker in PERMANENT_MARKERS)
+        and not (
+            any(marker in _canonical_text(clause) for marker in TRANSIENT_MARKERS)
+            and not any(marker in _canonical_text(clause) for marker in ("앞으로", "항상", "규칙", "기준", "금지", "반드시"))
+        )
+    ]
+    return " ".join(kept)
 
 
 def parse_route_registry(text: str) -> dict[str, tuple[str, ...]]:
@@ -168,17 +188,19 @@ def _feedback_id(classification: str, targets: Iterable[str], text: str) -> str:
 
 
 def normalize(event: FeedbackEvent) -> NormalizedFeedback:
-    classification = classify(event.text)
-    targets = route_targets(event.text)
+    persistent_text = persistent_feedback_text(event.text)
+    normalized_text = persistent_text or event.text
+    classification = classify(normalized_text)
+    targets = route_targets(normalized_text)
     return NormalizedFeedback(
-        feedback_id=_feedback_id(classification, targets, event.text),
+        feedback_id=_feedback_id(classification, targets, normalized_text),
         observed_at=event.observed_at,
         source_chat=event.source_chat,
         source_ref=event.source_ref,
         classification=classification,
         targets=targets,
-        sanitized_excerpt=redact_sensitive(event.text),
-        central_master_candidate=(classification in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"} or "CENTRAL" in targets),
+        sanitized_excerpt=redact_sensitive(normalized_text),
+        central_master_candidate=bool(persistent_text) and classification in {"CORRECTION", "CONSTRAINT", "PRIORITY_CHANGE"},
         regression_fixture_candidate=(classification in {"CORRECTION", "NEW_FIXTURE"} or any(t.startswith("TOOL") for t in targets)),
         priority_change=(classification == "PRIORITY_CHANGE"),
     )

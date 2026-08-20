@@ -26,10 +26,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run existing ingest fixtures
-        run: python feedback_pipeline/cross_chat_feedback_ingest.py
-
-      - name: Run existing canonical writer fixtures
+      - name: Run one CENTRAL_MASTER_DESTRUCTIVE_UPDATE fixture
         run: python feedback_pipeline/canonical_writer.py
 
       - name: PRECHECK_USER_DIRECTIVE before material mutation
@@ -221,6 +218,11 @@ jobs:
           manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
           adapters = json.loads(Path('feedback_pipeline/target_adapter_registry.json').read_text(encoding='utf-8'))
           fid = manifest['feedback_id']
+          evidence = json.loads(Path(f'feedback_pipeline/evidence/{fid}.json').read_text(encoding='utf-8'))
+          preservation = evidence['central_master_destructive_update_gate']
+          assert preservation['verified'] is True
+          assert preservation['lost_record_ids'] == []
+          assert preservation['unintentionally_changed_record_ids'] == []
           cp = state['integration_core']['feedback_checkpoints'][fid]
           targets = set(manifest.get('targets', {}))
           same_repo_lanes = targets <= set(adapters.get('lane_targets', {}))

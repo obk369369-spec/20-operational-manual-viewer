@@ -23,6 +23,7 @@ from canonical_writer import (
     END_MARKER,
     SECTION_RE,
     upsert_machine_section,
+    verify_non_destructive_update,
     verify_read_back,
 )
 from cross_chat_feedback_ingest import (
@@ -96,6 +97,10 @@ def main() -> int:
 
     master_before = MASTER.read_text(encoding="utf-8")
     records = read_canonical_records(master_before)
+
+    if not item.central_master_candidate:
+        print(json.dumps({"feedback_id": item.feedback_id, "result": "SKIP_ONE_TIME_CONTENT"}))
+        return 0
     decision = decide_conflict(item, records)
 
     for stage in ("EVENT", "NORMALIZE", "ROUTE_EXISTING_REGISTRY", "CONFLICT_DEDUP"):
@@ -158,6 +163,21 @@ def main() -> int:
 
     master_after = upsert_machine_section(master_before, records)
     MASTER.write_text(master_after, encoding="utf-8")
+
+    preservation = verify_non_destructive_update(
+        master_before,
+        read_canonical_records(master_before),
+        master_after,
+        records,
+        allowed_changed_ids=superseded,
+        expected_new_ids={item.feedback_id},
+    )
+    evidence["central_master_destructive_update_gate"] = preservation
+    if not preservation["verified"]:
+        MASTER.write_text(master_before, encoding="utf-8")
+        evidence["result"] = "FAIL_CENTRAL_MASTER_DESTRUCTIVE_UPDATE_ROLLED_BACK"
+        write_json(EVIDENCE_DIR / f"{item.feedback_id}.json", evidence)
+        raise SystemExit("CENTRAL_MASTER_DESTRUCTIVE_UPDATE: rollback complete")
     core_state = checkpoint_state(core_state, feedback_id=item.feedback_id, stage="CANONICAL_WRITE")
 
     # Immediate local read-back verifies the bytes that the workflow will commit.
