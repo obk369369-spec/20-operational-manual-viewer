@@ -247,3 +247,14 @@ jobs:
             git commit -m 'wic: apply pending feedback event [skip ci]'
             git push
           fi
+
+      - name: Verify remote read-back and Commit SHA
+        run: |
+          local_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | awk '{print $1}')"
+          test -n "$remote_sha"
+          test "$local_sha" = "$remote_sha"
+          git fetch origin "${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
+          test "$(git rev-parse "origin/${GITHUB_REF_NAME}:WIC_GLOBAL_OPERATING_RULES.md")" = "$(git hash-object WIC_GLOBAL_OPERATING_RULES.md)"
+          test "$(git rev-parse "origin/${GITHUB_REF_NAME}:feedback_pipeline/state.json")" = "$(git hash-object feedback_pipeline/state.json)"
+          echo "REMOTE_READ_BACK=PASS COMMIT_SHA=$remote_sha"

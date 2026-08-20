@@ -20,6 +20,11 @@
         "last_stage": "RESTART_OR_HOLD",
         "status": "PASS_INTERNAL_GITHUB_E2E"
       },
+      "7372f5d45a6e681d4add": {
+        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
+        "last_stage": "TARGET_REVISION_READ_APPLY",
+        "status": "HOLD"
+      },
       "b6acdbfd3bc4d0de1b66": {
         "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
         "last_stage": "TARGET_REVISION_READ_APPLY",
@@ -52,10 +57,10 @@
       "TEST_EVIDENCE",
       "RESTART_OR_HOLD"
     ],
-    "structure_pass": true,
+    "structure_pass": false,
     "structure_pass_artifact_id": 9159365670,
     "structure_pass_job_id": 94267844534,
-    "structure_pass_reason": "Actual feedback completed canonical write/read-back plus verified central-lane target apply/read-back/test in one GitHub workflow.",
+    "structure_pass_reason": "Canonical mutation/read-back prepared; cross-repository target apply/test evidence remains HOLD.",
     "structure_pass_run_id": 31642395087,
     "target_revision_cache": {
       "TOOL006": {
@@ -84,7 +89,7 @@
       }
     }
   },
-  "last_context_cursor": "2026-08-15T10:33:00+09:00",
+  "last_context_cursor": "2026-08-20T12:30:00+09:00",
   "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
   "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "pipeline_status": "ACTIVE",
@@ -110,7 +115,8 @@
     "f2aeb4e8f5fac3c9618f",
     "b6acdbfd3bc4d0de1b66",
     "37a4a2166bb5e2a08a8c",
-    "686c809c68d37af1540f"
+    "686c809c68d37af1540f",
+    "7372f5d45a6e681d4add"
   ],
   "schema_version": 2,
   "work_gate": {

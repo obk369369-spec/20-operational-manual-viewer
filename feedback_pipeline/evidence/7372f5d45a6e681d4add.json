@@ -1,0 +1,34 @@
+{
+  "canonical_revision": "78e15a1509aeb7149a9c5f15",
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "7372f5d45a6e681d4add",
+    "impacted_layers": [
+      "GLOBAL"
+    ],
+    "impacted_targets": [],
+    "reason": "no active duplicate or proven same-scope conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "7372f5d45a6e681d4add",
+  "observed_at": "2026-08-20T12:30:00+09:00",
+  "read_back": {
+    "intended_hash": "7268784f638e7cc8539fd9c9ef23d45988223990ad674e2589ef3af51e1bd28a",
+    "read_back_hash": "7268784f638e7cc8539fd9c9ef23d45988223990ad674e2589ef3af51e1bd28a",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "모든 기존 및 앞으로 만드는 일반·도구 대화창은 새 작업 시작 시 해당 중앙마스터와 최신 체크포인트를 먼저 읽도록 고정하라. 피드백은 업무군 식별, 중앙마스터 중복·충돌 검사, 최소 수정, 실행 오류 게이트 수정, 체크포인트, commit/push, 원격 read-back, Commit SHA 확인까지 처리하고 사용자가 이전 규칙을 다시 복사하지 않게 하라. 기존 도구는 재사용하고 미등록 신규 도구는 기존 공통 구조로 먼저 분류하라.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_CHAT",
+  "source_ref": "user-directive-current-chat-2026-08-20-universal-feedback",
+  "target_manifest": "feedback_pipeline\\target_apply_manifest.json",
+  "targets": [
+    "CENTRAL"
+  ]
+}

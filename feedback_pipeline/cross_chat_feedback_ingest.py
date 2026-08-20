@@ -390,6 +390,7 @@ def run_fixtures() -> str:
     chat_fix = normalize(FeedbackEvent("2026-08-15T10:00:00+09:00", "chat", "정정: 대화창 이름 오류를 수정해."))
     isolated = decide_conflict(chat_fix, [to_json_record(reporting)])
     assert isolated.action == "ACCEPT" and isolated.supersedes == ()
+    assert route_targets("등록되지 않은 완전히 새로운 업무") == ("CENTRAL",)
 
     rev1 = canonical_revision([to_json_record(batch[0])])
     rev2 = canonical_revision([to_json_record(batch[0]), to_json_record(batch[3])])
