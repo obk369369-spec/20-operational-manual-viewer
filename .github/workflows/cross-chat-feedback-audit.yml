@@ -165,13 +165,16 @@ jobs:
           assert all(isinstance(x, str) and len(x) == 20 for x in ids)
           assert data['privacy']['persist_raw_customer_pii'] is False
           core = data['integration_core']
+          manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
+          adapters = json.loads(Path('feedback_pipeline/target_adapter_registry.json').read_text(encoding='utf-8'))
           expected_stages = [
               'EVENT', 'NORMALIZE', 'ROUTE_EXISTING_REGISTRY', 'CONFLICT_DEDUP',
               'CANONICAL_WRITE', 'READ_BACK', 'TARGET_REVISION_READ_APPLY',
               'TEST_EVIDENCE', 'RESTART_OR_HOLD'
           ]
           assert core['stage_order'] == expected_stages
-          assert core['structure_pass'] is False
+          expected_structure_pass = set(manifest.get('targets', {})) <= set(adapters.get('lane_targets', {}))
+          assert core['structure_pass'] is expected_structure_pass
           assert core['feedback_checkpoints']['f2aeb4e8f5fac3c9618f']['status'] == 'PASS_INTERNAL_GITHUB_E2E'
           assert core['holds'] == []
           assert set(core['module_contract_required']) == {
@@ -185,16 +188,14 @@ jobs:
           ]
           plan = json.loads(Path('feedback_pipeline/target_dispatch_plan.json').read_text(encoding='utf-8'))
           by_target = {x['target']: x for x in plan['actions']}
-          for target in ('TOOL001','TOOL002','TOOL006'):
-              assert by_target[target]['action'] == 'REPOSITORY_REVISION_ACK'
-          for target in ('EMAIL_DB','TOOL007','TOOL037','WORK_GATE'):
-              assert by_target[target]['action'] == 'LANE_ACK'
+          assert set(by_target) == set(manifest.get('targets', {}))
+          for target, action in by_target.items():
+              expected_action = 'LANE_ACK' if target in adapters.get('lane_targets', {}) else 'REPOSITORY_REVISION_ACK'
+              assert action['action'] == expected_action
           assert plan['holds'] == []
           lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
           assert lane['result'] == 'PASS_INTERNAL_GITHUB'
           assert lane['failures'] == []
-          manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
-          adapters = json.loads(Path('feedback_pipeline/target_adapter_registry.json').read_text(encoding='utf-8'))
           expected_lanes = {
               target for target in manifest.get('targets', {})
               if target in adapters.get('lane_targets', {})
