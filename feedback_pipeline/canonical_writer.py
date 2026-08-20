@@ -14,6 +14,7 @@ from typing import Any, Iterable, Mapping
 START_MARKER = "<!-- WIC_CANONICAL_FEEDBACK_START -->"
 END_MARKER = "<!-- WIC_CANONICAL_FEEDBACK_END -->"
 SECTION_RE = re.compile(re.escape(START_MARKER) + r".*?" + re.escape(END_MARKER), re.S)
+RECORDS_END_RE = re.compile(r'(\n  \],\n  "schema_version": 1\n})')
 
 
 def _stable_records(records: list[Mapping[str, Any]]) -> list[dict[str, Any]]:
@@ -50,6 +51,21 @@ def upsert_machine_section(existing_text: str, records: list[Mapping[str, Any]])
     return f"{existing_text}{suffix}\n{section}\n"
 
 
+def append_machine_record(existing_text: str, record: Mapping[str, Any]) -> str:
+    """Insert one record without rewriting, sorting, or reformatting existing bytes."""
+    section_match = SECTION_RE.search(existing_text)
+    if not section_match:
+        raise ValueError("canonical machine section missing")
+    section = section_match.group(0)
+    insertion = RECORDS_END_RE.search(section)
+    if not insertion:
+        raise ValueError("canonical records array terminator missing")
+    rendered = json.dumps(dict(record), ensure_ascii=False, indent=2, sort_keys=True)
+    indented = "\n".join("    " + line for line in rendered.splitlines())
+    updated_section = section[:insertion.start()] + ",\n" + indented + section[insertion.start():]
+    return existing_text[:section_match.start()] + updated_section + existing_text[section_match.end():]
+
+
 def content_hash(text: str) -> str:
     return sha256(text.encode("utf-8")).hexdigest()
 
@@ -77,6 +93,7 @@ def verify_non_destructive_update(
     *,
     allowed_changed_ids: Iterable[str] = (),
     expected_new_ids: Iterable[str] = (),
+    expected_after_text: str | None = None,
 ) -> dict[str, Any]:
     """Reject whole-file rewrites and any unapproved canonical record mutation."""
     before_hashes = record_hashes(before_records)
@@ -92,7 +109,8 @@ def verify_non_destructive_update(
     unexpected_new = sorted(actual_new - expected_new)
     missing_new = sorted(expected_new - actual_new)
     human_preserved = content_hash(_human_owned_text(before_text)) == content_hash(_human_owned_text(after_text))
-    verified = not lost and not changed and not unexpected_new and not missing_new and human_preserved
+    diff_only_match = expected_after_text is None or after_text == expected_after_text
+    verified = not lost and not changed and not unexpected_new and not missing_new and human_preserved and diff_only_match
     return {
         "verified": verified,
         "human_owned_preserved": human_preserved,
@@ -100,6 +118,7 @@ def verify_non_destructive_update(
         "unintentionally_changed_record_ids": changed,
         "unexpected_new_record_ids": unexpected_new,
         "missing_expected_record_ids": missing_new,
+        "diff_only_match": diff_only_match,
     }
 
 
@@ -125,9 +144,9 @@ def run_fixtures() -> str:
     }
     before = upsert_machine_section(base, [r1])
     new_record = {**r1, "feedback_id": "fixture-new", "sanitized_excerpt": "permanent rule only"}
-    after = upsert_machine_section(before, [r1, new_record])
+    after = append_machine_record(before, new_record)
     gate = verify_non_destructive_update(
-        before, [r1], after, [r1, new_record], expected_new_ids={"fixture-new"}
+        before, [r1], after, [r1, new_record], expected_new_ids={"fixture-new"}, expected_after_text=after
     )
     assert gate["verified"] is True
     assert gate["lost_record_ids"] == []

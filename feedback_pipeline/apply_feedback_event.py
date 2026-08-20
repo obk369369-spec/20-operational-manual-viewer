@@ -22,6 +22,7 @@ from canonical_writer import (
     START_MARKER,
     END_MARKER,
     SECTION_RE,
+    append_machine_record,
     upsert_machine_section,
     verify_non_destructive_update,
     verify_read_back,
@@ -161,16 +162,18 @@ def main() -> int:
         "impacted_layers": list(decision.impacted_layers),
     })
 
-    master_after = upsert_machine_section(master_before, records)
+    new_record = records[-1]
+    master_after = append_machine_record(master_before, new_record)
     MASTER.write_text(master_after, encoding="utf-8")
 
     preservation = verify_non_destructive_update(
         master_before,
         read_canonical_records(master_before),
         master_after,
-        records,
+        read_canonical_records(master_after),
         allowed_changed_ids=superseded,
         expected_new_ids={item.feedback_id},
+        expected_after_text=append_machine_record(master_before, new_record),
     )
     evidence["central_master_destructive_update_gate"] = preservation
     if not preservation["verified"]:

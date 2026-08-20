@@ -558,6 +558,19 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
     {
       "active": true,
       "classification": "CONSTRAINT",
+      "feedback_id": "20260820_persistent_feedback_only",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "sanitized_excerpt": "모든 자연어 지적·정정·누락·형식변경·금지사항·운영변경을 피드백 후보로 분류하되, 영구 운영규칙/지속 적용만 중앙마스터에 반영한다. 일회성 질문·정보조회·현재 상태 확인은 저장하지 않으며, 한 메시지에 섞여 있으면 영구 부분만 분리 반영한다. 애매하면 HOLD한다.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL"
+      ]
+    },
+    {
+      "active": true,
+      "classification": "CONSTRAINT",
       "feedback_id": "20260813_table_reporting",
       "impacted_layers": [
         "GLOBAL"
@@ -582,19 +595,6 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       "targets": [
         "CENTRAL",
         "WORK_GATE"
-      ]
-    },
-    {
-      "active": true,
-      "classification": "CONSTRAINT",
-      "feedback_id": "20260820_persistent_feedback_only",
-      "impacted_layers": [
-        "GLOBAL"
-      ],
-      "sanitized_excerpt": "모든 자연어 지적·정정·누락·형식변경·금지사항·운영변경을 피드백 후보로 분류하되, 영구 운영규칙/지속 적용만 중앙마스터에 반영한다. 일회성 질문·정보조회·현재 상태 확인은 저장하지 않으며, 한 메시지에 섞여 있으면 영구 부분만 분리 반영한다. 애매하면 HOLD한다.",
-      "supersedes": [],
-      "targets": [
-        "CENTRAL"
       ]
     },
     {
@@ -652,19 +652,6 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
     {
       "active": true,
       "classification": "CONSTRAINT",
-      "feedback_id": "b51d5eda93f7bece6b5f",
-      "impacted_layers": [
-        "GLOBAL"
-      ],
-      "sanitized_excerpt": "앞으로 중앙마스터 피드백 수정은 기존 규칙과 canonical feedback record를 손상시키지 않고 DIFF ONLY로 반영해야 한다. 수정 전 기준선 해시와 수정 후 목록·해시를 비교하여 의도하지 않은 삭제·축약·변경이 하나라도 있으면 push를 금지하고 원상복구한다.",
-      "supersedes": [],
-      "targets": [
-        "CENTRAL"
-      ]
-    },
-    {
-      "active": true,
-      "classification": "CONSTRAINT",
       "feedback_id": "b6acdbfd3bc4d0de1b66",
       "impacted_layers": [
         "GLOBAL",
@@ -700,6 +687,19 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
         "TOOL013",
         "TOOL037",
         "WORK_GATE"
+      ]
+    },
+    {
+      "active": true,
+      "classification": "CONSTRAINT",
+      "feedback_id": "b51d5eda93f7bece6b5f",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "sanitized_excerpt": "앞으로 중앙마스터 피드백 수정은 기존 규칙과 canonical feedback record를 손상시키지 않고 DIFF ONLY로 반영해야 한다. 수정 전 기준선 해시와 수정 후 목록·해시를 비교하여 의도하지 않은 삭제·축약·변경이 하나라도 있으면 push를 금지하고 원상복구한다.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL"
       ]
     }
   ],
