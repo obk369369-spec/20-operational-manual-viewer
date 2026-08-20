@@ -251,6 +251,7 @@ jobs:
           fi
 
       - name: Verify remote read-back and Commit SHA
+        id: remote_readback
         run: |
           local_sha="$(git rev-parse HEAD)"
           remote_sha="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | awk '{print $1}')"
@@ -260,3 +261,26 @@ jobs:
           test "$(git rev-parse "origin/${GITHUB_REF_NAME}:WIC_GLOBAL_OPERATING_RULES.md")" = "$(git hash-object WIC_GLOBAL_OPERATING_RULES.md)"
           test "$(git rev-parse "origin/${GITHUB_REF_NAME}:feedback_pipeline/state.json")" = "$(git hash-object feedback_pipeline/state.json)"
           echo "REMOTE_READ_BACK=PASS COMMIT_SHA=$remote_sha"
+          echo "commit_sha=$remote_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Generate chat report text
+        if: always()
+        env:
+          COMMIT_SHA: ${{ steps.remote_readback.outputs.commit_sha }}
+          READBACK_OUTCOME: ${{ steps.remote_readback.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          if os.environ.get('READBACK_OUTCOME') == 'success' and os.environ.get('COMMIT_SHA'):
+              manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
+              evidence = json.loads(Path(f"feedback_pipeline/evidence/{manifest['feedback_id']}.json").read_text(encoding='utf-8'))
+              print(
+                  '중앙마스터 반영 완료 / 대상: WIC_GLOBAL_OPERATING_RULES.md'
+                  f" / 반영내용: {evidence['sanitized_excerpt']}"
+                  f" / Commit SHA: {os.environ['COMMIT_SHA']} / 원격 read-back: PASS"
+              )
+          else:
+              print('중앙마스터 반영 실패 / 원인: commit/push 또는 원격 read-back 실패 / 코드: REMOTE_READBACK_HOLD / 업무 규칙 반영 미완료')
+          PY

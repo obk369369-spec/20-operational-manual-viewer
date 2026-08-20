@@ -73,6 +73,12 @@ def read_canonical_records(master_text: str) -> list[dict[str, Any]]:
 
 
 def main() -> int:
+    if not (ROOT / ".git").exists():
+        print("중앙마스터 반영 실패 / 원인: 저장소 접근 불가 / 코드: REPOSITORY_ACCESS_HOLD / 업무 규칙 반영 미완료")
+        return 2
+    if not MASTER.is_file():
+        print("중앙마스터 반영 실패 / 원인: 중앙마스터 위치 확인 불가 / 코드: CENTRAL_MASTER_NOT_FOUND_HOLD / 업무 규칙 반영 미완료")
+        return 2
     event_raw = load_json(EVENT, None)
     if not isinstance(event_raw, dict):
         raise SystemExit("pending_event.json missing or invalid")
