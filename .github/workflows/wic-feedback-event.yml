@@ -119,9 +119,19 @@ jobs:
           PY
 
       - name: Apply pending real feedback event
-        run: python feedback_pipeline/apply_feedback_event.py | tee /tmp/wic-event-result.json
+        id: apply
+        run: |
+          python feedback_pipeline/apply_feedback_event.py | tee /tmp/wic-event-result.json
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          result = json.loads(Path('/tmp/wic-event-result.json').read_text(encoding='utf-8').splitlines()[-1])
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+              out.write(f"result={result['result']}\n")
+          PY
 
       - name: Finalize verified same-repository lane targets when possible
+        if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
         run: |
           python - <<'PY'
           import hashlib, json
@@ -207,6 +217,7 @@ jobs:
           PY
 
       - name: Verify generated canonical section and checkpoint
+        if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
         run: |
           test -f feedback_pipeline/target_apply_manifest.json
           test -d feedback_pipeline/evidence
@@ -239,6 +250,7 @@ jobs:
           PY
 
       - name: Commit canonical mutation and evidence
+        if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
         run: |
           git config user.name 'wic-integration-bot'
           git config user.email 'wic-integration-bot@users.noreply.github.com'
@@ -247,10 +259,15 @@ jobs:
             echo 'No canonical changes to commit.'
           else
             git commit -m 'wic: apply pending feedback event [skip ci]'
-            git push
+            if ! git push; then
+              git pull --rebase origin "${GITHUB_REF_NAME}"
+              git push
+            fi
           fi
 
       - name: Verify remote read-back and Commit SHA
+        id: remote_readback
+        if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
         run: |
           local_sha="$(git rev-parse HEAD)"
           remote_sha="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | awk '{print $1}')"
@@ -260,3 +277,25 @@ jobs:
           test "$(git rev-parse "origin/${GITHUB_REF_NAME}:WIC_GLOBAL_OPERATING_RULES.md")" = "$(git hash-object WIC_GLOBAL_OPERATING_RULES.md)"
           test "$(git rev-parse "origin/${GITHUB_REF_NAME}:feedback_pipeline/state.json")" = "$(git hash-object feedback_pipeline/state.json)"
           echo "REMOTE_READ_BACK=PASS COMMIT_SHA=$remote_sha"
+          echo "commit_sha=$remote_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Generate concise chat report
+        if: always()
+        env:
+          APPLY_RESULT: ${{ steps.apply.outputs.result }}
+          READBACK_OUTCOME: ${{ steps.remote_readback.outcome }}
+        run: |
+          case "$APPLY_RESULT" in
+            CANONICAL_PREPARED_TARGET_HOLD)
+              if [ "$READBACK_OUTCOME" = "success" ]; then
+                echo '피드백 1건 처리 완료 / 중앙마스터 반영 1건 / 실패 0건'
+              else
+                echo '실패 1건 — 원인: commit/push 또는 원격 read-back 자동복구 실패 / 코드: REMOTE_READBACK_HOLD'
+              fi ;;
+            SKIP_ALREADY_PROCESSED|DUPLICATE)
+              echo '피드백 1건 처리 완료 / 중앙마스터 반영 1건 / 실패 0건' ;;
+            SKIP_ONE_TIME_CONTENT)
+              echo '피드백 0건 처리 완료 / 중앙마스터 반영 0건 / 실패 0건' ;;
+            *)
+              echo "실패 1건 — 원인: 피드백 적용 중단 / 코드: ${APPLY_RESULT:-FEEDBACK_APPLY_HOLD}" ;;
+          esac
