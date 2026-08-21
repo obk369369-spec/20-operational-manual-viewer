@@ -1,11 +1,8 @@
-"""Fail-closed preflight for WIC structural changes.
+"""Fail-closed preflight for all WIC changes.
 
-Protected mutations normally require an exact approved user-record source. A narrow
-exception exists for APPLY_FEEDBACK events that are injected from the current chat
-with an explicit CURRENT_CHAT# source reference: this is the ingestion boundary for
-new user feedback, so requiring the feedback to already exist in the master would be
-circular. The exception does not authorize tool/program/chat creation or other
-structural actions.
+Any chat/tool/program/automation/rule/workflow change is allowed only when it carries
+an explicit user directive that can be matched to an approved user-record source.
+Missing or ambiguous provenance is denied before execution.
 """
 from __future__ import annotations
 
@@ -36,7 +33,7 @@ PROTECTED_ACTIONS = {
     "MODIFY_RULE": ("규칙 수정", "규칙 추가", "규칙 변경", "modify rule"),
     "MODIFY_WORKFLOW": ("workflow 수정", "workflow 변경", "워크플로 수정", "modify workflow"),
     "CREATE_OPERATING_BRANCH": ("새 운영 구조", "새 운영분기", "new operating branch"),
-    "APPLY_FEEDBACK": ("피드백", "반영", "적용", "통합", "우선순위", "최우선", "수정", "보완"),
+    "APPLY_FEEDBACK": ("피드백", "반영", "적용", "통합", "우선순위", "최우선"),
 }
 
 POSITIVE_APPROVAL = (
@@ -49,8 +46,6 @@ NEGATION = (
     "변경하지 마", "변경하지마", "수정하지 마", "수정하지마", "임의로", "금지",
     "하지 마", "하지마", "없어야", "삭제", "deny", "forbid", "do not", "don't",
 )
-
-CURRENT_CHAT_PREFIXES = ("CURRENT_CHAT#", "CHATGPT_CURRENT_CHAT#")
 
 @dataclass(frozen=True)
 class ChangeProposal:
@@ -78,6 +73,7 @@ def _record_text(line: str) -> str:
 
 
 def _canonical_record_directives(source: str) -> set[str]:
+    """Read exact canonical sanitized excerpts without falling back to substring matching."""
     match = re.search(
         r"<!-- WIC_CANONICAL_FEEDBACK_START -->\s*```json\s*(.*?)\s*```\s*<!-- WIC_CANONICAL_FEEDBACK_END -->",
         source,
@@ -127,16 +123,6 @@ def _explicit_approval(directive: str) -> bool:
     return any(x in t for x in POSITIVE_APPROVAL)
 
 
-def _current_chat_feedback_ingest_allowed(proposal: ChangeProposal) -> bool:
-    return (
-        proposal.action == "APPLY_FEEDBACK"
-        and proposal.target == "WIC_GLOBAL_OPERATING_RULES.md"
-        and any(proposal.directive_source_ref.startswith(prefix) for prefix in CURRENT_CHAT_PREFIXES)
-        and _mentions_action(proposal.action, proposal.directive_text)
-        and _explicit_approval(proposal.directive_text)
-    )
-
-
 def deny(reason: str, p: ChangeProposal) -> GuardDecision:
     return GuardDecision("DENY_HOLD", reason, p.action, p.target, p.directive_source_ref, True)
 
@@ -162,20 +148,6 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
         return deny("unknown or unregistered change action", proposal)
     if not proposal.directive_text.strip() or not proposal.directive_source_ref.strip():
         return deny("missing explicit user directive provenance", proposal)
-
-    # New feedback from the current chat must be allowed into the canonical ingestion
-    # pipeline without first being present in the canonical master. This exception is
-    # intentionally limited to APPLY_FEEDBACK and cannot authorize other mutations.
-    if _current_chat_feedback_ingest_allowed(proposal):
-        return GuardDecision(
-            "ALLOW",
-            "explicit current-chat feedback directive accepted at ingestion boundary",
-            proposal.action,
-            proposal.target,
-            proposal.directive_source_ref,
-            False,
-        )
-
     source = approved_source_text if approved_source_text is not None else load_approved_source_text()
     if not _directive_recorded(proposal.directive_text, source):
         return deny("directive text not found as an exact approved user-record entry", proposal)
@@ -211,29 +183,16 @@ def run_fixtures() -> str:
         "approved_tool": ChangeProposal("MODIFY_TOOL", "tool-6", "6번 도구 기능 수정을 해라.", "user:4"),
         "approved_program": ChangeProposal("MODIFY_PROGRAM", "program-13", "13번 프로그램 수정을 해라.", "user:5"),
         "approved_canonical_feedback": ChangeProposal("APPLY_FEEDBACK", "WIC_GLOBAL_OPERATING_RULES.md", "피드백은 중앙 규칙에 반영해야 한다.", "canonical:test"),
-        "current_chat_feedback": ChangeProposal(
-            "APPLY_FEEDBACK",
-            "WIC_GLOBAL_OPERATING_RULES.md",
-            "중앙 피드백 구조를 수정해라.",
-            "CURRENT_CHAT#fixture",
-        ),
-        "current_chat_other_action_denied": ChangeProposal(
-            "CREATE_TOOL",
-            "tool-x",
-            "새 도구 생성해.",
-            "CURRENT_CHAT#fixture",
-        ),
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
     deny_names = (
         "missing_provenance", "unauthorized_chat", "unauthorized_tool",
         "unauthorized_program", "negative_rename", "negative_registry",
-        "current_chat_other_action_denied",
     )
     for name in deny_names:
         assert result[name]["decision"] == "DENY_HOLD"
         assert result[name]["observer_report_required"] is True
-    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback", "current_chat_feedback"):
+    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback"):
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
 
@@ -244,7 +203,7 @@ def run_fixtures() -> str:
     assert all(x["observer_report_required"] is True for x in observer_reports)
 
     evidence = {
-        "schema_version": 6,
+        "schema_version": 5,
         "guard": "UNAUTHORIZED_CHANGE_GUARD",
         "scope": "ALL_WIC_CHAT_TOOL_PROGRAM_AUTOMATION_RULE_WORKFLOW_CHANGES",
         "cases": result,
@@ -259,8 +218,6 @@ def run_fixtures() -> str:
             "rule": "Every DENY_HOLD must be surfaced to the observer; never silently swallow denied mutation evidence.",
         },
         "canonical_exact_match": True,
-        "current_chat_feedback_ingestion_exception": True,
-        "current_chat_exception_scope": "APPLY_FEEDBACK_ONLY",
         "substring_approval_forbidden": True,
         "result": "PASS_INTERNAL_FIXTURE",
         "external_independent_verification": False,
@@ -268,7 +225,7 @@ def run_fixtures() -> str:
     (Path(__file__).resolve().parent / "unauthorized_structure_guard_evidence.json").write_text(
         json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    return "PASS: universal WIC guard + current-chat APPLY_FEEDBACK ingestion boundary fixture"
+    return "PASS: universal WIC user-directive provenance guard + canonical exact-match + observer report fixtures"
 
 
 if __name__ == "__main__":

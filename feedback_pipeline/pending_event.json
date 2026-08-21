@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-21T14:12:00+09:00",
+  "observed_at": "2026-08-20T15:00:00+09:00",
   "source_chat": "CURRENT_CHAT",
-  "source_ref": "CURRENT_CHAT#user-feedback-2026-08-21-interruption-safe-repository-autocreate",
+  "source_ref": "user-directive-current-chat-2026-08-20-central-master-destructive-update",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "CURRENT_CHAT#user-explicit-directive-2026-08-21-1407",
-  "directive_text": "기존 구조를 재사용하고 중앙 피드백 구조를 수정해라. Work 수정이 중간에 멈춰도 41번·42번을 포함한 모든 일반 작업 대화창과 도구 제작 대화창이 기존 CENTRAL 구조만으로 계속 작동해야 한다. 대상 저장소가 없으면 실행환경이 허용하는 경우 자동 생성하고 중앙마스터와 체크포인트를 연결하라. 저장소 생성이 불가능해도 CENTRAL_FALLBACK을 먼저 활성화해 중앙마스터 반영과 현재 업무를 계속 가능하게 하라.",
-  "text": "모든 대화창과 도구 대화창은 피드백 감지→기존 저장소/중앙마스터 확인→관련 조항 DIFF ONLY 수정→commit/push→원격 read-back→대화창 자동보고를 중앙 구조만으로 수행한다. 저장소가 없으면 가능한 경우 자동 생성한다. 자동 생성이 불가능하거나 Work가 중단돼도 CENTRAL_FALLBACK 상태에서 중앙마스터 반영과 현재 업무는 계속 가능해야 하며, 사용자가 다시 규칙을 복사하거나 GitHub를 직접 확인하게 하지 않는다. 이번 수정은 이 누락 경로만 최소 보완하며 전수조사·전도구 재검증을 하지 않는다."
+  "directive_source_ref": "WIC_GLOBAL_OPERATING_RULES.md#WIC_CANONICAL_FEEDBACK_START:37a4a2166bb5e2a08a8c",
+  "directive_text": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다.",
+  "text": "앞으로 중앙마스터 피드백 수정은 기존 규칙과 canonical feedback record를 손상시키지 않고 DIFF ONLY로 반영해야 한다. 수정 전 기준선 해시와 수정 후 목록·해시를 비교하여 의도하지 않은 삭제·축약·변경이 하나라도 있으면 push를 금지하고 원상복구한다. 현재 크레딧은 얼마인지 알려줘."
 }

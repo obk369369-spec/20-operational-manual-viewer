@@ -26,10 +26,6 @@
         "remote_read_back": true,
         "status": "PASS_GLOBAL_PROTOCOL"
       },
-      "7c4d66fcf8e5c2bb6308": {
-        "last_stage": "RESTART_OR_HOLD",
-        "status": "PASS_INTERNAL_GITHUB_E2E"
-      },
       "b51d5eda93f7bece6b5f": {
         "last_stage": "RESTART_OR_HOLD",
         "status": "PASS_INTERNAL_GITHUB_E2E"
@@ -38,10 +34,6 @@
         "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
         "last_stage": "TARGET_REVISION_READ_APPLY",
         "status": "HOLD"
-      },
-      "cff0dce8eb43805530bf": {
-        "last_stage": "RESTART_OR_HOLD",
-        "status": "PASS_INTERNAL_GITHUB_E2E"
       },
       "f2aeb4e8f5fac3c9618f": {
         "blocker": "",
@@ -102,7 +94,7 @@
       }
     }
   },
-  "last_context_cursor": "2026-08-20T17:00:00+09:00",
+  "last_context_cursor": "2026-08-20T15:00:00+09:00",
   "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
   "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "pipeline_status": "ACTIVE",
@@ -130,9 +122,7 @@
     "37a4a2166bb5e2a08a8c",
     "686c809c68d37af1540f",
     "7372f5d45a6e681d4add",
-    "b51d5eda93f7bece6b5f",
-    "cff0dce8eb43805530bf",
-    "7c4d66fcf8e5c2bb6308"
+    "b51d5eda93f7bece6b5f"
   ],
   "schema_version": 2,
   "work_gate": {

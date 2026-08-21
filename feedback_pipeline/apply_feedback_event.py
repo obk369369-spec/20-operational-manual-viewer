@@ -1,17 +1,13 @@
 """Apply one WIC feedback event to the canonical master with restart/evidence state.
 
-This runner reuses cross_chat_feedback_ingest.py and canonical_writer.py. It runs
-inside GitHub Actions after checkout. The checked-out central repository is the
-always-available execution lane for every chat/tool feedback event.
+This runner reuses cross_chat_feedback_ingest.py and canonical_writer.py.  It is
+intended to run inside GitHub Actions after checkout.  The workflow provides the
+repository transport (checkout + commit + push); this module never stores tokens.
 
-Operational guarantee:
-- Existing target repository: reuse it.
-- Missing/unavailable target repository: CENTRAL_FALLBACK remains ACTIVE so the
-  feedback can still be classified, written to the canonical master, committed,
-  remotely read back, and reported without blocking the user's work.
-- Repository auto-create may be attempted by the workflow when an external token
-  with repo-creation permission is available. Repository creation is an enhancement,
-  never a prerequisite for central feedback persistence.
+PASS boundary: this runner can prove EVENT through canonical READ_BACK inside the
+checked-out repository.  Cross-repository target application is emitted as an
+explicit manifest and remains HOLD until a target repository is actually updated,
+read back, and tested.
 """
 from __future__ import annotations
 
@@ -77,12 +73,6 @@ def read_canonical_records(master_text: str) -> list[dict[str, Any]]:
 
 
 def main() -> int:
-    if not (ROOT / ".git").exists():
-        print("중앙마스터 반영 실패 / 원인: 저장소 접근 불가 / 코드: REPOSITORY_ACCESS_HOLD / 업무 규칙 반영 미완료")
-        return 2
-    if not MASTER.is_file():
-        print("중앙마스터 반영 실패 / 원인: 중앙마스터 위치 확인 불가 / 코드: CENTRAL_MASTER_NOT_FOUND_HOLD / 업무 규칙 반영 미완료")
-        return 2
     event_raw = load_json(EVENT, None)
     if not isinstance(event_raw, dict):
         raise SystemExit("pending_event.json missing or invalid")
@@ -101,6 +91,7 @@ def main() -> int:
     integration = dict(state.get("integration_core", {}))
     core_state = {"feedback_checkpoints": integration.get("feedback_checkpoints", {})}
 
+    # Idempotency before any mutation.
     if item.feedback_id in set(state.get("processed_feedback_ids", [])):
         print(json.dumps({"feedback_id": item.feedback_id, "result": "SKIP_ALREADY_PROCESSED"}))
         return 0
@@ -192,6 +183,7 @@ def main() -> int:
         raise SystemExit("CENTRAL_MASTER_DESTRUCTIVE_UPDATE: rollback complete")
     core_state = checkpoint_state(core_state, feedback_id=item.feedback_id, stage="CANONICAL_WRITE")
 
+    # Immediate local read-back verifies the bytes that the workflow will commit.
     read_back = MASTER.read_text(encoding="utf-8")
     verification = verify_read_back(master_after, read_back)
     if not verification["verified"]:
@@ -217,37 +209,33 @@ def main() -> int:
         target_plan[target] = {
             "decision": target_apply_decision(target, revision, cache),
             "canonical_revision": revision,
-            "status": "CENTRAL_FALLBACK_ACTIVE",
-            "reason": (
-                "central canonical persistence is complete; target repository reuse/create "
-                "is best-effort and must not block chat/tool work"
-            ),
+            "status": "HOLD_TARGET_APPLY",
+            "reason": "cross-repository target write/read-back/test has not executed yet",
         }
 
+    # The runner deliberately does not mark target revisions as applied before the
+    # target repository has real write/read-back/test evidence.
     manifest = {
-        "schema_version": 2,
+        "schema_version": 1,
         "feedback_id": item.feedback_id,
         "canonical_revision": revision,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "targets": target_plan,
-        "central_fallback": {
-            "status": "ACTIVE",
-            "guarantee": "feedback persists in central master even when a target repository is missing or unavailable",
-        },
     }
     write_json(MANIFEST, manifest)
 
     core_state = checkpoint_state(
         core_state,
         feedback_id=item.feedback_id,
-        stage="RESTART_OR_HOLD",
-        status="PASS_CENTRAL_FALLBACK",
+        stage="TARGET_REVISION_READ_APPLY",
+        status="HOLD",
+        blocker="canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
     )
     integration["feedback_checkpoints"] = core_state["feedback_checkpoints"]
     integration["target_revision_cache"] = cache
-    integration["structure_pass"] = True
+    integration["structure_pass"] = False
     integration["structure_pass_reason"] = (
-        "Canonical write/read-back completed and CENTRAL_FALLBACK keeps every chat/tool operational even if target repository creation/reuse is incomplete."
+        "Canonical mutation/read-back prepared; cross-repository target apply/test evidence remains HOLD."
     )
     state["integration_core"] = integration
     ids = list(dict.fromkeys([*state.get("processed_feedback_ids", []), item.feedback_id]))
@@ -256,17 +244,18 @@ def main() -> int:
     write_json(STATE, state)
 
     evidence.update({
-        "result": "PASS_CENTRAL_FALLBACK",
+        "result": "CANONICAL_PREPARED_TARGET_HOLD",
         "canonical_revision": revision,
         "read_back": verification,
         "target_manifest": str(MANIFEST.relative_to(ROOT)),
-        "restart_point": "target repository reuse/create may continue later without blocking current work",
+        "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
     })
     write_json(EVIDENCE_DIR / f"{item.feedback_id}.json", evidence)
     print(json.dumps({
         "feedback_id": item.feedback_id,
-        "result": "PASS_CENTRAL_FALLBACK",
-        "chat_report": "중앙마스터 반영 완료 / 중앙 fallback ACTIVE / 대상 저장소 생성·연결은 후속 가능 / 현재 업무 계속 가능"
+        "result": evidence["result"],
+        "canonical_revision": revision,
+        "targets": list(target_plan),
     }, ensure_ascii=False))
     return 0
 

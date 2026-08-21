@@ -701,32 +701,6 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       "targets": [
         "CENTRAL"
       ]
-    },
-    {
-      "active": true,
-      "classification": "CONSTRAINT",
-      "feedback_id": "cff0dce8eb43805530bf",
-      "impacted_layers": [
-        "GLOBAL"
-      ],
-      "sanitized_excerpt": "앞으로 반드시 적용할 운영규칙: 여러 피드백은 각각 분류·반영·commit·read-back하되 정상 및 SKIP-REUSE 처리는 합산하여 한 줄로만 자동 보고한다.",
-      "supersedes": [],
-      "targets": [
-        "CENTRAL"
-      ]
-    },
-    {
-      "active": true,
-      "classification": "CONSTRAINT",
-      "feedback_id": "7c4d66fcf8e5c2bb6308",
-      "impacted_layers": [
-        "GLOBAL"
-      ],
-      "sanitized_excerpt": "앞으로 반드시 실패나 HOLD가 있을 때만 해당 항목과 정확한 원인을 추가 보고한다. 반드시 가능한 범위에서 자동 복구한 뒤 미반영 피드백을 재처리하여 commit/push와 원격 read-back까지 완료한다. 반드시 자동 복구가 불가능할 때만 정확한 원인과 필요한 최소 사용자 행동을 한 줄로 보고한다. 반드시 사용자가 중앙마스터 반영 여부를 다시 질문하거나 GitHub를 직접 확인해야 하는 구조는 FAIL로 판정한다.",
-      "supersedes": [],
-      "targets": [
-        "CENTRAL"
-      ]
     }
   ],
   "schema_version": 1
