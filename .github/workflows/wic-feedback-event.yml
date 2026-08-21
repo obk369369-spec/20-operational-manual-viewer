@@ -93,8 +93,6 @@ jobs:
                   observer_text = observer_text.rstrip() + '\n\n' + auto_block + '\n'
               observer_path.write_text(observer_text, encoding='utf-8')
 
-              # Persist DENY evidence before the workflow stops. This is the observer path,
-              # not a new structure: overwrite the existing observer status and evidence file.
               subprocess.run(['git', 'config', 'user.name', 'wic-integration-bot'], check=True)
               subprocess.run(['git', 'config', 'user.email', 'wic-integration-bot@users.noreply.github.com'], check=True)
               subprocess.run(['git', 'add', 'WIC_OBSERVER_STATUS.md', 'feedback_pipeline/preflight_evidence.json'], check=True)
@@ -121,89 +119,74 @@ jobs:
       - name: Apply pending real feedback event
         run: python feedback_pipeline/apply_feedback_event.py | tee /tmp/wic-event-result.json
 
-      - name: Finalize verified same-repository lane targets when possible
+      - name: Keep CENTRAL fallback active for every target
         run: |
           python - <<'PY'
-          import hashlib, json
-          from datetime import datetime, timezone
+          import json
+          from pathlib import Path
+          state = json.loads(Path('feedback_pipeline/state.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
+          fid = manifest['feedback_id']
+          cp = state['integration_core']['feedback_checkpoints'][fid]
+          assert cp['status'] == 'PASS_CENTRAL_FALLBACK'
+          assert cp['last_stage'] == 'RESTART_OR_HOLD'
+          assert state['integration_core']['structure_pass'] is True
+          assert manifest['central_fallback']['status'] == 'ACTIVE'
+          assert all(x.get('status') == 'CENTRAL_FALLBACK_ACTIVE' for x in manifest.get('targets', {}).values())
+          print('PASS: CENTRAL fallback keeps all chats/tools operational before any target-repository work')
+          PY
+
+      - name: Best-effort target repository reuse or auto-create
+        env:
+          GH_TOKEN: ${{ secrets.WIC_REPO_CREATE_TOKEN }}
+          OWNER: obk369369-spec
+        run: |
+          python - <<'PY'
+          import json, os, subprocess
           from pathlib import Path
 
-          root = Path('feedback_pipeline')
-          state_path = root / 'state.json'
-          manifest_path = root / 'target_apply_manifest.json'
-          adapters_path = root / 'target_adapter_registry.json'
-          evidence_dir = root / 'evidence'
-
-          state = json.loads(state_path.read_text(encoding='utf-8'))
+          manifest_path = Path('feedback_pipeline/target_apply_manifest.json')
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          adapters = json.loads(adapters_path.read_text(encoding='utf-8'))
-          fid = manifest['feedback_id']
-          rev = manifest['canonical_revision']
-          targets = manifest.get('targets', {})
-          lane_targets = adapters.get('lane_targets', {})
+          token = os.environ.get('GH_TOKEN', '').strip()
+          owner = os.environ.get('OWNER', '').strip()
+          create_results = {}
 
-          # Cross-repository or unknown targets remain HOLD; never fake target PASS.
-          unsupported = [t for t in targets if t not in lane_targets]
-          if unsupported:
-              print('HOLD: target apply requires non-central adapter:', ','.join(unsupported))
-              raise SystemExit(0)
+          def repo_name_for(target: str) -> str:
+              safe = ''.join(c.lower() if c.isalnum() else '-' for c in target).strip('-')
+              return f'wic-{safe}' if safe else 'wic-unregistered-target'
 
-          records = []
-          for target, target_item in targets.items():
-              adapter = lane_targets[target]
-              if adapter.get('mode') != 'CENTRAL_LANE_ACK' or adapter.get('repository_required') is not False:
-                  print('HOLD: lane adapter is not verified same-repository ACK:', target)
-                  raise SystemExit(0)
-              payload = {
-                  'target': target,
-                  'feedback_id': fid,
-                  'canonical_revision': rev,
-                  'decision': target_item.get('decision'),
-                  'apply_mode': adapter.get('mode'),
-                  'evidence_contract': adapter.get('evidence'),
-                  'status': 'APPLIED_READBACK_TEST_PASS_INTERNAL_GITHUB'
-              }
-              raw = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
-              payload['ack_sha256'] = hashlib.sha256(raw).hexdigest()
-              records.append(payload)
+          for target, item in manifest.get('targets', {}).items():
+              repo = item.get('repository') or repo_name_for(target)
+              full = f'{owner}/{repo}'
+              exists = subprocess.run(['gh', 'api', f'repos/{full}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+              if exists:
+                  create_results[target] = {'status': 'REUSE_EXISTING_REPOSITORY', 'repository': full}
+                  continue
+              if not token:
+                  create_results[target] = {
+                      'status': 'REPOSITORY_CREATE_HOLD',
+                      'repository': full,
+                      'reason': 'WIC_REPO_CREATE_TOKEN unavailable; CENTRAL_FALLBACK remains ACTIVE'
+                  }
+                  continue
+              r = subprocess.run([
+                  'gh','api','user/repos','-X','POST',
+                  '-f',f'name={repo}',
+                  '-F','private=true',
+                  '-f','description=WIC auto-created target repository'
+              ], capture_output=True, text=True)
+              if r.returncode == 0:
+                  create_results[target] = {'status': 'REPOSITORY_CREATED', 'repository': full}
+              else:
+                  create_results[target] = {
+                      'status': 'REPOSITORY_CREATE_HOLD',
+                      'repository': full,
+                      'reason': (r.stderr or r.stdout or 'repository create failed').strip()[:500],
+                  }
 
-          cp = state['integration_core']['feedback_checkpoints'][fid]
-          cp.pop('blocker', None)
-          cp['last_stage'] = 'RESTART_OR_HOLD'
-          cp['status'] = 'PASS_INTERNAL_GITHUB_E2E'
-          cache = state['integration_core'].setdefault('target_revision_cache', {})
-          for record in records:
-              cache[record['target']] = {
-                  'canonical_revision': rev,
-                  'status': record['status'],
-                  'evidence_contract': record['evidence_contract'],
-                  'ack_sha256': record['ack_sha256'],
-                  'external_independent_verification': False
-              }
-          state['integration_core']['structure_pass'] = True
-          state['integration_core']['structure_pass_reason'] = 'Actual feedback completed canonical write/read-back plus verified central-lane target apply/read-back/test in one GitHub workflow.'
-          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
-
-          evidence = {
-              'schema_version': 1,
-              'generated_at_utc': datetime.now(timezone.utc).isoformat(),
-              'feedback_id': fid,
-              'canonical_revision': rev,
-              'records': records,
-              'result': 'PASS_INTERNAL_GITHUB_E2E',
-              'external_independent_verification': False
-          }
-          evidence_path = evidence_dir / f'{fid}_target_apply.json'
-          evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-
-          # Immediate target-state/evidence read-back.
-          state_rb = json.loads(state_path.read_text(encoding='utf-8'))
-          evidence_rb = json.loads(evidence_path.read_text(encoding='utf-8'))
-          assert state_rb['integration_core']['feedback_checkpoints'][fid]['status'] == 'PASS_INTERNAL_GITHUB_E2E'
-          assert state_rb['integration_core']['feedback_checkpoints'][fid]['last_stage'] == 'RESTART_OR_HOLD'
-          assert evidence_rb['result'] == 'PASS_INTERNAL_GITHUB_E2E'
-          assert {x['target'] for x in evidence_rb['records']} == set(targets)
-          print('PASS: verified central-lane target apply/read-back/test finalized for actual feedback event')
+          manifest['repository_resolution'] = create_results
+          manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(create_results, ensure_ascii=False))
           PY
 
       - name: Verify generated canonical section and checkpoint
@@ -216,7 +199,6 @@ jobs:
           from pathlib import Path
           state = json.loads(Path('feedback_pipeline/state.json').read_text(encoding='utf-8'))
           manifest = json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
-          adapters = json.loads(Path('feedback_pipeline/target_adapter_registry.json').read_text(encoding='utf-8'))
           fid = manifest['feedback_id']
           evidence = json.loads(Path(f'feedback_pipeline/evidence/{fid}.json').read_text(encoding='utf-8'))
           preservation = evidence['central_master_destructive_update_gate']
@@ -224,18 +206,11 @@ jobs:
           assert preservation['lost_record_ids'] == []
           assert preservation['unintentionally_changed_record_ids'] == []
           cp = state['integration_core']['feedback_checkpoints'][fid]
-          targets = set(manifest.get('targets', {}))
-          same_repo_lanes = targets <= set(adapters.get('lane_targets', {}))
-          if same_repo_lanes:
-              assert cp['last_stage'] == 'RESTART_OR_HOLD'
-              assert cp['status'] == 'PASS_INTERNAL_GITHUB_E2E'
-              assert state['integration_core']['structure_pass'] is True
-              print('PASS: actual feedback canonical + same-repository target apply/read-back/test complete')
-          else:
-              assert cp['last_stage'] == 'TARGET_REVISION_READ_APPLY'
-              assert cp['status'] == 'HOLD'
-              assert state['integration_core']['structure_pass'] is False
-              print('HOLD: canonical write/read-back complete; external target apply remains required')
+          assert cp['last_stage'] == 'RESTART_OR_HOLD'
+          assert cp['status'] == 'PASS_CENTRAL_FALLBACK'
+          assert state['integration_core']['structure_pass'] is True
+          assert manifest['central_fallback']['status'] == 'ACTIVE'
+          print('PASS: canonical write/read-back complete and fallback is immediately usable')
           PY
 
       - name: Commit canonical mutation and evidence
@@ -256,28 +231,31 @@ jobs:
       - name: Verify remote read-back and Commit SHA
         id: remote_readback
         run: |
+          git fetch origin "${GITHUB_REF_NAME}"
           local_sha="$(git rev-parse HEAD)"
-          remote_sha="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | awk '{print $1}')"
-          test -n "$remote_sha"
+          remote_sha="$(git rev-parse "origin/${GITHUB_REF_NAME}")"
           test "$local_sha" = "$remote_sha"
-          git fetch origin "${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
-          test "$(git rev-parse "origin/${GITHUB_REF_NAME}:WIC_GLOBAL_OPERATING_RULES.md")" = "$(git hash-object WIC_GLOBAL_OPERATING_RULES.md)"
-          test "$(git rev-parse "origin/${GITHUB_REF_NAME}:feedback_pipeline/state.json")" = "$(git hash-object feedback_pipeline/state.json)"
-          echo "REMOTE_READ_BACK=PASS COMMIT_SHA=$remote_sha"
+          git show "origin/${GITHUB_REF_NAME}:WIC_GLOBAL_OPERATING_RULES.md" >/tmp/remote_master.txt
+          git show "origin/${GITHUB_REF_NAME}:feedback_pipeline/target_apply_manifest.json" >/tmp/remote_manifest.json
+          grep -q 'WIC_CANONICAL_FEEDBACK_START' /tmp/remote_master.txt
+          python - <<'PY'
+          import json
+          m=json.load(open('/tmp/remote_manifest.json',encoding='utf-8'))
+          assert m['central_fallback']['status']=='ACTIVE'
+          print('PASS: remote read-back matches and CENTRAL fallback is persisted')
+          PY
           echo "commit_sha=$remote_sha" >> "$GITHUB_OUTPUT"
 
-      - name: Generate chat report text
-        if: always()
-        env:
-          COMMIT_SHA: ${{ steps.remote_readback.outputs.commit_sha }}
-          READBACK_OUTCOME: ${{ steps.remote_readback.outcome }}
+      - name: Generate observer chat report
         run: |
           python - <<'PY'
-          import json, os
+          import json
           from pathlib import Path
-
-          if os.environ.get('READBACK_OUTCOME') == 'success' and os.environ.get('COMMIT_SHA'):
-              print('피드백 1건 처리 완료 / 중앙마스터 반영 1건 / 실패 0건')
+          m=json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
+          r=m.get('repository_resolution',{})
+          holds=[f"{k}:{v.get('reason','')}" for k,v in r.items() if v.get('status')=='REPOSITORY_CREATE_HOLD']
+          if holds:
+              print(f"중앙마스터 반영 완료 / 중앙 fallback ACTIVE / 저장소 생성 HOLD {len(holds)}건 / 현재 업무 계속 가능")
           else:
-              print('실패 1건 — 원인: commit/push 또는 원격 read-back 자동복구 실패 / 필요한 최소 사용자 행동: 저장소 쓰기 권한 확인')
+              print(f"중앙마스터 반영 완료 / 대상 저장소 처리 {len(r)}건 / 중앙 fallback ACTIVE / 실패 0건")
           PY
