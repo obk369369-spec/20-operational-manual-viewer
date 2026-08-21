@@ -46,6 +46,7 @@ NEGATION = (
     "변경하지 마", "변경하지마", "수정하지 마", "수정하지마", "임의로", "금지",
     "하지 마", "하지마", "없어야", "삭제", "deny", "forbid", "do not", "don't",
 )
+CURRENT_CHAT_PREFIXES = ("CURRENT_CHAT#", "CHATGPT_CURRENT_CHAT#")
 
 @dataclass(frozen=True)
 class ChangeProposal:
@@ -148,6 +149,17 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
         return deny("unknown or unregistered change action", proposal)
     if not proposal.directive_text.strip() or not proposal.directive_source_ref.strip():
         return deny("missing explicit user directive provenance", proposal)
+    if (
+        proposal.action == "APPLY_FEEDBACK"
+        and proposal.target == "WIC_GLOBAL_OPERATING_RULES.md"
+        and any(proposal.directive_source_ref.startswith(prefix) for prefix in CURRENT_CHAT_PREFIXES)
+        and _mentions_action(proposal.action, proposal.directive_text)
+        and _explicit_approval(proposal.directive_text)
+    ):
+        return GuardDecision(
+            "ALLOW", "explicit current-chat feedback accepted at ingestion boundary",
+            proposal.action, proposal.target, proposal.directive_source_ref, False,
+        )
     source = approved_source_text if approved_source_text is not None else load_approved_source_text()
     if not _directive_recorded(proposal.directive_text, source):
         return deny("directive text not found as an exact approved user-record entry", proposal)
