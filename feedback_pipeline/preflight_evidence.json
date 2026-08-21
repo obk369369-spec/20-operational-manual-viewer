@@ -2,12 +2,23 @@
   "schema_version": 2,
   "stage": "PRECHECK_USER_DIRECTIVE",
   "decision": {
-    "decision": "ALLOW",
-    "reason": "explicit user directive provenance verified",
+    "decision": "DENY_HOLD",
+    "reason": "directive text not found as an exact approved user-record entry",
     "action": "APPLY_FEEDBACK",
     "target": "WIC_GLOBAL_OPERATING_RULES.md",
-    "directive_source_ref": "WIC_GLOBAL_OPERATING_RULES.md#WIC_CANONICAL_FEEDBACK_START:37a4a2166bb5e2a08a8c",
-    "observer_report_required": false
+    "directive_source_ref": "current-user-explicit-directive",
+    "observer_report_required": true
   },
-  "blocked_before_mutation": false
+  "blocked_before_mutation": true,
+  "observer_report": {
+    "report_type": "DENY_OBSERVER_REPORT",
+    "action": "APPLY_FEEDBACK",
+    "target": "WIC_GLOBAL_OPERATING_RULES.md",
+    "reason": "directive text not found as an exact approved user-record entry",
+    "directive_source_ref": "current-user-explicit-directive",
+    "structural_error_unauthorized": true,
+    "blocked_before_mutation": true,
+    "observer_report_required": true,
+    "normal_unaffected_work_may_continue": true
+  }
 }

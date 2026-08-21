@@ -109,14 +109,14 @@
 
 <!-- WIC_DENY_OBSERVER_AUTO_START -->
 ## 최근 DENY 자동 관찰자 보고
-- generated_at_utc: `2026-08-20T08:32:06.880699+00:00`
+- generated_at_utc: `2026-08-21T05:09:50.085390+00:00`
 - decision: `DENY_HOLD`
 - action: `APPLY_FEEDBACK`
 - target: `WIC_GLOBAL_OPERATING_RULES.md`
 - reason: `directive text not found as an exact approved user-record entry`
 - error_class: `STRUCTURAL_ERROR_UNAUTHORIZED`
 - blocked_before_mutation: `true`
-- directive_source_ref: `CURRENT_CHAT#observer-feedback-report-lock`
+- directive_source_ref: `current-user-explicit-directive`
 <!-- WIC_DENY_OBSERVER_AUTO_END -->
 
 <!-- WIC_EXECUTION_STATE_SYNC_START -->
