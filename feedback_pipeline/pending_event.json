@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-21T14:07:00+09:00",
+  "observed_at": "2026-08-21T14:12:00+09:00",
   "source_chat": "CURRENT_CHAT",
-  "source_ref": "user-feedback-2026-08-21-interruption-safe-repository-autocreate",
+  "source_ref": "CURRENT_CHAT#user-feedback-2026-08-21-interruption-safe-repository-autocreate",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "current-user-explicit-directive",
-  "directive_text": "전수조사는 하지 말고 기존 FINAL PASS 공통 구조를 SKIP-REUSE한다. Work 수정이 중간에 멈춰도 41번·42번을 포함한 모든 일반 작업 대화창과 도구 제작 대화창이 기존 CENTRAL 구조만으로 계속 완전하게 작동해야 한다. 대상 저장소가 없으면 실행환경이 허용하는 경우 자동 생성하고 중앙마스터/체크포인트를 연결하되, 저장소 생성 실패나 권한 부족이 중앙 피드백 반영과 현재 업무를 막아서는 안 된다. CENTRAL_FALLBACK을 항상 먼저 활성화하고 저장소 생성·연결은 후속 보강으로 처리한다.",
+  "directive_source_ref": "CURRENT_CHAT#user-explicit-directive-2026-08-21-1407",
+  "directive_text": "기존 구조를 재사용하고 중앙 피드백 구조를 수정해라. Work 수정이 중간에 멈춰도 41번·42번을 포함한 모든 일반 작업 대화창과 도구 제작 대화창이 기존 CENTRAL 구조만으로 계속 작동해야 한다. 대상 저장소가 없으면 실행환경이 허용하는 경우 자동 생성하고 중앙마스터와 체크포인트를 연결하라. 저장소 생성이 불가능해도 CENTRAL_FALLBACK을 먼저 활성화해 중앙마스터 반영과 현재 업무를 계속 가능하게 하라.",
   "text": "모든 대화창과 도구 대화창은 피드백 감지→기존 저장소/중앙마스터 확인→관련 조항 DIFF ONLY 수정→commit/push→원격 read-back→대화창 자동보고를 중앙 구조만으로 수행한다. 저장소가 없으면 가능한 경우 자동 생성한다. 자동 생성이 불가능하거나 Work가 중단돼도 CENTRAL_FALLBACK 상태에서 중앙마스터 반영과 현재 업무는 계속 가능해야 하며, 사용자가 다시 규칙을 복사하거나 GitHub를 직접 확인하게 하지 않는다. 이번 수정은 이 누락 경로만 최소 보완하며 전수조사·전도구 재검증을 하지 않는다."
 }
