@@ -146,7 +146,11 @@ jobs:
           from pathlib import Path
 
           manifest_path = Path('feedback_pipeline/target_apply_manifest.json')
+          registry_path = Path('feedback_pipeline/target_adapter_registry.json')
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          registry = json.loads(registry_path.read_text(encoding='utf-8'))
+          repo_targets = registry.get('repository_targets', {})
+          lane_targets = registry.get('lane_targets', {})
           token = os.environ.get('GH_TOKEN', '').strip()
           owner = os.environ.get('OWNER', '').strip()
           create_results = {}
@@ -155,13 +159,46 @@ jobs:
               safe = ''.join(c.lower() if c.isalnum() else '-' for c in target).strip('-')
               return f'wic-{safe}' if safe else 'wic-unregistered-target'
 
-          for target, item in manifest.get('targets', {}).items():
-              repo = item.get('repository') or repo_name_for(target)
-              full = f'{owner}/{repo}'
-              exists = subprocess.run(['gh', 'api', f'repos/{full}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+          for target in manifest.get('targets', {}):
+              if target in lane_targets and lane_targets[target].get('repository_required') is False:
+                  create_results[target] = {
+                      'status': 'CENTRAL_LANE_REUSE',
+                      'repository': None,
+                      'reason': 'registered central lane does not require a separate repository'
+                  }
+                  continue
+
+              registered = repo_targets.get(target, {})
+              full = str(registered.get('repository', '')).strip()
+              if full:
+                  repo = full.split('/', 1)[1] if '/' in full else full
+              else:
+                  repo = repo_name_for(target)
+                  full = f'{owner}/{repo}'
+
+              # Repository discovery uses the built-in GITHUB_TOKEN when possible.
+              # Creation itself uses WIC_REPO_CREATE_TOKEN only; never invent success.
+              check_env = dict(os.environ)
+              if not check_env.get('GH_TOKEN'):
+                  check_env['GH_TOKEN'] = check_env.get('GITHUB_TOKEN', '')
+              exists = subprocess.run(
+                  ['gh', 'api', f'repos/{full}'],
+                  env=check_env,
+                  stdout=subprocess.DEVNULL,
+                  stderr=subprocess.DEVNULL,
+              ).returncode == 0
               if exists:
                   create_results[target] = {'status': 'REUSE_EXISTING_REPOSITORY', 'repository': full}
                   continue
+
+              if registered:
+                  create_results[target] = {
+                      'status': 'REPOSITORY_ACCESS_HOLD',
+                      'repository': full,
+                      'reason': 'registered repository was not reachable; CENTRAL_FALLBACK remains ACTIVE'
+                  }
+                  continue
+
               if not token:
                   create_results[target] = {
                       'status': 'REPOSITORY_CREATE_HOLD',
@@ -169,6 +206,7 @@ jobs:
                       'reason': 'WIC_REPO_CREATE_TOKEN unavailable; CENTRAL_FALLBACK remains ACTIVE'
                   }
                   continue
+
               r = subprocess.run([
                   'gh','api','user/repos','-X','POST',
                   '-f',f'name={repo}',
@@ -253,9 +291,9 @@ jobs:
           from pathlib import Path
           m=json.loads(Path('feedback_pipeline/target_apply_manifest.json').read_text(encoding='utf-8'))
           r=m.get('repository_resolution',{})
-          holds=[f"{k}:{v.get('reason','')}" for k,v in r.items() if v.get('status')=='REPOSITORY_CREATE_HOLD']
+          holds=[v for v in r.values() if v.get('status') in {'REPOSITORY_CREATE_HOLD','REPOSITORY_ACCESS_HOLD'}]
           if holds:
-              print(f"중앙마스터 반영 완료 / 중앙 fallback ACTIVE / 저장소 생성 HOLD {len(holds)}건 / 현재 업무 계속 가능")
+              print(f"중앙마스터 반영 완료 / 중앙 fallback ACTIVE / 저장소 보강 HOLD {len(holds)}건 / 현재 업무 계속 가능")
           else:
               print(f"중앙마스터 반영 완료 / 대상 저장소 처리 {len(r)}건 / 중앙 fallback ACTIVE / 실패 0건")
           PY
