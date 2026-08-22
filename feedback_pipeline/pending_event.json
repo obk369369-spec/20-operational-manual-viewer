@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-20T15:00:00+09:00",
-  "source_chat": "CURRENT_CHAT",
-  "source_ref": "user-directive-current-chat-2026-08-20-central-master-destructive-update",
+  "observed_at": "2026-08-22T12:45:00+09:00",
+  "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
+  "source_ref": "user-directive-current-chat-2026-08-22-small-observer-all-chats",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "WIC_GLOBAL_OPERATING_RULES.md#WIC_CANONICAL_FEEDBACK_START:37a4a2166bb5e2a08a8c",
-  "directive_text": "최우선은 WIC 전체 자동 통합 기반 구조의 실제 완성이다. 실제 새 피드백이 자동 분류, 충돌검사, 중앙 반영, 대상 적용, read-back, 테스트, restart point까지 성공해야 구조 PASS다. Work는 Chat/GitHub에서 막히는 실행과 E2E에만 사용한다. 구조 PASS 뒤 우선순위는 이메일 수집, 7번, 1번 안내서, 37 메타데이터, 13 엑셀, 6번 목차, 2번 입찰, 28~31, 나머지다.",
-  "text": "앞으로 중앙마스터 피드백 수정은 기존 규칙과 canonical feedback record를 손상시키지 않고 DIFF ONLY로 반영해야 한다. 수정 전 기준선 해시와 수정 후 목록·해시를 비교하여 의도하지 않은 삭제·축약·변경이 하나라도 있으면 push를 금지하고 원상복구한다. 현재 크레딧은 얼마인지 알려줘."
+  "directive_source_ref": "CURRENT_CHAT:user-directive-2026-08-22",
+  "directive_text": "모든 현재 대화창과 앞으로 생성되는 업무 대화창에 최소 수정의 소형 관찰자 방식을 적용한다. FAIL/HOLD/불일치/누락을 감지하면 사용자의 추가 개선 지시를 기다리지 않고 원인 감지 → 해당 중앙마스터 확인/최소 보강 → expected 또는 기준본 수정 → 실행·출력 게이트 수정 또는 재연결 → 실제 결과 재검증 → PASS/HOLD/FAIL 판정까지 가능한 범위를 연속 처리한 뒤 한 번에 보고한다. 같은 검증 범위에서 새 FAIL이 연쇄적으로 발견되면 한 건만 고치고 멈추지 않고 계속 추적·교정한다. 이미 같은 규칙이 있으면 중복 추가하지 않고 실제 고장 지점만 최소 수정한다. 중요 피드백은 대화에만 두지 않고 중앙마스터·체크포인트·실패증거·인계정보에 구조화해 보존하고 다음 Work 또는 새 대화가 이를 먼저 읽어 재사용한다.",
+  "text": "모든 대화창과 앞으로 생성되는 대화창에도 소형 관찰자 연속 자동교정 방식을 적용하고, 중요한 일일 피드백은 중앙마스터와 체크포인트에 구조화해 누락 가능성을 낮춘다."
 }
