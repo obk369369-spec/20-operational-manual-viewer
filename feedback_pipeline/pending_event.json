@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-22T14:11:00+09:00",
+  "observed_at": "2026-08-24T15:19:00+09:00",
   "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
-  "source_ref": "user-directive-current-chat-2026-08-22-global-strict-validation-conflict-precedence",
+  "source_ref": "user-directive-current-chat-2026-08-24-guide-subject-date-order-toc-price",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-22-global-strict-validation-conflict-precedence",
-  "directive_text": "모든 기존 및 앞으로 생성되는 업무 대화창에 엄격한 전체 검증을 적용해. 전역 공통규칙은 여러 업무에 공통인 절차만 담당하고, 각 대화창이나 도구의 구체적 개선사항은 해당 업무군 전용마스터에 적용해. 충돌 시 최신의 명시적 사용자 직접 지시를 가장 먼저 적용하고, 그 다음 해당 업무군·도구 전용규칙, 그 다음 전역 공통규칙, 마지막으로 구버전 규칙 순서로 판정해. 같은 의미의 규칙은 기존 규칙을 강화하는 방식으로 처리하고, 적용범위가 다른 규칙은 범위를 분리해. 해결이 어려운 충돌은 기존 정상 동작을 보존한 상태로 HOLD하고 근거를 보고해. 결과 출력 전에는 사용자가 요구한 필수항목 전체와 실제 결과를 대조하고 미검증 항목은 HOLD로 판정해.",
-  "text": "모든 현재·미래 업무 대화창에 엄격한 전체 검증을 적용하고, 최신 직접지시 > 도구·업무군 전용규칙 > 전역 공통규칙 > 구버전 순으로 충돌을 해결하며 범용 규칙과 개별 예외를 분리한다."
+  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-24-guide-subject-date-order-toc-price",
+  "directive_text": "42번 고객 안내서 출력에서 각 고객별 메일 제목을 반드시 '[해외시장자료 안내] 기관명 이름 직책님' 형식으로 표시해. 추천자료 3종은 발행일을 실제 상세페이지에서 확인하고 가장 최신 자료가 위, 그 다음 최신 자료가 아래로 오도록 내림차순 배치해. 각 추천자료의 정가는 상세페이지에서 확인 가능한 경우 반드시 표시하고 누락하면 FAIL로 처리해. 목차는 실제 상세페이지의 공개 목차와 줄 단위로 대조하고 상위목차 아래 공개된 하위목차를 전부 표시해. 일부 상위목차에만 하위목차가 보이고 나머지가 빠진 상태를 PASS로 처리하지 마. 특히 Grand View Research와 Stratistics MRC처럼 페이지의 Table of Contents/Segmentation에 하위항목이 공개된 경우 출력본과 원문을 서로 대조해 누락 0을 확인한 뒤 출력해. 기존 중앙마스터에 이미 같은 규칙이 있으면 중복 문구를 추가하지 말고 실행 게이트 미작동으로 판정해 게이트를 강화해. 출력 전에 메일 제목, 3종 개수, 고객별 과거 발송 중복제거, 발행일 최신순, 발행사, 페이지, 정가, 발행일, URL, 전체 공개 하위목차, 목차 마지막 항목, 보고서 정보까지 각각 PASS/FAIL/HOLD로 검사하고 하나라도 FAIL/HOLD이면 완성 안내서를 출력하지 마.",
+  "text": "42번 고객 안내서에 메일 제목을 표시하고 3종을 실제 발행일 최신순으로 정렬하며, 정가와 공개 하위목차 전체를 원문 대조 후 누락 없이 출력하고 전 항목 사전 게이트를 강제한다."
 }
