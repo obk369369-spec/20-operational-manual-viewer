@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-24T17:54:00+09:00",
+  "observed_at": "2026-08-24T17:58:00+09:00",
   "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
-  "source_ref": "user-feedback-2026-08-24-toc-publisher-diversity-recurrence",
+  "source_ref": "user-directive-2026-08-24-global-n-publisher-diversity-and-feedback-gap",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "CURRENT_CHAT#user-feedback-2026-08-24-toc-publisher-diversity-recurrence",
-  "directive_text": "42번 고객 안내서에서 추천자료가 3종이든 4종이든 N종이면 가능한 모든 자료를 서로 다른 거래 가능 발행사로 구성해. 기존 마스터의 3종 서로 다른 발행사 규칙을 N종 일반규칙으로 확장해. 같은 발행사가 중복되면 출력 금지하고 다른 발행사 후보를 다시 탐색해. 목차는 실제 상세페이지의 Table of Contents/Segmentation/Contents 영역을 원문 기준으로 끝까지 수집하고, 상위목차-하위목차 계층, 번호, 들여쓰기, 마지막 항목까지 모두 보존해. 일부 장만 하위목차를 표시하거나 중간에서 자르거나 주요 목차만 요약하면 FAIL이다. Grand View Research처럼 목차가 섹션명과 하위항목으로 구성된 페이지도 상위/하위 구조를 명확히 분리해 전부 표시해. Technavio처럼 번호형 목차는 공개된 마지막 번호까지 전부 표시해. 같은 목차 오류가 반복되면 새 규칙을 중복 추가하지 말고 실행게이트 실패로 판정하고, 원문 전체목차 줄수/계층수/마지막항목과 실제 출력본을 직접 대조하는 강제 게이트를 수정해. 이 오류군은 채팅 출력에서 즉시 수정하되 반복 재발이므로 Work 공통엔진 개선 대상으로도 승격해.",
-  "text": "42번 안내서의 발행사 분산 규칙을 N종 전체 서로 다른 발행사로 일반화하고, 목차는 원문 전체 계층·번호·들여쓰기·마지막 항목까지 exact 검증하며 반복 재발은 실행게이트 실패 및 Work 공통엔진 개선 대상으로 처리한다."
+  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-24-global-n-publisher-diversity-and-feedback-gap",
+  "directive_text": "모든 기존 업무 대화창과 앞으로 생성되는 모든 업무 대화창에 공통 적용한다. 고객 안내에서 추천자료가 3종, 4종 또는 그 이상 N종이면 N종 모두 서로 다른 거래 가능 발행사로 구성해야 하며, 같은 발행사가 하나라도 중복되면 출력 금지하고 다른 발행사 후보를 다시 탐색한다. 고객 특성상 추천자료 수가 늘어날 수 있으므로 3종 고정 규칙으로 한정하지 않는다. 새 사용자 피드백을 받으면 관련 중앙마스터/전용마스터/LOCK에 같은 규칙이 있는지 먼저 자동 확인하고, 없으면 즉시 추가·read-back하며, 이미 있는데 결과가 틀리면 중복 문구를 추가하지 말고 실행게이트 실패로 판정해 게이트를 수정·재검증한다. 중앙 피드백 파이프라인에 이벤트를 등록한 것과 실제 중앙마스터 본문 반영, 실행게이트 반영, Work 공통엔진 반영은 서로 다른 상태로 관리하고 각각 read-back/commit/test 증거가 있을 때만 PASS로 보고한다. pipeline 등록만으로 전체 적용 완료라고 보고하지 않는다. 반복되는 목차 절단·계층 누락·발행사 중복 오류군은 채팅에서 즉시 수정하고 Work 공통엔진 개선 대상에도 승격하되, Work에서 실제 코드/게이트 수정·테스트 증거가 확인되기 전에는 Work 반영 완료라고 하지 않는다.",
+  "text": "모든 현재·미래 업무 대화창에서 N종 추천자료는 N개 모두 서로 다른 거래 발행사로 구성하고, 피드백 파이프라인 등록-마스터 반영-게이트 반영-Work 엔진 반영을 별도 상태로 검증해 갭을 숨기지 않는다."
 }
