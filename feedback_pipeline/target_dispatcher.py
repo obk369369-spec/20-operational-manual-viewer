@@ -78,8 +78,13 @@ def build_plan(manifest: dict, adapters: dict, revision_cache: dict) -> dict:
         else:
             plan["holds"].append({
                 "target": target,
-                "status": "HOLD_NO_VERIFIED_ADAPTER",
-                "reason": "No verified repository/lane adapter is registered; do not guess a target repository."
+                "status": "REPOSITORY_CREATE_HOLD",
+                "reason": (
+                    "No verified repository/lane adapter is registered. Existing repository ownership "
+                    "and repository-create authority/path must be verified before creating anything."
+                ),
+                "normal_registered_routes_continue": True,
+                "repository_create_attempted": False,
             })
     return plan
 
@@ -122,7 +127,9 @@ def validate_against_inputs(plan: dict, manifest: dict, adapters: dict, revision
         elif target in lane_targets:
             assert actions[target]["action"] == "LANE_ACK"
         else:
-            assert holds[target]["status"] == "HOLD_NO_VERIFIED_ADAPTER"
+            assert holds[target]["status"] == "REPOSITORY_CREATE_HOLD"
+            assert holds[target]["normal_registered_routes_continue"] is True
+            assert holds[target]["repository_create_attempted"] is False
 
 
 def main() -> None:
@@ -134,6 +141,26 @@ def main() -> None:
     plan = build_plan(manifest, adapters, revision_cache)
     validate_plan(plan)
     validate_against_inputs(plan, manifest, adapters, revision_cache)
+
+    # Representative boundary fixture: one registered repository keeps running
+    # while one ownerless route is isolated in repository-create HOLD.
+    fixture_manifest = {
+        "canonical_revision": "fixture-revision",
+        "feedback_id": "fixture-feedback",
+        "targets": {
+            "TOOL006": {"decision": "APPLY_CHANGED_SCOPE"},
+            "UNREGISTERED_ROUTE": {"decision": "APPLY_CHANGED_SCOPE"},
+        },
+    }
+    fixture_plan = build_plan(fixture_manifest, adapters, {"targets": {}})
+    validate_plan(fixture_plan)
+    validate_against_inputs(fixture_plan, fixture_manifest, adapters, {"targets": {}})
+    fixture_actions = {item["target"]: item for item in fixture_plan["actions"]}
+    fixture_holds = {item["target"]: item for item in fixture_plan["holds"]}
+    assert fixture_actions["TOOL006"]["action"] == "REPOSITORY_REVISION_ACK"
+    assert fixture_holds["UNREGISTERED_ROUTE"]["status"] == "REPOSITORY_CREATE_HOLD"
+    assert fixture_holds["UNREGISTERED_ROUTE"]["normal_registered_routes_continue"] is True
+
     out = ROOT / "target_dispatch_plan.json"
     out.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("PASS: common material mutation contract + dispatch plan match current manifest, adapter registry, and revision cache")

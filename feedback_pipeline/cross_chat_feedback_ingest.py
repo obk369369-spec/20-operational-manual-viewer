@@ -50,6 +50,7 @@ MODULE_CONTRACT_KEYS = (
 )
 
 REGISTRY_PATH = Path(__file__).resolve().parents[1] / "WIC_CHAT_ROUTING_REGISTRY.md"
+UNREGISTERED_ROUTE = "UNREGISTERED_ROUTE"
 ROUTE_LINE_RE = re.compile(r"^route:\s*([A-Z0-9_]+)\s*=\s*(.+?)\s*$", re.I)
 EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PHONE_RE = re.compile(r"(?<!\d)(?:\+?82[- .]?)?(?:0\d{1,2}[- .]?)?\d{3,4}[- .]?\d{4}(?!\d)")
@@ -179,7 +180,10 @@ def route_targets(text: str, route_map: Mapping[str, Iterable[str]] | None = Non
         for target, keys in routes.items()
         if any(str(k).lower() in t for k in keys)
     ]
-    return tuple(sorted(set(hits or ["CENTRAL"])))
+    # CENTRAL is only the canonical storage lane.  An unknown owner must remain
+    # explicit so downstream target-apply gates cannot mistake fallback storage
+    # for a verified target repository apply.
+    return tuple(sorted(set(hits or ["CENTRAL", UNREGISTERED_ROUTE])))
 
 
 def _feedback_id(classification: str, targets: Iterable[str], text: str) -> str:
@@ -412,7 +416,7 @@ def run_fixtures() -> str:
     chat_fix = normalize(FeedbackEvent("2026-08-15T10:00:00+09:00", "chat", "정정: 대화창 이름 오류를 수정해."))
     isolated = decide_conflict(chat_fix, [to_json_record(reporting)])
     assert isolated.action == "ACCEPT" and isolated.supersedes == ()
-    assert route_targets("등록되지 않은 완전히 새로운 업무") == ("CENTRAL",)
+    assert route_targets("등록되지 않은 완전히 새로운 업무") == ("CENTRAL", UNREGISTERED_ROUTE)
 
     rev1 = canonical_revision([to_json_record(batch[0])])
     rev2 = canonical_revision([to_json_record(batch[0]), to_json_record(batch[3])])
