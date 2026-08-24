@@ -17,6 +17,16 @@
 - known_error_groups_remaining: 3 (`TOOL041_REVALIDATION`, `TOOL006_GOLDEN_AND_MAIN_MERGE`, `TOOL013_MULTI_EXCEL_UNVERIFIED`). 이번에 실행한 대표 fixture의 재현 오류는 0.
 - NEXT_START: TOOL013 실제 저장소 최신 checkpoint/read-back 확인 후 다수 Excel 연속처리·중단/재개 대표 fixture 1개만 검증. TOOL041은 고객별 원문 근거가 확보된 증분 범위가 아니면 전수작업을 시작하지 않는다.
 
+## SAFE CHECKPOINT — Work 16 continuation / 2026-08-24
+- start_checkpoint: `aef1ae46201a01b94291ddd6de250416f7c4f2aa`; 이전 PASS 전부 SKIP-REUSE.
+- TOOL013: 기존 `obk369369-spec/13-excel-upload` 재사용. commit `e3b695b8acd9f3d1de327cf285db80ed5cbfc185`; 실제 CSV 2개 순차입력 → 누적 2행 미리보기 → 동일행 중복차단 → 페이지 재시작 체크포인트 복원 E2E PASS. push 및 원격 SHA/4개 blob read-back PASS.
+- TOOL006: PR #6을 기존 검증 결과와 새 smoke/E2E 결과로 ready 전환 후 일반 merge. 원격 main merge commit `4af3d0722c369f4e09fffdb43346bb8810b866c8`; 검증 branch `578c0bdea402081e1f7893ed376c1a387a7ded96`가 merge parent이고 smoke blob 일치. 실제 발행사 golden pair 부재는 별도 HOLD 유지.
+- TOOL041: remote `21acd06`; 고객별 원문 동일인 교차검증 자산이 저장소에 없어 기존 267명 `HOLD_REVALIDATION_REQUIRED` 유지. ACTIVE 승격·전수 재검증 없음.
+- changed_files: TOOL013 `index.html`, `scripts/tool13_batch_state.js`, `tests/tool13_batch_resume.test.js`, `tests/tool13_multi_file_e2e.js`, 이 ledger. TOOL006는 검증 완료 PR의 main merge만 수행.
+- unrelated_changes: 0; 관련 저장소 작업트리 clean.
+- known_error_groups_remaining: 2 (`TOOL041_SOURCE_CROSSCHECK_UNAVAILABLE`, `TOOL006_REAL_PUBLISHER_GOLDEN_PAIR_UNAVAILABLE`). TOOL013 이번 대표 묶음 재현 오류 0.
+- NEXT_START: TOOL013 고정 오류목록의 다음 공통 원인 묶음(상태/패킷/재검증 불일치)을 대표 fixture로 처리. TOOL041 원문 근거 또는 TOOL006 실제 original→user-approved final pair가 새로 확인될 때만 해당 HOLD 재개.
+
 ## Work gate
 G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_DEFER_DENIED`. G1~G3 모두 불가 + 구체적 Work-only blocker + exact handoff package가 있을 때만 `WORK_ELIGIBLE`. 과거규칙 재독해/파일검색/터미널 가능 테스트를 Work로 보내면 `CREDIT_WASTE_FAIL`.
 
