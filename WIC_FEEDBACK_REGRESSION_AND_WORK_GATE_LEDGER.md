@@ -4,6 +4,19 @@
 규범 원본: `WIC_GLOBAL_OPERATING_RULES.md`
 영구 파이프라인: `HISTORY_EVIDENCE -> CLASSIFY -> RULE/EXPECTED_OUTPUT -> FIXTURE/ERROR_HASH -> ACTUAL_PATCH -> VERIFY -> READ_BACK -> REUSE -> RESTART_POINT`
 
+## SAFE CHECKPOINT — Work 16 / 2026-08-24
+- start_remote_read_back: `8928ee37994e4d4271183b84f863ecd5707efaa9`; `87bdd2f` 이전과 이후 이미 반영된 원격 작업은 SKIP-REUSE.
+- common_feedback_gate: commit `6c35774b672a64fd638168f39ee0ad8e273cd7a9`; 미등록 route를 CENTRAL-only PASS에서 분리하고 `REPOSITORY_CREATE_HOLD`로 격리. 등록 TOOL006 + 미등록 route 대표 fixture PASS. push 및 원격 SHA/blob read-back PASS.
+- TOOL041: remote `21acd06`; 기존 267명 데이터는 저장소 자체 판정 `HOLD_REVALIDATION_REQUIRED`. 전수 재검증·ACTIVE 승격 없음.
+- TOOL042: remote `3b5a7ea52865cd409b02fe793f17984773ecb1d9`; 기존 김명곤 actual/expected gate `PASS`, errors 0, holds 0. TOOL007 판단 fixture 8개 PASS. SKIP-REUSE.
+- TOOL006: branch `agent/tool006-active-baseline`, commit `578c0bdea402081e1f7893ed376c1a387a7ded96`; smoke runtime 경로 수정, smoke 4/4 및 functional E2E 5/5 PASS, push 및 원격 SHA/blob read-back PASS. main merge와 실제 발행사 golden pair는 기존 HOLD 유지.
+- TOOL013: 이번 묶음 미시작. 기존 중앙 target apply 증거만 SKIP-REUSE하며 다수 Excel 실제 연속처리는 미검증 HOLD.
+- repository_create: 임의 저장소 생성 없음. 소유 업무군·기존 저장소·생성 권한/경로가 확인되지 않은 신규 route만 `REPOSITORY_CREATE_HOLD`; 기존 등록 route는 계속 실행.
+- changed_files: `feedback_pipeline/cross_chat_feedback_ingest.py`, `feedback_pipeline/target_dispatcher.py`, TOOL006 `tests/tool006_smoke.ps1`, 이 ledger.
+- unrelated_changes: 0; 운영 저장소 작업트리 clean.
+- known_error_groups_remaining: 3 (`TOOL041_REVALIDATION`, `TOOL006_GOLDEN_AND_MAIN_MERGE`, `TOOL013_MULTI_EXCEL_UNVERIFIED`). 이번에 실행한 대표 fixture의 재현 오류는 0.
+- NEXT_START: TOOL013 실제 저장소 최신 checkpoint/read-back 확인 후 다수 Excel 연속처리·중단/재개 대표 fixture 1개만 검증. TOOL041은 고객별 원문 근거가 확보된 증분 범위가 아니면 전수작업을 시작하지 않는다.
+
 ## Work gate
 G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_DEFER_DENIED`. G1~G3 모두 불가 + 구체적 Work-only blocker + exact handoff package가 있을 때만 `WORK_ELIGIBLE`. 과거규칙 재독해/파일검색/터미널 가능 테스트를 Work로 보내면 `CREDIT_WASTE_FAIL`.
 
