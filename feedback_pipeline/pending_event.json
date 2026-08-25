@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-24T17:58:00+09:00",
+  "observed_at": "2026-08-25T14:22:00+09:00",
   "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
-  "source_ref": "user-directive-2026-08-24-global-n-publisher-diversity-and-feedback-gap",
+  "source_ref": "user-feedback-2026-08-25-toc-output-gate-execution-failure",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-24-global-n-publisher-diversity-and-feedback-gap",
-  "directive_text": "이 피드백 이벤트를 중앙 피드백 구조와 Work 후보 상태에 적용하라.",
-  "text": "모든 현재·미래 업무 대화창의 고객 안내에서 N종 추천자료 발행사 중복과 목차 누락 반복 오류를 별도 root cause로 보존하고, 피드백 파이프라인 등록-마스터 반영-게이트 반영-Work 엔진 반영을 별도 상태로 검증해 갭을 숨기지 않는다."
+  "directive_source_ref": "CURRENT_CHAT#user-feedback-2026-08-25-toc-output-gate-execution-failure",
+  "directive_text": "중앙마스터에 이미 목차 번호·영문 원문·계층·끝까지 출력 규칙이 있는데도 실제 출력에서 추천2·3은 번호 범위축약/한글 혼입, 추천4는 번호·상위목차 누락이 재발했다. 이를 새 규칙 누락이 아니라 실제 출력게이트 적용 FAIL로 누적하고, 사용자가 다시 지적하기 전에 원인→expected→gate→actual output 경로를 수정·재검증하라. 추천1도 마지막 공개항목 대조 전에는 PASS 금지한다.",
+  "text": "42번 고객 안내 실제 출력게이트 적용 FAIL 누적: 목차 번호/영문/계층/전체범위 규칙이 중앙마스터에 존재하지만 actual output에서 범위축약, 한글 혼입, 번호·상위목차 누락이 재발. 추천1 HOLD, 추천2·3·4 FAIL. 신규 규칙 중복 추가가 아니라 expected/gate/actual 연결 실패 root cause로 관리하고 Work 공통엔진 개선 후보에도 유지한다."
 }
