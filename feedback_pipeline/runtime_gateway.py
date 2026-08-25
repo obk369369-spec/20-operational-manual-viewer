@@ -28,7 +28,7 @@ def execute(spec:list[str],cwd:Path,bundled_python:str)->dict[str,Any]:
     cmd=list(spec)
     if cmd[0]=='WIC_BUNDLED_PYTHON':
         if not bundled_python: raise RuntimeError('bundled python unavailable')
-        cmd[0]=bundled_python
+        cmd[0]=bundled_python; cmd.insert(1,'-B')
     p=run(cmd,cwd)
     return {'status':'PASS','command':spec,'stdout':p.stdout[-4000:]}
 
