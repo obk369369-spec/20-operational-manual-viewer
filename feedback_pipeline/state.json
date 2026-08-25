@@ -60,7 +60,8 @@
       "evidence"
     ],
     "root_cause_recurrence": {
-      "72c2843cb52fd87ee879": 2
+      "72c2843cb52fd87ee879": 2,
+      "8462236db3ade9342f54": 2
     },
     "stage_order": [
       "EVENT",
@@ -103,9 +104,25 @@
         "test_evidence_blob": "6cef68b0ae4c3469842e02fe92549856eff96713",
         "test_result": "STRUCTURE_PASS"
       }
+    },
+    "work_ready_candidates": {
+      "8462236db3ade9342f54": {
+        "customer_impact": "OPERATIONAL",
+        "recur_count": 2,
+        "repeatability": "REPEATED",
+        "root_cause_id": "8462236db3ade9342f54",
+        "severity": "HIGH",
+        "work_ready": true,
+        "work_status": "WORK_READY"
+      }
+    },
+    "work_ready_summary": {
+      "candidate_count": 1,
+      "manual_chat_transfer_required": false,
+      "work_ready_count": 1
     }
   },
-  "last_context_cursor": "2026-08-25T00:00:00+09:00",
+  "last_context_cursor": "2026-08-24T17:58:00+09:00",
   "last_seed_reason": "User required one reusable WIC integration core first; Work credit reserved for concrete blocked execution/E2E only.",
   "normative_master": "WIC_GLOBAL_OPERATING_RULES.md",
   "pipeline_status": "ACTIVE",
@@ -134,7 +151,8 @@
     "686c809c68d37af1540f",
     "7372f5d45a6e681d4add",
     "b51d5eda93f7bece6b5f",
-    "72c2843cb52fd87ee879"
+    "72c2843cb52fd87ee879",
+    "8462236db3ade9342f54"
   ],
   "schema_version": 2,
   "work_gate": {

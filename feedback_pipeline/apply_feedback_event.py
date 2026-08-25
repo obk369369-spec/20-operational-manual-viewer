@@ -35,6 +35,7 @@ from cross_chat_feedback_ingest import (
     normalize,
     target_apply_decision,
 )
+from work_ready_tracker import assess_work_ready, update_work_ready_state
 
 ROOT = Path(__file__).resolve().parents[1]
 MASTER = ROOT / "WIC_GLOBAL_OPERATING_RULES.md"
@@ -102,6 +103,12 @@ def main() -> int:
         recurrence = dict(integration.get("root_cause_recurrence", {}))
         recurrence[item.feedback_id] = int(recurrence.get(item.feedback_id, 1)) + 1
         integration["root_cause_recurrence"] = recurrence
+        integration = update_work_ready_state(integration, assess_work_ready(
+            root_cause_id=item.feedback_id,
+            text=item.sanitized_excerpt,
+            recur_count=recurrence[item.feedback_id],
+            classification=item.classification,
+        ))
         state["integration_core"] = integration
         write_json(STATE, state)
         print(json.dumps({
@@ -116,6 +123,35 @@ def main() -> int:
     records = read_canonical_records(master_before)
 
     if not item.central_master_candidate:
+        if item.regression_fixture_candidate:
+            integration = update_work_ready_state(integration, assess_work_ready(
+                root_cause_id=item.feedback_id,
+                text=item.sanitized_excerpt,
+                recur_count=1,
+                classification=item.classification,
+            ))
+            state["integration_core"] = integration
+            state["processed_feedback_ids"] = list(dict.fromkeys([
+                *state.get("processed_feedback_ids", []), item.feedback_id,
+            ]))[-2000:]
+            state["last_context_cursor"] = item.observed_at
+            write_json(STATE, state)
+            write_json(EVIDENCE_DIR / f"{item.feedback_id}.json", {
+                "schema_version": 1,
+                "feedback_id": item.feedback_id,
+                "root_cause_id": item.feedback_id,
+                "classification": item.classification,
+                "targets": list(item.targets),
+                "result": "WORK_CANDIDATE_CAPTURED",
+                "central_master_mutated": False,
+                "work_ready": integration["work_ready_candidates"][item.feedback_id],
+            })
+            print(json.dumps({
+                "feedback_id": item.feedback_id,
+                "result": "WORK_CANDIDATE_CAPTURED",
+                "work_status": integration["work_ready_candidates"][item.feedback_id]["work_status"],
+            }, ensure_ascii=False))
+            return 0
         print(json.dumps({"feedback_id": item.feedback_id, "result": "SKIP_ONE_TIME_CONTENT"}))
         return 0
     decision = decide_conflict(item, records)
@@ -251,6 +287,12 @@ def main() -> int:
     )
     integration["feedback_checkpoints"] = core_state["feedback_checkpoints"]
     integration["target_revision_cache"] = cache
+    integration = update_work_ready_state(integration, assess_work_ready(
+        root_cause_id=item.feedback_id,
+        text=item.sanitized_excerpt,
+        recur_count=1,
+        classification=item.classification,
+    ))
     integration["structure_pass"] = False
     integration["structure_pass_reason"] = (
         "Canonical mutation/read-back prepared; cross-repository target apply/test evidence remains HOLD."

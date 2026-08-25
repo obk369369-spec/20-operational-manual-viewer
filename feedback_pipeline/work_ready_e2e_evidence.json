@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "feedback_id": "8462236db3ade9342f54",
+  "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
+  "root_cause_id": "8462236db3ade9342f54",
+  "first_result": "WORK_CANDIDATE_CAPTURED",
+  "second_result": "DUPLICATE_COMPRESSED",
+  "recur_count": 2,
+  "customer_impact": "OPERATIONAL",
+  "severity": "HIGH",
+  "work_status": "WORK_READY",
+  "manual_chat_transfer_required": false,
+  "different_root_causes_preserved_separately": true,
+  "registered_target_evidence_reused": {
+    "TOOL006": {
+      "target_apply_commit": "3961fd8c59b8dc08100204d4437e217460f292b2",
+      "target_read_back_blob": "cb508b04baf13bbdc3ae5c0ae0614a99ea591a0f",
+      "status": "APPLIED_TEST_PASS_INTERNAL_GITHUB"
+    },
+    "TOOL013": {
+      "target_apply_commit": "8f2f1f3e57c9cbba7fd5a0621ba3419d63feee0b",
+      "target_read_back_blob": "eeaa796667dd2c78bb2913f5cbf01bf6d11f8052",
+      "status": "APPLIED_TEST_PASS_INTERNAL_GITHUB"
+    }
+  },
+  "unregistered_route_status": "REPOSITORY_CREATE_HOLD",
+  "result": "PASS_LOCAL_PENDING_REMOTE_READBACK"
+}
