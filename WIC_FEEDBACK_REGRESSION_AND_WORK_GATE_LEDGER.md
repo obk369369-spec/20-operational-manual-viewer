@@ -27,6 +27,17 @@
 - known_error_groups_remaining: 2 (`TOOL041_SOURCE_CROSSCHECK_UNAVAILABLE`, `TOOL006_REAL_PUBLISHER_GOLDEN_PAIR_UNAVAILABLE`). TOOL013 이번 대표 묶음 재현 오류 0.
 - NEXT_START: TOOL013 고정 오류목록의 다음 공통 원인 묶음(상태/패킷/재검증 불일치)을 대표 fixture로 처리. TOOL041 원문 근거 또는 TOOL006 실제 original→user-approved final pair가 새로 확인될 때만 해당 HOLD 재개.
 
+## LOCAL LEDGER ACCUMULATION — TOOL013 fixed-error closeout / 2026-08-24
+- central_push_policy_at_capture: `HOLD_REMOTE_CONTINUOUS_UPDATE`; 당시 중앙 push 재시도 없이 `work/work16-tool13-checkpoint`에 누적 보존.
+- SAFE_CHECKPOINT_SHA: `1d51ba4816cdda704ce9580309b670d075762d17`.
+- actual_scope: 고정 오류 `03,08,09,10,11,14,15,17,23,24`의 실행 증거 연결, 함수 오류 영향범위 기록, 화면 packet과 저장 JSON 일치, 오류목록/재검증 전후 상태, 장문 개요·목차 XLSX read-back, 실제 XLSX 2개 연속처리·중복차단·재시작 복원.
+- verification: TOOL013 전체 5개 대표 fixture PASS; 실제 `.xlsx` 연속 입력 포함; browser page error `0`; runtime fixed-error FAIL card `0`; `git diff --check` PASS.
+- remote_read_back: 원격 `main` SHA 일치. 변경 4파일 blob 일치: `index.html=c2b43a6925315cc1befb02315e55560b16c872f2`, `tool13_download_consistency_e2e.js=76fdc6ed13a798d125c5187a8a399ead7a08da75`, `tool13_multi_file_e2e.js=9a9ff96056760a8b66a4f92c7373306e547c9f05`, `tool13_rollback_history_e2e.js=a53beb9e56f369f91b4bb1bcee8808d0e058cf8c`.
+- TOOL013 known-error representative gate: `PASS`; verified fixed IDs `01~32`, 알려진 오류 잔여수 `0` (대표 fixture 기준).
+- SKIP_REUSE: TOOL013 `e3b695b`, `2b21e6a`, `9fd3a83`, `ffa61ad`, `444ec41`, `e3a5996`, `1d51ba4` 이전 묶음 전체.
+- NEXT_START: 신규 실제 오류가 없으면 TOOL013 재작업 금지. 41번은 신규 HOLD 근거 없으면 재검증 금지, TOOL006 golden pair는 실제 자료 없으면 HOLD 유지. 다음 실행 가능한 미완료 업무만 시작.
+- reconciled_on_2026_08_25: 원격 main `7aff149340bf1bb45b7f96cb552063534e15b72f` 안전 병합·push·read-back으로 `HOLD_REMOTE_CONTINUOUS_UPDATE` 해소; 원본 local branch `60641f8a139ef90cc76531a7d17eec5c98e77ab2` 보존.
+
 ## Work gate
 G1 Chat/Files, G2 GitHub, G3 일반 runtime 중 하나라도 가능하면 `WORK_DEFER_DENIED`. G1~G3 모두 불가 + 구체적 Work-only blocker + exact handoff package가 있을 때만 `WORK_ELIGIBLE`. 과거규칙 재독해/파일검색/터미널 가능 테스트를 Work로 보내면 `CREDIT_WASTE_FAIL`.
 
