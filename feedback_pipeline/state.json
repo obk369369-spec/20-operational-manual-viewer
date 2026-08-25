@@ -138,13 +138,17 @@
       "registration_holds": {},
       "actual_transport": {
         "TOOL006": "b37cb4616318f023286fb06147fdef6df1de57cc",
-        "TOOL041": "eb011e2f7bdaa8d0ff3e4b701aae8d48e0ce4d88",
-        "TOOL042": "6176562deec4533b4ffc8f52394c793b37951e01",
+        "TOOL041": "c2124058536eaf6966eef4290493bf8792cce3e0",
+        "TOOL042": "a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84",
         "TOOL007": "a75f0fad6e30f7857e42b0ee72ca9f2136909fe1",
         "TOOL999": "1db1358794e7ec7f5afd7f74c6f054279e9a49d6"
       },
       "mock_receipt_dependency": false,
-      "status": "ACTUAL_EXECUTOR_ACTIVE_41_42_FIXES_REMOTE_VERIFIED"
+      "completed_roots": {
+        "T41-RC-DATA-INTEGRITY": {"stage":"COMPLETE","target_receipt_commit":"c2124058536eaf6966eef4290493bf8792cce3e0","state_synced":true},
+        "T42-RC-CUSTOMER-BRANCH": {"stage":"COMPLETE","target_receipt_commit":"a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84","state_synced":true}
+      },
+      "status": "COMPLETE"
     },
     "feedback_checkpoints": {
       "37a4a2166bb5e2a08a8c": {
