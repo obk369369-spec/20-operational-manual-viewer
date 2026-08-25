@@ -160,7 +160,15 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
     remote_head=git(workspace,"ls-remote","origin",f"refs/heads/{row['branch']}").stdout.split("\t")[0]
     if local_head != remote_head:
-        return fail(state,"TARGET_APPLIED",f"local/remote mismatch {local_head}/{remote_head}",True,"FAST_FORWARD_CLEAN_WORKTREE_AND_RESUME")
+        pre_recovery_head=local_head
+        git(workspace,"fetch","origin",row["branch"])
+        ancestor=git(workspace,"merge-base","--is-ancestor",local_head,f"origin/{row['branch']}",check=False)
+        if ancestor.returncode:
+            return fail(state,"TARGET_APPLIED",f"divergent local/remote {local_head}/{remote_head}",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
+        git(workspace,"merge","--ff-only",f"origin/{row['branch']}")
+        local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
+        if local_head != remote_head: raise RuntimeError("automatic fast-forward read-back mismatch")
+        state["AUTO_RECOVERY_RECEIPT"]={"action":"FETCH_AND_FAST_FORWARD_ONLY","from":pre_recovery_head,"to":local_head,"user_action_required":False}
     receipt_rel=Path(".wic")/"pipeline_receipts"/f"{state['pipeline_id']}.json"
     receipt_path=workspace/receipt_rel; receipt_path.parent.mkdir(parents=True,exist_ok=True)
     applied={"schema_version":1,"pipeline_id":state["pipeline_id"],"target":target,"source_ref":event["source_ref"],"root_cause_id":evidence["root_cause_id"],"adapter":row["adapter"],"pre_apply_commit":local_head,"mutation_scope":"PIPELINE_EVIDENCE_ONLY","customer_data_mutated":False}
