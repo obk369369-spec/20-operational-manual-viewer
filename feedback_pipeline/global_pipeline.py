@@ -162,6 +162,7 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     if local_head != remote_head:
         pre_recovery_head=local_head
         git(workspace,"fetch","origin",row["branch"])
+        remote_head=git(workspace,"rev-parse",f"origin/{row['branch']}").stdout.strip()
         ancestor=git(workspace,"merge-base","--is-ancestor",local_head,f"origin/{row['branch']}",check=False)
         if ancestor.returncode:
             return fail(state,"TARGET_APPLIED",f"divergent local/remote {local_head}/{remote_head}",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
