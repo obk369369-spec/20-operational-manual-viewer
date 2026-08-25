@@ -1,0 +1,31 @@
+{
+  "observed_at": "2026-08-25T00:00:00+09:00",
+  "actual_feedback": {
+    "root_count": 6,
+    "by_tool": {"TOOL006": 4, "TOOL041": 1, "TOOL042": 1},
+    "fixture_or_test_events_counted": 0,
+    "count_status": "HOLD_EVIDENCE_FOR_HISTORICAL_TOTALS"
+  },
+  "tool006": {
+    "repository": "obk369369-spec/06-toc-check",
+    "remote_main": "64bf3acf17709b351059c34ce46992866b53ee79",
+    "safe_checkpoint_tag": "wic-safe-20260825-tool006-common-boundary",
+    "engine_blob": "d0177066b83a4d9b23f8ab7500784807eed2d5ec",
+    "fixture_blob": "c9ab1fe9e7a2ae60f21b56f0c45655d03d45567b",
+    "asset_index_blob": "8cd91706e5e6cfb2945ba3a59bc6499c79792762",
+    "functional_test": "PASS 9/9",
+    "smoke_test": "PASS 4/4",
+    "remote_read_back": true,
+    "restore_verified": true
+  },
+  "tool041": {
+    "root_cause_id": "T41-RC-DATA-INTEGRITY",
+    "status": "HOLD_EVIDENCE",
+    "reason": "No new original customer input and incorrect output pair was available; 267-customer rescan prohibited."
+  },
+  "tool042": {
+    "root_cause_id": "T42-RC-CUSTOMER-BRANCH",
+    "status": "HOLD_EVIDENCE",
+    "reason": "No new original customer history and incorrect branch output pair was available; prior representative PASS remains SKIP_REUSE."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "events": [
+    {"occurrence_id":"20260825-T6-RC-01","root_cause_id":"T6-RC-01","tool":"TOOL006","event_kind":"ACTUAL_USER","observed_at":"2026-08-25T00:00:00+09:00","text":"6번 목차의 계층별 들여쓰기 차등 실패 반복 오류","count_status":"HOLD_EVIDENCE"},
+    {"occurrence_id":"20260825-T6-RC-02","root_cause_id":"T6-RC-02","tool":"TOOL006","event_kind":"ACTUAL_USER","observed_at":"2026-08-25T00:00:00+09:00","text":"6번 목차에서 괄호 설명문을 실제 목차로 오인해 번호를 생성하는 반복 오류","count_status":"HOLD_EVIDENCE"},
+    {"occurrence_id":"20260825-T6-RC-03","root_cause_id":"T6-RC-03","tool":"TOOL006","event_kind":"ACTUAL_USER","observed_at":"2026-08-25T00:00:00+09:00","text":"6번 목차에서 별표 각주를 실제 목차로 오인해 번호를 생성하는 반복 오류","count_status":"HOLD_EVIDENCE"},
+    {"occurrence_id":"20260825-T6-RC-04","root_cause_id":"T6-RC-04","tool":"TOOL006","event_kind":"ACTUAL_USER","observed_at":"2026-08-25T00:00:00+09:00","text":"6번 목차에서 List of Tables와 List of Figures를 Appendix 하위목차로 붙이는 반복 오류","count_status":"HOLD_EVIDENCE"},
+    {"occurrence_id":"20260825-T41-RC-INTEGRITY","root_cause_id":"T41-RC-DATA-INTEGRITY","tool":"TOOL041","event_kind":"ACTUAL_USER","observed_at":"2026-08-25T00:00:00+09:00","text":"41번 고객업무에서 서로 다른 고객과 컬럼 값이 섞이는 반복 오류","count_status":"HOLD_EVIDENCE"},
+    {"occurrence_id":"20260825-T42-RC-BRANCH","root_cause_id":"T42-RC-CUSTOMER-BRANCH","tool":"TOOL042","event_kind":"ACTUAL_USER","observed_at":"2026-08-25T00:00:00+09:00","text":"42번 고객업무에서 고객 상태와 이력에 따른 판단·멘트·추천 분기가 불안정한 반복 오류","count_status":"HOLD_EVIDENCE"}
+  ]
+}
