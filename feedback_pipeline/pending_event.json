@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-24T16:28:00+09:00",
-  "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
-  "source_ref": "user-directive-current-chat-2026-08-24-global-feedback-autocheck",
+  "observed_at": "2026-08-25T00:00:00+09:00",
+  "source_chat": "CURRENT_WORK_2026_08_25",
+  "source_ref": "user-directive-current-chat-2026-08-25-unauthorized-mutation-and-feedback-e2e",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-24-global-feedback-autocheck",
-  "directive_text": "모든 기존 업무 대화창과 앞으로 생성되는 업무 대화창에서 새 사용자 피드백을 받으면 먼저 관련 중앙마스터/전용마스터/LOCK에 같은 규칙이 이미 있는지 스스로 확인해. 없으면 재발방지에 필요한 범용 또는 업무전용 규칙으로 즉시 추가하고 read-back까지 확인해. 이미 같은 규칙이 있는데 결과가 틀렸다면 같은 문장을 중복 추가하지 말고 실행 실패 또는 게이트 실패로 판정해 적용 구조를 수정하고 재검증해. 사용자가 다시 '마스터에 있나', '업데이트해'라고 지시하도록 요구하지 마. 기존 정상 동작을 깨뜨릴 위험이나 규칙 충돌이 있으면 임의 덮어쓰기하지 말고 HOLD로 보고해. 마지막 보고에서는 기존 규칙 재적용/신규 규칙 추가/실행게이트 수정 중 무엇을 했는지 한 번에 표시해.",
-  "text": "모든 현재·미래 업무 대화창에서 새 피드백을 자동으로 마스터 대조하고 없으면 추가, 있으면 실행/게이트 실패를 수정한 뒤 한 번에 보고하며 사용자의 반복 업데이트 지시를 요구하지 않는다."
+  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-25-unauthorized-mutation-and-feedback-e2e",
+  "directive_text": "이 피드백을 중앙 규칙과 실행 게이트에 적용하라.",
+  "text": "앞으로 WIC에서 사용자가 명시적으로 요청하지 않은 새 대화창 생성, 대화창 이름 변경, 예약 생성, 자동화 활성화, 자동 작업 생성을 금지한다. 일반 대화창 피드백은 사용자가 별도 전달하지 않아도 중앙 마스터와 올바른 GitHub 대상에 DIFF ONLY로 반영하고 원격 read-back 전에는 PASS하지 않는다."
 }

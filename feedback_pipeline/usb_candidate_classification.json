@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "scope": "SELECTIVE_UNAUTHORIZED_MUTATION_PATHS_ONLY",
+  "usb_source_of_truth": false,
+  "assets": [
+    {
+      "path": "START_WIC34_C_REBUILD_ADMIN.ps1",
+      "sha256": "2862C82572BE92A71F4F244A9271907D48BF137EAB0E96520D83BD35B66EEB05",
+      "classification": "ACTIVE_VERIFIED",
+      "evidence": "default invocation denied before scheduled-task mutation; seven WIC task states unchanged"
+    },
+    {
+      "path": "AUTO_SAVE_BACKUP/*/START_WIC34_C_REBUILD_ADMIN.ps1",
+      "classification": "RETIRED_CANDIDATE",
+      "evidence": "historical copies contain unconditional Register-ScheduledTask paths and were not used or promoted"
+    }
+  ],
+  "usb_assets_promoted": [],
+  "usb_deleted": false
+}

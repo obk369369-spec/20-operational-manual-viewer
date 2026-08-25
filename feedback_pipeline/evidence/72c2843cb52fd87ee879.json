@@ -1,0 +1,43 @@
+{
+  "canonical_revision": "06c640328b7329938ef82cc2",
+  "central_master_destructive_update_gate": {
+    "diff_only_match": true,
+    "human_owned_preserved": true,
+    "lost_record_ids": [],
+    "missing_expected_record_ids": [],
+    "unexpected_new_record_ids": [],
+    "unintentionally_changed_record_ids": [],
+    "verified": true
+  },
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "ACCEPT",
+    "conflicts_with": [],
+    "feedback_id": "72c2843cb52fd87ee879",
+    "impacted_layers": [
+      "GLOBAL"
+    ],
+    "impacted_targets": [],
+    "reason": "no active duplicate or proven same-scope conflict",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "72c2843cb52fd87ee879",
+  "observed_at": "2026-08-25T00:00:00+09:00",
+  "read_back": {
+    "intended_hash": "c683a6d65f6a46702ac50f20c493ce52d17971d96f9fa78fee6bd94eb119ef19",
+    "read_back_hash": "c683a6d65f6a46702ac50f20c493ce52d17971d96f9fa78fee6bd94eb119ef19",
+    "verified": true
+  },
+  "restart_point": "verify workflow commit/read-back, then apply target manifest to actual target repos and run target tests",
+  "result": "CANONICAL_PREPARED_TARGET_HOLD",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "앞으로 WIC에서 사용자가 명시적으로 요청하지 않은 새 대화창 생성, 대화창 이름 변경, 예약 생성, 자동화 활성화, 자동 작업 생성을 금지한다.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_WORK_2026_08_25",
+  "source_ref": "user-directive-current-chat-2026-08-25-unauthorized-mutation-and-feedback-e2e",
+  "target_manifest": "feedback_pipeline\\target_apply_manifest.json",
+  "targets": [
+    "CENTRAL"
+  ]
+}

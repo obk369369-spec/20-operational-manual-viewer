@@ -99,7 +99,17 @@ def main() -> int:
 
     # Idempotency before any mutation.
     if item.feedback_id in set(state.get("processed_feedback_ids", [])):
-        print(json.dumps({"feedback_id": item.feedback_id, "result": "SKIP_ALREADY_PROCESSED"}))
+        recurrence = dict(integration.get("root_cause_recurrence", {}))
+        recurrence[item.feedback_id] = int(recurrence.get(item.feedback_id, 1)) + 1
+        integration["root_cause_recurrence"] = recurrence
+        state["integration_core"] = integration
+        write_json(STATE, state)
+        print(json.dumps({
+            "feedback_id": item.feedback_id,
+            "root_cause_id": item.feedback_id,
+            "recur_count": recurrence[item.feedback_id],
+            "result": "DUPLICATE_COMPRESSED",
+        }))
         return 0
 
     master_before = MASTER.read_text(encoding="utf-8")
@@ -160,6 +170,8 @@ def main() -> int:
 
     records.append({
         "feedback_id": item.feedback_id,
+        "root_cause_id": item.feedback_id,
+        "recur_count": 1,
         "classification": item.classification,
         "targets": list(item.targets),
         "sanitized_excerpt": item.sanitized_excerpt,

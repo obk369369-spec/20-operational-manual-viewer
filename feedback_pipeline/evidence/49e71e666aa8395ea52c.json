@@ -1,0 +1,31 @@
+{
+  "classification": "CONSTRAINT",
+  "decision": {
+    "action": "HOLD_CONFLICT",
+    "conflicts_with": [
+      "20260813_work_rule_split"
+    ],
+    "feedback_id": "49e71e666aa8395ea52c",
+    "impacted_layers": [
+      "GLOBAL"
+    ],
+    "impacted_targets": [
+      "WORK_GATE"
+    ],
+    "reason": "same-priority constraint differs within the same specific target; no silent overwrite",
+    "supersedes": []
+  },
+  "external_independent_verification": false,
+  "feedback_id": "49e71e666aa8395ea52c",
+  "observed_at": "2026-08-25T00:00:00+09:00",
+  "result": "HOLD_CONFLICT",
+  "runner": "feedback_pipeline/apply_feedback_event.py",
+  "sanitized_excerpt": "앞으로 WIC Work에서 사용자가 명시적으로 요청하지 않은 새 대화창 생성, 대화창 이름 변경, 예약 생성, 자동화 활성화, 자동 Work 생성을 금지한다.",
+  "schema_version": 1,
+  "source_chat": "CURRENT_WORK_2026_08_25",
+  "source_ref": "user-directive-current-chat-2026-08-25-unauthorized-mutation-and-feedback-e2e",
+  "targets": [
+    "CENTRAL",
+    "WORK_GATE"
+  ]
+}

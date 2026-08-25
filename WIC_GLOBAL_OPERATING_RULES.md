@@ -701,6 +701,21 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
       "targets": [
         "CENTRAL"
       ]
+    },
+    {
+      "active": true,
+      "classification": "CONSTRAINT",
+      "feedback_id": "72c2843cb52fd87ee879",
+      "impacted_layers": [
+        "GLOBAL"
+      ],
+      "recur_count": 1,
+      "root_cause_id": "72c2843cb52fd87ee879",
+      "sanitized_excerpt": "앞으로 WIC에서 사용자가 명시적으로 요청하지 않은 새 대화창 생성, 대화창 이름 변경, 예약 생성, 자동화 활성화, 자동 작업 생성을 금지한다.",
+      "supersedes": [],
+      "targets": [
+        "CENTRAL"
+      ]
     }
   ],
   "schema_version": 1

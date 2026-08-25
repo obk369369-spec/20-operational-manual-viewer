@@ -209,6 +209,11 @@ jobs:
           assert guard['result'] == 'PASS_INTERNAL_FIXTURE'
           assert guard['cases']['missing_provenance']['decision'] == 'DENY_HOLD'
           assert guard['cases']['unauthorized_chat']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['unauthorized_rename']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['unauthorized_schedule']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['unauthorized_automation_enable']['decision'] == 'DENY_HOLD'
+          assert guard['cases']['unauthorized_work']['decision'] == 'DENY_HOLD'
+          assert set(guard['unrequested_mutation_counts'].values()) == {0}
           assert guard['cases']['unauthorized_tool']['decision'] == 'DENY_HOLD'
           assert guard['cases']['unauthorized_program']['decision'] == 'DENY_HOLD'
           assert guard['cases']['negative_rename']['decision'] == 'DENY_HOLD'

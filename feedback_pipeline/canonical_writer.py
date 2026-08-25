@@ -22,6 +22,8 @@ def _stable_records(records: list[Mapping[str, Any]]) -> list[dict[str, Any]]:
     for record in records:
         normalized.append({
             "feedback_id": str(record.get("feedback_id", "")),
+            "root_cause_id": str(record.get("root_cause_id", record.get("feedback_id", ""))),
+            "recur_count": max(1, int(record.get("recur_count", 1))),
             "classification": str(record.get("classification", "")),
             "targets": sorted(str(x) for x in (record.get("targets") or [])),
             "sanitized_excerpt": " ".join(str(record.get("sanitized_excerpt", "")).split()),

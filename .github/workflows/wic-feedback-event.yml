@@ -292,7 +292,7 @@ jobs:
               else
                 echo '실패 1건 — 원인: commit/push 또는 원격 read-back 자동복구 실패 / 코드: REMOTE_READBACK_HOLD'
               fi ;;
-            SKIP_ALREADY_PROCESSED|DUPLICATE)
+            SKIP_ALREADY_PROCESSED|DUPLICATE|DUPLICATE_COMPRESSED)
               echo '피드백 1건 처리 완료 / 중앙마스터 반영 1건 / 실패 0건' ;;
             SKIP_ONE_TIME_CONTENT)
               echo '피드백 0건 처리 완료 / 중앙마스터 반영 0건 / 실패 0건' ;;

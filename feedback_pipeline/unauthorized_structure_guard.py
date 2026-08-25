@@ -28,7 +28,10 @@ PROTECTED_ACTIONS = {
     "CREATE_PROGRAM": ("프로그램 생성", "새 프로그램", "program create", "new program"),
     "MODIFY_PROGRAM": ("프로그램 수정", "프로그램 수정을", "프로그램 보완", "코드 수정", "modify program"),
     "CREATE_AUTOMATION": ("자동화 생성", "예약 작업", "automation create"),
+    "CREATE_SCHEDULE": ("예약 생성", "리마인더 생성", "schedule create", "create reminder"),
+    "ENABLE_AUTOMATION": ("자동화 활성화", "예약 활성화", "enable automation", "enable schedule"),
     "MODIFY_AUTOMATION": ("자동화 수정", "예약 변경", "modify automation"),
+    "CREATE_WORK": ("work 생성", "작업 생성", "자동 작업 생성", "create work", "create task"),
     "CREATE_REGISTRY": ("새 registry", "new registry", "registry 생성"),
     "MODIFY_RULE": ("규칙 수정", "규칙 추가", "규칙 변경", "modify rule"),
     "MODIFY_WORKFLOW": ("workflow 수정", "workflow 변경", "워크플로 수정", "modify workflow"),
@@ -187,6 +190,10 @@ def run_fixtures() -> str:
     cases = {
         "missing_provenance": ChangeProposal("CREATE_TOOL", "tool-x", "", ""),
         "unauthorized_chat": ChangeProposal("CREATE_CONVERSATION", "chat-x", "새 고객관리 대화창을 만들어.", "user:999"),
+        "unauthorized_rename": ChangeProposal("RENAME_CONVERSATION", "chat-x", "대화창 이름을 변경해.", "user:996"),
+        "unauthorized_schedule": ChangeProposal("CREATE_SCHEDULE", "schedule-x", "예약 생성해.", "user:995"),
+        "unauthorized_automation_enable": ChangeProposal("ENABLE_AUTOMATION", "automation-x", "자동화 활성화해.", "user:994"),
+        "unauthorized_work": ChangeProposal("CREATE_WORK", "work-x", "자동 작업 생성해.", "user:993"),
         "unauthorized_tool": ChangeProposal("MODIFY_TOOL", "tool-7", "7번 도구 기능 수정을 해라.", "user:998"),
         "unauthorized_program": ChangeProposal("MODIFY_PROGRAM", "program-x", "프로그램 수정을 해라.", "user:997"),
         "negative_rename": ChangeProposal("RENAME_CONVERSATION", "chat-x", "기존 대화창 이름 변경은 하지 마.", "user:2"),
@@ -198,7 +205,8 @@ def run_fixtures() -> str:
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
     deny_names = (
-        "missing_provenance", "unauthorized_chat", "unauthorized_tool",
+        "missing_provenance", "unauthorized_chat", "unauthorized_rename",
+        "unauthorized_schedule", "unauthorized_automation_enable", "unauthorized_work", "unauthorized_tool",
         "unauthorized_program", "negative_rename", "negative_registry",
     )
     for name in deny_names:
@@ -231,6 +239,12 @@ def run_fixtures() -> str:
         },
         "canonical_exact_match": True,
         "substring_approval_forbidden": True,
+        "unrequested_mutation_counts": {
+            "UNREQUESTED_CHAT_CREATE": 0,
+            "UNREQUESTED_CHAT_RENAME": 0,
+            "UNREQUESTED_SCHEDULE_CREATE": 0,
+            "UNREQUESTED_AUTOMATION_ENABLE": 0,
+        },
         "result": "PASS_INTERNAL_FIXTURE",
         "external_independent_verification": False,
     }

@@ -1,0 +1,255 @@
+{
+  "schema_version": 5,
+  "guard": "UNAUTHORIZED_CHANGE_GUARD",
+  "scope": "ALL_WIC_CHAT_TOOL_PROGRAM_AUTOMATION_RULE_WORKFLOW_CHANGES",
+  "cases": {
+    "missing_provenance": {
+      "decision": "DENY_HOLD",
+      "reason": "missing explicit user directive provenance",
+      "action": "CREATE_TOOL",
+      "target": "tool-x",
+      "directive_source_ref": "",
+      "observer_report_required": true
+    },
+    "unauthorized_chat": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "CREATE_CONVERSATION",
+      "target": "chat-x",
+      "directive_source_ref": "user:999",
+      "observer_report_required": true
+    },
+    "unauthorized_rename": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "RENAME_CONVERSATION",
+      "target": "chat-x",
+      "directive_source_ref": "user:996",
+      "observer_report_required": true
+    },
+    "unauthorized_schedule": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "CREATE_SCHEDULE",
+      "target": "schedule-x",
+      "directive_source_ref": "user:995",
+      "observer_report_required": true
+    },
+    "unauthorized_automation_enable": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "ENABLE_AUTOMATION",
+      "target": "automation-x",
+      "directive_source_ref": "user:994",
+      "observer_report_required": true
+    },
+    "unauthorized_work": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "CREATE_WORK",
+      "target": "work-x",
+      "directive_source_ref": "user:993",
+      "observer_report_required": true
+    },
+    "unauthorized_tool": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "MODIFY_TOOL",
+      "target": "tool-7",
+      "directive_source_ref": "user:998",
+      "observer_report_required": true
+    },
+    "unauthorized_program": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "MODIFY_PROGRAM",
+      "target": "program-x",
+      "directive_source_ref": "user:997",
+      "observer_report_required": true
+    },
+    "negative_rename": {
+      "decision": "DENY_HOLD",
+      "reason": "directive is not an explicit positive approval",
+      "action": "RENAME_CONVERSATION",
+      "target": "chat-x",
+      "directive_source_ref": "user:2",
+      "observer_report_required": true
+    },
+    "negative_registry": {
+      "decision": "DENY_HOLD",
+      "reason": "directive is not an explicit positive approval",
+      "action": "CREATE_REGISTRY",
+      "target": "registry-x",
+      "directive_source_ref": "user:3",
+      "observer_report_required": true
+    },
+    "approved_chat": {
+      "decision": "ALLOW",
+      "reason": "explicit user directive provenance verified",
+      "action": "CREATE_CONVERSATION",
+      "target": "chat-test",
+      "directive_source_ref": "user:1",
+      "observer_report_required": false
+    },
+    "approved_tool": {
+      "decision": "ALLOW",
+      "reason": "explicit user directive provenance verified",
+      "action": "MODIFY_TOOL",
+      "target": "tool-6",
+      "directive_source_ref": "user:4",
+      "observer_report_required": false
+    },
+    "approved_program": {
+      "decision": "ALLOW",
+      "reason": "explicit user directive provenance verified",
+      "action": "MODIFY_PROGRAM",
+      "target": "program-13",
+      "directive_source_ref": "user:5",
+      "observer_report_required": false
+    },
+    "approved_canonical_feedback": {
+      "decision": "ALLOW",
+      "reason": "explicit user directive provenance verified",
+      "action": "APPLY_FEEDBACK",
+      "target": "WIC_GLOBAL_OPERATING_RULES.md",
+      "directive_source_ref": "canonical:test",
+      "observer_report_required": false
+    }
+  },
+  "observer_reports": [
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "CREATE_TOOL",
+      "target": "tool-x",
+      "reason": "missing explicit user directive provenance",
+      "directive_source_ref": "",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "CREATE_CONVERSATION",
+      "target": "chat-x",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:999",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "RENAME_CONVERSATION",
+      "target": "chat-x",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:996",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "CREATE_SCHEDULE",
+      "target": "schedule-x",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:995",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "ENABLE_AUTOMATION",
+      "target": "automation-x",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:994",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "CREATE_WORK",
+      "target": "work-x",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:993",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "MODIFY_TOOL",
+      "target": "tool-7",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:998",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "MODIFY_PROGRAM",
+      "target": "program-x",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "user:997",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "RENAME_CONVERSATION",
+      "target": "chat-x",
+      "reason": "directive is not an explicit positive approval",
+      "directive_source_ref": "user:2",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "CREATE_REGISTRY",
+      "target": "registry-x",
+      "reason": "directive is not an explicit positive approval",
+      "directive_source_ref": "user:3",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    }
+  ],
+  "observer_report_contract": {
+    "required_fields": [
+      "action",
+      "target",
+      "reason",
+      "directive_source_ref",
+      "structural_error_unauthorized",
+      "blocked_before_mutation",
+      "observer_report_required",
+      "normal_unaffected_work_may_continue"
+    ],
+    "delivery_target": "WIC observer status/report lane",
+    "rule": "Every DENY_HOLD must be surfaced to the observer; never silently swallow denied mutation evidence."
+  },
+  "canonical_exact_match": true,
+  "substring_approval_forbidden": true,
+  "unrequested_mutation_counts": {
+    "UNREQUESTED_CHAT_CREATE": 0,
+    "UNREQUESTED_CHAT_RENAME": 0,
+    "UNREQUESTED_SCHEDULE_CREATE": 0,
+    "UNREQUESTED_AUTOMATION_ENABLE": 0
+  },
+  "result": "PASS_INTERNAL_FIXTURE",
+  "external_independent_verification": false
+}
