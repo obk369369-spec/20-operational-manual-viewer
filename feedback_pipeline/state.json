@@ -119,6 +119,24 @@
       "DATA_OR_EXECUTION_ASSET"
     ],
     "external_independent_verification": false,
+    "global_pipeline": {
+      "core": "feedback_pipeline/global_pipeline.py",
+      "registry": "feedback_pipeline/wic_target_registry.json",
+      "evidence": "feedback_pipeline/global_pipeline_e2e_evidence.json",
+      "observer_manual_transfer_required": false,
+      "representative_e2e": {
+        "TOOL006": "PASS_INTERNAL_E2E",
+        "TOOL041": "PASS_INTERNAL_E2E",
+        "TOOL042": "PASS_INTERNAL_E2E",
+        "TOOL007": "PASS_INTERNAL_E2E",
+        "FUTURE_CHAT": "PASS_INTERNAL_E2E"
+      },
+      "registration_holds": {
+        "TOOL027": "repository obk369369-spec/27-technical-book-verifier at 4e8b3d47a7ec26524d37e0494f4c07acfc512223 has WIC_RULE_SOURCE.md but no evidenced executable test/checkpoint contract",
+        "TOOL043": "canonical repository/master/test/checkpoint not evidenced"
+      },
+      "status": "PARTIAL_PASS_REGISTRY_HOLDS"
+    },
     "feedback_checkpoints": {
       "37a4a2166bb5e2a08a8c": {
         "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",

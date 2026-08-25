@@ -1,0 +1,503 @@
+{
+  "result": "PASS_INTERNAL_E2E",
+  "stage_order": [
+    "CAPTURED",
+    "NORMALIZED",
+    "TARGET_RESOLVED",
+    "EVIDENCE_READY",
+    "ROOT_CLASSIFIED",
+    "WORK_READY",
+    "TARGET_APPLIED",
+    "CENTRAL_APPLIED",
+    "TESTED",
+    "COMMITTED",
+    "PUSHED",
+    "REMOTE_VERIFIED",
+    "STATE_SYNCED",
+    "COMPLETE"
+  ],
+  "cases": {
+    "TOOL006": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "COMPLETE",
+      "status": "PASS",
+      "target": "TOOL006",
+      "repository": "obk369369-spec/06-toc-check",
+      "evidence_packet": {
+        "source_chat": "TOOL006",
+        "source_ref": "CURRENT_CHAT#fixture",
+        "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+        "actual_input_ref": "fixture/input",
+        "wrong_output_ref": "fixture/wrong",
+        "expected": "fixture/expected",
+        "root_cause_id": "17c27c25a241c6cee34c",
+        "recurrence": 2,
+        "severity": "MEDIUM",
+        "customer_impact": "OPERATIONAL",
+        "target": "TOOL006",
+        "repository": "obk369369-spec/06-toc-check",
+        "master_paths": [
+          "knowledge/tool006_asset_index.json"
+        ],
+        "existing_pass": [],
+        "pii_persisted": false
+      },
+      "work_packet": {
+        "target": "TOOL006",
+        "root_cause_id": "17c27c25a241c6cee34c",
+        "evidence": {
+          "source_chat": "TOOL006",
+          "source_ref": "CURRENT_CHAT#fixture",
+          "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+          "actual_input_ref": "fixture/input",
+          "wrong_output_ref": "fixture/wrong",
+          "expected": "fixture/expected",
+          "root_cause_id": "17c27c25a241c6cee34c",
+          "recurrence": 2,
+          "severity": "MEDIUM",
+          "customer_impact": "OPERATIONAL",
+          "target": "TOOL006",
+          "repository": "obk369369-spec/06-toc-check",
+          "master_paths": [
+            "knowledge/tool006_asset_index.json"
+          ],
+          "existing_pass": [],
+          "pii_persisted": false
+        },
+        "repository": "obk369369-spec/06-toc-check",
+        "branch": "main",
+        "master_paths": [
+          "knowledge/tool006_asset_index.json"
+        ],
+        "state_path": "WIC_TARGET_APPLY_STATE.json",
+        "test_command": "pwsh -NoProfile -File tests/tool006_functional_e2e.ps1",
+        "adapter": "REPOSITORY_DIFF_ONLY",
+        "safe_checkpoint": "64bf3acf17709b351059c34ce46992866b53ee79",
+        "scope": "DIFF_ONLY",
+        "forbidden": [
+          "force push",
+          "history rewrite",
+          "unrelated rescan"
+        ],
+        "completion_gate": [
+          "TARGET_APPLIED",
+          "CENTRAL_APPLIED",
+          "TESTED",
+          "COMMITTED",
+          "PUSHED",
+          "REMOTE_VERIFIED",
+          "STATE_SYNCED"
+        ]
+      },
+      "FAILED_STAGE": null,
+      "USER_ACTION_REQUIRED": false
+    },
+    "TOOL041": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "COMPLETE",
+      "status": "PASS",
+      "target": "TOOL041",
+      "repository": "obk369369-spec/41-wic-email-collection-master",
+      "evidence_packet": {
+        "source_chat": "TOOL041",
+        "source_ref": "CURRENT_CHAT#fixture",
+        "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+        "actual_input_ref": "fixture/input",
+        "wrong_output_ref": "fixture/wrong",
+        "expected": "fixture/expected",
+        "root_cause_id": "5eba9f5137fa935d9cca",
+        "recurrence": 2,
+        "severity": "MEDIUM",
+        "customer_impact": "OPERATIONAL",
+        "target": "TOOL041",
+        "repository": "obk369369-spec/41-wic-email-collection-master",
+        "master_paths": [
+          "README.md"
+        ],
+        "existing_pass": [],
+        "pii_persisted": false
+      },
+      "work_packet": {
+        "target": "TOOL041",
+        "root_cause_id": "5eba9f5137fa935d9cca",
+        "evidence": {
+          "source_chat": "TOOL041",
+          "source_ref": "CURRENT_CHAT#fixture",
+          "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+          "actual_input_ref": "fixture/input",
+          "wrong_output_ref": "fixture/wrong",
+          "expected": "fixture/expected",
+          "root_cause_id": "5eba9f5137fa935d9cca",
+          "recurrence": 2,
+          "severity": "MEDIUM",
+          "customer_impact": "OPERATIONAL",
+          "target": "TOOL041",
+          "repository": "obk369369-spec/41-wic-email-collection-master",
+          "master_paths": [
+            "README.md"
+          ],
+          "existing_pass": [],
+          "pii_persisted": false
+        },
+        "repository": "obk369369-spec/41-wic-email-collection-master",
+        "branch": "main",
+        "master_paths": [
+          "README.md"
+        ],
+        "state_path": "WIC_TARGET_APPLY_STATE.json",
+        "test_command": "target repository regression subset",
+        "adapter": "REPOSITORY_DIFF_ONLY",
+        "safe_checkpoint": "21acd065aeb3c364953c800e246ba83624308862",
+        "scope": "DIFF_ONLY",
+        "forbidden": [
+          "force push",
+          "history rewrite",
+          "unrelated rescan"
+        ],
+        "completion_gate": [
+          "TARGET_APPLIED",
+          "CENTRAL_APPLIED",
+          "TESTED",
+          "COMMITTED",
+          "PUSHED",
+          "REMOTE_VERIFIED",
+          "STATE_SYNCED"
+        ]
+      },
+      "FAILED_STAGE": null,
+      "USER_ACTION_REQUIRED": false
+    },
+    "TOOL042": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "COMPLETE",
+      "status": "PASS",
+      "target": "TOOL042",
+      "repository": "obk369369-spec/07-wic-setting-tool-v1",
+      "evidence_packet": {
+        "source_chat": "TOOL042",
+        "source_ref": "CURRENT_CHAT#fixture",
+        "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+        "actual_input_ref": "fixture/input",
+        "wrong_output_ref": "fixture/wrong",
+        "expected": "fixture/expected",
+        "root_cause_id": "cc5f44e12b944f3bfa80",
+        "recurrence": 2,
+        "severity": "MEDIUM",
+        "customer_impact": "OPERATIONAL",
+        "target": "TOOL042",
+        "repository": "obk369369-spec/07-wic-setting-tool-v1",
+        "master_paths": [
+          "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
+        ],
+        "existing_pass": [],
+        "pii_persisted": false
+      },
+      "work_packet": {
+        "target": "TOOL042",
+        "root_cause_id": "cc5f44e12b944f3bfa80",
+        "evidence": {
+          "source_chat": "TOOL042",
+          "source_ref": "CURRENT_CHAT#fixture",
+          "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+          "actual_input_ref": "fixture/input",
+          "wrong_output_ref": "fixture/wrong",
+          "expected": "fixture/expected",
+          "root_cause_id": "cc5f44e12b944f3bfa80",
+          "recurrence": 2,
+          "severity": "MEDIUM",
+          "customer_impact": "OPERATIONAL",
+          "target": "TOOL042",
+          "repository": "obk369369-spec/07-wic-setting-tool-v1",
+          "master_paths": [
+            "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
+          ],
+          "existing_pass": [],
+          "pii_persisted": false
+        },
+        "repository": "obk369369-spec/07-wic-setting-tool-v1",
+        "branch": "main",
+        "master_paths": [
+          "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
+        ],
+        "state_path": "WIC_TARGET_APPLY_STATE.json",
+        "test_command": "target repository regression subset",
+        "adapter": "REPOSITORY_DIFF_ONLY",
+        "safe_checkpoint": "3b5a7ea52865cd409b02fe793f17984773ecb1d9",
+        "scope": "DIFF_ONLY",
+        "forbidden": [
+          "force push",
+          "history rewrite",
+          "unrelated rescan"
+        ],
+        "completion_gate": [
+          "TARGET_APPLIED",
+          "CENTRAL_APPLIED",
+          "TESTED",
+          "COMMITTED",
+          "PUSHED",
+          "REMOTE_VERIFIED",
+          "STATE_SYNCED"
+        ]
+      },
+      "FAILED_STAGE": null,
+      "USER_ACTION_REQUIRED": false
+    },
+    "TOOL007": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "COMPLETE",
+      "status": "PASS",
+      "target": "TOOL007",
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "evidence_packet": {
+        "source_chat": "TOOL007",
+        "source_ref": "CURRENT_CHAT#fixture",
+        "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+        "actual_input_ref": "fixture/input",
+        "wrong_output_ref": "fixture/wrong",
+        "expected": "fixture/expected",
+        "root_cause_id": "42eb59c2ef579fc7b487",
+        "recurrence": 2,
+        "severity": "MEDIUM",
+        "customer_impact": "OPERATIONAL",
+        "target": "TOOL007",
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "master_paths": [
+          "customer_pipeline/tool7_contact_judgment.py"
+        ],
+        "existing_pass": [],
+        "pii_persisted": false
+      },
+      "work_packet": {
+        "target": "TOOL007",
+        "root_cause_id": "42eb59c2ef579fc7b487",
+        "evidence": {
+          "source_chat": "TOOL007",
+          "source_ref": "CURRENT_CHAT#fixture",
+          "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+          "actual_input_ref": "fixture/input",
+          "wrong_output_ref": "fixture/wrong",
+          "expected": "fixture/expected",
+          "root_cause_id": "42eb59c2ef579fc7b487",
+          "recurrence": 2,
+          "severity": "MEDIUM",
+          "customer_impact": "OPERATIONAL",
+          "target": "TOOL007",
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "master_paths": [
+            "customer_pipeline/tool7_contact_judgment.py"
+          ],
+          "existing_pass": [],
+          "pii_persisted": false
+        },
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "branch": "main",
+        "master_paths": [
+          "customer_pipeline/tool7_contact_judgment.py"
+        ],
+        "state_path": "feedback_pipeline/state.json",
+        "test_command": "python customer_pipeline/tool7_contact_judgment.py",
+        "adapter": "CENTRAL_LANE_DIFF_ONLY",
+        "safe_checkpoint": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
+        "scope": "DIFF_ONLY",
+        "forbidden": [
+          "force push",
+          "history rewrite",
+          "unrelated rescan"
+        ],
+        "completion_gate": [
+          "TARGET_APPLIED",
+          "CENTRAL_APPLIED",
+          "TESTED",
+          "COMMITTED",
+          "PUSHED",
+          "REMOTE_VERIFIED",
+          "STATE_SYNCED"
+        ]
+      },
+      "FAILED_STAGE": null,
+      "USER_ACTION_REQUIRED": false
+    },
+    "FUTURE_CHAT": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "COMPLETE",
+      "status": "PASS",
+      "target": "TOOL999",
+      "repository": "owner/future",
+      "evidence_packet": {
+        "source_chat": "CHAT999",
+        "source_ref": "CURRENT_CHAT#fixture",
+        "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+        "actual_input_ref": "fixture/input",
+        "wrong_output_ref": "fixture/wrong",
+        "expected": "fixture/expected",
+        "root_cause_id": "f26eea8922221242f02a",
+        "recurrence": 2,
+        "severity": "MEDIUM",
+        "customer_impact": "OPERATIONAL",
+        "target": "TOOL999",
+        "repository": "owner/future",
+        "master_paths": [
+          "MASTER.md"
+        ],
+        "existing_pass": [],
+        "pii_persisted": false
+      },
+      "work_packet": {
+        "target": "TOOL999",
+        "root_cause_id": "f26eea8922221242f02a",
+        "evidence": {
+          "source_chat": "CHAT999",
+          "source_ref": "CURRENT_CHAT#fixture",
+          "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+          "actual_input_ref": "fixture/input",
+          "wrong_output_ref": "fixture/wrong",
+          "expected": "fixture/expected",
+          "root_cause_id": "f26eea8922221242f02a",
+          "recurrence": 2,
+          "severity": "MEDIUM",
+          "customer_impact": "OPERATIONAL",
+          "target": "TOOL999",
+          "repository": "owner/future",
+          "master_paths": [
+            "MASTER.md"
+          ],
+          "existing_pass": [],
+          "pii_persisted": false
+        },
+        "repository": "owner/future",
+        "branch": "main",
+        "master_paths": [
+          "MASTER.md"
+        ],
+        "state_path": "state.json",
+        "test_command": "run subset",
+        "adapter": "REPOSITORY_DIFF_ONLY",
+        "safe_checkpoint": "seed",
+        "scope": "DIFF_ONLY",
+        "forbidden": [
+          "force push",
+          "history rewrite",
+          "unrelated rescan"
+        ],
+        "completion_gate": [
+          "TARGET_APPLIED",
+          "CENTRAL_APPLIED",
+          "TESTED",
+          "COMMITTED",
+          "PUSHED",
+          "REMOTE_VERIFIED",
+          "STATE_SYNCED"
+        ]
+      },
+      "FAILED_STAGE": null,
+      "USER_ACTION_REQUIRED": false
+    }
+  },
+  "failure_cases": {
+    "unregistered": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "NORMALIZED",
+      "status": "HOLD",
+      "FAILED_STAGE": "TARGET_RESOLVED",
+      "FAIL_REASON": "'REGISTRY_INCOMPLETE:UNKNOWN'",
+      "LAST_VERIFIED_STAGE": "NORMALIZED",
+      "AUTO_RECOVERABLE": true,
+      "NEXT_AUTOMATIC_ACTION": "COMPLETE_REGISTRY_ENTRY_AND_RESUME",
+      "USER_ACTION_REQUIRED": false
+    },
+    "evidence_incomplete": {
+      "pipeline_id": "96bfe9090a097f6868d7",
+      "stage": "ROOT_CLASSIFIED",
+      "status": "HOLD",
+      "target": "TOOL041",
+      "repository": "obk369369-spec/41-wic-email-collection-master",
+      "evidence_packet": {
+        "source_chat": "TOOL041",
+        "source_ref": "CURRENT_CHAT#fixture",
+        "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+        "actual_input_ref": "fixture/input",
+        "wrong_output_ref": "",
+        "expected": "fixture/expected",
+        "root_cause_id": "5eba9f5137fa935d9cca",
+        "recurrence": 2,
+        "severity": "MEDIUM",
+        "customer_impact": "OPERATIONAL",
+        "target": "TOOL041",
+        "repository": "obk369369-spec/41-wic-email-collection-master",
+        "master_paths": [
+          "README.md"
+        ],
+        "existing_pass": [],
+        "pii_persisted": false
+      },
+      "work_packet": {
+        "target": "TOOL041",
+        "root_cause_id": "5eba9f5137fa935d9cca",
+        "evidence": {
+          "source_chat": "TOOL041",
+          "source_ref": "CURRENT_CHAT#fixture",
+          "actual_user_feedback": "실제 결과가 틀렸다. 수정해라.",
+          "actual_input_ref": "fixture/input",
+          "wrong_output_ref": "",
+          "expected": "fixture/expected",
+          "root_cause_id": "5eba9f5137fa935d9cca",
+          "recurrence": 2,
+          "severity": "MEDIUM",
+          "customer_impact": "OPERATIONAL",
+          "target": "TOOL041",
+          "repository": "obk369369-spec/41-wic-email-collection-master",
+          "master_paths": [
+            "README.md"
+          ],
+          "existing_pass": [],
+          "pii_persisted": false
+        },
+        "repository": "obk369369-spec/41-wic-email-collection-master",
+        "branch": "main",
+        "master_paths": [
+          "README.md"
+        ],
+        "state_path": "WIC_TARGET_APPLY_STATE.json",
+        "test_command": "target repository regression subset",
+        "adapter": "REPOSITORY_DIFF_ONLY",
+        "safe_checkpoint": "21acd065aeb3c364953c800e246ba83624308862",
+        "scope": "DIFF_ONLY",
+        "forbidden": [
+          "force push",
+          "history rewrite",
+          "unrelated rescan"
+        ],
+        "completion_gate": [
+          "TARGET_APPLIED",
+          "CENTRAL_APPLIED",
+          "TESTED",
+          "COMMITTED",
+          "PUSHED",
+          "REMOTE_VERIFIED",
+          "STATE_SYNCED"
+        ]
+      },
+      "FAILED_STAGE": "EVIDENCE_READY",
+      "FAIL_REASON": "input/wrong-output/expected evidence references are incomplete",
+      "LAST_VERIFIED_STAGE": "ROOT_CLASSIFIED",
+      "AUTO_RECOVERABLE": true,
+      "NEXT_AUTOMATIC_ACTION": "CAPTURE_LINKED_EVIDENCE_FROM_SOURCE_CHAT",
+      "USER_ACTION_REQUIRED": false
+    }
+  },
+  "current_active_targets": [
+    "CENTRAL",
+    "TOOL001",
+    "TOOL002",
+    "TOOL006",
+    "TOOL007",
+    "TOOL013",
+    "TOOL037",
+    "TOOL041",
+    "TOOL042"
+  ],
+  "registration_holds": {
+    "TOOL027": "repository obk369369-spec/27-technical-book-verifier at 4e8b3d47a7ec26524d37e0494f4c07acfc512223 has WIC_RULE_SOURCE.md but no evidenced executable test/checkpoint contract",
+    "TOOL043": "canonical repository/master/test/checkpoint not yet evidenced"
+  }
+}

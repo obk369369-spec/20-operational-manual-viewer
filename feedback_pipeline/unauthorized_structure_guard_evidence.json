@@ -114,6 +114,22 @@
       "target": "WIC_GLOBAL_OPERATING_RULES.md",
       "directive_source_ref": "canonical:test",
       "observer_report_required": false
+    },
+    "approved_normalized_current_chat": {
+      "decision": "ALLOW",
+      "reason": "normalized current-chat non-destructive directive provenance verified",
+      "action": "MODIFY_TOOL",
+      "target": "TOOL006",
+      "directive_source_ref": "CURRENT_CHAT#feedback-1",
+      "observer_report_required": false
+    },
+    "incomplete_normalized_current_chat": {
+      "decision": "DENY_HOLD",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "action": "MODIFY_TOOL",
+      "target": "TOOL006",
+      "directive_source_ref": "CURRENT_CHAT#feedback-2",
+      "observer_report_required": true
     }
   },
   "observer_reports": [
@@ -226,6 +242,17 @@
       "blocked_before_mutation": true,
       "observer_report_required": true,
       "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "MODIFY_TOOL",
+      "target": "TOOL006",
+      "reason": "directive text not found as an exact approved user-record entry",
+      "directive_source_ref": "CURRENT_CHAT#feedback-2",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
     }
   ],
   "observer_report_contract": {
@@ -243,6 +270,7 @@
     "rule": "Every DENY_HOLD must be surfaced to the observer; never silently swallow denied mutation evidence."
   },
   "canonical_exact_match": true,
+  "normalized_non_destructive_current_chat_gate": true,
   "substring_approval_forbidden": true,
   "unrequested_mutation_counts": {
     "UNREQUESTED_CHAT_CREATE": 0,

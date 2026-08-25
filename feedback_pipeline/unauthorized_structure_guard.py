@@ -57,6 +57,9 @@ class ChangeProposal:
     target: str
     directive_text: str
     directive_source_ref: str
+    root_cause_id: str = ""
+    target_resolved: bool = False
+    conflict_free: bool = False
 
 @dataclass(frozen=True)
 class GuardDecision:
@@ -153,14 +156,21 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
     if not proposal.directive_text.strip() or not proposal.directive_source_ref.strip():
         return deny("missing explicit user directive provenance", proposal)
     if (
-        proposal.action == "APPLY_FEEDBACK"
-        and proposal.target == "WIC_GLOBAL_OPERATING_RULES.md"
+        proposal.action in {"APPLY_FEEDBACK", "MODIFY_TOOL", "MODIFY_PROGRAM", "MODIFY_RULE", "MODIFY_WORKFLOW"}
         and any(proposal.directive_source_ref.startswith(prefix) for prefix in CURRENT_CHAT_PREFIXES)
         and _mentions_action(proposal.action, proposal.directive_text)
         and _explicit_approval(proposal.directive_text)
+        and (
+            (proposal.action == "APPLY_FEEDBACK" and proposal.target == "WIC_GLOBAL_OPERATING_RULES.md")
+            or (
+                proposal.root_cause_id.strip()
+                and proposal.target_resolved
+                and proposal.conflict_free
+            )
+        )
     ):
         return GuardDecision(
-            "ALLOW", "explicit current-chat feedback accepted at ingestion boundary",
+            "ALLOW", "normalized current-chat non-destructive directive provenance verified",
             proposal.action, proposal.target, proposal.directive_source_ref, False,
         )
     source = approved_source_text if approved_source_text is not None else load_approved_source_text()
@@ -202,17 +212,25 @@ def run_fixtures() -> str:
         "approved_tool": ChangeProposal("MODIFY_TOOL", "tool-6", "6번 도구 기능 수정을 해라.", "user:4"),
         "approved_program": ChangeProposal("MODIFY_PROGRAM", "program-13", "13번 프로그램 수정을 해라.", "user:5"),
         "approved_canonical_feedback": ChangeProposal("APPLY_FEEDBACK", "WIC_GLOBAL_OPERATING_RULES.md", "피드백은 중앙 규칙에 반영해야 한다.", "canonical:test"),
+        "approved_normalized_current_chat": ChangeProposal(
+            "MODIFY_TOOL", "TOOL006", "6번 도구 기능 수정해라.", "CURRENT_CHAT#feedback-1",
+            root_cause_id="T6-RC-TEST", target_resolved=True, conflict_free=True,
+        ),
+        "incomplete_normalized_current_chat": ChangeProposal(
+            "MODIFY_TOOL", "TOOL006", "6번 도구 기능 수정해라.", "CURRENT_CHAT#feedback-2",
+            root_cause_id="", target_resolved=True, conflict_free=True,
+        ),
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
     deny_names = (
         "missing_provenance", "unauthorized_chat", "unauthorized_rename",
         "unauthorized_schedule", "unauthorized_automation_enable", "unauthorized_work", "unauthorized_tool",
-        "unauthorized_program", "negative_rename", "negative_registry",
+        "unauthorized_program", "negative_rename", "negative_registry", "incomplete_normalized_current_chat",
     )
     for name in deny_names:
         assert result[name]["decision"] == "DENY_HOLD"
         assert result[name]["observer_report_required"] is True
-    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback"):
+    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback", "approved_normalized_current_chat"):
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
 
@@ -238,6 +256,7 @@ def run_fixtures() -> str:
             "rule": "Every DENY_HOLD must be surfaced to the observer; never silently swallow denied mutation evidence.",
         },
         "canonical_exact_match": True,
+        "normalized_non_destructive_current_chat_gate": True,
         "substring_approval_forbidden": True,
         "unrequested_mutation_counts": {
             "UNREQUESTED_CHAT_CREATE": 0,
