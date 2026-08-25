@@ -157,6 +157,9 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
         return fail(state,"EVIDENCE_READY","input/wrong-output/expected evidence references are incomplete",True,"CAPTURE_LINKED_EVIDENCE_FROM_SOURCE_CHAT")
     if git(workspace,"status","--porcelain").stdout.strip():
         return fail(state,"TARGET_APPLIED","target worktree is not clean",False,"PRESERVE_EXISTING_CHANGES_AND_USE_CLEAN_WORKTREE")
+    receipt_rel=Path(".wic")/"pipeline_receipts"/f"{state['pipeline_id']}.json"
+    receipt_path=workspace/receipt_rel
+    resume_existing=False
     local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
     remote_head=git(workspace,"ls-remote","origin",f"refs/heads/{row['branch']}").stdout.split("\t")[0]
     if local_head != remote_head:
@@ -165,17 +168,28 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
         remote_head=git(workspace,"rev-parse",f"origin/{row['branch']}").stdout.strip()
         ancestor=git(workspace,"merge-base","--is-ancestor",local_head,f"origin/{row['branch']}",check=False)
         if ancestor.returncode:
-            return fail(state,"TARGET_APPLIED",f"divergent local/remote {local_head}/{remote_head}",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
-        git(workspace,"merge","--ff-only",f"origin/{row['branch']}")
+            if not receipt_path.is_file():
+                return fail(state,"TARGET_APPLIED",f"divergent local/remote {local_head}/{remote_head}",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
+            prior=json.loads(receipt_path.read_text(encoding="utf-8")); pre_recovery_head=str(prior["pre_apply_commit"])
+            if git(workspace,"merge-base","--is-ancestor",pre_recovery_head,f"origin/{row['branch']}",check=False).returncode:
+                return fail(state,"TARGET_APPLIED","saved receipt base is not an ancestor of remote",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
+            merged=git(workspace,"merge","--no-edit",f"origin/{row['branch']}",check=False)
+            if merged.returncode:
+                git(workspace,"merge","--abort",check=False)
+                return fail(state,"TARGET_APPLIED","saved transport reconcile conflict",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
+            resume_existing=True
+        else:
+            git(workspace,"merge","--ff-only",f"origin/{row['branch']}")
         local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
-        if local_head != remote_head: raise RuntimeError("automatic fast-forward read-back mismatch")
+        if not resume_existing and local_head != remote_head: raise RuntimeError("automatic fast-forward read-back mismatch")
         state["AUTO_RECOVERY_RECEIPT"]={"action":"FETCH_AND_FAST_FORWARD_ONLY","from":pre_recovery_head,"to":local_head,"user_action_required":False}
-    receipt_rel=Path(".wic")/"pipeline_receipts"/f"{state['pipeline_id']}.json"
-    receipt_path=workspace/receipt_rel; receipt_path.parent.mkdir(parents=True,exist_ok=True)
-    applied={"schema_version":1,"pipeline_id":state["pipeline_id"],"target":target,"source_ref":event["source_ref"],"root_cause_id":evidence["root_cause_id"],"adapter":row["adapter"],"pre_apply_commit":local_head,"mutation_scope":"PIPELINE_EVIDENCE_ONLY","customer_data_mutated":False}
-    receipt_path.write_text(json.dumps(applied,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    if not resume_existing:
+        receipt_path.parent.mkdir(parents=True,exist_ok=True)
+        applied={"schema_version":1,"pipeline_id":state["pipeline_id"],"target":target,"source_ref":event["source_ref"],"root_cause_id":evidence["root_cause_id"],"adapter":row["adapter"],"pre_apply_commit":local_head,"mutation_scope":"PIPELINE_EVIDENCE_ONLY","customer_data_mutated":False}
+        receipt_path.write_text(json.dumps(applied,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     state["stage"]="TARGET_APPLIED"; test_receipt=execute_test(workspace,list(row["test_command"]),bundled_python); state["stage"]="TESTED"
-    git(workspace,"add","--",str(receipt_rel).replace("\\","/")); git(workspace,"commit","-m",f"wic: record actual pipeline transport for {target} [skip ci]")
+    if not resume_existing:
+        git(workspace,"add","--",str(receipt_rel).replace("\\","/")); git(workspace,"commit","-m",f"wic: record actual pipeline transport for {target} [skip ci]")
     commit_sha=git(workspace,"rev-parse","HEAD").stdout.strip(); state["stage"]="COMMITTED"
     pushed=git(workspace,"push","origin",f"HEAD:{row['branch']}",check=False)
     if pushed.returncode:
