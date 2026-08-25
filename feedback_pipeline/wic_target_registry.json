@@ -7,6 +7,20 @@
     "provisional_registration_adapter": "CENTRAL_LANE_DIFF_ONLY",
     "provisional_registration_target": "CENTRAL"
   },
+  "runtime_contract": {
+    "fail_closed_status": "HOLD_RUNTIME_NOT_VERIFIED",
+    "latest_remote_required": true,
+    "validator_required": true,
+    "output_gate_required": true,
+    "memory_only_generation_allowed": false,
+    "old_pipeline_allowed": false
+  },
+  "runtime_overrides": {
+    "TOOL006": {"required_assets":["TOOL006_TOC/tool006_engine.ps1","knowledge/tool006_asset_index.json","tests/tool006_chronic_error_fixtures.json"],"validator":["pwsh","-NoProfile","-File","tests/tool006_functional_e2e.ps1"],"output_gate":["pwsh","-NoProfile","-File","tests/tool006_smoke.ps1"]},
+    "TOOL041": {"required_assets":["MASTER/COMMON_MASTER.md","src/customer_integrity.py","tests/fixtures/t41_actual_pairs.json"],"validator":["WIC_BUNDLED_PYTHON","tests/test_customer_integrity.py"],"output_gate":["WIC_BUNDLED_PYTHON","tests/test_customer_integrity.py"]},
+    "TOOL042": {"required_assets":["docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md","scripts/customer_branch_engine.js","scripts/customer_guidance_output_gate.js","fixtures/customer_branch_actual_kmg.json"],"validator":["node","scripts/customer_branch_engine.test.js"],"output_gate":["node","scripts/customer_guidance_output_gate.js","--self-test"]},
+    "TOOL007": {"required_assets":["customer_pipeline/tool7_contact_judgment.py","WIC_GLOBAL_OPERATING_RULES.md"],"validator":["WIC_BUNDLED_PYTHON","customer_pipeline/tool7_contact_judgment.py"],"output_gate":["WIC_BUNDLED_PYTHON","customer_pipeline/tool7_contact_judgment.py"]}
+  },
   "targets": {
     "TOOL006": {"chat_ids":["TOOL006"],"repository":"obk369369-spec/06-toc-check","branch":"main","master_paths":["knowledge/tool006_asset_index.json"],"state_path":"WIC_TARGET_APPLY_STATE.json","evidence_path":"tests/tool006_chronic_error_fixtures.json","test_command":["pwsh","-NoProfile","-File","tests/tool006_functional_e2e.ps1"],"latest_safe_checkpoint":"64bf3acf17709b351059c34ce46992866b53ee79","latest_verified_commit":"64bf3acf17709b351059c34ce46992866b53ee79","adapter":"REPOSITORY_DIFF_ONLY","status":"ACTIVE"},
     "TOOL013": {"chat_ids":["TOOL013"],"repository":"obk369369-spec/13-excel-upload","branch":"main","master_paths":["WIC_TARGET_APPLY_STATE.json"],"state_path":"WIC_TARGET_APPLY_STATE.json","evidence_path":"external-evidence-archive","test_command":["WIC_BUILTIN_REQUIRED_FILES","WIC_TARGET_APPLY_STATE.json"],"latest_safe_checkpoint":"1d51ba4816cdda704ce9580309b670d075762d17","latest_verified_commit":"1d51ba4816cdda704ce9580309b670d075762d17","adapter":"REPOSITORY_DIFF_ONLY","status":"ACTIVE"},
