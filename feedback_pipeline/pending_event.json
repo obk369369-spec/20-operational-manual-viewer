@@ -1,9 +1,9 @@
 {
-  "observed_at": "2026-08-25T14:22:00+09:00",
+  "observed_at": "2026-08-25T14:32:00+09:00",
   "source_chat": "CHAT_42_CUSTOMER_GUIDANCE",
-  "source_ref": "user-feedback-2026-08-25-toc-output-gate-execution-failure",
+  "source_ref": "user-directive-2026-08-25-fix-n-report-gate-and-reoutput",
   "mutation_action": "APPLY_FEEDBACK",
-  "directive_source_ref": "CURRENT_CHAT#user-feedback-2026-08-25-toc-output-gate-execution-failure",
-  "directive_text": "중앙마스터에 이미 목차 번호·영문 원문·계층·끝까지 출력 규칙이 있는데도 실제 출력에서 추천2·3은 번호 범위축약/한글 혼입, 추천4는 번호·상위목차 누락이 재발했다. 이를 새 규칙 누락이 아니라 실제 출력게이트 적용 FAIL로 누적하고, 사용자가 다시 지적하기 전에 원인→expected→gate→actual output 경로를 수정·재검증하라. 추천1도 마지막 공개항목 대조 전에는 PASS 금지한다.",
-  "text": "42번 고객 안내 실제 출력게이트 적용 FAIL 누적: 목차 번호/영문/계층/전체범위 규칙이 중앙마스터에 존재하지만 actual output에서 범위축약, 한글 혼입, 번호·상위목차 누락이 재발. 추천1 HOLD, 추천2·3·4 FAIL. 신규 규칙 중복 추가가 아니라 expected/gate/actual 연결 실패 root cause로 관리하고 Work 공통엔진 개선 후보에도 유지한다."
+  "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-25-fix-n-report-gate-and-reoutput",
+  "directive_text": "고객 특성에 따라 추천자료 수는 3종, 4종 또는 그 이상 N종으로 달라질 수 있다. N종이면 N종 모두 서로 다른 거래 가능 발행사여야 하며 하나라도 중복되면 출력 금지한다. 기존 customer_guidance_output_gate.js의 정확히 3종 강제를 제거하고 expected.required_report_count 또는 expected.reports.length를 기준으로 N종을 검증하며, 실제 출력 블록 수도 같은 N종으로 대조한다. 발행사 중복을 별도 PUBLISHER_DUPLICATE FAIL로 차단하고 4종 PASS/4종 중복발행사 FAIL 회귀테스트를 추가한다. 중앙마스터의 과거 정확히 3종 조항은 최신 N종 규칙과 충돌하므로 최신 사용자 지시로 대체해야 하며, pipeline 등록과 실제 중앙마스터 본문 반영 상태를 분리해 관리한다.",
+  "text": "N종 추천자료 게이트 실제 코드 수정 완료: required_report_count 기반 가변 개수 검증, N개 발행사 전부 고유 강제, 4종 회귀검사 추가. gate commit 9a538a5df8c01483ab65f46656e52d28301c61e5. 중앙마스터의 구형 정확히 3종 문구는 최신 N종 규칙으로 동기화 필요."
 }
