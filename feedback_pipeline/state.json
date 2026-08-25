@@ -131,11 +131,16 @@
         "TOOL007": "PASS_INTERNAL_E2E",
         "FUTURE_CHAT": "PASS_INTERNAL_E2E"
       },
-      "registration_holds": {
-        "TOOL027": "repository obk369369-spec/27-technical-book-verifier at 4e8b3d47a7ec26524d37e0494f4c07acfc512223 has WIC_RULE_SOURCE.md but no evidenced executable test/checkpoint contract",
-        "TOOL043": "canonical repository/master/test/checkpoint not evidenced"
+      "registration_holds": {},
+      "actual_transport": {
+        "TOOL006": "b37cb4616318f023286fb06147fdef6df1de57cc",
+        "TOOL041": "a2b0a19c4f6fcefffe99cea7ead63e695bcc750f",
+        "TOOL042": "HOLD_REMOTE_CONTINUOUS_UPDATE",
+        "TOOL007": "a75f0fad6e30f7857e42b0ee72ca9f2136909fe1",
+        "TOOL999": "1db1358794e7ec7f5afd7f74c6f054279e9a49d6"
       },
-      "status": "PARTIAL_PASS_REGISTRY_HOLDS"
+      "mock_receipt_dependency": false,
+      "status": "ACTUAL_EXECUTOR_ACTIVE_TARGET42_REMOTE_HOLD"
     },
     "feedback_checkpoints": {
       "37a4a2166bb5e2a08a8c": {

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "executor": "feedback_pipeline/global_pipeline.py",
+  "receipt_source": "ACTUAL_GIT_EXECUTION",
+  "mock_receipts_used": false,
+  "results": {
+    "TOOL006": {"status":"REMOTE_VERIFIED","commit":"b37cb4616318f023286fb06147fdef6df1de57cc","blob":"472c86bec6e7684694c54c8991ff552260631d5a","test":"9/9 PASS"},
+    "TOOL041": {"status":"REMOTE_VERIFIED","commit":"a2b0a19c4f6fcefffe99cea7ead63e695bcc750f","blob":"dff3fce4f3b4f26a0b27aa6568bf72d79d26141c","test":"3 required canonical assets hash-verified"},
+    "TOOL042": {"status":"HOLD_REMOTE_CONTINUOUS_UPDATE","local_preserved_commit":"08cf36b5855cb7398e5010d376753020276a2490","local_receipt_blob":"3abb8dc31b30d9fed2bbe900e33832448483782d","test":"16/16 self-test PASS","observed_remote":"9a538a5df8c01483ab65f46656e52d28301c61e5","push_verified":false,"retry_policy":"no force; no repeated fetch/push loop"},
+    "TOOL007": {"status":"REMOTE_VERIFIED","commit":"a75f0fad6e30f7857e42b0ee72ca9f2136909fe1","blob":"37fbf2d5814f5e571c5e300e069e5ded3c7e410b","test":"tool7 deterministic runner PASS"},
+    "TOOL999": {"status":"REMOTE_VERIFIED","commit":"1db1358794e7ec7f5afd7f74c6f054279e9a49d6","blob":"c390f608ef1a0c0432146a743ef92e06116a9aa3","test":"global pipeline inheritance PASS","registration_mode":"CENTRAL_LANE_PROVISIONAL"}
+  },
+  "tool027": {"status":"ACTIVE","repository":"obk369369-spec/27-technical-book-verifier","checkpoint":"4e8b3d47a7ec26524d37e0494f4c07acfc512223","test_contract":"WIC_BUILTIN_REQUIRED_FILES:WIC_RULE_SOURCE.md"},
+  "tool043": {"status":"ACTIVE","adapter":"CENTRAL_LANE_DIFF_ONLY","assets":["tool043/index.html","tool043/WIC_RULE_SOURCE.md","tool043/TEST_EVIDENCE.md"]},
+  "state_sync": "COMMIT_CONTAINS_THIS_RECORD"
+}
