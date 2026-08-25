@@ -309,7 +309,10 @@
           "customer_pipeline/tool7_contact_judgment.py"
         ],
         "state_path": "feedback_pipeline/state.json",
-        "test_command": "python customer_pipeline/tool7_contact_judgment.py",
+        "test_command": [
+          "WIC_BUNDLED_PYTHON",
+          "customer_pipeline/tool7_contact_judgment.py"
+        ],
         "adapter": "CENTRAL_LANE_DIFF_ONLY",
         "safe_checkpoint": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
         "scope": "DIFF_ONLY",
