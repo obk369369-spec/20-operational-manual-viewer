@@ -49,6 +49,17 @@ def resolve(registry: Mapping[str, Any], chat_id: str, tool_id: str = "") -> tup
     raise KeyError(f"REGISTRY_INCOMPLETE:{wanted}")
 
 
+def resolve_event(registry: Mapping[str, Any], event: Mapping[str, Any]) -> tuple[str, Mapping[str, Any]]:
+    try:
+        return resolve(registry,str(event["source_chat"]),str(event.get("tool_id","")))
+    except KeyError:
+        if event.get("registration_mode") != "CENTRAL_LANE_PROVISIONAL": raise
+        provisional_id=str(event.get("tool_id") or event["source_chat"])
+        central=dict(registry["targets"][registry["defaults"]["provisional_registration_target"]])
+        central.update({"chat_ids":[str(event["source_chat"])],"adapter":registry["defaults"]["provisional_registration_adapter"]})
+        return provisional_id,central
+
+
 def fail(state: dict[str, Any], stage: str, reason: str, recoverable: bool, action: str) -> dict[str, Any]:
     state.update({
         "status":"HOLD" if recoverable else "FAIL", "FAILED_STAGE":stage,
@@ -89,7 +100,7 @@ def run_event(event: Mapping[str, Any], registry: Mapping[str, Any], receipts: M
         return fail(state,"CAPTURED","fixture/test events cannot increment actual recurrence",False,"ISOLATE_NON_ACTUAL_EVENT")
     state["stage"] = "NORMALIZED"
     try:
-        target,row = resolve(registry,str(event["source_chat"]),str(event.get("tool_id","")))
+        target,row = resolve_event(registry,event)
     except KeyError as exc:
         return fail(state,"TARGET_RESOLVED",str(exc),True,"COMPLETE_REGISTRY_ENTRY_AND_RESUME")
     state.update({"stage":"TARGET_RESOLVED","target":target,"repository":row["repository"]})
@@ -139,7 +150,7 @@ def execute_test(cwd: Path, spec: list[str], bundled_python: str = "") -> dict[s
 def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, Any], workspace: Path, *, bundled_python: str = "") -> dict[str, Any]:
     """Create evidence DIFF, test, commit, push and remote read-back from actual Git results."""
     validate_registry(registry)
-    target,row = resolve(registry,str(event["source_chat"]),str(event.get("tool_id","")))
+    target,row = resolve_event(registry,event)
     state={"pipeline_id":stable_id(str(event["source_ref"]),str(event["feedback"])),"target":target,"repository":row["repository"],"stage":"TARGET_RESOLVED","status":"RUNNING"}
     evidence,work=build_packets(event,target,row); state.update({"evidence_packet":evidence,"work_packet":work})
     if not (evidence.get("actual_input_ref") and evidence.get("wrong_output_ref") and evidence.get("expected")):
@@ -175,9 +186,7 @@ def self_test() -> dict[str, Any]:
     for target in ("TOOL006","TOOL041","TOOL042","TOOL007"):
         cases[target]=run_event({**base,"source_chat":target,"tool_id":target},registry,receipts,fixture_mode=True)
         assert cases[target]["status"]=="PASS"
-    future=json.loads(json.dumps(registry)); future["targets"]["TOOL999"]={"chat_ids":["CHAT999"],"repository":"owner/future","branch":"main","master_paths":["MASTER.md"],"state_path":"state.json","evidence_path":"evidence","test_command":"run subset","latest_safe_checkpoint":"seed","latest_verified_commit":"seed","adapter":"REPOSITORY_DIFF_ONLY","status":"ACTIVE"}
-    validate_registry(future)
-    cases["FUTURE_CHAT"]=run_event({**base,"source_chat":"CHAT999"},future,receipts,fixture_mode=True)
+    cases["FUTURE_CHAT"]=run_event({**base,"source_chat":"CHAT999","tool_id":"TOOL999","registration_mode":"CENTRAL_LANE_PROVISIONAL"},registry,receipts,fixture_mode=True)
     assert cases["FUTURE_CHAT"]["status"]=="PASS" and cases["FUTURE_CHAT"]["target"]=="TOOL999"
     missing=run_event({**base,"source_chat":"UNKNOWN"},registry,receipts,fixture_mode=True)
     assert missing["FAILED_STAGE"]=="TARGET_RESOLVED" and missing["USER_ACTION_REQUIRED"] is False

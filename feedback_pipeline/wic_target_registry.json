@@ -3,7 +3,9 @@
   "defaults": {
     "branch": "main",
     "pipeline": "feedback_pipeline/global_pipeline.py",
-    "new_registration_requires_all_fields": true
+    "new_registration_requires_all_fields": true,
+    "provisional_registration_adapter": "CENTRAL_LANE_DIFF_ONLY",
+    "provisional_registration_target": "CENTRAL"
   },
   "targets": {
     "TOOL006": {"chat_ids":["TOOL006"],"repository":"obk369369-spec/06-toc-check","branch":"main","master_paths":["knowledge/tool006_asset_index.json"],"state_path":"WIC_TARGET_APPLY_STATE.json","evidence_path":"tests/tool006_chronic_error_fixtures.json","test_command":["pwsh","-NoProfile","-File","tests/tool006_functional_e2e.ps1"],"latest_safe_checkpoint":"64bf3acf17709b351059c34ce46992866b53ee79","latest_verified_commit":"64bf3acf17709b351059c34ce46992866b53ee79","adapter":"REPOSITORY_DIFF_ONLY","status":"ACTIVE"},

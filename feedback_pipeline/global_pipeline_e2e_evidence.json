@@ -336,7 +336,7 @@
       "stage": "COMPLETE",
       "status": "PASS",
       "target": "TOOL999",
-      "repository": "owner/future",
+      "repository": "obk369369-spec/20-operational-manual-viewer",
       "evidence_packet": {
         "source_chat": "CHAT999",
         "source_ref": "CURRENT_CHAT#fixture",
@@ -349,9 +349,9 @@
         "severity": "MEDIUM",
         "customer_impact": "OPERATIONAL",
         "target": "TOOL999",
-        "repository": "owner/future",
+        "repository": "obk369369-spec/20-operational-manual-viewer",
         "master_paths": [
-          "MASTER.md"
+          "WIC_GLOBAL_OPERATING_RULES.md"
         ],
         "existing_pass": [],
         "pii_persisted": false
@@ -371,22 +371,26 @@
           "severity": "MEDIUM",
           "customer_impact": "OPERATIONAL",
           "target": "TOOL999",
-          "repository": "owner/future",
+          "repository": "obk369369-spec/20-operational-manual-viewer",
           "master_paths": [
-            "MASTER.md"
+            "WIC_GLOBAL_OPERATING_RULES.md"
           ],
           "existing_pass": [],
           "pii_persisted": false
         },
-        "repository": "owner/future",
+        "repository": "obk369369-spec/20-operational-manual-viewer",
         "branch": "main",
         "master_paths": [
-          "MASTER.md"
+          "WIC_GLOBAL_OPERATING_RULES.md"
         ],
-        "state_path": "state.json",
-        "test_command": "run subset",
-        "adapter": "REPOSITORY_DIFF_ONLY",
-        "safe_checkpoint": "seed",
+        "state_path": "feedback_pipeline/state.json",
+        "test_command": [
+          "WIC_BUNDLED_PYTHON",
+          "feedback_pipeline/global_pipeline.py",
+          "--self-test"
+        ],
+        "adapter": "CENTRAL_LANE_DIFF_ONLY",
+        "safe_checkpoint": "6c478decf318a145fba23fdc741c8d6c87082624",
         "scope": "DIFF_ONLY",
         "forbidden": [
           "force push",
