@@ -1,0 +1,21 @@
+{
+  "schema_version":1,
+  "gateway":"feedback_pipeline/runtime_gateway.py",
+  "contract":{"latest_master_forced":true,"validator_forced":true,"output_gate_forced":true,"old_pipeline_blocked":true,"memory_only_generation_blocked":true,"fail_closed":"HOLD_RUNTIME_NOT_VERIFIED"},
+  "actual_runtime_results": {
+    "TOOL001":{"revision":"5286e5f3c3d1220ad383e68929b5301fca2fdc36","status":"PASS"},
+    "TOOL002":{"revision":"9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9","status":"PASS"},
+    "TOOL006":{"revision":"b37cb4616318f023286fb06147fdef6df1de57cc","status":"PASS","validator":"9/9","output_gate":"4/4"},
+    "TOOL007":{"revision":"a5079f5f50d044907d937b09d7e8f81c59194c1b","status":"PASS"},
+    "TOOL013":{"revision":"1d51ba4816cdda704ce9580309b670d075762d17","status":"PASS"},
+    "TOOL027":{"revision":"4e8b3d47a7ec26524d37e0494f4c07acfc512223","status":"PASS"},
+    "TOOL037":{"revision":"a5079f5f50d044907d937b09d7e8f81c59194c1b","status":"PASS"},
+    "TOOL041":{"revision":"c2124058536eaf6966eef4290493bf8792cce3e0","status":"PASS","validator":"actual 3/3","output_gate":"actual 3/3"},
+    "TOOL042":{"revision":"a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84","status":"PASS","validator":"actual 2/2 + protective 3/3","output_gate":"N-count/publisher duplicate/TOC full copy 8/8"},
+    "TOOL043":{"revision":"a5079f5f50d044907d937b09d7e8f81c59194c1b","status":"PASS"},
+    "CENTRAL":{"revision":"a5079f5f50d044907d937b09d7e8f81c59194c1b","status":"PASS"},
+    "TOOL999_PROVISIONAL":{"revision":"a5079f5f50d044907d937b09d7e8f81c59194c1b","status":"PASS","registration_code_change_required":false}
+  },
+  "feedback_boundary":{"event_kind":"ACTUAL_USER_FEEDBACK","capture":"IMMEDIATE","stage":"DIRECT_FIX_READY","stage_history":["CAPTURED","NORMALIZED","TARGET_RESOLVED","EXISTING_ROOT_SEARCH","DEDUP_RECURRENCE_UPDATE","EVIDENCE_LINK","ROOT_CLASSIFIED","DIRECT_FIX_READY"],"deferred":false,"user_manual_routing":false,"next":"EXECUTE_GLOBAL_PIPELINE"},
+  "external_platform_limit":"ChatGPT must deliver the event to the WIC ingestion boundary; repository code cannot intercept arbitrary platform conversations before that boundary."
+}

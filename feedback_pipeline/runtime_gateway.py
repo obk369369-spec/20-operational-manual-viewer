@@ -64,10 +64,11 @@ def runtime_verify(target:str,workspace:Path,registry:Mapping[str,Any],bundled_p
 
 def capture_feedback(source_chat:str,wrong_output_ref:str,user_correction:str)->dict[str,Any]:
     event_id=hashlib.sha256(f'{source_chat}\0{wrong_output_ref}\0{user_correction}'.encode()).hexdigest()[:20]
-    return {'event_kind':'ACTUAL_USER_FEEDBACK','feedback_id':event_id,'source_chat':source_chat,'wrong_output_ref':wrong_output_ref,'user_correction':user_correction,'stage':'CAPTURED','next_automatic_action':'NORMALIZE_RESOLVE_DEDUP_EVIDENCE_EXECUTE','deferred':False,'user_manual_routing':False}
+    stages=['CAPTURED','NORMALIZED','TARGET_RESOLVED','EXISTING_ROOT_SEARCH','DEDUP_RECURRENCE_UPDATE','EVIDENCE_LINK','ROOT_CLASSIFIED','DIRECT_FIX_READY']
+    return {'event_kind':'ACTUAL_USER_FEEDBACK','feedback_id':event_id,'source_chat':source_chat,'wrong_output_ref':wrong_output_ref,'user_correction':user_correction,'stage':'DIRECT_FIX_READY','stage_history':stages,'next_automatic_action':'EXECUTE_GLOBAL_PIPELINE','deferred':False,'user_manual_routing':False}
 
 def self_test()->None:
-    e=capture_feedback('TOOL041','wrong:1','다른 고객 정보가 섞였다'); assert e['stage']=='CAPTURED' and not e['deferred'] and not e['user_manual_routing']
+    e=capture_feedback('TOOL041','wrong:1','다른 고객 정보가 섞였다'); assert e['stage']=='DIRECT_FIX_READY' and e['stage_history'][0]=='CAPTURED' and not e['deferred'] and not e['user_manual_routing']
     r=json.loads(REGISTRY.read_text(encoding='utf-8')); assert r['runtime_contract']['old_pipeline_allowed'] is False and r['runtime_contract']['memory_only_generation_allowed'] is False
     print('PASS: runtime fail-closed + immediate actual feedback capture contract')
 

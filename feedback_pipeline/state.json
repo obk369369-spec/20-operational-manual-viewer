@@ -150,6 +150,23 @@
       },
       "status": "COMPLETE"
     },
+    "runtime_enforcement": {
+      "gateway": "feedback_pipeline/runtime_gateway.py",
+      "status": "PASS",
+      "latest_master_forced": true,
+      "validator_forced": true,
+      "output_gate_forced": true,
+      "old_pipeline_blocked": true,
+      "memory_only_generation_blocked": true,
+      "fail_closed_status": "HOLD_RUNTIME_NOT_VERIFIED",
+      "immediate_feedback_capture": true,
+      "immediate_work_routing": true,
+      "deferred_feedback_allowed": false,
+      "user_manual_routing": 0,
+      "active_targets_verified": ["TOOL001","TOOL002","TOOL006","TOOL007","TOOL013","TOOL027","TOOL037","TOOL041","TOOL042","TOOL043","CENTRAL"],
+      "future_provisional_verified": "TOOL999",
+      "platform_ingress_boundary": "EXTERNAL_PLATFORM_LIMIT"
+    },
     "feedback_checkpoints": {
       "37a4a2166bb5e2a08a8c": {
         "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
