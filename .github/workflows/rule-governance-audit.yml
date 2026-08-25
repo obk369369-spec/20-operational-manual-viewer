@@ -82,9 +82,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python feedback_pipeline/cross_chat_feedback_ingest.py
-          python feedback_pipeline/canonical_writer.py
-          python feedback_pipeline/target_dispatcher.py
+          python feedback_pipeline/global_pipeline.py --self-test
           python feedback_pipeline/restart_rollback_fixture.py
           python feedback_pipeline/cross_target_restart_e2e.py fail
           python feedback_pipeline/cross_target_restart_e2e.py restart

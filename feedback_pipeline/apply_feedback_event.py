@@ -320,5 +320,4 @@ def main() -> int:
     return 0
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+# Library-only compatibility module. Operational execution is global_pipeline.py.

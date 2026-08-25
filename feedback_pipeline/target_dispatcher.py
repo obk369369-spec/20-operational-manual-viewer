@@ -166,5 +166,4 @@ def main() -> None:
     print("PASS: common material mutation contract + dispatch plan match current manifest, adapter registry, and revision cache")
 
 
-if __name__ == "__main__":
-    main()
+# Library-only dispatch planner. Operational execution is global_pipeline.py.

@@ -20,6 +20,7 @@ APPROVED_SOURCE_PATHS = (
 
 PROTECTED_ACTIONS = {
     "CREATE_CONVERSATION": ("새 대화창", "대화창 생성", "new chat", "create conversation"),
+    "BRANCH_CONVERSATION": ("대화창 분기", "branch chat", "branch conversation"),
     "RENAME_CONVERSATION": ("이름 변경", "대화창 이름", "rename"),
     "AUTO_TRANSFER_CONVERSATION": ("자동 이전", "다음 대화창", "auto transfer"),
     "CREATE_MANAGEMENT_CHAT": ("관리 대화창", "보고 대화창", "별도 관리창", "별도 보고창"),
@@ -60,6 +61,13 @@ class ChangeProposal:
     root_cause_id: str = ""
     target_resolved: bool = False
     conflict_free: bool = False
+    origin_chat_name: str = ""
+    origin_tool_id: str = ""
+    origin_work_name: str = ""
+    creation_purpose: str = ""
+    created_by: str = ""
+    creation_time: str = ""
+    user_explicit_approval: bool = False
 
 @dataclass(frozen=True)
 class GuardDecision:
@@ -155,6 +163,10 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
         return deny("unknown or unregistered change action", proposal)
     if not proposal.directive_text.strip() or not proposal.directive_source_ref.strip():
         return deny("missing explicit user directive provenance", proposal)
+    if proposal.action in {"CREATE_CONVERSATION", "BRANCH_CONVERSATION", "CREATE_MANAGEMENT_CHAT"}:
+        provenance = (proposal.origin_chat_name, proposal.origin_tool_id, proposal.origin_work_name, proposal.creation_purpose, proposal.created_by, proposal.creation_time)
+        if not proposal.user_explicit_approval or not all(x.strip() for x in provenance):
+            return deny("chat creation/branch requires explicit approval and complete provenance", proposal)
     if (
         proposal.action in {"APPLY_FEEDBACK", "MODIFY_TOOL", "MODIFY_PROGRAM", "MODIFY_RULE", "MODIFY_WORKFLOW"}
         and any(proposal.directive_source_ref.startswith(prefix) for prefix in CURRENT_CHAT_PREFIXES)
@@ -183,6 +195,12 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
     return GuardDecision("ALLOW", "explicit user directive provenance verified", proposal.action, proposal.target, proposal.directive_source_ref, False)
 
 
+def chat_origin_report(proposal: ChangeProposal) -> dict:
+    if not all((proposal.origin_chat_name, proposal.origin_tool_id, proposal.creation_purpose, proposal.created_by)):
+        raise ValueError("chat provenance unavailable")
+    return {"ORIGINAL_CHAT_NAME":proposal.origin_chat_name,"ORIGIN_CHAT_NAME":proposal.origin_chat_name,"ORIGIN_TOOL_ID":proposal.origin_tool_id,"ORIGIN_WORK_NAME":proposal.origin_work_name,"CREATION_PURPOSE":proposal.creation_purpose,"CREATED_BY":proposal.created_by,"CREATION_TIME":proposal.creation_time,"USER_EXPLICIT_APPROVAL":proposal.user_explicit_approval}
+
+
 def run_fixtures() -> str:
     approved = """
 사용자 지시 기록:
@@ -208,7 +226,9 @@ def run_fixtures() -> str:
         "unauthorized_program": ChangeProposal("MODIFY_PROGRAM", "program-x", "프로그램 수정을 해라.", "user:997"),
         "negative_rename": ChangeProposal("RENAME_CONVERSATION", "chat-x", "기존 대화창 이름 변경은 하지 마.", "user:2"),
         "negative_registry": ChangeProposal("CREATE_REGISTRY", "registry-x", "새 registry를 임의로 만들지 마.", "user:3"),
-        "approved_chat": ChangeProposal("CREATE_CONVERSATION", "chat-test", "테스트용 새 대화창을 만들어.", "user:1"),
+        "approved_chat": ChangeProposal("CREATE_CONVERSATION", "chat-test", "테스트용 새 대화창을 만들어.", "user:1", origin_chat_name="fixture-origin", origin_tool_id="TOOL_FIXTURE", origin_work_name="fixture-work", creation_purpose="guard fixture", created_by="fixture", creation_time="2026-08-25T00:00:00+09:00", user_explicit_approval=True),
+        "approved_chat_missing_provenance": ChangeProposal("CREATE_CONVERSATION", "chat-test-2", "테스트용 새 대화창을 만들어.", "user:1", user_explicit_approval=True),
+        "unauthorized_branch": ChangeProposal("BRANCH_CONVERSATION", "chat-x", "대화창 분기해.", "user:990"),
         "approved_tool": ChangeProposal("MODIFY_TOOL", "tool-6", "6번 도구 기능 수정을 해라.", "user:4"),
         "approved_program": ChangeProposal("MODIFY_PROGRAM", "program-13", "13번 프로그램 수정을 해라.", "user:5"),
         "approved_canonical_feedback": ChangeProposal("APPLY_FEEDBACK", "WIC_GLOBAL_OPERATING_RULES.md", "피드백은 중앙 규칙에 반영해야 한다.", "canonical:test"),
@@ -226,6 +246,7 @@ def run_fixtures() -> str:
         "missing_provenance", "unauthorized_chat", "unauthorized_rename",
         "unauthorized_schedule", "unauthorized_automation_enable", "unauthorized_work", "unauthorized_tool",
         "unauthorized_program", "negative_rename", "negative_registry", "incomplete_normalized_current_chat",
+        "approved_chat_missing_provenance", "unauthorized_branch",
     )
     for name in deny_names:
         assert result[name]["decision"] == "DENY_HOLD"
@@ -233,6 +254,8 @@ def run_fixtures() -> str:
     for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback", "approved_normalized_current_chat"):
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
+    origin_report = chat_origin_report(cases["approved_chat"])
+    assert origin_report["ORIGIN_CHAT_NAME"] == "fixture-origin" and origin_report["USER_EXPLICIT_APPROVAL"] is True
 
     observer_reports = [build_observer_report(evaluate(cases[name], approved)) for name in deny_names]
     assert len(observer_reports) == len(deny_names)
@@ -263,7 +286,10 @@ def run_fixtures() -> str:
             "UNREQUESTED_CHAT_RENAME": 0,
             "UNREQUESTED_SCHEDULE_CREATE": 0,
             "UNREQUESTED_AUTOMATION_ENABLE": 0,
+            "UNREQUESTED_CHAT_BRANCH": 0,
         },
+        "chat_origin_report": origin_report,
+        "chat_without_provenance": "DENY",
         "result": "PASS_INTERNAL_FIXTURE",
         "external_independent_verification": False,
     }

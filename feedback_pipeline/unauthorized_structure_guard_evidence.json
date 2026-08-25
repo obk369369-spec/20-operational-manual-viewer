@@ -13,7 +13,7 @@
     },
     "unauthorized_chat": {
       "decision": "DENY_HOLD",
-      "reason": "directive text not found as an exact approved user-record entry",
+      "reason": "chat creation/branch requires explicit approval and complete provenance",
       "action": "CREATE_CONVERSATION",
       "target": "chat-x",
       "directive_source_ref": "user:999",
@@ -91,6 +91,22 @@
       "directive_source_ref": "user:1",
       "observer_report_required": false
     },
+    "approved_chat_missing_provenance": {
+      "decision": "DENY_HOLD",
+      "reason": "chat creation/branch requires explicit approval and complete provenance",
+      "action": "CREATE_CONVERSATION",
+      "target": "chat-test-2",
+      "directive_source_ref": "user:1",
+      "observer_report_required": true
+    },
+    "unauthorized_branch": {
+      "decision": "DENY_HOLD",
+      "reason": "chat creation/branch requires explicit approval and complete provenance",
+      "action": "BRANCH_CONVERSATION",
+      "target": "chat-x",
+      "directive_source_ref": "user:990",
+      "observer_report_required": true
+    },
     "approved_tool": {
       "decision": "ALLOW",
       "reason": "explicit user directive provenance verified",
@@ -148,7 +164,7 @@
       "report_type": "DENY_OBSERVER_REPORT",
       "action": "CREATE_CONVERSATION",
       "target": "chat-x",
-      "reason": "directive text not found as an exact approved user-record entry",
+      "reason": "chat creation/branch requires explicit approval and complete provenance",
       "directive_source_ref": "user:999",
       "structural_error_unauthorized": true,
       "blocked_before_mutation": true,
@@ -253,6 +269,28 @@
       "blocked_before_mutation": true,
       "observer_report_required": true,
       "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "CREATE_CONVERSATION",
+      "target": "chat-test-2",
+      "reason": "chat creation/branch requires explicit approval and complete provenance",
+      "directive_source_ref": "user:1",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
+    },
+    {
+      "report_type": "DENY_OBSERVER_REPORT",
+      "action": "BRANCH_CONVERSATION",
+      "target": "chat-x",
+      "reason": "chat creation/branch requires explicit approval and complete provenance",
+      "directive_source_ref": "user:990",
+      "structural_error_unauthorized": true,
+      "blocked_before_mutation": true,
+      "observer_report_required": true,
+      "normal_unaffected_work_may_continue": true
     }
   ],
   "observer_report_contract": {
@@ -276,8 +314,20 @@
     "UNREQUESTED_CHAT_CREATE": 0,
     "UNREQUESTED_CHAT_RENAME": 0,
     "UNREQUESTED_SCHEDULE_CREATE": 0,
-    "UNREQUESTED_AUTOMATION_ENABLE": 0
+    "UNREQUESTED_AUTOMATION_ENABLE": 0,
+    "UNREQUESTED_CHAT_BRANCH": 0
   },
+  "chat_origin_report": {
+    "ORIGINAL_CHAT_NAME": "fixture-origin",
+    "ORIGIN_CHAT_NAME": "fixture-origin",
+    "ORIGIN_TOOL_ID": "TOOL_FIXTURE",
+    "ORIGIN_WORK_NAME": "fixture-work",
+    "CREATION_PURPOSE": "guard fixture",
+    "CREATED_BY": "fixture",
+    "CREATION_TIME": "2026-08-25T00:00:00+09:00",
+    "USER_EXPLICIT_APPROVAL": true
+  },
+  "chat_without_provenance": "DENY",
   "result": "PASS_INTERNAL_FIXTURE",
   "external_independent_verification": false
 }

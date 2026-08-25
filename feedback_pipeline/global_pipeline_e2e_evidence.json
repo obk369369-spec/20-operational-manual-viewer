@@ -417,6 +417,14 @@
       "USER_ACTION_REQUIRED": false
     }
   },
+  "canonical_execution_audit": {
+    "ACTIVE_EXECUTABLE_PIPELINE_COUNT": 1,
+    "CANONICAL_PIPELINE": "feedback_pipeline/global_pipeline.py",
+    "LEGACY_EXECUTABLE_ENTRYPOINTS": [],
+    "LEGACY_WORKFLOW_ROUTES": [],
+    "CANONICAL_PIPELINE_ONLY": true
+  },
+  "RECEIPT_ONLY_FALSE_COMPLETE": "BLOCKED",
   "failure_cases": {
     "unregistered": {
       "pipeline_id": "96bfe9090a097f6868d7",

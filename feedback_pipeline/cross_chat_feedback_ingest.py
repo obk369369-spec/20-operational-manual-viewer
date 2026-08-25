@@ -454,5 +454,4 @@ def run_fixtures() -> str:
     return "PASS: routing + conflict/dedup + scope-isolation + revision/cache + checkpoint + module-contract fixtures"
 
 
-if __name__ == "__main__":
-    print(run_fixtures())
+# Library-only routing/dedup helpers. Operational execution is global_pipeline.py.

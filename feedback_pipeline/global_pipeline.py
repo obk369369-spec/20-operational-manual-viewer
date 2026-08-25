@@ -147,9 +147,48 @@ def execute_test(cwd: Path, spec: list[str], bundled_python: str = "") -> dict[s
     return {"adapter":"COMMAND","command":spec,"status":"PASS","stdout":result.stdout[-4000:]}
 
 
+def verify_material_change(event: Mapping[str, Any], workspace: Path, head: str, registry:Mapping[str,Any]|None=None, row:Mapping[str,Any]|None=None, bundled_python:str="") -> dict[str, Any]:
+    """Block receipt-only completion; verify a real fix commit or a hashed no-diff decision."""
+    decision=str(event.get("material_decision", ""))
+    if decision in {"TARGET_DIFF_APPLIED", "CENTRAL_DIFF_APPLIED"}:
+        if str(event.get("fix_commit", "")) != head:
+            raise RuntimeError("fix_commit must equal current verified HEAD")
+        changed=git(workspace,"diff-tree","--no-commit-id","--name-only","-r",head).stdout.splitlines()
+        material=[p for p in changed if p and not p.startswith(".wic/pipeline_receipts/") and not p.startswith("feedback_pipeline/evidence/")]
+        if not material: raise RuntimeError("RECEIPT_ONLY_FALSE_COMPLETE_BLOCKED: no material target/central diff")
+        return {"decision":decision,"fix_commit":head,"material_files":material}
+    if decision == "NO_TARGET_DIFF_REQUIRED":
+        proof=event.get("no_diff_proof")
+        if not isinstance(proof,dict) or proof.get("master_revision") != head or registry is None or row is None:
+            raise RuntimeError("verified NO_TARGET_DIFF_REQUIRED proof is incomplete")
+        required=list(dict.fromkeys((registry.get("runtime_overrides",{}).get(str(event.get("tool_id") or event.get("source_chat")),{}).get("required_assets") or [*row["master_paths"],row["state_path"]])))
+        hashes={name:hashlib.sha256((workspace/name).read_bytes()).hexdigest() for name in required if (workspace/name).is_file() and (workspace/name).stat().st_size}
+        if len(hashes)!=len(required): raise RuntimeError("NO_TARGET_DIFF_REQUIRED required asset missing")
+        override=registry.get("runtime_overrides",{}).get(str(event.get("tool_id") or event.get("source_chat")),{})
+        validator=execute_test(workspace,list(override.get("validator") or row["test_command"]),bundled_python)
+        output_gate=execute_test(workspace,list(override.get("output_gate") or row["test_command"]),bundled_python)
+        return {"decision":decision,"master_revision":head,"asset_hashes":hashes,"validator_receipt":validator,"output_gate_receipt":output_gate}
+    raise RuntimeError("material_decision required before transport")
+
+
+def canonical_execution_audit() -> dict[str, Any]:
+    legacy=("apply_feedback_event.py","cross_chat_feedback_ingest.py","target_dispatcher.py")
+    executable=[]
+    for name in legacy:
+        text=(ROOT/name).read_text(encoding="utf-8")
+        if '__name__ == "__main__"' in text: executable.append(name)
+    workflow_text="\n".join(p.read_text(encoding="utf-8") for p in (ROOT.parent/".github"/"workflows").glob("*.yml"))
+    invoked=[name for name in legacy if f"python feedback_pipeline/{name}" in workflow_text]
+    return {"ACTIVE_EXECUTABLE_PIPELINE_COUNT":1,"CANONICAL_PIPELINE":"feedback_pipeline/global_pipeline.py","LEGACY_EXECUTABLE_ENTRYPOINTS":executable,"LEGACY_WORKFLOW_ROUTES":invoked,"CANONICAL_PIPELINE_ONLY":not executable and not invoked}
+
+
 def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, Any], workspace: Path, *, bundled_python: str = "") -> dict[str, Any]:
     """Create evidence DIFF, test, commit, push and remote read-back from actual Git results."""
     validate_registry(registry)
+    required_event={"event_kind","source_chat","source_ref","feedback","actual_input_ref","wrong_output_ref","expected"}
+    missing_event=sorted(required_event-set(event))
+    if missing_event:
+        return fail({"stage":"CAPTURED","status":"RUNNING"},"CAPTURED",f"event missing {missing_event}",True,"RECOVER_FIELDS_FROM_SOURCE_CHAT")
     target,row = resolve_event(registry,event)
     state={"pipeline_id":stable_id(str(event["source_ref"]),str(event["feedback"])),"target":target,"repository":row["repository"],"stage":"TARGET_RESOLVED","status":"RUNNING"}
     evidence,work=build_packets(event,target,row); state.update({"evidence_packet":evidence,"work_packet":work})
@@ -157,6 +196,9 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
         return fail(state,"EVIDENCE_READY","input/wrong-output/expected evidence references are incomplete",True,"CAPTURE_LINKED_EVIDENCE_FROM_SOURCE_CHAT")
     if git(workspace,"status","--porcelain").stdout.strip():
         return fail(state,"TARGET_APPLIED","target worktree is not clean",False,"PRESERVE_EXISTING_CHANGES_AND_USE_CLEAN_WORKTREE")
+    remote_url=git(workspace,"remote","get-url","origin").stdout.strip().lower().removesuffix(".git")
+    if not remote_url.endswith(str(row["repository"]).lower()):
+        return fail(state,"TARGET_APPLIED",f"workspace repository mismatch: {remote_url}",False,"OPEN_REGISTERED_TARGET_WORKSPACE")
     receipt_rel=Path(".wic")/"pipeline_receipts"/f"{state['pipeline_id']}.json"
     receipt_path=workspace/receipt_rel
     resume_existing=False
@@ -185,9 +227,14 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
         local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
         if not resume_existing and local_head != remote_head: raise RuntimeError("automatic fast-forward read-back mismatch")
         state["AUTO_RECOVERY_RECEIPT"]={"action":"FETCH_AND_FAST_FORWARD_ONLY","from":pre_recovery_head,"to":local_head,"user_action_required":False}
+    try:
+        material_receipt=verify_material_change(event,workspace,local_head,registry,row,bundled_python)
+    except RuntimeError as exc:
+        return fail(state,"TARGET_APPLIED",str(exc),True,"EXECUTE_ACTUAL_FIX_OR_VERIFY_NO_DIFF")
+    state["MATERIAL_CHANGE_RECEIPT"]=material_receipt
     if not resume_existing:
         receipt_path.parent.mkdir(parents=True,exist_ok=True)
-        applied={"schema_version":1,"pipeline_id":state["pipeline_id"],"target":target,"source_ref":event["source_ref"],"root_cause_id":evidence["root_cause_id"],"adapter":row["adapter"],"pre_apply_commit":local_head,"mutation_scope":"PIPELINE_EVIDENCE_ONLY","customer_data_mutated":False}
+        applied={"schema_version":1,"pipeline_id":state["pipeline_id"],"target":target,"source_ref":event["source_ref"],"root_cause_id":evidence["root_cause_id"],"adapter":row["adapter"],"pre_apply_commit":local_head,"mutation_scope":material_receipt["decision"],"material_change_receipt":material_receipt,"customer_data_mutated":False}
         receipt_path.write_text(json.dumps(applied,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     state["stage"]="TARGET_APPLIED"; test_receipt=execute_test(workspace,list(row["test_command"]),bundled_python); state["stage"]="TESTED"
     if not resume_existing:
@@ -231,7 +278,10 @@ def self_test() -> dict[str, Any]:
     assert missing["FAILED_STAGE"]=="TARGET_RESOLVED" and missing["USER_ACTION_REQUIRED"] is False
     incomplete=run_event({**base,"source_chat":"TOOL041","wrong_output_ref":""},registry,receipts,fixture_mode=True)
     assert incomplete["FAILED_STAGE"]=="EVIDENCE_READY" and incomplete["AUTO_RECOVERABLE"] is True
-    return {"result":"PASS_INTERNAL_E2E","stage_order":STAGES,"cases":cases,"failure_cases":{"unregistered":missing,"evidence_incomplete":incomplete},"current_active_targets":sorted(registry["targets"]),"registration_holds":registry["registration_holds"]}
+    audit=canonical_execution_audit(); assert audit["CANONICAL_PIPELINE_ONLY"] and audit["ACTIVE_EXECUTABLE_PIPELINE_COUNT"]==1
+    try: verify_material_change({},ROOT.parent,git(ROOT.parent,"rev-parse","HEAD").stdout.strip()); raise AssertionError("receipt-only event must be blocked")
+    except RuntimeError as exc: assert "material_decision required" in str(exc)
+    return {"result":"PASS_INTERNAL_E2E","stage_order":STAGES,"cases":cases,"canonical_execution_audit":audit,"RECEIPT_ONLY_FALSE_COMPLETE":"BLOCKED","failure_cases":{"unregistered":missing,"evidence_incomplete":incomplete},"current_active_targets":sorted(registry["targets"]),"registration_holds":registry["registration_holds"]}
 
 
 def main() -> None:

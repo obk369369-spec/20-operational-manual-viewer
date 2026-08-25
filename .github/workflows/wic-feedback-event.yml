@@ -121,17 +121,17 @@ jobs:
       - name: Apply pending real feedback event
         id: apply
         run: |
-          python feedback_pipeline/apply_feedback_event.py | tee /tmp/wic-event-result.json
+          python feedback_pipeline/global_pipeline.py --execute-event feedback_pipeline/pending_event.json --workspace . | tee /tmp/wic-event-result.json
           python - <<'PY'
           import json, os
           from pathlib import Path
           result = json.loads(Path('/tmp/wic-event-result.json').read_text(encoding='utf-8').splitlines()[-1])
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
-              out.write(f"result={result['result']}\n")
+              out.write(f"result={result['status']}\n")
           PY
 
       - name: Finalize verified same-repository lane targets when possible
-        if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
+        if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS'
         run: |
           python - <<'PY'
           import hashlib, json

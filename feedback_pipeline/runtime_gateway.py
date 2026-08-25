@@ -9,6 +9,11 @@ ROOT=Path(__file__).resolve().parent
 REGISTRY=ROOT/'wic_target_registry.json'
 HOLD='HOLD_RUNTIME_NOT_VERIFIED'
 
+def execute_feedback_event(event:Mapping[str,Any],workspace:Path,bundled_python:str='')->dict[str,Any]:
+    from global_pipeline import execute_actual_transport
+    registry=json.loads(REGISTRY.read_text(encoding='utf-8'))
+    return execute_actual_transport(event,registry,workspace,bundled_python=bundled_python)
+
 def run(args:list[str],cwd:Path,check:bool=True)->subprocess.CompletedProcess[str]:
     p=subprocess.run(args,cwd=cwd,text=True,encoding='utf-8',errors='replace',capture_output=True)
     if check and p.returncode: raise RuntimeError(f"{args}: {p.stdout}\n{p.stderr}")
@@ -62,13 +67,18 @@ def runtime_verify(target:str,workspace:Path,registry:Mapping[str,Any],bundled_p
     state.update({'status':'PASS','stage':'FINAL_OUTPUT_ALLOWED','validator_receipt':vr,'output_gate_receipt':gr,'LATEST_MASTER_FORCED':True,'VALIDATOR_FORCED':True,'OUTPUT_GATE_FORCED':True,'OLD_PIPELINE_BLOCKED':True,'MEMORY_ONLY_GENERATION_BLOCKED':True})
     return state
 
-def capture_feedback(source_chat:str,wrong_output_ref:str,user_correction:str)->dict[str,Any]:
+def capture_feedback(source_chat:str,wrong_output_ref:str,user_correction:str,*,execute_actual_pipeline=None,execution_event:Mapping[str,Any]|None=None)->dict[str,Any]:
     event_id=hashlib.sha256(f'{source_chat}\0{wrong_output_ref}\0{user_correction}'.encode()).hexdigest()[:20]
     stages=['CAPTURED','NORMALIZED','TARGET_RESOLVED','EXISTING_ROOT_SEARCH','DEDUP_RECURRENCE_UPDATE','EVIDENCE_LINK','ROOT_CLASSIFIED','DIRECT_FIX_READY']
-    return {'event_kind':'ACTUAL_USER_FEEDBACK','feedback_id':event_id,'source_chat':source_chat,'wrong_output_ref':wrong_output_ref,'user_correction':user_correction,'stage':'DIRECT_FIX_READY','stage_history':stages,'next_automatic_action':'EXECUTE_GLOBAL_PIPELINE','deferred':False,'user_manual_routing':False}
+    captured={'event_kind':'ACTUAL_USER_FEEDBACK','feedback_id':event_id,'source_chat':source_chat,'wrong_output_ref':wrong_output_ref,'user_correction':user_correction,'stage':'DIRECT_FIX_READY','stage_history':stages,'deferred':False,'user_manual_routing':False}
+    if execute_actual_pipeline is None or execution_event is None:
+        return {**captured,'status':HOLD,'FAILED_STAGE':'ACTUAL_EXECUTOR','FAIL_REASON':'actual executor context unavailable','DIRECT_FIX_READY_AUTO_CONTINUE':False}
+    result=execute_actual_pipeline(execution_event)
+    return {**captured,'stage':result.get('stage','ACTUAL_EXECUTOR'),'status':result.get('status','FAIL'),'execution_result':result,'DIRECT_FIX_READY_AUTO_CONTINUE':True,'ACTUAL_FEEDBACK_AUTO_EXECUTION':True}
 
 def self_test()->None:
-    e=capture_feedback('TOOL041','wrong:1','다른 고객 정보가 섞였다'); assert e['stage']=='DIRECT_FIX_READY' and e['stage_history'][0]=='CAPTURED' and not e['deferred'] and not e['user_manual_routing']
+    hold=capture_feedback('TOOL041','wrong:1','다른 고객 정보가 섞였다'); assert hold['status']==HOLD and hold['FAILED_STAGE']=='ACTUAL_EXECUTOR'
+    e=capture_feedback('TOOL041','wrong:1','다른 고객 정보가 섞였다',execute_actual_pipeline=lambda event:{'stage':'COMPLETE','status':'PASS'},execution_event={'tool_id':'TOOL041'}); assert e['stage']=='COMPLETE' and e['DIRECT_FIX_READY_AUTO_CONTINUE'] and e['ACTUAL_FEEDBACK_AUTO_EXECUTION'] and not e['deferred'] and not e['user_manual_routing']
     r=json.loads(REGISTRY.read_text(encoding='utf-8')); assert r['runtime_contract']['old_pipeline_allowed'] is False and r['runtime_contract']['memory_only_generation_allowed'] is False
     print('PASS: runtime fail-closed + immediate actual feedback capture contract')
 

@@ -31,8 +31,6 @@ jobs:
           python-version: '3.12'
       - name: Deny structural changes without explicit user-directive provenance
         run: python feedback_pipeline/unauthorized_structure_guard.py
-      - name: Run deterministic integration-core fixtures
-        run: python feedback_pipeline/cross_chat_feedback_ingest.py
       - name: Run automatic Work-16 candidate fixtures
         run: python feedback_pipeline/work_ready_tracker.py
       - name: Validate actual-feedback batch separation and Work-ready state
@@ -43,8 +41,6 @@ jobs:
         run: python feedback_pipeline/runtime_gateway.py --self-test
       - name: Run canonical mutation and read-back fixtures
         run: python feedback_pipeline/canonical_writer.py
-      - name: Build and validate revision-aware target dispatch plan
-        run: python feedback_pipeline/target_dispatcher.py
       - name: Execute TOOL007 purpose-matching central adapter fixture
         run: |
           python - <<'PY'
