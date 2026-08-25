@@ -70,7 +70,12 @@
           "knowledge/tool006_asset_index.json"
         ],
         "state_path": "WIC_TARGET_APPLY_STATE.json",
-        "test_command": "pwsh -NoProfile -File tests/tool006_functional_e2e.ps1",
+        "test_command": [
+          "pwsh",
+          "-NoProfile",
+          "-File",
+          "tests/tool006_functional_e2e.ps1"
+        ],
         "adapter": "REPOSITORY_DIFF_ONLY",
         "safe_checkpoint": "64bf3acf17709b351059c34ce46992866b53ee79",
         "scope": "DIFF_ONLY",
@@ -112,7 +117,7 @@
         "target": "TOOL041",
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "master_paths": [
-          "README.md"
+          "MASTER/COMMON_MASTER.md"
         ],
         "existing_pass": [],
         "pii_persisted": false
@@ -134,7 +139,7 @@
           "target": "TOOL041",
           "repository": "obk369369-spec/41-wic-email-collection-master",
           "master_paths": [
-            "README.md"
+            "MASTER/COMMON_MASTER.md"
           ],
           "existing_pass": [],
           "pii_persisted": false
@@ -142,10 +147,15 @@
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "branch": "main",
         "master_paths": [
-          "README.md"
+          "MASTER/COMMON_MASTER.md"
         ],
-        "state_path": "WIC_TARGET_APPLY_STATE.json",
-        "test_command": "target repository regression subset",
+        "state_path": "CHECKPOINT/CHECKPOINT.md",
+        "test_command": [
+          "WIC_BUILTIN_REQUIRED_FILES",
+          "MASTER/COMMON_MASTER.md",
+          "DATA/CUSTOMER_SCHEMA.md",
+          "CHECKPOINT/CHECKPOINT.md"
+        ],
         "adapter": "REPOSITORY_DIFF_ONLY",
         "safe_checkpoint": "21acd065aeb3c364953c800e246ba83624308862",
         "scope": "DIFF_ONLY",
@@ -219,8 +229,12 @@
         "master_paths": [
           "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
         ],
-        "state_path": "WIC_TARGET_APPLY_STATE.json",
-        "test_command": "target repository regression subset",
+        "state_path": "docs/CHAT_42_CUSTOMER_GUIDANCE_WORK_PROGRESS.md",
+        "test_command": [
+          "node",
+          "scripts/customer_guidance_output_gate.js",
+          "--self-test"
+        ],
         "adapter": "REPOSITORY_DIFF_ONLY",
         "safe_checkpoint": "3b5a7ea52865cd409b02fe793f17984773ecb1d9",
         "scope": "DIFF_ONLY",
@@ -425,7 +439,7 @@
         "target": "TOOL041",
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "master_paths": [
-          "README.md"
+          "MASTER/COMMON_MASTER.md"
         ],
         "existing_pass": [],
         "pii_persisted": false
@@ -447,7 +461,7 @@
           "target": "TOOL041",
           "repository": "obk369369-spec/41-wic-email-collection-master",
           "master_paths": [
-            "README.md"
+            "MASTER/COMMON_MASTER.md"
           ],
           "existing_pass": [],
           "pii_persisted": false
@@ -455,10 +469,15 @@
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "branch": "main",
         "master_paths": [
-          "README.md"
+          "MASTER/COMMON_MASTER.md"
         ],
-        "state_path": "WIC_TARGET_APPLY_STATE.json",
-        "test_command": "target repository regression subset",
+        "state_path": "CHECKPOINT/CHECKPOINT.md",
+        "test_command": [
+          "WIC_BUILTIN_REQUIRED_FILES",
+          "MASTER/COMMON_MASTER.md",
+          "DATA/CUSTOMER_SCHEMA.md",
+          "CHECKPOINT/CHECKPOINT.md"
+        ],
         "adapter": "REPOSITORY_DIFF_ONLY",
         "safe_checkpoint": "21acd065aeb3c364953c800e246ba83624308862",
         "scope": "DIFF_ONLY",
@@ -492,12 +511,11 @@
     "TOOL006",
     "TOOL007",
     "TOOL013",
+    "TOOL027",
     "TOOL037",
     "TOOL041",
-    "TOOL042"
+    "TOOL042",
+    "TOOL043"
   ],
-  "registration_holds": {
-    "TOOL027": "repository obk369369-spec/27-technical-book-verifier at 4e8b3d47a7ec26524d37e0494f4c07acfc512223 has WIC_RULE_SOURCE.md but no evidenced executable test/checkpoint contract",
-    "TOOL043": "canonical repository/master/test/checkpoint not yet evidenced"
-  }
+  "registration_holds": {}
 }
