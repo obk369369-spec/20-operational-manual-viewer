@@ -39,7 +39,7 @@
         "actual_fix": "PASS"
       },
       "T6-RC-01": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -50,11 +50,13 @@
         "root_cause_id": "T6-RC-01",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       },
       "T6-RC-02": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -65,11 +67,13 @@
         "root_cause_id": "T6-RC-02",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       },
       "T6-RC-03": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -80,11 +84,13 @@
         "root_cause_id": "T6-RC-03",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       },
       "T6-RC-04": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -95,8 +101,10 @@
         "root_cause_id": "T6-RC-04",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       }
     },
     "actual_feedback_summary": {
@@ -137,7 +145,7 @@
       },
       "registration_holds": {},
       "actual_transport": {
-        "TOOL006": "b37cb4616318f023286fb06147fdef6df1de57cc",
+        "TOOL006": "6a422e5a8032821b319d883376bb7622a194d7da",
         "TOOL041": "c2124058536eaf6966eef4290493bf8792cce3e0",
         "TOOL042": "a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84",
         "TOOL007": "a75f0fad6e30f7857e42b0ee72ca9f2136909fe1",
@@ -146,7 +154,11 @@
       "mock_receipt_dependency": false,
       "completed_roots": {
         "T41-RC-DATA-INTEGRITY": {"stage":"COMPLETE","target_receipt_commit":"c2124058536eaf6966eef4290493bf8792cce3e0","state_synced":true},
-        "T42-RC-CUSTOMER-BRANCH": {"stage":"COMPLETE","target_receipt_commit":"a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84","state_synced":true}
+        "T42-RC-CUSTOMER-BRANCH": {"stage":"COMPLETE","target_receipt_commit":"a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84","state_synced":true},
+        "T6-RC-01": {"stage":"COMPLETE","target_receipt_commit":"6a422e5a8032821b319d883376bb7622a194d7da","state_synced":true},
+        "T6-RC-02": {"stage":"COMPLETE","target_receipt_commit":"6a422e5a8032821b319d883376bb7622a194d7da","state_synced":true},
+        "T6-RC-03": {"stage":"COMPLETE","target_receipt_commit":"6a422e5a8032821b319d883376bb7622a194d7da","state_synced":true},
+        "T6-RC-04": {"stage":"COMPLETE","target_receipt_commit":"6a422e5a8032821b319d883376bb7622a194d7da","state_synced":true}
       },
       "status": "COMPLETE"
     },
@@ -163,15 +175,30 @@
       "immediate_work_routing": true,
       "deferred_feedback_allowed": false,
       "user_manual_routing": 0,
-      "active_targets_verified": ["TOOL001","TOOL002","TOOL006","TOOL007","TOOL013","TOOL027","TOOL037","TOOL041","TOOL042","TOOL043","CENTRAL"],
+      "active_targets_verified": ["TOOL002","TOOL006","TOOL007","TOOL013","TOOL027","TOOL037","TOOL041","TOOL042","TOOL043","CENTRAL"],
+      "active_target_resolution": {
+        "TOOL001": "HOLD_DEPENDENCY_STABILIZATION",
+        "TOOL002": "NO_DEFERRED_WORK",
+        "TOOL006": "RESOLVED_NOW",
+        "TOOL007": "NO_DEFERRED_WORK",
+        "TOOL013": "CONSUMED_EXISTING_FIX",
+        "TOOL027": "NO_DEFERRED_WORK",
+        "TOOL037": "NO_DEFERRED_WORK",
+        "TOOL041": "CONSUMED_EXISTING_FIX",
+        "TOOL042": "CONSUMED_EXISTING_FIX",
+        "TOOL043": "NO_DEFERRED_WORK",
+        "CENTRAL": "RESOLVED_NOW"
+      },
+      "tool006_external_evidence_required": ["publisher_identity_raw_toc_wrong_output_user_approved_expected_pair", "verified_insertion_timing_and_additional_count"],
+      "tool006_internal_deferred": 0,
+      "stale_central_checkpoint_holds": 0,
       "future_provisional_verified": "TOOL999",
       "platform_ingress_boundary": "EXTERNAL_PLATFORM_LIMIT"
     },
     "feedback_checkpoints": {
       "37a4a2166bb5e2a08a8c": {
-        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
-        "last_stage": "TARGET_REVISION_READ_APPLY",
-        "status": "HOLD"
+        "last_stage": "RESTART_OR_HOLD",
+        "status": "SUPERSEDED_BY_CANONICAL_AND_TARGET_COMPLETION"
       },
       "49e71e666aa8395ea52c": {
         "last_stage": "RESTART_OR_HOLD",
@@ -196,9 +223,8 @@
         "status": "PASS_INTERNAL_GITHUB_E2E"
       },
       "b6acdbfd3bc4d0de1b66": {
-        "blocker": "canonical GitHub commit/read-back must complete, then target repository apply/read-back/test is required",
-        "last_stage": "TARGET_REVISION_READ_APPLY",
-        "status": "HOLD"
+        "last_stage": "RESTART_OR_HOLD",
+        "status": "CONSUMED_EXISTING_FIX"
       },
       "f2aeb4e8f5fac3c9618f": {
         "blocker": "",
@@ -241,13 +267,13 @@
         "canonical_revision": "fa09bcdec96669d97ef3a18f",
         "external_independent_verification": false,
         "status": "APPLIED_TEST_PASS_REMOTE_READBACK",
-        "target_apply_commit": "64bf3acf17709b351059c34ce46992866b53ee79",
+        "target_apply_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
         "target_asset_index_blob": "8cd91706e5e6cfb2945ba3a59bc6499c79792762",
         "target_fixture_blob": "c9ab1fe9e7a2ae60f21b56f0c45655d03d45567b",
         "target_read_back_blob": "d0177066b83a4d9b23f8ab7500784807eed2d5ec",
         "target_repository": "obk369369-spec/06-toc-check",
-        "target_state_commit": "64bf3acf17709b351059c34ce46992866b53ee79",
-        "test_result": "9/9 functional; 4/4 smoke; recovery tag read verified",
+        "target_state_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "test_result": "9/9 functional; 4/4 smoke; independent input/output top controls browser verified",
         "validation_job_id": 94040506272,
         "workflow_run_id": 31573547418
       },
@@ -271,8 +297,9 @@
         "repeatability": "REPEATED",
         "root_cause_id": "8462236db3ade9342f54",
         "severity": "HIGH",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "SUPERSEDED",
+        "resolution": "receipt-only candidate without recoverable actual pair; superseded by completed TOOL006 and TOOL042 actual fixes"
       },
       "T41-RC-DATA-INTEGRITY": {
         "count_status": "EVIDENCE_RECOVERED",
@@ -309,7 +336,7 @@
         "actual_fix": "PASS"
       },
       "T6-RC-01": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -320,11 +347,13 @@
         "root_cause_id": "T6-RC-01",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       },
       "T6-RC-02": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -335,11 +364,13 @@
         "root_cause_id": "T6-RC-02",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       },
       "T6-RC-03": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -350,11 +381,13 @@
         "root_cause_id": "T6-RC-03",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       },
       "T6-RC-04": {
-        "count_status": "HOLD_EVIDENCE",
+        "count_status": "EVIDENCE_RECOVERED",
         "customer_impact": "OPERATIONAL",
         "event_kind": "ACTUAL_USER",
         "fixture_or_test_counted": false,
@@ -365,14 +398,16 @@
         "root_cause_id": "T6-RC-04",
         "severity": "HIGH",
         "tool": "TOOL006",
-        "work_ready": true,
-        "work_status": "WORK_READY"
+        "work_ready": false,
+        "work_status": "CONSUMED_EXISTING_FIX",
+        "consumed_by_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+        "actual_fix": "PASS"
       }
     },
     "work_ready_summary": {
-      "candidate_count": 7,
+      "candidate_count": 0,
       "manual_chat_transfer_required": false,
-      "work_ready_count": 7
+      "work_ready_count": 0
     }
   },
   "last_context_cursor": "2026-08-25T00:00:00+09:00",

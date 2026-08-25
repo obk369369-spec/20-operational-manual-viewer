@@ -2,7 +2,7 @@
   "central_master_mutated": false,
   "classification": "NEW_FIXTURE",
   "feedback_id": "8462236db3ade9342f54",
-  "result": "WORK_CANDIDATE_CAPTURED",
+  "result": "SUPERSEDED_BY_COMPLETED_TARGET_FIXES",
   "root_cause_id": "8462236db3ade9342f54",
   "schema_version": 1,
   "targets": [
@@ -17,7 +17,8 @@
     "repeatability": "FIRST_SEEN",
     "root_cause_id": "8462236db3ade9342f54",
     "severity": "HIGH",
-    "work_ready": true,
-    "work_status": "WORK_READY"
+    "work_ready": false,
+    "work_status": "SUPERSEDED",
+    "resolution": "Receipt-only candidate had no recoverable actual pair; later TOOL006 and TOOL042 actual fixes, tests, and remote read-backs supersede it."
   }
 }

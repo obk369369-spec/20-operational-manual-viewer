@@ -3,9 +3,9 @@
   "gateway":"feedback_pipeline/runtime_gateway.py",
   "contract":{"latest_master_forced":true,"validator_forced":true,"output_gate_forced":true,"old_pipeline_blocked":true,"memory_only_generation_blocked":true,"fail_closed":"HOLD_RUNTIME_NOT_VERIFIED"},
   "actual_runtime_results": {
-    "TOOL001":{"revision":"5286e5f3c3d1220ad383e68929b5301fca2fdc36","status":"PASS"},
+    "TOOL001":{"revision":"5286e5f3c3d1220ad383e68929b5301fca2fdc36","status":"HOLD_DEPENDENCY_STABILIZATION","excluded_from_current_completion":true},
     "TOOL002":{"revision":"9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9","status":"PASS"},
-    "TOOL006":{"revision":"b37cb4616318f023286fb06147fdef6df1de57cc","status":"PASS","validator":"9/9","output_gate":"4/4"},
+    "TOOL006":{"revision":"6a422e5a8032821b319d883376bb7622a194d7da","status":"PASS","validator":"9/9","output_gate":"4/4 + independent input/output top controls"},
     "TOOL007":{"revision":"a5079f5f50d044907d937b09d7e8f81c59194c1b","status":"PASS"},
     "TOOL013":{"revision":"1d51ba4816cdda704ce9580309b670d075762d17","status":"PASS"},
     "TOOL027":{"revision":"4e8b3d47a7ec26524d37e0494f4c07acfc512223","status":"PASS"},
