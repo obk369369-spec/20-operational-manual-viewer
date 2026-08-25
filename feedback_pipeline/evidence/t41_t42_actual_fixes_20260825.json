@@ -1,0 +1,5 @@
+{
+  "schema_version":1,
+  "T41-RC-DATA-INTEGRITY":{"status":"CONSUMED","actual_cases":3,"engine":"src/customer_integrity.py","fixture":"tests/fixtures/t41_actual_pairs.json","test":"3/3 PASS","commit":"eb011e2f7bdaa8d0ff3e4b701aae8d48e0ce4d88","remote_readback":true,"engine_blob":"8a5ca10dde6fe79f56c7f09bd00bd4b21acb8371"},
+  "T42-RC-CUSTOMER-BRANCH":{"status":"CONSUMED","actual_cases":2,"protective_cases":3,"engine":"scripts/customer_branch_engine.js","fixture":"fixtures/customer_branch_actual_kmg.json","test":"actual 2/2 + protective 3/3 + existing output gate 16 PASS","commit":"6176562deec4533b4ffc8f52394c793b37951e01","remote_readback":true,"engine_blob":"02885074216282e2d0adf341cbaa532e81a9b595"}
+}

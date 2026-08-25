@@ -166,22 +166,22 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     if local_head != remote_head:
         pre_recovery_head=local_head
         git(workspace,"fetch","origin",row["branch"])
-        remote_head=git(workspace,"rev-parse",f"origin/{row['branch']}").stdout.strip()
-        ancestor=git(workspace,"merge-base","--is-ancestor",local_head,f"origin/{row['branch']}",check=False)
+        remote_head=git(workspace,"rev-parse","FETCH_HEAD").stdout.strip()
+        ancestor=git(workspace,"merge-base","--is-ancestor",local_head,"FETCH_HEAD",check=False)
         if ancestor.returncode:
             if not receipt_path.is_file():
                 return fail(state,"TARGET_APPLIED",f"divergent local/remote {local_head}/{remote_head}",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
             prior=json.loads(receipt_path.read_text(encoding="utf-8")); pre_recovery_head=str(prior["pre_apply_commit"])
             reconcile_base=pre_recovery_head
-            if git(workspace,"merge-base","--is-ancestor",pre_recovery_head,f"origin/{row['branch']}",check=False).returncode:
+            if git(workspace,"merge-base","--is-ancestor",pre_recovery_head,"FETCH_HEAD",check=False).returncode:
                 return fail(state,"TARGET_APPLIED","saved receipt base is not an ancestor of remote",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
-            merged=git(workspace,"merge","--no-edit",f"origin/{row['branch']}",check=False)
+            merged=git(workspace,"merge","--no-edit","FETCH_HEAD",check=False)
             if merged.returncode:
                 git(workspace,"merge","--abort",check=False)
                 return fail(state,"TARGET_APPLIED","saved transport reconcile conflict",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
             resume_existing=True
         else:
-            git(workspace,"merge","--ff-only",f"origin/{row['branch']}")
+            git(workspace,"merge","--ff-only","FETCH_HEAD")
         local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
         if not resume_existing and local_head != remote_head: raise RuntimeError("automatic fast-forward read-back mismatch")
         state["AUTO_RECOVERY_RECEIPT"]={"action":"FETCH_AND_FAST_FORWARD_ONLY","from":pre_recovery_head,"to":local_head,"user_action_required":False}
@@ -196,10 +196,10 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     pushed=git(workspace,"push","origin",f"HEAD:{row['branch']}",check=False)
     if pushed.returncode:
         git(workspace,"fetch","origin",row["branch"])
-        safe_reconcile=git(workspace,"merge-base","--is-ancestor",reconcile_base,f"origin/{row['branch']}",check=False)
+        safe_reconcile=git(workspace,"merge-base","--is-ancestor",reconcile_base,"FETCH_HEAD",check=False)
         if safe_reconcile.returncode:
             return fail(state,"PUSHED","remote advanced from a non-ancestor base",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
-        merged=git(workspace,"merge","--no-edit",f"origin/{row['branch']}",check=False)
+        merged=git(workspace,"merge","--no-edit","FETCH_HEAD",check=False)
         if merged.returncode:
             git(workspace,"merge","--abort",check=False)
             return fail(state,"PUSHED","single safe reconcile produced conflicts",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")

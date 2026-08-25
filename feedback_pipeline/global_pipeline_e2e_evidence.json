@@ -117,7 +117,8 @@
         "target": "TOOL041",
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "master_paths": [
-          "MASTER/COMMON_MASTER.md"
+          "MASTER/COMMON_MASTER.md",
+          "src/customer_integrity.py"
         ],
         "existing_pass": [],
         "pii_persisted": false
@@ -139,7 +140,8 @@
           "target": "TOOL041",
           "repository": "obk369369-spec/41-wic-email-collection-master",
           "master_paths": [
-            "MASTER/COMMON_MASTER.md"
+            "MASTER/COMMON_MASTER.md",
+            "src/customer_integrity.py"
           ],
           "existing_pass": [],
           "pii_persisted": false
@@ -147,17 +149,16 @@
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "branch": "main",
         "master_paths": [
-          "MASTER/COMMON_MASTER.md"
+          "MASTER/COMMON_MASTER.md",
+          "src/customer_integrity.py"
         ],
         "state_path": "CHECKPOINT/CHECKPOINT.md",
         "test_command": [
-          "WIC_BUILTIN_REQUIRED_FILES",
-          "MASTER/COMMON_MASTER.md",
-          "DATA/CUSTOMER_SCHEMA.md",
-          "CHECKPOINT/CHECKPOINT.md"
+          "WIC_BUNDLED_PYTHON",
+          "tests/test_customer_integrity.py"
         ],
         "adapter": "REPOSITORY_DIFF_ONLY",
-        "safe_checkpoint": "21acd065aeb3c364953c800e246ba83624308862",
+        "safe_checkpoint": "eb011e2f7bdaa8d0ff3e4b701aae8d48e0ce4d88",
         "scope": "DIFF_ONLY",
         "forbidden": [
           "force push",
@@ -197,7 +198,8 @@
         "target": "TOOL042",
         "repository": "obk369369-spec/07-wic-setting-tool-v1",
         "master_paths": [
-          "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
+          "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md",
+          "scripts/customer_branch_engine.js"
         ],
         "existing_pass": [],
         "pii_persisted": false
@@ -219,7 +221,8 @@
           "target": "TOOL042",
           "repository": "obk369369-spec/07-wic-setting-tool-v1",
           "master_paths": [
-            "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
+            "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md",
+            "scripts/customer_branch_engine.js"
           ],
           "existing_pass": [],
           "pii_persisted": false
@@ -227,16 +230,16 @@
         "repository": "obk369369-spec/07-wic-setting-tool-v1",
         "branch": "main",
         "master_paths": [
-          "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md"
+          "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md",
+          "scripts/customer_branch_engine.js"
         ],
         "state_path": "docs/CHAT_42_CUSTOMER_GUIDANCE_WORK_PROGRESS.md",
         "test_command": [
           "node",
-          "scripts/customer_guidance_output_gate.js",
-          "--self-test"
+          "scripts/customer_branch_engine.test.js"
         ],
         "adapter": "REPOSITORY_DIFF_ONLY",
-        "safe_checkpoint": "3b5a7ea52865cd409b02fe793f17984773ecb1d9",
+        "safe_checkpoint": "6176562deec4533b4ffc8f52394c793b37951e01",
         "scope": "DIFF_ONLY",
         "forbidden": [
           "force push",
@@ -446,7 +449,8 @@
         "target": "TOOL041",
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "master_paths": [
-          "MASTER/COMMON_MASTER.md"
+          "MASTER/COMMON_MASTER.md",
+          "src/customer_integrity.py"
         ],
         "existing_pass": [],
         "pii_persisted": false
@@ -468,7 +472,8 @@
           "target": "TOOL041",
           "repository": "obk369369-spec/41-wic-email-collection-master",
           "master_paths": [
-            "MASTER/COMMON_MASTER.md"
+            "MASTER/COMMON_MASTER.md",
+            "src/customer_integrity.py"
           ],
           "existing_pass": [],
           "pii_persisted": false
@@ -476,17 +481,16 @@
         "repository": "obk369369-spec/41-wic-email-collection-master",
         "branch": "main",
         "master_paths": [
-          "MASTER/COMMON_MASTER.md"
+          "MASTER/COMMON_MASTER.md",
+          "src/customer_integrity.py"
         ],
         "state_path": "CHECKPOINT/CHECKPOINT.md",
         "test_command": [
-          "WIC_BUILTIN_REQUIRED_FILES",
-          "MASTER/COMMON_MASTER.md",
-          "DATA/CUSTOMER_SCHEMA.md",
-          "CHECKPOINT/CHECKPOINT.md"
+          "WIC_BUNDLED_PYTHON",
+          "tests/test_customer_integrity.py"
         ],
         "adapter": "REPOSITORY_DIFF_ONLY",
-        "safe_checkpoint": "21acd065aeb3c364953c800e246ba83624308862",
+        "safe_checkpoint": "eb011e2f7bdaa8d0ff3e4b701aae8d48e0ce4d88",
         "scope": "DIFF_ONLY",
         "forbidden": [
           "force push",
