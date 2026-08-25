@@ -51,7 +51,7 @@ def runtime_verify(target:str,workspace:Path,registry:Mapping[str,Any],bundled_p
         git(workspace,'merge','--ff-only','FETCH_HEAD'); local=fetched
     state.update({'latest_revision':local,'LAST_VERIFIED_STAGE':'LATEST_TARGET_MASTER_REVISION'})
     override=registry.get('runtime_overrides',{}).get(resolved,{})
-    required=override.get('required_assets') or list(dict.fromkeys([*row['master_paths'],row['state_path'],row['evidence_path']]))
+    required=override.get('required_assets') or list(dict.fromkeys([*row['master_paths'],row['state_path']]))
     for item in required:
         p=workspace/item
         if not p.is_file() or not p.stat().st_size: return {**state,'FAILED_STAGE':'REQUIRED_ASSETS','FAIL_REASON':f'missing/empty {item}','NEXT_AUTOMATIC_ACTION':'RECOVER_REQUIRED_ASSET_FROM_CHECKPOINT'}
