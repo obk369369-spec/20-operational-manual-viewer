@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 from typing import Any, Mapping
@@ -266,6 +267,10 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
 
 def self_test() -> dict[str, Any]:
     registry=json.loads(REGISTRY.read_text(encoding="utf-8")); validate_registry(registry)
+    from target_dispatcher import main as build_dispatch_plan
+    build_dispatch_plan()
+    if not os.getenv("GITHUB_ACTIONS"):
+        (ROOT/"target_dispatch_plan.json").unlink(missing_ok=True)
     receipts={k:True for k in ("target_applied","central_applied","tested","committed","pushed","remote_verified","state_synced")}
     base={"event_kind":"ACTUAL_USER","source_ref":"CURRENT_CHAT#fixture","feedback":"실제 결과가 틀렸다. 수정해라.","actual_input_ref":"fixture/input","wrong_output_ref":"fixture/wrong","expected":"fixture/expected","recurrence":2}
     cases={}

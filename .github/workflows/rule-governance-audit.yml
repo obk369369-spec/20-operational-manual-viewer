@@ -96,7 +96,6 @@ jobs:
             02-auto-bid-narajangter-v1
             03-coding_practice
             05-report-generator
-            06-toc-check
             07-wic-setting-tool-v1
             08-English-Verb-Exercise
             09-contents-making-tool
@@ -124,6 +123,13 @@ jobs:
               fail=1
             fi
           done
+          tool6_url="https://raw.githubusercontent.com/obk369369-spec/06-toc-check/main/knowledge/tool006_asset_index.json"
+          if curl -fsSL "$tool6_url" | grep -q 'TOOL006'; then
+            echo "PASS 06-toc-check canonical asset index"
+          else
+            echo "FAIL 06-toc-check canonical asset index"
+            fail=1
+          fi
           test "$fail" -eq 0
 
       - name: Private repository note
