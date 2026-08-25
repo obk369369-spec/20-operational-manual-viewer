@@ -177,7 +177,21 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     state["stage"]="TARGET_APPLIED"; test_receipt=execute_test(workspace,list(row["test_command"]),bundled_python); state["stage"]="TESTED"
     git(workspace,"add","--",str(receipt_rel).replace("\\","/")); git(workspace,"commit","-m",f"wic: record actual pipeline transport for {target} [skip ci]")
     commit_sha=git(workspace,"rev-parse","HEAD").stdout.strip(); state["stage"]="COMMITTED"
-    git(workspace,"push","origin",f"HEAD:{row['branch']}"); state["stage"]="PUSHED"
+    pushed=git(workspace,"push","origin",f"HEAD:{row['branch']}",check=False)
+    if pushed.returncode:
+        git(workspace,"fetch","origin",row["branch"])
+        safe_reconcile=git(workspace,"merge-base","--is-ancestor",local_head,f"origin/{row['branch']}",check=False)
+        if safe_reconcile.returncode:
+            return fail(state,"PUSHED","remote advanced from a non-ancestor base",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
+        merged=git(workspace,"merge","--no-edit",f"origin/{row['branch']}",check=False)
+        if merged.returncode:
+            git(workspace,"merge","--abort",check=False)
+            return fail(state,"PUSHED","single safe reconcile produced conflicts",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
+        test_receipt=execute_test(workspace,list(row["test_command"]),bundled_python)
+        commit_sha=git(workspace,"rev-parse","HEAD").stdout.strip()
+        state["REMOTE_RECONCILE_RECEIPT"]={"attempts":1,"mode":"NORMAL_MERGE_NO_FORCE","test_rerun":"PASS"}
+        git(workspace,"push","origin",f"HEAD:{row['branch']}")
+    state["stage"]="PUSHED"
     remote_sha=git(workspace,"ls-remote","origin",f"refs/heads/{row['branch']}").stdout.split("\t")[0]
     if remote_sha != commit_sha: raise RuntimeError(f"push read-back mismatch {commit_sha}/{remote_sha}")
     blob=git(workspace,"rev-parse",f"{commit_sha}:{str(receipt_rel).replace(chr(92),'/')}").stdout.strip()
