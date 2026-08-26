@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "tool_id": "TOOL001",
+  "root_cause_id": "T1-RC-RUNTIME-VERIFIED-DATA-GATE-GAP",
+  "status": "REMOTE_VERIFIED",
+  "target_repository": "obk369369-spec/01-auto-guide-v1",
+  "implementation_commits": ["204046f78215746daaf9849b632a0a98753feb4c", "24c0c988c9e63f97e41c10a08981891339a1068e"],
+  "target_safe_checkpoint": "8bd9c2340e141d66c11c8273b527165a2c612cde",
+  "actual_browser_ci": {"run_id": 32948603985, "result": "success"},
+  "unverified_output_count": 0,
+  "verified_fixture_output_count": 5,
+  "usb_quarantine": {"reviewed_top_level_run23_files": 5, "verified": 0, "block_shell": 1, "obsolete": 4, "github_html_promoted": 0, "usb_deleted": false},
+  "remaining_hold": "HOLD-T1-VERIFIED-REPORT-ACQUISITION"
+}

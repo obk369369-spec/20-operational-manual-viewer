@@ -20,9 +20,11 @@
     {"id":"L4-14","root":"GAP-TARGET-REGISTRY-INCOMPLETE-WIC-COVERAGE","status":"REMOTE_VERIFIED","evidence":"validate_registry fails closed when any WIC_CHAT_ROUTING_REGISTRY route lacks a target or canonical alias"},
     {"id":"L4-15","root":"GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY","status":"REMOTE_VERIFIED","evidence":"recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"}
     ,{"id":"L4-16","root":"GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"tool-scoped historical index and retriever recover TOOL002 latest discussion, last work point, GitHub checkpoint and reusable rules without user routing"}
+    ,{"id":"L4-17","root":"T1-RC-RUNTIME-VERIFIED-DATA-GATE-GAP","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"TOOL001 runtime clears all output and returns HOLD_RUNTIME_VERIFIED_DATA_REQUIRED without five verified reports; Playwright negative/positive E2E run 32948603985 passed at target checkpoint 8bd9c2340e141d66c11c8273b527165a2c612cde"}
   ],
   "external_holds": [
     {"root":"HOLD-T6-PUBLISHER-GOLDEN-PAIR","status":"HOLD"},
-    {"root":"HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR","status":"PLATFORM_LIMIT"}
+    {"root":"HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR","status":"PLATFORM_LIMIT"},
+    {"root":"HOLD-T1-VERIFIED-REPORT-ACQUISITION","status":"HOLD_EVIDENCE"}
   ]
 }

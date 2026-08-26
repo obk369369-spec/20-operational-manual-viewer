@@ -175,9 +175,9 @@
       "immediate_work_routing": true,
       "deferred_feedback_allowed": false,
       "user_manual_routing": 0,
-      "active_targets_verified": ["TOOL002","TOOL006","TOOL007","TOOL013","TOOL027","TOOL037","TOOL041","TOOL042","TOOL043","CENTRAL"],
+      "active_targets_verified": ["TOOL001","TOOL002","TOOL006","TOOL007","TOOL013","TOOL027","TOOL037","TOOL041","TOOL042","TOOL043","CENTRAL"],
       "active_target_resolution": {
-        "TOOL001": "HOLD_DEPENDENCY_STABILIZATION",
+        "TOOL001": "REMOTE_VERIFIED_RUNTIME_GATE",
         "TOOL002": "NO_DEFERRED_WORK",
         "TOOL006": "RESOLVED_NOW",
         "TOOL007": "NO_DEFERRED_WORK",
@@ -191,6 +191,13 @@
       },
       "tool006_external_evidence_required": ["publisher_identity_raw_toc_wrong_output_user_approved_expected_pair", "verified_insertion_timing_and_additional_count"],
       "tool006_internal_deferred": 0,
+      "tool001_runtime_gate": {
+        "root_cause_id": "T1-RC-RUNTIME-VERIFIED-DATA-GATE-GAP",
+        "target_checkpoint": "8bd9c2340e141d66c11c8273b527165a2c612cde",
+        "actual_browser_ci_run": 32948603985,
+        "status": "REMOTE_VERIFIED",
+        "external_verified_report_acquisition": "HOLD_EVIDENCE"
+      },
       "stale_central_checkpoint_holds": 0,
       "persistent_feedback_e2e_20260826": {
         "actual_occurrence_id": "7fd66c87800629c341312b1e6f024ef4",

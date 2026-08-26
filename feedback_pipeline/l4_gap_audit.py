@@ -27,12 +27,14 @@ def audit() -> dict:
     recovered = recover_evidence(base)
     historical_tool2 = retrieve("TOOL002", {})
     historical_other = retrieve("TOOL001", {})
+    tool1_runtime = json.loads((ROOT / "evidence" / "tool001_runtime_gate_20260826.json").read_text(encoding="utf-8"))
     probes = {
         "L4-12-all-canonical-targets-and-future-inherit": all(coverage.values()) and future["status"] == "PASS",
         "L4-13-proactive-in-chat-handoff": evaluate_handoff_pressure({"remaining_context_ratio":0.19})["status"] == "PROACTIVE_HANDOFF_REQUIRED" and not evaluate_handoff_pressure({"remaining_context_ratio":0.80})["handoff_required"],
         "L4-14-routing-registry-coverage-gate": True,
         "L4-15-source-context-evidence-recovery": bool(recovered.get("actual_input_ref") and recovered.get("wrong_output_ref") and recovered.get("expected")),
         "L4-16-tool-scoped-historical-retrieval": historical_tool2["latest_related_discussion"]["observed_at"].startswith("2026-04-12") and historical_tool2["last_actual_work_point"] == "기관별 누적검사기" and historical_other["status"] == "PASS",
+        "L4-17-tool001-runtime-verified-data-gate": tool1_runtime["status"] == "REMOTE_VERIFIED" and tool1_runtime["unverified_output_count"] == 0 and tool1_runtime["actual_browser_ci"]["result"] == "success",
     }
     scope_fingerprint=hashlib.sha256("\n".join(sorted(probes)).encode()).hexdigest()
     return {"schema_version":1,"scope_fingerprint":scope_fingerprint,"probes":probes,"open_internal_roots":[key for key,value in probes.items() if not value],"new_holes":[],"target_coverage":coverage,"future_provisional":future["status"]}
