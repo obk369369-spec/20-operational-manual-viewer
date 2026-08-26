@@ -191,12 +191,20 @@ jobs:
               'tool_13_excel_upload', 'tool_6_toc', 'tool_2_bid'
           ]
           plan = json.loads(Path('feedback_pipeline/target_dispatch_plan.json').read_text(encoding='utf-8'))
-          by_target = {x['target']: x for x in plan['actions']}
-          assert set(by_target) == set(manifest.get('targets', {}))
-          for target, action in by_target.items():
-              expected_action = 'LANE_ACK' if target in adapters.get('lane_targets', {}) else 'REPOSITORY_REVISION_ACK'
-              assert action['action'] == expected_action
-          assert plan['holds'] == []
+          expected_targets = set(manifest.get('targets', {}))
+          if not expected_targets:
+              assert plan['status'] == 'N_A_NO_TARGETS'
+              assert plan['expected_target_count'] == 0
+              assert plan['processed_target_count'] == 0
+              assert plan['target_conservation'] is True
+              assert plan['pass_claimed'] is False
+          else:
+              by_target = {x['target']: x for x in plan['actions']}
+              assert set(by_target) == expected_targets
+              for target, action in by_target.items():
+                  expected_action = 'LANE_ACK' if target in adapters.get('lane_targets', {}) else 'REPOSITORY_REVISION_ACK'
+                  assert action['action'] == expected_action
+              assert plan['holds'] == []
           lane = json.loads(Path('feedback_pipeline/lane_apply_evidence.json').read_text(encoding='utf-8'))
           assert lane['result'] == 'PASS_INTERNAL_GITHUB'
           assert lane['failures'] == []
