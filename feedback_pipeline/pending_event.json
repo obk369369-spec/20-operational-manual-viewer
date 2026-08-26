@@ -5,5 +5,6 @@
   "mutation_action": "APPLY_FEEDBACK",
   "directive_source_ref": "CURRENT_CHAT#user-directive-2026-08-25-fix-n-report-gate-and-reoutput",
   "directive_text": "고객 특성에 따라 추천자료 수는 3종, 4종 또는 그 이상 N종으로 달라질 수 있다. N종이면 N종 모두 서로 다른 거래 가능 발행사여야 하며 하나라도 중복되면 출력 금지한다. 기존 customer_guidance_output_gate.js의 정확히 3종 강제를 제거하고 expected.required_report_count 또는 expected.reports.length를 기준으로 N종을 검증하며, 실제 출력 블록 수도 같은 N종으로 대조한다. 발행사 중복을 별도 PUBLISHER_DUPLICATE FAIL로 차단하고 4종 PASS/4종 중복발행사 FAIL 회귀테스트를 추가한다. 중앙마스터의 과거 정확히 3종 조항은 최신 N종 규칙과 충돌하므로 최신 사용자 지시로 대체해야 하며, pipeline 등록과 실제 중앙마스터 본문 반영 상태를 분리해 관리한다.",
-  "text": "N종 추천자료 게이트 실제 코드 수정 완료: required_report_count 기반 가변 개수 검증, N개 발행사 전부 고유 강제, 4종 회귀검사 추가. gate commit 9a538a5df8c01483ab65f46656e52d28301c61e5. 중앙마스터의 구형 정확히 3종 문구는 최신 N종 규칙으로 동기화 필요."
+  "text": "N종 추천자료 게이트 실제 코드 수정 완료: required_report_count 기반 가변 개수 검증, N개 발행사 전부 고유 강제, 4종 회귀검사 추가. gate commit 9a538a5df8c01483ab65f46656e52d28301c61e5. 중앙마스터의 구형 정확히 3종 문구는 최신 N종 규칙으로 동기화 필요.",
+  "retrigger_at": "2026-08-26T11:03:00+09:00"
 }
