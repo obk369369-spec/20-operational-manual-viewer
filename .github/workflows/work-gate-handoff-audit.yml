@@ -26,6 +26,9 @@ jobs:
           import json
           handoff=json.load(open('work-handoff.json', encoding='utf-8'))
           exit_template=json.load(open('work-exit-checkpoint-template.json', encoding='utf-8'))
+          assert handoff['candidate_count'] > 0, 'zero candidates is N/A, never PASS'
+          assert handoff['target_conservation'] is True
+          assert handoff['pass_claimed'] is True
           for lane in handoff['eligible_work_lanes']:
               row=handoff['candidates'][lane]
               assert row['decision']=='WORK_ELIGIBLE'

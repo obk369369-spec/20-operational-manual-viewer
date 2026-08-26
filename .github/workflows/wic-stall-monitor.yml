@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       user_explicit_request:
-        description: 'Exact user-request reference authorizing issue creation/recovery dispatch'
+        description: 'Audit trace reference; authorization is the authenticated manual workflow dispatch itself'
         required: true
         type: string
 
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   check-observer-heartbeat:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.user_explicit_request != '' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -81,7 +81,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add WIC_OBSERVER_STATUS.md
           git commit -m 'Sync Observer from central execution state'
-          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Check active execution state age
@@ -95,11 +94,7 @@ jobs:
           NOW_TS=$(date +%s)
           AGE_MIN=$(( (NOW_TS - LAST_TS) / 60 ))
           STRUCTURE_STATUS=$(python -c "import json; print(json.load(open('$FILE', encoding='utf-8')).get('structure_status', ''))")
-          if [[ "$STRUCTURE_STATUS" == *"IN_PROGRESS"* ]]; then
-            ACTIVE=true
-          else
-            ACTIVE=false
-          fi
+          ACTIVE=$(python -c "import json; s=json.load(open('$FILE', encoding='utf-8')).get('structure_status', ''); print('true' if s in {'IN_PROGRESS','ACTIVE_EXECUTION','RUNNING'} else 'false')")
           if [ "$ACTIVE" = true ] && [ "$AGE_MIN" -gt "$MAX_AGE_MINUTES" ]; then
             STALE=true
             echo "::warning::Active WIC execution state is stale: ${AGE_MIN} minutes (limit ${MAX_AGE_MINUTES})."

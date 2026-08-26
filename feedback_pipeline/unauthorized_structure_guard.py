@@ -42,7 +42,7 @@ PROTECTED_ACTIONS = {
 
 POSITIVE_APPROVAL = (
     "만들어", "생성해", "생성하라", "바꿔", "변경해", "변경하라", "수정해", "수정해라", "수정을 해라", "수정하라",
-    "보완해", "추가해", "추가하라", "옮겨", "이전해", "적용해", "적용하라", "해야",
+    "보완해", "추가해", "추가하라", "옮겨", "이전해", "반영해", "반영하라", "적용해", "적용하라", "해야",
     "create", "rename", "move", "transfer", "add", "modify", "update", "apply",
 )
 NEGATION = (
@@ -131,9 +131,29 @@ def _mentions_action(action: str, directive: str) -> bool:
     return action in PROTECTED_ACTIONS and any(k in _norm(directive) for k in PROTECTED_ACTIONS[action])
 
 
-def _explicit_approval(directive: str) -> bool:
+ACTION_DENIAL = {
+    "CREATE_CONVERSATION": ("대화창을 만들지 마", "대화창 생성하지 마"),
+    "BRANCH_CONVERSATION": ("대화창 분기하지 마",),
+    "RENAME_CONVERSATION": ("이름 변경은 하지 마", "대화창 이름을 바꾸지 마", "do not rename"),
+    "CREATE_TOOL": ("도구를 만들지 마", "도구 생성하지 마"),
+    "MODIFY_TOOL": ("도구를 수정하지 마", "기능 수정하지 마"),
+    "CREATE_PROGRAM": ("프로그램을 만들지 마", "프로그램 생성하지 마"),
+    "MODIFY_PROGRAM": ("프로그램을 수정하지 마", "코드 수정하지 마"),
+    "CREATE_AUTOMATION": ("자동화 생성하지 마", "예약 작업 만들지 마"),
+    "CREATE_SCHEDULE": ("예약 생성하지 마", "리마인더 생성하지 마"),
+    "ENABLE_AUTOMATION": ("자동화 활성화하지 마", "예약 활성화하지 마"),
+    "MODIFY_AUTOMATION": ("자동화 수정하지 마", "예약 변경하지 마"),
+    "CREATE_WORK": ("work 생성하지 마", "작업 생성하지 마"),
+    "CREATE_REGISTRY": ("registry를 만들지 마", "registry 생성하지 마", "임의로 만들지 마"),
+    "MODIFY_RULE": ("규칙 수정하지 마", "규칙 추가하지 마"),
+    "MODIFY_WORKFLOW": ("workflow 수정하지 마", "workflow 변경하지 마"),
+    "APPLY_FEEDBACK": ("피드백을 반영하지 마", "피드백 적용하지 마", "통합하지 마"),
+}
+
+
+def _explicit_approval(action: str, directive: str) -> bool:
     t = _norm(directive)
-    if any(x in t for x in NEGATION):
+    if any(_norm(x) in t for x in ACTION_DENIAL.get(action, ())):
         return False
     return any(x in t for x in POSITIVE_APPROVAL)
 
@@ -171,7 +191,7 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
         proposal.action in {"APPLY_FEEDBACK", "MODIFY_TOOL", "MODIFY_PROGRAM", "MODIFY_RULE", "MODIFY_WORKFLOW"}
         and any(proposal.directive_source_ref.startswith(prefix) for prefix in CURRENT_CHAT_PREFIXES)
         and _mentions_action(proposal.action, proposal.directive_text)
-        and _explicit_approval(proposal.directive_text)
+        and _explicit_approval(proposal.action, proposal.directive_text)
         and (
             (proposal.action == "APPLY_FEEDBACK" and proposal.target == "WIC_GLOBAL_OPERATING_RULES.md")
             or (
@@ -190,7 +210,7 @@ def evaluate(proposal: ChangeProposal, approved_source_text: str | None = None) 
         return deny("directive text not found as an exact approved user-record entry", proposal)
     if not _mentions_action(proposal.action, proposal.directive_text):
         return deny("directive does not explicitly name the proposed change", proposal)
-    if not _explicit_approval(proposal.directive_text):
+    if not _explicit_approval(proposal.action, proposal.directive_text):
         return deny("directive is not an explicit positive approval", proposal)
     return GuardDecision("ALLOW", "explicit user directive provenance verified", proposal.action, proposal.target, proposal.directive_source_ref, False)
 
@@ -240,6 +260,11 @@ def run_fixtures() -> str:
             "MODIFY_TOOL", "TOOL006", "6번 도구 기능 수정해라.", "CURRENT_CHAT#feedback-2",
             root_cause_id="", target_resolved=True, conflict_free=True,
         ),
+        "approved_current_chat_with_output_prohibition": ChangeProposal(
+            "APPLY_FEEDBACK", "WIC_GLOBAL_OPERATING_RULES.md",
+            "N종 발행사가 중복되면 출력 금지하고 최신 규칙으로 반영해.",
+            "CURRENT_CHAT#feedback-negative-content",
+        ),
     }
     result = {name: asdict(evaluate(item, approved)) for name, item in cases.items()}
     deny_names = (
@@ -251,7 +276,7 @@ def run_fixtures() -> str:
     for name in deny_names:
         assert result[name]["decision"] == "DENY_HOLD"
         assert result[name]["observer_report_required"] is True
-    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback", "approved_normalized_current_chat"):
+    for name in ("approved_chat", "approved_tool", "approved_program", "approved_canonical_feedback", "approved_normalized_current_chat", "approved_current_chat_with_output_prohibition"):
         assert result[name]["decision"] == "ALLOW"
         assert result[name]["observer_report_required"] is False
     origin_report = chat_origin_report(cases["approved_chat"])

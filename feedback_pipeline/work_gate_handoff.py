@@ -42,6 +42,15 @@ REQUIRED_EXIT_CHECKPOINT = (
 
 def evaluate_candidate(candidate: Mapping[str, Any]) -> dict[str, Any]:
     gates = candidate.get("gates", {})
+    required_gates = ("chat_files", "github", "ordinary_runtime")
+    missing_gates = [key for key in required_gates if key not in gates or not isinstance(gates.get(key), bool)]
+    if missing_gates:
+        return {
+            "decision": "WORK_HOLD_INVALID_GATES",
+            "reason": "Every lower-cost gate must be present as an explicit boolean.",
+            "missing_handoff": [],
+            "missing_gates": missing_gates,
+        }
     g1 = bool(gates.get("chat_files", False))
     g2 = bool(gates.get("github", False))
     g3 = bool(gates.get("ordinary_runtime", False))
@@ -80,6 +89,8 @@ def validate_exit_checkpoint(checkpoint: Mapping[str, Any]) -> dict[str, Any]:
         if value in (None, "", [], {}):
             missing.append(key)
     status = str(checkpoint.get("status", ""))
+    placeholders = {"NONE_YET", "TODO", "TBD", "PLACEHOLDER", "확인 필요"}
+    placeholder_fields = [key for key in REQUIRED_EXIT_CHECKPOINT if str(checkpoint.get(key, "")).strip() in placeholders or (isinstance(checkpoint.get(key), list) and any(str(x).strip() in placeholders for x in checkpoint.get(key, [])))]
     if status and status not in {"PASS", "HOLD", "FAIL"}:
         return {
             "valid": False,
@@ -94,6 +105,8 @@ def validate_exit_checkpoint(checkpoint: Mapping[str, Any]) -> dict[str, Any]:
             "missing": missing,
             "reason": "Work exit is not resumable until every checkpoint field is persisted.",
         }
+    if placeholder_fields:
+        return {"valid": False, "decision": "WORK_EXIT_CHECKPOINT_PLACEHOLDER", "missing": [], "placeholder_fields": placeholder_fields, "reason": "Placeholder values are not resumable execution evidence."}
     return {
         "valid": True,
         "decision": "WORK_EXIT_RESUMABLE",
@@ -127,6 +140,9 @@ def build_handoff(state: Mapping[str, Any]) -> dict[str, Any]:
         "eligible_work_lanes": eligible,
         "deferred_lower_cost_lanes": deferred,
         "held_incomplete_handoff_lanes": held,
+        "candidate_count": len(candidates),
+        "target_conservation": len(evaluated) == len(candidates),
+        "pass_claimed": bool(candidates),
         "candidates": evaluated,
         "policy": "Use Work only for WORK_ELIGIBLE lanes; never repeat prior PASS or repository inventory.",
         "work_exit_policy": "Before Work stops, persist a WORK_EXIT_RESUMABLE checkpoint or mark the lane incomplete; never restart from zero.",
@@ -175,6 +191,8 @@ def self_test() -> None:
     r = evaluate_candidate(incomplete)
     assert r["decision"] == "WORK_HOLD_INCOMPLETE_HANDOFF"
     assert "target_repository" in r["missing_handoff"]
+    missing_gate = evaluate_candidate({**incomplete, "gates": {"chat_files": False, "github": False}})
+    assert missing_gate["decision"] == "WORK_HOLD_INVALID_GATES" and missing_gate["missing_gates"] == ["ordinary_runtime"]
 
     complete = {
         "gates": {"chat_files": False, "github": False, "ordinary_runtime": False},
@@ -190,6 +208,8 @@ def self_test() -> None:
 
     combined = build_handoff({"structure_status": "PASS", "work_gate_candidates": {"a": cheap, "b": complete}})
     assert combined["eligible_work_lanes"] == ["b"]
+    empty = build_handoff({"structure_status": "PASS", "work_gate_candidates": {}})
+    assert empty["candidate_count"] == 0 and empty["pass_claimed"] is False and empty["target_conservation"] is True
     assert combined["deferred_lower_cost_lanes"] == ["a"]
 
     bad_exit = {"lane": "b", "status": "HOLD"}
