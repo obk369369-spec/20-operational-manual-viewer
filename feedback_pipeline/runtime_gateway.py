@@ -9,6 +9,15 @@ ROOT=Path(__file__).resolve().parent
 REGISTRY=ROOT/'wic_target_registry.json'
 HOLD='HOLD_RUNTIME_NOT_VERIFIED'
 
+def evaluate_handoff_pressure(runtime_context:Mapping[str,Any]|None)->dict[str,Any]:
+    """Return an in-chat handoff warning before the WIC context becomes unsafe."""
+    context=runtime_context or {}
+    remaining=context.get('remaining_context_ratio')
+    messages=context.get('message_count')
+    near_limit=(isinstance(remaining,(int,float)) and remaining<=0.20) or (isinstance(messages,int) and messages>=180)
+    if not near_limit:return {'handoff_required':False,'status':'CONTINUE_CURRENT_CHAT'}
+    return {'handoff_required':True,'status':'PROACTIVE_HANDOFF_REQUIRED','message':'현재 대화가 길어졌습니다. 최신 checkpoint와 NEXT_START를 보존한 뒤 새 대화로 이어가세요.','chat_created':False,'chat_renamed':False}
+
 def execute_feedback_event(event:Mapping[str,Any],workspace:Path,bundled_python:str='')->dict[str,Any]:
     from global_pipeline import execute_actual_transport
     registry=json.loads(REGISTRY.read_text(encoding='utf-8'))
@@ -67,13 +76,13 @@ def runtime_verify(target:str,workspace:Path,registry:Mapping[str,Any],bundled_p
     state.update({'status':'PASS','stage':'FINAL_OUTPUT_ALLOWED','validator_receipt':vr,'output_gate_receipt':gr,'LATEST_MASTER_FORCED':True,'VALIDATOR_FORCED':True,'OUTPUT_GATE_FORCED':True,'OLD_PIPELINE_BLOCKED':True,'MEMORY_ONLY_GENERATION_BLOCKED':True})
     return state
 
-def capture_feedback(source_chat:str,wrong_output_ref:str,user_correction:str,*,source_ref:str='',tool_id:str='',execute_actual_pipeline=None,execution_event:Mapping[str,Any]|None=None)->dict[str,Any]:
+def capture_feedback(source_chat:str,wrong_output_ref:str,user_correction:str,*,source_ref:str='',tool_id:str='',execute_actual_pipeline=None,execution_event:Mapping[str,Any]|None=None,runtime_context:Mapping[str,Any]|None=None)->dict[str,Any]:
     from event_ledger import append_occurrence
     ledger_event=execution_event or {'source_chat':source_chat,'tool_id':tool_id,'source_ref':source_ref or wrong_output_ref,'feedback':user_correction,'wrong_output_ref':wrong_output_ref}
     occurrence=append_occurrence(ledger_event)
     event_id=occurrence['occurrence_id']
     stages=['CAPTURED','NORMALIZED','TARGET_RESOLVED','EXISTING_ROOT_SEARCH','DEDUP_RECURRENCE_UPDATE','EVIDENCE_LINK','ROOT_CLASSIFIED','DIRECT_FIX_READY']
-    captured={'event_kind':'ACTUAL_USER_FEEDBACK','feedback_id':event_id,'occurrence_receipt':occurrence,'source_chat':source_chat,'wrong_output_ref':wrong_output_ref,'user_correction':user_correction,'stage':'DIRECT_FIX_READY','stage_history':stages,'deferred':False,'user_manual_routing':False}
+    captured={'event_kind':'ACTUAL_USER_FEEDBACK','feedback_id':event_id,'occurrence_receipt':occurrence,'source_chat':source_chat,'wrong_output_ref':wrong_output_ref,'user_correction':user_correction,'stage':'DIRECT_FIX_READY','stage_history':stages,'deferred':False,'user_manual_routing':False,'handoff_pressure':evaluate_handoff_pressure(runtime_context)}
     if execute_actual_pipeline is None or execution_event is None:
         return {**captured,'status':HOLD,'FAILED_STAGE':'ACTUAL_EXECUTOR','FAIL_REASON':'actual executor context unavailable','DIRECT_FIX_READY_AUTO_CONTINUE':False}
     result=execute_actual_pipeline(execution_event)
@@ -98,6 +107,8 @@ def self_test()->None:
         if h['event_kind']!='CHAT_HANDOFF_EVENT' or not h['checkpoint_ref']: raise RuntimeError('handoff ledger fixture failed')
     r=json.loads(REGISTRY.read_text(encoding='utf-8'))
     if r['runtime_contract']['old_pipeline_allowed'] is not False or r['runtime_contract']['memory_only_generation_allowed'] is not False: raise RuntimeError('runtime contract drift')
+    if evaluate_handoff_pressure({'remaining_context_ratio':0.19})['status']!='PROACTIVE_HANDOFF_REQUIRED':raise RuntimeError('proactive handoff threshold failed')
+    if evaluate_handoff_pressure({'remaining_context_ratio':0.80})['handoff_required']:raise RuntimeError('handoff false positive')
     print('PASS: runtime fail-closed + immediate actual feedback capture contract')
 
 def main():

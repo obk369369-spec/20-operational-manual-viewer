@@ -15,6 +15,7 @@ from typing import Any, Mapping
 
 ROOT = Path(__file__).resolve().parent
 REGISTRY = ROOT / "wic_target_registry.json"
+ROUTE_REGISTRY = ROOT.parent / "WIC_CHAT_ROUTING_REGISTRY.md"
 STAGES = [
     "CAPTURED","NORMALIZED","TARGET_RESOLVED","EVIDENCE_READY","ROOT_CLASSIFIED",
     "WORK_READY","TARGET_APPLIED","CENTRAL_APPLIED","TESTED","COMMITTED","PUSHED",
@@ -40,6 +41,13 @@ def validate_registry(registry: Mapping[str, Any]) -> None:
         for chat_id in row["chat_ids"]:
             if chat_id in seen: raise ValueError(f"duplicate chat id {chat_id}")
             seen[chat_id] = target
+    route_targets = {
+        line.split("=", 1)[0].removeprefix("route:").strip()
+        for line in ROUTE_REGISTRY.read_text(encoding="utf-8").splitlines()
+        if line.startswith("route:") and "=" in line
+    }
+    uncovered = sorted(route_targets - set(registry.get("targets", {})) - set(seen))
+    if uncovered: raise ValueError(f"routing registry target(s) lack canonical coverage: {uncovered}")
 
 
 def resolve(registry: Mapping[str, Any], chat_id: str, tool_id: str = "") -> tuple[str, Mapping[str, Any]]:
@@ -71,7 +79,19 @@ def fail(state: dict[str, Any], stage: str, reason: str, recoverable: bool, acti
     return state
 
 
+def recover_evidence(event: Mapping[str, Any]) -> dict[str, Any]:
+    """Recover linked evidence from the source-chat envelope without inventing facts."""
+    recovered = dict(event)
+    context = event.get("source_context") if isinstance(event.get("source_context"), Mapping) else {}
+    recovered["actual_input_ref"] = event.get("actual_input_ref") or context.get("actual_input_ref") or context.get("current_input_ref") or event.get("source_ref")
+    recovered["wrong_output_ref"] = event.get("wrong_output_ref") or context.get("wrong_output_ref") or context.get("previous_output_ref")
+    recovered["expected"] = event.get("expected") or context.get("expected") or context.get("user_correction") or event.get("user_correction")
+    recovered["evidence_recovered_from_source_context"] = any(not event.get(k) and recovered.get(k) for k in ("actual_input_ref", "wrong_output_ref", "expected"))
+    return recovered
+
+
 def build_packets(event: Mapping[str, Any], target: str, row: Mapping[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    event = recover_evidence(event)
     root = str(event.get("root_cause_id") or stable_id(target, str(event["feedback"])))
     evidence = {
         "source_chat":event["source_chat"], "source_ref":event["source_ref"],
@@ -81,6 +101,7 @@ def build_packets(event: Mapping[str, Any], target: str, row: Mapping[str, Any])
         "severity":event.get("severity","MEDIUM"), "customer_impact":event.get("customer_impact","OPERATIONAL"),
         "target":target, "repository":row["repository"], "master_paths":row["master_paths"],
         "existing_pass":event.get("existing_pass",[]), "pii_persisted":False,
+        "evidence_recovered_from_source_context":event.get("evidence_recovered_from_source_context",False),
     }
     work = {
         "target":target,"root_cause_id":root,"evidence":evidence,"repository":row["repository"],
@@ -186,7 +207,7 @@ def canonical_execution_audit() -> dict[str, Any]:
 def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, Any], workspace: Path, *, bundled_python: str = "") -> dict[str, Any]:
     """Create evidence DIFF, test, commit, push and remote read-back from actual Git results."""
     validate_registry(registry)
-    required_event={"event_kind","source_chat","source_ref","feedback","actual_input_ref","wrong_output_ref","expected"}
+    required_event={"event_kind","source_chat","source_ref","feedback"}
     missing_event=sorted(required_event-set(event))
     if missing_event:
         return fail({"stage":"CAPTURED","status":"RUNNING"},"CAPTURED",f"event missing {missing_event}",True,"RECOVER_FIELDS_FROM_SOURCE_CHAT")
@@ -260,7 +281,7 @@ def self_test() -> dict[str, Any]:
     receipts={k:True for k in ("target_applied","central_applied","tested","committed","pushed","remote_verified","state_synced")}
     base={"event_kind":"ACTUAL_USER","source_ref":"CURRENT_CHAT#fixture","feedback":"실제 결과가 틀렸다. 수정해라.","actual_input_ref":"fixture/input","wrong_output_ref":"fixture/wrong","expected":"fixture/expected","recurrence":2}
     cases={}
-    for target in ("TOOL006","TOOL041","TOOL042","TOOL007"):
+    for target in sorted(registry["targets"]):
         cases[target]=run_event({**base,"source_chat":target,"tool_id":target},registry,receipts,fixture_mode=True)
         assert cases[target]["status"]=="PASS"
     cases["FUTURE_CHAT"]=run_event({**base,"source_chat":"CHAT999","tool_id":"TOOL999","registration_mode":"CENTRAL_LANE_PROVISIONAL"},registry,receipts,fixture_mode=True)
@@ -269,6 +290,8 @@ def self_test() -> dict[str, Any]:
     assert missing["FAILED_STAGE"]=="TARGET_RESOLVED" and missing["USER_ACTION_REQUIRED"] is False
     incomplete=run_event({**base,"source_chat":"TOOL041","wrong_output_ref":""},registry,receipts,fixture_mode=True)
     assert incomplete["FAILED_STAGE"]=="EVIDENCE_READY" and incomplete["AUTO_RECOVERABLE"] is True
+    recovered=run_event({"event_kind":"ACTUAL_USER","source_chat":"TOOL041","source_ref":"CURRENT_CHAT#short-correction","feedback":"직전 출력의 부서가 틀렸다","user_correction":"공식 원문에 확인된 부서로 유지","source_context":{"previous_output_ref":"CURRENT_CHAT#assistant-previous"}},registry,receipts,fixture_mode=True)
+    assert recovered["status"]=="PASS" and recovered["evidence_packet"]["evidence_recovered_from_source_context"] is True
     audit=canonical_execution_audit(); assert audit["CANONICAL_PIPELINE_ONLY"] and audit["ACTIVE_EXECUTABLE_PIPELINE_COUNT"]==1
     try: verify_material_change({},ROOT.parent,git(ROOT.parent,"rev-parse","HEAD").stdout.strip()); raise AssertionError("receipt-only event must be blocked")
     except RuntimeError as exc: assert "material_decision required" in str(exc)

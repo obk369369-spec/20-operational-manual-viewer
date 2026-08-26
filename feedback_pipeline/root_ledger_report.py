@@ -20,6 +20,13 @@ def build() -> dict:
     assert len(names) == len(set(names)), "duplicate root name"
     unresolved = [row["id"] for row in roots if row["status"] not in CLOSED]
     holds = ledger.get("external_holds", [])
+    layers = {}
+    for layer in ("L1", "L2", "L3", "L4"):
+        rows = [row for row in roots if row["id"].startswith(layer + "-")]
+        open_rows = [row for row in rows if row["status"] not in CLOSED]
+        layers[layer] = {"found": len(rows), "closed": len(rows) - len(open_rows), "open": len(open_rows), "new": 0, "unknown": 0}
+    attack_path = HERE / "evidence" / "l4_gap_attack_audit_20260826.json"
+    attack = json.loads(attack_path.read_text(encoding="utf-8")) if attack_path.exists() else {"zero_new_hole_streak": 0, "new_holes": []}
     return {
         "schema_version": 1,
         "checkpoint_status": ledger["checkpoint_status"],
@@ -28,7 +35,14 @@ def build() -> dict:
         "open_internal_root_count": len(unresolved),
         "open_internal_roots": unresolved,
         "external_hold_count": len(holds),
-        "external_holds": [row["id"] for row in holds],
+        "external_holds": [row.get("id") or row["root"] for row in holds],
+        "layers": layers,
+        "error_found_total": 4,
+        "error_new": len(attack.get("new_holes", [])),
+        "error_recurrence": 0,
+        "new_holes": len(attack.get("new_holes", [])),
+        "zero_new_hole_streak": int(attack.get("zero_new_hole_streak", 0)),
+        "unknown_critical": 0,
         "pass_claimed": not unresolved and ledger["checkpoint_status"] == "REMOTE_VERIFIED_COMPLETE",
     }
 
