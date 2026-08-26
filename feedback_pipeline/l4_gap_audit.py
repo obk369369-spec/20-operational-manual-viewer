@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -11,6 +12,7 @@ OUT = ROOT / "evidence" / "l4_gap_attack_audit_20260826.json"
 
 def audit() -> dict:
     from global_pipeline import REGISTRY, recover_evidence, run_event, validate_registry
+    from historical_record_retriever import retrieve
     from runtime_gateway import evaluate_handoff_pressure
 
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -23,19 +25,24 @@ def audit() -> dict:
         coverage[target] = result["status"] == "PASS" and result["evidence_packet"]["evidence_recovered_from_source_context"] is True
     future = run_event({**base,"source_chat":"CHAT999","tool_id":"TOOL999","registration_mode":"CENTRAL_LANE_PROVISIONAL"},registry,receipts,fixture_mode=True)
     recovered = recover_evidence(base)
+    historical_tool2 = retrieve("TOOL002", {})
+    historical_other = retrieve("TOOL001", {})
     probes = {
         "L4-12-all-canonical-targets-and-future-inherit": all(coverage.values()) and future["status"] == "PASS",
         "L4-13-proactive-in-chat-handoff": evaluate_handoff_pressure({"remaining_context_ratio":0.19})["status"] == "PROACTIVE_HANDOFF_REQUIRED" and not evaluate_handoff_pressure({"remaining_context_ratio":0.80})["handoff_required"],
         "L4-14-routing-registry-coverage-gate": True,
         "L4-15-source-context-evidence-recovery": bool(recovered.get("actual_input_ref") and recovered.get("wrong_output_ref") and recovered.get("expected")),
+        "L4-16-tool-scoped-historical-retrieval": historical_tool2["latest_related_discussion"]["observed_at"].startswith("2026-04-12") and historical_tool2["last_actual_work_point"] == "기관별 누적검사기" and historical_other["status"] == "PASS",
     }
-    return {"schema_version":1,"probes":probes,"open_internal_roots":[key for key,value in probes.items() if not value],"new_holes":[],"target_coverage":coverage,"future_provisional":future["status"]}
+    scope_fingerprint=hashlib.sha256("\n".join(sorted(probes)).encode()).hexdigest()
+    return {"schema_version":1,"scope_fingerprint":scope_fingerprint,"probes":probes,"open_internal_roots":[key for key,value in probes.items() if not value],"new_holes":[],"target_coverage":coverage,"future_provisional":future["status"]}
 
 
 def main() -> None:
     parser=argparse.ArgumentParser();parser.add_argument("--record",action="store_true");args=parser.parse_args()
     result=audit();prior=json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
-    result["zero_new_hole_streak"] = int(prior.get("zero_new_hole_streak",0))+1 if not result["open_internal_roots"] and not result["new_holes"] else 0
+    same_scope=prior.get("scope_fingerprint")==result["scope_fingerprint"]
+    result["zero_new_hole_streak"] = (int(prior.get("zero_new_hole_streak",0))+1 if same_scope else 1) if not result["open_internal_roots"] and not result["new_holes"] else 0
     if args.record:OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     print(json.dumps(result,ensure_ascii=False))
     if result["open_internal_roots"] or result["new_holes"] or not all(result["target_coverage"].values()):raise SystemExit(2)

@@ -24,7 +24,7 @@ def build() -> dict:
     for layer in ("L1", "L2", "L3", "L4"):
         rows = [row for row in roots if row["id"].startswith(layer + "-")]
         open_rows = [row for row in rows if row["status"] not in CLOSED]
-        layers[layer] = {"found": len(rows), "closed": len(rows) - len(open_rows), "open": len(open_rows), "new": 0, "unknown": 0}
+        layers[layer] = {"found": len(rows), "closed": len(rows) - len(open_rows), "open": len(open_rows), "new": sum(bool(row.get("introduced_after_checkpoint")) for row in rows), "unknown": 0}
     attack_path = HERE / "evidence" / "l4_gap_attack_audit_20260826.json"
     attack = json.loads(attack_path.read_text(encoding="utf-8")) if attack_path.exists() else {"zero_new_hole_streak": 0, "new_holes": []}
     return {
@@ -37,8 +37,8 @@ def build() -> dict:
         "external_hold_count": len(holds),
         "external_holds": [row.get("id") or row["root"] for row in holds],
         "layers": layers,
-        "error_found_total": 4,
-        "error_new": len(attack.get("new_holes", [])),
+        "error_found_total": len([row for row in roots if row["id"].startswith("L4-")]),
+        "error_new": sum(bool(row.get("introduced_after_checkpoint")) for row in roots),
         "error_recurrence": 0,
         "new_holes": len(attack.get("new_holes", [])),
         "zero_new_hole_streak": int(attack.get("zero_new_hole_streak", 0)),

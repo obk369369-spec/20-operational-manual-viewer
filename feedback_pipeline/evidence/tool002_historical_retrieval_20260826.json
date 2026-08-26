@@ -1,0 +1,70 @@
+{
+  "tool_id": "TOOL002",
+  "status": "PASS",
+  "scope": "TOOL_ONLY_NO_FULL_LIBRARY_SCAN",
+  "latest_related_discussion": {
+    "observed_at": "2026-04-12T19:01:50+09:00",
+    "source": "2번 도구 최종 압축 규칙본.doc",
+    "summary": "2번 도구 독립 실행, RAW→INTERNAL→DISPLAY, 4개 버튼, INIT/PASS/FAIL, 단계별 확장과 롤백을 잠금."
+  },
+  "last_actual_work_point": "기관별 누적검사기",
+  "historical_records": [
+    {
+      "observed_at": "2026-04-12T19:01:50+09:00",
+      "source_root_alias": "important_chat_list",
+      "relative_path": "2번 도구 최종 압축 규칙본.doc",
+      "sha256": "985EA28F1B984EBB8C3A95D65FC04650421F56E558BACA4A9A16E7D4A5C55A1A",
+      "classification": "LATEST_RELATED_DISCUSSION",
+      "summary": "2번 도구 독립 실행, RAW→INTERNAL→DISPLAY, 4개 버튼, INIT/PASS/FAIL, 단계별 확장과 롤백을 잠금.",
+      "rule_status": "FUNCTIONAL_ISOLATION_STILL_ACTIVE_CROSSCHAT_ROUTING_SUPERSEDED"
+    },
+    {
+      "observed_at": "2026-03-23T11:49:58+09:00",
+      "source_root_alias": "important_chat_list",
+      "relative_path": "2번 입찰 도구 자동화 전용 창.doc",
+      "sha256": "041F84D8E45E5F40DEDC64B4264A3691FC98260ABBD4213E0FA1D383F4E7D374",
+      "classification": "LAST_ACTUAL_WORK_POINT",
+      "summary": "공고문·금액자료→분기·예상금액·로그. 복구기준 STOP/Rollback.",
+      "last_work_point": "기관별 누적검사기"
+    },
+    {
+      "observed_at": "2026-03-15T22:01:02+09:00",
+      "source_root_alias": "chat_archive",
+      "relative_path": "2번 입찰 도구 4.doc",
+      "sha256": "A51E5A0790E80D2EB6415733A96A1359FFF657D3BCB5D96D1D60B74469154329",
+      "classification": "HISTORICAL_RULE_EVIDENCE",
+      "summary": "LOCK_SPEC/CONTRACT/TEST_CASE/SCREEN_MAP와 화면·로그·반복차단 검증 규칙."
+    }
+  ],
+  "library_readback": [
+    {
+      "relative_path": "2번 도구 최종 압축 규칙본.doc",
+      "sha256_match": true,
+      "size": 36864
+    },
+    {
+      "relative_path": "2번 입찰 도구 자동화 전용 창.doc",
+      "sha256_match": true,
+      "size": 22016
+    },
+    {
+      "relative_path": "2번 입찰 도구 4.doc",
+      "sha256_match": true,
+      "size": 65536
+    }
+  ],
+  "github": {
+    "repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+    "latest_verified_commit": "9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9",
+    "master_paths": [
+      "WIC_TARGET_APPLY_STATE.json"
+    ],
+    "checkpoint": "9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9"
+  },
+  "existing_status": {
+    "pass": "로컬 관리기능 functional E2E",
+    "hold": "외부 나라장터 자동수집",
+    "open": "기관별 누적검사기"
+  },
+  "user_manual_routing": 0
+}

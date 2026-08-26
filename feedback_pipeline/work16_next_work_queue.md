@@ -10,7 +10,7 @@
 - required behavior: 도구번호/업무가 식별되면 현재 대화만 보지 말고 해당 TOOL의 GitHub master/checkpoint/handoff와 Library 보존 기록을 우선 검색하여 최근 관련 논의/마지막 작업지점을 회수. 사용자가 과거 내용을 복사해 다시 입력하게 하지 않음.
 - PASS gate: TOOL002 대표 사례에서 현재 chat only 판정이 아니라 Library + GitHub records를 자동 회수하여 최신 관련 기록/마지막 작업지점을 재현하고, 다른 canonical TOOL 1건에서도 동일 경로가 재사용됨을 최소 fixture로 확인.
 - constraints: 전 대화 전수조사 금지, 전체 Library 스캔 금지, 해당 TOOL 식별 후 scoped search만 수행, 기존 PASS는 SKIP-REUSE, DIFF ONLY, 정상 commit/push/read-back 후 checkpoint 갱신.
-- status: OPEN_CANDIDATE / WORK_READY_FOR_DEDUP
+- status: CONSUMED_BY_L4-16 / TOOL002_SCOPED_RETRIEVAL_LOCAL_VERIFIED_REMOTE_PENDING
 
 ## NEXT WORK intake — unresolved recurrent feedback since prior Work
 

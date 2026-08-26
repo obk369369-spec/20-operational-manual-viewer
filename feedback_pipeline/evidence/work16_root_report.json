@@ -1,14 +1,14 @@
 {
-  "checkpoint_status": "REMOTE_VERIFIED_COMPLETE",
-  "error_found_total": 4,
-  "error_new": 0,
+  "checkpoint_status": "LOCAL_VERIFIED_REMOTE_READBACK_PENDING",
+  "error_found_total": 5,
+  "error_new": 1,
   "error_recurrence": 0,
   "external_hold_count": 2,
   "external_holds": [
     "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
     "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR"
   ],
-  "fixed_or_verified_count": 15,
+  "fixed_or_verified_count": 16,
   "layers": {
     "L1": {
       "closed": 8,
@@ -32,9 +32,9 @@
       "unknown": 0
     },
     "L4": {
-      "closed": 4,
-      "found": 4,
-      "new": 0,
+      "closed": 5,
+      "found": 5,
+      "new": 1,
       "open": 0,
       "unknown": 0
     }
@@ -42,9 +42,9 @@
   "new_holes": 0,
   "open_internal_root_count": 0,
   "open_internal_roots": [],
-  "pass_claimed": true,
+  "pass_claimed": false,
   "schema_version": 1,
-  "unique_root_count": 15,
+  "unique_root_count": 16,
   "unknown_critical": 0,
   "zero_new_hole_streak": 2
 }

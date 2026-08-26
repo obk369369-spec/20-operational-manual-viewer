@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "tools": {
+    "TOOL002": {
+      "records": [
+        {
+          "observed_at": "2026-04-12T19:01:50+09:00",
+          "source_root_alias": "important_chat_list",
+          "relative_path": "2번 도구 최종 압축 규칙본.doc",
+          "sha256": "985EA28F1B984EBB8C3A95D65FC04650421F56E558BACA4A9A16E7D4A5C55A1A",
+          "classification": "LATEST_RELATED_DISCUSSION",
+          "summary": "2번 도구 독립 실행, RAW→INTERNAL→DISPLAY, 4개 버튼, INIT/PASS/FAIL, 단계별 확장과 롤백을 잠금.",
+          "rule_status": "FUNCTIONAL_ISOLATION_STILL_ACTIVE_CROSSCHAT_ROUTING_SUPERSEDED"
+        },
+        {
+          "observed_at": "2026-03-23T11:49:58+09:00",
+          "source_root_alias": "important_chat_list",
+          "relative_path": "2번 입찰 도구 자동화 전용 창.doc",
+          "sha256": "041F84D8E45E5F40DEDC64B4264A3691FC98260ABBD4213E0FA1D383F4E7D374",
+          "classification": "LAST_ACTUAL_WORK_POINT",
+          "summary": "공고문·금액자료→분기·예상금액·로그. 복구기준 STOP/Rollback.",
+          "last_work_point": "기관별 누적검사기"
+        },
+        {
+          "observed_at": "2026-03-15T22:01:02+09:00",
+          "source_root_alias": "chat_archive",
+          "relative_path": "2번 입찰 도구 4.doc",
+          "sha256": "A51E5A0790E80D2EB6415733A96A1359FFF657D3BCB5D96D1D60B74469154329",
+          "classification": "HISTORICAL_RULE_EVIDENCE",
+          "summary": "LOCK_SPEC/CONTRACT/TEST_CASE/SCREEN_MAP와 화면·로그·반복차단 검증 규칙."
+        }
+      ],
+      "status": {"pass":"로컬 관리기능 functional E2E","hold":"외부 나라장터 자동수집","open":"기관별 누적검사기"}
+    },
+    "TOOL001": {
+      "records": [
+        {
+          "observed_at": "2026-08-13T00:00:00+09:00",
+          "source_root_alias": "central_historical_index",
+          "relative_path": "WIC_HISTORICAL_EVIDENCE_INDEX.md#TOOL001",
+          "sha256": "CENTRAL_GIT_READBACK",
+          "classification": "LATEST_RELATED_DISCUSSION",
+          "summary": "안정판 보존, 실제 데이터만 사용, 5개는 실제 5개 출력, 자동발송 금지.",
+          "last_work_point": "RUN23 synthetic/실데이터 경계와 test hook 매핑"
+        }
+      ],
+      "status": {"pass":"역사규칙 부분 회수","hold":"생산 안정판 실데이터 E2E","open":"fixture 자동테스트 연결"}
+    }
+  }
+}
