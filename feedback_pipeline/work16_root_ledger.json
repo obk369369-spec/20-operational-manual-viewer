@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
-  "checkpoint_status": "LOCAL_VERIFIED_REMOTE_READBACK_PENDING",
-  "verified_remote_implementation_commit": "0fad4c96f7ce80cbd4d70a50f54e1d3bb3a23548",
+  "checkpoint_status": "REMOTE_VERIFIED_COMPLETE",
+  "verified_remote_implementation_commit": "f657fe11218ae259e2349cac1b7d5e9e0c2f8c99",
+  "verified_ci_runs": [32943309684, 32943309509],
   "roots": [
     {"id":"L1-01","root":"GAP-TARGET07-NO-CI-WORKFLOW","status":"VERIFIED_CLOSED","evidence":"cross-chat-feedback-audit.yml executes and verifies the TOOL007 adapter fixture"},
     {"id":"L1-02","root":"GAP-STALL-AUTH-NONEMPTY-BYPASS","status":"REMOTE_VERIFIED","evidence":"wic-stall-monitor authorization is the authenticated workflow_dispatch event"},
@@ -14,10 +15,10 @@
     {"id":"L2-09","root":"GAP-WORK-EXIT-PLACEHOLDER-RESUMABLE","status":"REMOTE_VERIFIED","evidence":"placeholder checkpoint fields are rejected"},
     {"id":"L2-10","root":"GAP-AUTOMATION-BOTH-DISABLED","status":"FIXED_RUNTIME","evidence":"existing wic34 heartbeat reactivated; no duplicate automation created"},
     {"id":"L3-11","root":"GAP-TOOL006-USB-RUNTIME-STALE","status":"FIXED_RUNTIME","evidence":"production USB HTML matches verified target content; browser input/output top controls pass after reopen"},
-    {"id":"L4-12","root":"GAP-CROSSCHAT-FEEDBACK-MASTER-PROPAGATION-COVERAGE","status":"FIXED_LOCAL","evidence":"global pipeline validates and exercises every canonical active target plus future provisional inheritance"},
-    {"id":"L4-13","root":"GAP-CHAT-LENGTH-PROACTIVE-HANDOFF-IN-CHAT","status":"FIXED_LOCAL","evidence":"runtime gateway returns a proactive in-chat handoff signal before the configured context threshold without UI mutation"},
-    {"id":"L4-14","root":"GAP-TARGET-REGISTRY-INCOMPLETE-WIC-COVERAGE","status":"FIXED_LOCAL","evidence":"validate_registry fails closed when any WIC_CHAT_ROUTING_REGISTRY route lacks a target or canonical alias"},
-    {"id":"L4-15","root":"GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY","status":"FIXED_LOCAL","evidence":"recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"}
+    {"id":"L4-12","root":"GAP-CROSSCHAT-FEEDBACK-MASTER-PROPAGATION-COVERAGE","status":"REMOTE_VERIFIED","evidence":"global pipeline validates and exercises every canonical active target plus future provisional inheritance"},
+    {"id":"L4-13","root":"GAP-CHAT-LENGTH-PROACTIVE-HANDOFF-IN-CHAT","status":"REMOTE_VERIFIED","evidence":"runtime gateway returns a proactive in-chat handoff signal before the configured context threshold without UI mutation"},
+    {"id":"L4-14","root":"GAP-TARGET-REGISTRY-INCOMPLETE-WIC-COVERAGE","status":"REMOTE_VERIFIED","evidence":"validate_registry fails closed when any WIC_CHAT_ROUTING_REGISTRY route lacks a target or canonical alias"},
+    {"id":"L4-15","root":"GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY","status":"REMOTE_VERIFIED","evidence":"recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"}
   ],
   "external_holds": [
     {"root":"HOLD-T6-PUBLISHER-GOLDEN-PAIR","status":"HOLD"},
