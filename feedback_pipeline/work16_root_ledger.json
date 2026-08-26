@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checkpoint_status": "LOCAL_VERIFIED_REMOTE_READBACK_PENDING",
-  "verified_remote_implementation_commit": "f657fe11218ae259e2349cac1b7d5e9e0c2f8c99",
-  "verified_ci_runs": [32943309684, 32943309509],
+  "checkpoint_status": "REMOTE_VERIFIED_COMPLETE",
+  "verified_remote_implementation_commit": "e8bffbce1ada8e57577e3be3fbb3b531e07be38b",
+  "verified_ci_runs": [32946157911, 32946157825],
   "roots": [
     {"id":"L1-01","root":"GAP-TARGET07-NO-CI-WORKFLOW","status":"VERIFIED_CLOSED","evidence":"cross-chat-feedback-audit.yml executes and verifies the TOOL007 adapter fixture"},
     {"id":"L1-02","root":"GAP-STALL-AUTH-NONEMPTY-BYPASS","status":"REMOTE_VERIFIED","evidence":"wic-stall-monitor authorization is the authenticated workflow_dispatch event"},
@@ -19,7 +19,7 @@
     {"id":"L4-13","root":"GAP-CHAT-LENGTH-PROACTIVE-HANDOFF-IN-CHAT","status":"REMOTE_VERIFIED","evidence":"runtime gateway returns a proactive in-chat handoff signal before the configured context threshold without UI mutation"},
     {"id":"L4-14","root":"GAP-TARGET-REGISTRY-INCOMPLETE-WIC-COVERAGE","status":"REMOTE_VERIFIED","evidence":"validate_registry fails closed when any WIC_CHAT_ROUTING_REGISTRY route lacks a target or canonical alias"},
     {"id":"L4-15","root":"GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY","status":"REMOTE_VERIFIED","evidence":"recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"}
-    ,{"id":"L4-16","root":"GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL","status":"FIXED_LOCAL","introduced_after_checkpoint":true,"evidence":"tool-scoped historical index and retriever recover TOOL002 latest discussion, last work point, GitHub checkpoint and reusable rules without user routing"}
+    ,{"id":"L4-16","root":"GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"tool-scoped historical index and retriever recover TOOL002 latest discussion, last work point, GitHub checkpoint and reusable rules without user routing"}
   ],
   "external_holds": [
     {"root":"HOLD-T6-PUBLISHER-GOLDEN-PAIR","status":"HOLD"},
