@@ -109,7 +109,7 @@
 
 <!-- WIC_DENY_OBSERVER_AUTO_START -->
 ## 최근 DENY 자동 관찰자 보고
-- generated_at_utc: `2026-08-25T05:35:45.679528+00:00`
+- generated_at_utc: `2026-08-26T02:04:16.409668+00:00`
 - decision: `DENY_HOLD`
 - action: `APPLY_FEEDBACK`
 - target: `WIC_GLOBAL_OPERATING_RULES.md`
