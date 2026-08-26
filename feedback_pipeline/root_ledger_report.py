@@ -41,7 +41,7 @@ def build() -> dict:
         "error_new": sum(bool(row.get("introduced_after_checkpoint")) for row in roots),
         "error_recurrence": 0,
         "new_holes": len(attack.get("new_holes", [])),
-        "zero_new_hole_streak": int(attack.get("zero_new_hole_streak", 0)),
+        "zero_new_hole_streak": 0 if unresolved else int(attack.get("zero_new_hole_streak", 0)),
         "unknown_critical": 0,
         "pass_claimed": not unresolved and ledger["checkpoint_status"] == "REMOTE_VERIFIED_COMPLETE",
     }

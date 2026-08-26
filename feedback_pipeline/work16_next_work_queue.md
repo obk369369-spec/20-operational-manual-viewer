@@ -23,3 +23,12 @@
 - credit-safe: 전체 repo/Library/USB 전수 스캔 금지. tool/root 식별 후 scoped search, 대표 실제 사례 1~2개, 같은 root 묶음 수정, 영향 테스트 후 최종 gate 1회. 크레딧 소진 시 검증 완료분만 SAFE_CHECKPOINT로 보존하고 미완료는 OPEN 유지.
 - next Work priority: P0 신규 OPEN/OPEN_CANDIDATE + 과거 unresolved recurrence 회수/dedup, P1 고객업무 BLOCKING/HIGH, P2 TOOL006/013 known-error residuals. 기존 PASS 재개발 금지.
 - status: WORK_READY / MERGE_WITH_CURRENT_OPEN_BEFORE_EXECUTION
+
+## NEXT START — TOOL002 institution accumulator
+
+- root: `T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP`
+- actual input: Narajangter workbook has metadata rows 1-4 and canonical headers at row 5 (`공고기관`, `수요기관`).
+- failure: scoped USB candidate assumes `parsed[0]` is the header, so agency columns are missing and institution accumulation is invalid.
+- target state: GitHub checkpoint `9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9`; no current root `index.html`.
+- next action: bounded header-row detection + actual-derived fixture + institution count/sum invariant; do not copy the USB HTML wholesale.
+- status: OPEN / WORK_READY

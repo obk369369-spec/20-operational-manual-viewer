@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tool_id": "TOOL002",
+  "root_cause_id": "T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP",
+  "status": "OPEN",
+  "target_repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+  "target_checkpoint_reused": "9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9",
+  "target_runtime_entrypoint": "HOLD_NO_CURRENT_ROOT_INDEX_HTML",
+  "actual_input": {
+    "path": "drive-discovered:GPT 도구 작업/2번 입찰 도구/임시 보관 폴더/20260316_1454_입찰공고_목록_20260316145346.xlsx",
+    "sheet": "입찰공고",
+    "used_rows": 48486,
+    "used_columns": 8,
+    "header_row": 5,
+    "institution_headers": ["공고기관", "수요기관"]
+  },
+  "usb_candidate": {
+    "path": "drive-discovered:GPT 도구 작업/2번 입찰 도구/02-auto-bid-narajangter-v1-2026-03-16.html",
+    "classification": "REVIEW",
+    "reason": "Institution accumulation exists, but header selection is fixed to parsed[0], so the actual XLSX cannot resolve agency columns."
+  },
+  "github_absorbed": false,
+  "usb_deleted": false,
+  "next_start": "Implement bounded header-row detection (first 20 nonempty rows, required aliases noticeNo/title/agency), add actual-derived row-5 fixture, verify institution count and sum(count)==deduped rows, then DIFF-only target apply."
+}

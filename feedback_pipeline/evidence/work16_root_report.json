@@ -1,7 +1,7 @@
 {
   "checkpoint_status": "REMOTE_VERIFIED_COMPLETE",
-  "error_found_total": 6,
-  "error_new": 2,
+  "error_found_total": 7,
+  "error_new": 3,
   "error_recurrence": 0,
   "external_hold_count": 3,
   "external_holds": [
@@ -34,18 +34,20 @@
     },
     "L4": {
       "closed": 6,
-      "found": 6,
-      "new": 2,
-      "open": 0,
+      "found": 7,
+      "new": 3,
+      "open": 1,
       "unknown": 0
     }
   },
   "new_holes": 0,
-  "open_internal_root_count": 0,
-  "open_internal_roots": [],
-  "pass_claimed": true,
+  "open_internal_root_count": 1,
+  "open_internal_roots": [
+    "L4-18"
+  ],
+  "pass_claimed": false,
   "schema_version": 1,
-  "unique_root_count": 17,
+  "unique_root_count": 18,
   "unknown_critical": 0,
-  "zero_new_hole_streak": 2
+  "zero_new_hole_streak": 0
 }
