@@ -46,6 +46,10 @@ def render_machine_section(records: list[Mapping[str, Any]]) -> str:
 
 def upsert_machine_section(existing_text: str, records: list[Mapping[str, Any]]) -> str:
     """Replace only one machine-managed section and preserve all human-owned rules."""
+    count = existing_text.count(START_MARKER)
+    end_count = existing_text.count(END_MARKER)
+    if count != end_count or count > 1:
+        raise ValueError("canonical machine section must be absent or exactly one well-formed block")
     section = render_machine_section(records)
     if SECTION_RE.search(existing_text):
         return SECTION_RE.sub(section, existing_text, count=1)
@@ -55,6 +59,8 @@ def upsert_machine_section(existing_text: str, records: list[Mapping[str, Any]])
 
 def append_machine_record(existing_text: str, record: Mapping[str, Any]) -> str:
     """Insert one record without rewriting, sorting, or reformatting existing bytes."""
+    if existing_text.count(START_MARKER) != 1 or existing_text.count(END_MARKER) != 1:
+        raise ValueError("canonical machine section must exist exactly once")
     section_match = SECTION_RE.search(existing_text)
     if not section_match:
         raise ValueError("canonical machine section missing")

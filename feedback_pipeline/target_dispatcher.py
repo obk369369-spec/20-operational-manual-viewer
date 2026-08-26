@@ -17,6 +17,10 @@ REQUIRED_MUTATION_STAGES = [
     "ROLLBACK_OR_HOLD",
 ]
 
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError(message)
+
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -24,16 +28,16 @@ def load(path: Path) -> dict:
 
 def validate_common_mutation_contract(adapters: dict) -> None:
     contract = adapters.get("common_mutation_contract", {})
-    assert contract.get("contract_id") == "WIC_MATERIAL_MUTATION_V1", "missing common material mutation contract"
-    assert contract.get("required_stage_order") == REQUIRED_MUTATION_STAGES, "material mutation stage order drift"
-    assert contract.get("fail_closed") is True, "material mutation contract must fail closed"
-    assert contract.get("apply_requires_precheck_allow") is True, "APPLY must require PRECHECK_USER_DIRECTIVE ALLOW"
-    assert contract.get("deny_decision") == "DENY_HOLD", "unauthorized mutation must DENY_HOLD"
-    assert contract.get("deny_observer_report_required") is True, "DENY evidence must reach observer report lane"
-    assert contract.get("deny_observer_delivery_target") == "WIC_OBSERVER_STATUS.md", "DENY observer delivery target drift"
-    assert contract.get("deny_must_be_blocked_before_mutation") is True, "DENY must occur before material mutation"
-    assert contract.get("rollback_or_hold_required_on_post_apply_failure") is True, "post-APPLY failure must rollback or hold"
-    assert contract.get("evidence_required_before_pass") is True, "PASS requires evidence"
+    require(contract.get("contract_id") == "WIC_MATERIAL_MUTATION_V1", "missing common material mutation contract")
+    require(contract.get("required_stage_order") == REQUIRED_MUTATION_STAGES, "material mutation stage order drift")
+    require(contract.get("fail_closed") is True, "material mutation contract must fail closed")
+    require(contract.get("apply_requires_precheck_allow") is True, "APPLY must require PRECHECK_USER_DIRECTIVE ALLOW")
+    require(contract.get("deny_decision") == "DENY_HOLD", "unauthorized mutation must DENY_HOLD")
+    require(contract.get("deny_observer_report_required") is True, "DENY evidence must reach observer report lane")
+    require(contract.get("deny_observer_delivery_target") == "WIC_OBSERVER_STATUS.md", "DENY observer delivery target drift")
+    require(contract.get("deny_must_be_blocked_before_mutation") is True, "DENY must occur before material mutation")
+    require(contract.get("rollback_or_hold_required_on_post_apply_failure") is True, "post-APPLY failure must rollback or hold")
+    require(contract.get("evidence_required_before_pass") is True, "PASS requires evidence")
 
 
 def build_plan(manifest: dict, adapters: dict, revision_cache: dict) -> dict:
@@ -91,16 +95,17 @@ def build_plan(manifest: dict, adapters: dict, revision_cache: dict) -> dict:
 
 def validate_plan(plan: dict) -> None:
     targets = [x["target"] for x in plan["actions"]] + [x["target"] for x in plan["holds"]]
-    assert len(targets) == len(set(targets)), "duplicate target in dispatch plan"
-    assert plan["canonical_revision"], "missing canonical revision"
-    assert plan["feedback_id"], "missing feedback id"
+    require(bool(targets), "empty target manifest cannot PASS")
+    require(len(targets) == len(set(targets)), "duplicate target in dispatch plan")
+    require(bool(plan["canonical_revision"]), "missing canonical revision")
+    require(bool(plan["feedback_id"]), "missing feedback id")
     for action in plan["actions"]:
         if action["action"] == "REPOSITORY_REVISION_ACK":
-            assert action.get("repository") and action.get("state_path")
+            require(bool(action.get("repository") and action.get("state_path")), "repository action missing path")
         elif action["action"] == "LANE_ACK":
-            assert action.get("evidence")
+            require(bool(action.get("evidence")), "lane action missing evidence")
         elif action["action"] == "SKIP_UNCHANGED":
-            assert action.get("canonical_revision")
+            require(bool(action.get("canonical_revision")), "skip action missing revision")
         else:
             raise AssertionError(f"unknown action: {action['action']}")
 
@@ -115,29 +120,42 @@ def validate_against_inputs(plan: dict, manifest: dict, adapters: dict, revision
 
     expected_targets = set(manifest.get("targets", {}))
     actual_targets = set(actions) | set(holds)
-    assert actual_targets == expected_targets, "dispatch plan target set differs from manifest"
+    require(bool(expected_targets), "empty expected target set cannot PASS")
+    require(actual_targets == expected_targets, "dispatch plan target set differs from manifest")
 
     for target, item in manifest.get("targets", {}).items():
         decision = item.get("decision")
         cached = cached_targets.get(target, {})
         if decision == "SKIP_UNCHANGED" or cached.get("applied_revision") == revision:
-            assert actions[target]["action"] == "SKIP_UNCHANGED"
+            require(actions[target]["action"] == "SKIP_UNCHANGED", f"{target} skip decision mismatch")
         elif target in repository_targets:
-            assert actions[target]["action"] == "REPOSITORY_REVISION_ACK"
+            require(actions[target]["action"] == "REPOSITORY_REVISION_ACK", f"{target} repository action mismatch")
         elif target in lane_targets:
-            assert actions[target]["action"] == "LANE_ACK"
+            require(actions[target]["action"] == "LANE_ACK", f"{target} lane action mismatch")
         else:
-            assert holds[target]["status"] == "REPOSITORY_CREATE_HOLD"
-            assert holds[target]["normal_registered_routes_continue"] is True
-            assert holds[target]["repository_create_attempted"] is False
+            require(holds[target]["status"] == "REPOSITORY_CREATE_HOLD", f"{target} hold mismatch")
+            require(holds[target]["normal_registered_routes_continue"] is True, f"{target} isolation mismatch")
+            require(holds[target]["repository_create_attempted"] is False, f"{target} unexpected repository creation")
 
 
 def main() -> None:
     manifest = load(MANIFEST)
     adapters = load(ADAPTERS)
     revision_cache = load(REVISION_CACHE)
-    assert revision_cache["schema_version"] == 1
+    require(revision_cache.get("schema_version") == 1, "unsupported revision cache schema")
     validate_common_mutation_contract(adapters)
+    if not manifest.get("targets"):
+        out = ROOT / "target_dispatch_plan.json"
+        out.write_text(json.dumps({
+            "status": "N_A_NO_TARGETS",
+            "feedback_id": manifest.get("feedback_id", ""),
+            "expected_target_count": 0,
+            "processed_target_count": 0,
+            "target_conservation": True,
+            "pass_claimed": False,
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print("N/A: empty manifest; PASS not claimed")
+        return
     plan = build_plan(manifest, adapters, revision_cache)
     validate_plan(plan)
     validate_against_inputs(plan, manifest, adapters, revision_cache)
@@ -163,7 +181,7 @@ def main() -> None:
 
     out = ROOT / "target_dispatch_plan.json"
     out.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("PASS: common material mutation contract + dispatch plan match current manifest, adapter registry, and revision cache")
+    print("PASS: non-empty manifest dispatch plan matches adapter registry and revision cache")
 
 
 # Library-only dispatch planner. Operational execution is global_pipeline.py.

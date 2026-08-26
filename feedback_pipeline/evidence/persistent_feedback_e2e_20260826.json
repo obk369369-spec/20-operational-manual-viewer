@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "evidence_grade": "A_FOR_WIC_CONTROLLED_CODE_AND_CENTRAL_TRANSPORT",
+  "actual_user_feedback": {
+    "source_ref": "attachment:28ee2189-2c03-4fd9-a878-98466f39c0f4/pasted-text.txt",
+    "source_sha256": "4e24e91b3a1044b3115f46c7438f613a4287a20ba3af637b8f3a014c74c8dd65",
+    "occurrence_id": "7fd66c87800629c341312b1e6f024ef4"
+  },
+  "actual_fixes": [
+    "append-only durable occurrence ledger with idempotency",
+    "source/chat/tool/occurrence-aware identity",
+    "registry cache removal",
+    "first actionable actual error routes immediately",
+    "processed occurrence conservation without silent caps",
+    "bounded subprocess execution",
+    "automatic merge/rebase and skip-ci removed",
+    "empty manifest and malformed machine section fail closed",
+    "symbolic registry SHA removed"
+  ],
+  "ordinary_chat_ingress": "EXTERNAL_PLATFORM_LIMIT",
+  "platform_limit_reason": "This repository cannot install a webhook or conversation interceptor into ordinary ChatGPT product chats. WIC runtime callers can invoke runtime_gateway capture directly; product-level invocation remains platform-controlled.",
+  "chat_handoff_ui": "EXTERNAL_PLATFORM_LIMIT",
+  "unauthorized_chat_creation_or_rename": 0,
+  "pending_single_slot_operational_trigger": "DISABLED",
+  "final_remote_sha": "PENDING_CURRENT_COMMIT"
+}

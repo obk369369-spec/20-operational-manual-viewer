@@ -133,7 +133,7 @@ def main() -> int:
             state["integration_core"] = integration
             state["processed_feedback_ids"] = list(dict.fromkeys([
                 *state.get("processed_feedback_ids", []), item.feedback_id,
-            ]))[-2000:]
+            ]))
             state["last_context_cursor"] = item.observed_at
             write_json(STATE, state)
             write_json(EVIDENCE_DIR / f"{item.feedback_id}.json", {
@@ -183,7 +183,7 @@ def main() -> int:
         )
         holds = list(integration.get("holds", []))
         holds.append({"feedback_id": item.feedback_id, "stage": "CONFLICT_DEDUP", "reason": decision.reason})
-        integration["holds"] = holds[-200:]
+        integration["holds"] = holds
         integration["feedback_checkpoints"] = core_state["feedback_checkpoints"]
         state["integration_core"] = integration
         write_json(STATE, state)
@@ -299,7 +299,7 @@ def main() -> int:
     )
     state["integration_core"] = integration
     ids = list(dict.fromkeys([*state.get("processed_feedback_ids", []), item.feedback_id]))
-    state["processed_feedback_ids"] = ids[-2000:]
+    state["processed_feedback_ids"] = ids
     state["last_context_cursor"] = item.observed_at
     write_json(STATE, state)
 

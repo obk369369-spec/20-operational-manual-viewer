@@ -31,14 +31,14 @@ def stable_id(*parts: str) -> str:
 
 
 def validate_registry(registry: Mapping[str, Any]) -> None:
-    assert registry.get("schema_version") == 1
+    if registry.get("schema_version") != 1: raise ValueError("unsupported registry schema")
     seen: dict[str, str] = {}
     for target, row in registry.get("targets", {}).items():
         missing = REQUIRED_TARGET_FIELDS - set(row)
-        assert not missing, f"{target} missing {sorted(missing)}"
-        assert row["status"] == "ACTIVE"
+        if missing: raise ValueError(f"{target} missing {sorted(missing)}")
+        if row["status"] != "ACTIVE": raise ValueError(f"{target} is not ACTIVE")
         for chat_id in row["chat_ids"]:
-            assert chat_id not in seen, f"duplicate chat id {chat_id}"
+            if chat_id in seen: raise ValueError(f"duplicate chat id {chat_id}")
             seen[chat_id] = target
 
 
@@ -120,7 +120,7 @@ def run_event(event: Mapping[str, Any], registry: Mapping[str, Any], receipts: M
 
 
 def command(args: list[str], cwd: Path, *, check: bool = True) -> subprocess.CompletedProcess[str]:
-    result = subprocess.run(args, cwd=cwd, text=True, encoding="utf-8", errors="replace", capture_output=True)
+    result = subprocess.run(args, cwd=cwd, text=True, encoding="utf-8", errors="replace", capture_output=True, timeout=900)
     if check and result.returncode:
         raise RuntimeError(f"command failed {args}: {result.stdout}\n{result.stderr}")
     return result
@@ -218,11 +218,7 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
             reconcile_base=pre_recovery_head
             if git(workspace,"merge-base","--is-ancestor",pre_recovery_head,"FETCH_HEAD",check=False).returncode:
                 return fail(state,"TARGET_APPLIED","saved receipt base is not an ancestor of remote",False,"PRESERVE_BOTH_HISTORIES_FOR_RECONCILE")
-            merged=git(workspace,"merge","--no-edit","FETCH_HEAD",check=False)
-            if merged.returncode:
-                git(workspace,"merge","--abort",check=False)
-                return fail(state,"TARGET_APPLIED","saved transport reconcile conflict",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
-            resume_existing=True
+            return fail(state,"TARGET_APPLIED","remote diverged after a preserved local receipt",False,"PRESERVE_AND_RECONCILE")
         else:
             git(workspace,"merge","--ff-only","FETCH_HEAD")
         local_head=git(workspace,"rev-parse","HEAD").stdout.strip()
@@ -239,22 +235,12 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
         receipt_path.write_text(json.dumps(applied,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     state["stage"]="TARGET_APPLIED"; test_receipt=execute_test(workspace,list(row["test_command"]),bundled_python); state["stage"]="TESTED"
     if not resume_existing:
-        git(workspace,"add","--",str(receipt_rel).replace("\\","/")); git(workspace,"commit","-m",f"wic: record actual pipeline transport for {target} [skip ci]")
+        git(workspace,"add","--",str(receipt_rel).replace("\\","/")); git(workspace,"commit","-m",f"wic: record actual pipeline transport for {target}")
     commit_sha=git(workspace,"rev-parse","HEAD").stdout.strip(); state["stage"]="COMMITTED"
     pushed=git(workspace,"push","origin",f"HEAD:{row['branch']}",check=False)
     if pushed.returncode:
         git(workspace,"fetch","origin",row["branch"])
-        safe_reconcile=git(workspace,"merge-base","--is-ancestor",reconcile_base,"FETCH_HEAD",check=False)
-        if safe_reconcile.returncode:
-            return fail(state,"PUSHED","remote advanced from a non-ancestor base",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
-        merged=git(workspace,"merge","--no-edit","FETCH_HEAD",check=False)
-        if merged.returncode:
-            git(workspace,"merge","--abort",check=False)
-            return fail(state,"PUSHED","single safe reconcile produced conflicts",False,"PRESERVE_LOCAL_COMMIT_FOR_RECONCILE")
-        test_receipt=execute_test(workspace,list(row["test_command"]),bundled_python)
-        commit_sha=git(workspace,"rev-parse","HEAD").stdout.strip()
-        state["REMOTE_RECONCILE_RECEIPT"]={"attempts":1,"mode":"NORMAL_MERGE_NO_FORCE","test_rerun":"PASS"}
-        git(workspace,"push","origin",f"HEAD:{row['branch']}")
+        return fail(state,"PUSHED","remote changed during push",False,"PRESERVE_AND_RECONCILE")
     state["stage"]="PUSHED"
     remote_sha=git(workspace,"ls-remote","origin",f"refs/heads/{row['branch']}").stdout.split("\t")[0]
     if remote_sha != commit_sha: raise RuntimeError(f"push read-back mismatch {commit_sha}/{remote_sha}")

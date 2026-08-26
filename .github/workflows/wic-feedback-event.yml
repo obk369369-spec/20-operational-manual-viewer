@@ -1,9 +1,14 @@
 name: WIC feedback event apply
 
 on:
-  push:
-    paths:
-      - 'feedback_pipeline/pending_event.json'
+  repository_dispatch:
+    types: [wic_feedback]
+  workflow_dispatch:
+    inputs:
+      event_json:
+        description: 'Authenticated WIC feedback event JSON'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -26,6 +31,22 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Materialize authenticated event without a mutable repository slot
+        env:
+          DISPATCH_EVENT_JSON: ${{ github.event.client_payload.event_json || inputs.event_json }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          raw = os.environ.get('DISPATCH_EVENT_JSON', '')
+          event = json.loads(raw)
+          required = {'event_kind','source_chat','source_ref','feedback','actual_input_ref','wrong_output_ref','expected'}
+          missing = sorted(required - set(event))
+          if missing:
+              raise SystemExit(f'event missing required fields: {missing}')
+          Path('/tmp/wic-event.json').write_text(json.dumps(event, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+
       - name: Run one CENTRAL_MASTER_DESTRUCTIVE_UPDATE fixture
         run: python feedback_pipeline/canonical_writer.py
 
@@ -42,7 +63,7 @@ jobs:
           sys.path.insert(0, 'feedback_pipeline')
           from unauthorized_structure_guard import ChangeProposal, build_observer_report, evaluate
 
-          event_path = Path('feedback_pipeline/pending_event.json')
+          event_path = Path('/tmp/wic-event.json')
           event = json.loads(event_path.read_text(encoding='utf-8'))
           proposal = ChangeProposal(
               action=str(event.get('mutation_action', '')).strip(),
@@ -98,7 +119,7 @@ jobs:
               subprocess.run(['git', 'config', 'user.name', 'wic-integration-bot'], check=True)
               subprocess.run(['git', 'config', 'user.email', 'wic-integration-bot@users.noreply.github.com'], check=True)
               subprocess.run(['git', 'add', 'WIC_OBSERVER_STATUS.md', 'feedback_pipeline/preflight_evidence.json'], check=True)
-              subprocess.run(['git', 'commit', '-m', 'wic: persist denied preflight observer evidence [skip ci]'], check=True)
+              subprocess.run(['git', 'commit', '-m', 'wic: persist denied preflight observer evidence'], check=True)
               subprocess.run(['git', 'push'], check=True)
               subprocess.run(['git', 'fetch', 'origin', 'main'], check=True)
               remote_observer = subprocess.run(
@@ -121,7 +142,7 @@ jobs:
       - name: Apply pending real feedback event
         id: apply
         run: |
-          python feedback_pipeline/global_pipeline.py --execute-event feedback_pipeline/pending_event.json --workspace . | tee /tmp/wic-event-result.json
+          python feedback_pipeline/global_pipeline.py --execute-event /tmp/wic-event.json --workspace . | tee /tmp/wic-event-result.json
           python - <<'PY'
           import json, os
           from pathlib import Path
@@ -258,11 +279,8 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No canonical changes to commit.'
           else
-            git commit -m 'wic: apply pending feedback event [skip ci]'
-            if ! git push; then
-              git pull --rebase origin "${GITHUB_REF_NAME}"
-              git push
-            fi
+            git commit -m 'wic: apply verified feedback event'
+            git push
           fi
 
       - name: Verify remote read-back and Commit SHA

@@ -8,7 +8,6 @@ unrelated global correction from silently disabling normal operating rules.
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict
-from functools import lru_cache
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -146,7 +145,6 @@ def parse_route_registry(text: str) -> dict[str, tuple[str, ...]]:
     return routes
 
 
-@lru_cache(maxsize=1)
 def load_route_registry() -> dict[str, tuple[str, ...]]:
     if not REGISTRY_PATH.exists():
         raise FileNotFoundError(f"route registry missing: {REGISTRY_PATH}")
@@ -186,8 +184,8 @@ def route_targets(text: str, route_map: Mapping[str, Iterable[str]] | None = Non
     return tuple(sorted(set(hits or ["CENTRAL", UNREGISTERED_ROUTE])))
 
 
-def _feedback_id(classification: str, targets: Iterable[str], text: str) -> str:
-    material = "|".join((classification, ",".join(sorted(targets)), _canonical_text(text)))
+def _feedback_id(classification: str, targets: Iterable[str], text: str, source_chat: str, source_ref: str) -> str:
+    material = "|".join((source_chat, source_ref, classification, ",".join(sorted(targets)), _canonical_text(text)))
     return sha256(material.encode("utf-8")).hexdigest()[:20]
 
 
@@ -197,7 +195,7 @@ def normalize(event: FeedbackEvent) -> NormalizedFeedback:
     classification = classify(normalized_text)
     targets = route_targets(normalized_text)
     return NormalizedFeedback(
-        feedback_id=_feedback_id(classification, targets, normalized_text),
+        feedback_id=_feedback_id(classification, targets, normalized_text, event.source_chat, event.source_ref),
         observed_at=event.observed_at,
         source_chat=event.source_chat,
         source_ref=event.source_ref,
@@ -368,7 +366,7 @@ def state_after(state: dict[str, Any], processed: Iterable[NormalizedFeedback], 
         **state,
         "schema_version": max(2, int(state.get("schema_version", 1))),
         "last_context_cursor": cursor,
-        "processed_feedback_ids": ids[-2000:],
+        "processed_feedback_ids": ids,
     }
 
 

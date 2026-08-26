@@ -13,7 +13,8 @@ def assess_work_ready(*, root_cause_id: str, text: str, recur_count: int, classi
     customer_impact = "BLOCKING" if blocking else "OPERATIONAL" if customer else "NONE"
     severity = "HIGH" if high else "MEDIUM" if medium else "LOW"
     repeated = max(1, int(recur_count)) >= 2
-    work_ready = customer_impact != "NONE" and (severity == "HIGH" or repeated)
+    actionable = classification in {"CORRECTION", "NEW_FIXTURE", "CONSTRAINT"}
+    work_ready = actionable and (customer_impact != "NONE" or severity in {"MEDIUM", "HIGH"})
     return {
         "root_cause_id": root_cause_id,
         "recur_count": max(1, int(recur_count)),
@@ -48,7 +49,7 @@ def run_fixtures() -> str:
     different = assess_work_ready(
         root_cause_id="different-root", text="엑셀 고객업무가 중단되는 오류다.", recur_count=1, classification="CORRECTION"
     )
-    assert first["work_ready"] is False and first["work_status"] == "ACCUMULATING"
+    assert first["work_ready"] is True and first["work_status"] == "WORK_READY"
     assert repeat["work_ready"] is True and repeat["repeatability"] == "REPEATED"
     assert different["work_ready"] is True and different["customer_impact"] == "BLOCKING"
     state = update_work_ready_state({}, first)
