@@ -5,6 +5,7 @@
   "status": "OPEN",
   "target_repository": "obk369369-spec/02-auto-bid-narajangter-v1",
   "target_checkpoint_reused": "9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9",
+  "target_checkpoint_created": "aa15d0bc9bcb73c434ff3badd2569bbc507392a0",
   "target_runtime_entrypoint": "HOLD_NO_CURRENT_ROOT_INDEX_HTML",
   "actual_input": {
     "path": "drive-discovered:GPT 도구 작업/2번 입찰 도구/임시 보관 폴더/20260316_1454_입찰공고_목록_20260316145346.xlsx",
@@ -19,7 +20,20 @@
     "classification": "REVIEW",
     "reason": "Institution accumulation exists, but header selection is fixed to parsed[0], so the actual XLSX cannot resolve agency columns."
   },
-  "github_absorbed": false,
+  "verified_asset": {
+    "module": "src/institution-accumulator.mjs",
+    "test": "tests/institution-accumulator.test.mjs",
+    "cases": 3,
+    "actual_derived_header_row": 5,
+    "deduped_rows": 3,
+    "institution_count": 2,
+    "sum_invariant": true,
+    "implementation_commit": "aad85319436bc90fe35ea764bd73b4abb0be05f7",
+    "ci_run_id": 32951474062,
+    "ci_result": "success",
+    "remote_file_readback": true
+  },
+  "github_absorbed": true,
   "usb_deleted": false,
-  "next_start": "Implement bounded header-row detection (first 20 nonempty rows, required aliases noticeNo/title/agency), add actual-derived row-5 fixture, verify institution count and sum(count)==deduped rows, then DIFF-only target apply."
+  "next_start": "Connect the remote-verified institution accumulator module to a canonical current root index.html and run actual runtime E2E; do not revive index(예전 버전).html or copy the USB candidate wholesale."
 }

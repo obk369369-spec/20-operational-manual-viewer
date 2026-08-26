@@ -30,5 +30,6 @@
 - actual input: Narajangter workbook has metadata rows 1-4 and canonical headers at row 5 (`공고기관`, `수요기관`).
 - failure: scoped USB candidate assumes `parsed[0]` is the header, so agency columns are missing and institution accumulation is invalid.
 - target state: GitHub checkpoint `9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9`; no current root `index.html`.
-- next action: bounded header-row detection + actual-derived fixture + institution count/sum invariant; do not copy the USB HTML wholesale.
-- status: OPEN / WORK_READY
+- completed: bounded header-row detection + actual-derived row-5 fixture + institution count/sum invariant; TOOL002 checkpoint `aa15d0bc9bcb73c434ff3badd2569bbc507392a0`, CI `32951474062`.
+- next action: connect the verified module to a canonical current root `index.html` and run actual runtime E2E; do not revive `index(예전 버전).html` or copy the USB HTML wholesale.
+- status: OPEN / RUNTIME_ENTRYPOINT_HOLD
