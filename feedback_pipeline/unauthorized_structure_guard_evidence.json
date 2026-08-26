@@ -146,6 +146,14 @@
       "target": "TOOL006",
       "directive_source_ref": "CURRENT_CHAT#feedback-2",
       "observer_report_required": true
+    },
+    "approved_current_chat_with_output_prohibition": {
+      "decision": "ALLOW",
+      "reason": "normalized current-chat non-destructive directive provenance verified",
+      "action": "APPLY_FEEDBACK",
+      "target": "WIC_GLOBAL_OPERATING_RULES.md",
+      "directive_source_ref": "CURRENT_CHAT#feedback-negative-content",
+      "observer_report_required": false
     }
   },
   "observer_reports": [
