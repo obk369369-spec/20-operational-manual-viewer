@@ -19,6 +19,8 @@ CANDIDATE_NAMES = (
     "TARGET_SILENTLY_DROPPED", "UNEXPECTED_WORK_THREAD",
     "REPOSITORY_AUTOCREATE_NOT_IMPLEMENTED", "WORK_RESULT_NOT_PROPAGATED",
     "OBSERVER_DIRECTIVE_MISSING", "WORK_COMPLETION_ENFORCEMENT_MISSING",
+    "OPEN_INPUT_OMISSION", "STALE_WORK_QUEUE", "REPEATED_MANUAL_APPROVAL",
+    "USER_AS_FEEDBACK_COURIER",
 )
 
 
@@ -33,7 +35,9 @@ def missing_open_inputs(ledger_roots: set[str], queued_roots: set[str]) -> list[
 def audit(previous_streak: int = 0) -> dict:
     work = load("evidence/work_execution_audit_20260827.json")
     roots = load("evidence/work16_root_report.json")
-    targets = load("work_execution_targets_20260827.json")["targets"]
+    central_state = load("state.json")
+    target_document = load("work_execution_targets_20260827.json")
+    targets = target_document["targets"]
     ledger = load("work16_root_ledger.json")
     anomalies: list[str] = []
     if work["counts"]["work_target_total"] != len(targets): anomalies.append("TARGET_SILENTLY_DROPPED")
@@ -56,12 +60,20 @@ def audit(previous_streak: int = 0) -> dict:
     approval_markers = ("USER_MANUAL_APPROVAL_COUNT", "목표는 `0`", "최대 `1`")
     if not all(marker in master_text for marker in approval_markers):
         anomalies.append("MANUAL_APPROVAL_BATCH_GATE_MISSING")
+    if int(target_document.get("user_manual_approval_count", 99)) > 1:
+        anomalies.append("REPEATED_MANUAL_APPROVAL")
+    gateway_text = (HERE / "runtime_gateway.py").read_text(encoding="utf-8")
+    if "'user_manual_routing':False" not in gateway_text:
+        anomalies.append("USER_AS_FEEDBACK_COURIER")
+    runtime_targets = central_state.get("integration_core", {}).get("runtime_enforcement", {}).get("active_target_resolution", {})
+    if runtime_targets.get("TOOL043") != "EXTERNAL_DEVICE_REQUIRED":
+        anomalies.append("HOLD_STATE_DESYNC:TOOL043")
     expected_holds = {"TOOL001", "TOOL043"}
     if {row["target"] for row in work["next_work_queue"]} != expected_holds: anomalies.append("NEXT_QUEUE_TARGET_MISMATCH")
     streak = previous_streak + 1 if not anomalies else 0
     return {
         "schema_version": 1,
-        "checks": 20,
+        "checks": len(CANDIDATE_NAMES),
         "new_open_candidates": anomalies,
         "new_holes": len(anomalies),
         "zero_new_hole_streak": streak,

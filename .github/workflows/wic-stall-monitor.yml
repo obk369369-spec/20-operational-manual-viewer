@@ -29,6 +29,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python tool043/android_screen_off_evidence.py --self-test
           python feedback_pipeline/work_execution_enforcer.py --record
           python tool043/night_observer.py
           if git diff --quiet -- tool043/status.json tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json; then

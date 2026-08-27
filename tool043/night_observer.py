@@ -23,6 +23,10 @@ def build() -> tuple[dict, dict]:
         "safe_checkpoint": roots.get("safe_checkpoint", "CURRENT_REMOTE_MAIN"),
         "user_manual_action_count": 0,
         "screen_off_test": "HOLD_ACTUAL_DEVICE_REQUIRED",
+        "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
+        "screen_off_verifier": "tool043/android_screen_off_evidence.py",
+        "single_device_run_required": True,
+        "device_run_user_manual_action_target": 0,
         "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
         "auto_recovery": "QUEUE_PRESERVED",
     }

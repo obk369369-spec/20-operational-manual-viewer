@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "tool_id": "TOOL001",
+  "status": "HOLD_EVIDENCE",
+  "searched_scoped_locations": ["Library-backed TOOL001 historical index", "TOOL001 actual operating candidate folder", "obk369369-spec/01-auto-guide-v1 evidence and regression assets", "central feedback_pipeline evidence"],
+  "actual_verified_report_payload_count": 0,
+  "excluded_candidates": {"usb_shell_or_obsolete_html": 10, "test_documents_not_verified_report_payloads": 2, "synthetic_contract_fixtures": true},
+  "why": "No set of five real reports with independently verified production fields and customer linkage was recovered; synthetic or shell assets cannot cross the runtime gate.",
+  "evidence": "TOOL001 checkpoint 8bd9c2340e141d66c11c8273b527165a2c612cde keeps HOLD_RUNTIME_VERIFIED_DATA_REQUIRED fail-closed.",
+  "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+  "next_start": "Load the recovered five-report payload into canonical index.html and run CUSTOMER INPUT to GUIDE OUTPUT actual E2E; do not revive USB RUN23 shells."
+}

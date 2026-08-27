@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "counts": {
-    "work_target_total": 8,
-    "actually_worked": 8,
+    "work_target_total": 5,
+    "actually_worked": 5,
     "not_worked_total": 0,
     "actual_smoke_missing_total": 0,
     "premature_exit_total": 0,
@@ -15,16 +15,16 @@
     {
       "target": "TOOL043",
       "root_id": "L6-20",
-      "last_actual_point": "LOCAL_NIGHT_QUEUE_AND_OBSERVER_PASS",
+      "last_actual_point": "ACTUAL_DEVICE_EVIDENCE_CONTRACT_READY",
       "failed_approach": "NONE",
       "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN"
     },
     {
       "target": "TOOL001",
       "root_id": "T1-20260827-ACTUAL-SMOKE",
-      "last_actual_point": "FAIL_CLOSED_RUNTIME_GUARDS_PASS",
-      "failed_approach": "NONE",
-      "next_trigger": "FIVE_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
+      "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS",
+      "failed_approach": "USB shells and synthetic fixtures rejected",
+      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
     }
   ],
   "execution_quality_pass": true,

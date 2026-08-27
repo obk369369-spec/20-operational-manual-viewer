@@ -1,5 +1,7 @@
 # Work16 Next Work Queue
 
+- SAFE_CHECKPOINT_IN: `54446c0d6ef1cc13ed0c9c5d398a7a9435651c25`
+
 ## OPEN candidate — cross-chat historical record auto-retrieval
 
 - source: 16번 워크 이어서 하기 / TOOL002 lookup incident
@@ -38,6 +40,13 @@
 ## CURRENT WORK_INPUT_OPEN_ROOTS
 
 - `L6-20` — TOOL043 actual Android screen-off/background/state-change/persistent-sync/screen-on/state-restore evidence.
-- NEXT_TRIGGER: `ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN`.
+- completed without device: fail-closed evidence contract/verifier and scheduled CI self-test.
+- NEXT_TRIGGER: `ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN` using `tool043/android_screen_off_evidence.py`.
 - OPEN_INPUT_OMISSION: fail closed in `post_work_anomaly_audit.py`.
 - USER_MANUAL_APPROVAL_COUNT: target `0`; platform-required maximum `1` per Work, after all executable SAFE work is batched first.
+
+## EXTERNAL HOLD — TOOL001 verified report acquisition
+
+- scoped recovery result: five actual independently verified report payloads not found; USB shells/test documents/synthetic fixtures rejected.
+- NEXT_TRIGGER: `FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE`.
+- NEXT_START: load those five payloads into canonical `index.html`, then run customer input → recommendation → TOC → guide output actual E2E.
