@@ -2,10 +2,11 @@
   "schema_version": 1,
   "tool_id": "TOOL002",
   "root_cause_id": "T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP",
-  "status": "OPEN",
+  "status": "REMOTE_VERIFIED_CLOSED",
   "target_repository": "obk369369-spec/02-auto-bid-narajangter-v1",
   "target_checkpoint_reused": "9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9",
   "target_checkpoint_created": "aa15d0bc9bcb73c434ff3badd2569bbc507392a0",
+  "target_checkpoint_closed": "b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa",
   "target_runtime_entrypoint": "HOLD_NO_CURRENT_ROOT_INDEX_HTML",
   "actual_input": {
     "path": "drive-discovered:GPT 도구 작업/2번 입찰 도구/임시 보관 폴더/20260316_1454_입찰공고_목록_20260316145346.xlsx",
@@ -35,5 +36,6 @@
   },
   "github_absorbed": true,
   "usb_deleted": false,
-  "next_start": "Connect the remote-verified institution accumulator module to a canonical current root index.html and run actual runtime E2E; do not revive index(예전 버전).html or copy the USB candidate wholesale."
+  "runtime_close": {"approach":"Web Worker","actual_rows":48486,"deduped_rows":48481,"institutions":6264,"header_row":5,"sum_invariant":true,"actual_ci_run":33030647779,"external_evidence_run":33030861619,"pages_run":33030861091,"remote_readback":true},
+  "next_start": "NONE — L4-18 REMOTE_VERIFIED_CLOSED; reuse canonical worker runtime."
 }

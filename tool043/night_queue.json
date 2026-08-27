@@ -15,13 +15,6 @@
       "last_actual_point": "FAIL_CLOSED_RUNTIME_GUARDS_PASS",
       "failed_approach": "NONE",
       "next_trigger": "FIVE_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
-    },
-    {
-      "target": "TOOL002",
-      "root_id": "L4-18",
-      "last_actual_point": "ACTUAL_LARGE_XLSX_RUNTIME_TIMEOUT",
-      "failed_approach": "browser main-thread SheetJS full-workbook parse plus immediate DOM accumulation",
-      "next_trigger": "IMPLEMENT_WORKER_OR_STREAMING_BOUNDED_XLSX_READER_THEN_RESUME_ACTUAL_FILE"
     }
   ]
 }

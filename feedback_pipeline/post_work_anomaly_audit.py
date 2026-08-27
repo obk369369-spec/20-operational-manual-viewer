@@ -25,11 +25,11 @@ def audit(previous_streak: int = 0) -> dict:
     if work["next_work_queue"] and work["overall_complete"]: anomalies.append("QUEUE_COMPLETE_CONFLICT")
     ledger_roots = {row["id"] for row in ledger["roots"] if row["status"] not in {"VERIFIED_CLOSED", "FIXED_LOCAL", "FIXED_RUNTIME", "REMOTE_VERIFIED"}}
     queued_roots = {row["root_id"] for row in work["next_work_queue"]}
-    for required in ("L4-18", "L6-20"):
+    for required in ("L6-20",):
         if required not in ledger_roots or required not in queued_roots: anomalies.append(f"UNROUTED_OPEN:{required}")
     serialized = json.dumps({"targets": targets, "ledger": ledger}, ensure_ascii=False)
     if "_work16_" in serialized or "C:\\Users\\" in serialized: anomalies.append("EPHEMERAL_LOCAL_PATH_IN_CHECKPOINT")
-    expected_holds = {"TOOL001", "TOOL002", "TOOL043"}
+    expected_holds = {"TOOL001", "TOOL043"}
     if {row["target"] for row in work["next_work_queue"]} != expected_holds: anomalies.append("NEXT_QUEUE_TARGET_MISMATCH")
     streak = previous_streak + 1 if not anomalies else 0
     return {
