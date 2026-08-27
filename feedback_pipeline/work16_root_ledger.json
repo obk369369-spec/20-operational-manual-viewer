@@ -21,11 +21,14 @@
     {"id":"L4-15","root":"GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY","status":"REMOTE_VERIFIED","evidence":"recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"}
     ,{"id":"L4-16","root":"GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"tool-scoped historical index and retriever recover TOOL002 latest discussion, last work point, GitHub checkpoint and reusable rules without user routing"}
     ,{"id":"L4-17","root":"T1-RC-RUNTIME-VERIFIED-DATA-GATE-GAP","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"TOOL001 runtime clears all output and returns HOLD_RUNTIME_VERIFIED_DATA_REQUIRED without five verified reports; Playwright negative/positive E2E run 32948603985 passed at target checkpoint 8bd9c2340e141d66c11c8273b527165a2c612cde"}
-    ,{"id":"L4-18","root":"T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP","status":"OPEN","introduced_after_checkpoint":true,"evidence":"Header-row detection and institution sum invariant are remote-verified at TOOL002 checkpoint aa15d0bc9bcb73c434ff3badd2569bbc507392a0 (CI 32951474062). Root remains OPEN only for canonical runtime consumption because target main still has no current root index.html."}
+    ,{"id":"L4-18","root":"T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP","status":"OPEN","introduced_after_checkpoint":true,"recurrence":1,"evidence":"Module is remote-verified at aa15d0bc9bcb73c434ff3badd2569bbc507392a0. Actual 48,486-row XLSX browser runtime exceeded 120 seconds twice on 2026-08-27 while startup/XLSX/module diagnostics passed; unverified entrypoint changes were discarded. Next approach must use a worker or bounded streaming reader."}
+    ,{"id":"L5-19","root":"GAP-WORK-EXECUTION-FAIL-CLOSED-AUDIT","status":"FIXED_LOCAL","introduced_after_checkpoint":true,"evidence":"work_execution_enforcer.py registers every target, blocks missing work/smoke/final status and emits an automatic next-work queue."}
+    ,{"id":"L6-20","root":"GAP-MOBILE-SCREEN-OFF-ACTUAL-EVIDENCE","status":"OPEN","introduced_after_checkpoint":true,"evidence":"Tool043 GitHub scheduled-batch observer and queue are implemented locally, but actual Android screen-off/background/state-restore evidence is unavailable in this Work environment."}
   ],
   "external_holds": [
     {"root":"HOLD-T6-PUBLISHER-GOLDEN-PAIR","status":"HOLD"},
     {"root":"HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR","status":"PLATFORM_LIMIT"},
     {"root":"HOLD-T1-VERIFIED-REPORT-ACQUISITION","status":"HOLD_EVIDENCE"}
+    ,{"root":"HOLD-T43-ACTUAL-ANDROID-SCREEN-OFF","status":"EXTERNAL_ESCALATION"}
   ]
 }

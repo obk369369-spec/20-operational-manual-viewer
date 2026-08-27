@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "counts": {
+    "work_target_total": 8,
+    "actually_worked": 8,
+    "not_worked_total": 0,
+    "actual_smoke_missing_total": 0,
+    "premature_exit_total": 0,
+    "partial_work_total": 0,
+    "unverified_result_total": 0,
+    "post_work_anomaly_total": 0
+  },
+  "anomalies": [],
+  "next_work_queue": [
+    {
+      "target": "TOOL043",
+      "root_id": "L6-MOBILE-AUTONOMOUS-OBSERVER",
+      "last_actual_point": "LOCAL_NIGHT_QUEUE_AND_OBSERVER_PASS",
+      "failed_approach": "NONE",
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN"
+    },
+    {
+      "target": "TOOL001",
+      "root_id": "T1-20260827-ACTUAL-SMOKE",
+      "last_actual_point": "FAIL_CLOSED_RUNTIME_GUARDS_PASS",
+      "failed_approach": "NONE",
+      "next_trigger": "FIVE_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
+    },
+    {
+      "target": "TOOL002",
+      "root_id": "L4-18",
+      "last_actual_point": "ACTUAL_LARGE_XLSX_RUNTIME_TIMEOUT",
+      "failed_approach": "browser main-thread SheetJS full-workbook parse plus immediate DOM accumulation",
+      "next_trigger": "IMPLEMENT_WORKER_OR_STREAMING_BOUNDED_XLSX_READER_THEN_RESUME_ACTUAL_FILE"
+    }
+  ],
+  "execution_quality_pass": true,
+  "overall_complete": false
+}

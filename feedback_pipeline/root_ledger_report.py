@@ -21,7 +21,7 @@ def build() -> dict:
     unresolved = [row["id"] for row in roots if row["status"] not in CLOSED]
     holds = ledger.get("external_holds", [])
     layers = {}
-    for layer in ("L1", "L2", "L3", "L4"):
+    for layer in ("L1", "L2", "L3", "L4", "L5", "L6"):
         rows = [row for row in roots if row["id"].startswith(layer + "-")]
         open_rows = [row for row in rows if row["status"] not in CLOSED]
         layers[layer] = {"found": len(rows), "closed": len(rows) - len(open_rows), "open": len(open_rows), "new": sum(bool(row.get("introduced_after_checkpoint")) for row in rows), "unknown": 0}
@@ -39,7 +39,7 @@ def build() -> dict:
         "layers": layers,
         "error_found_total": len([row for row in roots if row["id"].startswith("L4-")]),
         "error_new": sum(bool(row.get("introduced_after_checkpoint")) for row in roots),
-        "error_recurrence": 0,
+        "error_recurrence": sum(int(row.get("recurrence", 0)) for row in roots),
         "new_holes": len(attack.get("new_holes", [])),
         "zero_new_hole_streak": 0 if unresolved else int(attack.get("zero_new_hole_streak", 0)),
         "unknown_critical": 0,
