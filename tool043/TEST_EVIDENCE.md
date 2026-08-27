@@ -34,3 +34,14 @@ Route key: `TOOL043`
 - 새 GitHub 실행 경로 tool043 생성: PASS
 - 과거 tool040 경로: 삭제 대상
 - 실제 외부 배포/앱스토어 출시: HOLD — 별도 E2E 검증 필요
+
+## 2026-08-27 모바일 관찰자 MVP
+
+- 사용자 조작 버튼: 0
+- 중앙 work execution audit → `tool043/night_queue.json`: PASS
+- 중앙 root report → `tool043/status.json`: PASS
+- 실제 headless browser 상태 read-back: PASS
+- GitHub Actions 야간 준비 실행: run `33029579826` PASS
+- 6시간 scheduled batch 설정: PASS_CODE_AND_DISPATCH
+- 실제 Android 화면 OFF/background/state restore: HOLD_ACTUAL_DEVICE_REQUIRED
+- 24H 판정: PARTIAL / 24H_PASS 금지
