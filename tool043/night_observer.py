@@ -11,6 +11,7 @@ PIPE = ROOT / "feedback_pipeline"
 def build() -> tuple[dict, dict]:
     roots = json.loads((PIPE / "evidence" / "work16_root_report.json").read_text(encoding="utf-8"))
     work = json.loads((PIPE / "evidence" / "work_execution_audit_20260827.json").read_text(encoding="utf-8"))
+    unified = json.loads((PIPE / "unified_open_ledger.json").read_text(encoding="utf-8"))
     open_count = roots["open_internal_root_count"]
     blocked = roots["external_hold_count"] + len(work["next_work_queue"])
     status = {
@@ -29,8 +30,11 @@ def build() -> tuple[dict, dict]:
         "device_run_user_manual_action_target": 0,
         "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
         "auto_recovery": "QUEUE_PRESERVED",
+        "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
+        "hidden_gap_total": unified["hidden_gap_total"],
+        "user_feedback_courier_count": unified["user_feedback_courier_count"],
     }
-    queue = {"schema_version": 1, "source": "canonical_work_execution_audit", "items": work["next_work_queue"]}
+    queue = {"schema_version": 1, "source": "unified_open_ledger+canonical_work_execution_audit", "items": work["next_work_queue"]}
     return status, queue
 
 

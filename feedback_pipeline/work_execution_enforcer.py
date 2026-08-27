@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from evidence_classification_gate import audit_targets
 
 HERE = Path(__file__).resolve().parent
 TARGETS = HERE / "work_execution_targets_20260827.json"
@@ -15,6 +16,9 @@ def audit(data: dict) -> dict:
     rows = data["targets"]
     anomalies: list[dict] = []
     queue: list[dict] = []
+    hold_registry = json.loads((HERE / "evidence_hold_registry.json").read_text(encoding="utf-8"))
+    evidence_gate = audit_targets(data, hold_registry)
+    anomalies.extend(evidence_gate["errors"])
     for row in rows:
         target = row["target"]
         status = row.get("final_status", "")
@@ -47,13 +51,13 @@ def audit(data: dict) -> dict:
         "unverified_result_total": sum(a["kind"] == "UNVERIFIED_RESULT" for a in anomalies),
         "post_work_anomaly_total": len(anomalies),
     }
-    return {"schema_version": 1, "counts": counts, "anomalies": anomalies, "next_work_queue": queue, "execution_quality_pass": not anomalies, "overall_complete": not anomalies and not queue}
+    return {"schema_version": 1, "counts": counts, "evidence_classification": evidence_gate, "anomalies": anomalies, "next_work_queue": queue, "execution_quality_pass": not anomalies, "overall_complete": not anomalies and not queue}
 
 
 def self_test() -> None:
     fixture = {"targets": [
-        {"target": "OK", "root_id": "R1", "actual_work": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED"},
-        {"target": "MISS", "root_id": "R2", "actual_work": False, "actual_smoke": {}, "final_status": ""},
+        {"target": "OK", "root_id": "R1", "evidence_gate":{"classification":"C"}, "actual_work": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED"},
+        {"target": "MISS", "root_id": "R2", "evidence_gate":{"classification":"D"}, "actual_work": False, "actual_smoke": {}, "final_status": ""},
     ]}
     result = audit(fixture)
     assert not result["execution_quality_pass"]

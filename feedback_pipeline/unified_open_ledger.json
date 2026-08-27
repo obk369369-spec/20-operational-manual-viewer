@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "root_id": "L6-20",
+      "layer": "L6",
+      "target": "TOOL043",
+      "source": "work16_root_ledger",
+      "type": "OPEN",
+      "status": "OPEN",
+      "evidence": "Tool043 scheduled observer/queue and fail-closed actual-device verifier are implemented. Actual Android screen-off/background/persistent-state/screen-on restore plus HOME_SCREEN_OBSERVER_ENTRYPOINT deployment smoke remain unavailable; both deployment and observer-intent gaps are deduplicated into this root.",
+      "actual_action": "RESUME_FROM_CHECKPOINT",
+      "result": "UNRESOLVED",
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT",
+      "next_start": "Run one actual Android cycle, deployed home-screen entry smoke and automatic evidence verdict",
+      "deployment_gap": [
+        "actual_tested",
+        "deployed",
+        "deployed_smoke",
+        "observer_reachable"
+      ]
+    },
+    {
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "layer": "EXTERNAL",
+      "target": "EXTERNAL",
+      "source": "work16_root_ledger",
+      "type": "HOLD_OR_LIMIT",
+      "status": "HOLD_EVIDENCE_WAITING",
+      "evidence": null,
+      "actual_action": "WAIT_TRIGGER",
+      "result": "UNRESOLVED",
+      "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+      "next_start": "Run only the publisher-specific actual pair regression"
+    },
+    {
+      "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+      "layer": "EXTERNAL",
+      "target": "EXTERNAL",
+      "source": "work16_root_ledger",
+      "type": "HOLD_OR_LIMIT",
+      "status": "PLATFORM_LIMIT",
+      "evidence": null,
+      "actual_action": "WAIT_TRIGGER",
+      "result": "UNRESOLVED",
+      "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+      "next_start": "Verify official platform capability before any internal change"
+    },
+    {
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "layer": "EXTERNAL",
+      "target": "TOOL001",
+      "source": "work16_root_ledger",
+      "type": "HOLD_OR_LIMIT",
+      "status": "HOLD_EVIDENCE_WAITING",
+      "evidence": null,
+      "actual_action": "WAIT_TRIGGER",
+      "result": "UNRESOLVED",
+      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+      "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+      "deployment_gap": [
+        "actual_tested",
+        "deployed",
+        "deployed_smoke",
+        "observer_reachable"
+      ]
+    }
+  ],
+  "open_internal_total": 1,
+  "next_work_queue_root_ids": [
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "L6-20"
+  ],
+  "open_input_omission": [],
+  "hidden_gap_total": 0,
+  "hidden_manual_work_total": 0,
+  "no_value_repeat_total": 0,
+  "user_feedback_courier_count": 0,
+  "pass": true
+}

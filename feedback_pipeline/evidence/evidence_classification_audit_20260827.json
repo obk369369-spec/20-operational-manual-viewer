@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "counts": {
+    "D": 0,
+    "A": 2,
+    "B": 0,
+    "C": 3,
+    "unclassified": 0,
+    "redundant_hold_research": 0
+  },
+  "results": [
+    {
+      "target": "OPEN_CANDIDATE_AUDIT",
+      "classification": "C",
+      "action": "ACTUAL_SMOKE",
+      "errors": [],
+      "hold_fingerprint": null
+    },
+    {
+      "target": "TOOL043",
+      "classification": "A",
+      "action": "SKIP_WAITING_FOR_TRIGGER",
+      "errors": [],
+      "hold_fingerprint": "93efb416fa1d5a839feaea988b6272dc43e9016fdd905143a51a8c928e8f35ff"
+    },
+    {
+      "target": "TOOL001",
+      "classification": "A",
+      "action": "SKIP_WAITING_FOR_TRIGGER",
+      "errors": [],
+      "hold_fingerprint": "2251760bd74f1c6ff5ef4e54b91b1cbd22a123008c546cecd1fb2725d339597e"
+    },
+    {
+      "target": "CANONICAL_OPERATING_TARGETS",
+      "classification": "C",
+      "action": "ACTUAL_SMOKE",
+      "errors": [],
+      "hold_fingerprint": null
+    },
+    {
+      "target": "FEEDBACK_AUTO_ROUTING",
+      "classification": "C",
+      "action": "ACTUAL_SMOKE",
+      "errors": [],
+      "hold_fingerprint": null
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

@@ -99,6 +99,22 @@
 - force push, reset --hard, history rewrite, 대량 삭제·덮어쓰기, repository 생성·삭제, 권한·보안 변경은 SAFE 승인 배치에 섞지 않는다.
 - 승인 횟수를 줄이기 위해 검증·remote read-back·SAFE_CHECKPOINT를 생략하지 않는다.
 
+### 증거 없음 4분류 LOCK
+- `NO_EVIDENCE` 판정은 반드시 `A TRUE_EVIDENCE_MISSING / B EVIDENCE_RECOVERABLE / C EVIDENCE_NOT_REQUIRED / D WORK_EVIDENCE_MISSING` 중 하나를 통과한다.
+- A만 `HOLD_EVIDENCE_WAITING`을 허용하며 missing evidence, 이미 확인한 scope, 마지막 checkpoint, next trigger, next start를 저장한다.
+- A는 trigger 변화 전 동일 recovery를 반복하지 않고 `SKIP_WAITING_FOR_TRIGGER`로 보존한다. 동일 fingerprint 재검색은 `REDUNDANT_HOLD_RESEARCH`다.
+- B는 scoped recovery를 실제 수행하고, C는 실제 smoke를 수행하며, D는 실제 Work 증거가 생기기 전 `NOT_WORKED=FAIL`이다.
+- 미분류, C/D의 자료부족 위장, trigger 미확인, evidence classification 우회는 COMPLETE를 차단한다.
+- 실행 gate: `feedback_pipeline/evidence_classification_gate.py` 및 `work_execution_enforcer.py`.
+
+### 증분감사·배포·통합 OPEN LOCK
+- A/B/C/D로 해결되지 않으면 동일 방법을 반복하지 않고 root를 더 작게 분해한 뒤 공식 문서·검증 구현을 최소 범위로 적용하고 실제 runtime에서 검증한다.
+- 동일 input/root/method/evidence/result의 무가치 반복은 `NO_VALUE_REPEAT`로 차단하며, 전체 L1~L6 재전수조사 대신 checkpoint 이후 변경 주변만 증분감사한다.
+- `CODE_PASS != DEPLOYED_COMPLETE`다. 구현→actual test→remote read-back→canonical asset→actual deployment→deployed smoke→observer reachable이 모두 확인돼야 완료다.
+- 관찰자 의도, 숨은 수동작업, 결과 접근성, 중간 정체, 애매한 완료를 독립 검사하고 이름 없는 이상도 기존 root recurrence 또는 신규 OPEN 후보로 보존한다.
+- 모든 OPEN/HOLD/외부제약/배포·관찰자 gap은 `feedback_pipeline/unified_open_ledger.json` 하나로 합치고 다음 Work queue와 TOOL043 야간 준비가 이를 재사용한다.
+- 실행 gate: `deployment_observer_gate.py`, `unified_open_ledger.py`, `post_work_anomaly_audit.py`.
+
 ## 4. 결과 출력 공통 게이트
 모든 업무 결과는 출력 전에 아래 순서를 통과해야 한다.
 

@@ -1,0 +1,12 @@
+{
+  "schema_version":1,
+  "targets":[
+    {"target":"TOOL041","root_id":"T41-RC-DATA-INTEGRITY","implemented":true,"actual_tested":true,"remote_verified":true,"deployed":true,"deployed_smoke":true,"observer_reachable":true},
+    {"target":"TOOL042","root_id":"T42-RC-CUSTOMER-BRANCH","implemented":true,"actual_tested":true,"remote_verified":true,"deployed":true,"deployed_smoke":true,"observer_reachable":true},
+    {"target":"TOOL006","root_id":"T6-RC-01","implemented":true,"actual_tested":true,"remote_verified":true,"deployed":true,"deployed_smoke":true,"observer_reachable":true},
+    {"target":"TOOL001","root_id":"HOLD-T1-VERIFIED-REPORT-ACQUISITION","implemented":true,"actual_tested":false,"remote_verified":true,"deployed":false,"deployed_smoke":false,"observer_reachable":false,"external_dependency":"FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"},
+    {"target":"TOOL002","root_id":"L4-18","implemented":true,"actual_tested":true,"remote_verified":true,"deployed":true,"deployed_smoke":true,"observer_reachable":true},
+    {"target":"TOOL013","root_id":"T13-KNOWN-ERROR-01-32","implemented":true,"actual_tested":true,"remote_verified":true,"deployed":true,"deployed_smoke":true,"observer_reachable":true},
+    {"target":"TOOL043","root_id":"L6-20","implemented":true,"actual_tested":false,"remote_verified":true,"deployed":false,"deployed_smoke":false,"observer_reachable":false,"external_dependency":"ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"}
+  ]
+}

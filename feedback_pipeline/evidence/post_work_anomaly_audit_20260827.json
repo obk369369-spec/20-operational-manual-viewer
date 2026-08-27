@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "checks": 28,
+  "checks": 43,
   "new_open_candidates": [],
   "new_holes": 0,
-  "zero_new_hole_streak": 18,
+  "zero_new_hole_streak": 24,
   "known_open_roots": [
     "L6-20"
   ],
@@ -39,9 +39,24 @@
     "OPEN_INPUT_OMISSION",
     "STALE_WORK_QUEUE",
     "REPEATED_MANUAL_APPROVAL",
-    "USER_AS_FEEDBACK_COURIER"
+    "USER_AS_FEEDBACK_COURIER",
+    "REDUNDANT_HOLD_RESEARCH",
+    "HOLD_TRIGGER_NOT_CHECKED",
+    "HOLD_RESEARCH_WITHOUT_NEW_EVIDENCE",
+    "UNCLASSIFIED_NO_EVIDENCE",
+    "FALSE_EVIDENCE_HOLD",
+    "EVIDENCE_CLASSIFICATION_BYPASS",
+    "IMPLEMENTED_NOT_DEPLOYED",
+    "OBSERVER_INTENT_NOT_SATISFIED",
+    "WORK_STALLED_IN_INTERMEDIATE_STATE",
+    "AMBIGUOUS_COMPLETION",
+    "HIDDEN_MANUAL_WORK",
+    "OUTPUT_NOT_USER_REACHABLE",
+    "NO_VALUE_REPEAT",
+    "FALSE_HOLD",
+    "UNCLASSIFIED_FAILURE"
   ],
-  "candidate_review_count": 28,
+  "candidate_review_count": 43,
   "queued_targets": [
     "TOOL001",
     "TOOL043"

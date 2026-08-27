@@ -47,6 +47,8 @@
 
 ## EXTERNAL HOLD — TOOL001 verified report acquisition
 
+- EVIDENCE_CLASSIFICATION: `A / TRUE_EVIDENCE_MISSING / HOLD_EVIDENCE_WAITING`.
 - scoped recovery result: five actual independently verified report payloads not found; USB shells/test documents/synthetic fixtures rejected.
 - NEXT_TRIGGER: `FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE`.
 - NEXT_START: load those five payloads into canonical `index.html`, then run customer input → recommendation → TOC → guide output actual E2E.
+- trigger 변화 전 동일 Library/GitHub/USB 범위를 다시 검색하지 않는다.

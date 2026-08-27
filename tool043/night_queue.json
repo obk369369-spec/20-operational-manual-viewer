@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "source": "canonical_work_execution_audit",
+  "source": "unified_open_ledger+canonical_work_execution_audit",
   "items": [
     {
       "target": "TOOL043",
       "root_id": "L6-20",
       "last_actual_point": "ACTUAL_DEVICE_EVIDENCE_CONTRACT_READY",
       "failed_approach": "NONE",
-      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN"
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
     },
     {
       "target": "TOOL001",
-      "root_id": "T1-20260827-ACTUAL-SMOKE",
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
       "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS",
       "failed_approach": "USB shells and synthetic fixtures rejected",
       "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"

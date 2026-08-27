@@ -21,6 +21,13 @@ CANDIDATE_NAMES = (
     "OBSERVER_DIRECTIVE_MISSING", "WORK_COMPLETION_ENFORCEMENT_MISSING",
     "OPEN_INPUT_OMISSION", "STALE_WORK_QUEUE", "REPEATED_MANUAL_APPROVAL",
     "USER_AS_FEEDBACK_COURIER",
+    "REDUNDANT_HOLD_RESEARCH", "HOLD_TRIGGER_NOT_CHECKED",
+    "HOLD_RESEARCH_WITHOUT_NEW_EVIDENCE", "UNCLASSIFIED_NO_EVIDENCE",
+    "FALSE_EVIDENCE_HOLD", "EVIDENCE_CLASSIFICATION_BYPASS",
+    "IMPLEMENTED_NOT_DEPLOYED", "OBSERVER_INTENT_NOT_SATISFIED",
+    "WORK_STALLED_IN_INTERMEDIATE_STATE", "AMBIGUOUS_COMPLETION",
+    "HIDDEN_MANUAL_WORK", "OUTPUT_NOT_USER_REACHABLE", "NO_VALUE_REPEAT",
+    "FALSE_HOLD", "UNCLASSIFIED_FAILURE",
 )
 
 
@@ -36,12 +43,22 @@ def audit(previous_streak: int = 0) -> dict:
     work = load("evidence/work_execution_audit_20260827.json")
     roots = load("evidence/work16_root_report.json")
     central_state = load("state.json")
+    unified = load("unified_open_ledger.json")
+    deployment = load("evidence/deployment_observer_audit_20260827.json")
     target_document = load("work_execution_targets_20260827.json")
     targets = target_document["targets"]
     ledger = load("work16_root_ledger.json")
     anomalies: list[str] = []
     if work["counts"]["work_target_total"] != len(targets): anomalies.append("TARGET_SILENTLY_DROPPED")
     if work["anomalies"]: anomalies.append("WORK_EXECUTION_ANOMALY_PRESENT")
+    evidence_counts = work.get("evidence_classification", {}).get("counts", {})
+    if not work.get("evidence_classification", {}).get("pass", False): anomalies.append("EVIDENCE_CLASSIFICATION_BYPASS")
+    if evidence_counts.get("unclassified") != 0: anomalies.append("UNCLASSIFIED_NO_EVIDENCE")
+    if evidence_counts.get("redundant_hold_research") != 0: anomalies.append("REDUNDANT_HOLD_RESEARCH")
+    if not unified.get("pass") or unified.get("open_input_omission"): anomalies.append("UNIFIED_OPEN_LEDGER_DESYNC")
+    if deployment.get("implemented_not_deployed_total") != 0: anomalies.append("IMPLEMENTED_NOT_DEPLOYED")
+    if unified.get("hidden_manual_work_total") != 0: anomalies.append("HIDDEN_MANUAL_WORK")
+    if unified.get("no_value_repeat_total") != 0: anomalies.append("NO_VALUE_REPEAT")
     if roots["open_internal_root_count"] and roots["pass_claimed"]: anomalies.append("OPEN_COMPLETE_CONFLICT")
     if work["next_work_queue"] and work["overall_complete"]: anomalies.append("QUEUE_COMPLETE_CONFLICT")
     ledger_roots = {row["id"] for row in ledger["roots"] if row["status"] not in {"VERIFIED_CLOSED", "FIXED_LOCAL", "FIXED_RUNTIME", "REMOTE_VERIFIED"}}
