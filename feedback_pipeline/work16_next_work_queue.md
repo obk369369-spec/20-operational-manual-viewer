@@ -40,3 +40,4 @@
 - `L6-20` — TOOL043 actual Android screen-off/background/state-change/persistent-sync/screen-on/state-restore evidence.
 - NEXT_TRIGGER: `ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN`.
 - OPEN_INPUT_OMISSION: fail closed in `post_work_anomaly_audit.py`.
+- USER_MANUAL_APPROVAL_COUNT: target `0`; platform-required maximum `1` per Work, after all executable SAFE work is batched first.

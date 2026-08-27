@@ -52,6 +52,10 @@ def audit(previous_streak: int = 0) -> dict:
         anomalies.append("CENTRAL_SSoT_STALE:TOOL002")
     if "`L6-20`" not in queue_text:
         anomalies.append("WORK_INPUT_OPEN_ROOTS_STALE")
+    master_text = (HERE.parent / "WIC_GLOBAL_OPERATING_RULES.md").read_text(encoding="utf-8")
+    approval_markers = ("USER_MANUAL_APPROVAL_COUNT", "목표는 `0`", "최대 `1`")
+    if not all(marker in master_text for marker in approval_markers):
+        anomalies.append("MANUAL_APPROVAL_BATCH_GATE_MISSING")
     expected_holds = {"TOOL001", "TOOL043"}
     if {row["target"] for row in work["next_work_queue"]} != expected_holds: anomalies.append("NEXT_QUEUE_TARGET_MISMATCH")
     streak = previous_streak + 1 if not anomalies else 0
