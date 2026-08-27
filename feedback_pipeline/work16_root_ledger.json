@@ -10,7 +10,7 @@
     {"id":"L1-04","root":"GAP-WORK-GATE-MISSING-GATES-AS-FALSE","status":"REMOTE_VERIFIED","evidence":"missing/non-boolean gates return WORK_HOLD_INVALID_GATES"},
     {"id":"L1-05","root":"GAP-WORK-HANDOFF-VACUOUS-ZERO-ELIGIBLE-PASS","status":"REMOTE_VERIFIED","evidence":"zero candidates cannot claim PASS"},
     {"id":"L1-06","root":"GAP-AUTH-CURRENTCHAT-NEGATION-FALLTHROUGH","status":"REMOTE_VERIFIED","evidence":"action-specific denial no longer mistakes output prohibitions for change denial"},
-    {"id":"L1-07","root":"GAP-FINAL-REPORT-CHECKPOINT-STATE-MISMATCH","status":"REMOTE_VERIFIED","evidence":"this ledger is the checkpoint status source"},
+    {"id":"L1-07","root":"GAP-FINAL-REPORT-CHECKPOINT-STATE-MISMATCH","status":"REMOTE_VERIFIED","recurrence":1,"evidence":"this ledger is the checkpoint status source; stale TOOL002 OPEN text in work16_next_work_queue.md was corrected after L4-18 remote closure and added to the anomaly gate"},
     {"id":"L1-08","root":"GAP-FINAL-REPORT-GAP-COUNT-MISMATCH","status":"REMOTE_VERIFIED","evidence":"root_ledger_report.py computes every count from this deduplicated ledger"},
     {"id":"L2-09","root":"GAP-WORK-EXIT-PLACEHOLDER-RESUMABLE","status":"REMOTE_VERIFIED","evidence":"placeholder checkpoint fields are rejected"},
     {"id":"L2-10","root":"GAP-AUTOMATION-BOTH-DISABLED","status":"FIXED_RUNTIME","evidence":"existing wic34 heartbeat reactivated; no duplicate automation created"},

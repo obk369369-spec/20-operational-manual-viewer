@@ -47,6 +47,11 @@ def audit(previous_streak: int = 0) -> dict:
         anomalies.append("OPEN_INPUT_OMISSION:" + ",".join(omitted_open_roots))
     serialized = json.dumps({"targets": targets, "ledger": ledger}, ensure_ascii=False)
     if "_work16_" in serialized or "C:\\Users\\" in serialized: anomalies.append("EPHEMERAL_LOCAL_PATH_IN_CHECKPOINT")
+    queue_text = (HERE / "work16_next_work_queue.md").read_text(encoding="utf-8")
+    if "L4-18" in ledger_roots or "OPEN / RUNTIME_ENTRYPOINT_HOLD" in queue_text:
+        anomalies.append("CENTRAL_SSoT_STALE:TOOL002")
+    if "`L6-20`" not in queue_text:
+        anomalies.append("WORK_INPUT_OPEN_ROOTS_STALE")
     expected_holds = {"TOOL001", "TOOL043"}
     if {row["target"] for row in work["next_work_queue"]} != expected_holds: anomalies.append("NEXT_QUEUE_TARGET_MISMATCH")
     streak = previous_streak + 1 if not anomalies else 0

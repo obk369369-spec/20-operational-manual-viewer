@@ -10,7 +10,7 @@
 - required behavior: 도구번호/업무가 식별되면 현재 대화만 보지 말고 해당 TOOL의 GitHub master/checkpoint/handoff와 Library 보존 기록을 우선 검색하여 최근 관련 논의/마지막 작업지점을 회수. 사용자가 과거 내용을 복사해 다시 입력하게 하지 않음.
 - PASS gate: TOOL002 대표 사례에서 현재 chat only 판정이 아니라 Library + GitHub records를 자동 회수하여 최신 관련 기록/마지막 작업지점을 재현하고, 다른 canonical TOOL 1건에서도 동일 경로가 재사용됨을 최소 fixture로 확인.
 - constraints: 전 대화 전수조사 금지, 전체 Library 스캔 금지, 해당 TOOL 식별 후 scoped search만 수행, 기존 PASS는 SKIP-REUSE, DIFF ONLY, 정상 commit/push/read-back 후 checkpoint 갱신.
-- status: CONSUMED_BY_L4-16 / TOOL002_SCOPED_RETRIEVAL_LOCAL_VERIFIED_REMOTE_PENDING
+- status: CONSUMED_BY_L4-16 / REMOTE_VERIFIED / SKIP_REUSE
 
 ## NEXT WORK intake — unresolved recurrent feedback since prior Work
 
@@ -24,12 +24,19 @@
 - next Work priority: P0 신규 OPEN/OPEN_CANDIDATE + 과거 unresolved recurrence 회수/dedup, P1 고객업무 BLOCKING/HIGH, P2 TOOL006/013 known-error residuals. 기존 PASS 재개발 금지.
 - status: WORK_READY / MERGE_WITH_CURRENT_OPEN_BEFORE_EXECUTION
 
-## NEXT START — TOOL002 institution accumulator
+## CLOSED — TOOL002 institution accumulator
 
 - root: `T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP`
 - actual input: Narajangter workbook has metadata rows 1-4 and canonical headers at row 5 (`공고기관`, `수요기관`).
 - failure: scoped USB candidate assumes `parsed[0]` is the header, so agency columns are missing and institution accumulation is invalid.
 - target state: GitHub checkpoint `9946e7ba59ac812d7f27e287a6abd6b3aba3e2b9`; no current root `index.html`.
 - completed: bounded header-row detection + actual-derived row-5 fixture + institution count/sum invariant; TOOL002 checkpoint `aa15d0bc9bcb73c434ff3badd2569bbc507392a0`, CI `32951474062`.
-- next action: connect the verified module to a canonical current root `index.html` and run actual runtime E2E; do not revive `index(예전 버전).html` or copy the USB HTML wholesale.
-- status: OPEN / RUNTIME_ENTRYPOINT_HOLD
+- completed runtime: canonical Web Worker actual 48,486-row XLSX E2E PASS; 48,481 deduped rows, 6,264 institutions, header row 5, sum invariant.
+- target SAFE_CHECKPOINT: `b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa`.
+- status: REMOTE_VERIFIED_CLOSED / SKIP_REUSE
+
+## CURRENT WORK_INPUT_OPEN_ROOTS
+
+- `L6-20` — TOOL043 actual Android screen-off/background/state-change/persistent-sync/screen-on/state-restore evidence.
+- NEXT_TRIGGER: `ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN`.
+- OPEN_INPUT_OMISSION: fail closed in `post_work_anomaly_audit.py`.
