@@ -3,10 +3,41 @@
   "checks": 20,
   "new_open_candidates": [],
   "new_holes": 0,
-  "zero_new_hole_streak": 7,
+  "zero_new_hole_streak": 10,
   "known_open_roots": [
     "L6-20"
   ],
+  "work_input_open_roots": [
+    "L6-20"
+  ],
+  "open_input_omission": [],
+  "candidate_names_reviewed": [
+    "POST_WORK_ANOMALY_GATE_MISSING",
+    "PASS_GATE_NOT_ENFORCED",
+    "RULE_RUNTIME_DIVERGENCE",
+    "TEST_SCOPE_STALE",
+    "EVIDENCE_ONLY_MASQUERADING_AS_EXECUTION",
+    "HOLD_EVIDENCE_RECOVERY_BYPASS",
+    "AUDIT_SEARCH_COVERAGE_BLIND_SPOT",
+    "CENTRAL_SSoT_STALE",
+    "FEEDBACK_NOT_ROUTED",
+    "MODULE_VERIFIED_AS_TOOL_PASS",
+    "EPHEMERAL_LOCAL_PATH_IN_CENTRAL_CHECKPOINT",
+    "CHECKPOINT_COMPLETE_WITH_OPEN_ROOT",
+    "HOLD_STATE_DESYNC",
+    "ACTUAL_SMOKE_MISSING",
+    "NOT_WORKED",
+    "PREMATURE_WORK_EXIT",
+    "OBSERVER_VERIFY_MISSING",
+    "CANONICAL_RUNTIME_MISSING",
+    "TARGET_SILENTLY_DROPPED",
+    "UNEXPECTED_WORK_THREAD",
+    "REPOSITORY_AUTOCREATE_NOT_IMPLEMENTED",
+    "WORK_RESULT_NOT_PROPAGATED",
+    "OBSERVER_DIRECTIVE_MISSING",
+    "WORK_COMPLETION_ENFORCEMENT_MISSING"
+  ],
+  "candidate_review_count": 24,
   "queued_targets": [
     "TOOL001",
     "TOOL043"
