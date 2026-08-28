@@ -2,6 +2,19 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "L4-16",
+      "layer": "L4",
+      "target": "CENTRAL",
+      "source": "work16_root_ledger",
+      "type": "OPEN",
+      "status": "OPEN",
+      "evidence": "ACTUAL recurrence: the new Work chat required a user-supplied prior-chat attachment before detailed state was recovered. Existing TOOL-scoped retrieval did not enforce pre-handoff central flush plus first-response resume. Reopened without creating a duplicate root.",
+      "actual_action": "RESUME_FROM_CHECKPOINT",
+      "result": "UNRESOLVED",
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT",
+      "next_start": "Run one actual Android cycle, deployed home-screen entry smoke and automatic evidence verdict"
+    },
+    {
       "root_id": "L6-20",
       "layer": "L6",
       "target": "TOOL043",
@@ -17,7 +30,8 @@
         "actual_tested",
         "deployed",
         "deployed_smoke",
-        "observer_reachable"
+        "observer_reachable",
+        "real_use_ready"
       ]
     },
     {
@@ -60,21 +74,46 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
       "deployment_gap": [
         "actual_tested",
-        "deployed",
         "deployed_smoke",
-        "observer_reachable"
+        "real_use_ready"
       ]
+    },
+    {
+      "root_id": "CHAT-HANDOFF-REQUIRED",
+      "layer": "WORK",
+      "target": "CENTRAL",
+      "source": "incomplete_register",
+      "type": "INCOMPLETE",
+      "status": "INCOMPLETE",
+      "evidence": [
+        "new chat opened with checkpoint inheritance"
+      ],
+      "actual_action": "WAIT_TRIGGER",
+      "result": "UNRESOLVED",
+      "next_trigger": "USER_OPENS_NEW_CHAT_WHEN_READY",
+      "next_start": "Resume from the recorded incomplete boundary"
     }
   ],
-  "open_internal_total": 1,
+  "open_internal_total": 2,
+  "incomplete_total": 6,
+  "remote_pending_total": 0,
+  "deployment_pending_total": 2,
+  "real_use_not_verified_total": 2,
   "next_work_queue_root_ids": [
+    "CHAT-HANDOFF-REQUIRED",
     "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+    "L4-16",
     "L6-20"
   ],
   "open_input_omission": [],
   "hidden_gap_total": 0,
   "hidden_manual_work_total": 0,
+  "ambiguous_completion_total": 0,
   "no_value_repeat_total": 0,
+  "unnamed_hidden_gap_total": 0,
   "user_feedback_courier_count": 0,
+  "observer_repetition_required_total": 0,
   "pass": true
 }

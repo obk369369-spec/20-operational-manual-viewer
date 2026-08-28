@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "target": "TOOL001",
+      "status": "INCOMPLETE",
+      "reason": "INCOMPLETE_EXTERNAL_WAIT",
+      "missing": [
+        "actual_tested",
+        "deployed_smoke",
+        "real_use_ready"
+      ],
+      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
+    },
+    {
+      "id": "L6-20",
+      "target": "TOOL043",
+      "status": "INCOMPLETE",
+      "reason": "INCOMPLETE_EXTERNAL_WAIT",
+      "missing": [
+        "actual_tested",
+        "deployed",
+        "deployed_smoke",
+        "observer_reachable",
+        "real_use_ready"
+      ],
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
+    },
+    {
+      "id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "target": "EXTERNAL",
+      "status": "INCOMPLETE",
+      "reason": "HOLD_EVIDENCE_WAITING",
+      "missing": [
+        "external evidence or capability"
+      ],
+      "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE"
+    },
+    {
+      "id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+      "target": "EXTERNAL",
+      "status": "INCOMPLETE",
+      "reason": "PLATFORM_LIMIT",
+      "missing": [
+        "external evidence or capability"
+      ],
+      "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE"
+    },
+    {
+      "id": "L4-16",
+      "target": "CENTRAL",
+      "status": "INCOMPLETE",
+      "reason": "GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL",
+      "missing": [
+        "actual closure and remote read-back"
+      ],
+      "next_trigger": "RESUME_FROM_LAST_ACTUAL_WORK"
+    },
+    {
+      "id": "CHAT-HANDOFF-REQUIRED",
+      "target": "CENTRAL",
+      "status": "INCOMPLETE",
+      "reason": "CHAT_HANDOFF_REQUIRED",
+      "missing": [
+        "new chat opened with checkpoint inheritance"
+      ],
+      "next_trigger": "USER_OPENS_NEW_CHAT_WHEN_READY"
+    }
+  ],
+  "incomplete_total": 6,
+  "remote_pending_total": 0,
+  "deployment_pending_total": 2,
+  "real_use_not_verified_total": 2,
+  "pass": true
+}
