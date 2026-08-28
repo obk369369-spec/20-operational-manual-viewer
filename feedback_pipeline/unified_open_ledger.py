@@ -7,10 +7,6 @@ HERE=Path(__file__).resolve().parent
 OUT=HERE/"unified_open_ledger.json"
 
 ROOT_RESUME = {
-    "L4-16": {
-        "next_trigger": "USER_OPENS_NEW_CHAT_WHEN_READY",
-        "next_start": "Verify automatic checkpoint resume without a prior-chat attachment",
-    },
     "L6-20": {
         "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT",
         "next_start": "Run one actual Android cycle, deployed home-screen entry smoke and automatic evidence verdict",
@@ -50,9 +46,9 @@ def build()->dict:
 def self_test()->None:
     result=build();assert result["open_input_omission"]==[];assert len({r["root_id"] for r in result["entries"]})==len(result["entries"])
     by_id={row["root_id"]:row for row in result["entries"]}
-    assert by_id["L4-16"]["next_trigger"]=="USER_OPENS_NEW_CHAT_WHEN_READY"
+    assert "L4-16" not in by_id
     assert by_id["L6-20"]["next_trigger"]=="ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
-    print("PASS: unified ledger dedup, queue conservation and root-specific resume")
+    print("PASS: unified ledger closure, dedup, queue conservation and root-specific resume")
 
 def main()->None:
     p=argparse.ArgumentParser();p.add_argument("--self-test",action="store_true");p.add_argument("--record",action="store_true");a=p.parse_args()
