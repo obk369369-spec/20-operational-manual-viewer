@@ -5,26 +5,21 @@
   "work_continuity_priority": true,
   "approval_wait_does_not_block_safe_work": true,
   "user_manual_approval_count": 1,
-  "batches": [
-    {
-      "purpose": "APPROVAL_BATCH_GATE_REMOTE_FINALIZE",
-      "risk": "SAFE_NORMAL",
-      "safe_work_exhausted": true,
-      "base_checkpoint": "702c25b317aab97eaaf98f82e0f5aadc32ebfa83",
-      "operations": [
-        "TOOL001 canonical remote asset retrieval and verification",
-        "TOOL001 non-destructive canonical index.html deployment",
-        "TOOL001 deployed-location smoke with existing verified fixture",
-        "TOOL006 self-improvement gate target repository apply and remote verification",
-        "normal commit",
-        "normal push",
-        "remote SHA read-back",
-        "remote file read-back"
-      ],
-      "high_risk_operations": []
-      ,"last_attempt":"REMOTE_MAIN_CHANGED_FROM_702c25b_TO_f186360_BEFORE_CENTRAL_COMMIT"
-      ,"completed_operations":["TOOL001 canonical remote retrieval","TOOL001 non-destructive index.html deployment","TOOL001 SHA256 equality check","TOOL006 target repository read-only structure retrieval"]
-      ,"remaining_operations":["central normal push","remote SHA read-back","remote file read-back"]
-    }
-  ]
+  "batches": [],
+  "last_completed_batch": {
+    "purpose": "TOOL043_SAFE_REMOTE_FINALIZE",
+    "risk": "SAFE_NORMAL",
+    "completed_remote_commit": "2de420e3d626445872f4f61e397382d2e5188783",
+    "completed_operations": [
+      "central canonical archive rule DIFF ONLY",
+      "TOOL043 observer/state/handoff role lock",
+      "approval observer panel",
+      "approval-wait non-blocking gate",
+      "PWA home-screen entry assets",
+      "normal GitHub commit",
+      "remote SHA read-back",
+      "remote file read-back"
+    ],
+    "high_risk_operations": []
+  }
 }

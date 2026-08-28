@@ -21,45 +21,14 @@
   "deployment_pending_total": 2,
   "real_use_not_verified_total": 2,
   "user_feedback_courier_count": 0,
-  "approval_pending_total": 1,
+  "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
-  "approval_items": [
-    {
-      "purpose": "APPROVAL_BATCH_GATE_REMOTE_FINALIZE",
-      "risk": "SAFE_NORMAL",
-      "safe_work_exhausted": true,
-      "base_checkpoint": "702c25b317aab97eaaf98f82e0f5aadc32ebfa83",
-      "operations": [
-        "TOOL001 canonical remote asset retrieval and verification",
-        "TOOL001 non-destructive canonical index.html deployment",
-        "TOOL001 deployed-location smoke with existing verified fixture",
-        "TOOL006 self-improvement gate target repository apply and remote verification",
-        "normal commit",
-        "normal push",
-        "remote SHA read-back",
-        "remote file read-back"
-      ],
-      "high_risk_operations": [],
-      "last_attempt": "REMOTE_MAIN_CHANGED_FROM_702c25b_TO_f186360_BEFORE_CENTRAL_COMMIT",
-      "completed_operations": [
-        "TOOL001 canonical remote retrieval",
-        "TOOL001 non-destructive index.html deployment",
-        "TOOL001 SHA256 equality check",
-        "TOOL006 target repository read-only structure retrieval"
-      ],
-      "remaining_operations": [
-        "central normal push",
-        "remote SHA read-back",
-        "remote file read-back"
-      ]
-    }
-  ],
-  "observer_generated_at": "2026-08-28T04:16:44.738376+00:00",
-  "source_revision": "75e28cbf3f7284e4e68b2fe2b28a937ff390fef8",
-  "github_actions_run": "MANUAL_SAFE_BATCH_20260828",
+  "approval_items": [],
+  "observer_generated_at": "2026-08-28T05:06:22.828368+00:00",
+  "source_revision": "2de420e3d626445872f4f61e397382d2e5188783",
+  "github_actions_run": "MANUAL_SAFE_BATCH_RECONCILE_20260828",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
   "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE"
 }
-
