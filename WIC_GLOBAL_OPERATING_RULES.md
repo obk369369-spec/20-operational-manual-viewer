@@ -96,8 +96,12 @@
 - 가능한 모든 SAFE 읽기·검색·검사·수정·테스트를 먼저 수행하고, 남은 승인 필요 작업은 동일 목적의 안전한 단일 배치로 묶는다.
 - 동일 목적의 반복 승인 요청은 금지한다.
 - `USER_MANUAL_APPROVAL_COUNT` 목표는 `0`, 플랫폼상 불가피한 경우에도 Work당 최대 `1`이다.
+- 정상 승인 집중시간은 매일 `17:00~18:00 KST`다. 그 전에는 SAFE 작업을 계속하고 승인 필요 정상 작업을 `feedback_pipeline/approval_queue.json`의 동일 목적 단일 배치로 누적한다.
+- 집중시간 밖에서는 크레딧 소진·안전자산 유실을 막기 위한 불가피한 경우 외에는 승인창을 열지 않는다. 집중시간 안에도 동일 목적 배치는 한 번만 제시한다.
+- 승인 대기 때문에 작업을 멈추지 않고 `ACTUAL TEST -> RESULT VERIFY -> SAFE_CHECKPOINT PREP -> NEXT_START`까지 승인 없이 가능한 범위를 먼저 보존한다.
 - force push, reset --hard, history rewrite, 대량 삭제·덮어쓰기, repository 생성·삭제, 권한·보안 변경은 SAFE 승인 배치에 섞지 않는다.
 - 승인 횟수를 줄이기 위해 검증·remote read-back·SAFE_CHECKPOINT를 생략하지 않는다.
+- 실행 gate: `feedback_pipeline/approval_batch_gate.py`. 동일 목적 승인 2회 이상은 `REPEATED_MANUAL_APPROVAL`이다.
 
 ### 증거 없음 4분류 LOCK
 - `NO_EVIDENCE` 판정은 반드시 `A TRUE_EVIDENCE_MISSING / B EVIDENCE_RECOVERABLE / C EVIDENCE_NOT_REQUIRED / D WORK_EVIDENCE_MISSING` 중 하나를 통과한다.
@@ -108,12 +112,36 @@
 - 실행 gate: `feedback_pipeline/evidence_classification_gate.py` 및 `work_execution_enforcer.py`.
 
 ### 증분감사·배포·통합 OPEN LOCK
+- `NEAR_COMPLETE / LOCAL_PASS / IMPLEMENTED / REMOTE_PENDING / DEPLOYMENT_PENDING / DEVICE_TEST_PENDING / PARTIAL / HOLD / EXTERNAL_ESCALATION / CHECKPOINT_PREPARED / APPROVAL_WAITING`은 모두 `INCOMPLETE`다.
+- 유일한 최종 상태 `DEPLOYED_COMPLETE`는 implement, actual test, result verify, commit, push, remote read-back, SAFE checkpoint, canonical asset, actual deployment, deployed-location smoke, observer reachable, real-use ready가 모두 참일 때만 허용한다.
+- 모든 미확정 상태는 `feedback_pipeline/incomplete_register.json`에 유지하며 거의 완료·외부대기라는 이유로 queue에서 제거하지 않는다.
 - A/B/C/D로 해결되지 않으면 동일 방법을 반복하지 않고 root를 더 작게 분해한 뒤 공식 문서·검증 구현을 최소 범위로 적용하고 실제 runtime에서 검증한다.
 - 동일 input/root/method/evidence/result의 무가치 반복은 `NO_VALUE_REPEAT`로 차단하며, 전체 L1~L6 재전수조사 대신 checkpoint 이후 변경 주변만 증분감사한다.
 - `CODE_PASS != DEPLOYED_COMPLETE`다. 구현→actual test→remote read-back→canonical asset→actual deployment→deployed smoke→observer reachable이 모두 확인돼야 완료다.
 - 관찰자 의도, 숨은 수동작업, 결과 접근성, 중간 정체, 애매한 완료를 독립 검사하고 이름 없는 이상도 기존 root recurrence 또는 신규 OPEN 후보로 보존한다.
 - 모든 OPEN/HOLD/외부제약/배포·관찰자 gap은 `feedback_pipeline/unified_open_ledger.json` 하나로 합치고 다음 Work queue와 TOOL043 야간 준비가 이를 재사용한다.
 - 실행 gate: `deployment_observer_gate.py`, `unified_open_ledger.py`, `post_work_anomaly_audit.py`.
+- 실행 gate: `incomplete_register.py`. 반복 지시와 observer repetition은 자동화 실패 후보로 통합 ledger에 보존한다.
+- 반복 관찰자 의도는 `observer_repetition_gate.py`가 증분 집계한다. 5회 이상은 영구규칙 후보, 10회 이상은 SSoT·Work 입력·runtime gate 강제 대상이며 이후 재반복은 `AUTOMATION_FAILURE` OPEN이다.
+- 모든 중간·최종 보고는 L1~L6, deployment, observer-intent, hidden, other OPEN 숫자와 후보 NEW/RECURRENCE/CLOSED/DUPLICATE 불변식을 포함한다. 숫자 누락은 `OPEN_COUNT_REPORT_MISSING=FAIL`이다.
+- 2026-08-27 추가 후보 22개는 `open_candidate_22.json`에서 기존 root와 대조하며 새 root를 임의 증식하지 않는다. 실행 gate는 `open_count_report_gate.py`다.
+- TOOL043 P0는 실제 전화 배포, 홈 화면 진입, observer real use, screen-off background, state persistence/restore가 모두 실제 PASS일 때만 `DEPLOYED_COMPLETE`다.
+- TOOL006 자기개선은 `SELF_ANALYZE -> ERROR_CLASSIFY -> FIX_CANDIDATE -> HISTORICAL_REGRESSION -> PASS_ONLY_PROMOTION`을 강제한다. 기존 검증 root만 학습자산으로 사용하고 동일 실패방법, 실제 대표검증 누락, regression FAIL, publisher golden pair 부재 후보는 운영 승격을 거부한다.
+- 실행 gate: `tool006_self_improvement_gate.py`; 검증자산: `tool006_learning_assets.json`.
+- 대화 누적·문맥 압축·로딩/응답 지연·재조회 증가를 증분 감시한다. 압력 신호가 의미 있게 누적되면 관찰자보다 먼저 `CHAT_HANDOFF_REQUIRED`를 표시하고 SAFE checkpoint, OPEN 숫자, INCOMPLETE/HOLD, queue, NEXT_START, 영구규칙을 자동 압축한다.
+- handoff에서 사용자의 유일한 행동은 준비됐을 때 새 대화창을 여는 것이다. Work가 새 대화창을 만들거나 이름을 바꾸지 않는다. 사용자가 먼저 지연을 신고하면 `CHAT_HANDOFF_LATE_DETECTION=ANOMALY`다.
+- 실행 gate: `chat_handoff_gate.py`; Work 입력 상태: `chat_handoff_state.json`; post-work audit와 incomplete/unified ledger가 결과를 재사용한다.
+- handoff 문장 출력만으로 PASS하지 않는다. 이동 전 `pre_handoff_flush.py`가 LAST_ACTUAL_WORK, OPEN/INCOMPLETE/HOLD/approval, 중요 feedback, 영구지시 참조, TOOL state, NEXT_START를 중앙 snapshot으로 저장한다.
+- 새 대화 첫 업무 응답 전 `new_chat_resume_gate.py`가 TOOL master, SSoT, checkpoint, handoff, OPEN/HOLD, last actual work, persistent feedback, NEXT_START를 읽고 `RESUME_FROM_LAST_ACTUAL_WORK`한다. 사용자 첨부는 복구 예외이며 정상 입력이 아니다.
+- target/central validation, commit, push, remote SHA/file read-back, checkpoint 전에는 `MASTER_UPDATE=COMPLETE`가 아니다. 현재 단계는 `MEMORY_ONLY/CHAT_ONLY/LOCAL_ONLY/COMMIT_PENDING/PUSH_PENDING/READBACK_PENDING` 중 정확한 값으로 기록한다.
+- 중앙 정보 부재는 `HANDOFF_PERSISTENCE_GAP`, 중앙 정보 미선조회는 `RESUME_GATE_GAP`, 원격 미반영은 `MASTER_PROPAGATION_GAP`이다.
+- `USER=OBSERVER ONLY`, `NEVER START OVER`, directive target conservation, actual-smoke gate, `NOT_WORKED`, `PREMATURE_WORK_EXIT`, 미해결 자동 queue는 모든 Work의 불변조건이다. 사용자 수동 routing이 1건이라도 있으면 `OBSERVER_MODE=FAIL`이다.
+- `MASTER_FIXED != RUNTIME_FIXED`다. latest remote revision, validator, output gate, 실제 결과 PASS가 모두 확인되기 전 COMPLETE를 금지한다.
+- 일반 Chat발 중앙 변경은 `UNTRUSTED_CHAT_PATCH`로 분류하고 정상 기준점과 해당 변경만 scoped 비교한다. 검증·정상 commit/push/read-back/checkpoint 없이 운영 승격하지 않으며 reset/전체 rollback은 금지한다.
+- repository는 기존 저장소를 우선 재사용한다. 기존 repo가 없고 생성 권한과 실행경로가 모두 확인될 때만 별도 고위험 승인으로 생성하며, 아니면 `REPOSITORY_CREATE_HOLD`다. 실패한 신규 경로가 기존 WIC runtime을 중단시키면 안 된다.
+- 현재/미래 WIC는 TOOL 번호 하드코딩 없이 registry 등록만으로 feedback→resolve→root→evidence→apply→validation→remote/state sync를 승계한다.
+- 크레딧 중단 시 마지막 remote SAFE checkpoint가 계속 운영 가능해야 한다. 미완성 workflow를 운영 HEAD에 push하지 않는다.
+- 실행 gate: `operational_safety_gate.py`; 상태: `operational_safety_state.json`.
 
 ## 4. 결과 출력 공통 게이트
 모든 업무 결과는 출력 전에 아래 순서를 통과해야 한다.
@@ -566,7 +594,19 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - 기존 구조로 표현할 수 없는 독립 규칙 범위가 실제로 확인된 경우에만 중앙마스터를 최소 생성하고 route·체크포인트·필요한 게이트 포인터만 등록한다.
 - 아직 등록되지 않은 일반 대화/도구 피드백은 임의 도구 규칙에 넣지 않고 `CENTRAL` fallback으로 라우팅하여 HOLD/분류한 뒤, 실제 소유 업무군이 확인될 때만 대상 중앙마스터에 적용한다.
 
+## 19B. WORK 진행 중 Canonical Archive 및 TOOL043 역할 잠금
+
+- USB 전체를 조사하지 않고 현재 Work가 실제로 만지는 범위만 `CANONICAL_NORMAL`, `SHELL_OR_STALE`, `HOLD_UNKNOWN`으로 증분 판별한다.
+- `CANONICAL_NORMAL`은 기존 GitHub 중앙 구조에 정상 commit하고 remote SHA/content read-back 및 필요한 최초 검증이 끝나기 전까지 USB 삭제 준비로 판정하지 않는다.
+- `HOLD_UNKNOWN`과 USB에만 존재하는 미보존 자산은 삭제하지 않는다. 파일 삭제, USB 삭제, force push, destructive reset, repo 초기화·생성은 일반 SAFE 승인 배치에서 제외한다.
+- 실제 작업 주체는 Work/Codex 또는 기존 승인불필요 자동 실행 엔진이다. TOOL043은 실제 작업을 수행하지 않고 실행상태를 Observer와 다음 Work 인계에 연결하는 `OBSERVATION/STATE/HANDOFF BRIDGE`다.
+- Observer는 TOOL043 상태와 실제 실행상태를 관찰하고, 스마트폰은 Observer 결과만 표시한다. `SMARTPHONE_DIRECT_WORK_EXECUTION=FORBIDDEN`.
+- 스마트폰 원격 승인은 플랫폼 경계로 `BLOCKED_PLATFORM / NON_BLOCKING / SKIP_REUSE`하며 TOOL043 완료조건으로 사용하지 않는다.
+- 승인 대기 작업은 `WAIT_APPROVAL`로 분리하고 다음 SAFE 작업을 계속한다. 14:00 KST는 고정 정지시각이 아니라 fallback 확인시각이다.
+- 각 도구 완료 보고에는 `CANONICAL_NORMAL`, `SHELL_OR_STALE`, `HOLD_UNKNOWN`, `GITHUB_ARCHIVE_STATUS`, `REMOTE_EVIDENCE`, `USB_DELETE_READY`를 포함한다.
+
 ## 20. 변경 이력
+- 2026-08-28 KST: Work 진행 범위의 USB 자산 증분 분류·GitHub canonical archive·삭제준비 게이트와 TOOL043=관찰/상태/인계 bridge, 스마트폰=Observer view, 승인대기 비차단 원칙을 추가.
 - 2026-08-20 KST: 피드백 후보를 영구 운영규칙과 일회성 질문/정보조회로 분류하고, 영구규칙만 중앙마스터에 반영하도록 잠금. 메시지에 두 종류가 섞이면 영구 부분만 분리 저장하며 애매하면 HOLD.
 - 2026-08-20 KST: 모든 기존·신규 일반/도구 대화창에 적용되는 피드백 즉시반영 절차를 고정. 업무군 판별→해당 중앙마스터·체크포인트 선조회→중복/충돌→DIFF ONLY→실행 오류 게이트→체크포인트→commit/push→원격 read-back→Commit SHA 전에는 FINAL PASS 금지. 미등록 신규 도구는 CENTRAL fallback 후 최소 등록하도록 잠금.
 - 2026-08-13 17:03 KST: 과거 Antigravity/WIC34 추출 기준선(RAW 224개, tool_mapped 487개, extracted_rules 흔적)을 재사용 대상으로 잠금하고 전체 재분석/재추출을 금지. 규칙 통합과 Work 작업을 완전히 분리해 규칙 회수·통합에는 Work 크레딧 사용 금지 및 `CRITICAL_RESOURCE_MISUSE` 게이트를 추가. 모든 대화창/도구의 진행상황·점검·상태보고는 테이블 우선으로 출력하도록 최상위 공통 보고 규칙을 추가.

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "current_status": "문제",
   "night_processed": 5,
-  "new_open": 1,
+  "new_open": 2,
   "blocked_work": 6,
   "next_work": "준비완료",
   "safe_checkpoint": "CURRENT_REMOTE_MAIN",
@@ -16,5 +16,49 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "user_feedback_courier_count": 0
+  "incomplete_total": 7,
+  "remote_pending_total": 1,
+  "deployment_pending_total": 2,
+  "real_use_not_verified_total": 2,
+  "user_feedback_courier_count": 0,
+  "approval_pending_total": 1,
+  "approval_wait_does_not_block_safe_work": true,
+  "approval_items": [
+    {
+      "purpose": "APPROVAL_BATCH_GATE_REMOTE_FINALIZE",
+      "risk": "SAFE_NORMAL",
+      "safe_work_exhausted": true,
+      "base_checkpoint": "702c25b317aab97eaaf98f82e0f5aadc32ebfa83",
+      "operations": [
+        "TOOL001 canonical remote asset retrieval and verification",
+        "TOOL001 non-destructive canonical index.html deployment",
+        "TOOL001 deployed-location smoke with existing verified fixture",
+        "TOOL006 self-improvement gate target repository apply and remote verification",
+        "normal commit",
+        "normal push",
+        "remote SHA read-back",
+        "remote file read-back"
+      ],
+      "high_risk_operations": [],
+      "last_attempt": "REMOTE_MAIN_CHANGED_FROM_702c25b_TO_f186360_BEFORE_CENTRAL_COMMIT",
+      "completed_operations": [
+        "TOOL001 canonical remote retrieval",
+        "TOOL001 non-destructive index.html deployment",
+        "TOOL001 SHA256 equality check",
+        "TOOL006 target repository read-only structure retrieval"
+      ],
+      "remaining_operations": [
+        "central normal push",
+        "remote SHA read-back",
+        "remote file read-back"
+      ]
+    }
+  ],
+  "observer_generated_at": "2026-08-28T03:27:46.649387+00:00",
+  "source_revision": "LOCAL_VALIDATION_PARENT",
+  "github_actions_run": "LOCAL_VALIDATION",
+  "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
+  "smartphone_role": "OBSERVER_VIEW_ONLY",
+  "smartphone_direct_work_execution": "FORBIDDEN",
+  "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE"
 }

@@ -29,4 +29,10 @@ Machine route key: `TOOL043`
 4. 상태 및 타임스탬프 기록
 5. 증거 JSON 내보내기
 
+역할 잠금:
+- 실제 실행 주체는 Work/Codex 또는 기존 승인불필요 자동 실행 엔진이다.
+- TOOL043은 `OBSERVATION/STATE/HANDOFF BRIDGE`이며 직접 업무를 수행하지 않는다.
+- 스마트폰은 Observer view 전용이고 `SMARTPHONE_DIRECT_WORK_EXECUTION=FORBIDDEN`이다.
+- `REMOTE_APPROVAL_FROM_SMARTPHONE=BLOCKED_PLATFORM/NON_BLOCKING/SKIP_REUSE`이며 완료조건이 아니다.
+
 완전 PASS는 실제 외부 배포/출시 경로, 재조회 가능한 외부 증거, 필요한 배포 검증까지 확인된 경우에만 판정한다.

@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +14,7 @@ def build() -> tuple[dict, dict]:
     roots = json.loads((PIPE / "evidence" / "work16_root_report.json").read_text(encoding="utf-8"))
     work = json.loads((PIPE / "evidence" / "work_execution_audit_20260827.json").read_text(encoding="utf-8"))
     unified = json.loads((PIPE / "unified_open_ledger.json").read_text(encoding="utf-8"))
+    approvals = json.loads((PIPE / "approval_queue.json").read_text(encoding="utf-8"))
     open_count = roots["open_internal_root_count"]
     blocked = roots["external_hold_count"] + len(work["next_work_queue"])
     status = {
@@ -32,9 +35,28 @@ def build() -> tuple[dict, dict]:
         "auto_recovery": "QUEUE_PRESERVED",
         "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
         "hidden_gap_total": unified["hidden_gap_total"],
+        "incomplete_total": unified["incomplete_total"],
+        "remote_pending_total": unified["remote_pending_total"],
+        "deployment_pending_total": unified["deployment_pending_total"],
+        "real_use_not_verified_total": unified["real_use_not_verified_total"],
         "user_feedback_courier_count": unified["user_feedback_courier_count"],
+        "approval_pending_total": len(approvals.get("batches", [])),
+        "approval_wait_does_not_block_safe_work": True,
+        "approval_items": approvals.get("batches", []),
+        "observer_generated_at": datetime.now(timezone.utc).isoformat(),
+        "source_revision": os.environ.get("GITHUB_SHA", "LOCAL_ONLY"),
+        "github_actions_run": os.environ.get("GITHUB_RUN_ID", "LOCAL_ONLY"),
+        "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
+        "smartphone_role": "OBSERVER_VIEW_ONLY",
+        "smartphone_direct_work_execution": "FORBIDDEN",
+        "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE",
     }
-    queue = {"schema_version": 1, "source": "unified_open_ledger+canonical_work_execution_audit", "items": work["next_work_queue"]}
+    items = list(work["next_work_queue"])
+    known = {row["root_id"] for row in items}
+    for row in unified["entries"]:
+        if row["root_id"] not in known and row["type"] == "INCOMPLETE":
+            items.append({"target":row["target"],"root_id":row["root_id"],"last_actual_point":row["status"],"failed_approach":"NONE","next_trigger":row.get("next_trigger")})
+    queue = {"schema_version": 1, "source": "unified_open_ledger+canonical_work_execution_audit", "items": items}
     return status, queue
 
 
