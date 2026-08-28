@@ -11,8 +11,8 @@
       "evidence": "ACTUAL recurrence: the new Work chat required a user-supplied prior-chat attachment before detailed state was recovered. Existing TOOL-scoped retrieval did not enforce pre-handoff central flush plus first-response resume. Reopened without creating a duplicate root.",
       "actual_action": "RESUME_FROM_CHECKPOINT",
       "result": "UNRESOLVED",
-      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT",
-      "next_start": "Run one actual Android cycle, deployed home-screen entry smoke and automatic evidence verdict"
+      "next_trigger": "USER_OPENS_NEW_CHAT_WHEN_READY",
+      "next_start": "Verify automatic checkpoint resume without a prior-chat attachment"
     },
     {
       "root_id": "L6-20",
@@ -117,3 +117,4 @@
   "observer_repetition_required_total": 0,
   "pass": true
 }
+
