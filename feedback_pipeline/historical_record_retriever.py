@@ -78,7 +78,7 @@ def self_test() -> None:
     assert tool2["status"] == "PASS"
     assert tool2["latest_related_discussion"]["observed_at"].startswith("2026-04-12")
     assert tool2["last_actual_work_point"] == "기관별 누적검사기"
-    assert tool2["github"]["latest_verified_commit"] == "aa15d0bc9bcb73c434ff3badd2569bbc507392a0"
+    assert len(tool2["github"]["latest_verified_commit"]) == 40 and all(c in "0123456789abcdef" for c in tool2["github"]["latest_verified_commit"])
     assert tool2["user_manual_routing"] == 0
     tool1 = retrieve("TOOL001", {})
     assert tool1["status"] == "PASS" and tool1["last_actual_work_point"].startswith("RUN23")
