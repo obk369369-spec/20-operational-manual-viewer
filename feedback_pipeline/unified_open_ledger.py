@@ -18,7 +18,8 @@ def build()->dict:
     deploy=json.loads((HERE/"evidence"/"deployment_observer_audit_20260827.json").read_text(encoding="utf-8"))
     work=json.loads((HERE/"evidence"/"work_execution_audit_20260827.json").read_text(encoding="utf-8"))
     incomplete=json.loads((HERE/"incomplete_register.json").read_text(encoding="utf-8"))
-    repetition_path=HERE/"evidence"/"observer_repetition_audit_20260827.json"\n    repetition=json.loads(repetition_path.read_text(encoding="utf-8")) if repetition_path.exists() else {"directives":[],"automation_failure_total":0,"pass":True}
+    repetition_path=HERE/"evidence"/"observer_repetition_audit_20260827.json"
+    repetition=json.loads(repetition_path.read_text(encoding="utf-8")) if repetition_path.exists() else {"directives":[],"automation_failure_total":0,"pass":True}
     closed={"VERIFIED_CLOSED","FIXED_LOCAL","FIXED_RUNTIME","REMOTE_VERIFIED"}
     entries={}
     for row in ledger["roots"]:
