@@ -10,14 +10,6 @@
       "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
     },
     {
-      "id": "L6-20",
-      "target": "TOOL043",
-      "status": "INCOMPLETE",
-      "reason": "INCOMPLETE_EXTERNAL_WAIT",
-      "missing": ["actual_tested", "deployed", "deployed_smoke", "observer_reachable", "real_use_ready"],
-      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
-    },
-    {
       "id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "target": "EXTERNAL",
       "status": "INCOMPLETE",
@@ -34,9 +26,9 @@
       "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE"
     }
   ],
-  "incomplete_total": 4,
+  "incomplete_total": 3,
   "remote_pending_total": 0,
-  "deployment_pending_total": 2,
-  "real_use_not_verified_total": 2,
+  "deployment_pending_total": 1,
+  "real_use_not_verified_total": 1,
   "pass": true
 }
