@@ -17,8 +17,7 @@
         "actual_tested",
         "deployed",
         "deployed_smoke",
-        "observer_reachable",
-        "real_use_ready"
+        "observer_reachable"
       ]
     },
     {
@@ -61,8 +60,9 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
       "deployment_gap": [
         "actual_tested",
+        "deployed",
         "deployed_smoke",
-        "real_use_ready"
+        "observer_reachable"
       ]
     }
   ],
