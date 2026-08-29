@@ -26,6 +26,8 @@ jobs:
           fetch-depth: 0
 
       - name: Build canonical night queue and mobile observer state
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
@@ -42,6 +44,7 @@ jobs:
             git add tool043/status.json tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json feedback_pipeline/evidence/deployment_observer_audit_20260827.json feedback_pipeline/unified_open_ledger.json
             git commit -m 'wic: sync night queue and mobile observer state'
             git push origin "HEAD:${GITHUB_REF_NAME}"
+            gh workflow run tool043-pages.yml --ref "${GITHUB_REF_NAME}"
           fi
 
       - name: Sync canonical observer from execution state

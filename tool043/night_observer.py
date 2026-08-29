@@ -18,7 +18,9 @@ def consume_safe_tasks(existing: dict) -> tuple[list[dict], list[dict]]:
         if source.get("kind") != "SAFE_NIGHT_TASK":
             continue
         task = dict(source)
-        if task.get("execution_status") == "QUEUED":
+        current_run = os.environ.get("GITHUB_RUN_ID", "LOCAL_ONLY")
+        recurring_due = task.get("execution_mode") == "RECURRING" and task.get("github_actions_run") != current_run
+        if task.get("execution_status") == "QUEUED" or recurring_due:
             if task.get("action") not in ALLOWED_NIGHT_ACTIONS or task.get("safe") is not True:
                 task["execution_status"] = "BLOCKED_UNSAFE_OR_UNKNOWN"
             else:
@@ -27,6 +29,7 @@ def consume_safe_tasks(existing: dict) -> tuple[list[dict], list[dict]]:
                     "completed_at": datetime.now(timezone.utc).isoformat(),
                     "github_actions_run": os.environ.get("GITHUB_RUN_ID", "LOCAL_ONLY"),
                     "source_revision": os.environ.get("GITHUB_SHA", "LOCAL_ONLY"),
+                    "execution_count": int(task.get("execution_count", 0)) + 1,
                 })
                 completed_now.append(task)
         tasks.append(task)
