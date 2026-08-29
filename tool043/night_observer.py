@@ -8,6 +8,29 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PIPE = ROOT / "feedback_pipeline"
+ALLOWED_NIGHT_ACTIONS = {"REFRESH_OBSERVER_FROM_CENTRAL"}
+
+
+def consume_safe_tasks(existing: dict) -> tuple[list[dict], list[dict]]:
+    completed_now = []
+    tasks = []
+    for source in existing.get("items", []):
+        if source.get("kind") != "SAFE_NIGHT_TASK":
+            continue
+        task = dict(source)
+        if task.get("execution_status") == "QUEUED":
+            if task.get("action") not in ALLOWED_NIGHT_ACTIONS or task.get("safe") is not True:
+                task["execution_status"] = "BLOCKED_UNSAFE_OR_UNKNOWN"
+            else:
+                task.update({
+                    "execution_status": "COMPLETED",
+                    "completed_at": datetime.now(timezone.utc).isoformat(),
+                    "github_actions_run": os.environ.get("GITHUB_RUN_ID", "LOCAL_ONLY"),
+                    "source_revision": os.environ.get("GITHUB_SHA", "LOCAL_ONLY"),
+                })
+                completed_now.append(task)
+        tasks.append(task)
+    return tasks, completed_now
 
 
 def build() -> tuple[dict, dict]:
@@ -15,6 +38,12 @@ def build() -> tuple[dict, dict]:
     work = json.loads((PIPE / "evidence" / "work_execution_audit_20260827.json").read_text(encoding="utf-8"))
     unified = json.loads((PIPE / "unified_open_ledger.json").read_text(encoding="utf-8"))
     approvals = json.loads((PIPE / "approval_queue.json").read_text(encoding="utf-8"))
+    queue_path = ROOT / "tool043" / "night_queue.json"
+    previous_queue = json.loads(queue_path.read_text(encoding="utf-8")) if queue_path.exists() else {"items": []}
+    status_path = ROOT / "tool043" / "status.json"
+    previous_status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.exists() else {}
+    safe_tasks, completed_now = consume_safe_tasks(previous_queue)
+    last_completed = completed_now[-1] if completed_now else None
     open_count = roots["open_internal_root_count"]
     blocked = roots["external_hold_count"] + len(work["next_work_queue"])
     status = {
@@ -50,13 +79,16 @@ def build() -> tuple[dict, dict]:
         "smartphone_role": "OBSERVER_VIEW_ONLY",
         "smartphone_direct_work_execution": "FORBIDDEN",
         "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE",
+        "last_night_task_name": last_completed.get("task_name") if last_completed else previous_status.get("last_night_task_name"),
+        "last_night_task_status": last_completed.get("execution_status") if last_completed else previous_status.get("last_night_task_status"),
+        "night_automation_real_run": "PASS" if last_completed else previous_status.get("night_automation_real_run", "NOT_VERIFIED"),
     }
     items = list(work["next_work_queue"])
     known = {row["root_id"] for row in items}
     for row in unified["entries"]:
         if row["root_id"] not in known and row["type"] == "INCOMPLETE":
             items.append({"target":row["target"],"root_id":row["root_id"],"last_actual_point":row["status"],"failed_approach":"NONE","next_trigger":row.get("next_trigger")})
-    queue = {"schema_version": 1, "source": "unified_open_ledger+canonical_work_execution_audit", "items": items}
+    queue = {"schema_version": 1, "source": "unified_open_ledger+canonical_work_execution_audit", "items": items + safe_tasks}
     return status, queue
 
 
@@ -69,3 +101,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
