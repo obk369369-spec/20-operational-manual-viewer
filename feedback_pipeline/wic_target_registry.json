@@ -377,7 +377,7 @@
       "repository": "obk369369-spec/14-wic-homepage-editor",
       "branch": "main",
       "master_paths": [
-        "public/index.html"
+        "TOOL014_MASTER.md"
       ],
       "state_path": "WIC_RULE_SOURCE.md",
       "evidence_path": "public/index.html",
@@ -385,12 +385,12 @@
         "BROWSER_E2E_REQUIRED",
         "PAGES_NOT_ENABLED"
       ],
-      "latest_safe_checkpoint": "4b750d74893156ffb3cd8914937d6590dac9b1f9",
-      "latest_verified_commit": "4b750d74893156ffb3cd8914937d6590dac9b1f9",
+      "latest_safe_checkpoint": "109b89c77aef1395ca2242957b008710da324767",
+      "latest_verified_commit": "ae41bc0c93492d940df90049d894b19deab2ebaf",
       "adapter": "REPOSITORY_DIFF_ONLY",
       "status": "BLOCKED_EXTERNAL",
-      "hold_reason": "PAGES_NOT_ENABLED; actual browser runtime not verified",
-      "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES"
+      "hold_reason": "PAGES_NOT_ENABLED; safe change package passed local browser FIRST_VALIDATION; live apply not authorized",
+      "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES_THEN_STAGE_AND_VERIFY_BEFORE_LIVE_APPLY"
     }
   },
   "registration_holds": {
