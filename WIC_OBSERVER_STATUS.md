@@ -134,3 +134,24 @@
 - 이 구역은 `WIC_EXECUTION_STATE.json`에서 자동 생성한다.
 - Observer가 자체적으로 RUNNING을 추정하지 않고 중앙 실행상태를 그대로 표시한다.
 <!-- WIC_EXECUTION_STATE_SYNC_END -->
+
+
+<!-- TOOL043_FINAL_COMPLETE_20260830_START -->
+## TOOL043 final closure — 2026-08-30 KST
+
+- root_cause: scheduled runs started but failed in `tool043/night_observer.py` because literal line-break markers caused a Python SyntaxError.
+- minimal_fix_commit: `c6bd623ddfe80184c26b0ebcfded4751203b071d`
+- fixed_blob_sha: `05b797f4f17de0201e33e169151450d5b4d9432e`
+- first_validation_run_id: `33295565360`
+- first_validation_result: `SUCCESS`
+- generated_state_commit: `e310cd0b6252f1601127f690d5e27f39df5ce322`
+- observer_generated_at_utc: `2026-08-30T05:50:31.362667+00:00`
+- pages_deploy_run_id: `33295571407`
+- pages_deploy_result: `SUCCESS`
+- scheduled_workflow: `.github/workflows/wic-stall-monitor.yml` with active `schedule` trigger on main
+- public_observer_read_back: task `TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829`, result `CENTRAL_OBSERVER_REFRESHED`, status `COMPLETED`
+- TOOL043: `FINAL_COMPLETE`
+- TOOL043_REOPEN: `REAL_USE_NEW_FAILURE_ONLY`
+- RETEST_UNCHANGED_SCOPE: `FORBIDDEN`
+- FUTURE_UI_EXPANSION: `HOLD_UNTIL_REAL_USE_TRIGGER`
+<!-- TOOL043_FINAL_COMPLETE_20260830_END -->
