@@ -24,9 +24,10 @@
 - 번호 없는/다른 명명형 파일도 별도 분류 후 기존 TOOL alias 여부를 판단한다.
 
 ## 현재 처리
-- TOOL041: 2026-08-30 첨부 대화기록 + 현재대화 UPDATE FLUSH 규칙 반영 완료. commit ca4b2f5b8281c4befa223833f6020cf9f62fad46 / read-back PASS.
-- TOOL042: 2026-08-30 첨부 대화기록 + 현재대화 UPDATE FLUSH/RESUME 규칙 반영 완료. commit 65302485f1ac26fc51d3edf0a2291b456fa53c91 / read-back PASS.
+- TOOL001: 과거 31개 직접 번호 파일 + 1번 관련 alias 파일을 기준으로 최신 영구규칙 정리 완료. `obk369369-spec/01-auto-guide-v1/TOOL001_MASTER.md` 생성, 공통규칙과 도구전용규칙을 분리해 `WIC_RULE_SOURCE.md` 포인터 갱신. MASTER commit `364baca50027dabb895707704be7f82478933662`, pointer commit `1137e2ac89fc7d160e5a37f6866367071f14c59c`, remote read-back PASS.
+- TOOL041: 2026-08-30 첨부 대화기록 + 현재대화 UPDATE FLUSH 규칙 반영 완료. commit `ca4b2f5b8281c4befa223833f6020cf9f62fad46` / read-back PASS.
+- TOOL042: 2026-08-30 첨부 대화기록 + 현재대화 UPDATE FLUSH/RESUME 규칙 반영 완료. commit `65302485f1ac26fc51d3edf0a2291b456fa53c91` / read-back PASS.
 - 나머지 TOOL: 번호별 정리 및 기존 canonical 대조 진행 중.
 
 ## 다음 처리 순서
-TOOL001부터 번호순으로 진행하되, 기존 canonical이 명확한 TOOL은 바로 DIFF ONLY 반영하고, 별도 저장소가 없거나 흡수 여부가 애매한 번호는 HOLD/alias 판정 후 다음 TOOL로 이동한다.
+TOOL002부터 번호순으로 진행하되, 기존 canonical이 명확한 TOOL은 바로 DIFF ONLY 반영하고, 별도 저장소가 없거나 흡수 여부가 애매한 번호는 HOLD/alias 판정 후 다음 TOOL로 이동한다.
