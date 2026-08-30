@@ -846,3 +846,20 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - 삭제, USB 삭제, force push, destructive reset, repo 초기화·생성, 대량 이동·삭제 및 복구 곤란 변경은 SAFE batch에 포함하지 않는다.
 - 승인 후 중간 보고로 멈추지 않고 가능한 범위에서 commit, remote SHA와 content read-back까지 닫는다.
 <!-- WORK16_RECOVERED_EXECUTION_LOCKS_END -->
+
+## WIC MASTER 선행 로드 게이트 (모든 현재/미래 WIC 작업)
+
+WIC와 무관한 일반 개인 대화에는 적용하지 않는다. 현재 존재하는 모든 WIC 대화창·TOOL·Work와 앞으로 생성되는 모든 WIC 대화창·신규 TOOL은 검색·판단·출력·개발·수정·검증·배포 전에 아래 순서를 완료해야 한다.
+
+1. WIC 중앙 공통마스터 최신 정본을 로드한다.
+2. CENTRAL registry에서 대상 TOOL을 해석하고 해당 TOOL의 최신 canonical master를 로드한다.
+3. 해당 TOOL의 latest checkpoint/handoff를 로드한다.
+4. 세 단계의 경로·repository·revision/SHA·content hash read-back receipt가 모두 확인된 경우에만 작업 진입을 허용한다.
+
+`MASTER_LOAD_BEFORE_WORK = REQUIRED`
+`WORK_WITHOUT_MASTER_LOAD = FORBIDDEN`
+`NEW_WIC_CHAT_MASTER_LOAD_REQUIRED = TRUE`
+`MASTER_LOAD_FAIL = HOLD`
+`GUESS_WITHOUT_MASTER = FORBIDDEN`
+
+TOOL master가 아직 없으면 중앙 공통마스터 로드 후 기존 registry·canonical·흡수/통합 관계만 좁게 확인하고 `TOOL_MASTER_NOT_FOUND / HOLD`로 판정한다. 임의 규칙이나 추정 경로로 작업을 시작하지 않는다. 경로와 SHA는 registry에서 자동 해석하며 사용자에게 반복 요청하지 않는다. 기존 PASS/VERIFIED/REMOTE_VERIFIED 구조는 SKIP_REUSE하고 변경 연결부만 DIFF ONLY로 처리한다.
