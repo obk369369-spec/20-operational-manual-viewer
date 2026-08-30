@@ -2,6 +2,25 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "L6-20",
+      "layer": "L6",
+      "target": "TOOL043",
+      "source": "work16_root_ledger",
+      "type": "OPEN",
+      "status": "OPEN",
+      "evidence": "Tool043 scheduled observer/queue and fail-closed actual-device verifier are implemented. Actual Android screen-off/background/persistent-state/screen-on restore plus HOME_SCREEN_OBSERVER_ENTRYPOINT deployment smoke remain unavailable; both deployment and observer-intent gaps are deduplicated into this root.",
+      "actual_action": "RESUME_FROM_CHECKPOINT",
+      "result": "UNRESOLVED",
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT",
+      "next_start": "Run one actual Android cycle, deployed home-screen entry smoke and automatic evidence verdict",
+      "deployment_gap": [
+        "actual_tested",
+        "deployed",
+        "deployed_smoke",
+        "observer_reachable"
+      ]
+    },
+    {
       "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "layer": "EXTERNAL",
       "target": "EXTERNAL",
@@ -47,7 +66,7 @@
       ]
     }
   ],
-  "open_internal_total": 0,
+  "open_internal_total": 1,
   "incomplete_total": 3,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
@@ -55,7 +74,8 @@
   "next_work_queue_root_ids": [
     "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
     "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
-    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR"
+    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+    "L6-20"
   ],
   "open_input_omission": [],
   "hidden_gap_total": 0,
