@@ -50,6 +50,45 @@ def validate_registry(registry: Mapping[str, Any]) -> None:
     if uncovered: raise ValueError(f"routing registry target(s) lack canonical coverage: {uncovered}")
 
 
+def _loaded_file_receipt(phase: str, repository: str, revision: str, path: Path, relative_path: str) -> dict[str, Any]:
+    raw = path.read_bytes()
+    if not raw:
+        raise RuntimeError(f"MASTER_LOAD_FAIL: empty {phase} {relative_path}")
+    return {"phase":phase,"repository":repository,"path":relative_path,"revision":revision,"sha256":hashlib.sha256(raw).hexdigest(),"read_back":True}
+
+
+def load_master_context(registry: Mapping[str, Any], event: Mapping[str, Any], workspace: Path, *, central_root: Path | None = None) -> dict[str, Any]:
+    """Fail-closed WIC entry gate: CENTRAL -> TOOL master -> checkpoint/handoff."""
+    gate = registry.get("master_load_gate", {})
+    central = gate.get("central_master", {})
+    root = central_root or ROOT.parent
+    loaded: list[dict[str, Any]] = []
+    try:
+        central_rel = str(central.get("path") or "WIC_GLOBAL_OPERATING_RULES.md")
+        loaded.append(_loaded_file_receipt("CENTRAL_COMMON_MASTER",str(central.get("repository") or registry["targets"]["CENTRAL"]["repository"]),str(central.get("branch") or "main"),root/central_rel,central_rel))
+    except (OSError, RuntimeError, KeyError) as exc:
+        return {"status":"HOLD","reason":"MASTER_LOAD_FAIL","detail":str(exc),"loaded":loaded,"work_entry_allowed":False}
+    try:
+        target, row = resolve(registry,str(event.get("source_chat","")),str(event.get("tool_id","")))
+    except KeyError:
+        return {"status":"HOLD","reason":"TOOL_MASTER_NOT_FOUND","loaded":loaded,"work_entry_allowed":False}
+    if row.get("status") != "ACTIVE":
+        return {"status":"HOLD","reason":"TARGET_NOT_ACTIVE","target":target,"loaded":loaded,"work_entry_allowed":False}
+    revision = str(row.get("latest_safe_checkpoint") or row.get("latest_verified_commit") or "")
+    try:
+        for rel in row["master_paths"]:
+            loaded.append(_loaded_file_receipt("TOOL_CANONICAL_MASTER",str(row["repository"]),revision,workspace/rel,str(rel)))
+        checkpoint = str(row["state_path"])
+        loaded.append(_loaded_file_receipt("LATEST_CHECKPOINT_HANDOFF",str(row["repository"]),revision,workspace/checkpoint,checkpoint))
+    except (OSError, RuntimeError, KeyError) as exc:
+        return {"status":"HOLD","reason":"MASTER_LOAD_FAIL","target":target,"detail":str(exc),"loaded":loaded,"work_entry_allowed":False}
+    phases=[item["phase"] for item in loaded]
+    expected=["CENTRAL_COMMON_MASTER",*(["TOOL_CANONICAL_MASTER"]*len(row["master_paths"])), "LATEST_CHECKPOINT_HANDOFF"]
+    if phases != expected:
+        return {"status":"HOLD","reason":"MASTER_LOAD_ORDER_INVALID","target":target,"loaded":loaded,"work_entry_allowed":False}
+    return {"status":"PASS","target":target,"load_order":["CENTRAL_COMMON_MASTER","TOOL_CANONICAL_MASTER","LATEST_CHECKPOINT_HANDOFF"],"loaded":loaded,"work_entry_allowed":True}
+
+
 def resolve(registry: Mapping[str, Any], chat_id: str, tool_id: str = "") -> tuple[str, Mapping[str, Any]]:
     wanted = tool_id or chat_id
     for target, row in registry["targets"].items():
@@ -211,8 +250,11 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     missing_event=sorted(required_event-set(event))
     if missing_event:
         return fail({"stage":"CAPTURED","status":"RUNNING"},"CAPTURED",f"event missing {missing_event}",True,"RECOVER_FIELDS_FROM_SOURCE_CHAT")
+    master_load_receipt=load_master_context(registry,event,workspace)
+    if master_load_receipt.get("status") != "PASS":
+        return fail({"stage":"MASTER_LOAD","status":"RUNNING","MASTER_LOAD_RECEIPT":master_load_receipt},"MASTER_LOAD",str(master_load_receipt.get("reason","MASTER_LOAD_FAIL")),True,"LOAD_REGISTERED_MASTERS_AND_RESUME")
     target,row = resolve_event(registry,event)
-    state={"pipeline_id":stable_id(str(event["source_ref"]),str(event["feedback"])),"target":target,"repository":row["repository"],"stage":"TARGET_RESOLVED","status":"RUNNING"}
+    state={"pipeline_id":stable_id(str(event["source_ref"]),str(event["feedback"])),"target":target,"repository":row["repository"],"stage":"TARGET_RESOLVED","status":"RUNNING","MASTER_LOAD_RECEIPT":master_load_receipt}
     evidence,work=build_packets(event,target,row); state.update({"evidence_packet":evidence,"work_packet":work})
     if not (evidence.get("actual_input_ref") and evidence.get("wrong_output_ref") and evidence.get("expected")):
         return fail(state,"EVIDENCE_READY","input/wrong-output/expected evidence references are incomplete",True,"CAPTURE_LINKED_EVIDENCE_FROM_SOURCE_CHAT")
@@ -299,10 +341,17 @@ def self_test() -> dict[str, Any]:
 
 
 def main() -> None:
-    parser=argparse.ArgumentParser(); parser.add_argument("--self-test",action="store_true"); parser.add_argument("--evidence",default="")
+    parser=argparse.ArgumentParser(); parser.add_argument("--self-test",action="store_true"); parser.add_argument("--master-load-first-validation",action="store_true"); parser.add_argument("--evidence",default="")
     parser.add_argument("--execute-event",default=""); parser.add_argument("--workspace",default=""); parser.add_argument("--bundled-python",default="")
     args=parser.parse_args()
-    if args.self_test:
+    if args.master_load_first_validation:
+        registry=json.loads(REGISTRY.read_text(encoding="utf-8"))
+        result=load_master_context(registry,{"source_chat":"TOOL020","tool_id":"TOOL020"},ROOT.parent)
+        assert result["status"]=="PASS" and result["work_entry_allowed"] is True
+        assert result["load_order"]==["CENTRAL_COMMON_MASTER","TOOL_CANONICAL_MASTER","LATEST_CHECKPOINT_HANDOFF"]
+        if args.evidence: Path(args.evidence).write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+        print(json.dumps(result,ensure_ascii=False,indent=2))
+    elif args.self_test:
         result=self_test()
         if args.evidence: Path(args.evidence).write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
         print("PASS: registry-driven TOOL006/041/042/other/future-chat state-machine E2E")
