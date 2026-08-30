@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "target": "TOOL035",
+  "policy": "VERIFIED_COMPONENTS_ONLY",
+  "generated_from": "2026-08-30 explicit TOOL035 instruction",
+  "components": [
+    {
+      "source_tool": "TOOL012",
+      "source_repository": "obk369369-spec/12-wic-subwebsite-builder",
+      "source_tool_state": "BLOCKED_EXTERNAL(PAGES_NOT_ENABLED)",
+      "reusable_scope": "STATIC_SUBSITE_FUNCTIONAL_CTA",
+      "reusable_scope_status": "PASS",
+      "runtime_path": "public/index.html",
+      "runtime_commit": "aa9cc2e89726a4b388b148067f6dc4be40a0599e",
+      "runtime_blob": "d3502bf9173921794fcc40277c675f89ed5e5f8b",
+      "master_commit": "5b5440e521bdf9f20d0d3636daaafcedb1ef187d",
+      "master_blob": "097b0012738495276b60c851c57c95f966aa029d",
+      "remote_read_back": true,
+      "capabilities": [
+        "MAILTO_INQUIRY_CTA",
+        "HTTPS_RESOURCE_PDF_CTA",
+        "DEAD_CTA_OMISSION"
+      ],
+      "holds": [
+        "PUBLIC_PAGES_FIRST_VALIDATION"
+      ]
+    },
+    {
+      "source_tool": "TOOL014",
+      "source_repository": "obk369369-spec/14-wic-homepage-editor",
+      "source_tool_state": "BLOCKED_EXTERNAL(PAGES_NOT_ENABLED)",
+      "reusable_scope": "SAFE_HOMEPAGE_CHANGE_PACKAGE",
+      "reusable_scope_status": "PASS",
+      "runtime_path": "public/index.html",
+      "runtime_commit": "ae41bc0c93492d940df90049d894b19deab2ebaf",
+      "runtime_blob": "133c84f49b12072b1680ed31308852ad0f617570",
+      "master_commit": "109b89c77aef1395ca2242957b008710da324767",
+      "master_blob": "4081565ad1d083d811884fe71c1256a0e62ea162",
+      "remote_read_back": true,
+      "capabilities": [
+        "CTA_SCHEME_ALLOWLIST",
+        "BASELINE_REVISION_REQUIRED",
+        "CHANGE_REASON_REQUIRED",
+        "AUTO_DEPLOY_FALSE_MANIFEST"
+      ],
+      "holds": [
+        "PUBLIC_PAGES_FIRST_VALIDATION",
+        "LIVE_APPLY_AUTHORIZATION"
+      ]
+    }
+  ],
+  "forbidden": [
+    "UNVERIFIED_COMPONENT_PROMOTION",
+    "SHELL_INTEGRATION",
+    "AUTO_LIVE_DEPLOY",
+    "NEW_REPOSITORY"
+  ],
+  "checkpoint": {
+    "status": "READY_FOR_FIRST_VALIDATION",
+    "next_start": "RUN_TOOL035_VERIFIED_INTEGRATION_GATE_ONCE"
+  }
+}
