@@ -812,3 +812,37 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - Work는 USB 파일을 자동 삭제하지 않는다. `HOLD_UNKNOWN` 또는 USB에만 존재하는 필요한 미보존 원본이 있으면 해당 확인범위의 `USB_DELETE_READY=FALSE`다.
 - DELETE_READY는 현재 확인범위에만 판정하며 USB 전체로 확대하지 않는다.
 <!-- TOOL006_USER_ACTION_AND_INCREMENTAL_CANONICALIZATION_LOCK_END -->
+
+
+<!-- WORK16_RECOVERED_EXECUTION_LOCKS_START -->
+## 19D. Work 16 회수 운영 고정규칙 — 실행 연속성·승인 최대 병합
+
+### 조사·반복 차단
+
+- `FULL_AUDIT_BLOCKED = TRUE`; `FULL_AUDIT = FORBIDDEN`; 현재 작업과 직접 연결된 범위만 증분 확인한다.
+- `FULL_SYSTEM_RESCAN = FORBIDDEN`; `REPEAT_CROSS_TOOL_SWEEP = FORBIDDEN`; 다음 작업을 찾기 위해 전체 TOOL·GitHub·채팅·과거 기록을 다시 훑지 않는다.
+- `REPEAT_WORK_BLOCKED = TRUE`; `RECHECK_EXISTING_PASS = FORBIDDEN`; 기존 `PASS / VERIFIED / REMOTE_VERIFIED / COMPLETE`는 영향받지 않은 한 `SKIP_REUSE`한다.
+- 같은 조건의 실패·검증·승인을 반복하지 않는다. 새 변경의 영향범위만 `FIRST_VALIDATION` 1회 수행한다.
+
+### 완료 우선·실행 연속성
+
+- `PRIORITY_MODE = FASTEST_TO_COMPLETE`; `COMPLETE_CLOSE_FIRST = TRUE`.
+- 외부자료·사용자 추가자료 없이 독자적으로 닫을 수 있고 COMPLETE까지 남은 작업량이 가장 적은 기존 OPEN/INCOMPLETE부터 처리한다.
+- `BLOCKED_DOES_NOT_END_WORK = TRUE`; `REPORT_DOES_NOT_END_WORK = TRUE`; HOLD/WAIT/BLOCKED_EXTERNAL은 붙잡지 않고 다음 내부 완료 가능 항목으로 이동한다.
+- `VERIFIED_COMPONENT_REUSE = TRUE`; `REBUILD_VERIFIED_COMPONENT = FORBIDDEN`; 동일 기능은 검증된 구성요소를 재사용하고 달라진 연결부만 최초 검증한다.
+- 새 repo, 새 프로젝트, 중앙 작업공간 복제품을 임의 생성하지 않는다.
+
+### SAFE 승인 최대 병합
+
+- `APPROVAL_REQUESTS = MAXIMALLY_BATCHED`
+- `ONE_APPROVAL_FLOW_PREFERRED = TRUE`
+- `DEFER_SAFE_APPROVAL_UNTIL_BATCH_READY = TRUE`
+- `REPEAT_APPROVAL_SAME_SCOPE = FORBIDDEN`
+- `SAFE_SCOPE_ONLY = TRUE`
+- 같은 repo·목적·변경세트의 비파괴 SAFE 작업은 승인 없는 준비와 변경 계산을 먼저 끝낸 뒤, 플랫폼이 허용하는 최대 한 승인 흐름으로 묶는다.
+- 가능한 경우 `network access → file write → blob → tree → commit → main fast-forward → remote read-back`을 연속 처리하며 파일별·단계별로 임의 분할하지 않는다.
+- 플랫폼이 단계별 승인을 강제하는 경우에만 같은 SAFE 범위의 추가 승인창을 허용하며 이를 우회·자동 클릭하지 않는다.
+- 승인 대기 작업은 `WAIT_APPROVAL`로 분리하고 승인 불필요 SAFE 작업을 계속한다.
+- 삭제, USB 삭제, force push, destructive reset, repo 초기화·생성, 대량 이동·삭제 및 복구 곤란 변경은 SAFE batch에 포함하지 않는다.
+- 승인 후 중간 보고로 멈추지 않고 가능한 범위에서 commit, remote SHA와 content read-back까지 닫는다.
+<!-- WORK16_RECOVERED_EXECUTION_LOCKS_END -->
