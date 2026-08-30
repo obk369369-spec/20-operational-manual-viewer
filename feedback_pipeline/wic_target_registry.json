@@ -393,5 +393,18 @@
       "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES"
     }
   },
-  "registration_holds": {}
+  "registration_holds": {
+    "TOOL035": {
+      "status": "BLOCKED_CANONICAL_NOT_FOUND",
+      "checked_scope": [
+        "CENTRAL exact TOOL035/35번",
+        "GitHub org repo name 35",
+        "Library latest 50 and archived",
+        "USB current handoff and WIC34_SYNC_LITE exact TOOL035/35번"
+      ],
+      "reason": "No existing canonical repository/checkpoint/Library pointer found in permitted narrow scope",
+      "resume_trigger": "EXISTING_TOOL035_CANONICAL_POINTER_OR_LIBRARY_RECORD_IDENTIFIED",
+      "new_repo_created": false
+    }
+  }
 }
