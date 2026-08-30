@@ -22,14 +22,16 @@ def consume_safe_tasks(existing: dict) -> tuple[list[dict], list[dict]]:
         recurring_due = task.get("execution_mode") == "RECURRING" and task.get("github_actions_run") != current_run
         if task.get("execution_status") == "QUEUED" or recurring_due:
             if task.get("action") not in ALLOWED_NIGHT_ACTIONS or task.get("safe") is not True:
-                task["execution_status"] = "BLOCKED_UNSAFE_OR_UNKNOWN"\n                task["result"] = "BLOCKED_UNSAFE_OR_UNKNOWN"
+                task["execution_status"] = "BLOCKED_UNSAFE_OR_UNKNOWN"
+                task["result"] = "BLOCKED_UNSAFE_OR_UNKNOWN"
             else:
                 task.update({
                     "execution_status": "COMPLETED",
                     "completed_at": datetime.now(timezone.utc).isoformat(),
                     "github_actions_run": os.environ.get("GITHUB_RUN_ID", "LOCAL_ONLY"),
                     "source_revision": os.environ.get("GITHUB_SHA", "LOCAL_ONLY"),
-                    "execution_count": int(task.get("execution_count", 0)) + 1,\n                    "result": "CENTRAL_OBSERVER_REFRESHED",
+                    "execution_count": int(task.get("execution_count", 0)) + 1,
+                    "result": "CENTRAL_OBSERVER_REFRESHED",
                 })
                 completed_now.append(task)
         tasks.append(task)
@@ -84,7 +86,13 @@ def build() -> tuple[dict, dict]:
         "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE",
         "last_night_task_name": last_completed.get("task_name") if last_completed else previous_status.get("last_night_task_name"),
         "last_night_task_status": last_completed.get("execution_status") if last_completed else previous_status.get("last_night_task_status"),
-        "night_automation_real_run": "PASS" if last_completed else previous_status.get("night_automation_real_run", "NOT_VERIFIED"),\n        "night_task_items": [{\n            "task_name": task.get("task_name", task.get("task_id", "UNKNOWN_TASK")),\n            "result": task.get("result", task.get("action", "UNKNOWN")),\n            "executed_at": task.get("completed_at"),\n            "status": task.get("execution_status", "UNKNOWN"),\n        } for task in safe_tasks],
+        "night_automation_real_run": "PASS" if last_completed else previous_status.get("night_automation_real_run", "NOT_VERIFIED"),
+        "night_task_items": [{
+            "task_name": task.get("task_name", task.get("task_id", "UNKNOWN_TASK")),
+            "result": task.get("result", task.get("action", "UNKNOWN")),
+            "executed_at": task.get("completed_at"),
+            "status": task.get("execution_status", "UNKNOWN"),
+        } for task in safe_tasks],
     }
     items = list(work["next_work_queue"])
     known = {row["root_id"] for row in items}
