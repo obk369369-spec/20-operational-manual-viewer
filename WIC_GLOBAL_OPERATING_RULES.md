@@ -895,3 +895,47 @@ TOOL master가 아직 없으면 중앙 공통마스터 로드 후 기존 registr
 `FIRST_VALIDATION_ONCE = REQUIRED`
 `COMMON_RULE_AUTO_CLASSIFICATION = REQUIRED`
 `TEMPORARY_ISSUE_AUTO_GLOBALIZATION = FORBIDDEN`
+
+## WIC COMPLETE 수렴형 통합 실행 (모든 현재/미래 WIC 작업)
+
+번호순 반복순회보다 실제 COMPLETE 증가를 우선한다. 현재 상태에서 `COMPLETE까지 남은 안전 작업량 / 재사용 효과 / 병목 해제 효과 / 외부 의존성 / 실패 위험`을 비교해 가장 빠른 전략을 선택한다.
+
+### 상태 분류
+- `READY_TO_COMPLETE`: 현재 권한·자료·PASS 부품으로 실제 완료 가능.
+- `WAITING_FOR_REUSABLE_COMPONENT`: 특정 검증 부품이 생기면 완료 가능.
+- `BOTTLENECK_COMPONENT_REQUIRED`: 여러 TOOL이 같은 기능을 실제로 기다림.
+- `EXTERNAL_TRIGGER_HOLD`: 외부자료·승인·실사용 증거 없이는 진행 불가.
+- `COMPLETE / PASS / REMOTE_VERIFIED`: 동일 조건 재작업·재검증 금지.
+
+### 전략 선택
+- `COMPLETE_FIRST`: READY 중 가장 적은 안전 작업으로 닫히는 TOOL 우선.
+- `DEPENDENCY_WAVE`: 새 PASS/REMOTE_VERIFIED 부품을 기다린다고 이미 확인된 TOOL만 즉시 연결.
+- `BOTTLENECK_COMPONENT`: 여러 TOOL의 실제 병목이면 별도 공통화 프로젝트가 아니라 현재 실제 TOOL 안에서 최소 구현·검증한다.
+- `BATCH_CLOSE`: 같은 검증 부품으로 가까운 TOOL 여러 개가 닫히면 atomic unit별로 연속 처리.
+- `EXTERNAL_HOLD_SKIP`: trigger 전에는 반복 방문하지 않는다.
+- `ROUND_ROBIN`: 특별한 근거가 있을 때만 제한적으로 사용하며 기본 전략으로 삼지 않는다.
+
+### trigger 기반 재방문
+같은 TOOL은 새 PASS/REMOTE_VERIFIED 부품, 외부 trigger 충족, 실제 새 오류, 사용자 신규 요구, HOLD 해제 근거 중 하나가 있을 때만 재방문한다. 상태변화 없는 반복순회는 금지한다. 신규 COMPLETE·신규 재사용 PASS·해제 HOLD가 계속 0이면 같은 전략을 반복하지 않고 병목과 전략을 변경한다.
+
+`ROUND_ROBIN_REPEAT = FORBIDDEN`
+`TRIGGER_BASED_REVISIT_ONLY = TRUE`
+`REBUILD_VERIFIED_COMPONENT = FORBIDDEN`
+`RETEST_UNCHANGED_VERIFIED_COMPONENT = FORBIDDEN`
+`FIRST_VALIDATION_ON_CHANGED_SCOPE_ONLY = TRUE`
+
+### 중단 안전 atomic unit
+각 작업은 가능한 한 `수정 → 변경범위 FIRST_VALIDATION 1회 → PASS → canonical commit → remote read-back → 다음 unit` 순서로 독립 종료한다. 현재 unit을 안전하게 닫을 수 없으면 미검증 변경을 canonical에 반영하지 않고 마지막 VERIFIED 상태를 보존한다. 크레딧·시간 소진이 임박하면 새 대형 작업을 시작하지 않는다. runtime/master/manifest/checkpoint 중 일부만 바뀐 불일치 상태와 검증되지 않은 배포 COMPLETE 판정을 남기지 않는다.
+
+`PARTIAL_BROKEN_STATE = FORBIDDEN`
+`SAFE_ATOMIC_PROGRESS = REQUIRED`
+`LAST_VERIFIED_STATE_PRESERVE = REQUIRED`
+`NO_NEW_LARGE_SCOPE_NEAR_CREDIT_EXHAUSTION = TRUE`
+`UNVERIFIED_PARTIAL_CHANGE_TO_CANONICAL = FORBIDDEN`
+
+### 보고 집계
+각 보고에는 번호·실제 도구/대화창명·시작상태·이번 작업·현재상태·새 재사용 부품·연결 TOOL·남은 작업·HOLD/trigger·지연원인을 표시한다. 또한 신규 COMPLETE 수, 신규 PASS/REMOTE_VERIFIED 재사용 부품 수, 재사용으로 해제된 HOLD 수, 외부 trigger HOLD 수, 불필요 동일상태 재방문 수를 집계하며 마지막 항목의 목표값은 0이다.
+
+`FULL_AUDIT = FORBIDDEN`
+`AUTO_EXPAND_SCOPE = FORBIDDEN`
+`FULL_COMMONIZATION_PROJECT = FORBIDDEN`
