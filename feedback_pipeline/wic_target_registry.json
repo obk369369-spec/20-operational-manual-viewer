@@ -391,22 +391,32 @@
       "status": "BLOCKED_EXTERNAL",
       "hold_reason": "PAGES_NOT_ENABLED; safe change package passed local browser FIRST_VALIDATION; live apply not authorized",
       "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES_THEN_STAGE_AND_VERIFY_BEFORE_LIVE_APPLY"
-    }
-  },
-  "registration_holds": {
+    },
     "TOOL035": {
-      "status": "BLOCKED_CANONICAL_NOT_FOUND",
-      "checked_scope": [
-        "CENTRAL exact TOOL035/35번",
-        "GitHub org repo name 35",
-        "Library latest 50 and archived",
-        "USB current handoff and WIC34_SYNC_LITE exact TOOL035/35번"
+      "chat_ids": [
+        "TOOL035",
+        "35번",
+        "월드 운영시스템 통합"
       ],
-      "reason": "No existing canonical repository/checkpoint/Library pointer found in permitted narrow scope",
-      "resume_trigger": "EXISTING_TOOL035_CANONICAL_POINTER_OR_LIBRARY_RECORD_IDENTIFIED",
-      "new_repo_created": false
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "feedback_pipeline/TOOL035_MASTER.md"
+      ],
+      "state_path": "feedback_pipeline/tool035_verified_integration.json",
+      "evidence_path": "feedback_pipeline/tool035_verified_integration.json",
+      "test_command": [
+        "WIC_BUNDLED_PYTHON",
+        "feedback_pipeline/tool035_verified_integration.py",
+        "--first-validation"
+      ],
+      "latest_safe_checkpoint": "649588602335e4d0b58402cb6d8f1b4eaf4b3703",
+      "latest_verified_commit": "c4e052062bbd767d5d5f6a113e55e80f6e63bbcb",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE"
     }
   },
+  "registration_holds": {},
   "master_load_gate": {
     "scope": "WIC_ONLY_CURRENT_AND_FUTURE",
     "central_master": {
