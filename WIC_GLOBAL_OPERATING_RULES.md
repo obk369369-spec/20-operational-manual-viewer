@@ -863,3 +863,35 @@ WIC와 무관한 일반 개인 대화에는 적용하지 않는다. 현재 존�
 `GUESS_WITHOUT_MASTER = FORBIDDEN`
 
 TOOL master가 아직 없으면 중앙 공통마스터 로드 후 기존 registry·canonical·흡수/통합 관계만 좁게 확인하고 `TOOL_MASTER_NOT_FOUND / HOLD`로 판정한다. 임의 규칙이나 추정 경로로 작업을 시작하지 않는다. 경로와 SHA는 registry에서 자동 해석하며 사용자에게 반복 요청하지 않는다. 기존 PASS/VERIFIED/REMOTE_VERIFIED 구조는 SKIP_REUSE하고 변경 연결부만 DIFF ONLY로 처리한다.
+
+## WIC Observer-First 실행·배포·반복문제 자동판별 (모든 현재/미래 WIC 작업)
+
+이 블록은 WIC와 무관한 일반 개인 대화에는 적용하지 않는다. 현재 존재하는 모든 WIC TOOL·Work·Codex 작업과 앞으로 생성되는 모든 WIC TOOL·대화창에 적용한다.
+
+### 기본 실행·배포 순서
+
+1. Work/Codex가 승인 없이 가능한 준비·실행·검증·증거 정리를 먼저 끝낸다.
+2. 배포는 (a) Work가 끝까지 수행 가능한 방식, (b) 기존 PASS/VERIFIED 배포 구조 재사용, (c) 사용자가 로컬 파일 하나를 실행·선택하는 단일 행동, (d) 다단계 웹 설정 순으로 선택한다.
+3. 가능한 경우 Work가 배포 실행, 공개 URL 확인, 변경범위 FIRST_VALIDATION 1회, 증거 저장, 완료판정까지 연속 처리한다.
+4. 사용자 행동이 본질적으로 필요하면 준비를 먼저 끝낸 뒤 경로·파일·버튼·행동을 하나의 요청으로 최대 병합한다. 같은 범위의 행동·승인·경로 설명을 반복 요구하지 않는다.
+5. 기존 PASS/VERIFIED/REMOTE_VERIFIED 배포·실행 구조가 있으면 재개발·재검증하지 않고 새 TOOL의 연결부만 DIFF ONLY 처리한다.
+
+### 문제 자동분류
+
+- `TEMPORARY`: 이번 화면·권한·파일·상황에만 해당한다. 현재 작업에서만 해결하고 전역화하지 않는다.
+- `TOOL_SPECIFIC`: 특정 TOOL 고유 문제다. 해당 TOOL master/checkpoint에만 반영한다.
+- `COMMON_RECURRING`: 여러 TOOL/Work/Codex에서 반복되거나 재발 가능성이 높은 구조적 문제다. 중앙 공통규칙 후보로 승격한다.
+- `EXISTING_COMMON_REUSE`: 이미 PASS/VERIFIED된 공통 해결책이 있다. 새로 개발하거나 동일 검증을 반복하지 않고 그대로 재사용한다.
+
+같은 버튼 반복, TOOL별 GitHub 설정 반복, 경로·파일 재질문, 유사 승인 반복, 시스템 검증을 사용자에게 전가, 기존 정보를 재질문, 검증된 배포구조 재개발, TOOL마다 같은 수동절차 재시작은 작업 중 자동 감지하여 위 네 분류 중 하나로 판정한다. 단일 화면 상태나 일시적 권한 문제를 근거 없이 WIC 전체 규칙으로 확대하지 않는다.
+
+`OBSERVER_FIRST = REQUIRED`
+`OBSERVER_FIRST_DEPLOY = REQUIRED`
+`USER_MANUAL_ACTION = MINIMIZE`
+`REPEAT_USER_ACTION = FORBIDDEN`
+`REUSE_VERIFIED_COMPONENT = REQUIRED`
+`REUSE_VERIFIED_DEPLOYMENT = REQUIRED`
+`RETEST_UNCHANGED_VERIFIED_COMPONENT = FORBIDDEN`
+`FIRST_VALIDATION_ONCE = REQUIRED`
+`COMMON_RULE_AUTO_CLASSIFICATION = REQUIRED`
+`TEMPORARY_ISSUE_AUTO_GLOBALIZATION = FORBIDDEN`
