@@ -406,5 +406,42 @@
       "resume_trigger": "EXISTING_TOOL035_CANONICAL_POINTER_OR_LIBRARY_RECORD_IDENTIFIED",
       "new_repo_created": false
     }
+  },
+  "master_load_gate": {
+    "scope": "WIC_ONLY_CURRENT_AND_FUTURE",
+    "central_master": {
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "path": "WIC_GLOBAL_OPERATING_RULES.md"
+    },
+    "load_order": [
+      "CENTRAL_COMMON_MASTER",
+      "TOOL_CANONICAL_MASTER",
+      "LATEST_CHECKPOINT_HANDOFF"
+    ],
+    "before": [
+      "SEARCH",
+      "JUDGMENT",
+      "OUTPUT",
+      "DEVELOPMENT",
+      "MODIFICATION",
+      "VALIDATION",
+      "DEPLOYMENT"
+    ],
+    "required_receipt_fields": [
+      "phase",
+      "repository",
+      "path",
+      "revision",
+      "sha256",
+      "read_back"
+    ],
+    "missing_tool_master": {
+      "status": "HOLD",
+      "reason": "TOOL_MASTER_NOT_FOUND",
+      "guessing_allowed": false
+    },
+    "failure_status": "HOLD",
+    "work_without_pass_receipt": false
   }
 }
