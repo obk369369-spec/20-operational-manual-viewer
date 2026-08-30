@@ -410,10 +410,16 @@
         "feedback_pipeline/tool035_verified_integration.py",
         "--first-validation"
       ],
-      "latest_safe_checkpoint": "649588602335e4d0b58402cb6d8f1b4eaf4b3703",
-      "latest_verified_commit": "c4e052062bbd767d5d5f6a113e55e80f6e63bbcb",
+      "latest_safe_checkpoint": "829a1c04aea0c19552964696da820483c4be7e45",
+      "latest_verified_commit": "829a1c04aea0c19552964696da820483c4be7e45",
       "adapter": "CENTRAL_LANE_DIFF_ONLY",
-      "status": "ACTIVE"
+      "status": "ACTIVE",
+      "first_validation": {
+        "status": "PASS",
+        "attempts": 1,
+        "ready_component_count": 2,
+        "preserved_hold_count": 3
+      }
     }
   },
   "registration_holds": {},
