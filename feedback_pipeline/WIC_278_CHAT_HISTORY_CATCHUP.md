@@ -18,16 +18,28 @@
 
 ## 추출 현황
 - 압축파일: 278개
-- 텍스트 추출: 278/278 접근 성공(일부 .doc 확장자 파일은 실제 UTF-8 텍스트로 감지하여 직접 읽음)
-- 총 추출 텍스트 규모: 약 1.02억 문자
+- 텍스트 추출: 278/278 접근 성공
 - 번호 확인된 파일: TOOL001,002,003,004,005,006,007,008,009,010,011,012,013,014,016,018,019,020,021,022,023,024,025,026,027,030,033,034,037,038,041,042
 - 번호 없는/다른 명명형 파일도 별도 분류 후 기존 TOOL alias 여부를 판단한다.
 
-## 현재 처리
-- TOOL001: 과거 31개 직접 번호 파일 + 1번 관련 alias 파일을 기준으로 최신 영구규칙 정리 완료. `obk369369-spec/01-auto-guide-v1/TOOL001_MASTER.md` 생성, 공통규칙과 도구전용규칙을 분리해 `WIC_RULE_SOURCE.md` 포인터 갱신. MASTER commit `364baca50027dabb895707704be7f82478933662`, pointer commit `1137e2ac89fc7d160e5a37f6866367071f14c59c`, remote read-back PASS.
-- TOOL041: 2026-08-30 첨부 대화기록 + 현재대화 UPDATE FLUSH 규칙 반영 완료. commit `ca4b2f5b8281c4befa223833f6020cf9f62fad46` / read-back PASS.
-- TOOL042: 2026-08-30 첨부 대화기록 + 현재대화 UPDATE FLUSH/RESUME 규칙 반영 완료. commit `65302485f1ac26fc51d3edf0a2291b456fa53c91` / read-back PASS.
-- 나머지 TOOL: 번호별 정리 및 기존 canonical 대조 진행 중.
+## UPDATED / REMOTE READ-BACK
+- TOOL001 — `01-auto-guide-v1/TOOL001_MASTER.md` commit `364baca50027dabb895707704be7f82478933662`; pointer commit `1137e2ac89fc7d160e5a37f6866367071f14c59c`.
+- TOOL002 — `02-auto-bid-narajangter-v1/TOOL002_MASTER.md` commit `df396721d16339dc0419ae3bb8d230f6df1437b0`; pointer commit `5ed7f36c0b3bdbc5b0e00f60d107486a335cda3e`.
+- TOOL003 — `03-coding_practice/TOOL003_MASTER.md` commit `90ff205b1797abd91d7ebf44e91b010425dec03d`; pointer commit `c4892ee9d998ec8ba66106579a92adc77a2471b1`.
+- TOOL004 — `04-research-funding-generator/TOOL004_MASTER.md` commit `b40f60d4cf9952a7c895c662613f06777627ed47`; pointer commit `efd816060b6d9836b2aab8eb4e2efc297e735049`.
+- TOOL005 — `05-report-generator/TOOL005_MASTER.md` commit `8cdfc0bf49ebed8ae332c001eabdda23cee90fd1`; pointer commit `167079aa6688063124c94f0594b836947f35b129`.
+- TOOL006 — `06-toc-check/TOOL006_MASTER.md` commit `e937b9ffa658032c57db4e3072b93941b1288733`. Existing checkpoint/recovery retained; no redundant global pointer created.
+- TOOL007 — `07-wic-setting-tool-v1/TOOL007_MASTER.md` commit `a2d926f0d5f5bf775a4a5b1a4572d4e5c567b047`; pointer commit `b340c701f08a95594af27c12830417aba3bff91e`. Existing execution asset remains HOLD-MISMATCH with latest customer-contact role.
+- TOOL008 — `08-English-Verb-Exercise/TOOL008_MASTER.md` commit `517a345a887f52660ee4e870eaaf15895781bba0`; pointer commit `447382bbdd05040bc61f08c67e55f91e9c62e7e1`.
+- TOOL009 — `09-contents-making-tool/TOOL009_MASTER.md` commit `f345a9bd1a47a575c0f8cd543428d073db90e7a7`; pointer commit `3c20c5483f86cfd6b9a318ab937597b729a74420`.
+- TOOL010 — `10-WIC-Finance-Dashboard/TOOL010_MASTER.md` commit `72d8348da20e628aa6d864f9e979584e011d81f1`; pointer commit `510f3415a4fbc632d8e140d16237902380c187d1`.
+- TOOL011 — `11-obk-finance-planner/TOOL011_MASTER.md` commit `7727fe2d891b94469447d1702e94bc8ac2f09619`; pointer commit `c497869491dbbc83f84659944eb94155359b3227`.
+- TOOL012 — `12-wic-subwebsite-builder/TOOL012_MASTER.md` commit `9a2ce32f64cc8a775ff256f27b6da1c2aedee11f`; pointer commit `70c04baae082882602ad03b9ccdc8db42c69b7c3`.
+- TOOL013 — `13-excel-upload/TOOL013_MASTER.md` commit `39fb10de3a72e873b5a642fe9d4c25a6d2f2eda4`; pointer commit `66eac5bc3200484061f89474c33b1548a40a50b3`. Existing PASS/CI scope protected as SKIP_REUSE.
+- TOOL014 — `14-wic-homepage-editor/TOOL014_MASTER.md` commit `09ba2c789dc614e8e58350a269f8a02f5ff5a38e`; pointer commit `219ed62a3288b415eca370e2de57044696e937e1`. Current runtime remains `BLOCKED_EXTERNAL(PAGES_NOT_ENABLED)`.
+- TOOL016 — no separate repo created. Central role stored at `20-operational-manual-viewer/feedback_pipeline/TOOL016_MASTER.md`, commit `ae85dd75aeaf67663aa4a0d08d393486bdf5d2c9`; read-back PASS. Includes UPDATE save-command and proactive efficiency/shortcut proposal duty.
+- TOOL041 — existing `41-wic-email-collection-master/MASTER/COMMON_MASTER.md` catch-up commit `ca4b2f5b8281c4befa223833f6020cf9f62fad46`; read-back PASS.
+- TOOL042 — existing central `CUSTOMER_GUIDE_OUTPUT_LOCK.md` catch-up commit `65302485f1ac26fc51d3edf0a2291b456fa53c91`; read-back PASS.
 
 ## 다음 처리 순서
-TOOL002부터 번호순으로 진행하되, 기존 canonical이 명확한 TOOL은 바로 DIFF ONLY 반영하고, 별도 저장소가 없거나 흡수 여부가 애매한 번호는 HOLD/alias 판정 후 다음 TOOL로 이동한다.
+TOOL018부터 번호순으로 진행한다. 기존 canonical이 명확한 TOOL은 DIFF ONLY로 반영하고, repo가 없거나 역할 흡수 여부가 애매한 번호는 새 repo를 즉시 만들지 않고 기존 CENTRAL/canonical을 좁게 확인한 뒤 MERGED/HOLD/CREATE 후보로 분류한다.
