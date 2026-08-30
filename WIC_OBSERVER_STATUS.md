@@ -166,3 +166,20 @@
 - reason: the current scheduled job stops before state commit and Pages deployment when its state-builder step fails; truthful failure publication and bounded recovery therefore require workflow-level failure-state persistence, not a small Observer UI change.
 - unchanged verified TOOL043 scope remains closed; reopen only after an explicit redesign decision or a new real-use failure.
 <!-- TOOL043_OPERATION_GUARD_20260830_END -->
+
+
+<!-- ACTUAL_TOOL_COMPLETION_QUEUE_POINTER_HOLDS_START -->
+## 실제 도구 완성 우선 큐 — canonical pointer HOLD
+
+| 도구 | 상태 | 확인 범위 | RESUME_TRIGGER |
+|---|---|---|---|
+| TOOL015 | `HOLD_FOR_REDESIGN` | CENTRAL target registry 및 WIC34 USB 루트 직접 일치 경로에 기존 canonical pointer 없음 | `EXISTING_TOOL015_CANONICAL_POINTER_RECORDED` |
+| TOOL029 | `HOLD_FOR_REDESIGN` | 동일 최소 확인에서 기존 canonical pointer 없음 | `EXISTING_TOOL029_CANONICAL_POINTER_RECORDED` |
+| TOOL020 | `HOLD_FOR_REDESIGN` | 동일 최소 확인에서 기존 canonical pointer 없음 | `EXISTING_TOOL020_CANONICAL_POINTER_RECORDED` |
+| TOOL012 | `HOLD_FOR_REDESIGN` | 동일 최소 확인에서 기존 canonical pointer 없음 | `EXISTING_TOOL012_CANONICAL_POINTER_RECORDED` |
+| TOOL014 | `HOLD_FOR_REDESIGN` | 동일 최소 확인에서 기존 canonical pointer 없음 | `EXISTING_TOOL014_CANONICAL_POINTER_RECORDED` |
+| TOOL035 | `HOLD_FOR_REDESIGN` | 동일 최소 확인에서 기존 canonical pointer 없음 | `EXISTING_TOOL035_CANONICAL_POINTER_RECORDED` |
+
+- 새 repo, 대체 프로젝트, 복제품은 생성하지 않는다.
+- 위 trigger가 생기면 해당 도구 하나의 최신 checkpoint와 직접 자산만 확인하여 재개한다.
+<!-- ACTUAL_TOOL_COMPLETION_QUEUE_POINTER_HOLDS_END -->
