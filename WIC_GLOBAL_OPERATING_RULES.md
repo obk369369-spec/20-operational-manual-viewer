@@ -786,3 +786,29 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 }
 ```
 <!-- WIC_CANONICAL_FEEDBACK_END -->
+
+
+<!-- TOOL006_USER_ACTION_AND_INCREMENTAL_CANONICALIZATION_LOCK_START -->
+## 19C. TOOL006 단일 실행·단일 복구 행동 및 전 TOOL 증분 정본화 LOCK
+
+### TOOL006 사용자 행동 계약
+
+- `NORMAL_USER_ACTION <= 1`: 정상 사용은 `자료 입력 → 실행 1회 → 결과`로 끝낸다.
+- `ERROR_RECOVERY_USER_ACTION <= 1 additional action`: 오류 시 사용자의 추가 행동은 `자가분석·개선` 1회까지만 허용한다.
+- 그 한 번의 내부 경로는 `오류감지 → 자가분석 → root 분류 → 검증된 기존규칙 적용 → 안전보정 → 재검사`를 일괄 수행한다.
+- 분석·분류·보정·재검사를 사용자가 여러 메뉴로 순차 실행하게 하지 않는다.
+- 효과가 복잡 목차에서 검증되기 전에는 자가분석 상태를 무조건 숨기지 않는다.
+- 추가 1회로 해결되지 않으면 반복 클릭을 요구하지 않고 `HOLD + 실패 원인`으로 종료한다.
+- 단순 목차 PASS만으로 TOOL006 전체 COMPLETE를 판정하지 않는다.
+
+### 모든 TOOL / 모든 Work의 USB→GitHub 증분 정본화 계약
+
+- `USB_FULL_AUDIT=FORBIDDEN`; 현재 작업에서 직접 만난 자산만 증분 확인한다.
+- 각 자산은 `CANONICAL_NORMAL / SHELL_OR_STALE / HOLD_UNKNOWN` 중 하나로 근거 기반 분류한다.
+- 검증된 `CANONICAL_NORMAL`만 기존 해당 TOOL GitHub/CENTRAL 정본으로 승격한다.
+- `GITHUB_CANONICAL=TRUE`; `USB_CANONICAL_STORAGE=FORBIDDEN`; `USB_VERIFIED_COPY_STORAGE=FORBIDDEN`.
+- `NEW_REPO_FOR_REUSE=FORBIDDEN`; `DUPLICATE_VERIFIED_STORAGE=FORBIDDEN`.
+- 정본화 완료에는 remote commit/SHA, 필요한 blob SHA, remote content read-back과 변경범위 최초 검증 근거가 모두 필요하다.
+- Work는 USB 파일을 자동 삭제하지 않는다. `HOLD_UNKNOWN` 또는 USB에만 존재하는 필요한 미보존 원본이 있으면 해당 확인범위의 `USB_DELETE_READY=FALSE`다.
+- DELETE_READY는 현재 확인범위에만 판정하며 USB 전체로 확대하지 않는다.
+<!-- TOOL006_USER_ACTION_AND_INCREMENTAL_CANONICALIZATION_LOCK_END -->
