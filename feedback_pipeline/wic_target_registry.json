@@ -345,6 +345,29 @@
         ],
         "public_url": "https://obk369369-spec.github.io/20-operational-manual-viewer/tool020/"
       }
+    },
+    "TOOL012": {
+      "chat_ids": [
+        "TOOL012",
+        "12번"
+      ],
+      "repository": "obk369369-spec/12-wic-subwebsite-builder",
+      "branch": "main",
+      "master_paths": [
+        "public/index.html"
+      ],
+      "state_path": "WIC_RULE_SOURCE.md",
+      "evidence_path": "public/index.html",
+      "test_command": [
+        "BROWSER_E2E_REQUIRED",
+        "PAGES_NOT_ENABLED"
+      ],
+      "latest_safe_checkpoint": "89607921273a88f9b92e5cd4ad68d8dfd0084eb9",
+      "latest_verified_commit": "d08e8011f4685e00b5e0362ee8289648ae758ee0",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "BLOCKED_EXTERNAL",
+      "hold_reason": "PAGES_NOT_ENABLED; changed runtime FIRST_VALIDATION not executed",
+      "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES"
     }
   },
   "registration_holds": {}
