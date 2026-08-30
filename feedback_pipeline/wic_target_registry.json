@@ -420,15 +420,16 @@
         "feedback_pipeline/tool035_verified_integration.py",
         "--first-validation"
       ],
-      "latest_safe_checkpoint": "829a1c04aea0c19552964696da820483c4be7e45",
-      "latest_verified_commit": "829a1c04aea0c19552964696da820483c4be7e45",
+      "latest_safe_checkpoint": "486257dab8509c90f997f791e2e9f13d65738b90",
+      "latest_verified_commit": "486257dab8509c90f997f791e2e9f13d65738b90",
       "adapter": "CENTRAL_LANE_DIFF_ONLY",
       "status": "ACTIVE",
       "first_validation": {
         "status": "PASS",
         "attempts": 1,
         "ready_component_count": 2,
-        "preserved_hold_count": 3
+        "preserved_hold_count": 1,
+        "deployment_increment_commit": "486257dab8509c90f997f791e2e9f13d65738b90"
       }
     }
   },
