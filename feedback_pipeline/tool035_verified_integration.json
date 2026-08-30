@@ -7,7 +7,7 @@
     {
       "source_tool": "TOOL012",
       "source_repository": "obk369369-spec/12-wic-subwebsite-builder",
-      "source_tool_state": "BLOCKED_EXTERNAL(PAGES_NOT_ENABLED)",
+      "source_tool_state": "COMPLETE / REMOTE_VERIFIED",
       "reusable_scope": "STATIC_SUBSITE_FUNCTIONAL_CTA",
       "reusable_scope_status": "PASS",
       "runtime_path": "public/index.html",
@@ -19,16 +19,22 @@
       "capabilities": [
         "MAILTO_INQUIRY_CTA",
         "HTTPS_RESOURCE_PDF_CTA",
-        "DEAD_CTA_OMISSION"
+        "DEAD_CTA_OMISSION",
+        "GITHUB_ACTIONS_PAGES_PUBLIC_DEPLOYMENT"
       ],
-      "holds": [
-        "PUBLIC_PAGES_FIRST_VALIDATION"
-      ]
+      "holds": [],
+      "deployment_evidence": {
+        "workflow_commit": "ef46873734818bf8956a7b89c41cd69d15761e9f",
+        "evidence_commit": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+        "run_id": "33310342582",
+        "public_url": "https://obk369369-spec.github.io/12-wic-subwebsite-builder/",
+        "artifact_digest": "sha256:5c960db468dadf633deb7b22ee6cb23b45e7858ceccc9d760680c1ec03050e4a"
+      }
     },
     {
       "source_tool": "TOOL014",
       "source_repository": "obk369369-spec/14-wic-homepage-editor",
-      "source_tool_state": "BLOCKED_EXTERNAL(PAGES_NOT_ENABLED)",
+      "source_tool_state": "STAGING_REMOTE_VERIFIED / LIVE_APPLY_HOLD",
       "reusable_scope": "SAFE_HOMEPAGE_CHANGE_PACKAGE",
       "reusable_scope_status": "PASS",
       "runtime_path": "public/index.html",
@@ -41,12 +47,19 @@
         "CTA_SCHEME_ALLOWLIST",
         "BASELINE_REVISION_REQUIRED",
         "CHANGE_REASON_REQUIRED",
-        "AUTO_DEPLOY_FALSE_MANIFEST"
+        "AUTO_DEPLOY_FALSE_MANIFEST",
+        "GITHUB_ACTIONS_PAGES_STAGING_DEPLOYMENT"
       ],
       "holds": [
-        "PUBLIC_PAGES_FIRST_VALIDATION",
         "LIVE_APPLY_AUTHORIZATION"
-      ]
+      ],
+      "deployment_evidence": {
+        "workflow_commit": "f14809a3a81ee05ce339323ec8eca367176fabb4",
+        "evidence_commit": "7dee81e4eea46c38c7d787adacb083c50212bfc7",
+        "run_id": "33310481614",
+        "public_url": "https://obk369369-spec.github.io/14-wic-homepage-editor/",
+        "artifact_digest": "sha256:0771cd418aac61739af9330ba45c32a5b91515c6c16f5494a116082ec5514c5c"
+      }
     }
   ],
   "forbidden": [
@@ -70,6 +83,21 @@
     "preserved_holds": [
       "TOOL012:PUBLIC_PAGES_FIRST_VALIDATION",
       "TOOL014:PUBLIC_PAGES_FIRST_VALIDATION",
+      "TOOL014:LIVE_APPLY_AUTHORIZATION"
+    ],
+    "shell_integration": false,
+    "auto_live_deploy": false
+  },
+  "deployment_increment_validation": {
+    "status": "PASS",
+    "attempts": 1,
+    "command": "python feedback_pipeline/tool035_verified_integration.py --first-validation",
+    "changed_scope": [
+      "TOOL012:GITHUB_ACTIONS_PAGES_PUBLIC_DEPLOYMENT",
+      "TOOL014:GITHUB_ACTIONS_PAGES_STAGING_DEPLOYMENT"
+    ],
+    "ready_component_count": 2,
+    "preserved_holds": [
       "TOOL014:LIVE_APPLY_AUTHORIZATION"
     ],
     "shell_integration": false,
