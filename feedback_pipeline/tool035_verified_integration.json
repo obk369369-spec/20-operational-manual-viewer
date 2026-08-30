@@ -56,7 +56,23 @@
     "NEW_REPOSITORY"
   ],
   "checkpoint": {
-    "status": "READY_FOR_FIRST_VALIDATION",
-    "next_start": "RUN_TOOL035_VERIFIED_INTEGRATION_GATE_ONCE"
+    "status": "PASS_INCREMENTAL_INTEGRATION",
+    "next_start": "ADD_ONLY_NEW_REMOTE_VERIFIED_COMPONENT_WHEN_NATURALLY_AVAILABLE"
+  },
+  "first_validation": {
+    "status": "PASS",
+    "attempts": 1,
+    "command": "python feedback_pipeline/tool035_verified_integration.py --first-validation",
+    "ready_components": [
+      "TOOL012:STATIC_SUBSITE_FUNCTIONAL_CTA",
+      "TOOL014:SAFE_HOMEPAGE_CHANGE_PACKAGE"
+    ],
+    "preserved_holds": [
+      "TOOL012:PUBLIC_PAGES_FIRST_VALIDATION",
+      "TOOL014:PUBLIC_PAGES_FIRST_VALIDATION",
+      "TOOL014:LIVE_APPLY_AUTHORIZATION"
+    ],
+    "shell_integration": false,
+    "auto_live_deploy": false
   }
 }
