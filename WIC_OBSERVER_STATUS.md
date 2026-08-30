@@ -155,3 +155,14 @@
 - RETEST_UNCHANGED_SCOPE: `FORBIDDEN`
 - FUTURE_UI_EXPANSION: `HOLD_UNTIL_REAL_USE_TRIGGER`
 <!-- TOOL043_FINAL_COMPLETE_20260830_END -->
+
+
+<!-- TOOL043_OPERATION_GUARD_20260830_START -->
+## TOOL043 operation guard disposition
+
+- TOOL043 base: `FINAL_COMPLETE / SKIP_REUSE`
+- requested extension: automatic failure detection → verified-safe recovery once → one recheck → clear `정상 / 자동복구됨 / 장애-확인필요` publication
+- disposition: `TOOL043_OPERATION_GUARD=HOLD_FOR_REDESIGN`
+- reason: the current scheduled job stops before state commit and Pages deployment when its state-builder step fails; truthful failure publication and bounded recovery therefore require workflow-level failure-state persistence, not a small Observer UI change.
+- unchanged verified TOOL043 scope remains closed; reopen only after an explicit redesign decision or a new real-use failure.
+<!-- TOOL043_OPERATION_GUARD_20260830_END -->
