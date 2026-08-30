@@ -37,9 +37,19 @@
 - TOOL012 — `12-wic-subwebsite-builder/TOOL012_MASTER.md` commit `9a2ce32f64cc8a775ff256f27b6da1c2aedee11f`; pointer commit `70c04baae082882602ad03b9ccdc8db42c69b7c3`.
 - TOOL013 — `13-excel-upload/TOOL013_MASTER.md` commit `39fb10de3a72e873b5a642fe9d4c25a6d2f2eda4`; pointer commit `66eac5bc3200484061f89474c33b1548a40a50b3`. Existing PASS/CI scope protected as SKIP_REUSE.
 - TOOL014 — `14-wic-homepage-editor/TOOL014_MASTER.md` commit `09ba2c789dc614e8e58350a269f8a02f5ff5a38e`; pointer commit `219ed62a3288b415eca370e2de57044696e937e1`. Current runtime remains `BLOCKED_EXTERNAL(PAGES_NOT_ENABLED)`.
-- TOOL016 — no separate repo created. Central role stored at `20-operational-manual-viewer/feedback_pipeline/TOOL016_MASTER.md`, commit `ae85dd75aeaf67663aa4a0d08d393486bdf5d2c9`; read-back PASS. Includes UPDATE save-command and proactive efficiency/shortcut proposal duty.
+- TOOL016 — CENTRAL `feedback_pipeline/TOOL016_MASTER.md` commit `ae85dd75aeaf67663aa4a0d08d393486bdf5d2c9`; read-back PASS. Includes `업데이트` save-command and proactive efficiency/shortcut proposal duty.
+- TOOL018 — CENTRAL `feedback_pipeline/TOOL018_MASTER.md` commit `01540bf72f168e98d8197ddc6245ee8c47ae7553`; read-back PASS. No separate repo required.
+- TOOL019 — `19-wic-business-promotion/TOOL019_MASTER.md` commit `fd34b22416e5fadc0ff332604be846ff4cf52aa1`; pointer commit `6e9a512986cdebef0569ab56e8dab472068aeaf7`; read-back PASS.
+- TOOL020 — CENTRAL/current repo `TOOL020_MASTER.md` commit `0b8f090f5724db83e1aaa9a9f500a9adc1ecdc5d`; read-back PASS. Existing deployed foundation preserved; auto-manual generation/update remains HOLD_FOR_REUSE.
 - TOOL041 — existing `41-wic-email-collection-master/MASTER/COMMON_MASTER.md` catch-up commit `ca4b2f5b8281c4befa223833f6020cf9f62fad46`; read-back PASS.
 - TOOL042 — existing central `CUSTOMER_GUIDE_OUTPUT_LOCK.md` catch-up commit `65302485f1ac26fc51d3edf0a2291b456fa53c91`; read-back PASS.
 
+## 진행률
+- 번호 확인 TOOL군: 32개
+- GitHub 정본 반영 + remote read-back 완료: 20개
+- 남은 번호 TOOL군: 12개 (`021,022,023,024,025,026,027,030,033,034,037,038`)
+- 번호 TOOL군 기준 진행률: 62.5%
+- 추가로 번호 없는/다른 명명형 기록의 alias/흡수 판정이 남아 있다.
+
 ## 다음 처리 순서
-TOOL018부터 번호순으로 진행한다. 기존 canonical이 명확한 TOOL은 DIFF ONLY로 반영하고, repo가 없거나 역할 흡수 여부가 애매한 번호는 새 repo를 즉시 만들지 않고 기존 CENTRAL/canonical을 좁게 확인한 뒤 MERGED/HOLD/CREATE 후보로 분류한다.
+TOOL021부터 번호순으로 진행한다. 기존 canonical이 명확한 TOOL은 DIFF ONLY로 반영하고, repo가 없거나 역할 흡수 여부가 애매한 번호는 새 repo를 즉시 만들지 않고 기존 CENTRAL/canonical을 좁게 확인한 뒤 MERGED/HOLD/CREATE 후보로 분류한다.
