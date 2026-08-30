@@ -356,6 +356,479 @@
       "master_paths": [
         "TOOL012_MASTER.md"
       ],
+      "state_path": "TOOL012_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "evidence_path": "TOOL012_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "test_command": [
+        "PUBLIC_FIRST_VALIDATION_PASS",
+        "https://obk369369-spec.github.io/12-wic-subwebsite-builder/"
+      ],
+      "latest_safe_checkpoint": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+      "latest_verified_commit": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "COMPLETE",
+      "first_validation": {
+        "status": "PASS",
+        "attempts": 1,
+        "run_id": "33310342582",
+        "public_url": "https://obk369369-spec.github.io/12-wic-subwebsite-builder/"
+      }
+    },
+    "TOOL014": {
+      "chat_ids": [
+        "TOOL014",
+        "14번"
+      ],
+      "repository": "obk369369-spec/14-wic-homepage-editor",
+      "branch": "main",
+      "master_paths": [
+        "TOOL014_MASTER.md"
+      ],
+      "state_path": "TOOL014_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "evidence_path": "TOOL014_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "test_command": [
+        "PUBLIC_STAGING_FIRST_VALIDATION_PASS",
+        "https://obk369369-spec.github.io/14-wic-homepage-editor/"
+      ],
+      "latest_safe_checkpoint": "7dee81e4eea46c38c7d787adacb083c50212bfc7",
+      "latest_verified_commit": "7dee81e4eea46c38c7d787adacb083c50212bfc7",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "STAGING_REMOTE_VERIFIED",
+      "hold_reason": "LIVE_HOMEPAGE_APPLY_REQUIRES_EXPLICIT_AUTHORIZATION",
+      "resume_trigger": "EXPLICIT_LIVE_APPLY_AUTHORIZATION_WITH_CURRENT_BASELINE_REVISION",
+      "first_validation": {
+        "status": "PASS",
+        "attempts": 1,
+        "run_id": "33310481614",
+        "public_url": "https://obk369369-spec.github.io/14-wic-homepage-editor/"
+      }
+    },
+    "TOOL035": {
+      "chat_ids": [
+        "TOOL035",
+        "35번",
+        "월드 운영시스템 통합"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "feedback_pipeline/TOOL035_MASTER.md"
+      ],
+      "state_path": "feedback_pipeline/tool035_verified_integration.json",
+      "evidence_path": "feedback_pipeline/tool035_verified_integration.json",
+      "test_command": [
+        "WIC_BUNDLED_PYTHON",
+        "feedback_pipeline/tool035_verified_integration.py",
+        "--first-validation"
+      ],
+      "latest_safe_checkpoint": "829a1c04aea0c19552964696da820483c4be7e45",
+      "latest_verified_commit": "829a1c04aea0c19552964696da820483c4be7e45",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE",
+      "first_validation": {
+        "status": "PASS",
+        "attempts": 1,
+        "ready_component_count": 2,
+        "preserved_hold_count": 3
+      }
+    }
+  },
+  "registration_holds": {},
+  "master_load_gate": {
+    "scope": "WIC_ONLY_CURRENT_AND_FUTURE",
+    "central_master": {
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "path": "WIC_GLOBAL_OPERATING_RULES.md"
+    },
+    "load_order": [
+      "CENTRAL_COMMON_MASTER",
+      "TOOL_CANONICAL_MASTER",
+      "LATEST_CHECKPOINT_HANDOFF"
+    ],
+    "before": [
+      "SEARCH",
+      "JUDGMENT",
+      "OUTPUT",
+      "DEVELOPMENT",
+      "MODIFICATION",
+      "VALIDATION",
+      "DEPLOYMENT"
+    ],
+    "required_receipt_fields": [
+      "phase",
+      "repository",
+      "path",
+      "revision",
+      "sha256",
+      "read_back"
+    ],
+    "missing_tool_master": {
+      "status": "HOLD",
+      "reason": "TOOL_MASTER_NOT_FOUND",
+      "guessing_allowed": false
+    },
+    "failure_status": "HOLD",
+    "work_without_pass_receipt": false
+  }
+}
+{
+  "schema_version": 1,
+  "defaults": {
+    "branch": "main",
+    "pipeline": "feedback_pipeline/global_pipeline.py",
+    "new_registration_requires_all_fields": true,
+    "provisional_registration_adapter": "CENTRAL_LANE_DIFF_ONLY",
+    "provisional_registration_target": "CENTRAL"
+  },
+  "runtime_contract": {
+    "fail_closed_status": "HOLD_RUNTIME_NOT_VERIFIED",
+    "latest_remote_required": true,
+    "validator_required": true,
+    "output_gate_required": true,
+    "memory_only_generation_allowed": false,
+    "old_pipeline_allowed": false
+  },
+  "runtime_overrides": {
+    "TOOL006": {
+      "required_assets": [
+        "TOOL006_TOC/tool006_engine.ps1",
+        "knowledge/tool006_asset_index.json",
+        "tests/tool006_chronic_error_fixtures.json"
+      ],
+      "validator": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "tests/tool006_functional_e2e.ps1"
+      ],
+      "output_gate": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "tests/tool006_smoke.ps1"
+      ]
+    },
+    "TOOL041": {
+      "required_assets": [
+        "MASTER/COMMON_MASTER.md",
+        "src/customer_integrity.py",
+        "tests/fixtures/t41_actual_pairs.json"
+      ],
+      "validator": [
+        "WIC_BUNDLED_PYTHON",
+        "tests/test_customer_integrity.py"
+      ],
+      "output_gate": [
+        "WIC_BUNDLED_PYTHON",
+        "tests/test_customer_integrity.py"
+      ]
+    },
+    "TOOL042": {
+      "required_assets": [
+        "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md",
+        "scripts/customer_branch_engine.js",
+        "scripts/customer_guidance_output_gate.js",
+        "fixtures/customer_branch_actual_kmg.json"
+      ],
+      "validator": [
+        "node",
+        "scripts/customer_branch_engine.test.js"
+      ],
+      "output_gate": [
+        "node",
+        "scripts/customer_guidance_output_gate.js",
+        "--self-test"
+      ]
+    },
+    "TOOL007": {
+      "required_assets": [
+        "customer_pipeline/tool7_contact_judgment.py",
+        "WIC_GLOBAL_OPERATING_RULES.md"
+      ],
+      "validator": [
+        "WIC_BUNDLED_PYTHON",
+        "customer_pipeline/tool7_contact_judgment.py"
+      ],
+      "output_gate": [
+        "WIC_BUNDLED_PYTHON",
+        "customer_pipeline/tool7_contact_judgment.py"
+      ]
+    }
+  },
+  "targets": {
+    "TOOL006": {
+      "chat_ids": [
+        "TOOL006"
+      ],
+      "repository": "obk369369-spec/06-toc-check",
+      "branch": "main",
+      "master_paths": [
+        "knowledge/tool006_asset_index.json"
+      ],
+      "state_path": "TOOL006_CHECKPOINT.json",
+      "evidence_path": "tests/tool006_chronic_error_fixtures.json",
+      "test_command": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        "tests/tool006_functional_e2e.ps1"
+      ],
+      "latest_safe_checkpoint": "6a422e5a8032821b319d883376bb7622a194d7da",
+      "latest_verified_commit": "6a422e5a8032821b319d883376bb7622a194d7da",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL013": {
+      "chat_ids": [
+        "TOOL013"
+      ],
+      "repository": "obk369369-spec/13-excel-upload",
+      "branch": "main",
+      "master_paths": [
+        "WIC_TARGET_APPLY_STATE.json"
+      ],
+      "state_path": "WIC_TARGET_APPLY_STATE.json",
+      "evidence_path": "external-evidence-archive",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "WIC_TARGET_APPLY_STATE.json"
+      ],
+      "latest_safe_checkpoint": "1d51ba4816cdda704ce9580309b670d075762d17",
+      "latest_verified_commit": "1d51ba4816cdda704ce9580309b670d075762d17",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL041": {
+      "chat_ids": [
+        "TOOL041",
+        "EMAIL_DB"
+      ],
+      "repository": "obk369369-spec/41-wic-email-collection-master",
+      "branch": "main",
+      "master_paths": [
+        "MASTER/COMMON_MASTER.md",
+        "src/customer_integrity.py"
+      ],
+      "state_path": "CHECKPOINT/CHECKPOINT.md",
+      "evidence_path": "tests/fixtures/t41_actual_pairs.json",
+      "test_command": [
+        "WIC_BUNDLED_PYTHON",
+        "tests/test_customer_integrity.py"
+      ],
+      "latest_safe_checkpoint": "c2124058536eaf6966eef4290493bf8792cce3e0",
+      "latest_verified_commit": "c2124058536eaf6966eef4290493bf8792cce3e0",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL042": {
+      "chat_ids": [
+        "TOOL042"
+      ],
+      "repository": "obk369369-spec/07-wic-setting-tool-v1",
+      "branch": "main",
+      "master_paths": [
+        "docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md",
+        "scripts/customer_branch_engine.js"
+      ],
+      "state_path": "docs/CHAT_42_CUSTOMER_GUIDANCE_WORK_PROGRESS.md",
+      "evidence_path": "fixtures/customer_branch_actual_kmg.json",
+      "test_command": [
+        "node",
+        "scripts/customer_branch_engine.test.js"
+      ],
+      "latest_safe_checkpoint": "a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84",
+      "latest_verified_commit": "a5f00a3d734f2a09e17ca3cb9efa24ad53f7da84",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL001": {
+      "chat_ids": [
+        "TOOL001"
+      ],
+      "repository": "obk369369-spec/01-auto-guide-v1",
+      "branch": "main",
+      "master_paths": [
+        "WIC_TARGET_APPLY_STATE.json"
+      ],
+      "state_path": "WIC_TARGET_APPLY_STATE.json",
+      "evidence_path": "evidence",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "WIC_TARGET_APPLY_STATE.json"
+      ],
+      "latest_safe_checkpoint": "8bd9c2340e141d66c11c8273b527165a2c612cde",
+      "latest_verified_commit": "8bd9c2340e141d66c11c8273b527165a2c612cde",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL002": {
+      "chat_ids": [
+        "TOOL002"
+      ],
+      "repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+      "branch": "main",
+      "master_paths": [
+        "WIC_TARGET_APPLY_STATE.json"
+      ],
+      "state_path": "WIC_TARGET_APPLY_STATE.json",
+      "evidence_path": "evidence",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "WIC_TARGET_APPLY_STATE.json"
+      ],
+      "latest_safe_checkpoint": "b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa",
+      "latest_verified_commit": "b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL007": {
+      "chat_ids": [
+        "TOOL007"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "customer_pipeline/tool7_contact_judgment.py"
+      ],
+      "state_path": "feedback_pipeline/state.json",
+      "evidence_path": "feedback_pipeline/tool007_adapter_evidence.json",
+      "test_command": [
+        "WIC_BUNDLED_PYTHON",
+        "customer_pipeline/tool7_contact_judgment.py"
+      ],
+      "latest_safe_checkpoint": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
+      "latest_verified_commit": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL037": {
+      "chat_ids": [
+        "TOOL037"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "WIC_GLOBAL_OPERATING_RULES.md"
+      ],
+      "state_path": "feedback_pipeline/state.json",
+      "evidence_path": "feedback_pipeline/evidence",
+      "test_command": [
+        "WIC_BUNDLED_PYTHON",
+        "feedback_pipeline/global_pipeline.py",
+        "--self-test"
+      ],
+      "latest_safe_checkpoint": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
+      "latest_verified_commit": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL027": {
+      "chat_ids": [
+        "TOOL027"
+      ],
+      "repository": "obk369369-spec/27-technical-book-verifier",
+      "branch": "main",
+      "master_paths": [
+        "WIC_RULE_SOURCE.md"
+      ],
+      "state_path": "WIC_RULE_SOURCE.md",
+      "evidence_path": "WIC_RULE_SOURCE.md",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "WIC_RULE_SOURCE.md"
+      ],
+      "latest_safe_checkpoint": "4e8b3d47a7ec26524d37e0494f4c07acfc512223",
+      "latest_verified_commit": "4e8b3d47a7ec26524d37e0494f4c07acfc512223",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL043": {
+      "chat_ids": [
+        "TOOL043"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "tool043/WIC_RULE_SOURCE.md"
+      ],
+      "state_path": "feedback_pipeline/state.json",
+      "evidence_path": "tool043/TEST_EVIDENCE.md",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "tool043/index.html",
+        "tool043/WIC_RULE_SOURCE.md",
+        "tool043/TEST_EVIDENCE.md"
+      ],
+      "latest_safe_checkpoint": "451fd855a0d7959801b644c9f05d499528fa901b",
+      "latest_verified_commit": "451fd855a0d7959801b644c9f05d499528fa901b",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "CENTRAL": {
+      "chat_ids": [
+        "CENTRAL",
+        "CONTROL_PRIMARY",
+        "WORK_GATE"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "WIC_GLOBAL_OPERATING_RULES.md"
+      ],
+      "state_path": "feedback_pipeline/state.json",
+      "evidence_path": "feedback_pipeline/evidence",
+      "test_command": [
+        "WIC_BUNDLED_PYTHON",
+        "feedback_pipeline/global_pipeline.py",
+        "--self-test"
+      ],
+      "latest_safe_checkpoint": "357252d5f3b0e6d5009c1d4d52ba0492b690d451",
+      "latest_verified_commit": "357252d5f3b0e6d5009c1d4d52ba0492b690d451",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE"
+    },
+    "TOOL020": {
+      "chat_ids": [
+        "TOOL020",
+        "20번"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "master_paths": [
+        "TOOL020_MASTER.md"
+      ],
+      "state_path": "public/index.html",
+      "evidence_path": "public/index.html",
+      "test_command": [
+        "BROWSER_E2E_REQUIRED",
+        "https://obk369369-spec.github.io/20-operational-manual-viewer/tool020/"
+      ],
+      "latest_safe_checkpoint": "0b8f090f5724db83e1aaa9a9f500a9adc1ecdc5d",
+      "latest_verified_commit": "0b8f090f5724db83e1aaa9a9f500a9adc1ecdc5d",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "ACTIVE",
+      "first_validation": {
+        "status": "PASS",
+        "pages_run_id": 33299722145,
+        "validated_scope": [
+          "save",
+          "search",
+          "preview",
+          "log"
+        ],
+        "public_url": "https://obk369369-spec.github.io/20-operational-manual-viewer/tool020/"
+      }
+    },
+    "TOOL012": {
+      "chat_ids": [
+        "TOOL012",
+        "12번"
+      ],
+      "repository": "obk369369-spec/12-wic-subwebsite-builder",
+      "branch": "main",
+      "master_paths": [
+        "TOOL012_MASTER.md"
+      ],
       "state_path": "WIC_RULE_SOURCE.md",
       "evidence_path": "public/index.html",
       "test_command": [
