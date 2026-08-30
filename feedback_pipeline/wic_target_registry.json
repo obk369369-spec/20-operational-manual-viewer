@@ -368,6 +368,29 @@
       "status": "BLOCKED_EXTERNAL",
       "hold_reason": "PAGES_NOT_ENABLED; changed runtime FIRST_VALIDATION not executed",
       "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES"
+    },
+    "TOOL014": {
+      "chat_ids": [
+        "TOOL014",
+        "14번"
+      ],
+      "repository": "obk369369-spec/14-wic-homepage-editor",
+      "branch": "main",
+      "master_paths": [
+        "public/index.html"
+      ],
+      "state_path": "WIC_RULE_SOURCE.md",
+      "evidence_path": "public/index.html",
+      "test_command": [
+        "BROWSER_E2E_REQUIRED",
+        "PAGES_NOT_ENABLED"
+      ],
+      "latest_safe_checkpoint": "4b750d74893156ffb3cd8914937d6590dac9b1f9",
+      "latest_verified_commit": "4b750d74893156ffb3cd8914937d6590dac9b1f9",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "BLOCKED_EXTERNAL",
+      "hold_reason": "PAGES_NOT_ENABLED; actual browser runtime not verified",
+      "resume_trigger": "ENABLE_EXISTING_REPOSITORY_GITHUB_PAGES"
     }
   },
   "registration_holds": {}
