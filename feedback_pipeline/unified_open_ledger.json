@@ -76,9 +76,9 @@
       "target": "TOOL041 / TOOL042",
       "status": "OPEN",
       "display_label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
-      "last_actual_point": "Semantic executor connection HOLD confirmed without code changes or PASS retests: no configured native inference credentials/adapter; installed CLI fails configuration before auth. Requested customer remains CUSTOMER_EVIDENCE_REQUIRED.",
-      "next_trigger": "CONFIGURED_AUTHENTICATED_NATIVE_SEMANTIC_RUNTIME_AVAILABLE",
-      "next_start": "Connect the real semantic call in the existing gate and HOLD-only bridge, bind all eight verdicts to source/customer/draft, run one rewrite+recheck only after authentic execution and named-customer evidence are available. No substitute customer or repeated PASS tests.",
+      "last_actual_point": "Dedicated stdin MVP and real Responses adapter implemented; 11 new mocked connection controls passed once. Actual CLI returned bodyless configuration HOLD. Real model/customer/native-save E2E not executed.",
+      "next_trigger": "CONFIGURED_AUTHENTICATED_DEDICATED_MVP_RUNTIME_AND_CUSTOMER_EVIDENCE_AVAILABLE",
+      "next_start": "Configure dedicated MVP model/GitHub credentials and current TOOL041 checkout once; then verify only the named customer's bounded real E2E when canonical identity/history/failure evidence exists. Do not rerun existing PASS or substitute customers.",
       "evidence": {
         "path": "customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json",
         "tool041": "89fb0a85f987d7644a95b9b82fc6ec2f4fedaab3",
@@ -86,8 +86,7 @@
         "scope": "BLOCKING_BOUNDARY_IMPLEMENTED_CUSTOMER_PASS_E2E_NOT_COMPLETE"
       },
       "internal_open": [
-        "Source/customer/output-bound eight-category semantic executor",
-        "Natural-language old-rule conflict resolution and general rewrite beyond canonical question alternatives"
+        "Real authenticated dedicated-MVP semantic/customer/save E2E not verified"
       ],
       "external_holds": [
         "Requested customer's current CLEAN identity/history and exact historical failure input absent",
@@ -99,9 +98,15 @@
       "type": "INCOMPLETE_AUTOMATION",
       "result": "PARTIAL",
       "semantic_executor_hold": {
-        "status": "HOLD_EXECUTION_LAYER_REQUIRED",
+        "status": "ADAPTER_IMPLEMENTED_HOLD_AUTH_AND_REAL_E2E",
         "evidence_path": "customer_pipeline/TOOL041_042_SEMANTIC_EXECUTOR_HOLD_20260831.json",
-        "customer_e2e": "CUSTOMER_EVIDENCE_REQUIRED"
+        "customer_e2e": "CUSTOMER_EVIDENCE_REQUIRED",
+        "latest_evidence_path": "customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json"
+      },
+      "dedicated_mvp": {
+        "status": "MVP_IMPLEMENTED_OPERATIONAL_AUTH_HOLD",
+        "evidence_path": "customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json",
+        "entrypoint": "customer_pipeline/customer_mvp.py"
       }
     }
   ],

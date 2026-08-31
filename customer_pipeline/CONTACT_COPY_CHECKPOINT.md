@@ -68,3 +68,16 @@
 - 현재 확보된 CLEAN MASTER의 지정 고객 이름 연결 없음: CUSTOMER_EVIDENCE_REQUIRED. 전체 대화/전체 고객 검색, 다른 고객 대체, 의미검사 PASS 주장 없음.
 - 출력차단 그대로 유지. 기존 native 중앙저장 인증 HOLD도 재실행하지 않음.
 - 최신 증거: customer_pipeline/TOOL041_042_SEMANTIC_EXECUTOR_HOLD_20260831.json. 다음 재개 trigger는 CONFIGURED_AUTHENTICATED_NATIVE_SEMANTIC_RUNTIME_AVAILABLE.
+
+
+## 2026-08-31 — B안 전용 고객업무 MVP
+
+- 기존 PASS/HOLD는 SKIP_REUSE. 기존 41/42 native 코드와 공통 게이트 수정 없음.
+- 전용 Python stdin 진입점과 실제 Responses 모델 어댑터 추가. 최신 CENTRAL/고객 검증/기존 저장 재사용.
+- 초안 비공개 → 8항목 의미판정 → FAIL 시 최대 1회 모델 재작성/재검사 → 최신 source 확인/중앙 저장 후 PASS만 출력.
+- 신규 연결부 모의 제어 테스트 11개 1회 PASS. 기존 테스트 재실행/실제 고객 대체 없음.
+- 실제 실행은 OPENAI_API_KEY/WIC_MODEL/WIC_TOOL041_ROOT/GitHub 인증 미설정으로 본문 없는 HOLD. 실제 모델 호출 0회, 실제 고객 E2E 0회. 모의 PASS를 실운영 PASS로 승격하지 않음.
+- 현재 MVP는 history_question만 지원. 실제 판매자료 모드 및 지정 고객 근거는 HOLD 유지. 일반 대화창 통제하지 않음.
+- 증거: customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json. 사용법: customer_pipeline/CUSTOMER_MVP.md.
+- NEXT_WORK: Configure dedicated MVP model/GitHub credentials and current TOOL041 checkout once; then verify only the named customer's bounded real E2E when canonical identity/history/failure evidence exists. Do not rerun existing PASS or substitute customers.
+- Root OPEN 및 incomplete 5/internal open 1 유지. 사용자 규칙/파일 재전달 요구 0회.

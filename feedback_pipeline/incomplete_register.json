@@ -57,14 +57,13 @@
       "status": "INCOMPLETE",
       "reason": "SEMANTIC_CUSTOMER_PASS_AND_LIVE_NATIVE_SAVE_NOT_VERIFIED",
       "missing": [
-        "Source/customer/output-bound eight-category semantic executor",
-        "Natural-language old-rule conflict resolution and general rewrite beyond canonical question alternatives",
-        "Requested customer's current CLEAN identity/history and exact historical failure input absent",
-        "Actual materials evidence for sales work",
-        "Live native private GitHub authentication and central-write permission not verified",
-        "Arbitrary external ChatGPT/Work interception not installed"
+        "Real model/API/network execution unverified due to absent configuration",
+        "Live native GitHub read/save authentication unverified",
+        "CUSTOMER_EVIDENCE_REQUIRED for requested named customer; no search or substitute in this turn",
+        "Sales materials mode not connected; bodyless HOLD",
+        "Ordinary chat interception outside MVP scope"
       ],
-      "next_trigger": "CONFIGURED_AUTHENTICATED_NATIVE_SEMANTIC_RUNTIME_AVAILABLE",
+      "next_trigger": "CONFIGURED_AUTHENTICATED_DEDICATED_MVP_RUNTIME_AND_CUSTOMER_EVIDENCE_AVAILABLE",
       "evidence": {
         "path": "customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json",
         "tool041": "89fb0a85f987d7644a95b9b82fc6ec2f4fedaab3",
@@ -72,9 +71,17 @@
         "scope": "BLOCKING_BOUNDARY_IMPLEMENTED_CUSTOMER_PASS_E2E_NOT_COMPLETE"
       },
       "semantic_executor_hold": {
-        "status": "HOLD_EXECUTION_LAYER_REQUIRED",
+        "status": "ADAPTER_IMPLEMENTED_HOLD_AUTH_AND_REAL_E2E",
         "evidence_path": "customer_pipeline/TOOL041_042_SEMANTIC_EXECUTOR_HOLD_20260831.json",
-        "customer_e2e": "CUSTOMER_EVIDENCE_REQUIRED"
+        "customer_e2e": "CUSTOMER_EVIDENCE_REQUIRED",
+        "latest_evidence_path": "customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json"
+      },
+      "last_actual_point": "Dedicated stdin MVP and real Responses adapter implemented; 11 new mocked connection controls passed once. Actual CLI returned bodyless configuration HOLD. Real model/customer/native-save E2E not executed.",
+      "next_start": "Configure dedicated MVP model/GitHub credentials and current TOOL041 checkout once; then verify only the named customer's bounded real E2E when canonical identity/history/failure evidence exists. Do not rerun existing PASS or substitute customers.",
+      "dedicated_mvp": {
+        "status": "MVP_IMPLEMENTED_OPERATIONAL_AUTH_HOLD",
+        "evidence_path": "customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json",
+        "entrypoint": "customer_pipeline/customer_mvp.py"
       }
     }
   ],

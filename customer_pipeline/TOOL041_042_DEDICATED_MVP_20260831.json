@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-31",
+  "root_id": "T41-T42-NATIVE-AUTOMATION",
+  "base_central_commit": "410645f265608873a206f6a708073d32b93629ba",
+  "status": "MVP_IMPLEMENTED_OPERATIONAL_AUTH_HOLD",
+  "scope": "Dedicated Python stdin entry only; history_question mode. No general-chat interception or automatic sending.",
+  "entrypoint": "customer_pipeline/customer_mvp.py",
+  "reuse": [
+    "customer_work_start.load_canonical",
+    "_guard_against_current_master",
+    "_merge_customer_rows",
+    "customer_release_gate.evaluate/blocked/save_central"
+  ],
+  "existing_source_changes": 0,
+  "additions": [
+    "customer_mvp.py",
+    "customer_model_adapter.py",
+    "CUSTOMER_MVP.md",
+    "test_customer_mvp.py"
+  ],
+  "execution_order": [
+    "latest canonical load",
+    "selected customer/history/feedback packet",
+    "private generation",
+    "independent eight-category semantic review",
+    "at most one private rewrite and recheck",
+    "source freshness and existing CENTRAL save/readback",
+    "PASS-only output"
+  ],
+  "validation": {
+    "new_synthetic_connection_tests": 11,
+    "passed": 11,
+    "executions": 1,
+    "real_model_calls": 0,
+    "real_customer_e2e": 0,
+    "old_pass_retests": 0,
+    "substitute_customer_tests": 0,
+    "auth_cli_result": "HOLD_AUTH_OR_RUNTIME_CONFIGURATION_REQUIRED; output_allowed=false; no body",
+    "mock_only": [
+      "PASS after save",
+      "FAIL-rewrite-PASS",
+      "FAIL-rewrite-FAIL hidden",
+      "HOLD-rewrite-HOLD hidden",
+      "storage failure no second write",
+      "source change hidden",
+      "caller review rejected",
+      "materials required before generation",
+      "missing identity hidden",
+      "incomplete review hidden",
+      "Responses transport schema/nonstream/store=false"
+    ]
+  },
+  "required_configuration": [
+    "OPENAI_API_KEY",
+    "WIC_MODEL with Responses structured-output access",
+    "WIC_TOOL041_ROOT current native checkout",
+    "GH_TOKEN or GITHUB_TOKEN: required repositories read and CENTRAL contents write",
+    "HTTPS api.openai.com and api.github.com"
+  ],
+  "runtime": "Bundled Python available; no Node requirement",
+  "holds": [
+    "Real model/API/network execution unverified due to absent configuration",
+    "Live native GitHub read/save authentication unverified",
+    "CUSTOMER_EVIDENCE_REQUIRED for requested named customer; no search or substitute in this turn",
+    "Sales materials mode not connected; bodyless HOLD",
+    "Ordinary chat interception outside MVP scope"
+  ],
+  "initial_user_interventions_this_turn": 0,
+  "initial_setup_target": "One grouped secure server environment configuration; not yet completed",
+  "normal_user_intervention_target": "Customer task input only; no rule courier/verification button; operational E2E not proven",
+  "official_docs": [
+    "https://developers.openai.com/api/docs/guides/structured-outputs",
+    "https://developers.openai.com/api/reference/typescript/resources/responses/methods/create"
+  ]
+}
