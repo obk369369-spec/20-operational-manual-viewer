@@ -21,11 +21,21 @@
       "source": "work16_root_ledger",
       "type": "HOLD_OR_LIMIT",
       "status": "PLATFORM_LIMIT",
-      "evidence": null,
+      "evidence": {
+        "path": "feedback_pipeline/evidence/chat_source_boundary_20260831.json",
+        "scope": "SOURCE_CHAT_TO_EXISTING_EVENT_RECEIVER_ONLY"
+      },
       "actual_action": "WAIT_TRIGGER",
       "result": "UNRESOLVED",
-      "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
-      "next_start": "Verify official platform capability before any internal change"
+      "next_trigger": "AUTHORIZED_SOURCE_CONVERSATION_MESSAGE_EVENT_OR_EXISTING_SOURCE_TOOL_BINDING_AVAILABLE",
+      "next_start": "Reuse existing wic-feedback-event receiver only after source-side capability changes; one real source message to MASTER-ready, no agent injection or internal PASS retest.",
+      "last_actual_point": "Ordinary ChatGPT conversation message/update intent -> authenticated repository_dispatch(wic_feedback) or workflow_dispatch(event_json). No source-side subscribed producer callable in the current environment; receiver already exists.",
+      "connection_boundary": {
+        "status": "HOLD_SOURCE_MESSAGE_EVENT_PRODUCER_UNAVAILABLE",
+        "direct_connection": false,
+        "code_changes": 0,
+        "evidence_path": "feedback_pipeline/evidence/chat_source_boundary_20260831.json"
+      }
     },
     {
       "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",

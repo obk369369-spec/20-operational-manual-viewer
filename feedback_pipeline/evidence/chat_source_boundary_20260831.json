@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+  "base_commit": "b4796001dfbca88040daf8257a5fa92827333710",
+  "status": "HOLD_SOURCE_MESSAGE_EVENT_PRODUCER_UNAVAILABLE",
+  "break_location": "Ordinary ChatGPT conversation message/update intent -> authenticated repository_dispatch(wic_feedback) or workflow_dispatch(event_json). No source-side subscribed producer callable in the current environment; receiver already exists.",
+  "left_assets": [
+    "Ordinary conversation user message and update intent",
+    "App on-demand task read tools (not message subscription or automatic delivery)"
+  ],
+  "right_assets": [
+    ".github/workflows/wic-feedback-event.yml: repository_dispatch types [wic_feedback], workflow_dispatch event_json",
+    "feedback_pipeline/runtime_gateway.py:capture_feedback (requires supplied event and executor)",
+    "feedback_pipeline/cross_chat_feedback_ingest.py:normalize/decide_conflict (library)",
+    "Existing CENTRAL operational runner/global_pipeline.py"
+  ],
+  "direct_existing_connection": "NOT_ESTABLISHED: no existing source-side automatic publisher/authorized subscription found in current exposed capabilities and scoped canonical paths. Receiver-only changes cannot create the missing platform event.",
+  "official_basis": {
+    "url": "https://developers.openai.com/plugins/build/mcp-server",
+    "observation": "MCP tool metadata is used by the model to decide whether/how to call a tool; server exposes tools. This is not proof of a universal ordinary-chat message event feed.",
+    "limitation": "No claim that all possible plans/platform integrations lack this capability forever; current installation/available source path only."
+  },
+  "actual_feedback_e2e": {
+    "ordinary_message_auto_received": 0,
+    "central_ingest_executions": 0,
+    "classification_dedup_retests": 0,
+    "master_ready_e2e": "NOT_EXECUTED_SOURCE_BOUNDARY_HOLD",
+    "manual_agent_injection": false,
+    "synthetic_event_used": false
+  },
+  "code_changes": 0,
+  "new_tools_mvp_ui_db_pipeline": 0,
+  "user_intervention_count": 0,
+  "next_trigger": "AUTHORIZED_SOURCE_CONVERSATION_MESSAGE_EVENT_OR_EXISTING_SOURCE_TOOL_BINDING_AVAILABLE",
+  "release_conditions": [
+    "An installed source-side supported event or guaranteed in-scope invocation for actual ordinary conversation feedback",
+    "Authenticated delivery to the existing wic_feedback receiver, preserving source_chat/source_ref and message data",
+    "One real source-origin feedback receipt reaches existing classification/dedup and MASTER-ready state; no manual courier or injected fixture"
+  ],
+  "no_value_retry": "SKIP_NO_VALUE until source capability/configuration has changed; do not retest CENTRAL internal PASS",
+  "internal_observation_not_executed": "Existing workflow contains internal fixture step; not executed or changed because upstream connection cannot be established in this scope."
+}
