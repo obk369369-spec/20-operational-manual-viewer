@@ -13,15 +13,20 @@
     "remote_file_readback": "PASS night_observer.py and status.json"
   },
   "user_manual_action_count": 0,
-  "screen_off_test": "HOLD_SCREEN_OFF_RUN_CORRELATION_AND_NEW_RESULT",
+  "screen_off_test": "PASS_ACTUAL_DEVICE_REOPEN_NEW_RESULT",
   "device_observer_verification": {
     "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
     "smartphone_access": "PASS_USER_CONFIRMED",
     "screen_on_page_restore": "PASS_USER_CONFIRMED",
     "existing_state_restore": "PASS_USER_CONFIRMED",
-    "background_run_during_screen_off": "HOLD_INTERVAL_NOT_RECORDED",
-    "new_result_on_phone": "HOLD_NEW_RESULT_NOT_IDENTIFIED",
-    "next_trigger": "screen-off interval correlated with persisted run and phone new-result observation"
+    "background_run_during_screen_off": "PASS_USER_SCREEN_OFF_CONFIRMATION_AND_ACTUAL_RUN",
+    "new_result_on_phone": "PASS_USER_CONFIRMED_REOPEN",
+    "next_trigger": "NONE_FOR_COMPLETED_AGREED_SCOPE",
+    "observed_github_actions_run": "33358129860",
+    "verified_restore_mode": "REOPEN_AND_FETCH_PERSISTED_NEW_RESULT",
+    "continuous_open_page_resume": "NOT_VERIFIED",
+    "evidence_path": "tool043/screen_off_actual_20260831.json",
+    "completion_scope": "GitHub-hosted background execution while user-confirmed screen OFF, persisted new result visible on actual Android after reopening. Not Android-local background execution or continuous open-page resume."
   },
   "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
   "screen_off_verifier": "tool043/android_screen_off_evidence.py",
