@@ -5,7 +5,7 @@
   "new_open": 1,
   "blocked_work": 6,
   "next_work": "준비완료",
-  "safe_checkpoint": "a9005c96b1447c0e4dad2222b51cc3a482d9732d",
+  "safe_checkpoint": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
   "user_manual_action_count": 0,
   "screen_off_test": "HOLD_SCREEN_OFF_RUN_CORRELATION_AND_NEW_RESULT",
   "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
@@ -43,9 +43,10 @@
     }
   ],
   "safe_checkpoint_evidence": {
-    "scope": "TOOL043 night execution",
-    "verified_run": "33335411469",
-    "verification": "successful run and persisted remote state read-back reused"
+    "scope": "TOOL043 checkpoint/evidence persistence only; screen-off correlation remains HOLD",
+    "implementation_commit": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
+    "first_validation": "PASS changed-scope checks",
+    "remote_file_readback": "PASS night_observer.py and status.json"
   },
   "device_observer_verification": {
     "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
