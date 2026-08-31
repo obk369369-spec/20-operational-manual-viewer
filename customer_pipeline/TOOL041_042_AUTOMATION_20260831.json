@@ -1,0 +1,64 @@
+{
+  "date": "2026-08-31",
+  "scope": "TOOL041_TOOL042_CHANGED_CONNECTIONS_ONLY",
+  "result": "PARTIAL_IMPLEMENTATION_FULL_LIVE_E2E_NOT_COMPLETE",
+  "source_revisions": {
+    "obk369369-spec/20-operational-manual-viewer": "e82ca391bad7ef75cd53164bbf03abc3a18e0b14",
+    "obk369369-spec/41-wic-email-collection-master": "261d43274f1613c730373005401861738846bd0b",
+    "obk369369-spec/07-wic-setting-tool-v1": "c4daf93578a80a3873a59cdc0150b24020027a10"
+  },
+  "checks": {
+    "tool041": {
+      "count": 4,
+      "result": "PASS",
+      "cases": [
+        "cross-key identity collision HOLD (actual fixture with synthetic email mutation)",
+        "canonical 7-source preload passed into current-master guard",
+        "authentication negative control fail closed",
+        "current CLEAN MASTER email mismatch HOLD"
+      ]
+    },
+    "tool042": {
+      "count": 5,
+      "result": "PASS",
+      "cases": [
+        "rejected actual wording removed from every output field",
+        "one historical alternate-question rewrite DRAFT_VALIDATED",
+        "missing paid/tradable/source material evidence HOLD before copy",
+        "canonical 9-source preload passed into generation; ROB-010 current identity HOLD",
+        "authentication negative control fail closed"
+      ]
+    }
+  },
+  "actual_replay": {
+    "case": "ACTUAL-OUTBOUND-EMAIL-FIRST",
+    "source_ref": "42-current#6f10adfc-99b7-4672-bfc6-f7def1a3f7d4",
+    "result": "DRAFT_VALIDATED_HISTORICAL_ONLY",
+    "current_customer_result": "CURRENT_MASTER_ID_NOT_UNIQUE",
+    "tool041_current_result": "CURRENT_CUSTOMER_FIELDS_MISSING"
+  },
+  "transport": "Authenticated GitHub connector captured exact pinned current sources; executable preload/generation tested with captured transport replay. Native shell GitHub authentication not established.",
+  "manual_intervention_count_this_work": 0,
+  "daily_manual_intervention_zero_proven": false,
+  "unchanged_pass": "SKIP_REUSE",
+  "repeat_tests": 0,
+  "remaining": {
+    "external_or_evidence": [
+      "Native runtime authenticated access to private CLEAN MASTER",
+      "Recent failure customer uniquely linked to current CLEAN MASTER and verified actual contact history",
+      "Actual sale materials and customer suitability evidence"
+    ],
+    "internal_open": [
+      "Automatic semantic eight-category review and different-approach rewrite beyond fixed historical templates",
+      "Native producer automatic checkpoint/CENTRAL transaction (this Work saves via connector)",
+      "All entrypoints/global new Work hook not installed; low-level compatibility exports remain"
+    ]
+  },
+  "no_customer_contact_sent": true,
+  "no_private_customer_records_published": true,
+  "implementation_commits": {
+    "tool041": "6fc8fd6a0e77c2a6da1eedf1b4de6cc296331586",
+    "tool042": "b48b0ed85b3d4d1a7c648f27e96335b29663bde2"
+  },
+  "remote_readback": "PASS_8_CHANGED_FILES_EXACT"
+}

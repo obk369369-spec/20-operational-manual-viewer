@@ -68,18 +68,49 @@
       "type": "OPEN_CANDIDATE",
       "source": "POST_DEPLOY_CI",
       "result": "UNRESOLVED"
+    },
+    {
+      "id": "T41-T42-NATIVE-AUTOMATION",
+      "root_id": "T41-T42-NATIVE-AUTOMATION",
+      "root": "GAP-CUSTOMER-PREFLIGHT-GENERATION-PERSISTENCE",
+      "target": "TOOL041 / TOOL042",
+      "status": "OPEN",
+      "display_label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
+      "last_actual_point": "Pinned canonical preload-to-generation added; 9 changed-connection checks PASS; 8 implementation files remote read-back MATCH; actual current-customer path HOLD",
+      "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
+      "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
+      "evidence": {
+        "path": "customer_pipeline/TOOL041_042_AUTOMATION_20260831.json",
+        "tool041_commit": "6fc8fd6a0e77c2a6da1eedf1b4de6cc296331586",
+        "tool042_commit": "b48b0ed85b3d4d1a7c648f27e96335b29663bde2",
+        "scope": "PARTIAL_IMPLEMENTATION_NOT_FULL_LIVE_E2E"
+      },
+      "internal_open": [
+        "Automatic semantic eight-category review and different-approach rewrite beyond fixed historical templates",
+        "Native producer automatic checkpoint/CENTRAL transaction (this Work saves via connector)",
+        "All entrypoints/global new Work hook not installed; low-level compatibility exports remain"
+      ],
+      "external_holds": [
+        "Native runtime authenticated access to private CLEAN MASTER",
+        "Recent failure customer uniquely linked to current CLEAN MASTER and verified actual contact history",
+        "Actual sale materials and customer suitability evidence"
+      ],
+      "source": "SCOPED_TOOL041_TOOL042_WORK",
+      "type": "INCOMPLETE_AUTOMATION",
+      "result": "PARTIAL"
     }
   ],
-  "open_internal_total": 0,
-  "incomplete_total": 4,
+  "open_internal_total": 1,
+  "incomplete_total": 5,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
-  "real_use_not_verified_total": 1,
+  "real_use_not_verified_total": 2,
   "next_work_queue_root_ids": [
     "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
     "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
     "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
-    "CI-TOOL012-NOT-ACTIVE"
+    "CI-TOOL012-NOT-ACTIVE",
+    "T41-T42-NATIVE-AUTOMATION"
   ],
   "open_input_omission": [],
   "hidden_gap_total": 0,
