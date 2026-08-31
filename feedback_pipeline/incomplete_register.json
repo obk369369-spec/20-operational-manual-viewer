@@ -6,7 +6,11 @@
       "target": "TOOL001",
       "status": "INCOMPLETE",
       "reason": "INCOMPLETE_EXTERNAL_WAIT",
-      "missing": ["actual_tested", "deployed_smoke", "real_use_ready"],
+      "missing": [
+        "actual_tested",
+        "deployed_smoke",
+        "real_use_ready"
+      ],
       "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
     },
     {
@@ -14,7 +18,9 @@
       "target": "EXTERNAL",
       "status": "INCOMPLETE",
       "reason": "HOLD_EVIDENCE_WAITING",
-      "missing": ["external evidence or capability"],
+      "missing": [
+        "external evidence or capability"
+      ],
       "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE"
     },
     {
@@ -22,11 +28,31 @@
       "target": "EXTERNAL",
       "status": "INCOMPLETE",
       "reason": "PLATFORM_LIMIT",
-      "missing": ["external evidence or capability"],
+      "missing": [
+        "external evidence or capability"
+      ],
       "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE"
+    },
+    {
+      "id": "CI-TOOL012-NOT-ACTIVE",
+      "target": "공통 CI · TOOL012 등록 상태 확인",
+      "status": "INCOMPLETE",
+      "reason": "CI_AUDIT_REVIEW_PENDING",
+      "next_trigger": "IMMEDIATE",
+      "evidence": {
+        "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+        "failed_runs": [
+          "33361353196",
+          "33361353186"
+        ],
+        "error": "ValueError: TOOL012 is not ACTIVE",
+        "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
+        "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
+        "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
+      }
     }
   ],
-  "incomplete_total": 3,
+  "incomplete_total": 4,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 1,

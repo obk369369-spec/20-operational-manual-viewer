@@ -57,6 +57,25 @@
       "execution_mode": "RECURRING",
       "execution_count": 8,
       "result": "CENTRAL_OBSERVER_REFRESHED"
+    },
+    {
+      "root_id": "CI-TOOL012-NOT-ACTIVE",
+      "target": "공통 CI · TOOL012 등록 상태 확인",
+      "status": "OPEN_CANDIDATE",
+      "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Review registry ACTIVE contract in separate scoped Work",
+      "evidence": {
+        "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+        "failed_runs": [
+          "33361353196",
+          "33361353186"
+        ],
+        "error": "ValueError: TOOL012 is not ACTIVE",
+        "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
+        "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
+        "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
+      }
     }
   ]
 }

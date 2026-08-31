@@ -4,13 +4,17 @@
   "night_processed": 1,
   "new_open": 0,
   "blocked_work": 3,
-  "next_work": "대기 조건 충족 후 재개",
-  "safe_checkpoint": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
+  "next_work": "공통 CI · TOOL012 등록 상태 확인",
+  "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
-    "scope": "TOOL043 checkpoint/evidence persistence only; screen-off correlation remains HOLD",
-    "implementation_commit": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
-    "first_validation": "PASS changed-scope checks",
-    "remote_file_readback": "PASS night_observer.py and status.json"
+    "scope": "TOOL043 current agreed scope only",
+    "implementation_commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "first_validation": "PASS",
+    "remote_file_readback": "PASS 12 changed files",
+    "deployment_run": "33361353169",
+    "deployment_result": "success",
+    "deployed_display": "PASS current counts and completed L6 shown",
+    "global_ci": "FAIL_TOOL012_NOT_ACTIVE_TRACKED_SEPARATELY"
   },
   "user_manual_action_count": 0,
   "screen_off_test": "PASS_ACTUAL_DEVICE_REOPEN_NEW_RESULT",
@@ -36,7 +40,7 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 3,
+  "incomplete_total": 4,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 1,
@@ -74,7 +78,8 @@
         "sources": [
           "external",
           "unified",
-          "incomplete"
+          "incomplete",
+          "night_queue"
         ],
         "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
         "next_start": "Run only the publisher-specific actual pair regression"
@@ -87,7 +92,8 @@
         "sources": [
           "external",
           "unified",
-          "incomplete"
+          "incomplete",
+          "night_queue"
         ],
         "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
         "next_start": "Verify official platform capability before any internal change"
@@ -107,6 +113,20 @@
         "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
         "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
+      },
+      {
+        "root_id": "CI-TOOL012-NOT-ACTIVE",
+        "target": "공통 CI · TOOL012 등록 상태 확인",
+        "label": "CI-TOOL012-NOT-ACTIVE",
+        "status": "OPEN_CANDIDATE",
+        "sources": [
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Review registry ACTIVE contract in separate scoped Work",
+        "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed"
       }
     ],
     "running": [],
@@ -119,7 +139,8 @@
         "sources": [
           "external",
           "unified",
-          "incomplete"
+          "incomplete",
+          "night_queue"
         ],
         "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
         "next_start": "Run only the publisher-specific actual pair regression"
@@ -132,7 +153,8 @@
         "sources": [
           "external",
           "unified",
-          "incomplete"
+          "incomplete",
+          "night_queue"
         ],
         "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
         "next_start": "Verify official platform capability before any internal change"
@@ -154,11 +176,26 @@
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
       }
     ],
-    "pending": [],
-    "remaining_total": 3,
+    "pending": [
+      {
+        "root_id": "CI-TOOL012-NOT-ACTIVE",
+        "target": "공통 CI · TOOL012 등록 상태 확인",
+        "label": "CI-TOOL012-NOT-ACTIVE",
+        "status": "OPEN_CANDIDATE",
+        "sources": [
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Review registry ACTIVE contract in separate scoped Work",
+        "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed"
+      }
+    ],
+    "remaining_total": 4,
     "running_total": 0,
     "waiting_total": 3,
-    "pending_total": 0,
+    "pending_total": 1,
     "open_internal_total": 0,
     "recent_completed": [
       {
@@ -176,7 +213,7 @@
     "conservation_pass": true
   },
   "max_status_age_seconds": 28800,
-  "status_projection_at": "2026-08-31T05:40:08.795982+00:00",
+  "status_projection_at": "2026-08-31T05:43:22.214353+00:00",
   "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
   "current_display_validation": {
     "status": "FIRST_VALIDATION_PASS",
@@ -194,5 +231,16 @@
     "device_regression": "SKIP_REUSE d6c293e0e75833b829be34ce09833c885932b9a1 run 33358129860",
     "unrelated_targets_changed": false,
     "first_validation_runs": 1
+  },
+  "post_deploy_ci": {
+    "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "failed_runs": [
+      "33361353196",
+      "33361353186"
+    ],
+    "error": "ValueError: TOOL012 is not ACTIVE",
+    "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
+    "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
+    "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
   }
 }
