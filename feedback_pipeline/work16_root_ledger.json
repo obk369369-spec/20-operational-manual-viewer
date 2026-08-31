@@ -126,7 +126,15 @@
       "status": "REMOTE_VERIFIED",
       "introduced_after_checkpoint": true,
       "recurrence": 1,
-      "evidence": "work_execution_enforcer.py registers every target, blocks missing work/smoke/final status, enforces A/B/C/D no-evidence classification, blocks redundant HOLD research and emits an automatic next-work queue; original remote CI runs 33029579522 and 33029579539 passed."
+      "evidence": "work_execution_enforcer.py registers every target, blocks missing work/smoke/final status, enforces A/B/C/D no-evidence classification, blocks redundant HOLD research and emits an automatic next-work queue; original remote CI runs 33029579522 and 33029579539 passed.",
+      "incremental_work_admission": {
+        "status": "PASS_LIMITED_WORK_ADMISSION",
+        "evidence_path": "feedback_pipeline/evidence/work_repeat_guard_20260831.json",
+        "last_actual_point": "Eight bounded Work-admission checks passed; no old PASS/customer/API runs",
+        "next_trigger": "NEW_CONCRETE_WORK_ADMISSION_FAILURE_EVIDENCE",
+        "next_start": "SKIP_REUSE unchanged operation; patch only a demonstrated missing connection",
+        "platform_hold": "Arbitrary direct/native tool calls and external Work without handoff hook are not intercepted"
+      }
     },
     {
       "id": "L6-20",

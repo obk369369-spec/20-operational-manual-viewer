@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "root_id": "L5-19",
+  "base_commit": "98bc6abe5f3e2ea3d6a7ad2239e67254162289e7",
+  "status": "PASS_LIMITED_WORK_ADMISSION",
+  "reused": [
+    "work_execution_enforcer.py",
+    "work_gate_handoff.py",
+    "unified_open_ledger.json",
+    "AGENTS.md"
+  ],
+  "actual_checks": {
+    "status": "PASS",
+    "cases": [
+      {
+        "case": "41/42 completed MVP redevelopment",
+        "decision": "SKIP_REUSE",
+        "downstream_executions": 0
+      },
+      {
+        "case": "41/42 completed blocking gate",
+        "decision": "SKIP_REUSE",
+        "downstream_executions": 0
+      },
+      {
+        "case": "41/42 unchanged auth/customer HOLD",
+        "decision": "SKIP_NO_VALUE",
+        "downstream_executions": 0
+      },
+      {
+        "case": "same TOOL012 CI failure",
+        "decision": "SKIP_NO_VALUE",
+        "downstream_executions": 0
+      },
+      {
+        "case": "repair is not new MVP approval",
+        "decision": "WORK_HOLD_SCOPE",
+        "downstream_executions": 0
+      },
+      {
+        "case": "unrelated root",
+        "decision": "WORK_HOLD_SCOPE",
+        "downstream_executions": 0
+      },
+      {
+        "case": "authorized repair retains cheaper lane gate",
+        "decision": "WORK_DEFER_DENIED",
+        "downstream_executions": 0
+      },
+      {
+        "case": "asset expansion",
+        "decision": "WORK_HOLD_SCOPE",
+        "downstream_executions": 0
+      }
+    ],
+    "actual_customer_runs": 0,
+    "old_pass_tests": 0
+  },
+  "scope": "Existing Work candidate admission only; no new TOOL/MVP/UI/DB/pipeline",
+  "changes": [
+    "preflight before lower-cost eligibility",
+    "canonical operation receipts and exact scoped grants",
+    "canonical last-point overlay instead of stale observer queue text",
+    "startup/completion receipt instructions"
+  ],
+  "old_tests_executed": 0,
+  "customer_runs": 0,
+  "api_auth_retries": 0,
+  "user_interventions": 0,
+  "holds": [
+    "Arbitrary direct/native tool calls and external Work without handoff hook are not intercepted",
+    "Live shell resume network HOLD reused; connector canonical snapshot used, no identical network retry",
+    "Remote automatic workflow execution not certified by local control tests"
+  ],
+  "next_work": "SKIP_REUSE; resume this operation only for new concrete failure evidence, not unchanged daily audit"
+}

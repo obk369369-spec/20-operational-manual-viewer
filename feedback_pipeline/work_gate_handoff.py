@@ -38,10 +38,12 @@ def load_latest_resume() -> dict[str, Any]:
     hashes = state.get('central_input_sha256', {})
     if set(hashes) != required_inputs:
         raise ValueError('CENTRAL input fingerprints absent; wait for automatic projection')
+    canonical_inputs = {}
     for path in sorted(required_inputs):
         current = read(f'https://raw.githubusercontent.com/{repo}/{head}/{path}')
         if hashlib.sha256(current).hexdigest() != hashes[path]:
             raise ValueError('CENTRAL changed after projection: ' + path)
+        canonical_inputs[path] = json.loads(current)
     work = state["current_work"]
     remaining = work["remaining"]
     ids = [r["root_id"] for r in remaining]
@@ -56,6 +58,15 @@ def load_latest_resume() -> dict[str, Any]:
         raise ValueError("CENTRAL projection stale; automatic sync must complete first")
     if state["observer_health"] != "OK" or state["incomplete_total"] != len(ids):
         raise ValueError("CENTRAL projection invalid")
+    # Queue projections may retain an older last point. Pinned canonical wins.
+    canonical = {r.get('root_id') or r.get('id'): r for r in
+                 canonical_inputs['feedback_pipeline/unified_open_ledger.json']['entries']}
+    for group in ('remaining', 'running', 'waiting', 'pending'):
+        for row in work[group]:
+            source = canonical.get(row['root_id'], {})
+            for key in ('last_actual_point', 'next_start', 'next_trigger'):
+                if key in source:
+                    row[key] = source[key]
     return {"status": "RESUME_LOADED", "central_revision": head,
             "source_revision": state["source_revision"], "safe_checkpoint": state["safe_checkpoint"],
             "status_sha256": hashlib.sha256(raw).hexdigest(),
@@ -93,7 +104,17 @@ REQUIRED_EXIT_CHECKPOINT = (
 )
 
 
-def evaluate_candidate(candidate: Mapping[str, Any]) -> dict[str, Any]:
+def evaluate_candidate(candidate: Mapping[str, Any], ledger=None) -> dict[str, Any]:
+    from work_execution_enforcer import preflight_attempt
+    if ledger is None:
+        try:
+            ledger = json.loads((Path(__file__).parent / 'unified_open_ledger.json').read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            return {'decision': 'WORK_HOLD_CENTRAL_UNAVAILABLE', 'execution_allowed': False,
+                    'reason': 'Canonical execution state unavailable', 'missing_handoff': []}
+    preflight = preflight_attempt(dict(candidate), ledger)
+    if not preflight['execution_allowed']:
+        return preflight
     gates = candidate.get("gates", {})
     required_gates = ("chat_files", "github", "ordinary_runtime")
     missing_gates = [key for key in required_gates if key not in gates or not isinstance(gates.get(key), bool)]
@@ -230,6 +251,18 @@ def build_exit_templates(handoff: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def self_test() -> None:
+    # Existing lower-cost fixtures receive explicit scoped authority; they do
+    # not bypass the newly connected preflight in production.
+    production_evaluate = globals()['evaluate_candidate']
+    def evaluate_candidate(candidate):
+        candidate = dict(candidate, root_id='CONTROL', operation_id='lower-cost-gate',
+                         directive_ref='fixture:authorized', action='REPAIR')
+        assets = candidate.get('target_assets') or ['fixture']
+        grant = {'root_id': 'CONTROL', 'directive_ref': 'fixture:authorized',
+                 'actions': ['REPAIR'], 'assets': assets, 'reusable_assets': assets}
+        candidate['target_assets'] = assets
+        return production_evaluate(candidate, {'entries': [{'root_id': 'CONTROL', 'status': 'OPEN'}],
+                                               'execution_policy': {'scope_grants': [grant]}})
     cheap = {
         "gates": {"chat_files": False, "github": True, "ordinary_runtime": False},
         "blocker": "x",
@@ -260,10 +293,10 @@ def self_test() -> None:
     assert evaluate_candidate(complete)["decision"] == "WORK_ELIGIBLE"
 
     combined = build_handoff({"structure_status": "PASS", "work_gate_candidates": {"a": cheap, "b": complete}})
-    assert combined["eligible_work_lanes"] == ["b"]
+    assert combined["eligible_work_lanes"] == []  # No production scope grant for fixture lanes.
     empty = build_handoff({"structure_status": "PASS", "work_gate_candidates": {}})
     assert empty["candidate_count"] == 0 and empty["pass_claimed"] is False and empty["target_conservation"] is True
-    assert combined["deferred_lower_cost_lanes"] == ["a"]
+    assert set(combined["held_incomplete_handoff_lanes"]) == {'a', 'b'}
 
     bad_exit = {"lane": "b", "status": "HOLD"}
     assert validate_exit_checkpoint(bad_exit)["decision"] == "WORK_EXIT_CHECKPOINT_INCOMPLETE"
@@ -285,7 +318,7 @@ def self_test() -> None:
     }
     assert validate_exit_checkpoint(good_exit)["decision"] == "WORK_EXIT_RESUMABLE"
 
-    templates = build_exit_templates(combined)
+    templates = build_exit_templates({'eligible_work_lanes': ['b'], 'candidates': {'b': complete}})
     assert list(templates["templates"]) == ["b"]
     print("PASS: 7 deterministic Work-gate/handoff/exit-checkpoint fixtures")
 

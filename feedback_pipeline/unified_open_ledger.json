@@ -67,7 +67,16 @@
       "layer": "L4",
       "type": "OPEN_CANDIDATE",
       "source": "POST_DEPLOY_CI",
-      "result": "UNRESOLVED"
+      "result": "UNRESOLVED",
+      "execution_receipts": [
+        {
+          "operation_id": "registry-ci-audit",
+          "status": "FAIL",
+          "cause_id": "TOOL012_NOT_ACTIVE",
+          "method_id": "UNCHANGED_GLOBAL_CI_AUDIT",
+          "evidence_ref": "runs:33361353196,33361353186"
+        }
+      ]
     },
     {
       "id": "T41-T42-NATIVE-AUTOMATION",
@@ -107,7 +116,25 @@
         "status": "MVP_IMPLEMENTED_OPERATIONAL_AUTH_HOLD",
         "evidence_path": "customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json",
         "entrypoint": "customer_pipeline/customer_mvp.py"
-      }
+      },
+      "execution_receipts": [
+        {
+          "operation_id": "dedicated-mvp-implementation",
+          "status": "PASS",
+          "evidence_ref": "6c815da42ae95b8b238e2baa425465089a87cbfe:customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json"
+        },
+        {
+          "operation_id": "native-release-blocking-boundary",
+          "status": "PASS",
+          "evidence_ref": "9e63063264234fc2df24a3e135cf7fc57c6ad0c9:customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json"
+        },
+        {
+          "operation_id": "dedicated-mvp-live-e2e",
+          "status": "HOLD",
+          "condition_fingerprint": "MISSING_MODEL_GITHUB_CONFIG_AND_CUSTOMER_EVIDENCE",
+          "evidence_ref": "6c815da42ae95b8b238e2baa425465089a87cbfe:customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json"
+        }
+      ]
     }
   ],
   "open_internal_total": 1,
@@ -131,5 +158,18 @@
   "user_feedback_courier_count": 0,
   "observer_repetition_required_total": 0,
   "pass": true,
-  "open_candidate_total": 1
+  "open_candidate_total": 1,
+  "execution_policy": {
+    "schema_version": 1,
+    "scope_grants": [],
+    "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
+    "completed_work": {
+      "root_id": "L5-19",
+      "operation_id": "repeat-credit-preflight-link",
+      "status": "PASS_LIMITED_WORK_ADMISSION",
+      "next_work": "SKIP_REUSE; resume this operation only for new concrete failure evidence, not unchanged daily audit",
+      "evidence_ref": "feedback_pipeline/evidence/work_repeat_guard_20260831.json"
+    },
+    "platform_boundary": "Only Work candidate paths using work_gate_handoff; external/native bypasses remain HOLD_NOT_INTERCEPTED"
+  }
 }
