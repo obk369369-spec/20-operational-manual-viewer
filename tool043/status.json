@@ -6,8 +6,23 @@
   "blocked_work": 6,
   "next_work": "준비완료",
   "safe_checkpoint": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
+  "safe_checkpoint_evidence": {
+    "scope": "TOOL043 checkpoint/evidence persistence only; screen-off correlation remains HOLD",
+    "implementation_commit": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
+    "first_validation": "PASS changed-scope checks",
+    "remote_file_readback": "PASS night_observer.py and status.json"
+  },
   "user_manual_action_count": 0,
   "screen_off_test": "HOLD_SCREEN_OFF_RUN_CORRELATION_AND_NEW_RESULT",
+  "device_observer_verification": {
+    "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
+    "smartphone_access": "PASS_USER_CONFIRMED",
+    "screen_on_page_restore": "PASS_USER_CONFIRMED",
+    "existing_state_restore": "PASS_USER_CONFIRMED",
+    "background_run_during_screen_off": "HOLD_INTERVAL_NOT_RECORDED",
+    "new_result_on_phone": "HOLD_NEW_RESULT_NOT_IDENTIFIED",
+    "next_trigger": "screen-off interval correlated with persisted run and phone new-result observation"
+  },
   "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
   "screen_off_verifier": "tool043/android_screen_off_evidence.py",
   "single_device_run_required": true,
@@ -24,9 +39,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-08-30T21:04:55.236183+00:00",
-  "source_revision": "a9005c96b1447c0e4dad2222b51cc3a482d9732d",
-  "github_actions_run": "33335411469",
+  "observer_generated_at": "2026-08-31T04:44:21.727702+00:00",
+  "source_revision": "8de79ae6e23061d3f516a9c2c18398627b8b9c8b",
+  "github_actions_run": "33358129860",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -38,23 +53,8 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-08-30T21:04:55.236165+00:00",
+      "executed_at": "2026-08-31T04:44:21.727622+00:00",
       "status": "COMPLETED"
     }
-  ],
-  "safe_checkpoint_evidence": {
-    "scope": "TOOL043 checkpoint/evidence persistence only; screen-off correlation remains HOLD",
-    "implementation_commit": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
-    "first_validation": "PASS changed-scope checks",
-    "remote_file_readback": "PASS night_observer.py and status.json"
-  },
-  "device_observer_verification": {
-    "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
-    "smartphone_access": "PASS_USER_CONFIRMED",
-    "screen_on_page_restore": "PASS_USER_CONFIRMED",
-    "existing_state_restore": "PASS_USER_CONFIRMED",
-    "background_run_during_screen_off": "HOLD_INTERVAL_NOT_RECORDED",
-    "new_result_on_phone": "HOLD_NEW_RESULT_NOT_IDENTIFIED",
-    "next_trigger": "screen-off interval correlated with persisted run and phone new-result observation"
-  }
+  ]
 }
