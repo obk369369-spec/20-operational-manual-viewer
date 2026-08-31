@@ -54,6 +54,14 @@ def resolve(registry:Mapping[str,Any],target:str,provisional:bool=False)->tuple[
 
 def runtime_verify(target:str,workspace:Path,registry:Mapping[str,Any],bundled_python:str='',provisional:bool=False)->dict[str,Any]:
     state={'target':target,'status':HOLD,'LAST_VERIFIED_STAGE':'CHAT_TOOL_IDENTIFIED','USER_ACTION_REQUIRED':False}
+    if target in {'TOOL041', 'TOOL042'}:
+        # Global fixture PASS cannot authorize a specific customer's output.
+        # Do not re-run historical tests while waiting for the native gate.
+        return {**state, 'FAILED_STAGE': 'CUSTOMER_RELEASE_GATE',
+                'FAIL_REASON': 'Use native canonical startup and customer_release_gate; semantic runtime is not connected',
+                'output_allowed': False, 'OLD_PIPELINE_BLOCKED': True,
+                'NEXT_AUTOMATIC_ACTION': 'NATIVE_CUSTOMER_RELEASE_GATE'}
+
     try: resolved,row=resolve(registry,target,provisional)
     except KeyError: return {**state,'FAILED_STAGE':'CANONICAL_REGISTRY','FAIL_REASON':'target not registered','NEXT_AUTOMATIC_ACTION':'REGISTER_PROVISIONAL_CENTRAL_LANE'}
     state.update({'resolved_target':resolved,'repository':row['repository'],'LAST_VERIFIED_STAGE':'CANONICAL_REGISTRY'})
@@ -118,3 +126,4 @@ def main():
     if a.evidence:Path(a.evidence).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result,ensure_ascii=False,indent=2));raise SystemExit(0 if result['status']=='PASS' else 2)
 if __name__=='__main__':main()
+

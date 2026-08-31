@@ -43,3 +43,17 @@
 - 본 Work 결과 저장은 agent GitHub connector로 수행했으므로 native 자동 저장 PASS로 주장하지 않는다.
 - 기존 정상 테스트/43번 actual-device PASS는 SKIP_REUSE, 동일 실패 재실행 없음.
 - Root: T41-T42-NATIVE-AUTOMATION; 증거: customer_pipeline/TOOL041_042_AUTOMATION_20260831.json. 다음 작업은 위 root의 미연결부 및 실제 고객 1건만.
+
+
+## 2026-08-31 — 단일 FAIL-CLOSED 출력 경계 연결
+
+- 기존 c53e4b142ae6bc8f71a5572e388188bc0f660c7f PASS는 SKIP_REUSE; 전수조사/기존 fixture 재실행 없음.
+- CENTRAL `customer_pipeline/customer_release_gate.py` 동일 코드가 41·42에 배포되며, 선조회 source와 구현 본문 불일치 시 HOLD.
+- 공개 native 진입점과 guidance emit 경로는 공통 최종 게이트를 거친다. 기존 내부 생성기/format test는 출력 허가가 아니다.
+- 실제 과거 실패 입력 2건의 원문을 그대로 넣어 USER_EXPLICIT_FAIL 차단, 기존 교정안으로 각 1회 내부 재작성. 재작성문도 최종 의미판정 없이는 출력하지 않음.
+- 8항목 의미실행기 미연결: 전 항목 HOLD_NOT_EXECUTED. 현재 revision은 고객 PASS 출력 자체를 허용하지 않음. 정규식/해시 로그를 의미검사 완료로 주장하지 않음.
+- 사용자 지정 고객은 제한 검색과 현재 CLEAN MASTER에서 연결 근거 미확보. 다른 고객으로 대체하거나 과거 삭제 데이터를 복원하지 않음.
+- Native 저장은 기존 CENTRAL root의 redacted CAS update/read-back/idempotency 연결. 모의 검증 PASS와 실제 인증 저장 미검증을 구분.
+- 내부 OPEN: 실제 의미실행기, 자연어 구규칙 충돌 해결, 자유 재작성. HOLD: 지정 고객 현재 식별/접촉·실패원문·실제 자료 및 runtime 인증.
+- NEXT_WORK: 실제 source/customer/output-bound 의미실행기 및 해당 고객 근거가 연결되면 남은 positive 고객 E2E/인증 저장만 검증. 이번 차단경계 검사는 반복 금지.
+- 증거: CENTRAL `customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json`. 사용자 수동 전달 0회, 실제 발송 없음.
