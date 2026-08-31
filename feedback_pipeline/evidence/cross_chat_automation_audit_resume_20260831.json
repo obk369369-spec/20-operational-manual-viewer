@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "audit": "CROSS_CHAT_AUTOMATION_AUDIT",
+  "resumed_kst": "2026-08-31 15:19+09:00",
+  "resume_source": "USER_EXPLICIT_WIC_CONTINUE",
+  "latest_repo_head_at_resume": "57b27bc2f6c5764f298fc76164d2d2f51d38e2c9",
+  "scope": {
+    "include": [
+      "ordinary Chat feedback capture to canonical pipeline entry",
+      "central master/checkpoint load gate",
+      "routing and target apply path",
+      "pre-check gate",
+      "E2E evidence"
+    ],
+    "exclude": [
+      "278 historical-chat catch-up",
+      "already REMOTE_VERIFIED TOOL043 current scope",
+      "full repository or Library rescan"
+    ]
+  },
+  "verified_reuse": {
+    "TOOL043_CURRENT_SCOPE": "COMPLETE_REMOTE_VERIFIED_SKIP_REUSE",
+    "canonical_pipeline": "feedback_pipeline/global_pipeline.py",
+    "feedback_workflow": ".github/workflows/wic-feedback-event.yml"
+  },
+  "findings": [
+    {
+      "id": "AUDIT-CHAT-ENTRY-001",
+      "status": "OPEN",
+      "severity": "HIGH",
+      "finding": "The GitHub feedback workflow is triggered by repository_dispatch or workflow_dispatch; repository evidence does not prove an automatic bridge from an ordinary Chat correction to that workflow.",
+      "evidence": [
+        ".github/workflows/wic-feedback-event.yml on.repository_dispatch",
+        ".github/workflows/wic-feedback-event.yml on.workflow_dispatch"
+      ],
+      "classification": "EXTERNAL_CHAT_TRIGGER_BRIDGE_NOT_VERIFIED",
+      "completion_rule": "Do not claim ordinary-chat automatic central propagation until a real ordinary Chat feedback event causes authenticated pipeline entry, target/central apply, commit/push and remote read-back without the user manually copying the event."
+    },
+    {
+      "id": "AUDIT-CHAT-ENTRY-002",
+      "status": "OPEN_RELATED",
+      "severity": "MEDIUM",
+      "finding": "cross_chat_feedback_ingest.py is a library module and has no __main__ execution entry; it cannot by itself prove autonomous cross-chat ingestion.",
+      "evidence": [
+        "feedback_pipeline/cross_chat_feedback_ingest.py"
+      ],
+      "classification": "INTERNAL_MODULE_NOT_AUTONOMOUS_TRIGGER"
+    }
+  ],
+  "current_status": "AUDIT_RESUMED_PARTIAL_EVIDENCE_PERSISTED",
+  "next_start": "Continue scoped audit at canonical entry gate: determine whether any existing Chat-facing connector/runner actually dispatches wic_feedback automatically; if none exists, keep platform bridge as HOLD_EXTERNAL and harden the in-chat execution rule so every WIC correction explicitly performs MASTER_LOAD -> GitHub mutation -> remote read-back within the active turn when tools are available.",
+  "safe_work_policy": "SKIP verified TOOL043 and existing PASS gates; DIFF ONLY; no 278 catch-up."
+}
