@@ -1,0 +1,89 @@
+{
+  "historical_cases": 3,
+  "native_adapter_parity": true,
+  "actual_cli_runs": 6,
+  "negative_gates": "PASS",
+  "results": [
+    {
+      "id": "ACTUAL-OUTBOUND-EMAIL-FIRST",
+      "input_evidence": "42-current#6f10adfc-99b7-4672-bfc6-f7def1a3f7d4",
+      "output": {
+        "status": "DRAFT_VALIDATED",
+        "turns": [
+          "센터장님, 안녕하세요. 월드산업정보센터입니다.",
+          "지난번 회사소개서를 보내드렸습니다.",
+          "재난로봇과 의료로봇 중 요즘 더 살펴보시는 쪽이 있을까요?"
+        ],
+        "email_body": "센터장님, 안녕하세요. 월드산업정보센터입니다.\n\n지난번 회사소개서를 보내드렸습니다.\n\n재난로봇과 의료로봇 중 요즘 더 살펴보시는 쪽이 있을까요?",
+        "phone_message": "",
+        "channel": "EMAIL",
+        "next_action": "WAIT_FOR_CUSTOMER_REPLY",
+        "recommendation_allowed": false,
+        "source_ref": "42-current#6f10adfc-99b7-4672-bfc6-f7def1a3f7d4",
+        "history_kind": "one_way",
+        "send_allowed": false,
+        "cue_card": {
+          "start": "센터장님, 안녕하세요. 월드산업정보센터입니다.",
+          "ask": "재난로봇과 의료로봇 중 요즘 더 살펴보시는 쪽이 있을까요?",
+          "then": "답변을 기다립니다."
+        },
+        "quality_scope": "AUTOMATED_CONSTRAINTS_ONLY_NOT_ACTUAL_CALL_RECEPTION",
+        "issues": []
+      }
+    },
+    {
+      "id": "ACTUAL-RESPONDED-DOMESTIC-MATERIALS",
+      "input_evidence": "42-preserved-3(1)#SEM-071-20260824;email-domestic-20260827",
+      "output": {
+        "status": "DRAFT_VALIDATED",
+        "turns": [
+          "책임연구원님, 안녕하세요. 월드산업정보센터입니다.",
+          "지난 통화에서 국내 보고서를 말씀해 주셨는데요.",
+          "방산용 반도체와 시험 장비, 두 분야 모두 보면 될까요?"
+        ],
+        "email_body": "책임연구원님, 안녕하세요. 월드산업정보센터입니다.\n\n지난 통화에서 국내 보고서를 말씀해 주셨는데요.\n\n방산용 반도체와 시험 장비, 두 분야 모두 보면 될까요?",
+        "phone_message": "책임연구원님, 안녕하세요. 월드산업정보센터입니다.\n지난 통화에서 국내 보고서를 말씀해 주셨는데요.\n방산용 반도체와 시험 장비, 두 분야 모두 보면 될까요?",
+        "channel": "PHONE",
+        "next_action": "WAIT_FOR_CUSTOMER_REPLY",
+        "recommendation_allowed": false,
+        "source_ref": "42-preserved-3(1)#SEM-071-20260824",
+        "history_kind": "response",
+        "send_allowed": false,
+        "cue_card": {
+          "start": "책임연구원님, 안녕하세요. 월드산업정보센터입니다.",
+          "ask": "방산용 반도체와 시험 장비, 두 분야 모두 보면 될까요?",
+          "then": "답변을 기다립니다."
+        },
+        "quality_scope": "AUTOMATED_CONSTRAINTS_ONLY_NOT_ACTUAL_CALL_RECEPTION",
+        "issues": []
+      }
+    },
+    {
+      "id": "ACTUAL-QUOTATION-FOLLOWUP",
+      "input_evidence": "quote-chat#8cac857e-085f-4893-86a9-ff3569013bc0",
+      "output": {
+        "status": "DRAFT_VALIDATED",
+        "turns": [
+          "연구원님, 안녕하세요. 월드산업정보센터입니다.",
+          "문의하신 로봇 보고서 견적 건으로 연락드렸습니다.",
+          "견적에서 더 확인하실 내용이 있을까요?"
+        ],
+        "email_body": "연구원님, 안녕하세요. 월드산업정보센터입니다.\n\n문의하신 로봇 보고서 견적 건으로 연락드렸습니다.\n\n견적에서 더 확인하실 내용이 있을까요?",
+        "phone_message": "연구원님, 안녕하세요. 월드산업정보센터입니다.\n문의하신 로봇 보고서 견적 건으로 연락드렸습니다.\n견적에서 더 확인하실 내용이 있을까요?",
+        "channel": "PHONE",
+        "next_action": "WAIT_FOR_CUSTOMER_REPLY",
+        "recommendation_allowed": false,
+        "source_ref": "quote-chat#8cac857e-085f-4893-86a9-ff3569013bc0",
+        "history_kind": "quote",
+        "send_allowed": false,
+        "cue_card": {
+          "start": "연구원님, 안녕하세요. 월드산업정보센터입니다.",
+          "ask": "견적에서 더 확인하실 내용이 있을까요?",
+          "then": "답변을 기다립니다."
+        },
+        "quality_scope": "AUTOMATED_CONSTRAINTS_ONLY_NOT_ACTUAL_CALL_RECEPTION",
+        "issues": []
+      }
+    }
+  ]
+}
