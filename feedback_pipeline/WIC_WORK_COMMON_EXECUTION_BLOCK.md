@@ -11,6 +11,15 @@
 - 이미 PASS / VERIFIED / REMOTE_VERIFIED된 공통 절차·부품은 SKIP_REUSE한다.
 - 같은 공통 작업을 TOOL마다 새로 개발·재설계·재검증하지 않는다.
 
+## `업데이트` 중앙 반영 명령
+- WIC 관련 대화창에서 사용자가 단독 또는 문맥상 저장 의도로 `업데이트`라고 입력하면, 직전까지 나온 신규 영구 피드백을 CENTRAL/해당 TOOL canonical master에 실제 반영하는 명령으로 해석한다.
+- 현재 대화에 일회성 질문과 영구규칙이 섞여 있으면 영구규칙만 분리한다.
+- 반영 순서: MASTER_LOAD → 신규 피드백 추출 → 기존 규칙과 중복/충돌 대조 → DIFF ONLY → GitHub write/commit → remote read-back → 증거 보고.
+- GitHub write/commit/read-back이 실제로 완료되지 않으면 `업데이트 완료`라고 말하지 않고 `미반영/HOLD`로 보고한다.
+- `업데이트`는 USB 전체조사나 전수감사를 뜻하지 않는다. 현재 작업 범위와 새로 드러난 피드백만 증분 처리한다.
+CENTRAL_FLUSH_COMMAND = 업데이트
+CENTRAL_FLUSH_REQUIRES_REMOTE_EVIDENCE = TRUE
+
 ## 공통 실행 순서
 1. CURRENT_TOOL_SCOPE_LOCK
    - 현재 지정 TOOL만 연다.
@@ -28,12 +37,20 @@
    - 경로가 충돌하거나 실제 근거가 없을 때만 HOLD_PATH_UNRESOLVED로 남긴다.
 
 4. VERIFIED_USB_CANONICALIZATION
-   - 현재 작업 TOOL의 USB 자료만 scoped 확인한다.
-   - CANONICAL_NORMAL / 실제 검증 자료만 기존 GitHub canonical repo에 흡수한다.
-   - HOLD_UNKNOWN / SHELL / DUPLICATE / OBSOLETE / STALE / 미검증 자료는 업로드 금지.
+   - USB에는 1년 이상 여러 대화창에서만 작업되어 GitHub/CENTRAL 정본으로 아직 승격되지 않았을 수 있는 역사 자산이 존재할 수 있음을 전제로 한다.
+   - Work를 실행할 때마다 현재 작업 TOOL/업무와 직접 관련해 실제 만난 USB 자료만 scoped 확인한다. USB 전체 전수조사는 금지한다.
+   - USB 자료를 과거 대화창에서 만들어졌다는 이유만으로 신뢰하거나 통째로 복사하지 않는다.
+   - 각 자산은 현재 canonical/master, 최신 사용자 지시, 실제 실행·검증 증거와 대조하여 `CANONICAL_NORMAL / SHELL_OR_STALE / HOLD_UNKNOWN`으로 판정한다.
+   - 검증된 `CANONICAL_NORMAL` 및 정상 DIFF만 기존 해당 TOOL GitHub canonical repo 또는 CENTRAL master에 옮기거나 업데이트한다.
+   - `HOLD_UNKNOWN / SHELL_OR_STALE / DUPLICATE / OBSOLETE / STALE / 미검증 / 근거 없는 완료 주장 / 껍데기` 자료는 canonical에 흡수하지 않는다.
+   - 이미 정본에 존재하는 정상 자료는 중복 복제하지 않고 SKIP_REUSE한다.
    - 새 repo·중복 보관소·검증본 복제 폴더 생성 금지.
-   - commit + REMOTE_HEAD + remote read-back 증거가 있는 자산만 USB_DELETE_READY 후보.
-   - 실제 USB 삭제는 별도 명시적 승인 전 금지.
+   - commit + REMOTE_HEAD + remote read-back + 변경범위 FIRST_VALIDATION 근거가 확인된 자산만 canonical 반영 완료로 판정한다.
+   - 실제 USB 삭제는 별도 명시적 승인 전 금지하며, 필요한 원본 또는 HOLD_UNKNOWN이 남아 있으면 `USB_DELETE_READY=FALSE`다.
+USB_SOURCE_IS_UNVERIFIED_HISTORY = TRUE
+USB_TO_GITHUB_VERIFY_BEFORE_ABSORB = REQUIRED
+USB_SHELL_ABSORPTION = FORBIDDEN
+USB_FULL_AUDIT = FORBIDDEN
 
 5. COMMON_DEPLOY
    - 배포 방식과 경로를 TOOL마다 처음부터 다시 조사하지 않는다.
