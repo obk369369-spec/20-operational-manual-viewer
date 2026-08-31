@@ -88,23 +88,24 @@
       "target": "TOOL043",
       "root_id": "L6-20",
       "implemented": true,
-      "actual_tested": false,
+      "actual_tested": true,
       "remote_verified": true,
-      "deployed": false,
-      "deployed_smoke": false,
-      "observer_reachable": false,
-      "missing": [
-        "actual_tested",
-        "deployed",
-        "deployed_smoke",
-        "observer_reachable"
-      ],
-      "status": "VERIFIED_EXTERNAL_LIMIT",
-      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
+      "deployed": true,
+      "deployed_smoke": true,
+      "observer_reachable": true,
+      "missing": [],
+      "status": "DEPLOYED_COMPLETE",
+      "next_trigger": null,
+      "completion_evidence": {
+        "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+        "path": "tool043/screen_off_actual_20260831.json",
+        "github_actions_run": "33358129860",
+        "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+      }
     }
   ],
   "implemented_not_deployed_total": 0,
-  "external_limit_total": 2,
-  "observer_intent_gap_total": 2,
+  "external_limit_total": 1,
+  "observer_intent_gap_total": 1,
   "pass": true
 }

@@ -1,34 +1,184 @@
 {
   "schema_version": 1,
-  "checkpoint_status": "REMOTE_VERIFIED_WITH_OPEN",
+  "checkpoint_status": "REMOTE_VERIFIED_WITH_EXTERNAL_HOLDS",
   "verified_remote_implementation_commit": "357252d5f3b0e6d5009c1d4d52ba0492b690d451",
-  "verified_ci_runs": [32949061649, 32949061703],
+  "verified_ci_runs": [
+    32949061649,
+    32949061703
+  ],
   "roots": [
-    {"id":"L1-01","root":"GAP-TARGET07-NO-CI-WORKFLOW","status":"VERIFIED_CLOSED","evidence":"cross-chat-feedback-audit.yml executes and verifies the TOOL007 adapter fixture"},
-    {"id":"L1-02","root":"GAP-STALL-AUTH-NONEMPTY-BYPASS","status":"REMOTE_VERIFIED","evidence":"wic-stall-monitor authorization is the authenticated workflow_dispatch event"},
-    {"id":"L1-03","root":"GAP-STALL-ACTIVITY-STATUS-SUBSTRING","status":"REMOTE_VERIFIED","evidence":"active state uses an exact allow-set"},
-    {"id":"L1-04","root":"GAP-WORK-GATE-MISSING-GATES-AS-FALSE","status":"REMOTE_VERIFIED","evidence":"missing/non-boolean gates return WORK_HOLD_INVALID_GATES"},
-    {"id":"L1-05","root":"GAP-WORK-HANDOFF-VACUOUS-ZERO-ELIGIBLE-PASS","status":"REMOTE_VERIFIED","evidence":"zero candidates cannot claim PASS"},
-    {"id":"L1-06","root":"GAP-AUTH-CURRENTCHAT-NEGATION-FALLTHROUGH","status":"REMOTE_VERIFIED","evidence":"action-specific denial no longer mistakes output prohibitions for change denial"},
-    {"id":"L1-07","root":"GAP-FINAL-REPORT-CHECKPOINT-STATE-MISMATCH","status":"REMOTE_VERIFIED","recurrence":2,"evidence":"this ledger is the checkpoint status source; stale TOOL002 queue text and TOOL043 NO_DEFERRED_WORK state were corrected to match the current L4 closure and L6 external-device OPEN, with fail-closed anomaly checks"},
-    {"id":"L1-08","root":"GAP-FINAL-REPORT-GAP-COUNT-MISMATCH","status":"REMOTE_VERIFIED","evidence":"root_ledger_report.py computes every count from this deduplicated ledger"},
-    {"id":"L2-09","root":"GAP-WORK-EXIT-PLACEHOLDER-RESUMABLE","status":"REMOTE_VERIFIED","evidence":"placeholder checkpoint fields are rejected"},
-    {"id":"L2-10","root":"GAP-AUTOMATION-BOTH-DISABLED","status":"FIXED_RUNTIME","evidence":"existing wic34 heartbeat reactivated; no duplicate automation created"},
-    {"id":"L3-11","root":"GAP-TOOL006-USB-RUNTIME-STALE","status":"FIXED_RUNTIME","evidence":"production USB HTML matches verified target content; browser input/output top controls pass after reopen"},
-    {"id":"L4-12","root":"GAP-CROSSCHAT-FEEDBACK-MASTER-PROPAGATION-COVERAGE","status":"REMOTE_VERIFIED","evidence":"global pipeline validates and exercises every canonical active target plus future provisional inheritance"},
-    {"id":"L4-13","root":"GAP-CHAT-LENGTH-PROACTIVE-HANDOFF-IN-CHAT","status":"REMOTE_VERIFIED","evidence":"runtime gateway returns a proactive in-chat handoff signal before the configured context threshold without UI mutation"},
-    {"id":"L4-14","root":"GAP-TARGET-REGISTRY-INCOMPLETE-WIC-COVERAGE","status":"REMOTE_VERIFIED","evidence":"validate_registry fails closed when any WIC_CHAT_ROUTING_REGISTRY route lacks a target or canonical alias"},
-    {"id":"L4-15","root":"GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY","status":"REMOTE_VERIFIED","evidence":"recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"}
-    ,{"id":"L4-16","root":"GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"tool-scoped historical index and retriever recover TOOL002 latest discussion, last work point, GitHub checkpoint and reusable rules without user routing"}
-    ,{"id":"L4-17","root":"T1-RC-RUNTIME-VERIFIED-DATA-GATE-GAP","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"evidence":"TOOL001 runtime clears all output and returns HOLD_RUNTIME_VERIFIED_DATA_REQUIRED without five verified reports; Playwright negative/positive E2E run 32948603985 passed at target checkpoint 8bd9c2340e141d66c11c8273b527165a2c612cde"}
-    ,{"id":"L4-18","root":"T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"recurrence":1,"evidence":"Canonical Web Worker runtime passed the same actual 48,486-row XLSX locally (48,481 deduped rows, 6,264 institutions, header row 5, sum invariant) and remote 48,486-row CI run 33030647779. External evidence 33030861619, Pages 33030861091 and target checkpoint b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa read back successfully."}
-    ,{"id":"L5-19","root":"GAP-WORK-EXECUTION-FAIL-CLOSED-AUDIT","status":"REMOTE_VERIFIED","introduced_after_checkpoint":true,"recurrence":1,"evidence":"work_execution_enforcer.py registers every target, blocks missing work/smoke/final status, enforces A/B/C/D no-evidence classification, blocks redundant HOLD research and emits an automatic next-work queue; original remote CI runs 33029579522 and 33029579539 passed."}
-    ,{"id":"L6-20","root":"GAP-MOBILE-SCREEN-OFF-ACTUAL-EVIDENCE","status":"OPEN","introduced_after_checkpoint":true,"recurrence":1,"evidence":"Tool043 scheduled observer/queue and fail-closed actual-device verifier are implemented. Actual Android screen-off/background/persistent-state/screen-on restore plus HOME_SCREEN_OBSERVER_ENTRYPOINT deployment smoke remain unavailable; both deployment and observer-intent gaps are deduplicated into this root."}
+    {
+      "id": "L1-01",
+      "root": "GAP-TARGET07-NO-CI-WORKFLOW",
+      "status": "VERIFIED_CLOSED",
+      "evidence": "cross-chat-feedback-audit.yml executes and verifies the TOOL007 adapter fixture"
+    },
+    {
+      "id": "L1-02",
+      "root": "GAP-STALL-AUTH-NONEMPTY-BYPASS",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "wic-stall-monitor authorization is the authenticated workflow_dispatch event"
+    },
+    {
+      "id": "L1-03",
+      "root": "GAP-STALL-ACTIVITY-STATUS-SUBSTRING",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "active state uses an exact allow-set"
+    },
+    {
+      "id": "L1-04",
+      "root": "GAP-WORK-GATE-MISSING-GATES-AS-FALSE",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "missing/non-boolean gates return WORK_HOLD_INVALID_GATES"
+    },
+    {
+      "id": "L1-05",
+      "root": "GAP-WORK-HANDOFF-VACUOUS-ZERO-ELIGIBLE-PASS",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "zero candidates cannot claim PASS"
+    },
+    {
+      "id": "L1-06",
+      "root": "GAP-AUTH-CURRENTCHAT-NEGATION-FALLTHROUGH",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "action-specific denial no longer mistakes output prohibitions for change denial"
+    },
+    {
+      "id": "L1-07",
+      "root": "GAP-FINAL-REPORT-CHECKPOINT-STATE-MISMATCH",
+      "status": "REMOTE_VERIFIED",
+      "recurrence": 2,
+      "evidence": "this ledger is the checkpoint status source; stale TOOL002 queue text and TOOL043 NO_DEFERRED_WORK state were corrected to match the current L4 closure and L6 external-device OPEN, with fail-closed anomaly checks"
+    },
+    {
+      "id": "L1-08",
+      "root": "GAP-FINAL-REPORT-GAP-COUNT-MISMATCH",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "root_ledger_report.py computes every count from this deduplicated ledger"
+    },
+    {
+      "id": "L2-09",
+      "root": "GAP-WORK-EXIT-PLACEHOLDER-RESUMABLE",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "placeholder checkpoint fields are rejected"
+    },
+    {
+      "id": "L2-10",
+      "root": "GAP-AUTOMATION-BOTH-DISABLED",
+      "status": "FIXED_RUNTIME",
+      "evidence": "existing wic34 heartbeat reactivated; no duplicate automation created"
+    },
+    {
+      "id": "L3-11",
+      "root": "GAP-TOOL006-USB-RUNTIME-STALE",
+      "status": "FIXED_RUNTIME",
+      "evidence": "production USB HTML matches verified target content; browser input/output top controls pass after reopen"
+    },
+    {
+      "id": "L4-12",
+      "root": "GAP-CROSSCHAT-FEEDBACK-MASTER-PROPAGATION-COVERAGE",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "global pipeline validates and exercises every canonical active target plus future provisional inheritance"
+    },
+    {
+      "id": "L4-13",
+      "root": "GAP-CHAT-LENGTH-PROACTIVE-HANDOFF-IN-CHAT",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "runtime gateway returns a proactive in-chat handoff signal before the configured context threshold without UI mutation"
+    },
+    {
+      "id": "L4-14",
+      "root": "GAP-TARGET-REGISTRY-INCOMPLETE-WIC-COVERAGE",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "validate_registry fails closed when any WIC_CHAT_ROUTING_REGISTRY route lacks a target or canonical alias"
+    },
+    {
+      "id": "L4-15",
+      "root": "GAP-ORDINARY-FEEDBACK-EVIDENCE-TRIPLE-BLOCKS-IMMEDIATE-APPLY",
+      "status": "REMOTE_VERIFIED",
+      "evidence": "recover_evidence uses source_ref, previous output and user correction from the source-chat envelope before EVIDENCE_READY"
+    },
+    {
+      "id": "L4-16",
+      "root": "GAP-CROSSCHAT-HISTORICAL-RECORD-AUTO-RETRIEVAL",
+      "status": "REMOTE_VERIFIED",
+      "introduced_after_checkpoint": true,
+      "evidence": "tool-scoped historical index and retriever recover TOOL002 latest discussion, last work point, GitHub checkpoint and reusable rules without user routing"
+    },
+    {
+      "id": "L4-17",
+      "root": "T1-RC-RUNTIME-VERIFIED-DATA-GATE-GAP",
+      "status": "REMOTE_VERIFIED",
+      "introduced_after_checkpoint": true,
+      "evidence": "TOOL001 runtime clears all output and returns HOLD_RUNTIME_VERIFIED_DATA_REQUIRED without five verified reports; Playwright negative/positive E2E run 32948603985 passed at target checkpoint 8bd9c2340e141d66c11c8273b527165a2c612cde"
+    },
+    {
+      "id": "L4-18",
+      "root": "T2-RC-HEADER-ROW-INSTITUTION-ACCUMULATION-GAP",
+      "status": "REMOTE_VERIFIED",
+      "introduced_after_checkpoint": true,
+      "recurrence": 1,
+      "evidence": "Canonical Web Worker runtime passed the same actual 48,486-row XLSX locally (48,481 deduped rows, 6,264 institutions, header row 5, sum invariant) and remote 48,486-row CI run 33030647779. External evidence 33030861619, Pages 33030861091 and target checkpoint b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa read back successfully."
+    },
+    {
+      "id": "L5-19",
+      "root": "GAP-WORK-EXECUTION-FAIL-CLOSED-AUDIT",
+      "status": "REMOTE_VERIFIED",
+      "introduced_after_checkpoint": true,
+      "recurrence": 1,
+      "evidence": "work_execution_enforcer.py registers every target, blocks missing work/smoke/final status, enforces A/B/C/D no-evidence classification, blocks redundant HOLD research and emits an automatic next-work queue; original remote CI runs 33029579522 and 33029579539 passed."
+    },
+    {
+      "id": "L6-20",
+      "root": "GAP-MOBILE-SCREEN-OFF-ACTUAL-EVIDENCE",
+      "status": "REMOTE_VERIFIED",
+      "introduced_after_checkpoint": true,
+      "recurrence": 1,
+      "evidence": "Actual device evidence d6c293e0e75833b829be34ce09833c885932b9a1:tool043/screen_off_actual_20260831.json",
+      "previous_evidence": "Tool043 scheduled observer/queue and fail-closed actual-device verifier are implemented. Actual Android screen-off/background/persistent-state/screen-on restore plus HOME_SCREEN_OBSERVER_ENTRYPOINT deployment smoke remain unavailable; both deployment and observer-intent gaps are deduplicated into this root.",
+      "completion_evidence": {
+        "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+        "path": "tool043/screen_off_actual_20260831.json",
+        "github_actions_run": "33358129860",
+        "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+      },
+      "completion_label": "43번 화면 OFF 중 실행 · 재열기 후 새 결과 확인"
+    }
   ],
   "external_holds": [
-    {"root":"HOLD-T6-PUBLISHER-GOLDEN-PAIR","status":"HOLD_EVIDENCE_WAITING","next_trigger":"ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE","next_start":"Run only the publisher-specific actual pair regression"},
-    {"root":"HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR","status":"PLATFORM_LIMIT","next_trigger":"PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE","next_start":"Verify official platform capability before any internal change"},
-    {"root":"HOLD-T1-VERIFIED-REPORT-ACQUISITION","status":"HOLD_EVIDENCE_WAITING","next_trigger":"FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE","next_start":"Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"}
-    ,{"root":"HOLD-T43-ACTUAL-ANDROID-SCREEN-OFF","status":"EXTERNAL_ESCALATION","canonical_root":"L6-20","next_trigger":"ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT","next_start":"Run one actual device cycle, deployed-entry smoke and automatic verdict"}
+    {
+      "root": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "status": "HOLD_EVIDENCE_WAITING",
+      "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+      "next_start": "Run only the publisher-specific actual pair regression"
+    },
+    {
+      "root": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+      "status": "PLATFORM_LIMIT",
+      "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+      "next_start": "Verify official platform capability before any internal change"
+    },
+    {
+      "root": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "status": "HOLD_EVIDENCE_WAITING",
+      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+      "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
+    }
+  ],
+  "resolved_external_holds": [
+    {
+      "root": "HOLD-T43-ACTUAL-ANDROID-SCREEN-OFF",
+      "status": "REMOTE_VERIFIED",
+      "canonical_root": "L6-20",
+      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT",
+      "next_start": "Run one actual device cycle, deployed-entry smoke and automatic verdict",
+      "previous_status": "EXTERNAL_ESCALATION",
+      "completion_evidence": {
+        "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+        "path": "tool043/screen_off_actual_20260831.json",
+        "github_actions_run": "33358129860",
+        "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+      }
+    }
   ]
 }

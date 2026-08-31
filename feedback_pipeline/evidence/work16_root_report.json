@@ -1,16 +1,15 @@
 {
-  "checkpoint_status": "REMOTE_VERIFIED_WITH_OPEN",
+  "checkpoint_status": "REMOTE_VERIFIED_WITH_EXTERNAL_HOLDS",
   "error_found_total": 7,
   "error_new": 5,
   "error_recurrence": 5,
-  "external_hold_count": 4,
+  "external_hold_count": 3,
   "external_holds": [
     "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
     "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
-    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
-    "HOLD-T43-ACTUAL-ANDROID-SCREEN-OFF"
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION"
   ],
-  "fixed_or_verified_count": 19,
+  "fixed_or_verified_count": 20,
   "layers": {
     "L1": {
       "closed": 8,
@@ -48,18 +47,16 @@
       "unknown": 0
     },
     "L6": {
-      "closed": 0,
+      "closed": 1,
       "found": 1,
       "new": 1,
-      "open": 1,
+      "open": 0,
       "unknown": 0
     }
   },
   "new_holes": 0,
-  "open_internal_root_count": 1,
-  "open_internal_roots": [
-    "L6-20"
-  ],
+  "open_internal_root_count": 0,
+  "open_internal_roots": [],
   "pass_claimed": false,
   "schema_version": 1,
   "unique_root_count": 20,

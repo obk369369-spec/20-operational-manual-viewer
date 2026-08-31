@@ -3,18 +3,46 @@
   "source": "unified_open_ledger+canonical_work_execution_audit",
   "items": [
     {
-      "target": "TOOL043",
-      "root_id": "L6-20",
-      "last_actual_point": "ACTUAL_DEVICE_EVIDENCE_CONTRACT_READY",
-      "failed_approach": "NONE",
-      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "target": "TOOL006",
+      "label": "발행사 실제 원문·정답 쌍 대기",
+      "status": "HOLD_EVIDENCE_WAITING",
+      "sources": [
+        "external",
+        "unified",
+        "incomplete"
+      ],
+      "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+      "next_start": "Run only the publisher-specific actual pair regression"
     },
     {
-      "target": "TOOL001",
+      "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+      "target": "TOOL007",
+      "label": "플랫폼 자동 수집 기능 지원 대기",
+      "status": "PLATFORM_LIMIT",
+      "sources": [
+        "external",
+        "unified",
+        "incomplete"
+      ],
+      "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+      "next_start": "Verify official platform capability before any internal change"
+    },
+    {
       "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
-      "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS",
-      "failed_approach": "USB shells and synthetic fixtures rejected",
-      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
+      "target": "TOOL001",
+      "label": "검증된 실제 보고서 5건 대기",
+      "status": "HOLD_EVIDENCE_WAITING",
+      "sources": [
+        "external",
+        "unified",
+        "incomplete",
+        "work_queue",
+        "night_queue"
+      ],
+      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+      "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+      "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
     },
     {
       "kind": "SAFE_NIGHT_TASK",

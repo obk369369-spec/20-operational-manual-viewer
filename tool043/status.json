@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "current_status": "문제",
-  "night_processed": 5,
-  "new_open": 1,
-  "blocked_work": 6,
-  "next_work": "준비완료",
+  "current_status": "관찰판 정상",
+  "night_processed": 1,
+  "new_open": 0,
+  "blocked_work": 3,
+  "next_work": "대기 조건 충족 후 재개",
   "safe_checkpoint": "0caa47bddf605b7aaff1ee4a1dadb255beb32767",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 checkpoint/evidence persistence only; screen-off correlation remains HOLD",
@@ -30,7 +30,7 @@
   },
   "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
   "screen_off_verifier": "tool043/android_screen_off_evidence.py",
-  "single_device_run_required": true,
+  "single_device_run_required": false,
   "device_run_user_manual_action_target": 0,
   "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
   "auto_recovery": "QUEUE_PRESERVED",
@@ -61,5 +61,138 @@
       "executed_at": "2026-08-31T05:33:40.985806+00:00",
       "status": "COMPLETED"
     }
-  ]
+  ],
+  "observer_health": "OK",
+  "work_status": "작업 문제 있음",
+  "current_work": {
+    "remaining": [
+      {
+        "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+        "target": "TOOL006",
+        "label": "발행사 실제 원문·정답 쌍 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete"
+        ],
+        "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+        "next_start": "Run only the publisher-specific actual pair regression"
+      },
+      {
+        "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+        "target": "TOOL007",
+        "label": "플랫폼 자동 수집 기능 지원 대기",
+        "status": "PLATFORM_LIMIT",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete"
+        ],
+        "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+        "next_start": "Verify official platform capability before any internal change"
+      },
+      {
+        "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+        "target": "TOOL001",
+        "label": "검증된 실제 보고서 5건 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "work_queue",
+          "night_queue"
+        ],
+        "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+        "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+        "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
+      }
+    ],
+    "running": [],
+    "waiting": [
+      {
+        "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+        "target": "TOOL006",
+        "label": "발행사 실제 원문·정답 쌍 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete"
+        ],
+        "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+        "next_start": "Run only the publisher-specific actual pair regression"
+      },
+      {
+        "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+        "target": "TOOL007",
+        "label": "플랫폼 자동 수집 기능 지원 대기",
+        "status": "PLATFORM_LIMIT",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete"
+        ],
+        "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+        "next_start": "Verify official platform capability before any internal change"
+      },
+      {
+        "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+        "target": "TOOL001",
+        "label": "검증된 실제 보고서 5건 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "work_queue",
+          "night_queue"
+        ],
+        "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+        "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+        "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
+      }
+    ],
+    "pending": [],
+    "remaining_total": 3,
+    "running_total": 0,
+    "waiting_total": 3,
+    "pending_total": 0,
+    "open_internal_total": 0,
+    "recent_completed": [
+      {
+        "root_id": "L6-20",
+        "label": "43번 화면 OFF 중 실행 · 재열기 후 새 결과 확인",
+        "evidence": {
+          "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+          "path": "tool043/screen_off_actual_20260831.json",
+          "github_actions_run": "33358129860",
+          "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+        }
+      }
+    ],
+    "errors": [],
+    "conservation_pass": true
+  },
+  "max_status_age_seconds": 28800,
+  "status_projection_at": "2026-08-31T05:40:08.795982+00:00",
+  "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
+  "current_display_validation": {
+    "status": "FIRST_VALIDATION_PASS",
+    "scope": "current task projection and observer health display only",
+    "tests": [
+      "unresolved conservation",
+      "canonical evidence closure",
+      "dedup",
+      "unproven completion fail-closed",
+      "running task",
+      "UI fetch failure retains tasks",
+      "UI stale/mismatched/duplicate status fail-closed",
+      "actual local browser shows healthy observer, 0 internal OPEN, 3 external waits and L6 recent completion"
+    ],
+    "device_regression": "SKIP_REUSE d6c293e0e75833b829be34ce09833c885932b9a1 run 33358129860",
+    "unrelated_targets_changed": false,
+    "first_validation_runs": 1
+  }
 }

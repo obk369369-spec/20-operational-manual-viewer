@@ -13,10 +13,10 @@
   "evidence_classification": {
     "schema_version": 1,
     "counts": {
-      "B": 0,
-      "A": 2,
-      "C": 3,
+      "C": 4,
+      "A": 1,
       "D": 0,
+      "B": 0,
       "unclassified": 0,
       "redundant_hold_research": 0
     },
@@ -30,10 +30,16 @@
       },
       {
         "target": "TOOL043",
-        "classification": "A",
-        "action": "SKIP_WAITING_FOR_TRIGGER",
+        "classification": "C",
+        "action": "ACTUAL_SMOKE",
         "errors": [],
-        "hold_fingerprint": "93efb416fa1d5a839feaea988b6272dc43e9016fdd905143a51a8c928e8f35ff"
+        "hold_fingerprint": null,
+        "reused_actual_evidence": {
+          "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+          "path": "tool043/screen_off_actual_20260831.json",
+          "github_actions_run": "33358129860",
+          "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+        }
       },
       {
         "target": "TOOL001",
@@ -62,13 +68,6 @@
   },
   "anomalies": [],
   "next_work_queue": [
-    {
-      "target": "TOOL043",
-      "root_id": "L6-20",
-      "last_actual_point": "ACTUAL_DEVICE_EVIDENCE_CONTRACT_READY",
-      "failed_approach": "NONE",
-      "next_trigger": "ACTUAL_ANDROID_SCREEN_OFF_BACKGROUND_RUN_AND_HOME_SCREEN_ENTRYPOINT"
-    },
     {
       "target": "TOOL001",
       "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
