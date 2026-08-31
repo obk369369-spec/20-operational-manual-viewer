@@ -3,6 +3,14 @@
   "source": "unified_open_ledger+canonical_work_execution_audit",
   "items": [
     {
+      "target": "TOOL041 / TOOL042",
+      "root_id": "T41-T42-NATIVE-AUTOMATION",
+      "status": "OPEN",
+      "last_actual_point": "Pinned canonical preload-to-generation added; 9 changed-connection checks PASS; 8 implementation files remote read-back MATCH; actual current-customer path HOLD",
+      "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
+      "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data."
+    },
+    {
       "target": "TOOL006",
       "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "status": "HOLD_EVIDENCE_WAITING",
@@ -41,11 +49,11 @@
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-08-31T12:51:22.281581+00:00",
-      "github_actions_run": "33393835175",
-      "source_revision": "64c5fd139bd6b2eaff820b66679d6966f3b184a6",
+      "completed_at": "2026-08-31T13:20:31.998046+00:00",
+      "github_actions_run": "33396421519",
+      "source_revision": "c53e4b142ae6bc8f71a5572e388188bc0f660c7f",
       "execution_mode": "RECURRING",
-      "execution_count": 9,
+      "execution_count": 10,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]

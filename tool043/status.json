@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "central_input_sha256": {
-    "feedback_pipeline/work16_root_ledger.json": "d83ed95af184b05464330e686f272a95fe1d90f9986379ee5df4bd417a7d83f7",
-    "feedback_pipeline/incomplete_register.json": "90467ade357e5e9b997111996e5ef4cbb90b4f408995575cb1c1f44839499348",
-    "feedback_pipeline/unified_open_ledger.json": "36b967459fce765c95c55a28546b4689bdbf95b8484eddacfeeb3989e5adefe3",
+    "feedback_pipeline/work16_root_ledger.json": "44451b3558718ae5752ae15f0a81a091deec9f878769f3f6769656716c5e02dc",
+    "feedback_pipeline/incomplete_register.json": "1b165faff458d6918b54212e714c906992967fb0c7eb225b2c3a30042fb79f79",
+    "feedback_pipeline/unified_open_ledger.json": "246e238291825f400624fb5931e2a4595cf79ef434080e07dd08b62abcb1a0a8",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -31,6 +31,20 @@
   "current_work": {
     "remaining": [
       {
+        "root_id": "T41-T42-NATIVE-AUTOMATION",
+        "target": "TOOL041 / TOOL042",
+        "label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
+        "status": "OPEN",
+        "sources": [
+          "canonical",
+          "unified",
+          "incomplete"
+        ],
+        "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
+        "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
+        "last_actual_point": "Pinned canonical preload-to-generation added; 9 changed-connection checks PASS; 8 implementation files remote read-back MATCH; actual current-customer path HOLD"
+      },
+      {
         "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
         "target": "TOOL006",
         "label": "발행사 실제 원문·정답 쌍 대기",
@@ -42,7 +56,8 @@
           "night_queue"
         ],
         "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
-        "next_start": "Run only the publisher-specific actual pair regression"
+        "next_start": "Run only the publisher-specific actual pair regression",
+        "last_actual_point": "HOLD_EVIDENCE_WAITING"
       },
       {
         "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
@@ -56,7 +71,8 @@
           "night_queue"
         ],
         "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
-        "next_start": "Verify official platform capability before any internal change"
+        "next_start": "Verify official platform capability before any internal change",
+        "last_actual_point": "PLATFORM_LIMIT"
       },
       {
         "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
@@ -92,6 +108,20 @@
     "running": [],
     "waiting": [
       {
+        "root_id": "T41-T42-NATIVE-AUTOMATION",
+        "target": "TOOL041 / TOOL042",
+        "label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
+        "status": "OPEN",
+        "sources": [
+          "canonical",
+          "unified",
+          "incomplete"
+        ],
+        "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
+        "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
+        "last_actual_point": "Pinned canonical preload-to-generation added; 9 changed-connection checks PASS; 8 implementation files remote read-back MATCH; actual current-customer path HOLD"
+      },
+      {
         "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
         "target": "TOOL006",
         "label": "발행사 실제 원문·정답 쌍 대기",
@@ -103,7 +133,8 @@
           "night_queue"
         ],
         "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
-        "next_start": "Run only the publisher-specific actual pair regression"
+        "next_start": "Run only the publisher-specific actual pair regression",
+        "last_actual_point": "HOLD_EVIDENCE_WAITING"
       },
       {
         "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
@@ -117,7 +148,8 @@
           "night_queue"
         ],
         "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
-        "next_start": "Verify official platform capability before any internal change"
+        "next_start": "Verify official platform capability before any internal change",
+        "last_actual_point": "PLATFORM_LIMIT"
       },
       {
         "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
@@ -152,11 +184,11 @@
         "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed"
       }
     ],
-    "remaining_total": 4,
+    "remaining_total": 5,
     "running_total": 0,
-    "waiting_total": 3,
+    "waiting_total": 4,
     "pending_total": 1,
-    "open_internal_total": 0,
+    "open_internal_total": 1,
     "recent_completed": [
       {
         "root_id": "L6-20",
@@ -174,8 +206,8 @@
   },
   "max_status_age_seconds": 28800,
   "night_processed": 1,
-  "new_open": 0,
-  "blocked_work": 3,
+  "new_open": 1,
+  "blocked_work": 4,
   "next_work": "CI-TOOL012-NOT-ACTIVE",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
@@ -212,17 +244,17 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 4,
+  "incomplete_total": 5,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
-  "real_use_not_verified_total": 1,
+  "real_use_not_verified_total": 2,
   "user_feedback_courier_count": 0,
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-08-31T12:51:22.282101+00:00",
-  "source_revision": "64c5fd139bd6b2eaff820b66679d6966f3b184a6",
-  "github_actions_run": "33393835175",
+  "observer_generated_at": "2026-08-31T13:20:31.998463+00:00",
+  "source_revision": "c53e4b142ae6bc8f71a5572e388188bc0f660c7f",
+  "github_actions_run": "33396421519",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -234,7 +266,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-08-31T12:51:22.281581+00:00",
+      "executed_at": "2026-08-31T13:20:31.998046+00:00",
       "status": "COMPLETED"
     }
   ]
