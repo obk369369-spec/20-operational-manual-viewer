@@ -45,9 +45,22 @@
         "feedback_pipeline/cross_chat_feedback_ingest.py"
       ],
       "classification": "INTERNAL_MODULE_NOT_AUTONOMOUS_TRIGGER"
+    },
+    {
+      "id": "AUDIT-CHAT-ENTRY-003",
+      "status": "OPEN_CONFIRMED_REPO_SCOPE",
+      "severity": "HIGH",
+      "finding": "A repository-scoped search for wic_feedback found the workflow/state/audit references but no repository producer that converts an ordinary Chat turn into repository_dispatch. Therefore the repository itself does not contain a verified autonomous Chat-to-GitHub producer.",
+      "evidence": [
+        "repo search: wic_feedback -> feedback_pipeline/state.json",
+        "repo search: wic_feedback -> .github/workflows/cross-chat-feedback-audit.yml",
+        "repo search: wic_feedback -> .github/workflows/wic-feedback-event.yml"
+      ],
+      "classification": "REPO_PRODUCER_NOT_FOUND",
+      "boundary": "This does not prove that no external platform bridge exists; external Chat/platform trigger capability remains HOLD until independently evidenced."
     }
   ],
-  "current_status": "AUDIT_RESUMED_PARTIAL_EVIDENCE_PERSISTED",
-  "next_start": "Continue scoped audit at canonical entry gate: determine whether any existing Chat-facing connector/runner actually dispatches wic_feedback automatically; if none exists, keep platform bridge as HOLD_EXTERNAL and harden the in-chat execution rule so every WIC correction explicitly performs MASTER_LOAD -> GitHub mutation -> remote read-back within the active turn when tools are available.",
+  "current_status": "AUDIT_RESUMED_ENTRY_GAP_CONFIRMED_REPO_SCOPE",
+  "next_start": "Continue scoped audit at canonical entry gate: determine whether any existing Chat-facing connector/runner actually dispatches wic_feedback automatically; if none is independently evidenced, keep platform bridge as HOLD_EXTERNAL and harden the in-chat execution rule so every WIC correction explicitly performs MASTER_LOAD -> GitHub mutation -> remote read-back within the active turn when tools are available.",
   "safe_work_policy": "SKIP verified TOOL043 and existing PASS gates; DIFF ONLY; no 278 catch-up."
 }
