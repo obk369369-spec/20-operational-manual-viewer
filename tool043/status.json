@@ -1,72 +1,32 @@
 {
   "schema_version": 1,
+  "central_input_sha256": {
+    "feedback_pipeline/work16_root_ledger.json": "d83ed95af184b05464330e686f272a95fe1d90f9986379ee5df4bd417a7d83f7",
+    "feedback_pipeline/incomplete_register.json": "90467ade357e5e9b997111996e5ef4cbb90b4f408995575cb1c1f44839499348",
+    "feedback_pipeline/unified_open_ledger.json": "36b967459fce765c95c55a28546b4689bdbf95b8484eddacfeeb3989e5adefe3",
+    "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
+    "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
+  },
   "current_status": "관찰판 정상",
-  "night_processed": 1,
-  "new_open": 0,
-  "blocked_work": 3,
-  "next_work": "공통 CI · TOOL012 등록 상태 확인",
-  "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
-  "safe_checkpoint_evidence": {
-    "scope": "TOOL043 current agreed scope only",
-    "implementation_commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
-    "first_validation": "PASS",
-    "remote_file_readback": "PASS 12 changed files",
-    "deployment_run": "33361353169",
-    "deployment_result": "success",
-    "deployed_display": "PASS current counts and completed L6 shown",
-    "global_ci": "FAIL_TOOL012_NOT_ACTIVE_TRACKED_SEPARATELY"
-  },
-  "user_manual_action_count": 0,
-  "screen_off_test": "PASS_ACTUAL_DEVICE_REOPEN_NEW_RESULT",
-  "device_observer_verification": {
-    "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
-    "smartphone_access": "PASS_USER_CONFIRMED",
-    "screen_on_page_restore": "PASS_USER_CONFIRMED",
-    "existing_state_restore": "PASS_USER_CONFIRMED",
-    "background_run_during_screen_off": "PASS_USER_SCREEN_OFF_CONFIRMATION_AND_ACTUAL_RUN",
-    "new_result_on_phone": "PASS_USER_CONFIRMED_REOPEN",
-    "next_trigger": "NONE_FOR_COMPLETED_AGREED_SCOPE",
-    "observed_github_actions_run": "33358129860",
-    "verified_restore_mode": "REOPEN_AND_FETCH_PERSISTED_NEW_RESULT",
-    "continuous_open_page_resume": "NOT_VERIFIED",
-    "evidence_path": "tool043/screen_off_actual_20260831.json",
-    "completion_scope": "GitHub-hosted background execution while user-confirmed screen OFF, persisted new result visible on actual Android after reopening. Not Android-local background execution or continuous open-page resume."
-  },
-  "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
-  "screen_off_verifier": "tool043/android_screen_off_evidence.py",
-  "single_device_run_required": false,
-  "device_run_user_manual_action_target": 0,
-  "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
-  "auto_recovery": "QUEUE_PRESERVED",
-  "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
-  "hidden_gap_total": 0,
-  "incomplete_total": 4,
-  "remote_pending_total": 0,
-  "deployment_pending_total": 1,
-  "real_use_not_verified_total": 1,
-  "user_feedback_courier_count": 0,
-  "approval_pending_total": 0,
-  "approval_wait_does_not_block_safe_work": true,
-  "approval_items": [],
-  "observer_generated_at": "2026-08-31T05:33:40.985870+00:00",
-  "source_revision": "d6c293e0e75833b829be34ce09833c885932b9a1",
-  "github_actions_run": "33360964352",
-  "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
-  "smartphone_role": "OBSERVER_VIEW_ONLY",
-  "smartphone_direct_work_execution": "FORBIDDEN",
-  "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE",
-  "last_night_task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
-  "last_night_task_status": "COMPLETED",
-  "night_automation_real_run": "PASS",
-  "night_task_items": [
-    {
-      "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
-      "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-08-31T05:33:40.985806+00:00",
-      "status": "COMPLETED"
-    }
-  ],
   "observer_health": "OK",
+  "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
+  "current_display_validation": {
+    "status": "FIRST_VALIDATION_PASS",
+    "scope": "current task projection and observer health display only",
+    "tests": [
+      "unresolved conservation",
+      "canonical evidence closure",
+      "dedup",
+      "unproven completion fail-closed",
+      "running task",
+      "UI fetch failure retains tasks",
+      "UI stale/mismatched/duplicate status fail-closed",
+      "actual local browser shows healthy observer, 0 internal OPEN, 3 external waits and L6 recent completion"
+    ],
+    "device_regression": "SKIP_REUSE d6c293e0e75833b829be34ce09833c885932b9a1 run 33358129860",
+    "unrelated_targets_changed": false,
+    "first_validation_runs": 1
+  },
   "work_status": "작업 문제 있음",
   "current_work": {
     "remaining": [
@@ -213,34 +173,69 @@
     "conservation_pass": true
   },
   "max_status_age_seconds": 28800,
-  "status_projection_at": "2026-08-31T05:43:22.214353+00:00",
-  "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
-  "current_display_validation": {
-    "status": "FIRST_VALIDATION_PASS",
-    "scope": "current task projection and observer health display only",
-    "tests": [
-      "unresolved conservation",
-      "canonical evidence closure",
-      "dedup",
-      "unproven completion fail-closed",
-      "running task",
-      "UI fetch failure retains tasks",
-      "UI stale/mismatched/duplicate status fail-closed",
-      "actual local browser shows healthy observer, 0 internal OPEN, 3 external waits and L6 recent completion"
-    ],
-    "device_regression": "SKIP_REUSE d6c293e0e75833b829be34ce09833c885932b9a1 run 33358129860",
-    "unrelated_targets_changed": false,
-    "first_validation_runs": 1
+  "night_processed": 1,
+  "new_open": 0,
+  "blocked_work": 3,
+  "next_work": "CI-TOOL012-NOT-ACTIVE",
+  "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+  "safe_checkpoint_evidence": {
+    "scope": "TOOL043 current agreed scope only",
+    "implementation_commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "first_validation": "PASS",
+    "remote_file_readback": "PASS 12 changed files",
+    "deployment_run": "33361353169",
+    "deployment_result": "success",
+    "deployed_display": "PASS current counts and completed L6 shown",
+    "global_ci": "FAIL_TOOL012_NOT_ACTIVE_TRACKED_SEPARATELY"
   },
-  "post_deploy_ci": {
-    "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
-    "failed_runs": [
-      "33361353196",
-      "33361353186"
-    ],
-    "error": "ValueError: TOOL012 is not ACTIVE",
-    "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
-    "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
-    "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
-  }
+  "user_manual_action_count": 0,
+  "screen_off_test": "PASS_ACTUAL_DEVICE_REOPEN_NEW_RESULT",
+  "device_observer_verification": {
+    "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
+    "smartphone_access": "PASS_USER_CONFIRMED",
+    "screen_on_page_restore": "PASS_USER_CONFIRMED",
+    "existing_state_restore": "PASS_USER_CONFIRMED",
+    "background_run_during_screen_off": "PASS_USER_SCREEN_OFF_CONFIRMATION_AND_ACTUAL_RUN",
+    "new_result_on_phone": "PASS_USER_CONFIRMED_REOPEN",
+    "next_trigger": "NONE_FOR_COMPLETED_AGREED_SCOPE",
+    "observed_github_actions_run": "33358129860",
+    "verified_restore_mode": "REOPEN_AND_FETCH_PERSISTED_NEW_RESULT",
+    "continuous_open_page_resume": "NOT_VERIFIED",
+    "evidence_path": "tool043/screen_off_actual_20260831.json",
+    "completion_scope": "GitHub-hosted background execution while user-confirmed screen OFF, persisted new result visible on actual Android after reopening. Not Android-local background execution or continuous open-page resume."
+  },
+  "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
+  "screen_off_verifier": "tool043/android_screen_off_evidence.py",
+  "single_device_run_required": false,
+  "device_run_user_manual_action_target": 0,
+  "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
+  "auto_recovery": "QUEUE_PRESERVED",
+  "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
+  "hidden_gap_total": 0,
+  "incomplete_total": 4,
+  "remote_pending_total": 0,
+  "deployment_pending_total": 1,
+  "real_use_not_verified_total": 1,
+  "user_feedback_courier_count": 0,
+  "approval_pending_total": 0,
+  "approval_wait_does_not_block_safe_work": true,
+  "approval_items": [],
+  "observer_generated_at": "2026-08-31T12:51:22.282101+00:00",
+  "source_revision": "64c5fd139bd6b2eaff820b66679d6966f3b184a6",
+  "github_actions_run": "33393835175",
+  "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
+  "smartphone_role": "OBSERVER_VIEW_ONLY",
+  "smartphone_direct_work_execution": "FORBIDDEN",
+  "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE",
+  "last_night_task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
+  "last_night_task_status": "COMPLETED",
+  "night_automation_real_run": "PASS",
+  "night_task_items": [
+    {
+      "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
+      "result": "CENTRAL_OBSERVER_REFRESHED",
+      "executed_at": "2026-08-31T12:51:22.281581+00:00",
+      "status": "COMPLETED"
+    }
+  ]
 }

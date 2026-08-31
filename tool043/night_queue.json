@@ -3,46 +3,36 @@
   "source": "unified_open_ledger+canonical_work_execution_audit",
   "items": [
     {
-      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "target": "TOOL006",
-      "label": "발행사 실제 원문·정답 쌍 대기",
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "status": "HOLD_EVIDENCE_WAITING",
-      "sources": [
-        "external",
-        "unified",
-        "incomplete"
-      ],
+      "last_actual_point": "HOLD_EVIDENCE_WAITING",
       "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
       "next_start": "Run only the publisher-specific actual pair regression"
     },
     {
-      "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
       "target": "TOOL007",
-      "label": "플랫폼 자동 수집 기능 지원 대기",
+      "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
       "status": "PLATFORM_LIMIT",
-      "sources": [
-        "external",
-        "unified",
-        "incomplete"
-      ],
+      "last_actual_point": "PLATFORM_LIMIT",
       "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
       "next_start": "Verify official platform capability before any internal change"
     },
     {
-      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
       "target": "TOOL001",
-      "label": "검증된 실제 보고서 5건 대기",
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
       "status": "HOLD_EVIDENCE_WAITING",
-      "sources": [
-        "external",
-        "unified",
-        "incomplete",
-        "work_queue",
-        "night_queue"
-      ],
+      "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS",
       "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
-      "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
-      "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
+      "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
+    },
+    {
+      "target": "공통 CI · TOOL012 등록 상태 확인",
+      "root_id": "CI-TOOL012-NOT-ACTIVE",
+      "status": "OPEN_CANDIDATE",
+      "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Review registry ACTIVE contract in separate scoped Work"
     },
     {
       "kind": "SAFE_NIGHT_TASK",
@@ -51,31 +41,12 @@
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-08-31T05:33:40.985806+00:00",
-      "github_actions_run": "33360964352",
-      "source_revision": "d6c293e0e75833b829be34ce09833c885932b9a1",
+      "completed_at": "2026-08-31T12:51:22.281581+00:00",
+      "github_actions_run": "33393835175",
+      "source_revision": "64c5fd139bd6b2eaff820b66679d6966f3b184a6",
       "execution_mode": "RECURRING",
-      "execution_count": 8,
+      "execution_count": 9,
       "result": "CENTRAL_OBSERVER_REFRESHED"
-    },
-    {
-      "root_id": "CI-TOOL012-NOT-ACTIVE",
-      "target": "공통 CI · TOOL012 등록 상태 확인",
-      "status": "OPEN_CANDIDATE",
-      "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed",
-      "next_trigger": "IMMEDIATE",
-      "next_start": "Review registry ACTIVE contract in separate scoped Work",
-      "evidence": {
-        "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
-        "failed_runs": [
-          "33361353196",
-          "33361353186"
-        ],
-        "error": "ValueError: TOOL012 is not ACTIVE",
-        "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
-        "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
-        "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
-      }
     }
   ]
 }
