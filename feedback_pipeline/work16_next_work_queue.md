@@ -2,6 +2,23 @@
 
 - SAFE_CHECKPOINT_IN: `54446c0d6ef1cc13ed0c9c5d398a7a9435651c25`
 
+## P0 NEXT WORK — TOOL043 실제 작동 개선/검증
+
+- user directive: 다음 Work 작업은 TOOL043을 최우선으로 투입한다.
+- scope isolation: `278개 과거대화 정본화 작업`은 명시적으로 중지 상태이며 이 Work에 연결·재개·흡수·교차검색하지 않는다.
+- `278_CATCHUP_LINK = FORBIDDEN_FOR_THIS_WORK`
+- current owner: `tool043/` + current CENTRAL Work execution/checkpoint files only.
+- current open root: `L6-20` — TOOL043 actual Android screen-off/background/state-change/persistent-sync/screen-on/state-restore evidence.
+- existing completed scope is SKIP_REUSE. 이미 검증된 fail-closed evidence contract/verifier 및 scheduled CI self-test는 반복하지 않는다.
+- first objective: 문서상 완료 주장이 아니라 현재 TOOL043이 실제로 무엇까지 작동하는지 현재 canonical/runtime evidence로 판정한다.
+- second objective: 어제 합의한 범위까지만 개선한다. 대규모 재개발·전수조사·새 UI/새 TOOL/repo 생성은 금지한다.
+- required actual-use checks: 현재 배포/접근 가능 여부, 관찰자 화면 진입, 상태 표시, Android screen-off/background run, 상태 변화/지속 저장, screen-on 후 상태 복원, 관찰자가 실제 결과를 볼 수 있는지.
+- validation: 변경이 필요한 범위만 FIRST_VALIDATION 1회. 같은 조건 반복 테스트 금지.
+- completion report: `되는 것 / 안 되는 것 / 외부기기 증거가 필요한 것`을 분리한다. 실제 Android 기기 증거가 없으면 해당 부분은 COMPLETE로 위장하지 않고 HOLD_EXTERNAL_DEVICE_EVIDENCE로 둔다.
+- user burden: 사용자는 Observer. 플랫폼상 실제 Android 조작이 불가피할 때만 마지막에 한 번으로 묶어 최소 행동을 요청한다.
+- credit policy: 정상 개발/검증은 과도하게 축소하지 않는다. 대신 전수조사, 기존 PASS 재검사, 동일 실패 반복, 278 작업 연결로 인한 크레딧 낭비는 금지한다.
+- status: `WORK_READY / P0 / TOOL043_ONLY_FIRST`
+
 ## OPEN candidate — cross-chat historical record auto-retrieval
 
 - source: 16번 워크 이어서 하기 / TOOL002 lookup incident
