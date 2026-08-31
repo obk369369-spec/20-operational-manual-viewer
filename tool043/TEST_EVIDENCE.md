@@ -52,3 +52,31 @@ Route key: `TOOL043`
 - 자동 판정: `python tool043/android_screen_off_evidence.py <actual-evidence.json>`.
 - 실제 기기에서는 observer를 연 뒤 화면을 끄고 예약된 background 작업이 상태를 변경할 때까지 기다린 후 화면을 켠다. 수집기가 template 필드를 실제 기기·GitHub 증거로 채워야 하며 사용자가 로그를 해석하지 않는다.
 - verifier PASS 전에는 `24H_PASS` 또는 L6-20 CLOSED 금지.
+
+## 2026-08-31 TOOL043 remaining automation link verification
+
+Status: PARTIAL_VERIFIED / END_TO_END_PLATFORM_HOLD. Do not reopen L4-16 or L6-20.
+Smartphone screen-off/reopen/state-restore/observer: SKIP_REUSE from status.json device_observer_verification, run 33358129860; no device retest.
+
+### Changed links and actual evidence
+- Implementation commit: 64c5fd139bd6b2eaff820b66679d6966f3b184a6.
+- Existing monitor now reacts to canonical-input pushes and successful same-repository feedback workflow completion, retaining its existing schedule. No new worker/repository.
+- Existing night_observer projection records five canonical input SHA256 fingerprints. Existing handoff module --resume-latest reads an immutable remote revision, checks those fingerprints, freshness and task conservation, and returns OPEN/HOLD/NEXT_WORK. No stale-memory fallback.
+- Repository AGENTS.md invokes the loader at task start. Repository-local instruction only, not a global/new-chat platform hook.
+- Actual push-triggered monitor run 33393835175: success. No manual dispatch/continue/copy by user.
+- Generated remote state commit: f8f394358d7e8a276ff59730016aaaff99396b42.
+- Automatic Pages dispatch run 33393850577: success. Superseded initial deployment 33393835022 was cancelled by existing concurrency; not retried.
+- Changed four source files remote read-back: exact content PASS.
+- Deployed status.json SHA256: ea9345a5d067ee8b44db9025ae7dccf5827c837b0c6a4492f1d6b45fb419facd, byte-identical to the remote state consumed by a fresh loader process.
+- Actual loader result: RESUME_LOADED, remaining=4, pending OPEN candidate=1, external HOLD=3, NEXT_WORK=CI-TOOL012-NOT-ACTIVE. Existing recorded last_actual_points recovered; missing external T6/T7 points remain null, not invented.
+- Existing handoff CI run 33393835201: success. Other automatically triggered global CI failures 33393835187 and 33393835117 were not rerun or claimed PASS; unrelated registry audit remains outside this link repair.
+- User checkpoint transfer count in this measured CENTRAL-to-deployment-to-loader sequence: 0.
+
+### Exact unverified boundaries / HOLD
+- ALL_WIC_TOOL_RESULT_TO_CENTRAL: HOLD_MISSING_PRODUCER_HOOK_EVIDENCE. A tool result not committed to the listed CENTRAL inputs or emitted through the existing authenticated feedback transport cannot be discovered by this workflow. No all-tool execution E2E was run or claimed.
+- ARBITRARY_NEW_16_OR_WORK_AUTOSTART: PLATFORM_HOLD. A fresh Python loader is NOT a fresh Work session. No supported global new-task hook was installed or exercised. Repository AGENTS guidance does not automatically apply to unrelated/projectless tasks.
+- AUTOMATIC_NEXT_WORK_EXECUTION: PLATFORM_HOLD. Reading NEXT_WORK does not launch or resume an idle Work task and does not bypass approvals.
+- DAILY_MANUAL_TRANSFER_ZERO_FOR_ENTIRE_CHAIN: NOT_PROVEN. Manual transfer is not required within the measured CENTRAL-to-43-to-loader link; it is not proven absent across all producers and arbitrary new tasks.
+- Existing device-scope COMPLETE remains valid. The broader automation scope is not COMPLETE.
+
+Next trigger: supported producer result hook plus supported new-Work startup/execution hook and a real new-Work E2E receipt. Do not ask the user to relay daily Observer/checkpoint contents as a workaround.
