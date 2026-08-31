@@ -31,16 +31,27 @@ def stable_id(*parts: str) -> str:
     return hashlib.sha256("\0".join(parts).encode()).hexdigest()[:20]
 
 
-def validate_registry(registry: Mapping[str, Any]) -> None:
+def validate_registry(registry: Mapping[str, Any], *, target: str | None = None) -> None:
     if registry.get("schema_version") != 1: raise ValueError("unsupported registry schema")
     seen: dict[str, str] = {}
-    for target, row in registry.get("targets", {}).items():
+    rows = registry.get('targets', {})
+    selected = {target: rows[target]} if target is not None else rows
+    for target_id, row in selected.items():
         missing = REQUIRED_TARGET_FIELDS - set(row)
-        if missing: raise ValueError(f"{target} missing {sorted(missing)}")
-        if row["status"] != "ACTIVE": raise ValueError(f"{target} is not ACTIVE")
+        if missing: raise ValueError(f"{target_id} missing {sorted(missing)}")
+        if row['status'] == 'COMPLETE':
+            proof = row.get('first_validation', {})
+            if (proof.get('status') != 'PASS' or not proof.get('run_id')
+                    or not row.get('latest_verified_commit')
+                    or row['latest_verified_commit'] != row.get('latest_safe_checkpoint')):
+                raise ValueError(f'{target_id} COMPLETE lacks verified checkpoint evidence')
+        elif row['status'] != 'ACTIVE':
+            raise ValueError(f'{target_id} unsupported registry status')
         for chat_id in row["chat_ids"]:
             if chat_id in seen: raise ValueError(f"duplicate chat id {chat_id}")
-            seen[chat_id] = target
+            seen[chat_id] = target_id
+    if target is not None:
+        return  # Selected transport validates only its resolved target, not all WIC.
     route_targets = {
         line.split("=", 1)[0].removeprefix("route:").strip()
         for line in ROUTE_REGISTRY.read_text(encoding="utf-8").splitlines()
@@ -245,11 +256,22 @@ def canonical_execution_audit() -> dict[str, Any]:
 
 def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, Any], workspace: Path, *, bundled_python: str = "") -> dict[str, Any]:
     """Create evidence DIFF, test, commit, push and remote read-back from actual Git results."""
-    validate_registry(registry)
     required_event={"event_kind","source_chat","source_ref","feedback"}
     missing_event=sorted(required_event-set(event))
     if missing_event:
         return fail({"stage":"CAPTURED","status":"RUNNING"},"CAPTURED",f"event missing {missing_event}",True,"RECOVER_FIELDS_FROM_SOURCE_CHAT")
+    target,row = resolve_event(registry,event)
+    if target in registry['targets']:
+        validate_registry(registry, target=target)
+    else:
+        validate_registry({'schema_version': 1, 'targets': {target: row}}, target=target)
+    if row['status'] == 'COMPLETE':
+        return {'status': 'SKIP_REUSE', 'stage': 'COMPLETE', 'target': target,
+                'reason': 'Completed registered scope; new changes require explicit scoped reopening',
+                'execution_allowed': False, 'customer_data_mutated': False,
+                'evidence': {'commit': row['latest_verified_commit'], 'path': row['evidence_path'],
+                             'run_id': row['first_validation']['run_id']},
+                'NEXT_AUTOMATIC_ACTION': 'NONE_FOR_COMPLETED_SCOPE'}
     master_load_receipt=load_master_context(registry,event,workspace)
     if master_load_receipt.get("status") != "PASS":
         return fail({"stage":"MASTER_LOAD","status":"RUNNING","MASTER_LOAD_RECEIPT":master_load_receipt},"MASTER_LOAD",str(master_load_receipt.get("reason","MASTER_LOAD_FAIL")),True,"LOAD_REGISTERED_MASTERS_AND_RESUME")

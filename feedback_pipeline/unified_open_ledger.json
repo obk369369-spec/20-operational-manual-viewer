@@ -50,9 +50,9 @@
       "root_id": "CI-TOOL012-NOT-ACTIVE",
       "target": "공통 CI · TOOL012 등록 상태 확인",
       "status": "OPEN_CANDIDATE",
-      "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed",
-      "next_trigger": "IMMEDIATE",
-      "next_start": "Review registry ACTIVE contract in separate scoped Work",
+      "last_actual_point": "COMPLETE/ACTIVE contract connection fixed. One actual TOOL012 canonical record passed existing transport to SKIP_REUSE with original run/commit; downstream tests/mutations zero. Full CI not rerun.",
+      "next_trigger": "NEW_CONCRETE_REGISTRY_CONTRACT_FAILURE_EVIDENCE",
+      "next_start": "SKIP_REUSE repaired TOOL012 connection; do not rerun unchanged full CI. Separate new failure evidence only.",
       "evidence": {
         "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
         "failed_runs": [
@@ -75,8 +75,18 @@
           "cause_id": "TOOL012_NOT_ACTIVE",
           "method_id": "UNCHANGED_GLOBAL_CI_AUDIT",
           "evidence_ref": "runs:33361353196,33361353186"
+        },
+        {
+          "operation_id": "tool012-complete-registry-transport-link",
+          "status": "PASS",
+          "evidence_ref": "feedback_pipeline/evidence/direct_connections_20260831.json"
         }
-      ]
+      ],
+      "connection_repair": {
+        "status": "PASS_ACTUAL_SINGLE_RECORD_CONNECTION",
+        "evidence_ref": "feedback_pipeline/evidence/direct_connections_20260831.json",
+        "scope": "TOOL012 completion acceptance and no-reexecution; not all-CI certification"
+      }
     },
     {
       "id": "T41-T42-NATIVE-AUTOMATION",
@@ -180,5 +190,10 @@
       "evidence_ref": "feedback_pipeline/evidence/new_work_policy_20260831.json",
       "next_work": "SKIP_REUSE; no unchanged rerun"
     }
+  },
+  "direct_connection_review": {
+    "evidence_ref": "feedback_pipeline/evidence/direct_connections_20260831.json",
+    "existing_platform_holds_reused": true,
+    "missing_data_is_not_platform_limit": true
   }
 }

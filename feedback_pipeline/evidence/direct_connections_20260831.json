@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "base_commit": "cfe941757afe21c0548191059953ec77ded7eb0c",
+  "scope": "Only existing unresolved CENTRAL roots; no inventory or old PASS retest",
+  "connections": [
+    {
+      "assets": [
+        "feedback_pipeline/wic_target_registry.json:TOOL012",
+        "feedback_pipeline/global_pipeline.py:validate_registry/execute_actual_transport"
+      ],
+      "break": "COMPLETE rejected by ACTIVE-only contract",
+      "direct": "FIXED; actual row returned original completion receipt as SKIP_REUSE",
+      "platform_boundary": false
+    },
+    {
+      "assets": [
+        "customer_pipeline/customer_model_adapter.py",
+        "OpenAI model API"
+      ],
+      "break": "Configured model authentication absent in prior canonical evidence; no release change recorded",
+      "direct": "Existing adapter needs authentication, not new code",
+      "platform_boundary": "AUTH_EXECUTION_BOUNDARY; unchanged HOLD reused"
+    },
+    {
+      "assets": [
+        "customer_pipeline/customer_release_gate.py:save_central",
+        "GitHub CENTRAL contents"
+      ],
+      "break": "Native GitHub authentication/write permission not verified",
+      "direct": "Existing save connection present; configured authorization required",
+      "platform_boundary": "AUTH_BOUNDARY; unchanged HOLD reused"
+    },
+    {
+      "assets": [
+        "Current CLEAN customer MASTER",
+        "TOOL041/042 history/failure evidence packet"
+      ],
+      "break": "Requested customer identity/history/exact failure not linked",
+      "direct": "No existing upstream evidence located in current allowed scope; not enough to claim direct connection",
+      "platform_boundary": false,
+      "status": "EXISTING_CUSTOMER_EVIDENCE_REQUIRED_REUSED_NOT_PLATFORM_LIMIT"
+    },
+    {
+      "assets": [
+        "General Chat input",
+        "Existing TOOL007/CENTRAL event ingestion"
+      ],
+      "break": "No platform-native input interception hook",
+      "direct": false,
+      "platform_boundary": "EXISTING_PLATFORM_HOLD_REUSED"
+    },
+    {
+      "assets": [
+        "Required publisher golden pairs / verified five-report payloads",
+        "Existing TOOL006/TOOL001 validators"
+      ],
+      "break": "Required real input evidence absent",
+      "direct": "No two complete existing endpoints established; no fabricated data or replacement system",
+      "platform_boundary": false,
+      "status": "EXISTING_EVIDENCE_WAIT_REUSED"
+    }
+  ],
+  "validation": {
+    "actual_record_count": 1,
+    "result": {
+      "status": "SKIP_REUSE",
+      "stage": "COMPLETE",
+      "target": "TOOL012",
+      "reason": "Completed registered scope; new changes require explicit scoped reopening",
+      "execution_allowed": false,
+      "customer_data_mutated": false,
+      "evidence": {
+        "commit": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+        "path": "TOOL012_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+        "run_id": "33310342582"
+      },
+      "NEXT_AUTOMATIC_ACTION": "NONE_FOR_COMPLETED_SCOPE"
+    },
+    "existing_tool_tests": 0,
+    "subprocess_or_mutation_calls": 0
+  },
+  "full_ci_rerun": false,
+  "new_tool_mvp_pipeline": 0,
+  "user_manual_interventions": 0,
+  "next_work": "SKIP_REUSE this fixed status-contract connection; existing authentication/customer-evidence triggers only"
+}

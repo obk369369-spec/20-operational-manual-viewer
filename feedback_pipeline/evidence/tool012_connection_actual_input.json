@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "targets": {
+    "TOOL012": {
+      "chat_ids": [
+        "TOOL012",
+        "12번"
+      ],
+      "repository": "obk369369-spec/12-wic-subwebsite-builder",
+      "branch": "main",
+      "master_paths": [
+        "TOOL012_MASTER.md"
+      ],
+      "state_path": "TOOL012_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "evidence_path": "TOOL012_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "test_command": [
+        "PUBLIC_FIRST_VALIDATION_PASS",
+        "https://obk369369-spec.github.io/12-wic-subwebsite-builder/"
+      ],
+      "latest_safe_checkpoint": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+      "latest_verified_commit": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+      "adapter": "REPOSITORY_DIFF_ONLY",
+      "status": "COMPLETE",
+      "first_validation": {
+        "status": "PASS",
+        "attempts": 1,
+        "run_id": "33310342582",
+        "public_url": "https://obk369369-spec.github.io/12-wic-subwebsite-builder/"
+      }
+    }
+  }
+}
