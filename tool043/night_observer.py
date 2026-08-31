@@ -3,12 +3,21 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PIPE = ROOT / "feedback_pipeline"
 ALLOWED_NIGHT_ACTIONS = {"REFRESH_OBSERVER_FROM_CENTRAL"}
+
+
+def verified_checkpoint(roots: dict, previous_status: dict) -> str:
+    # Never promote GITHUB_SHA (an unvalidated in-flight revision) to a safe point.
+    for candidate in (previous_status.get("safe_checkpoint"), roots.get("safe_checkpoint")):
+        if isinstance(candidate, str) and re.fullmatch(r"[0-9a-f]{40}", candidate):
+            return candidate
+    return "HOLD_CHECKPOINT_NOT_VERIFIED"
 
 
 def consume_safe_tasks(existing: dict) -> tuple[list[dict], list[dict]]:
@@ -58,9 +67,11 @@ def build() -> tuple[dict, dict]:
         "new_open": open_count,
         "blocked_work": blocked,
         "next_work": "준비완료" if work["next_work_queue"] else "대기",
-        "safe_checkpoint": roots.get("safe_checkpoint", "CURRENT_REMOTE_MAIN"),
+        "safe_checkpoint": verified_checkpoint(roots, previous_status),
+        "safe_checkpoint_evidence": previous_status.get("safe_checkpoint_evidence"),
         "user_manual_action_count": 0,
-        "screen_off_test": "HOLD_ACTUAL_DEVICE_REQUIRED",
+        "screen_off_test": previous_status.get("screen_off_test", "HOLD_ACTUAL_DEVICE_REQUIRED"),
+        "device_observer_verification": previous_status.get("device_observer_verification", {}),
         "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
         "screen_off_verifier": "tool043/android_screen_off_evidence.py",
         "single_device_run_required": True,

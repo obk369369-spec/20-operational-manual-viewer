@@ -5,9 +5,9 @@
   "new_open": 1,
   "blocked_work": 6,
   "next_work": "준비완료",
-  "safe_checkpoint": "CURRENT_REMOTE_MAIN",
+  "safe_checkpoint": "a9005c96b1447c0e4dad2222b51cc3a482d9732d",
   "user_manual_action_count": 0,
-  "screen_off_test": "HOLD_ACTUAL_DEVICE_REQUIRED",
+  "screen_off_test": "HOLD_SCREEN_OFF_RUN_CORRELATION_AND_NEW_RESULT",
   "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
   "screen_off_verifier": "tool043/android_screen_off_evidence.py",
   "single_device_run_required": true,
@@ -41,5 +41,19 @@
       "executed_at": "2026-08-30T21:04:55.236165+00:00",
       "status": "COMPLETED"
     }
-  ]
+  ],
+  "safe_checkpoint_evidence": {
+    "scope": "TOOL043 night execution",
+    "verified_run": "33335411469",
+    "verification": "successful run and persisted remote state read-back reused"
+  },
+  "device_observer_verification": {
+    "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
+    "smartphone_access": "PASS_USER_CONFIRMED",
+    "screen_on_page_restore": "PASS_USER_CONFIRMED",
+    "existing_state_restore": "PASS_USER_CONFIRMED",
+    "background_run_during_screen_off": "HOLD_INTERVAL_NOT_RECORDED",
+    "new_result_on_phone": "HOLD_NEW_RESULT_NOT_IDENTIFIED",
+    "next_trigger": "screen-off interval correlated with persisted run and phone new-result observation"
+  }
 }
