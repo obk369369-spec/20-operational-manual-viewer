@@ -64,12 +64,17 @@
         "Live native private GitHub authentication and central-write permission not verified",
         "Arbitrary external ChatGPT/Work interception not installed"
       ],
-      "next_trigger": "ACTUAL_CUSTOMER_EVIDENCE_AND_SEMANTIC_EXECUTOR_AVAILABLE",
+      "next_trigger": "CONFIGURED_AUTHENTICATED_NATIVE_SEMANTIC_RUNTIME_AVAILABLE",
       "evidence": {
         "path": "customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json",
         "tool041": "89fb0a85f987d7644a95b9b82fc6ec2f4fedaab3",
         "tool042": "7c1368f1813bdfffd2ce1e57758610c22e1fdb5a",
         "scope": "BLOCKING_BOUNDARY_IMPLEMENTED_CUSTOMER_PASS_E2E_NOT_COMPLETE"
+      },
+      "semantic_executor_hold": {
+        "status": "HOLD_EXECUTION_LAYER_REQUIRED",
+        "evidence_path": "customer_pipeline/TOOL041_042_SEMANTIC_EXECUTOR_HOLD_20260831.json",
+        "customer_e2e": "CUSTOMER_EVIDENCE_REQUIRED"
       }
     }
   ],

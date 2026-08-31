@@ -1,0 +1,60 @@
+{
+  "scope": "TOOL041_TOOL042_SEMANTIC_EXECUTOR_CONNECTION_ONLY",
+  "status": "HOLD_EXECUTION_LAYER_REQUIRED",
+  "restored_central_head": "4cf98993fec160c52a1eb64a9dd0b0767b342fd5",
+  "reuse_through": "9e63063264234fc2df24a3e135cf7fc57c6ad0c9",
+  "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+  "root": "T41-T42-NATIVE-AUTOMATION",
+  "code_changed": false,
+  "existing_PASS_retests": 0,
+  "new_customer_tests": 0,
+  "model_calls": 0,
+  "workaround_created": false,
+  "blocking_points": [
+    {
+      "path": "customer_pipeline/customer_release_gate.py",
+      "line": 73,
+      "condition": "All eight categories are assigned HOLD_NOT_EXECUTED; no model/reviewer call exists"
+    },
+    {
+      "repository": "obk369369-spec/07-wic-setting-tool-v1",
+      "path": "scripts/customer_release_bridge.js",
+      "line": 10,
+      "condition": "Existing bridge accepts HOLD envelopes only; future verified PASS propagation must be connected with real semantic executor, not enabled alone"
+    },
+    {
+      "layer": "API runtime",
+      "condition": "OPENAI_API_KEY/OPENAI_BASE_URL/AZURE_OPENAI_API_KEY/AZURE_OPENAI_ENDPOINT/WIC_SEMANTIC_REVIEWER absent in checked process/user environment; no available dedicated inference/key tool; no account-wide absence asserted"
+    },
+    {
+      "layer": "Existing installed Codex CLI",
+      "condition": "One read-only login status probe failed before auth: Error loading configuration: Could not find home directory. No retry or new CLI wrapper."
+    }
+  ],
+  "eight_category_result": "NOT_EXECUTED_ALL_EIGHT",
+  "semantic_fail_rewrite_recheck": "NOT_EXECUTED; existing fixed correction replay is not semantic rewrite/recheck",
+  "customer_e2e": {
+    "status": "CUSTOMER_EVIDENCE_REQUIRED",
+    "scope": "only already-known CLEAN MASTER exact named-customer lookup",
+    "canonical_customer_blob": "96e2b6df66343ac967cf3531574b1f065bbb3cbe",
+    "name_present": false,
+    "exact_failure_input_linked": false,
+    "other_customer_substitution": false
+  },
+  "required_execution_layer": [
+    "Configured callable native model runtime, with permitted outbound access and valid API credential or a working supported authenticated CLI environment",
+    "Existing gate adapter invokes meaning-level reviewer with current rules, user feedback, customer/history/material evidence and exact draft; returns output/source-bound eight-category verdict",
+    "One semantic rewrite and second review, with PASS propagated only after all release prerequisites; no keyword replacement or caller-supplied PASS",
+    "Native Python path configuration for the existing Node bridge; no new service required"
+  ],
+  "unchanged_holds": [
+    "Native CENTRAL authenticated write remains previously unverified; no rerun",
+    "Customer/history/material evidence required"
+  ],
+  "official_sources": [
+    "https://developers.openai.com/api/reference/overview#authentication",
+    "https://learn.chatgpt.com/docs/codex/cli"
+  ],
+  "observer_note": "Observer/night-queue last_actual_point lags the newer canonical root checkpoint. Used canonical root and checkpoint, did not reopen old work or expand into projection repair.",
+  "manual_intervention_count": 0
+}

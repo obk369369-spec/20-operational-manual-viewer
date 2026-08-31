@@ -76,9 +76,9 @@
       "target": "TOOL041 / TOOL042",
       "status": "OPEN",
       "display_label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
-      "last_actual_point": "Single shared release barrier installed; unchanged actual FAIL inputs 2/2 blocked and internally rewritten once; all bodies withheld because semantic executor missing; native CAS tested with mocks only",
-      "next_trigger": "ACTUAL_CUSTOMER_EVIDENCE_AND_SEMANTIC_EXECUTOR_AVAILABLE",
-      "next_start": "Connect a real source/customer/output-bound semantic executor and actual named-customer evidence; validate only remaining positive customer E2E and authenticated save. Do not repeat boundary checks.",
+      "last_actual_point": "Semantic executor connection HOLD confirmed without code changes or PASS retests: no configured native inference credentials/adapter; installed CLI fails configuration before auth. Requested customer remains CUSTOMER_EVIDENCE_REQUIRED.",
+      "next_trigger": "CONFIGURED_AUTHENTICATED_NATIVE_SEMANTIC_RUNTIME_AVAILABLE",
+      "next_start": "Connect the real semantic call in the existing gate and HOLD-only bridge, bind all eight verdicts to source/customer/draft, run one rewrite+recheck only after authentic execution and named-customer evidence are available. No substitute customer or repeated PASS tests.",
       "evidence": {
         "path": "customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json",
         "tool041": "89fb0a85f987d7644a95b9b82fc6ec2f4fedaab3",
@@ -97,7 +97,12 @@
       ],
       "source": "SCOPED_TOOL041_TOOL042_WORK",
       "type": "INCOMPLETE_AUTOMATION",
-      "result": "PARTIAL"
+      "result": "PARTIAL",
+      "semantic_executor_hold": {
+        "status": "HOLD_EXECUTION_LAYER_REQUIRED",
+        "evidence_path": "customer_pipeline/TOOL041_042_SEMANTIC_EXECUTOR_HOLD_20260831.json",
+        "customer_e2e": "CUSTOMER_EVIDENCE_REQUIRED"
+      }
     }
   ],
   "open_internal_total": 1,

@@ -57,3 +57,14 @@
 - 내부 OPEN: 실제 의미실행기, 자연어 구규칙 충돌 해결, 자유 재작성. HOLD: 지정 고객 현재 식별/접촉·실패원문·실제 자료 및 runtime 인증.
 - NEXT_WORK: 실제 source/customer/output-bound 의미실행기 및 해당 고객 근거가 연결되면 남은 positive 고객 E2E/인증 저장만 검증. 이번 차단경계 검사는 반복 금지.
 - 증거: CENTRAL `customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json`. 사용자 수동 전달 0회, 실제 발송 없음.
+
+
+## 2026-08-31 — 의미검사 실행층 한정 HOLD 확정
+
+- 9e63063264234fc2df24a3e135cf7fc57c6ad0c9 PASS 범위 SKIP_REUSE. 기존 차단/FAIL/모의저장 재검사 0회, 코드 수정 0건, 모델 호출 0회.
+- 정확한 차단: customer_release_gate.py:73은 8항목 HOLD_NOT_EXECUTED 고정이며 모델 호출 없음. 42번 customer_release_bridge.js는 HOLD 응답만 수용하도록 되어 있음.
+- 현재 process/user 환경에 모델 API 인증·endpoint·semantic reviewer 설정 없음. 설치된 Codex CLI login status 1회는 'Could not find home directory' 설정 오류로 인증 확인 전 중단. 계정 자체의 영구 불가를 주장하지 않음.
+- 필요한 실행층: 정상 설정·인증된 native 모델 호출 환경과 허용된 네트워크. 준비되면 기존 gate/bridge 안에 8항목 의미판정→1회 재작성→재판정→검증된 PASS 전달을 연결해야 함. 이번에 우회 wrapper/service 또는 키워드 검사기를 추가하지 않음.
+- 현재 확보된 CLEAN MASTER의 지정 고객 이름 연결 없음: CUSTOMER_EVIDENCE_REQUIRED. 전체 대화/전체 고객 검색, 다른 고객 대체, 의미검사 PASS 주장 없음.
+- 출력차단 그대로 유지. 기존 native 중앙저장 인증 HOLD도 재실행하지 않음.
+- 최신 증거: customer_pipeline/TOOL041_042_SEMANTIC_EXECUTOR_HOLD_20260831.json. 다음 재개 trigger는 CONFIGURED_AUTHENTICATED_NATIVE_SEMANTIC_RUNTIME_AVAILABLE.
