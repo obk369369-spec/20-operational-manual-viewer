@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "root_id": "L5-19",
+  "operation_id": "permanent-common-work-startup-link",
+  "base_commit": "132e68af6b26d6214c966aa462141abcbc389f28",
+  "status": "PASS_COLD_PROCESS_STARTUP",
+  "test": {
+    "status": "PASS",
+    "cold_processes": 3,
+    "cases": [
+      {
+        "decision": "SKIP_REUSE",
+        "execution_allowed": false,
+        "common_block_loaded": true,
+        "source_revision": "132e68af6b26d6214c966aa462141abcbc389f28"
+      },
+      {
+        "decision": "SKIP_NO_VALUE",
+        "execution_allowed": false,
+        "common_block_loaded": true,
+        "source_revision": "132e68af6b26d6214c966aa462141abcbc389f28"
+      },
+      {
+        "decision": "WORK_HOLD_SCOPE",
+        "execution_allowed": false,
+        "common_block_loaded": true,
+        "source_revision": "132e68af6b26d6214c966aa462141abcbc389f28"
+      }
+    ],
+    "downstream_work_executions": 0,
+    "transport": "captured GitHub snapshot plus staged code; clock fixed at captured observer timestamp",
+    "ui_work_created": false
+  },
+  "reuse": "Existing common block, resume loader, evaluate_candidate, preflight_attempt, canonical receipts",
+  "old_pass_test_reruns": 0,
+  "holds": [
+    "General Chat/UI Work bypasses without CENTRAL startup hook are not intercepted",
+    "Direct live shell network resume not retried; startup transport tested with exact captured canonical inputs and staged source"
+  ],
+  "next_work": "SKIP_REUSE; no unchanged rerun"
+}

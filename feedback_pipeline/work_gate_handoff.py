@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 
-def load_latest_resume() -> dict[str, Any]:
+def load_latest_resume(candidate=None) -> dict[str, Any]:
     """Read one immutable CENTRAL revision; never fall back to remembered state."""
     repo = "obk369369-spec/20-operational-manual-viewer"
     def read(url):
@@ -28,6 +28,14 @@ def load_latest_resume() -> dict[str, Any]:
     head = json.loads(read(f"https://api.github.com/repos/{repo}/git/ref/heads/main"))["object"]["sha"]
     if not re.fullmatch(r"[0-9a-f]{40}", head):
         raise ValueError("invalid CENTRAL revision")
+    common_path = 'feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md'
+    common = read(f'https://raw.githubusercontent.com/{repo}/{head}/{common_path}').decode('utf-8')
+    if 'WORK_ADMISSION_POLICY = PERMANENT_FAIL_CLOSED_V1' not in common:
+        raise ValueError('Permanent common Work policy missing')
+    for name in ('work_gate_handoff.py', 'work_execution_enforcer.py'):
+        remote = read(f'https://raw.githubusercontent.com/{repo}/{head}/feedback_pipeline/{name}').decode('utf-8')
+        if (Path(__file__).parent / name).read_text(encoding='utf-8') != remote:
+            raise ValueError('WORK_HOLD_STALE_EXECUTOR: ' + name)
     raw = read(f"https://raw.githubusercontent.com/{repo}/{head}/tool043/status.json")
     state = json.loads(raw)
     required_inputs = {
@@ -67,7 +75,14 @@ def load_latest_resume() -> dict[str, Any]:
             for key in ('last_actual_point', 'next_start', 'next_trigger'):
                 if key in source:
                     row[key] = source[key]
+    admission = (evaluate_candidate(candidate, canonical_inputs['feedback_pipeline/unified_open_ledger.json'])
+                 if candidate is not None else {'decision': 'WORK_HOLD_CANDIDATE_REQUIRED'})
+    admission['execution_allowed'] = admission['decision'] == 'WORK_ELIGIBLE'
     return {"status": "RESUME_LOADED", "central_revision": head,
+            "common_execution_block": {'path': common_path, 'sha256': hashlib.sha256(common.encode()).hexdigest(),
+                                       'content': common, 'policy': 'PERMANENT_FAIL_CLOSED_V1'},
+            "work_admission": admission,
+            "execution_allowed": admission['execution_allowed'],
             "source_revision": state["source_revision"], "safe_checkpoint": state["safe_checkpoint"],
             "status_sha256": hashlib.sha256(raw).hexdigest(),
             "last_actual_points": [{"root_id": r["root_id"], "last_actual_point": r.get("last_actual_point"),
@@ -331,11 +346,16 @@ def main() -> None:
     parser.add_argument("--validate-exit", default="")
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--resume-latest", action="store_true")
+    parser.add_argument("--candidate", default="", help="Exact Work candidate; evaluated after fresh CENTRAL load")
     args = parser.parse_args()
 
     if args.resume_latest:
         try:
-            print(json.dumps(load_latest_resume(), ensure_ascii=False, indent=2))
+            candidate = json.loads(Path(args.candidate).read_text(encoding='utf-8')) if args.candidate else None
+            result = load_latest_resume(candidate)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            if candidate is not None and not result['execution_allowed']:
+                raise SystemExit(2)
         except Exception as exc:
             print(json.dumps({"status": "HOLD_CENTRAL_RESUME_UNAVAILABLE", "reason": str(exc), "memory_fallback": False}))
             raise SystemExit(2)

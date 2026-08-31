@@ -134,6 +134,13 @@
         "next_trigger": "NEW_CONCRETE_WORK_ADMISSION_FAILURE_EVIDENCE",
         "next_start": "SKIP_REUSE unchanged operation; patch only a demonstrated missing connection",
         "platform_hold": "Arbitrary direct/native tool calls and external Work without handoff hook are not intercepted"
+      },
+      "permanent_common_startup": {
+        "status": "PASS_COLD_PROCESS_STARTUP",
+        "evidence_path": "feedback_pipeline/evidence/new_work_policy_20260831.json",
+        "last_actual_point": "Permanent common policy loaded before cold-process candidate admission; three requested denial cases passed",
+        "next_trigger": "NEW_CONCRETE_STARTUP_BYPASS_EVIDENCE",
+        "next_start": "SKIP_REUSE; fix only demonstrated new connection failure"
       }
     },
     {

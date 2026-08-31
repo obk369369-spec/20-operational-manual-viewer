@@ -20,3 +20,7 @@ The agent records the current user's narrowly authorized directive/action/assets
 SKIP_REUSE and SKIP_NO_VALUE are terminal for that operation. A HOLD release requires canonical changed-condition evidence, not a caller trigger_observed flag. Do not recheck unchanged authentication, repeat searches/tests or reopen old customer work.
 Persist operation-level PASS/HOLD/FAIL receipts (operation_id, evidence_ref; failure cause_id/method_id; HOLD condition_fingerprint), last_actual_point and next_trigger in the existing ledger at completion, before another operation. Out-of-scope findings are recorded as OPEN/HOLD only, not executed.
 The connected enforcement boundary is Work candidate admission. Direct tool calls or external tasks that bypass this path are not technically intercepted; report PLATFORM_HOLD instead of claiming universal enforcement.
+
+## Permanent common-block startup binding
+
+The --resume-latest path now loads WIC_WORK_COMMON_EXECUTION_BLOCK.md and validates local execution code against the same pinned CENTRAL revision. Its common_execution_block is mandatory permanent policy, not optional advice. A candidate-less resume has execution_allowed=false. Before starting a concrete operation use the existing command with --resume-latest --candidate <candidate.json>; work_admission must allow it. SKIP/HOLD decisions are terminal, not permission to use another entrypoint. An outdated checkout must stop with WORK_HOLD_STALE_EXECUTOR; use the existing canonical update workflow, never execute fetched source text dynamically.

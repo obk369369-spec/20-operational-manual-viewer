@@ -170,6 +170,15 @@
       "next_work": "SKIP_REUSE; resume this operation only for new concrete failure evidence, not unchanged daily audit",
       "evidence_ref": "feedback_pipeline/evidence/work_repeat_guard_20260831.json"
     },
-    "platform_boundary": "Only Work candidate paths using work_gate_handoff; external/native bypasses remain HOLD_NOT_INTERCEPTED"
+    "platform_boundary": "Only Work candidate paths using work_gate_handoff; external/native bypasses remain HOLD_NOT_INTERCEPTED",
+    "common_block": "feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md",
+    "startup_entry": "feedback_pipeline/work_gate_handoff.py --resume-latest --candidate <candidate.json>",
+    "permanent_policy": "PERMANENT_FAIL_CLOSED_V1",
+    "startup_link_receipt": {
+      "status": "PASS_COLD_PROCESS_STARTUP",
+      "operation_id": "permanent-common-work-startup-link",
+      "evidence_ref": "feedback_pipeline/evidence/new_work_policy_20260831.json",
+      "next_work": "SKIP_REUSE; no unchanged rerun"
+    }
   }
 }

@@ -152,3 +152,15 @@ SAFE_WORK_EXHAUSTED_BECAUSE_COMMON_PATH_NOT_REUSED = FORBIDDEN
 USER_ROLE = OBSERVER_ONLY
 사용자는 경로·배포법·checkpoint·정본 위치를 매 작업마다 다시 설명하지 않는다.
 플랫폼상 본인 승인/MFA/권한 변경이 필수인 경우에만 최소 1회 행동을 요청한다.
+
+## 영구 Work 반복·임의확장 차단 — REQUIRED
+
+WORK_ADMISSION_POLICY = PERMANENT_FAIL_CLOSED_V1
+- 새 Work는 기존 work_gate_handoff.py --resume-latest로 최신 CENTRAL 공통 블록·실행 코드·작업 영수증을 같은 revision에서 로드한다. 과거 대화 메모리는 근거로 쓰지 않는다.
+- 실제 후보를 --candidate로 전달하면 로드 직후 기존 evaluate_candidate → preflight_attempt가 자동 실행된다. 후보 없는 로드는 실행허가가 아니다.
+- PASS/VERIFIED/REMOTE_VERIFIED 작업은 SKIP_REUSE. 해제조건의 실제 변경 증거가 없는 HOLD와 같은 원인·방법의 실패는 SKIP_NO_VALUE로 종료한다.
+- 수정 순서: 기존 자산 재사용 → 끊어진 연결 복구 → 최소 수정. 연결/오류/잔여 수정 요청은 새 TOOL/MVP/UI/DB/파이프라인 생성 승인이 아니다.
+- 새 구조물은 명시적 승인과 기존 구조 해결불가 증거를 먼저 확인한다. 범위 밖 문제는 기존 OPEN/HOLD에 기록하고 실행하지 않는다.
+- 작업 종료 시 기존 장부에 operation_id·증거·PASS/HOLD/FAIL·실패 방법·해제조건·NEXT_WORK를 저장한다. 완료 작업의 이름을 바꿔 재실행하지 않는다.
+- 공통 블록 누락, 로컬 실행기와 최신 정본 불일치, 최신 상태 로드 실패는 HOLD. 사용자에게 규칙·checkpoint를 다시 전달시키지 않는다.
+- 강제 범위는 이 공통 진입경로를 사용하는 Work다. 플랫폼의 임의 대화/직접 도구 호출 전체를 가로챈다는 의미가 아니다.
