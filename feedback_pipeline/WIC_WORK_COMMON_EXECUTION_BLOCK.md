@@ -16,9 +16,11 @@
 - 현재 대화에 일회성 질문과 영구규칙이 섞여 있으면 영구규칙만 분리한다.
 - 반영 순서: MASTER_LOAD → 신규 피드백 추출 → 기존 규칙과 중복/충돌 대조 → DIFF ONLY → GitHub write/commit → remote read-back → 증거 보고.
 - GitHub write/commit/read-back이 실제로 완료되지 않으면 `업데이트 완료`라고 말하지 않고 `미반영/HOLD`로 보고한다.
+- `업데이트`라는 단어 자체만으로 반영 성공을 보장하지 않는다. 실제 commit과 remote read-back이 PASS한 경우에만 중앙 반영 확정으로 판정한다.
 - `업데이트`는 USB 전체조사나 전수감사를 뜻하지 않는다. 현재 작업 범위와 새로 드러난 피드백만 증분 처리한다.
 CENTRAL_FLUSH_COMMAND = 업데이트
 CENTRAL_FLUSH_REQUIRES_REMOTE_EVIDENCE = TRUE
+UPDATE_WORD_ALONE_IS_NOT_PROOF = TRUE
 
 ## 대화창 길이 감시 및 자동 인계
 - WIC 대화가 길어져 문맥 누락·응답 저하·반복 가능성이 커지기 전에 시스템이 먼저 `CHAT_HANDOFF_REQUIRED`를 사용자에게 알린다.
@@ -53,6 +55,15 @@ NOOP_SCHEDULED_REPEAT = FORBIDDEN
 - 현재 TOOL 작업 중 278 catch-up을 조회·흡수·재개·교차검색하지 않는다.
 - 일반 USB 운영자료 규칙과 별개로, 278 catch-up은 명시적 재개 전 독립 HOLD다.
 278_CATCHUP_LINK = FORBIDDEN_UNTIL_EXPLICIT_RESUME
+
+## 전 대화창 피드백 자동화 전수감사 — 보류
+- 사용자가 2026-08-31에 요청한 `전 대화창/전 도구 피드백 자동수집 → 중앙마스터 자동반영 → 다음 작업 자동호출 → 사전 강제게이트 → E2E 검증` 전체 감사는 가치 판단 후 지금 즉시 계속하지 않고 보류한다.
+- 이 감사의 목적은 과거 완료 주장과 실제 작동 상태의 차이를 찾고, `일반 Chat 자동반영 / MASTER 자동호출 / 라우팅 / pre-check gate / E2E`의 실제 구현 수준을 증거로 판정하는 것이다.
+- 사용자가 나중에 명시적으로 재개하라고 할 때만 다시 시작한다.
+- 재개 시 이미 확인된 MASTER/checkpoint/PASS 범위를 다시 전수검사하지 않고, 저장소·코드·checkpoint·최근 실행증거로 직접 판정한다.
+- 278개 과거대화 catch-up과는 연결하지 않는다.
+DEFERRED_CROSS_CHAT_AUTOMATION_AUDIT = HOLD_USER_RESUME
+RESUME_TRIGGER = USER_EXPLICITLY_REQUESTS_CROSS_CHAT_AUTOMATION_AUDIT
 
 ## TOOL043 현재 합의 범위 완료 증거
 - TOOL043 모바일 관찰자 페이지 실제 스마트폰 접근 PASS.
