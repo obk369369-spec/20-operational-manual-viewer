@@ -56,14 +56,22 @@ NOOP_SCHEDULED_REPEAT = FORBIDDEN
 - 일반 USB 운영자료 규칙과 별개로, 278 catch-up은 명시적 재개 전 독립 HOLD다.
 278_CATCHUP_LINK = FORBIDDEN_UNTIL_EXPLICIT_RESUME
 
-## 전 대화창 피드백 자동화 전수감사 — 보류
-- 사용자가 2026-08-31에 요청한 `전 대화창/전 도구 피드백 자동수집 → 중앙마스터 자동반영 → 다음 작업 자동호출 → 사전 강제게이트 → E2E 검증` 전체 감사는 가치 판단 후 지금 즉시 계속하지 않고 보류한다.
-- 이 감사의 목적은 과거 완료 주장과 실제 작동 상태의 차이를 찾고, `일반 Chat 자동반영 / MASTER 자동호출 / 라우팅 / pre-check gate / E2E`의 실제 구현 수준을 증거로 판정하는 것이다.
-- 사용자가 나중에 명시적으로 재개하라고 할 때만 다시 시작한다.
-- 재개 시 이미 확인된 MASTER/checkpoint/PASS 범위를 다시 전수검사하지 않고, 저장소·코드·checkpoint·최근 실행증거로 직접 판정한다.
+## 전 대화창 피드백 자동화 전수감사 — 보류 + 기존 결과 재사용
+- 사용자가 2026-08-31에 요청한 `전 대화창/전 도구 피드백 자동수집 → 중앙마스터 자동반영 → 다음 작업 자동호출 → 사전 강제게이트 → E2E 검증` 전체 감사는 더 진행하지 않고 보류한다.
+- 사용자가 명시적으로 재개하기 전에는 이 감사를 위한 추가 전수검색·원격조회·수정·재검증을 하지 않는다.
+- 단, 중단 전에 이미 확보된 결과는 폐기하지 않고 향후 개별 TOOL 작업의 `재사용 가능한 고장 지도 / PASS 판정 강화 기준`으로만 사용한다.
+- 감사 결과의 `완전 자동 연속 E2E 0%`는 WIC 코드 구현률 0% 또는 기존 TOOL 전체 실패를 뜻하지 않는다. 일반 Chat 입력부터 GitHub 반영·다음 실제 출력 강제까지 이어지는 완전 자동 E2E가 확인되지 않았다는 제한된 의미로만 해석한다.
+- 실제 코드·수정 SHA·회귀검증·실사용 증거가 존재하는 기존 PASS/VERIFIED 범위는 보존하고 SKIP_REUSE한다. 특히 TOOL041/042 본체 실제 수정·회귀 증거와 TOOL043 스마트폰 실사용 증거를 전 Chat 자동화 미입증과 섞어 무효화하지 않는다.
+- 앞으로 `규칙 저장`, `fixture/internal test`, `파일 존재/hash validator`, `실제 본체 수정`, `실사용 검증`, `일반 Chat→최종 출력 연속 E2E`를 서로 다른 증거 등급으로 구분한다. 검사 함수가 존재한다는 사실만으로 실제 업무 출력에 강제 적용됐다고 PASS 처리하지 않는다.
+- 일반 Chat 메시지를 자동 수집하는 진입 경로와 WIC 내부에 이벤트가 입력된 뒤 처리하는 경로를 분리 판정한다. 후단 코드가 존재한다는 이유만으로 일반 Chat 자동 연결 완료로 확대 판정하지 않는다.
+- 이미 드러난 공통 고장 후보(registry 상태 계약 불일치, 실제 master 대신 상태/포인터 경로, 출력 자체를 검사하지 않는 validator, workflow/실행기 반환 계약 불일치)는 향후 해당 범위를 실제로 작업할 때만 좁게 재사용·확인한다. 이 목록만을 이유로 별도 전수감사를 재개하지 않는다.
+- 도구별 감사표의 `일부 자동 / 규칙만 / NOT_VERIFIED` 분류는 다음 해당 TOOL 작업의 출발점 후보로만 사용하며, 미확인 항목을 미구현으로 단정하지 않는다.
 - 278개 과거대화 catch-up과는 연결하지 않는다.
 DEFERRED_CROSS_CHAT_AUTOMATION_AUDIT = HOLD_USER_RESUME
 RESUME_TRIGGER = USER_EXPLICITLY_REQUESTS_CROSS_CHAT_AUTOMATION_AUDIT
+AUDIT_EXISTING_FINDINGS_REUSE = SCOPED_ONLY
+AUDIT_FINDINGS_DO_NOT_INVALIDATE_VERIFIED_TOOL_WORK = TRUE
+FULL_AUTOMATION_E2E_ZERO_IS_NOT_CODE_IMPLEMENTATION_ZERO = TRUE
 
 ## TOOL043 현재 합의 범위 완료 증거
 - TOOL043 모바일 관찰자 페이지 실제 스마트폰 접근 PASS.
