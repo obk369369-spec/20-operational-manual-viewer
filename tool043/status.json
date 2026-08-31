@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "central_input_sha256": {
-    "feedback_pipeline/work16_root_ledger.json": "44451b3558718ae5752ae15f0a81a091deec9f878769f3f6769656716c5e02dc",
-    "feedback_pipeline/incomplete_register.json": "1b165faff458d6918b54212e714c906992967fb0c7eb225b2c3a30042fb79f79",
-    "feedback_pipeline/unified_open_ledger.json": "246e238291825f400624fb5931e2a4595cf79ef434080e07dd08b62abcb1a0a8",
+    "feedback_pipeline/work16_root_ledger.json": "276ffc23403e6500959a7f2f82ca4826bad9466b51a8b0c1addd0b0c6d551b79",
+    "feedback_pipeline/incomplete_register.json": "82b6ce1ce6a59ad8ec44b9f5bcbb264b4727eb2049182a98b90a552831a4c6e9",
+    "feedback_pipeline/unified_open_ledger.json": "83846f4ba32857f17c2970461be9dc1a457139cfd1f930c4b85382f3acfe4efa",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -38,7 +38,8 @@
         "sources": [
           "canonical",
           "unified",
-          "incomplete"
+          "incomplete",
+          "night_queue"
         ],
         "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
         "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
@@ -115,7 +116,8 @@
         "sources": [
           "canonical",
           "unified",
-          "incomplete"
+          "incomplete",
+          "night_queue"
         ],
         "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
         "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
@@ -252,9 +254,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-08-31T13:20:31.998463+00:00",
-  "source_revision": "c53e4b142ae6bc8f71a5572e388188bc0f660c7f",
-  "github_actions_run": "33396421519",
+  "observer_generated_at": "2026-08-31T13:41:15.265763+00:00",
+  "source_revision": "9e63063264234fc2df24a3e135cf7fc57c6ad0c9",
+  "github_actions_run": "33398321881",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -266,7 +268,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-08-31T13:20:31.998046+00:00",
+      "executed_at": "2026-08-31T13:41:15.265268+00:00",
       "status": "COMPLETED"
     }
   ]
