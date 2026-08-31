@@ -37,5 +37,47 @@
     "General Chat/UI Work bypasses without CENTRAL startup hook are not intercepted",
     "Direct live shell network resume not retried; startup transport tested with exact captured canonical inputs and staged source"
   ],
-  "next_work": "SKIP_REUSE; no unchanged rerun"
+  "next_work": "SKIP_REUSE; no unchanged rerun",
+  "publication": {
+    "implementation_commit": "9846491e2b22dcfc2d0874696605a5b0021811f9",
+    "remote_head_observed": "1405fc9272f188e7829891d5c7b225b068238622",
+    "remote_readback": [
+      {
+        "path": "AGENTS.md",
+        "blob": "61816298bc20bd0775d603a8d49b951e97f1fb5d",
+        "exact_match": true
+      },
+      {
+        "path": "feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md",
+        "blob": "6e990174af610d8862fc3f506384529496944a9d",
+        "exact_match": true
+      },
+      {
+        "path": "feedback_pipeline/work_gate_handoff.py",
+        "blob": "b9676dd6ceeee0a31d9331e04b22148d516a929c",
+        "exact_match": true
+      },
+      {
+        "path": "feedback_pipeline/unified_open_ledger.json",
+        "blob": "a77d60d398eab871f698b2a9b25f1c3ecdf3bad6",
+        "exact_match": true
+      },
+      {
+        "path": "feedback_pipeline/work16_root_ledger.json",
+        "blob": "7beb034242e34fd3615045db3510a3b079c6aee3",
+        "exact_match": true
+      },
+      {
+        "path": "feedback_pipeline/evidence/new_work_policy_20260831.json",
+        "blob": "a44f87c74f1f662a11f1f31e56874181f392e7fa",
+        "exact_match": true
+      },
+      {
+        "path": "feedback_pipeline/evidence/test_new_work_policy_20260831.py",
+        "blob": "b3898bb1a93e3670c544898c7354c54e022f3fa6",
+        "exact_match": true
+      }
+    ],
+    "result": "REMOTE_READBACK_MATCH"
+  }
 }
