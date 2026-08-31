@@ -1,6 +1,20 @@
 name: WIC Stall Heartbeat Monitor
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'feedback_pipeline/work16_root_ledger.json'
+      - 'feedback_pipeline/incomplete_register.json'
+      - 'feedback_pipeline/unified_open_ledger.json'
+      - 'feedback_pipeline/evidence/work_execution_audit_20260827.json'
+      - 'feedback_pipeline/approval_queue.json'
+      - 'WIC_EXECUTION_STATE.json'
+      - '.github/workflows/wic-stall-monitor.yml'
+  workflow_run:
+    workflows: ['WIC feedback event apply']
+    types: [completed]
+    branches: [main]
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
@@ -15,15 +29,20 @@ permissions:
   issues: write
   actions: write
 
+concurrency:
+  group: wic-central-observer-sync
+  cancel-in-progress: false
+
 jobs:
   check-observer-heartbeat:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' }}
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: Build canonical night queue and mobile observer state
         env:
@@ -31,10 +50,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tool043/android_screen_off_evidence.py --self-test
-          python feedback_pipeline/work_execution_enforcer.py --record
-          python feedback_pipeline/deployment_observer_gate.py --record
-          python feedback_pipeline/unified_open_ledger.py --record
+          # Project canonical state only. Completed device/business tests are SKIP_REUSE.
+          export GITHUB_SHA="$(git rev-parse HEAD)"
           python tool043/night_observer.py
           if git diff --quiet -- tool043/status.json tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json feedback_pipeline/evidence/deployment_observer_audit_20260827.json feedback_pipeline/unified_open_ledger.json; then
             echo 'Night observer state already current.'

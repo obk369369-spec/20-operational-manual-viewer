@@ -11,8 +11,61 @@ from __future__ import annotations
 
 import argparse
 import json
+import hashlib
+import re
+from datetime import datetime, timezone
+from urllib.request import Request, urlopen
 from pathlib import Path
 from typing import Any, Mapping
+
+
+def load_latest_resume() -> dict[str, Any]:
+    """Read one immutable CENTRAL revision; never fall back to remembered state."""
+    repo = "obk369369-spec/20-operational-manual-viewer"
+    def read(url):
+        with urlopen(Request(url, headers={"User-Agent": "WIC-CENTRAL-resume", "Cache-Control": "no-cache"}), timeout=30) as response:
+            return response.read()
+    head = json.loads(read(f"https://api.github.com/repos/{repo}/git/ref/heads/main"))["object"]["sha"]
+    if not re.fullmatch(r"[0-9a-f]{40}", head):
+        raise ValueError("invalid CENTRAL revision")
+    raw = read(f"https://raw.githubusercontent.com/{repo}/{head}/tool043/status.json")
+    state = json.loads(raw)
+    required_inputs = {
+        'feedback_pipeline/work16_root_ledger.json', 'feedback_pipeline/incomplete_register.json',
+        'feedback_pipeline/unified_open_ledger.json', 'feedback_pipeline/approval_queue.json',
+        'feedback_pipeline/evidence/work_execution_audit_20260827.json',
+    }
+    hashes = state.get('central_input_sha256', {})
+    if set(hashes) != required_inputs:
+        raise ValueError('CENTRAL input fingerprints absent; wait for automatic projection')
+    for path in sorted(required_inputs):
+        current = read(f'https://raw.githubusercontent.com/{repo}/{head}/{path}')
+        if hashlib.sha256(current).hexdigest() != hashes[path]:
+            raise ValueError('CENTRAL changed after projection: ' + path)
+    work = state["current_work"]
+    remaining = work["remaining"]
+    ids = [r["root_id"] for r in remaining]
+    parts = work["running"] + work["waiting"] + work["pending"]
+    if not work["conservation_pass"] or len(ids) != len(set(ids)) or sorted(ids) != sorted(r["root_id"] for r in parts):
+        raise ValueError("CENTRAL task conservation failed")
+    for key in ("remaining", "running", "waiting", "pending"):
+        if len(work[key]) != work[key + "_total"]:
+            raise ValueError("CENTRAL count mismatch")
+    age = (datetime.now(timezone.utc) - datetime.fromisoformat(state["observer_generated_at"].replace("Z", "+00:00"))).total_seconds()
+    if not -300 <= age <= state.get("max_status_age_seconds", 28800):
+        raise ValueError("CENTRAL projection stale; automatic sync must complete first")
+    if state["observer_health"] != "OK" or state["incomplete_total"] != len(ids):
+        raise ValueError("CENTRAL projection invalid")
+    return {"status": "RESUME_LOADED", "central_revision": head,
+            "source_revision": state["source_revision"], "safe_checkpoint": state["safe_checkpoint"],
+            "status_sha256": hashlib.sha256(raw).hexdigest(),
+            "last_actual_points": [{"root_id": r["root_id"], "last_actual_point": r.get("last_actual_point"),
+                                     "status": r["status"], "next_start": r.get("next_start"), "next_trigger": r.get("next_trigger")} for r in remaining],
+            "OPEN": work["pending"], "RUNNING": work["running"], "HOLD": work["waiting"],
+            "NEXT_WORK": work["running"] or work["pending"],
+            "user_checkpoint_transfer_count": 0,
+            "platform_new_chat_hook": "HOLD_NOT_INSTALLED_GLOBALLY",
+            "note": "Loader execution proves retrieval, not a native new-Work startup hook or automatic task execution."}
 
 REQUIRED_HANDOFF = (
     "blocker",
@@ -244,7 +297,16 @@ def main() -> None:
     parser.add_argument("--exit-template-output", default="")
     parser.add_argument("--validate-exit", default="")
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--resume-latest", action="store_true")
     args = parser.parse_args()
+
+    if args.resume_latest:
+        try:
+            print(json.dumps(load_latest_resume(), ensure_ascii=False, indent=2))
+        except Exception as exc:
+            print(json.dumps({"status": "HOLD_CENTRAL_RESUME_UNAVAILABLE", "reason": str(exc), "memory_fallback": False}))
+            raise SystemExit(2)
+        return
 
     if args.self_test:
         self_test()
