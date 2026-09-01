@@ -1,0 +1,26 @@
+{
+  "schema_version": "TOOL012_OPEN_CLOSURE_EVIDENCE_V1",
+  "closed_at": "2026-09-01T22:15:00+09:00",
+  "root_id": "CI-TOOL012-NOT-ACTIVE",
+  "exact_failure": "CI required literal ACTIVE while canonical TOOL012 was correctly COMPLETE with verified checkpoint evidence",
+  "canonical_contract": {
+    "registry_status": "COMPLETE",
+    "validator_rule": "COMPLETE is supported when first_validation PASS, run_id exists, and latest_verified_commit equals latest_safe_checkpoint",
+    "checkpoint": "11bac27ed8a7f594c6e965d5c534c0c6e422b987",
+    "run_id": "33310342582"
+  },
+  "reused_assertion_evidence": "feedback_pipeline/evidence/tool012_connection_actual_input.json",
+  "reused_test": "feedback_pipeline/evidence/test_tool012_connection_20260831.py",
+  "previous_result": "SKIP_REUSE with execution_allowed=false and zero downstream mutation",
+  "repeat_test_count": 0,
+  "changed_connection": [
+    "feedback_pipeline/incomplete_register.json",
+    "feedback_pipeline/unified_open_ledger.json",
+    "tool043/night_queue.json"
+  ],
+  "expected_projection": {
+    "open_internal_total": 0,
+    "tool012_absent_from_remaining": true
+  },
+  "result": "PASS_PENDING_OBSERVER_PROJECTION_READBACK"
+}
