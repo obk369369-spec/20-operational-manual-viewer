@@ -70,7 +70,8 @@
     "TOOL007": {
       "required_assets": [
         "customer_pipeline/tool7_contact_judgment.py",
-        "WIC_GLOBAL_OPERATING_RULES.md"
+        "WIC_GLOBAL_OPERATING_RULES.md",
+        "customer_pipeline/CONTACT_COPY_CHECKPOINT.md"
       ],
       "validator": [
         "WIC_BUNDLED_PYTHON",
@@ -224,9 +225,10 @@
       "repository": "obk369369-spec/20-operational-manual-viewer",
       "branch": "main",
       "master_paths": [
-        "customer_pipeline/tool7_contact_judgment.py"
+        "customer_pipeline/tool7_contact_judgment.py",
+        "WIC_GLOBAL_OPERATING_RULES.md"
       ],
-      "state_path": "feedback_pipeline/state.json",
+      "state_path": "customer_pipeline/CONTACT_COPY_CHECKPOINT.md",
       "evidence_path": "feedback_pipeline/tool007_adapter_evidence.json",
       "test_command": [
         "WIC_BUNDLED_PYTHON",
@@ -235,7 +237,9 @@
       "latest_safe_checkpoint": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
       "latest_verified_commit": "87101fb4cd91c5430c366e5d618049fa4a8e9cd3",
       "adapter": "CENTRAL_LANE_DIFF_ONLY",
-      "status": "ACTIVE"
+      "status": "ACTIVE",
+      "start_gate_representative_type": "MENT_COPY_AUTHORING",
+      "start_gate_evidence": "feedback_pipeline/evidence/tool007_start_gate_20260901.json"
     },
     "TOOL037": {
       "chat_ids": [
