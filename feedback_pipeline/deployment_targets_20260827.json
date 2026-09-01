@@ -60,7 +60,20 @@
       "remote_verified": true,
       "deployed": true,
       "deployed_smoke": true,
-      "observer_reachable": true
+      "observer_reachable": true,
+      "release_gate_required": true,
+      "actual_business_input_e2e": true,
+      "final_output_verified": true,
+      "regression_passed": true,
+      "same_failed_input_retested": true,
+      "github_published": true,
+      "remote_readback": true,
+      "local_canonical_deployed": true,
+      "deployed_canonical_e2e": true,
+      "real_use_pass": true,
+      "release_blockers": [],
+      "completion_commit": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+      "evidence": "obk369369-spec/13-excel-upload/tests/tool13_actual_114_evidence.json"
     },
     {
       "target": "TOOL043",

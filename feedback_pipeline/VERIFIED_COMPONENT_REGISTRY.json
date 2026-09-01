@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "policy": "EVIDENCE_REQUIRED_REUSE_FIRST",
+  "components": [
+    {
+      "component_id": "TOOL013_LARGE_XLSX_BATCH_UI_SAFE",
+      "status": "VERIFIED_REUSABLE",
+      "source_tool": "TOOL013",
+      "source_repository": "obk369369-spec/13-excel-upload",
+      "source_file": "index.html",
+      "source_commit": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+      "function": "Large multi-XLSX sequential parsing with UI yielding, per-file fail-closed status, bounded browser persistence, and compact preview rendering",
+      "capabilities": [
+        "MULTI_XLSX_SEQUENTIAL_READ",
+        "UI_EVENT_LOOP_YIELD",
+        "PER_FILE_FAILURE_STATUS",
+        "BOUNDED_LOCALSTORAGE_CHECKPOINT",
+        "LARGE_CELL_PREVIEW_TRUNCATION"
+      ],
+      "input_contract": "Browser File objects containing XLSX/XLS/CSV batches; target must provide SheetJS and a batch-state adapter",
+      "output_contract": "Responsive progress, mapped rows, preview, validation result, and downloadable XLSX without row-zero/UNKNOWN/stall",
+      "dependencies": ["SheetJS 0.18.5", "tool13_batch_state.js", "browser File API"],
+      "test_evidence": {
+        "actual_files": 114,
+        "actual_input_manifest_sha256": "a37c5f66f42d522f34abdb5ae6dd29504d506bee4c84ff9f12d65db59036e2cd",
+        "generated_rows": 823,
+        "pass_count": 114,
+        "hold_count": 0,
+        "output_sha256": "6fa11cd2c10617a3eed75037e59d51915f284fd2555d3744814cf3f6d9a40167",
+        "deployed_canonical_sha256": "bf94ef3cf9b0b38322443386065a6866a52e0fd0b3e2ad2dc584711bd1498534",
+        "remote_read_back": true,
+        "deployed_e2e_pass": true
+      }
+    }
+  ],
+  "candidates": [],
+  "promotion_gate": {
+    "requires_actual_test": true,
+    "requires_remote_read_back": true,
+    "requires_target_retest_after_reuse": true,
+    "shell_or_document_promotion_allowed": false
+  }
+}
