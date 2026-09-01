@@ -112,18 +112,27 @@
       "repository": "obk369369-spec/13-excel-upload",
       "branch": "main",
       "master_paths": [
-        "WIC_TARGET_APPLY_STATE.json"
+        "TOOL013_MASTER.md",
+        "WIC_RULE_SOURCE.md"
       ],
       "state_path": "WIC_TARGET_APPLY_STATE.json",
-      "evidence_path": "external-evidence-archive",
+      "evidence_path": "tests/tool13_actual_114_evidence.json",
       "test_command": [
         "WIC_BUILTIN_REQUIRED_FILES",
         "WIC_TARGET_APPLY_STATE.json"
       ],
-      "latest_safe_checkpoint": "1d51ba4816cdda704ce9580309b670d075762d17",
-      "latest_verified_commit": "1d51ba4816cdda704ce9580309b670d075762d17",
+      "latest_safe_checkpoint": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+      "latest_verified_commit": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
       "adapter": "REPOSITORY_DIFF_ONLY",
-      "status": "ACTIVE"
+      "status": "ACTIVE",
+      "first_validation": {
+        "status": "PASS",
+        "attempts": 1,
+        "evidence": "tests/tool13_actual_114_evidence.json",
+        "actual_files": 114,
+        "generated_rows": 823,
+        "run_scope": "DEPLOYED_CANONICAL_REAL_USE"
+      }
     },
     "TOOL041": {
       "chat_ids": [

@@ -205,5 +205,16 @@
     "evidence_ref": "feedback_pipeline/evidence/direct_connections_20260831.json",
     "existing_platform_holds_reused": true,
     "missing_data_is_not_platform_limit": true
+  },
+  "latest_integrated_work": {
+    "status": "PARTIAL_COMPLETE_WITH_EXTERNAL_HOLDS",
+    "evidence_path": "feedback_pipeline/evidence/history_reference_start_gate_20260901.json",
+    "tool013": "SKIP_REUSE_COMPLETE",
+    "tool043": "SKIP_REUSE_COMPLETE",
+    "antigravity_unique_diff": 0,
+    "history_278": "SKIP_REUSE_COMPLETE_WITH_SOURCE_HOLD",
+    "master_promotions": 0,
+    "start_gate": "TOOL013_ACTUAL_LOAD_PASS",
+    "next_work": "Only new external evidence triggers; do not rerun completed TOOL013/043/history work"
   }
 }
