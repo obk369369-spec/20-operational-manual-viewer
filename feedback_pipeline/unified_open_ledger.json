@@ -173,5 +173,12 @@
     "master_promotions": 0,
     "start_gate": "TOOL013_ACTUAL_LOAD_PASS",
     "next_work": "Only new external evidence triggers; do not rerun completed TOOL013/043/history work"
+  },
+  "latest_closed_work": {
+    "root_id": "CI-TOOL012-NOT-ACTIVE",
+    "status": "REMOTE_VERIFIED_SKIP_REUSE",
+    "evidence_ref": "feedback_pipeline/evidence/tool012_open_closure_20260901.json",
+    "closed_reason": "Canonical COMPLETE contract already passed; stale pre-fix queue projections removed",
+    "user_action_count": 0
   }
 }
