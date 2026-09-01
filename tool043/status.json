@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "central_input_sha256": {
-    "feedback_pipeline/work16_root_ledger.json": "5a3511b93ee881955509b7ac37c870212a7091ea8746e93c8e884b3a30f0dff4",
-    "feedback_pipeline/incomplete_register.json": "d1d1e424c056e9b5a774dc16ea783d649fcdb09d03292e19b0a8d138f8eea836",
-    "feedback_pipeline/unified_open_ledger.json": "ea0a0db9fdb640d447b850c8acb6824d489e6f98b98aab41a4aefde11e9ae9b0",
-    "feedback_pipeline/approval_queue.json": "356d6ce3001bedb3d08eb1ee609381d481fdf3c9c84de2cf4c24dc15a82b2258",
-    "feedback_pipeline/evidence/work16_root_report.json": "e9f4d782a8924a875ca064b7d6bdfae8494d8fb450b61fd8a8affc374a0f9a7f",
-    "feedback_pipeline/evidence/work_execution_audit_20260827.json": "f41c265303942af733e49c7a4f04efa801f0750e04f0172c1421f2fdb65476a4"
+    "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
+    "feedback_pipeline/incomplete_register.json": "1394f9195054f9c9360b147deb0c35e8a08797564591dfa64d69260720783e7c",
+    "feedback_pipeline/unified_open_ledger.json": "2143061dbadbfc7f94d7d43822d7e77587c6fd131e51ad6b47468f11a2c68da5",
+    "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
+    "feedback_pipeline/evidence/work16_root_report.json": "4af4c160bb014e533cf97e3d036136e4d4ddb990ed264202f19f4d5333a6b155",
+    "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
   "current_status": "관찰판 정상",
   "observer_health": "OK",
@@ -255,9 +255,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-01T06:36:02.463546+00:00",
-  "source_revision": "LOCAL_ONLY",
-  "github_actions_run": "LOCAL_ONLY",
+  "observer_generated_at": "2026-09-01T06:36:48.939508+00:00",
+  "source_revision": "cead0acece1d8a422916ac1e191d8ca337c6cc04",
+  "github_actions_run": "33478349509",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -269,7 +269,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-01T06:35:09.095327+00:00",
+      "executed_at": "2026-09-01T06:36:48.938808+00:00",
       "status": "COMPLETED"
     }
   ]
