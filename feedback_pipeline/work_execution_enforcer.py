@@ -10,9 +10,12 @@ HERE = Path(__file__).resolve().parent
 TARGETS = HERE / "work_execution_targets_20260827.json"
 REPORT = HERE / "evidence" / "work_execution_audit_20260827.json"
 FINAL = {"ACTUALLY_FIXED", "ACTUALLY_TESTED", "VERIFIED_SKIP", "FAIL", "HOLD_EVIDENCE", "EXTERNAL_ESCALATION", "PLATFORM_LIMIT"}
-RELEASE_FIELDS = ("actual_business_input_e2e", "final_output_verified", "regression_passed",
+RELEASE_FIELDS = ("regression_passed", "actual_business_input_e2e", "final_output_verified",
                   "same_failed_input_retested", "github_published", "remote_readback",
                   "local_canonical_deployed", "deployed_canonical_e2e", "real_use_pass")
+RELEASE_SEQUENCE = ("MODIFIED", "REGRESSION_PASSED", "ACTUAL_INPUT_E2E_PASSED",
+                    "FINAL_OUTPUT_VERIFIED", "GITHUB_PUBLISHED", "REMOTE_READBACK_PASSED",
+                    "LOCAL_CANONICAL_DEPLOYED", "DEPLOYED_CANONICAL_RETEST_PASSED", "COMPLETE")
 
 
 def preflight_attempt(candidate: dict, ledger: dict) -> dict:
@@ -84,19 +87,25 @@ def audit(data: dict) -> dict:
         target = row["target"]
         status = row.get("final_status", "")
         worked = bool(row.get("actual_work") or row.get("verified_skip_evidence"))
+        modified = row.get("modification_occurred")
         smoke = bool(row.get("actual_smoke", {}).get("result") in {"PASS", "FAIL", "HOLD"})
         if not worked:
             anomalies.append({"target": target, "kind": "NOT_WORKED"})
+        if row.get("actual_work") and not isinstance(modified, bool):
+            anomalies.append({"target": target, "kind": "MODIFICATION_DECLARATION_MISSING"})
         if row.get("actual_smoke_required", True) and not smoke:
             anomalies.append({"target": target, "kind": "ACTUAL_SMOKE_MISSING"})
         if status not in FINAL:
             anomalies.append({"target": target, "kind": "FINAL_STATUS_MISSING"})
         if status in {"ACTUALLY_FIXED", "ACTUALLY_TESTED"} and not smoke:
             anomalies.append({"target": target, "kind": "UNVERIFIED_RESULT"})
-        if status in {"ACTUALLY_FIXED", "ACTUALLY_TESTED"}:
+        if modified is True or status == "ACTUALLY_FIXED" or row.get("changed_files"):
             release = row.get("release_gate", {})
             missing = [field for field in RELEASE_FIELDS if release.get(field) is not True]
-            if missing or release.get("blockers"):
+            sequence = tuple(row.get("release_sequence", ()))
+            if sequence != RELEASE_SEQUENCE:
+                missing.append("release_sequence")
+            if missing or release.get("blockers") or status not in {"ACTUALLY_FIXED", "ACTUALLY_TESTED"}:
                 anomalies.append({"target": target, "kind": "DEPLOY_INCOMPLETE", "missing": missing,
                                   "blockers": release.get("blockers", [])})
         unresolved = status in {"", "FAIL", "HOLD_EVIDENCE", "EXTERNAL_ESCALATION"} or any(a["target"] == target for a in anomalies)
@@ -123,14 +132,18 @@ def audit(data: dict) -> dict:
 
 def self_test() -> None:
     fixture = {"targets": [
-        {"target": "OK", "root_id": "R1", "evidence_gate":{"classification":"C"}, "actual_work": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED", "release_gate":{k:True for k in RELEASE_FIELDS}},
+        {"target": "OK", "root_id": "R1", "evidence_gate":{"classification":"C"}, "actual_work": True, "modification_occurred": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED", "release_gate":{k:True for k in RELEASE_FIELDS}, "release_sequence": list(RELEASE_SEQUENCE)},
         {"target": "MISS", "root_id": "R2", "evidence_gate":{"classification":"D"}, "actual_work": False, "actual_smoke": {}, "final_status": ""},
+        {"target": "ORDER", "root_id": "R3", "evidence_gate":{"classification":"C"}, "actual_work": True, "modification_occurred": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED", "release_gate":{k:True for k in RELEASE_FIELDS}, "release_sequence": list(reversed(RELEASE_SEQUENCE))},
+        {"target": "UNDECLARED", "root_id": "R4", "evidence_gate":{"classification":"C"}, "actual_work": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED"},
     ]}
     result = audit(fixture)
     assert not result["execution_quality_pass"]
     assert result["counts"]["not_worked_total"] == 1
     assert result["counts"]["actual_smoke_missing_total"] == 1
     assert result["next_work_queue"][0]["root_id"] == "R2"
+    assert any(a["target"] == "ORDER" and a["kind"] == "DEPLOY_INCOMPLETE" for a in result["anomalies"])
+    assert any(a["target"] == "UNDECLARED" and a["kind"] == "MODIFICATION_DECLARATION_MISSING" for a in result["anomalies"])
     print("PASS: work execution fail-closed audit")
 
 
