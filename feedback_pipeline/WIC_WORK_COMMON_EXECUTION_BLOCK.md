@@ -110,7 +110,11 @@ TOOL043_CURRENT_SCOPE_RETEST = FORBIDDEN
 
 5. COMMON_DEPLOY
    - 기존 PASS된 배포 구조가 있으면 재사용한다.
-   - 정본 확인 → 기존 배포경로 재사용 → 배포 → 변경범위 FIRST_VALIDATION 1회 → 실행 증거 저장.
+   - 강제 순서: 수정 → 실제 업무 입력 E2E → 최종 출력 정상 검증 → 영향받은 기존 기능 회귀검사 → 오류 수정 → 동일 실패 입력 재테스트 → PASS 후 GitHub 반영/remote read-back → 기존 로컬 실행폴더 배포 → canonical 실행파일 정확히 1개 지정 → 배포된 canonical 파일 자체 실제 E2E → GitHub본↔로컬 hash/content 대조 → 실행 증거 저장.
+   - `CODE_PASS / SMOKE_PASS / E2E_PASS / DEPLOYED / DEPLOYED_E2E_PASS / REAL_USE_PASS`를 분리한다.
+   - `행 0 / UNKNOWN / 빈 출력 / 중간 정지 / 오류 은폐 / 버튼 무반응 / 미리보기 미생성 / 다운로드 실패 / 입력 일부 누락 / 데이터 혼합 / 예상 결과 불일치`는 release 차단 조건이다.
+   - 실패 입력을 다른 쉬운 fixture로 바꾸지 않고 동일 실제 입력으로 재시험한다.
+   - 위 단계 중 하나라도 빠지면 `DEPLOY_INCOMPLETE`이며 COMPLETE/PASS로 승격하지 않는다.
    - 권한/플랫폼상 불가능할 때만 BLOCKED_EXTERNAL + 정확한 RESUME_TRIGGER를 남긴다.
 
 6. COMMON_GITHUB_CANONICALIZE
