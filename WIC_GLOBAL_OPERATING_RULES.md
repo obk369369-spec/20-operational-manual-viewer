@@ -819,6 +819,7 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 
 - 이 게이트는 **실제 파일·코드·규칙·연결 수정이 발생한 현재 대상 TOOL에만** 적용한다. 작업하지 않은 다른 TOOL의 조사·테스트·개발을 유발하지 않으며, 영향받지 않은 기존 PASS/VERIFIED는 `SKIP_REUSE`한다.
 - 실제 수정이 발생한 WIC의 강제 순서는 `수정 → 영향받은 기존 기능 회귀검사 → 실제 업무 입력 E2E → 최종 출력 정상 검증 → 오류 수정 → 동일 실패 입력 재테스트 → PASS 후 GitHub 반영 → remote SHA/file read-back → 기존 로컬 실행폴더 배포 → 배포된 canonical 파일 자체 재테스트 → 완료`다.
+- GitHub/read-back 이후 로컬 canonical 배포 또는 배포본 재테스트가 빠지면 현재 작업을 `DEPLOY_INCOMPLETE`로 유지하고 `DEPLOY_LOCAL_CANONICAL_AND_RETEST`를 자동 다음 단계로 실행한다. 별도 사용자 재지시를 기다리지 않으며, 권한·로그인·MFA처럼 Work가 해제할 수 없는 차단만 `USER_ACTION_REQUIRED`로 남긴다.
 - `CODE_PASS / SMOKE_PASS / E2E_PASS / DEPLOYED / DEPLOYED_E2E_PASS / REAL_USE_PASS`를 분리한다. 마지막 필수 단계의 실제 증거가 없으면 `BLOCKED` 또는 `DEPLOY_INCOMPLETE`다.
 - `행 0 / UNKNOWN / 빈 출력 / 중간 정지 / 오류 은폐 / 버튼 무반응 / 미리보기 미생성 / 다운로드 실패 / 입력 일부 누락 / 데이터 혼합 / 예상 결과 불일치` 중 하나라도 있으면 release를 차단한다.
 - 실패 입력을 쉬운 fixture로 교체해 PASS시키지 않는다. 동일 실제 입력으로 수정 전 FAIL과 수정 후 PASS를 모두 보존한다.

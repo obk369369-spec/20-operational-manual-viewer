@@ -106,16 +106,23 @@ def audit(data: dict) -> dict:
             if sequence != RELEASE_SEQUENCE:
                 missing.append("release_sequence")
             if missing or release.get("blockers") or status not in {"ACTUALLY_FIXED", "ACTUALLY_TESTED"}:
+                local_missing = any(field in missing for field in
+                                    ("local_canonical_deployed", "deployed_canonical_e2e", "real_use_pass"))
+                next_action = ("USER_ACTION_REQUIRED" if release.get("blockers") else
+                               "DEPLOY_LOCAL_CANONICAL_AND_RETEST" if local_missing else
+                               "COMPLETE_RELEASE_GATE")
                 anomalies.append({"target": target, "kind": "DEPLOY_INCOMPLETE", "missing": missing,
-                                  "blockers": release.get("blockers", [])})
+                                  "blockers": release.get("blockers", []), "next_action": next_action})
         unresolved = status in {"", "FAIL", "HOLD_EVIDENCE", "EXTERNAL_ESCALATION"} or any(a["target"] == target for a in anomalies)
         if unresolved:
+            deploy_gap = next((a for a in anomalies if a["target"] == target and a["kind"] == "DEPLOY_INCOMPLETE"), None)
             queue.append({
                 "target": target,
                 "root_id": row["root_id"],
                 "last_actual_point": row.get("last_actual_point", "TARGET_REGISTERED"),
                 "failed_approach": row.get("failed_approach", "NONE"),
-                "next_trigger": row.get("next_trigger", "RESUME_FROM_LAST_ACTUAL_POINT"),
+                "next_trigger": "IMMEDIATE" if deploy_gap and deploy_gap["next_action"] != "USER_ACTION_REQUIRED" else row.get("next_trigger", "RESUME_FROM_LAST_ACTUAL_POINT"),
+                "next_start": deploy_gap["next_action"] if deploy_gap else row.get("next_start", "RESUME_FROM_LAST_ACTUAL_POINT"),
             })
     counts = {
         "work_target_total": len(rows),
@@ -136,6 +143,7 @@ def self_test() -> None:
         {"target": "MISS", "root_id": "R2", "evidence_gate":{"classification":"D"}, "actual_work": False, "actual_smoke": {}, "final_status": ""},
         {"target": "ORDER", "root_id": "R3", "evidence_gate":{"classification":"C"}, "actual_work": True, "modification_occurred": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED", "release_gate":{k:True for k in RELEASE_FIELDS}, "release_sequence": list(reversed(RELEASE_SEQUENCE))},
         {"target": "UNDECLARED", "root_id": "R4", "evidence_gate":{"classification":"C"}, "actual_work": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED"},
+        {"target": "LOCALMISS", "root_id": "R5", "evidence_gate":{"classification":"C"}, "actual_work": True, "modification_occurred": True, "actual_smoke": {"result": "PASS"}, "final_status": "ACTUALLY_TESTED", "release_gate":{**{k:True for k in RELEASE_FIELDS}, "local_canonical_deployed":False}, "release_sequence": list(RELEASE_SEQUENCE)},
     ]}
     result = audit(fixture)
     assert not result["execution_quality_pass"]
@@ -144,6 +152,8 @@ def self_test() -> None:
     assert result["next_work_queue"][0]["root_id"] == "R2"
     assert any(a["target"] == "ORDER" and a["kind"] == "DEPLOY_INCOMPLETE" for a in result["anomalies"])
     assert any(a["target"] == "UNDECLARED" and a["kind"] == "MODIFICATION_DECLARATION_MISSING" for a in result["anomalies"])
+    local = next(row for row in result["next_work_queue"] if row["target"] == "LOCALMISS")
+    assert local["next_trigger"] == "IMMEDIATE" and local["next_start"] == "DEPLOY_LOCAL_CANONICAL_AND_RETEST"
     print("PASS: work execution fail-closed audit")
 
 
