@@ -134,7 +134,7 @@ def build() -> tuple[dict, dict]:
         "observer_health": "OK" if current["conservation_pass"] else "ERROR",
         "tool043_scope_status": previous_status.get("tool043_scope_status", "INCOMPLETE"),
         "current_display_validation": previous_status.get("current_display_validation"),
-        "work_status": "작업 문제 있음" if blocked or open_count else ("작업 진행 중" if current["running"] else ("작업 대기 중" if current["pending"] else "현재 미처리 작업 없음")),
+        "work_status": "작업 문제 있음" if open_count else ("작업 진행 중" if current["running"] else ("작업 대기 중" if current["pending"] or blocked else "현재 미처리 작업 없음")),
         "current_work": current,
         "max_status_age_seconds": 28800,
         "night_processed": len(completed_now) if completed_now else sum(r.get("status") == "COMPLETED" for r in previous_status.get("night_task_items", [])),
