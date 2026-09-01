@@ -129,7 +129,6 @@ def build() -> tuple[dict, dict]:
         "central_input_sha256": {str(p.relative_to(ROOT)).replace(chr(92), '/'): hashlib.sha256(p.read_bytes()).hexdigest()
                                  for p in (PIPE / 'work16_root_ledger.json', PIPE / 'incomplete_register.json',
                                            PIPE / 'unified_open_ledger.json', PIPE / 'approval_queue.json',
-                                           PIPE / 'evidence' / 'work16_root_report.json',
                                            PIPE / 'evidence' / 'work_execution_audit_20260827.json')},
         "current_status": "관찰판 정상" if current["conservation_pass"] else "관찰판 이상",
         "observer_health": "OK" if current["conservation_pass"] else "ERROR",
