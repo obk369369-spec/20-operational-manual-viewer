@@ -1,123 +1,55 @@
-# WIC 278개 대화기록 정본화 — 재개 체크포인트
+# WIC 278개 대화기록 정본화 — 최종 재개 체크포인트
 
 기록일: 2026-09-01 KST
-상태: IN_PROGRESS / SAFE_RESUME_POINT_UPDATED
+상태: `COMPLETE_WITH_SOURCE_HOLD`
 원본 작업: `feedback_pipeline/WIC_278_CHAT_HISTORY_CATCHUP.md`
 
-## 목적
-사용자가 나중에 `278개 작업 계속`, `남은 거 해`, `보류했던 대규모 파일 작업 재개`처럼 짧게 말해도 처음부터 다시 찾거나 278개를 재처리하지 않고 이 지점에서 이어간다.
-
-## 확인된 원본 범위
-- 압축파일: 278개
-- 텍스트 추출: 278/278 접근 성공
+## 현재 상태
+- 원본 압축파일: 278개
+- 텍스트 접근: 278/278 성공
 - 번호 확인 그룹: 32개
-- 기존 체크포인트(2026-08-31)는 29/32 완료, 남은 번호 그룹을 `034,037,038`로 기록했다.
+- 번호 그룹 정본화/흡수 판정: 32/32 완료
+- 비번호/별칭/generic 분류: Batch A/B/C/D 종료
+- 현재 확인 가능한 고유 canonical DIFF 미반영: 0
+- 새 독립 TOOL/repo 임의 생성: 0
 
-## 2026-09-01 재확인 결과
-TOOL034 / TOOL037 / TOOL038은 현재 GitHub main의 CENTRAL MASTER에서 이미 `278-file historical numbered-group canonicalization: COMPLETE`로 확인됐다. 따라서 **번호 확인 32개 그룹은 현재 기준 모두 정본화/흡수 판정 완료 상태**다.
+## 상세 체크포인트
+- Batch A: `feedback_pipeline/WIC_278_UNNUMBERED_BATCH_A_20260901.md`
+- Batch B: `feedback_pipeline/WIC_278_UNNUMBERED_BATCH_B_20260901.md`
+- Batch C: `feedback_pipeline/WIC_278_UNNUMBERED_BATCH_C_20260901.md`
+- Batch D: `feedback_pipeline/WIC_278_UNNUMBERED_BATCH_D_20260901.md`
+- 최종 원본 체크포인트: `feedback_pipeline/WIC_278_CHAT_HISTORY_CATCHUP.md`
 
-## 2026-09-01 비번호/별칭 최종분류 — Batch A
-Library 역사기록에서 `34번 통합+자동화 7/8` 계열에 반복 첨부·참조된 비번호/별칭 문서군을 회수해 현재 TOOL034/GLOBAL/TOOL001/TOOL007 및 CENTRAL 상태와 대조했다.
+## SOURCE HOLD
+다음은 정본화 작업 미처리가 아니라 현재 원본 source를 회수할 수 없어 보존한 HOLD다.
 
-### A-1. TOOL034 / GLOBAL 기존 규칙으로 흡수된 별칭·중복군
-아래 계열은 별도 MASTER/repo를 만들지 않는다. 현재 TOOL034/GLOBAL의 관찰자 모드, 외부툴 실동작 검증, 껍데기 차단, 자동 인계, STOP/PASS, 사용자 부재·연속작업, 기기 이동/USB 연속성, 실행층/검증층 분리 규칙과 중복되는 역사 전신 문서로 판정한다.
+1. `WIC34_NEXT_TO_END_STATUS.md`
+   - Library/GitHub 실제 원본 미발견
+   - `HOLD_SOURCE_NOT_FOUND / DO_NOT_RECONSTRUCT`
 
-- `34번 공통 보완 추가 — Connection AI ,내부 에이전트 10개 역할배치·외부툴 교차검증·야간감시·사무실 이동패키지 최종 잠금*`
-- `34번 공통 보완 추가 — 빅테크·검증기업 기준 보완형 외부툴 다층검증·서버 , 유료 전환·관찰자 모드 최종 잠금*`
-- `34번 공통 보완 추가 — 완전 관찰자 모드 최종 외부툴 다층 검증·자동운영·무료 한계 후 유료 전환 기준*`
-- `34번 공통 보완 추가 — 모든 프로그램·도구 대상 범용 외부툴 다층검증·관찰자 모드·무료한계 후 유료전환 최종 기준*`
-- `WIC34 외부툴 협업 전환 보완 잠금.txt`
-- `NEXT_CHAT_LOCK_PACKET — WIC34 외부툴 검증 전환 껍데기 차단 실제 도구 실사용 전환.txt`
-- `[WIC34 MASTER 보완 — 누적형 전체 통합 관리 잠금].txt`
-- `[34번 공통 보완 추가 — 부족 엔진 우선 확보 및 실행층 흡수 잠금].txt`
-- `[34번 공통 보완 추가 — 자동기록 증가를 PASS로 보지 않고 외부툴 교차검증으로 실무투입 판정].txt`
-- `[34번 공통 보완 추가 — 자동 가능 작업 우선 실행 + 로그인 필요 작업 HOLD 분리].txt`
-- `[34번 공통 보완 추가 — 외부툴 검증체계 실동작 잠금].txt`
-- `[34번 공통 보완 추가 — 2026-06-06 18 49 주간·야간 연속작업 재개 잠금].txt`
-- `[34번 공통 보완 추가 — 사용자 부재 중 자동 진행 가능 범위와 껍데기 차단 기록 잠금].txt`
-- `[34번 공통 보완 추가 — 01~12층 완전배치 + 이동중단 없는 작업 연속성 잠금].txt`
-- `[34번 공통 보완 추가 — 집 노트북 1회 세팅 및 8개층 이어가기 잠금].txt`
-- `[34번 공통 보완 추가 — 전체 외부툴·AI·Agent·자동화 에이전트 일괄 배치 잠금].txt`
-- `34번 공통 보완 추가 — 껍데기 차단 구조·서버확장·자동화 에이전트·격리구조 최종 잠금.txt`
-- `34번 공통 보완 추가 — TOOL 실작업 우선·관찰자 모드 최종 잠금*`
-- `34번 공통 보완 추가 — 관찰자 모드·MASTER 단일 실행·도구 실제작업 전환 잠금*`
-- `34번 공통 보완 추가 — 시간·보고·관찰자 모드 완전잠금*`
-- `34번 공통 보완 추가 — 주간 미완료 작업 큐·에이전트 작업 검증 잠금*`
-- `34번 공통 보완 추가 — 무료 서버확장·자동화 에이전트·양방향 SYNC 최종 잠금*`
-- `34번 공통 보완 추가 — 최소 이동 폴더·내부 실행·도구 작업 진입 잠금*`
-- `34번 공통 보완 추가 — 서버확장 주간 작업·도구 감시 통과·도구별 격리구조 잠금.txt`
-- `[다음 대화창 시작 지시문 — 서버·외부툴·자동화 에이전트·Antigravity AI 실연결 실배치 서버기록 강제]*`
+2. 내용 회수 불가 generic 파일 8개
+   - `(8),(21),(25),(30),(31),(32),(64),(88)`
+   - `files.read`: readable content 없음
+   - 일부 materialize: downloadable backing file 없음
+   - `HOLD_SOURCE_UNREADABLE / NO_RULE_PROMOTION / DO_NOT_INFER`
 
-판정: `ALIAS_TO_TOOL034 / HISTORICAL_PREDECESSOR / DUPLICATE_OR_SKIP_REUSE`.
-마지막 `다음 대화창 시작 지시문`은 실제 로그인·연결·Run ID·Artifact·로그·PASS/HOLD/FAIL을 요구하는 과거 실행계획이지만, 현재 TOOL034_MASTER가 과거 실행도구/자동화 에이전트 연결 주장을 실동작 증거로 승격하지 않도록 이미 잠그고 있으므로 새 정본을 만들지 않는다.
+## 재개 규칙
+사용자가 나중에 `278개 계속`, `남은 거 해`, `보류했던 278개 재개`라고 해도 278개 전체를 다시 처리하지 않는다.
 
-### A-2. TOOL001 명시 별칭군 — owner 해결
-아래 문서군은 TOOL001 역사 보조자료다.
+다음 조건 중 하나가 실제 발생했을 때만 해당 source HOLD만 재개한다.
+- `WIC34_NEXT_TO_END_STATUS.md` 실제 원본 발견
+- 위 8개 generic 파일의 readable content/backing bytes 복구
+- 새로운 원본 source/index가 제공되어 기존 A/B/C/D에 없는 항목이 실제 확인됨
 
-- `34번 공통 보완 추가 — TOOL001 야간 자동수정·외부툴 다층검증·Connection AI, 내부 에이전트 전수배치·실패목록 검증 최종 잠금*`
-- `34번 공통 보완 추가 — [TOOL001 외부툴 다층 교차검증 최종 보완]*`
-- `34번 공통 보완 추가 — [TOOL001 최종 외부툴 교차검증 보완]*`
-- `34번 공통 보완 추가 — TOOL001 최종 자동검증·외부툴 협업 보완 잠금*`
-
-현재 `01-auto-guide-v1/TOOL001_MASTER.md`에는 이미 사용자 관찰자, 실동작 없는 화면/파일/로그 PASS 금지, 실제 고객 데이터·최종 출력·결과해시 검증, 외부 기능의 사용가능/비용/HOLD 분리, 반복 승인·클릭 금지, 미실증 자동수집/외부연결 HOLD 규칙이 존재한다.
-
-판정: `ALIAS_TO_TOOL001 / SUPPORT_HISTORY / SKIP_REUSE_NO_UNIQUE_DIFF`.
-과거의 야간자동수정·외부툴 설치/에이전트 배치 완료 주장은 현재 실행증거가 아니므로 복원하지 않는다. TOOL001_MASTER 추가 수정 없음.
-
-### A-3. TOOL007 vFinal 인계문 — owner 해결
-`[7번 고객 컨택 판단 최신정보·추천자료 vFinal 인계문].txt`는 7번 고객 컨택 판단 작업창의 인계/요약 문서다. 현재 `07-wic-setting-tool-v1/TOOL007_MASTER.md`에는 최신정보 확인, 과거 실제 이력과 일방발송 구분, 회사 최신방향 연결, 채널 판단, 답변별 분기, 메일/문자, 추천자료, 고정 출력 항목이 이미 정본화되어 있다.
-
-판정: `ALIAS_TO_TOOL007 / HANDOFF_HISTORY / SKIP_REUSE_NO_UNIQUE_DIFF`.
-새 MASTER/repo 생성 없음.
-
-### A-4. TOOL029 번호충돌 문서 — owner 해결
-`34번 공통 보완 추가 — TOOL029 번호충돌 HOLD 및 감시대상 잠금.txt`는 TOOL029의 생성 원인이 확정되지 않았고 삭제/이동/이름변경 금지, 비차단 HOLD로 보관하라는 역사 상태 문서다. 현재 CENTRAL `WIC_OBSERVER_STATUS.md`에서도 TOOL029는 `HOLD_FOR_REDESIGN`, canonical pointer 없음, 재개조건 `EXISTING_TOOL029_CANONICAL_POINTER_RECORDED`로 남아 있다.
-
-판정: `SOURCE_EVIDENCE_FOR_TOOL029_HOLD / NO_NEW_MASTER / DO_NOT_DELETE`.
-과거 문서를 새 실행 TOOL로 승격하지 않는다.
-
-### A-5. 발행사 커미션 현황 문서 — owner 해결
-`34번에 보완할 발행사 커미션 현재 상황 (2026.05.29)*`은 발행사별 계약/접촉/커미션 비율과 URL을 담은 사업 참고 데이터다. TOOL034 운영규칙이나 특정 실행 TOOL의 기능 규칙이 아니다.
-
-판정: `NON_TOOL_BUSINESS_REFERENCE_DATA / NO_RULE_PROMOTION`.
-내용 자체는 과거 시점의 거래 참고자료로 보존하되 278 정본화 과정에서 새 TOOL/MASTER를 만들거나 현재 커미션 사실로 자동 승격하지 않는다. 최신 계약조건이 필요할 때 별도 사실검증 대상으로 사용한다.
-
-## Batch A 완료 판정
-- TOOL034/GLOBAL 역사 별칭군: 분류 완료
-- TOOL001 명시 별칭군: 분류 완료
-- TOOL007 vFinal 인계문: 분류 완료
-- TOOL029 번호충돌 HOLD 문서: 분류 완료
-- 발행사 커미션 자료: 비도구 참고자료로 분류 완료
-- 위 항목에 대해 새 repo/새 MASTER 생성 없음
-- 기존 정본에 없는 고유 DIFF 발견: 현재 Batch A에서는 없음
-
-## 아직 남은 실제 작업
-- Library의 다른 비번호/별칭/중복 후보군 추가 회수 및 분류
-- `붙여넣은 텍스트`, generic handoff/state packet, 이미지/실행로그 등 이름만으로 owner를 알 수 없는 후보는 주변 문맥으로 소유자 판정
-- 실제 고유 DIFF가 발견된 경우에만 기존 canonical에 DIFF ONLY 반영
-- 최종 원본 체크포인트 `WIC_278_CHAT_HISTORY_CATCHUP.md` 상태/진행률 갱신
-
-## 재개 시 강제 순서
-1. 이 체크포인트를 먼저 읽는다.
-2. 기존 32개 번호 그룹은 재분석/재테스트하지 않는다 (`SKIP_REUSE`).
-3. 278개 원본 전체를 처음부터 다시 돌리지 않는다.
-4. Batch A 완료군은 다시 분류하지 않는다.
-5. 남은 비번호/별칭 후보 중 아직 owner가 기록되지 않은 파일만 추가 회수한다.
-6. 고유 규칙이 없으면 별도 MASTER/repo를 만들지 않는다.
-7. 고유 DIFF가 있을 때만 기존 정본에 최소 변경한다.
-8. GitHub write가 발생하면 commit → remote read-back까지 확인한다.
-9. 최종적으로 `WIC_278_CHAT_HISTORY_CATCHUP.md`를 `COMPLETE` 또는 정확한 HOLD 사유로 닫는다.
+그 외에는 `SKIP_REUSE`한다.
 
 ## 금지
 - 278개 전체 재처리
-- 이미 완료된 32개 번호 그룹 재개발/재검증
-- Batch A 완료군 재검색·재분류
+- 완료된 32개 번호 그룹 재분석/재테스트
+- Batch A/B/C/D 재분류
 - 새 TOOL/repo 임의 생성
-- 과거 assistant의 근거 없는 PASS/완료 주장을 현재 증거로 승격
-- 현재 다른 TOOL 작업과 278 catch-up을 섞기
+- 과거 assistant의 근거 없는 PASS/완료를 현재 실행 증거로 승격
+- 다른 TOOL 작업과 278 catch-up 혼합
 
 ## 다음 시작점
-`NEXT_START = OTHER_UNNUMBERED_GENERIC_CANDIDATES_ONLY`
-
-사용자 재개 문구 예: `278개 남은 거 계속`.
-그 경우 이 파일을 기준으로 바로 위 NEXT_START부터 이어간다.
+`NEXT_START = SOURCE_HOLD_ONLY_IF_SOURCE_RECOVERED`
