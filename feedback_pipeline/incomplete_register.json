@@ -34,24 +34,6 @@
       "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE"
     },
     {
-      "id": "CI-TOOL012-NOT-ACTIVE",
-      "target": "공통 CI · TOOL012 등록 상태 확인",
-      "status": "INCOMPLETE",
-      "reason": "CI_AUDIT_REVIEW_PENDING",
-      "next_trigger": "IMMEDIATE",
-      "evidence": {
-        "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
-        "failed_runs": [
-          "33361353196",
-          "33361353186"
-        ],
-        "error": "ValueError: TOOL012 is not ACTIVE",
-        "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
-        "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
-        "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
-      }
-    },
-    {
       "id": "T41-T42-NATIVE-AUTOMATION",
       "target": "TOOL041 / TOOL042",
       "status": "INCOMPLETE",
@@ -85,7 +67,7 @@
       }
     }
   ],
-  "incomplete_total": 5,
+  "incomplete_total": 4,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
