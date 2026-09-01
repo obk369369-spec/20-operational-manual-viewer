@@ -57,48 +57,6 @@
       ]
     },
     {
-      "root_id": "CI-TOOL012-NOT-ACTIVE",
-      "target": "공통 CI · TOOL012 등록 상태 확인",
-      "status": "OPEN_CANDIDATE",
-      "last_actual_point": "COMPLETE/ACTIVE contract connection fixed. One actual TOOL012 canonical record passed existing transport to SKIP_REUSE with original run/commit; downstream tests/mutations zero. Full CI not rerun.",
-      "next_trigger": "NEW_CONCRETE_REGISTRY_CONTRACT_FAILURE_EVIDENCE",
-      "next_start": "SKIP_REUSE repaired TOOL012 connection; do not rerun unchanged full CI. Separate new failure evidence only.",
-      "evidence": {
-        "commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
-        "failed_runs": [
-          "33361353196",
-          "33361353186"
-        ],
-        "error": "ValueError: TOOL012 is not ACTIVE",
-        "changed_scope": "TOOL043 passed; registry/global_pipeline not modified",
-        "root_dedup": "candidate related to L4-14; cause equivalence not yet confirmed; two failing runs grouped once",
-        "next_scope": "Review canonical registry ACTIVE contract; do not reopen historical archives"
-      },
-      "layer": "L4",
-      "type": "OPEN_CANDIDATE",
-      "source": "POST_DEPLOY_CI",
-      "result": "UNRESOLVED",
-      "execution_receipts": [
-        {
-          "operation_id": "registry-ci-audit",
-          "status": "FAIL",
-          "cause_id": "TOOL012_NOT_ACTIVE",
-          "method_id": "UNCHANGED_GLOBAL_CI_AUDIT",
-          "evidence_ref": "runs:33361353196,33361353186"
-        },
-        {
-          "operation_id": "tool012-complete-registry-transport-link",
-          "status": "PASS",
-          "evidence_ref": "feedback_pipeline/evidence/direct_connections_20260831.json"
-        }
-      ],
-      "connection_repair": {
-        "status": "PASS_ACTUAL_SINGLE_RECORD_CONNECTION",
-        "evidence_ref": "feedback_pipeline/evidence/direct_connections_20260831.json",
-        "scope": "TOOL012 completion acceptance and no-reexecution; not all-CI certification"
-      }
-    },
-    {
       "id": "T41-T42-NATIVE-AUTOMATION",
       "root_id": "T41-T42-NATIVE-AUTOMATION",
       "root": "GAP-CUSTOMER-PREFLIGHT-GENERATION-PERSISTENCE",
@@ -158,7 +116,7 @@
     }
   ],
   "open_internal_total": 1,
-  "incomplete_total": 5,
+  "incomplete_total": 4,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -166,7 +124,6 @@
     "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
     "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
     "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
-    "CI-TOOL012-NOT-ACTIVE",
     "T41-T42-NATIVE-AUTOMATION"
   ],
   "open_input_omission": [],
@@ -178,7 +135,7 @@
   "user_feedback_courier_count": 0,
   "observer_repetition_required_total": 0,
   "pass": true,
-  "open_candidate_total": 1,
+  "open_candidate_total": 0,
   "execution_policy": {
     "schema_version": 1,
     "scope_grants": [],
