@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "680df89076dadf31752b188af3a0137cd6deb50084a8a98df4a9b51df5b563d4",
-    "feedback_pipeline/unified_open_ledger.json": "e57f3c58eb3e9459cb82d3bc3afd3eab415bb2f83ddabf6e60755ea7b4669999",
+    "feedback_pipeline/unified_open_ledger.json": "b1ac60f466e1f312f9a37e144c894fb00d5f279e8c7b5cc3106190a1e213ea8d",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -90,18 +90,6 @@
         "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
         "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
-      },
-      {
-        "root_id": "CI-TOOL012-NOT-ACTIVE",
-        "target": "공통 CI · TOOL012 등록 상태 확인",
-        "label": "CI-TOOL012-NOT-ACTIVE",
-        "status": "OPEN_CANDIDATE",
-        "sources": [
-          "night_queue"
-        ],
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Review registry ACTIVE contract in separate scoped Work",
-        "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed"
       }
     ],
     "running": [],
@@ -168,24 +156,11 @@
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
       }
     ],
-    "pending": [
-      {
-        "root_id": "CI-TOOL012-NOT-ACTIVE",
-        "target": "공통 CI · TOOL012 등록 상태 확인",
-        "label": "CI-TOOL012-NOT-ACTIVE",
-        "status": "OPEN_CANDIDATE",
-        "sources": [
-          "night_queue"
-        ],
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Review registry ACTIVE contract in separate scoped Work",
-        "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed"
-      }
-    ],
-    "remaining_total": 5,
+    "pending": [],
+    "remaining_total": 4,
     "running_total": 0,
     "waiting_total": 4,
-    "pending_total": 1,
+    "pending_total": 0,
     "open_internal_total": 0,
     "recent_completed": [
       {
@@ -206,7 +181,7 @@
   "night_processed": 1,
   "new_open": 0,
   "blocked_work": 4,
-  "next_work": "CI-TOOL012-NOT-ACTIVE",
+  "next_work": "대기 조건 충족 후 재개",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -242,7 +217,7 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 5,
+  "incomplete_total": 4,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -250,9 +225,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-01T13:11:01.111763+00:00",
-  "source_revision": "a806aeb3faeba71eced4e0e6462d3584ec329b12",
-  "github_actions_run": "33511849756",
+  "observer_generated_at": "2026-09-01T13:14:41.543082+00:00",
+  "source_revision": "8e060c5c55dc797b4473dd3cd6d5d265287318d4",
+  "github_actions_run": "33512205645",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -264,7 +239,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-01T13:11:01.111204+00:00",
+      "executed_at": "2026-09-01T13:14:41.542495+00:00",
       "status": "COMPLETED"
     }
   ]
