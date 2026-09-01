@@ -3,6 +3,36 @@
   "policy": "EVIDENCE_REQUIRED_REUSE_FIRST",
   "components": [
     {
+      "component_id": "TOOL012_STATIC_SUBSITE_FUNCTIONAL_CTA",
+      "status": "VERIFIED_REUSABLE",
+      "source_tool": "TOOL012",
+      "source_repository": "obk369369-spec/12-wic-subwebsite-builder",
+      "source_file": "public/index.html",
+      "source_commit": "aa9cc2e89726a4b388b148067f6dc4be40a0599e",
+      "source_blob": "d3502bf9173921794fcc40277c675f89ed5e5f8b",
+      "function": "Static subsite CTA validation and public GitHub Pages deployment",
+      "capabilities": ["MAILTO_INQUIRY_CTA", "HTTPS_RESOURCE_PDF_CTA", "DEAD_CTA_OMISSION", "GITHUB_ACTIONS_PAGES_PUBLIC_DEPLOYMENT"],
+      "input_contract": "Static subsite content with mailto and HTTPS resource CTA candidates",
+      "output_contract": "Public subsite with only allowed live CTA schemes and dead CTA omission",
+      "dependencies": ["static HTML", "GitHub Actions", "GitHub Pages"],
+      "test_evidence": {"evidence_commit":"11bac27ed8a7f594c6e965d5c534c0c6e422b987","run_id":"33310342582","artifact_digest":"sha256:5c960db468dadf633deb7b22ee6cb23b45e7858ceccc9d760680c1ec03050e4a","remote_read_back":true}
+    },
+    {
+      "component_id": "TOOL014_SAFE_HOMEPAGE_CHANGE_PACKAGE",
+      "status": "VERIFIED_REUSABLE",
+      "source_tool": "TOOL014",
+      "source_repository": "obk369369-spec/14-wic-homepage-editor",
+      "source_file": "public/index.html",
+      "source_commit": "ae41bc0c93492d940df90049d894b19deab2ebaf",
+      "source_blob": "133c84f49b12072b1680ed31308852ad0f617570",
+      "function": "Fail-closed homepage change-package preparation with explicit live-apply boundary",
+      "capabilities": ["CTA_SCHEME_ALLOWLIST", "BASELINE_REVISION_REQUIRED", "CHANGE_REASON_REQUIRED", "AUTO_DEPLOY_FALSE_MANIFEST", "GITHUB_ACTIONS_PAGES_STAGING_DEPLOYMENT"],
+      "input_contract": "Homepage baseline revision and requested bounded change with reason",
+      "output_contract": "Validated staging change package that cannot auto-apply to the live homepage",
+      "dependencies": ["static HTML", "GitHub Actions", "GitHub Pages staging"],
+      "test_evidence": {"evidence_commit":"7dee81e4eea46c38c7d787adacb083c50212bfc7","run_id":"33310481614","artifact_digest":"sha256:0771cd418aac61739af9330ba45c32a5b91515c6c16f5494a116082ec5514c5c","remote_read_back":true,"preserved_hold":"LIVE_APPLY_AUTHORIZATION"}
+    },
+    {
       "component_id": "TOOL013_LARGE_XLSX_BATCH_UI_SAFE",
       "status": "VERIFIED_REUSABLE",
       "source_tool": "TOOL013",
