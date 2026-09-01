@@ -22,7 +22,7 @@ def verified_checkpoint(roots: dict, previous_status: dict) -> str:
     return "HOLD_CHECKPOINT_NOT_VERIFIED"
 
 
-def current_work(ledger: dict, unified: dict, work: dict, incomplete: dict, previous_queue: dict) -> dict:
+def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, incomplete: dict, previous_queue: dict) -> dict:
     """Conserve unresolved IDs; only an evidence-backed canonical closure removes one."""
     closed_states = {"VERIFIED_CLOSED", "REMOTE_VERIFIED", "FIXED_RUNTIME", "DEPLOYED_COMPLETE", "CURRENT_SCOPE_COMPLETE"}
     closed = {r["id"] for r in ledger["roots"] if r.get("status") in closed_states and (r.get("completion_evidence") or r.get("evidence"))}
@@ -67,7 +67,11 @@ def current_work(ledger: dict, unified: dict, work: dict, incomplete: dict, prev
             waiting.append(row)
         else:
             pending.append(row)
-    canonical_open = {r["id"] for r in ledger["roots"] if r["id"] not in closed}
+    # The checkpoint report is the canonical INTERNAL-OPEN projection.  The
+    # root ledger can also contain externally blocked/incomplete work, which
+    # must remain visible in ``remaining`` without being relabelled as an
+    # internal OPEN.
+    canonical_open = set(root_report.get("open_internal_roots", []))
     if not canonical_open.issubset(rows): errors.append("UNRESOLVED_TASK_LOST")
     recent = [{"root_id": r["id"], "label": r.get("completion_label", r["id"]), "evidence": r["completion_evidence"]}
               for r in ledger["roots"] if r["id"] in closed and r.get("completion_evidence")]
@@ -115,7 +119,7 @@ def build() -> tuple[dict, dict]:
     previous_status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.exists() else {}
     ledger = json.loads((PIPE / "work16_root_ledger.json").read_text(encoding="utf-8"))
     incomplete = json.loads((PIPE / "incomplete_register.json").read_text(encoding="utf-8"))
-    current = current_work(ledger, unified, work, incomplete, previous_queue)
+    current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None
     open_count = current["open_internal_total"]
@@ -125,6 +129,7 @@ def build() -> tuple[dict, dict]:
         "central_input_sha256": {str(p.relative_to(ROOT)).replace(chr(92), '/'): hashlib.sha256(p.read_bytes()).hexdigest()
                                  for p in (PIPE / 'work16_root_ledger.json', PIPE / 'incomplete_register.json',
                                            PIPE / 'unified_open_ledger.json', PIPE / 'approval_queue.json',
+                                           PIPE / 'evidence' / 'work16_root_report.json',
                                            PIPE / 'evidence' / 'work_execution_audit_20260827.json')},
         "current_status": "관찰판 정상" if current["conservation_pass"] else "관찰판 이상",
         "observer_health": "OK" if current["conservation_pass"] else "ERROR",
@@ -193,17 +198,22 @@ def main() -> None:
 def self_test() -> None:
     from copy import deepcopy
     ledger = {"roots": [{"id": "done", "status": "REMOTE_VERIFIED", "completion_evidence": {"commit": "a" * 40}}, {"id": "open", "status": "OPEN"}], "external_holds": [{"root": "wait", "status": "HOLD_EVIDENCE_WAITING"}]}
-    args = [ledger, {"entries": [{"root_id": "done", "status": "OPEN"}, {"root_id": "open", "status": "OPEN"}]}, {"next_work_queue": []}, {"entries": []}, {"items": [{"root_id": "done"}, {"root_id": "wait"}]}]
+    root_report = {"open_internal_roots": ["open"]}
+    args = [ledger, root_report, {"entries": [{"root_id": "done", "status": "OPEN"}, {"root_id": "open", "status": "OPEN"}]}, {"next_work_queue": []}, {"entries": []}, {"items": [{"root_id": "done"}, {"root_id": "wait"}]}]
     result = current_work(*args)
     assert {r['root_id'] for r in result['remaining']} == {'open', 'wait'}
     assert result['waiting_total'] == 1 and result['open_internal_total'] == 1
     assert result['remaining_total'] == 2 and result['conservation_pass']
+    external_only = deepcopy(args)
+    external_only[1]['open_internal_roots'] = []
+    result = current_work(*external_only)
+    assert result['open_internal_total'] == 0 and result['remaining_total'] == 2
     no_proof = deepcopy(args)
     no_proof[0]['roots'][0].pop('completion_evidence')
     result = current_work(*no_proof)
     assert result['remaining_total'] == 3 and not result['conservation_pass']
     running = deepcopy(args)
-    running[2]['next_work_queue'] = [{'root_id': 'new-task', 'status': 'RUNNING'}]
+    running[3]['next_work_queue'] = [{'root_id': 'new-task', 'status': 'RUNNING'}]
     result = current_work(*running)
     assert result['remaining_total'] == 3 and result['running_total'] == 1
     assert result['remaining_total'] == result['waiting_total'] + result['running_total'] + result['pending_total']

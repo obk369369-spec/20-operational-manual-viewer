@@ -7,9 +7,11 @@ on:
       - 'feedback_pipeline/work16_root_ledger.json'
       - 'feedback_pipeline/incomplete_register.json'
       - 'feedback_pipeline/unified_open_ledger.json'
+      - 'feedback_pipeline/evidence/work16_root_report.json'
       - 'feedback_pipeline/evidence/work_execution_audit_20260827.json'
       - 'feedback_pipeline/approval_queue.json'
       - 'WIC_EXECUTION_STATE.json'
+      - 'tool043/night_observer.py'
       - '.github/workflows/wic-stall-monitor.yml'
   workflow_run:
     workflows: ['WIC feedback event apply']
