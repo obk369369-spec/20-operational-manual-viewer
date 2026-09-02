@@ -112,6 +112,9 @@ TOOL043_CURRENT_SCOPE_RETEST = FORBIDDEN
    - 기존 PASS된 배포 구조가 있으면 재사용한다.
    - 이 게이트는 실제 파일·코드·규칙·연결 수정이 발생한 현재 대상 TOOL에만 적용한다. 작업하지 않은 다른 TOOL을 조사·테스트·개발하지 않으며 영향받지 않은 기존 PASS/VERIFIED는 `SKIP_REUSE`한다.
    - 강제 순서: 수정 → 영향받은 기존 기능 회귀검사 → 실제 업무 입력 E2E → 최종 출력 정상 검증 → 오류 수정 → 동일 실패 입력 재테스트 → PASS 후 GitHub 반영/remote read-back → 기존 로컬 실행폴더 배포 → canonical 실행파일 정확히 1개 지정 → 배포된 canonical 파일 자체 재테스트 → GitHub본↔로컬 hash/content 대조 → 실행 증거 저장.
+   - release gate 필수 개별 증거: `test_executed / test_input_recorded / expected_defined / actual_captured / expected_actual_match / regression_passed / pass_evidence_recorded`. 어느 하나라도 false/누락이면 `DEPLOY_BLOCKED`; commit/push 또는 로컬 복사를 실행하지 않는다.
+   - 파일·버튼·handler 존재, 종료코드 0, 행 수만 일치, 파일 생성·다운로드, commit/hash, 자체 PASS 표시는 EXPECTED-vs-ACTUAL 기능 검증을 대신하지 않는다.
+   - 변경 기능과 직접 영향범위만 테스트하고 무관한 기존 PASS는 `SKIP_REUSE`; 공통엔진·대량처리 엔진 변경 또는 기존 PASS와 충돌하는 실제 증거가 있을 때만 전체 실제 입력 검증을 확대한다.
    - GitHub/read-back 뒤 로컬 배포·배포본 재테스트가 누락되면 `DEPLOY_INCOMPLETE`로 유지하고 사용자 재지시 없이 `DEPLOY_LOCAL_CANONICAL_AND_RETEST`로 자동 계속한다. 권한·로그인·MFA로 Work가 실행할 수 없을 때만 `USER_ACTION_REQUIRED`와 정확한 차단 원인을 남긴다.
    - `CODE_PASS / SMOKE_PASS / E2E_PASS / DEPLOYED / DEPLOYED_E2E_PASS / REAL_USE_PASS`를 분리한다.
    - `행 0 / UNKNOWN / 빈 출력 / 중간 정지 / 오류 은폐 / 버튼 무반응 / 미리보기 미생성 / 다운로드 실패 / 입력 일부 누락 / 데이터 혼합 / 예상 결과 불일치`는 release 차단 조건이다.

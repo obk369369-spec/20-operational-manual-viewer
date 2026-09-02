@@ -10,11 +10,14 @@ HERE = Path(__file__).resolve().parent
 TARGETS = HERE / "work_execution_targets_20260827.json"
 REPORT = HERE / "evidence" / "work_execution_audit_20260827.json"
 FINAL = {"ACTUALLY_FIXED", "ACTUALLY_TESTED", "VERIFIED_SKIP", "FAIL", "HOLD_EVIDENCE", "EXTERNAL_ESCALATION", "PLATFORM_LIMIT"}
-RELEASE_FIELDS = ("regression_passed", "actual_business_input_e2e", "final_output_verified",
-                  "same_failed_input_retested", "github_published", "remote_readback",
+RELEASE_FIELDS = ("test_executed", "test_input_recorded", "expected_defined", "actual_captured",
+                  "expected_actual_match", "regression_passed", "actual_business_input_e2e",
+                  "final_output_verified", "pass_evidence_recorded", "github_published", "remote_readback",
                   "local_canonical_deployed", "deployed_canonical_e2e", "real_use_pass")
-RELEASE_SEQUENCE = ("MODIFIED", "REGRESSION_PASSED", "ACTUAL_INPUT_E2E_PASSED",
-                    "FINAL_OUTPUT_VERIFIED", "GITHUB_PUBLISHED", "REMOTE_READBACK_PASSED",
+RELEASE_SEQUENCE = ("MODIFIED", "TEST_EXECUTED", "TEST_INPUT_RECORDED", "EXPECTED_DEFINED",
+                    "ACTUAL_CAPTURED", "EXPECTED_ACTUAL_MATCHED", "REGRESSION_PASSED",
+                    "ACTUAL_INPUT_E2E_PASSED", "FINAL_OUTPUT_VERIFIED", "PASS_EVIDENCE_RECORDED",
+                    "GITHUB_PUBLISHED", "REMOTE_READBACK_PASSED",
                     "LOCAL_CANONICAL_DEPLOYED", "DEPLOYED_CANONICAL_RETEST_PASSED", "COMPLETE")
 
 
@@ -102,6 +105,8 @@ def audit(data: dict) -> dict:
         if modified is True or status == "ACTUALLY_FIXED" or row.get("changed_files"):
             release = row.get("release_gate", {})
             missing = [field for field in RELEASE_FIELDS if release.get(field) is not True]
+            if release.get("test_failed") is True and release.get("same_failed_input_retested") is not True:
+                missing.append("same_failed_input_retested")
             sequence = tuple(row.get("release_sequence", ()))
             if sequence != RELEASE_SEQUENCE:
                 missing.append("release_sequence")
@@ -154,6 +159,12 @@ def self_test() -> None:
     assert any(a["target"] == "UNDECLARED" and a["kind"] == "MODIFICATION_DECLARATION_MISSING" for a in result["anomalies"])
     local = next(row for row in result["next_work_queue"] if row["target"] == "LOCALMISS")
     assert local["next_trigger"] == "IMMEDIATE" and local["next_start"] == "DEPLOY_LOCAL_CANONICAL_AND_RETEST"
+    for field in ("test_executed", "test_input_recorded", "expected_defined", "actual_captured",
+                  "expected_actual_match", "regression_passed", "pass_evidence_recorded"):
+        broken = {"targets": [{**fixture["targets"][0], "target": field, "root_id": "R-" + field,
+                               "release_gate": {**fixture["targets"][0]["release_gate"], field: False}}]}
+        gap = audit(broken)["anomalies"][0]
+        assert gap["kind"] == "DEPLOY_INCOMPLETE" and field in gap["missing"]
     print("PASS: work execution fail-closed audit")
 
 
