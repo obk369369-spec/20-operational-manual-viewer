@@ -35,25 +35,17 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
     },
     {
-      "target": "공통 CI · TOOL012 등록 상태 확인",
-      "root_id": "CI-TOOL012-NOT-ACTIVE",
-      "status": "OPEN_CANDIDATE",
-      "last_actual_point": "Two existing CI audits failed on same registry assertion; TOOL043 deploy passed",
-      "next_trigger": "IMMEDIATE",
-      "next_start": "Review registry ACTIVE contract in separate scoped Work"
-    },
-    {
       "kind": "SAFE_NIGHT_TASK",
       "task_id": "T43-NIGHT-REAL-RUN-20260829-01",
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-09-01T06:36:48.938808+00:00",
-      "github_actions_run": "33478349509",
-      "source_revision": "cead0acece1d8a422916ac1e191d8ca337c6cc04",
+      "completed_at": "2026-09-02T04:32:49.608992+00:00",
+      "github_actions_run": "33591205089",
+      "source_revision": "9fc204848d9115aef49a2b9f8060bf73a186add9",
       "execution_mode": "RECURRING",
-      "execution_count": 22,
+      "execution_count": 32,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]

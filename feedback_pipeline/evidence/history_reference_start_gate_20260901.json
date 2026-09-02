@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-01",
+  "base_central_commit": "1eb6bd858c92e62844b25478c308cb06ddc4bb5a",
+  "credit_min_mode": true,
+  "tool013": {
+    "status": "COMPLETE_REMOTE_VERIFIED_SKIPPED_RETEST",
+    "repo_head": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+    "implementation_commit": "0d009b94304e20fb61ad2ec8e3793bcb9144db98",
+    "checkpoint_commit": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+    "actual_e2e": {
+      "files": 114,
+      "rows": 823,
+      "pass": 114,
+      "hold": 0,
+      "elapsed_ms": 5279,
+      "output_sha256": "6fa11cd2c10617a3eed75037e59d51915f284fd2555d3744814cf3f6d9a40167"
+    },
+    "reason": "Existing actual 114-file deployed canonical evidence exceeds staged 5/20 requirement; SKIP_REUSE"
+  },
+  "tool043": {
+    "status": "COMPLETE_REMOTE_VERIFIED_SKIP_REUSE",
+    "implementation_commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "actual_device_commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+    "run": "33358129860",
+    "remaining_scope": 0
+  },
+  "antigravity": {
+    "metadata_scope": [
+      "D:/GPT 도구 작업",
+      "D:/중요한 대화 목록",
+      "D:/대화창 기록 모음",
+      "D:/오부장 AI (인공지능)"
+    ],
+    "exact_name_candidates": 16,
+    "validated_outputs": 2,
+    "valid_rule_indexes": 1,
+    "excluded_shell_duplicate_log": 1,
+    "github_preserved_new": 0,
+    "github_reused_existing": 1,
+    "reused_path": "obk369369-spec/06-toc-check/knowledge/source_registry/antigravity_tool006_sources.json",
+    "unique_diff": 0,
+    "notes": "USB original unchanged. Exact GitHub content already exists; no duplicate copy. Role assignment is not a rule extraction output."
+  },
+  "history_278": {
+    "status": "COMPLETE_WITH_SOURCE_HOLD_SKIP_REUSE",
+    "numbered_groups": "32/32",
+    "batches": "A/B/C/D complete",
+    "reprocessed": 0,
+    "unique_diff": 0,
+    "index_connection": "historical_record_index.json archive_boundaries + lookup_priority"
+  },
+  "master_promotions": [],
+  "master_promotion_count": 0,
+  "start_gate": {
+    "change": "TOOL013 registry master_paths corrected from state-only to TOOL013_MASTER.md + WIC_RULE_SOURCE.md; state remains checkpoint",
+    "actual_load_result": {
+      "status": "PASS",
+      "target": "TOOL013",
+      "load_order": [
+        "CENTRAL_COMMON_MASTER",
+        "TOOL_CANONICAL_MASTER",
+        "LATEST_CHECKPOINT_HANDOFF"
+      ],
+      "loaded": [
+        {
+          "phase": "CENTRAL_COMMON_MASTER",
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "path": "WIC_GLOBAL_OPERATING_RULES.md",
+          "revision": "main",
+          "sha256": "2f42a471946220577c977393ce0079e65c3b50bdfd9d9f0ccf8264e9e41c5a52",
+          "read_back": true
+        },
+        {
+          "phase": "TOOL_CANONICAL_MASTER",
+          "repository": "obk369369-spec/13-excel-upload",
+          "path": "TOOL013_MASTER.md",
+          "revision": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+          "sha256": "a85b3b513ddd048597bea1e4d85a9c8aa353019f4fb1304169c835b7eece1010",
+          "read_back": true
+        },
+        {
+          "phase": "TOOL_CANONICAL_MASTER",
+          "repository": "obk369369-spec/13-excel-upload",
+          "path": "WIC_RULE_SOURCE.md",
+          "revision": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+          "sha256": "4803a717491d7965026074c9b8055a179e8226f2900fbab0f157b333e1f32e32",
+          "read_back": true
+        },
+        {
+          "phase": "LATEST_CHECKPOINT_HANDOFF",
+          "repository": "obk369369-spec/13-excel-upload",
+          "path": "WIC_TARGET_APPLY_STATE.json",
+          "revision": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+          "sha256": "77a7f51f802a1e7b7c4dfb439d7993710a95e26b48da40b519d8b352e3c13687",
+          "read_back": true
+        }
+      ],
+      "work_entry_allowed": true
+    },
+    "first_attempt_hold": "Local selective workspace lacked CENTRAL master; no PASS claimed",
+    "retest_count_after_connection_fix": 1
+  },
+  "representative_41_42": {
+    "result": "SKIP_REUSE",
+    "reason": "Registry already points to TOOL041 MASTER/guard/checkpoint and TOOL042 guidance MASTER/engine/checkpoint; existing PASS/HOLD not rerun"
+  },
+  "holds": [
+    "278 unreadable/source-not-found items unchanged",
+    "TOOL006 publisher golden pair unchanged",
+    "TOOL041/042 authenticated real customer semantic E2E unchanged",
+    "General Chat source event producer platform boundary unchanged"
+  ],
+  "usb_mutations": 0,
+  "full_audits": 0,
+  "user_manual_interventions": 0
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "TOOL007_START_GATE_EVIDENCE_V1",
+  "verified_at": "2026-09-01T22:05:00+09:00",
+  "scope": "TOOL007 START GATE connection only; TOOL041/042 business flows SKIP_REUSE",
+  "representative_targets": {
+    "TOOL041": "customer information collection/organization; registry existing PASS reused",
+    "TOOL042": "customer material recommendation/guidance output; registry existing PASS reused",
+    "TOOL007": "contact copy/message authoring; changed connection validated"
+  },
+  "load_chain": [
+    {
+      "phase": "CENTRAL",
+      "path": "WIC_GLOBAL_OPERATING_RULES.md",
+      "sha256": "5595c1d8d36f27a0b37e33ff8ea2c00f080c28be9ac895c1012ea4574b1784bc"
+    },
+    {
+      "phase": "TOOL007_MASTER",
+      "path": "customer_pipeline/tool7_contact_judgment.py",
+      "sha256": "b340f24f50b794d9fe16df0017d5e823e339096f94a7c09d540954f99ab632c4"
+    },
+    {
+      "phase": "WIC_RULE_SOURCE",
+      "path": "WIC_GLOBAL_OPERATING_RULES.md",
+      "sha256": "5595c1d8d36f27a0b37e33ff8ea2c00f080c28be9ac895c1012ea4574b1784bc"
+    },
+    {
+      "phase": "LATEST_CHECKPOINT",
+      "path": "customer_pipeline/CONTACT_COPY_CHECKPOINT.md",
+      "sha256": "88f4571eadb432b838b577cbc55ad4cafba47f92814066ba1f30dda17d2dc6ea"
+    }
+  ],
+  "positive": {
+    "status": "PASS",
+    "work_entry_allowed": true,
+    "remote_assets_read_back": true
+  },
+  "negative_missing_checkpoint": {
+    "status": "HOLD",
+    "reason": "MASTER_LOAD_FAIL",
+    "work_entry_allowed": false
+  },
+  "antigravity_search": "SKIP_MASTER_SUFFICIENT",
+  "historical_278_search": "SKIP_MASTER_SUFFICIENT",
+  "tool041_042_retest_count": 0,
+  "result": "PASS"
+}

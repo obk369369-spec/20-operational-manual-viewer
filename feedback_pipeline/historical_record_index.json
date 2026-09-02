@@ -30,7 +30,11 @@
           "summary": "LOCK_SPEC/CONTRACT/TEST_CASE/SCREEN_MAP와 화면·로그·반복차단 검증 규칙."
         }
       ],
-      "status": {"pass":"로컬 관리기능 functional E2E","hold":"외부 나라장터 자동수집","open":"기관별 누적검사기"}
+      "status": {
+        "pass": "로컬 관리기능 functional E2E",
+        "hold": "외부 나라장터 자동수집",
+        "open": "기관별 누적검사기"
+      }
     },
     "TOOL001": {
       "records": [
@@ -44,7 +48,40 @@
           "last_work_point": "RUN23 synthetic/실데이터 경계와 test hook 매핑"
         }
       ],
-      "status": {"pass":"역사규칙 부분 회수","hold":"생산 안정판 실데이터 E2E","open":"fixture 자동테스트 연결"}
+      "status": {
+        "pass": "역사규칙 부분 회수",
+        "hold": "생산 안정판 실데이터 E2E",
+        "open": "fixture 자동테스트 연결"
+      }
+    },
+    "TOOL006": {
+      "records": [
+        {
+          "observed_at": "2026-08-25T00:00:00+09:00",
+          "source_root_alias": "github_rule_extraction_archive",
+          "relative_path": "obk369369-spec/06-toc-check/knowledge/source_registry/antigravity_tool006_sources.json",
+          "sha256": "b600935b875c71004e56e3b8efab8e536a7286f6",
+          "classification": "RULE_EXTRACTION_ARCHIVE_INDEX",
+          "summary": "Selective Antigravity source classification; verified current feedback reused, synthetic simulation retired, incomplete publisher ground truth held.",
+          "last_work_point": "ACTIVE_VERIFIED T6-RC-01..04 already promoted to knowledge/tool006_asset_index.json"
+        }
+      ],
+      "status": {
+        "pass": "GitHub rule-extraction index and current asset index already canonical",
+        "hold": "Publisher-specific ground truth incomplete",
+        "open": "NONE_WITHOUT_NEW_GOLDEN_PAIR"
+      }
     }
+  },
+  "lookup_priority": [
+    "CURRENT_TOOL_MASTER_AND_CENTRAL",
+    "RULE_EXTRACTION_ARCHIVE",
+    "278_CHAT_HISTORY",
+    "PREVIOUS_VERIFIED_PROGRAM"
+  ],
+  "archive_boundaries": {
+    "rule_extraction_archive": "Verified extracted rule indexes only; never raw conversations or synthetic logs",
+    "chat_history_278": "feedback_pipeline/WIC_278_CHAT_HISTORY_CATCHUP.md; COMPLETE_WITH_SOURCE_HOLD; search narrowly only",
+    "promotion": "Historical evidence is never an execution rule until conflict-checked and promoted to current TOOL MASTER"
   }
 }

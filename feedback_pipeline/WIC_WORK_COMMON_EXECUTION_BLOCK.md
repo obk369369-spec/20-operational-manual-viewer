@@ -173,3 +173,12 @@ WORK_ADMISSION_POLICY = PERMANENT_FAIL_CLOSED_V1
 - 작업 종료 시 기존 장부에 operation_id·증거·PASS/HOLD/FAIL·실패 방법·해제조건·NEXT_WORK를 저장한다. 완료 작업의 이름을 바꿔 재실행하지 않는다.
 - 공통 블록 누락, 로컬 실행기와 최신 정본 불일치, 최신 상태 로드 실패는 HOLD. 사용자에게 규칙·checkpoint를 다시 전달시키지 않는다.
 - 강제 범위는 이 공통 진입경로를 사용하는 Work다. 플랫폼의 임의 대화/직접 도구 호출 전체를 가로챈다는 의미가 아니다.
+
+## MASTER 강제 START GATE 대표 유형
+- 대표 대상은 `TOOL041`(고객정보 수집·정리형), `TOOL042`(고객별 자료 추천·안내 출력형), `TOOL007`(멘트·문구 작성형)이다.
+- TOOL041·042의 기존 PASS/registry 연결은 SKIP_REUSE하며 대표대상 기록을 이유로 업무를 재실행하지 않는다.
+- TOOL007은 registry 순서대로 `CENTRAL_COMMON_MASTER → customer_pipeline/tool7_contact_judgment.py → WIC_GLOBAL_OPERATING_RULES.md → customer_pipeline/CONTACT_COPY_CHECKPOINT.md`를 모두 실제 로드해야 작업 진입을 허용한다.
+- 어느 파일이든 누락·빈 파일·순서 불일치면 `MASTER_LOAD_FAIL` 또는 `MASTER_LOAD_ORDER_INVALID`로 본문 생성을 차단한다.
+- TOOL007 과거 근거 검색은 위 현재 정본이 부족한 경우에만 Antigravity TOOL007 범위, 그다음 278 TOOL007 범위로 좁게 내려간다.
+START_GATE_REPRESENTATIVE_TARGETS = TOOL041,TOOL042,TOOL007
+TOOL007_MASTER_CHAIN_REQUIRED = TRUE
