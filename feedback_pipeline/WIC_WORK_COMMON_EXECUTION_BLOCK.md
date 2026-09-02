@@ -50,6 +50,28 @@ WASTE_BLOCKING_STRICT = TRUE
 PRODUCTIVE_WORK_CREDIT_THROTTLE_RELAXED = TRUE
 NOOP_SCHEDULED_REPEAT = FORBIDDEN
 
+## 모든 WIC 도구·프로그램의 지속비용 0 우선 게이트 — REQUIRED
+- 이 규칙은 TOOL044만이 아니라 기존 모든 WIC TOOL, 앞으로 추가되는 모든 TOOL·프로그램·대화창 기반 실행체계, 그리고 모든 개발·확장·통합에 공통 적용한다.
+- Work에 신규 개발·기능추가·확장 작업이 들어오면 구현 전에 먼저 `지속비용 없이 구현 가능한가`를 판정한다.
+- 기본 우선순위는 `기존 WIC 검증부품 재사용 → TOOL044에서 외부의 완성·공유·실사용·검증된 무료 부품 탐색 → 로컬/무료 실행 방식 → 그래도 불가능할 때만 별도 개발 검토`다.
+- 완성된 도구의 정상적인 일상 운영이 Work/Codex 크레딧, 유료 AI 호출, 유료 API, 유료 SaaS, 사용량 기반 과금에 지속 의존하는 구조는 기본 FAIL이다.
+- 개발·수리·최초 검증 단계에서 제한적으로 Work를 사용할 수 있으나, 배포된 도구의 정상 런타임이 Work/Codex 크레딧을 계속 소모하도록 설계하지 않는다.
+- 규칙엔진, 캐시, 기존 결과 재사용, 로컬 실행, 무료 오픈소스/공개 패키지로 해결 가능한 기능에 유료 AI를 붙이지 않는다.
+- 생성형 AI 판단이 정말 필요한 일부 기능은 본체와 분리하고, 규칙화 가능 여부 → 기존 결과/캐시 재사용 → 무료/로컬 대안 검토를 먼저 통과한 뒤 마지막 수단으로만 유료 AI 사용 여부를 별도 판단한다.
+- 신규 도구나 신규 기능의 설계 질문은 `어떻게 새로 만들까?`보다 먼저 `돈과 크레딧 없이 기존 검증부품 또는 TOOL044 완성부품으로 해결 가능한가?`를 묻는다.
+- TOOL044는 WIC 고유 규칙을 새로 만드는 도구가 아니라, 그 규칙이 반드시 실행되게 하는 검증된 바깥 구조를 가져오는 역할로 사용한다.
+- TOOL044 후보는 외부 부품 자체의 수정·개량·커스터마이즈·추가개발이 필요하면 채택하지 않고 `NO_READY_COMPONENT`로 종료한다.
+RUNTIME_CREDIT_ZERO = DEFAULT_REQUIRED
+RECURRING_PAID_API = REJECT_BY_DEFAULT
+PAID_SAAS_DEPENDENCY = REJECT_BY_DEFAULT
+PAID_AI_REQUIRED_FOR_NORMAL_OPERATION = FAIL
+LOCAL_RULE_ENGINE_FIRST = REQUIRED
+CACHE_AND_REUSE_FIRST = REQUIRED
+VERIFIED_WIC_COMPONENT_FIRST = REQUIRED
+TOOL044_READY_COMPONENT_SEARCH_BEFORE_NEW_COMMON_BUILD = REQUIRED
+ZERO_RECURRING_COST_TARGET = TRUE
+PAID_AI = LAST_RESORT_ONLY
+
 ## 현재 Work와 역사자료 분리
 - 사용자가 별도로 재개하라고 명시하기 전까지 현재 Work는 278개 과거대화 catch-up과 절대 연결하지 않는다.
 - 현재 TOOL 작업 중 278 catch-up을 조회·흡수·재개·교차검색하지 않는다.
