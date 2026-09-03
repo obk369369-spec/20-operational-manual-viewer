@@ -1,0 +1,36 @@
+{
+  "status": "DEPLOYED_PASS",
+  "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+  "stages": [
+    {
+      "stage": "READY_COMPONENT",
+      "candidate_count": 1,
+      "search_stopped": true,
+      "sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+      "expected": "valid SHA accepted, four malformed inputs rejected",
+      "actual": "MATCH"
+    },
+    {
+      "stage": "UNMODIFIED_COMPONENT_INSTALLED"
+    },
+    {
+      "stage": "TARGET_ACTUAL_INPUT_AND_REGRESSION_PASS",
+      "report": "feedback_pipeline\\evidence\\tool043_proof_e2e.json"
+    },
+    {
+      "stage": "GITHUB_PUSH_READBACK_PASS",
+      "commit": "cd9a4a9294f249aa1026d5a592d2528f2228f449"
+    },
+    {
+      "stage": "LOCAL_DEPLOYED",
+      "tool043": "I:\\GPT 도구 작업\\43번 모바일 관찰판\\tool043\\index.html",
+      "tool044": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\feedback_pipeline\\tool044_start.cmd"
+    },
+    {
+      "stage": "DEPLOYED_COPY_TEST_PASS",
+      "report": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\tool043_proof_deployed.json"
+    }
+  ],
+  "user_action_queue": [],
+  "safe_checkpoint": "cd9a4a9294f249aa1026d5a592d2528f2228f449"
+}
