@@ -2,6 +2,15 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id":"WIC-0702-SCOPED-RECOVERY",
+      "layer":"L5",
+      "target":"TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
+      "status":"OPEN",
+      "next_trigger":"IMMEDIATE",
+      "last_actual_point":"User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds.",
+      "next_start":"Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification."
+    },
+    {
       "root_id": "CI-REGISTRY-STAGING-STATUS",
       "layer": "L1",
       "target": "CENTRAL",
@@ -200,6 +209,13 @@
   "execution_policy": {
     "schema_version": 1,
     "scope_grants": [{
+      "root_id":"WIC-0702-SCOPED-RECOVERY",
+      "directive_ref":"USER_0702A258_RESUME",
+      "actions":["SCOPED_READ_ONLY_RECOVERY"],
+      "assets":["TOOL013","TOOL041","TOOL042","TOOL043","TOOL044"],
+      "reusable_assets":["current canonical MASTER/checkpoint/evidence/history index"],
+      "scope":"Recover actual available evidence and executable existing functions without releasing unchanged auth/browser restrictions"
+    },{
       "root_id": "CI-REGISTRY-STAGING-STATUS",
       "directive_ref": "USER_0702A258_RESUME",
       "actions": ["REPAIR_REGISTRY_STATUS"],

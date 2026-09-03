@@ -1,0 +1,14 @@
+{
+ "root_id":"WIC-0702-SCOPED-RECOVERY",
+ "operation_id":"available-canonical-evidence-recovery",
+ "directive_ref":"USER_0702A258_RESUME",
+ "action":"SCOPED_READ_ONLY_RECOVERY",
+ "target_assets":["TOOL013","TOOL041","TOOL042","TOOL043","TOOL044"],
+ "gates":{"chat_files":false,"github":false,"ordinary_runtime":false},
+ "blocker":"Existing runtime does not resolve current evidence coverage and production prerequisites",
+ "restart_point":"Existing checkpoints and prior stop evidence only",
+ "target_repository":"Existing CENTRAL and named target repositories",
+ "execution_goal":"Distinguish accessible evidence from missing inputs and unsupported execution without blanket HOLD",
+ "success_evidence":"Exact canonical source paths and availability findings, no invented customer/model data",
+ "rollback_point":"6c5f652e3cf62eb061ebd01e6e77ab8268cf41f7"
+}
