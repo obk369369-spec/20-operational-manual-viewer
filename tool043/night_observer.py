@@ -26,6 +26,15 @@ def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, inc
     """Conserve unresolved IDs; only an evidence-backed canonical closure removes one."""
     closed_states = {"VERIFIED_CLOSED", "REMOTE_VERIFIED", "FIXED_RUNTIME", "DEPLOYED_COMPLETE", "CURRENT_SCOPE_COMPLETE"}
     closed = {r["id"] for r in ledger["roots"] if r.get("status") in closed_states and (r.get("completion_evidence") or r.get("evidence"))}
+    # Unified canonical closures also supersede stale queue projections. A
+    # conflicting legacy root remains unresolved; a queue can never close a root.
+    legacy = {r["id"]: r for r in ledger["roots"]}
+    for row in unified["entries"]:
+        rid = row.get("root_id")
+        if (rid and row.get("status") in closed_states
+                and (row.get("completion_evidence") or row.get("evidence"))
+                and (rid not in legacy or legacy[rid].get("status") in closed_states)):
+            closed.add(rid)
     rows = {}
     errors = []
     labels = {
@@ -75,6 +84,9 @@ def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, inc
     if not canonical_open.issubset(rows): errors.append("UNRESOLVED_TASK_LOST")
     recent = [{"root_id": r["id"], "label": r.get("completion_label", r["id"]), "evidence": r["completion_evidence"]}
               for r in ledger["roots"] if r["id"] in closed and r.get("completion_evidence")]
+    recent.extend({"root_id": r["root_id"], "label": r.get("completion_label", r["root_id"]), "evidence": r["completion_evidence"]}
+                  for r in unified["entries"] if r.get("root_id") in closed
+                  and r.get("root_id") not in legacy and r.get("completion_evidence"))
     return {"remaining": list(rows.values()), "running": running, "waiting": waiting, "pending": pending,
             "remaining_total": len(rows), "running_total": len(running), "waiting_total": len(waiting),
             "pending_total": len(pending), "open_internal_total": len(canonical_open),

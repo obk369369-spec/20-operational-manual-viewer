@@ -1,0 +1,14 @@
+{
+  "status": "LOCAL_VALIDATED_REMOTE_PENDING",
+  "operation": "TOOL044 pilot closure projection repair",
+  "cause": "Completion receipt absent from projection evidence fields; unified canonical closures not included in closed-ID set",
+  "test": "python -X utf8 tool043/test_unified_closure.py",
+  "input": "Current canonical ledgers plus stale TOOL044 night queue entry",
+  "expected": {"remaining": 4, "pending": 0, "waiting": 4, "conservation_pass": true},
+  "actual": {"remaining": 4, "pending": 0, "waiting": 4, "conservation_pass": true},
+  "regression": {"missing_proof_blocked": true, "conflicting_open_preserved": true, "existing_observer_self_test": "PASS"},
+  "pilot_remote_evidence_commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+  "pilot_remote_evidence_blob": "eeddfb36b0c77f35617855c0a89355175dcfe609",
+  "TOOL013_tests_repeated": 0,
+  "next_start": "Read back CENTRAL repair and automatic projection; execute strict resume. TOOL044 autonomous deployment remains incomplete, not covered by pilot closure."
+}

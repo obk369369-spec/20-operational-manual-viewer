@@ -11,6 +11,13 @@
       "last_actual_point": "Unmodified idb-keyval 6.2.2 installed in TOOL013, real XLSX 6 rows plus 4050383-char/160-row resume/download exact comparison and impacted regression PASS; deployed canonical same E2E PASS; remote bytes matched. Translation not included.",
       "next_start": "SKIP_REUSE completed checkpoint-cache pilot. Translation remains model-license/runtime HOLD; do not repeat unchanged candidate installation or the 114-file engine test.",
       "safe_checkpoint": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+      "completion_evidence": {
+        "repository": "obk369369-spec/13-excel-upload",
+        "commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+        "path": "tests/tool13_idb_deployed_evidence.json",
+        "remote_blob_sha": "eeddfb36b0c77f35617855c0a89355175dcfe609",
+        "scope": "TOOL013 idb-keyval cache pilot only; not TOOL044 autonomous production deployment"
+      },
       "search_limits": {"rounds_per_function": 2, "candidates_per_function": 3, "sandbox_tests_per_candidate": 1, "environment_retries": 1, "integration_candidates_per_tool": 2},
       "execution_receipts": [{"operation_id":"tool013-ready-acquisition","status":"REMOTE_VERIFIED","evidence_ref":"obk369369-spec/13-excel-upload@3a70d84161d0cff9916a7a37d6c88d279df111eb:tests/tool13_idb_deployed_evidence.json","scope":"TOOL013 checkpoint-cache only","target_runtime_sha256":"af00dee8a289205f92323c607ad84e5e77fd7c24d0ab273cdd579624eb9ff42b","first_integration_failure":"Oracle omitted existing boundary-whitespace trimming; corrected once with identical input","deploy_block_observed":"Git newline byte mismatch blocked deployment; exact tested bytes preserved with path-specific attributes"}]
     },
