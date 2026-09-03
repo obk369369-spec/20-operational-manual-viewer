@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "680df89076dadf31752b188af3a0137cd6deb50084a8a98df4a9b51df5b563d4",
-    "feedback_pipeline/unified_open_ledger.json": "7a777dca0ddc699206b5e74f5f21ec37d389d694d500401177091d0510afe105",
+    "feedback_pipeline/unified_open_ledger.json": "1cfa7e5df9e37b9cec5345c812912b272a8f36928248f027aa5e35a83fd7726d",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -92,6 +92,18 @@
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
       },
       {
+        "root_id": "CI-REGISTRY-STAGING-STATUS",
+        "target": "CENTRAL",
+        "label": "CI-REGISTRY-STAGING-STATUS",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Validate existing minimal status patch, negative status/completion checks, then real CI and remote read-back; do not develop TOOL014.",
+        "last_actual_point": "CI 33722809079 and 33722809109 fail TOOL014 unsupported registry status. Existing one-line local compatibility patch is uncommitted; preserve staging versus live distinction."
+      },
+      {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
         "target": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
         "label": "WIC-PARALLEL-RESIDUAL-20260903",
@@ -171,6 +183,18 @@
     ],
     "pending": [
       {
+        "root_id": "CI-REGISTRY-STAGING-STATUS",
+        "target": "CENTRAL",
+        "label": "CI-REGISTRY-STAGING-STATUS",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Validate existing minimal status patch, negative status/completion checks, then real CI and remote read-back; do not develop TOOL014.",
+        "last_actual_point": "CI 33722809079 and 33722809109 fail TOOL014 unsupported registry status. Existing one-line local compatibility patch is uncommitted; preserve staging versus live distinction."
+      },
+      {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
         "target": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
         "label": "WIC-PARALLEL-RESIDUAL-20260903",
@@ -184,10 +208,10 @@
         "last_actual_point": "Latest resume 10f40460 loaded. Completed proof/cache adapters SKIP_REUSE; existing external holds remain unchanged. TOOL013 master-to-output residual identified: filename and N Pages casing."
       }
     ],
-    "remaining_total": 5,
+    "remaining_total": 6,
     "running_total": 0,
     "waiting_total": 4,
-    "pending_total": 1,
+    "pending_total": 2,
     "open_internal_total": 0,
     "recent_completed": [
       {
@@ -230,7 +254,7 @@
   "night_processed": 1,
   "new_open": 0,
   "blocked_work": 4,
-  "next_work": "WIC-PARALLEL-RESIDUAL-20260903",
+  "next_work": "CI-REGISTRY-STAGING-STATUS / WIC-PARALLEL-RESIDUAL-20260903",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -266,7 +290,7 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 5,
+  "incomplete_total": 6,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -274,9 +298,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-03T06:26:41.149051+00:00",
-  "source_revision": "da005fe300819065ec9465dc8fa42fc31c871587",
-  "github_actions_run": "33723227036",
+  "observer_generated_at": "2026-09-03T06:43:10.103442+00:00",
+  "source_revision": "a97e7b9bd29483a1895a44404900c75b7a787920",
+  "github_actions_run": "33724525721",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -288,7 +312,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-03T06:26:41.148439+00:00",
+      "executed_at": "2026-09-03T06:43:10.102867+00:00",
       "status": "COMPLETED"
     }
   ]
