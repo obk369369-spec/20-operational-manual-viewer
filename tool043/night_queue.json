@@ -35,17 +35,25 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
     },
     {
+      "target": "TOOL044 / TOOL043",
+      "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "status": "OPEN",
+      "last_actual_point": "Existing TOOL044 is acquisition-only. TOOL043 unified completion proof uses truthiness rather than an evidence structure contract. Closed TOOL013 pilot remains SKIP_REUSE.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Admit bounded production execution and validate TOOL043 completion proof with an unmodified ready validation component. Preserve real external holds and existing closures."
+    },
+    {
       "kind": "SAFE_NIGHT_TASK",
       "task_id": "T43-NIGHT-REAL-RUN-20260829-01",
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-09-03T01:55:57.825805+00:00",
-      "github_actions_run": "33705624550",
-      "source_revision": "d20561e38831333043678f9c8ffa72b825f5bb84",
+      "completed_at": "2026-09-03T02:25:19.229585+00:00",
+      "github_actions_run": "33707566458",
+      "source_revision": "1bb4394075027137f188cdd7ec1d26e406585095",
       "execution_mode": "RECURRING",
-      "execution_count": 38,
+      "execution_count": 39,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]
