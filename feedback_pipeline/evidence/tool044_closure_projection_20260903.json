@@ -1,5 +1,45 @@
 {
-  "status": "LOCAL_VALIDATED_REMOTE_PENDING",
+  "status": "REMOTE_VERIFIED_RESUME_RESTORED",
+  "repair_commit": "d20561e38831333043678f9c8ffa72b825f5bb84",
+  "remote_sha_readback": "MATCH d20561e38831333043678f9c8ffa72b825f5bb84",
+  "approval_language_diagnostic": {
+    "cause": "Assistant supplied Japanese directly in exec_command.justification; not an inferred OS translation",
+    "actual_submitted_text": "修正したCENTRALの4ファイルの原本照合、自動同期CI、厳格resumeを一括で確認してよろしいですか？",
+    "powershell_culture": "ko-KR",
+    "powershell_ui_culture": "ko-KR",
+    "windows_system_locale": "ko-KR",
+    "windows_user_language_tag": "ko",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "LC_MESSAGES": null,
+    "LANGUAGE": null,
+    "active_console_codepage": 949,
+    "console_input_codepage": 949,
+    "console_output_codepage": 65001,
+    "config_toml_locale_matches": 0,
+    "settings_changed": false,
+    "action": "Use Korean justification for this Korean task; do not change locale/encoding or repeat denied approval",
+    "scope": "Known config.toml and locale/language settings keys in Codex persisted app state only; no history search"
+  },
+  "user_action_queue": [],
+  "remote_file_readback": {
+    "tool043/night_observer.py": "c11e5a20b502c6ec55fd979302464c6a94993038",
+    "tool043/test_unified_closure.py": "79f2ffbade9862a55d450cc66afff02ad22e1bbb",
+    "feedback_pipeline/unified_open_ledger.json": "07026db03c72323f0bca97e9500ba4cef79cf736",
+    "feedback_pipeline/evidence/tool044_closure_projection_20260903.json": "911a97f0257133c4a86cac2066529f270e31a18a"
+  },
+  "ci": {"run_id": 33705624550, "conclusion": "success", "head_sha": "d20561e38831333043678f9c8ffa72b825f5bb84"},
+  "strict_resume": {
+    "status": "RESUME_LOADED",
+    "central_revision": "1efa2f6af2255e013e2d01b91e3d85fd963cfb76",
+    "conservation_pass": true,
+    "open": 0,
+    "hold": 4,
+    "next_work": 0,
+    "work_admission": "WORK_HOLD_CANDIDATE_REQUIRED",
+    "execution_allowed": false,
+    "inherited_safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610"
+  },
   "operation": "TOOL044 pilot closure projection repair",
   "cause": "Completion receipt absent from projection evidence fields; unified canonical closures not included in closed-ID set",
   "test": "python -X utf8 tool043/test_unified_closure.py",
@@ -10,5 +50,5 @@
   "pilot_remote_evidence_commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
   "pilot_remote_evidence_blob": "eeddfb36b0c77f35617855c0a89355175dcfe609",
   "TOOL013_tests_repeated": 0,
-  "next_start": "Read back CENTRAL repair and automatic projection; execute strict resume. TOOL044 autonomous deployment remains incomplete, not covered by pilot closure."
+  "next_start": "SKIP_REUSE closure repair. TOOL044 production orchestration/deployment remains INCOMPLETE. Admit the explicit production scope in canonical ledger and connect only an evidence-backed actionable target; current four business holds are unchanged and not component-install targets. Do not deploy the existing downloader as the promised autonomous tool."
 }
