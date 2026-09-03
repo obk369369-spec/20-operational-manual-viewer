@@ -3,6 +3,40 @@
   "policy": "EVIDENCE_REQUIRED_REUSE_FIRST",
   "components": [
     {
+      "component_id": "IDB_KEYVAL_6_2_2_TOOL013_RESUME",
+      "status": "VERIFIED_REUSABLE",
+      "source_tool": "TOOL044",
+      "applied_tool": "TOOL013",
+      "official_source": "https://github.com/jakearchibald/idb-keyval",
+      "package_source": "https://registry.npmjs.org/idb-keyval/-/idb-keyval-6.2.2.tgz",
+      "version": "6.2.2",
+      "license": "Apache-2.0",
+      "runtime_dependencies": [],
+      "runtime_paid_calls": 0,
+      "external_modified": false,
+      "source_file": "vendor/idb-keyval-6.2.2.js",
+      "source_sha256": "f5985c43b11e4f99700e0c97a0d44ac129821f227f17c60afd7de8d421db5a58",
+      "source_repository": "obk369369-spec/13-excel-upload",
+      "source_commit": "3a1ce0a2f1fb9e839adec91eb37f07116941f2c3",
+      "evidence_commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+      "function": "Persist full batch state beyond localStorage limit, restore exact rows, durable reset",
+      "input_contract": "Serialized Tool13BatchState plus config/common/revision; browser IndexedDB",
+      "output_contract": "Same source rows after reopen; exact title/description/category output; reset removes cache",
+      "test_evidence": {
+        "sandbox": "4000000-character object write/reload/deep comparison/delete PASS",
+        "actual_file_rows": 6,
+        "representative_large_chars": 4050383,
+        "representative_large_rows": 160,
+        "development": "tests/tool13_idb_resume_evidence.json",
+        "deployed": "tests/tool13_idb_deployed_evidence.json",
+        "regression": ["primary_category_mapping_value_e2e", "batch_resume.test"],
+        "remote_read_back": true,
+        "deployed_e2e_pass": true
+      },
+      "limitations": ["Not a translation engine", "Per-browser and per-entrypoint-path storage", "Not cross-device backup"],
+      "reuse_requires_target_retest": true
+    },
+    {
       "component_id": "TOOL012_STATIC_SUBSITE_FUNCTIONAL_CTA",
       "status": "VERIFIED_REUSABLE",
       "source_tool": "TOOL012",
@@ -63,7 +97,10 @@
       }
     }
   ],
-  "candidates": [],
+  "candidates": [
+    {"component_id":"ARGOS_TRANSLATE_1_11_EN_KO_1_1","status":"HOLD_MODEL_LICENSE_AND_RUNTIME","official_source":"https://github.com/argosopentech/argos-translate","library_license":"MIT OR CC0","model_sha256":"e03d8e65e6d44525ec5808c3409fcf8728c76c2c76925372b6d3dc3278de17fc","reason":"Downloaded model has source credits but no explicit model license; isolated installation not completed; environment retry used once and stopped after ready cache component found","functional_test_executed":false,"retry_same_conditions":false},
+    {"component_id":"TRANSFORMERS_JS_NLLB_200_600M","status":"REJECTED","official_source":"https://huggingface.co/Xenova/nllb-200-distilled-600M/raw/main/README.md","license":"CC-BY-NC-4.0","reason":"Noncommercial model incompatible with this commercial business deployment","functional_test_executed":false,"retry_same_conditions":false}
+  ],
   "promotion_gate": {
     "requires_actual_test": true,
     "requires_remote_read_back": true,
