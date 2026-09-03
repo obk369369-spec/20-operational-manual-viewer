@@ -2,6 +2,18 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "TOOL044-READY-COMPONENT-PILOT",
+      "layer": "L5",
+      "target": "TOOL044 / TOOL013",
+      "status": "OPEN",
+      "source": "USER_TOOL044_RESUME_20260903",
+      "next_trigger": "IMMEDIATE",
+      "last_actual_point": "I drive and CENTRAL/TOOL013 paths recovered; pinned CENTRAL resume loaded. TOOL013 existing 114-file/823-row evidence reused. No external candidate tested or installed yet.",
+      "next_start": "Scoped acquisition for TOOL013 free local translation/cache; at most 3 candidates, 2 search rounds, first ready stops search. Preserve external source unmodified; test before deployment.",
+      "search_limits": {"rounds_per_function": 2, "candidates_per_function": 3, "sandbox_tests_per_candidate": 1, "environment_retries": 1, "integration_candidates_per_tool": 2},
+      "execution_receipts": []
+    },
+    {
       "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "layer": "EXTERNAL",
       "target": "EXTERNAL",
@@ -138,7 +150,14 @@
   "open_candidate_total": 0,
   "execution_policy": {
     "schema_version": 1,
-    "scope_grants": [],
+    "scope_grants": [{
+      "root_id": "TOOL044-READY-COMPONENT-PILOT",
+      "directive_ref": "USER_TOOL044_RESUME_20260903",
+      "actions": ["ACQUIRE_COMPONENT"],
+      "assets": ["TOOL013", "VERIFIED_COMPONENT_REGISTRY"],
+      "reusable_assets": ["repo13/index.html", "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"],
+      "scope": "TOOL013 existing body and direct external ready-component pilot only; no whole-tool audit or unrelated changes"
+    }],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
     "completed_work": {
       "root_id": "L5-19",
