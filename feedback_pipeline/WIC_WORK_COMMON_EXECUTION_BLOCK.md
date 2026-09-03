@@ -72,6 +72,25 @@ TOOL044_READY_COMPONENT_SEARCH_BEFORE_NEW_COMMON_BUILD = REQUIRED
 ZERO_RECURRING_COST_TARGET = TRUE
 PAID_AI = LAST_RESORT_ONLY
 
+## 기존 도구·이전 정상판 대조 + 실제 버튼 조작 검증 게이트 — REQUIRED
+- 도구의 사소한 기능, 버튼, 입력칸, 선택창, 복사, 초기화, 다운로드, 저장, 미리보기, 오류표시처럼 작은 변경도 `코드가 있어 보인다` 또는 `버튼이 존재한다`는 이유만으로 PASS 처리하지 않는다.
+- 현재 도구를 테스트할 때 이전에 실제로 사용되었거나 검증된 정상판/배포본/과거 실행파일이 있으면 우선 그것과 화면·버튼·동작을 나란히 대조한다. 단, 관련 없는 과거 전체 버전을 전수검사하지 않고 현재 변경 기능과 직접 관련된 이전 정상판만 좁게 사용한다.
+- 대표 대조항목은 `버튼 수·이름·위치·활성/비활성 상태·클릭 후 동작·입력값 반영·화면 전환·미리보기·복사·초기화·다운로드/저장·오류표시·최종 산출물`이다.
+- 버튼이나 조작형 기능은 실제로 눌러야 한다. DOM/handler 존재, 코드 문자열 존재, 버튼 개수 일치만으로 기능 PASS를 선언하지 않는다.
+- 현재판 버튼을 실제 클릭하여 ACTUAL을 캡처하고, 이전 정상판에서 동일 기능을 실제 조작해 얻은 기준 동작 또는 MASTER/사용자 확정 EXPECTED와 서로 대조한다.
+- 이전판과 현재판이 의도적으로 달라진 경우에는 무조건 이전판으로 되돌리지 않고 `CHANGED_INTENTIONALLY` 근거를 남긴다. 근거 없이 사라졌거나 끊긴 기능은 `MISSING_UI / MISSING_FUNCTION / BROKEN_CONNECTION`으로 분류한다.
+- 사소한 변경도 `대표 실제 입력 → 실제 버튼/조작 → EXPECTED → ACTUAL → 이전 정상판/MASTER 대조 → 영향 회귀 → PASS`를 통과해야 한다.
+- 자동화 가능한 클릭·입력·다운로드·재열기 검증은 Work가 직접 수행하고, 사용자에게 버튼 테스트를 떠넘기지 않는다. 플랫폼상 사용자 승인/MFA/물리기기 조작이 꼭 필요한 경우만 USER_ACTION_REQUIRED로 묶는다.
+- 이전 정상판이 없거나 확보할 수 없으면 MASTER/사용자 확정 동작을 독립 EXPECTED로 사용하고, 없다는 이유로 테스트 자체를 생략하지 않는다.
+PRIOR_VERIFIED_TOOL_COMPARISON = REQUIRED_WHEN_AVAILABLE
+ACTUAL_BUTTON_CLICK_TEST = REQUIRED_FOR_INTERACTIVE_FUNCTION
+BUTTON_EXISTS_IS_NOT_PASS = TRUE
+HANDLER_EXISTS_IS_NOT_PASS = TRUE
+SMALL_FEATURE_TEST_SKIP = FORBIDDEN
+PRIOR_VERSION_WHOLE_AUDIT = FORBIDDEN
+INTENTIONAL_CHANGE_REQUIRES_EVIDENCE = TRUE
+USER_MANUAL_BUTTON_TEST_BY_DEFAULT = FORBIDDEN
+
 ## 현재 Work와 역사자료 분리
 - 사용자가 별도로 재개하라고 명시하기 전까지 현재 Work는 278개 과거대화 catch-up과 절대 연결하지 않는다.
 - 현재 TOOL 작업 중 278 catch-up을 조회·흡수·재개·교차검색하지 않는다.
