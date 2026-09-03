@@ -43,14 +43,6 @@
       "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification."
     },
     {
-      "target": "CENTRAL",
-      "root_id": "CI-REGISTRY-STAGING-STATUS",
-      "status": "OPEN",
-      "last_actual_point": "CI 33722809079 and 33722809109 fail TOOL014 unsupported registry status. Existing one-line local compatibility patch is uncommitted; preserve staging versus live distinction.",
-      "next_trigger": "IMMEDIATE",
-      "next_start": "Validate existing minimal status patch, negative status/completion checks, then real CI and remote read-back; do not develop TOOL014."
-    },
-    {
       "target": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
       "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
       "status": "OPEN",
@@ -65,11 +57,11 @@
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-09-03T06:48:13.050929+00:00",
-      "github_actions_run": "33724929638",
-      "source_revision": "bdfe487fae225f2e3c842159c4dc7b92cdb6edd9",
+      "completed_at": "2026-09-03T06:54:02.505571+00:00",
+      "github_actions_run": "33725400888",
+      "source_revision": "8f171fb9ed7e2c870977501f30242d77d66d2eea",
       "execution_mode": "RECURRING",
-      "execution_count": 46,
+      "execution_count": 47,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]

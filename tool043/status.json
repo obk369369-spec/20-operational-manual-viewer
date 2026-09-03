@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "680df89076dadf31752b188af3a0137cd6deb50084a8a98df4a9b51df5b563d4",
-    "feedback_pipeline/unified_open_ledger.json": "41e1f4bd6cf00c5e7bb6b3eb4b42121d6ec8b23250cf6f0fd4825344c6738ad1",
+    "feedback_pipeline/unified_open_ledger.json": "1a2a0dab22024f8b1d91fedb1ba798a2fa1939d4c54a2774395cc5af6159c61b",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -97,24 +97,12 @@
         "label": "WIC-0702-SCOPED-RECOVERY",
         "status": "OPEN",
         "sources": [
-          "unified"
-        ],
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification.",
-        "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds."
-      },
-      {
-        "root_id": "CI-REGISTRY-STAGING-STATUS",
-        "target": "CENTRAL",
-        "label": "CI-REGISTRY-STAGING-STATUS",
-        "status": "OPEN",
-        "sources": [
           "unified",
           "night_queue"
         ],
         "next_trigger": "IMMEDIATE",
-        "next_start": "Validate existing minimal status patch, negative status/completion checks, then real CI and remote read-back; do not develop TOOL014.",
-        "last_actual_point": "CI 33722809079 and 33722809109 fail TOOL014 unsupported registry status. Existing one-line local compatibility patch is uncommitted; preserve staging versus live distinction."
+        "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification.",
+        "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds."
       },
       {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
@@ -201,24 +189,12 @@
         "label": "WIC-0702-SCOPED-RECOVERY",
         "status": "OPEN",
         "sources": [
-          "unified"
-        ],
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification.",
-        "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds."
-      },
-      {
-        "root_id": "CI-REGISTRY-STAGING-STATUS",
-        "target": "CENTRAL",
-        "label": "CI-REGISTRY-STAGING-STATUS",
-        "status": "OPEN",
-        "sources": [
           "unified",
           "night_queue"
         ],
         "next_trigger": "IMMEDIATE",
-        "next_start": "Validate existing minimal status patch, negative status/completion checks, then real CI and remote read-back; do not develop TOOL014.",
-        "last_actual_point": "CI 33722809079 and 33722809109 fail TOOL014 unsupported registry status. Existing one-line local compatibility patch is uncommitted; preserve staging versus live distinction."
+        "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification.",
+        "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds."
       },
       {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
@@ -234,20 +210,21 @@
         "last_actual_point": "Latest resume 10f40460 loaded. Completed proof/cache adapters SKIP_REUSE; existing external holds remain unchanged. TOOL013 master-to-output residual identified: filename and N Pages casing."
       }
     ],
-    "remaining_total": 7,
+    "remaining_total": 6,
     "running_total": 0,
     "waiting_total": 4,
-    "pending_total": 3,
+    "pending_total": 2,
     "open_internal_total": 0,
     "recent_completed": [
       {
-        "root_id": "L6-20",
-        "label": "43번 화면 OFF 중 실행 · 재열기 후 새 결과 확인",
+        "root_id": "CI-REGISTRY-STAGING-STATUS",
+        "label": "CI-REGISTRY-STAGING-STATUS",
         "evidence": {
-          "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
-          "path": "tool043/screen_off_actual_20260831.json",
-          "github_actions_run": "33358129860",
-          "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "commit": "18dcc83fc9aced06842e6d620a64114bf1c8bd4f",
+          "path": "feedback_pipeline/evidence/registry_staging_ci_close_20260903.json",
+          "remote_blob_sha": "4c39a7f411202d3d0aee8d09b6cb388d56edf0c0",
+          "scope": "Actual CENTRAL CI staging-status repair, not TOOL014 live deployment"
         }
       },
       {
@@ -280,7 +257,7 @@
   "night_processed": 1,
   "new_open": 0,
   "blocked_work": 4,
-  "next_work": "WIC-0702-SCOPED-RECOVERY / CI-REGISTRY-STAGING-STATUS / WIC-PARALLEL-RESIDUAL-20260903",
+  "next_work": "WIC-0702-SCOPED-RECOVERY / WIC-PARALLEL-RESIDUAL-20260903",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -316,7 +293,7 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 7,
+  "incomplete_total": 6,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -324,9 +301,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-03T06:48:13.051245+00:00",
-  "source_revision": "bdfe487fae225f2e3c842159c4dc7b92cdb6edd9",
-  "github_actions_run": "33724929638",
+  "observer_generated_at": "2026-09-03T06:54:02.505895+00:00",
+  "source_revision": "8f171fb9ed7e2c870977501f30242d77d66d2eea",
+  "github_actions_run": "33725400888",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -338,7 +315,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-03T06:48:13.050929+00:00",
+      "executed_at": "2026-09-03T06:54:02.505571+00:00",
       "status": "COMPLETED"
     }
   ]
