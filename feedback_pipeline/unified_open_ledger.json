@@ -5,11 +5,20 @@
       "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
       "layer": "L5",
       "target": "TOOL044 / TOOL043",
-      "status": "OPEN",
+      "status": "VERIFIED_CLOSED",
       "source": "USER_TOOL044_PRODUCTION_FINISH",
-      "next_trigger": "IMMEDIATE",
-      "last_actual_point": "Existing TOOL044 is acquisition-only. TOOL043 unified completion proof uses truthiness rather than an evidence structure contract. Closed TOOL013 pilot remains SKIP_REUSE.",
-      "next_start": "Admit bounded production execution and validate TOOL043 completion proof with an unmodified ready validation component. Preserve real external holds and existing closures."
+      "next_trigger": "NEW_CONCRETE_FAILURE_OR_NEW_ADMITTED_COMPONENT_TARGET",
+      "last_actual_point": "TOOL044 production executed one pinned fastjsonschema candidate through sandbox, unmodified TOOL043 integration, actual canonical input comparison, 6 invalid-proof cases, regression, push/readback, both operating folders, deployed TOOL044 executing deployed TOOL043 test PASS. Original TOOL013 pilot not retested.",
+      "next_start": "SKIP_REUSE this production adapter and component; next independent target needs concrete canonical problem and its target-specific adapter. Unchanged external holds remain waiting.",
+      "safe_checkpoint": "cd9a4a9294f249aa1026d5a592d2528f2228f449",
+      "completion_evidence": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "99269456d92972fc49c875ca16c36ab23f3b5ffc",
+        "path": "feedback_pipeline/evidence/tool044_production_run.json",
+        "remote_blob_sha": "313c7b40df0d1c9ae6e479233e3760f1e1faef46",
+        "scope": "TOOL044 production adapter for TOOL043 structured evidence and deployed-copy test; not arbitrary future adapter creation or Android retest"
+      },
+      "execution_receipts": [{"operation_id":"production-proof-contract-deploy","status":"REMOTE_VERIFIED","evidence_ref":"99269456d92972fc49c875ca16c36ab23f3b5ffc:feedback_pipeline/evidence/tool044_production_run.json"}]
     },
     {
       "root_id": "TOOL044-READY-COMPONENT-PILOT",

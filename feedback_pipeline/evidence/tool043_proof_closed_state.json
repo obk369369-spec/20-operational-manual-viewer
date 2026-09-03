@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "entry": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_work16_persistent_feedback_reconcile\\tool043\\night_observer.py",
+  "input": "Actual canonical ledger/previous night queue",
+  "expected_remaining": [
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+    "T41-T42-NATIVE-AUTOMATION"
+  ],
+  "actual_remaining": [
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+    "T41-T42-NATIVE-AUTOMATION"
+  ],
+  "invalid_proof_cases_blocked": 6,
+  "valid_pilot_preserved": true,
+  "regression": "observer conservation/self-test",
+  "TOOL013_tests_repeated": 0
+}

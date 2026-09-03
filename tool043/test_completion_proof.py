@@ -14,6 +14,9 @@ args = [read('feedback_pipeline/work16_root_ledger.json'),
         read('feedback_pipeline/incomplete_register.json'), read('tool043/night_queue.json')]
 pilot = 'TOOL044-READY-COMPONENT-PILOT'
 expected = {r['root_id'] for r in args[2]['entries'] if r['root_id'] != pilot}
+production = next((r for r in args[2]['entries'] if r['root_id'] == 'TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT'), None)
+if production and production['status'] == 'VERIFIED_CLOSED':
+    expected.remove(production['root_id'])
 before = observer.current_work(*args)
 assert before['conservation_pass'], before['errors']
 assert {r['root_id'] for r in before['remaining']} == expected

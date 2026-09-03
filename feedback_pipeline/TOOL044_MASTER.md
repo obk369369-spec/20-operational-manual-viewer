@@ -3,7 +3,7 @@
 실행본: `feedback_pipeline/tool044_acquire.py` (Python 표준 라이브러리, 정상 운영 유료 호출 없음).
 기존 CENTRAL `work_gate_handoff`의 범위 승인을 거친 작업만 수행한다.
 
-## 정식 실행 경로 (검증 완료 전 INCOMPLETE)
+## 정식 실행 경로 — TOOL043 적용 어댑터 DEPLOYED_PASS
 
 - 사용자 실행파일: `I:\GPT 도구 작업\44번 완성부품 가져오기\feedback_pipeline\tool044_start.cmd`.
 - 생산 명령: `tool044_acquire.py --production --workspace <CENTRAL checkout>`.
@@ -13,6 +13,11 @@
 - 실패 시 STOP_CARD와 마지막 실제 단계 보존. 같은 실패 자동 반복 금지. 승인 경계를 우회하지 않음.
 - 형식 검증은 과거 실제 업무 결과의 진실성을 새로 증명하지 않는다. 기존 TOOL013 실제 PASS는 재사용.
 - 등록되지 않은 새 대상은 자동 개발됐다고 주장하지 않는다. 대상별 검증된 어댑터가 필요하다.
+
+실제 생산 실행 증거: `99269456d92972fc49c875ca16c36ab23f3b5ffc:feedback_pipeline/evidence/tool044_production_run.json`.
+코드 및 원본 byte read-back: `cd9a4a9294f249aa1026d5a592d2528f2228f449`.
+대상 운영본: `I:\GPT 도구 작업\43번 모바일 관찰판\tool043\night_observer.py` (서버/상태 생성 실행본).
+화면 파일은 기존 index.html 그대로이며 UI 수정/Android 반복시험 범위가 아니다.
 
 - 최초 파일럿: TOOL013의 3MB 초과 배치 재개 캐시. 번역 완료와 구분한다.
 - 부품: idb-keyval 6.2.2, Apache-2.0, 무의존성, 공식 tarball SHA512와 원본 JS SHA256 고정.
