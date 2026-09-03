@@ -97,7 +97,8 @@
         "label": "WIC-PARALLEL-RESIDUAL-20260903",
         "status": "OPEN",
         "sources": [
-          "unified"
+          "unified",
+          "night_queue"
         ],
         "next_trigger": "IMMEDIATE",
         "next_start": "Parallel scoped residual lanes; one CENTRAL writer. Admit current scope, close representative TOOL013 output DIFF, preserve exact external holds; do not repeat completed adapters.",
@@ -175,7 +176,8 @@
         "label": "WIC-PARALLEL-RESIDUAL-20260903",
         "status": "OPEN",
         "sources": [
-          "unified"
+          "unified",
+          "night_queue"
         ],
         "next_trigger": "IMMEDIATE",
         "next_start": "Parallel scoped residual lanes; one CENTRAL writer. Admit current scope, close representative TOOL013 output DIFF, preserve exact external holds; do not repeat completed adapters.",
@@ -272,9 +274,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-03T03:19:37.755007+00:00",
-  "source_revision": "0509f464bec4e0da48d6d5d797c1ffbdf4813375",
-  "github_actions_run": "33710948146",
+  "observer_generated_at": "2026-09-03T04:32:35.841270+00:00",
+  "source_revision": "3a65773a88aa7703e21630beedede18e581245a2",
+  "github_actions_run": "33715414530",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -286,7 +288,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-03T03:19:37.754495+00:00",
+      "executed_at": "2026-09-03T04:32:35.840959+00:00",
       "status": "COMPLETED"
     }
   ]
