@@ -1,0 +1,18 @@
+{
+  "root_id":"CI-REGISTRY-STAGING-STATUS",
+  "status":"REMOTE_VERIFIED",
+  "code_commit":"6c5f652e3cf62eb061ebd01e6e77ab8268cf41f7",
+  "change":"Reused pre-existing one-line local patch accepting STAGING_REMOTE_VERIFIED in registry validator; added focused negative regression to existing CI",
+  "input":"Actual canonical TOOL014 registry entry, not TOOL014 business runtime",
+  "expected":"STAGING_REMOTE_VERIFIED remains unchanged with live-apply authorization HOLD; ACTIVE accepted; unknown status and unproved COMPLETE rejected",
+  "actual":["staging accepted unchanged","ACTIVE accepted","MADE_UP_PASS rejected","unproved COMPLETE rejected"],
+  "expected_actual_match":true,
+  "test":"feedback_pipeline/test_registry_staging_contract.py",
+  "regression":"Existing global_pipeline --self-test succeeded; no individual TOOL business tests rerun",
+  "ci":[{"run_id":33724676161,"name":"Cross-chat feedback pipeline audit","conclusion":"success"},{"run_id":33724676034,"name":"WIC Rule Governance Audit","conclusion":"success"}],
+  "remote_readback":{"feedback_pipeline/global_pipeline.py":true,"feedback_pipeline/test_registry_staging_contract.py":true,".github/workflows/cross-chat-feedback-audit.yml":true},
+  "canonical_execution_location":"I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_work16_persistent_feedback_reconcile\\feedback_pipeline\\global_pipeline.py",
+  "deployment_scope":"CENTRAL existing execution source and GitHub Actions; no TOOL014 live-site deployment authorized or performed",
+  "safe_checkpoint":"6c5f652e3cf62eb061ebd01e6e77ab8268cf41f7",
+  "unrelated_existing_evidence_changes_preserved":true
+}
