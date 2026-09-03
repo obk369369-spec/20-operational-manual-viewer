@@ -45,7 +45,7 @@ def validate_registry(registry: Mapping[str, Any], *, target: str | None = None)
                     or not row.get('latest_verified_commit')
                     or row['latest_verified_commit'] != row.get('latest_safe_checkpoint')):
                 raise ValueError(f'{target_id} COMPLETE lacks verified checkpoint evidence')
-        elif row['status'] != 'ACTIVE':
+        elif row['status'] not in {'ACTIVE', 'STAGING_REMOTE_VERIFIED'}:
             raise ValueError(f'{target_id} unsupported registry status')
         for chat_id in row["chat_ids"]:
             if chat_id in seen: raise ValueError(f"duplicate chat id {chat_id}")

@@ -36,7 +36,9 @@ jobs:
       - name: Validate actual-feedback batch separation and Work-ready state
         run: python feedback_pipeline/ingest_actual_feedback_batch.py
       - name: Validate registry-driven current and future WIC pipeline inheritance
-        run: python feedback_pipeline/global_pipeline.py --self-test --evidence feedback_pipeline/global_pipeline_e2e_evidence.json
+        run: |
+          python feedback_pipeline/test_registry_staging_contract.py
+          python feedback_pipeline/global_pipeline.py --self-test --evidence feedback_pipeline/global_pipeline_e2e_evidence.json
       - name: Validate fail-closed runtime and immediate feedback capture contract
         run: python feedback_pipeline/runtime_gateway.py --self-test
       - name: Validate tool-scoped historical record retrieval
