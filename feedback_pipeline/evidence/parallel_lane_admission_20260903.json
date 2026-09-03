@@ -1,0 +1,14 @@
+{
+  "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+  "operation_id": "named-parallel-residual-deploy",
+  "directive_ref": "USER_PARALLEL_LANES_20260903",
+  "action": "REVIEW_RESIDUAL_AND_DEPLOY",
+  "target_assets": ["TOOL044", "TOOL043", "TOOL041", "TOOL042", "TOOL006", "TOOL001", "TOOL013", "TOOL007", "VERIFIED_COMPONENT_REGISTRY"],
+  "gates": {"chat_files":false,"github":false,"ordinary_runtime":false},
+  "blocker": "Existing deployed runtime cannot repair missing residual links; Work must implement and validate scoped changes",
+  "restart_point": "Latest canonical scope and TOOL013 current filename/format mismatch; existing completed adapters reused",
+  "target_repository": "obk369369-spec/20-operational-manual-viewer and named existing target repositories",
+  "execution_goal": "Close executable named residuals with deployed tests without reopening external evidence holds",
+  "success_evidence": "Independent expected values versus representative real outputs, target readback and deployed copy tests",
+  "rollback_point": "75e52a9e045853618eafe7a54cfba7712609ca88"
+}
