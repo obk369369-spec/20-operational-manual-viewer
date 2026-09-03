@@ -2,6 +2,16 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "layer": "L5",
+      "target": "TOOL044 / TOOL043",
+      "status": "OPEN",
+      "source": "USER_TOOL044_PRODUCTION_FINISH",
+      "next_trigger": "IMMEDIATE",
+      "last_actual_point": "Existing TOOL044 is acquisition-only. TOOL043 unified completion proof uses truthiness rather than an evidence structure contract. Closed TOOL013 pilot remains SKIP_REUSE.",
+      "next_start": "Admit bounded production execution and validate TOOL043 completion proof with an unmodified ready validation component. Preserve real external holds and existing closures."
+    },
+    {
       "root_id": "TOOL044-READY-COMPONENT-PILOT",
       "layer": "L5",
       "target": "TOOL044 / TOOL013",
@@ -159,6 +169,13 @@
   "execution_policy": {
     "schema_version": 1,
     "scope_grants": [{
+      "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "directive_ref": "USER_TOOL044_PRODUCTION_FINISH",
+      "actions": ["REPAIR_AND_DEPLOY"],
+      "assets": ["TOOL044", "TOOL043", "VERIFIED_COMPONENT_REGISTRY"],
+      "reusable_assets": ["feedback_pipeline/tool044_acquire.py", "tool043/night_observer.py", "feedback_pipeline/deployment_observer_gate.py"],
+      "scope": "Existing TOOL044 production execution and TOOL043 completion-proof structure only; no unrelated tool development"
+    },{
       "root_id": "TOOL044-READY-COMPONENT-PILOT",
       "directive_ref": "USER_TOOL044_RESUME_20260903",
       "actions": ["ACQUIRE_COMPONENT"],
