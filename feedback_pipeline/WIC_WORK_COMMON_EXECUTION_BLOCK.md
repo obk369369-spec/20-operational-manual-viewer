@@ -8,7 +8,7 @@
 - 사용자가 폴더 경로, 배포 위치, GitHub 정본 위치, checkpoint 위치를 매번 다시 알려주게 하지 않는다.
 - 현재 작업 중인 TOOL 하나만 대상으로 기존 canonical pointer / repo / checkpoint / 배포 경로 / 로컬 운영 경로를 좁게 회수한다.
 - WIC 전체 전수조사, 전체 USB 조사, 전도구 재검증은 금지한다.
-- 이미 PASS / VERIFIED / REMOTE_VERIFIED된 공통 절차·부품은 SKIP_REUSE한다.
+- 이미 PASS / VERIFIED / REMOTE_VERIFIED / DEPLOYED_PASS 증거가 있고 현재 변경의 직접 영향이 없는 공통 절차·부품은 SKIP_REUSE한다. 시스템 재시험도 사용자 재시험 요청도 하지 않는다.
 - 같은 공통 작업을 TOOL마다 새로 개발·재설계·재검증하지 않는다.
 
 ## USB 기존자료 교차검증 + 정상자료 GitHub 승격 — REQUIRED
@@ -66,10 +66,13 @@ REMAINING_TIME_REPORT = REQUIRED_WHEN_MEANINGFUL
 ## 크레딧/Work·Codex 사용량 보호
 - 전수조사, 이미 PASS된 범위 재검증, 동일 조건 동일 실패 반복, 결과 변화 없는 상태확인 예약 반복은 금지한다.
 - 반대로 실제 미완료 TOOL의 정상 개발·최초 검증·정본 반영은 크레딧 절약을 이유로 과도하게 미루지 않는다.
+- 단, 착수 전에 현재 Work 안에서 짧고 확실하게 COMMON_DEPLOY의 배포본 재시험·DEPLOYED_PASS까지 닫을 수 있어야 한다. 큰 작업, 장시간 개발, 반복 실패, 결과 불확실, 광범위 조사, 여러 Work가 필요할 가능성, 배포 범위 미확정은 현재 제외한다.
+- 문제/원인/handler·연결·번역부품 부재 확인이나 다음 Work 예고만으로 끝날 가능성이 높은 작업은 착수하지 않는다. 새 작업을 벌이기보다 현재 짧은 작업의 검증·배포 완주를 우선한다.
 - 상태/checkpoint만 반복 확인하고 실제 변화가 없는 예약 작업은 불필요 소진 후보로 분류하고 비활성/정리 대상으로 올린다. 플랫폼상 자동 삭제 권한이 없으면 사용자에게 최소 행동만 요청한다.
 WASTE_BLOCKING_STRICT = TRUE
 PRODUCTIVE_WORK_CREDIT_THROTTLE_RELAXED = TRUE
 NOOP_SCHEDULED_REPEAT = FORBIDDEN
+LONG_OR_UNCERTAIN = EXCLUDE_NOW
 
 ## 모든 WIC 도구·프로그램의 지속비용 0 우선 게이트 — REQUIRED
 - 이 규칙은 TOOL044만이 아니라 기존 모든 WIC TOOL, 앞으로 추가되는 모든 TOOL·프로그램·대화창 기반 실행체계, 그리고 모든 개발·확장·통합에 공통 적용한다.
@@ -165,6 +168,9 @@ TOOL043_CURRENT_SCOPE_RETEST = FORBIDDEN
 
 4. SCOPED_SOURCE_CANONICALIZATION
    - 현재 작업 TOOL/업무와 직접 관련해 실제 만난 자료만 scoped 확인한다. 전체 전수조사는 금지한다.
+   - TOOL별 기존 피드백, MASTER/checkpoint/GitHub evidence, history index, 이미 추출된 287-history·Antigravity 규칙, 실제 고객 사례를 먼저 재사용한다. 원본 역사 전체를 다시 여는 승인이 아니며 기존 역사자료 분리 규칙을 유지한다.
+   - 마지막 확정 수집지점 이후 신규 피드백만 증분 수집한다. TOOL + 기능 + 오류 + 고객 + 파일 + 마지막 checkpoint로 범위를 좁히고 사용자에게 기존 내용을 재설명시키지 않는다.
+   - 전체 대화/287개 파일/USB/GitHub/TOOL 재검색과 변경에 무관한 전체 regression·데이터 재시험을 하지 않는다.
    - 과거 자료를 통째로 신뢰·복사하지 않는다.
    - 검증된 정상 DIFF만 기존 해당 TOOL GitHub canonical repo 또는 CENTRAL master에 반영한다.
    - HOLD_UNKNOWN / SHELL_OR_STALE / DUPLICATE / OBSOLETE / 미검증 자료는 canonical에 흡수하지 않는다.
@@ -219,10 +225,32 @@ USER_REPEATED_PATH_INPUT = FORBIDDEN
 USER_REPEATED_DEPLOY_INSTRUCTION = FORBIDDEN
 SAFE_WORK_EXHAUSTED_BECAUSE_COMMON_PATH_NOT_REUSED = FORBIDDEN
 
-## 사용자 역할
+## 사용자 역할 — 사용자 번거로움 자동 제거 게이트 — 최우선 REQUIRED
 USER_ROLE = OBSERVER_ONLY
 사용자는 경로·배포법·checkpoint·정본 위치를 매 작업마다 다시 설명하지 않는다.
 플랫폼상 본인 승인/MFA/권한 변경이 필수인 경우에만 최소 1회 행동을 요청한다.
+- 사용자에게 무엇이든 요청하기 전에 `CAN_SYSTEM_HANDLE_AUTOMATICALLY`를 판정한다. TRUE이면 현재 권한·작업 범위에서 묻지 않고 처리한다. FALSE만으로 사용자에게 넘기지 말고 정말 사용자만 가능한지 확인한다.
+- 계속/다음 단계/테스트/재시험 버튼, 파일 복사·이동, 배포, 결과 확인, 후보·방법 선택, 실패 후 재실행, GitHub 반영 확인, 다음 TOOL 진행 여부를 시스템이 처리할 수 있으면 사용자에게 반복 요구하지 않는다.
+- 사용자만 가능한 MFA·본인인증·보안상 강제 승인·물리기기 조작·시스템에 없는 원본자료 제공·필수 사업적 최종 판단만 `USER_ACTION_QUEUE`에 사유와 해제조건을 누적한다. 의무적인 플랫폼 승인 경계는 우회하지 않는다.
+- 한 항목이 막혀도 허용된 범위의 다른 실행 가능한 작업은 계속하고, 사용자 행동은 가능한 마지막에 한 번에 요청한다. 요청받지 않은 도구로 범위를 넓히는 권한은 아니다.
+- 우선순위: 사용자 조작 없는 처리 → 기존 PASS/자료 재사용 → 짧고 확실한 작업 → DEPLOYED_PASS까지 완주 → 필수 사용자 행동 QUEUE → 길거나 반복 실패하는 작업 제외.
+- 수정 후 사용자에게 테스트·파일 확인·배포를 맡겨 완료를 대신하지 않는다. 기존 COMMON_DEPLOY의 실제 테스트·EXPECTED↔ACTUAL·영향 회귀·GitHub commit/push/read-back·실사용폴더 배포·배포본 재시험을 시스템이 수행한다.
+- `조금 조사 → 사용자 질문 → 다시 Work → 테스트/파일 확인/배포 요청`을 반복하는 운영은 FAIL이다. 목표는 `사용자 지시 1회 → 자동 처리·검증·배포·배포본 재시험 → 최종 결과 보고`다.
+USER = OBSERVER
+SYSTEM_HANDLES_WHEN_POSSIBLE = REQUIRED
+USER_INTERMEDIATE_OPERATION = FORBIDDEN_BY_DEFAULT
+USER_REPETITIVE_WORK = FORBIDDEN
+DUPLICATE_TEST = FORBIDDEN
+REPEAT_FAILURE = FORBIDDEN
+LONG_UNCERTAIN_WORK = EXCLUDE_NOW
+DEPLOYED_PASS_FIRST = REQUIRED
+
+### 파일 라이브러리 안전 정리
+- 사용자가 용량 관리를 반복하지 않도록 허용된 범위에서 안전하게 자동 정리한다. 우선순위는 오래된 불필요 모델 생성파일 → 임시 생성물 → 명백한 중복본 → 불필요한 테스트/임시파일이다. 전체 USB/라이브러리 전수조사를 시작하지 않는다.
+- WIC 원본, 고객/발행사 원본자료, 증거자료, MASTER, checkpoint, 미완료 작업 입력, 현재 참조 파일, 아직 영구저장되지 않은 중요자료는 보호한다.
+- 삭제 여부가 불확실하면 자동 삭제하지 않는다. 기존 삭제 안전규칙과 권한 경계를 유지하고, 가능한 경우 복구 가능한 정리를 우선한다. 이 고정규칙의 반영 자체가 파일 삭제 실행을 뜻하지 않는다.
+FILE_LIBRARY_CLEANUP = AUTOMATIC_WHEN_SAFE
+IMPORTANT_EVIDENCE_DELETE = FORBIDDEN
 
 ## 영구 Work 반복·임의확장 차단 — REQUIRED
 
@@ -230,6 +258,10 @@ WORK_ADMISSION_POLICY = PERMANENT_FAIL_CLOSED_V1
 - 새 Work는 기존 work_gate_handoff.py --resume-latest로 최신 CENTRAL 공통 블록·실행 코드·작업 영수증을 같은 revision에서 로드한다. 과거 대화 메모리는 근거로 쓰지 않는다.
 - 실제 후보를 --candidate로 전달하면 로드 직후 기존 evaluate_candidate → preflight_attempt가 자동 실행된다. 후보 없는 로드는 실행허가가 아니다.
 - PASS/VERIFIED/REMOTE_VERIFIED 작업은 SKIP_REUSE. 해제조건의 실제 변경 증거가 없는 HOLD와 같은 원인·방법의 실패는 SKIP_NO_VALUE로 종료한다.
+- 같은 방법·환경·원인·명령·component·테스트 방식의 실패는 다시 실행하지 않는다. 재시도는 새 검증부품 확보, 실패원인 제거, 입력자료 확보, 환경/권한 변경, 다른 검증된 실행경로 확보 중 실제 변화 증거가 있을 때만 허용한다. "한번 더"는 근거가 아니다.
+- MFA/원본자료/golden pair/플랫폼 미지원 등 외부 HOLD는 조건 변화 전 `HOLD_REUSE`로 유지하며 반복 검사·크레딧 사용을 하지 않는다.
+REPEAT_SAME_FAILURE = FORBIDDEN
+UNCHANGED_EXTERNAL_HOLD = HOLD_REUSE
 - 수정 순서: 기존 자산 재사용 → 끊어진 연결 복구 → 최소 수정. 연결/오류/잔여 수정 요청은 새 TOOL/MVP/UI/DB/파이프라인 생성 승인이 아니다.
 - 새 구조물은 명시적 승인과 기존 구조 해결불가 증거를 먼저 확인한다. 범위 밖 문제는 기존 OPEN/HOLD에 기록하고 실행하지 않는다.
 - 작업 종료 시 기존 장부에 operation_id·증거·PASS/HOLD/FAIL·실패 방법·해제조건·NEXT_WORK를 저장한다. 완료 작업의 이름을 바꿔 재실행하지 않는다.
