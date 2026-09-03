@@ -1,0 +1,34 @@
+{
+  "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+  "status": "SAFE_CHECKPOINT_INCOMPLETE",
+  "central_repair": {
+    "commit": "e4b007c834aeef98ad99e18278be539aec371c8d",
+    "cause": "Common block tail truncated; loader code unchanged. Restored prior policy tail while retaining newer USB additions.",
+    "file": "feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md",
+    "test": "feedback_pipeline/test_policy_restore.py",
+    "expected": "Old and new policy declarations preserved; valid candidate admitted; missing policy and candidate-less execution blocked",
+    "actual": "MATCH",
+    "test_harness_correction": "Clock subclass now inherits datetime.fromisoformat; identical input rerun passed",
+    "live_resume": "RESUME_LOADED",
+    "live_admission": "WORK_ELIGIBLE",
+    "remote_common_sha256": "56c1357c4e10ae2000034a76e2d08586573bd06b291327eb02f00affc56aadd7",
+    "remote_readback": true,
+    "ci": "FAIL",
+    "ci_runs": [33722809079, 33722809109],
+    "ci_error": "TOOL014 unsupported registry status at global_pipeline.py:49",
+    "ci_scope_note": "Neither global_pipeline nor registry changed in repair commit. Existing dirty local patch allowing STAGING_REMOTE_VERIFIED preserved, not silently included."
+  },
+  "lanes": {
+    "TOOL044": {"status":"SAFE_CHECKPOINT_INCOMPLETE","reused":"TOOL043 proof adapter DEPLOYED_PASS","blocker":"Existing adapter is target-specific; no admitted real functional business payload/handler for new production integration. Registry cache/CTA/schema/XLSX parts do not supply semantic handlers.","new_component_searches":0},
+    "TOOL043": {"status":"SAFE_CHECKPOINT_INCOMPLETE","blocker":"No real business A/B/C input/handler/verifier; only REFRESH_OBSERVER_FROM_CENTRAL in night_observer.py:15,99-123","observer_refresh_count_not_business_tasks":43,"new_tests":0},
+    "TOOL013": {"status":"SAFE_CHECKPOINT_INCOMPLETE","substatus":"HOLD_BEFORE_PARTIAL_WORK","head":"3a70d84161d0cff9916a7a37d6c88d279df111eb","blocker":"Browser URL policy blocked actual canonical file navigation and explicitly prohibited alternate/indirect execution; no bypass attempted","remaining":"Download name contract and independent N Pages format","test_input_reused":"Existing actual MarketsandMarkets 01072025.xlsx six rows","runtime_edits":0,"deployments":0},
+    "TOOL001": {"status":"HOLD_EXTERNAL","local_changes":"Pre-existing dirty index/state preserved, not claimed verified","trigger":"FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE","new_generic_defect_confirmed":false},
+    "TOOL006": {"status":"HOLD_EXTERNAL","local_checkpoint":"6a060677aecd4e08b0881977c43a911f2c24f58a","reused":"HISTORICAL_UI_AUDIT_AND_DEPTH_FILTER_DEPLOYED; no pending code per checkpoint","trigger":"ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE","remote_latest_not_reverified":true},
+    "TOOL041_TOOL042": {"status":"HOLD_EXTERNAL","trigger":"Configured authorized runtime and real customer evidence","unchanged":true},
+    "TOOL007": {"status":"HOLD_EXTERNAL","reason":"Native interceptor platform boundary unchanged","action":"SKIP_NO_VALUE"}
+  },
+  "new_deployed_pass_total": 0,
+  "new_tool_runtime_mutations": 0,
+  "user_action_queue": [{"reason":"TOOL013 requires a platform-permitted actual canonical browser execution path; browser security prohibition was not bypassed","not_requested":"No customer relabeling, manual test, file copy or deployment requested"}],
+  "next_start": "Do not repeat policy repair or completed adapters. Resume only lanes with changed execution prerequisites and preserve current exact residuals."
+}
