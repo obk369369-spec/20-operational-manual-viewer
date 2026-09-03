@@ -3,6 +3,17 @@
 실행본: `feedback_pipeline/tool044_acquire.py` (Python 표준 라이브러리, 정상 운영 유료 호출 없음).
 기존 CENTRAL `work_gate_handoff`의 범위 승인을 거친 작업만 수행한다.
 
+## 정식 실행 경로 (검증 완료 전 INCOMPLETE)
+
+- 사용자 실행파일: `I:\GPT 도구 작업\44번 완성부품 가져오기\feedback_pipeline\tool044_start.cmd`.
+- 생산 명령: `tool044_acquire.py --production --workspace <CENTRAL checkout>`.
+- 실제 적용 어댑터: TOOL043 통합 완료 증거 형식 검증. 다른 도구의 임의 명령을 실행하지 않는다.
+- 기존 registry의 캐시/CTA 부품은 증거 형식 검증을 제공하지 않아 재사용 불가. 후보는 fastjsonschema 2.21.2 하나, BSD 라이선스 원본 wheel 고정, 유료 API/런타임 의존성 없음.
+- 실행 순서: 원격 strict admission → 후보 원본/라이선스 확인 → sandbox 실제 합격/불합격 판정 → wheel 무수정 장착 → 실제 canonical 입력 및 음성 회귀 → commit/push/바이트 read-back → TOOL043 및 TOOL044 정식 폴더 배포 → 배포된 TOOL044가 배포된 TOOL043 입력/출력을 재검증.
+- 실패 시 STOP_CARD와 마지막 실제 단계 보존. 같은 실패 자동 반복 금지. 승인 경계를 우회하지 않음.
+- 형식 검증은 과거 실제 업무 결과의 진실성을 새로 증명하지 않는다. 기존 TOOL013 실제 PASS는 재사용.
+- 등록되지 않은 새 대상은 자동 개발됐다고 주장하지 않는다. 대상별 검증된 어댑터가 필요하다.
+
 - 최초 파일럿: TOOL013의 3MB 초과 배치 재개 캐시. 번역 완료와 구분한다.
 - 부품: idb-keyval 6.2.2, Apache-2.0, 무의존성, 공식 tarball SHA512와 원본 JS SHA256 고정.
 - 실행: `python feedback_pipeline/tool044_acquire.py --acquire <sandbox>`.

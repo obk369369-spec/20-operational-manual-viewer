@@ -8,6 +8,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from completion_proof import valid_proof
 
 ROOT = Path(__file__).resolve().parents[1]
 PIPE = ROOT / "feedback_pipeline"
@@ -32,7 +33,7 @@ def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, inc
     for row in unified["entries"]:
         rid = row.get("root_id")
         if (rid and row.get("status") in closed_states
-                and (row.get("completion_evidence") or row.get("evidence"))
+                and valid_proof(row.get("completion_evidence") or row.get("evidence"))
                 and (rid not in legacy or legacy[rid].get("status") in closed_states)):
             closed.add(rid)
     rows = {}
@@ -58,6 +59,8 @@ def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, inc
             if rid in closed:
                 continue
             state = row.get("status") or row.get("execution_status") or "PENDING"
+            if source == 'unified' and state in closed_states and not valid_proof(row.get('completion_evidence') or row.get('evidence')):
+                errors.append('INVALID_COMPLETION_PROOF:' + rid)
             if state in closed_states and not row.get("completion_evidence") and not row.get("evidence"):
                 errors.append("UNPROVEN_COMPLETION:" + rid)
             target, label = labels.get(rid, (row.get("target", "WIC"), row.get("display_label") or row.get("task_name") or rid))
