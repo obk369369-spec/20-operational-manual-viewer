@@ -2,6 +2,16 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "CI-REGISTRY-STAGING-STATUS",
+      "layer": "L1",
+      "target": "CENTRAL",
+      "status": "OPEN",
+      "next_trigger": "IMMEDIATE",
+      "source": "USER_0702A258_RESUME",
+      "last_actual_point": "CI 33722809079 and 33722809109 fail TOOL014 unsupported registry status. Existing one-line local compatibility patch is uncommitted; preserve staging versus live distinction.",
+      "next_start": "Validate existing minimal status patch, negative status/completion checks, then real CI and remote read-back; do not develop TOOL014."
+    },
+    {
       "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
       "layer": "L5",
       "target": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
@@ -190,6 +200,13 @@
   "execution_policy": {
     "schema_version": 1,
     "scope_grants": [{
+      "root_id": "CI-REGISTRY-STAGING-STATUS",
+      "directive_ref": "USER_0702A258_RESUME",
+      "actions": ["REPAIR_REGISTRY_STATUS"],
+      "assets": ["CENTRAL_REGISTRY_CONTRACT"],
+      "reusable_assets": ["feedback_pipeline/global_pipeline.py"],
+      "scope": "Existing local staging-status compatibility patch and direct regression; no TOOL014 runtime development"
+    },{
       "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
       "directive_ref": "USER_PARALLEL_LANES_20260903",
       "actions": ["REVIEW_RESIDUAL_AND_DEPLOY"],

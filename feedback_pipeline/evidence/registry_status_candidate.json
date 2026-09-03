@@ -1,0 +1,14 @@
+{
+  "root_id":"CI-REGISTRY-STAGING-STATUS",
+  "operation_id":"staging-status-contract-repair",
+  "directive_ref":"USER_0702A258_RESUME",
+  "action":"REPAIR_REGISTRY_STATUS",
+  "target_assets":["CENTRAL_REGISTRY_CONTRACT"],
+  "gates":{"chat_files":false,"github":false,"ordinary_runtime":false},
+  "blocker":"Canonical registry staging status rejected by CI validator",
+  "restart_point":"Existing global_pipeline.py one-line local patch",
+  "target_repository":"obk369369-spec/20-operational-manual-viewer",
+  "execution_goal":"Accept staging state without upgrading it to live COMPLETE; CI succeeds",
+  "success_evidence":"Status negative tests and actual CI plus read-back",
+  "rollback_point":"da005fe300819065ec9465dc8fa42fc31c871587"
+}
