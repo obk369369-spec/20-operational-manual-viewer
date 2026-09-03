@@ -35,17 +35,25 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
     },
     {
+      "target": "TOOL044 / TOOL013",
+      "root_id": "TOOL044-READY-COMPONENT-PILOT",
+      "status": "OPEN",
+      "last_actual_point": "I drive and CENTRAL/TOOL013 paths recovered; pinned CENTRAL resume loaded. TOOL013 existing 114-file/823-row evidence reused. No external candidate tested or installed yet.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Scoped acquisition for TOOL013 free local translation/cache; at most 3 candidates, 2 search rounds, first ready stops search. Preserve external source unmodified; test before deployment."
+    },
+    {
       "kind": "SAFE_NIGHT_TASK",
       "task_id": "T43-NIGHT-REAL-RUN-20260829-01",
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-09-02T21:02:30.930989+00:00",
-      "github_actions_run": "33682840033",
-      "source_revision": "583f21ae2dc9a3f5646c63c3e22b0e72a85ab2f0",
+      "completed_at": "2026-09-03T01:08:33.432122+00:00",
+      "github_actions_run": "33702437648",
+      "source_revision": "b4f0c7c7780dbbd93e8d97749aeb625a6b60e6dc",
       "execution_mode": "RECURRING",
-      "execution_count": 35,
+      "execution_count": 36,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]
