@@ -35,6 +35,14 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
     },
     {
+      "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "status": "OPEN",
+      "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification."
+    },
+    {
       "target": "CENTRAL",
       "root_id": "CI-REGISTRY-STAGING-STATUS",
       "status": "OPEN",
@@ -57,11 +65,11 @@
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-09-03T06:43:10.102867+00:00",
-      "github_actions_run": "33724525721",
-      "source_revision": "a97e7b9bd29483a1895a44404900c75b7a787920",
+      "completed_at": "2026-09-03T06:48:13.050929+00:00",
+      "github_actions_run": "33724929638",
+      "source_revision": "bdfe487fae225f2e3c842159c4dc7b92cdb6edd9",
       "execution_mode": "RECURRING",
-      "execution_count": 45,
+      "execution_count": 46,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]
