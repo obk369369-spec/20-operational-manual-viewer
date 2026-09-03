@@ -35,17 +35,25 @@
       "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E"
     },
     {
+      "target": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
+      "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+      "status": "OPEN",
+      "last_actual_point": "Latest resume 10f40460 loaded. Completed proof/cache adapters SKIP_REUSE; existing external holds remain unchanged. TOOL013 master-to-output residual identified: filename and N Pages casing.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Parallel scoped residual lanes; one CENTRAL writer. Admit current scope, close representative TOOL013 output DIFF, preserve exact external holds; do not repeat completed adapters."
+    },
+    {
       "kind": "SAFE_NIGHT_TASK",
       "task_id": "T43-NIGHT-REAL-RUN-20260829-01",
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-09-03T02:59:37.622375+00:00",
-      "github_actions_run": "33709691988",
-      "source_revision": "72665ea7c71597dd7fd5b9c80825b977f0c4e4b4",
+      "completed_at": "2026-09-03T03:19:37.754495+00:00",
+      "github_actions_run": "33710948146",
+      "source_revision": "0509f464bec4e0da48d6d5d797c1ffbdf4813375",
       "execution_mode": "RECURRING",
-      "execution_count": 41,
+      "execution_count": 42,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]
