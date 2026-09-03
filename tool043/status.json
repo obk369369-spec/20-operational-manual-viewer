@@ -3,12 +3,12 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "680df89076dadf31752b188af3a0137cd6deb50084a8a98df4a9b51df5b563d4",
-    "feedback_pipeline/unified_open_ledger.json": "66087db4b3d4c6567ff0fd1d60cee82280853a94f18b9a1f652d78f367fbbfd8",
+    "feedback_pipeline/unified_open_ledger.json": "10778e7e4175e48a0650f91592aad0d834865307e745dec45985328c794435d9",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
-  "current_status": "관찰판 이상",
-  "observer_health": "ERROR",
+  "current_status": "관찰판 정상",
+  "observer_health": "OK",
   "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
   "current_display_validation": {
     "status": "FIRST_VALIDATION_PASS",
@@ -90,19 +90,6 @@
         "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
         "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
-      },
-      {
-        "root_id": "TOOL044-READY-COMPONENT-PILOT",
-        "target": "TOOL044 / TOOL013",
-        "label": "TOOL044-READY-COMPONENT-PILOT",
-        "status": "VERIFIED_CLOSED",
-        "sources": [
-          "unified",
-          "night_queue"
-        ],
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Scoped acquisition for TOOL013 free local translation/cache; at most 3 candidates, 2 search rounds, first ready stops search. Preserve external source unmodified; test before deployment.",
-        "last_actual_point": "I drive and CENTRAL/TOOL013 paths recovered; pinned CENTRAL resume loaded. TOOL013 existing 114-file/823-row evidence reused. No external candidate tested or installed yet."
       }
     ],
     "running": [],
@@ -169,25 +156,11 @@
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
       }
     ],
-    "pending": [
-      {
-        "root_id": "TOOL044-READY-COMPONENT-PILOT",
-        "target": "TOOL044 / TOOL013",
-        "label": "TOOL044-READY-COMPONENT-PILOT",
-        "status": "VERIFIED_CLOSED",
-        "sources": [
-          "unified",
-          "night_queue"
-        ],
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Scoped acquisition for TOOL013 free local translation/cache; at most 3 candidates, 2 search rounds, first ready stops search. Preserve external source unmodified; test before deployment.",
-        "last_actual_point": "I drive and CENTRAL/TOOL013 paths recovered; pinned CENTRAL resume loaded. TOOL013 existing 114-file/823-row evidence reused. No external candidate tested or installed yet."
-      }
-    ],
-    "remaining_total": 5,
+    "pending": [],
+    "remaining_total": 4,
     "running_total": 0,
     "waiting_total": 4,
-    "pending_total": 1,
+    "pending_total": 0,
     "open_internal_total": 0,
     "recent_completed": [
       {
@@ -199,18 +172,27 @@
           "github_actions_run": "33358129860",
           "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
         }
+      },
+      {
+        "root_id": "TOOL044-READY-COMPONENT-PILOT",
+        "label": "TOOL044-READY-COMPONENT-PILOT",
+        "evidence": {
+          "repository": "obk369369-spec/13-excel-upload",
+          "commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+          "path": "tests/tool13_idb_deployed_evidence.json",
+          "remote_blob_sha": "eeddfb36b0c77f35617855c0a89355175dcfe609",
+          "scope": "TOOL013 idb-keyval cache pilot only; not TOOL044 autonomous production deployment"
+        }
       }
     ],
-    "errors": [
-      "UNPROVEN_COMPLETION:TOOL044-READY-COMPONENT-PILOT"
-    ],
-    "conservation_pass": false
+    "errors": [],
+    "conservation_pass": true
   },
   "max_status_age_seconds": 28800,
   "night_processed": 1,
   "new_open": 0,
   "blocked_work": 4,
-  "next_work": "TOOL044-READY-COMPONENT-PILOT",
+  "next_work": "대기 조건 충족 후 재개",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -246,7 +228,7 @@
   "auto_recovery": "QUEUE_PRESERVED",
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 5,
+  "incomplete_total": 4,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -254,9 +236,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-03T01:36:21.478431+00:00",
-  "source_revision": "0c1b2e6a7162b8d6939066c45fca5b7cbae6deaa",
-  "github_actions_run": "33704314724",
+  "observer_generated_at": "2026-09-03T01:55:57.826192+00:00",
+  "source_revision": "d20561e38831333043678f9c8ffa72b825f5bb84",
+  "github_actions_run": "33705624550",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -268,7 +250,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-03T01:36:21.477883+00:00",
+      "executed_at": "2026-09-03T01:55:57.825805+00:00",
       "status": "COMPLETED"
     }
   ]
