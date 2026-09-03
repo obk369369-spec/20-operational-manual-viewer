@@ -74,6 +74,31 @@ GitHub 저장만 완료 = 미완성
 - 단, 전체 대화·전체 파일·전체 TOOL 전수검색은 금지한다. 현재 MASTER/ledger/checkpoint와 직접 관련된 오류 근거만 좁게 사용한다.
 - WIC 고유 업무판단·고객판단·TOC 의미판단 자체를 외부부품으로 대체하지 않는다. TOOL044는 그 판단이 안정적으로 실행되게 하는 공통 바깥구조를 가져오는 역할이다.
 
+## USB 기존자료 교차검증 + 정상자료 승격 게이트 — REQUIRED
+- TOOL044가 READY_COMPONENT를 대상 TOOL/대화창에 실제 장착하고 시험할 때, 그 대상과 직접 관련된 USB/실사용폴더의 기존 자료가 있으면 이를 별도의 실전 검증 입력·비교 근거로 함께 사용한다.
+- 단, USB 전체를 전수검색하지 않는다. 대상 TOOL 번호·기능·파일명·현재 오류·MASTER/checkpoint와 직접 관련된 자료만 좁게 조회한다.
+- USB 자료는 오래된 정상본, 중간개발본, 껍데기, 샘플, 실패본, 중복본이 섞여 있을 수 있으므로 존재 자체를 신뢰하지 않는다.
+- USB에서 찾은 자료는 최소한 `현재 MASTER/기대동작 대조 → 실제 실행 또는 관련 기능 시험 → EXPECTED↔ACTUAL → 직접 영향 회귀`를 통과해야 정상자료 후보가 된다.
+- 파일 존재, 이름 유사, 최신 날짜, 큰 용량, 코드 문자열, 화면이 열림만으로 정상본으로 판정하지 않는다.
+- 껍데기/샘플/기능 미연결/실행실패/기대동작 불일치/출처불명/중복 열화본은 `SHELL_OR_INVALID`로 분류하고 GitHub canonical MASTER나 VERIFIED_COMPONENT_REGISTRY로 승격하지 않는다.
+- 정상 검증된 자료만 해당 TOOL/대화창의 GitHub 정본에 필요한 범위로 옮기고, 해당 TOOL MASTER/checkpoint/registry에 출처·검증근거·버전/해시·적용범위를 남긴다.
+- USB 원본은 GitHub 승격 성공 전 삭제·덮어쓰기하지 않는다. GitHub commit/push 및 remote read-back PASS 후에야 canonical 승격 완료로 본다.
+- USB 자료를 통째로 GitHub에 복사하지 않는다. 정상 판정된 실제 운영 코드·규칙·fixture·golden input/output·증거 중 정본 유지에 필요한 것만 최소 승격한다.
+- 외부 READY_COMPONENT와 USB 기존자료가 같은 기능을 제공하면, 현재 WIC VERIFIED/PASS 자료를 먼저 재사용하고 그 자료가 껍데기이거나 불충분할 때만 TOOL044 외부부품을 사용한다.
+- TOOL044 부품 장착 테스트는 가능하면 `새 부품 단독 sandbox PASS → USB 기존 정상자료/실제 입력 교차검증 → 대상 TOOL 통합 PASS → GitHub 정본 승격 → 실사용폴더 배포 → 배포본 재시험` 순서로 수행한다.
+- USB 자료 정리 자체를 목적으로 전체 폴더 청소를 벌이지 않는다. 각 실제 TOOL 작업 중 관련 자료가 발견될 때 증분적으로 검증·승격한다.
+- 검증되지 않은 USB 자료를 MASTER에 합치거나, MASTER에 적었다는 이유만으로 실제 코드/자료가 정상이라고 판정하는 것은 FAIL이다.
+USB_RELATED_DATA_NARROW_SCAN_ONLY = REQUIRED
+USB_WHOLE_SCAN = FORBIDDEN
+USB_FILE_EXISTS_IS_NOT_TRUST = TRUE
+USB_SHELL_OR_INVALID_BLOCK = REQUIRED
+USB_NORMAL_DATA_REQUIRES_ACTUAL_TEST = TRUE
+USB_TO_GITHUB_PROMOTION_REQUIRES_PASS = TRUE
+USB_TO_MASTER_PROMOTION_REQUIRES_EVIDENCE = TRUE
+USB_SOURCE_PRESERVE_UNTIL_REMOTE_VERIFIED = REQUIRED
+PROMOTE_ONLY_VERIFIED_CANONICAL_MATERIAL = REQUIRED
+READY_COMPONENT_USB_CROSS_VALIDATION = REQUIRED_WHEN_RELEVANT
+
 ## 강제 상태 플래그
 TOOL044_SAMPLE_ONLY = FAIL
 TOOL044_MASTER_ONLY = FAIL
