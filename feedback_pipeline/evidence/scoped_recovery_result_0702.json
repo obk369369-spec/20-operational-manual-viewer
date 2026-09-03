@@ -1,0 +1,51 @@
+{
+ "root_id":"WIC-0702-SCOPED-RECOVERY",
+ "status":"SAFE_CHECKPOINT_INCOMPLETE",
+ "admission_revision":"4dbf40a23124d7157694c797f59bcde3bb69626a",
+ "customer_recovery":{
+  "actual_feedback_cases":3,
+  "source":"customer_pipeline/contact_copy_actual_cases.json",
+  "recent_case_source":"42-current#6f10adfc-99b7-4672-bfc6-f7def1a3f7d4",
+  "actual_feedback_source":"42-current#cc87c8e2-8873-465a-b241-88e3349e90be",
+  "customer_master_blob":"96e2b6df66343ac967cf3531574b1f065bbb3cbe",
+  "customer_master_repository":"obk369369-spec/41-wic-email-collection-master",
+  "customer_master_path":"DATA/CUSTOMER_MASTER.csv",
+  "exact_named_identity_matches":0,
+  "interpretation":"Current canonical identity link unresolved; historical customer evidence is present, not absent",
+  "public_input":{"person":"서갑호","institution":"한국로봇융합연구원","title_as_of_source":"연구부원장","source_date":"2026-06-01","source_url":"https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1"},
+  "expected":"Use dated official title evidence; never attribute another contact's phone or institutional strategy to this person's interests",
+  "actual":{"historical_center_chief_title_not_reused":true,"direct_phone":null,"direct_email":null,"current_employment_after_source_date":"NOT_VERIFIED","personal_research_scope":"NOT_VERIFIED","institutional_strategy_not_customer_interest":true},
+  "wrong_contact_excluded":"054-279-0438 belongs to 홍보기획팀 김수경 on the source page",
+  "runtime_blob":"63ac7fa884dd90f0b88eeaa287ebb624ede5b2dc",
+  "runtime_path":"src/customer_work_start.py",
+  "runtime_scope":"CURRENT_MASTER_INTEGRITY_NOT_NEW_EMPLOYMENT_VERIFICATION",
+  "internal_gap":"Existing start guard is not an online collector; canonical identity/history and available-material linkage unfinished",
+  "customer_e2e":false,
+  "model_auth_retested":false
+ },
+ "tool013":{
+  "checkpoint":"3a70d84161d0cff9916a7a37d6c88d279df111eb",
+  "request_scope":"A filename, B independent N Pages, C world semantic category mapping, D local Korean product title and translation cache, E actual/deployed E2E",
+  "category_status":"CATEGORY_CANONICAL_SOURCE_NOT_RESOLVED",
+  "searched_scope":"Current repo13 MASTER/HTML/scripts/vendor/state, component registry, deployed-folder filenames only",
+  "category_absence_global_claim":false,
+  "translation_status":"No VERIFIED installed translation component; Argos license/runtime HOLD and NLLB noncommercial rejection reused",
+  "browser_status":"Existing explicit policy denial unchanged; no alternate/indirect bypass attempted",
+  "new_runtime_changes":0,
+  "new_tests":0,
+  "deployed_pass":false
+ },
+ "tool043_044":{
+  "status":"SAFE_CHECKPOINT_INCOMPLETE",
+  "internal_gap":"Actual business handler, independently verified output, next-task dispatch and Work-result return are not completed by observer refresh or proof adapter",
+  "existing_proof_and_cache":"SKIP_REUSE",
+  "new_component_searches":0,
+  "new_runtime_changes":0,
+  "deployed_pass":false
+ },
+ "tool006_007":"Unchanged golden-pair/native-platform holds SKIP_NO_VALUE",
+ "new_tool_deployed_pass_total":0,
+ "central_ci_closed":true,
+ "user_action_queue":["World-category canonical source remains unresolved; request the source once only if scoped source recovery confirms it must come from user","Platform-permitted actual local browser execution path required; no manual test/copy delegation"],
+ "next_start":"Preserve CI repair. Connect recovered public/history evidence to authoritative current customer identity, not invented IDs. TOOL013 full A-E stays incomplete; do not label only filename/format changes full completion. No repeated protected-browser attempts."
+}
