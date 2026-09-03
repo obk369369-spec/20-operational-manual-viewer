@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "central_input_sha256": {
+    "feedback_pipeline/work16_root_ledger.json": "5a3511b93ee881955509b7ac37c870212a7091ea8746e93c8e884b3a30f0dff4",
+    "feedback_pipeline/incomplete_register.json": "5ae752bb65e2bb35419eb016826e9aa7ad1e193820edc4af9828db06cb7eb241",
+    "feedback_pipeline/unified_open_ledger.json": "81407e089952ff5cecbac18a0da483f5e3fb7491d2230a4a60b5f6e4e455665b",
+    "feedback_pipeline/approval_queue.json": "356d6ce3001bedb3d08eb1ee609381d481fdf3c9c84de2cf4c24dc15a82b2258",
+    "feedback_pipeline/evidence/work_execution_audit_20260827.json": "f41c265303942af733e49c7a4f04efa801f0750e04f0172c1421f2fdb65476a4"
+  },
+  "current_status": "관찰판 정상",
+  "observer_health": "OK",
+  "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
+  "current_display_validation": {
+    "status": "FIRST_VALIDATION_PASS",
+    "scope": "current task projection and observer health display only",
+    "tests": [
+      "unresolved conservation",
+      "canonical evidence closure",
+      "dedup",
+      "unproven completion fail-closed",
+      "running task",
+      "UI fetch failure retains tasks",
+      "UI stale/mismatched/duplicate status fail-closed",
+      "actual local browser shows healthy observer, 0 internal OPEN, 3 external waits and L6 recent completion"
+    ],
+    "device_regression": "SKIP_REUSE d6c293e0e75833b829be34ce09833c885932b9a1 run 33358129860",
+    "unrelated_targets_changed": false,
+    "first_validation_runs": 1
+  },
+  "work_status": "작업 대기 중",
+  "current_work": {
+    "remaining": [
+      {
+        "root_id": "T41-T42-NATIVE-AUTOMATION",
+        "target": "TOOL041 / TOOL042",
+        "label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
+        "status": "OPEN",
+        "sources": [
+          "canonical",
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
+        "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
+        "last_actual_point": "Pinned canonical preload-to-generation added; 9 changed-connection checks PASS; 8 implementation files remote read-back MATCH; actual current-customer path HOLD"
+      },
+      {
+        "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+        "target": "TOOL006",
+        "label": "발행사 실제 원문·정답 쌍 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+        "next_start": "Run only the publisher-specific actual pair regression",
+        "last_actual_point": "HOLD_EVIDENCE_WAITING"
+      },
+      {
+        "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+        "target": "TOOL007",
+        "label": "플랫폼 자동 수집 기능 지원 대기",
+        "status": "PLATFORM_LIMIT",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+        "next_start": "Verify official platform capability before any internal change",
+        "last_actual_point": "PLATFORM_LIMIT"
+      },
+      {
+        "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+        "target": "TOOL001",
+        "label": "검증된 실제 보고서 5건 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "work_queue",
+          "night_queue"
+        ],
+        "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+        "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+        "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
+      }
+    ],
+    "running": [],
+    "waiting": [
+      {
+        "root_id": "T41-T42-NATIVE-AUTOMATION",
+        "target": "TOOL041 / TOOL042",
+        "label": "41·42 native 선조회 연결 검증 / 실제 고객 E2E 잔여",
+        "status": "OPEN",
+        "sources": [
+          "canonical",
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE",
+        "next_start": "Continue only missing semantic/rewrite and producer-persistence links, then one actual customer E2E. Do not repeat the nine changed-connection checks or revive CLEAN RESET data.",
+        "last_actual_point": "Pinned canonical preload-to-generation added; 9 changed-connection checks PASS; 8 implementation files remote read-back MATCH; actual current-customer path HOLD"
+      },
+      {
+        "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+        "target": "TOOL006",
+        "label": "발행사 실제 원문·정답 쌍 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
+        "next_start": "Run only the publisher-specific actual pair regression",
+        "last_actual_point": "HOLD_EVIDENCE_WAITING"
+      },
+      {
+        "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+        "target": "TOOL007",
+        "label": "플랫폼 자동 수집 기능 지원 대기",
+        "status": "PLATFORM_LIMIT",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "night_queue"
+        ],
+        "next_trigger": "PLATFORM_NATIVE_INTERCEPTOR_CAPABILITY_AVAILABLE",
+        "next_start": "Verify official platform capability before any internal change",
+        "last_actual_point": "PLATFORM_LIMIT"
+      },
+      {
+        "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+        "target": "TOOL001",
+        "label": "검증된 실제 보고서 5건 대기",
+        "status": "HOLD_EVIDENCE_WAITING",
+        "sources": [
+          "external",
+          "unified",
+          "incomplete",
+          "work_queue",
+          "night_queue"
+        ],
+        "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
+        "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+        "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
+      }
+    ],
+    "pending": [],
+    "remaining_total": 4,
+    "running_total": 0,
+    "waiting_total": 4,
+    "pending_total": 0,
+    "open_internal_total": 0,
+    "recent_completed": [
+      {
+        "root_id": "L6-20",
+        "label": "43번 화면 OFF 중 실행 · 재열기 후 새 결과 확인",
+        "evidence": {
+          "commit": "d6c293e0e75833b829be34ce09833c885932b9a1",
+          "path": "tool043/screen_off_actual_20260831.json",
+          "github_actions_run": "33358129860",
+          "scope": "GitHub-hosted work during screen-off; Android user reopened page and saw new persisted run without refresh; not Android-local worker or continuous-tab resume"
+        }
+      },
+      {
+        "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+        "label": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+        "evidence": {
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "commit": "99269456d92972fc49c875ca16c36ab23f3b5ffc",
+          "path": "feedback_pipeline/evidence/tool044_production_run.json",
+          "remote_blob_sha": "313c7b40df0d1c9ae6e479233e3760f1e1faef46",
+          "scope": "TOOL044 production adapter for TOOL043 structured evidence and deployed-copy test; not arbitrary future adapter creation or Android retest"
+        }
+      },
+      {
+        "root_id": "TOOL044-READY-COMPONENT-PILOT",
+        "label": "TOOL044-READY-COMPONENT-PILOT",
+        "evidence": {
+          "repository": "obk369369-spec/13-excel-upload",
+          "commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+          "path": "tests/tool13_idb_deployed_evidence.json",
+          "remote_blob_sha": "eeddfb36b0c77f35617855c0a89355175dcfe609",
+          "scope": "TOOL013 idb-keyval cache pilot only; not TOOL044 autonomous production deployment"
+        }
+      }
+    ],
+    "errors": [],
+    "conservation_pass": true
+  },
+  "max_status_age_seconds": 28800,
+  "night_processed": 1,
+  "new_open": 0,
+  "blocked_work": 4,
+  "next_work": "대기 조건 충족 후 재개",
+  "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+  "safe_checkpoint_evidence": {
+    "scope": "TOOL043 current agreed scope only",
+    "implementation_commit": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "first_validation": "PASS",
+    "remote_file_readback": "PASS 12 changed files",
+    "deployment_run": "33361353169",
+    "deployment_result": "success",
+    "deployed_display": "PASS current counts and completed L6 shown",
+    "global_ci": "PASS_TOOL012_COMPLETE_REMOTE_VERIFIED_SKIP_REUSE"
+  },
+  "user_manual_action_count": 0,
+  "screen_off_test": "PASS_ACTUAL_DEVICE_REOPEN_NEW_RESULT",
+  "device_observer_verification": {
+    "evidence_source": "ACTUAL_USER_REPORT_20260831_CURRENT_WORK_MESSAGE",
+    "smartphone_access": "PASS_USER_CONFIRMED",
+    "screen_on_page_restore": "PASS_USER_CONFIRMED",
+    "existing_state_restore": "PASS_USER_CONFIRMED",
+    "background_run_during_screen_off": "PASS_USER_SCREEN_OFF_CONFIRMATION_AND_ACTUAL_RUN",
+    "new_result_on_phone": "PASS_USER_CONFIRMED_REOPEN",
+    "next_trigger": "NONE_FOR_COMPLETED_AGREED_SCOPE",
+    "observed_github_actions_run": "33358129860",
+    "verified_restore_mode": "REOPEN_AND_FETCH_PERSISTED_NEW_RESULT",
+    "continuous_open_page_resume": "NOT_VERIFIED",
+    "evidence_path": "tool043/screen_off_actual_20260831.json",
+    "completion_scope": "GitHub-hosted background execution while user-confirmed screen OFF, persisted new result visible on actual Android after reopening. Not Android-local background execution or continuous open-page resume."
+  },
+  "screen_off_evidence_contract": "tool043/android_screen_off_evidence.template.json",
+  "screen_off_verifier": "tool043/android_screen_off_evidence.py",
+  "single_device_run_required": false,
+  "device_run_user_manual_action_target": 0,
+  "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
+  "auto_recovery": "QUEUE_PRESERVED",
+  "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
+  "hidden_gap_total": 0,
+  "incomplete_total": 4,
+  "remote_pending_total": 0,
+  "deployment_pending_total": 1,
+  "real_use_not_verified_total": 2,
+  "user_feedback_courier_count": 0,
+  "approval_pending_total": 0,
+  "approval_wait_does_not_block_safe_work": true,
+  "approval_items": [],
+  "observer_generated_at": "2026-09-03T03:02:12.454269+00:00",
+  "source_revision": "f6983cf5aa6f8b4c231ed182244d5fc985322c44",
+  "github_actions_run": "LOCAL_ONLY",
+  "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
+  "smartphone_role": "OBSERVER_VIEW_ONLY",
+  "smartphone_direct_work_execution": "FORBIDDEN",
+  "remote_approval_from_smartphone": "BLOCKED_PLATFORM_NON_BLOCKING_SKIP_REUSE",
+  "last_night_task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
+  "last_night_task_status": "COMPLETED",
+  "night_automation_real_run": "PASS",
+  "night_task_items": [
+    {
+      "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
+      "result": "CENTRAL_OBSERVER_REFRESHED",
+      "executed_at": "2026-09-03T03:02:12.449689+00:00",
+      "status": "COMPLETED"
+    }
+  ]
+}
