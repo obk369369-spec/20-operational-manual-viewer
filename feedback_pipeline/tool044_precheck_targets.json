@@ -1,5 +1,26 @@
 {
   "targets": {
+    "TOOL041": {
+      "tool": "TOOL041",
+      "function": "ONLINE_CUSTOMER_COLLECTION_RUNTIME",
+      "master": "wic:41-wic-email-collection-master/MASTER/COMMON_MASTER.md",
+      "checkpoint": "wic:41-wic-email-collection-master/CHECKPOINT/CHECKPOINT.md",
+      "runtime": "wic:41-wic-email-collection-master/src/customer_integrity.py",
+      "actual_use_folder": "wic:41-wic-email-collection-master",
+      "repo": "wic:41-wic-email-collection-master",
+      "actual_inputs": ["wic:41-wic-email-collection-master/tests/fixtures/t41_actual_pairs.json"],
+      "cause_clear": true,
+      "first_blocker": "ONLINE_COLLECTION_EXECUTION_PATH_INCOMPLETE",
+      "test_scope": "LARGE",
+      "deploy_direct": false,
+      "deployed_pass_confident": false,
+      "repeat_failure": true,
+      "external_blocker": false,
+      "user_actions": [],
+      "existing_deployed_pass": false,
+      "reuse_component": null,
+      "current_state": "HOLD_WORK_ESCALATION_REQUIRED"
+    },
     "TOOL001": {
       "tool": "TOOL001",
       "function": "FIVE_VERIFIED_REPORT_GUIDE",

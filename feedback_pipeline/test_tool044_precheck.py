@@ -13,6 +13,15 @@ operating = Path(sys.argv[2]).resolve()
 roots = {"central": central, "wic": wic, "operating": operating}
 configs = json.loads((central / "feedback_pipeline/tool044_precheck_targets.json").read_text(encoding="utf-8"))["targets"]
 
+assert "TOOL041" in configs
+tool041_config = configs["TOOL041"]
+assert tool041_config["repeat_failure"] is True
+assert tool041_config["test_scope"] == "LARGE"
+assert tool041_config["deployed_pass_confident"] is False
+missing_field = dict(tool041_config)
+del missing_field["runtime"]
+assert evaluate(missing_field, roots)["work_eligible"] == "NO"
+
 one = evaluate(configs["TOOL001"], roots)
 two = evaluate(configs["TOOL042"], roots)
 four = evaluate(configs["TOOL044"], roots)
