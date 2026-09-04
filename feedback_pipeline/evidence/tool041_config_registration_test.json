@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "representative": {
+    "TOOL001": {
+      "target_tool": "TOOL001",
+      "target_function": "FIVE_VERIFIED_REPORT_GUIDE",
+      "master": "READY",
+      "checkpoint": "MISSING",
+      "actual_input": "MISSING",
+      "canonical_runtime": "READY",
+      "local_remote": "LOCAL_DIRTY",
+      "first_blocker": "VERIFIED_REPORT_PAYLOAD_NOT_READY",
+      "reuse_component": "NONE",
+      "test_scope": "SMALL",
+      "deploy_confidence": "LOW",
+      "user_action_count": 0,
+      "work_eligible": "NO",
+      "reason": "INPUT_READY"
+    },
+    "TOOL042": {
+      "target_tool": "TOOL042",
+      "target_function": "CURRENT_LEDGER_ROW_LINKAGE",
+      "master": "READY",
+      "checkpoint": "READY",
+      "actual_input": "READY",
+      "canonical_runtime": "UNKNOWN",
+      "local_remote": "LOCAL_AHEAD",
+      "first_blocker": "CURRENT_LEDGER_ROW_NOT_RESOLVED",
+      "reuse_component": "NONE",
+      "test_scope": "SMALL",
+      "deploy_confidence": "LOW",
+      "user_action_count": 0,
+      "work_eligible": "NO",
+      "reason": "DEPLOY_DIRECT"
+    },
+    "TOOL044": {
+      "target_tool": "TOOL044",
+      "target_function": "FASTJSONSCHEMA_PROOF_COMPONENT",
+      "master": "READY",
+      "checkpoint": "MISSING",
+      "actual_input": "READY",
+      "canonical_runtime": "READY",
+      "local_remote": "UNKNOWN",
+      "first_blocker": "NONE",
+      "reuse_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "test_scope": "SMALL",
+      "deploy_confidence": "HIGH",
+      "user_action_count": 0,
+      "work_eligible": "SKIP_REUSE",
+      "reason": "EXISTING_DEPLOYED_PASS"
+    }
+  },
+  "boundary": {
+    "actual_input_missing": "PASS",
+    "canonical_runtime_unknown": "PASS",
+    "cause_unknown": "PASS",
+    "test_scope_large": "PASS",
+    "local_dirty": "PASS",
+    "target_missing": "PASS",
+    "existing_deployed_pass": "PASS",
+    "existing_registry_component": "PASS"
+  },
+  "idempotency": "PASS",
+  "files_created": 0,
+  "expected_actual": "MATCH",
+  "engine_modified": false,
+  "runtime_cost": 0
+}
