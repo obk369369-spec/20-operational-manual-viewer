@@ -24,3 +24,13 @@ The connected enforcement boundary is Work candidate admission. Direct tool call
 ## Permanent common-block startup binding
 
 The --resume-latest path now loads WIC_WORK_COMMON_EXECUTION_BLOCK.md and validates local execution code against the same pinned CENTRAL revision. Its common_execution_block is mandatory permanent policy, not optional advice. A candidate-less resume has execution_allowed=false. Before starting a concrete operation use the existing command with --resume-latest --candidate <candidate.json>; work_admission must allow it. SKIP/HOLD decisions are terminal, not permission to use another entrypoint. An outdated checkout must stop with WORK_HOLD_STALE_EXECUTOR; use the existing canonical update workflow, never execute fetched source text dynamically.
+
+## Mutual supervision and automatic recovery binding
+
+Every WIC execution that advances beyond admission must also pass `feedback_pipeline/wic_mutual_supervision.py` at each stage boundary: START, DIAGNOSE, FIX, TEST, GITHUB, DEPLOY, DEPLOYED_TEST, COMPLETE.
+The seven independent layers are L1_START_PRECHECK, L2_CAUSE_AUDIT, L3_CHANGE_GUARD, L4_TEST_AUDIT, L5_STOP_RECOVERY, L6_DEPLOY_GUARD, and L7_POST_DEPLOY_AUDIT.
+A layer does not trust its own PASS/HOLD/COMPLETE claim. Its paired peer auditor must be able to reject the claim, repair/reload the failed layer, and resume from the last SAFE_CHECKPOINT without asking the human observer to troubleshoot.
+HOLD, WAITING, NOT_FOUND, STOPPED, FAIL, FAILED, or COMPLETE are not accepted as terminal merely because Work reports them. A stop is valid only after independent evidence search proves the blocker is external; otherwise the decision is STOP_REJECTED_RESUME_REQUIRED. COMPLETE is valid only when final deployed-copy evidence is complete; otherwise it is COMPLETE_REJECTED_RESUME_REQUIRED.
+The human user is RESULT_ONLY by default. Intermediate repair, retest, resume, rollback-to-safe-checkpoint, and peer-layer recovery are system responsibilities. User action is permitted only for a separately proven user-only external action and must be queued/batched.
+The mutual-supervision engine reuses TOOL044 fast-deploy stage definitions instead of rebuilding test/deploy/checkpoint mechanics. Do not fork duplicate supervision logic per TOOL.
+Before a WIC task is reported complete, the state presented to the mutual-supervision engine must reach DEPLOYED_PASS. Any missing stage evidence means repair/resume, not a partial-completion report.
