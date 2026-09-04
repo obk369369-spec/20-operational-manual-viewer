@@ -1,0 +1,42 @@
+{
+  "status": "DEPLOYED_PASS",
+  "scope": "TOOL044 thin offline observer HTML only",
+  "source_commit": "4f9da3b2faaef036e7e872c2a32609c14635dd18",
+  "remote_readback": "PASS",
+  "deployed_path": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\index.html",
+  "source_and_deployed_sha256": "bed349caf33b5bdc335ed3c90b45d89211b116aece554543bb0bf1bffcb323a0",
+  "expected": {
+    "status": "DEPLOYED_PASS",
+    "component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+    "compare": "MATCH",
+    "checkpoint": "bd5af3b55841e84b444082572112b68afd5498ec",
+    "button_count": 1,
+    "run_path": "feedback_pipeline\\tool044_start.cmd",
+    "button_result": "path guidance; no false execution claim"
+  },
+  "actual": {
+    "status": "DEPLOYED_PASS",
+    "component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+    "compare": "MATCH",
+    "checkpoint": "bd5af3b55841e84b444082572112b68afd5498ec",
+    "button_count": 1,
+    "run_path": "feedback_pipeline\\tool044_start.cmd",
+    "button_expanded": true,
+    "path_guidance_visible": true
+  },
+  "tests": {
+    "test_1_offline_open": "PASS",
+    "test_2_evidence_match": "PASS",
+    "test_3_deployed_pass_match": "PASS",
+    "test_4_target_component_match": "PASS",
+    "test_5_user_action_match": "PASS",
+    "test_6_button_actual_click": "PASS",
+    "test_7_existing_cmd_independence": "PASS",
+    "test_8_remote_sha_and_blob_readback": "PASS",
+    "test_9_deployed_index_open_and_click": "PASS"
+  },
+  "engine_code_changed": false,
+  "external_dependencies": 0,
+  "user_actions_required": 0,
+  "compare": "MATCH"
+}
