@@ -46,6 +46,14 @@
 - Work 결과 계약은 `WORK_DECISION/SELECTED_COMPONENT/SOURCE/VERSION/LICENSE/UNMODIFIED_USE/EXPECTED_CONTRACT/INTEGRATION_TARGET`이며, 이후 sandbox/compare/registry/deploy/retest는 기존 `tool044_mechanical.py`가 담당한다.
 - 이 분기층은 외부검색·대상 도구 수정·배포를 직접 수행하지 않으며 정상 판단 비용은 Work/Codex/API/SaaS 0이다.
 
+## 승인 집중 및 FAST DEPLOY 계획
+
+- 실행기: `feedback_pipeline/tool044_fast_deploy.py`.
+- LOCAL-FIRST 결과를 A(기존 검증부품), B(외부 READY 판단), C(WIC 내부규칙), D(HOLD/NOT_READY)로 분류한다.
+- A형의 결정적 작업은 대상 시험부터 checkpoint까지 한 묶음으로 계획하며, 플랫폼이 강제하는 작업만 `PLATFORM_APPROVAL_BATCH_1` 하나에 모은다.
+- 불필요한 확인은 승인 큐에 넣지 않고 `AVOIDABLE_APPROVAL_COUNT`로 차단·측정한다. B형은 Work 판단까지만, C형은 내부규칙 후보까지만, D형은 추가 소비 없이 종료한다.
+- 외부 READY 부품 자격·검색 상한·무수정 원칙은 기존 TOOL044 규칙을 그대로 사용하며 이 계획층이 검색이나 배포를 새로 구현하지 않는다.
+
 - 최초 파일럿: TOOL013의 3MB 초과 배치 재개 캐시. 번역 완료와 구분한다.
 - 부품: idb-keyval 6.2.2, Apache-2.0, 무의존성, 공식 tarball SHA512와 원본 JS SHA256 고정.
 - 실행: `python feedback_pipeline/tool044_acquire.py --acquire <sandbox>`.
