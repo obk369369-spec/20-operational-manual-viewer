@@ -38,6 +38,14 @@
 - `YES`일 때만 최소 handoff를 생성하며 전체 history, 외부검색, 수정, 배포를 수행하지 않는다.
 - 판정은 로컬 파일과 로컬 Git refs만 사용하므로 정상 운영 Work/Codex/API/SaaS 비용은 0이다.
 
+## LOCAL-FIRST 실행 분리
+
+- 진입점: `feedback_pipeline/tool044_local_first.py`.
+- 기본 경로는 로컬 사전검사이며 기존 PASS, registry 재사용, 입력 부재, 외부 blocker, 큰 범위, 반복 실패를 Work 없이 판정한다.
+- 새 부품 적합성·라이선스·통합 방식처럼 새로운 판단이 필요한 경우에만 `WORK_HANDOFF_REQUIRED=YES`와 최소 `WORK_HANDOFF.json`을 만든 뒤 로컬 진행을 중단한다.
+- Work 결과 계약은 `WORK_DECISION/SELECTED_COMPONENT/SOURCE/VERSION/LICENSE/UNMODIFIED_USE/EXPECTED_CONTRACT/INTEGRATION_TARGET`이며, 이후 sandbox/compare/registry/deploy/retest는 기존 `tool044_mechanical.py`가 담당한다.
+- 이 분기층은 외부검색·대상 도구 수정·배포를 직접 수행하지 않으며 정상 판단 비용은 Work/Codex/API/SaaS 0이다.
+
 - 최초 파일럿: TOOL013의 3MB 초과 배치 재개 캐시. 번역 완료와 구분한다.
 - 부품: idb-keyval 6.2.2, Apache-2.0, 무의존성, 공식 tarball SHA512와 원본 JS SHA256 고정.
 - 실행: `python feedback_pipeline/tool044_acquire.py --acquire <sandbox>`.
