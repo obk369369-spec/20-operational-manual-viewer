@@ -1,0 +1,87 @@
+{
+  "CASE-1": {
+    "target_tool": "TOOL044",
+    "target_function": "PROOF",
+    "precheck": "SKIP_REUSE",
+    "execution_mode": "LOCAL",
+    "local_stage": "REGISTRY_REUSE",
+    "work_handoff_required": "NO",
+    "work_reason": "NONE",
+    "deploy_result": "EXISTING_DEPLOYED_PASS",
+    "user_action": "NONE",
+    "local_result": "SKIP_REUSE"
+  },
+  "CASE-2": {
+    "target_tool": "TOOL001",
+    "target_function": "PROOF",
+    "precheck": "NO",
+    "execution_mode": "LOCAL",
+    "local_stage": "PRECHECK",
+    "work_handoff_required": "NO",
+    "work_reason": "VERIFIED_REPORT_PAYLOAD_NOT_READY",
+    "deploy_result": "NOT_STARTED",
+    "user_action": "NONE",
+    "local_result": "HOLD_EXTERNAL"
+  },
+  "CASE-3": {
+    "target_tool": "TOOL042",
+    "target_function": "PROOF",
+    "precheck": "NO",
+    "execution_mode": "LOCAL",
+    "local_stage": "PRECHECK",
+    "work_handoff_required": "NO",
+    "work_reason": "CURRENT_LEDGER_ROW_NOT_RESOLVED",
+    "deploy_result": "NOT_STARTED",
+    "user_action": "NONE",
+    "local_result": "WORK_ELIGIBLE_NO"
+  },
+  "CASE-4": {
+    "target_tool": "TOOL099",
+    "target_function": "NEW_COMPONENT",
+    "precheck": "YES",
+    "execution_mode": "WORK_REQUIRED",
+    "local_stage": "HANDOFF_ONLY",
+    "work_handoff_required": "YES",
+    "work_reason": "NEW_COMPONENT_SUITABILITY_JUDGMENT",
+    "deploy_result": "NOT_STARTED",
+    "user_action": "NONE",
+    "local_result": "STOPPED_FOR_WORK_DECISION",
+    "handoff": {
+      "TARGET_TOOL": "TOOL099",
+      "TARGET_FUNCTION": "NEW_COMPONENT",
+      "CURRENT_STATE": "PRECHECK_PASS_NEW_JUDGMENT_REQUIRED",
+      "KNOWN_BLOCKER": "NEW_JUDGMENT",
+      "ACTUAL_INPUT": [
+        "C:\\Users\\obk36\\AppData\\Local\\Temp\\tmp25npc9s2\\input"
+      ],
+      "CANONICAL_RUNTIME_PATH": "C:\\Users\\obk36\\AppData\\Local\\Temp\\tmp25npc9s2\\runtime",
+      "ACTUAL_USE_FOLDER": "C:\\Users\\obk36\\AppData\\Local\\Temp\\tmp25npc9s2\\use",
+      "SAFE_CHECKPOINT": "C:\\Users\\obk36\\AppData\\Local\\Temp\\tmp25npc9s2\\checkpoint",
+      "GITHUB_STATE": "CLEAN_MATCH",
+      "REGISTRY_RESULT": "NONE",
+      "LOCAL_TEST_RESULT": "PRECHECK_PASS",
+      "WHY_WORK_REQUIRED": "NEW_COMPONENT_SUITABILITY_JUDGMENT",
+      "EXPECTED_WORK_OUTPUT": [
+        "WORK_DECISION",
+        "SELECTED_COMPONENT",
+        "SOURCE",
+        "VERSION",
+        "LICENSE",
+        "UNMODIFIED_USE",
+        "EXPECTED_CONTRACT",
+        "INTEGRATION_TARGET"
+      ]
+    }
+  },
+  "boundaries": {
+    "missing_input": "WORK_ELIGIBLE_NO",
+    "unknown_runtime": "WORK_ELIGIBLE_NO",
+    "unknown_cause": "EXCLUDE_THIS_RUN",
+    "large_scope": "EXCLUDE_THIS_RUN",
+    "repeat": "REPEAT_BLOCKED",
+    "missing_target": "EXCLUDE_THIS_RUN",
+    "local_dirty": "WORK_ELIGIBLE_NO"
+  },
+  "idempotency": "PASS",
+  "work_result_contract": "PASS"
+}
