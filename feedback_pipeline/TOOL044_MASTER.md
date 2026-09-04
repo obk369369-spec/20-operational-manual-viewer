@@ -19,6 +19,16 @@
 대상 운영본: `I:\GPT 도구 작업\43번 모바일 관찰판\tool043\night_observer.py` (서버/상태 생성 실행본).
 화면 파일은 기존 index.html 그대로이며 UI 수정/Android 반복시험 범위가 아니다.
 
+## Manifest 기반 기계적 반복 자동화
+
+- 실행기: `feedback_pipeline/tool044_mechanical.py`
+- 부품별 변경값: `feedback_pipeline/tool044_manifests/*.json`
+- 독립 EXPECTED: `feedback_pipeline/tool044_expected/*.json`
+- 자동 범위: 원본 메타데이터/해시, sandbox 명령, ACTUAL 수집, EXPECTED 부분대조, PASS/REJECT, registry 중복방지·PASS 후 등록, 명시 파일 배포, 배포 해시 확인, 배포본 재실행 증거.
+- 실패 시 registry·배포는 실행하지 않는다. 동일 부품 재실행은 registry 중복 없이 동일 파일을 `SKIP_IDENTICAL` 처리한다.
+- WIC 고유 판단, 후보 검색, 대상별 통합 설계는 자동 PASS하지 않는다.
+- 정상 실행은 로컬 Python과 고정 원본만 사용하며 Work/Codex/유료 API/SaaS 호출 비용은 0이다.
+
 - 최초 파일럿: TOOL013의 3MB 초과 배치 재개 캐시. 번역 완료와 구분한다.
 - 부품: idb-keyval 6.2.2, Apache-2.0, 무의존성, 공식 tarball SHA512와 원본 JS SHA256 고정.
 - 실행: `python feedback_pipeline/tool044_acquire.py --acquire <sandbox>`.

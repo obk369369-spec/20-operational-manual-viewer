@@ -1,0 +1,48 @@
+{
+  "status": "LOCAL_PASS",
+  "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+  "component_name": "fastjsonschema",
+  "version": "2.21.2",
+  "official_source": "https://pypi.org/project/fastjsonschema/2.21.2/",
+  "license": "BSD-3-Clause",
+  "acquired_at": "2026-09-03",
+  "runtime_cost": {
+    "work": 0,
+    "codex": 0,
+    "paid_api": 0,
+    "paid_saas": 0
+  },
+  "source_path": "tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl",
+  "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+  "external_modified": false,
+  "sandbox_command": [
+    "C:\\Users\\obk36\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "feedback_pipeline/tool044_fastjsonschema_fixture.py",
+    "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_work16_persistent_feedback_reconcile\\feedback_pipeline\\evidence\\tool044_mechanical_local.actual.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"PASS\", \"input\": \"Immutable fastjsonschema completion-proof contract fixture\", \"valid_proof_accepted\": true, \"invalid_proof_cases_blocked\": 6, \"source_sha256\": \"1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463\"}\n",
+  "stderr": "",
+  "expected": {
+    "status": "PASS",
+    "input": "Immutable fastjsonschema completion-proof contract fixture",
+    "valid_proof_accepted": true,
+    "invalid_proof_cases_blocked": 6,
+    "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+  },
+  "actual": {
+    "status": "PASS",
+    "input": "Immutable fastjsonschema completion-proof contract fixture",
+    "valid_proof_accepted": true,
+    "invalid_proof_cases_blocked": 6,
+    "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+  },
+  "compare": "MATCH",
+  "registry_existing_count": 1,
+  "registry_action": "SKIP_IDENTICAL",
+  "deployed_files": [],
+  "deployed_retest_result": "PENDING_REMOTE_AND_ACTUAL_DEPLOY",
+  "recorded_at": "2026-09-04T05:18:18.466015+00:00"
+}
