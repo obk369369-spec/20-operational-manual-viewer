@@ -29,6 +29,15 @@
 - WIC 고유 판단, 후보 검색, 대상별 통합 설계는 자동 PASS하지 않는다.
 - 정상 실행은 로컬 Python과 고정 원본만 사용하며 Work/Codex/유료 API/SaaS 호출 비용은 0이다.
 
+## Work 투입 전 로컬 사전검사
+
+- 실행기: `feedback_pipeline/tool044_precheck.py`
+- 등록대상: `feedback_pipeline/tool044_precheck_targets.json`
+- 실제 입력·canonical runtime·실사용폴더·local/remote·blocker·기존 PASS/부품·사용자 조작·테스트 범위·배포 가능성을 fail-closed로 판정한다.
+- 필수 gate가 하나라도 false/unknown이면 `WORK_ELIGIBLE=NO`; 기존 배포 PASS는 `SKIP_REUSE`로 재투입하지 않는다.
+- `YES`일 때만 최소 handoff를 생성하며 전체 history, 외부검색, 수정, 배포를 수행하지 않는다.
+- 판정은 로컬 파일과 로컬 Git refs만 사용하므로 정상 운영 Work/Codex/API/SaaS 비용은 0이다.
+
 - 최초 파일럿: TOOL013의 3MB 초과 배치 재개 캐시. 번역 완료와 구분한다.
 - 부품: idb-keyval 6.2.2, Apache-2.0, 무의존성, 공식 tarball SHA512와 원본 JS SHA256 고정.
 - 실행: `python feedback_pipeline/tool044_acquire.py --acquire <sandbox>`.
