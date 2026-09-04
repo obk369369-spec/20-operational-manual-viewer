@@ -1,0 +1,84 @@
+{
+  "status": "LOCAL_PASS",
+  "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+  "component_name": "fastjsonschema",
+  "version": "2.21.2",
+  "official_source": "https://pypi.org/project/fastjsonschema/2.21.2/",
+  "license": "BSD-3-Clause",
+  "acquired_at": "2026-09-03",
+  "runtime_cost": {
+    "work": 0,
+    "codex": 0,
+    "paid_api": 0,
+    "paid_saas": 0
+  },
+  "source_path": "tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl",
+  "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+  "external_modified": false,
+  "sandbox_command": [
+    "C:\\Users\\obk36\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "feedback_pipeline/tool044_fastjsonschema_fixture.py",
+    "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool044_release_worktree\\feedback_pipeline\\evidence\\tool044_mechanical_deploy.actual.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"PASS\", \"input\": \"Immutable fastjsonschema completion-proof contract fixture\", \"valid_proof_accepted\": true, \"invalid_proof_cases_blocked\": 6, \"source_sha256\": \"1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463\"}\n",
+  "stderr": "",
+  "expected": {
+    "status": "PASS",
+    "input": "Immutable fastjsonschema completion-proof contract fixture",
+    "valid_proof_accepted": true,
+    "invalid_proof_cases_blocked": 6,
+    "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+  },
+  "actual": {
+    "status": "PASS",
+    "input": "Immutable fastjsonschema completion-proof contract fixture",
+    "valid_proof_accepted": true,
+    "invalid_proof_cases_blocked": 6,
+    "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+  },
+  "compare": "MATCH",
+  "registry_existing_count": 1,
+  "registry_action": "SKIP_IDENTICAL",
+  "deployed_files": [
+    {
+      "path": "feedback_pipeline/tool044_mechanical.py",
+      "sha256": "c5a74b16c4d7d4aa7aefcb4059fc06e084636de93e6e3903d3cf8f989eef6b81",
+      "action": "COPIED"
+    },
+    {
+      "path": "feedback_pipeline/tool044_fastjsonschema_fixture.py",
+      "sha256": "27a5ec6b541e323fb9e4159bb87797760fda7c3e79476898246264bcf3ba5daf",
+      "action": "COPIED"
+    },
+    {
+      "path": "feedback_pipeline/tool044_start.cmd",
+      "sha256": "7bfc85be427df2a6b8be32b7a3e48af42a1b4953ceb8d024d0779785eabcd528",
+      "action": "COPIED"
+    },
+    {
+      "path": "feedback_pipeline/tool044_manifests/fastjsonschema_fixture.json",
+      "sha256": "c5a0c2920ebcdd4ae501ad3c3396b5d78e761f466bd22d2357a5a77ae1d3285a",
+      "action": "COPIED"
+    },
+    {
+      "path": "feedback_pipeline/tool044_expected/fastjsonschema_expected.json",
+      "sha256": "a72b81a0983e07ffd5cfcc535510391b0be4f7cf211cf53943b35bb96f7fd8a5",
+      "action": "COPIED"
+    },
+    {
+      "path": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+      "sha256": "1f2a4e77c12d6549c5fe669eda7c77dcb3985cd49b14abf4453814f2e57e5476",
+      "action": "COPIED"
+    },
+    {
+      "path": "tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl",
+      "sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+      "action": "COPIED"
+    }
+  ],
+  "deployed_retest_result": "PENDING_REMOTE_AND_ACTUAL_DEPLOY",
+  "recorded_at": "2026-09-04T05:23:08.456437+00:00"
+}
