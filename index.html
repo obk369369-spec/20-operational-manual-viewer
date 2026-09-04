@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TOOL044 관찰판</title>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#657089; --line:#dce3ee; --ok:#087a55; --ok-bg:#e8f7f0; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#f4f7fb; color:var(--ink); font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif; }
+    main { width:min(920px,calc(100% - 32px)); margin:48px auto; }
+    h1 { margin:0 0 8px; font-size:clamp(28px,5vw,44px); letter-spacing:-.04em; }
+    .sub { margin:0 0 28px; color:var(--muted); }
+    .hero { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px; background:#fff; border:1px solid var(--line); border-radius:18px; }
+    .badge { display:inline-block; padding:7px 11px; border-radius:999px; background:var(--ok-bg); color:var(--ok); font-weight:800; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:14px; }
+    .card { min-height:116px; padding:20px; background:#fff; border:1px solid var(--line); border-radius:16px; }
+    .label { display:block; margin-bottom:10px; color:var(--muted); font-size:14px; }
+    .value { font-size:18px; font-weight:800; line-height:1.45; word-break:break-word; }
+    button { border:0; border-radius:12px; padding:14px 20px; background:#172033; color:#fff; font:inherit; font-weight:800; cursor:pointer; }
+    button:focus-visible { outline:3px solid #8db8ff; outline-offset:3px; }
+    #run-help { display:none; margin-top:14px; padding:18px; border:1px solid #b9c6da; border-radius:14px; background:#fff; }
+    #run-help.visible { display:block; }
+    code { display:block; margin-top:8px; padding:12px; border-radius:9px; background:#eef2f7; user-select:all; overflow-wrap:anywhere; }
+    footer { margin-top:18px; color:var(--muted); font-size:13px; }
+    @media (max-width:640px) { main{margin:24px auto}.hero{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}button{width:100%} }
+  </style>
+</head>
+<body data-status="DEPLOYED_PASS" data-component="FASTJSONSCHEMA_2_21_2_TOOL043_PROOF" data-compare="MATCH" data-checkpoint="bd5af3b55841e84b444082572112b68afd5498ec">
+  <main>
+    <h1>TOOL044 관찰판</h1>
+    <p class="sub">완성부품 반입 자동화의 최근 확정 상태만 간단히 표시합니다.</p>
+
+    <section class="hero" aria-label="TOOL044 현재 상태">
+      <div>
+        <span class="label">TOOL044 상태</span>
+        <strong class="badge" id="status">DEPLOYED_PASS</strong>
+      </div>
+      <button id="run-button" type="button" aria-controls="run-help" aria-expanded="false">TOOL044 실행</button>
+    </section>
+
+    <div class="grid">
+      <section class="card"><span class="label">현재 대상</span><div class="value" id="target">TOOL043 · fastjsonschema 2.21.2</div></section>
+      <section class="card"><span class="label">현재 단계</span><div class="value" id="stage">deployed-copy retest 완료</div></section>
+      <section class="card"><span class="label">최근 결과</span><div class="value" id="result">MATCH · DEPLOYED_PASS</div></section>
+      <section class="card"><span class="label">사용자 조작</span><div class="value" id="user-action">사용자 조작 없음</div></section>
+      <section class="card" style="grid-column:1/-1"><span class="label">SAFE_CHECKPOINT</span><div class="value" id="checkpoint">bd5af3b55841e84b444082572112b68afd5498ec</div></section>
+    </div>
+
+    <section id="run-help" role="status" aria-live="polite">
+      브라우저 보안상 CMD를 자동 실행하지 않습니다. 기존 실행파일을 사용하세요.
+      <code id="run-path">feedback_pipeline\tool044_start.cmd</code>
+    </section>
+    <footer>이 화면은 관찰용이며 TOOL044 엔진·registry·evidence를 변경하지 않습니다.</footer>
+  </main>
+  <script>
+    const button = document.getElementById('run-button');
+    const help = document.getElementById('run-help');
+    button.addEventListener('click', () => {
+      const visible = !help.classList.contains('visible');
+      help.classList.toggle('visible', visible);
+      button.setAttribute('aria-expanded', String(visible));
+    });
+  </script>
+</body>
+</html>

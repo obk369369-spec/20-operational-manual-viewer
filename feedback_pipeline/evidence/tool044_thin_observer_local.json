@@ -1,0 +1,39 @@
+{
+  "status": "LOCAL_PASS",
+  "scope": "TOOL044 thin offline observer HTML only",
+  "source_checkpoint": "bd5af3b55841e84b444082572112b68afd5498ec",
+  "expected": {
+    "tool_status": "DEPLOYED_PASS",
+    "target": "TOOL043 / fastjsonschema 2.21.2",
+    "stage": "deployed-copy retest complete",
+    "compare": "MATCH",
+    "user_action": "none",
+    "run_path": "feedback_pipeline\\tool044_start.cmd"
+  },
+  "actual": {
+    "tool_status": "DEPLOYED_PASS",
+    "target": "TOOL043 / fastjsonschema 2.21.2",
+    "stage": "deployed-copy retest complete",
+    "compare": "MATCH",
+    "user_action": "none",
+    "run_path": "feedback_pipeline\\tool044_start.cmd"
+  },
+  "tests": {
+    "test_1_offline_open": "PASS",
+    "test_2_evidence_match": "PASS",
+    "test_3_deployed_pass_match": "PASS",
+    "test_4_target_component_match": "PASS",
+    "test_5_user_action_match": "PASS",
+    "test_6_button_click_path_guidance": "PASS",
+    "test_7_engine_independence": "PASS"
+  },
+  "compare": "MATCH",
+  "engine_code_changed": false,
+  "external_dependencies": 0,
+  "runtime_cost": {
+    "work": 0,
+    "codex": 0,
+    "paid_api": 0,
+    "paid_saas": 0
+  }
+}
