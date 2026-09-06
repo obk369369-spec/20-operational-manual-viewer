@@ -276,3 +276,17 @@ UNCHANGED_EXTERNAL_HOLD = HOLD_REUSE
 - TOOL007 과거 근거 검색은 위 현재 정본이 부족한 경우에만 Antigravity TOOL007 범위, 그다음 278 TOOL007 범위로 좁게 내려간다.
 START_GATE_REPRESENTATIVE_TARGETS = TOOL041,TOOL042,TOOL007
 TOOL007_MASTER_CHAIN_REQUIRED = TRUE
+
+## 사용자 승인 언어·SAFE 최대 병합 — REQUIRED
+
+- Work가 직접 생성하는 모든 승인요청, 권한설명, 사용자 질문, 중간 확인문은 반드시 한국어로 작성한다.
+- 플랫폼 자체 시스템 UI가 영어로 표시되는 것은 통제 불가 예외다. 그 직전 또는 함께 제공하는 Work 설명은 반드시 한국어로 작성한다.
+- 같은 목적·같은 위험등급·같은 작업범위에서 기술적으로 함께 처리 가능한 SAFE 권한은 최대한 한 번에 묶고, 같은 작업을 여러 승인창으로 불필요하게 분할하지 않는다.
+- 삭제·force push·새 repo·대량 파괴적 변경 등 위험등급이 다른 권한은 SAFE 묶음과 분리한다.
+- 자동 처리 가능한 작업을 사용자 승인으로 전가하지 않는다. 불가피한 승인만 요청하고 여러 승인이 예상되면 가능한 한 단일 SAFE 승인으로 병합한다.
+- 이 규칙은 USER_INTERMEDIATE_OPERATION = FORBIDDEN_BY_DEFAULT, USER_ACTION_QUEUE, OBSERVER_FIRST 원칙을 강화하며 이를 완화하지 않는다.
+
+USER_APPROVAL_LANGUAGE = KOREAN_REQUIRED
+APPROVAL_BATCHING = MAXIMUM_SAFE_BATCH
+USER_INTERMEDIATE_APPROVAL = MINIMIZE
+PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
