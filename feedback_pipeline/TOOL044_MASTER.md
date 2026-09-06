@@ -74,3 +74,20 @@
 - 114개/823행 기존 PASS는 파서·행 생성·변환엔진 미변경으로 SKIP_REUSE.
 - Argos 번역: 모델 이용조건 미확정/설치 미완료로 미장착. NLLB: CC-BY-NC-4.0으로 상업 실무용 채택 제외.
 - 번역은 다음 별도 기능이며 이번 캐시 PASS로 승격하지 않는다.
+
+## 외부 신뢰계층 + TOOL043 ONE-RUN DEPLOYED_PASS — 2026-09-06
+
+- 증거 adapter: `feedback_pipeline/tool044_trust_chain.py`.
+- 외부 component/validator: fastjsonschema 2.21.2, BSD, 무수정 wheel.
+- quorum: official PyPI release metadata + PyPI artifact SHA256 + official GitHub upstream tag/ref identity + 실제 wheel SHA256 재계산.
+- upstream tag/commit: `v2.21.2` / `4f1ed6d9c0462f3522a66f49c8f3dc482300101b`.
+- artifact SHA256: `1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463`.
+- native validator: fastjsonschema; valid proof 1건 허용, malformed proof 6건 차단.
+- receipt chain: `ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb`.
+- canonical evidence: `feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json`.
+- code remote read-back: `d57a629c9a6050f936daf38ab53d688b2d98dbb0`.
+- TOOL043 observer: trust state, component, result, LAST SAFE CHECKPOINT 표시.
+- 실제 배포: `D:\GPT 도구 작업\44번 완성부품 가져오기`, `D:\GPT 도구 작업\43번 모바일 관찰판\tool043`.
+- deployed-copy test: DEPLOYED_PASS 표시 및 console error 0.
+- GitHub Release 객체 부재는 FAIL 조건이 아니다. official tag/ref/commit identity adapter를 사용한다.
+- 상태: `DEPLOYED_PASS / REMOTE_VERIFIED`.
