@@ -154,7 +154,19 @@
         "feedback_pipeline/evidence/tool044_production_run.json",
         "feedback_pipeline/evidence/tool043_proof_deployed.json"
       ],
-      "reuse_requires_target_retest": true
+      "reuse_requires_target_retest": true,
+      "external_evidence_quorum": "PASS",
+      "official_external_sources": [
+        "https://pypi.org/pypi/fastjsonschema/2.21.2/json",
+        "https://api.github.com/repos/horejsek/python-fastjsonschema/git/ref/tags/v2.21.2"
+      ],
+      "upstream_tag": "v2.21.2",
+      "upstream_commit": "4f1ed6d9c0462f3522a66f49c8f3dc482300101b",
+      "actual_artifact_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+      "external_attestation": "NOT_PUBLISHED",
+      "receipt_chain": "ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb",
+      "trust_evidence": "feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json",
+      "deployed_copy_test": "PASS"
     }
   ],
   "candidates": [
