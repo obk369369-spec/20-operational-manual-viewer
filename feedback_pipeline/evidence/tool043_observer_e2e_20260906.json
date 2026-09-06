@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tool": "TOOL043",
+  "scope": "CENTRAL/state/handoff observation bridge and laptop-to-Pages projection",
+  "validated_at_kst": "2026-09-06T16:20:27+09:00",
+  "implementation_commit": "ffaedea3472f0b15e36da55a15b0c348038175a6",
+  "remote_head_after_automatic_projection": "c33cf9563aba3bec595fd3add0c29d8e7b5b438d",
+  "github_actions": {
+    "stall_monitor_run": "34018763273",
+    "stall_monitor_result": "SUCCESS",
+    "pages_run": "34018767394",
+    "pages_result": "SUCCESS"
+  },
+  "root_cause": "live actionable rows came from current_work pending/running while current internal OPEN used a lagging checkpoint projection",
+  "change": "derive actionable OPEN roots and count from the same classified rows shown in the lists; retain checkpoint projection as separately named audit fields",
+  "expected_actual": {
+    "observer_health": "OK",
+    "running": 0,
+    "actionable_open": 2,
+    "remaining": 6,
+    "waiting_or_blocked": 4,
+    "pending": 2,
+    "open_roots": [
+      "WIC-0702-SCOPED-RECOVERY",
+      "WIC-PARALLEL-RESIDUAL-20260903"
+    ],
+    "conservation_pass": true
+  },
+  "deployed_copy": {
+    "path": "D:\\GPT 도구 작업\\43번 모바일 관찰판\\tool043",
+    "result": "PASS",
+    "first_run_issue": "stale deployed night_queue changed one latest pending root to waiting",
+    "minimal_fix": "deploy remote-verified night_queue with the observer bundle",
+    "affected_scope_retest": "PASS"
+  },
+  "laptop_pages_projection_match": true,
+  "browser_console_errors": [],
+  "execution_bridge": {
+    "state": "OBSERVATION_BRIDGE_CONNECTED",
+    "tool_work_orchestration": "NOT_IMPLEMENTED",
+    "parallel_tool_execution": "NOT_IMPLEMENTED",
+    "automatic_tool_recovery": "NOT_IMPLEMENTED",
+    "observer_refresh_recovery": "QUEUE_PRESERVED_ONE_SAFE_REFRESH"
+  },
+  "final_status": "DEPLOYED_PASS_OBSERVER_BRIDGE",
+  "full_autonomous_orchestrator_status": "HOLD_FOR_REDESIGN",
+  "pass_claim_boundary": "Does not claim WIC mass parallel tool execution, conflict serialization, or cross-layer autonomous repair."
+}
