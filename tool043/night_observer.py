@@ -85,6 +85,12 @@ def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, inc
     # internal OPEN.
     canonical_open = set(root_report.get("open_internal_roots", []))
     if not canonical_open.issubset(rows): errors.append("UNRESOLVED_TASK_LOST")
+    # ``root_report`` is a checkpoint projection and may legitimately lag the
+    # unified ledger.  The observer's actionable OPEN count must come from the
+    # same classified rows as the visible lists, otherwise it can show OPEN 0
+    # beside immediate pending work.  Keep the checkpoint count separately for
+    # audit/read-back instead of presenting it as the live count.
+    actionable_open = {r["root_id"] for r in running + pending}
     recent = [{"root_id": r["id"], "label": r.get("completion_label", r["id"]), "evidence": r["completion_evidence"]}
               for r in ledger["roots"] if r["id"] in closed and r.get("completion_evidence")]
     recent.extend({"root_id": r["root_id"], "label": r.get("completion_label", r["root_id"]), "evidence": r["completion_evidence"]}
@@ -92,7 +98,10 @@ def current_work(ledger: dict, root_report: dict, unified: dict, work: dict, inc
                   and r.get("root_id") not in legacy and r.get("completion_evidence"))
     return {"remaining": list(rows.values()), "running": running, "waiting": waiting, "pending": pending,
             "remaining_total": len(rows), "running_total": len(running), "waiting_total": len(waiting),
-            "pending_total": len(pending), "open_internal_total": len(canonical_open),
+            "pending_total": len(pending), "open_internal_total": len(actionable_open),
+            "open_internal_roots": sorted(actionable_open),
+            "checkpoint_open_internal_total": len(canonical_open),
+            "checkpoint_open_internal_roots": sorted(canonical_open),
             "recent_completed": recent[-3:], "errors": errors, "conservation_pass": not errors}
 
 
@@ -168,6 +177,19 @@ def build() -> tuple[dict, dict]:
         "device_run_user_manual_action_target": 0,
         "background_runtime": "GITHUB_ACTIONS_SCHEDULED_BATCH",
         "auto_recovery": "QUEUE_PRESERVED",
+        "execution_bridge": {
+            "state": "OBSERVATION_BRIDGE_CONNECTED",
+            "executor": "GITHUB_ACTIONS_SCHEDULED_BATCH",
+            "observed_sources": [
+                "CENTRAL_ROOT_LEDGER", "UNIFIED_OPEN_LEDGER",
+                "INCOMPLETE_REGISTER", "SAFE_CHECKPOINT", "TOOL044_TRUST_PIPELINE"
+            ],
+            "tool_work_orchestration": "NOT_IMPLEMENTED",
+            "parallel_tool_execution": "NOT_IMPLEMENTED",
+            "automatic_tool_recovery": "NOT_IMPLEMENTED",
+            "observer_refresh_recovery": "QUEUE_PRESERVED_ONE_SAFE_REFRESH",
+            "truth_contract": "DO_NOT_CLAIM_ORCHESTRATION_FROM_OBSERVER_REFRESH"
+        },
         "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
         "hidden_gap_total": unified["hidden_gap_total"],
         "incomplete_total": current["remaining_total"],
@@ -222,7 +244,8 @@ def self_test() -> None:
     external_only = deepcopy(args)
     external_only[1]['open_internal_roots'] = []
     result = current_work(*external_only)
-    assert result['open_internal_total'] == 0 and result['remaining_total'] == 2
+    assert result['open_internal_total'] == 1 and result['open_internal_roots'] == ['open']
+    assert result['checkpoint_open_internal_total'] == 0 and result['remaining_total'] == 2
     no_proof = deepcopy(args)
     no_proof[0]['roots'][0].pop('completion_evidence')
     result = current_work(*no_proof)
