@@ -12,6 +12,7 @@ on:
       - 'feedback_pipeline/approval_queue.json'
       - 'WIC_EXECUTION_STATE.json'
       - 'tool043/night_observer.py'
+      - 'tool043/status_snapshot.js'
       - '.github/workflows/wic-stall-monitor.yml'
   workflow_run:
     workflows: ['WIC feedback event apply']
@@ -55,12 +56,12 @@ jobs:
           # Project canonical state only. Completed device/business tests are SKIP_REUSE.
           export GITHUB_SHA="$(git rev-parse HEAD)"
           python tool043/night_observer.py
-          if git diff --quiet -- tool043/status.json tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json feedback_pipeline/evidence/deployment_observer_audit_20260827.json feedback_pipeline/unified_open_ledger.json; then
+          if git diff --quiet -- tool043/status.json tool043/status_snapshot.js tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json feedback_pipeline/evidence/deployment_observer_audit_20260827.json feedback_pipeline/unified_open_ledger.json; then
             echo 'Night observer state already current.'
           else
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add tool043/status.json tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json feedback_pipeline/evidence/deployment_observer_audit_20260827.json feedback_pipeline/unified_open_ledger.json
+            git add tool043/status.json tool043/status_snapshot.js tool043/night_queue.json feedback_pipeline/evidence/work_execution_audit_20260827.json feedback_pipeline/evidence/deployment_observer_audit_20260827.json feedback_pipeline/unified_open_ledger.json
             git commit -m 'wic: sync night queue and mobile observer state'
             git push origin "HEAD:${GITHUB_REF_NAME}"
             gh workflow run tool043-pages.yml --ref "${GITHUB_REF_NAME}"
