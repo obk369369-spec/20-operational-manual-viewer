@@ -228,6 +228,11 @@ def build() -> tuple[dict, dict]:
 def main() -> None:
     status, queue = build()
     (ROOT / "tool043" / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # A classic script is readable from file://, unlike fetch(status.json).
+    # It makes the deployed folder fail-safe when index.html is double-clicked;
+    # HTTP/Pages still fetch status.json as the live source of truth.
+    snapshot = "window.TOOL043_STATUS_SNAPSHOT = " + json.dumps(status, ensure_ascii=False, separators=(",", ":")) + ";\n"
+    (ROOT / "tool043" / "status_snapshot.js").write_text(snapshot, encoding="utf-8")
     (ROOT / "tool043" / "night_queue.json").write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": "PASS", "queue_items": len(queue["items"]), "mobile": status}, ensure_ascii=False))
 
