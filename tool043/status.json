@@ -10,7 +10,25 @@
   "current_status": "관찰판 정상",
   "observer_health": "OK",
   "tool043_scope_status": "CURRENT_SCOPE_COMPLETE / REMOTE_VERIFIED / NO_MORE_IMPROVEMENT",
-  "tool044_trust_pipeline": null,
+  "tool044_trust_pipeline": {
+    "state": "DEPLOYED_PASS",
+    "component": "fastjsonschema 2.21.2",
+    "result": "PASS",
+    "last_safe_checkpoint": "ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb",
+    "evidence": "feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json",
+    "updated_at": "2026-09-06T06:25:34.749915+00:00",
+    "supported_states": [
+      "RUNNING",
+      "VERIFYING",
+      "DEPLOYING",
+      "DEPLOYED_PASS",
+      "WORK_EXCEPTION_READY",
+      "WAITING_EXTERNAL",
+      "STALLED",
+      "VERIFICATION_CONFLICT",
+      "LAST_SAFE_CHECKPOINT"
+    ]
+  },
   "current_display_validation": {
     "status": "FIRST_VALIDATION_PASS",
     "scope": "current task projection and observer health display only",
