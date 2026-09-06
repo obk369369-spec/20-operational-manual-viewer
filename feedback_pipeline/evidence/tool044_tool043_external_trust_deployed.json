@@ -1,0 +1,131 @@
+{
+  "status": "DEPLOYED_PASS",
+  "component_id": "fastjsonschema-2.21.2",
+  "version": "2.21.2",
+  "license": "BSD",
+  "actual_artifact_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+  "external_evidence": [
+    "https://pypi.org/pypi/fastjsonschema/2.21.2/json",
+    "https://api.github.com/repos/horejsek/python-fastjsonschema/git/ref/tags/v2.21.2"
+  ],
+  "external_evidence_quorum": "PASS",
+  "native_external_verifier": "PASS",
+  "signature_attestation": "NOT_PUBLISHED",
+  "receipts": [
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "SOURCE_VERIFIED",
+      "previous_receipt_sha256": "GENESIS",
+      "result": "PASS",
+      "detail": {
+        "component_id": "fastjsonschema-2.21.2",
+        "version": "2.21.2",
+        "input_source": "D:\\GPT 도구 작업\\43번 모바일 관찰판\\tool043\\vendor\\fastjsonschema-2.21.2-py3-none-any.whl",
+        "input_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+        "upstream_artifact_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+        "actual_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+      },
+      "receipt_sha256": "bfc64111698d41d245c19e6ed710b962ccfce1aa35999fb60064fdb1bc79289d"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "EXTERNAL_EVIDENCE_VERIFIED",
+      "previous_receipt_sha256": "bfc64111698d41d245c19e6ed710b962ccfce1aa35999fb60064fdb1bc79289d",
+      "result": "PASS",
+      "detail": {
+        "external_source_refs": [
+          "https://pypi.org/pypi/fastjsonschema/2.21.2/json",
+          "https://api.github.com/repos/horejsek/python-fastjsonschema/git/ref/tags/v2.21.2"
+        ],
+        "external_attestation_refs": [],
+        "signature_attestation": "NOT_PUBLISHED",
+        "pypi_native_output_sha256": "88230fcaf6dc33ec3c2e43626f6311d43c6932174731d91a20a0931767e36128",
+        "upstream_native_output_sha256": "a5e6e9977c7518bef4a99445051d8045c9496ee02b1137502f2fddff2e0a02c1",
+        "external_evidence_quorum": "PYPI_REGISTRY_PLUS_UPSTREAM_RELEASE_PLUS_LOCAL_DIGEST_MATCH",
+        "license": "BSD"
+      },
+      "receipt_sha256": "c294ab7700e264112f48fecb4acba5f39deb86be4ed0f223b7879cff9f84111b"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "SANDBOX_PASS",
+      "previous_receipt_sha256": "c294ab7700e264112f48fecb4acba5f39deb86be4ed0f223b7879cff9f84111b",
+      "result": "PASS",
+      "detail": {
+        "executor": "fastjsonschema 2.21.2",
+        "valid_accepted": true,
+        "invalid_blocked": 6
+      },
+      "receipt_sha256": "b2b0e5543976012b1bae63fa44eb15e61b7e25da9917564e2381e9f99997765b"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "INTEGRATION_PASS",
+      "previous_receipt_sha256": "b2b0e5543976012b1bae63fa44eb15e61b7e25da9917564e2381e9f99997765b",
+      "result": "PASS",
+      "detail": {
+        "target": "TOOL043",
+        "expected": "one valid accepted and six malformed blocked",
+        "actual": "MATCH"
+      },
+      "receipt_sha256": "b16eee67aa0cdcd0609d722e9b72cac112406ed0853b7d2ace008c2d22d27869"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "REGRESSION_PASS",
+      "previous_receipt_sha256": "b16eee67aa0cdcd0609d722e9b72cac112406ed0853b7d2ace008c2d22d27869",
+      "result": "PASS",
+      "detail": {
+        "impacted_scope": "external trust and observer handoff only",
+        "existing_pass": "SKIP_REUSE"
+      },
+      "receipt_sha256": "afb15aa8ac23c0b013555fa2774e28f85d58d35b4a208c18033af45190ede397"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "REMOTE_VERIFIED",
+      "previous_receipt_sha256": "afb15aa8ac23c0b013555fa2774e28f85d58d35b4a208c18033af45190ede397",
+      "result": "PASS",
+      "detail": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "d57a629c9a6050f936daf38ab53d688b2d98dbb0",
+        "blob": "84c76e3514cd80e443179b48e74fda111f734612"
+      },
+      "receipt_sha256": "e9f8c12b213632f7f7f409183df951cc5b515dfea8471ae8fea4968dd515b709"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "DEPLOYED",
+      "previous_receipt_sha256": "e9f8c12b213632f7f7f409183df951cc5b515dfea8471ae8fea4968dd515b709",
+      "result": "PASS",
+      "detail": {
+        "tool044_runtime": "D:\\GPT 도구 작업\\44번 완성부품 가져오기\\feedback_pipeline\\tool044_trust_chain.py",
+        "tool043_status": "D:\\GPT 도구 작업\\43번 모바일 관찰판\\tool043\\status.json",
+        "deployed_artifact_sha256": "2b181386887e4cb58c496c7927a90e39919d655abc749f422486abbd23b046ee"
+      },
+      "receipt_sha256": "7f3433a6353586d87c480cd3ac32c576986dbed100f45ec5e18397e4330e8ae2"
+    },
+    {
+      "task_id": "TOOL044-TOOL043-EXTERNAL-TRUST-ONE-RUN",
+      "requirement_id": "WIC-EXTERNAL-TRUST-AND-RECEIPT-GATE",
+      "layer_id": "DEPLOYED_PASS",
+      "previous_receipt_sha256": "7f3433a6353586d87c480cd3ac32c576986dbed100f45ec5e18397e4330e8ae2",
+      "result": "PASS",
+      "detail": {
+        "deployed_copy_test": "CURRENT_EXECUTION",
+        "native_verifier": "fastjsonschema 2.21.2"
+      },
+      "receipt_sha256": "ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb"
+    }
+  ],
+  "final_receipt_chain_hash": "ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb",
+  "receipt_external_evidence_match": "PASS",
+  "recorded_at": "2026-09-06T06:25:34.699929+00:00"
+}
