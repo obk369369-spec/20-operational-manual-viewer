@@ -148,6 +148,7 @@ def build() -> tuple[dict, dict]:
         "current_status": "관찰판 정상" if current["conservation_pass"] else "관찰판 이상",
         "observer_health": "OK" if current["conservation_pass"] else "ERROR",
         "tool043_scope_status": previous_status.get("tool043_scope_status", "INCOMPLETE"),
+        "tool044_trust_pipeline": previous_status.get("tool044_trust_pipeline"),
         "current_display_validation": previous_status.get("current_display_validation"),
         "work_status": "작업 문제 있음" if open_count else ("작업 진행 중" if current["running"] else ("작업 대기 중" if current["pending"] or blocked else "현재 미처리 작업 없음")),
         "current_work": current,
