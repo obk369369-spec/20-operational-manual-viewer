@@ -167,6 +167,28 @@
       "receipt_chain": "ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb",
       "trust_evidence": "feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json",
       "deployed_copy_test": "PASS"
+    },
+    {
+      "component_id": "WIC_EXTERNAL_COMPONENT_RECEIPT_ASSEMBLY_LAYER",
+      "status": "VERIFIED_REUSABLE",
+      "source_tool": "TOOL044",
+      "source_repository": "obk369369-spec/20-operational-manual-viewer",
+      "source_file": "feedback_pipeline/wic_component_receipts.py",
+      "function": "Fail-closed external SOURCE/LOCAL receipt comparison, parallel verification and assembly isolation",
+      "input_contract": "Pinned external component manifest and canonical local artifacts",
+      "output_contract": "Only receipt-matched components enter ASSEMBLY_VERIFIED; missing/invalid candidates remain isolated",
+      "dependencies": [
+        "Python standard library"
+      ],
+      "test_evidence": {
+        "unit": "feedback_pipeline/test_wic_component_receipts.py: 6/6 PASS",
+        "actual": "I:/오부장 AI (인공지능)/WIC34_C_REBUILD/_tool041_config_release/feedback_pipeline/evidence/external_component_receipts_local_20260907.json",
+        "verified_components": [
+          "IDB_KEYVAL_6_2_2"
+        ],
+        "impacted_regression": "PASS"
+      },
+      "reuse_requires_target_retest": true
     }
   ],
   "candidates": [

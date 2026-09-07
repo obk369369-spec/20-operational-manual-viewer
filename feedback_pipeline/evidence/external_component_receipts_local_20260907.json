@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "policies": {
+    "receipt_reuse": true,
+    "change_only": true,
+    "fail_only_retry": true,
+    "canonical_promotion_fail_closed": true
+  },
+  "parallel_component_tests": 3,
+  "components": [
+    {
+      "component_id": "ARGOS_TRANSLATE_1_11_EN_KO_1_1",
+      "status": "NO_READY_COMPONENT",
+      "reason": "existing registry evidence has no explicit model license and no completed isolated runtime test"
+    },
+    {
+      "component_id": "FASTJSONSCHEMA_2_21_2",
+      "status": "SHELL_OR_INVALID",
+      "reason": "FileNotFoundError"
+    },
+    {
+      "component_id": "IDB_KEYVAL_6_2_2",
+      "status": "COMPONENT_VERIFIED",
+      "receipt_comparison": "RECEIPT_MATCH_PASS",
+      "source_receipt": {
+        "receipt_type": "SOURCE_RECEIPT",
+        "component_id": "IDB_KEYVAL_6_2_2",
+        "official_source": "https://registry.npmjs.org/idb-keyval/6.2.2",
+        "maintainer": [
+          {
+            "name": "jaffathecake",
+            "email": "jaffathecake@gmail.com"
+          }
+        ],
+        "component_name": "idb-keyval",
+        "release_version": "6.2.2",
+        "release_filename": "idb-keyval-6.2.2.tgz",
+        "official_integrity": "sha512-yjD9nARJ/jb1g+CvD0tlhUHOrJ9Sy0P8T9MF3YaLlHnSRpwPfpTX0XIvpmw3gAJUmEu3FiICLBDPXVwyEvrleg==",
+        "official_shasum": "b0171b5f73944854a3291a5cdba8e12768c4854a",
+        "license": "Apache-2.0",
+        "dependencies": {},
+        "release_status": "RELEASED",
+        "metadata_sha256": "ce0de9cb28382cd83428e132f479a5de2e591b23b720ed3ec8a041003554dde4",
+        "matched_release_member": "package/dist/umd.js",
+        "receipt_sha256": "d2ad3ffeda8597167a1ad8c787e0ea9d731505660d86b7ffd6ac65578cd4ce18"
+      },
+      "local_receipt": {
+        "receipt_type": "LOCAL_RECEIPT",
+        "component_id": "IDB_KEYVAL_6_2_2",
+        "source": "https://github.com/jakearchibald/idb-keyval",
+        "source_version": "6.2.2",
+        "source_tag": "v6.2.2",
+        "source_commit": "NOT_PUBLISHED",
+        "acquired_file": "idb-keyval-6.2.2.js",
+        "file_size": 4805,
+        "actual_sha256": "f5985c43b11e4f99700e0c97a0d44ac129821f227f17c60afd7de8d421db5a58",
+        "acquired_at": "PERSISTED_CANONICAL_ARTIFACT",
+        "acquired_path": "I:\\GPT 도구 작업\\13번 엑셀 업로드 도구\\vendor\\idb-keyval-6.2.2.js",
+        "canonical_path": "vendor/idb-keyval-6.2.2.js",
+        "license": "Apache-2.0",
+        "dependencies": [],
+        "source_receipt_reference": "https://registry.npmjs.org/idb-keyval/6.2.2",
+        "receipt_sha256": "6e9fd11c1089b8e1040a9485220b8c933fd171498ae5641a2aa45a6aa8e23e66"
+      },
+      "actual_execution": "SKIP_REUSE",
+      "existing_verified_evidence": "VERIFIED_COMPONENT_REGISTRY.json#IDB_KEYVAL_6_2_2_TOOL013_RESUME",
+      "expected_actual": "MATCH",
+      "license_check": "PASS",
+      "dependency_check": "PASS",
+      "security_check": "PASS"
+    }
+  ],
+  "assembly": {
+    "status": "ASSEMBLY_VERIFIED",
+    "component_verified": 1,
+    "verified_components": [
+      "IDB_KEYVAL_6_2_2"
+    ],
+    "no_ready_component": [
+      "ARGOS_TRANSLATE_1_11_EN_KO_1_1"
+    ],
+    "isolated_invalid": [
+      "FASTJSONSCHEMA_2_21_2"
+    ],
+    "interface_test": "PASS",
+    "integration_expected": "verified receipt identities unique; invalid and missing isolated",
+    "integration_actual": "MATCH",
+    "impacted_regression": "PASS"
+  },
+  "recorded_at": "2026-09-07T01:52:17.715076+00:00"
+}

@@ -41,3 +41,7 @@ For more than one independent WIC target, use `feedback_pipeline/wic_fleet_orche
 Unchanged targets with existing DEPLOYED_PASS evidence terminate as SKIP_REUSE. Changed targets require a bounded impact scope. Unknown impact is isolated as HOLD_IMPACT_UNKNOWN, while one failed lane must not stop independent lock groups.
 Lanes sharing a repository or canonical asset lock are serialized; independent lock groups may run concurrently. The manifest is evidence-only and must never be treated as an arbitrary command runner.
 TOOL041 and TOOL042 remain outside fleet execution until the fleet orchestrator itself has canonical remote read-back and deployed-copy verification evidence.
+
+## External component receipt binding
+
+External component promotion must pass `feedback_pipeline/wic_component_receipts.py`: official SOURCE_RECEIPT, actual LOCAL_RECEIPT, immutable identity comparison, execution evidence, and assembly verification. Mismatch, insufficient evidence, shell artifacts, and unavailable ready components remain isolated and cannot enter canonical assets.

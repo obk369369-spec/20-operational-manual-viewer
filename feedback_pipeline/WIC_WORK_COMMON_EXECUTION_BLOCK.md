@@ -303,3 +303,12 @@ USER_APPROVAL_LANGUAGE = KOREAN_REQUIRED
 APPROVAL_BATCHING = MAXIMUM_SAFE_BATCH
 USER_INTERMEDIATE_APPROVAL = MINIMIZE
 PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
+
+## 외부부품 receipt·조합 강제 게이트
+
+- 외부 부품은 `SOURCE_RECEIPT → LOCAL_RECEIPT → RECEIPT_MATCH_PASS → COMPONENT_VERIFIED` 순서가 아니면 사용하지 않는다.
+- 공식 registry/release digest와 실제 artifact byte identity를 대조한다. 불일치는 `RECEIPT_MISMATCH`, 증거 부족은 `RECEIPT_INSUFFICIENT`, 껍데기는 `SHELL_OR_INVALID`로 격리한다.
+- 독립 component는 병렬 검증하고 하나의 실패·부재가 다른 VERIFIED component를 중단시키지 않게 한다.
+- READY component가 없으면 임의 개발하지 않고 `NO_READY_COMPONENT`로 분리한다.
+- 개별 PASS 후에도 `ASSEMBLY → INTEGRATION TEST → EXPECTED↔ACTUAL → INTERFACE TEST → IMPACTED REGRESSION`을 통과해야 canonical 승격이 가능하다.
+- 승격 이후 기존 GitHub read-back, 실제 사용본 배포, deployed-copy test, SAFE_CHECKPOINT 완료조건을 그대로 적용한다.

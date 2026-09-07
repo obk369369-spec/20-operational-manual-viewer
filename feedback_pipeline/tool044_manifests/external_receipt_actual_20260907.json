@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "max_workers": 2,
+  "components": [
+    {
+      "component_id": "FASTJSONSCHEMA_2_21_2",
+      "ecosystem": "pypi",
+      "source": "https://github.com/horejsek/python-fastjsonschema",
+      "metadata_url": "https://pypi.org/pypi/fastjsonschema/2.21.2/json",
+      "version": "2.21.2",
+      "tag": "v2.21.2",
+      "commit": "4f1ed6d9c0462f3522a66f49c8f3dc482300101b",
+      "release_filename": "fastjsonschema-2.21.2-py3-none-any.whl",
+      "local_path": "tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl",
+      "canonical_path": "tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl",
+      "license": "BSD-3-Clause",
+      "dependencies": [],
+      "existing_verified_evidence": "feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json"
+    },
+    {
+      "component_id": "IDB_KEYVAL_6_2_2",
+      "ecosystem": "npm",
+      "source": "https://github.com/jakearchibald/idb-keyval",
+      "metadata_url": "https://registry.npmjs.org/idb-keyval/6.2.2",
+      "version": "6.2.2",
+      "tag": "v6.2.2",
+      "commit": "NOT_PUBLISHED",
+      "release_members": ["package/dist/compat.js", "package/dist/index.js", "package/dist/umd.js"],
+      "local_path": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/vendor/idb-keyval-6.2.2.js",
+      "canonical_path": "vendor/idb-keyval-6.2.2.js",
+      "license": "Apache-2.0",
+      "dependencies": [],
+      "existing_verified_evidence": "VERIFIED_COMPONENT_REGISTRY.json#IDB_KEYVAL_6_2_2_TOOL013_RESUME"
+    },
+    {
+      "component_id": "ARGOS_TRANSLATE_1_11_EN_KO_1_1",
+      "availability": "NO_READY_COMPONENT",
+      "reason": "existing registry evidence has no explicit model license and no completed isolated runtime test"
+    }
+  ]
+}
