@@ -215,6 +215,28 @@
   ],
   "verified_atomic_component_pool": [
     {
+      "component_id": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION"],
+      "official_source": "https://pypi.org/pypi/html2text/2025.4.15/json",
+      "official_project": "https://github.com/Alir3z4/html2text",
+      "version": "2025.4.15",
+      "license": "GPL-3.0-or-later",
+      "release_date": "2025-04-15T04:02:28.440054Z",
+      "source_file": "feedback_pipeline/external_candidate_pool/html2text-2025.4.15-py3-none-any.whl",
+      "source_sha256": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+      "external_modified": false,
+      "dependencies": [],
+      "input_contract": "HTML document string",
+      "output_contract": "Markdown-structured extracted webpage text",
+      "known_incompatibilities": ["Does not fetch pages or prove publisher identity/currentness"],
+      "applicable_roots": ["T42-WEBPAGE-TEXT-EXTRACTION"],
+      "applicable_tools": ["TOOL042"],
+      "sandbox_expected_actual": "heading and paragraph extracted; empty input remains empty",
+      "zero_work_scheduler_receipt": "feedback_pipeline/evidence/TOOL044_ZERO_WORK_NATURAL_EXTERNAL_HARVEST_20260907.md",
+      "reuse_requires_target_retest": true
+    },
+    {
       "component_id": "VALIDATORS_0_35_0_URL_VALIDATION",
       "status": "VERIFIED_REUSABLE",
       "atomic_capabilities": ["URL_VALIDATION"],

@@ -9,3 +9,6 @@
 - Logged-on zero-Work: `VERIFIED`. Logged-off zero-Work: `BLOCKED_PERMISSION` because the task remains Interactive-only and no Windows credential is stored.
 - Final implementation baseline: `d68ce55e9a05f0052a6f1737045cbbc857eb07cd` plus this evidence checkpoint commit.
 - NEXT_START: reuse the verified composition pool directly for a separately authorized TOOL042 integration; do not repeat component search or composition sandbox tests.
+- Natural external harvest final proof: cycle `20260907T135701Z`, `SCHEDULED`, Work/User trigger false, official external query 1, official receipt 1, artifact hash match 1, sandbox PASS 1.
+- New verified component: `HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION`.
+- Zero-Work status: external discovery, receipt collection, component verification and composition testing are all `VERIFIED` for logged-on operation.
