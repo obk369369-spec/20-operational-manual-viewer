@@ -173,7 +173,8 @@ TOOL043_CURRENT_SCOPE_RETEST = FORBIDDEN
    - 전체 대화/287개 파일/USB/GitHub/TOOL 재검색과 변경에 무관한 전체 regression·데이터 재시험을 하지 않는다.
    - 과거 자료를 통째로 신뢰·복사하지 않는다.
    - 검증된 정상 DIFF만 기존 해당 TOOL GitHub canonical repo 또는 CENTRAL master에 반영한다.
-   - HOLD_UNKNOWN / SHELL_OR_STALE / DUPLICATE / OBSOLETE / 미검증 자료는 canonical에 흡수하지 않는다.
+   - 정본 승격 허용 상태는 실제 증거가 있는 `TEST_PASS / VERIFIED / REMOTE_VERIFIED / DEPLOYED_PASS / SAFE_CHECKPOINT`로 제한한다.
+   - `SHELL / DRAFT / TEST_NOT_RUN / FAIL / PARTIAL / BROKEN / LEGACY / TEMP / HOLD_UNKNOWN / SHELL_OR_STALE / DUPLICATE / OBSOLETE` 자료는 canonical에 흡수하지 않는다.
    - commit + REMOTE_HEAD + remote read-back + 변경범위 FIRST_VALIDATION 근거가 확인된 자산만 canonical 반영 완료로 판정한다.
 
 5. COMMON_DEPLOY
@@ -205,6 +206,11 @@ TOOL043_CURRENT_SCOPE_RETEST = FORBIDDEN
    - COMPLETE / REMOTE_VERIFIED 또는 HOLD / BLOCKED_EXTERNAL / BLOCKED_CANONICAL_NOT_FOUND 중 실제 증거로 닫는다.
    - COMPLETE된 기존 범위는 SKIP_REUSE.
    - SAFE_CHECKPOINT / NEXT_START / 증거를 남긴다.
+
+10. DEVICE_INDEPENDENT_RESUME
+   - USB·노트북·사무실 PC·기타 한 실행기기는 입력 또는 실사용 배포 위치일 뿐 유일한 상태 저장소가 아니다. 기본 재개 기준은 `GitHub/CENTRAL canonical + SAFE_CHECKPOINT + validation evidence`다.
+   - 특정 기기 감지 실패 시 `1회 재감지 → 다른 canonical 검증경로 확인 → 마지막 SAFE_CHECKPOINT에서 재개`하고 같은 실패방법을 반복하거나 사용자에게 재연결을 반복 요구하지 않는다.
+   - 사용자 기기 직접 접근 없이 끝낼 수 있으면 canonical 경로로 처리한다. 직접 접근이 필요해도 대량 삭제·대량 이동·자동 정리·임의 경로 변경·정상본 덮어쓰기·미검증 승격을 금지한다.
 
 ## 반복 공통작업 승격 규칙
 - 현재 실제 TOOL 작업 중 동일 작업이 반복되면 별도 전수조사 없이 REUSE_CANDIDATE로 기록한다.

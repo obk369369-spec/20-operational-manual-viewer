@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "VERIFIED",
+  "target": "TOOL043",
+  "scope": "local deployed observer and GitHub Pages displayed the same canonical projection; prior Android screen-off scope remains SKIP_REUSE",
+  "source": {
+    "kind": "PRIOR_WORK_EXECUTION_RESULT_AND_CURRENT_DEPLOYED_COPY_READBACK",
+    "reported_at_kst": "2026-09-06 19:55:44",
+    "original_checkpoint_path": "C:\\Users\\obk36\\Documents\\Codex\\2026-08-28\\16-work-tool043-p0-pc-codex\\tool043_local_deploy_verify_20260906.json",
+    "original_checkpoint_available_on_current_host": false,
+    "deployed_copy_path": "I:\\GPT 도구 작업\\43번 모바일 관찰판\\tool043"
+  },
+  "expected": {
+    "local_and_pages_ledger_time_match": true,
+    "observer_health": "관찰판 정상",
+    "browser_errors": 0,
+    "night_processed": 1,
+    "new_open": 2,
+    "remaining_total": 6,
+    "waiting_total": 4,
+    "running_total": 0,
+    "remaining_and_recent_completed_lists_match": true
+  },
+  "actual": {
+    "local_and_pages_ledger_time_match": true,
+    "ledger_time_kst": "2026-09-06 19:55:44",
+    "observer_health": "관찰판 정상",
+    "failed_to_fetch": false,
+    "browser_errors": 0,
+    "night_processed": 1,
+    "new_open": 2,
+    "remaining_total": 6,
+    "waiting_total": 4,
+    "running_total": 0,
+    "remaining_and_recent_completed_lists_match": true,
+    "deployed_safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "deployed_source_revision": "1d763d4b94f22dad81ce8078b137344d158380f2"
+  },
+  "expected_actual_match": true,
+  "local_deploy_verify": "PASS",
+  "deployed_ui_match_pass": "PASS",
+  "safe_checkpoint": "RECORDED",
+  "deployed_copy_sha256": {
+    "tool043/index.html": "cf78d6183c260e60694eaddba6ff3017d76ae0441c7a12526d22280fa2d540d4",
+    "tool043/status.json": "1f7101c75878157c703a986e125c71d8fdb208526c90c03053dc828b4845b163",
+    "tool043/status_snapshot.js": "18dc080c5720b74e330d4c24618dc5eeb291153bceb64f56d43cbb371a5d3925",
+    "tool043/night_observer.py": "96d9012820cef233592c95f7cf55148c4cc81e9d6bded5e8f5009db5b1f405a4"
+  },
+  "skipped_reuse": [
+    "Android screen-off actual run",
+    "background persistence",
+    "screen-on reopen result",
+    "existing TOOL043 completion proof"
+  ],
+  "limitations": [
+    "The original laptop-local checkpoint file is unavailable on this host; this canonical evidence preserves its reported result and current deployed-copy read-back without claiming a new UI test."
+  ]
+}

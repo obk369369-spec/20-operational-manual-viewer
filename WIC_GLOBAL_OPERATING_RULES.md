@@ -828,6 +828,9 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - 실패 입력을 쉬운 fixture로 교체해 PASS시키지 않는다. 동일 실제 입력으로 수정 전 FAIL과 수정 후 PASS를 모두 보존한다.
 - 개발본과 배포본이 다르면 FAIL이다. GitHub canonical과 로컬 canonical의 hash/content 일치 및 배포본 재실행 증거를 요구한다.
 - 공통 실행 gate는 `feedback_pipeline/deployment_observer_gate.py`와 `feedback_pipeline/work_execution_enforcer.py`다. 문서만 추가하고 runtime gate를 생략할 수 없다.
+- canonical 승격 허용 상태는 실제 증거가 있는 `TEST_PASS / VERIFIED / REMOTE_VERIFIED / DEPLOYED_PASS / SAFE_CHECKPOINT`다. `SHELL / DRAFT / TEST_NOT_RUN / FAIL / PARTIAL / BROKEN / LEGACY / TEMP`는 정본 승격을 차단한다.
+- USB·노트북·사무실 PC·기타 개별 기기는 유일한 상태 저장소가 아니다. 연결 실패 시 1회 재감지 후 `GitHub/CENTRAL canonical + SAFE_CHECKPOINT + validation evidence`로 재개하며, 사용자에게 반복 연결·로그복사·복구를 전가하지 않는다.
+- 사용자 기기 직접 접근 없이 완료 가능한 작업은 canonical 경로로 처리한다. 직접 접근 시에도 대량 삭제·대량 이동·자동 정리·임의 경로 변경·정상본 덮어쓰기·미검증 승격을 금지한다.
 
 ## 19D. Work 16 회수 운영 고정규칙 — 실행 연속성·승인 최대 병합
 
