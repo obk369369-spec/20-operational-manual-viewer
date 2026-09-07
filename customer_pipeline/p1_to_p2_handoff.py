@@ -6,6 +6,7 @@ ALLOWED_COHORTS = {"NEW_ONLINE", "DORMANT_LEDGER", "RECENT_TRADE"}
 P2_REQUIRED_VERIFICATION = (
     "current_employment_verified",
     "company_direction_verified",
+    "contact_history_verified",
 )
 
 
@@ -27,6 +28,7 @@ def build_p2_input(p1_record):
         "source_cohort": p1_record.get("source_cohort"),
         "current_employment_verified": p1_record.get("current_employment_verified") is True,
         "company_direction_verified": p1_record.get("company_direction_verified") is True,
+        "contact_history_verified": p1_record.get("contact_history_verified") is True,
         "moved_or_left": p1_record.get("moved_or_left") is True,
         "explicit_stop_or_rejection": p1_record.get("explicit_stop_or_rejection") is True,
         "direct_inquiry": p1_record.get("direct_inquiry") is True,
@@ -57,6 +59,7 @@ def run_fixtures():
             "source_cohort": cohort,
             "current_employment_verified": True,
             "company_direction_verified": True,
+            "contact_history_verified": True,
             "direct_inquiry": True,
             "phone_allowed": True,
         }
@@ -74,11 +77,20 @@ def run_fixtures():
     assert r["status"] == "HOLD"
     assert "company_direction_verified" in r["missing_verification"]
 
+    missing_history = {
+        "db_state": "MAIN_DB", "source_cohort": "DORMANT_LEDGER",
+        "current_employment_verified": True, "company_direction_verified": True,
+    }
+    r = build_p2_input(missing_history)
+    assert r["status"] == "HOLD"
+    assert r["missing_verification"] == ["contact_history_verified"]
+
     not_ready = {
         "db_state": "TRACKING_HOLD",
         "source_cohort": "NEW_ONLINE",
         "current_employment_verified": True,
         "company_direction_verified": True,
+        "contact_history_verified": True,
     }
     assert "P1_NOT_READY_FOR_P2" in build_p2_input(not_ready)["errors"]
 
@@ -87,13 +99,14 @@ def run_fixtures():
         "source_cohort": "RECENT_TRADE",
         "current_employment_verified": True,
         "company_direction_verified": True,
+        "contact_history_verified": True,
     }
     r = build_p2_input(no_inference)
     assert r["status"] == "PASS"
     assert r["p2_input"]["direct_inquiry"] is False
     assert r["p2_input"]["purchase_history"] is False
 
-    return "PASS: 6 deterministic P1->P2 handoff fixtures"
+    return "PASS: 7 deterministic P1->P2 handoff fixtures"
 
 
 if __name__ == "__main__":

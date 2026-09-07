@@ -41,6 +41,7 @@ def adapt_tool41_to_tool7(row: dict, history: dict) -> dict:
         "source_cohort": history.get("source_cohort", "DORMANT_LEDGER"),
         "current_employment_verified": True,
         "company_direction_verified": True,
+        "contact_history_verified": history.get("contact_history_verified") is True,
         "moved_or_left": history.get("moved_or_left", False),
         "explicit_stop_or_rejection": history.get("explicit_stop_or_rejection", False),
         "direct_inquiry": history.get("direct_inquiry", False),

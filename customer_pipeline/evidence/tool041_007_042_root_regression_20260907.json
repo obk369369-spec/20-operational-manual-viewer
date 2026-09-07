@@ -1,0 +1,20 @@
+{
+  "scope": "TOOL041_TOOL007_TOOL042_ROOT_DIFF_ONLY",
+  "root_fixed": "T41-T7-T42-RC-FACT-BOUNDARY",
+  "expected": {
+    "missing_contact_history_at_041_to_007": "HOLD / P2_VERIFICATION_MISSING",
+    "missing_contact_history_at_tool007": "HOLD / CONTACT_HISTORY_UNVERIFIED",
+    "actual_kimtaeho_flow": "CROSS_TOOL_INTEGRATION_PASS with downstream HOLD for current_interests",
+    "external_send": false
+  },
+  "tests": [
+    "customer_pipeline/p1_to_p2_handoff.py",
+    "customer_pipeline/tool7_contact_judgment.py",
+    "customer_pipeline/test_cross_tool_customer_flow.py"
+  ],
+  "tool041_core_changed": false,
+  "tool007_existing_layer_strengthened": true,
+  "tool042_core_changed": false,
+  "new_common_layer": false,
+  "existing_pass_scope": "SKIP_REUSE"
+}

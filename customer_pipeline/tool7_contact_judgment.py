@@ -108,6 +108,8 @@ def judge_contact(customer):
         blockers.append("CURRENT_EMPLOYMENT_UNVERIFIED")
     if not customer.get("company_direction_verified"):
         blockers.append("COMPANY_DIRECTION_MISSING")
+    if not customer.get("contact_history_verified"):
+        blockers.append("CONTACT_HISTORY_UNVERIFIED")
     if customer.get("moved_or_left"):
         blockers.append("MOVED_OR_LEFT_HOLD")
     if customer.get("explicit_stop_or_rejection"):
@@ -180,6 +182,7 @@ def recommendation_gate(report):
 
 def run_fixtures():
     base = dict(current_employment_verified=True, company_direction_verified=True,
+                contact_history_verified=True,
                 moved_or_left=False, explicit_stop_or_rejection=False,
                 phone_allowed=True, direct_inquiry=True)
     assert judge_contact(base)["decision"] == "PASS"
@@ -188,6 +191,10 @@ def run_fixtures():
     x = dict(base); x["company_direction_verified"] = False
     assert judge_contact(x)["decision"] == "HOLD"
     assert judge_contact(x)["copy_generation_allowed"] is False
+
+    x = dict(base); x["contact_history_verified"] = False
+    assert judge_contact(x)["decision"] == "HOLD"
+    assert "CONTACT_HISTORY_UNVERIFIED" in judge_contact(x)["blockers"]
 
     x = dict(base); x["direct_inquiry"] = False; x["one_way_sent_only"] = True
     r = judge_contact(x)
@@ -208,7 +215,7 @@ def run_fixtures():
     bad_report = dict(good_report); bad_report["link"] = ""
     assert recommendation_gate(bad_report)["state"] == "HOLD"
 
-    return "PASS: 8 deterministic P2 fixtures"
+    return "PASS: 9 deterministic P2 fixtures"
 
 
 if __name__ == "__main__":

@@ -90,3 +90,13 @@
 - `CROSS_TOOL_INTEGRATION_PASS` means the shared boundary and correct HOLD were verified; TOOL042 remains `HOLD_EXTERNAL_CUSTOMER_EVIDENCE`, not operational COMPLETE.
 - Evidence: `customer_pipeline/evidence/TOOL041_007_042_DEPENDENCY_E2E_20260907.md`.
 - NEXT_START: when actual customer-interest evidence is available, reuse this fixture/contract and test only TOOL042 recommendation/output continuation with verified saleable candidates.
+
+## 2026-09-07 — evidence ROOT recovery and history-boundary reinforcement
+
+- Restored the missing central ROOT ledger at `feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md` from existing actual fixtures/evidence only.
+- Shared ROOT `T41-T7-T42-RC-FACT-BOUNDARY`: TOOL007 previously accepted the 041 handoff without an explicit verified-contact-history receipt, although TOOL042 later checked it.
+- Existing layers only were strengthened: `p1_to_p2_handoff` now requires and transports `contact_history_verified`; TOOL007 `judge_contact` fails closed with `CONTACT_HISTORY_UNVERIFIED`.
+- Historical/current actual 김태호 flow remains contract PASS when history is verified and remains downstream HOLD for missing current-interest evidence. The identical fixture with history verification removed now stops before TOOL007 output.
+- TOOL041 and TOOL042 cores were unchanged; their established regression evidence is `SKIP_REUSE`.
+- Evidence: `customer_pipeline/evidence/tool041_007_042_root_regression_20260907.json`.
+- NEXT_START remains actual customer-interest evidence → verified saleable candidates → TOOL042 output continuation. Do not repeat closed ROOT tests.

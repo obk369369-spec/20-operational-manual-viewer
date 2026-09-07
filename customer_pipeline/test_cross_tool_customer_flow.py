@@ -14,12 +14,17 @@ def main():
 
     fixture = json.loads((ROOT / "fixtures" / "cross_tool_actual_kimtaeho_20260907.json").read_text(encoding="utf-8"))
     workspace = ROOT.parents[1]
+    history_missing = json.loads(json.dumps(fixture, ensure_ascii=False))
+    history_missing["history"]["contact_history_verified"] = False
+    blocked = run_actual_flow(history_missing, workspace / "41-wic-email-collection-master", workspace / "repo42")
+    assert blocked["status"] == "HOLD"
+    assert blocked["first_blocker"] == "TOOL007_HANDOFF_REJECTED"
     result = run_actual_flow(fixture, workspace / "41-wic-email-collection-master", workspace / "repo42")
     assert result["status"] == "CROSS_TOOL_INTEGRATION_PASS"
     assert result["dependency_order"] == ["TOOL041", "TOOL007", "TOOL042"]
     assert result["final_operational_status"] == "HOLD_EXTERNAL_CUSTOMER_EVIDENCE"
     assert all(result["checks"].values())
-    print("PASS: missing-upstream fail-closed + actual TOOL041 -> TOOL007 -> TOOL042 contract")
+    print("PASS: missing upstream/history fail-closed + actual TOOL041 -> TOOL007 -> TOOL042 contract")
 
 
 if __name__ == "__main__":
