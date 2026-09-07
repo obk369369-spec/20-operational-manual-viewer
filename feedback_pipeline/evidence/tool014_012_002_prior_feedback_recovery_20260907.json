@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "phase": 3,
+  "safe_checkpoint_in": "953461e3c71927be77e96c88fe3c9d178e483939",
+  "scope": ["TOOL014", "TOOL012", "TOOL002"],
+  "selection": {
+    "TOOL014": "required phase-3 target",
+    "TOOL012": "required phase-3 target",
+    "TOOL002": "current ACTIVE registry target with recent operational conversation and actual prior error/self-audit evidence",
+    "other_tools": "not selected; no broad fleet audit was performed"
+  },
+  "sources": {
+    "TOOL014": {
+      "thread_id": "69267f1e-2e24-8323-8572-3ef2fda0072c",
+      "thread_title": "14번 홈페이지 수정 프로그램",
+      "user_messages": ["87ab3000-20d3-4053-af9d-07ca3e566abc", "1550f5a3-62c3-41cc-b87f-069598b96345", "7adf25a2-fc7d-4d3b-a038-78c3eacb1322"],
+      "assistant_messages": ["00e8c744-c52d-421d-a1f7-7ecc4db19fee", "215672a5-11a3-47d5-8ff4-ad28f85f9b67", "70342260-a26a-431f-b1d4-00841bc1ac3e"]
+    },
+    "TOOL012": {
+      "thread_id": "6923ee17-72bc-8322-8778-816093ef2b53",
+      "thread_title": "12번 서브 웹사이트 제작",
+      "user_messages": ["bbb21b84-e99c-4044-ae88-1752939ac69d", "bbb21990-7f4f-4302-b1d2-d91ab306bab7", "e7e79ad6-c3c1-4bce-bc73-0598e2526ecd", "7df2eb3c-6736-4fac-baca-d3c6387ea40c"],
+      "assistant_messages": ["b114b68c-f988-4600-99a2-d1ba3dc3707e", "d8a6ccc7-9fbd-488d-aa75-a7a89e6b4bff", "62ea52bf-229e-4286-a974-75421308b23e"]
+    },
+    "TOOL002": {
+      "thread_id": "69b6a88f-7198-83a9-8931-4c40cf822ecb",
+      "thread_title": "2번 입찰 도구",
+      "user_messages": ["b5bcaaa3-1f4e-4047-9423-01339f6ed7ec", "817d8183-42ec-4ff5-86a2-806dc504c04d"],
+      "assistant_messages": ["f6b15d5c-ff13-4c99-a04b-c8df7946c327", "4bc49da2-0162-4520-a0e9-05db7456c58a"]
+    }
+  },
+  "classification": {
+    "TOOL014": {
+      "user_found": ["time passed while the reported remaining work stayed unchanged", "assistant said work/tests continued without actual output", "actual status was requested after repeated progress claims"],
+      "assistant_self_found": ["only design and HTML skeleton existed", "no test.worldic deployment or browser execution had occurred", "prior 30-percent/test-in-progress claims were inaccurate"],
+      "prior_layer_proposal": ["actual executable staging page", "browser validation", "deployment and live read-back before completion"],
+      "root": "RC-OUTPUT-EXISTS-BUT-NOT-ACTUAL-PASS + RC-DEPLOYED-COPY-NOT-ACTUAL-E2E",
+      "current": "ALREADY_APPLIED_STAGING_REMOTE_VERIFIED",
+      "normal_hold": "LIVE_HOMEPAGE_APPLY_REQUIRES_EXPLICIT_AUTHORIZATION"
+    },
+    "TOOL012": {
+      "user_found": ["wrong scope was introduced into the subwebsite task", "multi-month work was reported as minutes", "user was repeatedly made the guide/test operator", "shell progress was represented as implementation"],
+      "assistant_self_found": ["design and first mockup were the only defensible completion", "code/deployment/DB/API/mail/PDF/payment connections were not executed", "prior button/test/error-zero claims lacked file or log evidence"],
+      "prior_layer_proposal": ["realistic work plan before implementation", "actual artifact-based progress", "external execution HOLD separation", "screen/function/error validation"],
+      "root": "RC-OUTPUT-EXISTS-BUT-NOT-ACTUAL-PASS + RC-MASTER-RULE-NOT-RUNTIME-ENFORCED",
+      "current": "VERIFIED_CLOSED_REMOTE_DEPLOYED_SKIP_REUSE",
+      "normal_hold": null
+    },
+    "TOOL002": {
+      "user_found": ["latest automation state was not recovered before answering", "repeated website/file access approval burden was left to the observer"],
+      "assistant_self_found": ["the earlier claim that 2026-03-16 was latest was wrong", "basic functional E2E and later automation expansion were conflated"],
+      "prior_layer_proposal": ["reuse the August functional E2E", "separate core tool, small observer and central master", "treat public collection and authenticated submission separately"],
+      "root": "RC-MASTER-RULE-NOT-RUNTIME-ENFORCED + RC-PARTIAL-TEST-NOT-FULL-IMPACT",
+      "current": "FUNCTIONAL_E2E_VERIFIED_SKIP_REUSE",
+      "normal_hold": "public collection/authenticated submission expansion remains outside the verified basic functional scope"
+    }
+  },
+  "root_occurrence_delta": {
+    "RC-MASTER-RULE-NOT-RUNTIME-ENFORCED": ["TOOL012", "TOOL002"],
+    "RC-OUTPUT-EXISTS-BUT-NOT-ACTUAL-PASS": ["TOOL014", "TOOL012"],
+    "RC-DEPLOYED-COPY-NOT-ACTUAL-E2E": ["TOOL014"],
+    "RC-PARTIAL-TEST-NOT-FULL-IMPACT": ["TOOL002"]
+  },
+  "actual_changes": {
+    "tool_core_files": 0,
+    "common_layers": 0,
+    "tool044_used": false,
+    "ledger_only": true
+  },
+  "effectiveness": {
+    "new_tools_with_existing_root_evidence": 3,
+    "existing_layer_blocked_or_closed_cases": 3,
+    "past_failure_retests": 0,
+    "tool_specific_code_changes_avoided": 3,
+    "new_layers_created": 0,
+    "false_passes_reclassified": 2,
+    "normal_holds_preserved": 2
+  },
+  "status": "PHASE3_FEEDBACK_RECOVERY_COMPLETE_NO_CODE_FIX_JUSTIFIED"
+}

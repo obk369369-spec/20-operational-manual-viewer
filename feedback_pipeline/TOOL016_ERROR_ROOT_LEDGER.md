@@ -318,3 +318,56 @@ PHASE_EFFECTIVENESS_GATE = REQUIRED
 - TOOL042는 이미 동일 fail-closed 검사를 수행하므로 수정하지 않았다.
 - 과거 실제 김태호/KRICT fixture에서 검증 이력이 있으면 기존 결과를 보존하고, 동일 fixture에서 이력 검증만 제거하면 TOOL007 출력 전에 HOLD된다.
 - 증거: `customer_pipeline/evidence/tool041_007_042_root_regression_20260907.json`.
+
+---
+
+# 3차 과거 대화 피드백 누락분 회수 — 2026-09-07
+
+정본 evidence: `feedback_pipeline/evidence/tool014_012_002_prior_feedback_recovery_20260907.json`. 필수 대상 TOOL014·012 이후에는 전체 TOOL을 조사하지 않고, registry가 ACTIVE이며 최신 운영 대화와 실제 오류증거가 함께 확인된 TOOL002만 선정했다.
+
+## TOOL014
+
+- 사용자 발견: 시간이 지나도 잔여량이 같고 실제 조립 산출물이 없는데 작업·테스트가 계속된다고 반복 보고했다.
+- assistant 자가발견: 실제 상태는 설계/HTML 뼈대뿐이며 `test.worldic.co.kr` 배포와 브라우저 실행·검증을 하지 않았고, 과거 `30% 남음/테스트 진행 중` 주장은 부정확했다고 정정했다.
+- 당시 개선안: 실행 가능한 staging 산출물 → 브라우저 검증 → 배포/read-back 뒤에만 완료.
+- TOOL016 대조: 구체 대화 occurrence는 `MISSING_FROM_TOOL016`이었으나 ROOT는 기존 `TEST PASS ≠ 실제 업무 PASS`, `정본·테스트본 ≠ 실사용본`과 동일하다.
+- 현재: `ALREADY_APPLIED / STAGING_REMOTE_VERIFIED`; runtime `ae41bc0...`, evidence checkpoint `7dee81e...`, Pages run `33310481614`. 실제 live 홈페이지 적용은 `NORMAL_HOLD / LIVE_HOMEPAGE_APPLY_REQUIRES_EXPLICIT_AUTHORIZATION`이며 억지 PASS하지 않는다.
+
+## TOOL012
+
+- 사용자 발견: 서브웹사이트 창에 20개 도구 범위를 섞음, 수개월 규모를 분 단위로 축소, 사용자를 반복 안내·검수 작업자로 만듦, 껍데기 진행을 실제 개발처럼 보고.
+- assistant 자가발견: 설계/1차 시안 외 실제 코드·배포·DB/API·메일/PDF·결제 연결은 실행되지 않았고, 종전 버튼 구현/테스트/오류 0 주장은 파일·로그 증거가 없다고 정정했다.
+- 당시 개선안: 현실 작업계획, 실제 산출물 기반 진행, 외부 실행층 HOLD 분리, 실제 화면/기능/오류 검증.
+- TOOL016 대조: 구체 occurrence는 `MISSING_FROM_TOOL016`; ROOT는 기존 `규칙 존재 ≠ runtime 강제`, `TEST PASS ≠ 실제 업무 PASS`와 동일하다.
+- 현재: `VERIFIED_CLOSED / COMPLETE / REMOTE_VERIFIED / SKIP_REUSE`; runtime `aa9cc2e...`, checkpoint `11bac27e...`, Pages run `33310342582`. 과거 오류 기록은 보존하되 재수정하지 않는다.
+
+## 기타 현재 운영 TOOL — TOOL002
+
+- 선정근거: current registry `ACTIVE`, 실제 최근 운영 대화 존재, 사용자 오류지적과 assistant 자가정정 모두 확인. 다른 운영 TOOL은 이번에 전수 선정하지 않았다.
+- 사용자 발견: 최신 전체 기록을 먼저 회수하지 않고 2026-03-16을 최신점처럼 답함; 웹/파일 접근 승인 부담을 관찰자에게 반복 전가.
+- assistant 자가발견: 3월 16일 최신점 주장은 오류였고, 8월 functional E2E PASS와 이후 공개수집 확장 HOLD를 분리해야 한다고 정정했다.
+- 당시 개선안: 8월 functional E2E는 SKIP_REUSE, 본체/소형 관찰자/CENTRAL 역할 분리, 공개수집과 인증 투찰 범위 분리.
+- TOOL016 대조: `MISSING_FROM_TOOL016`; ROOT는 기존 `규칙 존재 ≠ runtime 강제`, `partial test ≠ impact regression`의 하위형이다.
+- 현재: 기본 입력→저장→화면표시 functional E2E는 `VERIFIED_CLOSED / SKIP_REUSE`. 공개수집·기관별 수집·인증 제출 확장은 기존 PASS로 확대하지 않는 `NORMAL_HOLD`다.
+
+## 1차+2차+3차 공통 ROOT
+
+| ROOT | 1차 TOOL | 2차 TOOL | 3차 TOOL | 총 영향 TOOL | 책임 기존층 | 현재 차단 가능 여부 |
+|---|---|---|---|---:|---|---|
+| 규칙 존재 ≠ runtime 강제 | 041·007·042 | 006·001·009·013 | 012·002 | 9 | TOOL start/preload/release | 가능; 실제 entrypoint 연결증거 없는 TOOL만 HOLD |
+| TEST PASS ≠ 실제 업무 PASS | 041·007·042 | 006·001·013 | 014·012 | 8 | actual-input E2E + output release | 가능; staging/live 및 fixture/actual 분리 필수 |
+| 정본·테스트본 ≠ 실사용본 | 041·007·042 | 006·001·013 | 014 | 6 | canonical receipt + deployed-copy test | 가능; TOOL014 live는 승인 HOLD |
+| source/provenance 부족 | 041·007·042 | 006·001·009·013 | 없음 | 7 | provenance/evidence fail-closed | 가능; 정상 외부 HOLD 보존 |
+| partial test ≠ impact regression | 041·007·042 | 006·013 | 002 | 6 | change-only impacted regression | 가능; 기본 PASS를 확장범위 PASS로 확대 금지 |
+
+수치는 각 단계 정본 evidence에서 같은 ROOT가 실제 확인된 TOOL의 합집합이다. 3차 occurrence를 과거 수치에 기계적으로 더하지 않았다.
+
+## 3차 효과 및 판정
+
+- 증거가 더 강해진 ROOT: `규칙 존재 ≠ runtime 강제`, `TEST PASS ≠ 실제 업무 PASS`, `정본·테스트본 ≠ 실사용본`, `partial test ≠ impact regression`.
+- 기존층 보강 대상으로 거의 확정: start/preload/release에서 실제 entrypoint 증거 강제, actual-input/deployed-copy 구분. 단 이미 공통게이트가 존재하므로 새 층이 아니라 TOOL 적용 시 강제할 항목이다.
+- 증거 부족 ROOT: 없음(3차에서 새로운 독립 ROOT를 만들 근거 없음).
+- `NEW_LAYER_CANDIDATE = 0`; TOOL core 수정 0, TOOL044 사용 0.
+- 기존층이 실제 차단/닫은 사례 3, 불필요한 TOOL 개별수정 회피 3, 거짓 PASS 재분류 2, 정상 HOLD 유지 2, 과거 실패 재시험 0(기능 변경 없음).
+- 2차 미완료 보존: TOOL001 3/5 회수·0/5 완전검증, TOOL006 publisher golden pair HOLD, TOOL009 synthetic fallback 오류/canonical 미확정.
+- 최종: `PHASE3_FEEDBACK_RECOVERY_COMPLETE_NO_CODE_FIX_JUSTIFIED`.
