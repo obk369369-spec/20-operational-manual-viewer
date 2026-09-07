@@ -1,0 +1,92 @@
+{
+  "scope": "TOOL041/TOOL007/TOOL042 prior assistant feedback recovery only",
+  "baseline": "b9dc55e3b4225684ba30e9aebae6cb820dbe87c0",
+  "source_threads": {
+    "TOOL041": {
+      "thread_id": "6a8e8a50-c5e0-83e8-b668-0187e26e8f4a",
+      "user_turn_id": "d8653c1a-6533-430f-87d0-512429cbf801",
+      "assistant_message_id": "277c5618-3dc0-4bcc-bf4a-6fb36e2e4f55",
+      "recovered": {
+        "user_reported_cause_chain": [
+          "work-start state restoration was skipped",
+          "complete customer/permanent-ID ledger was not fixed before continuation",
+          "last normal output format and multi-field continuation were not restored",
+          "candidate-selection rules were violated",
+          "PASS-like output was emitted without sufficient verification"
+        ],
+        "assistant_self_audit": [
+          "official current information and URLs were presented without actual web verification",
+          "next ID such as ROB-011 was calculated without the complete ID ledger",
+          "new output was not automatically compared with the immediately preceding normal table",
+          "HOLD/PASS boundary was weak",
+          "rules existing in a master were confused with rules enforced at runtime"
+        ],
+        "proposed_layers": ["L0 state restore", "L1 baseline role separation", "L2 conflict resolution", "L3 permanent-ID gate", "L4 candidate prefilter", "L5 actual evidence", "L6 independent triple verification", "L7 continuation DIFF", "L8 output contract", "L9 pre-deploy self-check", "L10 recurrence circuit", "L11 GitHub persistence/read-back", "L12 TOOL016 handoff"]
+      }
+    },
+    "TOOL007": {
+      "thread_id": "6a461afd-cf64-83ee-a640-b70289f6c5b6",
+      "user_turn_id": "d182f2da-5f37-4bec-ba27-619bd7d0b2eb",
+      "recovered": {
+        "user_and_self_audit_roots": [
+          "identity collision", "employment currentness", "customer action versus one-way WIC send", "required report fields", "publisher eligibility and duplication", "product-detail link versus brochure/PDF", "plain-language call copy", "real contact reason", "contact cadence", "response-trigger question flow", "artifact provenance", "environment failure versus tool failure", "runtime evidence before completion"
+        ],
+        "proposed_layers": ["IDENTITY GATE", "EMPLOYMENT GATE", "EVIDENCE CLASS", "OUTPUT CONTRACT", "PUBLISHER GATE", "LINK TYPE GATE", "PLAIN-LANGUAGE GATE", "CONTACT REASON GATE", "CADENCE GATE", "RESPONSE TRIGGER", "ARTIFACT PROVENANCE GATE", "ENV vs TOOL separation", "RUNTIME PASS"]
+      }
+    },
+    "TOOL042": {
+      "thread_id": "6a97ac3f-9fd0-83ee-a537-f5c05d8ae7cd",
+      "user_turn_ids": ["c629ca11-fd98-4b9b-8646-27398dec6577", "3fdda94e-33e2-4ffd-b0b9-cd5a3b4ccdf9"],
+      "assistant_message_ids": ["f7215676-1d87-4521-a2b9-d6ca0ddfad25", "c5d58e3d-f7c5-4197-a2b6-4f103206a9f6"],
+      "recovered": {
+        "user_reported": ["subordinate TOC rows were not indented", "TOC numbers were not copyable"],
+        "assistant_self_audit": ["master preload was declarative rather than a hard read-back gate", "historical records were not automatically recovered", "copyable numbered TOC was not verified", "publisher uniqueness was not checked across the complete N-report set", "TOC hierarchy parsing and indentation rendering were disconnected", "no final visual/structural self-test"],
+        "proposed_layers": ["L0 command router", "L1 master preload", "L2 customer history", "L3 current-work evidence", "L4 candidate search", "L5 original-publisher/copyable-TOC gate", "L6 N-report publisher uniqueness", "L7 TOC hierarchy parser", "L8 indentation renderer", "L9 pre-output self-test", "L10 evidence-backed PASS"]
+      }
+    }
+  },
+  "classification_summary": {
+    "ALREADY_APPLIED": [
+      "T41-T7-T42-RC-FACT-BOUNDARY contact_history_verified",
+      "TOOL007 CONTACT_HISTORY_UNVERIFIED",
+      "TOOL042 master/checkpoint read-back evidence gate",
+      "TOOL042 exact full TOC number/indentation gate",
+      "TOOL042 N-report publisher uniqueness gate",
+      "TOOL042 final full-body hash and structural output gate"
+    ],
+    "COLLECTED_NOT_APPLIED": [
+      "TOOL041 end-to-end runtime enforcement for resume/ledger/candidate/web verification/output",
+      "TOOL007 cadence gate",
+      "TOOL007 product-detail link-type gate",
+      "TOOL007 actual-use HTML to canonical Python contract integration",
+      "TOOL042 second actual customer format-stability evidence",
+      "TOOL042 authenticated semantic customer-state evidence"
+    ],
+    "MISSING_FROM_TOOL016_RECOVERED_THIS_WORK": [
+      "TOOL041 detailed 7 user failures, 5 self-audit failures and L0-L12 proposal",
+      "TOOL007 detailed gate inventory and provenance/runtime distinction",
+      "TOOL042 five named gap candidates and L0-L10 proposal"
+    ]
+  },
+  "actual_retests": {
+    "TOOL007": [
+      "p1_to_p2_handoff: PASS 7/7",
+      "tool7_contact_judgment: PASS 9/9",
+      "cross-tool actual/history-negative regression: PASS"
+    ],
+    "TOOL042": [
+      "actual Kim Myeong-gon STRICT_FULL_V1 output: PASS",
+      "same actual output with numbered TOC removed: FAIL R2_TOC_NUMBER_COPYABLE",
+      "same actual output with indentation removed: FAIL R2_TOC_INDENTATION",
+      "internal chain: REPRESENTATIVE_1_ONLY_PASS; format stability HOLD for second actual customer"
+    ]
+  },
+  "normal_holds_preserved": [
+    "TOOL042 VERIFY_CUSTOMER_STATE",
+    "TOOL042 authenticated semantic runtime/current-interest evidence",
+    "TOOL042 second actual-customer complete expected-output fixture"
+  ],
+  "tool_code_changed": false,
+  "new_common_layer": false,
+  "tool044_component_added": false
+}
