@@ -93,3 +93,9 @@
 - deployed-copy test: DEPLOYED_PASS 표시 및 console error 0.
 - GitHub Release 객체 부재는 FAIL 조건이 아니다. official tag/ref/commit identity adapter를 사용한다.
 - 상태: `DEPLOYED_PASS / REMOTE_VERIFIED`.
+## Atomic capability detection (2026-09-07)
+
+- Errors are decomposed into bounded `atomic_capabilities` before any external search.
+- `verified_atomic_component_pool` is checked first. A complete pool hit returns `READY_ATOMIC_COMPONENT_FOUND` with `SKIP_REUSE`; a partial hit returns `PARTIAL_ATOMIC_COMPONENT_SET` and permits searching only the missing capabilities; no hit returns `NO_READY_ATOMIC_COMPONENT`.
+- Only `VERIFIED_REUSABLE` records may match. Candidates, HOLD records, and unverified assets are excluded.
+- The detector does not perform broad search or blind component combinations.

@@ -3,7 +3,7 @@ import json
 import sys
 from pathlib import Path
 
-from tool044_precheck import evaluate
+from tool044_precheck import detect_atomic_components, evaluate
 
 central = Path(__file__).resolve().parents[1]
 if len(sys.argv) not in (3, 4):
@@ -55,9 +55,23 @@ cases["existing_registry_component"] = "PASS"
 again = evaluate(configs["TOOL042"], roots)
 assert again == two
 
+registry = json.loads((central / "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json").read_text(encoding="utf-8"))
+atomic_cases = {
+    "A": detect_atomic_components(["PROVENANCE_VALIDATION"], registry),
+    "B": detect_atomic_components(["PROVENANCE_VALIDATION", "TOC_HIERARCHY_VALIDATION"], registry),
+    "C": detect_atomic_components(["TOC_HIERARCHY_VALIDATION"], registry),
+    "D": detect_atomic_components(["EVIDENCE_RECEIPT_VALIDATION"], registry),
+}
+assert atomic_cases["A"]["status"] == "READY_ATOMIC_COMPONENT_FOUND"
+assert atomic_cases["B"]["status"] == "PARTIAL_ATOMIC_COMPONENT_SET"
+assert atomic_cases["C"]["status"] == "NO_READY_ATOMIC_COMPONENT"
+assert atomic_cases["D"]["status"] == "READY_ATOMIC_COMPONENT_FOUND"
+assert atomic_cases["D"]["search_action"] == "SKIP_REUSE"
+
 report = {"status":"PASS","representative":{"TOOL001":one,"TOOL042":two,"TOOL044":four},
           "boundary":cases,"idempotency":"PASS","files_created":0,
-          "expected_actual":"MATCH","engine_modified":False,"runtime_cost":0}
+          "expected_actual":"MATCH","engine_modified":False,"runtime_cost":0,
+          "atomic_detection": atomic_cases}
 if len(sys.argv) == 4:
     Path(sys.argv[3]).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(report, ensure_ascii=False))

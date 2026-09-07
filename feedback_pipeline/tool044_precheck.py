@@ -7,6 +7,40 @@ import subprocess
 from pathlib import Path
 
 VALID_SCOPE = {"SMALL", "MEDIUM", "LARGE"}
+ATOMIC_RESULTS = {
+    "READY_ATOMIC_COMPONENT_FOUND",
+    "PARTIAL_ATOMIC_COMPONENT_SET",
+    "NO_READY_ATOMIC_COMPONENT",
+}
+
+
+def detect_atomic_components(required_capabilities: list[str], registry: dict) -> dict:
+    """Resolve an error's atomic capabilities from the verified pool only.
+
+    This is deliberately local and incremental: it never searches externally and it
+    never treats candidates or non-verified records as reusable components.
+    """
+    required = list(dict.fromkeys(str(item).strip() for item in required_capabilities if str(item).strip()))
+    if not required:
+        return {
+            "status": "NO_READY_ATOMIC_COMPONENT", "matched": {}, "missing": [],
+            "search_action": "NO_SEARCH_EMPTY_DECOMPOSITION",
+        }
+    pool = registry.get("verified_atomic_component_pool", [])
+    matches: dict[str, str] = {}
+    for capability in required:
+        for item in pool:
+            if item.get("status") == "VERIFIED_REUSABLE" and capability in item.get("atomic_capabilities", []):
+                matches[capability] = item["component_id"]
+                break
+    missing = [capability for capability in required if capability not in matches]
+    if not matches:
+        status, action = "NO_READY_ATOMIC_COMPONENT", "NARROW_EXTERNAL_SEARCH_ALLOWED"
+    elif missing:
+        status, action = "PARTIAL_ATOMIC_COMPONENT_SET", "SEARCH_MISSING_ONLY"
+    else:
+        status, action = "READY_ATOMIC_COMPONENT_FOUND", "SKIP_REUSE"
+    return {"status": status, "matched": matches, "missing": missing, "search_action": action}
 
 
 def resolve(spec: str | None, roots: dict[str, Path]) -> Path | None:

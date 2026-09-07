@@ -213,6 +213,31 @@
       "reuse_requires_target_retest": true
     }
   ],
+  "verified_atomic_component_pool": [
+    {
+      "component_id": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": [
+        "PROVENANCE_VALIDATION"
+      ],
+      "source_component_ref": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+      "input_contract": "Explicit bounded asset manifest",
+      "output_contract": "Verified promotion route or isolated invalid state",
+      "verification_evidence": "feedback_pipeline/evidence/related_asset_classification_deployed_20260907.json"
+    },
+    {
+      "component_id": "WIC_EXTERNAL_COMPONENT_RECEIPT_ASSEMBLY_LAYER",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": [
+        "EVIDENCE_RECEIPT_VALIDATION",
+        "CANONICAL_DEPLOYED_IDENTITY_VALIDATION"
+      ],
+      "source_component_ref": "WIC_EXTERNAL_COMPONENT_RECEIPT_ASSEMBLY_LAYER",
+      "input_contract": "Pinned source/local and WIC canonical/deployed receipts",
+      "output_contract": "Receipt match or fail-closed assembly isolation",
+      "verification_evidence": "feedback_pipeline/evidence/external_component_receipts_deployed_20260907.json"
+    }
+  ],
   "candidates": [
     {
       "component_id": "ARGOS_TRANSLATE_1_11_EN_KO_1_1",
