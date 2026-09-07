@@ -1,0 +1,19 @@
+{
+  "component_id": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+  "official_source": "https://pypi.org/project/tldextract/5.3.2/",
+  "source_repository": "https://github.com/john-kurkowski/tldextract",
+  "version": "5.3.2",
+  "license": "BSD-3-Clause",
+  "artifact": "feedback_pipeline/vendor/tldextract-5.3.2-py3-none-any.whl",
+  "sha256": "6c90d2a259f5c89f4fcf01f97af15708416a59ffedddff006d67222ab30d0fb0",
+  "external_modified": false,
+  "sandbox": {
+    "input": "https://reports.example.co.uk/item",
+    "expected": ["reports", "example", "co.uk"],
+    "actual": ["reports", "example", "co.uk"],
+    "result": "PASS",
+    "network_during_function_test": false
+  },
+  "scope_limit": "DOMAIN_DECOMPOSITION_ONLY_NOT_OFFICIAL_SOURCE_OR_RESELLER_JUDGMENT",
+  "status": "VERIFIED_REUSABLE"
+}

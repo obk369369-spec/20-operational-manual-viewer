@@ -215,6 +215,31 @@
   ],
   "verified_atomic_component_pool": [
     {
+      "component_id": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": [
+        "DOMAIN_DECOMPOSITION"
+      ],
+      "official_source": "https://pypi.org/project/tldextract/5.3.2/",
+      "source_repository": "https://github.com/john-kurkowski/tldextract",
+      "version": "5.3.2",
+      "license": "BSD-3-Clause",
+      "maintenance_status": "ACTIVE_RELEASE_2026-08-08",
+      "source_file": "feedback_pipeline/vendor/tldextract-5.3.2-py3-none-any.whl",
+      "source_sha256": "6c90d2a259f5c89f4fcf01f97af15708416a59ffedddff006d67222ab30d0fb0",
+      "dependencies": ["idna", "requests", "requests-file", "filelock"],
+      "security_notes": "No production installation or network fetching; sandbox used bundled PSL snapshot with suffix_list_urls disabled.",
+      "external_modified": false,
+      "input_contract": "URL or hostname string",
+      "output_contract": "Subdomain, registered domain label, and public suffix decomposition",
+      "compatible_capabilities": ["OFFICIAL_DOMAIN_VALIDATION", "RESELLER_DETECTION"],
+      "known_incompatibilities": ["Does not determine whether a domain is an official publisher or reseller"],
+      "applicable_roots": ["T42-PUBLISHER-SOURCE-ROOT"],
+      "applicable_tools": ["TOOL042"],
+      "sandbox_expected_actual": "https://reports.example.co.uk/item -> reports|example|co.uk MATCH",
+      "reuse_requires_target_retest": true
+    },
+    {
       "component_id": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
       "status": "VERIFIED_REUSABLE",
       "atomic_capabilities": [
