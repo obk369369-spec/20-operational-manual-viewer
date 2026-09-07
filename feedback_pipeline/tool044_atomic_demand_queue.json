@@ -3,7 +3,7 @@
   "source": "TOOL016_ERROR_ROOT_LEDGER",
   "demands": [
     {"demand_id":"T42-OFFICIAL-PUBLISHER-VALIDATION","atomic_capabilities":["DOMAIN_DECOMPOSITION","OFFICIAL_DOMAIN_VALIDATION","PROVENANCE_VALIDATION"]},
-    {"demand_id":"T42-OFFICIAL-DETAIL-PAGE-VALIDATION","atomic_capabilities":["OFFICIAL_DETAIL_PAGE_VALIDATION","URL_VALIDATION"]},
+    {"demand_id":"T42-OFFICIAL-DETAIL-PAGE-VALIDATION","atomic_capabilities":["OFFICIAL_DETAIL_PAGE_VALIDATION","URL_VALIDATION"],"official_candidates":[{"ecosystem":"pypi","package":"validators","version":"0.35.0","filename":"validators-0.35.0-py3-none-any.whl","capability":"URL_VALIDATION","verifier":"validators_url"}]},
     {"demand_id":"T42-RESELLER-DETECTION","atomic_capabilities":["RESELLER_DETECTION"]},
     {"demand_id":"T42-PROVENANCE-VALIDATION","atomic_capabilities":["PROVENANCE_VALIDATION"]},
     {"demand_id":"T42-WEBPAGE-TEXT-EXTRACTION","atomic_capabilities":["WEBPAGE_TEXT_EXTRACTION"]},

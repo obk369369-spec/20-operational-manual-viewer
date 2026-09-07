@@ -3,7 +3,11 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
+import sys
+import urllib.request
+import zipfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -13,11 +17,56 @@ def utc_now() -> datetime:
 
 
 def signature(demand: dict) -> str:
-    value = f"{demand['demand_id']}|{','.join(sorted(demand['atomic_capabilities']))}"
+    value = json.dumps({"id": demand["demand_id"], "capabilities": sorted(demand["atomic_capabilities"]),
+                        "candidates": demand.get("official_candidates", [])}, sort_keys=True)
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: datetime | None = None) -> dict:
+def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
+    package, version = candidate["package"], candidate["version"]
+    metadata_url = f"https://pypi.org/pypi/{package}/{version}/json"
+    with urllib.request.urlopen(metadata_url, timeout=20) as response:
+        metadata = json.load(response)
+    release = next((item for item in metadata["urls"] if item["filename"] == candidate["filename"]), None)
+    if not release:
+        return {"status": "NO_OFFICIAL_RECEIPT", "official_source": metadata_url}
+    artifact_dir.mkdir(parents=True, exist_ok=True)
+    artifact = artifact_dir / release["filename"]
+    if not artifact.exists():
+        with urllib.request.urlopen(release["url"], timeout=30) as response:
+            artifact.write_bytes(response.read())
+    actual_hash = hashlib.sha256(artifact.read_bytes()).hexdigest()
+    receipt_hash = release["digests"]["sha256"]
+    if actual_hash != receipt_hash:
+        return {"status": "RECEIPT_COMPONENT_MISMATCH", "official_source": metadata_url,
+                "receipt_sha256": receipt_hash, "actual_sha256": actual_hash}
+    with zipfile.ZipFile(artifact) as archive:
+        metadata_name = next(name for name in archive.namelist() if name.endswith(".dist-info/METADATA"))
+        package_metadata = archive.read(metadata_name).decode("utf-8", errors="replace")
+    verified = False
+    if candidate.get("verifier") == "validators_url":
+        sys.path.insert(0, str(artifact))
+        try:
+            module = importlib.import_module("validators")
+            verified = module.url("https://example.com/report") is True and module.url("not a url") is not True
+        finally:
+            sys.path.remove(str(artifact))
+            sys.modules.pop("validators", None)
+    return {
+        "status": "VERIFIED_REUSABLE" if verified else "SANDBOX_FAIL",
+        "component_id": f"{package.upper()}_{version.replace('.', '_')}_{candidate['capability']}",
+        "atomic_capability": candidate["capability"], "official_source": metadata_url,
+        "artifact_url": release["url"], "artifact": str(artifact), "version": version,
+        "receipt_sha256": receipt_hash, "actual_sha256": actual_hash,
+        "license": metadata["info"].get("license_expression") or metadata["info"].get("license") or "NOT_PUBLISHED",
+        "release_date": release.get("upload_time_iso_8601", "NOT_PUBLISHED"),
+        "dependencies": metadata["info"].get("requires_dist") or [],
+        "package_metadata_present": bool(package_metadata), "sandbox_expected_actual": "PASS" if verified else "FAIL",
+    }
+
+
+def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: datetime | None = None,
+              external: bool = False, artifact_dir: Path | None = None) -> dict:
     now = now or utc_now()
     queue = json.loads(queue_path.read_text(encoding="utf-8"))
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -29,7 +78,7 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         for item in pool if item.get("status") == "VERIFIED_REUSABLE"
         for capability in item.get("atomic_capabilities", [])
     }
-    results, duplicate_blocks = [], 0
+    results, duplicate_blocks, external_queries, verified_external = [], 0, 0, []
     for demand in queue.get("demands", []):
         sig = signature(demand)
         old = receipts.get(sig)
@@ -39,12 +88,27 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
             continue
         matched = {cap: capability_map[cap] for cap in demand["atomic_capabilities"] if cap in capability_map}
         missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
+        harvests = []
+        if external:
+            for candidate in demand.get("official_candidates", []):
+                if candidate.get("capability") not in missing:
+                    continue
+                external_queries += 1
+                try:
+                    harvested = harvest_pypi(candidate, artifact_dir or state_path.parent / "external_artifacts")
+                except Exception as exc:
+                    harvested = {"status": "SOURCE_FAIL", "error": type(exc).__name__}
+                harvests.append(harvested)
+                if harvested.get("status") == "VERIFIED_REUSABLE":
+                    verified_external.append(harvested)
+                    matched[candidate["capability"]] = harvested["component_id"]
+            missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
         result = "READY_ATOMIC_COMPONENT_FOUND" if matched and not missing else "PARTIAL_ATOMIC_COMPONENT_SET" if matched else "NO_READY_ATOMIC_COMPONENT"
         receipt = {
             "demand_id": demand["demand_id"], "query_signature": sig, "last_searched": now.isoformat(),
             "matched": matched, "missing": missing, "result": result,
             "next_eligible_search": (now + timedelta(hours=24)).isoformat(),
-            "external_search_executed": False,
+            "external_search_executed": bool(harvests), "external_receipts": harvests,
         }
         receipts[sig] = receipt
         results.append(receipt)
@@ -52,10 +116,22 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         "cycle_id": now.strftime("%Y%m%dT%H%M%SZ"), "runtime": "LOCAL_STANDARD_LIBRARY",
         "paid_api_calls": 0, "paid_saas_calls": 0, "production_mutations": 0,
         "demands_processed": len(results), "duplicate_searches_blocked": duplicate_blocks,
+        "external_sources_queried": external_queries, "verified_external_components": verified_external,
         "results": results, "receipts": receipts, "next_state": "WAITING_FOR_NEXT_TRIGGER",
     }
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if external_queries:
+        candidate_path = state_path.parent / "tool044_external_candidate_pool.json"
+        verified_path = state_path.parent / "tool044_verified_external_component_pool.json"
+        all_harvests = [receipt for result in results for receipt in result.get("external_receipts", [])]
+        candidate_path.write_text(json.dumps({"candidates": all_harvests}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        old_verified = json.loads(verified_path.read_text(encoding="utf-8"))["components"] if verified_path.exists() else []
+        merged = {item["component_id"]: item for item in old_verified + verified_external}
+        verified_path.write_text(json.dumps({"components": list(merged.values())}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        composition_path = state_path.parent / "tool044_verified_composition_pool.json"
+        if not composition_path.exists():
+            composition_path.write_text(json.dumps({"compositions": [], "reason": "NO_CONTRACT_COMPATIBLE_PAIR_TESTED"}, indent=2) + "\n", encoding="utf-8")
     return state
 
 
@@ -65,8 +141,10 @@ def main() -> None:
     parser.add_argument("--queue", type=Path, default=root / "tool044_atomic_demand_queue.json")
     parser.add_argument("--registry", type=Path, default=root / "VERIFIED_COMPONENT_REGISTRY.json")
     parser.add_argument("--state", type=Path, default=root / "evidence" / "tool044_atomic_watch_state.json")
+    parser.add_argument("--external", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(run_cycle(args.queue, args.registry, args.state), ensure_ascii=False))
+    print(json.dumps(run_cycle(args.queue, args.registry, args.state, external=args.external,
+                               artifact_dir=root / "external_candidate_pool"), ensure_ascii=False))
 
 
 if __name__ == "__main__":

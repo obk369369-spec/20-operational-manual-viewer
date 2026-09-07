@@ -1,16 +1,37 @@
 {
-  "cycle_id": "20260907T130007Z",
+  "cycle_id": "20260907T131656Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
   "paid_api_calls": 0,
   "paid_saas_calls": 0,
   "production_mutations": 0,
   "demands_processed": 7,
-  "duplicate_searches_blocked": 6,
+  "duplicate_searches_blocked": 0,
+  "external_sources_queried": 1,
+  "verified_external_components": [
+    {
+      "status": "VERIFIED_REUSABLE",
+      "component_id": "VALIDATORS_0_35_0_URL_VALIDATION",
+      "atomic_capability": "URL_VALIDATION",
+      "official_source": "https://pypi.org/pypi/validators/0.35.0/json",
+      "artifact_url": "https://files.pythonhosted.org/packages/fa/6e/3e955517e22cbdd565f2f8b2e73d52528b14b8bcfdb04f62466b071de847/validators-0.35.0-py3-none-any.whl",
+      "artifact": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\external_candidate_pool\\validators-0.35.0-py3-none-any.whl",
+      "version": "0.35.0",
+      "receipt_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+      "actual_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+      "license": "MIT",
+      "release_date": "2025-05-01T05:42:04.203702Z",
+      "dependencies": [
+        "eth-hash[pycryptodome]>=0.7.0; extra == \"crypto-eth-addresses\""
+      ],
+      "package_metadata_present": true,
+      "sandbox_expected_actual": "PASS"
+    }
+  ],
   "results": [
     {
       "demand_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
-      "query_signature": "f8ea26114fb3cccb32ee3e7250c4cc96de162f40908ddf4304a2d3b070036441",
-      "last_searched": "2026-09-07T13:00:07.390689+00:00",
+      "query_signature": "8aabcbfd4a33e16b065e28eafb452cab23a5c0b15fc6b14b67fc26d252a758c6",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
       "matched": {
         "DOMAIN_DECOMPOSITION": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
@@ -19,38 +40,108 @@
         "OFFICIAL_DOMAIN_VALIDATION"
       ],
       "result": "PARTIAL_ATOMIC_COMPONENT_SET",
-      "next_eligible_search": "2026-09-08T13:00:07.390689+00:00",
-      "external_search_executed": false
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "c73df53ec87d85991cf3f96f6c4bd4bf2e932c4a49f52e85538c9afff4205442"
+      "query_signature": "ffc3255a9f826a7db9d7b4db7166dd07f071e728963b2f0223a6e66b87ea7b38",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {
+        "URL_VALIDATION": "VALIDATORS_0_35_0_URL_VALIDATION"
+      },
+      "missing": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "result": "PARTIAL_ATOMIC_COMPONENT_SET",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": true,
+      "external_receipts": [
+        {
+          "status": "VERIFIED_REUSABLE",
+          "component_id": "VALIDATORS_0_35_0_URL_VALIDATION",
+          "atomic_capability": "URL_VALIDATION",
+          "official_source": "https://pypi.org/pypi/validators/0.35.0/json",
+          "artifact_url": "https://files.pythonhosted.org/packages/fa/6e/3e955517e22cbdd565f2f8b2e73d52528b14b8bcfdb04f62466b071de847/validators-0.35.0-py3-none-any.whl",
+          "artifact": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\external_candidate_pool\\validators-0.35.0-py3-none-any.whl",
+          "version": "0.35.0",
+          "receipt_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+          "actual_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+          "license": "MIT",
+          "release_date": "2025-05-01T05:42:04.203702Z",
+          "dependencies": [
+            "eth-hash[pycryptodome]>=0.7.0; extra == \"crypto-eth-addresses\""
+          ],
+          "package_metadata_present": true,
+          "sandbox_expected_actual": "PASS"
+        }
+      ]
     },
     {
       "demand_id": "T42-RESELLER-DETECTION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "8db7f92a3536061f1a702627f2675d3e6d3165f5f56d263f03687a2583825f4a"
+      "query_signature": "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "RESELLER_DETECTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "1ef1fc8ac11e317005ce929f0f23eb8ab82262f47e05b634452f18bbd8aa0650"
+      "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {
+        "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "82d028b7dcd598f8458cf8e300a5f94199bbc251929f7d44675f3eccb5ae645f"
+      "query_signature": "e4e9ebf4962ec8b20ae47d1868d8a412dbe89cbd6da52563b33fde5415558209",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "WEBPAGE_TEXT_EXTRACTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "962c271d72ebebd088672aea4d0527d0c8fe30f800a14ef64d1ab6212fece1c3"
+      "query_signature": "48160e446a58c2894b4624ba93ae5a52fd7be615f000ba330d9157551e0a5f75",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "TOC_STRUCTURE_EXTRACTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "3513bdd93aa7e271b682935e45049ec64ebc92e9870ab4a58cb1e7adb7f6839b"
+      "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     }
   ],
   "receipts": {
@@ -155,6 +246,121 @@
       "result": "PARTIAL_ATOMIC_COMPONENT_SET",
       "next_eligible_search": "2026-09-08T13:00:07.390689+00:00",
       "external_search_executed": false
+    },
+    "8aabcbfd4a33e16b065e28eafb452cab23a5c0b15fc6b14b67fc26d252a758c6": {
+      "demand_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "query_signature": "8aabcbfd4a33e16b065e28eafb452cab23a5c0b15fc6b14b67fc26d252a758c6",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {
+        "DOMAIN_DECOMPOSITION": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      },
+      "missing": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "result": "PARTIAL_ATOMIC_COMPONENT_SET",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "ffc3255a9f826a7db9d7b4db7166dd07f071e728963b2f0223a6e66b87ea7b38": {
+      "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "query_signature": "ffc3255a9f826a7db9d7b4db7166dd07f071e728963b2f0223a6e66b87ea7b38",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {
+        "URL_VALIDATION": "VALIDATORS_0_35_0_URL_VALIDATION"
+      },
+      "missing": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "result": "PARTIAL_ATOMIC_COMPONENT_SET",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": true,
+      "external_receipts": [
+        {
+          "status": "VERIFIED_REUSABLE",
+          "component_id": "VALIDATORS_0_35_0_URL_VALIDATION",
+          "atomic_capability": "URL_VALIDATION",
+          "official_source": "https://pypi.org/pypi/validators/0.35.0/json",
+          "artifact_url": "https://files.pythonhosted.org/packages/fa/6e/3e955517e22cbdd565f2f8b2e73d52528b14b8bcfdb04f62466b071de847/validators-0.35.0-py3-none-any.whl",
+          "artifact": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\external_candidate_pool\\validators-0.35.0-py3-none-any.whl",
+          "version": "0.35.0",
+          "receipt_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+          "actual_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+          "license": "MIT",
+          "release_date": "2025-05-01T05:42:04.203702Z",
+          "dependencies": [
+            "eth-hash[pycryptodome]>=0.7.0; extra == \"crypto-eth-addresses\""
+          ],
+          "package_metadata_present": true,
+          "sandbox_expected_actual": "PASS"
+        }
+      ]
+    },
+    "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb": {
+      "demand_id": "T42-RESELLER-DETECTION",
+      "query_signature": "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "RESELLER_DETECTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
+      "demand_id": "T42-PROVENANCE-VALIDATION",
+      "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {
+        "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "e4e9ebf4962ec8b20ae47d1868d8a412dbe89cbd6da52563b33fde5415558209": {
+      "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "query_signature": "e4e9ebf4962ec8b20ae47d1868d8a412dbe89cbd6da52563b33fde5415558209",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "WEBPAGE_TEXT_EXTRACTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "48160e446a58c2894b4624ba93ae5a52fd7be615f000ba330d9157551e0a5f75": {
+      "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
+      "query_signature": "48160e446a58c2894b4624ba93ae5a52fd7be615f000ba330d9157551e0a5f75",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "TOC_STRUCTURE_EXTRACTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b": {
+      "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b",
+      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "matched": {},
+      "missing": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     }
   },
   "next_state": "WAITING_FOR_NEXT_TRIGGER"
