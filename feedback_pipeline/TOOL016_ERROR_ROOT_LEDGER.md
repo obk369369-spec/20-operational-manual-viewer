@@ -371,3 +371,69 @@ PHASE_EFFECTIVENESS_GATE = REQUIRED
 - 기존층이 실제 차단/닫은 사례 3, 불필요한 TOOL 개별수정 회피 3, 거짓 PASS 재분류 2, 정상 HOLD 유지 2, 과거 실패 재시험 0(기능 변경 없음).
 - 2차 미완료 보존: TOOL001 3/5 회수·0/5 완전검증, TOOL006 publisher golden pair HOLD, TOOL009 synthetic fallback 오류/canonical 미확정.
 - 최종: `PHASE3_FEEDBACK_RECOVERY_COMPLETE_NO_CODE_FIX_JUSTIFIED`.
+
+---
+
+# 4차 잔여 운영 TOOL 피드백 회수 — 2026-09-07
+
+정본 evidence: `feedback_pipeline/evidence/tool043_044_020_027_035_prior_feedback_recovery_20260907.json`.
+
+## 대상 선정
+
+- `TOOL043`: 실제 모바일/Pages/상태 projection 운영과 반복 수정·검증 기록이 존재한다.
+- `TOOL044`: 실제 component pilot·production·local-first·thin observer 배포 기록과 사용자 반복 보정 지시가 존재한다.
+- `TOOL020`, `TOOL027`, `TOOL035`: registry와 원격 검증 기록은 존재하지만 접근 가능한 대화 index에서 사용자 반복오류→assistant 답변 연결을 확인하지 못했다. 추정하지 않고 `NOT_FOUND_IN_PRIOR_FEEDBACK`으로 보존한다.
+- 1~3차 대상, 폐기 legacy, 실험/아이디어/SHELL은 제외했다.
+
+## TOOL043
+
+- 사용자 발견: 최신 CENTRAL이 `OPEN_INTERNAL=0`인데 모바일 projection이 오래된 장부 시각과 `OPEN 1`을 계속 표시했고, 화면 OFF/background 결과는 실제 기기 증거 전에는 완료할 수 없다고 반복 지적했다.
+- assistant/실행 자가발견: observer refresh는 실제 업무 A→B→C 실행이 아니며, 초기 연속실행 주장에는 task producer/실제 handler/독립 verifier가 없었다. 또한 local launcher 경로 인수 문제로 `Failed to fetch`가 발생했다.
+- 당시 개선: CENTRAL→projection→Pages read-back, actual device evidence, completion-proof fail-closed, 실제 task chain과 observer refresh 분리.
+- TOOL016 대조: 구체 occurrence는 `MISSING_FROM_TOOL016`; ROOT는 `규칙 존재 ≠ runtime 강제`, `TEST PASS ≠ 실제 업무 PASS`, `정본·테스트본 ≠ 실사용본`, `partial test ≠ impact regression`의 하위형이다.
+- 현재: 모바일/Pages 및 completion-proof 합의 범위는 `VERIFIED_CLOSED / SKIP_REUSE`; 실제 business A→B→C handler가 없는 범위는 `ACTUAL_ERROR_HOLD`이며 observer refresh PASS로 확대하지 않는다.
+
+## TOOL044
+
+- 사용자 발견: 최초 대화 답변은 운영지시를 “메모리에 저장”했다고만 하고 다시 시작 여부를 물어 관찰자 원칙과 중앙 영속화를 충족하지 못했다. 이후에도 MASTER/registry/sandbox만으로 완료하지 말고 실제 대상 장착→배포본 재시험까지 요구했다.
+- assistant/실행 자가발견: 최초 답변에는 canonical write/read-back 증거가 없었다. 이후 evidence는 TOOL013 idb-keyval pilot과 TOOL043 completion-proof 생산 적용의 범위를 분리했고, 임의 미래 adapter 자동생성까지 검증한 것은 아니라고 명시했다.
+- 당시 개선: verified registry 우선, bounded search, receipt 검증, 실제 대상 무수정 장착, deployed-copy retest, SAFE_CHECKPOINT, 사용자 중간조작 0.
+- TOOL016 대조: 구체 occurrence는 `MISSING_FROM_TOOL016`; ROOT는 `규칙 존재 ≠ runtime 강제`, `TEST PASS ≠ 실제 업무 PASS`, `정본·테스트본 ≠ 실사용본`의 하위형이다.
+- 현재: TOOL013 pilot, TOOL043 production adapter, mechanical runner, thin observer는 해당 증거 범위만 `DEPLOYED_PASS / SKIP_REUSE`; arbitrary future business adapter는 `COLLECTED_NOT_APPLIED`이며 검증 없이 일반화하지 않는다.
+
+## TOOL020 / TOOL027 / TOOL035
+
+- canonical registry와 verified commit/evidence는 확인했다.
+- 접근 가능한 대화 index에서 사용자 반복오류, assistant 자가점검, 당시 층 개선을 연결할 실제 turn을 찾지 못했다: `NOT_FOUND_IN_PRIOR_FEEDBACK`.
+- TOOL020 first validation, TOOL027 `NO_DEFERRED_WORK`, TOOL035 verified integration은 `SKIP_REUSE`; 피드백을 상상해 occurrence를 추가하지 않는다.
+
+## 1~4차 공통 ROOT 집계
+
+| ROOT | 영향 TOOL 수 | 사용자 발견 TOOL | 자가발견 TOOL | 재발 TOOL 수 | 책임 기존층 | 기존층 차단 | 5차 우선순위 |
+|---|---:|---:|---:|---:|---|---|---|
+| 규칙 존재 ≠ runtime 강제 | 11 | 11 | 10 | 11 | start/preload/runtime release | 가능 | P0 |
+| TEST PASS ≠ 실제 업무 PASS | 10 | 10 | 10 | 10 | actual-input E2E/output release | 가능 | P0 |
+| 정본·테스트본 ≠ 실사용본 | 8 | 8 | 8 | 8 | canonical/deployed receipt + copy test | 가능 | P0 |
+| source/provenance 부족 | 7 | 7 | 7 | 7 | provenance fail-closed | 가능 | P1 |
+| partial test ≠ impact regression | 7 | 7 | 7 | 7 | change/impact regression | 가능 | P1 |
+
+집계 단위는 독립 문장 수가 아니라 실제 ROOT가 확인된 TOOL 합집합이다. TOOL020·027·035는 prior feedback 미발견이므로 occurrence에 포함하지 않았다.
+
+## PHASE5_COMMON_LAYER_FIX_QUEUE
+
+| ROOT ID | 영향 TOOL | 과거 실패 fixture | 현재 방어층 실패 이유 | 보강할 기존층 | 수정범위 | 필수 regression | PASS 기준 | 신규층 | TOOL044 |
+|---|---|---|---|---|---|---|---|---|---|
+| P5-RUNTIME-ENFORCEMENT | 041·007·042·006·001·009·013·012·002·043·044 | stale master, memory-only instruction, observer-refresh-as-work | entrypoint receipt가 문서 규칙과 분리됨 | existing start/preload/release gate | receipt 소비·fail-closed DIFF | 041→007→042, 043 projection, 044 production | 최신 receipt 없는 runtime 차단 | NO | NO |
+| P5-ACTUAL-USE-E2E | 041·007·042·006·001·013·014·012·043·044 | fixture/staging/UI PASS 확대 | actual input/device/live scope 구분 누락 | existing actual-input/output release | evidence class·scope enforcement | 각 TOOL 보존 fixture + 실제 입력 있는 범위 | fixture/staging PASS가 real-use로 승격되지 않음 | NO | NO |
+| P5-CANONICAL-DEPLOYED-RECEIPT | 041·007·042·006·001·013·014·043 | stale projection, local/GitHub mismatch | deployed-copy receipt 소비 누락 | existing dual receipt/deploy gate | hash/version/read-back DIFF | 043 state projection + representative deployed copy | canonical↔deployed mismatch 차단 | NO | NO |
+| P5-PROVENANCE-FAIL-CLOSED | 041·007·042·006·001·009·013 | missing customer/report/publisher source | source class가 downstream보다 늦게 검사됨 | existing provenance/evidence gate | upstream-required marker DIFF | saved actual source fixtures | source 없는 생성/승격 차단, 정상 HOLD 보존 | NO | NO |
+| P5-IMPACT-REGRESSION | 041·007·042·006·013·002·043 | row-count/partial/single-scope PASS 확대 | changed/impacted mapping 불완전 | existing impacted-regression gate | impact manifest enforcement | 직접 영향 fixture only | 영향검사 누락 시 release 차단 | NO | NO |
+
+## 4차 효과 및 보존
+
+- 4차 신규 독립 ROOT 0, `NEW_LAYER_CANDIDATE = 0`, TOOL core 수정 0, TOOL044 신규사용 0.
+- 기존층으로 차단/범위분리 가능한 5개 ROOT, 5차 기존층 보강 큐 5개, 불필요한 TOOL 개별수정 회피 5, 새 층 생성 회피 5.
+- 과거 거짓 PASS 재분류 2: TOOL043 observer refresh를 business chain으로 확대, TOOL044 memory/sandbox/registry를 production 전체로 확대.
+- 정상 HOLD 보존: TOOL001 3/5 회수·0/5 검증, TOOL006 publisher golden pair, TOOL009 canonical 미확정, TOOL014 live 승인, TOOL043 실제 handler 부재 범위.
+- 코드/gate 변경이 없어 실제 실패 재시험 0. 장부 변경을 TOOL 기능 개선으로 보고하지 않는다.
+- 최종: `PHASE4_COMPLETE / PHASE5_READY / NO_CODE_FIX_JUSTIFIED`.
