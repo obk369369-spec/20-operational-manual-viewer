@@ -54,6 +54,16 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
         finally:
             sys.path.remove(str(artifact))
             sys.modules.pop("validators", None)
+    elif candidate.get("verifier") == "html2text_extract":
+        sys.path.insert(0, str(artifact))
+        try:
+            module = importlib.import_module("html2text")
+            normal = module.html2text("<h1>Report</h1><p>Market growth</p>")
+            malformed = module.html2text("")
+            verified = "Report" in normal and "Market growth" in normal and malformed.strip() == ""
+        finally:
+            sys.path.remove(str(artifact))
+            sys.modules.pop("html2text", None)
     return {
         "status": "VERIFIED_REUSABLE" if verified else "SANDBOX_FAIL",
         "component_id": f"{package.upper()}_{version.replace('.', '_')}_{candidate['capability']}",
