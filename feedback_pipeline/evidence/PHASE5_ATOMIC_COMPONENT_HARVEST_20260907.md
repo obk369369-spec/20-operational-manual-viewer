@@ -9,4 +9,7 @@
 - Actual output: `feedback_pipeline/evidence/tool044_atomic_detection_20260907.json`.
 - Existing whole-component and deployed-pass behavior: regression PASS in `test_tool044_precheck.py`.
 - New verified external component: 0. Existing verified component reuse: 2.
-- Status before remote/deployed-copy verification: LOCAL_TEST_PASS.
+- GitHub remote read-back: commit `6a497c9a65bd16a0f0f906132e593809604c4918`; remote `tool044_precheck.py` contains `detect_atomic_components`, and the remote registry contains `verified_atomic_component_pool`.
+- Actual-use deployment: `I:\GPT 도구 작업\44번 완성부품 가져오기\feedback_pipeline`.
+- Deployed-copy test: A-D and existing precheck regression PASS; canonical/deployed hashes matched for the detector and registry.
+- Final status: `TOOL044_ATOMIC_DETECTION = ACTIVE`, `DEPLOYED_PASS`.
