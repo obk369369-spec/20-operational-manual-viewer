@@ -1,0 +1,67 @@
+{
+  "root_cause_id": "T42-RC-CUSTOMER-BRANCH",
+  "source_refs": [
+    "42번 고객 안내 통합창#d1d300ec-0514-496d-933d-a1b6e4df71ce",
+    "fixtures/customer_guidance_actual_kmg_expected.json@59ce24e",
+    "docs/checkpoints/CHAT_42_CUSTOMER_GUIDANCE_AUDIT.md"
+  ],
+  "base_state": {
+    "institution": "한국탄소산업진흥원",
+    "name": "김명곤",
+    "current_affiliation_verified": true,
+    "department": "산업정책실",
+    "position": "책임",
+    "business_directions": ["탄소복합재 점프업 파트너십", "정책금융", "기업지원"],
+    "contact_history_verified": true,
+    "prior_inquiry": true,
+    "prior_quote": false,
+    "prior_purchase": false,
+    "prior_sent_titles": ["CF & CFRP Market", "Carbon Fiber Prepreg Market", "Carbon Felt and Graphite Felt Market", "Carbon Composites"],
+    "current_interests": ["항공우주 소재", "복합재 재활용"],
+    "required_recommendation_count": 3
+  },
+  "candidates": [
+    {
+      "title": "Global Markets for Advanced Aerospace Materials",
+      "publisher": "BCC Publishing",
+      "verified": true,
+      "topics": ["항공우주 소재"],
+      "direct_match": true
+    },
+    {
+      "title": "Recycled Carbon Fiber Market",
+      "publisher": "Technavio",
+      "topics": ["복합재 재활용"],
+      "verified": true,
+      "direct_match": true
+    },
+    {
+      "title": "Advanced Composites Recycling",
+      "publisher": "Stratistics MRC",
+      "topics": ["복합재 재활용"],
+      "verified": true,
+      "direct_match": true
+    },
+    {
+      "title": "Carbon Composites",
+      "publisher": "Old Publisher",
+      "topics": ["탄소복합재"],
+      "verified": true,
+      "direct_match": true
+    }
+  ],
+  "actual_pairs": [
+    {
+      "id": "ACTUAL-KMG-CONTACT",
+      "wrong_branch_output": "고객 상태·업무·기존 발송을 분기 입력으로 쓰지 않고 획일 안내 또는 설명만 출력",
+      "override": {},
+      "expected": {"decision": "PASS", "contact": "CONTACT", "customer_type": "RESEARCH_POLICY", "contact_mode": "FOLLOW_UP", "recommendation_count": 3, "next_action": "REFERENCE_PRIOR_INTERACTION_AND_SEND"}
+    },
+    {
+      "id": "ACTUAL-KMG-HISTORY-HOLD",
+      "wrong_branch_output": "과거 발송이력 미확인인데 중복 없음으로 간주하고 안내 진행",
+      "override": {"contact_history_verified": false},
+      "expected": {"decision": "HOLD", "contact": "NO_CONTACT", "reason": "PRIOR_CONTACT_HISTORY_UNVERIFIED", "next_action": "VERIFY_HISTORY"}
+    }
+  ]
+}

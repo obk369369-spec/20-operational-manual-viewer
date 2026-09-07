@@ -11,6 +11,8 @@ import zipfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from tool044_composition import test_url_provenance_composition
+
 
 def utc_now() -> datetime:
     return datetime.now(timezone.utc)
@@ -66,7 +68,8 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
 
 
 def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: datetime | None = None,
-              external: bool = False, artifact_dir: Path | None = None) -> dict:
+              external: bool = False, artifact_dir: Path | None = None,
+              trigger_source: str = "MANUAL") -> dict:
     now = now or utc_now()
     queue = json.loads(queue_path.read_text(encoding="utf-8"))
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -114,6 +117,9 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         results.append(receipt)
     state = {
         "cycle_id": now.strftime("%Y%m%dT%H%M%SZ"), "runtime": "LOCAL_STANDARD_LIBRARY",
+        "scheduled_start": now.isoformat() if trigger_source == "SCHEDULED" else None,
+        "actual_start": now.isoformat(), "trigger_source": trigger_source,
+        "work_triggered": trigger_source == "WORK", "user_triggered": trigger_source == "USER",
         "paid_api_calls": 0, "paid_saas_calls": 0, "production_mutations": 0,
         "demands_processed": len(results), "duplicate_searches_blocked": duplicate_blocks,
         "external_sources_queried": external_queries, "verified_external_components": verified_external,
@@ -129,9 +135,35 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         old_verified = json.loads(verified_path.read_text(encoding="utf-8"))["components"] if verified_path.exists() else []
         merged = {item["component_id"]: item for item in old_verified + verified_external}
         verified_path.write_text(json.dumps({"components": list(merged.values())}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        composition_path = state_path.parent / "tool044_verified_composition_pool.json"
-        if not composition_path.exists():
-            composition_path.write_text(json.dumps({"compositions": [], "reason": "NO_CONTRACT_COMPATIBLE_PAIR_TESTED"}, indent=2) + "\n", encoding="utf-8")
+    verified_path = state_path.parent / "tool044_verified_external_component_pool.json"
+    external_verified = json.loads(verified_path.read_text(encoding="utf-8")).get("components", []) if verified_path.exists() else []
+    composition_path = state_path.parent / "tool044_verified_composition_pool.json"
+    available = {item.get("component_id") for item in external_verified} | {
+        item.get("component_id") for item in registry.get("verified_atomic_component_pool", [])
+    }
+    provenance_ready = "WIC_MANIFESTED_ASSET_PROVENANCE_GATE" in {
+        item.get("component_id") for item in registry.get("verified_atomic_component_pool", [])
+    }
+    wheel = (artifact_dir or state_path.parent / "external_artifacts") / "validators-0.35.0-py3-none-any.whl"
+    composition_candidates = int("VALIDATORS_0_35_0_URL_VALIDATION" in available and provenance_ready and wheel.exists())
+    state.update({"composition_candidates": composition_candidates, "compositions_tested": 0,
+                  "verified_compositions": 0, "ready_for_integration": 0})
+    if composition_candidates:
+        fixture = queue_path.parent / "fixtures" / "tool042_customer_branch_actual_kmg.json"
+        composition = test_url_provenance_composition(wheel, fixture)
+        state.update({"compositions_tested": 1,
+                      "verified_compositions": int(composition["status"] == "VERIFIED_COMPOSITION"),
+                      "ready_for_integration": int(composition["ready_for_integration"]),
+                      "composition_test": composition})
+        old_compositions = json.loads(composition_path.read_text(encoding="utf-8")).get("compositions", []) if composition_path.exists() else []
+        merged_compositions = {item["composition_id"]: item for item in old_compositions}
+        if composition["status"] == "VERIFIED_COMPOSITION":
+            merged_compositions[composition["composition_id"]] = composition
+        composition_path.write_text(json.dumps({"compositions": list(merged_compositions.values()),
+                                                "last_test": composition}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    elif not composition_path.exists():
+        composition_path.write_text(json.dumps({"compositions": [], "reason": "NO_CONTRACT_COMPATIBLE_PAIR_TESTED"}, indent=2) + "\n", encoding="utf-8")
+    state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return state
 
 
@@ -142,9 +174,11 @@ def main() -> None:
     parser.add_argument("--registry", type=Path, default=root / "VERIFIED_COMPONENT_REGISTRY.json")
     parser.add_argument("--state", type=Path, default=root / "evidence" / "tool044_atomic_watch_state.json")
     parser.add_argument("--external", action="store_true")
+    parser.add_argument("--trigger-source", choices=["MANUAL", "WORK", "USER", "SCHEDULED"], default="MANUAL")
     args = parser.parse_args()
     print(json.dumps(run_cycle(args.queue, args.registry, args.state, external=args.external,
-                               artifact_dir=root / "external_candidate_pool"), ensure_ascii=False))
+                               artifact_dir=root / "external_candidate_pool",
+                               trigger_source=args.trigger_source), ensure_ascii=False))
 
 
 if __name__ == "__main__":

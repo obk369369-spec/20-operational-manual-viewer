@@ -1,0 +1,62 @@
+{
+  "compositions": [
+    {
+      "composition_id": "VALIDATORS_URL_THEN_WIC_PROVENANCE_V1",
+      "components": [
+        "VALIDATORS_0_35_0_URL_VALIDATION",
+        "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      ],
+      "root": "T42-OFFICIAL-DETAIL-PAGE-PROVENANCE",
+      "applicable_tools": [
+        "TOOL042"
+      ],
+      "input_contract": "URL plus downloaded artifact receipt manifest",
+      "output_contract": "READY_FOR_INTEGRATION only when URL syntax and artifact provenance both pass",
+      "failure_fixture": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\fixtures\\tool042_customer_branch_actual_kmg.json",
+      "normal_fixture": "official wheel receipt",
+      "tests": {
+        "normal": true,
+        "malformed": true,
+        "provenance_mismatch": true,
+        "past_actual_failure": true,
+        "regression": true
+      },
+      "expected_actual": "MATCH",
+      "regression": "PASS",
+      "known_limitations": [
+        "Does not establish publisher ownership or page semantics"
+      ],
+      "ready_for_integration": true,
+      "status": "VERIFIED_COMPOSITION"
+    }
+  ],
+  "last_test": {
+    "composition_id": "VALIDATORS_URL_THEN_WIC_PROVENANCE_V1",
+    "components": [
+      "VALIDATORS_0_35_0_URL_VALIDATION",
+      "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+    ],
+    "root": "T42-OFFICIAL-DETAIL-PAGE-PROVENANCE",
+    "applicable_tools": [
+      "TOOL042"
+    ],
+    "input_contract": "URL plus downloaded artifact receipt manifest",
+    "output_contract": "READY_FOR_INTEGRATION only when URL syntax and artifact provenance both pass",
+    "failure_fixture": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\fixtures\\tool042_customer_branch_actual_kmg.json",
+    "normal_fixture": "official wheel receipt",
+    "tests": {
+      "normal": true,
+      "malformed": true,
+      "provenance_mismatch": true,
+      "past_actual_failure": true,
+      "regression": true
+    },
+    "expected_actual": "MATCH",
+    "regression": "PASS",
+    "known_limitations": [
+      "Does not establish publisher ownership or page semantics"
+    ],
+    "ready_for_integration": true,
+    "status": "VERIFIED_COMPOSITION"
+  }
+}
