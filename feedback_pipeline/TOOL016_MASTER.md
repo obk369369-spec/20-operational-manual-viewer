@@ -121,7 +121,14 @@ TOOL043_BASELINE_RETEST = SKIP_REUSE_UNLESS_IMPACTED
 - 기존 mutual-supervision engine 및 이미 PASS된 공통부품은 `SKIP_REUSE`한다.
 
 NEXT_MAJOR_SCOPE = WIC_MASS_PARALLEL_SELF_RECOVERY_VALIDATION_DEPLOY_ORCHESTRATION
-TOOL041_TOOL042_AFTER_COMMON_EXPANSION_BASELINE = TRUE
+TOOL041_TOOL007_TOOL042_AFTER_COMMON_EXPANSION_BASELINE = TRUE
+
+### Customer workflow dependency (corrected 2026-09-07)
+
+- Default customer-data dependency is `TOOL041 → TOOL007 → TOOL042`.
+- TOOL041 supplies current verified customer facts; TOOL007 combines them with verified history and decides contact/material next action; TOOL042 consumes those verified inputs for follow-up work.
+- Independent checks may run in parallel, but downstream customer facts must never be predicted when an upstream VERIFIED output is missing.
+- A correct downstream HOLD is an integration PASS only for the contract boundary; it is not a TOOL042 operational COMPLETE.
 
 ## 14. 2026-09-07 대화창 handoff 반영
 - 이 대화창에서 확정된 신규 영구규칙을 TOOL016 CENTRAL MASTER에 DIFF 성격으로 통합했다.

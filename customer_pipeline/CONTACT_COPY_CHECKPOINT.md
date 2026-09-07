@@ -81,3 +81,12 @@
 - 증거: customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json. 사용법: customer_pipeline/CUSTOMER_MVP.md.
 - NEXT_WORK: Configure dedicated MVP model/GitHub credentials and current TOOL041 checkout once; then verify only the named customer's bounded real E2E when canonical identity/history/failure evidence exists. Do not rerun existing PASS or substitute customers.
 - Root OPEN 및 incomplete 5/internal open 1 유지. 사용자 규칙/파일 재전달 요구 0회.
+
+## 2026-09-07 — TOOL041 → TOOL007 → TOOL042 dependency correction
+
+- Canonical customer-data order is `TOOL041 verified facts → TOOL007 judgment → TOOL042 follow-up`; the former blanket `TOOL042 → TOOL041` assumption is retired.
+- Added a thin fail-closed contract adapter without changing the three tool cores.
+- Actual 김태호/KRICT flow: official current role/work-area evidence + existing one-way-send history → TOOL007 PASS with `ONE_WAY_NOTICE_NOT_CUSTOMER_NEED` → TOOL042 HOLD `VERIFY_CUSTOMER_STATE` because current interest was not inferred.
+- `CROSS_TOOL_INTEGRATION_PASS` means the shared boundary and correct HOLD were verified; TOOL042 remains `HOLD_EXTERNAL_CUSTOMER_EVIDENCE`, not operational COMPLETE.
+- Evidence: `customer_pipeline/evidence/TOOL041_007_042_DEPENDENCY_E2E_20260907.md`.
+- NEXT_START: when actual customer-interest evidence is available, reuse this fixture/contract and test only TOOL042 recommendation/output continuation with verified saleable candidates.
