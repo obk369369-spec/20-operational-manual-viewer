@@ -99,3 +99,9 @@
 - `verified_atomic_component_pool` is checked first. A complete pool hit returns `READY_ATOMIC_COMPONENT_FOUND` with `SKIP_REUSE`; a partial hit returns `PARTIAL_ATOMIC_COMPONENT_SET` and permits searching only the missing capabilities; no hit returns `NO_READY_ATOMIC_COMPONENT`.
 - Only `VERIFIED_REUSABLE` records may match. Candidates, HOLD records, and unverified assets are excluded.
 - The detector does not perform broad search or blind component combinations.
+
+## Local scheduled atomic watch (2026-09-07)
+
+- `tool044_atomic_watch.py` consumes the bounded TOOL016-derived demand queue, looks up the verified atomic pool, stores query signatures/receipts/next eligibility, and blocks unchanged searches for 24 hours.
+- Windows Task Scheduler runs the deployed hidden wrapper every six hours while the user session is available. The scheduled action performs no production mutation and makes no paid API/SaaS call.
+- Continuous external discovery without Work is not yet implemented or claimed. Current state is local queue/pool/checkpoint watch `VERIFIED`, zero-credit external discovery `NOT_PROVEN`.

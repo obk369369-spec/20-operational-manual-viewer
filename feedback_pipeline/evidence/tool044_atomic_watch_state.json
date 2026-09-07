@@ -1,98 +1,56 @@
 {
-  "cycle_id": "20260907T125102Z",
+  "cycle_id": "20260907T130007Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
   "paid_api_calls": 0,
   "paid_saas_calls": 0,
   "production_mutations": 0,
   "demands_processed": 7,
-  "duplicate_searches_blocked": 0,
+  "duplicate_searches_blocked": 6,
   "results": [
     {
       "demand_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
-      "query_signature": "404ef932f427cf2fd6dbcdbdcb01237b3e39a6294c53e459b1138e530f8d7bf2",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
+      "query_signature": "f8ea26114fb3cccb32ee3e7250c4cc96de162f40908ddf4304a2d3b070036441",
+      "last_searched": "2026-09-07T13:00:07.390689+00:00",
       "matched": {
+        "DOMAIN_DECOMPOSITION": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [
         "OFFICIAL_DOMAIN_VALIDATION"
       ],
       "result": "PARTIAL_ATOMIC_COMPONENT_SET",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
+      "next_eligible_search": "2026-09-08T13:00:07.390689+00:00",
       "external_search_executed": false
     },
     {
       "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-      "query_signature": "c73df53ec87d85991cf3f96f6c4bd4bf2e932c4a49f52e85538c9afff4205442",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
-      "matched": {},
-      "missing": [
-        "OFFICIAL_DETAIL_PAGE_VALIDATION",
-        "URL_VALIDATION"
-      ],
-      "result": "NO_READY_ATOMIC_COMPONENT",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
-      "external_search_executed": false
+      "result": "DUPLICATE_SEARCH_BLOCKED",
+      "query_signature": "c73df53ec87d85991cf3f96f6c4bd4bf2e932c4a49f52e85538c9afff4205442"
     },
     {
       "demand_id": "T42-RESELLER-DETECTION",
-      "query_signature": "8db7f92a3536061f1a702627f2675d3e6d3165f5f56d263f03687a2583825f4a",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
-      "matched": {},
-      "missing": [
-        "RESELLER_DETECTION"
-      ],
-      "result": "NO_READY_ATOMIC_COMPONENT",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
-      "external_search_executed": false
+      "result": "DUPLICATE_SEARCH_BLOCKED",
+      "query_signature": "8db7f92a3536061f1a702627f2675d3e6d3165f5f56d263f03687a2583825f4a"
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
-      "query_signature": "1ef1fc8ac11e317005ce929f0f23eb8ab82262f47e05b634452f18bbd8aa0650",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
-      "matched": {
-        "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
-      },
-      "missing": [],
-      "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
-      "external_search_executed": false
+      "result": "DUPLICATE_SEARCH_BLOCKED",
+      "query_signature": "1ef1fc8ac11e317005ce929f0f23eb8ab82262f47e05b634452f18bbd8aa0650"
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-      "query_signature": "82d028b7dcd598f8458cf8e300a5f94199bbc251929f7d44675f3eccb5ae645f",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
-      "matched": {},
-      "missing": [
-        "WEBPAGE_TEXT_EXTRACTION"
-      ],
-      "result": "NO_READY_ATOMIC_COMPONENT",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
-      "external_search_executed": false
+      "result": "DUPLICATE_SEARCH_BLOCKED",
+      "query_signature": "82d028b7dcd598f8458cf8e300a5f94199bbc251929f7d44675f3eccb5ae645f"
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
-      "query_signature": "962c271d72ebebd088672aea4d0527d0c8fe30f800a14ef64d1ab6212fece1c3",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
-      "matched": {},
-      "missing": [
-        "TOC_STRUCTURE_EXTRACTION"
-      ],
-      "result": "NO_READY_ATOMIC_COMPONENT",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
-      "external_search_executed": false
+      "result": "DUPLICATE_SEARCH_BLOCKED",
+      "query_signature": "962c271d72ebebd088672aea4d0527d0c8fe30f800a14ef64d1ab6212fece1c3"
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-      "query_signature": "3513bdd93aa7e271b682935e45049ec64ebc92e9870ab4a58cb1e7adb7f6839b",
-      "last_searched": "2026-09-07T12:51:02.842525+00:00",
-      "matched": {},
-      "missing": [
-        "TOC_HIERARCHY_VALIDATION"
-      ],
-      "result": "NO_READY_ATOMIC_COMPONENT",
-      "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
-      "external_search_executed": false
+      "result": "DUPLICATE_SEARCH_BLOCKED",
+      "query_signature": "3513bdd93aa7e271b682935e45049ec64ebc92e9870ab4a58cb1e7adb7f6839b"
     }
   ],
   "receipts": {
@@ -181,6 +139,21 @@
       ],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": "2026-09-08T12:51:02.842525+00:00",
+      "external_search_executed": false
+    },
+    "f8ea26114fb3cccb32ee3e7250c4cc96de162f40908ddf4304a2d3b070036441": {
+      "demand_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "query_signature": "f8ea26114fb3cccb32ee3e7250c4cc96de162f40908ddf4304a2d3b070036441",
+      "last_searched": "2026-09-07T13:00:07.390689+00:00",
+      "matched": {
+        "DOMAIN_DECOMPOSITION": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      },
+      "missing": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "result": "PARTIAL_ATOMIC_COMPONENT_SET",
+      "next_eligible_search": "2026-09-08T13:00:07.390689+00:00",
       "external_search_executed": false
     }
   },
