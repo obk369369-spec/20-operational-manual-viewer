@@ -215,6 +215,28 @@
   ],
   "verified_atomic_component_pool": [
     {
+      "component_id": "VALIDATORS_0_35_0_URL_VALIDATION",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": ["URL_VALIDATION"],
+      "official_source": "https://pypi.org/pypi/validators/0.35.0/json",
+      "official_project": "https://github.com/python-validators/validators",
+      "version": "0.35.0",
+      "license": "MIT",
+      "release_date": "2025-05-01T05:42:04.203702Z",
+      "source_file": "feedback_pipeline/external_candidate_pool/validators-0.35.0-py3-none-any.whl",
+      "source_sha256": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+      "external_modified": false,
+      "dependencies": ["eth-hash[pycryptodome]>=0.7.0; extra == crypto-eth-addresses"],
+      "input_contract": "URL candidate string",
+      "output_contract": "True only for syntactically valid URL",
+      "known_incompatibilities": ["Does not prove an official publisher/detail page or reseller identity"],
+      "applicable_roots": ["T42-OFFICIAL-DETAIL-PAGE-VALIDATION"],
+      "applicable_tools": ["TOOL042"],
+      "sandbox_expected_actual": "valid HTTPS=True; malformed URL!=True",
+      "zero_work_scheduler_receipt": "feedback_pipeline/evidence/TOOL044_ZERO_WORK_EXTERNAL_HARVEST_20260907.md",
+      "reuse_requires_target_retest": true
+    },
+    {
       "component_id": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
       "status": "VERIFIED_REUSABLE",
       "atomic_capabilities": [

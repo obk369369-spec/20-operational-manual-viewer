@@ -24,11 +24,13 @@ with tempfile.TemporaryDirectory() as directory:
 with tempfile.TemporaryDirectory() as directory:
     temp = Path(directory)
     queue = temp / "queue.json"
+    registry = temp / "registry.json"
     queue.write_text(json.dumps({"demands":[{"demand_id":"X","atomic_capabilities":["URL_VALIDATION"],"official_candidates":[{"capability":"URL_VALIDATION"}]}]}), encoding="utf-8")
+    registry.write_text(json.dumps({"verified_atomic_component_pool":[]}), encoding="utf-8")
     original = tool044_atomic_watch.harvest_pypi
     tool044_atomic_watch.harvest_pypi = lambda candidate, artifact_dir: {"status":"VERIFIED_REUSABLE","component_id":"FAKE_VERIFIED","atomic_capability":"URL_VALIDATION"}
     try:
-        external = run_cycle(queue, root / "VERIFIED_COMPONENT_REGISTRY.json", temp / "state.json", when, external=True)
+        external = run_cycle(queue, registry, temp / "state.json", when, external=True)
     finally:
         tool044_atomic_watch.harvest_pypi = original
     assert external["external_sources_queried"] == 1

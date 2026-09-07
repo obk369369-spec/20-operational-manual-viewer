@@ -105,3 +105,10 @@
 - `tool044_atomic_watch.py` consumes the bounded TOOL016-derived demand queue, looks up the verified atomic pool, stores query signatures/receipts/next eligibility, and blocks unchanged searches for 24 hours.
 - Windows Task Scheduler runs the deployed hidden wrapper every six hours while the user session is available. The scheduled action performs no production mutation and makes no paid API/SaaS call.
 - Continuous external discovery without Work is not yet implemented or claimed. Current state is local queue/pool/checkpoint watch `VERIFIED`, zero-credit external discovery `NOT_PROVEN`.
+
+### Official-source harvest increment
+
+- The deployed cycle can query an explicitly declared PyPI candidate, capture official metadata, download the release artifact, compare official/actual SHA-256, inspect package metadata, and run an allowlisted sandbox verifier.
+- Candidate receipts and verified external components are stored separately; unchanged demand/candidate signatures are suppressed for 24 hours.
+- Arbitrary downloaded code is not executed. A candidate without a declared verifier remains unverified.
+- Verified-component composition is not inferred from individual PASS results. The composition pool remains empty until a real contract-compatible pair passes a separate fixture test.
