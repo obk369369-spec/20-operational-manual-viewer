@@ -251,6 +251,15 @@ PHASE_EFFECTIVENESS_GATE = REQUIRED
 - ROOT: `T1-RC-ACTUAL-REPORT-EVIDENCE-GATE`; 책임층은 TOOL001 verified report acquisition + final assembly/output release.
 - `NORMAL_HOLD`: 실제 verified report payload count 0, trigger `FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE`. 이는 실제 입력 부족을 정확히 차단한 정상 HOLD다.
 
+### 2026-09-07 실제 보고서 자동확보 증분
+
+- 기존 완료 경로를 반복 검색하지 않고 TOOL001 canonical/실사용 참조, CENTRAL evidence, provenance가 확인된 `repo42/fixtures`와 TOOL013 실제입력 evidence만 scoped 검사했다.
+- 실제 고객 fixture에서 서로 다른 발행사 실제 보고서 기록 3건(BCC Research, Technavio, Stratistics MRC)을 회수해 `evidence/tool001_actual_report_input_registry_20260907.json`에 영속화했다.
+- 세 기록 모두 제목·발행사·발행일·페이지·원문 URL·전체 TOC·보고서 정보 provenance가 있으나, TOOL001 필수 계약의 공급가격(Technavio는 정가도 포함)이 독립 검증되지 않아 각각 HOLD다. 없는 값을 생성하지 않았다.
+- `ACTUAL_VERIFIED_REPORTS = 0/5`, `RECOVERED_ACTUAL_REPORT_RECORDS = 3/5`; REPORT-4/5는 미회수다.
+- 반복 HOLD ROOT는 `T1-RC-ACTUAL-INPUT-DISCOVERY-PERSISTENCE-GAP`이다. 세부 원인은 (1) 실제 업무 입력 자동발견층이 canonical runtime에 연결되지 않음, (2) provenance 실제입력 registry가 없었음, (3) 실물은 존재하지만 필수 상업필드가 완전하지 않아 runtime의 5건 gate를 통과할 수 없음이다.
+- 기존 `T1-RC-ACTUAL-REPORT-EVIDENCE-GATE`의 recurrence로 병합한다. 새 공통층은 만들지 않는다. 이번 registry로 동일 세 위치/세 보고서를 다음 Work에서 다시 찾는 것을 금지한다.
+
 ## TOOL009
 
 - 과거 대상 대화창에서 사용자의 원인보고 요청에 답한 assistant 피드백: `NOT_FOUND_IN_PRIOR_FEEDBACK`.

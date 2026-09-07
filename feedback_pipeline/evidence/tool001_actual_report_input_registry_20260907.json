@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "tool_id": "TOOL001",
+  "safe_checkpoint_in": "91e43938b14612e5166ac46ea5fe101eb88390bc",
+  "scope": "scoped automatic recovery from TOOL001 canonical/actual-use references, CENTRAL evidence, and provenance-verified WIC fixtures",
+  "searched_locations": [
+    "I:/오부장 AI (인공지능)/WIC34_C_REBUILD/_work16_tool001",
+    "I:/오부장 AI (인공지능)/WIC34_C_REBUILD/TOOL001",
+    "I:/GPT 도구 작업/1번 고객 자동화 안내서",
+    "I:/오부장 AI (인공지능)/WIC34_C_REBUILD/repo42/fixtures",
+    "I:/오부장 AI (인공지능)/WIC34_C_REBUILD/repo13/tests",
+    "feedback_pipeline/evidence"
+  ],
+  "excluded": {
+    "tool001_archived_html_shells": "not report inputs",
+    "tests/unverified_report_payload.json": "synthetic regression-only payload",
+    "TOOL013_114_file_catalog": "verified bulk metadata execution evidence, but no independently verified TOOL001 report payload contract",
+    "TOOL013_xls_xlsx_samples": "metadata workbooks, not source reports"
+  },
+  "recovered_actual_report_records": [
+    {
+      "report_id": "KMG-BCC-AEROSPACE-2026",
+      "publisher": "BCC Research",
+      "title": "Global Markets for Advanced Aerospace Materials",
+      "source": "repo42/fixtures/customer_guidance_actual_kmg_expected.json#reports[0]",
+      "provenance": "actual customer fixture; source URL, title, publisher, date, pages, list price, full TOC and exact report information retained",
+      "tool001_contract_missing": ["supply_price"],
+      "individual_result": "HOLD"
+    },
+    {
+      "report_id": "KMG-TECHNAVIO-FRP-RECYCLING-2026",
+      "publisher": "Technavio",
+      "title": "Fiber Reinforced Plastic (FRP) Recycling Market Analysis, Size, and Forecast 2026-2030",
+      "source": "repo42/fixtures/customer_guidance_actual_kmg_expected.json#reports[1]",
+      "provenance": "actual customer fixture; source URL, title, publisher, date, pages, full TOC and exact report information retained",
+      "tool001_contract_missing": ["list_price", "supply_price"],
+      "individual_result": "HOLD"
+    },
+    {
+      "report_id": "KMG-STRATISTICS-CARBON-RECYCLING-2034",
+      "publisher": "Stratistics MRC",
+      "title": "Carbon Fiber Recycling Market Forecasts to 2034 - Global Analysis By Type (Milled Carbon Fiber and Chopped Carbon Fiber), Source, Recycling Process, End User and By Geography",
+      "source": "repo42/fixtures/customer_guidance_actual_kmg_expected.json#reports[2]",
+      "provenance": "actual customer fixture; source URL, title, publisher, date, pages, list price, full TOC and exact report information retained",
+      "tool001_contract_missing": ["supply_price"],
+      "individual_result": "HOLD"
+    }
+  ],
+  "actual_report_records_recovered": 3,
+  "actual_verified_report_payloads": 0,
+  "required": 5,
+  "report_results": {
+    "REPORT_1": "HOLD_SUPPLY_PRICE_UNVERIFIED",
+    "REPORT_2": "HOLD_LIST_AND_SUPPLY_PRICE_UNVERIFIED",
+    "REPORT_3": "HOLD_SUPPLY_PRICE_UNVERIFIED",
+    "REPORT_4": "HOLD_NOT_RECOVERED",
+    "REPORT_5": "HOLD_NOT_RECOVERED"
+  },
+  "runtime_contract_gaps": [
+    "actual report discovery is not connected to the TOOL001 canonical runtime",
+    "no canonical provenance registry existed for recovered actual report records",
+    "report description and major-content provenance are not represented in the current TOOL001 required-field contract"
+  ],
+  "actual_execution": {
+    "individual_contract_check": "EXECUTED",
+    "individual_expected_actual": [
+      "REPORT_1 expected HOLD for unverified supply_price; actual HOLD",
+      "REPORT_2 expected HOLD for unverified list_price and supply_price; actual HOLD",
+      "REPORT_3 expected HOLD for unverified supply_price; actual HOLD"
+    ],
+    "canonical_runtime_set_gate": "EXPECTED HOLD: actual_count=3, required_count=5",
+    "canonical_browser_attempt": "TEST_HOLD_BROWSER_FILE_URL_POLICY",
+    "canonical_output_generated": false,
+    "reason": "The selected browser blocks local file URLs. No alternate browser or policy workaround was attempted. Existing verified negative gate evidence remains SKIP_REUSE; this run does not claim deployed-copy E2E."
+  },
+  "status": "HOLD_EVIDENCE_WAITING",
+  "next_start": "Reuse these three recovered records; discover only two additional provenance-backed records and independently verify missing commercial fields before canonical runtime E2E. Do not rescan completed locations."
+}
