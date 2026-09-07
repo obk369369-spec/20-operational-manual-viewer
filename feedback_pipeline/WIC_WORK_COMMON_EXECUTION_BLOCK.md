@@ -212,6 +212,13 @@ TOOL043_CURRENT_SCOPE_RETEST = FORBIDDEN
    - 특정 기기 감지 실패 시 `1회 재감지 → 다른 canonical 검증경로 확인 → 마지막 SAFE_CHECKPOINT에서 재개`하고 같은 실패방법을 반복하거나 사용자에게 재연결을 반복 요구하지 않는다.
    - 사용자 기기 직접 접근 없이 끝낼 수 있으면 canonical 경로로 처리한다. 직접 접근이 필요해도 대량 삭제·대량 이동·자동 정리·임의 경로 변경·정상본 덮어쓰기·미검증 승격을 금지한다.
 
+11. FLEET_ORCHESTRATION
+   - 다중 독립 대상은 `feedback_pipeline/wic_fleet_orchestrator.py`로 조정하고 기존 `wic_mutual_supervision.py`와 TOOL044 fast-deploy 단계는 SKIP_REUSE한다.
+   - 대상별 `SKIP_REUSE → CHANGE_ONLY → IMPACT_ONLY → FAIL_ONLY_RETRY → REMOTE_READBACK_REUSE → SAFE_CHECKPOINT_RESUME`를 강제한다.
+   - 같은 repo/canonical lock은 직렬화하고 독립 lock만 병렬 실행한다. 한 lane의 실패·영향범위 불명은 해당 lane만 격리하며 정상 lane을 중단하지 않는다.
+   - manifest는 증거·상태 입력만 허용하며 임의 명령 실행기로 사용하지 않는다. 영향범위를 안전하게 확정할 수 없으면 `HOLD_IMPACT_UNKNOWN`으로 fail-closed한다.
+   - TOOL041/TOOL042는 fleet orchestration의 remote read-back과 deployed-copy 검증 전까지 HOLD한다.
+
 ## 반복 공통작업 승격 규칙
 - 현재 실제 TOOL 작업 중 동일 작업이 반복되면 별도 전수조사 없이 REUSE_CANDIDATE로 기록한다.
 - 실제 PASS된 뒤 공통 실행부로 승격한다.

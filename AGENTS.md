@@ -34,3 +34,10 @@ HOLD, WAITING, NOT_FOUND, STOPPED, FAIL, FAILED, or COMPLETE are not accepted as
 The human user is RESULT_ONLY by default. Intermediate repair, retest, resume, rollback-to-safe-checkpoint, and peer-layer recovery are system responsibilities. User action is permitted only for a separately proven user-only external action and must be queued/batched.
 The mutual-supervision engine reuses TOOL044 fast-deploy stage definitions instead of rebuilding test/deploy/checkpoint mechanics. Do not fork duplicate supervision logic per TOOL.
 Before a WIC task is reported complete, the state presented to the mutual-supervision engine must reach DEPLOYED_PASS. Any missing stage evidence means repair/resume, not a partial-completion report.
+
+## Fleet orchestration binding
+
+For more than one independent WIC target, use `feedback_pipeline/wic_fleet_orchestrator.py` after candidate admission and before target-specific execution. It reuses `wic_mutual_supervision.py` and TOOL044 fast-deploy stages; do not duplicate those gates per TOOL.
+Unchanged targets with existing DEPLOYED_PASS evidence terminate as SKIP_REUSE. Changed targets require a bounded impact scope. Unknown impact is isolated as HOLD_IMPACT_UNKNOWN, while one failed lane must not stop independent lock groups.
+Lanes sharing a repository or canonical asset lock are serialized; independent lock groups may run concurrently. The manifest is evidence-only and must never be treated as an arbitrary command runner.
+TOOL041 and TOOL042 remain outside fleet execution until the fleet orchestrator itself has canonical remote read-back and deployed-copy verification evidence.

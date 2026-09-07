@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "max_workers": 4,
+  "lanes": [
+    {
+      "target_tool": "TOOL012",
+      "operation_id": "reuse-static-subsite-cta",
+      "lock_key": "repo12",
+      "existing_deployed_pass": true,
+      "change_detected": false,
+      "evidence_ref": "VERIFIED_COMPONENT_REGISTRY.json#TOOL012_STATIC_SUBSITE_FUNCTIONAL_CTA"
+    },
+    {
+      "target_tool": "TOOL013",
+      "operation_id": "reuse-large-xlsx-batch",
+      "lock_key": "repo13",
+      "existing_deployed_pass": true,
+      "change_detected": false,
+      "evidence_ref": "VERIFIED_COMPONENT_REGISTRY.json#TOOL013_LARGE_XLSX_BATCH_UI_SAFE"
+    },
+    {
+      "target_tool": "TOOL044",
+      "operation_id": "reuse-fast-deploy-and-supervision",
+      "lock_key": "central",
+      "existing_deployed_pass": true,
+      "change_detected": false,
+      "evidence_ref": "evidence/wic_mutual_supervision_20260904.json"
+    },
+    {
+      "target_tool": "ORCHESTRATOR_CANARY",
+      "operation_id": "isolated-recovery-path",
+      "lock_key": "canary-recovery",
+      "change_detected": true,
+      "impact_known": true,
+      "status": "FAIL",
+      "safe_auto_recovery": true,
+      "safe_checkpoint_stage": "TEST",
+      "failure_method_id": "bounded-recovery-v2",
+      "previous_failure_method_id": "failed-method-v1"
+    }
+  ]
+}
