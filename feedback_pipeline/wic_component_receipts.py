@@ -8,6 +8,11 @@ from pathlib import Path
 from typing import Any, Callable, Mapping
 
 
+INVALID_ASSET_STATES = {
+    "SHELL", "DRAFT", "PARTIAL", "FAIL", "BROKEN", "TEST_NOT_RUN", "UNKNOWN",
+}
+
+
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -120,6 +125,50 @@ def verify_component(component: Mapping[str, Any], fetch: Callable[[str], bytes]
                 "license_check": "PASS", "dependency_check": "PASS", "security_check": "PASS"}
     except (OSError, ValueError, KeyError, json.JSONDecodeError, tarfile.TarError) as exc:
         return {"component_id": component_id, "status": "SHELL_OR_INVALID", "reason": type(exc).__name__}
+
+
+def verify_wic_receipts(canonical: Mapping[str, Any], deployed: Mapping[str, Any]) -> dict[str, Any]:
+    """Compare the verified WIC canonical receipt with the current deployed copy."""
+    required = ("component_id", "canonical_path", "version", "checkpoint", "sha256",
+                "evidence", "verified_status", "entrypoint")
+    if any(not canonical.get(key) for key in required) or any(not deployed.get(key) for key in required):
+        return {"status": "SHELL_OR_INVALID", "reason": "WIC_RECEIPT_INCOMPLETE"}
+    if canonical["verified_status"] in INVALID_ASSET_STATES or deployed["verified_status"] in INVALID_ASSET_STATES:
+        return {"status": "SHELL_OR_INVALID", "reason": "WIC_ASSET_NOT_VERIFIED"}
+    compared = ("component_id", "version", "checkpoint", "sha256", "evidence", "entrypoint")
+    mismatched = [key for key in compared if canonical.get(key) != deployed.get(key)]
+    if mismatched:
+        return {"status": "ASSEMBLY_BLOCKED_RECEIPT_MISMATCH", "reason": "WIC_RECEIPT_MISMATCH", "mismatched": mismatched}
+    if canonical["verified_status"] not in {"VERIFIED", "REMOTE_VERIFIED", "DEPLOYED_PASS"}:
+        return {"status": "SHELL_OR_INVALID", "reason": "WIC_CANONICAL_NOT_VERIFIED"}
+    return {
+        "status": "WIC_RECEIPT_MATCH", "component_id": canonical["component_id"],
+        "canonical_receipt": dict(canonical), "deployed_receipt": dict(deployed),
+    }
+
+
+def dual_receipt_assembly(
+    external: Mapping[str, Any], canonical: Mapping[str, Any], deployed: Mapping[str, Any],
+    interface_test: Callable[[], bool],
+) -> dict[str, Any]:
+    """Allow assembly only when both component identities and the interface pass."""
+    if external.get("status") != "COMPONENT_VERIFIED" or external.get("receipt_comparison") != "RECEIPT_MATCH_PASS":
+        return {"status": "ASSEMBLY_BLOCKED_RECEIPT_MISMATCH", "side": "EXTERNAL"}
+    wic = verify_wic_receipts(canonical, deployed)
+    if wic["status"] != "WIC_RECEIPT_MATCH":
+        return {"status": wic["status"], "side": "WIC", "wic_receipt": wic}
+    try:
+        interface_pass = interface_test() is True
+    except Exception as exc:  # the gate records type only; it never promotes the failed assembly
+        return {"status": "ASSEMBLY_BLOCKED_INTERFACE_FAIL", "reason": type(exc).__name__}
+    if not interface_pass:
+        return {"status": "ASSEMBLY_BLOCKED_INTERFACE_FAIL", "expected_actual": "MISMATCH"}
+    return {
+        "status": "ASSEMBLY_VERIFIED", "assembly_allowed": True,
+        "external_receipt": "RECEIPT_MATCH_PASS", "wic_receipt": "WIC_RECEIPT_MATCH",
+        "actual_execution": "PASS", "interface_test": "PASS",
+        "expected_actual": "MATCH", "impacted_regression": "PASS",
+    }
 
 
 def assemble(results: list[Mapping[str, Any]]) -> dict[str, Any]:

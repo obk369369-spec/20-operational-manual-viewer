@@ -316,3 +316,12 @@ PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
 - 자산 상태는 `VERIFIED / INVALID / HOLD`로 판정하며 `SHELL / DRAFT / FAIL / PARTIAL / BROKEN / LEGACY / TEMP / UNKNOWN / TEST_NOT_RUN`은 정상 canonical과 분리하고 승격을 차단한다.
 - VERIFIED 자산만 역할에 맞게 GitHub canonical, evidence, VERIFIED_COMPONENT_REGISTRY, 실제 TOOL 폴더, CENTRAL MASTER reference로 저장한다. 모든 위치에 파일 전체를 중복 저장하지 않는다.
 - 사용자 기기 원본은 삭제·이동·덮어쓰기하지 않는다. manifest/canonical로 확인된 관련 경로만 읽고 USB/SSD/PC 전체검색은 금지한다.
+
+### 외부부품 + WIC 고유기능 양측 영수증 강제검증
+
+- 외부 `SOURCE_RECEIPT ↔ LOCAL_RECEIPT`와 WIC `WIC_CANONICAL_RECEIPT ↔ CURRENT_LOCAL/DEPLOYED_RECEIPT`를 각각 다시 대조한다.
+- `EXTERNAL_RECEIPT_MATCH + WIC_RECEIPT_MATCH`인 경우에만 `ASSEMBLY_ALLOWED`다. 한쪽만 VERIFIED인 상태로 조합하지 않는다.
+- WIC 쪽은 canonical path, version/checkpoint, hash, evidence, 실제 사용 파일, VERIFIED 상태, 실행 entrypoint가 일치해야 한다.
+- 외부 receipt mismatch 또는 WIC hash/version mismatch는 `ASSEMBLY_BLOCKED_RECEIPT_MISMATCH`, `SHELL / DRAFT / PARTIAL / FAIL / BROKEN / TEST_NOT_RUN / UNKNOWN` 및 entrypoint 부재는 `SHELL_OR_INVALID`로 격리한다.
+- receipt가 모두 일치해도 `ACTUAL EXECUTION → INTERFACE TEST → EXPECTED↔ACTUAL → IMPACTED REGRESSION`을 통과하기 전에는 `ASSEMBLY_VERIFIED` 및 canonical 승격을 금지한다.
+- 이 게이트는 기존 receipt/assembly 구현을 사용하며, 별도 MASTER·공통시스템을 만들지 않는다. 검증된 기존 범위는 `SKIP_REUSE`, 변경부는 `CHANGE_ONLY + IMPACT_ONLY`로 검사한다.

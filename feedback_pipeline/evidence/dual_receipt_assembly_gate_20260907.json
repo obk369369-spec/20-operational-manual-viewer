@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "gate": "DUAL_RECEIPT_ASSEMBLY_GATE",
+  "status": "VERIFIED",
+  "changed_scope": [
+    "feedback_pipeline/wic_component_receipts.py",
+    "feedback_pipeline/test_dual_receipt_assembly.py",
+    "feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md"
+  ],
+  "actual_wic_fixture": {
+    "component": "TOOL044_MECHANICAL",
+    "canonical_path": "feedback_pipeline/tool044_mechanical.py",
+    "deployed_status": "DEPLOYED_PASS",
+    "evidence": "feedback_pipeline/evidence/tool044_mechanical_deployed.actual.json"
+  },
+  "external_fixture": {
+    "component": "FASTJSONSCHEMA-2.21.2",
+    "receipt_status": "COMPONENT_VERIFIED / RECEIPT_MATCH_PASS",
+    "prior_evidence": "feedback_pipeline/evidence/external_component_receipts_deployed_20260907.json",
+    "verification_scope": "SKIP_REUSE"
+  },
+  "tests": {
+    "matched_external_and_wic": "ASSEMBLY_VERIFIED",
+    "external_receipt_mismatch": "ASSEMBLY_BLOCKED_RECEIPT_MISMATCH",
+    "wic_hash_version_mismatch": "ASSEMBLY_BLOCKED_RECEIPT_MISMATCH",
+    "wic_shell_draft": "SHELL_OR_INVALID",
+    "interface_failure": "ASSEMBLY_BLOCKED_INTERFACE_FAIL",
+    "normal_expected_actual_regression": "PASS"
+  },
+  "user_action_queue": 0
+}
