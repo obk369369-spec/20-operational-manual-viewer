@@ -325,3 +325,32 @@ PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
 - 외부 receipt mismatch 또는 WIC hash/version mismatch는 `ASSEMBLY_BLOCKED_RECEIPT_MISMATCH`, `SHELL / DRAFT / PARTIAL / FAIL / BROKEN / TEST_NOT_RUN / UNKNOWN` 및 entrypoint 부재는 `SHELL_OR_INVALID`로 격리한다.
 - receipt가 모두 일치해도 `ACTUAL EXECUTION → INTERFACE TEST → EXPECTED↔ACTUAL → IMPACTED REGRESSION`을 통과하기 전에는 `ASSEMBLY_VERIFIED` 및 canonical 승격을 금지한다.
 - 이 게이트는 기존 receipt/assembly 구현을 사용하며, 별도 MASTER·공통시스템을 만들지 않는다. 검증된 기존 범위는 `SKIP_REUSE`, 변경부는 `CHANGE_ONLY + IMPACT_ONLY`로 검사한다.
+
+### 내부 후보 ↔ 독립 외부 VERIFIED 기준부품 교차검증 — REQUIRED
+
+- WIC 내부에서 찾은 A가 `WIC_CANONICAL_RECEIPT ↔ CURRENT_LOCAL/DEPLOYED_RECEIPT`에 일치하고 자체 PASS/VERIFIED 기록이 있어도 그것만으로 껍데기 차단 완료로 보지 않는다.
+- 같은 기능을 수행하는 독립 외부 VERIFIED 기준부품 B가 존재하고 공식 provenance/receipt를 확보할 수 있으면, B를 독립 기준으로 사용해 A를 반드시 교차검증한다.
+- 먼저 `A ↔ A 영수증`, `B ↔ B 공식 영수증`을 각각 대조한 뒤, A와 B 사이의 입력 구조, 출력 구조, 필수 필드, 데이터 타입/형식, 필드 의미, 오류/경계 동작, 대표 실제 입력의 실행결과를 비교한다.
+- 내부 A와 외부 B의 코드나 파일 자체가 서로 동일해야 한다는 뜻은 아니다. 같은 역할에서 요구되는 데이터 계약과 실제 핵심 동작이 독립 기준과 일치하는지를 확인한다.
+- 비교 가능한 외부 VERIFIED 기준부품이 있는데도 A를 자체 receipt/자체 테스트만으로 VERIFIED 승격하는 것은 금지한다.
+- A가 receipt는 맞지만 외부 기준과의 구조·데이터·실행결과 교차검증에서 핵심 기능이 없거나 기대동작을 충족하지 못하면 `SOURCE_MATCHED_BUT_SHELL_OR_INVALID` 또는 `SHELL_OR_INVALID`로 차단한다.
+- A와 B 양쪽 provenance가 VERIFIED되고 데이터 계약과 실제 실행 비교가 PASS한 뒤에만 조합 단계로 들어간다. 이후 기존 `INTERFACE TEST → EXPECTED↔ACTUAL → IMPACTED REGRESSION`도 그대로 수행한다.
+- 외부 기준부품이 실제로 존재하지 않거나 동일 역할 비교가 성립하지 않으면 거짓 비교나 임의 기준을 만들지 않는다. 이 경우 `NO_EXTERNAL_REFERENCE_AVAILABLE`을 기록하고 기존 독립 EXPECTED/실제 실행/영향 회귀 게이트로 fail-closed 검증한다.
+- 이 규칙은 TOOL044, 모든 WIC TOOL/대화창, Work 지시문, 내부부품↔외부부품·내부↔내부·외부↔외부 조합에서 적용하며, 기존 DUAL_RECEIPT_ASSEMBLY_GATE를 대체하지 않고 강화한다.
+INTERNAL_SELF_RECEIPT_ALONE_IS_NOT_VERIFIED = TRUE
+EXTERNAL_VERIFIED_REFERENCE_CROSSCHECK = REQUIRED_WHEN_AVAILABLE
+CROSSCHECK_DATA_CONTRACT = REQUIRED
+CROSSCHECK_ACTUAL_EXECUTION = REQUIRED
+CROSSCHECK_MISMATCH_BLOCKS_ASSEMBLY = TRUE
+NO_EXTERNAL_REFERENCE_FAKE_MATCH = FORBIDDEN
+
+### Work 밖 실행 우선 — REQUIRED
+
+- 검증된 Registry/receipt/hash/checkpoint/로컬·무료 실행기와 현재 권한으로 처리 가능한 `외부부품 탐색 → provenance 확인 → 기존 VERIFIED 재사용 → receipt 대조 → 교차검증 → 테스트`는 Work 전용 작업으로 묶지 않는다.
+- 정상 운영과 반복 감시는 가능한 한 Work/Codex 밖의 무료·로컬·일반 실행경로에서 수행하고, Work는 외부 READY 부품과 기존 VERIFIED 자산으로 해결되지 않는 작은 신규 개발 또는 Work만 가능한 마지막 작업에 제한한다.
+- `NO_READY_COMPONENT`는 자동 신규개발 명령이 아니다. `기존 VERIFIED 재사용 → Registry 외부 VERIFIED 재사용 → TOOL044 READY 탐색 → 기능 분해/우회운영 → 외부부품 대기 → 실제 업무 차단 시에만 최소 신규개발 검토` 순서를 강제한다.
+- Work 밖 완전자동 개발·수리·GitHub/CENTRAL·실사용 배포까지의 E2E는 실제 증거 없이 VERIFIED라고 주장하지 않는다. 현재 가능한 단계와 Work가 필요한 단계를 분리 보고한다.
+WORK_OUTSIDE_EXECUTION_FIRST = REQUIRED_WHEN_CAPABLE
+NO_READY_COMPONENT_AUTO_BUILD = FORBIDDEN
+WORK_NEW_BUILD = LAST_RESORT_ONLY
+WORK_INDEPENDENT_FULL_E2E_REQUIRES_EVIDENCE = TRUE
