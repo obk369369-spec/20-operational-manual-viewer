@@ -190,6 +190,27 @@
         "impacted_regression": "PASS"
       },
       "reuse_requires_target_retest": true
+    },
+    {
+      "component_id": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+      "status": "VERIFIED_REUSABLE",
+      "source_tool": "TOOL044",
+      "source_repository": "obk369369-spec/20-operational-manual-viewer",
+      "source_file": "feedback_pipeline/wic_asset_provenance.py",
+      "function": "Classify only manifested related PC/USB/SSD assets by provenance, version, hash, evidence and actual execution",
+      "input_contract": "Explicit bounded asset manifest; no device-wide discovery",
+      "output_contract": "VERIFIED assets receive role-specific promotion routes; non-verified states remain isolated",
+      "dependencies": [
+        "Python standard library"
+      ],
+      "test_evidence": {
+        "unit": "feedback_pipeline/test_wic_asset_provenance.py: 5/5 PASS",
+        "actual": "feedback_pipeline/evidence/related_asset_classification_deployed_20260907.json",
+        "verified_assets": 2,
+        "isolated_partial": 1,
+        "isolated_draft": 1
+      },
+      "reuse_requires_target_retest": true
     }
   ],
   "candidates": [

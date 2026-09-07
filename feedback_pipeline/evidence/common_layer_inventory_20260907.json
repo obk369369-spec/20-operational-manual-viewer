@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETE",
+  "scope": "current common execution path only",
+  "classification": {
+    "A": "EXTERNAL_VERIFIED",
+    "B": "WIC_VERIFIED_REUSE",
+    "C": "WIC_CUSTOM_LAYER",
+    "D": "NO_READY_COMPONENT"
+  },
+  "layers": [
+    {"layer_id":"START_ADMISSION","role":"fail-closed work admission","file":"feedback_pipeline/work_gate_handoff.py","class":"C","evidence":"existing strict-resume evidence","canonical":"GitHub","dependency":"stdlib","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"MUTUAL_SUPERVISION","role":"seven peer validation layers","file":"feedback_pipeline/wic_mutual_supervision.py","class":"B","evidence":"feedback_pipeline/evidence/wic_mutual_supervision_20260904.json","canonical":"GitHub","dependency":"TOOL044 stages","license":"WIC internal","external_replacement":"D","next":"SKIP_REUSE"},
+    {"layer_id":"FLEET_SCHEDULER","role":"incremental multi-tool scheduling","file":"feedback_pipeline/wic_fleet_orchestrator.py","class":"C","evidence":"feedback_pipeline/evidence/wic_fleet_orchestration_deployed_20260907.json","canonical":"GitHub and TOOL044 actual-use","dependency":"stdlib concurrent.futures","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"LOCK_SERIALIZATION","role":"serialize shared resource groups","file":"feedback_pipeline/wic_fleet_orchestrator.py","class":"B","evidence":"fleet deployed evidence","canonical":"GitHub","dependency":"ThreadPoolExecutor","license":"Python PSF","external_replacement":"D","next":"SKIP_REUSE"},
+    {"layer_id":"CHANGE_IMPACT","role":"change-only and impact-only admission","file":"feedback_pipeline/wic_fleet_orchestrator.py","class":"C","evidence":"fleet deployed evidence","canonical":"GitHub","dependency":"mutual supervision","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"FAILURE_ISOLATION","role":"isolate failed lanes","file":"feedback_pipeline/wic_fleet_orchestrator.py","class":"C","evidence":"fleet deployed evidence","canonical":"GitHub","dependency":"safe checkpoint","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"SAFE_RECOVERY","role":"resume failed impact only","file":"feedback_pipeline/wic_mutual_supervision.py","class":"B","evidence":"mutual supervision evidence","canonical":"GitHub","dependency":"checkpoint","license":"WIC internal","external_replacement":"D","next":"SKIP_REUSE"},
+    {"layer_id":"SOURCE_RECEIPT","role":"official registry receipt","file":"feedback_pipeline/wic_component_receipts.py","class":"C","evidence":"feedback_pipeline/evidence/external_component_receipts_deployed_20260907.json","canonical":"GitHub","dependency":"urllib","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"LOCAL_RECEIPT","role":"local artifact identity receipt","file":"feedback_pipeline/wic_component_receipts.py","class":"C","evidence":"external component deployed evidence","canonical":"GitHub","dependency":"hashlib","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"SCHEMA_VALIDATION","role":"completion proof validation","file":"tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl","class":"A","evidence":"feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json","canonical":"GitHub","dependency":"none runtime","license":"BSD","external_replacement":"A","next":"SKIP_REUSE"},
+    {"layer_id":"BROWSER_STATE","role":"durable local checkpoint cache","file":"TOOL013 vendor/idb-keyval-6.2.2.js","class":"A","evidence":"feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json","canonical":"TOOL013 repo and actual-use","dependency":"IndexedDB","license":"Apache-2.0","external_replacement":"A","next":"SKIP_REUSE"},
+    {"layer_id":"COMPONENT_SELECTION","role":"match/invalid/no-ready separation","file":"feedback_pipeline/wic_component_receipts.py","class":"C","evidence":"external component deployed evidence","canonical":"GitHub","dependency":"receipt layers","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"COMPONENT_ASSEMBLY","role":"verified-only assembly and interface gate","file":"feedback_pipeline/wic_component_receipts.py","class":"C","evidence":"external component deployed evidence","canonical":"GitHub and TOOL044 actual-use","dependency":"receipt layers","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"},
+    {"layer_id":"ASSET_PROVENANCE","role":"classify manifested PC/USB/SSD assets","file":"feedback_pipeline/wic_asset_provenance.py","class":"C","evidence":"feedback_pipeline/evidence/related_asset_classification_deployed_20260907.json","canonical":"GitHub and TOOL044 actual-use","dependency":"stdlib","license":"WIC internal","external_replacement":"D","next":"VERIFY_THIS_CHANGE"},
+    {"layer_id":"CANONICAL_PROMOTION","role":"allow verified assets only","file":"feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json","class":"C","evidence":"registry promotion gate","canonical":"GitHub","dependency":"receipt and asset gates","license":"WIC internal","external_replacement":"D","next":"VERIFY_THIS_CHANGE"},
+    {"layer_id":"REMOTE_READBACK","role":"remote SHA/file confirmation","file":"feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md","class":"B","evidence":"remote checkpoint receipts","canonical":"GitHub","dependency":"git","license":"GPL-2.0","external_replacement":"B","next":"SKIP_REUSE"},
+    {"layer_id":"ACTUAL_USE_DEPLOY","role":"copy only verified artifacts","file":"feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md","class":"B","evidence":"deployed-copy evidence","canonical":"GitHub policy","dependency":"OS filesystem","license":"platform","external_replacement":"D","next":"SKIP_REUSE"},
+    {"layer_id":"SAFE_CHECKPOINT","role":"immutable resume point","file":"feedback_pipeline/WIC_CHAT_HANDOFF_ORCHESTRATION_ADDENDUM_20260907.md","class":"C","evidence":"Git commit checkpoint","canonical":"GitHub","dependency":"git","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"}
+  ],
+  "external_search": {
+    "candidate":"Apache Airflow 3.3",
+    "official_evidence":"https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html",
+    "result":"NO_READY_COMPONENT",
+    "reason":"requires WSL2 on Windows plus installation, metadata database, DAG authoring and deployment configuration; cannot replace WIC contracts unmodified"
+  }
+}

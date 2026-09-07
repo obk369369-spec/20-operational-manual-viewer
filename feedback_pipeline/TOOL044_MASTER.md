@@ -83,6 +83,8 @@
 - upstream tag/commit: `v2.21.2` / `4f1ed6d9c0462f3522a66f49c8f3dc482300101b`.
 - artifact SHA256: `1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463`.
 - native validator: fastjsonschema; valid proof 1건 허용, malformed proof 6건 차단.
+- 공통 외부부품 receipt/assembly 정본: `feedback_pipeline/wic_component_receipts.py` 및 `feedback_pipeline/evidence/external_component_receipts_deployed_20260907.json`.
+- 관련 PC/USB/SSD 자산 분류 정본: `feedback_pipeline/wic_asset_provenance.py`, inventory `feedback_pipeline/evidence/common_layer_inventory_20260907.json`; manifest 밖 전체 기기검색과 비검증 승격은 금지한다.
 - receipt chain: `ad352857e02f4f20e6b6e7de7d62cb7fa509752a359377586ae7dab4454bf2cb`.
 - canonical evidence: `feedback_pipeline/evidence/tool044_tool043_external_trust_deployed.json`.
 - code remote read-back: `d57a629c9a6050f936daf38ab53d688b2d98dbb0`.

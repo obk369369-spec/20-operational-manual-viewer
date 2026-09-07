@@ -125,6 +125,8 @@ TOOL041_TOOL042_AFTER_COMMON_EXPANSION_BASELINE = TRUE
 
 ## 14. 2026-09-07 대화창 handoff 반영
 - 이 대화창에서 확정된 신규 영구규칙을 TOOL016 CENTRAL MASTER에 DIFF 성격으로 통합했다.
+- 공통층 inventory: `feedback_pipeline/evidence/common_layer_inventory_20260907.json`.
+- 기기 자산 정본 gate: `feedback_pipeline/wic_asset_provenance.py`; 현재 작업 manifest에 직접 관련된 경로만 검사하며 VERIFIED만 canonical/registry/실사용 reference로 승격한다.
 - 핵심 신규사항은 `대화창 이동 전 CENTRAL flush 강제`, `검증자료와 껍데기 분리 및 정상자료 정본승격`, `실행기기 독립/USB 단일장애점 제거`, `사용자 기기 직접변경 기본금지`, `TOOL043 최종 확장 기준선`, `공통 확장 후 TOOL041·TOOL042 투입 순서`다.
 - 이후 새 대화는 이 master + 최신 checkpoint/handoff를 먼저 읽고 마지막 실제 작업지점부터 재개한다.
 - 실제 GitHub write/commit/read-back 없이 업데이트 완료라고 보고하지 않는다.

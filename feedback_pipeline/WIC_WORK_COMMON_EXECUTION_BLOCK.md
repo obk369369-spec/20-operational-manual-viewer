@@ -312,3 +312,7 @@ PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
 - READY component가 없으면 임의 개발하지 않고 `NO_READY_COMPONENT`로 분리한다.
 - 개별 PASS 후에도 `ASSEMBLY → INTEGRATION TEST → EXPECTED↔ACTUAL → INTERFACE TEST → IMPACTED REGRESSION`을 통과해야 canonical 승격이 가능하다.
 - 승격 이후 기존 GitHub read-back, 실제 사용본 배포, deployed-copy test, SAFE_CHECKPOINT 완료조건을 그대로 적용한다.
+- 외부 receipt 검증과 병행해 현재 작업 manifest가 직접 지목한 USB/SSD/PC 자산만 `provenance → version → hash → evidence → shell 판정 → actual execution → EXPECTED↔ACTUAL` 순서로 검사한다.
+- 자산 상태는 `VERIFIED / INVALID / HOLD`로 판정하며 `SHELL / DRAFT / FAIL / PARTIAL / BROKEN / LEGACY / TEMP / UNKNOWN / TEST_NOT_RUN`은 정상 canonical과 분리하고 승격을 차단한다.
+- VERIFIED 자산만 역할에 맞게 GitHub canonical, evidence, VERIFIED_COMPONENT_REGISTRY, 실제 TOOL 폴더, CENTRAL MASTER reference로 저장한다. 모든 위치에 파일 전체를 중복 저장하지 않는다.
+- 사용자 기기 원본은 삭제·이동·덮어쓰기하지 않는다. manifest/canonical로 확인된 관련 경로만 읽고 USB/SSD/PC 전체검색은 금지한다.

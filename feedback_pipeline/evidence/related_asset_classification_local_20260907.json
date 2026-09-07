@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "scope": "MANIFESTED_RELATED_ASSETS_ONLY",
+  "destructive_actions": 0,
+  "assets": [
+    {
+      "asset_id": "FASTJSONSCHEMA_CANONICAL_WHEEL",
+      "path": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\tool043\\vendor\\fastjsonschema-2.21.2-py3-none-any.whl",
+      "role": "external validator canonical artifact",
+      "declared_state": "VERIFIED",
+      "status": "VERIFIED",
+      "actual_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+      "checks": {
+        "provenance": true,
+        "version": true,
+        "hash": true,
+        "evidence": true,
+        "actual_execution": true,
+        "expected_actual": true
+      },
+      "promotion_allowed": true,
+      "promotion_routes": [
+        "GitHub canonical",
+        "evidence",
+        "VERIFIED_COMPONENT_REGISTRY",
+        "TOOL044 actual-use reference",
+        "CENTRAL MASTER reference"
+      ],
+      "reason": "all provenance gates passed"
+    },
+    {
+      "asset_id": "IDB_KEYVAL_TOOL013_DEPLOYED_JS",
+      "path": "I:\\GPT 도구 작업\\13번 엑셀 업로드 도구\\vendor\\idb-keyval-6.2.2.js",
+      "role": "TOOL013 deployed persistent-state component",
+      "declared_state": "VERIFIED",
+      "status": "VERIFIED",
+      "actual_sha256": "f5985c43b11e4f99700e0c97a0d44ac129821f227f17c60afd7de8d421db5a58",
+      "checks": {
+        "provenance": true,
+        "version": true,
+        "hash": true,
+        "evidence": true,
+        "actual_execution": true,
+        "expected_actual": true
+      },
+      "promotion_allowed": true,
+      "promotion_routes": [
+        "evidence",
+        "VERIFIED_COMPONENT_REGISTRY",
+        "TOOL013 actual-use",
+        "CENTRAL MASTER reference"
+      ],
+      "reason": "all provenance gates passed"
+    },
+    {
+      "asset_id": "LOCAL_TRANSIENT_RECEIPT_RUN",
+      "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\evidence\\external_component_receipts_local_20260907.json",
+      "role": "historical transient network-failure evidence",
+      "declared_state": "PARTIAL",
+      "status": "PARTIAL",
+      "actual_sha256": "d24433d3faa19013ddef8aeaffd4683dd5a61fec780d5c40c31c88f17fa90fe6",
+      "promotion_allowed": false,
+      "reason": "non-verified state is isolated before promotion"
+    },
+    {
+      "asset_id": "EXTERNAL_TRUST_DESIGN_GATE",
+      "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\WIC_EXTERNAL_TRUST_AND_RECEIPT_GATE.md",
+      "role": "design policy, not executable evidence",
+      "declared_state": "DRAFT",
+      "status": "DRAFT",
+      "actual_sha256": "81dcd6a1bd253c15d558930d08d4f5a2df61a5cea18f9b3cd9e9ceedb9d23ba7",
+      "promotion_allowed": false,
+      "reason": "non-verified state is isolated before promotion"
+    }
+  ],
+  "counts": {
+    "VERIFIED": 2,
+    "PARTIAL": 1,
+    "DRAFT": 1
+  },
+  "status": "PASS",
+  "recorded_at": "2026-09-07T02:11:04.678328+00:00"
+}
