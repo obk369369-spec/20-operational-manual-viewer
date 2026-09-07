@@ -13,11 +13,18 @@ FINAL = {"ACTUALLY_FIXED", "ACTUALLY_TESTED", "VERIFIED_SKIP", "FAIL", "HOLD_EVI
 RELEASE_FIELDS = ("test_executed", "test_input_recorded", "expected_defined", "actual_captured",
                   "expected_actual_match", "regression_passed", "actual_business_input_e2e",
                   "final_output_verified", "pass_evidence_recorded", "github_published", "remote_readback",
-                  "local_canonical_deployed", "deployed_canonical_e2e", "real_use_pass")
+                  "local_canonical_deployed", "deployed_canonical_e2e", "real_use_pass",
+                  "runtime_gate_executed", "runtime_receipt_recorded", "actual_use_receipt_recorded",
+                  "canonical_receipt_recorded", "deployed_receipt_recorded", "canonical_deployed_match",
+                  "provenance_verified", "impact_scope_defined", "impacted_regression_passed",
+                  "normal_case_regression_passed")
 RELEASE_SEQUENCE = ("MODIFIED", "TEST_EXECUTED", "TEST_INPUT_RECORDED", "EXPECTED_DEFINED",
                     "ACTUAL_CAPTURED", "EXPECTED_ACTUAL_MATCHED", "REGRESSION_PASSED",
                     "ACTUAL_INPUT_E2E_PASSED", "FINAL_OUTPUT_VERIFIED", "PASS_EVIDENCE_RECORDED",
-                    "GITHUB_PUBLISHED", "REMOTE_READBACK_PASSED",
+                    "RUNTIME_GATE_EXECUTED", "RUNTIME_RECEIPT_RECORDED", "ACTUAL_USE_RECEIPT_RECORDED",
+                    "PROVENANCE_VERIFIED", "IMPACT_SCOPE_DEFINED", "IMPACTED_REGRESSION_PASSED",
+                    "NORMAL_CASE_REGRESSION_PASSED", "GITHUB_PUBLISHED", "REMOTE_READBACK_PASSED",
+                    "CANONICAL_RECEIPT_RECORDED", "DEPLOYED_RECEIPT_RECORDED", "CANONICAL_DEPLOYED_MATCHED",
                     "LOCAL_CANONICAL_DEPLOYED", "DEPLOYED_CANONICAL_RETEST_PASSED", "COMPLETE")
 
 
