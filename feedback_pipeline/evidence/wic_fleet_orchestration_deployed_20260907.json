@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "execution_policy": {
+    "skip_reuse": true,
+    "change_only": true,
+    "impact_only": true,
+    "fail_only_retry": true,
+    "remote_readback_reuse": true,
+    "safe_checkpoint_resume": true,
+    "arbitrary_manifest_commands": false
+  },
+  "parallel_lock_groups": 4,
+  "lane_count": 4,
+  "decision_counts": {
+    "FAIL_ISOLATED_RECOVERY_READY": 1,
+    "SKIP_REUSE": 3
+  },
+  "results": [
+    {
+      "target_tool": "ORCHESTRATOR_CANARY",
+      "operation_id": "isolated-recovery-path",
+      "lock_key": "canary-recovery",
+      "decision": "FAIL_ISOLATED_RECOVERY_READY",
+      "next_stage": "TEST",
+      "isolated": true,
+      "reason": "Resume only the failed impact scope from SAFE_CHECKPOINT."
+    },
+    {
+      "target_tool": "TOOL012",
+      "operation_id": "reuse-static-subsite-cta",
+      "lock_key": "repo12",
+      "decision": "SKIP_REUSE",
+      "next_stage": "COMPLETE",
+      "isolated": false,
+      "reason": "Existing DEPLOYED_PASS evidence is unchanged."
+    },
+    {
+      "target_tool": "TOOL013",
+      "operation_id": "reuse-large-xlsx-batch",
+      "lock_key": "repo13",
+      "decision": "SKIP_REUSE",
+      "next_stage": "COMPLETE",
+      "isolated": false,
+      "reason": "Existing DEPLOYED_PASS evidence is unchanged."
+    },
+    {
+      "target_tool": "TOOL044",
+      "operation_id": "reuse-fast-deploy-and-supervision",
+      "lock_key": "central",
+      "decision": "SKIP_REUSE",
+      "next_stage": "COMPLETE",
+      "isolated": false,
+      "reason": "Existing DEPLOYED_PASS evidence is unchanged."
+    }
+  ],
+  "user_action_queue": []
+}
