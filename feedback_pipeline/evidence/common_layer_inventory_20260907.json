@@ -28,10 +28,30 @@
     {"layer_id":"ACTUAL_USE_DEPLOY","role":"copy only verified artifacts","file":"feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md","class":"B","evidence":"deployed-copy evidence","canonical":"GitHub policy","dependency":"OS filesystem","license":"platform","external_replacement":"D","next":"SKIP_REUSE"},
     {"layer_id":"SAFE_CHECKPOINT","role":"immutable resume point","file":"feedback_pipeline/WIC_CHAT_HANDOFF_ORCHESTRATION_ADDENDUM_20260907.md","class":"C","evidence":"Git commit checkpoint","canonical":"GitHub","dependency":"git","license":"WIC internal","external_replacement":"D","next":"KEEP_VERIFIED_CUSTOM"}
   ],
-  "external_search": {
-    "candidate":"Apache Airflow 3.3",
-    "official_evidence":"https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html",
-    "result":"NO_READY_COMPONENT",
-    "reason":"requires WSL2 on Windows plus installation, metadata database, DAG authoring and deployment configuration; cannot replace WIC contracts unmodified"
-  }
+  "external_search": [
+    {
+      "candidate":"Apache Airflow 3.3",
+      "official_evidence":"https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html",
+      "result":"NO_READY_COMPONENT",
+      "reason":"requires WSL2 on Windows plus installation, metadata database, DAG authoring and deployment configuration; cannot replace WIC contracts unmodified"
+    },
+    {
+      "candidate":"Prefect 3",
+      "official_evidence":"https://docs.prefect.io/v3/concepts/workers",
+      "result":"NO_READY_COMPONENT",
+      "reason":"requires Prefect installation, worker/work-pool configuration and WIC flow definitions; cloud mode additionally requires API configuration"
+    },
+    {
+      "candidate":"Dagster",
+      "official_evidence":"https://docs.dagster.io/",
+      "result":"NO_READY_COMPONENT",
+      "reason":"requires Dagster-specific asset/job definitions and deployment; it cannot enforce current WIC receipt and completion contracts unmodified"
+    },
+    {
+      "candidate":"Sigstore Cosign",
+      "official_evidence":"https://docs.sigstore.dev/cosign/verifying/verify/",
+      "result":"NO_READY_COMPONENT",
+      "reason":"verification requires installed Cosign plus a publisher signature/certificate or bundle; current unsigned external artifacts cannot gain provenance by unmodified attachment"
+    }
+  ]
 }
