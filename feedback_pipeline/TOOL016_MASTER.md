@@ -1,7 +1,7 @@
 # TOOL016 MASTER — 16번 Work 작업 조정·피드백 운영
 
 상태: ACTIVE / CENTRAL ORCHESTRATION MASTER
-기준일: 2026-08-30
+기준일: 2026-09-07
 저장 위치: WIC CENTRAL `feedback_pipeline/`
 
 이 문서는 16번 대화창의 고유 역할만 정의한다. WIC 전체 공통 운영규칙은 `WIC_GLOBAL_OPERATING_RULES.md`, Work 공통 실행은 `feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md`, 실제 각 TOOL 규칙은 해당 TOOL canonical master를 우선한다.
@@ -36,8 +36,15 @@
 ## 5. Chat handoff
 - 대화가 길어져 문맥 누락/로딩/응답 악화 위험이 커지면 사용자가 먼저 알아차리기 전에 `CHAT_HANDOFF_REQUIRED`를 제안한다.
 - 인계 내용은 SAFE_CHECKPOINT / OPEN / INCOMPLETE / HOLD-WAIT / 최근 실제 결과 / NEXT_WORK_QUEUE / NEXT_START / 영구규칙을 압축한다.
+- **대화창을 옮기기 전에 현재 대화에서 새로 확정된 영구규칙과 실제 PASS 증거를 CENTRAL/해당 TOOL master에 DIFF ONLY로 실제 반영하고 commit/push/remote read-back까지 수행한다.**
+- GitHub write/read-back이 끝나지 않았으면 handoff를 `CENTRAL_UPDATED`로 표시하지 않는다.
 - 사용자는 새 대화창을 여는 것 외에 과거 내용을 다시 설명·정리하지 않는다.
 - 새 창은 최신 CENTRAL/checkpoint/handoff부터 읽고 이어간다.
+- 이미 중앙 반영된 내용은 새 대화에서 다시 작성하지 않고 `SKIP_REUSE`한다.
+
+CHAT_HANDOFF_REQUIRES_CENTRAL_FLUSH = TRUE
+HANDOFF_CENTRAL_REMOTE_READBACK_REQUIRED = TRUE
+HANDOFF_USER_REEXPLANATION = FORBIDDEN
 
 ## 6. 자동화 가능/플랫폼 한계 구분
 - WIC가 통제하는 GitHub gateway/feedback pipeline 내부에서는 routing→master write→commit/read-back을 자동화할 수 있다.
@@ -64,8 +71,60 @@
 - 실제 새 증상이 나온 범위만 incremental gap capture 한다.
 - 증거 없는 과거 `모든 구멍 0`, `자동완료` 보고를 현재 사실로 승계하지 않는다.
 
-## 10. 2026-08-30 대화기록 catch-up
-- 제공된 16번 기록의 지속 가치가 있는 `root/recurrence`, Work 투입, handoff, 사용자 Observer, 플랫폼 한계, 크레딧 보호 규칙을 최신 운영방향에 맞게 통합했다.
-- 최신 사용자 운영방식인 `업데이트=저장 버튼`과 `효율화 방법을 먼저 제안` 규칙을 추가했다.
-- 이후 16번 대화창에서 `업데이트` 입력 시 신규 영구 피드백만 DIFF ONLY 반영한다.
+## 10. 검증자료 정본 승격 — REQUIRED
+- USB, 노트북, 사무실 PC, Work 임시폴더, 기타 실행기기에 있는 자료는 위치만으로 신뢰하지 않는다.
+- 실제 실행·EXPECTED↔ACTUAL·직접 영향 회귀를 통과한 정상 자료만 `VERIFIED / DEPLOYED_PASS / SAFE_CHECKPOINT`로 판정한다.
+- 정상 검증된 자료는 껍데기·샘플·중간본·실패본과 분리하여 해당 TOOL GitHub canonical repo와 CENTRAL MASTER/checkpoint/registry에 필요한 최소 범위로 계속 승격한다.
+- `SHELL / DRAFT / TEST_NOT_RUN / FAIL / PARTIAL / SHELL_OR_INVALID`는 정본 승격 금지다.
+- 승격 완료는 commit/push만이 아니라 GitHub remote read-back PASS까지 요구한다.
+- 검증자료 승격은 대화창 이동 직전에도 동일하게 적용한다.
+
+VERIFIED_ASSET_CANONICAL_PROMOTION = REQUIRED
+SHELL_ASSET_CANONICAL_PROMOTION = FORBIDDEN
+CANONICAL_PROMOTION_REQUIRES_REMOTE_READBACK = TRUE
+
+## 11. 실행기기 독립·USB 장애 복구 원칙 — REQUIRED
+- USB, 노트북, 사무실 PC, 기타 한 장치나 한 경로에 WIC 작업의 지속성을 종속시키지 않는다.
+- 특정 장치가 연결 불량·미감지·접근불가여도 마지막 `SAFE_CHECKPOINT + CENTRAL MASTER + GitHub canonical + 검증 증거`를 기준으로 다른 실행환경에서 이어받을 수 있어야 한다.
+- 사용자 PC/노트북에 Work가 직접 들어가 파일을 수정·삭제하는 방식을 기본 실행방식으로 하지 않는다. GitHub/CENTRAL/원격 검증으로 가능한 작업은 사용자 기기 직접 접근 없이 수행한다.
+- 사용자 기기 접근이 실제로 필요한 경우에도 자동 삭제·대량 이동·대량 정리·정상본 덮어쓰기는 금지하고, 좁은 읽기/검증/최소 배포만 허용한다.
+- USB 미감지는 즉시 전체 HOLD로 종료하지 않고, 재감지 1회 또는 다른 검증된 경로를 시도한 뒤 실제 외부 blocker인지 판정한다.
+- 같은 USB 연결 실패를 같은 방식으로 반복하여 Work/Codex 크레딧을 소모하지 않는다.
+- 내부 SSD 이전은 USB 전체복사가 아니라 실제 실행 TOOL, CENTRAL/MASTER/checkpoint, 필수 fixture/evidence만 `SSD_MIGRATION_MANIFEST`로 선별한다.
+
+DEVICE_INDEPENDENT_RESUME = REQUIRED
+USB_SINGLE_POINT_OF_FAILURE = FORBIDDEN
+USER_DEVICE_DIRECT_MUTATION = FORBIDDEN_BY_DEFAULT
+USB_RETRY_SAME_METHOD = FORBIDDEN
+SSD_MIGRATION_MANIFEST = REQUIRED_BEFORE_BULK_MOVE
+
+## 12. TOOL043 2026-09-06/07 확장 기준선
+- TOOL043 로컬 실행 복구 및 원격 Pages 동일성 검증 결과를 다음 확장의 기준선으로 재사용한다.
+- `LOCAL_DEPLOY_VERIFY = PASS`
+- `DEPLOYED_UI_MATCH_PASS = PASS`
+- `SAFE_CHECKPOINT = RECORDED`
+- 로컬·Pages 장부 시각 `2026-09-06 19:55:44 KST` 일치.
+- 로컬 화면 `Failed to fetch` 없음, 브라우저 오류 0.
+- 핵심 상태값 `야간 1 / OPEN 2 / 미처리 6 / 대기 4 / 진행 0` 및 미처리·최근 완료 목록 일치.
+- 확인된 로컬 원인은 실행기 `%~dp0`의 후행 `\`가 Python `--directory` 인수를 깨뜨려 404를 발생시킨 것이며, 최소 수정 `TOOL043_DIR=%~dp0.` 후 로컬 HTTP 핵심 파일 200 및 실제 렌더 PASS.
+- 이 합의 범위는 다음 확장 시 `SKIP_REUSE`하고 처음부터 재시험하지 않는다. 직접 영향이 생긴 경우에만 영향범위 테스트한다.
+- 다음 확장 준비 마감의 잔여 순서는 `TOOL043 검증 증거 CENTRAL/GitHub 정식 evidence 승격 → remote read-back → VERIFIED/SHELL 분리 규칙 확인 → SSD_MIGRATION_MANIFEST → NEXT_START`이다.
+
+TOOL043_EXPANSION_BASELINE = VERIFIED
+TOOL043_BASELINE_RETEST = SKIP_REUSE_UNLESS_IMPACTED
+
+## 13. 다음 확장 순서
+- 먼저 16번의 중단된 확장 준비 마감 작업을 마지막 실제 완료지점부터 RESUME한다.
+- 그 다음 `WIC 대량 병렬 무중단 자율복구·검증·배포 오케스트레이션 시스템`의 최소 동작 범위를 구축·검증한다.
+- 공통 확장 구조가 최소 동작 검증되기 전에는 TOOL041·TOOL042의 고질적인 개별 문제를 다시 전면적으로 파고들지 않는다.
+- TOOL041·TOOL042는 공통 확장 구조의 검증 이후 실제 대상 workload로 투입한다.
+- 기존 mutual-supervision engine 및 이미 PASS된 공통부품은 `SKIP_REUSE`한다.
+
+NEXT_MAJOR_SCOPE = WIC_MASS_PARALLEL_SELF_RECOVERY_VALIDATION_DEPLOY_ORCHESTRATION
+TOOL041_TOOL042_AFTER_COMMON_EXPANSION_BASELINE = TRUE
+
+## 14. 2026-09-07 대화창 handoff 반영
+- 이 대화창에서 확정된 신규 영구규칙을 TOOL016 CENTRAL MASTER에 DIFF 성격으로 통합했다.
+- 핵심 신규사항은 `대화창 이동 전 CENTRAL flush 강제`, `검증자료와 껍데기 분리 및 정상자료 정본승격`, `실행기기 독립/USB 단일장애점 제거`, `사용자 기기 직접변경 기본금지`, `TOOL043 최종 확장 기준선`, `공통 확장 후 TOOL041·TOOL042 투입 순서`다.
+- 이후 새 대화는 이 master + 최신 checkpoint/handoff를 먼저 읽고 마지막 실제 작업지점부터 재개한다.
 - 실제 GitHub write/commit/read-back 없이 업데이트 완료라고 보고하지 않는다.
