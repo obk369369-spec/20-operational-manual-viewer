@@ -227,6 +227,69 @@ PHASE_EFFECTIVENESS_GATE = REQUIRED
 
 ---
 
+# 2차 과거 대화 피드백 누락분 회수 — 2026-09-07
+
+정본 evidence: `feedback_pipeline/evidence/tool006_001_009_013_prior_feedback_recovery_20260907.json`. 1차 ROOT와 기존 runtime/deploy gate는 재작성하지 않았다.
+
+## TOOL006
+
+- 과거 사용자지적: 번호·계층·줄바꿈·들여쓰기, 괄호 설명문/별표 각주 혼입, List of Tables/Figures 오분류, Depth 2/3/4, HOLD 남발, UI 기능누락, 개발본과 실사용본 차이, 같은 오류 재발.
+- 과거 assistant 자가점검: `파일/화면/단일 테스트 PASS`를 출고기준으로 사용했고 실제 운영파일 재시험·원문↔출력·영향회귀가 강제되지 않았다고 보고.
+- 당시 개선안: HARD RELEASE GATE, 발행사/목차형태 식별, Depth/번호/누락/가짜생성/HOLD 검사, 단일 엔진, UI 회귀, 실제 사용 E2E, 오류 fixture 자동축적.
+- `ALREADY_APPLIED`: T6-RC-01~04 actual chronic fixtures 및 단일 엔진. 이번 focused 실행에서 functional 9/9, smoke 4/4 PASS.
+- `MISSING_FROM_TOOL016`: 위 구체적 실패목록과 release-layer 제안이 기존 4개 occurrence만으로 축약돼 있었다. 회수 완료.
+- ROOT: `T6-RC-RELEASE-WITHOUT-ACTUAL-IMPACT-E2E`; 책임층은 TOOL006 parser/tree/depth/output release + deployed-copy gate. 기존층으로 차단 가능하며 신규층 불필요.
+- `NORMAL_HOLD`: 발행사 실제 raw→expected golden pair. 기존 actual screenshot/MarketsandMarkets 및 chronic fixture PASS를 모든 발행사 의미정답 PASS로 확대하지 않는다.
+
+## TOOL001
+
+- 과거 사용자지적: 고객 안내서 글씨 크기/형식 불균일, TOC 불안정, 출력 지연.
+- 과거 assistant 자가점검/층제안: TOOL001은 최종 안내서 조립·글씨·형식만 소유하고 TOC/고객판단/과거고객/데이터는 TOOL006/007·042/041/013의 VERIFIED 출력만 재사용해야 한다. 접근 차단 발행사는 우회하지 않고 HOLD.
+- `ALREADY_APPLIED`: runtime verified-data fail-closed, USB shell quarantine, 소유권 분리. 브라우저 CI fixture 5건은 실제 보고서 5건으로 승격하지 않는다.
+- `COLLECTED_NOT_APPLIED`: 실제 검증 보고서 5건으로 고객입력→최종안내서→재개봉 E2E.
+- `MISSING_FROM_TOOL016`: 글씨/TOC/속도 실사용 피드백과 최종조립 책임경계. 본 절에서 회수 완료.
+- ROOT: `T1-RC-ACTUAL-REPORT-EVIDENCE-GATE`; 책임층은 TOOL001 verified report acquisition + final assembly/output release.
+- `NORMAL_HOLD`: 실제 verified report payload count 0, trigger `FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE`. 이는 실제 입력 부족을 정확히 차단한 정상 HOLD다.
+
+## TOOL009
+
+- 과거 대상 대화창에서 사용자의 원인보고 요청에 답한 assistant 피드백: `NOT_FOUND_IN_PRIOR_FEEDBACK`.
+- canonical evidence에서 확인된 실제 상태만 기록: repository `obk369369-spec/09-contents-making-tool`; production `index.html`이 빈 storage/parsing failure 때 `createInitialSampleData()` 및 sample-1/2/3 fallback을 사용한다.
+- ROOT: `T9-RC-SYNTHETIC-FALLBACK-AS-PRODUCTION`; 책임층은 TOOL009 canonical/runtime start + actual-input fail-closed gate.
+- `COLLECTED_NOT_APPLIED`: synthetic fallback 제거와 actual-input HOLD 전환. 그러나 actual-use canonical entrypoint와 안전한 부분수정 경로가 확정되지 않아 코드 수정하지 않았다.
+- `NORMAL_HOLD`: `HOLD_CANONICAL_NOT_RESOLVED`; `실제 오류 상태`: `FAIL_SYNTHETIC_FALLBACK_PRESENT_PATCH_BLOCKED`. 잘못된 정본을 추측해 수정하지 않는다.
+
+## TOOL013
+
+- 과거 사용자지적: 실제 배포본 114개 입력이 `행 0 / 발행사 UNKNOWN / 순차 배치 114개 읽기 시작`에서 멈춤.
+- 과거 assistant 자가점검: 파일선택 이후 자동감지→매핑→미리보기까지 연결되지 않았고, Work가 실제 배포본 E2E 없이 완료 처리한 shell completion이라고 보고.
+- 당시 개선안: 실제 최종 배포본에서 동일 입력 E2E, row 0/UNKNOWN/중간정지/미리보기 없음 즉시 BLOCK, 동일 입력 재시험, 실패 시 DIFF rework 출력.
+- `ALREADY_APPLIED`: 동일 실제 114개→823행, MarketsandMarkets, 114 PASS/0 HOLD, output reopen; 원본/preview/download 1:1; 실제 `.xls`/`.xlsx`→BIFF8 `.xls` 배포본 재시험 PASS.
+- `MISSING_FROM_TOOL016`: 이 actual recurrence와 `파일 생성 ≠ 실제 업무 PASS / 개발본 PASS ≠ deployed-copy PASS` 원인서술. 본 절에서 회수 완료.
+- ROOT: `T13-RC-LARGE-BATCH-MAIN-THREAD-STALL` + `RC-DEPLOYED-COPY-NOT-ACTUAL-E2E`; 기존 batch/release/deployed-copy gate로 `VERIFIED_CLOSED / SKIP_REUSE`.
+
+## 1차+2차 공통 ROOT
+
+| 공통 ROOT | 확인 TOOL 수 | 책임 기존층 | 판정 |
+|---|---:|---|---|
+| `규칙 존재 ≠ runtime 강제` | 7 | 각 TOOL start/preload/release | 기존층 보강 가능; 신규층 불필요 |
+| `TEST PASS ≠ 실제 업무 PASS` | 6 | actual-input E2E + output release | 기존 공통 TEST/DEPLOY gate 적용 |
+| `canonical/test본 ≠ 실제 사용본` | 5 | canonical receipt + deployed-copy test | 기존 receipt/deploy gate 적용 |
+| `source/provenance 부족` | 7 | evidence/provenance + fail-closed HOLD | 기존층 적용; 외부 증거는 정상 HOLD |
+| `partial test ≠ full impact regression` | 5 | change-only impact regression | 기존층 적용 |
+
+수치는 이번 1·2차 장부에서 실제로 같은 증상이 확인된 TOOL을 중복 없이 센 값이다. 유사 문구만으로 recurrence를 늘리지 않았다.
+
+## 2차 결론
+
+- 새 공통층 필요성: `필요 없음`.
+- `NEW_LAYER_CANDIDATE`: 0. 기존 start/evidence/release/receipt/deployed-copy 층으로 책임 매핑 가능하다.
+- TOOL core 수정: 0. TOOL001/009는 실제 입력·정본 조건이 없어 사전 HOLD, TOOL006/013은 이미 실제 회귀가 닫혀 재수정 금지.
+- TOOL044 사용: 0.
+- 다음 trigger: TOOL006 publisher golden pair, TOOL001 five verified reports, TOOL009 canonical actual-use entrypoint + safe patch path. TOOL013은 새로운 상충 실사용 증거 없으면 SKIP_REUSE.
+
+---
+
 # 1차 증거 확정 및 기존층 보강 결과 — 2026-09-07
 
 아래 수치는 추정이 아니라 지정된 fixture/evidence에서 확인된 occurrence만 집계한다.

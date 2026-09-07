@@ -1,0 +1,71 @@
+{
+  "scope": ["TOOL006", "TOOL001", "TOOL009", "TOOL013"],
+  "baseline": "099338e4e3cf57a6ea61f6d626a355e0ea037582",
+  "prior_feedback_sources": {
+    "TOOL006": {
+      "thread_id": "6a4c5ed3-196c-83ee-9ce5-5acae1fc131e",
+      "user_turns": ["bbb21336-a6dd-4e0f-8a9a-1e38fbab8530", "e2bbe41f-e728-4fcb-b925-156b79ef6dcb"],
+      "assistant_messages": ["f001c9e0-50c0-42e4-ba48-3c22ff1644d1", "b3bafbc0-e29c-40a3-b6e1-27cf70760e6e"],
+      "recovered": ["number/hierarchy/line-break/indentation", "parenthesis and footnote contamination", "List of Tables/Figures misclassification", "Depth 2/3/4", "publisher-pattern selection", "HOLD overuse", "UI regression", "development copy versus deployed copy", "actual input before release"]
+    },
+    "TOOL001": {
+      "thread_id": "6a44b0ef-76b0-83ee-aee3-630ab0a441c6",
+      "user_turns": ["32d0553e-b7ab-41e7-9085-f11a12169ae2", "4f292a1b-7ac0-4256-afb7-7976c5ce5dc6"],
+      "assistant_messages": ["e8115ee3-b54a-410c-9a38-7e86c069cef2", "72b6611f-ec12-492d-b871-74c26351a064"],
+      "recovered": ["font/format inconsistency", "unstable TOC", "slow output", "TOOL001 must own final guide assembly only", "TOC/customer/history sources remain owned by TOOL006/007/042/041", "blocked publisher pages must HOLD rather than bypass access controls"]
+    },
+    "TOOL009": {
+      "thread_id": null,
+      "classification": "NOT_FOUND_IN_PRIOR_FEEDBACK",
+      "canonical_evidence_only": "WIC_EXECUTION_STATE.json#TOOL009"
+    },
+    "TOOL013": {
+      "thread_id": "69f87f20-7630-83a7-88fa-0ea685cc7b17",
+      "user_turns": ["bbb2161d-1108-4a83-acc4-725a8535959a", "bbb217d2-dc54-47ad-9b82-fb0e76ab35e8", "bbb2168f-bd38-43ee-a911-85f2cdc8a222"],
+      "assistant_messages": ["1c40fe23-51ab-4344-b76b-a7c0f4fe976c", "6f98aca5-8d5a-47e7-a0fd-ff96f0f1fa30", "5e7cf43a-da3c-45e2-967b-57620ed66d5e"],
+      "recovered": ["114 files stopped at row 0 / publisher UNKNOWN / batch start", "file selection did not continue through detection/mapping/preview", "Work release lacked deployed-copy actual E2E", "file generation was confused with business-function PASS", "rework/report loop and accumulation evidence must be explicit"]
+    }
+  },
+  "classification": {
+    "TOOL006": {
+      "ALREADY_APPLIED": ["T6-RC-01 hierarchy/indent", "T6-RC-02 parenthesis note", "T6-RC-03 asterisk footnote", "T6-RC-04 table/figure/appendix", "single-engine actual flow and UI smoke"],
+      "NORMAL_HOLD": ["ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE"],
+      "COLLECTED_NOT_APPLIED": [],
+      "MISSING_FROM_TOOL016": ["prior assistant HARD RELEASE GATE and full publisher/depth/UI test proposal"]
+    },
+    "TOOL001": {
+      "ALREADY_APPLIED": ["runtime verified-data fail-closed gate", "USB shell quarantine", "component ownership separation"],
+      "NORMAL_HOLD": ["FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"],
+      "COLLECTED_NOT_APPLIED": ["actual five-report customer guide E2E"],
+      "MISSING_FROM_TOOL016": ["font/format, TOC and latency feedback plus final-assembly ownership boundary"]
+    },
+    "TOOL009": {
+      "NOT_FOUND_IN_PRIOR_FEEDBACK": true,
+      "COLLECTED_NOT_APPLIED": ["remove synthetic sample fallback after canonical actual-use runtime and safe patch path resolve"],
+      "NORMAL_HOLD": ["HOLD_CANONICAL_NOT_RESOLVED"],
+      "actual_error": "FAIL_SYNTHETIC_FALLBACK_PRESENT_PATCH_BLOCKED"
+    },
+    "TOOL013": {
+      "ALREADY_APPLIED": ["same 114 actual files: 823 rows, publisher detected, 114 PASS/0 HOLD, output reopened", "xls/xlsx input to BIFF8 xls deployed-copy E2E", "original/preview/download mapping checks"],
+      "COLLECTED_NOT_APPLIED": [],
+      "MISSING_FROM_TOOL016": ["actual row-0/UNKNOWN recurrence and deployed-copy E2E release-root narrative"],
+      "NORMAL_HOLD": []
+    }
+  },
+  "focused_execution": {
+    "TOOL006": "PASS 9/9 functional actual/chronic fixtures; PASS 4/4 smoke",
+    "TOOL001": "SKIP_NO_INPUT; actual verified report payload count 0",
+    "TOOL009": "NO_MUTATION; canonical actual-use entrypoint/safe patch not resolved",
+    "TOOL013": "SKIP_REUSE actual 114/823 and deployed xls/xlsx evidence"
+  },
+  "common_root_counts": {
+    "RULE_EXISTS_NOT_RUNTIME_ENFORCED": 7,
+    "TEST_PASS_NOT_ACTUAL_BUSINESS_PASS": 6,
+    "CANONICAL_OR_DEPLOYED_COPY_MISMATCH": 5,
+    "SOURCE_OR_PROVENANCE_INSUFFICIENT": 7,
+    "PARTIAL_TEST_NOT_FULL_IMPACT_VALIDATION": 5
+  },
+  "new_common_layer": "NOT_REQUIRED",
+  "tool_code_changed": false,
+  "tool044_used": false
+}
