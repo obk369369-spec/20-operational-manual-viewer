@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "phase": 5,
+  "status": "PHASE5_RESUME_PARTIAL",
+  "code_commit": "74f57a5b4",
+  "remote_main_at_deploy": "1a649e038aa6c09af391e48405b1fce2e908a79f",
+  "changed_existing_layers": ["feedback_pipeline/deployment_observer_gate.py", "feedback_pipeline/work_execution_enforcer.py"],
+  "new_common_layers": 0,
+  "tool044_new_components": 0,
+  "runtime_connection": {
+    "path": "work_execution_enforcer.audit -> release_gate required fields and ordered RELEASE_SEQUENCE",
+    "verified": true,
+    "boundary": "Work completion decision verified; native entrypoint invocation for every affected TOOL not verified"
+  },
+  "development_tests": {
+    "deployment_observer_gate": "PASS_NORMAL_PLUS_5_RECOVERED_FAILURE_MUTATIONS_BLOCKED",
+    "work_execution_enforcer": "PASS_FAIL_CLOSED_AUDIT",
+    "runtime_gateway": "PASS_EXISTING_REGRESSION",
+    "dual_receipt_assembly": "6_OF_6_PASS_EXISTING_REGRESSION"
+  },
+  "deployed_copy": {
+    "folder": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\feedback_pipeline",
+    "deployment_observer_gate_sha256": "9918BE2D80F60C143E54AFBFCA827BC7EE233C166483D4CE990D53AA2620C3F3",
+    "work_execution_enforcer_sha256": "B966E6D8C73AAC4148AC00B2A5C237BE7EF5713127FC85E58E926E5D7DBA0650",
+    "first_test": "FAIL_MISSING_EXISTING_DEPENDENCY_EVIDENCE_HOLD_REGISTRY",
+    "repair": "deployed existing canonical evidence_classification_gate.py and evidence_hold_registry.json",
+    "retry": "PASS_DEPLOYMENT_OBSERVER_AND_WORK_EXECUTION_SELF_TEST",
+    "canonical_deployed_match": true
+  },
+  "root_results": [
+    {"id":"P5-RUNTIME-ENFORCEMENT","affected_tools":11,"past_failure_tests":1,"mutation_blocked":true,"normal_pass":true,"status":"ROOT_PARTIALLY_FIXED","remaining":"native entrypoint coverage not verified for all tools"},
+    {"id":"P5-ACTUAL-USE-E2E","affected_tools":10,"past_failure_tests":1,"mutation_blocked":true,"normal_pass":true,"status":"ROOT_PARTIALLY_FIXED","remaining":"actual-use receipt must be emitted by each modified tool"},
+    {"id":"P5-CANONICAL-DEPLOYED-RECEIPT","affected_tools":8,"past_failure_tests":1,"mutation_blocked":true,"normal_pass":true,"status":"ROOT_PARTIALLY_FIXED","remaining":"per-tool deployed receipt coverage incomplete"},
+    {"id":"P5-PROVENANCE-FAIL-CLOSED","affected_tools":7,"past_failure_tests":1,"mutation_blocked":true,"normal_pass":true,"status":"ROOT_PARTIALLY_FIXED","remaining":"per-tool provenance receipt producers unchanged"},
+    {"id":"P5-IMPACT-REGRESSION","affected_tools":7,"past_failure_tests":1,"mutation_blocked":true,"normal_pass":true,"status":"ROOT_PARTIALLY_FIXED","remaining":"per-tool impact manifests not universally connected"}
+  ],
+  "tool_impact": {
+    "IMPACTED_REGRESSION_REQUIRED": ["CENTRAL_WORK_COMPLETION_GATE"],
+    "SKIP_REUSE_NO_IMPACT": ["TOOL002", "TOOL006", "TOOL007", "TOOL012", "TOOL013", "TOOL020", "TOOL027", "TOOL035", "TOOL041", "TOOL042", "TOOL044"],
+    "NORMAL_HOLD": ["TOOL001", "TOOL014"],
+    "BLOCKED_CANONICAL": ["TOOL009"],
+    "ACTUAL_ERROR_HOLD": ["TOOL043_BUSINESS_CHAIN"]
+  },
+  "preserved": {
+    "TOOL001": "RECOVERED_3_OF_5_ACTUAL_VERIFIED_0_OF_5",
+    "TOOL006": "CORE_PASS_PUBLISHER_GOLDEN_PAIR_NORMAL_HOLD",
+    "TOOL009": "SYNTHETIC_FALLBACK_ERROR_CANONICAL_UNRESOLVED",
+    "TOOL014": "STAGING_VERIFIED_LIVE_AUTH_NORMAL_HOLD"
+  },
+  "metrics": {
+    "investigated_tools_total": 15,
+    "common_roots": 5,
+    "existing_layers_modified": 2,
+    "new_layers": 0,
+    "past_failure_shapes_retested": 5,
+    "mutation_blocks_passed": 5,
+    "normal_fixture_passed": 2,
+    "existing_pass_damaged": 0,
+    "false_pass_shapes_blocked": 5,
+    "normal_holds_preserved": 4,
+    "actual_error_holds_remaining": 2,
+    "roots_fixed": 0,
+    "roots_partial": 5
+  },
+  "user_action_queue": [],
+  "next_start": "For the next actually modified TOOL only, connect the existing Work release receipt call at its native completion entrypoint and replay that TOOL's saved failure fixture. Do not create phase 6 or retest unaffected tools."
+}

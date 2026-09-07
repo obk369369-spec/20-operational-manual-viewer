@@ -437,3 +437,18 @@ PHASE_EFFECTIVENESS_GATE = REQUIRED
 - 정상 HOLD 보존: TOOL001 3/5 회수·0/5 검증, TOOL006 publisher golden pair, TOOL009 canonical 미확정, TOOL014 live 승인, TOOL043 실제 handler 부재 범위.
 - 코드/gate 변경이 없어 실제 실패 재시험 0. 장부 변경을 TOOL 기능 개선으로 보고하지 않는다.
 - 최종: `PHASE4_COMPLETE / PHASE5_READY / NO_CODE_FIX_JUSTIFIED`.
+
+---
+
+# 5차 기존 release gate 보강 결과 — 2026-09-07
+
+정본 evidence: `feedback_pipeline/evidence/phase5_common_root_gate_20260907.json`.
+
+- 기존층 수정: `deployment_observer_gate.py`, `work_execution_enforcer.py` 2개. 신규 공통층 0, TOOL044 신규부품 0.
+- Work 완료판정에 runtime/actual-use/canonical-deployed/provenance/impact receipt 10개와 순서 표식을 강제했다.
+- 개발본: 정상 fixture PASS, 회수된 과거 실패형 5종 차단, 기존 Work/runtime/dual-receipt 회귀 PASS.
+- 원격 코드 commit `74f57a5b4`; 원격 최신 병합·배포 기준 `1a649e038aa6c09af391e48405b1fce2e908a79f` read-back PASS.
+- actual-use: `I:\GPT 도구 작업\44번 완성부품 가져오기\feedback_pipeline`. 두 변경 파일 SHA 일치. 첫 실행에서 기존 배포 의존파일 누락을 실제 발견했고, canonical `evidence_classification_gate.py`와 `evidence_hold_registry.json`을 함께 배포한 뒤 동일 시험 PASS.
+- ROOT 5개 모두 Work 공통 release/completion 경로의 차단은 검증했다. 그러나 11개/10개/8개/7개/7개 TOOL 고유 runtime entrypoint 전체가 공통 gate를 직접 호출하는지는 이번 영향범위에서 전부 검증하지 않았으므로 `ROOT_PARTIALLY_FIXED`다.
+- 정상 HOLD 보존: TOOL001 3/5·0/5, TOOL006 publisher golden pair, TOOL009 canonical 미확정/synthetic fallback, TOOL014 live 승인.
+- `PHASE5_RESUME_PARTIAL`; FIXED 0 / PARTIAL 5 / HOLD·BLOCKED 0. 다음 시작점은 새 층 생성이 아니라 실제로 수정되는 TOOL의 native release entrypoint에 기존 Work gate receipt 호출을 연결하고 그 TOOL의 과거 failure만 검증하는 것이다.
