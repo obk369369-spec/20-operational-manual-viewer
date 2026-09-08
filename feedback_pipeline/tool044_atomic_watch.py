@@ -5,7 +5,11 @@ import argparse
 import hashlib
 import importlib
 import json
+import os
+import subprocess
 import sys
+import tempfile
+import time
 import urllib.request
 import zipfile
 from datetime import datetime, timedelta, timezone
@@ -40,6 +44,7 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
     if not artifact.exists():
         with urllib.request.urlopen(release["url"], timeout=30) as response:
             artifact.write_bytes(response.read())
+    artifact = artifact.resolve()
     actual_hash = hashlib.sha256(artifact.read_bytes()).hexdigest()
     receipt_hash = release["digests"]["sha256"]
     if actual_hash != receipt_hash:
@@ -49,6 +54,7 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
         metadata_name = next(name for name in archive.namelist() if name.endswith(".dist-info/METADATA"))
         package_metadata = archive.read(metadata_name).decode("utf-8", errors="replace")
     verified = False
+    verification_detail = {}
     if candidate.get("verifier") == "validators_url":
         sys.path.insert(0, str(artifact))
         try:
@@ -80,6 +86,38 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
         finally:
             sys.path.remove(str(artifact))
             sys.modules.pop("mistune", None)
+    elif candidate.get("verifier") == "doit_local_engine":
+        with tempfile.TemporaryDirectory() as directory:
+            sandbox = Path(directory)
+            dodo = sandbox / "dodo.py"
+            (sandbox / "input.txt").write_text("fixture", encoding="utf-8")
+            dodo.write_text('''from pathlib import Path\nimport time\ndef work(name):\n time.sleep(1); Path(name).write_text(name)\ndef mark(name):\n Path(name).write_text(name)\ndef fail():\n raise RuntimeError("fixture failure")\ndef task_a(): return {"actions":[(work,["a.out"])],"file_dep":["input.txt"],"targets":["a.out"]}\ndef task_b(): return {"actions":[(work,["b.out"])],"file_dep":["input.txt"],"targets":["b.out"]}\ndef task_bad(): return {"actions":[fail]}\ndef task_after_failure(): return {"actions":[(mark,["after.out"])],"file_dep":["input.txt"],"targets":["after.out"]}\n''', encoding="utf-8")
+            env = dict(os.environ)
+            env["PYTHONPATH"] = str(artifact) + os.pathsep + env.get("PYTHONPATH", "")
+            command = [sys.executable, "-m", "doit", "-f", str(dodo), "--continue", "-n", "2"]
+            started = time.monotonic()
+            first = subprocess.run(command, cwd=sandbox, env=env, capture_output=True, text=True,
+                                   encoding="utf-8", errors="replace", timeout=30)
+            elapsed = time.monotonic() - started
+            # One fixture intentionally fails. Independent jobs must still complete.
+            failure_isolated = first.returncode != 0 and (sandbox / "a.out").exists() and (sandbox / "b.out").exists() and (sandbox / "after.out").exists()
+            parallel = elapsed < 1.85
+            dodo.write_text(dodo.read_text(encoding="utf-8").replace('def task_bad(): return {"actions":[fail]}', 'def task_bad(): return {"actions":[]}'), encoding="utf-8")
+            second_started = time.monotonic()
+            second = subprocess.run(command, cwd=sandbox, env=env, capture_output=True, text=True,
+                                    encoding="utf-8", errors="replace", timeout=30)
+            resume_elapsed = time.monotonic() - second_started
+            third_started = time.monotonic()
+            third = subprocess.run(command, cwd=sandbox, env=env, capture_output=True, text=True,
+                                   encoding="utf-8", errors="replace", timeout=30)
+            skip_elapsed = time.monotonic() - third_started
+            verified = failure_isolated and parallel and second.returncode == 0 and third.returncode == 0 and skip_elapsed < 0.8
+            verification_detail = {"first_returncode": first.returncode, "parallel_elapsed_seconds": round(elapsed, 3),
+                                   "failure_isolated": failure_isolated, "second_returncode": second.returncode,
+                                   "resume_elapsed_seconds": round(resume_elapsed, 3),
+                                   "third_returncode": third.returncode, "incremental_skip_seconds": round(skip_elapsed, 3),
+                                   "first_output": (first.stdout + first.stderr)[-1000:],
+                                   "second_output": (second.stdout + second.stderr)[-1000:]}
     return {
         "status": "VERIFIED_REUSABLE" if verified else "SANDBOX_FAIL",
         "component_id": f"{package.upper()}_{version.replace('.', '_')}_{candidate['capability']}",
@@ -90,6 +128,7 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
         "release_date": release.get("upload_time_iso_8601", "NOT_PUBLISHED"),
         "dependencies": metadata["info"].get("requires_dist") or [],
         "package_metadata_present": bool(package_metadata), "sandbox_expected_actual": "PASS" if verified else "FAIL",
+        "verification_detail": verification_detail,
     }
 
 
@@ -105,7 +144,9 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     previous = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {"receipts": {}}
     receipts = previous.get("receipts", {})
-    pool = registry.get("verified_atomic_component_pool", [])
+    # The registry keeps legacy general components and the newer atomic pool.
+    # Both are valid reuse sources when they publish atomic_capabilities.
+    pool = registry.get("components", []) + registry.get("verified_atomic_component_pool", [])
     capability_map = {
         capability: item["component_id"]
         for item in pool if item.get("status") == "VERIFIED_REUSABLE"
@@ -115,12 +156,15 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
     for demand in queue.get("demands", []):
         sig = signature(demand)
         old = receipts.get(sig)
-        if old and old.get("next_eligible_search") and now < datetime.fromisoformat(old["next_eligible_search"]):
+        matched = {cap: capability_map[cap] for cap in demand["atomic_capabilities"] if cap in capability_map}
+        missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
+        # A component verified after an earlier failed search must immediately
+        # satisfy the demand. The 24-hour backoff only blocks another external
+        # query for capabilities that are still missing.
+        if missing and old and old.get("next_eligible_search") and now < datetime.fromisoformat(old["next_eligible_search"]):
             duplicate_blocks += 1
             results.append({"demand_id": demand["demand_id"], "result": "DUPLICATE_SEARCH_BLOCKED", "query_signature": sig})
             continue
-        matched = {cap: capability_map[cap] for cap in demand["atomic_capabilities"] if cap in capability_map}
-        missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
         harvests = []
         if external:
             for candidate in demand.get("official_candidates", []):

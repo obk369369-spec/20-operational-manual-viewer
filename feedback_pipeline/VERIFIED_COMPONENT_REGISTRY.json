@@ -192,6 +192,22 @@
       "reuse_requires_target_retest": true
     },
     {
+      "component_id": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": ["LOCAL_DAG_EXECUTION_ENGINE", "PARALLEL_TASK_EXECUTION", "DEPENDENCY_STATE_RESUME", "FAILURE_ISOLATION"],
+      "official_source": "https://pypi.org/pypi/doit/0.37.0/json",
+      "official_project": "https://github.com/pydoit/doit/",
+      "version": "0.37.0",
+      "license": "MIT",
+      "release_date": "2026-02-09T07:02:10.155459Z",
+      "source_file": "feedback_pipeline/external_candidate_pool/doit-0.37.0-py3-none-any.whl",
+      "source_sha256": "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b",
+      "external_modified": false,
+      "dependencies": ["tomli only for Python <3.11 toml extra", "cloudpickle optional extra"],
+      "sandbox_expected_actual": "two 1-second jobs parallel=1.532s; intentional failure isolated; next run resumes/skips=0.500s; repeated skip=0.484s",
+      "reuse_requires_target_retest": true
+    },
+    {
       "component_id": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
       "status": "VERIFIED_REUSABLE",
       "source_tool": "TOOL044",

@@ -1,16 +1,16 @@
 {
-  "cycle_id": "20260907T134025Z",
+  "cycle_id": "20260908T024025Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
-  "scheduled_start": null,
-  "actual_start": "2026-09-07T13:40:25.188706+00:00",
-  "trigger_source": "WORK",
-  "work_triggered": true,
+  "scheduled_start": "2026-09-08T02:40:25.021394+00:00",
+  "actual_start": "2026-09-08T02:40:25.021394+00:00",
+  "trigger_source": "SCHEDULED",
+  "work_triggered": false,
   "user_triggered": false,
   "paid_api_calls": 0,
   "paid_saas_calls": 0,
   "production_mutations": 0,
-  "demands_processed": 7,
-  "duplicate_searches_blocked": 7,
+  "demands_processed": 8,
+  "duplicate_searches_blocked": 4,
   "external_sources_queried": 0,
   "verified_external_components": [],
   "results": [
@@ -31,23 +31,60 @@
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb"
+      "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "e4e9ebf4962ec8b20ae47d1868d8a412dbe89cbd6da52563b33fde5415558209"
+      "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
-      "result": "DUPLICATE_SEARCH_BLOCKED",
-      "query_signature": "48160e446a58c2894b4624ba93ae5a52fd7be615f000ba330d9157551e0a5f75"
+      "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
       "result": "DUPLICATE_SEARCH_BLOCKED",
       "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b"
+    },
+    {
+      "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+      "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     }
   ],
   "receipts": {
@@ -219,13 +256,13 @@
     "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-07T13:16:56.653808+00:00",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -267,9 +304,50 @@
       "next_eligible_search": "2026-09-08T13:16:56.653808+00:00",
       "external_search_executed": false,
       "external_receipts": []
+    },
+    "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba": {
+      "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02": {
+      "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
+      "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755": {
+      "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+      "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
+      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "matched": {
+        "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     }
   },
   "next_state": "WAITING_FOR_NEXT_TRIGGER",
+  "function_state": "tool044_function_state.json",
+  "external_demand_candidate_count": 4,
   "composition_candidates": 1,
   "compositions_tested": 1,
   "verified_compositions": 1,
@@ -286,7 +364,8 @@
     ],
     "input_contract": "URL plus downloaded artifact receipt manifest",
     "output_contract": "READY_FOR_INTEGRATION only when URL syntax and artifact provenance both pass",
-    "failure_fixture": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_tool041_config_release\\feedback_pipeline\\fixtures\\tool042_customer_branch_actual_kmg.json",
+    "failure_fixture": "fixtures/tool042_customer_branch_actual_kmg.json",
+    "failure_fixture_sha256": "0a050c28dcd814a4cafcb628fd03b48f832842b60431f377308400d192eb8532",
     "normal_fixture": "official wheel receipt",
     "tests": {
       "normal": true,

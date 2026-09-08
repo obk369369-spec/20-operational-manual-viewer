@@ -23,7 +23,7 @@ def build(base: Path = HERE) -> dict:
     ledger = load(base / "unified_open_ledger.json").get("entries", [])
     queue = load(base / "tool044_atomic_demand_queue.json").get("demands", [])
     registry = load(base / "VERIFIED_COMPONENT_REGISTRY.json")
-    atomic = registry.get("verified_atomic_component_pool", [])
+    atomic = registry.get("components", []) + registry.get("verified_atomic_component_pool", [])
     cap_components = {
         cap: row["component_id"] for row in atomic if row.get("status") == "VERIFIED_REUSABLE"
         for cap in row.get("atomic_capabilities", [])
@@ -94,7 +94,7 @@ def build(base: Path = HERE) -> dict:
         status = "IMPROVED_PARTIAL" if matched else "MISSING_CAPABILITY"
         search = bool(missing)
         row = {
-            "TOOL_ID": "TOOL042", "FUNCTION_ID": demand["demand_id"],
+            "TOOL_ID": demand.get("target_tool", "TOOL042"), "FUNCTION_ID": demand["demand_id"],
             "FUNCTION_NAME": demand["demand_id"].removeprefix("T42-").replace("-", " ").title(),
             "CURRENT_STATUS": status, "LAST_VERIFIED_DATE": None,
             "IMPROVEMENT_EVIDENCE": list(matched.values()),
