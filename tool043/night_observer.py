@@ -143,6 +143,11 @@ def build() -> tuple[dict, dict]:
     previous_status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.exists() else {}
     ledger = json.loads((PIPE / "work16_root_ledger.json").read_text(encoding="utf-8"))
     incomplete = json.loads((PIPE / "incomplete_register.json").read_text(encoding="utf-8"))
+    function_state_path = PIPE / "tool044_function_state.json"
+    function_state = json.loads(function_state_path.read_text(encoding="utf-8")) if function_state_path.exists() else {
+        "classification_counts": {}, "functions": [], "observer_labels": {},
+        "status": "NOT_GENERATED"
+    }
     current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None
@@ -158,6 +163,13 @@ def build() -> tuple[dict, dict]:
         "observer_health": "OK" if current["conservation_pass"] else "ERROR",
         "tool043_scope_status": previous_status.get("tool043_scope_status", "INCOMPLETE"),
         "tool044_trust_pipeline": previous_status.get("tool044_trust_pipeline"),
+        "tool_function_improvement": {
+            "source": "feedback_pipeline/tool044_function_state.json",
+            "classification_counts": function_state.get("classification_counts", {}),
+            "functions": function_state.get("functions", []),
+            "observer_labels": function_state.get("observer_labels", {}),
+            "truth_contract": "COMPONENT_VERIFIED_IS_NOT_IMPROVED_VERIFIED_UNTIL_TOOL_DEPLOYED_COPY_TEST_PASSES"
+        },
         "current_display_validation": previous_status.get("current_display_validation"),
         "work_status": "작업 문제 있음" if open_count else ("작업 진행 중" if current["running"] else ("작업 대기 중" if current["pending"] or blocked else "현재 미처리 작업 없음")),
         "current_work": current,

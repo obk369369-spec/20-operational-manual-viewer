@@ -12,6 +12,9 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from tool044_composition import test_url_provenance_composition
+from tool044_function_state import build as build_function_state, write as write_function_state
+
+HERE = Path(__file__).resolve().parent
 
 
 def utc_now() -> datetime:
@@ -94,6 +97,10 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
               external: bool = False, artifact_dir: Path | None = None,
               trigger_source: str = "MANUAL") -> dict:
     now = now or utc_now()
+    function_state_base = queue_path.parent
+    function_state = (write_function_state(function_state_base)
+                      if (function_state_base / "wic_target_registry.json").exists()
+                      else build_function_state(HERE))
     queue = json.loads(queue_path.read_text(encoding="utf-8"))
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     previous = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {"receipts": {}}
@@ -147,6 +154,8 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         "demands_processed": len(results), "duplicate_searches_blocked": duplicate_blocks,
         "external_sources_queried": external_queries, "verified_external_components": verified_external,
         "results": results, "receipts": receipts, "next_state": "WAITING_FOR_NEXT_TRIGGER",
+        "function_state": "tool044_function_state.json",
+        "external_demand_candidate_count": len(function_state["tool044_external_demand_candidates"]),
     }
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
