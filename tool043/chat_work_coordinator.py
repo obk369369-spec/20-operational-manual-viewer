@@ -7,8 +7,10 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-ERROR_STATES = {"FAIL", "PARTIAL", "HOLD", "REPEATED_ERROR", "ACTUAL_USE_FAILURE"}
-CAPABILITY_STATES = {"MISSING_CAPABILITY", "NO_READY_COMPONENT", "REPEATED_ERROR", "EXTERNAL_COMPONENT_REQUIRED"}
+ERROR_STATES = {"FAIL", "PARTIAL", "HOLD", "REPEATED_ERROR", "ACTUAL_USE_FAILURE", "ACTUAL_ERROR_HOLD",
+                "RUNTIME_NOT_ENFORCED", "DEPLOYED_FAILURE"}
+CAPABILITY_STATES = {"MISSING_CAPABILITY", "NO_READY_COMPONENT", "REPEATED_ERROR", "EXTERNAL_COMPONENT_REQUIRED",
+                     "ACTUAL_USE_FAILURE", "ACTUAL_ERROR_HOLD", "RUNTIME_NOT_ENFORCED", "DEPLOYED_FAILURE"}
 COMPONENT_READY = {"COMPONENT_VERIFIED", "FRAMEWORK_VERIFIED", "COMPOSITION_VERIFIED", "READY_FOR_INTEGRATION"}
 COMPLETE_STATES = {"PASS", "COMPLETE", "DEPLOYED_PASS"}
 REQUIRED = {"CHAT_JOB_ID", "RELATED_TOOL", "JOB_PURPOSE", "RESULT", "STATUS", "REMAINING_WORK", "ERROR", "NEXT_REQUIRED_CAPABILITY", "NEXT_ACTION"}
@@ -37,20 +39,34 @@ def route(events: list[dict], previous: dict | None = None) -> dict:
         state["jobs"][job_id] = dict(event)
         envelope = {"EVENT_ID": event_id, "CHAT_JOB_ID": job_id, "RELATED_TOOL": event["RELATED_TOOL"],
                     "STATUS": status, "NEXT_ACTION": event["NEXT_ACTION"]}
+        repeated_work_failure = status in ERROR_STATES and int(event.get("WORK_ATTEMPT_COUNT", 0)) >= 1
+        if repeated_work_failure:
+            state["jobs"][job_id]["WORK_EXECUTION"] = "STOPPED_TOOL044_HANDOFF"
         if status in ERROR_STATES:
             state["tool016_error_root_intake"].append({**envelope, "ERROR": event["ERROR"],
                                                        "RESULT": event["RESULT"]})
-        if status in CAPABILITY_STATES or event["NEXT_REQUIRED_CAPABILITY"]:
+        tool044_handoff = status in CAPABILITY_STATES or status in ERROR_STATES or bool(event["NEXT_REQUIRED_CAPABILITY"])
+        if tool044_handoff:
             state["tool044_request_demand_queue"].append({**envelope,
-                "CAPABILITY": event["NEXT_REQUIRED_CAPABILITY"], "SEARCH_ALLOWED": status in CAPABILITY_STATES})
+                "CAPABILITY": event["NEXT_REQUIRED_CAPABILITY"],
+                "SEARCH_ALLOWED": status in CAPABILITY_STATES or status in ERROR_STATES,
+                "REASON": "WORK_FAILURE_OR_MISSING_CAPABILITY"})
         if status in COMPONENT_READY and event.get("PARENT_CHAT_JOB_ID"):
             state["chat_resume_queue"].append({**envelope, "CHAT_JOB_ID": event["PARENT_CHAT_JOB_ID"],
                                                 "RESUME_REASON": status})
         elif event["NEXT_ACTION"] == "ZERO_WORK_EXECUTION" and event["REMAINING_WORK"]:
             state["zero_work_execution_queue"].append({**envelope, "WORK": event["REMAINING_WORK"]})
         elif event["NEXT_ACTION"] == "WORK_APPROVAL_REQUIRED":
-            state["work_approval_queue"].append({**envelope, "WORK": event["REMAINING_WORK"],
-                                                  "APPROVED": False})
+            # Work is the last resort. TOOL044 must first prove that reuse, external
+            # candidates, complete structures and composition are all unavailable.
+            if status == "TOOL044_NO_SOLUTION_VERIFIED" and event.get("TOOL044_EXHAUSTION_EVIDENCE"):
+                state["work_approval_queue"].append({**envelope, "WORK": event["REMAINING_WORK"],
+                                                      "APPROVED": False,
+                                                      "EXHAUSTION_EVIDENCE": event["TOOL044_EXHAUSTION_EVIDENCE"]})
+            elif not tool044_handoff:
+                state["tool044_request_demand_queue"].append({**envelope,
+                    "CAPABILITY": event["NEXT_REQUIRED_CAPABILITY"], "SEARCH_ALLOWED": True,
+                    "REASON": "WORK_APPROVAL_BLOCKED_UNTIL_TOOL044_EXHAUSTION_VERIFIED"})
     state["processed_event_ids"] = sorted(seen)
     if changed or "updated_at" not in state:
         state["updated_at"] = datetime.now(timezone.utc).isoformat()

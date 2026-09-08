@@ -352,5 +352,17 @@ NO_EXTERNAL_REFERENCE_FAKE_MATCH = FORBIDDEN
 - Work 밖 완전자동 개발·수리·GitHub/CENTRAL·실사용 배포까지의 E2E는 실제 증거 없이 VERIFIED라고 주장하지 않는다. 현재 가능한 단계와 Work가 필요한 단계를 분리 보고한다.
 WORK_OUTSIDE_EXECUTION_FIRST = REQUIRED_WHEN_CAPABLE
 NO_READY_COMPONENT_AUTO_BUILD = FORBIDDEN
+
+## Work 반복패치 자동중단·TOOL044 이관 게이트
+- `WORK_REPEATED_PATCH = FORBIDDEN`. Work에서 한 번 이상 제한된 실제 수정·검증을 수행한 뒤 동일 오류, 실제 fixture FAIL, 실제사용 FAIL, runtime 미강제, 배포본 실패, `PARTIAL / HOLD / FAIL / ACTUAL_ERROR_HOLD / NO_READY_COMPONENT`가 남으면 같은 방식의 Work 패치를 중단한다.
+- 중단 결과는 같은 `CHAT_JOB_ID / RELATED_TOOL / ROOT_ID`를 보존하여 `TOOL016 ERROR/ROOT intake`와 `TOOL044 REQUEST/DEMAND queue`에 동시에 전달한다.
+- TOOL016은 기존 책임층 최소수정 가능성을 먼저 판정하고, 외부 capability·틀·실행장치가 필요한 경우에만 TOOL044 검색을 허용한다.
+- TOOL044는 `기존 VERIFIED 부품 없음 + 외부 VERIFIED 후보 없음 + 완성형 실행구조 없음 + 검증 조합 불가 + 기존 책임층 최소수정 불가`를 실제 receipt/evidence로 모두 증명한 경우에만 `TOOL044_NO_SOLUTION_VERIFIED`를 반환할 수 있다.
+- `TOOL044_NO_SOLUTION_VERIFIED + TOOL044_EXHAUSTION_EVIDENCE`가 모두 있을 때만 `WORK_APPROVAL_QUEUE` 등록을 허용한다. 그 전 Work 재실행과 사용자 승인 없는 Work 실행은 차단한다.
+- 외부부품 발견만으로 해결 완료 처리하지 않는다. 실제 오류 fixture, 정상 fixture, 영향 회귀, 안전 배포와 배포본 재시험까지 통과해야 원래 작업을 재개·완료한다.
+
+WORK_FAILURE_TO_TOOL016_AND_TOOL044 = REQUIRED
+WORK_RETRY_BEFORE_TOOL044_EXHAUSTION = FORBIDDEN
+WORK_APPROVAL_WITHOUT_EXHAUSTION_EVIDENCE = BLOCKED
 WORK_NEW_BUILD = LAST_RESORT_ONLY
 WORK_INDEPENDENT_FULL_E2E_REQUIRES_EVIDENCE = TRUE

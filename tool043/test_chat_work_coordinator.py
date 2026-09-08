@@ -13,14 +13,15 @@ events=[
  event("e3","component-b","READY_FOR_INTEGRATION","CHAT_RESUME","",parent="chat-b"),
  event("e4","chat-c","HOLD","WORK_APPROVAL_REQUIRED","native chat action"),
 ]
-s=route(events)
+s_events=events+[dict(event("e5","chat-d","TOOL044_NO_SOLUTION_VERIFIED","WORK_APPROVAL_REQUIRED","exceptional work"),TOOL044_EXHAUSTION_EVIDENCE="receipt:no-solution")]
+s=route(s_events)
 assert s["chat_auto_execution"]=="NOT_PROVEN"
-assert s["counts"]=={"jobs":4,"zero_work_execution_queue":1,"tool016_error_root_intake":2,
- "tool044_request_demand_queue":1,"chat_resume_queue":1,"work_approval_queue":1}
+assert s["counts"]=={"jobs":5,"zero_work_execution_queue":1,"tool016_error_root_intake":2,
+ "tool044_request_demand_queue":2,"chat_resume_queue":1,"work_approval_queue":1}
 assert s["work_approval_queue"][0]["APPROVED"] is False
 assert s["display_counts"]["completed_chat_jobs"]==1 and s["display_counts"]["tool044_component_ready"]==1
-assert s["display_counts"]["tool044_searching"]==1 and s["display_counts"]["resume_waiting"]==1
-again=route(events,s)
+assert s["display_counts"]["tool044_searching"]==2 and s["display_counts"]["resume_waiting"]==1
+again=route(s_events,s)
 assert again["counts"]==s["counts"] and again["updated_at"]==s["updated_at"]
 try: route([{"CHAT_JOB_ID":"bad"}])
 except ValueError: pass
