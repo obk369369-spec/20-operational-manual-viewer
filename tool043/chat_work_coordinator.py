@@ -53,6 +53,19 @@ def route(events: list[dict], previous: dict | None = None) -> dict:
     state["updated_at"] = datetime.now(timezone.utc).isoformat()
     state["counts"] = {key: len(state[key]) for key in ("jobs", "zero_work_execution_queue",
         "tool016_error_root_intake", "tool044_request_demand_queue", "chat_resume_queue", "work_approval_queue")}
+    statuses = [job.get("STATUS") for job in state["jobs"].values()]
+    state["display_counts"] = {
+        "running_chat_jobs": sum(s in {"RUNNING", "IN_PROGRESS"} for s in statuses),
+        "completed_chat_jobs": sum(s in COMPLETE_STATES for s in statuses),
+        "zero_work_handoffs": state["counts"]["zero_work_execution_queue"],
+        "tool016_error_handoffs": state["counts"]["tool016_error_root_intake"],
+        "tool044_searching": sum(row.get("SEARCH_ALLOWED") is True for row in state["tool044_request_demand_queue"]),
+        "tool044_component_ready": sum(s in COMPONENT_READY for s in statuses),
+        "resume_waiting": state["counts"]["chat_resume_queue"],
+        "work_approval_required": state["counts"]["work_approval_queue"],
+        "deploying": sum(s == "DEPLOYING" for s in statuses),
+        "final_complete": sum(s == "DEPLOYED_PASS" for s in statuses),
+    }
     return state
 
 

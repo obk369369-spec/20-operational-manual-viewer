@@ -18,6 +18,8 @@ assert s["chat_auto_execution"]=="NOT_PROVEN"
 assert s["counts"]=={"jobs":4,"zero_work_execution_queue":1,"tool016_error_root_intake":2,
  "tool044_request_demand_queue":1,"chat_resume_queue":1,"work_approval_queue":1}
 assert s["work_approval_queue"][0]["APPROVED"] is False
+assert s["display_counts"]["completed_chat_jobs"]==1 and s["display_counts"]["tool044_component_ready"]==1
+assert s["display_counts"]["tool044_searching"]==1 and s["display_counts"]["resume_waiting"]==1
 assert route(events,s)["counts"]==s["counts"]
 try: route([{"CHAT_JOB_ID":"bad"}])
 except ValueError: pass
