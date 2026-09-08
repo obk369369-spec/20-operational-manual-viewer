@@ -9,6 +9,8 @@
     {"demand_id":"T42-WEBPAGE-TEXT-EXTRACTION","atomic_capabilities":["WEBPAGE_TEXT_EXTRACTION"],"official_candidates":[{"ecosystem":"pypi","package":"html2text","version":"2025.4.15","filename":"html2text-2025.4.15-py3-none-any.whl","capability":"WEBPAGE_TEXT_EXTRACTION","verifier":"html2text_extract"}]},
     {"demand_id":"T42-TOC-STRUCTURE-EXTRACTION","atomic_capabilities":["TOC_STRUCTURE_EXTRACTION"],"official_candidates":[{"ecosystem":"pypi","package":"mistune","version":"3.3.4","filename":"mistune-3.3.4-py3-none-any.whl","capability":"TOC_STRUCTURE_EXTRACTION","verifier":"mistune_heading_ast"}]},
     {"demand_id":"T42-TOC-NUMBER-HIERARCHY-VALIDATION","atomic_capabilities":["TOC_HIERARCHY_VALIDATION"]},
-    {"demand_id":"TOOL044-FREE-LOCAL-EXECUTION-ENGINE","target_tool":"TOOL044","atomic_capabilities":["LOCAL_DAG_EXECUTION_ENGINE"],"official_candidates":[{"ecosystem":"pypi","package":"doit","version":"0.37.0","filename":"doit-0.37.0-py3-none-any.whl","capability":"LOCAL_DAG_EXECUTION_ENGINE","verifier":"doit_local_engine"}]}
+    {"demand_id":"TOOL044-FREE-LOCAL-EXECUTION-ENGINE","target_tool":"TOOL044","atomic_capabilities":["LOCAL_DAG_EXECUTION_ENGINE"],"official_candidates":[{"ecosystem":"pypi","package":"doit","version":"0.37.0","filename":"doit-0.37.0-py3-none-any.whl","capability":"LOCAL_DAG_EXECUTION_ENGINE","verifier":"doit_local_engine"}]},
+    {"demand_id":"TOOL044-AUTO-ROLLBACK","target_tool":"TOOL044","atomic_capabilities":["SAFE_AUTOMATIC_ROLLBACK"],"status":"OPEN","source":"FINAL_FOUNDATION_GAP"},
+    {"demand_id":"TOOL044-ARBITRARY-WIC-DEPLOY","target_tool":"TOOL044","atomic_capabilities":["VERIFIED_TARGET_DEPLOYMENT","DEPLOYED_COPY_VALIDATION"],"status":"OPEN","source":"FINAL_FOUNDATION_GAP"}
   ]
 }
