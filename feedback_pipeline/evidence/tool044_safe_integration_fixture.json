@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-08T12:31:53.796797+00:00",
+  "scope": "ISOLATED_NON_PRODUCTION_FIXTURE",
+  "production_tool_mutation": false,
+  "tests": {
+    "complete_receipt_allows_deploy": true,
+    "deployed_copy_hash_match": true,
+    "failed_copy_detected": true,
+    "automatic_rollback_restores_safe_checkpoint": true,
+    "incomplete_receipt_blocks_deploy": true,
+    "blocked_reason": [
+      "impact_regression_pass"
+    ]
+  },
+  "expected_actual": "MATCH",
+  "safe_fixture_deploy_gate": "VERIFIED",
+  "safe_fixture_auto_rollback": "VERIFIED",
+  "arbitrary_wic_tool_auto_deploy": "NOT_IMPLEMENTED",
+  "truth_boundary": "Fixture proof does not authorize an unverified production target adapter."
+}
