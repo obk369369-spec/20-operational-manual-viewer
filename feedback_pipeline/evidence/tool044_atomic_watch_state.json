@@ -1,15 +1,15 @@
 {
-  "cycle_id": "20260908T024025Z",
+  "cycle_id": "20260908T124153Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
-  "scheduled_start": "2026-09-08T02:40:25.021394+00:00",
-  "actual_start": "2026-09-08T02:40:25.021394+00:00",
+  "scheduled_start": "2026-09-08T12:41:53.798563+00:00",
+  "actual_start": "2026-09-08T12:41:53.798563+00:00",
   "trigger_source": "SCHEDULED",
   "work_triggered": false,
   "user_triggered": false,
   "paid_api_calls": 0,
   "paid_saas_calls": 0,
   "production_mutations": 0,
-  "demands_processed": 8,
+  "demands_processed": 14,
   "duplicate_searches_blocked": 4,
   "external_sources_queried": 0,
   "verified_external_components": [],
@@ -32,39 +32,39 @@
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -76,13 +76,92 @@
     {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "TOOL044-AUTO-ROLLBACK",
+      "query_signature": "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "query_signature": "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "query_signature": "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "query_signature": "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
+      "query_signature": "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "RESELLER_DETECTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "query_signature": "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     }
@@ -256,13 +335,13 @@
     "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -308,46 +387,125 @@
     "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02": {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755": {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
-      "last_searched": "2026-09-08T02:40:25.021394+00:00",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
       "matched": {
         "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T02:40:25.021394+00:00",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3": {
+      "demand_id": "TOOL044-AUTO-ROLLBACK",
+      "query_signature": "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd": {
+      "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "query_signature": "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3": {
+      "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "query_signature": "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d": {
+      "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "query_signature": "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2": {
+      "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
+      "query_signature": "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "RESELLER_DETECTION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9": {
+      "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "query_signature": "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9",
+      "last_searched": "2026-09-08T12:41:53.798563+00:00",
+      "matched": {},
+      "missing": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-09T12:41:53.798563+00:00",
       "external_search_executed": false,
       "external_receipts": []
     }
   },
   "next_state": "WAITING_FOR_NEXT_TRIGGER",
   "function_state": "tool044_function_state.json",
-  "external_demand_candidate_count": 4,
+  "external_demand_candidate_count": 10,
   "composition_candidates": 1,
   "compositions_tested": 1,
   "verified_compositions": 1,
