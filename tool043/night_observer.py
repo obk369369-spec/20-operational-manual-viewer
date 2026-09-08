@@ -153,6 +153,10 @@ def build() -> tuple[dict, dict]:
     }
     factory_state_path = PIPE / "tool044_factory_runtime.json"
     factory_state = json.loads(factory_state_path.read_text(encoding="utf-8")) if factory_state_path.exists() else {}
+    cloud_state_path = PIPE / "tool044_cloud_state.json"
+    cloud_state = json.loads(cloud_state_path.read_text(encoding="utf-8")) if cloud_state_path.exists() else {}
+    local_required_path = PIPE / "tool044_local_required_queue.json"
+    local_required = json.loads(local_required_path.read_text(encoding="utf-8")) if local_required_path.exists() else {}
     current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None
@@ -187,6 +191,15 @@ def build() -> tuple[dict, dict]:
             "checkpoint": factory_state.get("checkpoint"),
             "completed_jobs": factory_state.get("completed_jobs", 0),
             "execution_location": "LOCAL",
+            "cloud": {
+                "status": "VERIFIED" if cloud_state.get("trigger") == "GITHUB_ACTIONS" else cloud_state.get("status", "NOT_VERIFIED"),
+                "checkpoint": cloud_state.get("checkpoint"),
+                "jobs": len(cloud_state.get("jobs", {})),
+                "deferred_backoff": cloud_state.get("deferred_backoff", 0),
+                "paid_api_calls": cloud_state.get("paid_api_calls", 0),
+                "paid_saas_calls": cloud_state.get("paid_saas_calls", 0),
+            },
+            "local_required_queue": local_required.get("queue_length", 0),
         },
         "chat_work_coordination": chat_coordination,
         "current_display_validation": previous_status.get("current_display_validation"),
