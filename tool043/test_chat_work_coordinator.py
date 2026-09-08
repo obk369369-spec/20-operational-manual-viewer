@@ -20,7 +20,8 @@ assert s["counts"]=={"jobs":4,"zero_work_execution_queue":1,"tool016_error_root_
 assert s["work_approval_queue"][0]["APPROVED"] is False
 assert s["display_counts"]["completed_chat_jobs"]==1 and s["display_counts"]["tool044_component_ready"]==1
 assert s["display_counts"]["tool044_searching"]==1 and s["display_counts"]["resume_waiting"]==1
-assert route(events,s)["counts"]==s["counts"]
+again=route(events,s)
+assert again["counts"]==s["counts"] and again["updated_at"]==s["updated_at"]
 try: route([{"CHAT_JOB_ID":"bad"}])
 except ValueError: pass
 else: raise AssertionError("missing fields did not fail closed")

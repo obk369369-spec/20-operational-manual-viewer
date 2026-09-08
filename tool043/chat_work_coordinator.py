@@ -23,6 +23,7 @@ def empty_state() -> dict:
 def route(events: list[dict], previous: dict | None = None) -> dict:
     state = previous or empty_state()
     seen = set(state.get("processed_event_ids", []))
+    changed = False
     for event in events:
         missing = REQUIRED - set(event)
         if missing:
@@ -30,6 +31,7 @@ def route(events: list[dict], previous: dict | None = None) -> dict:
         event_id = event.get("EVENT_ID") or f'{event["CHAT_JOB_ID"]}:{event["STATUS"]}:{event["RESULT"]}'
         if event_id in seen:
             continue
+        changed = True
         seen.add(event_id)
         job_id, status = event["CHAT_JOB_ID"], event["STATUS"]
         state["jobs"][job_id] = dict(event)
@@ -50,7 +52,8 @@ def route(events: list[dict], previous: dict | None = None) -> dict:
             state["work_approval_queue"].append({**envelope, "WORK": event["REMAINING_WORK"],
                                                   "APPROVED": False})
     state["processed_event_ids"] = sorted(seen)
-    state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    if changed or "updated_at" not in state:
+        state["updated_at"] = datetime.now(timezone.utc).isoformat()
     state["counts"] = {key: len(state[key]) for key in ("jobs", "zero_work_execution_queue",
         "tool016_error_root_intake", "tool044_request_demand_queue", "chat_resume_queue", "work_approval_queue")}
     statuses = [job.get("STATUS") for job in state["jobs"].values()]
