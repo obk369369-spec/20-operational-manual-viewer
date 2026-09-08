@@ -58,6 +58,10 @@ jobs:
             feedback_pipeline/evidence/tool044_safe_integration_fixture.json; do
             if [ -e "$path" ]; then git add -- "$path"; fi
           done
+          # Worker-owned tracked state may be refreshed indirectly (for
+          # example function-state provenance).  Include only tracked changes
+          # so an uncommitted checkpoint cannot block restart/resume.
+          git add -u -- feedback_pipeline
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'tool044: persist accelerated cloud factory checkpoint'
           git pull --rebase origin main
