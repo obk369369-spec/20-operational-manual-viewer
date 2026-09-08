@@ -2,7 +2,7 @@ name: TOOL044 Public Safe Cloud Worker
 
 on:
   schedule:
-    - cron: '11,41 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:

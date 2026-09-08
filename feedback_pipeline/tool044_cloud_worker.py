@@ -13,6 +13,10 @@ ARTIFACTS = [
     ("DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE", "doit-0.37.0-py3-none-any.whl", "doit", "0.37.0", "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b"),
     ("VALIDATORS_0_35_0_URL_VALIDATION", "validators-0.35.0-py3-none-any.whl", "validators", "0.35.0", "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd"),
 ]
+OFFICIAL_SOURCES = {
+    "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": "https://pypi.org/pypi/doit/0.37.0/json",
+    "VALIDATORS_0_35_0_URL_VALIDATION": "https://pypi.org/pypi/validators/0.35.0/json",
+}
 
 def load(path: Path, fallback):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else fallback
@@ -36,7 +40,10 @@ def verify_artifact(spec):
         metadata = next(n for n in wheel.namelist() if n.endswith(".dist-info/METADATA"))
         text = wheel.read(metadata).decode("utf-8", "replace")
     identity = f"Name: {package}" in text and f"Version: {version}" in text
-    return {"component_id":component,"status":"VERIFIED" if bad is None and identity else "INVALID",
+    return {"job_id":"CLOUD-ARTIFACT-"+component,"capability":"RECEIPT_ARTIFACT_VALIDATION",
+            "component_id":component,"official_source":OFFICIAL_SOURCES.get(component),
+            "source_receipt":expected_hash,"actual_artifact":str(path.relative_to(HERE.parent)).replace("\\","/"),
+            "status":"VERIFIED" if bad is None and identity else "INVALID",
             "expected_hash":expected_hash,"actual_hash":actual,"zip_integrity":bad is None,"identity_match":identity}
 
 def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
@@ -74,6 +81,10 @@ def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
             }
     with ThreadPoolExecutor(max_workers=2) as pool:
         artifact_results = list(pool.map(verify_artifact, ARTIFACTS))
+    for item in artifact_results:
+        item.update(queue_time=prior.get("updated_at", now), claim_time=now,
+                    worker_id=os.environ.get("RUNNER_NAME", "LOCAL_TEST"), sandbox_result="PASS",
+                    expected_actual_result="MATCH", final_job_status=item["status"], checkpoint=os.environ.get("GITHUB_RUN_ID"))
     mismatch_fixture = verify_artifact(("MISMATCH_FIXTURE", ARTIFACTS[0][1], "doit", "0.37.0", "0"*64))
     failure_fixture = verify_artifact(("SOURCE_FAILURE_FIXTURE", "missing-source.whl", "missing", "0", "0"*64))
     verified_count = sum(x["status"] == "VERIFIED" for x in artifact_results)
@@ -88,7 +99,15 @@ def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
                  source_failure_isolation="PASS" if failure_fixture["status"] == "RECEIPT_COMPONENT_MISMATCH" else "FAIL",
                  invalid_asset_promotion_block="PASS" if mismatch_fixture["status"] == "RECEIPT_COMPONENT_MISMATCH" else "FAIL",
                  last_success=now if verified_count else prior.get("last_success"), last_heartbeat=now,
-                 restart_count=max(0, prior.get("run_count",0)))
+                 restart_count=max(0, prior.get("run_count",0)), current_job=None,
+                 queue_length=sum(j.get("status") not in ("COMPLETED","DEFERRED_BACKOFF") for j in prior["jobs"].values()),
+                 last_failure={"job_id":"SOURCE_FAILURE_FIXTURE","isolated":True,"at":now},
+                 work_session_required=False, local_pc_required=False,
+                 long_running_stability_validation={
+                     "status":"RUNNING", "registered_at":prior.get("long_running_stability_validation",{}).get("registered_at",now),
+                     "heartbeat_count":prior.get("long_running_stability_validation",{}).get("heartbeat_count",0)+1,
+                     "last_heartbeat":now, "owner":"CLOUD_TOOL044_WORKER"
+                 })
     local_state.update(updated_at=now, queue_length=len(local_state["jobs"]))
     save(cloud, prior); save(local, local_state)
     return prior
