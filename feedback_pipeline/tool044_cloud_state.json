@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "jobs": {
+    "ZWF-48ae953b258f86c9": {
+      "job_id": "ZWF-48ae953b258f86c9",
+      "source": "TOOL016_FUNCTION_STATE",
+      "demand_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "missing_capabilities": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "priority": "NORMAL",
+      "status": "DEFERRED_BACKOFF",
+      "attempts": 2,
+      "last_result": "DUPLICATE_SEARCH_BLOCKED",
+      "updated_at": "2026-09-08T05:50:20.765725+00:00",
+      "execution_class": "PUBLIC_SAFE_WORK",
+      "worker": "GITHUB_ACTIONS",
+      "last_checked": "2026-09-08T06:19:05.996914+00:00"
+    },
+    "ZWF-30752dd34dd1b5f7": {
+      "job_id": "ZWF-30752dd34dd1b5f7",
+      "source": "TOOL016_FUNCTION_STATE",
+      "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "missing_capabilities": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "priority": "NORMAL",
+      "status": "DEFERRED_BACKOFF",
+      "attempts": 2,
+      "last_result": "DUPLICATE_SEARCH_BLOCKED",
+      "updated_at": "2026-09-08T05:50:20.765725+00:00",
+      "execution_class": "PUBLIC_SAFE_WORK",
+      "worker": "GITHUB_ACTIONS",
+      "last_checked": "2026-09-08T06:19:05.996914+00:00"
+    },
+    "ZWF-a19bd341eb7de8e0": {
+      "job_id": "ZWF-a19bd341eb7de8e0",
+      "source": "TOOL016_FUNCTION_STATE",
+      "demand_id": "T42-RESELLER-DETECTION",
+      "missing_capabilities": [
+        "RESELLER_DETECTION"
+      ],
+      "priority": "NORMAL",
+      "status": "DEFERRED_BACKOFF",
+      "attempts": 2,
+      "last_result": "DUPLICATE_SEARCH_BLOCKED",
+      "updated_at": "2026-09-08T05:50:20.765725+00:00",
+      "execution_class": "PUBLIC_SAFE_WORK",
+      "worker": "GITHUB_ACTIONS",
+      "last_checked": "2026-09-08T06:19:05.996914+00:00"
+    },
+    "ZWF-b2801e04b675d7c2": {
+      "job_id": "ZWF-b2801e04b675d7c2",
+      "source": "TOOL016_FUNCTION_STATE",
+      "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "missing_capabilities": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "priority": "NORMAL",
+      "status": "DEFERRED_BACKOFF",
+      "attempts": 2,
+      "last_result": "DUPLICATE_SEARCH_BLOCKED",
+      "updated_at": "2026-09-08T05:50:20.765725+00:00",
+      "execution_class": "PUBLIC_SAFE_WORK",
+      "worker": "GITHUB_ACTIONS",
+      "last_checked": "2026-09-08T06:19:05.996914+00:00"
+    }
+  },
+  "run_count": 1,
+  "status": "STRUCTURE_READY_NOT_REMOTE_VERIFIED",
+  "updated_at": "2026-09-08T06:19:05.996914+00:00",
+  "checkpoint": "LOCAL-20260908T061905.996914+0000",
+  "trigger": "LOCAL_TEST",
+  "work_triggered": false,
+  "user_triggered": false,
+  "claimed": 0,
+  "completed": 0,
+  "deferred_backoff": 4,
+  "paid_api_calls": 0,
+  "paid_saas_calls": 0
+}

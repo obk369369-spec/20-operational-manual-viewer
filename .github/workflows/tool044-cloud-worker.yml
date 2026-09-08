@@ -1,0 +1,38 @@
+name: TOOL044 Public Safe Cloud Worker
+
+on:
+  schedule:
+    - cron: '11,41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tool044-cloud-local-shared-state
+  cancel-in-progress: false
+
+jobs:
+  public-safe-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Contract and restart-resume test
+        run: python feedback_pipeline/tool044_cloud_worker.py --self-test
+      - name: Process public-safe handoff
+        env:
+          GITHUB_ACTIONS: 'true'
+        run: python feedback_pipeline/tool044_cloud_worker.py
+      - name: Persist shared state checkpoint
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feedback_pipeline/tool044_cloud_state.json feedback_pipeline/tool044_local_required_queue.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'tool044: persist public-safe cloud checkpoint'
+          git pull --rebase origin main
+          git push origin HEAD:main
