@@ -157,6 +157,20 @@ def build() -> tuple[dict, dict]:
     cloud_state = json.loads(cloud_state_path.read_text(encoding="utf-8")) if cloud_state_path.exists() else {}
     local_required_path = PIPE / "tool044_local_required_queue.json"
     local_required = json.loads(local_required_path.read_text(encoding="utf-8")) if local_required_path.exists() else {}
+    atomic_queue_path = PIPE / "tool044_atomic_demand_queue.json"
+    atomic_queue = json.loads(atomic_queue_path.read_text(encoding="utf-8")) if atomic_queue_path.exists() else {"demands": []}
+    registry_path = PIPE / "VERIFIED_COMPONENT_REGISTRY.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8")) if registry_path.exists() else {}
+    composition_path = PIPE / "evidence" / "tool044_verified_composition_pool.json"
+    compositions = json.loads(composition_path.read_text(encoding="utf-8")) if composition_path.exists() else {"compositions": []}
+    candidates_path = PIPE / "evidence" / "tool044_dynamic_candidate_pool.json"
+    candidates = json.loads(candidates_path.read_text(encoding="utf-8")) if candidates_path.exists() else {}
+    integration_path = PIPE / "evidence" / "tool044_safe_integration_fixture.json"
+    integration = json.loads(integration_path.read_text(encoding="utf-8")) if integration_path.exists() else {}
+    registry_rows = registry.get("components", []) + registry.get("verified_atomic_component_pool", [])
+    verified_rows = [row for row in registry_rows if row.get("status") in {"VERIFIED_REUSABLE", "DEPLOYED_PASS"}]
+    atomic_demands = atomic_queue.get("demands", [])
+    open_demands = [row for row in atomic_demands if row.get("status", "OPEN") not in {"COMPLETED", "VERIFIED"}]
     current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None
@@ -200,6 +214,27 @@ def build() -> tuple[dict, dict]:
                 "paid_saas_calls": cloud_state.get("paid_saas_calls", 0),
             },
             "local_required_queue": local_required.get("queue_length", 0),
+            "operational_counts": {
+                "open_error_count": sum(1 for row in function_state.get("functions", []) if row.get("current_status") in {"REPEATED_ERROR", "FAIL"}),
+                "open_capability_count": len(open_demands),
+                "atomic_demand_count": len(atomic_demands),
+                "external_candidates_found": candidates.get("candidate_count", 0),
+                "verified_component_count": len(verified_rows),
+                "verified_atomic_count": len(registry.get("verified_atomic_component_pool", [])),
+                "verified_composition_count": len(compositions.get("compositions", [])),
+                "rejected_component_count": sum(1 for row in registry_rows if row.get("status") in {"REJECTED", "FAIL", "BROKEN"}),
+                "shell_suspect_count": sum(1 for row in registry_rows if row.get("status") in {"SHELL", "DRAFT", "PARTIAL", "UNKNOWN", "TEST_NOT_RUN"}),
+                "ready_for_integration_count": sum(1 for row in compositions.get("compositions", []) if row.get("ready_for_integration") is True),
+                "deployed_count": sum(1 for row in registry_rows if row.get("status") == "DEPLOYED_PASS"),
+                "fixture_rollback_verified": integration.get("safe_fixture_auto_rollback") == "VERIFIED",
+                "blocked_count": current["waiting_total"],
+                "user_action_queue": len(approvals.get("batches", [])),
+            },
+            "safe_integration_truth": {
+                "fixture_deploy_gate": integration.get("safe_fixture_deploy_gate", "NOT_VERIFIED"),
+                "fixture_auto_rollback": integration.get("safe_fixture_auto_rollback", "NOT_VERIFIED"),
+                "arbitrary_wic_tool_auto_deploy": integration.get("arbitrary_wic_tool_auto_deploy", "NOT_IMPLEMENTED"),
+            },
         },
         "chat_work_coordination": chat_coordination,
         "current_display_validation": previous_status.get("current_display_validation"),
