@@ -15,7 +15,7 @@
       "updated_at": "2026-09-08T05:50:20.765725+00:00",
       "execution_class": "PUBLIC_SAFE_WORK",
       "worker": "GITHUB_ACTIONS",
-      "last_checked": "2026-09-08T06:33:19.333359+00:00"
+      "last_checked": "2026-09-08T06:43:06.185977+00:00"
     },
     "ZWF-30752dd34dd1b5f7": {
       "job_id": "ZWF-30752dd34dd1b5f7",
@@ -31,7 +31,7 @@
       "updated_at": "2026-09-08T05:50:20.765725+00:00",
       "execution_class": "PUBLIC_SAFE_WORK",
       "worker": "GITHUB_ACTIONS",
-      "last_checked": "2026-09-08T06:33:19.333359+00:00"
+      "last_checked": "2026-09-08T06:43:06.185977+00:00"
     },
     "ZWF-a19bd341eb7de8e0": {
       "job_id": "ZWF-a19bd341eb7de8e0",
@@ -47,7 +47,7 @@
       "updated_at": "2026-09-08T05:50:20.765725+00:00",
       "execution_class": "PUBLIC_SAFE_WORK",
       "worker": "GITHUB_ACTIONS",
-      "last_checked": "2026-09-08T06:33:19.333359+00:00"
+      "last_checked": "2026-09-08T06:43:06.185977+00:00"
     },
     "ZWF-b2801e04b675d7c2": {
       "job_id": "ZWF-b2801e04b675d7c2",
@@ -63,13 +63,13 @@
       "updated_at": "2026-09-08T05:50:20.765725+00:00",
       "execution_class": "PUBLIC_SAFE_WORK",
       "worker": "GITHUB_ACTIONS",
-      "last_checked": "2026-09-08T06:33:19.333359+00:00"
+      "last_checked": "2026-09-08T06:43:06.185977+00:00"
     }
   },
-  "run_count": 3,
+  "run_count": 4,
   "status": "STRUCTURE_READY_NOT_REMOTE_VERIFIED",
-  "updated_at": "2026-09-08T06:33:19.333359+00:00",
-  "checkpoint": "34195163661",
+  "updated_at": "2026-09-08T06:43:06.185977+00:00",
+  "checkpoint": "34195887057",
   "trigger": "GITHUB_ACTIONS",
   "work_triggered": false,
   "user_triggered": false,
@@ -77,5 +77,33 @@
   "completed": 0,
   "deferred_backoff": 4,
   "paid_api_calls": 0,
-  "paid_saas_calls": 0
+  "paid_saas_calls": 0,
+  "cloud_provider": "GITHUB_ACTIONS",
+  "current_stage": "CHECKPOINT",
+  "artifact_jobs": [
+    {
+      "component_id": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+      "status": "VERIFIED",
+      "expected_hash": "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b",
+      "actual_hash": "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b",
+      "zip_integrity": true,
+      "identity_match": true
+    },
+    {
+      "component_id": "VALIDATORS_0_35_0_URL_VALIDATION",
+      "status": "VERIFIED",
+      "expected_hash": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+      "actual_hash": "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd",
+      "zip_integrity": true,
+      "identity_match": true
+    }
+  ],
+  "verified_asset_count": 2,
+  "parallel_jobs": 2,
+  "failure_isolation": "PASS",
+  "source_failure_isolation": "PASS",
+  "invalid_asset_promotion_block": "PASS",
+  "last_success": "2026-09-08T06:43:06.185977+00:00",
+  "last_heartbeat": "2026-09-08T06:43:06.185977+00:00",
+  "restart_count": 3
 }
