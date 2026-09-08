@@ -1,0 +1,53 @@
+{
+  "evidence_id": "TOOL044_CLOUD_ZERO_WORK_STRUCTURE_AND_RESUME_20260908",
+  "status": "CLOUD_ZERO_WORK_STRUCTURE_READY",
+  "provider": "GITHUB_ACTIONS_EXISTING_REPOSITORY_RUNTIME",
+  "data_boundary": {
+    "PUBLIC_SAFE_WORK": "CLOUD_ALLOWED",
+    "PRIVATE_OR_LOCAL_SENSITIVE_WORK": "LOCAL_REQUIRED",
+    "cloud_sensitive_upload": "BLOCKED_BY_DEFAULT"
+  },
+  "workflow": ".github/workflows/tool044-cloud-worker.yml",
+  "worker": "feedback_pipeline/tool044_cloud_worker.py",
+  "first_remote_run": {
+    "run_id": 34194234140,
+    "event": "workflow_dispatch",
+    "conclusion": "success",
+    "checkpoint_persisted": "PASS"
+  },
+  "restart_resume_remote_run": {
+    "run_id": 34195163661,
+    "event": "workflow_dispatch",
+    "conclusion": "success",
+    "prior_run_count": 2,
+    "new_run_count": 3,
+    "job_identity_preserved": "4/4 PASS",
+    "checkpoint": "34195163661"
+  },
+  "actual_state": {
+    "public_safe_jobs": 4,
+    "result": "DEFERRED_BACKOFF",
+    "duplicate_suppression_preserved": "PASS",
+    "paid_api_calls": 0,
+    "paid_saas_calls": 0
+  },
+  "deployed_copy": {
+    "folder": "I:\\GPT 도구 작업\\44번 완성부품 가져오기",
+    "worker_self_test": "PASS",
+    "tool043_cloud_monitor": "VERIFIED",
+    "tool043_checkpoint": "34195163661",
+    "tool043_jobs": 4
+  },
+  "truth_boundary": {
+    "scheduled_workflow_configured": true,
+    "manual_cloud_execution_verified": true,
+    "cloud_state_persistence_verified": true,
+    "cloud_restart_resume_verified": true,
+    "natural_schedule_cycle_observed": false,
+    "pc_off_continuous_processing_verified": false,
+    "arbitrary_tool_auto_deploy": "NOT_IMPLEMENTED",
+    "automatic_rollback": "NOT_IMPLEMENTED",
+    "chat_auto_execution": "NOT_PROVEN"
+  },
+  "safe_checkpoint": "CONTAINING_REMOTE_COMMIT"
+}
