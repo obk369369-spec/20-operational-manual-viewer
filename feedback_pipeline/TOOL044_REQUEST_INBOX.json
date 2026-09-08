@@ -1,5 +1,28 @@
 {
   "schema_version": 1,
   "purpose": "Persistent user/TOOL016 intake for TOOL044. User may provide only name, purpose and desired_result; TOOL044 expands capabilities.",
-  "requests": []
+  "requests": [
+    {
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "tool_or_program_name": "TOOL016 retrospective WIC error and feedback sweep",
+      "related_tool": "TOOL016",
+      "purpose": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+      "desired_result": "TOOL016 accessible historical evidence -> deduplicated ROOT/MISSING_CAPABILITY set -> TOOL044 atomic demands -> verified component/framework discovery and composition pipeline. Records not actually accessible must be marked ACCESS_NOT_AVAILABLE rather than claimed collected.",
+      "required_capabilities": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+        "HISTORICAL_FEEDBACK_INGEST",
+        "ACCESS_BOUNDARY_CLASSIFICATION",
+        "ROOT_CAUSE_DEDUPLICATION",
+        "MISSING_CAPABILITY_EXTRACTION",
+        "VERIFIED_SKIP_REUSE_FILTER",
+        "TOOL016_TO_TOOL044_HANDOFF",
+        "ATOMIC_CAPABILITY_DECOMPOSITION",
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "priority": "HIGH",
+      "status": "OPEN",
+      "user_action": "NONE",
+      "created_at": "2026-09-08T21:19:00+09:00"
+    }
+  ]
 }
