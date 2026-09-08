@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "central_input_sha256": {
-    "feedback_pipeline/work16_root_ledger.json": "5a3511b93ee881955509b7ac37c870212a7091ea8746e93c8e884b3a30f0dff4",
-    "feedback_pipeline/incomplete_register.json": "c60f4c06be40e399be06a22bbd5fab311e4bb86566785bee7a5574a2aff2754f",
-    "feedback_pipeline/unified_open_ledger.json": "16dfece247bd113ab6c8b3c31f83b4f36292ef8db4a5c111dae4ad43b8f1e74d",
-    "feedback_pipeline/approval_queue.json": "356d6ce3001bedb3d08eb1ee609381d481fdf3c9c84de2cf4c24dc15a82b2258",
-    "feedback_pipeline/evidence/work_execution_audit_20260827.json": "f41c265303942af733e49c7a4f04efa801f0750e04f0172c1421f2fdb65476a4"
+    "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
+    "feedback_pipeline/incomplete_register.json": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
+    "feedback_pipeline/unified_open_ledger.json": "1a2a0dab22024f8b1d91fedb1ba798a2fa1939d4c54a2774395cc5af6159c61b",
+    "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
+    "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
   "current_status": "관찰판 정상",
   "observer_health": "OK",
@@ -1390,9 +1390,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-08T13:26:35.616357+00:00",
-  "source_revision": "LOCAL_ONLY",
-  "github_actions_run": "LOCAL_ONLY",
+  "observer_generated_at": "2026-09-08T13:27:59.865362+00:00",
+  "source_revision": "b8d80001d45ad5cce392ede3fac512d719df7d9a",
+  "github_actions_run": "34232059613",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -1404,7 +1404,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-08T13:26:35.615355+00:00",
+      "executed_at": "2026-09-08T13:27:59.864754+00:00",
       "status": "COMPLETED"
     }
   ]
