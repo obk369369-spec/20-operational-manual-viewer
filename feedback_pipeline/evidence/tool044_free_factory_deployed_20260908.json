@@ -1,6 +1,6 @@
 {
   "evidence_id": "TOOL044_FREE_EXTERNAL_EXECUTION_FACTORY_20260908",
-  "status": "STRUCTURE_READY",
+  "status": "LOCAL_ZERO_WORK_FACTORY_VERIFIED",
   "primary_execution_engine": {
     "component_id": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
     "version": "0.37.0",
@@ -41,6 +41,18 @@
     "interval_minutes": 5,
     "logged_on_host_only": true,
     "manual_task_start_actual_run": "PASS",
+    "natural_cycles": [
+      {
+        "cycle_id": "20260908T052402Z",
+        "actual_start": "2026-09-08T14:24:02.458269+09:00"
+      },
+      {
+        "cycle_id": "20260908T052902Z",
+        "actual_start": "2026-09-08T14:29:02.496838+09:00"
+      }
+    ],
+    "consecutive_natural_cycles": 2,
+    "observed_wake_interval_seconds": 300,
     "trigger_source": "SCHEDULED",
     "work_triggered": false,
     "user_triggered": false,
