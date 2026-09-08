@@ -4,13 +4,17 @@
     "LOCAL-E2E-TOOL044-CLOUD-HANDOFF": {
       "job_id": "LOCAL-E2E-TOOL044-CLOUD-HANDOFF",
       "source": "CLOUD_TOOL044",
-      "status": "QUEUED",
+      "status": "COMPLETED",
       "execution_class": "LOCAL_REQUIRED",
       "reason": "WINDOWS_DEPLOYED_COPY_TEST",
       "payload": "feedback_pipeline/tool044_cloud_worker.py",
-      "cloud_checkpoint": "34196128045"
+      "cloud_checkpoint": "34196128045",
+      "worker": "OFFICE_LOCAL_TOOL044",
+      "completed_at": "2026-09-08T06:47:15.305619+00:00",
+      "result_sha256": "8e07833e0f57a01234e3de297340214c29d362b971353a9f85642a5e49699ed3",
+      "cloud_executed": false
     }
   },
-  "queue_length": 1,
-  "updated_at": "2026-09-08T06:46:13.140965+00:00"
+  "queue_length": 0,
+  "updated_at": "2026-09-08T06:47:15.305619+00:00"
 }

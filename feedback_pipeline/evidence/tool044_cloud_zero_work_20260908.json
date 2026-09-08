@@ -24,6 +24,24 @@
     "job_identity_preserved": "4/4 PASS",
     "checkpoint": "34195163661"
   },
+  "real_component_cloud_run": {
+    "run_id": 34195887057,
+    "conclusion": "success",
+    "parallel_artifact_jobs": 2,
+    "receipt_artifact_match": "2/2 PASS",
+    "failure_isolation": "PASS",
+    "source_failure_isolation": "PASS",
+    "invalid_asset_promotion_block": "PASS"
+  },
+  "cloud_local_handoff": {
+    "cloud_run_id": 34196128045,
+    "job_id": "LOCAL-E2E-TOOL044-CLOUD-HANDOFF",
+    "cloud_execution": false,
+    "local_worker": "OFFICE_LOCAL_TOOL044",
+    "deployed_copy_result": "COMPLETED",
+    "duplicate_execution_block": "PASS",
+    "shared_queue_remaining": 0
+  },
   "actual_state": {
     "public_safe_jobs": 4,
     "result": "DEFERRED_BACKOFF",
