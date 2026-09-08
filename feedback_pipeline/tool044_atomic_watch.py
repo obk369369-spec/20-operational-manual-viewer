@@ -64,6 +64,19 @@ def harvest_pypi(candidate: dict, artifact_dir: Path) -> dict:
         finally:
             sys.path.remove(str(artifact))
             sys.modules.pop("html2text", None)
+    elif candidate.get("verifier") == "mistune_heading_ast":
+        sys.path.insert(0, str(artifact))
+        try:
+            module = importlib.import_module("mistune")
+            parser = module.create_markdown(renderer="ast")
+            normal = parser("# 1\n## 1.1\n### 1.1.1\n#### 1.1.1.1\n")
+            malformed = parser("plain body without headings")
+            levels = [token.get("attrs", {}).get("level") for token in normal if token.get("type") == "heading"]
+            malformed_levels = [token for token in malformed if token.get("type") == "heading"]
+            verified = levels == [1, 2, 3, 4] and not malformed_levels
+        finally:
+            sys.path.remove(str(artifact))
+            sys.modules.pop("mistune", None)
     return {
         "status": "VERIFIED_REUSABLE" if verified else "SANDBOX_FAIL",
         "component_id": f"{package.upper()}_{version.replace('.', '_')}_{candidate['capability']}",
