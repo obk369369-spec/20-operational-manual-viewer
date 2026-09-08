@@ -1,0 +1,1353 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-08T13:33:26.683655+00:00",
+  "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
+  "source_receipts": [
+    {
+      "path": "feedback_pipeline/wic_target_registry.json",
+      "sha256": "63f52173e558b03a12e47b587552a157aa448772ff74c77a4200b3856b5ced15"
+    },
+    {
+      "path": "feedback_pipeline/tool044_function_state.json",
+      "sha256": "88961d6ff41de170a100ec6fac1cb2e32dc9ea06ed0caf8ced63c286a1952fb1"
+    },
+    {
+      "path": "feedback_pipeline/work16_root_ledger.json",
+      "sha256": "5a3511b93ee881955509b7ac37c870212a7091ea8746e93c8e884b3a30f0dff4"
+    },
+    {
+      "path": "feedback_pipeline/unified_open_ledger.json",
+      "sha256": "16dfece247bd113ab6c8b3c31f83b4f36292ef8db4a5c111dae4ad43b8f1e74d"
+    },
+    {
+      "path": "feedback_pipeline/incomplete_register.json",
+      "sha256": "c60f4c06be40e399be06a22bbd5fab311e4bb86566785bee7a5574a2aff2754f"
+    },
+    {
+      "path": "feedback_pipeline/TOOL044_REQUEST_INBOX.json",
+      "sha256": "0641a82c09aa91473fdfe00e6d30af2c9ce1954e60d1f8e349ffe647492a8ccf"
+    },
+    {
+      "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
+      "sha256": "8995a003be270cfe39d21170ff8d753b39b786c070034319fcba574e825aba67"
+    }
+  ],
+  "counts": {
+    "checked_tools": 16,
+    "checked_record_sources": 7,
+    "automatically_recoverable_records": 96,
+    "access_not_available_source_classes": 1,
+    "access_not_available_conversation_count": null,
+    "collected_error_records": 59,
+    "roots_after_deduplication": 45,
+    "verified_skip_reuse_records": 3,
+    "records_handed_to_tool044": 21,
+    "atomic_demands": 25
+  },
+  "checked_tool_ids": [
+    "TOOL001",
+    "TOOL002",
+    "TOOL006",
+    "TOOL007",
+    "TOOL012",
+    "TOOL013",
+    "TOOL014",
+    "TOOL016",
+    "TOOL020",
+    "TOOL027",
+    "TOOL035",
+    "TOOL037",
+    "TOOL041",
+    "TOOL042",
+    "TOOL043",
+    "TOOL044"
+  ],
+  "function_state_tool_ids": [
+    "CENTRAL",
+    "EXTERNAL",
+    "TOOL001",
+    "TOOL002",
+    "TOOL006",
+    "TOOL007",
+    "TOOL012",
+    "TOOL013",
+    "TOOL014",
+    "TOOL016",
+    "TOOL020",
+    "TOOL027",
+    "TOOL035",
+    "TOOL037",
+    "TOOL041",
+    "TOOL042",
+    "TOOL043",
+    "TOOL044"
+  ],
+  "inventory": [
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL001",
+      "FUNCTION_ID": "TOOL001-CANONICAL-RUNTIME",
+      "ROOT_ID": "VERIFIED_REPORT_PAYLOAD_NOT_READY",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "VERIFIED_REPORT_PAYLOAD_NOT_READY",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "evidence",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL002",
+      "FUNCTION_ID": "TOOL002-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL002-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "evidence",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL006",
+      "FUNCTION_ID": "TOOL006-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL006-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "tests/tool006_chronic_error_fixtures.json",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL007",
+      "FUNCTION_ID": "TOOL007-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL007-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "feedback_pipeline/tool007_adapter_evidence.json",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL012",
+      "FUNCTION_ID": "TOOL012-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL012-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "IMPROVED_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": null,
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "TOOL012_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "ROUTING": "SKIP_REUSE"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL013-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL013-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "IMPROVED_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": null,
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "tests/tool13_actual_114_evidence.json",
+      "ROUTING": "SKIP_REUSE"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL014",
+      "FUNCTION_ID": "TOOL014-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL014-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "IMPROVED_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": null,
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "TOOL014_DEPLOYMENT_EVIDENCE_2026-08-30.md",
+      "ROUTING": "SKIP_REUSE"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL020",
+      "FUNCTION_ID": "TOOL020-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL020-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "public/index.html",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL027",
+      "FUNCTION_ID": "TOOL027-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL027-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "WIC_RULE_SOURCE.md",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL035",
+      "FUNCTION_ID": "TOOL035-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL035-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "feedback_pipeline/tool035_verified_integration.json",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL037",
+      "FUNCTION_ID": "TOOL037-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL037-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "feedback_pipeline/evidence",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL041",
+      "FUNCTION_ID": "TOOL041-CANONICAL-RUNTIME",
+      "ROOT_ID": "ONLINE_COLLECTION_EXECUTION_PATH_INCOMPLETE",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ONLINE_COLLECTION_EXECUTION_PATH_INCOMPLETE",
+      "OCCURRENCE_OR_EVIDENCE": 1,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "tests/fixtures/t41_actual_pairs.json",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "TOOL042-CANONICAL-RUNTIME",
+      "ROOT_ID": "CURRENT_LEDGER_ROW_NOT_RESOLVED",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CURRENT_LEDGER_ROW_NOT_RESOLVED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "fixtures/customer_branch_actual_kmg.json",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL043",
+      "FUNCTION_ID": "TOOL043-CANONICAL-RUNTIME",
+      "ROOT_ID": "TOOL043-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": "tool043/TEST_EVIDENCE.md",
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
+      "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL041",
+      "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
+      "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
+      "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL043",
+      "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
+      "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
+      "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "CI-REGISTRY-STAGING-STATUS",
+      "ROOT_ID": "CI-REGISTRY-STAGING-STATUS",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Existing one-line patch validated with actual staging row, ACTIVE/unknown/unproved-COMPLETE regression. Code6c5f652e; CI33724676161 and33724676034 succeeded; all3source files remote matched. Evidence18dcc83f persisted. No TOOL014 business runtime changed.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL001",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL006",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL007",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL041",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL043",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "ROOT_ID": "WIC-PARALLEL-RESIDUAL-20260903",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL043",
+      "FUNCTION_ID": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "ROOT_ID": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TOOL044 production executed one pinned fastjsonschema candidate through sandbox, unmodified TOOL043 integration, actual canonical input comparison, 6 invalid-proof cases, regression, push/readback, both operating folders, deployed TOOL044 executing deployed TOOL043 test PASS. Original TOOL013 pilot not retested.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "ROOT_ID": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TOOL044 production executed one pinned fastjsonschema candidate through sandbox, unmodified TOOL043 integration, actual canonical input comparison, 6 invalid-proof cases, regression, push/readback, both operating folders, deployed TOOL044 executing deployed TOOL043 test PASS. Original TOOL013 pilot not retested.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL044-READY-COMPONENT-PILOT",
+      "ROOT_ID": "TOOL044-READY-COMPONENT-PILOT",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Unmodified idb-keyval 6.2.2 installed in TOOL013, real XLSX 6 rows plus 4050383-char/160-row resume/download exact comparison and impacted regression PASS; deployed canonical same E2E PASS; remote bytes matched. Translation not included.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-READY-COMPONENT-PILOT",
+      "ROOT_ID": "TOOL044-READY-COMPONENT-PILOT",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Unmodified idb-keyval 6.2.2 installed in TOOL013, real XLSX 6 rows plus 4050383-char/160-row resume/download exact comparison and impacted regression PASS; deployed canonical same E2E PASS; remote bytes matched. Translation not included.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "EXTERNAL",
+      "FUNCTION_ID": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "ROOT_ID": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "HOLD_EVIDENCE_WAITING",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "EXTERNAL",
+      "FUNCTION_ID": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+      "ROOT_ID": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Ordinary ChatGPT conversation message/update intent -> authenticated repository_dispatch(wic_feedback) or workflow_dispatch(event_json). No source-side subscribed producer callable in the current environment; receiver already exists.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": {
+        "path": "feedback_pipeline/evidence/chat_source_boundary_20260831.json",
+        "scope": "SOURCE_CHAT_TO_EXISTING_EVENT_RECEIVER_ONLY"
+      },
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL001",
+      "FUNCTION_ID": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "ROOT_ID": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "HOLD_EVIDENCE_WAITING",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": null,
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL041",
+      "FUNCTION_ID": "T41-T42-NATIVE-AUTOMATION",
+      "ROOT_ID": "T41-T42-NATIVE-AUTOMATION",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Dedicated stdin MVP and real Responses adapter implemented; 11 new mocked connection controls passed once. Actual CLI returned bodyless configuration HOLD. Real model/customer/native-save E2E not executed.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": {
+        "path": "customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json",
+        "tool041": "89fb0a85f987d7644a95b9b82fc6ec2f4fedaab3",
+        "tool042": "7c1368f1813bdfffd2ce1e57758610c22e1fdb5a",
+        "scope": "BLOCKING_BOUNDARY_IMPLEMENTED_CUSTOMER_PASS_E2E_NOT_COMPLETE"
+      },
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T41-T42-NATIVE-AUTOMATION",
+      "ROOT_ID": "T41-T42-NATIVE-AUTOMATION",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Dedicated stdin MVP and real Responses adapter implemented; 11 new mocked connection controls passed once. Actual CLI returned bodyless configuration HOLD. Real model/customer/native-save E2E not executed.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": {
+        "path": "customer_pipeline/TOOL041_042_RELEASE_GATE_20260831.json",
+        "tool041": "89fb0a85f987d7644a95b9b82fc6ec2f4fedaab3",
+        "tool042": "7c1368f1813bdfffd2ce1e57758610c22e1fdb5a",
+        "scope": "BLOCKING_BOUNDARY_IMPLEMENTED_CUSTOMER_PASS_E2E_NOT_COMPLETE"
+      },
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "ROOT_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [
+        "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      ],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "ROOT_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [
+        "VALIDATORS_0_35_0_URL_VALIDATION"
+      ],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-RESELLER-DETECTION",
+      "ROOT_ID": "T42-RESELLER-DETECTION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "RESELLER_DETECTION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "RESELLER_DETECTION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-PROVENANCE-VALIDATION",
+      "ROOT_ID": "T42-PROVENANCE-VALIDATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "ROOT_ID": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-TOC-STRUCTURE-EXTRACTION",
+      "ROOT_ID": "T42-TOC-STRUCTURE-EXTRACTION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "ROOT_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+      "ROOT_ID": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
+      "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "ROOT_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "ROOT_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-RESELLER_DETECTION",
+      "ROOT_ID": "FS-FUNCTION-RESELLER_DETECTION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "RESELLER_DETECTION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "RESELLER_DETECTION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "ROOT_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "HISTORICAL_FEEDBACK_INGEST"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "HISTORICAL_FEEDBACK_INGEST"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "ACCESS_BOUNDARY_CLASSIFICATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "ACCESS_BOUNDARY_CLASSIFICATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "ROOT_CAUSE_DEDUPLICATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "ROOT_CAUSE_DEDUPLICATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "MISSING_CAPABILITY_EXTRACTION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "MISSING_CAPABILITY_EXTRACTION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "VERIFIED_SKIP_REUSE_FILTER"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "VERIFIED_SKIP_REUSE_FILTER"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "TOOL016_TO_TOOL044_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "TOOL016_TO_TOOL044_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+      "ROOT_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "LOCAL_TITLE_TRANSLATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "LOCAL_TITLE_TRANSLATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+      "ROOT_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    }
+  ],
+  "deduplicated_root_ids": [
+    "CI-REGISTRY-STAGING-STATUS",
+    "CURRENT_LEDGER_ROW_NOT_RESOLVED",
+    "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+    "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+    "FS-FUNCTION-RESELLER_DETECTION",
+    "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+    "ONLINE_COLLECTION_EXECUTION_PATH_INCOMPLETE",
+    "T41-T42-NATIVE-AUTOMATION",
+    "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+    "T42-OFFICIAL-PUBLISHER-VALIDATION",
+    "T42-PROVENANCE-VALIDATION",
+    "T42-RESELLER-DETECTION",
+    "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+    "T42-TOC-STRUCTURE-EXTRACTION",
+    "T42-WEBPAGE-TEXT-EXTRACTION",
+    "TOOL002-CANONICAL-RUNTIME",
+    "TOOL006-CANONICAL-RUNTIME",
+    "TOOL007-CANONICAL-RUNTIME",
+    "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+    "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+    "TOOL020-CANONICAL-RUNTIME",
+    "TOOL027-CANONICAL-RUNTIME",
+    "TOOL035-CANONICAL-RUNTIME",
+    "TOOL037-CANONICAL-RUNTIME",
+    "TOOL043-CANONICAL-RUNTIME",
+    "TOOL044-ARBITRARY-WIC-DEPLOY",
+    "TOOL044-AUTO-ROLLBACK",
+    "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+    "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+    "TOOL044-READY-COMPONENT-PILOT",
+    "VERIFIED_REPORT_PAYLOAD_NOT_READY",
+    "WIC-0702-SCOPED-RECOVERY",
+    "WIC-PARALLEL-RESIDUAL-20260903"
+  ],
+  "tool044_routed_records": [
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "ROOT_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [
+        "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      ],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "ROOT_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [
+        "VALIDATORS_0_35_0_URL_VALIDATION"
+      ],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-RESELLER-DETECTION",
+      "ROOT_ID": "T42-RESELLER-DETECTION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "RESELLER_DETECTION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "RESELLER_DETECTION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "ROOT_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
+      "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "ROOT_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "ROOT_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-RESELLER_DETECTION",
+      "ROOT_ID": "FS-FUNCTION-RESELLER_DETECTION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "RESELLER_DETECTION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "RESELLER_DETECTION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "ROOT_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "HISTORICAL_FEEDBACK_INGEST"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "HISTORICAL_FEEDBACK_INGEST"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "ACCESS_BOUNDARY_CLASSIFICATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "ACCESS_BOUNDARY_CLASSIFICATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "ROOT_CAUSE_DEDUPLICATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "ROOT_CAUSE_DEDUPLICATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "MISSING_CAPABILITY_EXTRACTION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "MISSING_CAPABILITY_EXTRACTION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "VERIFIED_SKIP_REUSE_FILTER"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "VERIFIED_SKIP_REUSE_FILTER"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "TOOL016_TO_TOOL044_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "TOOL016_TO_TOOL044_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+      "ROOT_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "LOCAL_TITLE_TRANSLATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "LOCAL_TITLE_TRANSLATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+      "ROOT_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    }
+  ],
+  "queue_lineage_missing": [],
+  "access_not_available": [
+    {
+      "source_type": "CHATGPT_FULL_CONVERSATION_HISTORY_NOT_PERSISTED_TO_CANONICAL_FILES",
+      "status": "ACCESS_NOT_AVAILABLE",
+      "countable_source_classes": 1,
+      "conversation_count": null,
+      "reason": "No authenticated full conversation-history reader is available in this runtime.",
+      "free_automatic_connection": "AVAILABLE_ONLY_FOR_RECORDS_ALREADY_PERSISTED_IN_LEDGER_EVIDENCE_OR_QUEUE",
+      "user_action": "NONE"
+    }
+  ],
+  "router_first_added": 0,
+  "router_second_added": 0,
+  "router_idempotency": "PASS",
+  "expected": "Every explicit external gap has source-preserving TOOL044 lineage; VERIFIED rows are not newly routed; inaccessible chats are not claimed.",
+  "actual": "MATCH",
+  "status": "PASS"
+}

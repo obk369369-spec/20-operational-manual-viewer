@@ -36,6 +36,8 @@ jobs:
         run: python feedback_pipeline/tool044_request_router.py
       - name: Verify TOOL016 source lineage handoff
         run: python feedback_pipeline/tool016_tool044_lineage_e2e.py
+      - name: Verify full accessible TOOL016 to TOOL044 sweep
+        run: python feedback_pipeline/tool016_tool044_full_accessible_sweep.py
       - name: Harvest official pre-qualified candidates and test compositions
         run: python feedback_pipeline/tool044_atomic_watch.py --external --trigger-source SCHEDULED
       - name: Parallel discover public candidates for unresolved atomic capabilities
