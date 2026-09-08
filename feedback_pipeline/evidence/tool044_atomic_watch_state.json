@@ -1,8 +1,8 @@
 {
-  "cycle_id": "20260908T185900Z",
+  "cycle_id": "20260908T214551Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
-  "scheduled_start": "2026-09-08T18:59:00.271394+00:00",
-  "actual_start": "2026-09-08T18:59:00.271394+00:00",
+  "scheduled_start": "2026-09-08T21:45:51.932220+00:00",
+  "actual_start": "2026-09-08T21:45:51.932220+00:00",
   "trigger_source": "SCHEDULED",
   "work_triggered": false,
   "user_triggered": false,
@@ -32,39 +32,39 @@
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -76,13 +76,13 @@
     {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -322,13 +322,13 @@
     "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -374,39 +374,39 @@
     "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02": {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755": {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
-      "last_searched": "2026-09-08T18:59:00.271394+00:00",
+      "last_searched": "2026-09-08T21:45:51.932220+00:00",
       "matched": {
         "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-09T18:59:00.271394+00:00",
+      "next_eligible_search": "2026-09-09T21:45:51.932220+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
