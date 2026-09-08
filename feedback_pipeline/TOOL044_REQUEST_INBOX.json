@@ -23,6 +23,32 @@
       "status": "OPEN",
       "user_action": "NONE",
       "created_at": "2026-09-08T21:19:00+09:00"
+    },
+    {
+      "request_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908",
+      "tool_or_program_name": "TOOL013 Excel upload",
+      "related_tool": "TOOL013",
+      "source_chat_or_tool": "CURRENT_USER_CHAT_TOOL013",
+      "function_id": "TOOL013-TITLE-TRANSLATION-CATEGORY",
+      "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
+      "original_error_or_feedback": "원제 보존과 자연스러운 한국어 상품명 자동번역, 기존 허용값 기반 2차카테고리 자동매칭이 아직 runtime에 없다.",
+      "occurrence_or_evidence": "TOOL013_MASTER.md sections 9 and 14; canonical index.html has no translation/category recommendation runtime",
+      "source_evidence": [
+        "TOOL013_MASTER.md#9",
+        "TOOL013_MASTER.md#14",
+        "index.html"
+      ],
+      "purpose": "Preserve original title and produce verified Korean title and canonical category recommendation without changing the verified bulk engine.",
+      "desired_result": "Receipt-verified zero-cost/local title translation and canonical-category matcher candidates ready for TOOL013 contract tests.",
+      "required_capabilities": [
+        "LOCAL_TITLE_TRANSLATION",
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "current_status": "MISSING_CAPABILITY",
+      "priority": "HIGH",
+      "status": "OPEN",
+      "user_action": "NONE",
+      "created_at": "2026-09-08T22:20:00+09:00"
     }
   ]
 }

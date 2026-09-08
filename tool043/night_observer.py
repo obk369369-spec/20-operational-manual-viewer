@@ -171,11 +171,12 @@ def build() -> tuple[dict, dict]:
     verified_rows = [row for row in registry_rows if row.get("status") in {"VERIFIED_REUSABLE", "DEPLOYED_PASS"}]
     atomic_demands = atomic_queue.get("demands", [])
     open_demands = [row for row in atomic_demands if row.get("status", "OPEN") not in {"COMPLETED", "VERIFIED"}]
-    demand_source_tool_counts = {}
+    demand_source_tool_ids = {}
     for demand in atomic_demands:
         for record in demand.get("source_records", []):
             key = record.get("TOOL_ID") or record.get("SOURCE_CHAT_OR_TOOL") or "UNKNOWN"
-            demand_source_tool_counts[key] = demand_source_tool_counts.get(key, 0) + 1
+            demand_source_tool_ids.setdefault(key, set()).add(demand.get("demand_id"))
+    demand_source_tool_counts = {key: len(ids) for key, ids in demand_source_tool_ids.items()}
     current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None

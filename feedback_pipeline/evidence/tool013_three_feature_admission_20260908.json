@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "target": "TOOL013",
+  "canonical_repository": "obk369369-spec/13-excel-upload",
+  "canonical_commit": "a54b7a603464c941a0fd64e7587bd22ea55b5320",
+  "canonical_entrypoint": "index.html",
+  "actual_use_entrypoint": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/index.html",
+  "canonical_actual_sha256": "72ef43947618ee3d8f8b7a4d0cf3bb4a496122c39427e915da51e5b0ecaec7b5",
+  "canonical_actual_match": true,
+  "features": {
+    "title_translation": {
+      "status": "HOLD_MISSING_VERIFIED_COMPONENT",
+      "evidence": "TOOL013_MASTER.md sections 9 and 14 explicitly separate this from the verified converter; index.html contains no translation runtime",
+      "tool044_demand_ids": [
+        "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION"
+      ]
+    },
+    "canonical_category_matching": {
+      "status": "HOLD_MISSING_CANONICAL_CATEGORY_LIST_AND_VERIFIED_MATCHER",
+      "evidence": "Primary category fixed value is verified, but automatic secondary category recommendation remains a MASTER requirement, not a runtime implementation",
+      "tool044_demand_ids": [
+        "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING"
+      ]
+    },
+    "regime_display": {
+      "status": "SKIP_REUSE_DEPLOYED_PASS",
+      "expected": "page number plus literal Pages; preview equals downloaded XLS",
+      "evidence": "tests/tool13_xls_xlsx_to_xls_evidence.json and commits e9d7abe/a54b7a6"
+    }
+  },
+  "bulk_114_823": "SKIP_REUSE_NO_IMPACT",
+  "tool013_runtime_changes": 0,
+  "deployment_required": false,
+  "final_status": "HOLD_BEFORE_PARTIAL_WORK",
+  "truth_boundary": "No unverified translator or invented category taxonomy was inserted into the deployed converter."
+}
