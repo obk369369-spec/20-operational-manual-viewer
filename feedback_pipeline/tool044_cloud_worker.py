@@ -1,6 +1,7 @@
 """Public-safe TOOL044 cloud worker; private/Windows work is fail-closed to local queue."""
 from __future__ import annotations
-import argparse, hashlib, json, os
+import argparse, hashlib, json, os, zipfile
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -8,6 +9,10 @@ HERE = Path(__file__).resolve().parent
 RUNTIME = HERE / "tool044_factory_runtime.json"
 CLOUD = HERE / "tool044_cloud_state.json"
 LOCAL = HERE / "tool044_local_required_queue.json"
+ARTIFACTS = [
+    ("DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE", "doit-0.37.0-py3-none-any.whl", "doit", "0.37.0", "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b"),
+    ("VALIDATORS_0_35_0_URL_VALIDATION", "validators-0.35.0-py3-none-any.whl", "validators", "0.35.0", "e8c947097eae7892cb3d26868d637f79f47b4a0554bc6b80065dfe5aac3705dd"),
+]
 
 def load(path: Path, fallback):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else fallback
@@ -19,6 +24,20 @@ def save(path: Path, value):
 
 def public_safe(job: dict) -> bool:
     return job.get("source") == "TOOL016_FUNCTION_STATE" and bool(job.get("missing_capabilities"))
+
+def verify_artifact(spec):
+    component, filename, package, version, expected_hash = spec
+    path = HERE / "external_candidate_pool" / filename
+    actual = hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+    if actual != expected_hash:
+        return {"component_id":component,"status":"RECEIPT_COMPONENT_MISMATCH","expected_hash":expected_hash,"actual_hash":actual}
+    with zipfile.ZipFile(path) as wheel:
+        bad = wheel.testzip()
+        metadata = next(n for n in wheel.namelist() if n.endswith(".dist-info/METADATA"))
+        text = wheel.read(metadata).decode("utf-8", "replace")
+    identity = f"Name: {package}" in text and f"Version: {version}" in text
+    return {"component_id":component,"status":"VERIFIED" if bad is None and identity else "INVALID",
+            "expected_hash":expected_hash,"actual_hash":actual,"zip_integrity":bad is None,"identity_match":identity}
 
 def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
     now = datetime.now(timezone.utc).isoformat()
@@ -43,11 +62,23 @@ def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
                        receipt=hashlib.sha256(json.dumps(job, sort_keys=True).encode()).hexdigest())
             completed += 1
         prior["jobs"][job_id] = row
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        artifact_results = list(pool.map(verify_artifact, ARTIFACTS))
+    mismatch_fixture = verify_artifact(("MISMATCH_FIXTURE", ARTIFACTS[0][1], "doit", "0.37.0", "0"*64))
+    failure_fixture = verify_artifact(("SOURCE_FAILURE_FIXTURE", "missing-source.whl", "missing", "0", "0"*64))
+    verified_count = sum(x["status"] == "VERIFIED" for x in artifact_results)
     checkpoint = os.environ.get("GITHUB_RUN_ID") or "LOCAL-" + now.replace(":", "").replace("-", "")
     prior.update(updated_at=now, checkpoint=checkpoint, run_count=prior.get("run_count", 0)+1,
                  trigger="GITHUB_ACTIONS" if os.environ.get("GITHUB_ACTIONS") == "true" else "LOCAL_TEST",
                  work_triggered=False, user_triggered=False, claimed=claimed, completed=completed,
-                 deferred_backoff=deferred, paid_api_calls=0, paid_saas_calls=0)
+                 deferred_backoff=deferred, paid_api_calls=0, paid_saas_calls=0,
+                 cloud_provider="GITHUB_ACTIONS", current_stage="CHECKPOINT",
+                 artifact_jobs=artifact_results, verified_asset_count=verified_count,
+                 parallel_jobs=2, failure_isolation="PASS" if verified_count == 2 and failure_fixture["status"] == "RECEIPT_COMPONENT_MISMATCH" else "FAIL",
+                 source_failure_isolation="PASS" if failure_fixture["status"] == "RECEIPT_COMPONENT_MISMATCH" else "FAIL",
+                 invalid_asset_promotion_block="PASS" if mismatch_fixture["status"] == "RECEIPT_COMPONENT_MISMATCH" else "FAIL",
+                 last_success=now if verified_count else prior.get("last_success"), last_heartbeat=now,
+                 restart_count=max(0, prior.get("run_count",0)))
     local_state.update(updated_at=now, queue_length=len(local_state["jobs"]))
     save(cloud, prior); save(local, local_state)
     return prior
@@ -62,6 +93,8 @@ def self_test():
         assert second["jobs"]["A"]["receipt"] == first["jobs"]["A"]["receipt"]
         assert load(local,{})["jobs"]["B"]["reason"] == "PRIVATE_OR_LOCAL_SENSITIVE_WORK"
         assert second["run_count"] == 2 and second["paid_api_calls"] == 0
+        assert second["verified_asset_count"] == 2
+        assert second["failure_isolation"] == second["invalid_asset_promotion_block"] == "PASS"
     return "PASS: public claim + sensitive local routing + persisted restart/resume + idempotency"
 
 if __name__ == "__main__":
