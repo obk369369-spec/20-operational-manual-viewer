@@ -9,6 +9,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from completion_proof import valid_proof
+from chat_work_coordinator import run as run_chat_coordinator
 
 ROOT = Path(__file__).resolve().parents[1]
 PIPE = ROOT / "feedback_pipeline"
@@ -143,6 +144,8 @@ def build() -> tuple[dict, dict]:
     previous_status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.exists() else {}
     ledger = json.loads((PIPE / "work16_root_ledger.json").read_text(encoding="utf-8"))
     incomplete = json.loads((PIPE / "incomplete_register.json").read_text(encoding="utf-8"))
+    chat_coordination = run_chat_coordinator(ROOT / "tool043" / "chat_job_inbox.json",
+                                              ROOT / "tool043" / "chat_coordination_state.json")
     function_state_path = PIPE / "tool044_function_state.json"
     function_state = json.loads(function_state_path.read_text(encoding="utf-8")) if function_state_path.exists() else {
         "classification_counts": {}, "functions": [], "observer_labels": {},
@@ -170,6 +173,7 @@ def build() -> tuple[dict, dict]:
             "observer_labels": function_state.get("observer_labels", {}),
             "truth_contract": "COMPONENT_VERIFIED_IS_NOT_IMPROVED_VERIFIED_UNTIL_TOOL_DEPLOYED_COPY_TEST_PASSES"
         },
+        "chat_work_coordination": chat_coordination,
         "current_display_validation": previous_status.get("current_display_validation"),
         "work_status": "작업 문제 있음" if open_count else ("작업 진행 중" if current["running"] else ("작업 대기 중" if current["pending"] or blocked else "현재 미처리 작업 없음")),
         "current_work": current,
@@ -196,11 +200,12 @@ def build() -> tuple[dict, dict]:
                 "CENTRAL_ROOT_LEDGER", "UNIFIED_OPEN_LEDGER",
                 "INCOMPLETE_REGISTER", "SAFE_CHECKPOINT", "TOOL044_TRUST_PIPELINE"
             ],
-            "tool_work_orchestration": "NOT_IMPLEMENTED",
+            "tool_work_orchestration": "QUEUE_HANDOFF_IMPLEMENTED",
             "parallel_tool_execution": "NOT_IMPLEMENTED",
             "automatic_tool_recovery": "NOT_IMPLEMENTED",
             "observer_refresh_recovery": "QUEUE_PRESERVED_ONE_SAFE_REFRESH",
-            "truth_contract": "DO_NOT_CLAIM_ORCHESTRATION_FROM_OBSERVER_REFRESH"
+            "chat_auto_execution": "NOT_PROVEN",
+            "truth_contract": "QUEUE_HANDOFF_ONLY_DO_NOT_CLAIM_CHATGPT_AUTO_EXECUTION"
         },
         "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
         "hidden_gap_total": unified["hidden_gap_total"],
