@@ -32,8 +32,34 @@ def atomic_from_request(r):
         caps=['INPUT_CONTRACT_VALIDATION','EXPECTED_ACTUAL_VALIDATION','FAILURE_ISOLATION']
     return list(dict.fromkeys(caps))
 
-def route():
-    inbox=load(INBOX,{'requests':[]}); queue=load(QUEUE,{'schema_version':1,'demands':[]})
+def source_record(row, demand_id, source):
+    return {
+        'SOURCE_CHAT_OR_TOOL': row.get('source_chat_or_tool') or row.get('SOURCE_CHAT_OR_TOOL') or source,
+        'TOOL_ID': row.get('related_tool') or row.get('tool_id') or row.get('TOOL_ID'),
+        'FUNCTION_ID': row.get('function_id') or row.get('FUNCTION_ID') or row.get('demand_id'),
+        'ORIGINAL_ERROR_OR_FEEDBACK': row.get('original_error_or_feedback') or row.get('REMAINING_ERROR') or row.get('purpose'),
+        'OCCURRENCE_OR_EVIDENCE': row.get('occurrence_or_evidence') or row.get('REPEATED_ERROR_COUNT'),
+        'ROOT_ID': row.get('root_id') or row.get('ROOT_ID') or row.get('demand_id'),
+        'MISSING_CAPABILITY': row.get('missing_capabilities') or row.get('MISSING_CAPABILITY') or row.get('required_capabilities'),
+        'CURRENT_STATUS': row.get('current_status') or row.get('CURRENT_STATUS') or row.get('status'),
+        'SOURCE_EVIDENCE': row.get('source_evidence') or row.get('IMPROVEMENT_EVIDENCE'),
+        'TOOL044_DEMAND_ID': demand_id,
+    }
+
+def add_or_merge(queue, demand, record):
+    existing=next((d for d in queue['demands'] if d.get('demand_id')==demand['demand_id']),None)
+    if existing is None:
+        demand['source_records']=[record]
+        queue['demands'].append(demand)
+        return True
+    records=existing.setdefault('source_records',[])
+    signature=lambda r:(r.get('SOURCE_CHAT_OR_TOOL'),r.get('TOOL_ID'),r.get('FUNCTION_ID'),r.get('ROOT_ID'))
+    if signature(record) not in {signature(r) for r in records}:
+        records.append(record)
+    return False
+
+def route(inbox_path=INBOX, queue_path=QUEUE, function_state_path=FUNCTION_STATE):
+    inbox=load(inbox_path,{'requests':[]}); queue=load(queue_path,{'schema_version':1,'demands':[]})
     existing={d.get('demand_id') for d in queue.get('demands',[])}
     added=[]
     for r in inbox.get('requests',[]):
@@ -41,23 +67,33 @@ def route():
         rid=r.get('request_id') or 'REQ-'+hashlib.sha256(json.dumps(r,sort_keys=True,ensure_ascii=False).encode()).hexdigest()[:12]
         for cap in caps:
             did=f'{rid}-{cap}'
-            if did in existing: continue
-            queue['demands'].append({'demand_id':did,'target_tool':r.get('related_tool') or r.get('tool_or_program_name'),'atomic_capabilities':[cap],'status':'OPEN','source':'TOOL044_REQUEST_INBOX','request_id':rid})
-            existing.add(did); added.append(did)
-    fs=load(FUNCTION_STATE,{})
+            demand={'demand_id':did,'target_tool':r.get('related_tool') or r.get('tool_or_program_name'),'atomic_capabilities':[cap],'status':'OPEN','source':'TOOL044_REQUEST_INBOX','request_id':rid,'root_id':r.get('root_id')}
+            if add_or_merge(queue,demand,source_record(r,did,'TOOL044_REQUEST_INBOX')):
+                existing.add(did); added.append(did)
+    fs=load(function_state_path,{})
+    function_rows=fs.get('functions',[]) or []
     for row in fs.get('tool044_external_demand_candidates',[]) or []:
+        detail=next((f for f in function_rows if f.get('FUNCTION_ID')==row.get('demand_id') or f.get('ROOT_ID')==row.get('demand_id')),row)
         for cap in row.get('missing_capabilities',[]) or []:
-            base=str(row.get('function_id') or row.get('tool_id') or 'FUNCTION')
+            canonical=next((d for d in queue['demands'] if d.get('demand_id')==row.get('demand_id') and cap in (d.get('atomic_capabilities') or [])),None)
+            if canonical is not None:
+                add_or_merge(queue,canonical,source_record(detail,canonical['demand_id'],'TOOL016_FUNCTION_STATE'))
+                continue
+            base=str(row.get('demand_id') or row.get('function_id') or row.get('tool_id') or 'FUNCTION')
             did=f'FS-{re.sub("[^A-Za-z0-9_-]+","-",base)}-{cap}'
-            if did in existing: continue
-            queue['demands'].append({'demand_id':did,'target_tool':row.get('tool_id'),'atomic_capabilities':[cap],'status':'OPEN','source':'TOOL016_FUNCTION_STATE'})
-            existing.add(did); added.append(did)
-    QUEUE.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+            demand={'demand_id':did,'target_tool':detail.get('TOOL_ID') or row.get('tool_id'),'atomic_capabilities':[cap],'status':'OPEN','source':'TOOL016_FUNCTION_STATE','root_id':detail.get('ROOT_ID') or row.get('demand_id')}
+            if add_or_merge(queue,demand,source_record(detail,did,'TOOL016_FUNCTION_STATE')):
+                existing.add(did); added.append(did)
+    queue_path.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return {'added':len(added),'demand_ids':added,'total':len(queue.get('demands',[]))}
 
 def self_test():
     assert atomic_from_request({'name':'목차 정리'})[:3]==['LINE_SPLIT','TOC_NUMBER_DETECTION','TOC_DEPTH_DETECTION']
     assert atomic_from_request({'name':'unknown'})==['INPUT_CONTRACT_VALIDATION','EXPECTED_ACTUAL_VALIDATION','FAILURE_ISOLATION']
+    demand={'demands':[]}; row={'related_tool':'TOOL006','function_id':'T6-F','root_id':'R','purpose':'목차 오류'}
+    did='R-TOC'; assert add_or_merge(demand,{'demand_id':did},source_record(row,did,'CHAT'))
+    assert not add_or_merge(demand,{'demand_id':did},source_record(row,did,'CHAT'))
+    assert len(demand['demands'][0]['source_records'])==1
     return 'PASS'
 
 if __name__=='__main__':

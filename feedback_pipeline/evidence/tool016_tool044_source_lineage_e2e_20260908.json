@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-08T13:16:37.015269+00:00",
+  "scope": "ACCESSIBLE_CANONICAL_RECORDS_ONLY",
+  "past_chat_access": "ACCESS_NOT_AVAILABLE",
+  "samples": [
+    {
+      "TOOL_ID": "TOOL006",
+      "FUNCTION_ID": "TOOL006-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+      "ROOT_ID": "T6-RC-RELEASE-WITHOUT-ACTUAL-IMPACT-E2E",
+      "SOURCE_EVIDENCE": "tests/tool006_chronic_error_fixtures.json",
+      "MISSING_CAPABILITY": null,
+      "TOOL044_DEMAND_ID": null,
+      "ROUTING_RESULT": "TOOL016_OR_TOOL_LOCAL_REVIEW_NO_EXTERNAL_CAPABILITY"
+    },
+    {
+      "TOOL_ID": "TOOL013",
+      "FUNCTION_ID": "TOOL013-CANONICAL-RUNTIME",
+      "CURRENT_STATUS": "IMPROVED_VERIFIED",
+      "ROOT_ID": "T13-RC-LARGE-BATCH-MAIN-THREAD-STALL",
+      "SOURCE_EVIDENCE": "tests/tool13_actual_114_evidence.json",
+      "MISSING_CAPABILITY": null,
+      "TOOL044_DEMAND_ID": null,
+      "ROUTING_RESULT": "SKIP_REUSE_VERIFIED_NO_NEW_DEMAND"
+    },
+    {
+      "TOOL_ID": "TOOL042",
+      "FUNCTION_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ROOT_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "SOURCE_EVIDENCE": [
+        "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      ],
+      "MISSING_CAPABILITY": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "TOOL044_DEMAND_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "ROUTING_RESULT": "QUEUED_WITH_SOURCE_LINEAGE"
+    }
+  ],
+  "source_tools_preserved": [
+    "TOOL006",
+    "TOOL013",
+    "TOOL042"
+  ],
+  "queue_source_record_fields_pass": true,
+  "root_dedup_idempotency": "PASS",
+  "verified_skip_reuse": "PASS",
+  "first_route_added": 0,
+  "second_route_added": 0,
+  "expected_actual": "MATCH",
+  "status": "PASS",
+  "truth_boundary": "TOOL006 has no external missing capability and TOOL013 is VERIFIED; neither is falsely queued."
+}

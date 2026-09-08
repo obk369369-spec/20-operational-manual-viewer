@@ -8,6 +8,27 @@
         "DOMAIN_DECOMPOSITION",
         "OFFICIAL_DOMAIN_VALIDATION",
         "PROVENANCE_VALIDATION"
+      ],
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "CURRENT_STATUS": "IMPROVED_PARTIAL",
+          "SOURCE_EVIDENCE": [
+            "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+            "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+          ],
+          "TOOL044_DEMAND_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION"
+        }
       ]
     },
     {
@@ -25,12 +46,50 @@
           "capability": "URL_VALIDATION",
           "verifier": "validators_url"
         }
+      ],
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "CURRENT_STATUS": "IMPROVED_PARTIAL",
+          "SOURCE_EVIDENCE": [
+            "VALIDATORS_0_35_0_URL_VALIDATION"
+          ],
+          "TOOL044_DEMAND_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION"
+        }
       ]
     },
     {
       "demand_id": "T42-RESELLER-DETECTION",
       "atomic_capabilities": [
         "RESELLER_DETECTION"
+      ],
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-RESELLER-DETECTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "RESELLER_DETECTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-RESELLER-DETECTION",
+          "MISSING_CAPABILITY": [
+            "RESELLER_DETECTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "T42-RESELLER-DETECTION"
+        }
       ]
     },
     {
@@ -75,6 +134,24 @@
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
       "atomic_capabilities": [
         "TOC_HIERARCHY_VALIDATION"
+      ],
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
+        }
       ]
     },
     {
@@ -101,7 +178,25 @@
         "SAFE_AUTOMATIC_ROLLBACK"
       ],
       "status": "OPEN",
-      "source": "FINAL_FOUNDATION_GAP"
+      "source": "FINAL_FOUNDATION_GAP",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
+          "MISSING_CAPABILITY": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL044-AUTO-ROLLBACK"
+        }
+      ]
     },
     {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
@@ -111,7 +206,27 @@
         "DEPLOYED_COPY_VALIDATION"
       ],
       "status": "OPEN",
-      "source": "FINAL_FOUNDATION_GAP"
+      "source": "FINAL_FOUNDATION_GAP",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "VERIFIED_TARGET_DEPLOYMENT",
+            "DEPLOYED_COPY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "MISSING_CAPABILITY": [
+            "VERIFIED_TARGET_DEPLOYMENT",
+            "DEPLOYED_COPY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL044-ARBITRARY-WIC-DEPLOY"
+        }
+      ]
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
@@ -120,7 +235,25 @@
         "OFFICIAL_DOMAIN_VALIDATION"
       ],
       "status": "OPEN",
-      "source": "TOOL016_FUNCTION_STATE"
+      "source": "TOOL016_FUNCTION_STATE",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
+        }
+      ]
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
@@ -129,7 +262,25 @@
         "OFFICIAL_DETAIL_PAGE_VALIDATION"
       ],
       "status": "OPEN",
-      "source": "TOOL016_FUNCTION_STATE"
+      "source": "TOOL016_FUNCTION_STATE",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION"
+        }
+      ]
     },
     {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
@@ -138,7 +289,25 @@
         "RESELLER_DETECTION"
       ],
       "status": "OPEN",
-      "source": "TOOL016_FUNCTION_STATE"
+      "source": "TOOL016_FUNCTION_STATE",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-RESELLER_DETECTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "RESELLER_DETECTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-RESELLER_DETECTION",
+          "MISSING_CAPABILITY": [
+            "RESELLER_DETECTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-RESELLER_DETECTION"
+        }
+      ]
     },
     {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
@@ -147,7 +316,340 @@
         "TOC_HIERARCHY_VALIDATION"
       ],
       "status": "OPEN",
-      "source": "TOOL016_FUNCTION_STATE"
+      "source": "TOOL016_FUNCTION_STATE",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "HISTORICAL_FEEDBACK_INGEST"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "ACCESS_BOUNDARY_CLASSIFICATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "ROOT_CAUSE_DEDUPLICATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "MISSING_CAPABILITY_EXTRACTION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "VERIFIED_SKIP_REUSE_FILTER"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "TOOL016_TO_TOOL044_HANDOFF"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION"
+        }
+      ]
+    },
+    {
+      "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        }
+      ]
     }
   ]
 }

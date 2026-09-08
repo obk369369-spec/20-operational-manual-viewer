@@ -171,6 +171,11 @@ def build() -> tuple[dict, dict]:
     verified_rows = [row for row in registry_rows if row.get("status") in {"VERIFIED_REUSABLE", "DEPLOYED_PASS"}]
     atomic_demands = atomic_queue.get("demands", [])
     open_demands = [row for row in atomic_demands if row.get("status", "OPEN") not in {"COMPLETED", "VERIFIED"}]
+    demand_source_tool_counts = {}
+    for demand in atomic_demands:
+        for record in demand.get("source_records", []):
+            key = record.get("TOOL_ID") or record.get("SOURCE_CHAT_OR_TOOL") or "UNKNOWN"
+            demand_source_tool_counts[key] = demand_source_tool_counts.get(key, 0) + 1
     current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None
@@ -229,6 +234,7 @@ def build() -> tuple[dict, dict]:
                 "fixture_rollback_verified": integration.get("safe_fixture_auto_rollback") == "VERIFIED",
                 "blocked_count": current["waiting_total"],
                 "user_action_queue": len(approvals.get("batches", [])),
+                "demand_source_tool_counts": demand_source_tool_counts,
             },
             "safe_integration_truth": {
                 "fixture_deploy_gate": integration.get("safe_fixture_deploy_gate", "NOT_VERIFIED"),
