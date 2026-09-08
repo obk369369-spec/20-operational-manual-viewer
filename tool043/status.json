@@ -646,7 +646,16 @@
     "last_heartbeat": "2026-09-08T05:50:20.765725+00:00",
     "checkpoint": "20260908T054957Z",
     "completed_jobs": 0,
-    "execution_location": "LOCAL"
+    "execution_location": "LOCAL",
+    "cloud": {
+      "status": "VERIFIED",
+      "checkpoint": "34194234140",
+      "jobs": 4,
+      "deferred_backoff": 4,
+      "paid_api_calls": 0,
+      "paid_saas_calls": 0
+    },
+    "local_required_queue": 0
   },
   "chat_work_coordination": {
     "schema_version": 1,
@@ -994,9 +1003,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-08T05:57:16.755324+00:00",
-  "source_revision": "a750190e09b4538b4a9bbfb5b40c97ffe5776733",
-  "github_actions_run": "34192616663",
+  "observer_generated_at": "2026-09-08T06:33:07.340408+00:00",
+  "source_revision": "9504456bfca33c7dd32160b47d38cf48aa185387",
+  "github_actions_run": "34195150466",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -1008,7 +1017,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-08T05:57:16.754638+00:00",
+      "executed_at": "2026-09-08T06:33:07.339830+00:00",
       "status": "COMPLETED"
     }
   ]
