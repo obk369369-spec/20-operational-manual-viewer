@@ -12,8 +12,16 @@ def task_function_state():
 
 def task_external_harvest():
     return {"actions": [[PY, "-X", "utf8", str(HERE / "tool044_atomic_watch.py"), "--external", "--trigger-source", "SCHEDULED"]],
+            "task_dep": ["factory_intake"], "verbosity": 2}
+
+def task_factory_intake():
+    return {"actions": [[PY, "-X", "utf8", str(HERE / "tool044_factory_state.py"), "intake"]],
             "task_dep": ["function_state"], "verbosity": 2}
+
+def task_factory_finalize():
+    return {"actions": [[PY, "-X", "utf8", str(HERE / "tool044_factory_state.py"), "finalize"]],
+            "task_dep": ["external_harvest"], "verbosity": 2}
 
 def task_observer_projection():
     return {"actions": [[PY, "-X", "utf8", str(HERE.parent / "tool043" / "night_observer.py")]],
-            "task_dep": ["external_harvest"], "verbosity": 2}
+            "task_dep": ["factory_finalize"], "verbosity": 2}

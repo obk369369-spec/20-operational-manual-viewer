@@ -151,6 +151,8 @@ def build() -> tuple[dict, dict]:
         "classification_counts": {}, "functions": [], "observer_labels": {},
         "status": "NOT_GENERATED"
     }
+    factory_state_path = PIPE / "tool044_factory_runtime.json"
+    factory_state = json.loads(factory_state_path.read_text(encoding="utf-8")) if factory_state_path.exists() else {}
     current = current_work(ledger, roots, unified, work, incomplete, previous_queue)
     safe_tasks, completed_now = consume_safe_tasks(previous_queue)
     last_completed = completed_now[-1] if completed_now else None
@@ -172,6 +174,19 @@ def build() -> tuple[dict, dict]:
             "functions": function_state.get("functions", []),
             "observer_labels": function_state.get("observer_labels", {}),
             "truth_contract": "COMPONENT_VERIFIED_IS_NOT_IMPROVED_VERIFIED_UNTIL_TOOL_DEPLOYED_COPY_TEST_PASSES"
+        },
+        "tool044_factory_monitor": {
+            "source": "feedback_pipeline/tool044_factory_runtime.json",
+            "status": "RUNNING" if factory_state.get("active_workers", 0) else "READY",
+            "current_stage": factory_state.get("current_stage", "IDLE"),
+            "queue_length": factory_state.get("queue_length", 0),
+            "active_workers": factory_state.get("active_workers", 0),
+            "last_success": factory_state.get("last_success"),
+            "last_failure": factory_state.get("last_failure"),
+            "last_heartbeat": factory_state.get("last_heartbeat"),
+            "checkpoint": factory_state.get("checkpoint"),
+            "completed_jobs": factory_state.get("completed_jobs", 0),
+            "execution_location": "LOCAL",
         },
         "chat_work_coordination": chat_coordination,
         "current_display_validation": previous_status.get("current_display_validation"),

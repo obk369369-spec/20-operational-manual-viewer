@@ -12,7 +12,9 @@
   },
   "factory_graph": [
     "function_state",
+    "factory_intake",
     "external_harvest",
+    "factory_finalize",
     "observer_projection"
   ],
   "development_test": {
@@ -21,6 +23,48 @@
     "actual_graph_execution": "PASS",
     "duplicate_suppression": "PASS",
     "verified_registry_reuse_precedes_backoff": "PASS"
+  },
+  "first_actual_handoff": {
+    "source": "TOOL016_FUNCTION_STATE",
+    "input_demands": 4,
+    "persistent_jobs": 4,
+    "deterministic_unique_job_ids": "4/4 PASS",
+    "intake_idempotency": "PASS",
+    "execution_checkpoint": "20260908T054957Z",
+    "result": "4 BACKOFF (existing 24-hour duplicate receipts preserved)",
+    "failure": null,
+    "tool043_monitor_projection": "PASS",
+    "work_triggered": false,
+    "user_triggered": false
+  },
+  "capability_coverage": {
+    "doit_verified": [
+      "task_dependency",
+      "incremental_skip",
+      "parallel_execution",
+      "failure_isolation",
+      "restart_state_persistence"
+    ],
+    "windows_scheduler_verified": [
+      "queue_wake_up",
+      "continuous_logged_on_periodic_worker"
+    ],
+    "existing_tool044_verified": [
+      "source_specific_backoff",
+      "external_harvest_orchestration",
+      "receipt_and_sandbox_verification"
+    ],
+    "newly_connected": [
+      "TOOL016_function_state_to_persistent_factory_queue",
+      "factory_result_to_TOOL043_monitor"
+    ],
+    "not_implemented": [
+      "arbitrary_future_tool_automatic_git_push",
+      "arbitrary_future_tool_automatic_deploy",
+      "arbitrary_future_tool_automatic_rollback",
+      "official_chat_auto_execution",
+      "logged_off_worker"
+    ]
   },
   "github": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
