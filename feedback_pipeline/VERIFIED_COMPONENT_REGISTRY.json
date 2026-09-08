@@ -215,6 +215,27 @@
   ],
   "verified_atomic_component_pool": [
     {
+      "component_id": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+      "status": "VERIFIED_REUSABLE",
+      "atomic_capabilities": ["TOC_STRUCTURE_EXTRACTION"],
+      "official_source": "https://pypi.org/pypi/mistune/3.3.4/json",
+      "official_project": "https://github.com/lepture/mistune",
+      "version": "3.3.4",
+      "license": "BSD-3-Clause",
+      "source_file": "feedback_pipeline/external_candidate_pool/mistune-3.3.4-py3-none-any.whl",
+      "source_sha256": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+      "external_modified": false,
+      "dependencies": ["typing-extensions; python_version < 3.11"],
+      "input_contract": "Markdown text containing explicit heading markers",
+      "output_contract": "AST heading tokens preserving source heading levels 1 through 6",
+      "known_incompatibilities": ["Does not infer missing numbering or headings from plain text", "HTML input requires a separately verified HTML-to-Markdown stage"],
+      "applicable_roots": ["T42-TOC-STRUCTURE-EXTRACTION"],
+      "applicable_tools": ["TOOL042"],
+      "sandbox_expected_actual": "levels 1,2,3,4 preserved; no-heading input yields no heading tokens",
+      "zero_work_scheduler_receipt": "feedback_pipeline/evidence/TOOL044_NEXT_DEMAND_NATURAL_HARVEST_20260908.md",
+      "reuse_requires_target_retest": true
+    },
+    {
       "component_id": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
       "status": "VERIFIED_REUSABLE",
       "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION"],

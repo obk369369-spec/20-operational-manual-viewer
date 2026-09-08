@@ -12,3 +12,6 @@
 - Natural external harvest final proof: cycle `20260907T135701Z`, `SCHEDULED`, Work/User trigger false, official external query 1, official receipt 1, artifact hash match 1, sandbox PASS 1.
 - New verified component: `HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION`.
 - Zero-Work status: external discovery, receipt collection, component verification and composition testing are all `VERIFIED` for logged-on operation.
+- Next OPEN demand natural harvest: cycle `20260908T003302Z`, `T42-TOC-STRUCTURE-EXTRACTION`, `MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION = VERIFIED_REUSABLE`.
+- Next-demand receipt/artifact SHA match and sandbox heading AST test: `PASS`.
+- html2text→Mistune composition: `NOT_TESTED / FAILURE_FIXTURE_REQUIRED`; individual component verification is preserved.
