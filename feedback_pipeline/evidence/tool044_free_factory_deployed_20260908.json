@@ -1,0 +1,60 @@
+{
+  "evidence_id": "TOOL044_FREE_EXTERNAL_EXECUTION_FACTORY_20260908",
+  "status": "STRUCTURE_READY",
+  "primary_execution_engine": {
+    "component_id": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+    "version": "0.37.0",
+    "license": "MIT",
+    "source_receipt": "https://pypi.org/pypi/doit/0.37.0/json",
+    "artifact_sha256": "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b",
+    "receipt_artifact_match": "PASS",
+    "sandbox_parallel_failure_isolation_resume": "PASS"
+  },
+  "factory_graph": [
+    "function_state",
+    "external_harvest",
+    "observer_projection"
+  ],
+  "development_test": {
+    "atomic_watch_regression": "PASS",
+    "function_state_regression": "PASS",
+    "actual_graph_execution": "PASS",
+    "duplicate_suppression": "PASS",
+    "verified_registry_reuse_precedes_backoff": "PASS"
+  },
+  "github": {
+    "repository": "obk369369-spec/20-operational-manual-viewer",
+    "implementation_commit": "0c244335dff08f074316ec0948c91258762c8046",
+    "remote_read_back": "PASS",
+    "factory_blob_match": "PASS"
+  },
+  "actual_use": {
+    "folder": "I:\\GPT 도구 작업\\44번 완성부품 가져오기",
+    "canonical_entrypoint": "feedback_pipeline\\tool044_factory_start.cmd",
+    "hidden_entrypoint": "feedback_pipeline\\tool044_factory_hidden.vbs",
+    "canonical_hash_match": "7/7 PASS",
+    "deployed_copy_graph_execution": "PASS",
+    "deployed_copy_observer_projection": "PASS"
+  },
+  "scheduler": {
+    "task_name": "WIC TOOL044 Free Factory",
+    "interval_minutes": 5,
+    "logged_on_host_only": true,
+    "manual_task_start_actual_run": "PASS",
+    "trigger_source": "SCHEDULED",
+    "work_triggered": false,
+    "user_triggered": false,
+    "paid_api_calls": 0,
+    "paid_saas_calls": 0
+  },
+  "truth_boundary": {
+    "structure_ready": true,
+    "actual_verified_scope": "receipt-matched engine sandbox plus deployed one-shot and Task Scheduler initiated factory cycles",
+    "long_duration_stability": "OWNED_BY_ZERO_WORK_ENGINE_NOT_YET_OBSERVED",
+    "automatic_git_push_deploy_rollback_for_arbitrary_future_tools": "NOT_IMPLEMENTED",
+    "chat_auto_execution": "NOT_PROVEN",
+    "logged_off_operation": "BLOCKED_PERMISSION"
+  },
+  "safe_checkpoint": "THIS_EVIDENCE_COMMIT",
+  "user_extra_technical_work": 0
+}
