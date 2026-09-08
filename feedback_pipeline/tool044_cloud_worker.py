@@ -62,6 +62,16 @@ def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
                        receipt=hashlib.sha256(json.dumps(job, sort_keys=True).encode()).hexdigest())
             completed += 1
         prior["jobs"][job_id] = row
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        fixture_id = "LOCAL-E2E-TOOL044-CLOUD-HANDOFF"
+        existing = local_state["jobs"].get(fixture_id, {})
+        if existing.get("status") != "COMPLETED":
+            local_state["jobs"][fixture_id] = {
+                "job_id": fixture_id, "source": "CLOUD_TOOL044", "status": "QUEUED",
+                "execution_class": "LOCAL_REQUIRED", "reason": "WINDOWS_DEPLOYED_COPY_TEST",
+                "payload": "feedback_pipeline/tool044_cloud_worker.py",
+                "cloud_checkpoint": os.environ.get("GITHUB_RUN_ID")
+            }
     with ThreadPoolExecutor(max_workers=2) as pool:
         artifact_results = list(pool.map(verify_artifact, ARTIFACTS))
     mismatch_fixture = verify_artifact(("MISMATCH_FIXTURE", ARTIFACTS[0][1], "doit", "0.37.0", "0"*64))
