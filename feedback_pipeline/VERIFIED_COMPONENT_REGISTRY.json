@@ -205,6 +205,19 @@
       "external_modified": false,
       "dependencies": ["tomli only for Python <3.11 toml extra", "cloudpickle optional extra"],
       "sandbox_expected_actual": "two 1-second jobs parallel=1.532s; intentional failure isolated; next run resumes/skips=0.500s; repeated skip=0.484s",
+      "primary_execution_engine": true,
+      "local_zero_work_factory": "VERIFIED",
+      "actual_runtime": "WIC bundled Python 3.12; wheel loaded directly by PYTHONPATH",
+      "production_test_evidence": {
+        "path": "feedback_pipeline/evidence/tool044_free_factory_deployed_20260908.json",
+        "actual_tool044_graph": "PASS",
+        "deployed_copy_graph": "PASS",
+        "scheduled_cycles": 2,
+        "observed_wake_interval_seconds": 300,
+        "work_triggered": false,
+        "user_triggered": false,
+        "paid_api_calls": 0
+      },
       "reuse_requires_target_retest": true
     },
     {
