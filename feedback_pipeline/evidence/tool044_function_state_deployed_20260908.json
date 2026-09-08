@@ -1,0 +1,42 @@
+{
+  "task": "TOOL044_FUNCTION_STATE_INPUT_CONNECTION",
+  "status": "DEPLOYED_PASS",
+  "implementation_commit": "909dc9445e7cf8954b691cc4c524595278757b43",
+  "actual_sources": [
+    "feedback_pipeline/wic_target_registry.json",
+    "feedback_pipeline/tool044_precheck_targets.json",
+    "feedback_pipeline/unified_open_ledger.json",
+    "feedback_pipeline/tool044_atomic_demand_queue.json",
+    "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"
+  ],
+  "expected": {
+    "verified_tool": "IMPROVED_VERIFIED + SKIP_REUSE + no search",
+    "verified_component_without_tool_deploy": "IMPROVED_PARTIAL + no repeated search",
+    "missing_external_capability": "MISSING_CAPABILITY + TOOL044 search candidate",
+    "evidence_or_platform_hold": "HOLD + no external search"
+  },
+  "actual": {
+    "function_rows": 30,
+    "IMPROVED_VERIFIED": 3,
+    "IMPROVED_PARTIAL": 5,
+    "MISSING_CAPABILITY": 2,
+    "external_search_candidates": 4,
+    "deployed_input_hash_mismatch_count": 0
+  },
+  "tests": {
+    "development_function_state": "PASS",
+    "atomic_watch_impacted_regression": "PASS demands=7 duplicate_blocks=7 paid_cost=0",
+    "tool043_observer_conservation_regression": "PASS",
+    "deployed_copy_function_state": "PASS"
+  },
+  "deployment": {
+    "tool044": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\feedback_pipeline",
+    "tool043": "I:\\GPT 도구 작업\\43번 모바일 관찰판\\tool043",
+    "user_actions": 0
+  },
+  "limitations": [
+    "Only TOOLs registered in wic_target_registry are classified; unregistered TOOLs remain outside this evidence set.",
+    "A VERIFIED external component remains IMPROVED_PARTIAL until target-tool actual failure, normal fixture, regression and deployed-copy evidence pass.",
+    "No TOOL041, TOOL007 or TOOL042 business runtime was modified."
+  ]
+}
