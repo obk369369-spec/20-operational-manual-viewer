@@ -63,38 +63,74 @@
       ],
       "ready_for_integration": true,
       "status": "VERIFIED_COMPOSITION"
+    },
+    {
+      "composition_id": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+      "parents": ["HTML2TEXT_THEN_MISTUNE_TOC_V1", "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"],
+      "atomic_components": [
+        "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+        "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+        "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      ],
+      "atomic_capabilities": ["PROVENANCE_VALIDATION", "WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"],
+      "root": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
+      "applicable_tools": ["TOOL042"],
+      "input_contract": "Manifested HTML artifact with verified hash and explicit heading elements",
+      "output_contract": "Ordered TOC headings only after provenance verification passes",
+      "normal_fixture": "feedback_pipeline/fixtures/tool042_html_toc_normal.json",
+      "failure_fixture": "same HTML artifact with mismatched manifested SHA-256",
+      "tests": {
+        "functional": true,
+        "expected_actual": true,
+        "normal_fixture": true,
+        "failure_fixture": true,
+        "ab_parent_regression": true,
+        "c_parent_regression": true,
+        "abc_regression": true
+      },
+      "expected_actual": "MATCH",
+      "regression": "PASS",
+      "lineage": {
+        "ab": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+        "c": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      },
+      "ready_for_integration": true,
+      "status": "VERIFIED_COMPOSITION"
     }
   ],
   "last_test": {
-    "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
-    "components": [
-      "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
-      "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+    "composition_id": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+    "parents": [
+      "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+      "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
     ],
-    "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
+    "atomic_components": [
+      "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+      "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+      "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+    ],
+    "root": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
     "applicable_tools": ["TOOL042"],
-    "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"],
-    "input_contract": "HTML document with explicit heading elements",
-    "output_contract": "Ordered heading text and source heading levels; no inferred headings",
+    "atomic_capabilities": ["PROVENANCE_VALIDATION", "WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"],
+    "input_contract": "Manifested HTML artifact with verified hash and explicit heading elements",
+    "output_contract": "Ordered TOC headings only after provenance verification passes",
     "normal_fixture": "feedback_pipeline/fixtures/tool042_html_toc_normal.json",
-    "failure_fixture": "feedback_pipeline/fixtures/tool042_html_toc_failure.json",
-    "normal_fixture_sha256": "7a40c717ad00772f1b99e63198c3a094c40e343a3d641f231c15e98bfd57ec9b",
-    "failure_fixture_sha256": "bac6b2cf2659cdb319c54f8973a83e8ae85d84e956ef4362d4bfcd88b010b738",
+    "failure_fixture": "same HTML artifact with mismatched manifested SHA-256",
     "tests": {
       "functional": true,
       "expected_actual": true,
       "normal_fixture": true,
       "failure_fixture": true,
-      "html2text_parent_regression": true,
-      "mistune_parent_regression": true,
-      "composition_regression": true
+      "ab_parent_regression": true,
+      "c_parent_regression": true,
+      "abc_regression": true
     },
     "expected_actual": "MATCH",
     "regression": "PASS",
-    "known_limitations": [
-      "Only explicit HTML heading elements are preserved",
-      "Does not infer numbering or publisher-specific hierarchy from plain text"
-    ],
+    "lineage": {
+      "ab": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+      "c": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+    },
     "ready_for_integration": true,
     "status": "VERIFIED_COMPOSITION"
   }

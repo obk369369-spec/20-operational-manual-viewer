@@ -154,3 +154,89 @@ def test_html_toc_composition(html2text_wheel: Path, mistune_wheel: Path,
         "ready_for_integration": passed,
         "status": "VERIFIED_COMPOSITION" if passed else "COMPOSITION_FAILED",
     }
+
+
+def test_provenance_html_toc_growth(html2text_wheel: Path, mistune_wheel: Path,
+                                    normal_fixture: Path, heading_failure_fixture: Path) -> dict:
+    """Grow verified HTML->TOC with the verified manifested provenance gate."""
+    with tempfile.TemporaryDirectory() as directory:
+        sandbox = Path(directory)
+        artifact = sandbox / "publisher-detail.html"
+        artifact.write_text(
+            json.loads(normal_fixture.read_text(encoding="utf-8"))["html"], encoding="utf-8"
+        )
+        evidence = sandbox / "publisher-detail-evidence.json"
+        evidence.write_text("{}", encoding="utf-8")
+        actual_hash = hashlib.sha256(artifact.read_bytes()).hexdigest()
+        manifest = {
+            "asset_id": "TOOL042_OFFICIAL_DETAIL_HTML",
+            "path": str(artifact),
+            "role": "official detail page HTML",
+            "declared_state": "VERIFIED",
+            "provenance": "bounded TOOL042 official detail-page fixture",
+            "version": "fixture-v1",
+            "expected_sha256": actual_hash,
+            "evidence_path": str(evidence),
+            "evidence_status": "DEPLOYED_PASS",
+            "actual_execution": "PASS",
+            "expected_actual": "MATCH",
+            "promotion_routes": ["READY_FOR_INTEGRATION"],
+        }
+        provenance_normal = classify(manifest)
+        provenance_failure = classify({**manifest, "expected_sha256": "0" * 64})
+        ab = test_html_toc_composition(
+            html2text_wheel, mistune_wheel, normal_fixture, heading_failure_fixture
+        )
+        provenance_parent_regression = (
+            provenance_normal["status"] == "VERIFIED"
+            and provenance_failure["promotion_allowed"] is False
+        )
+        ab_parent_regression = ab["status"] == "VERIFIED_COMPOSITION" and all(ab["tests"].values())
+        normal_match = provenance_normal["status"] == "VERIFIED" and ab["expected_actual"] == "MATCH"
+        failure_blocked = (
+            provenance_failure["promotion_allowed"] is False
+            and provenance_failure["status"] != "VERIFIED"
+        )
+        abc_regression = normal_match and failure_blocked and provenance_parent_regression and ab_parent_regression
+
+    tests = {
+        "functional": normal_match,
+        "expected_actual": normal_match,
+        "normal_fixture": normal_match,
+        "failure_fixture": failure_blocked,
+        "ab_parent_regression": ab_parent_regression,
+        "c_parent_regression": provenance_parent_regression,
+        "abc_regression": abc_regression,
+    }
+    passed = all(tests.values())
+    return {
+        "composition_id": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+        "parents": ["HTML2TEXT_THEN_MISTUNE_TOC_V1", "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"],
+        "atomic_components": [
+            "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+            "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+            "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+        ],
+        "atomic_capabilities": [
+            "PROVENANCE_VALIDATION", "WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"
+        ],
+        "root": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
+        "applicable_tools": ["TOOL042"],
+        "input_contract": "Manifested HTML artifact with verified hash and explicit heading elements",
+        "output_contract": "Ordered TOC headings only after provenance verification passes",
+        "normal_fixture": str(normal_fixture.as_posix()),
+        "failure_fixture": "same HTML artifact with mismatched manifested SHA-256",
+        "expected": {"provenance": "VERIFIED", "html_toc": "MATCH"},
+        "actual": {"provenance": provenance_normal["status"], "html_toc": ab["expected_actual"]},
+        "lineage": {
+            "ab": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "c": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+            "ab_status": ab["status"],
+            "c_status": provenance_normal["status"],
+        },
+        "tests": tests,
+        "expected_actual": "MATCH" if normal_match else "MISMATCH",
+        "regression": "PASS" if abc_regression else "FAIL",
+        "ready_for_integration": passed,
+        "status": "VERIFIED_COMPOSITION" if passed else "COMPOSITION_FAILED",
+    }

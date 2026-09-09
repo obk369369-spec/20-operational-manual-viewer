@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL044_COMPONENT_GROWTH_20260909",
+  "safe_checkpoint_in": "461d73c45389b3b99422835eb757916cf790a605",
+  "composition": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+  "parents": ["HTML2TEXT_THEN_MISTUNE_TOC_V1", "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"],
+  "actual_wic_demand": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
+  "expected": {"provenance": "VERIFIED", "html_toc": "MATCH"},
+  "actual": {"provenance": "VERIFIED", "html_toc": "MATCH"},
+  "tests": {
+    "functional": "PASS",
+    "expected_actual": "MATCH",
+    "normal_fixture": "PASS",
+    "failure_fixture_hash_mismatch": "BLOCKED_AS_EXPECTED",
+    "ab_parent_regression": "PASS",
+    "c_parent_regression": "PASS",
+    "abc_regression": "PASS"
+  },
+  "lineage_receipt": "PASS",
+  "verified_composition_before": 2,
+  "verified_composition_after": 3,
+  "production_changed": false,
+  "result": "COMPONENT_GROWTH_PASS"
+}
