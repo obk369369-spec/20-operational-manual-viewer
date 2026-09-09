@@ -6,9 +6,36 @@ import importlib
 import json
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 from wic_asset_provenance import classify
+
+
+def lookup_verified_composition(pool_path: Path, demand: dict) -> dict:
+    """Return an exact verified composition without rebuilding or external lookup."""
+    started = time.perf_counter()
+    required = set(demand.get("atomic_capabilities", []))
+    pool = json.loads(pool_path.read_text(encoding="utf-8"))
+    matches = []
+    for composition in pool.get("compositions", []):
+        if composition.get("status") != "VERIFIED_COMPOSITION" or not composition.get("ready_for_integration"):
+            continue
+        provided = set(composition.get("atomic_capabilities", []))
+        if provided == required:
+            matches.append(composition)
+    selected = matches[0] if len(matches) == 1 else None
+    return {
+        "demand_id": demand.get("demand_id"),
+        "required_capabilities": sorted(required),
+        "result": "VERIFIED_COMPOSITION_DIRECT_REUSE" if selected else "NO_EXACT_VERIFIED_COMPOSITION",
+        "selected_composition": selected.get("composition_id") if selected else None,
+        "warehouse_hits": 1 if selected else 0,
+        "parent_component_searches": 0,
+        "external_queries": 0,
+        "compositions_created": 0,
+        "elapsed_ms": round((time.perf_counter() - started) * 1000, 3),
+    }
 
 
 def _url_valid(wheel: Path, value: str) -> bool:
@@ -44,6 +71,7 @@ def test_url_provenance_composition(wheel: Path, actual_failure_fixture: Path) -
         "components": ["VALIDATORS_0_35_0_URL_VALIDATION", "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"],
         "root": "T42-OFFICIAL-DETAIL-PAGE-PROVENANCE",
         "applicable_tools": ["TOOL042"],
+        "atomic_capabilities": ["URL_VALIDATION", "PROVENANCE_VALIDATION"],
         "input_contract": "URL plus downloaded artifact receipt manifest",
         "output_contract": "READY_FOR_INTEGRATION only when URL syntax and artifact provenance both pass",
         "failure_fixture": "fixtures/tool042_customer_branch_actual_kmg.json",
@@ -107,6 +135,7 @@ def test_html_toc_composition(html2text_wheel: Path, mistune_wheel: Path,
         ],
         "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
         "applicable_tools": ["TOOL042"],
+        "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"],
         "input_contract": "HTML document with explicit heading elements",
         "output_contract": "Ordered heading text and source heading levels; no inferred headings",
         "normal_fixture": str(normal_fixture.as_posix()),

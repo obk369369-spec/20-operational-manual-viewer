@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL044_COMPONENT_REENTRY_20260909",
+  "safe_checkpoint_in": "b406ccd7743ca60d7e56a5f2eebf8888d7ceddd9",
+  "skip_reuse": [
+    "STAGE_1",
+    "STAGE_2",
+    "STAGE_3_A",
+    "PARALLEL_SEARCH",
+    "READY_COMPONENT_VALIDATION",
+    "RECEIPT_ACTUAL",
+    "PARENT_SANDBOX",
+    "COMPOSITION_REGRESSION"
+  ],
+  "demand": {
+    "demand_id": "T42-OFFICIAL-HTML-TOC-STRUCTURE-REUSE",
+    "target_tool": "TOOL042",
+    "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"]
+  },
+  "expected": "WAREHOUSE HIT -> VERIFIED COMPOSITION DIRECT REUSE",
+  "actual": {
+    "result": "VERIFIED_COMPOSITION_DIRECT_REUSE",
+    "selected_composition": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+    "warehouse_hits": 1,
+    "parent_component_searches": 0,
+    "external_queries": 0,
+    "compositions_created": 0,
+    "measured_lookup_ms": 1.055
+  },
+  "expected_actual": "MATCH",
+  "impacted_regression": {
+    "html_toc_composition": "7/7 PASS",
+    "url_provenance_composition": "5/5 PASS",
+    "composition_capability_metadata": "2/2 PASS"
+  },
+  "production_changed": false,
+  "result": "COMPONENT_REENTRY_PASS"
+}

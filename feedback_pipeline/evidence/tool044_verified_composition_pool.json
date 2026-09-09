@@ -10,6 +10,7 @@
       "applicable_tools": [
         "TOOL042"
       ],
+      "atomic_capabilities": ["URL_VALIDATION", "PROVENANCE_VALIDATION"],
       "input_contract": "URL plus downloaded artifact receipt manifest",
       "output_contract": "READY_FOR_INTEGRATION only when URL syntax and artifact provenance both pass",
       "failure_fixture": "fixtures/tool042_customer_branch_actual_kmg.json",
@@ -38,6 +39,7 @@
       ],
       "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
       "applicable_tools": ["TOOL042"],
+      "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"],
       "input_contract": "HTML document with explicit heading elements",
       "output_contract": "Ordered heading text and source heading levels; no inferred headings",
       "normal_fixture": "feedback_pipeline/fixtures/tool042_html_toc_normal.json",
@@ -71,6 +73,7 @@
     ],
     "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
     "applicable_tools": ["TOOL042"],
+    "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION", "TOC_STRUCTURE_EXTRACTION"],
     "input_contract": "HTML document with explicit heading elements",
     "output_contract": "Ordered heading text and source heading levels; no inferred headings",
     "normal_fixture": "feedback_pipeline/fixtures/tool042_html_toc_normal.json",
