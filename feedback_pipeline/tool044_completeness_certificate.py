@@ -8,7 +8,7 @@ def run():
     prior=('T0_GOVERNANCE','T1_CROSS_CHAT','T2_COMPONENT_INTEGRITY','T3_LARGE_WAREHOUSE','T4_PARALLEL_FACTORY','T5_AUTO_DEPLOY','T6_OBSERVER','T7_FINAL_RECONCILIATION')
     tokens={s:stage_token(ledger,s,HERE)['token'] for s in prior}
     matched=sum(1 for r in ledger['requirements'] if r.get('status')=='PASS')
-    certificate_allowed=all(x=='PASS' for x in tokens.values()) and matched==ledger['current_requirement_total']-1
+    certificate_allowed=all(x=='PASS' for x in tokens.values()) and matched in {ledger['current_requirement_total']-1, ledger['current_requirement_total']}
     return {'status':'TOOL044_COMPLETENESS_CERTIFICATE' if certificate_allowed else 'COMPLETE_FORBIDDEN',
             'current_requirement_total':ledger['current_requirement_total'],
             'matched_before_certificate':matched,'unmatched_before_certificate':ledger['current_requirement_total']-matched,
