@@ -22,7 +22,9 @@ jobs:
           fetch-depth: 0
       - name: Run TOOL045 extraction
         run: python feedback_pipeline/tool045_worker.py
-      - name: Persist TOOL045 state and TOOL016 handoff
+      - name: TOOL016 automatically receive TOOL045 handoff
+        run: python feedback_pipeline/tool016_tool045_receiver.py
+      - name: Persist TOOL045 and TOOL016 receive state
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
@@ -30,10 +32,13 @@ jobs:
           for path in \
             feedback_pipeline/tool045_state.json \
             feedback_pipeline/tool045_occurrences.jsonl \
-            feedback_pipeline/tool045_tool016_handoff.json; do
+            feedback_pipeline/tool045_tool016_handoff.json \
+            feedback_pipeline/tool016_tool045_receipt.json \
+            feedback_pipeline/tool016_tool045_root_pending.json \
+            feedback_pipeline/TOOL044_REQUEST_INBOX.json; do
             if [ -e "$path" ]; then git add -- "$path"; fi
           done
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'tool045: persist extraction checkpoint'
+          git commit -m 'tool045: persist extraction and TOOL016 receive checkpoint'
           git pull --rebase origin main
           git push origin HEAD:main
