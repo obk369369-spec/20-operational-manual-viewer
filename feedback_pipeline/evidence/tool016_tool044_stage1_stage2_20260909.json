@@ -14,6 +14,34 @@
     "tests": ["free_text_tool_inference", "observer_coverage_readback", "parallel_truth_boundary"],
     "result": "PASS"
   },
+  "deployed_candidate_actual": {
+    "path": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate",
+    "browser_open": "PASS",
+    "case_tool006": {
+      "input": "6번 목차 계층 오류가 또 발생했다.",
+      "tool_id": "TOOL006",
+      "tool_inference": "INFERRED",
+      "root_id": "FB-fabc9b13bf0745cd",
+      "demand": "FB-fabc9b13bf0745cd-TOC_HIERARCHY_VALIDATION",
+      "result": "PASS"
+    },
+    "case_tool042": {
+      "input": "42번에서 PDF 브로셔를 공식 상세페이지로 잡지 않게 해라.",
+      "tool_id": "TOOL042",
+      "tool_inference": "INFERRED",
+      "root_id": "FB-7540946cbc6f3bff",
+      "capabilities": ["OFFICIAL_DETAIL_PAGE_VALIDATION", "PDF_BROCHURE_CLASSIFICATION"],
+      "result": "PASS"
+    },
+    "observer_readback": {
+      "structured_sources": "7/7",
+      "archive_raw_receipts": "0/278",
+      "full_history_coverage": "UNKNOWN",
+      "configured_parallel_jobs": 2,
+      "active_workers": 0,
+      "parallel_stage_overlap": "NOT_PROVEN"
+    }
+  },
   "coverage_boundary": {
     "structured_sources": "7/7 COVERED",
     "structured_error_feedback_records": 59,
