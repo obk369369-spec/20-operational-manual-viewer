@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tool": "TOOL045",
+  "source_archive": "(7번) 세팅 도구.zip",
+  "source_archive_present_in_chat": true,
+  "source_archive_size_bytes": 66616773,
+  "archive_entry_count": 283,
+  "preliminary_occurrence_candidates": 171910,
+  "preliminary_conversation_sources": 277,
+  "preliminary_tool_classes": 34,
+  "night_automation": {
+    "enabled": true,
+    "schedule": "HOURLY_FROM_2026-09-09T23:41:00+09:00",
+    "purpose": "Continue TOOL045 classification from current conversation attachment and persist progress to GitHub"
+  },
+  "required_order": [
+    "TOOL045 classify by conversation/tool/category/occurrence",
+    "TOOL045 root/status/missing-capability refinement",
+    "TOOL016 receive only after TOOL045 classification checkpoint",
+    "TOOL016 root/dedup verification",
+    "TOOL044 only verified missing capability"
+  ],
+  "current_state": "NIGHT_AUTOMATION_ARMED_WAITING_FIRST_RUN",
+  "truth_contract": "DO_NOT_CLAIM_FIRST_AUTOMATED_RUN_COMPLETE_UNTIL_GITHUB_STATE_READBACK_EXISTS"
+}
