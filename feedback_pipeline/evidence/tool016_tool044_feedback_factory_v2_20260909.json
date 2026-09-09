@@ -31,7 +31,7 @@
     "local_pc_required": false
   },
   "truth_boundary": {
-    "authenticated_github_feedback": "AUTO_INGEST_IMPLEMENTED_PENDING_REMOTE_CI",
+    "authenticated_github_feedback": "AUTO_INGEST_VERIFIED_RUN_34307507216",
     "local_observer_feedback": "AUTO_INGEST_VERIFIED",
     "arbitrary_chatgpt_conversation_stream": "ACCESS_NOT_AVAILABLE",
     "static_file_html_write": "NOT_CLAIMED",
@@ -43,6 +43,23 @@
     "changed_in_this_scope": false,
     "status": "HOLD_EXISTING_TEST_CONTRACT"
   },
+  "remote_ci": {
+    "factory_run": 34305375142,
+    "factory_result": "PASS",
+    "authenticated_feedback_run": 34307507216,
+    "authenticated_feedback_result": "PASS",
+    "remote_feedback_root": "FB-071746a12c9aff3c",
+    "remote_inbox_match": true,
+    "remote_queue_match": true
+  },
+  "deployment": {
+    "path": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate",
+    "existing_default_preserved": true,
+    "vbs_entrypoint": "tool044_factory_observer_v2_start.vbs",
+    "status_api": "PASS",
+    "browser_feedback_click": "PASS",
+    "deployed_copy_test": "PASS"
+  },
   "expected_actual": "MATCH_FOR_IMPLEMENTED_PATHS",
-  "status": "VERIFIED_BRANCH_CANDIDATE"
+  "status": "DEPLOYED_V2_CANDIDATE_PASS"
 }

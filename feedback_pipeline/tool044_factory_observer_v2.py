@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timedelta, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -19,16 +20,22 @@ def snapshot(root: Path) -> dict:
     registry = read_json(root / "VERIFIED_COMPONENT_REGISTRY.json", {"components": []})
     pool = read_json(root / "evidence" / "tool044_verified_composition_pool.json", {"compositions": []})
     jobs = list(cloud.get("jobs", {}).values())
+    demands = queue.get("demands", [])
     active = bool(cloud.get("trigger") == "GITHUB_ACTIONS" and cloud.get("checkpoint"))
     latest = jobs[-1] if jobs else {}
+    latest_demand = demands[-1] if demands else {}
     counts = {s: sum(1 for j in jobs if str(j.get("status", "")).upper() == s)
               for s in ("COMPLETED", "FAIL", "HOLD", "DEFERRED_BACKOFF")}
-    demands = queue.get("demands", [])
+    updated = cloud.get("updated_at")
+    try:
+        recently_alive = datetime.fromisoformat(str(updated).replace("Z", "+00:00")) >= datetime.now(timezone.utc) - timedelta(minutes=20)
+    except ValueError:
+        recently_alive = False
     recent_error = cloud.get("last_failure") or runtime.get("last_failure")
     if isinstance(recent_error, dict):
         recent_error = recent_error.get("error") or recent_error.get("reason") or json.dumps(recent_error, ensure_ascii=False)
     return {
-        "status": "ACTIVE" if active else "CAPABLE_ONLY",
+        "status": "ACTIVE" if active and recently_alive else "CAPABLE_ONLY",
         "last_heartbeat": runtime.get("last_heartbeat") or cloud.get("updated_at"),
         "last_scheduler": cloud.get("updated_at"), "next_run": "GitHub Actions schedule contract",
         "checkpoint": cloud.get("checkpoint") or runtime.get("checkpoint"),
@@ -37,8 +44,10 @@ def snapshot(root: Path) -> dict:
                                       if "VERIFIED" in str(x.get("status", ""))]),
         "verified_composition_count": len([x for x in pool.get("compositions", [])
                                            if "VERIFIED" in str(x.get("status", ""))]),
-        "current_tool": (latest.get("source") or "대상 없음"),
-        "current_function": (latest.get("demand_id") or "현재 제작 없음"),
+        "current_tool": (latest_demand.get("target_tool") or latest.get("source") or "대상 없음"),
+        "current_function": (latest_demand.get("demand_id") or latest.get("demand_id") or "현재 제작 없음"),
+        "atomic_capabilities": latest_demand.get("atomic_capabilities", []),
+        "latest_composition": (pool.get("compositions", [])[-1] if pool.get("compositions") else None),
         "current_stage": cloud.get("current_stage") or runtime.get("current_stage") or "HOLD",
         "recent_error": recent_error,
         "latest_feedback": read_json(root / "tool016_feedback_intake_ledger.json", {"roots": []}).get("roots", [])[-1:] or [],
