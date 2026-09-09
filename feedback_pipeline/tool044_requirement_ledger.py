@@ -81,6 +81,8 @@ def current_ledger(root: Path = HERE) -> dict:
                                lambda x: x.get("T3_LARGE_WAREHOUSE", {}).get("status") == "PASS"),
         "T4_PARALLEL_FACTORY": ("evidence/tool044_parallel_advanced_20260909.json",
                                 lambda x: x.get("status") == "PASS" and all(x.get("checks", {}).values())),
+        "T5_AUTO_DEPLOY": ("evidence/tool044_candidate_actual_use_readback_20260909.json",
+                           lambda x: x.get("status") == "PASS" and all(x.get("checks", {}).values())),
     }
     for stage, (relative, predicate) in receipts.items():
         receipt = root / relative

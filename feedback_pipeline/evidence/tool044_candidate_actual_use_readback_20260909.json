@@ -1,0 +1,82 @@
+{
+  "status": "FAIL",
+  "checks": {
+    "deployed_copy": true,
+    "all_file_hashes_match": false,
+    "two_targets": true,
+    "incompatible_blocked": true,
+    "production_unchanged": true
+  },
+  "file_receipts": {
+    "tool044_candidate_adapter.py": {
+      "repo": "432a36273318cffe191da11b39bce867f35a8a46f40620b2550739b32eb70dbc",
+      "candidate": "432a36273318cffe191da11b39bce867f35a8a46f40620b2550739b32eb70dbc",
+      "match": true
+    },
+    "tool044_candidate_deployed_validation.py": {
+      "repo": "71d7f874cb34af9cf902ff3bc8baaa4b0660991c75101f7e8f8c7b08dd58f0ee",
+      "candidate": "71d7f874cb34af9cf902ff3bc8baaa4b0660991c75101f7e8f8c7b08dd58f0ee",
+      "match": true
+    },
+    "tool044_requirement_interlock.py": {
+      "repo": "e5c5c3e96db8d549802a1c3a569e4cab84026ff5647f6080da3346660a8d605b",
+      "candidate": "e5c5c3e96db8d549802a1c3a569e4cab84026ff5647f6080da3346660a8d605b",
+      "match": true
+    },
+    "tool044_requirement_ledger.py": {
+      "repo": "0d7be4e523d9ddda1aad924fe455d20f69a3642fde513dd046d173c9b3740a24",
+      "candidate": "a903b972f5917627277e110c8d6869b5f16a7dd177a38e7a1f838abaa5691e1a",
+      "match": false
+    },
+    "tool044_current_requirement_ledger.json": {
+      "repo": "e59b02cc34a1e778a3b006323e68030855b43db580cd85687433051ba55c3a8d",
+      "candidate": "e59b02cc34a1e778a3b006323e68030855b43db580cd85687433051ba55c3a8d",
+      "match": true
+    }
+  },
+  "deployed_receipt": {
+    "status": "DEPLOYED_PASS",
+    "checks": {
+      "two_structurally_different_candidates": true,
+      "cross_repository_readback": true,
+      "incompatible_target_blocked": true,
+      "production_sha_unchanged": true
+    },
+    "targets": [
+      {
+        "status": "DEPLOYED_PASS",
+        "target_id": "TOOL043-HTML-CANDIDATE",
+        "pre_sha": null,
+        "post_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
+        "source_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
+        "contract_match": "PASS",
+        "component_application": "PASS",
+        "target_execution": "PASS",
+        "target_regression": "PASS",
+        "read_back": "PASS"
+      },
+      {
+        "status": "DEPLOYED_PASS",
+        "target_id": "TOOL044-PYTHON-CANDIDATE",
+        "pre_sha": null,
+        "post_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
+        "source_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
+        "contract_match": "PASS",
+        "component_application": "PASS",
+        "target_execution": "PASS",
+        "target_regression": "PASS",
+        "read_back": "PASS"
+      }
+    ],
+    "incompatible": {
+      "status": "ROLLED_BACK",
+      "target_id": "INCOMPATIBLE",
+      "reason": "unsupported validator",
+      "pre_sha": null,
+      "restored_sha": null,
+      "rollback": "PASS"
+    },
+    "production_sha_before": "bed349caf33b5bdc335ed3c90b45d89211b116aece554543bb0bf1bffcb323a0",
+    "production_sha_after": "bed349caf33b5bdc335ed3c90b45d89211b116aece554543bb0bf1bffcb323a0"
+  }
+}
