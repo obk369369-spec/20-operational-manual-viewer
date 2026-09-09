@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "checks": {
+    "parallel_search": true,
+    "parallel_verify": true,
+    "parallel_sandbox": true,
+    "streaming": true,
+    "parallel_composition": true,
+    "parallel_regression": true,
+    "parallel_integration_deploy": true,
+    "parallel_update": true,
+    "optimal_concurrency": true,
+    "serial_factory_comparison": true,
+    "dependency_propagation": true,
+    "failure_isolation_rollback": true,
+    "validation_quality_preserved": true
+  },
+  "parallel_composition": [
+    {
+      "job_id": "COMP-AB",
+      "worker": "COMPOSE_0",
+      "start_ns": 3894107512400,
+      "end_ns": 3894208890400,
+      "result": "PASS"
+    },
+    {
+      "job_id": "COMP-ABC",
+      "worker": "COMPOSE_1",
+      "start_ns": 3894107459000,
+      "end_ns": 3894210683200,
+      "result": "PASS"
+    }
+  ],
+  "parallel_update": [
+    {
+      "job_id": "UPDATE-HTML2TEXT",
+      "worker": "UPDATE_0",
+      "start_ns": 3894211738200,
+      "end_ns": 3894238730900,
+      "result": "PASS"
+    },
+    {
+      "job_id": "UPDATE-MISTUNE",
+      "worker": "UPDATE_1",
+      "start_ns": 3894211673200,
+      "end_ns": 3894238866000,
+      "result": "PASS"
+    }
+  ],
+  "optimal_concurrency": {
+    "measurements": [
+      {
+        "workers": 1,
+        "elapsed": 0.2632438999999067,
+        "jobs_per_second": 45.58510187702071,
+        "failures": 0,
+        "duplicate_work": 0
+      },
+      {
+        "workers": 2,
+        "elapsed": 0.123347300000205,
+        "jobs_per_second": 97.28628028323325,
+        "failures": 0,
+        "duplicate_work": 0
+      },
+      {
+        "workers": 4,
+        "elapsed": 0.061882400000286,
+        "jobs_per_second": 193.91620234419707,
+        "failures": 0,
+        "duplicate_work": 0
+      }
+    ],
+    "optimal_concurrency": 4,
+    "result": "PASS"
+  },
+  "dependency_propagation": {
+    "HTML2TEXT": [
+      "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+      "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1"
+    ],
+    "unaffected_skipped": true
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "cases": {
+    "requirement_missing": {
+      "expected": "MISSING_USER_REQUIREMENT",
+      "actual": "MISSING_USER_REQUIREMENT",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "plan_missing": {
+      "expected": "MISSING_EXECUTION_PLAN",
+      "actual": "MISSING_EXECUTION_PLAN",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "execution_missing": {
+      "expected": "MISSING_ACTUAL_EXECUTION",
+      "actual": "MISSING_ACTUAL_EXECUTION",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "evidence_missing": {
+      "expected": "MISSING_ACTUAL_EVIDENCE",
+      "actual": "MISSING_ACTUAL_EVIDENCE",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "wrong_sha": {
+      "expected": "RECEIPT_ACTUAL_MISMATCH",
+      "actual": "RECEIPT_ACTUAL_MISMATCH",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "fake_pass": {
+      "expected": "FAKE_PASS_RECEIPT",
+      "actual": "FAKE_PASS_RECEIPT",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "verifier_mismatch": {
+      "expected": "VERIFICATION_MISMATCH",
+      "actual": "VERIFICATION_MISMATCH",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "reverse_trace_broken": {
+      "expected": "REVERSE_TRACE_BROKEN",
+      "actual": "REVERSE_TRACE_BROKEN",
+      "job_claim_denied": true,
+      "downstream_worker_start": 0,
+      "downstream_artifact": 0,
+      "complete_certificate": 0,
+      "pass": true
+    },
+    "known_pass": {
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true
+    }
+  },
+  "known_answer": {
+    "req_id": "REQ-INTERLOCK-KNOWN-ANSWER",
+    "stage": "T0_GOVERNANCE",
+    "user_requirement": {
+      "source": "TOOL044 FINAL ONE-SHOT",
+      "text": "7중 인터록"
+    },
+    "atomic_requirement": "모든 gear와 양방향 영수증이 일치할 때만 claim 허용",
+    "execution_plan": {
+      "plan_id": "PLAN-KNOWN",
+      "expected": "PASS"
+    },
+    "actual_execution": {
+      "execution_id": "EXEC-KNOWN",
+      "result": "PASS"
+    },
+    "actual_evidence": {
+      "path": "evidence/tool044_interlock_known_answer.json",
+      "sha256": "a140c807c0f787bc1567a93906213f57ca2951b470985b398b4aebb051166774"
+    },
+    "independent_verification": {
+      "result": "PASS",
+      "evidence_sha256": "a140c807c0f787bc1567a93906213f57ca2951b470985b398b4aebb051166774"
+    },
+    "reverse_trace": {
+      "chain": [
+        "REQ-INTERLOCK-KNOWN-ANSWER",
+        "EXEC-KNOWN",
+        "PLAN-KNOWN"
+      ]
+    }
+  },
+  "verifier_self_test": "PASS"
+}

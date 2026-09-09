@@ -1,0 +1,1562 @@
+{
+  "schema_version": 1,
+  "scope": "CURRENT_STRUCTURED_TOOL044_REQUIREMENTS_ONLY",
+  "excluded_separate_future_scope": "ALL_HISTORICAL_CHAT_EXTRACTION",
+  "current_requirement_total": 68,
+  "requirements": [
+    {
+      "req_id": "REQ-00001",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "CURRENT_REQUIREMENT_LEDGER"
+      },
+      "atomic_requirement": "CURRENT_REQUIREMENT_LEDGER",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00001",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00002",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PER_REQUIREMENT_SEVEN_GEAR_INTERLOCK"
+      },
+      "atomic_requirement": "PER_REQUIREMENT_SEVEN_GEAR_INTERLOCK",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00002",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00003",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "FOUR_RECEIPT_MATCH"
+      },
+      "atomic_requirement": "FOUR_RECEIPT_MATCH",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00003",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00004",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "FORWARD_REVERSE_KEYS"
+      },
+      "atomic_requirement": "FORWARD_REVERSE_KEYS",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00004",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00005",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "FAIL_CLOSED"
+      },
+      "atomic_requirement": "FAIL_CLOSED",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00005",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00006",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "STAGE_TOKEN_CHAIN"
+      },
+      "atomic_requirement": "STAGE_TOKEN_CHAIN",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00006",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00007",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "HARD_STOP_SELF_TEST"
+      },
+      "atomic_requirement": "HARD_STOP_SELF_TEST",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00007",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00008",
+      "stage": "T0_GOVERNANCE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "VERIFIER_SELF_TEST"
+      },
+      "atomic_requirement": "VERIFIER_SELF_TEST",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T0_GOVERNANCE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T0_GOVERNANCE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_requirement_interlock_self_test_20260909.json",
+        "sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "417c00720b611bd1489849f97c251246a43ced5c1479291ff3b982f25f108581"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00008",
+          "EXEC-T0_GOVERNANCE",
+          "PLAN-T0_GOVERNANCE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00009",
+      "stage": "T1_CROSS_CHAT",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "DYNAMIC_SUPPORTED_ROUTE_ENUMERATION"
+      },
+      "atomic_requirement": "DYNAMIC_SUPPORTED_ROUTE_ENUMERATION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T1_CROSS_CHAT",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T1_CROSS_CHAT",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_all_route_e2e_20260909.json",
+        "sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00009",
+          "EXEC-T1_CROSS_CHAT",
+          "PLAN-T1_CROSS_CHAT"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00010",
+      "stage": "T1_CROSS_CHAT",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "ALL_ROUTE_SOURCE_TO_016_TO_044_E2E"
+      },
+      "atomic_requirement": "ALL_ROUTE_SOURCE_TO_016_TO_044_E2E",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T1_CROSS_CHAT",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T1_CROSS_CHAT",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_all_route_e2e_20260909.json",
+        "sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00010",
+          "EXEC-T1_CROSS_CHAT",
+          "PLAN-T1_CROSS_CHAT"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00011",
+      "stage": "T1_CROSS_CHAT",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "HANDOFF_RECEIVE_ACK_EXECUTION_RESULT_SEPARATION"
+      },
+      "atomic_requirement": "HANDOFF_RECEIVE_ACK_EXECUTION_RESULT_SEPARATION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T1_CROSS_CHAT",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T1_CROSS_CHAT",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_all_route_e2e_20260909.json",
+        "sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00011",
+          "EXEC-T1_CROSS_CHAT",
+          "PLAN-T1_CROSS_CHAT"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00012",
+      "stage": "T1_CROSS_CHAT",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "TOOL016_RESULT_READBACK"
+      },
+      "atomic_requirement": "TOOL016_RESULT_READBACK",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T1_CROSS_CHAT",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T1_CROSS_CHAT",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_all_route_e2e_20260909.json",
+        "sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "795d1c5eeb52c7119f89bb7642f1a787a12d73897b548f60c1f6897d281e3cd0"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00012",
+          "EXEC-T1_CROSS_CHAT",
+          "PLAN-T1_CROSS_CHAT"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00013",
+      "stage": "T2_COMPONENT_INTEGRITY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "WIC_VERIFIED_COMPONENT_FIRST"
+      },
+      "atomic_requirement": "WIC_VERIFIED_COMPONENT_FIRST",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T2_COMPONENT_INTEGRITY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T2_COMPONENT_INTEGRITY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00013",
+          "EXEC-T2_COMPONENT_INTEGRITY",
+          "PLAN-T2_COMPONENT_INTEGRITY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00014",
+      "stage": "T2_COMPONENT_INTEGRITY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "VERIFIED_COMPOSITION_SECOND"
+      },
+      "atomic_requirement": "VERIFIED_COMPOSITION_SECOND",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T2_COMPONENT_INTEGRITY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T2_COMPONENT_INTEGRITY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00014",
+          "EXEC-T2_COMPONENT_INTEGRITY",
+          "PLAN-T2_COMPONENT_INTEGRITY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00015",
+      "stage": "T2_COMPONENT_INTEGRITY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "NO_READY_COMPONENT_NORMAL_CLOSE"
+      },
+      "atomic_requirement": "NO_READY_COMPONENT_NORMAL_CLOSE",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T2_COMPONENT_INTEGRITY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T2_COMPONENT_INTEGRITY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00015",
+          "EXEC-T2_COMPONENT_INTEGRITY",
+          "PLAN-T2_COMPONENT_INTEGRITY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00016",
+      "stage": "T2_COMPONENT_INTEGRITY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "INTERNAL_EXTERNAL_RECEIPT_MATCH"
+      },
+      "atomic_requirement": "INTERNAL_EXTERNAL_RECEIPT_MATCH",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T2_COMPONENT_INTEGRITY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T2_COMPONENT_INTEGRITY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00016",
+          "EXEC-T2_COMPONENT_INTEGRITY",
+          "PLAN-T2_COMPONENT_INTEGRITY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00017",
+      "stage": "T2_COMPONENT_INTEGRITY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "EXTERNAL_COMPONENT_FULL_VERIFICATION"
+      },
+      "atomic_requirement": "EXTERNAL_COMPONENT_FULL_VERIFICATION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T2_COMPONENT_INTEGRITY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T2_COMPONENT_INTEGRITY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00017",
+          "EXEC-T2_COMPONENT_INTEGRITY",
+          "PLAN-T2_COMPONENT_INTEGRITY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00018",
+      "stage": "T2_COMPONENT_INTEGRITY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "INVALID_ASSET_PROMOTION_BLOCK"
+      },
+      "atomic_requirement": "INVALID_ASSET_PROMOTION_BLOCK",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T2_COMPONENT_INTEGRITY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T2_COMPONENT_INTEGRITY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00018",
+          "EXEC-T2_COMPONENT_INTEGRITY",
+          "PLAN-T2_COMPONENT_INTEGRITY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00019",
+      "stage": "T3_LARGE_WAREHOUSE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "USEFUL_CAPABILITY_COVERAGE"
+      },
+      "atomic_requirement": "USEFUL_CAPABILITY_COVERAGE",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T3_LARGE_WAREHOUSE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T3_LARGE_WAREHOUSE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00019",
+          "EXEC-T3_LARGE_WAREHOUSE",
+          "PLAN-T3_LARGE_WAREHOUSE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00020",
+      "stage": "T3_LARGE_WAREHOUSE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "RECURSIVE_A_PLUS_B"
+      },
+      "atomic_requirement": "RECURSIVE_A_PLUS_B",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T3_LARGE_WAREHOUSE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T3_LARGE_WAREHOUSE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00020",
+          "EXEC-T3_LARGE_WAREHOUSE",
+          "PLAN-T3_LARGE_WAREHOUSE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00021",
+      "stage": "T3_LARGE_WAREHOUSE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "RECURSIVE_AB_PLUS_C"
+      },
+      "atomic_requirement": "RECURSIVE_AB_PLUS_C",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T3_LARGE_WAREHOUSE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T3_LARGE_WAREHOUSE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00021",
+          "EXEC-T3_LARGE_WAREHOUSE",
+          "PLAN-T3_LARGE_WAREHOUSE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00022",
+      "stage": "T3_LARGE_WAREHOUSE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "LARGEST_MATCHING_COMPOSITION_FIRST"
+      },
+      "atomic_requirement": "LARGEST_MATCHING_COMPOSITION_FIRST",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T3_LARGE_WAREHOUSE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T3_LARGE_WAREHOUSE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00022",
+          "EXEC-T3_LARGE_WAREHOUSE",
+          "PLAN-T3_LARGE_WAREHOUSE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00023",
+      "stage": "T3_LARGE_WAREHOUSE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "WAREHOUSE_EFFECT_METRICS"
+      },
+      "atomic_requirement": "WAREHOUSE_EFFECT_METRICS",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T3_LARGE_WAREHOUSE",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T3_LARGE_WAREHOUSE",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_existing_stage_readback_20260909.json",
+        "sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "9960f17ea43612af729e32e45f39aebefc9407824b218f6f5b012051c6f960df"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00023",
+          "EXEC-T3_LARGE_WAREHOUSE",
+          "PLAN-T3_LARGE_WAREHOUSE"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00024",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_SEARCH"
+      },
+      "atomic_requirement": "PARALLEL_SEARCH",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00024",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00025",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_VERIFY"
+      },
+      "atomic_requirement": "PARALLEL_VERIFY",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00025",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00026",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_SANDBOX"
+      },
+      "atomic_requirement": "PARALLEL_SANDBOX",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00026",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00027",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "STREAMING_PIPELINE"
+      },
+      "atomic_requirement": "STREAMING_PIPELINE",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00027",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00028",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_COMPOSITION"
+      },
+      "atomic_requirement": "PARALLEL_COMPOSITION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00028",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00029",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_REGRESSION"
+      },
+      "atomic_requirement": "PARALLEL_REGRESSION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00029",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00030",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_TARGET_INTEGRATION"
+      },
+      "atomic_requirement": "PARALLEL_TARGET_INTEGRATION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00030",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00031",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_DEPLOY"
+      },
+      "atomic_requirement": "PARALLEL_DEPLOY",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00031",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00032",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PARALLEL_UPDATE"
+      },
+      "atomic_requirement": "PARALLEL_UPDATE",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00032",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00033",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "OPTIMAL_CONCURRENCY"
+      },
+      "atomic_requirement": "OPTIMAL_CONCURRENCY",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00033",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00034",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "UPDATE_IMPACT_PROPAGATION"
+      },
+      "atomic_requirement": "UPDATE_IMPACT_PROPAGATION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00034",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00035",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "FAILURE_ISOLATION"
+      },
+      "atomic_requirement": "FAILURE_ISOLATION",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00035",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00036",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "ROLLBACK"
+      },
+      "atomic_requirement": "ROLLBACK",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00036",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00037",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "VALIDATION_QUALITY_PRESERVED"
+      },
+      "atomic_requirement": "VALIDATION_QUALITY_PRESERVED",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00037",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00038",
+      "stage": "T4_PARALLEL_FACTORY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "SERIAL_FACTORY_COMPARISON"
+      },
+      "atomic_requirement": "SERIAL_FACTORY_COMPARISON",
+      "status": "PASS",
+      "execution_plan": {
+        "plan_id": "PLAN-T4_PARALLEL_FACTORY",
+        "expected": "PASS"
+      },
+      "actual_execution": {
+        "execution_id": "EXEC-T4_PARALLEL_FACTORY",
+        "result": "PASS"
+      },
+      "actual_evidence": {
+        "path": "evidence/tool044_parallel_advanced_20260909.json",
+        "sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "independent_verification": {
+        "result": "PASS",
+        "evidence_sha256": "ceea9ef6fac2e6355f603b46336636a0c53d08674a9bb4abf71d8b9fdb45cde4"
+      },
+      "reverse_trace": {
+        "chain": [
+          "REQ-00038",
+          "EXEC-T4_PARALLEL_FACTORY",
+          "PLAN-T4_PARALLEL_FACTORY"
+        ]
+      }
+    },
+    {
+      "req_id": "REQ-00039",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "COMMON_TARGET_ADAPTER"
+      },
+      "atomic_requirement": "COMMON_TARGET_ADAPTER",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00040",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "TWO_STRUCTURALLY_DIFFERENT_WIC_CANDIDATES"
+      },
+      "atomic_requirement": "TWO_STRUCTURALLY_DIFFERENT_WIC_CANDIDATES",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00041",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "TARGET_DISCOVERY"
+      },
+      "atomic_requirement": "TARGET_DISCOVERY",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00042",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "CONTRACT_MATCH"
+      },
+      "atomic_requirement": "CONTRACT_MATCH",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00043",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "COMPONENT_APPLICATION"
+      },
+      "atomic_requirement": "COMPONENT_APPLICATION",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00044",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "TARGET_EXECUTION"
+      },
+      "atomic_requirement": "TARGET_EXECUTION",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00045",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "TARGET_REGRESSION"
+      },
+      "atomic_requirement": "TARGET_REGRESSION",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00046",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "CROSS_REPOSITORY_READBACK"
+      },
+      "atomic_requirement": "CROSS_REPOSITORY_READBACK",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00047",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "INCOMPATIBLE_TARGET_BLOCK"
+      },
+      "atomic_requirement": "INCOMPATIBLE_TARGET_BLOCK",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00048",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "NO_SINGLE_TOOL_HARDCODE"
+      },
+      "atomic_requirement": "NO_SINGLE_TOOL_HARDCODE",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00049",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PRODUCTION_SHA_UNCHANGED"
+      },
+      "atomic_requirement": "PRODUCTION_SHA_UNCHANGED",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00050",
+      "stage": "T5_AUTO_DEPLOY",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "CANDIDATE_DEPLOYED_COPY_TEST"
+      },
+      "atomic_requirement": "CANDIDATE_DEPLOYED_COPY_TEST",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00051",
+      "stage": "T6_OBSERVER",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "OBSERVER_BACKEND_LIVE_DATA"
+      },
+      "atomic_requirement": "OBSERVER_BACKEND_LIVE_DATA",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00052",
+      "stage": "T6_OBSERVER",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "OBSERVER_READ_ONLY"
+      },
+      "atomic_requirement": "OBSERVER_READ_ONLY",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00053",
+      "stage": "T6_OBSERVER",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "OBSERVER_BROWSER_E2E"
+      },
+      "atomic_requirement": "OBSERVER_BROWSER_E2E",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00054",
+      "stage": "T6_OBSERVER",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "OBSERVER_REFRESH_PERSISTENCE"
+      },
+      "atomic_requirement": "OBSERVER_REFRESH_PERSISTENCE",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00055",
+      "stage": "T6_OBSERVER",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "FREE_TEXT_BROWSER_ROUTE_E2E"
+      },
+      "atomic_requirement": "FREE_TEXT_BROWSER_ROUTE_E2E",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00056",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "ATOMIC_LOCK"
+      },
+      "atomic_requirement": "ATOMIC_LOCK",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00057",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "DUPLICATE_ELIMINATION"
+      },
+      "atomic_requirement": "DUPLICATE_ELIMINATION",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00058",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "CHECKPOINT_RESUME"
+      },
+      "atomic_requirement": "CHECKPOINT_RESUME",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00059",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "STALE_WORKER_RECOVERY"
+      },
+      "atomic_requirement": "STALE_WORKER_RECOVERY",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00060",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "WATCHDOG_HEARTBEAT"
+      },
+      "atomic_requirement": "WATCHDOG_HEARTBEAT",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00061",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "REPEATED_AUTO_CYCLE"
+      },
+      "atomic_requirement": "REPEATED_AUTO_CYCLE",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00062",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "TWENTY_FOUR_HOUR_CAPABLE"
+      },
+      "atomic_requirement": "TWENTY_FOUR_HOUR_CAPABLE",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00063",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "NON_TIME_DEPENDENT_ZERO_SCAN"
+      },
+      "atomic_requirement": "NON_TIME_DEPENDENT_ZERO_SCAN",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00064",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "FINAL_FORWARD_REVERSE_RECONCILIATION"
+      },
+      "atomic_requirement": "FINAL_FORWARD_REVERSE_RECONCILIATION",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00065",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "PRODUCTION_PROTECTION"
+      },
+      "atomic_requirement": "PRODUCTION_PROTECTION",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00066",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "REMOTE_READBACK"
+      },
+      "atomic_requirement": "REMOTE_READBACK",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00067",
+      "stage": "T7_FINAL_RECONCILIATION",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "CANDIDATE_FINAL_RETEST"
+      },
+      "atomic_requirement": "CANDIDATE_FINAL_RETEST",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    },
+    {
+      "req_id": "REQ-00068",
+      "stage": "T8_COMPLETE",
+      "user_requirement": {
+        "source": "TOOL044 FINAL ONE-SHOT",
+        "section": "COMPLETENESS_CERTIFICATE"
+      },
+      "atomic_requirement": "COMPLETENESS_CERTIFICATE",
+      "status": "LOCKED_NOT_YET_VERIFIED"
+    }
+  ]
+}

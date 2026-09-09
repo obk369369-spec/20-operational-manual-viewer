@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "checks": {
+    "two_targets": true,
+    "parallel_overlap": true,
+    "incompatible_blocked": true,
+    "rollback": true,
+    "same_target_lock": true,
+    "no_single_tool_hardcode": true,
+    "production_sha_unchanged": true
+  },
+  "workers": [
+    {
+      "start_ns": 3677615969700,
+      "end_ns": 3677660437600,
+      "status": "DEPLOYED_PASS",
+      "target_id": "TOOL043-HTML-CANDIDATE",
+      "pre_sha": null,
+      "post_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
+      "source_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
+      "contract_match": "PASS",
+      "component_application": "PASS",
+      "target_execution": "PASS",
+      "target_regression": "PASS",
+      "read_back": "PASS"
+    },
+    {
+      "start_ns": 3677615919200,
+      "end_ns": 3677662982700,
+      "status": "DEPLOYED_PASS",
+      "target_id": "TOOL044-PYTHON-CANDIDATE",
+      "pre_sha": null,
+      "post_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
+      "source_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
+      "contract_match": "PASS",
+      "component_application": "PASS",
+      "target_execution": "PASS",
+      "target_regression": "PASS",
+      "read_back": "PASS"
+    }
+  ],
+  "incompatible": {
+    "status": "ROLLED_BACK",
+    "target_id": "BAD",
+    "reason": "unsupported validator",
+    "pre_sha": null,
+    "restored_sha": null,
+    "rollback": "PASS"
+  },
+  "rollback": {
+    "status": "ROLLED_BACK",
+    "target_id": "ROLLBACK",
+    "reason": "INTENTIONAL_FAILURE_FIXTURE",
+    "pre_sha": null,
+    "restored_sha": null,
+    "rollback": "PASS"
+  },
+  "same_target_claims": [
+    "CLAIM-0",
+    "LOCKED-1",
+    "LOCKED-2"
+  ],
+  "production_sha_before": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
+  "production_sha_after": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0"
+}
