@@ -1,0 +1,10 @@
+{
+  "html": "<html><body><h1>시장 개요</h1><p>본문</p><h2>성장 요인</h2><h3>기술 동향</h3></body></html>",
+  "expected_text": ["시장 개요", "성장 요인", "기술 동향"],
+  "expected_levels": [1, 2, 3],
+  "expected_headings": [
+    {"level": 1, "text": "시장 개요"},
+    {"level": 2, "text": "성장 요인"},
+    {"level": 3, "text": "기술 동향"}
+  ]
+}

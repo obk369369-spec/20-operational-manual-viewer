@@ -29,34 +29,68 @@
       ],
       "ready_for_integration": true,
       "status": "VERIFIED_COMPOSITION"
+    },
+    {
+      "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+      "components": [
+        "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+        "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+      ],
+      "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
+      "applicable_tools": ["TOOL042"],
+      "input_contract": "HTML document with explicit heading elements",
+      "output_contract": "Ordered heading text and source heading levels; no inferred headings",
+      "normal_fixture": "feedback_pipeline/fixtures/tool042_html_toc_normal.json",
+      "failure_fixture": "feedback_pipeline/fixtures/tool042_html_toc_failure.json",
+      "normal_fixture_sha256": "7a40c717ad00772f1b99e63198c3a094c40e343a3d641f231c15e98bfd57ec9b",
+      "failure_fixture_sha256": "bac6b2cf2659cdb319c54f8973a83e8ae85d84e956ef4362d4bfcd88b010b738",
+      "tests": {
+        "functional": true,
+        "expected_actual": true,
+        "normal_fixture": true,
+        "failure_fixture": true,
+        "html2text_parent_regression": true,
+        "mistune_parent_regression": true,
+        "composition_regression": true
+      },
+      "expected_actual": "MATCH",
+      "regression": "PASS",
+      "known_limitations": [
+        "Only explicit HTML heading elements are preserved",
+        "Does not infer numbering or publisher-specific hierarchy from plain text"
+      ],
+      "ready_for_integration": true,
+      "status": "VERIFIED_COMPOSITION"
     }
   ],
   "last_test": {
-    "composition_id": "VALIDATORS_URL_THEN_WIC_PROVENANCE_V1",
+    "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
     "components": [
-      "VALIDATORS_0_35_0_URL_VALIDATION",
-      "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+      "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+      "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
     ],
-    "root": "T42-OFFICIAL-DETAIL-PAGE-PROVENANCE",
-    "applicable_tools": [
-      "TOOL042"
-    ],
-    "input_contract": "URL plus downloaded artifact receipt manifest",
-    "output_contract": "READY_FOR_INTEGRATION only when URL syntax and artifact provenance both pass",
-    "failure_fixture": "fixtures/tool042_customer_branch_actual_kmg.json",
-    "failure_fixture_sha256": "0a050c28dcd814a4cafcb628fd03b48f832842b60431f377308400d192eb8532",
-    "normal_fixture": "official wheel receipt",
+    "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
+    "applicable_tools": ["TOOL042"],
+    "input_contract": "HTML document with explicit heading elements",
+    "output_contract": "Ordered heading text and source heading levels; no inferred headings",
+    "normal_fixture": "feedback_pipeline/fixtures/tool042_html_toc_normal.json",
+    "failure_fixture": "feedback_pipeline/fixtures/tool042_html_toc_failure.json",
+    "normal_fixture_sha256": "7a40c717ad00772f1b99e63198c3a094c40e343a3d641f231c15e98bfd57ec9b",
+    "failure_fixture_sha256": "bac6b2cf2659cdb319c54f8973a83e8ae85d84e956ef4362d4bfcd88b010b738",
     "tests": {
-      "normal": true,
-      "malformed": true,
-      "provenance_mismatch": true,
-      "past_actual_failure": true,
-      "regression": true
+      "functional": true,
+      "expected_actual": true,
+      "normal_fixture": true,
+      "failure_fixture": true,
+      "html2text_parent_regression": true,
+      "mistune_parent_regression": true,
+      "composition_regression": true
     },
     "expected_actual": "MATCH",
     "regression": "PASS",
     "known_limitations": [
-      "Does not establish publisher ownership or page semantics"
+      "Only explicit HTML heading elements are preserved",
+      "Does not infer numbering or publisher-specific hierarchy from plain text"
     ],
     "ready_for_integration": true,
     "status": "VERIFIED_COMPOSITION"

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL044_STAGE3_READY_COMPONENT_VALIDATION_20260909",
+  "gate_correction": {
+    "no_ready_component_scope": "DEMAND_ONLY",
+    "factory_hold": false,
+    "closed_demands": [
+      {"capability": "SAFE_AUTOMATIC_ROLLBACK", "result": "NO_READY_COMPONENT"},
+      {"capability": "LOCAL_TITLE_TRANSLATION", "result": "NO_READY_COMPONENT"}
+    ]
+  },
+  "skip_reuse": ["STAGE_1", "STAGE_2", "STAGE_3_A", "PARALLEL_SEARCH"],
+  "selected_actual_demands": [
+    "T42-WEBPAGE-TEXT-EXTRACTION",
+    "T42-TOC-STRUCTURE-EXTRACTION"
+  ],
+  "parents": [
+    {
+      "component_id": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+      "version": "2025.4.15",
+      "sha256": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+      "receipt_actual": "MATCH",
+      "sandbox": "PASS"
+    },
+    {
+      "component_id": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+      "version": "3.3.4",
+      "sha256": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+      "receipt_actual": "MATCH",
+      "sandbox": "PASS"
+    }
+  ],
+  "composition": {
+    "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+    "functional_test": "PASS",
+    "expected_actual": "MATCH",
+    "normal_fixture": "PASS",
+    "failure_fixture": "PASS",
+    "parent_function_regression": "PASS",
+    "composition_regression": "PASS",
+    "tests_passed": 7,
+    "tests_total": 7,
+    "status": "VERIFIED_COMPOSITION"
+  },
+  "warehouse": {
+    "verified_atomic_unique": 12,
+    "verified_composition_before": 1,
+    "verified_composition_after": 2,
+    "newly_registered_verified": 1
+  },
+  "production_changed": false,
+  "target_tool_integration": "NOT_STARTED_OUTSIDE_THIS_CORRECTION_SCOPE",
+  "paid_api_calls": 0,
+  "paid_saas_calls": 0,
+  "result": "STAGE_3C_THROUGH_REGRESSION_PASS"
+}
