@@ -34,6 +34,42 @@ def snapshot(root: Path) -> dict:
     recent_error = cloud.get("last_failure") or runtime.get("last_failure")
     if isinstance(recent_error, dict):
         recent_error = recent_error.get("error") or recent_error.get("reason") or json.dumps(recent_error, ensure_ascii=False)
+    coverage = read_json(root / "evidence" / "tool016_history_coverage_audit_20260909.json", {})
+    cov = coverage.get("coverage", {})
+    archive = cov.get("historical_archive_feedback_event_extraction", {})
+    structured = cov.get("structured_canonical_sources", {})
+    old_counts = coverage.get("existing_structured_counts", {})
+    history_coverage = {
+        "known_sources": coverage.get("population_inventory", {}).get("known_unique_history_sources", "UNKNOWN"),
+        "structured_known": structured.get("known"), "structured_covered": structured.get("covered"),
+        "archive_known": archive.get("known_archive_files"),
+        "archive_covered": archive.get("covered_with_file_level_raw_feedback_receipt"),
+        "archive_raw_covered": archive.get("covered_with_file_level_raw_feedback_receipt"),
+        "partial_sources": archive.get("partial_metadata_or_canonicalization_only"),
+        "unavailable_sources": archive.get("access_not_available_or_unreadable"),
+        "coverage_percent": archive.get("coverage_percent"),
+        "full_history_coverage": archive.get("full_history_coverage", "UNKNOWN"),
+        "raw_error_events": coverage.get("root_cause", {}).get("raw_error_events", "UNKNOWN"),
+        "raw_feedback_events": coverage.get("root_cause", {}).get("raw_feedback_events", "UNKNOWN"),
+        "repeated_events": coverage.get("root_cause", {}).get("repeated_events", "UNKNOWN"),
+        "unique_records": coverage.get("root_cause", {}).get("unique_feedback_records"),
+        "structured_error_feedback": old_counts.get("structured_source_error_feedback_records"),
+        "roots_after_dedup": coverage.get("root_cause", {}).get("roots_after_dedup"),
+        "tool044_handoffs": old_counts.get("structured_source_tool044_handoff"),
+        "atomic_demands": len(demands),
+        "label_59": "구조화 7개 source에서 회수한 오류/미검증 59",
+        "by_tool": coverage.get("under_extraction_samples", []),
+        "under_extraction_tools": [x.get("tool_id") for x in coverage.get("under_extraction_samples", [])
+                                    if x.get("result") == "UNDER_EXTRACTION_CONFIRMED"],
+    }
+    stage_names = ("search", "verify", "receipt_actual", "sandbox", "composition",
+                   "regression", "integration", "deploy_validation")
+    parallel_status = {
+        "configured_parallel_jobs": cloud.get("parallel_jobs", 0),
+        "active_workers": runtime.get("active_workers", 0),
+        "stages": {name: 0 for name in stage_names},
+        "evidence_status": "NOT_PROVEN" if not runtime.get("active_workers", 0) else "ACTIVE",
+    }
     return {
         "status": "ACTIVE" if active and recently_alive else "CAPABLE_ONLY",
         "last_heartbeat": runtime.get("last_heartbeat") or cloud.get("updated_at"),
@@ -51,6 +87,8 @@ def snapshot(root: Path) -> dict:
         "current_stage": cloud.get("current_stage") or runtime.get("current_stage") or "HOLD",
         "recent_error": recent_error,
         "latest_feedback": read_json(root / "tool016_feedback_intake_ledger.json", {"roots": []}).get("roots", [])[-1:] or [],
+        "history_coverage": history_coverage,
+        "parallel_status": parallel_status,
         "truth_boundary": {"any_chat_auto_access": "ACCESS_NOT_AVAILABLE",
                            "local_observer_feedback": "AUTO_INGEST_VERIFIED"},
     }

@@ -25,6 +25,11 @@ CAPABILITY_RULES = {
     "한글 타이틀": "LOCAL_TITLE_TRANSLATION",
     "카테고리 자동": "CANONICAL_CATEGORY_MATCHING",
 }
+TOOL_ALIASES = {
+    "엑셀 자동 업로드": "TOOL013", "온라인 고객 수집": "TOOL041",
+    "매일 고객 안내": "TOOL042",
+    "완성부품": "TOOL044", "관찰판": "TOOL043",
+}
 
 
 def read_json(path: Path, default):
@@ -40,16 +45,33 @@ def canonical(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip().lower())
 
 
+def infer_tool(text: str) -> str:
+    """Infer only an explicit number or one unambiguous WIC term."""
+    normalized = canonical(text)
+    explicit = re.search(r"(?:tool\s*0*(\d{1,3})(?:\s*번)?|(?<!\d)(\d{1,3})\s*번)", normalized, re.I)
+    if explicit:
+        return f"TOOL{int(explicit.group(1) or explicit.group(2)):03d}"
+    matches = {tool for phrase, tool in TOOL_ALIASES.items() if phrase in normalized}
+    return next(iter(matches)) if len(matches) == 1 else "UNKNOWN"
+
+
 def ingest(event: dict, root: Path = HERE) -> dict:
-    for key in ("source_chat_or_tool", "tool_id", "user_original_text"):
+    for key in ("source_chat_or_tool", "user_original_text"):
         if not str(event.get(key, "")).strip():
             raise ValueError(f"missing required field: {key}")
     text = str(event["user_original_text"]).strip()
     source = str(event["source_chat_or_tool"]).strip()
-    tool = str(event["tool_id"]).strip().upper()
+    supplied_tool = str(event.get("tool_id", "")).strip().upper()
+    inferred_tool = infer_tool(text)
+    if supplied_tool and inferred_tool != "UNKNOWN" and supplied_tool != inferred_tool:
+        tool = "UNKNOWN"
+        tool_inference = "CONFLICT_HOLD"
+    else:
+        tool = supplied_tool or inferred_tool
+        tool_inference = "EXPLICIT" if supplied_tool else ("INFERRED" if tool != "UNKNOWN" else "UNKNOWN_HOLD")
     if len(text) > 10000:
         raise ValueError("user_original_text exceeds 10000 characters")
-    if not re.fullmatch(r"(?:TOOL\d{3}|CENTRAL|[A-Z0-9_-]{2,64})", tool):
+    if not re.fullmatch(r"(?:TOOL\d{3}|CENTRAL|UNKNOWN|[A-Z0-9_-]{2,64})", tool):
         raise ValueError("invalid tool_id")
     occurred = str(event.get("timestamp") or datetime.now(timezone.utc).isoformat())
     root_id = "FB-" + hashlib.sha256(canonical(text).encode("utf-8")).hexdigest()[:16]
@@ -105,6 +127,7 @@ def ingest(event: dict, root: Path = HERE) -> dict:
         route(inbox_path, root / "tool044_atomic_demand_queue.json",
               root / "tool044_function_state.json")
     return {"status": "RECEIVED", "source_id": source_id, "root_id": root_id,
+            "tool_id": tool, "tool_inference": tool_inference,
             "duplicate": duplicate, "occurrence": existing["occurrence"],
             "missing_capabilities": capabilities, "tool044_demand_id": demand_id,
             "tool016_status": "ROOT_CHECK_COMPLETE",

@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL016_HISTORY_COVERAGE_AUDIT_20260909",
+  "generated_at": "2026-09-09T00:00:00+09:00",
+  "scope": "SCOPED_EXISTING_INDEX_LEDGER_EVIDENCE_ONLY",
+  "constraints": {
+    "raw_278_files_rescanned": false,
+    "long_conversations_reread": false,
+    "existing_assets_modified": false
+  },
+  "terminology_correction": {
+    "existing_59_meaning": "STRUCTURED_SOURCE_ERROR_FEEDBACK_RECORDS",
+    "existing_45_meaning": "STRUCTURED_SOURCE_ROOTS",
+    "existing_21_meaning": "STRUCTURED_SOURCE_TOOL044_HANDOFF",
+    "existing_25_meaning": "STRUCTURED_SOURCE_ATOMIC_DEMANDS",
+    "full_history_claim_allowed": false
+  },
+  "population_inventory": {
+    "historical_archive_declared_files": 278,
+    "archive_text_access_reported": "278/278",
+    "numbered_groups_canonicalized": "32/32",
+    "unreadable_generic_sources": 8,
+    "missing_named_source": 1,
+    "explicit_prior_feedback_thread_receipts": 7,
+    "structured_canonical_source_receipts": 7,
+    "structured_sweep_checked_tools": 16,
+    "structured_sweep_checked_record_sources": 7,
+    "identity_overlap_between_archive_files_and_thread_receipts": "UNKNOWN",
+    "known_unique_history_sources": "UNKNOWN",
+    "reason_denominator_not_exact": "The 278 archive file identities are not mapped one-to-one to the seven thread IDs or seven structured canonical source receipts. Adding them would double-count an unknown overlap."
+  },
+  "coverage": {
+    "structured_canonical_sources": {
+      "known": 7,
+      "covered": 7,
+      "partial": 0,
+      "unavailable": 0,
+      "coverage_percent": 100.0,
+      "boundary": "Only the current structured canonical sweep, not full chat history."
+    },
+    "historical_archive_feedback_event_extraction": {
+      "known_archive_files": 278,
+      "covered_with_file_level_raw_feedback_receipt": 0,
+      "partial_metadata_or_canonicalization_only": 270,
+      "access_not_available_or_unreadable": 8,
+      "coverage_percent": 0.0,
+      "full_history_coverage": "UNKNOWN",
+      "note": "The archive checkpoint proves classification/canonicalization, but does not provide per-file raw feedback-event extraction receipts."
+    },
+    "explicit_prior_feedback_recovery": {
+      "tool_units_reviewed": 12,
+      "thread_ids_with_message_receipts": 7,
+      "not_found_in_prior_feedback_tool_units": 4,
+      "evidence_only_without_thread_receipt_tool_units": 1,
+      "status": "PARTIAL"
+    }
+  },
+  "existing_structured_counts": {
+    "structured_source_recovered_records": 96,
+    "structured_source_error_feedback_records": 59,
+    "structured_source_roots": 45,
+    "structured_source_verified_skip_reuse": 3,
+    "structured_source_tool044_handoff": 21,
+    "structured_source_atomic_demands": 25
+  },
+  "under_extraction_samples": [
+    {
+      "tool_id": "TOOL006",
+      "source_receipt": "thread 6a4c5ed3-196c-83ee-9ce5-5acae1fc131e; 2 user turns; 2 assistant messages",
+      "accessible_feedback_categories": 9,
+      "categories": [
+        "number/hierarchy/line-break/indentation",
+        "parenthesis and footnote contamination",
+        "List of Tables/Figures misclassification",
+        "Depth 2/3/4",
+        "publisher-pattern selection",
+        "HOLD overuse",
+        "UI regression",
+        "development copy versus deployed copy",
+        "actual input before release"
+      ],
+      "file_level_raw_event_receipts_in_history_ledger": 0,
+      "result": "UNDER_EXTRACTION_CONFIRMED"
+    },
+    {
+      "tool_id": "TOOL001",
+      "source_receipt": "thread 6a44b0ef-76b0-83ee-aee3-630ab0a441c6; 2 user turns; 2 assistant messages",
+      "accessible_feedback_categories": 6,
+      "file_level_raw_event_receipts_in_history_ledger": 0,
+      "result": "UNDER_EXTRACTION_CONFIRMED"
+    },
+    {
+      "tool_id": "TOOL013",
+      "source_receipt": "thread 69f87f20-7630-83a7-88fa-0ea685cc7b17; 3 user turns; 3 assistant messages",
+      "accessible_feedback_categories": 5,
+      "file_level_raw_event_receipts_in_history_ledger": 0,
+      "result": "UNDER_EXTRACTION_CONFIRMED"
+    },
+    {
+      "tool_id": "TOOL044",
+      "source_receipt": "thread 6a9832e4-a290-83ee-82c5-9130b9d8ef2d; 1 user message; 1 assistant message",
+      "accessible_feedback_categories": 5,
+      "file_level_raw_event_receipts_in_history_ledger": 0,
+      "result": "UNDER_EXTRACTION_CONFIRMED"
+    }
+  ],
+  "root_cause": {
+    "root_id": "HISTORY-COVERAGE-RECEIPT-GAP",
+    "finding": "Historical canonicalization and structured current-state sweep were treated as adjacent evidence, but neither establishes source-by-source raw feedback extraction coverage.",
+    "raw_events_and_roots_separated": true,
+    "raw_error_events": "UNKNOWN",
+    "raw_feedback_events": "UNKNOWN",
+    "repeated_events": "UNKNOWN",
+    "unique_feedback_records": 59,
+    "roots_after_dedup": 45
+  },
+  "access_boundaries": [
+    {
+      "source": "arbitrary ChatGPT full conversation stream",
+      "status": "ACCESS_NOT_AVAILABLE",
+      "count": "UNKNOWN",
+      "reason": "No authenticated full-history reader exists in this runtime."
+    },
+    {
+      "source": "eight generic archived files",
+      "status": "ACCESS_NOT_AVAILABLE",
+      "count": 8,
+      "reason": "Prior checkpoint records no readable content/backing bytes; do not infer."
+    },
+    {
+      "source": "WIC34_NEXT_TO_END_STATUS.md",
+      "status": "ACCESS_NOT_AVAILABLE",
+      "count": 1,
+      "reason": "Named source was not found; do not reconstruct."
+    }
+  ],
+  "source_evidence": [
+    "feedback_pipeline/WIC_278_CHAT_HISTORY_CATCHUP.md",
+    "feedback_pipeline/WIC_278_CHAT_HISTORY_RESUME_20260901.md",
+    "feedback_pipeline/historical_record_index.json",
+    "feedback_pipeline/evidence/tool016_tool044_full_accessible_sweep_20260908.json",
+    "feedback_pipeline/evidence/tool006_001_009_013_prior_feedback_recovery_20260907.json",
+    "feedback_pipeline/evidence/tool014_012_002_prior_feedback_recovery_20260907.json",
+    "feedback_pipeline/evidence/tool043_044_020_027_035_prior_feedback_recovery_20260907.json"
+  ],
+  "next_incremental_scope": {
+    "eligible": "Only archive sources whose stable identity can be mapped and whose per-source extraction receipt is absent or PARTIAL.",
+    "skip": "Unchanged sources with a complete extraction receipt; existing structured seven-source sweep; already verified roots.",
+    "prohibited": "Claiming 59 records as one-year/full-history coverage or rescanning all 278 long bodies without metadata/receipt gap selection."
+  },
+  "expected": "Distinguish structured-source recovery from full-history feedback-event coverage and detect under-extraction without rescanning long source bodies.",
+  "actual": "Structured sources are 7/7 covered, but full-history denominator overlap is unknown and per-file raw feedback receipts are absent; four high-risk samples confirm under-extraction.",
+  "result": "PARTIAL_UNDER_EXTRACTION_CONFIRMED"
+}
