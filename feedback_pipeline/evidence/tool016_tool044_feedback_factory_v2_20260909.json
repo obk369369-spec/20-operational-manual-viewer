@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL016_TOOL044_FEEDBACK_FACTORY_V2_20260909",
+  "production_replacement": false,
+  "existing_thin_observer_preserved": true,
+  "tests": {
+    "TOOL_A_TO_TOOL016_TO_TOOL044": "PASS",
+    "TOOL_B_TO_TOOL016_TO_TOOL044": "PASS",
+    "TOOL044_DIRECT_FEEDBACK_LOOP": "PASS",
+    "ROOT_DEDUP_OCCURRENCE": "PASS",
+    "HTTP_STATUS_READBACK": "PASS",
+    "HTML_BUTTON_ACTUAL_CLICK": "PASS",
+    "QUEUE_READBACK": "PASS",
+    "UNAVAILABLE_CHAT_TRUTH_BOUNDARY": "PASS",
+    "VERIFIED_COMPOSITION_REGRESSION": "5/5 PASS"
+  },
+  "actual_browser_result": {
+    "status": "RECEIVED",
+    "source_id": "SRC-86267fe42b583f45",
+    "root_id": "FB-dd3964e5aebff849",
+    "tool044_demand_id": "FB-dd3964e5aebff849-PDF_BROCHURE_CLASSIFICATION",
+    "queue_count_before": 25,
+    "queue_count_after": 26,
+    "scope": "isolated temporary fixture; canonical queue not mutated"
+  },
+  "existing_24h_evidence_reused": {
+    "natural_schedule_run": 34223014337,
+    "event": "schedule",
+    "work_triggered": false,
+    "user_triggered": false,
+    "local_pc_required": false
+  },
+  "truth_boundary": {
+    "authenticated_github_feedback": "AUTO_INGEST_IMPLEMENTED_PENDING_REMOTE_CI",
+    "local_observer_feedback": "AUTO_INGEST_VERIFIED",
+    "arbitrary_chatgpt_conversation_stream": "ACCESS_NOT_AVAILABLE",
+    "static_file_html_write": "NOT_CLAIMED",
+    "production_default_replaced": false
+  },
+  "preexisting_regression_debt": {
+    "test": "feedback_pipeline/test_tool044_atomic_watch.py",
+    "actual": "FAIL: stale fixed expectation demands_processed == 8 while canonical queue has 25",
+    "changed_in_this_scope": false,
+    "status": "HOLD_EXISTING_TEST_CONTRACT"
+  },
+  "expected_actual": "MATCH_FOR_IMPLEMENTED_PATHS",
+  "status": "VERIFIED_BRANCH_CANDIDATE"
+}

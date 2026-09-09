@@ -38,6 +38,8 @@ jobs:
         run: python feedback_pipeline/tool016_tool044_lineage_e2e.py
       - name: Verify full accessible TOOL016 to TOOL044 sweep
         run: python feedback_pipeline/tool016_tool044_full_accessible_sweep.py
+      - name: Verify feedback factory V2 without mutating canonical queues
+        run: python feedback_pipeline/test_tool044_feedback_factory_v2.py
       - name: Harvest official pre-qualified candidates and test compositions
         run: python feedback_pipeline/tool044_atomic_watch.py --external --trigger-source SCHEDULED
       - name: Parallel discover public candidates for unresolved atomic capabilities
