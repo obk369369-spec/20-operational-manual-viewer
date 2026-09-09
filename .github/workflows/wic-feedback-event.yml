@@ -139,6 +139,32 @@ jobs:
           print('PASS: PRECHECK_USER_DIRECTIVE allowed exact approved user directive before APPLY')
           PY
 
+      - name: Persist authenticated TOOL016 to TOOL044 intake before target execution
+        run: |
+          python - <<'PY'
+          import json, re, sys
+          from pathlib import Path
+          sys.path.insert(0, 'feedback_pipeline')
+          from tool016_feedback_bridge import ingest
+          raw=json.loads(Path('/tmp/wic-event.json').read_text(encoding='utf-8'))
+          text=str(raw.get('feedback') or raw.get('text') or '').strip()
+          source=str(raw.get('source_chat') or 'AUTHENTICATED_WIC_FEEDBACK')
+          match=re.search(r'TOOL\d{3}', ' '.join([source,text,str(raw.get('related_tool',''))]).upper())
+          tool=str(raw.get('related_tool') or (match.group(0) if match else 'CENTRAL')).upper()
+          result=ingest({'source_chat_or_tool':source,'tool_id':tool,'user_original_text':text,
+                         'timestamp':raw.get('observed_at') or raw.get('timestamp'),
+                         'missing_capabilities':raw.get('missing_capabilities',[])})
+          assert result['status']=='RECEIVED'
+          print(json.dumps(result,ensure_ascii=False))
+          PY
+          git config user.name 'wic-integration-bot'
+          git config user.email 'wic-integration-bot@users.noreply.github.com'
+          git add feedback_pipeline/preflight_evidence.json feedback_pipeline/tool016_feedback_intake_ledger.json feedback_pipeline/TOOL044_REQUEST_INBOX.json feedback_pipeline/tool044_atomic_demand_queue.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'wic: persist authenticated TOOL016 to TOOL044 intake'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
       - name: Apply pending real feedback event
         id: apply
         run: |
@@ -146,7 +172,7 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          result = json.loads(Path('/tmp/wic-event-result.json').read_text(encoding='utf-8').splitlines()[-1])
+          result = json.loads(Path('/tmp/wic-event-result.json').read_text(encoding='utf-8'))
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
               out.write(f"result={result['status']}\n")
           PY
@@ -268,26 +294,6 @@ jobs:
               assert cp['status'] == 'HOLD'
               assert state['integration_core']['structure_pass'] is False
               print('HOLD: canonical write/read-back complete; external target apply remains required')
-          PY
-
-      - name: Route authenticated feedback through TOOL016 to TOOL044
-        if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
-        run: |
-          python - <<'PY'
-          import json, re, sys
-          from pathlib import Path
-          sys.path.insert(0, 'feedback_pipeline')
-          from tool016_feedback_bridge import ingest
-          raw=json.loads(Path('/tmp/wic-event.json').read_text(encoding='utf-8'))
-          text=str(raw.get('feedback') or raw.get('text') or '').strip()
-          source=str(raw.get('source_chat') or 'AUTHENTICATED_WIC_FEEDBACK')
-          match=re.search(r'TOOL\d{3}', ' '.join([source,text,str(raw.get('related_tool',''))]).upper())
-          tool=str(raw.get('related_tool') or (match.group(0) if match else 'CENTRAL')).upper()
-          result=ingest({'source_chat_or_tool':source,'tool_id':tool,'user_original_text':text,
-                         'timestamp':raw.get('observed_at') or raw.get('timestamp'),
-                         'missing_capabilities':raw.get('missing_capabilities',[])})
-          assert result['status']=='RECEIVED'
-          print(json.dumps(result,ensure_ascii=False))
           PY
 
       - name: Commit canonical mutation and evidence
