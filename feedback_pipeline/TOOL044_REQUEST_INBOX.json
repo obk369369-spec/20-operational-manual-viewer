@@ -49,6 +49,38 @@
       "status": "OPEN",
       "user_action": "NONE",
       "created_at": "2026-09-08T22:20:00+09:00"
+    },
+    {
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "tool_or_program_name": "TOOL006",
+      "related_tool": "TOOL006",
+      "purpose": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+      "desired_result": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+      "required_capabilities": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "priority": "HIGH",
+      "status": "OPEN",
+      "user_action": "NONE",
+      "created_at": "2026-09-09T03:35:00Z",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_chat_or_tool": "TOOL006",
+      "function_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "original_error_or_feedback": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+      "occurrence_or_evidence": 1,
+      "source_evidence": [
+        "SRC-b523a54973d65bd8"
+      ],
+      "source_records": [
+        {
+          "source_id": "SRC-b523a54973d65bd8",
+          "source_chat_or_tool": "TOOL006",
+          "tool_id": "TOOL006",
+          "user_original_text": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "timestamp": "2026-09-09T03:35:00Z",
+          "root_id": "FB-071746a12c9aff3c"
+        }
+      ]
     }
   ]
 }

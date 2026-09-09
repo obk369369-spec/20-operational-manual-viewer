@@ -890,6 +890,267 @@
           "TOOL044_DEMAND_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING"
         }
       ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-LINE_SPLIT",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "LINE_SPLIT"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-LINE_SPLIT"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_NUMBER_DETECTION",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "TOC_NUMBER_DETECTION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_NUMBER_DETECTION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_DEPTH_DETECTION",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "TOC_DEPTH_DETECTION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_DEPTH_DETECTION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-PARENT_CHILD_HIERARCHY",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "PARENT_CHILD_HIERARCHY"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-PARENT_CHILD_HIERARCHY"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-INDENT_RENDERING",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "INDENT_RENDERING"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-INDENT_RENDERING"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-DEPTH_PRUNING",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "DEPTH_PRUNING"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-DEPTH_PRUNING"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-SOURCE_TEXT_PRESERVATION",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "SOURCE_TEXT_PRESERVATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-SOURCE_TEXT_PRESERVATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-HIERARCHY_ERROR_DETECTION",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "HIERARCHY_ERROR_DETECTION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-HIERARCHY_ERROR_DETECTION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_HIERARCHY_VALIDATION",
+      "target_tool": "TOOL006",
+      "atomic_capabilities": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FB-071746a12c9aff3c",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL006",
+          "TOOL_ID": "TOOL006",
+          "FUNCTION_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "목차 계층 오류가 반복된다. 기존 ROOT에 통합하고 TOOL044로 넘겨라.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-071746a12c9aff3c",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-b523a54973d65bd8"
+          ],
+          "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_HIERARCHY_VALIDATION"
+        }
+      ]
     }
   ]
 }
