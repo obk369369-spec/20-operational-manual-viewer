@@ -366,3 +366,13 @@ WORK_RETRY_BEFORE_TOOL044_EXHAUSTION = FORBIDDEN
 WORK_APPROVAL_WITHOUT_EXHAUSTION_EVIDENCE = BLOCKED
 WORK_NEW_BUILD = LAST_RESORT_ONLY
 WORK_INDEPENDENT_FULL_E2E_REQUIRES_EVIDENCE = TRUE
+## 7중 INTERLOCK 증거 재사용·최소 추가검증 — REQUIRED
+
+- `INTERLOCK_EXECUTION_MODEL = ONE_ACTUAL_EXECUTION_MANY_EVIDENCE_CHECKS`: 7중 인터락은 동일 작업을 7회 실행하는 구조가 아니다.
+- 앞 단계에서 실제 생성·검증된 source/version/hash/receipt/artifact/EXPECTED/ACTUAL/log/sandbox/fixture/regression/checkpoint/GitHub·배포 SHA는 후속 인터락이 read-back하고 무결성을 확인해 재사용한다.
+- `EVIDENCE_REUSE_VERIFIED = REQUIRED`: 증거가 변경되지 않았으면 같은 검색·다운로드·실행·해시·시험·회귀를 반복하지 않는다.
+- `STAGE_SPECIFIC_INDEPENDENT_CROSSCHECK = REQUIRED`: 증거를 재사용해도 각 인터락 고유 위험(서로 다른 receipt 교차검증, component↔target 장착, EXPECTED↔ACTUAL, 변경 전↔후 회귀)은 독립 검증한다.
+- 불일치가 발견되면 root와 영향범위를 먼저 특정하고 해당 부분 및 영향을 받는 후속 인터락만 재검증한다. 영향받지 않은 앞 단계는 `SKIP_REUSE_VERIFIED`로 보존한다.
+- 인터락마다 같은 외부검색·다운로드·SHA 생성·EXPECTED↔ACTUAL·무관한 회귀·VERIFIED component 발굴을 반복하면 `REDUNDANT_INTERLOCK_WORK = FAIL`이다.
+- 모든 7중 인터락 증거에는 `INTERLOCK_COUNT`, `EVIDENCE_REUSE_COUNT`, `INDEPENDENT_CROSS_CHECK_COUNT`, `REDUNDANT_REEXECUTION_COUNT`, `REEXECUTION_DUE_TO_ACTUAL_FAILURE_COUNT`를 기록한다.
+- 정상 목표는 `INTERLOCK_COUNT = 7`, `EVIDENCE_REUSE = PASS`, `REDUNDANT_REEXECUTION_COUNT = 0`이다. 실제 오류가 없으면 `REEXECUTION_DUE_TO_ACTUAL_FAILURE_COUNT = 0`이어야 한다.

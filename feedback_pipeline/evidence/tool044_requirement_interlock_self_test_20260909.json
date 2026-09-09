@@ -77,6 +77,18 @@
       "expected": "PASS",
       "actual": "PASS",
       "pass": true
+    },
+    "evidence_reuse_and_independent_cross_check": {
+      "expected": "ONE_READ_SIX_REUSES_SEVEN_CROSS_CHECKS",
+      "actual": {
+        "INTERLOCK_COUNT": 7,
+        "EVIDENCE_READ_COUNT": 1,
+        "EVIDENCE_REUSE_COUNT": 6,
+        "INDEPENDENT_CROSS_CHECK_COUNT": 7,
+        "REDUNDANT_REEXECUTION_COUNT": 0,
+        "REEXECUTION_DUE_TO_ACTUAL_FAILURE_COUNT": 0
+      },
+      "pass": true
     }
   },
   "known_answer": {
@@ -111,5 +123,12 @@
       ]
     }
   },
+  "INTERLOCK_COUNT": 7,
+  "EVIDENCE_REUSE": "PASS",
+  "EVIDENCE_READ_COUNT": 1,
+  "EVIDENCE_REUSE_COUNT": 6,
+  "INDEPENDENT_CROSS_CHECK_COUNT": 7,
+  "REDUNDANT_REEXECUTION_COUNT": 0,
+  "REEXECUTION_DUE_TO_ACTUAL_FAILURE_COUNT": 0,
   "verifier_self_test": "PASS"
 }
