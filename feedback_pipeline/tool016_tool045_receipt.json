@@ -1,19 +1,15 @@
 {
-  "schema_version": 3,
+  "schema_version": 1,
   "source": "TOOL045",
   "receiver": "TOOL016",
   "received": true,
-  "state": "ROOT_DUPLICATE_REVIEW_COMPLETE_NO_VERIFIED_MISSING_CAPABILITY",
-  "record_scope": "315_ROOT_CANDIDATE_GROUPS_REFERENCED_BY_SOURCE_ASSET",
-  "root_candidate_count": 315,
-  "deduplicated_root_family_count": 12,
-  "occurrence_count": 171910,
+  "state": "RECEIVED_EMPTY",
+  "received_at": "2026-09-09T17:04:10.775142+00:00",
+  "handoff_state_seen": "EXTRACTED_READY_FOR_TOOL016_HANDOFF",
+  "record_count": 0,
+  "deduplicated_record_count": 0,
+  "pending_root_review_count": 0,
   "eligible_for_tool044_count": 0,
   "tool044_handoff_count_this_run": 0,
-  "source_asset_library_file_id": "file_00000000f9c88209a870055c3c8ed817",
-  "source_asset_sha256": "6bc87e9cadd9903c773c163b29e3f2e6198239dce3e99316eaa43f7106cc41fd",
-  "review_file": "feedback_pipeline/tool016_tool045_root_review.json",
-  "pending_file": "feedback_pipeline/tool016_tool045_root_pending.json",
-  "missing_capability_verification": "315 source labels remain UNVERIFIED because they are mechanically derived prevention/enforcement labels without independent capability evidence.",
-  "truth_contract": "TOOL044_ONLY_AFTER_TOOL016_VERIFIES_ROOT_AND_MISSING_CAPABILITY"
+  "truth_contract": "TOOL044_ONLY_AFTER_VERIFIED_ROOT_AND_VERIFIED_MISSING_CAPABILITY"
 }
