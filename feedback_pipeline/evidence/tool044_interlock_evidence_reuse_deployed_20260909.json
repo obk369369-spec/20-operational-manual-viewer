@@ -1,0 +1,30 @@
+{
+  "status": "DEPLOYED_PASS",
+  "tested_at": "2026-09-09T21:04:59+09:00",
+  "scope": "SEVEN_INTERLOCK_EVIDENCE_REUSE_ONLY",
+  "code_commit": "e949e819056b580267537e5e8129e4325d9dfee6",
+  "actual_use_candidate": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate",
+  "production_modified": false,
+  "expected": {
+    "INTERLOCK_COUNT": 7,
+    "EVIDENCE_READ_COUNT": 1,
+    "EVIDENCE_REUSE_COUNT": 6,
+    "INDEPENDENT_CROSS_CHECK_COUNT": 7,
+    "REDUNDANT_REEXECUTION_COUNT": 0,
+    "REEXECUTION_DUE_TO_ACTUAL_FAILURE_COUNT": 0
+  },
+  "actual": {
+    "INTERLOCK_COUNT": 7,
+    "EVIDENCE_REUSE": "PASS",
+    "EVIDENCE_READ_COUNT": 1,
+    "EVIDENCE_REUSE_COUNT": 6,
+    "INDEPENDENT_CROSS_CHECK_COUNT": 7,
+    "REDUNDANT_REEXECUTION_COUNT": 0,
+    "REEXECUTION_DUE_TO_ACTUAL_FAILURE_COUNT": 0
+  },
+  "expected_actual": "MATCH",
+  "impacted_regression": "PASS",
+  "existing_68_requirement_receipts": "SKIP_REUSE_READBACK_PASS",
+  "repo_candidate_hash_match": true,
+  "deployed_copy_retest": "PASS"
+}
