@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "TOOL045",
+  "reviewer": "TOOL016",
+  "source_asset": "TOOL045_WIC_1year_error_feedback_asset.zip",
+  "source_asset_sha256": "6bc87e9cadd9903c773c163b29e3f2e6198239dce3e99316eaa43f7106cc41fd",
+  "source_root_candidate_count": 315,
+  "source_occurrence_count": 171910,
+  "review_basis": [
+    "Same exact ROOT category deduplicated across TOOL candidates into global ROOT families while occurrence/source evidence remains preserved in the pinned source asset.",
+    "Source missing_capability labels are mechanically derived *_PREVENTION_OR_ENFORCEMENT labels and have no independent verification field/evidence.",
+    "TOOL016 policy requires evidence before verified promotion; therefore no candidate is eligible for TOOL044 in this review."
+  ],
+  "duplicate_review": {
+    "input_root_candidates": 315,
+    "global_root_families": 12,
+    "exact_tool_root_duplicates": 0,
+    "review_method": "EXACT_ROOT_FAMILY_DEDUP_WITH_SOURCE_ASSET_PRESERVATION"
+  },
+  "missing_capability_review": {
+    "candidate_labels": 315,
+    "verified_missing_capabilities": 0,
+    "status": "NO_VERIFIED_MISSING_CAPABILITY",
+    "tool044_eligible_count": 0,
+    "tool044_handoff_performed": false
+  },
+  "root_families": [
+    {"root_family":"AUTOMATION_GAP","candidate_root_count":23,"occurrence_count":4788,"status_counts":{"UNRESOLVED":18,"STATUS_UNVERIFIED":5},"missing_capability":"AUTOMATION_GAP_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"CREDIT_WASTE","candidate_root_count":20,"occurrence_count":1164,"status_counts":{"UNRESOLVED":2,"STATUS_UNVERIFIED":18},"missing_capability":"CREDIT_WASTE_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"DEPLOYMENT_MISMATCH","candidate_root_count":25,"occurrence_count":4339,"status_counts":{"UNRESOLVED":17,"STATUS_UNVERIFIED":8},"missing_capability":"DEPLOYMENT_MISMATCH_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"ERROR_FAILURE","candidate_root_count":33,"occurrence_count":61921,"status_counts":{"UNRESOLVED":29,"STATUS_UNVERIFIED":4},"missing_capability":"ERROR_FAILURE_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"FALSE_PASS","candidate_root_count":26,"occurrence_count":6247,"status_counts":{"UNRESOLVED":25,"STATUS_UNVERIFIED":1},"missing_capability":"FALSE_PASS_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"HANDOFF_GAP","candidate_root_count":30,"occurrence_count":33789,"status_counts":{"UNRESOLVED":9,"STATUS_UNVERIFIED":21},"missing_capability":"HANDOFF_GAP_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"IMPROVEMENT_REQUEST","candidate_root_count":33,"occurrence_count":24039,"status_counts":{"UNRESOLVED":15,"STATUS_UNVERIFIED":18},"missing_capability":"IMPROVEMENT_REQUEST_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"RECURRENCE","candidate_root_count":32,"occurrence_count":3181,"status_counts":{"UNRESOLVED":30,"STATUS_UNVERIFIED":2},"missing_capability":"RECURRENCE_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"REQUIREMENT_MISSING","candidate_root_count":27,"occurrence_count":12157,"status_counts":{"UNRESOLVED":25,"STATUS_UNVERIFIED":2},"missing_capability":"REQUIREMENT_MISSING_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"ROOT_UNRESOLVED","candidate_root_count":16,"occurrence_count":8527,"status_counts":{"UNRESOLVED":6,"STATUS_UNVERIFIED":10},"missing_capability":"ROOT_UNRESOLVED_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"TEST_VERIFICATION","candidate_root_count":33,"occurrence_count":10595,"status_counts":{"UNRESOLVED":25,"STATUS_UNVERIFIED":8},"missing_capability":"TEST_VERIFICATION_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false},
+    {"root_family":"USER_WORK_SHIFT","candidate_root_count":17,"occurrence_count":1163,"status_counts":{"UNRESOLVED":12,"STATUS_UNVERIFIED":5},"missing_capability":"USER_WORK_SHIFT_PREVENTION_OR_ENFORCEMENT","missing_capability_verification":"UNVERIFIED_DERIVED_LABEL_NO_INDEPENDENT_CAPABILITY_EVIDENCE","eligible_for_tool044":false}
+  ],
+  "occurrence_and_source_preservation": "FULL_DATA_REMAINS_IN_PINNED_SOURCE_ASSET_ROOTS_CSV_AND_OCCURRENCES_CSV",
+  "state": "ROOT_DUPLICATE_REVIEW_COMPLETE_MISSING_CAPABILITY_UNVERIFIED"
+}
