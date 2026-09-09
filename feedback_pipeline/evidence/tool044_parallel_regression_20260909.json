@@ -1,0 +1,26 @@
+{
+  "stage": "PARALLEL_REGRESSION",
+  "workers": [
+    {
+      "job_id": "REGRESSION-AB",
+      "worker_id": "REGRESSION_0",
+      "start": "2026-09-09T07:02:21.530982+00:00",
+      "end": "2026-09-09T07:02:21.721536+00:00",
+      "start_ns": 24321298391500,
+      "end_ns": 24321488503700,
+      "result": "PASS"
+    },
+    {
+      "job_id": "REGRESSION-ABC",
+      "worker_id": "REGRESSION_1",
+      "start": "2026-09-09T07:02:21.530982+00:00",
+      "end": "2026-09-09T07:02:21.726769+00:00",
+      "start_ns": 24321298305400,
+      "end_ns": 24321493853200,
+      "result": "PASS"
+    }
+  ],
+  "actual_overlap": true,
+  "failure_isolated": true,
+  "result": "PASS"
+}

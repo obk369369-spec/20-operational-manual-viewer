@@ -1,0 +1,25 @@
+{
+  "stage": "STREAMING_PIPELINE",
+  "workers": [
+    {
+      "job_id": "VERIFY-READY",
+      "worker_id": "STREAM_1",
+      "start": "2026-09-09T07:02:20.978010+00:00",
+      "end": "2026-09-09T07:02:21.020352+00:00",
+      "start_ns": 24320745366700,
+      "end_ns": 24320787358300,
+      "result": "PASS"
+    },
+    {
+      "job_id": "SEARCH-READY",
+      "worker_id": "STREAM_0",
+      "start": "2026-09-09T07:02:20.977009+00:00",
+      "end": "2026-09-09T07:02:21.098706+00:00",
+      "start_ns": 24320744642500,
+      "end_ns": 24320865674400,
+      "result": "PASS"
+    }
+  ],
+  "search_verify_overlap": true,
+  "result": "PASS"
+}

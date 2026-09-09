@@ -1,0 +1,29 @@
+{
+  "stage": "PARALLEL_VERIFY",
+  "workers": [
+    {
+      "job_id": "VERIFY-HTML2TEXT",
+      "worker_id": "VERIFY_0",
+      "start": "2026-09-09T07:02:19.897612+00:00",
+      "end": "2026-09-09T07:02:19.949174+00:00",
+      "start_ns": 24319664748200,
+      "end_ns": 24319716123400,
+      "expected": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+      "actual": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+      "result": "PASS"
+    },
+    {
+      "job_id": "VERIFY-MISTUNE",
+      "worker_id": "VERIFY_1",
+      "start": "2026-09-09T07:02:19.897612+00:00",
+      "end": "2026-09-09T07:02:19.948158+00:00",
+      "start_ns": 24319664607800,
+      "end_ns": 24319715232600,
+      "expected": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+      "actual": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+      "result": "PASS"
+    }
+  ],
+  "actual_overlap": true,
+  "result": "PASS"
+}

@@ -1,0 +1,35 @@
+{
+  "stage": "PARALLEL_SANDBOX",
+  "workers": [
+    {
+      "job_id": "SANDBOX-HTML2TEXT",
+      "worker_id": "SANDBOX_0",
+      "start": "2026-09-09T07:02:20.293306+00:00",
+      "end": "2026-09-09T07:02:20.438170+00:00",
+      "start_ns": 24320061160100,
+      "end_ns": 24320205443600,
+      "expected": "Report extracted",
+      "actual": "Report extracted",
+      "result": "PASS"
+    },
+    {
+      "job_id": "SANDBOX-MISTUNE",
+      "worker_id": "SANDBOX_1",
+      "start": "2026-09-09T07:02:20.293306+00:00",
+      "end": "2026-09-09T07:02:20.537663+00:00",
+      "start_ns": 24320061031900,
+      "end_ns": 24320304747700,
+      "expected": [
+        1,
+        2
+      ],
+      "actual": [
+        1,
+        2
+      ],
+      "result": "PASS"
+    }
+  ],
+  "actual_overlap": true,
+  "result": "PASS"
+}
