@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL044_WAREHOUSE_SPEED_20260909",
+  "warehouse": {"verified_atomic_unique": 12, "verified_compositions": 3, "unique_capabilities": 25, "new_compositions": 2},
+  "reuse": {"total_demands": 4, "warehouse_hits": 3, "composition_hits": 3, "external_search_required": 1, "reuse_hit_rate": 0.75, "external_search_skipped": 3, "external_search_skip_rate": 0.75},
+  "speed": {
+    "composition_rebuild_seconds": 0.13966980000259355,
+    "warehouse_lookup_seconds": 0.004288699998141965,
+    "composition_speed_improvement_percent": 96.92940063058562,
+    "parallel_verify_wall_seconds": 0.0541432,
+    "serial_verify_sum_seconds": 0.1063314,
+    "parallel_throughput_jobs_per_second": 36.93908006914996,
+    "serial_equivalent_jobs_per_second": 18.809119413456422,
+    "throughput_improvement_percent": 96.38920492324057
+  },
+  "validation_quality_preserved": true,
+  "production_changed": false,
+  "result": "PASS"
+}
