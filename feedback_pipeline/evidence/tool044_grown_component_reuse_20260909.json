@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL044_GROWN_COMPONENT_REUSE_20260909",
+  "safe_checkpoint_in": "af10b006e0cf9d6b5fb070eba95ca59cf1e9cd43",
+  "demand_id": "T42-VERIFIED-DETAIL-PAGE-TO-TOC-REUSE",
+  "expected": "WAREHOUSE HIT -> ABC VERIFIED COMPOSITION DIRECT REUSE",
+  "actual": {
+    "selected_composition": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+    "warehouse_hits": 1,
+    "parent_component_searches": 0,
+    "external_queries": 0,
+    "compositions_created": 0
+  },
+  "expected_actual": "MATCH",
+  "production_changed": false,
+  "result": "GROWN_COMPONENT_REUSE_PASS"
+}
