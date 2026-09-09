@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "evidence_id": "TOOL044_STAGE3_PARALLEL_SEARCH_20260909",
+  "stage_3a_verified_reuse": {
+    "expected": "existing verified matches do not trigger external search",
+    "actual": "latest atomic cycle reused 4 registry matches and blocked 21 duplicate searches with zero external queries",
+    "result": "SKIP_REUSE_VERIFIED"
+  },
+  "stage_3b_parallel_search": {
+    "expected": "two independent missing capabilities execute in distinct workers with timestamp overlap",
+    "capabilities": ["SAFE_AUTOMATIC_ROLLBACK", "LOCAL_TITLE_TRANSLATION"],
+    "workers": ["ThreadPoolExecutor-0_0", "ThreadPoolExecutor-0_1"],
+    "first_window": ["2026-09-09T06:06:39.075878+00:00", "2026-09-09T06:06:39.550131+00:00"],
+    "second_window": ["2026-09-09T06:06:39.076887+00:00", "2026-09-09T06:06:39.634465+00:00"],
+    "actual_overlap": true,
+    "external_queries": 2,
+    "candidate_receipts": 10,
+    "source": "evidence/tool044_dynamic_candidate_pool.json",
+    "result": "PASS"
+  },
+  "stage_3c_streaming_verify": {
+    "expected": "candidate provides the requested capability and proceeds to receipt/artifact behavior verification",
+    "actual": "all ten search results are repository metadata receipts only; none proves either requested capability",
+    "promotion_allowed": false,
+    "result": "HOLD_NO_READY_COMPONENT"
+  },
+  "subsequent_stages": "NOT_STARTED_PREVIOUS_STAGE_NOT_VERIFIED",
+  "production_changed": false,
+  "paid_api_calls": 0,
+  "paid_saas_calls": 0,
+  "overall": "STAGE_3B_PASS_STAGE_3C_HOLD"
+}
