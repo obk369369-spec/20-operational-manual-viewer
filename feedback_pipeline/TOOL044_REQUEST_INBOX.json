@@ -81,6 +81,38 @@
           "root_id": "FB-071746a12c9aff3c"
         }
       ]
+    },
+    {
+      "request_id": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING",
+      "tool_or_program_name": "TOOL013",
+      "related_tool": "TOOL013",
+      "purpose": "13번 카테고리 자동 매칭 기능이 누락되었습니다.",
+      "desired_result": "13번 카테고리 자동 매칭 기능이 누락되었습니다.",
+      "required_capabilities": [
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "priority": "HIGH",
+      "status": "OPEN",
+      "user_action": "NONE",
+      "created_at": "2026-09-09T11:44:33.659Z",
+      "root_id": "FB-2a33520aa188cb6b",
+      "source_chat_or_tool": "TOOL044_OBSERVER_V2",
+      "function_id": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING",
+      "original_error_or_feedback": "13번 카테고리 자동 매칭 기능이 누락되었습니다.",
+      "occurrence_or_evidence": 1,
+      "source_evidence": [
+        "SRC-20a8c752048d6487"
+      ],
+      "source_records": [
+        {
+          "source_id": "SRC-20a8c752048d6487",
+          "source_chat_or_tool": "TOOL044_OBSERVER_V2",
+          "tool_id": "TOOL013",
+          "user_original_text": "13번 카테고리 자동 매칭 기능이 누락되었습니다.",
+          "timestamp": "2026-09-09T11:44:33.659Z",
+          "root_id": "FB-2a33520aa188cb6b"
+        }
+      ]
     }
   ]
 }

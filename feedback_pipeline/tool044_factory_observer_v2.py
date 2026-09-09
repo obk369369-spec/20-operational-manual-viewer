@@ -20,6 +20,7 @@ def snapshot(root: Path) -> dict:
     registry = read_json(root / "VERIFIED_COMPONENT_REGISTRY.json", {"components": []})
     pool = read_json(root / "evidence" / "tool044_verified_composition_pool.json", {"compositions": []})
     metrics = read_json(root / "evidence" / "tool044_warehouse_speed_20260909.json", {})
+    parallel_evidence = read_json(root / "evidence" / "tool044_parallel_advanced_20260909.json", {})
     jobs = list(cloud.get("jobs", {}).values())
     demands = queue.get("demands", [])
     active = bool(cloud.get("trigger") == "GITHUB_ACTIONS" and cloud.get("checkpoint"))
@@ -69,7 +70,9 @@ def snapshot(root: Path) -> dict:
         "configured_parallel_jobs": cloud.get("parallel_jobs", 0),
         "active_workers": runtime.get("active_workers", 0),
         "stages": {name: 0 for name in stage_names},
-        "evidence_status": "NOT_PROVEN" if not runtime.get("active_workers", 0) else "ACTIVE",
+        "evidence_status": "VERIFIED" if parallel_evidence.get("status") == "PASS" else
+                           ("ACTIVE" if runtime.get("active_workers", 0) else "NOT_PROVEN"),
+        "optimal_concurrency": parallel_evidence.get("optimal_concurrency", {}).get("optimal_concurrency"),
     }
     verified_atomic = {
         item.get("component_id") for item in (

@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "candidate_url": "http://127.0.0.1:8046/tool044_factory_observer_v2.html",
+  "actual_browser": "Codex In-app Browser",
+  "backend_match": {
+    "verified_atomic": 12,
+    "verified_composition": 3,
+    "warehouse_hits": "3/4",
+    "external_search_skip_rate": "75%",
+    "composition_speed_improvement": "96.93%",
+    "throughput_improvement": "96.39%",
+    "optimal_concurrency": 4,
+    "parallel_evidence_status": "VERIFIED",
+    "result": "MATCH"
+  },
+  "click_detail": {
+    "control": "창고·속도 실측",
+    "detail_visible": true,
+    "detail": "검증 원자부품·조합 재사용과 병렬 처리의 실제 측정값입니다."
+  },
+  "free_text_e2e": {
+    "input": "13번 카테고리 자동 매칭 기능이 누락되었습니다.",
+    "tool_inference": "TOOL013",
+    "tool016_receive": "RECEIVED",
+    "root_id": "FB-2a33520aa188cb6b",
+    "tool044_status": "DEMAND_READY",
+    "demand_id": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING",
+    "refresh_persisted_tool": "TOOL013",
+    "refresh_persisted_function": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING-CANONICAL_CATEGORY_MATCHING",
+    "result": "PASS"
+  },
+  "blank": false,
+  "bad_route": false,
+  "javascript_errors": 0,
+  "observer_writes_engine_registry_evidence": false,
+  "result": "OBSERVER_BROWSER_E2E_PASS"
+}

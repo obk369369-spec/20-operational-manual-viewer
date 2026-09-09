@@ -1,8 +1,8 @@
 {
-  "status": "FAIL",
+  "status": "PASS",
   "checks": {
     "deployed_copy": true,
-    "all_file_hashes_match": false,
+    "all_file_hashes_match": true,
     "two_targets": true,
     "incompatible_blocked": true,
     "production_unchanged": true
@@ -25,8 +25,8 @@
     },
     "tool044_requirement_ledger.py": {
       "repo": "0d7be4e523d9ddda1aad924fe455d20f69a3642fde513dd046d173c9b3740a24",
-      "candidate": "a903b972f5917627277e110c8d6869b5f16a7dd177a38e7a1f838abaa5691e1a",
-      "match": false
+      "candidate": "0d7be4e523d9ddda1aad924fe455d20f69a3642fde513dd046d173c9b3740a24",
+      "match": true
     },
     "tool044_current_requirement_ledger.json": {
       "repo": "e59b02cc34a1e778a3b006323e68030855b43db580cd85687433051ba55c3a8d",
@@ -46,7 +46,7 @@
       {
         "status": "DEPLOYED_PASS",
         "target_id": "TOOL043-HTML-CANDIDATE",
-        "pre_sha": null,
+        "pre_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
         "post_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
         "source_sha": "9082c7ac063118e90d010ecc4b8c9f7e02c6f1b9aa016af7e82b392fa12019a0",
         "contract_match": "PASS",
@@ -58,7 +58,7 @@
       {
         "status": "DEPLOYED_PASS",
         "target_id": "TOOL044-PYTHON-CANDIDATE",
-        "pre_sha": null,
+        "pre_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
         "post_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
         "source_sha": "a01efdb75abc9f5b2e32fd058ac87262367d6a1eee8d468d336160f22c815c2d",
         "contract_match": "PASS",

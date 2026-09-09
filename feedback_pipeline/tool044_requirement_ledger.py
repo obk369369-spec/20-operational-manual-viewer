@@ -83,6 +83,9 @@ def current_ledger(root: Path = HERE) -> dict:
                                 lambda x: x.get("status") == "PASS" and all(x.get("checks", {}).values())),
         "T5_AUTO_DEPLOY": ("evidence/tool044_candidate_actual_use_readback_20260909.json",
                            lambda x: x.get("status") == "PASS" and all(x.get("checks", {}).values())),
+        "T6_OBSERVER": ("evidence/tool044_observer_browser_e2e_20260909.json",
+                        lambda x: x.get("status") == "PASS" and x.get("javascript_errors") == 0
+                                  and x.get("free_text_e2e", {}).get("result") == "PASS"),
     }
     for stage, (relative, predicate) in receipts.items():
         receipt = root / relative

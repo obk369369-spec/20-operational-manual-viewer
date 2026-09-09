@@ -1151,6 +1151,35 @@
           "TOOL044_DEMAND_ID": "FB-071746a12c9aff3c-TOC_HIERARCHY_VALIDATION-TOC_HIERARCHY_VALIDATION"
         }
       ]
+    },
+    {
+      "demand_id": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING-CANONICAL_CATEGORY_MATCHING",
+      "target_tool": "TOOL013",
+      "atomic_capabilities": [
+        "CANONICAL_CATEGORY_MATCHING"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING",
+      "root_id": "FB-2a33520aa188cb6b",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_OBSERVER_V2",
+          "TOOL_ID": "TOOL013",
+          "FUNCTION_ID": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "13번 카테고리 자동 매칭 기능이 누락되었습니다.",
+          "OCCURRENCE_OR_EVIDENCE": 1,
+          "ROOT_ID": "FB-2a33520aa188cb6b",
+          "MISSING_CAPABILITY": [
+            "CANONICAL_CATEGORY_MATCHING"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": [
+            "SRC-20a8c752048d6487"
+          ],
+          "TOOL044_DEMAND_ID": "FB-2a33520aa188cb6b-CANONICAL_CATEGORY_MATCHING-CANONICAL_CATEGORY_MATCHING"
+        }
+      ]
     }
   ]
 }
