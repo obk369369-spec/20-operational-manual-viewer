@@ -19,6 +19,7 @@ def snapshot(root: Path) -> dict:
     queue = read_json(root / "tool044_atomic_demand_queue.json", {"demands": []})
     registry = read_json(root / "VERIFIED_COMPONENT_REGISTRY.json", {"components": []})
     pool = read_json(root / "evidence" / "tool044_verified_composition_pool.json", {"compositions": []})
+    metrics = read_json(root / "evidence" / "tool044_warehouse_speed_20260909.json", {})
     jobs = list(cloud.get("jobs", {}).values())
     demands = queue.get("demands", [])
     active = bool(cloud.get("trigger") == "GITHUB_ACTIONS" and cloud.get("checkpoint"))
@@ -70,14 +71,18 @@ def snapshot(root: Path) -> dict:
         "stages": {name: 0 for name in stage_names},
         "evidence_status": "NOT_PROVEN" if not runtime.get("active_workers", 0) else "ACTIVE",
     }
+    verified_atomic = {
+        item.get("component_id") for item in (
+            registry.get("components", []) + registry.get("verified_atomic_component_pool", [])
+        ) if item.get("status") == "VERIFIED_REUSABLE"
+    }
     return {
         "status": "ACTIVE" if active and recently_alive else "CAPABLE_ONLY",
         "last_heartbeat": runtime.get("last_heartbeat") or cloud.get("updated_at"),
         "last_scheduler": cloud.get("updated_at"), "next_run": "GitHub Actions schedule contract",
         "checkpoint": cloud.get("checkpoint") or runtime.get("checkpoint"),
         "queue_count": len(demands), "job_counts": counts,
-        "verified_atomic_count": len([x for x in registry.get("components", [])
-                                      if "VERIFIED" in str(x.get("status", ""))]),
+        "verified_atomic_count": len(verified_atomic),
         "verified_composition_count": len([x for x in pool.get("compositions", [])
                                            if "VERIFIED" in str(x.get("status", ""))]),
         "current_tool": (latest_demand.get("target_tool") or latest.get("source") or "대상 없음"),
@@ -89,6 +94,7 @@ def snapshot(root: Path) -> dict:
         "latest_feedback": read_json(root / "tool016_feedback_intake_ledger.json", {"roots": []}).get("roots", [])[-1:] or [],
         "history_coverage": history_coverage,
         "parallel_status": parallel_status,
+        "warehouse_metrics": metrics,
         "truth_boundary": {"any_chat_auto_access": "ACCESS_NOT_AVAILABLE",
                            "local_observer_feedback": "AUTO_INGEST_VERIFIED"},
     }
