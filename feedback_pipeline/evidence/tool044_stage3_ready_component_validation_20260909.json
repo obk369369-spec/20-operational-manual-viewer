@@ -50,6 +50,19 @@
   },
   "production_changed": false,
   "target_tool_integration": "NOT_STARTED_OUTSIDE_THIS_CORRECTION_SCOPE",
+  "deployment": {
+    "actual_use_candidate": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate",
+    "production_default_preserved": true,
+    "initial_retest": "FAIL_MISSING_DIRECT_DEPENDENCIES",
+    "initial_failure": ["wic_asset_provenance.py", "external_candidate_pool"],
+    "recovery": "DEPLOY_EXISTING_VERIFIED_DIRECT_DEPENDENCIES_ONLY",
+    "same_input_retest": {
+      "new_composition": "7/7 PASS",
+      "existing_composition_regression": "5/5 PASS",
+      "pool_read_back": "PASS",
+      "result": "DEPLOYED_COPY_PASS"
+    }
+  },
   "paid_api_calls": 0,
   "paid_saas_calls": 0,
   "result": "STAGE_3C_THROUGH_REGRESSION_PASS"
