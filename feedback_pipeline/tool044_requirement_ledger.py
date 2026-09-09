@@ -86,6 +86,10 @@ def current_ledger(root: Path = HERE) -> dict:
         "T6_OBSERVER": ("evidence/tool044_observer_browser_e2e_20260909.json",
                         lambda x: x.get("status") == "PASS" and x.get("javascript_errors") == 0
                                   and x.get("free_text_e2e", {}).get("result") == "PASS"),
+        "T7_FINAL_RECONCILIATION": ("evidence/tool044_final_reconciliation_20260909.json",
+                                    lambda x: x.get("status") == "PASS" and all(x.get("checks", {}).values())),
+        "T8_COMPLETE": ("evidence/tool044_completeness_certificate_20260909.json",
+                        lambda x: x.get("status") == "TOOL044_COMPLETENESS_CERTIFICATE"),
     }
     for stage, (relative, predicate) in receipts.items():
         receipt = root / relative
