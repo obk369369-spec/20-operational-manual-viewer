@@ -13,7 +13,8 @@ def read(path: Path) -> dict:
 
 def run() -> dict:
     bulk_path = HERE / "evidence" / "tool044_bulk_parallel_e2e_deployed_20260910.json"
-    path_path = HERE / "evidence" / "tool044_multi_path_failover_e2e_20260910.json"
+    deployed = HERE / "evidence" / "tool044_multi_path_failover_e2e_deployed_20260910.json"
+    path_path = deployed if deployed.is_file() else HERE / "evidence" / "tool044_multi_path_failover_e2e_20260910.json"
     bulk = read(bulk_path)
     path = read(path_path)
     domains = [

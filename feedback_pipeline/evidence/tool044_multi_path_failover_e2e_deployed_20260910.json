@@ -1,0 +1,91 @@
+{
+  "evidence_id": "TOOL044_MULTI_PATH_FAILOVER_E2E_20260910",
+  "run_id": "FAILOVER-20260910T023040Z",
+  "runtime_boundary": "LOCAL_ACTUAL_EXECUTION_NOT_CLOUD",
+  "source_hash": "16a10915070c28e9926afb423fb6aac118f27a17eb626cf5c329ac976cdbc8f9",
+  "job_id": "JOB-16a10915070c28e9",
+  "timeline": [
+    {
+      "stage": "PRIMARY_INPUT_PATH",
+      "path": "INGESTION_A",
+      "status": "FORCED_FAILURE",
+      "at": 1789007440.389046
+    },
+    {
+      "stage": "SECONDARY_INPUT_PATH",
+      "path": "INGESTION_B",
+      "status": "PASS",
+      "source_hash": "16a10915070c28e9926afb423fb6aac118f27a17eb626cf5c329ac976cdbc8f9",
+      "at": 1789007440.3913949
+    },
+    {
+      "stage": "PRIMARY_ORCHESTRATOR",
+      "path": "ORCHESTRATOR_A",
+      "status": "FORCED_FAILURE",
+      "at": 1789007440.3913949
+    },
+    {
+      "stage": "SECONDARY_PATH_CLAIM",
+      "path": "ORCHESTRATOR_B",
+      "status": "PASS",
+      "claim": "ORCHESTRATOR_B",
+      "at": 1789007440.392401
+    },
+    {
+      "stage": "PRIMARY_WORKER",
+      "path": "WORKER_A",
+      "status": "FORCED_FAILURE_AFTER_CHECKPOINT",
+      "at": 1789007440.3929126
+    },
+    {
+      "stage": "CHECKPOINT_RESUME",
+      "path": "WORKER_B",
+      "status": "PASS",
+      "at": 1789007440.394425
+    },
+    {
+      "stage": "TOOL016_RECEIVE_ACK",
+      "path": "tool016_feedback_bridge.ingest",
+      "status": "PASS",
+      "at": 1789007440.3954582
+    }
+  ],
+  "checks": {
+    "INGESTION_FAILOVER": "PASS",
+    "ORCHESTRATOR_FAILOVER": "PASS",
+    "WORKER_FAILOVER": "PASS",
+    "CHECKPOINT_RESUME": "PASS",
+    "TOOL016_RECEIVE": "PASS",
+    "ACK_READBACK": "PASS",
+    "RESULT_READBACK": "PASS",
+    "JOB_LOSS": "PASS",
+    "SOURCE_LOSS": "PASS",
+    "CHECKPOINT_LOSS": "PASS",
+    "DOUBLE_CLAIM": "PASS",
+    "DUPLICATE_COMPLETION": "PASS",
+    "RESULT_LOSS": "PASS"
+  },
+  "loss_metrics": {
+    "JOB_LOSS": 0,
+    "SOURCE_LOSS": 0,
+    "CHECKPOINT_LOSS": 0,
+    "DOUBLE_CLAIM": 0,
+    "DUPLICATE_COMPLETION": 0,
+    "RESULT_LOSS": 0
+  },
+  "expected": "primary failures isolated; B path resumes; TOOL016 receives and ACKs; zero loss",
+  "actual": {
+    "secondary_claim": "ORCHESTRATOR_B",
+    "secondary_worker": "WORKER_B",
+    "tool016_status": "RECEIVED",
+    "ledger_occurrence": 1
+  },
+  "EXPECTED_ACTUAL": "MATCH",
+  "INGESTION_FAILOVER": "PASS",
+  "ORCHESTRATOR_FAILOVER": "PASS",
+  "WORKER_FAILOVER": "PASS",
+  "FULL_LOCAL_PATH_FAILOVER_E2E": "PASS",
+  "CLOUD_FAILOVER": "NOT_TESTED",
+  "FULL_PATH_FAILOVER_E2E": "NOT_CLAIMED_CLOUD_LAYER_UNVERIFIED",
+  "status": "PASS"
+}
