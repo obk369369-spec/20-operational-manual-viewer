@@ -32,11 +32,11 @@
     {"req_id": "FINAL-025", "name": "INGESTION_GATE_FAILOVER_E2E"},
     {"req_id": "FINAL-026", "name": "FULL_FOUR_LAYER_PATH_FAILOVER_E2E"},
     {"req_id": "FINAL-027", "name": "NIGHT_UNATTENDED_MULTI_PATH_CAPABLE"},
-    {"req_id": "FINAL-028", "name": "BULK_DEMAND_INGESTION_DEDUP_AND_REUSE"},
-    {"req_id": "FINAL-029", "name": "BULK_PARALLEL_SEARCH_RECEIPT_SANDBOX_FUNCTION_VERIFY"},
-    {"req_id": "FINAL-030", "name": "BULK_PARALLEL_WAREHOUSE_COMPOSITION_AND_REGRESSION"},
-    {"req_id": "FINAL-031", "name": "BULK_PARALLEL_TARGET_INTEGRATION"},
-    {"req_id": "FINAL-032", "name": "BULK_PARALLEL_DEPLOY_READBACK_RETEST_POST_REGRESSION"},
-    {"req_id": "FINAL-033", "name": "BULK_PARALLEL_E2E_THROUGHPUT_AND_ZERO_LOSS"}
+    {"req_id": "FINAL-028", "name": "BULK_DEMAND_INGESTION_DEDUP_AND_REUSE", "evidence_path": "evidence/tool044_bulk_parallel_e2e_deployed_20260910.json", "evidence_sha256": "6810bbc9c5e39ab62a981ec93800d3e5585cb076df712d6bdde13901665c1644", "receipt_checks": {"BULK_INGESTION": "PASS", "BULK_INPUT_COUNT": 7, "UNIQUE_ROOT_COUNT": 6, "DEDUPLICATED_COUNT": 1, "REUSED_COMPONENT_COUNT": 2, "DUPLICATE_WORK_COUNT": 0}},
+    {"req_id": "FINAL-029", "name": "BULK_PARALLEL_SEARCH_RECEIPT_SANDBOX_FUNCTION_VERIFY", "evidence_path": "evidence/tool044_bulk_parallel_e2e_deployed_20260910.json", "evidence_sha256": "6810bbc9c5e39ab62a981ec93800d3e5585cb076df712d6bdde13901665c1644", "receipt_checks": {"PARALLEL_SEARCH": "PASS", "PARALLEL_RECEIPT_VERIFY": "PASS", "PARALLEL_SANDBOX": "PASS", "PARALLEL_FUNCTION_VERIFY": "PASS"}},
+    {"req_id": "FINAL-030", "name": "BULK_PARALLEL_WAREHOUSE_COMPOSITION_AND_REGRESSION", "evidence_path": "evidence/tool044_bulk_parallel_e2e_deployed_20260910.json", "evidence_sha256": "6810bbc9c5e39ab62a981ec93800d3e5585cb076df712d6bdde13901665c1644", "receipt_checks": {"warehouse.new_duplicate_registration": 0, "PARALLEL_COMPOSITION": "PASS", "PARALLEL_REGRESSION": "PASS"}},
+    {"req_id": "FINAL-031", "name": "BULK_PARALLEL_TARGET_INTEGRATION", "evidence_path": "evidence/tool044_bulk_parallel_e2e_deployed_20260910.json", "evidence_sha256": "6810bbc9c5e39ab62a981ec93800d3e5585cb076df712d6bdde13901665c1644", "receipt_checks": {"PARALLEL_INTEGRATION": "PASS", "failure_isolation.status": "PASS", "failure_isolation.GLOBAL_STOP_DUE_TO_SINGLE_JOB_FAILURE": 0}},
+    {"req_id": "FINAL-032", "name": "BULK_PARALLEL_DEPLOY_READBACK_RETEST_POST_REGRESSION", "evidence_path": "evidence/tool044_bulk_parallel_e2e_deployed_20260910.json", "evidence_sha256": "6810bbc9c5e39ab62a981ec93800d3e5585cb076df712d6bdde13901665c1644", "receipt_checks": {"PARALLEL_DEPLOYMENT": "PASS", "DEPLOYED_ARTIFACT_READBACK": "PASS", "DEPLOYED_FUNCTION_RETEST": "PASS", "POST_DEPLOY_REGRESSION": "PASS", "production_unchanged": true}},
+    {"req_id": "FINAL-033", "name": "BULK_PARALLEL_E2E_THROUGHPUT_AND_ZERO_LOSS", "evidence_path": "evidence/tool044_bulk_parallel_e2e_deployed_20260910.json", "evidence_sha256": "6810bbc9c5e39ab62a981ec93800d3e5585cb076df712d6bdde13901665c1644", "receipt_checks": {"BULK_PARALLEL_E2E": "PASS", "PARALLEL_JOB_COUNT": 22, "MAX_ACTUAL_CONCURRENCY": 4, "JOB_LOSS": 0, "SOURCE_LOSS": 0, "ARTIFACT_LOSS": 0, "DEPLOYMENT_LOSS": 0, "DUPLICATE_COMPLETION": 0}}
   ]
 }

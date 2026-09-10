@@ -1,0 +1,914 @@
+{
+  "run_id": "BULK-20260910T021637Z-3d1b3312",
+  "lineage": [
+    "BULK_DEMAND_INPUT",
+    "DEDUP",
+    "VERIFIED_COMPONENT_REUSE",
+    "PARALLEL_EXTERNAL_SEARCH",
+    "PARALLEL_RECEIPT_ACTUAL_VERIFY",
+    "PARALLEL_SANDBOX",
+    "PARALLEL_FUNCTION_VERIFY",
+    "WAREHOUSE",
+    "PARALLEL_COMPOSITION",
+    "PARALLEL_REGRESSION",
+    "PARALLEL_TARGET_INTEGRATION",
+    "PARALLEL_DEPLOY",
+    "SHA_READBACK",
+    "DEPLOYED_FUNCTION_RETEST",
+    "POST_DEPLOY_REGRESSION"
+  ],
+  "candidate_only": true,
+  "production_sha_before": "bed349caf33b5bdc335ed3c90b45d89211b116aece554543bb0bf1bffcb323a0",
+  "production_sha_after": "bed349caf33b5bdc335ed3c90b45d89211b116aece554543bb0bf1bffcb323a0",
+  "production_unchanged": true,
+  "demands": [
+    {
+      "id": "D-HTML-EXTRACT",
+      "root": "WEBPAGE_TEXT_EXTRACTION",
+      "path": "external-search-html2text"
+    },
+    {
+      "id": "D-TOC-PARSE",
+      "root": "TOC_STRUCTURE_EXTRACTION",
+      "path": "external-search-mistune"
+    },
+    {
+      "id": "D-TOC-COMPOSE",
+      "root": "HTML_TO_TOC_COMPOSITION",
+      "path": "composition"
+    },
+    {
+      "id": "D-PROVENANCE-COMPOSE",
+      "root": "PROVENANCE_HTML_TOC",
+      "path": "composition"
+    },
+    {
+      "id": "D-HTML-INTEGRATE",
+      "root": "HTML_TARGET_INTEGRATION",
+      "path": "candidate-deploy"
+    },
+    {
+      "id": "D-PY-INTEGRATE",
+      "root": "PYTHON_TARGET_INTEGRATION",
+      "path": "candidate-deploy"
+    },
+    {
+      "id": "D-HTML-DUP",
+      "root": "WEBPAGE_TEXT_EXTRACTION",
+      "path": "duplicate"
+    }
+  ],
+  "BULK_INPUT_COUNT": 7,
+  "UNIQUE_ROOT_COUNT": 6,
+  "DEDUPLICATED_COUNT": 1,
+  "REUSED_COMPONENT_COUNT": 2,
+  "NEW_COMPONENT_SEARCH_COUNT": 2,
+  "warehouse": {
+    "verified_components_reused": [
+      "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+      "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+    ],
+    "new_duplicate_registration": 0
+  },
+  "stages": {
+    "PARALLEL_SEARCH": {
+      "stage": "PARALLEL_SEARCH",
+      "jobs": [
+        {
+          "JOB_ID": "SEARCH-HTML2TEXT",
+          "WORKER_ID": "PARALLEL_SEARCH_0",
+          "START_TIME": "2026-09-10T02:16:37.811298+00:00",
+          "END_TIME": "2026-09-10T02:16:37.976981+00:00",
+          "start_epoch": 1789006597.8112988,
+          "end_epoch": 1789006597.976981,
+          "duration_seconds": 0.165682,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "official_source": "https://pypi.org/pypi/html2text/2025.4.15/json",
+            "project": "html2text",
+            "version": "2025.4.15",
+            "license": null,
+            "dependencies": null,
+            "artifact": "html2text-2025.4.15-py3-none-any.whl",
+            "official_sha256": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+            "release_metadata": {
+              "comment_text": null,
+              "core-metadata": {
+                "sha256": "11b11f64c2982b9d600ab69105ed9797f05df53806507e8a69a556dcb466a67e"
+              },
+              "digests": {
+                "blake2b_256": "1d841a0f9555fd5f2b1c924ff932d99b40a0f8a6b12f6dd625e2a47f415b00ea",
+                "md5": "04b36d8960a922593d1f49565abb6073",
+                "sha256": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc"
+              },
+              "downloads": -1,
+              "filename": "html2text-2025.4.15-py3-none-any.whl",
+              "has_sig": false,
+              "md5_digest": "04b36d8960a922593d1f49565abb6073",
+              "packagetype": "bdist_wheel",
+              "python_version": "py3",
+              "requires_python": ">=3.9",
+              "size": 34656,
+              "upload_time": "2025-04-15T04:02:28",
+              "upload_time_iso_8601": "2025-04-15T04:02:28.440054Z",
+              "url": "https://files.pythonhosted.org/packages/1d/84/1a0f9555fd5f2b1c924ff932d99b40a0f8a6b12f6dd625e2a47f415b00ea/html2text-2025.4.15-py3-none-any.whl",
+              "yanked": false,
+              "yanked_reason": null
+            }
+          }
+        },
+        {
+          "JOB_ID": "SEARCH-MISTUNE",
+          "WORKER_ID": "PARALLEL_SEARCH_1",
+          "START_TIME": "2026-09-10T02:16:37.811298+00:00",
+          "END_TIME": "2026-09-10T02:16:37.975662+00:00",
+          "start_epoch": 1789006597.8112988,
+          "end_epoch": 1789006597.975663,
+          "duration_seconds": 0.164364,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "official_source": "https://pypi.org/pypi/mistune/3.3.4/json",
+            "project": "mistune",
+            "version": "3.3.4",
+            "license": "BSD-3-Clause",
+            "dependencies": [
+              "typing-extensions; python_version < \"3.11\""
+            ],
+            "artifact": "mistune-3.3.4-py3-none-any.whl",
+            "official_sha256": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+            "release_metadata": {
+              "comment_text": null,
+              "core-metadata": {
+                "sha256": "0655c262ad851c4ac26b84a0830dc0ab38a302f58c9bf86fe0d31ee2ab03d650"
+              },
+              "digests": {
+                "blake2b_256": "77e4288365afae98953bc01de09f686f40d8ee84578135aa7767d5d4e60b5278",
+                "md5": "d7d97421a9c6c27f3abec60c13f3e764",
+                "sha256": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a"
+              },
+              "downloads": -1,
+              "filename": "mistune-3.3.4-py3-none-any.whl",
+              "has_sig": false,
+              "md5_digest": "d7d97421a9c6c27f3abec60c13f3e764",
+              "packagetype": "bdist_wheel",
+              "python_version": "py3",
+              "requires_python": ">=3.8",
+              "size": 66862,
+              "upload_time": "2026-07-22T05:22:29",
+              "upload_time_iso_8601": "2026-07-22T05:22:29.419675Z",
+              "url": "https://files.pythonhosted.org/packages/77/e4/288365afae98953bc01de09f686f40d8ee84578135aa7767d5d4e60b5278/mistune-3.3.4-py3-none-any.whl",
+              "yanked": false,
+              "yanked_reason": null
+            }
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 0.168851,
+      "throughput_jobs_per_second": 11.845,
+      "status": "PASS"
+    },
+    "PARALLEL_RECEIPT_VERIFY": {
+      "stage": "PARALLEL_RECEIPT_VERIFY",
+      "jobs": [
+        {
+          "JOB_ID": "VERIFY-HTML2TEXT",
+          "WORKER_ID": "PARALLEL_RECEIPT_VERIFY_0",
+          "START_TIME": "2026-09-10T02:16:37.976981+00:00",
+          "END_TIME": "2026-09-10T02:16:38.057797+00:00",
+          "start_epoch": 1789006597.976981,
+          "end_epoch": 1789006598.0577974,
+          "duration_seconds": 0.080817,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "actual_sha256": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+            "match": true
+          }
+        },
+        {
+          "JOB_ID": "VERIFY-MISTUNE",
+          "WORKER_ID": "PARALLEL_RECEIPT_VERIFY_1",
+          "START_TIME": "2026-09-10T02:16:37.976981+00:00",
+          "END_TIME": "2026-09-10T02:16:38.057797+00:00",
+          "start_epoch": 1789006597.976981,
+          "end_epoch": 1789006598.0577974,
+          "duration_seconds": 0.080817,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "actual_sha256": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+            "match": true
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 0.080817,
+      "throughput_jobs_per_second": 24.747,
+      "status": "PASS"
+    },
+    "PARALLEL_SANDBOX": {
+      "stage": "PARALLEL_SANDBOX",
+      "jobs": [
+        {
+          "JOB_ID": "SANDBOX-HTML2TEXT",
+          "WORKER_ID": "PARALLEL_SANDBOX_0",
+          "START_TIME": "2026-09-10T02:16:38.057797+00:00",
+          "END_TIME": "2026-09-10T02:16:38.235109+00:00",
+          "start_epoch": 1789006598.0577974,
+          "end_epoch": 1789006598.235109,
+          "duration_seconds": 0.177312,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "normal_expected": 0,
+            "normal_actual": 0,
+            "failure_expected": 7,
+            "failure_actual": 7,
+            "EXPECTED_ACTUAL": "MATCH",
+            "output": "# Alpha\n\nBeta"
+          }
+        },
+        {
+          "JOB_ID": "SANDBOX-MISTUNE",
+          "WORKER_ID": "PARALLEL_SANDBOX_1",
+          "START_TIME": "2026-09-10T02:16:38.057797+00:00",
+          "END_TIME": "2026-09-10T02:16:38.272001+00:00",
+          "start_epoch": 1789006598.0577974,
+          "end_epoch": 1789006598.2720015,
+          "duration_seconds": 0.214204,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "normal_expected": 0,
+            "normal_actual": 0,
+            "failure_expected": 7,
+            "failure_actual": 7,
+            "EXPECTED_ACTUAL": "MATCH",
+            "output": "Alpha"
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 0.215236,
+      "throughput_jobs_per_second": 9.292,
+      "status": "PASS"
+    },
+    "PARALLEL_FUNCTION_VERIFY": {
+      "stage": "PARALLEL_FUNCTION_VERIFY",
+      "jobs": [
+        {
+          "JOB_ID": "FUNCTION-HTML2TEXT",
+          "WORKER_ID": "PARALLEL_FUNCTION_VERIFY_0",
+          "START_TIME": "2026-09-10T02:16:38.273033+00:00",
+          "END_TIME": "2026-09-10T02:16:38.444552+00:00",
+          "start_epoch": 1789006598.2730331,
+          "end_epoch": 1789006598.4445522,
+          "duration_seconds": 0.171519,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "normal_expected": 0,
+            "normal_actual": 0,
+            "failure_expected": 7,
+            "failure_actual": 7,
+            "EXPECTED_ACTUAL": "MATCH",
+            "output": "# Alpha\n\nBeta"
+          }
+        },
+        {
+          "JOB_ID": "FUNCTION-MISTUNE",
+          "WORKER_ID": "PARALLEL_FUNCTION_VERIFY_1",
+          "START_TIME": "2026-09-10T02:16:38.273033+00:00",
+          "END_TIME": "2026-09-10T02:16:38.490014+00:00",
+          "start_epoch": 1789006598.2730331,
+          "end_epoch": 1789006598.4900148,
+          "duration_seconds": 0.216982,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "normal_expected": 0,
+            "normal_actual": 0,
+            "failure_expected": 7,
+            "failure_actual": 7,
+            "EXPECTED_ACTUAL": "MATCH",
+            "output": "Alpha"
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 0.216982,
+      "throughput_jobs_per_second": 9.217,
+      "status": "PASS"
+    },
+    "PARALLEL_COMPOSITION": {
+      "stage": "PARALLEL_COMPOSITION",
+      "jobs": [
+        {
+          "JOB_ID": "COMPOSE-TOC",
+          "WORKER_ID": "PARALLEL_COMPOSITION_0",
+          "START_TIME": "2026-09-10T02:16:38.490014+00:00",
+          "END_TIME": "2026-09-10T02:16:40.193119+00:00",
+          "start_epoch": 1789006598.4900148,
+          "end_epoch": 1789006600.1931193,
+          "duration_seconds": 1.703104,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "components": [
+              "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+              "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+            ],
+            "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
+            "applicable_tools": [
+              "TOOL042"
+            ],
+            "atomic_capabilities": [
+              "WEBPAGE_TEXT_EXTRACTION",
+              "TOC_STRUCTURE_EXTRACTION"
+            ],
+            "input_contract": "HTML document with explicit heading elements",
+            "output_contract": "Ordered heading text and source heading levels; no inferred headings",
+            "normal_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_normal.json",
+            "failure_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_failure.json",
+            "normal_fixture_sha256": "7a40c717ad00772f1b99e63198c3a094c40e343a3d641f231c15e98bfd57ec9b",
+            "failure_fixture_sha256": "bac6b2cf2659cdb319c54f8973a83e8ae85d84e956ef4362d4bfcd88b010b738",
+            "expected": [
+              {
+                "level": 1,
+                "text": "시장 개요"
+              },
+              {
+                "level": 2,
+                "text": "성장 요인"
+              },
+              {
+                "level": 3,
+                "text": "기술 동향"
+              }
+            ],
+            "actual": [
+              {
+                "level": 1,
+                "text": "시장 개요"
+              },
+              {
+                "level": 2,
+                "text": "성장 요인"
+              },
+              {
+                "level": 3,
+                "text": "기술 동향"
+              }
+            ],
+            "tests": {
+              "functional": true,
+              "expected_actual": true,
+              "normal_fixture": true,
+              "failure_fixture": true,
+              "html2text_parent_regression": true,
+              "mistune_parent_regression": true,
+              "composition_regression": true
+            },
+            "expected_actual": "MATCH",
+            "regression": "PASS",
+            "known_limitations": [
+              "Only explicit HTML heading elements are preserved",
+              "Does not infer numbering or publisher-specific hierarchy from plain text"
+            ],
+            "ready_for_integration": true,
+            "status": "VERIFIED_COMPOSITION"
+          }
+        },
+        {
+          "JOB_ID": "COMPOSE-PROVENANCE-TOC",
+          "WORKER_ID": "PARALLEL_COMPOSITION_1",
+          "START_TIME": "2026-09-10T02:16:38.490014+00:00",
+          "END_TIME": "2026-09-10T02:16:40.486584+00:00",
+          "start_epoch": 1789006598.4900148,
+          "end_epoch": 1789006600.4865844,
+          "duration_seconds": 1.99657,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "composition_id": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "parents": [
+              "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+              "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+            ],
+            "atomic_components": [
+              "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+              "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+              "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+            ],
+            "atomic_capabilities": [
+              "PROVENANCE_VALIDATION",
+              "WEBPAGE_TEXT_EXTRACTION",
+              "TOC_STRUCTURE_EXTRACTION"
+            ],
+            "root": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
+            "applicable_tools": [
+              "TOOL042"
+            ],
+            "input_contract": "Manifested HTML artifact with verified hash and explicit heading elements",
+            "output_contract": "Ordered TOC headings only after provenance verification passes",
+            "normal_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_normal.json",
+            "failure_fixture": "same HTML artifact with mismatched manifested SHA-256",
+            "expected": {
+              "provenance": "VERIFIED",
+              "html_toc": "MATCH"
+            },
+            "actual": {
+              "provenance": "VERIFIED",
+              "html_toc": "MATCH"
+            },
+            "lineage": {
+              "ab": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+              "c": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+              "ab_status": "VERIFIED_COMPOSITION",
+              "c_status": "VERIFIED"
+            },
+            "tests": {
+              "functional": true,
+              "expected_actual": true,
+              "normal_fixture": true,
+              "failure_fixture": true,
+              "ab_parent_regression": true,
+              "c_parent_regression": true,
+              "abc_regression": true
+            },
+            "expected_actual": "MATCH",
+            "regression": "PASS",
+            "ready_for_integration": true,
+            "status": "VERIFIED_COMPOSITION"
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 1.99657,
+      "throughput_jobs_per_second": 1.002,
+      "status": "PASS"
+    },
+    "PARALLEL_REGRESSION": {
+      "stage": "PARALLEL_REGRESSION",
+      "jobs": [
+        {
+          "JOB_ID": "REGRESSION-TOC",
+          "WORKER_ID": "PARALLEL_REGRESSION_0",
+          "START_TIME": "2026-09-10T02:16:40.487590+00:00",
+          "END_TIME": "2026-09-10T02:16:40.709859+00:00",
+          "start_epoch": 1789006600.48759,
+          "end_epoch": 1789006600.7098591,
+          "duration_seconds": 0.222269,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "components": [
+              "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+              "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+            ],
+            "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
+            "applicable_tools": [
+              "TOOL042"
+            ],
+            "atomic_capabilities": [
+              "WEBPAGE_TEXT_EXTRACTION",
+              "TOC_STRUCTURE_EXTRACTION"
+            ],
+            "input_contract": "HTML document with explicit heading elements",
+            "output_contract": "Ordered heading text and source heading levels; no inferred headings",
+            "normal_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_normal.json",
+            "failure_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_failure.json",
+            "normal_fixture_sha256": "7a40c717ad00772f1b99e63198c3a094c40e343a3d641f231c15e98bfd57ec9b",
+            "failure_fixture_sha256": "bac6b2cf2659cdb319c54f8973a83e8ae85d84e956ef4362d4bfcd88b010b738",
+            "expected": [
+              {
+                "level": 1,
+                "text": "시장 개요"
+              },
+              {
+                "level": 2,
+                "text": "성장 요인"
+              },
+              {
+                "level": 3,
+                "text": "기술 동향"
+              }
+            ],
+            "actual": [
+              {
+                "level": 1,
+                "text": "시장 개요"
+              },
+              {
+                "level": 2,
+                "text": "성장 요인"
+              },
+              {
+                "level": 3,
+                "text": "기술 동향"
+              }
+            ],
+            "tests": {
+              "functional": true,
+              "expected_actual": true,
+              "normal_fixture": true,
+              "failure_fixture": true,
+              "html2text_parent_regression": true,
+              "mistune_parent_regression": true,
+              "composition_regression": true
+            },
+            "expected_actual": "MATCH",
+            "regression": "PASS",
+            "known_limitations": [
+              "Only explicit HTML heading elements are preserved",
+              "Does not infer numbering or publisher-specific hierarchy from plain text"
+            ],
+            "ready_for_integration": true,
+            "status": "VERIFIED_COMPOSITION"
+          }
+        },
+        {
+          "JOB_ID": "REGRESSION-PROVENANCE-TOC",
+          "WORKER_ID": "PARALLEL_REGRESSION_1",
+          "START_TIME": "2026-09-10T02:16:40.487590+00:00",
+          "END_TIME": "2026-09-10T02:16:40.714905+00:00",
+          "start_epoch": 1789006600.48759,
+          "end_epoch": 1789006600.7149055,
+          "duration_seconds": 0.227315,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "composition_id": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "parents": [
+              "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+              "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+            ],
+            "atomic_components": [
+              "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+              "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+              "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+            ],
+            "atomic_capabilities": [
+              "PROVENANCE_VALIDATION",
+              "WEBPAGE_TEXT_EXTRACTION",
+              "TOC_STRUCTURE_EXTRACTION"
+            ],
+            "root": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
+            "applicable_tools": [
+              "TOOL042"
+            ],
+            "input_contract": "Manifested HTML artifact with verified hash and explicit heading elements",
+            "output_contract": "Ordered TOC headings only after provenance verification passes",
+            "normal_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_normal.json",
+            "failure_fixture": "same HTML artifact with mismatched manifested SHA-256",
+            "expected": {
+              "provenance": "VERIFIED",
+              "html_toc": "MATCH"
+            },
+            "actual": {
+              "provenance": "VERIFIED",
+              "html_toc": "MATCH"
+            },
+            "lineage": {
+              "ab": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+              "c": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+              "ab_status": "VERIFIED_COMPOSITION",
+              "c_status": "VERIFIED"
+            },
+            "tests": {
+              "functional": true,
+              "expected_actual": true,
+              "normal_fixture": true,
+              "failure_fixture": true,
+              "ab_parent_regression": true,
+              "c_parent_regression": true,
+              "abc_regression": true
+            },
+            "expected_actual": "MATCH",
+            "regression": "PASS",
+            "ready_for_integration": true,
+            "status": "VERIFIED_COMPOSITION"
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 0.228321,
+      "throughput_jobs_per_second": 8.76,
+      "status": "PASS"
+    },
+    "PARALLEL_DEPLOYMENT": {
+      "stage": "PARALLEL_DEPLOYMENT",
+      "jobs": [
+        {
+          "JOB_ID": "DEPLOY-HTML",
+          "WORKER_ID": "PARALLEL_DEPLOYMENT_0",
+          "START_TIME": "2026-09-10T02:16:40.877114+00:00",
+          "END_TIME": "2026-09-10T02:16:41.322064+00:00",
+          "start_epoch": 1789006600.877114,
+          "end_epoch": 1789006601.3220642,
+          "duration_seconds": 0.44495,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "source": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\tool044_factory_observer_v2.html",
+            "destination": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\bulk_e2e_deployments\\BULK-20260910T021637Z-3d1b3312\\tool044-observer\\index.html",
+            "repository_sha": "dd39fb2e47d2aeefa5e7c2f4c1b0496f60e9b17055e4989bdaf8cb9022cf2ae3",
+            "candidate_sha": "dd39fb2e47d2aeefa5e7c2f4c1b0496f60e9b17055e4989bdaf8cb9022cf2ae3",
+            "deployed_sha": "dd39fb2e47d2aeefa5e7c2f4c1b0496f60e9b17055e4989bdaf8cb9022cf2ae3",
+            "sha_readback": "PASS",
+            "deployed_function_retest": "PASS"
+          }
+        },
+        {
+          "JOB_ID": "DEPLOY-PYTHON",
+          "WORKER_ID": "PARALLEL_DEPLOYMENT_1",
+          "START_TIME": "2026-09-10T02:16:40.877641+00:00",
+          "END_TIME": "2026-09-10T02:16:41.464587+00:00",
+          "start_epoch": 1789006600.8776414,
+          "end_epoch": 1789006601.4645875,
+          "duration_seconds": 0.586946,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "source": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\tool044_factory_observer_v2.py",
+            "destination": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\bulk_e2e_deployments\\BULK-20260910T021637Z-3d1b3312\\tool044\\tool044_factory_observer_v2.py",
+            "repository_sha": "b0a9c14e9c9450377c1a5e0340fd4a205ea0ccec791bc12c6fe0bde0622a6928",
+            "candidate_sha": "b0a9c14e9c9450377c1a5e0340fd4a205ea0ccec791bc12c6fe0bde0622a6928",
+            "deployed_sha": "b0a9c14e9c9450377c1a5e0340fd4a205ea0ccec791bc12c6fe0bde0622a6928",
+            "sha_readback": "PASS",
+            "deployed_function_retest": "PASS"
+          }
+        },
+        {
+          "JOB_ID": "DEPLOY-HTML2TEXT",
+          "WORKER_ID": "PARALLEL_DEPLOYMENT_2",
+          "START_TIME": "2026-09-10T02:16:40.877641+00:00",
+          "END_TIME": "2026-09-10T02:16:41.489040+00:00",
+          "start_epoch": 1789006600.8776414,
+          "end_epoch": 1789006601.4890406,
+          "duration_seconds": 0.611399,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "source": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\external_candidate_pool\\html2text-2025.4.15-py3-none-any.whl",
+            "destination": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\bulk_e2e_deployments\\BULK-20260910T021637Z-3d1b3312\\components\\html2text-2025.4.15-py3-none-any.whl",
+            "repository_sha": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+            "candidate_sha": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+            "deployed_sha": "00569167ffdab3d7767a4cdf589b7f57e777a5ed28d12907d8c58769ec734acc",
+            "sha_readback": "PASS",
+            "deployed_function_retest": "PASS"
+          }
+        },
+        {
+          "JOB_ID": "DEPLOY-MISTUNE",
+          "WORKER_ID": "PARALLEL_DEPLOYMENT_3",
+          "START_TIME": "2026-09-10T02:16:40.877641+00:00",
+          "END_TIME": "2026-09-10T02:16:41.543084+00:00",
+          "start_epoch": 1789006600.8776414,
+          "end_epoch": 1789006601.5430846,
+          "duration_seconds": 0.665443,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "source": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\external_candidate_pool\\mistune-3.3.4-py3-none-any.whl",
+            "destination": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\v2_candidate\\bulk_e2e_deployments\\BULK-20260910T021637Z-3d1b3312\\components\\mistune-3.3.4-py3-none-any.whl",
+            "repository_sha": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+            "candidate_sha": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+            "deployed_sha": "ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a",
+            "sha_readback": "PASS",
+            "deployed_function_retest": "PASS"
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 4,
+      "duration_seconds": 0.665971,
+      "throughput_jobs_per_second": 6.006,
+      "status": "PASS"
+    },
+    "POST_DEPLOY_REGRESSION": {
+      "stage": "POST_DEPLOY_REGRESSION",
+      "jobs": [
+        {
+          "JOB_ID": "POST-TOC",
+          "WORKER_ID": "POST_DEPLOY_REGRESSION_0",
+          "START_TIME": "2026-09-10T02:16:41.544104+00:00",
+          "END_TIME": "2026-09-10T02:16:41.775761+00:00",
+          "start_epoch": 1789006601.5441039,
+          "end_epoch": 1789006601.7757618,
+          "duration_seconds": 0.231658,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "composition_id": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "components": [
+              "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+              "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
+            ],
+            "root": "T42-WEBPAGE-TO-TOC-STRUCTURE",
+            "applicable_tools": [
+              "TOOL042"
+            ],
+            "atomic_capabilities": [
+              "WEBPAGE_TEXT_EXTRACTION",
+              "TOC_STRUCTURE_EXTRACTION"
+            ],
+            "input_contract": "HTML document with explicit heading elements",
+            "output_contract": "Ordered heading text and source heading levels; no inferred headings",
+            "normal_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_normal.json",
+            "failure_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_failure.json",
+            "normal_fixture_sha256": "7a40c717ad00772f1b99e63198c3a094c40e343a3d641f231c15e98bfd57ec9b",
+            "failure_fixture_sha256": "bac6b2cf2659cdb319c54f8973a83e8ae85d84e956ef4362d4bfcd88b010b738",
+            "expected": [
+              {
+                "level": 1,
+                "text": "시장 개요"
+              },
+              {
+                "level": 2,
+                "text": "성장 요인"
+              },
+              {
+                "level": 3,
+                "text": "기술 동향"
+              }
+            ],
+            "actual": [
+              {
+                "level": 1,
+                "text": "시장 개요"
+              },
+              {
+                "level": 2,
+                "text": "성장 요인"
+              },
+              {
+                "level": 3,
+                "text": "기술 동향"
+              }
+            ],
+            "tests": {
+              "functional": true,
+              "expected_actual": true,
+              "normal_fixture": true,
+              "failure_fixture": true,
+              "html2text_parent_regression": true,
+              "mistune_parent_regression": true,
+              "composition_regression": true
+            },
+            "expected_actual": "MATCH",
+            "regression": "PASS",
+            "known_limitations": [
+              "Only explicit HTML heading elements are preserved",
+              "Does not infer numbering or publisher-specific hierarchy from plain text"
+            ],
+            "ready_for_integration": true,
+            "status": "VERIFIED_COMPOSITION"
+          }
+        },
+        {
+          "JOB_ID": "POST-PROVENANCE-TOC",
+          "WORKER_ID": "POST_DEPLOY_REGRESSION_1",
+          "START_TIME": "2026-09-10T02:16:41.544104+00:00",
+          "END_TIME": "2026-09-10T02:16:41.779762+00:00",
+          "start_epoch": 1789006601.5441039,
+          "end_epoch": 1789006601.7797623,
+          "duration_seconds": 0.235658,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "composition_id": "PROVENANCE_THEN_HTML2TEXT_THEN_MISTUNE_TOC_V1",
+            "parents": [
+              "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+              "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+            ],
+            "atomic_components": [
+              "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+              "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+              "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+            ],
+            "atomic_capabilities": [
+              "PROVENANCE_VALIDATION",
+              "WEBPAGE_TEXT_EXTRACTION",
+              "TOC_STRUCTURE_EXTRACTION"
+            ],
+            "root": "T42-VERIFIED-DETAIL-PAGE-TO-TOC",
+            "applicable_tools": [
+              "TOOL042"
+            ],
+            "input_contract": "Manifested HTML artifact with verified hash and explicit heading elements",
+            "output_contract": "Ordered TOC headings only after provenance verification passes",
+            "normal_fixture": "I:/GPT 도구 작업/44번 완성부품 가져오기/v2_candidate/fixtures/tool042_html_toc_normal.json",
+            "failure_fixture": "same HTML artifact with mismatched manifested SHA-256",
+            "expected": {
+              "provenance": "VERIFIED",
+              "html_toc": "MATCH"
+            },
+            "actual": {
+              "provenance": "VERIFIED",
+              "html_toc": "MATCH"
+            },
+            "lineage": {
+              "ab": "HTML2TEXT_THEN_MISTUNE_TOC_V1",
+              "c": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+              "ab_status": "VERIFIED_COMPOSITION",
+              "c_status": "VERIFIED"
+            },
+            "tests": {
+              "functional": true,
+              "expected_actual": true,
+              "normal_fixture": true,
+              "failure_fixture": true,
+              "ab_parent_regression": true,
+              "c_parent_regression": true,
+              "abc_regression": true
+            },
+            "expected_actual": "MATCH",
+            "regression": "PASS",
+            "ready_for_integration": true,
+            "status": "VERIFIED_COMPOSITION"
+          }
+        }
+      ],
+      "overlap": true,
+      "max_concurrency": 2,
+      "duration_seconds": 0.236678,
+      "throughput_jobs_per_second": 8.45,
+      "status": "PASS"
+    }
+  },
+  "failure_isolation": {
+    "forced_failure_count": 1,
+    "dependent_downstream_blocked": true,
+    "unaffected_jobs_continue": true,
+    "root_cause": "INTENTIONAL_ONE_JOB_FAILURE",
+    "retry": {
+      "stage": "FAIL_ONLY_RETRY",
+      "jobs": [
+        {
+          "JOB_ID": "FORCED-FAIL-RETRY",
+          "WORKER_ID": "FAIL_ONLY_RETRY_0",
+          "START_TIME": "2026-09-10T02:16:40.796096+00:00",
+          "END_TIME": "2026-09-10T02:16:40.877114+00:00",
+          "start_epoch": 1789006600.7960966,
+          "end_epoch": 1789006600.877114,
+          "duration_seconds": 0.081017,
+          "status": "PASS",
+          "error": null,
+          "result": {
+            "root_fixed": true
+          }
+        }
+      ],
+      "overlap": false,
+      "max_concurrency": 1,
+      "duration_seconds": 0.081017,
+      "throughput_jobs_per_second": 12.343,
+      "status": "PASS"
+    },
+    "GLOBAL_STOP_DUE_TO_SINGLE_JOB_FAILURE": 0,
+    "status": "PASS"
+  },
+  "throughput": {
+    "SEARCH_THROUGHPUT": 11.845,
+    "VERIFY_THROUGHPUT": 24.747,
+    "COMPOSITION_THROUGHPUT": 1.002,
+    "INTEGRATION_THROUGHPUT": 6.006,
+    "DEPLOYMENT_THROUGHPUT": 6.006,
+    "worker_scaling": "SKIP_REUSE_VERIFIED: evidence/tool044_parallel_advanced_20260909.json"
+  },
+  "PARALLEL_JOB_COUNT": 22,
+  "MAX_ACTUAL_CONCURRENCY": 4,
+  "FAILED_JOB_COUNT": 1,
+  "ISOLATED_FAILURE_COUNT": 1,
+  "JOB_LOSS": 0,
+  "SOURCE_LOSS": 0,
+  "ARTIFACT_LOSS": 0,
+  "DEPLOYMENT_LOSS": 0,
+  "DUPLICATE_WORK_COUNT": 0,
+  "DUPLICATE_COMPLETION": 0,
+  "PARALLEL_SEARCH": "PASS",
+  "PARALLEL_RECEIPT_VERIFY": "PASS",
+  "PARALLEL_SANDBOX": "PASS",
+  "PARALLEL_FUNCTION_VERIFY": "PASS",
+  "PARALLEL_COMPOSITION": "PASS",
+  "PARALLEL_REGRESSION": "PASS",
+  "PARALLEL_INTEGRATION": "PASS",
+  "PARALLEL_DEPLOYMENT": "PASS",
+  "DEPLOYED_ARTIFACT_READBACK": "PASS",
+  "DEPLOYED_FUNCTION_RETEST": "PASS",
+  "POST_DEPLOY_REGRESSION": "PASS",
+  "BULK_INGESTION": "PASS",
+  "BULK_PARALLEL_E2E": "PASS"
+}
