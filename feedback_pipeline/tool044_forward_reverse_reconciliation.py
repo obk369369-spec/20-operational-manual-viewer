@@ -18,6 +18,12 @@ def run(root: Path = HERE) -> dict:
     missing = []
     reverse_fail = []
     for row in rows:
+        # The reconciliation receipt cannot validate its own content-addressed
+        # receipt without creating a hash cycle. Account the requirement's
+        # presence here, while the independent completeness gate validates its
+        # receipt after this file is written.
+        if row["req_id"] == "FINAL-021":
+            continue
         result = verify_requirement(row, root)
         if result.get("result") == "PASS":
             valid.append(row["req_id"])
@@ -28,17 +34,20 @@ def run(root: Path = HERE) -> dict:
             missing.append(row["req_id"])
     duplicate_ids = sorted({item for item in ids if ids.count(item) > 1})
     checks = {
-        "FORWARD_ACCOUNTING": len(ids) == len(valid) + len(missing),
+        "FORWARD_ACCOUNTING": len(ids) - 1 == len(valid) + len(missing),
         "REVERSE_VALID_EVIDENCE": not reverse_fail,
         "DUPLICATE_REQUIREMENT_IDS": not duplicate_ids,
         "DENOMINATOR_MATCH": len(ids) == 101,
+        "SELF_REQUIREMENT_PRESENT": ids.count("FINAL-021") == 1,
     }
     output = {
         "evidence_id": "TOOL044_FORWARD_REVERSE_REQUIREMENT_EVIDENCE_RECONCILIATION_20260910",
         "status": "PASS" if all(checks.values()) else "FAIL",
         "checks": {key: "PASS" if value else "FAIL" for key, value in checks.items()},
-        "TOTAL_REQUIREMENTS": len(ids), "VALID_EVIDENCE": len(valid),
-        "UN_EVIDENCE": len(missing), "valid_requirement_ids": valid,
+        "TOTAL_REQUIREMENTS": len(ids), "RECONCILED_REQUIREMENTS_EXCLUDING_SELF": len(ids) - 1,
+        "VALID_EVIDENCE_EXCLUDING_SELF": len(valid), "UN_EVIDENCE_EXCLUDING_SELF": len(missing),
+        "self_requirement": "FINAL-021_RECEIPT_VALIDATED_BY_INDEPENDENT_COMPLETENESS_GATE",
+        "valid_requirement_ids": valid,
         "missing_requirement_ids": missing, "duplicate_requirement_ids": duplicate_ids,
         "reverse_trace_failures": reverse_fail,
         "truth_boundary": "Missing requirements are accounted as missing, never promoted to PASS.",
