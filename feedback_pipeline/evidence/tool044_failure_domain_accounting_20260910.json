@@ -1,0 +1,43 @@
+{
+  "evidence_id": "TOOL044_INDEPENDENT_FAILURE_DOMAIN_ACCOUNTING_20260910",
+  "status": "PASS",
+  "source_receipts": [
+    "evidence\\tool044_bulk_parallel_e2e_deployed_20260910.json",
+    "evidence\\tool044_multi_path_failover_e2e_20260910.json"
+  ],
+  "domains": [
+    {
+      "domain": "BULK_JOB",
+      "failure": "INTENTIONAL_ONE_JOB_FAILURE",
+      "isolated": true,
+      "unaffected_continued": true
+    },
+    {
+      "domain": "INGESTION",
+      "failure": "PRIMARY_INPUT_PATH",
+      "isolated": true,
+      "unaffected_continued": true
+    },
+    {
+      "domain": "ORCHESTRATOR",
+      "failure": "PRIMARY_ORCHESTRATOR",
+      "isolated": true,
+      "unaffected_continued": true
+    },
+    {
+      "domain": "WORKER",
+      "failure": "PRIMARY_WORKER_AFTER_CHECKPOINT",
+      "isolated": true,
+      "unaffected_continued": true
+    }
+  ],
+  "checks": {
+    "DISTINCT_FAILURE_DOMAINS": "PASS",
+    "EACH_FAILURE_ISOLATED": "PASS",
+    "UNAFFECTED_WORK_CONTINUED": "PASS",
+    "ZERO_GLOBAL_STOP": "PASS",
+    "ZERO_LOSS": "PASS"
+  },
+  "EVIDENCE_REUSE_VERIFIED": "PASS",
+  "REDUNDANT_REEXECUTION_COUNT": 0
+}
