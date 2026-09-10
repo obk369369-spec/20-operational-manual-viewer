@@ -311,6 +311,15 @@ APPROVAL_BATCHING = MAXIMUM_SAFE_BATCH
 - 여러 외부 실행망은 `이미 연결됨 → 추가 승인 없이 시험 가능 → 한 승인으로 설치·시험·artifact read-back 가능` 순으로 검토하되 품질·독립 failure domain 기준을 낮추지 않는다.
 - 최종 evidence에 `TOTAL_PERMISSION_PROMPTS / BATCHED_PERMISSION_PROMPTS / REUSED_PERMISSION_COUNT / DUPLICATE_PERMISSION_PROMPTS / UNNECESSARY_PERMISSION_PROMPTS`를 기록한다.
 - 목표는 `DUPLICATE_PERMISSION_PROMPTS = 0`, `UNNECESSARY_PERMISSION_PROMPTS = 0`, `ALREADY_GRANTED_PERMISSION_REASK = 0`이다.
+
+## MULTI INPUT INGESTION / FULL-PATH FAILOVER — REQUIRED
+
+- 입력층도 단일 장애점으로 두지 않으며 `VERIFIED_INGESTION_GATE_COUNT >= 2`를 야간 무인운전의 최소조건으로 한다. 실제 지원범위 밖 ChatGPT 대화 접근을 구현된 것으로 가정하지 않는다.
+- 각 입력경로는 `SUPPORTED INPUT → SOURCE CAPTURE → INPUT HASH → JOB CREATE → COMMON QUEUE WRITE → READ-BACK`을 실제 검증하고 `INPUT_LOSS=0 / SOURCE_LOSS=0 / JOB_CREATION=PASS / QUEUE_WRITE=PASS / QUEUE_READBACK=PASS`여야 한다.
+- 입력 A 강제 실패 뒤 B가 동일 source/hash를 보존해 단일 job을 생성하고 downstream 결과를 TOOL016까지 전달해야 `INGESTION_FAILOVER=PASS`다. `DUPLICATE_JOB`과 `RESULT_LOSS`는 0이어야 한다.
+- 최종 4층은 `MULTI INGESTION → MULTI ORCHESTRATOR → MULTI EXECUTOR → MULTI CLOUD`로 검증한다. 각 층 A 실패→B 인계에서 `JOB_LOSS / SOURCE_LOSS / CHECKPOINT_LOSS / DOUBLE_CLAIM / DUPLICATE_COMPLETION / RESULT_LOSS`가 모두 0이어야 한다.
+- 한 primary 4층 경로 전체를 실제 중단하고 secondary 경로가 common queue/checkpoint/state를 읽어 resume→result→TOOL016 ACK/read-back을 완료해야 `FULL_PATH_FAILOVER_E2E=PASS`다.
+- `NIGHT_UNATTENDED_MULTI_PATH_CAPABLE=PASS`는 multi 4층, 각 층 failover, full-path failover, checkpoint/resume, watchdog, 정상운전 Work credit 0의 실제 evidence가 모두 있을 때만 허용한다. 실제 24시간 경과인 `24H_ACTIVE_PROVING`과 분리한다.
 USER_INTERMEDIATE_APPROVAL = MINIMIZE
 PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
 

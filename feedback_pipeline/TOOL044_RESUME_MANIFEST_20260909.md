@@ -122,3 +122,5 @@ Certificate가 독립 read-back으로 다음을 실제 계산해야 한다:
 - `FINAL-023 PERMISSION_PRECALCULATION_BATCHING_REUSE_AND_METRICS`를 종료 분모에 추가한다.
 - 같은 서비스·범위의 최소 필요 권한은 사전 계산하여 batch하고, 기존 유효 권한은 재사용하며, 플랫폼 강제 분리는 우회하지 않는다.
 - 종료 evidence는 전체/배치/재사용/중복/불필요 승인 지표를 계산해야 한다.
+- `FINAL-024~027`을 추가한다: 다중 입력 게이트, 입력 failover, 전체 4층 경로 failover, 야간 무인 다중경로 판정.
+- 각 항목은 실제 지원 입력과 독립 secondary 경로로 손실·중복 0을 증명하기 전까지 `UNACCOUNTED_REQUIREMENT`로 남기며 PASS로 추정하지 않는다.
