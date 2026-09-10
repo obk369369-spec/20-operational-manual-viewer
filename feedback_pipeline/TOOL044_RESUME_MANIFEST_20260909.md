@@ -116,3 +116,9 @@ Certificate가 독립 read-back으로 다음을 실제 계산해야 한다:
 - 기존 PASS 재시험: `NONE`
 - 대규모 history/archive/queue 처리: `NONE`
 - 이 manifest를 원격 고정한 뒤 STOP한다.
+
+## NEW_INPUT_AFTER_SNAPSHOT — 2026-09-10
+
+- `FINAL-023 PERMISSION_PRECALCULATION_BATCHING_REUSE_AND_METRICS`를 종료 분모에 추가한다.
+- 같은 서비스·범위의 최소 필요 권한은 사전 계산하여 batch하고, 기존 유효 권한은 재사용하며, 플랫폼 강제 분리는 우회하지 않는다.
+- 종료 evidence는 전체/배치/재사용/중복/불필요 승인 지표를 계산해야 한다.

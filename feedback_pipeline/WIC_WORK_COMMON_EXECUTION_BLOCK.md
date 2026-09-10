@@ -301,6 +301,16 @@ TOOL007_MASTER_CHAIN_REQUIRED = TRUE
 
 USER_APPROVAL_LANGUAGE = KOREAN_REQUIRED
 APPROVAL_BATCHING = MAXIMUM_SAFE_BATCH
+
+### 권한 선계산·재사용·지표 — REQUIRED
+
+- 안전 단위 착수 전에 `REQUIRED_PERMISSION_SET`을 계산하고 각 항목에 `SERVICE / REQUIRED_PERMISSION / WHY_REQUIRED / SCOPE / ONE_TIME_OR_REUSABLE / ALREADY_GRANTED`를 기록한다.
+- 같은 서비스·목적·위험등급·작업범위에서 함께 처리 가능한 최소 필요 권한은 `PERMISSION_BATCH` 하나로 묶는다. 클릭 수를 줄이기 위한 과도한 관리자·전체계정·불필요한 write/delete 권한은 금지한다.
+- 이미 유효한 권한은 `PERMISSION_ID / SERVICE / SCOPE / GRANTED_AT / VALID_FOR / USED_BY`를 read-back하여 `PERMISSION_REUSE`하고 다시 요구하지 않는다.
+- 플랫폼이 보안상 분리된 승인·MFA를 강제하면 우회하지 않는다. 필요성·기존 허용 여부를 먼저 확인하고 반드시 별도인 승인만 `USER_ACTION_QUEUE`에 누적한다.
+- 여러 외부 실행망은 `이미 연결됨 → 추가 승인 없이 시험 가능 → 한 승인으로 설치·시험·artifact read-back 가능` 순으로 검토하되 품질·독립 failure domain 기준을 낮추지 않는다.
+- 최종 evidence에 `TOTAL_PERMISSION_PROMPTS / BATCHED_PERMISSION_PROMPTS / REUSED_PERMISSION_COUNT / DUPLICATE_PERMISSION_PROMPTS / UNNECESSARY_PERMISSION_PROMPTS`를 기록한다.
+- 목표는 `DUPLICATE_PERMISSION_PROMPTS = 0`, `UNNECESSARY_PERMISSION_PROMPTS = 0`, `ALREADY_GRANTED_PERMISSION_REASK = 0`이다.
 USER_INTERMEDIATE_APPROVAL = MINIMIZE
 PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
 
