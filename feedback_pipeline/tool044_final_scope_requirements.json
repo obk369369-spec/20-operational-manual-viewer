@@ -31,6 +31,12 @@
     {"req_id": "FINAL-024", "name": "MULTI_INPUT_INGESTION_GATES", "evidence_path": "evidence/tool044_multi_ingestion_receipt_20260910.json", "evidence_sha256": "1638b6952bc619575e19a07da6832016ec441ef34db4d1de6c387bed126f1cce", "receipt_checks": {"status": "PASS", "VERIFIED_INGESTION_GATE_COUNT": 2, "INGESTION_FAILOVER": "NOT_TESTED"}},
     {"req_id": "FINAL-025", "name": "INGESTION_GATE_FAILOVER_E2E"},
     {"req_id": "FINAL-026", "name": "FULL_FOUR_LAYER_PATH_FAILOVER_E2E"},
-    {"req_id": "FINAL-027", "name": "NIGHT_UNATTENDED_MULTI_PATH_CAPABLE"}
+    {"req_id": "FINAL-027", "name": "NIGHT_UNATTENDED_MULTI_PATH_CAPABLE"},
+    {"req_id": "FINAL-028", "name": "BULK_DEMAND_INGESTION_DEDUP_AND_REUSE"},
+    {"req_id": "FINAL-029", "name": "BULK_PARALLEL_SEARCH_RECEIPT_SANDBOX_FUNCTION_VERIFY"},
+    {"req_id": "FINAL-030", "name": "BULK_PARALLEL_WAREHOUSE_COMPOSITION_AND_REGRESSION"},
+    {"req_id": "FINAL-031", "name": "BULK_PARALLEL_TARGET_INTEGRATION"},
+    {"req_id": "FINAL-032", "name": "BULK_PARALLEL_DEPLOY_READBACK_RETEST_POST_REGRESSION"},
+    {"req_id": "FINAL-033", "name": "BULK_PARALLEL_E2E_THROUGHPUT_AND_ZERO_LOSS"}
   ]
 }

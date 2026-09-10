@@ -124,3 +124,5 @@ Certificate가 독립 read-back으로 다음을 실제 계산해야 한다:
 - 종료 evidence는 전체/배치/재사용/중복/불필요 승인 지표를 계산해야 한다.
 - `FINAL-024~027`을 추가한다: 다중 입력 게이트, 입력 failover, 전체 4층 경로 failover, 야간 무인 다중경로 판정.
 - 각 항목은 실제 지원 입력과 독립 secondary 경로로 손실·중복 0을 증명하기 전까지 `UNACCOUNTED_REQUIREMENT`로 남기며 PASS로 추정하지 않는다.
+- `FINAL-028~033`을 추가한다: 대량 유입/중복제거, 실제 병렬 search~function verify, warehouse/composition/regression, target integration, 배포 SHA/read-back/배포본 재실행/post-deploy regression, 처리량·손실 0의 전체 E2E.
+- 기존 T4 병렬 evidence는 영향 없는 하위기능 증거로 재사용하지만, 새 bulk end-to-end receipt가 없으므로 `BULK_PARALLEL_E2E`로 승격하지 않는다.

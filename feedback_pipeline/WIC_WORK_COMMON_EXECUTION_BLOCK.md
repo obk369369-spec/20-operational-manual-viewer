@@ -320,6 +320,15 @@ APPROVAL_BATCHING = MAXIMUM_SAFE_BATCH
 - 최종 4층은 `MULTI INGESTION → MULTI ORCHESTRATOR → MULTI EXECUTOR → MULTI CLOUD`로 검증한다. 각 층 A 실패→B 인계에서 `JOB_LOSS / SOURCE_LOSS / CHECKPOINT_LOSS / DOUBLE_CLAIM / DUPLICATE_COMPLETION / RESULT_LOSS`가 모두 0이어야 한다.
 - 한 primary 4층 경로 전체를 실제 중단하고 secondary 경로가 common queue/checkpoint/state를 읽어 resume→result→TOOL016 ACK/read-back을 완료해야 `FULL_PATH_FAILOVER_E2E=PASS`다.
 - `NIGHT_UNATTENDED_MULTI_PATH_CAPABLE=PASS`는 multi 4층, 각 층 failover, full-path failover, checkpoint/resume, watchdog, 정상운전 Work credit 0의 실제 evidence가 모두 있을 때만 허용한다. 실제 24시간 경과인 `24H_ACTIVE_PROVING`과 분리한다.
+
+## BULK PARALLEL E2E / DEPLOYED RETEST — REQUIRED
+
+- 다수의 서로 다른 실제 demand/component가 `ingest→dedup/reuse/search→receipt↔actual→sandbox/function verify→warehouse/composition→regression/integration→deploy/read-back→deployed function retest→post-deploy regression`을 끝까지 통과해야 `BULK_PARALLEL_E2E=PASS`다.
+- 각 병렬 단계는 `START_TIME / END_TIME / WORKER_ID / JOB_ID / OVERLAP`으로 실제 동시 실행을 증명한다. 코드·ThreadPool·queue 존재만으로 PASS하지 않는다.
+- 실패 job만 격리하고 해당 downstream만 차단한다. 영향 없는 job은 계속하며 `ROOT→IMPACT→FIX→SAME FIXTURE RETEST`를 적용한다.
+- 동일 fixture로 1/2/4/최대 안전 worker 처리량을 비교하고 `BULK_INPUT_COUNT / PARALLEL_JOB_COUNT / MAX_ACTUAL_CONCURRENCY / 단계별 THROUGHPUT / FAILED_JOB_COUNT / ISOLATED_FAILURE_COUNT / DUPLICATE_WORK_COUNT / JOB_LOSS / ARTIFACT_LOSS / DEPLOYMENT_LOSS`를 evidence에서 계산한다.
+- `SOURCE VERIFIED SHA ↔ repository SHA ↔ candidate SHA ↔ actual deployed SHA`가 일치하고 `EXPECTED↔DEPLOYED ACTUAL` 및 post-deploy regression이 PASS해야 배포 단계를 닫는다.
+- 목표는 `DUPLICATE_WORK_COUNT=0 / JOB_LOSS=0 / ARTIFACT_LOSS=0 / DEPLOYMENT_LOSS=0`이며, 모든 bulk 병렬 하위 gate 전에는 COMPLETE 금지다.
 USER_INTERMEDIATE_APPROVAL = MINIMIZE
 PLATFORM_SYSTEM_UI_LANGUAGE = UNCONTROLLABLE_EXCEPTION
 
