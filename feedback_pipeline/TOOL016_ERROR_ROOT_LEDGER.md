@@ -153,6 +153,69 @@ PHASE_EFFECTIVENESS_GATE = REQUIRED
 
 ---
 
+# 2026-09-10 명시적 대화 전달 무손실 복구
+
+- 실제 원본 분모: 2건 (`42번 고객 안내 (다음 대화창)`, `44번 완성부품 가져오기`).
+- 기존 수신: 1건. 누락 root: `T42-RC-MANUAL-GUIDE-CONTENT-TRANSPLANT`.
+- 복구 후: `EXPECTED=2 / RECEIVED=2 / MATCHED=2 / MISSING=0 / DUPLICATE=0 / SOURCE_LOSS=0`.
+
+## 실제 원본 1
+
+- `SOURCE_CHAT/TOOL`: `42번 고객 안내 (다음 대화창)`
+- `SOURCE_TIMESTAMP`: `2026-09-10T18:02:01.395000+09:00`
+- `ORIGINAL_USER_TEXT` / `ORIGINAL_ERROR/FEEDBACK`:
+
+```text
+그래서 대화창에서 개선 사항을 지시하면 44번의 대형 부품 창고를 통해서 외부에서 검증된 외부부품과 외부 틀이 들어오게 되면 최소한 내가 첨부한 틀 안에 통째로 대화창에서 표시한 양식과 데이터를 그대로 가져다 붙이면 피로감이 조금 줄어들지 않을까 싶다.
+무슨 말인지 이해 가능?
+양식까지 통째로 만들어지는 것은 지금 불가능하잖아? 그래서 양식틀을 제외한 나머지 알맹이를 여기서 그대로 양식 틀에다 가져다 붙이도록 개선하면 낫지 않겠나 하는거야
+이것을 워크 작업이 완료되면 44번에서 작업이 시작되도록 16번에다가 올려놓는 것이 맞지?
+아니면 여기에다가 지시하니까 44번에서 일하도록 올려놔라
+```
+- `SOURCE_HASH`: `b9c75fa5f2c94b3d59ed057d85acf854316020c60e8bc6a5951af17a9c2f80b0`
+- `HANDOFF_INSTRUCTION`: `16번에 올리고 이후 44번 작업대상으로 연결`
+- `EXPECTED_TARGET`: `TOOL016`
+- `ROOT`: `T42-RC-MANUAL-GUIDE-CONTENT-TRANSPLANT`
+- `TOOL016_RECEIVE`: `PASS`
+- `TOOL016_ACK`: `PASS`
+- `TOOL016_READBACK`: `PASS`
+
+## 실제 원본 2
+
+- `SOURCE_CHAT/TOOL`: `44번 완성부품 가져오기`
+- `SOURCE_TIMESTAMP`: `2026-09-10T19:06:40.413000+09:00`
+- `ORIGINAL_USER_TEXT` / `ORIGINAL_ERROR/FEEDBACK`:
+
+```text
+그러면 네가 올려놔라 
+그러면 오늘 16번에서 수집한 오류가 있는지 물어보면 44번에서 올린 오류가 있다고 하겠지??
+```
+- `SOURCE_HASH`: `7e5603850ea432a8f153aaae9dade9fa9fa184eaee58afe41f117f00d8b52798`
+- `HANDOFF_INSTRUCTION`: `44번에서 확인된 오류를 TOOL016에 실제 등록`
+- `EXPECTED_TARGET`: `TOOL016`
+- `ROOT`: `T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP`
+- `TOOL016_RECEIVE`: `PASS`
+- `TOOL016_ACK`: `PASS`
+- `TOOL016_READBACK`: `PASS`
+
+## 독립 대조 결과
+
+- `ACTUAL_EXPECTED_HANDOFF_COUNT = 2`
+- `TOOL016_ACTUAL_RECEIVED_COUNT = 2`
+- `MATCHED_COUNT = 2`
+- `MISSING_COUNT = 0`
+- `DUPLICATE_COUNT = 0`
+- `SOURCE_DISCOVERY = PASS`
+- `SOURCE_DISCOVERY_FAILURE = 0`
+- `HANDOFF_LOSS = 0`
+- `SOURCE_LOSS = 0`
+- `DUPLICATE_HANDOFF = 0`
+- `CROSS_CHAT_VISIBILITY_GAP = 0`
+- `VALIDATION_SCOPE = 2026-09-10 actual explicit TOOL016 handoff originals only`
+- `FIRST_VALIDATION = PASS`
+
+---
+
 # 1차 과거 대화 피드백 누락분 회수 — 2026-09-07
 
 근거 정본: `customer_pipeline/evidence/tool041_007_042_prior_feedback_recovery_20260907.json`. 대화 제목이 아니라 앱의 실제 thread/turn/message ID로 출처를 고정했다. 당시 assistant가 말하지 않은 내용은 보충하지 않았다.
