@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "source_receipt": "evidence/tool016_tool044_feedback_factory_v2_20260909.json",
+  "source_receipt_sha256": "89045e91038b1b14829b01383ec2f32f81e0c057ab35e4b684e5ebc045a5c47e",
+  "gates": {
+    "LOCAL_OBSERVER_HTTP": {
+      "source_capture": true,
+      "input_hash": true,
+      "job_create": true,
+      "queue_write": true,
+      "queue_readback": true
+    },
+    "AUTHENTICATED_GITHUB_FEEDBACK": {
+      "source_capture": true,
+      "input_hash": true,
+      "job_create": true,
+      "queue_write": true,
+      "queue_readback": true
+    }
+  },
+  "VERIFIED_INGESTION_GATE_COUNT": 2,
+  "INPUT_LOSS": 0,
+  "SOURCE_LOSS": 0,
+  "JOB_CREATION": "PASS",
+  "QUEUE_WRITE": "PASS",
+  "QUEUE_READBACK": "PASS",
+  "INGESTION_FAILOVER": "NOT_TESTED",
+  "evidence_mode": "SKIP_REUSE_VERIFIED_PLUS_INDEPENDENT_CROSS_CHECK"
+}

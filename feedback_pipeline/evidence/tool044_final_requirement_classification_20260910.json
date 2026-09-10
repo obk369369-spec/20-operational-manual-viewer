@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "starting_unaccounted_requirements": 27,
+  "classification": {
+    "ALREADY_PASS_BUT_EVIDENCE_LINK_MISSING": ["FINAL-001", "FINAL-012", "FINAL-016", "FINAL-017", "FINAL-018", "FINAL-019", "FINAL-022", "FINAL-023"],
+    "ACTUAL_OPEN": ["FINAL-003", "FINAL-004", "FINAL-005", "FINAL-006", "FINAL-007", "FINAL-008", "FINAL-009", "FINAL-010", "FINAL-011", "FINAL-015", "FINAL-020", "FINAL-021", "FINAL-025", "FINAL-026", "FINAL-027"],
+    "BLOCKED_BY_EXTERNAL_ACCESS": [],
+    "BLOCKED_BY_MISSING_ACTUAL_INPUT": ["FINAL-013", "FINAL-014"],
+    "TIME_BOUND": [],
+    "DUPLICATE_EXISTING_ROOT": []
+  },
+  "after_existing_receipt_link": {
+    "TOTAL_REQUIREMENTS": 95,
+    "REQUIREMENTS_WITH_VALID_EVIDENCE": 76,
+    "UNACCOUNTED_REQUIREMENTS": 19
+  },
+  "after_multi_ingestion_receipt_crosscheck": {
+    "newly_verified": ["FINAL-002", "FINAL-024"],
+    "TOTAL_REQUIREMENTS": 95,
+    "REQUIREMENTS_WITH_VALID_EVIDENCE": 78,
+    "UNACCOUNTED_REQUIREMENTS": 17,
+    "INGESTION_FAILOVER": "NOT_TESTED"
+  },
+  "truth_boundary": "TOOL045 actual input/runtime/evidence was not found in the scoped canonical workspace lookup; other independent requirements remain actionable."
+}

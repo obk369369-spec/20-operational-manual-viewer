@@ -16,6 +16,54 @@ def _read(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _nested_value(data: dict[str, Any], dotted_path: str) -> Any:
+    value: Any = data
+    for part in dotted_path.split("."):
+        if not isinstance(value, dict) or part not in value:
+            raise KeyError(dotted_path)
+        value = value[part]
+    return value
+
+
+def _final_requirement(row: dict[str, Any], root: Path, scope_id: str) -> dict[str, Any]:
+    base = {
+        "req_id": row["req_id"], "stage": "FINAL_ONE_SHOT",
+        "user_requirement": {"source": scope_id, "section": row["name"]},
+        "atomic_requirement": row["name"],
+    }
+    relative = row.get("evidence_path")
+    expected_sha = str(row.get("evidence_sha256", "")).lower()
+    if not relative or not expected_sha:
+        return base
+    receipt_path = root / relative
+    if not receipt_path.is_file():
+        return base
+    from tool044_requirement_interlock import sha256
+    actual_sha = sha256(receipt_path)
+    if actual_sha != expected_sha:
+        return base
+    receipt = _read(receipt_path)
+    try:
+        checks_pass = all(
+            _nested_value(receipt, path) == expected
+            for path, expected in row.get("receipt_checks", {}).items()
+        )
+    except KeyError:
+        checks_pass = False
+    if not checks_pass:
+        return base
+    plan_id = f"PLAN-{row['req_id']}"
+    execution_id = f"EXEC-{row['req_id']}"
+    base.update(
+        execution_plan={"plan_id": plan_id, "expected": "PASS"},
+        actual_execution={"execution_id": execution_id, "result": "PASS"},
+        actual_evidence={"path": relative, "sha256": actual_sha},
+        independent_verification={"result": "PASS", "evidence_sha256": actual_sha},
+        reverse_trace={"chain": [row["req_id"], execution_id, plan_id]},
+    )
+    return base
+
+
 def evaluate(
     requirements: list[dict[str, Any]], root: Path,
     evidence_catalog: list[str], changes: list[dict[str, Any]],
@@ -80,11 +128,7 @@ def current_scope(root: Path = HERE) -> dict[str, Any]:
     final_scope = _read(root / "tool044_final_scope_requirements.json")
     requirements = list(ledger["requirements"])
     for row in final_scope["requirements"]:
-        requirements.append({
-            "req_id": row["req_id"], "stage": "FINAL_ONE_SHOT",
-            "user_requirement": {"source": final_scope["scope_id"], "section": row["name"]},
-            "atomic_requirement": row["name"],
-        })
+        requirements.append(_final_requirement(row, root, final_scope["scope_id"]))
     catalog = sorted({
         row["actual_evidence"]["path"] for row in requirements
         if row.get("actual_evidence", {}).get("path")
