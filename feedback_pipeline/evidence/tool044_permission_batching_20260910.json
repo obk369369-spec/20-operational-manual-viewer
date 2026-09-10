@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "PERMISSION_PRECALCULATION_BATCHING_REUSE_AND_METRICS",
+  "permission_batch": {
+    "SERVICE": "GitHub and TOOL044 candidate filesystem",
+    "REQUIRED_PERMISSION": "push work branch; deploy changed policy files; execute deployed-copy gate",
+    "WHY_REQUIRED": "persist and verify the fixed permission policy",
+    "SCOPE": "one work branch and v2_candidate only",
+    "ONE_TIME_OR_REUSABLE": "one safe completion unit",
+    "ALREADY_GRANTED": false
+  },
+  "metrics": {
+    "TOTAL_PERMISSION_PROMPTS": 1,
+    "BATCHED_PERMISSION_PROMPTS": 1,
+    "REUSED_PERMISSION_COUNT": 0,
+    "DUPLICATE_PERMISSION_PROMPTS": 0,
+    "UNNECESSARY_PERMISSION_PROMPTS": 0,
+    "ALREADY_GRANTED_PERMISSION_REASK": 0
+  },
+  "remote_readback": "PASS",
+  "candidate_hash_match": "PASS",
+  "deployed_copy_gate_self_test": "PASS",
+  "production_modified": false
+}
