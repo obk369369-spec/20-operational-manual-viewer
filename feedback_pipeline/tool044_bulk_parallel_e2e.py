@@ -154,7 +154,10 @@ def deploy(source: Path, destination: Path, validator: str) -> dict[str, Any]:
 
 
 def run(candidate_root: Path, evidence_path: Path) -> dict[str, Any]:
-    repo = HERE.parent if (HERE.parent / "feedback_pipeline" / "tool044_composition.py").is_file() else HERE
+    # Candidate deployments keep the pipeline files at their root; source trees
+    # keep this script inside feedback_pipeline. Prefer the script's own root so
+    # a sibling production checkout can never shadow the deployed candidate.
+    repo = HERE if (HERE / "tool044_composition.py").is_file() else HERE.parent
     run_id = f"BULK-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
     production = Path(r"I:\GPT 도구 작업\44번 완성부품 가져오기\index.html")
     production_before = sha(production) if production.is_file() else "NOT_AVAILABLE"
