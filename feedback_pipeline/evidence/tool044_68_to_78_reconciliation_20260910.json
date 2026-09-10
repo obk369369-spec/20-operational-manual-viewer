@@ -1,0 +1,212 @@
+{
+  "gate": "EVIDENCE_68_TO_78_RECONCILIATION",
+  "baseline_valid_evidence": 68,
+  "current_valid_evidence": 78,
+  "expected_increment": 10,
+  "unique_increment_requirements": 10,
+  "shared_receipts_not_counted_as_extra_requirements": {
+    "evidence/tool016_tool044_feedback_factory_v2_20260909.json": [
+      "FINAL-001",
+      "FINAL-019"
+    ],
+    "evidence/tool044_multi_ingestion_receipt_20260910.json": [
+      "FINAL-002",
+      "FINAL-024"
+    ],
+    "evidence/tool044_cloud_zero_work_20260908.json": [
+      "FINAL-012",
+      "FINAL-017",
+      "FINAL-018"
+    ]
+  },
+  "records": [
+    {
+      "REQUIREMENT_ID": "FINAL-001",
+      "EVIDENCE_ID": "evidence/tool016_tool044_feedback_factory_v2_20260909.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool016_tool044_feedback_factory_v2_20260909.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "REQUEST_DEDUPLICATION_LEDGER",
+        "receipt_checks": {
+          "tests.ROOT_DEDUP_OCCURRENCE": "PASS",
+          "tests.QUEUE_READBACK": "PASS"
+        },
+        "content_addressed_sha256": "89045e91038b1b14829b01383ec2f32f81e0c057ab35e4b684e5ebc045a5c47e",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-002",
+      "EVIDENCE_ID": "evidence/tool044_multi_ingestion_receipt_20260910.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_multi_ingestion_receipt_20260910.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "CHAT_INPUT_INGESTION_GATE",
+        "receipt_checks": {
+          "status": "PASS",
+          "INPUT_LOSS": 0,
+          "SOURCE_LOSS": 0,
+          "JOB_CREATION": "PASS",
+          "QUEUE_WRITE": "PASS",
+          "QUEUE_READBACK": "PASS"
+        },
+        "content_addressed_sha256": "1638b6952bc619575e19a07da6832016ec441ef34db4d1de6c387bed126f1cce",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-012",
+      "EVIDENCE_ID": "evidence/tool044_cloud_zero_work_20260908.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_cloud_zero_work_20260908.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "COMMON_QUEUE_CHECKPOINT_PORTABILITY",
+        "receipt_checks": {
+          "restart_resume_remote_run.job_identity_preserved": "4/4 PASS",
+          "cloud_local_handoff.duplicate_execution_block": "PASS",
+          "cloud_local_handoff.shared_queue_remaining": 0
+        },
+        "content_addressed_sha256": "4621b03c1b9ee82fdf516f717a350811d4981f89aaa307e35befe0f1ebb4f7c9",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-016",
+      "EVIDENCE_ID": "evidence/tool044_safety_deployed_20260909.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_safety_deployed_20260909.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "ZERO_DOUBLE_CLAIM_DUPLICATE_COMPLETION",
+        "receipt_checks": {
+          "result": "PASS",
+          "duplicate_results": 0
+        },
+        "content_addressed_sha256": "e5c9069b1759cc86c560cf33e4f52cd98f5c8d8c2f49d48cb146bf84d78b610e",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-017",
+      "EVIDENCE_ID": "evidence/tool044_cloud_zero_work_20260908.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_cloud_zero_work_20260908.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "NORMAL_OPERATION_WORK_CREDIT_ZERO",
+        "receipt_checks": {
+          "natural_schedule_run.work_triggered": false,
+          "actual_state.paid_api_calls": 0,
+          "actual_state.paid_saas_calls": 0
+        },
+        "content_addressed_sha256": "4621b03c1b9ee82fdf516f717a350811d4981f89aaa307e35befe0f1ebb4f7c9",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-018",
+      "EVIDENCE_ID": "evidence/tool044_cloud_zero_work_20260908.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_cloud_zero_work_20260908.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "WORK_OUTSIDE_NORMAL_EXECUTION_CHAIN",
+        "receipt_checks": {
+          "natural_schedule_run.work_triggered": false,
+          "natural_schedule_run.user_triggered": false,
+          "natural_schedule_run.local_pc_required": false
+        },
+        "content_addressed_sha256": "4621b03c1b9ee82fdf516f717a350811d4981f89aaa307e35befe0f1ebb4f7c9",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-019",
+      "EVIDENCE_ID": "evidence/tool016_tool044_feedback_factory_v2_20260909.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool016_tool044_feedback_factory_v2_20260909.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "CI_READBACK",
+        "receipt_checks": {
+          "remote_ci.factory_result": "PASS",
+          "remote_ci.authenticated_feedback_result": "PASS",
+          "remote_ci.remote_inbox_match": true,
+          "remote_ci.remote_queue_match": true
+        },
+        "content_addressed_sha256": "89045e91038b1b14829b01383ec2f32f81e0c057ab35e4b684e5ebc045a5c47e",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-022",
+      "EVIDENCE_ID": "evidence/tool044_completeness_gate_deployed_20260910.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_completeness_gate_deployed_20260910.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "INDEPENDENT_COMPLETENESS_CERTIFICATE",
+        "receipt_checks": {
+          "status": "DEPLOYED_PASS",
+          "tests.missing_requirement_blocks_complete": "PASS",
+          "tests.orphan_evidence_blocks_complete": "PASS",
+          "tests.undeployed_change_blocks_complete": "PASS"
+        },
+        "content_addressed_sha256": "4413839d142b6b69f58fa34ad597ffce23c2618cac343a69c5c150394478f0b1",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-023",
+      "EVIDENCE_ID": "evidence/tool044_permission_batching_20260910.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_permission_batching_20260910.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "PERMISSION_PRECALCULATION_BATCHING_REUSE_AND_METRICS",
+        "receipt_checks": {
+          "status": "PASS",
+          "metrics.DUPLICATE_PERMISSION_PROMPTS": 0,
+          "metrics.UNNECESSARY_PERMISSION_PROMPTS": 0,
+          "metrics.ALREADY_GRANTED_PERMISSION_REASK": 0
+        },
+        "content_addressed_sha256": "5f08f5dec9c6bfdfc8997de0489180778c7e7cb3270f65fd4aa52ec258385218",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    },
+    {
+      "REQUIREMENT_ID": "FINAL-024",
+      "EVIDENCE_ID": "evidence/tool044_multi_ingestion_receipt_20260910.json",
+      "ORIGINAL_PASS_SOURCE": "evidence/tool044_multi_ingestion_receipt_20260910.json",
+      "ORIGINAL_TEST_TIME": "NOT_RECORDED_IN_SOURCE_RECEIPT",
+      "WHY_REUSABLE": {
+        "requirement": "MULTI_INPUT_INGESTION_GATES",
+        "receipt_checks": {
+          "status": "PASS",
+          "VERIFIED_INGESTION_GATE_COUNT": 2,
+          "INGESTION_FAILOVER": "NOT_TESTED"
+        },
+        "content_addressed_sha256": "1638b6952bc619575e19a07da6832016ec441ef34db4d1de6c387bed126f1cce",
+        "seven_interlock": "PASS"
+      },
+      "AFFECTED_OR_UNAFFECTED": "UNAFFECTED_EXISTING_PASS_EVIDENCE",
+      "READBACK_RESULT": "PASS"
+    }
+  ],
+  "FALSE_EVIDENCE_MAPPING": 0,
+  "DUPLICATE_EVIDENCE_INFLATION": 0,
+  "INVALID_REUSED_EVIDENCE": 0,
+  "status": "PASS"
+}
