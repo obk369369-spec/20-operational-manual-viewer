@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "scope_id": "TOOL044_ONE_SHOT_20260910",
+  "starting_queue_sha256": "5FA466BA1640297CB2A6B09F838EA4EA904324FCA45CE762545D53F48F31F127",
+  "out_of_scope": ["TOOL013"],
+  "time_bound_exceptions": ["24H_ACTIVE_PROVING"],
+  "requirements": [
+    {"req_id": "FINAL-001", "name": "REQUEST_DEDUPLICATION_LEDGER"},
+    {"req_id": "FINAL-002", "name": "CHAT_INPUT_INGESTION_GATE"},
+    {"req_id": "FINAL-003", "name": "FIVE_VERIFIED_FREE_ORCHESTRATORS"},
+    {"req_id": "FINAL-004", "name": "FIVE_VERIFIED_FREE_EXECUTORS"},
+    {"req_id": "FINAL-005", "name": "FIVE_VERIFIED_FREE_CLOUDS"},
+    {"req_id": "FINAL-006", "name": "INDEPENDENT_FAILURE_DOMAIN_ACCOUNTING"},
+    {"req_id": "FINAL-007", "name": "FOUR_LAYER_E2E"},
+    {"req_id": "FINAL-008", "name": "INGESTION_FAILOVER"},
+    {"req_id": "FINAL-009", "name": "ORCHESTRATOR_FAILOVER"},
+    {"req_id": "FINAL-010", "name": "EXECUTOR_FAILOVER"},
+    {"req_id": "FINAL-011", "name": "CLOUD_FAILOVER"},
+    {"req_id": "FINAL-012", "name": "COMMON_QUEUE_CHECKPOINT_PORTABILITY"},
+    {"req_id": "FINAL-013", "name": "TOOL045_CLOUD_EXECUTION_E2E"},
+    {"req_id": "FINAL-014", "name": "TOOL045_TO_TOOL016_E2E"},
+    {"req_id": "FINAL-015", "name": "ZERO_JOB_SOURCE_CHECKPOINT_RESULT_LOSS"},
+    {"req_id": "FINAL-016", "name": "ZERO_DOUBLE_CLAIM_DUPLICATE_COMPLETION"},
+    {"req_id": "FINAL-017", "name": "NORMAL_OPERATION_WORK_CREDIT_ZERO"},
+    {"req_id": "FINAL-018", "name": "WORK_OUTSIDE_NORMAL_EXECUTION_CHAIN"},
+    {"req_id": "FINAL-019", "name": "CI_READBACK"},
+    {"req_id": "FINAL-020", "name": "FINAL_ZERO_SCAN"},
+    {"req_id": "FINAL-021", "name": "FORWARD_REVERSE_REQUIREMENT_EVIDENCE_RECONCILIATION"},
+    {"req_id": "FINAL-022", "name": "INDEPENDENT_COMPLETENESS_CERTIFICATE"}
+  ]
+}

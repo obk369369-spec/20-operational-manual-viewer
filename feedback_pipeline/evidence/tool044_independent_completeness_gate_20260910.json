@@ -1,0 +1,153 @@
+{
+  "gate_self_test": {
+    "status": "PASS",
+    "checks": {
+      "normal_complete_pass": true,
+      "missing_requirement_blocks": true,
+      "orphan_evidence_blocks": true,
+      "undeployed_change_blocks": true
+    },
+    "normal": {
+      "COMPLETE_CERTIFICATE": "PASS",
+      "TOTAL_REQUIREMENTS": 1,
+      "REQUIREMENTS_WITH_VALID_EVIDENCE": 1,
+      "SEVEN_INTERLOCK_PASS_COUNT": 1,
+      "ORPHAN_REQUIREMENTS": 0,
+      "ORPHAN_EVIDENCE": 0,
+      "UNTESTED_CHANGES": 0,
+      "UNDEPLOYED_CHANGES": 0,
+      "UNACCOUNTED_REQUIREMENTS": 0,
+      "NON_TIME_DEPENDENT_INCOMPLETE": 0,
+      "ZERO_SCAN": "PASS",
+      "blockers": {
+        "duplicate_requirement_ids": [],
+        "orphan_requirements": [],
+        "orphan_evidence": [],
+        "missing_catalog_evidence": [],
+        "untested_changes": [],
+        "undeployed_changes": []
+      }
+    },
+    "fixture_a_missing_requirement": {
+      "COMPLETE_CERTIFICATE": "BLOCKED",
+      "TOTAL_REQUIREMENTS": 2,
+      "REQUIREMENTS_WITH_VALID_EVIDENCE": 1,
+      "SEVEN_INTERLOCK_PASS_COUNT": 1,
+      "ORPHAN_REQUIREMENTS": 1,
+      "ORPHAN_EVIDENCE": 0,
+      "UNTESTED_CHANGES": 0,
+      "UNDEPLOYED_CHANGES": 0,
+      "UNACCOUNTED_REQUIREMENTS": 1,
+      "NON_TIME_DEPENDENT_INCOMPLETE": 1,
+      "ZERO_SCAN": "BLOCKED",
+      "blockers": {
+        "duplicate_requirement_ids": [],
+        "orphan_requirements": [
+          "REQ-MISSING"
+        ],
+        "orphan_evidence": [],
+        "missing_catalog_evidence": [],
+        "untested_changes": [],
+        "undeployed_changes": []
+      }
+    },
+    "fixture_b_orphan_evidence": {
+      "COMPLETE_CERTIFICATE": "BLOCKED",
+      "TOTAL_REQUIREMENTS": 1,
+      "REQUIREMENTS_WITH_VALID_EVIDENCE": 1,
+      "SEVEN_INTERLOCK_PASS_COUNT": 1,
+      "ORPHAN_REQUIREMENTS": 0,
+      "ORPHAN_EVIDENCE": 1,
+      "UNTESTED_CHANGES": 0,
+      "UNDEPLOYED_CHANGES": 0,
+      "UNACCOUNTED_REQUIREMENTS": 0,
+      "NON_TIME_DEPENDENT_INCOMPLETE": 0,
+      "ZERO_SCAN": "BLOCKED",
+      "blockers": {
+        "duplicate_requirement_ids": [],
+        "orphan_requirements": [],
+        "orphan_evidence": [
+          "evidence/orphan.json"
+        ],
+        "missing_catalog_evidence": [],
+        "untested_changes": [],
+        "undeployed_changes": []
+      }
+    },
+    "fixture_c_undeployed_change": {
+      "COMPLETE_CERTIFICATE": "BLOCKED",
+      "TOTAL_REQUIREMENTS": 1,
+      "REQUIREMENTS_WITH_VALID_EVIDENCE": 1,
+      "SEVEN_INTERLOCK_PASS_COUNT": 1,
+      "ORPHAN_REQUIREMENTS": 0,
+      "ORPHAN_EVIDENCE": 0,
+      "UNTESTED_CHANGES": 0,
+      "UNDEPLOYED_CHANGES": 1,
+      "UNACCOUNTED_REQUIREMENTS": 0,
+      "NON_TIME_DEPENDENT_INCOMPLETE": 0,
+      "ZERO_SCAN": "BLOCKED",
+      "blockers": {
+        "duplicate_requirement_ids": [],
+        "orphan_requirements": [],
+        "orphan_evidence": [],
+        "missing_catalog_evidence": [],
+        "untested_changes": [],
+        "undeployed_changes": [
+          "CHANGE-NOT-DEPLOYED"
+        ]
+      }
+    }
+  },
+  "current_scope": {
+    "COMPLETE_CERTIFICATE": "BLOCKED",
+    "TOTAL_REQUIREMENTS": 90,
+    "REQUIREMENTS_WITH_VALID_EVIDENCE": 68,
+    "SEVEN_INTERLOCK_PASS_COUNT": 68,
+    "ORPHAN_REQUIREMENTS": 22,
+    "ORPHAN_EVIDENCE": 0,
+    "UNTESTED_CHANGES": 0,
+    "UNDEPLOYED_CHANGES": 0,
+    "UNACCOUNTED_REQUIREMENTS": 22,
+    "NON_TIME_DEPENDENT_INCOMPLETE": 22,
+    "ZERO_SCAN": "BLOCKED",
+    "blockers": {
+      "duplicate_requirement_ids": [],
+      "orphan_requirements": [
+        "FINAL-001",
+        "FINAL-002",
+        "FINAL-003",
+        "FINAL-004",
+        "FINAL-005",
+        "FINAL-006",
+        "FINAL-007",
+        "FINAL-008",
+        "FINAL-009",
+        "FINAL-010",
+        "FINAL-011",
+        "FINAL-012",
+        "FINAL-013",
+        "FINAL-014",
+        "FINAL-015",
+        "FINAL-016",
+        "FINAL-017",
+        "FINAL-018",
+        "FINAL-019",
+        "FINAL-020",
+        "FINAL-021",
+        "FINAL-022"
+      ],
+      "orphan_evidence": [],
+      "missing_catalog_evidence": [],
+      "untested_changes": [],
+      "undeployed_changes": []
+    },
+    "scope_id": "TOOL044_ONE_SHOT_20260910",
+    "starting_queue_sha256": "5FA466BA1640297CB2A6B09F838EA4EA904324FCA45CE762545D53F48F31F127",
+    "out_of_scope": [
+      "TOOL013"
+    ],
+    "time_bound_exceptions": [
+      "24H_ACTIVE_PROVING"
+    ]
+  }
+}
