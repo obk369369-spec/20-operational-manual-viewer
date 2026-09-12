@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "round": 3,
+  "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+  "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+  "candidate": {
+    "name": "dramatiq",
+    "version": "2.2.0",
+    "official_pypi": "https://pypi.org/project/dramatiq/2.2.0/",
+    "official_source": "https://github.com/Bogdanp/dramatiq",
+    "official_tag": "refs/tags/v2.2.0",
+    "official_tag_commit": "5a1f74eabe3a4c5ddd54a78611d8da34e4013249"
+  },
+  "artifact": {
+    "filename": "dramatiq-2.2.0-py3-none-any.whl",
+    "sha256": "2b2aa244b4098e154600c47cdb2c04cec6c3af44e9e159c319c6fc8b6f0ba90e",
+    "pypi_digest_match_reused": true
+  },
+  "license_identity": {
+    "license": "GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "wheel_classifier": "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "wheel_license_files": [
+      "dramatiq-2.2.0.dist-info/licenses/COPYING",
+      "dramatiq-2.2.0.dist-info/licenses/COPYING.LESSER"
+    ],
+    "artifact_version_link": "PASS",
+    "identity": "PASS",
+    "wic_use": "PASS_WITH_LGPL_COMPLIANCE_OBLIGATIONS"
+  },
+  "expected_contract": {
+    "same_job": true,
+    "same_root": true,
+    "receive_observable": true,
+    "receive_ack": true,
+    "ack_readback_by_tool016": true,
+    "loss_and_duplicate_contract_compatible": true,
+    "no_wic_structure_modification": true
+  },
+  "actual_contract": {
+    "message_id": "Globally unique Dramatiq message identity is built in.",
+    "root_identity": "No WIC ROOT semantic or immutable ROOT field is built in; it must be carried in args, kwargs, or options by integration code.",
+    "receive_observable": "Broker/worker processing is observable, but no WIC TOOL044 receive receipt is emitted as supplied.",
+    "ack": "Worker calls consumer.ack(message) after processing; this is broker acknowledgement, not the required TOOL044 receive ACK.",
+    "readback": "Results middleware can read a result by message identity, but result storage defaults off and requires a configured backend.",
+    "duplicate_and_loss": "Broker semantics help delivery handling but do not by themselves implement WIC JOB/ROOT deduplication and closed-loop ACK read-back.",
+    "no_wic_structure_modification": false
+  },
+  "expected_actual": "FAIL",
+  "license_identity_status": "PASS",
+  "wic_use_status": "PASS",
+  "handoff_receive_ack_contract_fit": "FAIL",
+  "final_component_decision": "NOT_READY_WITHOUT_MODIFICATION",
+  "promotion_status": "NOT_PROMOTED",
+  "next_resume_point": "SEARCH_FOR_EXTERNALLY_COMPLETE_RECEIVE_ACK_COMPONENT_WITH_IMMUTABLE_JOB_ROOT_AND_NATIVE_ACK_READBACK"
+}
