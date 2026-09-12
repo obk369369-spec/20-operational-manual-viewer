@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-12T12:57:00.083564+00:00",
+  "actual_root": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+  "handoff": {
+    "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+    "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+    "source": "TOOL016_ERROR_ROOT_LEDGER.md",
+    "target": "TOOL044_REQUEST_INBOX.json",
+    "source_hash": "7e5603850ea432a8f153aaae9dade9fa9fa184eaee58afe41f117f00d8b52798"
+  },
+  "tool044_receive": {
+    "status": "PASS",
+    "request_id": "TOOL044-CHAT-HANDOFF-GAP-20260910",
+    "matches": 1
+  },
+  "ack": {
+    "ack_id": "ACK::TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+    "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+    "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+    "receiver": "TOOL044",
+    "status": "RECEIVED",
+    "handoff_sha256": "d26d8abf50d855deda2e6a74a643d9cadbbf97cb9935cd23b7567f0daf22567e"
+  },
+  "tool016_ack_readback": "PASS",
+  "same_job_root": true,
+  "source_loss": 0,
+  "handoff_loss": 0,
+  "duplicate_handoff": 0,
+  "tool016_to_tool044_handoff": "PASS",
+  "tool044_ack": "PASS"
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+  "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+  "capability": "HANDOFF_RECEIVE_ACK",
+  "candidate": {
+    "name": "dramatiq",
+    "version": "2.2.0",
+    "status": "CANDIDATE_INDEPENDENT_EVIDENCE_STARTED",
+    "promotion_status": "NOT_PROMOTED",
+    "reason": "Official identities and artifact integrity passed; contract-fit and deployed-copy validation remain for a later atomic unit."
+  },
+  "official_evidence": {
+    "pypi_project": "https://pypi.org/project/dramatiq/2.2.0/",
+    "pypi_json": "https://pypi.org/pypi/dramatiq/2.2.0/json",
+    "official_source": "https://github.com/Bogdanp/dramatiq",
+    "github_tag_ref": "refs/tags/v2.2.0",
+    "github_tag_commit": "5a1f74eabe3a4c5ddd54a78611d8da34e4013249"
+  },
+  "artifact": {
+    "filename": "dramatiq-2.2.0-py3-none-any.whl",
+    "pypi_sha256": "2b2aa244b4098e154600c47cdb2c04cec6c3af44e9e159c319c6fc8b6f0ba90e",
+    "download_recalculated_sha256": "2b2aa244b4098e154600c47cdb2c04cec6c3af44e9e159c319c6fc8b6f0ba90e",
+    "digest_match": true
+  },
+  "external_evidence_count": 2,
+  "first_independent_evidence": "PASS",
+  "next_validation": "LICENSE_IDENTITY_AND_HANDOFF_ACK_CONTRACT_FIT",
+  "no_ready_component": false
+}

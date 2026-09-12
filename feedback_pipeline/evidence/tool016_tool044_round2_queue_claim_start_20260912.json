@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+  "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+  "queue_entry": {
+    "status": "PASS",
+    "matches": 1,
+    "demand_id": "TOOL044-CHAT-HANDOFF-GAP-20260910-HANDOFF_RECEIVE_ACK"
+  },
+  "claim": {
+    "claim_id": "CLAIM::TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+    "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+    "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+    "demand_id": "TOOL044-CHAT-HANDOFF-GAP-20260910-HANDOFF_RECEIVE_ACK",
+    "claimed_by": "TOOL044_ATOMIC_WATCH",
+    "claimed_at": "2026-09-12T13:14:03.442922+00:00"
+  },
+  "duplicate_claim": 0,
+  "execution_start": {
+    "status": "PASS",
+    "cycle_id": "20260912T131403Z",
+    "actual_start": "2026-09-12T13:14:03.445261+00:00",
+    "trigger_source": "WORK"
+  },
+  "first_execution_readback": {
+    "status": "PASS",
+    "demand_id": "TOOL044-CHAT-HANDOFF-GAP-20260910-HANDOFF_RECEIVE_ACK",
+    "result": "NO_READY_ATOMIC_COMPONENT",
+    "missing": [
+      "HANDOFF_RECEIVE_ACK"
+    ],
+    "query_signature": "8f580c111bb3200e566190f79f94d8292712272677b7cfef3a743185144a89c4"
+  },
+  "expected_actual_match": true,
+  "job_loss": 0,
+  "source_loss": 0
+}
