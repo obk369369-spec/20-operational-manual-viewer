@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "round": 4,
+  "search_scope": "Existing evidence/registry reuse, then one deep candidate: official nats-py 2.15.0 PyPI wheel, official GitHub tag, wheel license and JetStream ACK APIs.",
+  "excluded_recheck": ["dramatiq==2.2.0"],
+  "job_id": "TOOL044-CHAT-HANDOFF-GAP-20260910::HANDOFF_RECEIVE_ACK",
+  "root_id": "T16-T44-RC-HANDOFF-EXECUTION-STATUS-RETURN-GAP",
+  "candidate": {
+    "name": "nats-py",
+    "version": "2.15.0",
+    "official_source": "https://github.com/nats-io/nats.py",
+    "official_pypi": "https://pypi.org/project/nats-py/2.15.0/",
+    "official_tag": "refs/tags/v2.15.0",
+    "official_tag_commit": "24626a43631a21af2e35261cf0a8ec615fd35c78",
+    "maintenance_evidence": "Official v2.15.0 release and signed GitHub release are present."
+  },
+  "artifact": {
+    "filename": "nats_py-2.15.0-py3-none-any.whl",
+    "pypi_sha256": "9f8d36aa52a9926a88b8f1d70cf1fdce0ad387941479b500ee9ab3e51073cefd",
+    "download_recalculated_sha256": "9f8d36aa52a9926a88b8f1d70cf1fdce0ad387941479b500ee9ab3e51073cefd",
+    "digest_match": true
+  },
+  "license": {
+    "name": "Apache License 2.0",
+    "artifact_file": "nats_py-2.15.0.dist-info/licenses/LICENSE",
+    "identity": "PASS",
+    "wic_use": "PASS_WITH_NOTICE_AND_LICENSE_COMPLIANCE"
+  },
+  "expected": "handoff(JOB,ROOT) -> receive(JOB,ROOT) -> native receive ACK(JOB,ROOT) -> persistent/readable ACK -> TOOL016 read-back(JOB,ROOT,ACK), with no WIC-specific modification.",
+  "actual": {
+    "publish_ack": "JetStream publish() waits for PubAck containing stream, sequence and duplicate status.",
+    "consumer_ack": "Delivered JetStream messages expose ack(); ack_sync() waits for server processing of that consumer ACK.",
+    "job_identity": "Nats-Msg-Id supports publisher-side deduplication, but PubAck/consumer ACK does not natively return an immutable WIC JOB field end-to-end.",
+    "root_identity": "No native WIC ROOT field exists; ROOT must be encoded and mapped using application headers or payload.",
+    "ack_readback": "ack_sync() returns an immediate server response to the consumer; it does not create a persistent JOB/ROOT ACK record readable later by TOOL016.",
+    "duplicate_loss": "JetStream offers persistence, deduplication and redelivery controls, but WIC JOB/ROOT-to-ACK closed-loop persistence still requires integration code."
+  },
+  "gates": {
+    "native_receive_ack": "PASS",
+    "immutable_job": "FAIL",
+    "immutable_root": "FAIL",
+    "ack_readback": "FAIL",
+    "no_modification_required": "FAIL",
+    "license_fit": "PASS"
+  },
+  "expected_actual": "FAIL",
+  "candidate_decision": "NOT_READY_WITHOUT_MODIFICATION",
+  "round_decision": "NO_READY_COMPONENT",
+  "promotion_status": "NOT_PROMOTED",
+  "rejected_candidates": [
+    {
+      "candidate": "dramatiq==2.2.0",
+      "reason": "ROUND_3: broker post-processing ACK and optional results backend do not implement native WIC receive-ACK read-back."
+    },
+    {
+      "candidate": "nats-py==2.15.0",
+      "reason": "Native JetStream ACKs exist, but immutable WIC ROOT and persistent TOOL016-readable ACK require WIC-specific mapping/storage code."
+    }
+  ],
+  "do_not_research": ["dramatiq==2.2.0", "nats-py==2.15.0"],
+  "next_search_condition": "Externally complete product must natively preserve two caller-defined immutable correlation identities and expose a durable receive-ACK record queryable by the sender, without adapter, mapping or new result storage.",
+  "round_5_started": false
+}
