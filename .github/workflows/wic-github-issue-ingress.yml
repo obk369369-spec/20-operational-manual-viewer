@@ -21,16 +21,20 @@ jobs:
         with:
           script: |
             const issue = context.payload.issue;
+            const originalContent = issue.body || issue.title;
             const eventJson = {
               event_kind: 'WIC_EXTERNAL_GITHUB_ISSUE',
               source_chat: 'github_issue',
               source_ref: issue.html_url,
-              feedback: issue.body || issue.title,
+              feedback: originalContent,
               actual_input_ref: `github_issue:${issue.id}`,
               wrong_output_ref: 'NONE',
               expected: 'Route through TOOL016 and preserve source lineage',
               source_id: String(issue.id),
-              timestamp: issue.created_at
+              timestamp: issue.created_at,
+              mutation_action: 'APPLY_FEEDBACK',
+              directive_text: originalContent,
+              directive_source_ref: `CURRENT_CHAT#github-issue-${issue.id}`
             };
             await github.rest.repos.createDispatchEvent({
               owner: context.repo.owner,
@@ -42,5 +46,7 @@ jobs:
               source_id: eventJson.source_id,
               source_ref: eventJson.source_ref,
               timestamp: eventJson.timestamp,
-              event_type: 'wic_feedback'
+              event_type: 'wic_feedback',
+              mutation_action: eventJson.mutation_action,
+              directive_source_ref: eventJson.directive_source_ref
             }));
