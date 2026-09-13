@@ -32,6 +32,7 @@ jobs:
               expected: 'Route through TOOL016 and preserve source lineage',
               source_id: String(issue.id),
               timestamp: issue.created_at,
+              registration_mode: 'CENTRAL_LANE_PROVISIONAL',
               mutation_action: 'APPLY_FEEDBACK',
               directive_text: originalContent,
               directive_source_ref: `CURRENT_CHAT#github-issue-${issue.id}`
@@ -47,6 +48,7 @@ jobs:
               source_ref: eventJson.source_ref,
               timestamp: eventJson.timestamp,
               event_type: 'wic_feedback',
+              registration_mode: eventJson.registration_mode,
               mutation_action: eventJson.mutation_action,
               directive_source_ref: eventJson.directive_source_ref
             }));
