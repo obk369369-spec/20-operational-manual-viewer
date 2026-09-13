@@ -174,16 +174,48 @@ jobs:
 
           root = Path('feedback_pipeline')
           state_path = root / 'state.json'
-          manifest_path = root / 'target_apply_manifest.json'
           adapters_path = root / 'target_adapter_registry.json'
           evidence_dir = root / 'evidence'
 
+          # Bind finalize exclusively to the immutable result emitted by this apply step.
+          # A stale target_apply_manifest.json is never accepted as current-event identity.
+          result_lines = [line for line in Path('/tmp/wic-event-result.json').read_text(encoding='utf-8').splitlines() if line.strip()]
+          if not result_lines:
+              raise SystemExit('REJECT: current apply result is empty')
+          current = json.loads(result_lines[-1])
+          evidence_packet = current.get('evidence_packet') or {}
+          fid = str(current.get('pipeline_id') or '')
+          target = str(current.get('target') or '')
+          root_id = str(evidence_packet.get('root_cause_id') or '')
+          source_ref = str(evidence_packet.get('source_ref') or '')
+          receipt_rel = str(current.get('TARGET_APPLY_RECEIPT') or '')
+          receipt_verified = bool((current.get('REMOTE_FILE_READBACK') or {}).get('verified'))
+
+          if current.get('status') != 'TARGET_REMOTE_PASS':
+              raise SystemExit('REJECT: finalize input is not current TARGET_REMOTE_PASS')
+          if not fid or not target or not root_id or not source_ref:
+              raise SystemExit('REJECT: current event identity, target, root, or lineage is empty')
+          if fid not in receipt_rel or not receipt_verified:
+              raise SystemExit('REJECT: current receipt is not bound to pipeline_id')
+          receipt_path = Path(receipt_rel)
+          if not receipt_path.is_file():
+              raise SystemExit('REJECT: current receipt file is missing')
+          receipt = json.loads(receipt_path.read_text(encoding='utf-8'))
+          if (str(receipt.get('pipeline_id') or '') != fid
+                  or str(receipt.get('root_cause_id') or '') != root_id
+                  or str(receipt.get('target') or '') != target):
+              raise SystemExit('REJECT: current receipt identity mismatch')
+
           state = json.loads(state_path.read_text(encoding='utf-8'))
-          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
           adapters = json.loads(adapters_path.read_text(encoding='utf-8'))
-          fid = manifest['feedback_id']
-          rev = manifest['canonical_revision']
-          targets = manifest.get('targets', {})
+          rev = str(current.get('COMMIT_SHA') or '')
+          if not rev:
+              raise SystemExit('REJECT: current canonical revision is empty')
+          targets = {
+              target: {
+                  'decision': (current.get('MATERIAL_CHANGE_RECEIPT') or {}).get('decision')
+              }
+          }
           lane_targets = adapters.get('lane_targets', {})
 
           # Cross-repository or unknown targets remain HOLD; never fake target PASS.
