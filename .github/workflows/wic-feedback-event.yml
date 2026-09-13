@@ -153,7 +153,7 @@ jobs:
       - name: Apply pending real feedback event
         id: apply
         run: |
-          python feedback_pipeline/global_pipeline.py --execute-event /tmp/wic-event.json --workspace . | tee /tmp/wic-event-result.json
+          python feedback_pipeline/global_pipeline.py --execute-event /tmp/wic-event.json --workspace . --bundled-python "$(command -v python)" | tee /tmp/wic-event-result.json
           python - <<'PY'
           import json, os
           from pathlib import Path
