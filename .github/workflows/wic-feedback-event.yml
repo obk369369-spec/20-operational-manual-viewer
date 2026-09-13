@@ -142,6 +142,12 @@ jobs:
           print('PASS: PRECHECK_USER_DIRECTIVE allowed exact approved user directive before APPLY')
           PY
 
+      - name: Capture exact pre-apply worktree status
+        run: |
+          echo 'DIRTY_STATUS_BEGIN'
+          git status --porcelain=v1 --untracked-files=all
+          echo 'DIRTY_STATUS_END'
+
       - name: Apply pending real feedback event
         id: apply
         run: |
