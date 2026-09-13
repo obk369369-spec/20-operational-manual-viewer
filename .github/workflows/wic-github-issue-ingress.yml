@@ -25,6 +25,7 @@ jobs:
             const eventJson = {
               event_kind: 'WIC_EXTERNAL_GITHUB_ISSUE',
               source_chat: 'github_issue',
+              tool_id: 'CENTRAL',
               source_ref: issue.html_url,
               feedback: originalContent,
               actual_input_ref: `github_issue:${issue.id}`,
