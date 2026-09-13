@@ -136,6 +136,9 @@ jobs:
               assert remote_evidence_json['blocked_before_mutation'] is True
               print(json.dumps(evidence, ensure_ascii=False))
               raise SystemExit('DENY_HOLD: evidence persisted to observer before APPLY')
+          # ALLOW evidence is transient; preserve the tracked canonical file so the
+          # downstream clean-worktree gate only sees pre-existing user changes.
+          subprocess.run(['git', 'restore', '--source=HEAD', '--', 'feedback_pipeline/preflight_evidence.json'], check=True)
           print('PASS: PRECHECK_USER_DIRECTIVE allowed exact approved user directive before APPLY')
           PY
 
