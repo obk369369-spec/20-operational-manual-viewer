@@ -1,0 +1,46 @@
+name: WIC GitHub issue ingress adapter
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wic-github-issue-ingress-${{ github.event.issue.id }}
+  cancel-in-progress: false
+
+jobs:
+  dispatch-wic-feedback:
+    if: startsWith(github.event.issue.title, '[WIC]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Normalize real GitHub issue and dispatch canonical WIC event
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const eventJson = {
+              event_kind: 'WIC_EXTERNAL_GITHUB_ISSUE',
+              source_chat: 'github_issue',
+              source_ref: issue.html_url,
+              feedback: issue.body || issue.title,
+              actual_input_ref: `github_issue:${issue.id}`,
+              wrong_output_ref: 'NONE',
+              expected: 'Route through TOOL016 and preserve source lineage',
+              source_id: String(issue.id),
+              timestamp: issue.created_at
+            };
+            await github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: 'wic_feedback',
+              client_payload: { event_json: JSON.stringify(eventJson) }
+            });
+            core.info(JSON.stringify({
+              source_id: eventJson.source_id,
+              source_ref: eventJson.source_ref,
+              timestamp: eventJson.timestamp,
+              event_type: 'wic_feedback'
+            }));
