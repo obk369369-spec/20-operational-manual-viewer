@@ -381,7 +381,7 @@ def main() -> None:
         registry=json.loads(REGISTRY.read_text(encoding="utf-8")); event=json.loads(Path(args.execute_event).read_text(encoding="utf-8"))
         result=execute_actual_transport(event,registry,Path(args.workspace),bundled_python=args.bundled_python)
         if args.evidence: Path(args.evidence).write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-        print(json.dumps(result,ensure_ascii=False,indent=2))
+        print(json.dumps(result,ensure_ascii=False,separators=(",",":")))
 
 
 if __name__=="__main__": main()
