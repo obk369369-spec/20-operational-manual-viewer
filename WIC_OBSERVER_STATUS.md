@@ -109,14 +109,14 @@
 
 <!-- WIC_DENY_OBSERVER_AUTO_START -->
 ## 최근 DENY 자동 관찰자 보고
-- generated_at_utc: `2026-08-26T02:04:16.409668+00:00`
+- generated_at_utc: `2026-09-13T07:34:58.664731+00:00`
 - decision: `DENY_HOLD`
-- action: `APPLY_FEEDBACK`
+- action: ``
 - target: `WIC_GLOBAL_OPERATING_RULES.md`
-- reason: `directive text not found as an exact approved user-record entry`
+- reason: `unknown or unregistered change action`
 - error_class: `STRUCTURAL_ERROR_UNAUTHORIZED`
 - blocked_before_mutation: `true`
-- directive_source_ref: `CURRENT_CHAT#user-directive-2026-08-25-fix-n-report-gate-and-reoutput`
+- directive_source_ref: `https://github.com/obk369369-spec/20-operational-manual-viewer/issues/10`
 <!-- WIC_DENY_OBSERVER_AUTO_END -->
 
 <!-- WIC_EXECUTION_STATE_SYNC_START -->
