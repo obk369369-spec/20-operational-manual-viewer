@@ -32,7 +32,7 @@
   "tool_function_improvement": {
     "source": "feedback_pipeline/tool044_function_state.json",
     "classification_counts": {
-      "IMPROVED_VERIFIED": 3,
+      "IMPROVED_VERIFIED": 9,
       "IMPROVED_PARTIAL": 6,
       "REPEATED_ERROR": 0,
       "HOLD": 3,
@@ -40,9 +40,9 @@
       "MISSING_CAPABILITY": 19,
       "NO_READY_COMPONENT": 0,
       "RUNTIME_NOT_ENFORCED": 0,
-      "ACTUAL_USE_NOT_VERIFIED": 11,
+      "ACTUAL_USE_NOT_VERIFIED": 8,
       "DEPLOYMENT_NOT_VERIFIED": 0,
-      "UNKNOWN": 6
+      "UNKNOWN": 3
     },
     "functions": [
       {
@@ -66,10 +66,10 @@
         "TOOL_ID": "TOOL002",
         "FUNCTION_ID": "TOOL002-CANONICAL-RUNTIME",
         "FUNCTION_NAME": "canonical runtime and deployed actual-use path",
-        "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
         "IMPROVEMENT_EVIDENCE": "evidence",
-        "REMAINING_ERROR": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": null,
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -77,7 +77,7 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_TOOL_LOCAL_REVIEW"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "TOOL006",
@@ -168,10 +168,10 @@
         "TOOL_ID": "TOOL020",
         "FUNCTION_ID": "TOOL020-CANONICAL-RUNTIME",
         "FUNCTION_NAME": "canonical runtime and deployed actual-use path",
-        "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
         "IMPROVEMENT_EVIDENCE": "public/index.html",
-        "REMAINING_ERROR": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": null,
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -179,7 +179,7 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_TOOL_LOCAL_REVIEW"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "TOOL027",
@@ -270,10 +270,10 @@
         "TOOL_ID": "TOOL043",
         "FUNCTION_ID": "TOOL043-CANONICAL-RUNTIME",
         "FUNCTION_NAME": "canonical runtime and deployed actual-use path",
-        "CURRENT_STATUS": "ACTUAL_USE_NOT_VERIFIED",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
         "IMPROVEMENT_EVIDENCE": "tool043/TEST_EVIDENCE.md",
-        "REMAINING_ERROR": "ACTUAL_USE_EVIDENCE_NOT_EXPLICIT",
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": null,
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -281,7 +281,7 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_TOOL_LOCAL_REVIEW"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
@@ -304,10 +304,16 @@
         "TOOL_ID": "CENTRAL",
         "FUNCTION_ID": "CI-REGISTRY-STAGING-STATUS",
         "FUNCTION_NAME": "CI-REGISTRY-STAGING-STATUS",
-        "CURRENT_STATUS": "UNKNOWN",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
-        "IMPROVEMENT_EVIDENCE": null,
-        "REMAINING_ERROR": "Existing one-line patch validated with actual staging row, ACTIVE/unknown/unproved-COMPLETE regression. Code6c5f652e; CI33724676161 and33724676034 succeeded; all3source files remote matched. Evidence18dcc83f persisted. No TOOL014 business runtime changed.",
+        "IMPROVEMENT_EVIDENCE": {
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "commit": "18dcc83fc9aced06842e6d620a64114bf1c8bd4f",
+          "path": "feedback_pipeline/evidence/registry_staging_ci_close_20260903.json",
+          "remote_blob_sha": "4c39a7f411202d3d0aee8d09b6cb388d56edf0c0",
+          "scope": "Actual CENTRAL CI staging-status repair, not TOOL014 live deployment"
+        },
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": "CI-REGISTRY-STAGING-STATUS",
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -315,7 +321,7 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_EXTERNAL_EVIDENCE_GATE"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
@@ -338,10 +344,16 @@
         "TOOL_ID": "TOOL044 / TOOL043",
         "FUNCTION_ID": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
         "FUNCTION_NAME": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
-        "CURRENT_STATUS": "UNKNOWN",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
-        "IMPROVEMENT_EVIDENCE": null,
-        "REMAINING_ERROR": "TOOL044 production executed one pinned fastjsonschema candidate through sandbox, unmodified TOOL043 integration, actual canonical input comparison, 6 invalid-proof cases, regression, push/readback, both operating folders, deployed TOOL044 executing deployed TOOL043 test PASS. Original TOOL013 pilot not retested.",
+        "IMPROVEMENT_EVIDENCE": {
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "commit": "99269456d92972fc49c875ca16c36ab23f3b5ffc",
+          "path": "feedback_pipeline/evidence/tool044_production_run.json",
+          "remote_blob_sha": "313c7b40df0d1c9ae6e479233e3760f1e1faef46",
+          "scope": "TOOL044 production adapter for TOOL043 structured evidence and deployed-copy test; not arbitrary future adapter creation or Android retest"
+        },
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -349,16 +361,22 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_EXTERNAL_EVIDENCE_GATE"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "TOOL044 / TOOL013",
         "FUNCTION_ID": "TOOL044-READY-COMPONENT-PILOT",
         "FUNCTION_NAME": "TOOL044-READY-COMPONENT-PILOT",
-        "CURRENT_STATUS": "UNKNOWN",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
-        "IMPROVEMENT_EVIDENCE": null,
-        "REMAINING_ERROR": "Unmodified idb-keyval 6.2.2 installed in TOOL013, real XLSX 6 rows plus 4050383-char/160-row resume/download exact comparison and impacted regression PASS; deployed canonical same E2E PASS; remote bytes matched. Translation not included.",
+        "IMPROVEMENT_EVIDENCE": {
+          "repository": "obk369369-spec/13-excel-upload",
+          "commit": "3a70d84161d0cff9916a7a37d6c88d279df111eb",
+          "path": "tests/tool13_idb_deployed_evidence.json",
+          "remote_blob_sha": "eeddfb36b0c77f35617855c0a89355175dcfe609",
+          "scope": "TOOL013 idb-keyval cache pilot only; not TOOL044 autonomous production deployment"
+        },
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": "TOOL044-READY-COMPONENT-PILOT",
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -366,7 +384,7 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_EXTERNAL_EVIDENCE_GATE"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "EXTERNAL",
@@ -1008,7 +1026,7 @@
     "execution_location": "LOCAL",
     "cloud": {
       "status": "VERIFIED",
-      "checkpoint": "34796073238",
+      "checkpoint": "34815474673",
       "jobs": 4,
       "deferred_backoff": 4,
       "paid_api_calls": 0,
@@ -1017,8 +1035,8 @@
     "local_required_queue": 1,
     "operational_counts": {
       "open_error_count": 0,
-      "open_capability_count": 25,
-      "atomic_demand_count": 25,
+      "open_capability_count": 28,
+      "atomic_demand_count": 28,
       "external_candidates_found": 115,
       "verified_component_count": 14,
       "verified_atomic_count": 6,
@@ -1035,7 +1053,8 @@
         "TOOL044": 2,
         "TOOL016_FUNCTION_STATE": 4,
         "TOOL016": 9,
-        "TOOL013": 2
+        "TOOL013": 2,
+        "CENTRAL": 3
       }
     },
     "safe_integration_truth": {
@@ -1390,9 +1409,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-14T04:55:05.700636+00:00",
-  "source_revision": "eeffd36f8ccd7695c0943d3da4d8e37b66b5994a",
-  "github_actions_run": "34807747462",
+  "observer_generated_at": "2026-09-14T12:45:28.784533+00:00",
+  "source_revision": "7f5d8d336df6df83b801ba03b5839063ab7df681",
+  "github_actions_run": "34845169289",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -1404,7 +1423,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-14T04:55:05.700117+00:00",
+      "executed_at": "2026-09-14T12:45:28.784089+00:00",
       "status": "COMPLETED"
     }
   ]
