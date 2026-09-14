@@ -135,10 +135,42 @@ Work 내부 재판단·재설계·재검색·임의 재수정은 하지 않는�
 - 중간 보고를 요구하지 않는다.
 - 기존 PASS는 재실행하지 않는다.
 - 같은 내용을 채팅과 Work에서 각각 검토하지 않는다.
-- Work 종료 후 다음 판단은 다시 채팅으로 가져온다.
 - 크레딧 사용량을 사용자가 계속 감시할 필요가 없도록 한다.
+- 작은 Work 회차를 반복하면 매 회차 저장소 확인, 상태 확인, 실행환경 확인 등 초기 세팅이 반복되어 시간과 크레딧이 낭비될 수 있으므로 피한다.
 
-## 8. Observer 보호
+## 8. NORMAL_COMPRESSED_CONTINUOUS_MODE — 평상시 압축 연속실행
+
+이 모드는 비상모드가 아니다. 초기화 시각이 임박하지 않았지만 남은 시간과 Work 크레딧을 효율적으로 사용해야 할 때 적용하는 NORMAL_MODE의 실행 방식이다.
+
+목적은 `채팅↔Work 왕복 횟수`와 `Work 초기 세팅 반복`을 줄이는 것이다.
+
+원칙:
+
+- 채팅에서 여러 독립 작업의 판단·해결책·7-GATE를 먼저 묶어서 완료한다.
+- Work는 완성된 여러 실행묶음을 한 회차에서 연속 처리한다.
+- 한 작업이 막혀도 다른 독립 작업의 실행명세가 완성되어 있으면 Work 전체를 끝내지 않는다.
+- 막힌 작업은 `ACTUAL 증거 → HOLD 또는 NEEDS_CHAT_DECISION → SKIP`하고 다음 독립 작업으로 진행한다.
+- Work는 막힌 작업의 원인을 연구하거나 새 해결책을 만들지 않는다.
+- 기존 PASS는 즉시 SKIP한다.
+- 가능한 변경은 묶어서 테스트하고 가능하면 ONE COMMIT / ONE PUSH / ONE REMOTE READ-BACK으로 끝낸다.
+- 중간 보고와 중간 handoff를 최소화한다.
+- 실행 가능한 독립 묶음을 모두 소진한 뒤 한 번만 채팅으로 결과를 반환한다.
+
+압축 실행식:
+
+`CHAT: 여러 작업 일괄 FIND/JUDGE/DESIGN/7-GATE`
+
+`WORK: A 실행 → B 실행 → 막힌 C는 HOLD/SKIP → D 실행 → 묶음 TEST → ONE COMMIT/PUSH/READ-BACK → CHECKPOINT → RETURN ONCE`
+
+금지:
+
+- 압축을 이유로 Work가 조사·판단·설계 업무를 가져가는 것
+- 실패한 항목을 Work 내부에서 임의 수정·재시도하는 것
+- 단순히 크레딧을 소비하기 위한 반복 실행
+
+시간이 충분한 평상시에도 실행 대상이 여러 개 준비되어 있으면 소규모 왕복보다 이 모드를 우선한다.
+
+## 9. Observer 보호
 
 목표:
 
@@ -149,24 +181,26 @@ Work 내부 재판단·재설계·재검색·임의 재수정은 하지 않는�
 
 사용자는 Work 운영자·테스터·감시자가 아니다. 불가피한 보안 승인 또는 Work 실행 시작 외의 중간 조작을 요구하지 않는다.
 
-## 9. USB / 로컬 경로
+## 10. USB / 로컬 경로
 
 - USB는 USB에만 필요한 실제 artifact가 있다는 증거가 있을 때만 사용한다.
 - USB/로컬 자료 자체를 검증하는 회차에서는 필요한 범위에 한해 사용할 수 있다.
 - GitHub 정본으로 가능한 작업 때문에 USB 또는 I: 전체 조사를 선행하지 않는다.
 - 필요한 경로·권한·입력은 채팅에서 먼저 확정한다.
 
-## 10. NORMAL_MODE 종료 규칙
+## 11. NORMAL_MODE 종료 규칙
 
-모든 Work ROUND는 다음 순서로 강제 종료한다.
+단일 실행묶음 NORMAL_MODE에서는:
 
-`지정 실행 완료 또는 EXPECTED 불일치 → ACTUAL 결과/증거 출력 → SAFE_CHECKPOINT 저장 → checkpoint read-back → 즉시 자동중단 → 다음 ROUND 자동 시작 금지`
+`지정 실행 완료 또는 EXPECTED 불일치 → ACTUAL 결과/증거 출력 → SAFE_CHECKPOINT 저장 → checkpoint read-back → 즉시 자동중단`
+
+NORMAL_COMPRESSED_CONTINUOUS_MODE에서는 한 lane의 EXPECTED 불일치가 다른 독립 lane까지 중단시키지 않는다. 실패 lane의 증거를 보존하고 HOLD/SKIP한 뒤 이미 실행명세가 완성된 다른 lane을 계속한다. 모든 준비된 lane 소진 후 SAFE_CHECKPOINT와 read-back을 수행하고 종료한다.
 
 `MASTER_FIXED != RUNTIME_FIXED`
 
 실제 배포가 필요한 작업은 저장소 수정만으로 완료 처리하지 않는다. 채팅에서 정한 배포·실사용 검증 범위까지 실제 증거가 있어야 한다.
 
-## 11. EMERGENCY_CREDIT_EXPIRY_MODE — NORMAL_MODE와 별도
+## 12. EMERGENCY_CREDIT_EXPIRY_MODE — NORMAL_MODE와 별도
 
 비상모드는 NORMAL_MODE가 아니다.
 
@@ -186,12 +220,14 @@ Work 내부 재판단·재설계·재검색·임의 재수정은 하지 않는�
 
 2026-09-14 승인 사례는 당시 비상상황에만 해당하며 NORMAL_MODE의 일반 운영기준으로 사용하지 않는다.
 
-## 12. 최종 운영식
+## 13. 최종 운영식
 
 `CHAT: FIND → JUDGE → DESIGN → FIX SPEC → TEST SPEC → EXPECTED`
 
 `WORK: MODIFY → EXECUTE → MEASURE → RECORD → DEPLOY/PUSH → READ-BACK → CHECKPOINT → STOP`
 
-`FAIL: WORK records ACTUAL and stops → CHAT diagnoses and decides → new WORK executes only if required`
+`NORMAL_COMPRESSED_CONTINUOUS: CHAT에서 여러 실행묶음 완성 → WORK 한 회차에서 연속·압축 실행 → 막힌 lane만 HOLD/SKIP → 마지막에 한 번 반환`
+
+`FAIL: WORK records ACTUAL → CHAT diagnoses and decides → new WORK executes only if required`
 
 **채팅과 Work의 공통 판단업무는 0으로 유지한다.**
