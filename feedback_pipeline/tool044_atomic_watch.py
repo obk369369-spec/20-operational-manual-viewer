@@ -203,15 +203,18 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
     }
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    candidate_path = state_path.parent / "tool044_external_candidate_pool.json"
+    verified_path = state_path.parent / "tool044_verified_external_component_pool.json"
     if external_queries:
-        candidate_path = state_path.parent / "tool044_external_candidate_pool.json"
-        verified_path = state_path.parent / "tool044_verified_external_component_pool.json"
         all_harvests = [receipt for result in results for receipt in result.get("external_receipts", [])]
         candidate_path.write_text(json.dumps({"candidates": all_harvests}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         old_verified = json.loads(verified_path.read_text(encoding="utf-8"))["components"] if verified_path.exists() else []
         merged = {item["component_id"]: item for item in old_verified + verified_external}
         verified_path.write_text(json.dumps({"components": list(merged.values())}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    verified_path = state_path.parent / "tool044_verified_external_component_pool.json"
+    elif not candidate_path.exists():
+        candidate_path.write_text(json.dumps({"candidates": [], "reason": "NO_EXTERNAL_QUERY_IN_CYCLE"}, indent=2) + "\n", encoding="utf-8")
+    if not verified_path.exists():
+        verified_path.write_text(json.dumps({"components": [], "reason": "NO_VERIFIED_EXTERNAL_COMPONENT_YET"}, indent=2) + "\n", encoding="utf-8")
     external_verified = json.loads(verified_path.read_text(encoding="utf-8")).get("components", []) if verified_path.exists() else []
     composition_path = state_path.parent / "tool044_verified_composition_pool.json"
     available = {item.get("component_id") for item in external_verified} | {
