@@ -1,15 +1,15 @@
 {
-  "cycle_id": "20260914T065518Z",
+  "cycle_id": "20260914T133824Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
-  "scheduled_start": "2026-09-14T06:55:18.331060+00:00",
-  "actual_start": "2026-09-14T06:55:18.331060+00:00",
+  "scheduled_start": "2026-09-14T13:38:24.086292+00:00",
+  "actual_start": "2026-09-14T13:38:24.086292+00:00",
   "trigger_source": "SCHEDULED",
   "work_triggered": false,
   "user_triggered": false,
   "paid_api_calls": 0,
   "paid_saas_calls": 0,
   "production_mutations": 0,
-  "demands_processed": 25,
+  "demands_processed": 28,
   "duplicate_searches_blocked": 21,
   "external_sources_queried": 0,
   "verified_external_components": [],
@@ -32,39 +32,39 @@
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -76,13 +76,13 @@
     {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -170,6 +170,45 @@
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
       "result": "DUPLICATE_SEARCH_BLOCKED",
       "query_signature": "3373a9c6b1ed337b91a3527ee8abb83f1be9fc69f148a912cbd700e14d13ab4d"
+    },
+    {
+      "demand_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+      "query_signature": "061e07465cb1a38bf2c5470759cbc1a6d4fb6082827a3929b709a7dc780c67c1",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
+      "matched": {},
+      "missing": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "query_signature": "52e4ed8b34a2572b88abff2741a812abffb8477e81c99c5d8d9ec1e801fd88e6",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
+      "matched": {},
+      "missing": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    {
+      "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "query_signature": "e62388b9f0705e9b4b85794964cde68e00cec0313f71120aacd1050c655e4072",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
+      "matched": {
+        "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     }
   ],
   "receipts": {
@@ -322,13 +361,13 @@
     "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -374,39 +413,39 @@
     "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02": {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
     "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755": {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "query_signature": "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755",
-      "last_searched": "2026-09-14T06:55:18.331060+00:00",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
       "matched": {
         "LOCAL_DAG_EXECUTION_ENGINE": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
       "missing": [],
       "result": "READY_ATOMIC_COMPONENT_FOUND",
-      "next_eligible_search": "2026-09-15T06:55:18.331060+00:00",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
       "external_search_executed": false,
       "external_receipts": []
     },
@@ -631,11 +670,50 @@
       "next_eligible_search": "2026-09-14T21:35:59.957639+00:00",
       "external_search_executed": false,
       "external_receipts": []
+    },
+    "061e07465cb1a38bf2c5470759cbc1a6d4fb6082827a3929b709a7dc780c67c1": {
+      "demand_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+      "query_signature": "061e07465cb1a38bf2c5470759cbc1a6d4fb6082827a3929b709a7dc780c67c1",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
+      "matched": {},
+      "missing": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "52e4ed8b34a2572b88abff2741a812abffb8477e81c99c5d8d9ec1e801fd88e6": {
+      "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "query_signature": "52e4ed8b34a2572b88abff2741a812abffb8477e81c99c5d8d9ec1e801fd88e6",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
+      "matched": {},
+      "missing": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "result": "NO_READY_ATOMIC_COMPONENT",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
+    },
+    "e62388b9f0705e9b4b85794964cde68e00cec0313f71120aacd1050c655e4072": {
+      "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "query_signature": "e62388b9f0705e9b4b85794964cde68e00cec0313f71120aacd1050c655e4072",
+      "last_searched": "2026-09-14T13:38:24.086292+00:00",
+      "matched": {
+        "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      },
+      "missing": [],
+      "result": "READY_ATOMIC_COMPONENT_FOUND",
+      "next_eligible_search": "2026-09-15T13:38:24.086292+00:00",
+      "external_search_executed": false,
+      "external_receipts": []
     }
   },
   "next_state": "WAITING_FOR_NEXT_TRIGGER",
   "function_state": "tool044_function_state.json",
-  "external_demand_candidate_count": 21,
+  "external_demand_candidate_count": 23,
   "composition_candidates": 1,
   "compositions_tested": 1,
   "verified_compositions": 1,
