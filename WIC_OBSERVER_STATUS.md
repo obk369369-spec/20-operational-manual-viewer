@@ -109,14 +109,14 @@
 
 <!-- WIC_DENY_OBSERVER_AUTO_START -->
 ## 최근 DENY 자동 관찰자 보고
-- generated_at_utc: `2026-09-14T04:53:30.904967+00:00`
+- generated_at_utc: `2026-09-14T10:11:05.942258+00:00`
 - decision: `DENY_HOLD`
 - action: `APPLY_FEEDBACK`
 - target: `WIC_GLOBAL_OPERATING_RULES.md`
 - reason: `directive text not found as an exact approved user-record entry`
 - error_class: `STRUCTURAL_ERROR_UNAUTHORIZED`
 - blocked_before_mutation: `true`
-- directive_source_ref: `CURRENT_CHAT#REMOTE_RUNTIME_E2E_20260914_02`
+- directive_source_ref: `CURRENT_CHAT#github-issue-5448004454`
 <!-- WIC_DENY_OBSERVER_AUTO_END -->
 
 <!-- WIC_EXECUTION_STATE_SYNC_START -->
