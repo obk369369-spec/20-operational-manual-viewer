@@ -64,7 +64,10 @@ def build(base: Path = HERE) -> dict:
     # waits are not external-component searches.
     for item in ledger:
         state = str(item.get("status", "UNKNOWN"))
-        if any(word in state for word in ("HOLD", "WAIT", "LIMIT", "BLOCK")):
+        closed_evidence = item.get("completion_evidence")
+        if state == "VERIFIED_CLOSED" and closed_evidence:
+            status = "IMPROVED_VERIFIED"
+        elif any(word in state for word in ("HOLD", "WAIT", "LIMIT", "BLOCK")):
             status = "HOLD"
         elif "FAIL" in state:
             status = "FAIL"
@@ -74,13 +77,13 @@ def build(base: Path = HERE) -> dict:
             "TOOL_ID": item.get("target", "UNKNOWN"), "FUNCTION_ID": item.get("root_id", "UNKNOWN"),
             "FUNCTION_NAME": item.get("display_label") or item.get("label") or item.get("root_id", "UNKNOWN"),
             "CURRENT_STATUS": status, "LAST_VERIFIED_DATE": None,
-            "IMPROVEMENT_EVIDENCE": item.get("evidence"),
-            "REMAINING_ERROR": item.get("last_actual_point") or state,
+            "IMPROVEMENT_EVIDENCE": closed_evidence or item.get("evidence"),
+            "REMAINING_ERROR": None if status == "IMPROVED_VERIFIED" else item.get("last_actual_point") or state,
             "REPEATED_ERROR_COUNT": int(item.get("recurrence_count", 0)),
             "ROOT_ID": item.get("root_id"), "EXISTING_VERIFIED_COMPONENT": None,
             "EXISTING_VERIFIED_FRAMEWORK": None, "MISSING_CAPABILITY": None,
             "TOOL044_SEARCH_REQUIRED": False, "SEARCH_PRIORITY": "NONE",
-            "ACTION": "TOOL016_OR_EXTERNAL_EVIDENCE_GATE",
+            "ACTION": "SKIP_REUSE" if status == "IMPROVED_VERIFIED" else "TOOL016_OR_EXTERNAL_EVIDENCE_GATE",
         })
 
     # Atomic demands are the only existing bounded declarations that establish an

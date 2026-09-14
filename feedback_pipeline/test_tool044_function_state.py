@@ -12,5 +12,15 @@ assert rows["T42-RESELLER-DETECTION"]["CURRENT_STATUS"] == "MISSING_CAPABILITY"
 assert rows["T42-RESELLER-DETECTION"]["TOOL044_SEARCH_REQUIRED"] is True
 assert rows["HOLD-T1-VERIFIED-REPORT-ACQUISITION"]["CURRENT_STATUS"] == "HOLD"
 assert rows["HOLD-T1-VERIFIED-REPORT-ACQUISITION"]["TOOL044_SEARCH_REQUIRED"] is False
+for function_id in ("CI-REGISTRY-STAGING-STATUS", "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT"):
+    assert rows[function_id]["CURRENT_STATUS"] == "IMPROVED_VERIFIED"
+    assert rows[function_id]["ACTION"] == "SKIP_REUSE"
+    assert rows[function_id]["TOOL044_SEARCH_REQUIRED"] is False
+    assert rows[function_id]["REMAINING_ERROR"] is None
+actual_counts = {
+    status: sum(row["CURRENT_STATUS"] == status for row in result["functions"])
+    for status in result["classification_counts"]
+}
+assert result["classification_counts"] == actual_counts
 assert result["observer_labels"]["REPEATED_ERROR"] == "고질 오류"
 print("PASS: verified reuse, partial assembly, external demand, HOLD fail-closed, observer contract")
