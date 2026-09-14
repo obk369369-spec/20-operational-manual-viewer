@@ -21,6 +21,7 @@ def build(base: Path = HERE) -> dict:
     targets = load(base / "wic_target_registry.json")["targets"]
     prechecks = load(base / "tool044_precheck_targets.json").get("targets", {})
     tool043_status = load(base.parent / "tool043" / "status.json")
+    central_state = load(base / "state.json")
     ledger = load(base / "unified_open_ledger.json").get("entries", [])
     queue = load(base / "tool044_atomic_demand_queue.json").get("demands", [])
     registry = load(base / "VERIFIED_COMPONENT_REGISTRY.json")
@@ -52,7 +53,15 @@ def build(base: Path = HERE) -> dict:
                 for item in tool043_status.get("night_task_items", [])
             )
         )
-        deployed = tool043_verified or bool(pre.get("existing_deployed_pass")) or (
+        runtime_resolution = central_state.get("integration_core", {}).get("runtime_enforcement", {}).get("active_target_resolution", {}).get(tool)
+        remote_runtime_verified = runtime_resolution == "REMOTE_VERIFIED_RUNTIME_E2E_PASS"
+        public_runtime_verified = (
+            validation.get("status") == "PASS"
+            and isinstance(validation.get("pages_run_id"), int)
+            and str(validation.get("public_url", "")).startswith("https://")
+            and bool(validation.get("validated_scope"))
+        )
+        deployed = tool043_verified or remote_runtime_verified or public_runtime_verified or bool(pre.get("existing_deployed_pass")) or (
             validation.get("status") == "PASS" and
             validation.get("run_scope") == "DEPLOYED_CANONICAL_REAL_USE"
         )
@@ -136,6 +145,11 @@ def build(base: Path = HERE) -> dict:
               ["IMPROVED_VERIFIED", "IMPROVED_PARTIAL", "REPEATED_ERROR", "HOLD", "FAIL",
                "MISSING_CAPABILITY", "NO_READY_COMPONENT", "RUNTIME_NOT_ENFORCED",
                "ACTUAL_USE_NOT_VERIFIED", "DEPLOYMENT_NOT_VERIFIED", "UNKNOWN"]}
+    verified_ids = [row["FUNCTION_ID"] for row in rows if row["CURRENT_STATUS"] == "IMPROVED_VERIFIED"]
+    missing_ids = [row["FUNCTION_ID"] for row in rows if row["CURRENT_STATUS"] == "MISSING_CAPABILITY"]
+    needs_chat_ids = [row["FUNCTION_ID"] for row in rows if row["CURRENT_STATUS"] in
+                      {"UNKNOWN", "IMPROVED_PARTIAL", "ACTUAL_USE_NOT_VERIFIED"}]
+    hold_external_ids = [row["FUNCTION_ID"] for row in rows if row["CURRENT_STATUS"] == "HOLD"]
     return {
         "schema_version": 1, "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_contract": "MASTER+SAFE_CHECKPOINT+ERROR_ROOT_LEDGER+VERIFIED_REGISTRY+DEPLOYMENT_EVIDENCE",
@@ -146,6 +160,18 @@ def build(base: Path = HERE) -> dict:
             "REPEATED_ERROR": "고질 오류", "MISSING_CAPABILITY": "외부부품 검색 중",
             "COMPONENT_VERIFIED": "검증부품 확보", "ASSEMBLY_TESTING": "조합시험 중",
             "DEPLOYMENT_NOT_VERIFIED": "배포 검증 대기", "DEPLOYED_PASS": "배포 완료",
+        },
+        "residual_ledger": {
+            "READY_FOR_PHYSICAL_EXECUTION": [],
+            "NEEDS_CHAT_DECISION": needs_chat_ids,
+            "HOLD_EXTERNAL": hold_external_ids,
+            "MISSING_CAPABILITY": missing_ids,
+            "VERIFIED_REUSE": verified_ids,
+            "DEFERRED_FINAL": [
+                "TOOL041", "TOOL042", "PAST_FAILURE_FIXTURE_GENERATION",
+                "REMOTE_RUNTIME_E2E", "TOOL045_315_ROOT_171910_OCCURRENCE",
+                "ORDINARY_CHAT_AUTOMATIC_DELIVERY", "EXPANSION_FEATURES", "FINAL_WIC_E2E",
+            ],
         },
     }
 

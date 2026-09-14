@@ -21,6 +21,15 @@ assert rows["TOOL043-CANONICAL-RUNTIME"]["CURRENT_STATUS"] == "IMPROVED_VERIFIED
 assert rows["TOOL043-CANONICAL-RUNTIME"]["ACTION"] == "SKIP_REUSE"
 assert rows["TOOL043-CANONICAL-RUNTIME"]["TOOL044_SEARCH_REQUIRED"] is False
 assert rows["TOOL043-CANONICAL-RUNTIME"]["REMAINING_ERROR"] is None
+for function_id in ("TOOL002-CANONICAL-RUNTIME", "TOOL020-CANONICAL-RUNTIME"):
+    assert rows[function_id]["CURRENT_STATUS"] == "IMPROVED_VERIFIED"
+    assert rows[function_id]["ACTION"] == "SKIP_REUSE"
+    assert rows[function_id]["TOOL044_SEARCH_REQUIRED"] is False
+    assert rows[function_id]["REMAINING_ERROR"] is None
+assert result["residual_ledger"]["READY_FOR_PHYSICAL_EXECUTION"] == []
+assert "WIC-0702-SCOPED-RECOVERY" in result["residual_ledger"]["NEEDS_CHAT_DECISION"]
+assert "T42-RESELLER-DETECTION" in result["residual_ledger"]["MISSING_CAPABILITY"]
+assert "TOOL043-CANONICAL-RUNTIME" in result["residual_ledger"]["VERIFIED_REUSE"]
 actual_counts = {
     status: sum(row["CURRENT_STATUS"] == status for row in result["functions"])
     for status in result["classification_counts"]
