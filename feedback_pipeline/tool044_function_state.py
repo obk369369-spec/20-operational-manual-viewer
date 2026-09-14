@@ -20,6 +20,7 @@ def load(path: Path) -> dict:
 def build(base: Path = HERE) -> dict:
     targets = load(base / "wic_target_registry.json")["targets"]
     prechecks = load(base / "tool044_precheck_targets.json").get("targets", {})
+    tool043_status = load(base.parent / "tool043" / "status.json")
     ledger = load(base / "unified_open_ledger.json").get("entries", [])
     queue = load(base / "tool044_atomic_demand_queue.json").get("demands", [])
     registry = load(base / "VERIFIED_COMPONENT_REGISTRY.json")
@@ -36,7 +37,22 @@ def build(base: Path = HERE) -> dict:
             continue
         pre = prechecks.get(tool, {})
         validation = target.get("first_validation", {})
-        deployed = bool(pre.get("existing_deployed_pass")) or (
+        tool043_checkpoint = tool043_status.get("safe_checkpoint_evidence", {})
+        tool043_verified = (
+            tool == "TOOL043"
+            and "CURRENT_SCOPE_COMPLETE" in str(tool043_status.get("tool043_scope_status", ""))
+            and "REMOTE_VERIFIED" in str(tool043_status.get("tool043_scope_status", ""))
+            and tool043_checkpoint.get("first_validation") == "PASS"
+            and tool043_checkpoint.get("deployment_result") == "success"
+            and str(tool043_checkpoint.get("deployed_display", "")).startswith("PASS")
+            and tool043_status.get("last_night_task_status") == "COMPLETED"
+            and any(
+                item.get("status") == "COMPLETED"
+                and item.get("result") == "CENTRAL_OBSERVER_REFRESHED"
+                for item in tool043_status.get("night_task_items", [])
+            )
+        )
+        deployed = tool043_verified or bool(pre.get("existing_deployed_pass")) or (
             validation.get("status") == "PASS" and
             validation.get("run_scope") == "DEPLOYED_CANONICAL_REAL_USE"
         )

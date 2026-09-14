@@ -17,6 +17,10 @@ for function_id in ("CI-REGISTRY-STAGING-STATUS", "TOOL044-PRODUCTION-TOOL043-PR
     assert rows[function_id]["ACTION"] == "SKIP_REUSE"
     assert rows[function_id]["TOOL044_SEARCH_REQUIRED"] is False
     assert rows[function_id]["REMAINING_ERROR"] is None
+assert rows["TOOL043-CANONICAL-RUNTIME"]["CURRENT_STATUS"] == "IMPROVED_VERIFIED"
+assert rows["TOOL043-CANONICAL-RUNTIME"]["ACTION"] == "SKIP_REUSE"
+assert rows["TOOL043-CANONICAL-RUNTIME"]["TOOL044_SEARCH_REQUIRED"] is False
+assert rows["TOOL043-CANONICAL-RUNTIME"]["REMAINING_ERROR"] is None
 actual_counts = {
     status: sum(row["CURRENT_STATUS"] == status for row in result["functions"])
     for status in result["classification_counts"]
