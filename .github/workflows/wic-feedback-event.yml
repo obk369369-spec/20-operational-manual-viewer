@@ -282,6 +282,79 @@ jobs:
           print('PASS: verified central-lane target apply/read-back/test finalized for actual feedback event')
           PY
 
+      - name: Install pinned JSONata mapper
+        if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS'
+        run: npm install --no-save --ignore-scripts jsonata@2.2.2
+
+      - name: Map current event into TOOL044 request inbox
+        id: tool044_request
+        if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS'
+        env:
+          WIC_CURRENT_RESULT_PATH: /tmp/wic-event-result.json
+          WIC_TOOL044_INBOX_PATH: feedback_pipeline/TOOL044_REQUEST_INBOX.json
+        run: |
+          node <<'JS'
+          const fs = require('fs');
+          const jsonata = require('jsonata');
+          const lines = fs.readFileSync(process.env.WIC_CURRENT_RESULT_PATH, 'utf8').split(/\r?\n/).filter(x => x.trim());
+          if (lines.length === 0) throw new Error('REJECT: current result is empty');
+          const current = JSON.parse(lines[lines.length - 1]);
+          const evidence = current.evidence_packet || {};
+          const pipelineId = String(current.pipeline_id || '');
+          const rootId = String(evidence.root_cause_id || '');
+          const target = String(current.target || '');
+          const receiptRel = String(current.TARGET_APPLY_RECEIPT || '');
+          if (current.status !== 'TARGET_REMOTE_PASS') throw new Error('REJECT: current result is not remote PASS');
+          if (!pipelineId || !rootId || !target) throw new Error('REJECT: current identity/root/target is empty');
+          if (!current.REMOTE_FILE_READBACK || current.REMOTE_FILE_READBACK.verified !== true) throw new Error('REJECT: current remote read-back is not verified');
+          if (!receiptRel || !fs.existsSync(receiptRel)) throw new Error('REJECT: bound receipt is missing');
+          const receipt = JSON.parse(fs.readFileSync(receiptRel, 'utf8'));
+          if (String(receipt.pipeline_id || '') !== pipelineId || String(receipt.root_cause_id || '') !== rootId || String(receipt.target || '') !== target) throw new Error('REJECT: receipt identity mismatch');
+          if (!evidence.source_chat || !evidence.source_ref || String(receipt.source_ref || '') !== String(evidence.source_ref)) throw new Error('REJECT: source lineage mismatch');
+          const expression = jsonata(`{
+            "request_id": pipeline_id,
+            "root_id": evidence_packet.root_cause_id,
+            "related_tool": target,
+            "source_chat_or_tool": evidence_packet.source_chat,
+            "source_evidence": evidence_packet.source_ref,
+            "feedback": evidence_packet.actual_user_feedback,
+            "actual_input": evidence_packet.actual_input_ref,
+            "wrong_output": evidence_packet.wrong_output_ref,
+            "expected": evidence_packet.expected,
+            "status": "OPEN",
+            "user_action": "NONE"
+          }`);
+          Promise.resolve(expression.evaluate(current)).then(mapped => {
+            if (mapped.request_id !== pipelineId || mapped.root_id !== rootId || mapped.related_tool !== target) throw new Error('REJECT: mapped identity mismatch');
+            const inboxPath = process.env.WIC_TOOL044_INBOX_PATH;
+            const inbox = JSON.parse(fs.readFileSync(inboxPath, 'utf8'));
+            if (!Array.isArray(inbox.requests)) throw new Error('REJECT: inbox requests is not an array');
+            const duplicate = inbox.requests.some(x => String(x.request_id || '') === pipelineId);
+            if (!duplicate) inbox.requests.push(mapped);
+            fs.writeFileSync(inboxPath, JSON.stringify(inbox, null, 2) + '\n', 'utf8');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `mapped_count=${duplicate ? 0 : 1}\nappend_count=${duplicate ? 0 : 1}\nduplicate_count=${duplicate ? 1 : 0}\n`);
+            console.log(JSON.stringify({input_current_event_count: 1, mapped_request_count: duplicate ? 0 : 1, inbox_append_count: duplicate ? 0 : 1, duplicate_count: duplicate ? 1 : 0}));
+          }).catch(error => { console.error(error); process.exit(1); });
+          JS
+
+      - name: Commit TOOL044 current-event request
+        if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS' && steps.tool044_request.outputs.append_count == '1'
+        run: |
+          git add feedback_pipeline/TOOL044_REQUEST_INBOX.json
+          git commit -m 'wic: route current feedback event to TOOL044'
+          git push
+
+      - name: Verify TOOL044 inbox remote read-back
+        if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS'
+        run: |
+          local_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | awk '{print $1}')"
+          test -n "$remote_sha"
+          test "$local_sha" = "$remote_sha"
+          git fetch origin "${GITHUB_REF_NAME}:refs/remotes/origin/${GITHUB_REF_NAME}"
+          test "$(git rev-parse "origin/${GITHUB_REF_NAME}:feedback_pipeline/TOOL044_REQUEST_INBOX.json")" = "$(git hash-object feedback_pipeline/TOOL044_REQUEST_INBOX.json)"
+          echo "TOOL044_REMOTE_READ_BACK=PASS COMMIT_SHA=$remote_sha"
+
       - name: Verify generated canonical section and checkpoint
         if: steps.apply.outputs.result == 'CANONICAL_PREPARED_TARGET_HOLD'
         run: |
