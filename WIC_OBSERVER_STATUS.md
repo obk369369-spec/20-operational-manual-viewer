@@ -109,14 +109,14 @@
 
 <!-- WIC_DENY_OBSERVER_AUTO_START -->
 ## 최근 DENY 자동 관찰자 보고
-- generated_at_utc: `2026-09-13T07:34:58.664731+00:00`
+- generated_at_utc: `2026-09-14T04:51:50.916531+00:00`
 - decision: `DENY_HOLD`
-- action: ``
+- action: `APPLY_FEEDBACK`
 - target: `WIC_GLOBAL_OPERATING_RULES.md`
-- reason: `unknown or unregistered change action`
+- reason: `directive text not found as an exact approved user-record entry`
 - error_class: `STRUCTURAL_ERROR_UNAUTHORIZED`
 - blocked_before_mutation: `true`
-- directive_source_ref: `https://github.com/obk369369-spec/20-operational-manual-viewer/issues/10`
+- directive_source_ref: `CURRENT_CHAT#REMOTE_RUNTIME_E2E_20260914_01`
 <!-- WIC_DENY_OBSERVER_AUTO_END -->
 
 <!-- WIC_EXECUTION_STATE_SYNC_START -->
