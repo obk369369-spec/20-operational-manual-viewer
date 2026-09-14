@@ -49,6 +49,24 @@
       "status": "OPEN",
       "user_action": "NONE",
       "created_at": "2026-09-08T22:20:00+09:00"
+    },
+    {
+      "request_id": "f8bc3e81228256cba56e",
+      "root_id": "201185b55b374df24d1e",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/16",
+      "feedback": "사용자는 관찰자이며, 반복 설명·복사/붙여넣기·테스트·캡처·PASS/FAIL 판정·오류 추적·규칙문서 저장·새 대화창용 지시문 작성/붙여넣기를 담당하지 않는다.",
+      "actual_input": "github_issue:5448140202",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
