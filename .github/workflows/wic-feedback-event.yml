@@ -321,6 +321,7 @@ jobs:
             "actual_input": evidence_packet.actual_input_ref,
             "wrong_output": evidence_packet.wrong_output_ref,
             "expected": evidence_packet.expected,
+            "required_capabilities": ["INPUT_CONTRACT_VALIDATION", "EXPECTED_ACTUAL_VALIDATION", "FAILURE_ISOLATION"],
             "status": "OPEN",
             "user_action": "NONE"
           }`);
@@ -337,11 +338,59 @@ jobs:
           }).catch(error => { console.error(error); process.exit(1); });
           JS
 
+      - name: Execute existing TOOL044 router and return current result to TOOL016
+        if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS'
+        run: |
+          python feedback_pipeline/tool044_request_router.py
+          python - <<'PY'
+          import hashlib, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path('feedback_pipeline')
+          current = json.loads([x for x in Path('/tmp/wic-event-result.json').read_text(encoding='utf-8').splitlines() if x.strip()][-1])
+          fid = str(current['pipeline_id'])
+          root_id = str(current['evidence_packet']['root_cause_id'])
+          queue = json.loads((root / 'tool044_atomic_demand_queue.json').read_text(encoding='utf-8'))
+          demands = sorted(d['demand_id'] for d in queue['demands'] if str(d.get('request_id') or '') == fid)
+          if not demands:
+              raise SystemExit('REJECT: existing TOOL044 router produced no current-event demand')
+          result = {
+              'schema_version': 1,
+              'generated_at_utc': datetime.now(timezone.utc).isoformat(),
+              'job_id': fid,
+              'root_id': root_id,
+              'source_ref': current['evidence_packet']['source_ref'],
+              'worker': 'feedback_pipeline/tool044_request_router.py',
+              'worker_result': 'ATOMIC_DEMANDS_CREATED',
+              'demand_ids': demands,
+              'verification': 'IDENTITY_LINEAGE_AND_QUEUE_READBACK_PASS',
+              'tool016_return_ack': 'RECEIVED',
+              'user_manual_relay': 0,
+          }
+          result['result_sha256'] = hashlib.sha256(json.dumps(result, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+          evidence_path = root / 'evidence' / f'{fid}_tool044_result_return.json'
+          evidence_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          readback = json.loads(evidence_path.read_text(encoding='utf-8'))
+          if readback['job_id'] != fid or readback['root_id'] != root_id or readback['tool016_return_ack'] != 'RECEIVED':
+              raise SystemExit('REJECT: TOOL016 result-return read-back mismatch')
+          state_path = root / 'state.json'
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          cp = state['integration_core']['feedback_checkpoints'].setdefault(fid, {})
+          cp.update(last_stage='RESTART_OR_HOLD', status='TOOL044_RESULT_RETURN_ACK',
+                    root_id=root_id, result_sha256=result['result_sha256'],
+                    result_evidence=str(evidence_path).replace('\\', '/'), user_manual_relay=0)
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          state_rb = json.loads(state_path.read_text(encoding='utf-8'))
+          assert state_rb['integration_core']['feedback_checkpoints'][fid]['result_sha256'] == result['result_sha256']
+          print(json.dumps(result, ensure_ascii=False))
+          PY
+
       - name: Commit TOOL044 current-event request
         if: steps.apply.outputs.result == 'TARGET_REMOTE_PASS' && steps.tool044_request.outputs.append_count == '1'
         run: |
-          git add feedback_pipeline/TOOL044_REQUEST_INBOX.json
-          git commit -m 'wic: route current feedback event to TOOL044'
+          git add feedback_pipeline/TOOL044_REQUEST_INBOX.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/state.json feedback_pipeline/evidence
+          git commit -m 'wic: route current feedback and return TOOL044 result ACK'
           git push
 
       - name: Verify TOOL044 inbox remote read-back
