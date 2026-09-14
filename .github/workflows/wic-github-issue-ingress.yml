@@ -22,6 +22,15 @@ jobs:
           script: |
             const issue = context.payload.issue;
             const originalContent = issue.body || issue.title;
+            const branch = await github.rest.repos.getBranch({
+              owner: context.repo.owner, repo: context.repo.repo, branch: context.payload.repository.default_branch
+            });
+            const canonical = await github.rest.repos.getContent({
+              owner: context.repo.owner, repo: context.repo.repo, path: 'WIC_GLOBAL_OPERATING_RULES.md',
+              ref: branch.data.commit.sha
+            });
+            const canonicalText = Buffer.from(canonical.data.content, 'base64').toString('utf8');
+            const noDiffVerified = originalContent.trim().length > 0 && canonicalText.includes(originalContent.trim());
             const eventJson = {
               event_kind: 'WIC_EXTERNAL_GITHUB_ISSUE',
               source_chat: 'github_issue',
@@ -35,9 +44,13 @@ jobs:
               timestamp: issue.created_at,
               registration_mode: 'CENTRAL_LANE_PROVISIONAL',
               mutation_action: 'APPLY_FEEDBACK',
-              directive_text: originalContent,
+              directive_text: `${issue.title}\n${originalContent}`,
               directive_source_ref: `CURRENT_CHAT#github-issue-${issue.id}`
             };
+            if (noDiffVerified) {
+              eventJson.material_decision = 'NO_TARGET_DIFF_REQUIRED';
+              eventJson.no_diff_proof = { master_revision: branch.data.commit.sha };
+            }
             await github.rest.repos.createDispatchEvent({
               owner: context.repo.owner,
               repo: context.repo.repo,
