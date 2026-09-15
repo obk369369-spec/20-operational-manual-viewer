@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   dispatch-wic-feedback:
-    if: startsWith(github.event.issue.title, '[WIC]') || startsWith(github.event.issue.title, 'TOOL')
+    if: github.event.issue.user.login == github.repository_owner && (startsWith(github.event.issue.title, '[WIC]') || startsWith(github.event.issue.title, 'TOOL'))
     runs-on: ubuntu-latest
     steps:
       - name: Normalize real GitHub issue and dispatch canonical WIC event
@@ -44,8 +44,10 @@ jobs:
               timestamp: issue.created_at,
               registration_mode: 'CENTRAL_LANE_PROVISIONAL',
               mutation_action: 'APPLY_FEEDBACK',
-              directive_text: `${issue.title}\n${originalContent}`,
-              directive_source_ref: `CURRENT_CHAT#github-issue-${issue.id}`
+              directive_text: `피드백 적용: ${issue.title}\n${originalContent}`,
+              directive_source_ref: `CURRENT_CHAT#github-owner-issue-${issue.id}`,
+              github_owner_verified: true,
+              github_issue_author: issue.user.login
             };
             if (noDiffVerified) {
               eventJson.material_decision = 'NO_TARGET_DIFF_REQUIRED';
@@ -64,5 +66,6 @@ jobs:
               event_type: 'wic_feedback',
               registration_mode: eventJson.registration_mode,
               mutation_action: eventJson.mutation_action,
-              directive_source_ref: eventJson.directive_source_ref
+              directive_source_ref: eventJson.directive_source_ref,
+              github_owner_verified: eventJson.github_owner_verified
             }));
