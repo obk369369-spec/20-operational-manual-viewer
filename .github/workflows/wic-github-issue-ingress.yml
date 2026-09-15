@@ -7,13 +7,17 @@ on:
 permissions:
   contents: write
 
+actions: {}
+
 concurrency:
   group: wic-github-issue-ingress-${{ github.event.issue.id }}
   cancel-in-progress: false
 
 jobs:
   dispatch-wic-feedback:
-    if: startsWith(github.event.issue.title, '[WIC]')
+    # WIC work issues are created both as [WIC] directives and as TOOLxxx execution issues.
+    # Accept both forms so real TOOL016/TOOL044 work cannot be silently skipped.
+    if: startsWith(github.event.issue.title, '[WIC]') || startsWith(github.event.issue.title, 'TOOL')
     runs-on: ubuntu-latest
     steps:
       - name: Normalize real GitHub issue and dispatch canonical WIC event
