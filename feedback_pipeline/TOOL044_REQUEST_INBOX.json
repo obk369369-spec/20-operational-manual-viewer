@@ -85,6 +85,24 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "ca9c23dfa4f0bee5ba54",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+      "feedback": "피드백 적용해: Issue #17의 원래 작업을 실제 자동입구로 재실행한다.\n\n원본: Issue #17 — TOOL044 1회차 — 23개 DUPLICATE_SEARCH_BLOCKED 재분류·실제 blocker 제거\n\n목표: 현재 atomic demands 중 DUPLICATE_SEARCH_BLOCKED 23건을 단순 재검색하지 말고 실제 상태로 재분류하여 TOOL044 순환을 뚫는다.\n\n강제 처리 순서:\n1. 23건 각각을 VERIFIED_COMPONENT_REUSE / TRUE_MISSING_COMPONENT / TOOL_LOCAL_OR_EVIDENCE_GATE 로 재분류한다.\n2. 기존 검증부품이 있으면 재검색하지 않고 SKIP_REUSE/재사용한다.\n3. TRUE_MISSING_COMPONENT만 외부의 이미 완성·검증된 무수정 사용 가능 부품 후보를 찾는다.\n4. TOOL044 내부 신규개발·커스터마이즈·확장은 금지한다. 없으면 NO_READY_COMPONENT.\n5. 우선 확인: official publisher/domain validation, official detail page validation, reseller detection, TOC hierarchy validation, TOOL044 auto rollback, arbitrary WIC deploy.\n6. 후보는 라이선스/유지보수/실사용/보안·의존성/무수정 사용 가능성을 확인하고 EXPECTED↔ACTUAL 검증한다.\n7. 결과를 atomic demand별 evidence로 저장하고 TOOL016 중앙 귀환/ACK/read-back까지 연결한다.\n8. 이미 PASS인 front loop는 다시 만들지 않는다.\n9. USER_WORK=0 / USER_MANUAL_RELAY=0.\n10. 코드/문서 존재만으로 PASS 금지. 실제 실행 증거가 있어야 한다.\n\n완료조건: 23건 전부 재분류되고, TRUE_MISSING_COMPONENT는 실제 외부 공급 검증 또는 NO_READY_COMPONENT 증거가 남으며, TOOL016 중앙 read-back까지 확인된다.\n\n화면 검증은 후반 회차에서 별도로 수행하며 현재 TOOL043/044 화면은 HOLD_SCREEN_NOT_VERIFIED 유지.",
+      "actual_input": "github_issue:5461450315",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }

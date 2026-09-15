@@ -1096,6 +1096,93 @@
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION"
         }
       ]
+    },
+    {
+      "demand_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "ca9c23dfa4f0bee5ba54",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "ca9c23dfa4f0bee5ba54",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "ca9c23dfa4f0bee5ba54",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION"
+        }
+      ]
     }
   ]
 }
