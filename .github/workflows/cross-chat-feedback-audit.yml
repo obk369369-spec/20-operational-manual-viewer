@@ -57,16 +57,19 @@ jobs:
           probes = {
               'unverified_employment': judge_contact({
                   'current_employment_verified': False,
-                  'company_direction_verified': True
+                  'company_direction_verified': True,
+                  'contact_history_verified': True
               }),
               'explicit_stop': judge_contact({
                   'current_employment_verified': True,
                   'company_direction_verified': True,
+                  'contact_history_verified': True,
                   'explicit_stop_or_rejection': True
               }),
               'material_first': judge_contact({
                   'current_employment_verified': True,
                   'company_direction_verified': True,
+                  'contact_history_verified': True,
                   'research_or_enterprise_customer': True,
                   'direct_inquiry': True
               }),
