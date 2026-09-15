@@ -33,11 +33,11 @@
     "source": "feedback_pipeline/tool044_function_state.json",
     "classification_counts": {
       "IMPROVED_VERIFIED": 9,
-      "IMPROVED_PARTIAL": 7,
+      "IMPROVED_PARTIAL": 9,
       "REPEATED_ERROR": 0,
       "HOLD": 3,
       "FAIL": 0,
-      "MISSING_CAPABILITY": 21,
+      "MISSING_CAPABILITY": 25,
       "NO_READY_COMPONENT": 0,
       "RUNTIME_NOT_ENFORCED": 0,
       "ACTUAL_USE_NOT_VERIFIED": 8,
@@ -1061,6 +1061,132 @@
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
         "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+        "FUNCTION_NAME": "E8044Eff2Acbb5214Dbf Input_Contract_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+        "FUNCTION_NAME": "E8044Eff2Acbb5214Dbf Expected_Actual_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+        "FUNCTION_NAME": "E8044Eff2Acbb5214Dbf Failure_Isolation",
+        "CURRENT_STATUS": "IMPROVED_PARTIAL",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+        "EXISTING_VERIFIED_COMPONENT": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+        "FUNCTION_NAME": "Ca9C23Dfa4F0Bee5Ba54 Input_Contract_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+        "FUNCTION_NAME": "Ca9C23Dfa4F0Bee5Ba54 Expected_Actual_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+        "FUNCTION_NAME": "Ca9C23Dfa4F0Bee5Ba54 Failure_Isolation",
+        "CURRENT_STATUS": "IMPROVED_PARTIAL",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+        "EXISTING_VERIFIED_COMPONENT": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
       }
     ],
     "observer_labels": {
@@ -1089,7 +1215,7 @@
     "execution_location": "LOCAL",
     "cloud": {
       "status": "VERIFIED",
-      "checkpoint": "34956767767",
+      "checkpoint": "34932426908",
       "jobs": 4,
       "deferred_backoff": 4,
       "paid_api_calls": 0,
@@ -1098,9 +1224,9 @@
     "local_required_queue": 1,
     "operational_counts": {
       "open_error_count": 0,
-      "open_capability_count": 31,
-      "atomic_demand_count": 31,
-      "external_candidates_found": 130,
+      "open_capability_count": 34,
+      "atomic_demand_count": 34,
+      "external_candidates_found": 15,
       "verified_component_count": 14,
       "verified_atomic_count": 6,
       "verified_composition_count": 1,
@@ -1117,7 +1243,7 @@
         "TOOL016_FUNCTION_STATE": 4,
         "TOOL016": 9,
         "TOOL013": 2,
-        "CENTRAL": 6
+        "CENTRAL": 9
       }
     },
     "safe_integration_truth": {
@@ -1472,9 +1598,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-15T11:43:18.837099+00:00",
-  "source_revision": "49cba5ff480273b695442b7ede348c5fc2aa4f89",
-  "github_actions_run": "34964805871",
+  "observer_generated_at": "2026-09-15T16:58:39.531013+00:00",
+  "source_revision": "96a0ed5b2168c6609e0c4e4c3fdd4820a5f03ad3",
+  "github_actions_run": "34998340854",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -1486,7 +1612,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-15T11:43:18.836544+00:00",
+      "executed_at": "2026-09-15T16:58:39.530666+00:00",
       "status": "COMPLETED"
     }
   ]
