@@ -220,7 +220,121 @@ NORMAL_COMPRESSED_CONTINUOUS_MODE에서는 한 lane의 EXPECTED 불일치가 다
 
 2026-09-14 승인 사례는 당시 비상상황에만 해당하며 NORMAL_MODE의 일반 운영기준으로 사용하지 않는다.
 
-## 13. 최종 운영식
+## 13. 2026-09-15 자동 폐루프 실제 검증 상태
+
+### 현재 우선순위
+
+개별 도구 개선보다 연결 인프라를 먼저 완성한다.
+
+`배달원/외부입력 → TOOL016 → TOOL044 → 외부 부품 공급·검증 → 자동 순환 → 결과귀환 → 중앙상태 → 대량확장 → 마지막에 개별 도구 개선`
+
+TOOL006/013/041/042/045 및 1년치 도구 작업은 현재 연결 인프라보다 뒤로 둔다.
+
+### Issue #16 실제 E2E
+
+AUTOMATIC_LOOP 전체 상태는 아직 `HOLD`이지만 앞쪽 폐루프 연결은 실제 PASS했다.
+
+실제 성공 경로:
+
+`Issue #16 → ingress → PRECHECK → material receipt → TARGET_REMOTE_PASS → TOOL044 inbox → atomic demands 3건 → result evidence → TOOL016 central ACK → remote read-back`
+
+확정 상태:
+
+- 배달원: PASS — Issue #16, ingress run `34833105286`
+- PRECHECK: PASS
+- Material decision: PASS — `NO_TARGET_DIFF_REQUIRED`; required hashes + validator + output gate 확인
+- TOOL016: PASS — `TARGET_REMOTE_PASS`
+- TOOL044 inbox/atomic routing: PASS — atomic demand 3건 생성
+- TOOL044 ACK/결과귀환: PASS
+- 중앙상태: PASS — `TOOL044_RESULT_RETURN_ACK`
+- 사용자 수동전달: PASS / 0
+- 외부공급/실제 component 검증: HOLD — Issue #16 cycle에서는 실행되지 않음
+- WORKER_STALE_GAP: HOLD — 5분 cron 설정은 유효하지만 확인 시점 마지막 자연 실행은 `34815474673`
+- missing pool persistence 2건: 코드·격리시험 PASS, 자연 scheduler 배포본 실행 증거 대기
+- MASS_EXPANSION: HOLD — 선행 외부공급 실제 실행증거 부족
+
+증거:
+
+- E2E run: `34833117038`
+- pipeline ID: `f8bc3e81228256cba56e`
+- result SHA: `d2285cd4977917f55376c4fcb9798ce5c6041ca689b5433e6566ce65b2951f2b`
+- 관련 commits: `86f9a83be`, `20185273a`, workflow-generated `caa475582`, final `f0f9b7381`
+- push: PASS
+- remote read-back: PASS
+- SAFE_CHECKPOINT: `f0f9b7381f739058aed358dba7ae2c4a1cf33de4`
+
+변경 파일:
+
+- `.github/workflows/wic-github-issue-ingress.yml`
+- `.github/workflows/wic-feedback-event.yml`
+- `feedback_pipeline/tool044_atomic_watch.py`
+
+### Material decision 고정 규칙
+
+material-decision 안전 gate를 삭제하거나 우회하지 않는다. 기존 3값 계약만 사용한다.
+
+- `TARGET_DIFF_APPLIED`
+- `CENTRAL_DIFF_APPLIED`
+- `NO_TARGET_DIFF_REQUIRED`
+
+Issue #16에서는 기존 승인 지시와 실제 증거를 사용한 `NO_TARGET_DIFF_REQUIRED`가 PASS했다. required asset hashes, validator, output gate 증거가 없으면 PASS하지 않고 HOLD한다.
+
+### 현재 다음 작업 — 44번 뒤 자동공장
+
+이미 PASS한 배달원, PRECHECK, TOOL016→TOOL044, 결과귀환, 중앙 ACK를 다시 만들지 않는다.
+
+현재 남은 핵심은 다음 순서다.
+
+1. `WORKER_STALE_GAP` — 5분 자연 scheduler가 실제 지속 실행되는지 증거 확보
+2. missing pool persistence — 후보가 0개여도 아래 2개 상태 파일 생성/유지/read-back 검증
+   - `tool044_external_candidate_pool.json`
+   - `tool044_verified_external_component_pool.json`
+3. Issue #16에서 생성된 atomic demand 3건이 기존 TOOL044 cloud factory에 자연 수신되는지 검증
+4. 기존 경로만 사용하여 `atomic queue → dynamic candidate discovery → external candidate → verified asset → verified composition` 실제 실행
+5. 외부공급/검증 결과를 기존 result-return 접합으로 `TOOL044 → TOOL016 central return → ACK → central state → remote read-back` 귀환
+6. 1~5 실제 지속순환 증거 확보 후에만 `MASS_EXPANSION` 진행
+
+외부공급 lane의 실제 component가 검증되지 않았으면 PASS 금지다.
+
+scheduler가 정상인데 자연 실행이 없고 새로운 원인판단이나 새 구조가 필요하면 Work가 임의 수정하지 않는다. `ACTUAL evidence → NEEDS_CHAT_DECISION/HOLD → 다음 독립 lane`으로 진행한다.
+
+### missing-pool persistence 수정 상태
+
+`feedback_pipeline/tool044_atomic_watch.py`에 후보가 0개여도 external/verified pool 상태를 저장하도록 하는 최소 수정이 검증되었다. 격리시험은 PASS했다. Issue E2E가 만든 원격 커밋과 충돌했을 때 최신 `origin/main` 위로 검증된 단일 수정을 rebase하여 push하는 방식만 허용했다. force push는 사용하지 않는다.
+
+자연 scheduler에서 실제 파일 생성·유지·read-back이 확인되기 전에는 배포상태 전체 PASS로 승격하지 않는다.
+
+### Work의 현재 실행범위
+
+이번 연결 회차에서 Work가 할 수 있는 것은 이미 결정된 물리 실행과 측정뿐이다.
+
+- 원격 main read-back
+- 자연 TOOL044 cloud scheduler 실행증거 read-back
+- 기존 worker 실행
+- 기존 queue/pool/validator 경로의 실제 실행 및 측정
+- 결과귀환 read-back
+- 이미 검증된 missing-pool 최소 수정의 commit/push/read-back
+- 조건 충족 시 기존 자산을 이용한 MASS_EXPANSION 실행
+
+금지:
+
+- 새로운 worker/scheduler/배달원/중앙시스템 설계
+- 실패 원인의 Work 내부 연구
+- 같은 실패방식 반복
+- material-decision 안전 gate 우회
+- TOOL006/013/041/042/045 및 1년치 도구 개선로 전환
+
+### 현재 완료 판정 기준
+
+앞쪽 폐루프 PASS만으로 `AUTOMATIC_LOOP=PASS`라고 하지 않는다.
+
+다음이 실제로 모두 이어져야 전체 PASS 후보가 된다.
+
+`실제 입력 → 배달원 → TOOL016 → TOOL044 → 자연 worker → 외부공급 → 실제 component 검증 → 결과귀환 → 중앙 ACK → remote read-back`
+
+사용자 역할은 계속 Observer이며 목표는 `USER_WORK=0`, `USER_MANUAL_RELAY=0`이다.
+
+## 14. 최종 운영식
 
 `CHAT: FIND → JUDGE → DESIGN → FIX SPEC → TEST SPEC → EXPECTED`
 
