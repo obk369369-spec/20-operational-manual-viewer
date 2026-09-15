@@ -67,6 +67,24 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "e8044eff2acbb5214dbf",
+      "root_id": "be0b7e6874fdbe79c9be",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/22",
+      "feedback": "Issue #17 작업 길을 다시 시험한다. 중앙 규칙을 새로 만드는 일이 아니다. 이미 정해진 TOOL 작업을 16번에서 44번으로 넘겨 실제로 처리하는 시험이다. 완료 조건: 안전검사 통과 → 16번 처리 → 44번 작업함 생성 → 44번 처리 → 결과가 다시 중앙으로 돌아옴. USER_WORK=0.",
+      "actual_input": "github_issue:5461437058",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
