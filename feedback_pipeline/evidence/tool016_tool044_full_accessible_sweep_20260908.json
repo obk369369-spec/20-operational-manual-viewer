@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T13:42:33.701119+00:00",
+  "generated_at": "2026-09-15T15:02:37.904123+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "d0bef85911d75c29c2d9828c5a731545e18a4370807e2449faa16b7f822e0e74"
+      "sha256": "73ce2c29a7ba69c11ad06e15e6f050cb7912c854c6165e950d9f5a6b88327f2c"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,19 +29,19 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "1baaa8bde92b9ee0c2da18ffdbb8f152a2d47ecb5b4f3e7fd75032514b3aa869"
+      "sha256": "58b580ecc2da94ae2fc2aea8c2ba913c717593261df375103302c1520942b140"
     }
   ],
   "counts": {
     "checked_tools": 16,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 99,
+    "automatically_recoverable_records": 105,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 54,
-    "roots_after_deduplication": 42,
+    "collected_error_records": 60,
+    "roots_after_deduplication": 48,
     "verified_skip_reuse_records": 11,
-    "records_handed_to_tool044": 23,
+    "records_handed_to_tool044": 27,
     "atomic_demands": 34
   },
   "checked_tool_ids": [
@@ -1014,6 +1014,98 @@
         "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       ],
       "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "ROOT_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "ROOT_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
     }
   ],
   "deduplicated_root_ids": [
@@ -1056,6 +1148,12 @@
     "VERIFIED_REPORT_PAYLOAD_NOT_READY",
     "WIC-0702-SCOPED-RECOVERY",
     "WIC-PARALLEL-RESIDUAL-20260903",
+    "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+    "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+    "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+    "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+    "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+    "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
     "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
     "f8bc3e81228256cba56e-FAILURE_ISOLATION",
     "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
@@ -1425,6 +1523,70 @@
       "TOOL_ID": "CENTRAL",
       "FUNCTION_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
       "ROOT_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "CENTRAL",
+      "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
       "CURRENT_STATUS": "MISSING_CAPABILITY",
       "ORIGINAL_ERROR_OR_FEEDBACK": [
         "EXPECTED_ACTUAL_VALIDATION"
