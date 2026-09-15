@@ -13,6 +13,33 @@ Before finishing WIC work, persist its actual outcome, evidence, last point and 
 The existing CENTRAL observer workflow projects canonical changes to TOOL043 and deploys it.
 These instructions apply to this repository only: arbitrary new ChatGPT/Work tasks and external tool executions without this hook remain PLATFORM_HOLD, not automatically integrated.
 
+## Permanent compressed end-to-end execution rule
+
+Chat work and Work execution must use the same compressed end-to-end pattern. Logical rounds, checklists, ROOT groups and stages are internal execution units, not human approval gates.
+
+For every authorized multi-step WIC task:
+1. Expand the full authorized scope first instead of completing one round and returning to the user.
+2. Group work that shares the same ROOT, cause, evidence, component, target, test or dependency. Preserve occurrence/source/time/evidence lineage while deduplicating execution.
+3. Run independent work concurrently. Serialize only real dependencies or shared repository/canonical-asset locks.
+4. Reuse PASS / VERIFIED / REMOTE_VERIFIED / DEPLOYED_PASS evidence and SKIP_REUSE unchanged work. Do not repeat unchanged searches or tests merely because a new chat or Work session started.
+5. Continue automatically through diagnose → fix/reuse → actual test → rollback on failure → retest → persist → GitHub remote read-back → deployed-copy validation wherever the authorized scope permits.
+6. Do not stop between internal rounds to ask `continue`, request intermediate approval, or make the user relay state between Chat, Work, TOOL016 and TOOL044.
+7. After the full compressed pass, run one ZERO SCAN over the whole authorized scope. Re-run only omissions, failures or changed items found by that scan.
+8. Batch unavoidable user-only or external-device actions at the end. A proven external blocker may remain HOLD, but it must not stop independent internal work.
+9. User-facing progress is one overall percentage for the whole authorized bundle. Do not present per-round progress as separate user-controlled stages.
+10. Final reporting is bundled: completed and verified work, actual failed work, externally blocked HOLD items, and ZERO SCAN result. Do not drip-feed small stage reports.
+
+Target operating shape:
+`FULL SCOPE EXPAND → DEDUP/GROUP → PARALLEL EXECUTION → TEST/ROLLBACK/RETEST → PERSIST/REMOTE READ-BACK → ZERO SCAN → OMISSIONS ONLY → ONE BUNDLED REPORT`
+
+This rule applies equally to Chat-side investigation/judgment and Work-side execution. The purpose is to shorten elapsed time and finish the authorized task in as few end-to-end passes as possible without weakening evidence, tests, rollback, or completion gates.
+
+USER_WORK=0 by default.
+USER_MANUAL_RELAY=0.
+USER_CONTINUE_REQUIRED=0.
+INTERMEDIATE_USER_APPROVAL=0 unless an external system genuinely requires a user-only action.
+ROUND_BY_ROUND_USER_REPORT=0.
+
 ## Incremental Work admission and credit protection
 
 Before any Work search/test/mutation, use the existing work_gate_handoff.evaluate_candidate with the pinned canonical unified_open_ledger. Identify the exact root_id, operation_id, cause_id/method_id for failed work, action and target_assets. Never relabel the same operation to bypass a receipt.
