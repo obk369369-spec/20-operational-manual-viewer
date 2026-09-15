@@ -75,7 +75,7 @@ jobs:
                   'link': '', 'paid': True, 'tradable': True
               })
           }
-          assert fixture_result == 'PASS: 8 deterministic P2 fixtures'
+          assert fixture_result == 'PASS: 9 deterministic P2 fixtures'
           assert probes['unverified_employment']['decision'] == 'HOLD'
           assert probes['explicit_stop']['decision'] == 'FAIL'
           assert probes['material_first']['channel'] == 'MATERIAL_FIRST'
