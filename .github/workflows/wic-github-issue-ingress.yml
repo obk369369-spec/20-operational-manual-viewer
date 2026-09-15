@@ -45,7 +45,7 @@ jobs:
               timestamp: issue.created_at,
               registration_mode: 'CENTRAL_LANE_PROVISIONAL',
               mutation_action: 'APPLY_FEEDBACK',
-              directive_text: `피드백 적용: ${issue.title}\n${originalContent}`,
+              directive_text: `피드백 적용해: ${issue.title}\n${originalContent}`,
               directive_source_ref: `CURRENT_CHAT#github-owner-issue-${issue.id}`,
               github_owner_verified: true,
               github_issue_author: issue.user.login
