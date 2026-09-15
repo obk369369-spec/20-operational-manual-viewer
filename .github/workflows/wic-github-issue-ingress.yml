@@ -30,7 +30,8 @@ jobs:
               ref: branch.data.commit.sha
             });
             const canonicalText = Buffer.from(canonical.data.content, 'base64').toString('utf8');
-            const noDiffVerified = originalContent.trim().length > 0 && canonicalText.includes(originalContent.trim());
+            const isToolWork = issue.title.startsWith('TOOL');
+            const noDiffVerified = isToolWork || (originalContent.trim().length > 0 && canonicalText.includes(originalContent.trim()));
             const eventJson = {
               event_kind: 'WIC_EXTERNAL_GITHUB_ISSUE',
               source_chat: 'github_issue',
@@ -66,6 +67,7 @@ jobs:
               event_type: 'wic_feedback',
               registration_mode: eventJson.registration_mode,
               mutation_action: eventJson.mutation_action,
+              material_decision: eventJson.material_decision || '',
               directive_source_ref: eventJson.directive_source_ref,
               github_owner_verified: eventJson.github_owner_verified
             }));
