@@ -354,6 +354,8 @@ WORK_OUTSIDE_EXECUTION_FIRST = REQUIRED_WHEN_CAPABLE
 NO_READY_COMPONENT_AUTO_BUILD = FORBIDDEN
 
 ## Work 반복패치 자동중단·TOOL044 이관 게이트
+- `USER_POLICY_INVALIDATION_GATE = REQUIRED`: 사용자가 `INVALIDATED / NOT_ERROR / POLICY_EXCLUDED`로 확정한 ROOT·occurrence는 Work 후보·수정·시험·remote action·permission preflight 전에 차단한다. 이전 코드 계약 또는 오래된 HOLD와 충돌한다는 이유로 재개방하지 않는다. `INVALIDATED_ROOT_REOPEN = FORBIDDEN`.
+- ALLOW 요청 전에는 대상·현재 checkpoint·완료/PASS·변화 없는 HOLD·중복 remote operation·정책 무효화를 먼저 대조한다. 차단 대상이면 사용자에게 Allow/Deny 판단을 넘기지 않는다. 모든 실행경로에 연결되었다는 별도 증거가 없으면 전역 게이트 PASS를 주장하지 않는다.
 - `WORK_REPEATED_PATCH = FORBIDDEN`. Work에서 한 번 이상 제한된 실제 수정·검증을 수행한 뒤 동일 오류, 실제 fixture FAIL, 실제사용 FAIL, runtime 미강제, 배포본 실패, `PARTIAL / HOLD / FAIL / ACTUAL_ERROR_HOLD / NO_READY_COMPONENT`가 남으면 같은 방식의 Work 패치를 중단한다.
 - 중단 결과는 같은 `CHAT_JOB_ID / RELATED_TOOL / ROOT_ID`를 보존하여 `TOOL016 ERROR/ROOT intake`와 `TOOL044 REQUEST/DEMAND queue`에 동시에 전달한다.
 - TOOL016은 기존 책임층 최소수정 가능성을 먼저 판정하고, 외부 capability·틀·실행장치가 필요한 경우에만 TOOL044 검색을 허용한다.

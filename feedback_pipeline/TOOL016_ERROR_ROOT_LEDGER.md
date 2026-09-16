@@ -1,6 +1,9 @@
 # TOOL016 ERROR ROOT LEDGER — 16번 중앙 오류·원인 수집장부
 
 상태: ACTIVE / INCREMENTAL
+2026-09-16 신규 운영 occurrence (현재 Work): `INVALIDATED_ROOT_REOPENED` — 사용자가 `SUPPLY_PRICE_BLANK_ALLOWED / NOT_ERROR`로 확정한 항목을 기존 TOOL001 계약·HOLD와 충돌한다는 이유로 다시 수정·시험 대상으로 열었다. 해당 로컬 변경은 원격 push가 거부된 뒤 정확히 제거했고, 정상 checkpoint를 보존했다. 책임 기존층: Work 후보선정/ALLOW preflight. 일반화된 `INVALIDATED / NOT_ERROR / POLICY_EXCLUDED` 차단을 기존 preflight에 추가한다. TOOL044에는 검증된 무수정 외부부품이 필요한 독립 capability가 확인될 때만 라우팅한다.
+2026-09-16 신규 운영 occurrence (현재 Work): `REPAIR_DURING_COLLECTION` — 오류 1건을 발견한 즉시 파일 수정·시험을 시작해 선수집→중복제거→공통 ROOT 묶음 순서를 위반했다. 책임 기존층: Work waste-plan admission. 현재 회차는 수정 중지 후 중앙 장부·function state·demand·inbox·관련 최근 대화를 먼저 수집했다. 실행범위 전체에 대한 자동 강제 연결은 별도 검증 전까지 OPEN이다.
+2회차 압축 인계: 기준 checkpoint `4ec248e5e3048b245f5069627061872441d9f2a1`; 선수집 9 ledger / 60 function-state / 37 atomic demand / 6 inbox / 최근 관련 대화 5. `SUPPLY_PRICE_BLANK`는 `NOT_ERROR`로 실행 제외. 이번 수정범위는 기존 Work preflight의 정책 무효화 차단과 waste-plan 오탐 수정이다. 고객 안내서의 다른 보고서 URL/TOC 혼입 피드백은 `REPORT_IDENTITY_CONSISTENCY` 기존 ROOT occurrence로 분류하되 실제 원문·고객 배포본 재검증 전 PASS 금지. TOOL045 315 후보는 12 family로 묶인 기존 review 재사용, verified missing capability 0이므로 TOOL044로 315건 자동 승격 금지. `REMAINING_WORK`: 실제 고객 출력 identity/metadata/TOC 최종 검증, ordinary chat ingest 접근경계, 독립 두 번째 cloud/failover, TOOL001 5건 원본, TOOL006 golden pair, TOOL041/042 실제 고객 연결. `NEXT_START`: 이번 preflight 변경의 원격 read-back 이후 위 잔여 중 실제 입력·계약·배포경로가 확보된 공통 ROOT만 선수집해 batch 처리; 변화 없는 외부 HOLD 재시험 금지.
 기준일: 2026-09-07
 목적: WIC 각 TOOL/대화창에서 반복된 오류와 도구가 스스로 발견한 오류를 16번이 중앙 수집하고, 원인(ROOT)별로 묶어 기존 층을 먼저 보강한다. 새 층은 기존 층으로 막을 수 없는 공통오류에 한해서만 검토한다.
 

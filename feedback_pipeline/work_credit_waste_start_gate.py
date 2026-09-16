@@ -16,7 +16,7 @@ REQUIRED_MARKERS = (
 TEXT_FIELDS = ("instruction", "prompt", "plan", "execution_goal", "restart_point", "exact_next_step", "steps")
 WASTE_PATTERNS = (
     ("FILE_BY_FILE", r"(파일|file)\s*[^\n,;]{0,80}(마다|별로|하나씩).{0,100}(수정|test|테스트|commit|push|run|read[- ]?back|검증)"),
-    ("ONE_ERROR_ONE_OPERATION", r"(오류|error|ROOT)\s*[^\n,;]{0,80}(마다|별로|하나씩).{0,100}(수정|test|commit|push|run|read[- ]?back|검증)"),
+    ("ONE_ERROR_ONE_OPERATION", r"(?:오류|error|ROOT)\s*(?:하나(?:씩|마다)?|1개(?:씩|마다)?|마다|별로).{0,100}(?:수정|test|commit|push|run|read[- ]?back|검증)"),
     ("PER_ITEM_REMOTE_LOOP", r"(각|each).{0,80}(ROOT|파일|file|오류|error).{0,160}(commit|push).{0,120}(cloud|run).{0,120}(read[- ]?back|remote)"),
     ("REPEAT_PASS", r"(PASS|VERIFIED|REMOTE_VERIFIED|DEPLOYED_PASS).{0,80}(다시|재확인|recheck|rerun|재실행)"),
     ("UNCHANGED_HOLD_RETRY", r"HOLD.{0,100}(조건.{0,30}(변화|변경).{0,20}(없|없이)|다시|재시도|rerun)"),

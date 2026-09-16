@@ -15,6 +15,16 @@ def preflight_attempt(candidate: dict, ledger: dict) -> dict:
 
 def self_test() -> None:
     _legacy_self_test()
+    invalidated = preflight_attempt(
+        {"root_id": "POLICY-INVALIDATED-FIXTURE", "operation_id": "repair"},
+        {"entries": [{"root_id": "POLICY-INVALIDATED-FIXTURE", "status": "INVALIDATED"}]},
+    )
+    assert invalidated["decision"] == "INVALIDATED_ROOT_REOPEN_BLOCKED" and not invalidated["execution_allowed"]
+    not_error = preflight_attempt(
+        {"root_id": "NOT-ERROR-FIXTURE", "operation_id": "repair"},
+        {"entries": [{"root_id": "NOT-ERROR-FIXTURE", "status": "NOT_ERROR"}]},
+    )
+    assert not_error["decision"] == "INVALIDATED_ROOT_REOPEN_BLOCKED" and not not_error["execution_allowed"]
     blocked = preflight_attempt(
         {"instruction": "각 파일마다 하나씩 수정하고 commit push cloud run read-back을 반복한다"},
         {"entries": []},

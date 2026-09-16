@@ -38,6 +38,9 @@ def preflight_attempt(candidate: dict, ledger: dict) -> dict:
     row = next((r for r in rows if (r.get('root_id') or r.get('id')) == root), None)
     if row is None:
         return stop('WORK_HOLD_SCOPE', 'Unregistered root; record OPEN/HOLD before selection')
+    if (row.get('status') in {'INVALIDATED', 'NOT_ERROR', 'POLICY_EXCLUDED'}
+            or row.get('user_policy_invalidated') is True):
+        return stop('INVALIDATED_ROOT_REOPEN_BLOCKED', 'User-invalidated root/occurrence cannot enter Work or permission preflight')
     operation = candidate.get('operation_id')
     if not operation:
         return stop('WORK_HOLD_OPERATION_REQUIRED', 'Exact operation identity required')

@@ -16,6 +16,9 @@
 `BATCH_TEST_AFTER_BATCH_MUTATION = REQUIRED`
 `FAILURES_COLLECT_FIRST_THEN_BATCH_REPAIR = REQUIRED`
 `NO_FILE_BY_FILE_EXECUTION = REQUIRED`
+`COLLECT_BEFORE_ANY_REPAIR = REQUIRED`
+`REPAIR_DURING_COLLECTION = FORBIDDEN`
+`INVALIDATED_ROOT_REOPEN = FORBIDDEN`
 
 파일 A 조회→수정→시험→확인 후 파일 B로 넘어가는 방식은 금지한다. A/B/C를 각각 독립 명령으로 병렬 실행하는 것도 같은 낭비로 본다. 기술적 의존성 때문에 내부 순서가 반드시 필요한 경우만 예외이며, 그 경우에도 사용자/Work 왕복을 파일 단위로 쪼개지 않는다.
 
@@ -28,6 +31,8 @@ Chat/assistant가 만든 Work 지시문을 신뢰하지 않는다. Work 진입 �
 
 ## 2. 절대 금지
 - 오류 하나 발견 즉시 수정→배포 왕복 금지.
+- 수집 완료·중복/PASS/INVALIDATED/HOLD 분리·공통 ROOT 묶음 확정 전에 코드/파일을 수정하지 않는다. 시험 실패도 전부 수집한 다음 영향 묶음만 재수정한다.
+- 사용자 정책으로 `INVALIDATED` 또는 `NOT_ERROR`가 확정된 ROOT·occurrence는 기존 코드나 오래된 HOLD와 충돌하더라도 수정·시험·원격작업·ALLOW 요청 대상으로 다시 열지 않는다.
 - 같은 ROOT/cause occurrence 개별 수정 금지.
 - 같은 파일 작은 변경마다 열기/저장/commit 금지.
 - 사소한 수정 하나마다 전체 테스트 금지.
