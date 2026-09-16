@@ -1,21 +1,26 @@
 name: WIC Work Gate Handoff Audit
-
 on:
   push:
     paths:
       - 'feedback_pipeline/work_gate_handoff.py'
+      - 'feedback_pipeline/work_execution_enforcer.py'
+      - 'feedback_pipeline/work_credit_waste_start_gate.py'
+      - 'feedback_pipeline/WIC_WORK_CREDIT_WASTE_PREVENTION_MANUAL.md'
+      - 'feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md'
       - 'WIC_EXECUTION_STATE.json'
       - '.github/workflows/work-gate-handoff-audit.yml'
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   work-gate-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Automatic waste gate fixtures
+        run: python feedback_pipeline/work_credit_waste_start_gate.py
+      - name: Work execution audit regression
+        run: python feedback_pipeline/work_execution_enforcer.py --self-test
       - name: Deterministic Work gate fixtures
         run: python feedback_pipeline/work_gate_handoff.py --self-test
       - name: Generate exact Work handoff and exit template
