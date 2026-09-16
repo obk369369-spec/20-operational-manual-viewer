@@ -1,6 +1,6 @@
 # WIC 각 대화창 최근 오류·피드백 자동수집 → TOOL016 → TOOL044 준비
 
-상태: PREPARED / WORK_IMPLEMENTATION_REQUIRED
+상태: PREPARED / MERGE_INTO_NEXT_COMPRESSED_WORK_BATCH
 작성일: 2026-09-16
 
 ## 목적
@@ -10,49 +10,37 @@
 `각 WIC 대화창/접근 가능한 대화기록 → 수집 → 정규화/중복제거 → TOOL016 ROOT/atomic demand → TOOL044 대상 선별 → TOOL044_REQUEST_INBOX/atomic demand queue → TOOL044 기존 원칙대로 처리`
 
 ## A. 채팅창 경로 — 즉시 적용 규칙
+현재 대화에서 새 오류지적, 개선요구, 운영규칙, HOLD/FAIL, 중요한 의사결정, 실제 작업결과가 발생하면 FEEDBACK_EVENT 후보로 취급한다. 같은 원인/요구의 반복은 occurrence로 합치고 새 ROOT를 남발하지 않는다. 이미 PASS/VERIFIED인 동일 요구는 SKIP_REUSE하고 변화 없는 외부 HOLD는 재작업하지 않는다. TOOL016에서 ROOT/atomic demand로 정리한 뒤 외부 완성부품을 무수정 장착하여 해결 가능한 요구만 TOOL044 대상으로 한다. 사용자가 다른 대화창 내용을 수동 복사하도록 요구하지 않는다. 현재 런타임에서 다른 ChatGPT 대화창 전체를 직접 열람할 수 없는 경우 CHAT_HISTORY_ACCESS_BOUNDARY로 기록하고 PASS로 위장하지 않는다.
 
-채팅창에서 사용자가 WIC 작업을 계속하는 동안 다음을 강제한다.
+FEEDBACK_EVENT 최소 스키마: source_chat_or_tool, observed_at, event_type, raw_summary, root_cause_or_demand, occurrence_key, evidence_ref, current_status, tool044_candidate.
 
-1. 현재 대화에서 새 오류지적, 개선요구, 운영규칙, HOLD/FAIL, 중요한 의사결정, 실제 작업결과가 발생하면 `FEEDBACK_EVENT` 후보로 취급한다.
-2. 같은 원인/같은 요구의 반복은 occurrence로 합치고 새 ROOT를 남발하지 않는다.
-3. 이미 PASS/VERIFIED인 동일 요구는 SKIP_REUSE한다.
-4. 변화 없는 외부 HOLD는 재작업하지 않는다.
-5. TOOL044로 직접 모든 항목을 보내지 않는다. TOOL016에서 ROOT/atomic demand로 정리한 뒤 `외부 완성부품을 무수정 장착하여 해결 가능한 요구`만 TOOL044 대상으로 한다.
-6. 사용자가 다른 대화창의 내용을 수동 복사하도록 요구하지 않는다.
-7. 현재 채팅 런타임에서 다른 ChatGPT 대화창 전체를 직접 열람할 수 없는 경우 이를 PASS로 위장하지 않는다. 해당 접근 경계는 `CHAT_HISTORY_ACCESS_BOUNDARY`로 기록한다.
+## B. Work 처리 방식 — 독립 작업 금지
 
-### FEEDBACK_EVENT 최소 스키마
-- source_chat_or_tool
-- observed_at
-- event_type: ERROR | FEEDBACK | RULE | HOLD | FAIL | DECISION | RESULT
-- raw_summary
-- root_cause_or_demand
-- occurrence_key
-- evidence_ref
-- current_status
-- tool044_candidate: true|false|unknown
+이 항목만 따로 Work를 열거나, 이것만 붙잡고 별도 조사/구현/검증하는 것을 금지한다.
 
-## B. Work 구현 경로 — 다음 실제 미완료
+`HISTORICAL_FEEDBACK_INGEST`는 **다음 WIC 전체 압축 Work batch의 한 하위 ROOT**로만 포함한다. 다른 실제 미완료 ROOT들과 함께 전체 범위를 먼저 모은 뒤, 중복/PASS/변화 없는 HOLD를 제거하고 공통 원인·공통 파일·공통 시험·공통 배포 단위로 교차파일 대량 처리한다.
 
-Work는 `지난번 어디까지 했지?`를 재탐색하지 않는다. 기존 SAFE_CHECKPOINT / last_actual_point / next_start / next_trigger를 먼저 회수하고 이미 완료된 16→44 경로는 SKIP_REUSE한다.
+Work는 `지난번 어디까지 했지?`를 재탐색하지 않는다. 기존 SAFE_CHECKPOINT / last_actual_point / next_start / next_trigger를 회수하고 이미 완료된 16→44 경로는 SKIP_REUSE한다.
 
-현재 실제 미완료 ROOT:
+현재 포함할 미완료 ROOT:
 `TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST`
 
-기존 증거상 `HISTORICAL_FEEDBACK_INGEST = MISSING_CAPABILITY`이며 TOOL044 완성부품 검색은 `NO_READY_ATOMIC_COMPONENT`였다. 따라서 TOOL044 내부에서 커스텀 개발하지 않는다.
+기존 증거상 HISTORICAL_FEEDBACK_INGEST=MISSING_CAPABILITY이고 TOOL044 검색은 NO_READY_ATOMIC_COMPONENT였다. TOOL044 내부 커스텀 개발은 금지한다.
 
-### Work가 구현해야 할 것
-1. 저장소/플랫폼에서 합법적으로 접근 가능한 대화기록 입력원을 한 번에 식별한다.
-2. 입력원이 있으면 전체 범위를 먼저 수집하고 mutation 전에 오류/피드백 후보를 전부 집계한다.
-3. 전 대화/전 파일을 교차하여 같은 ROOT/원인/요구로 dedup/group한다.
-4. TOOL016이 소비 가능한 단일 canonical ingest 형식으로 변환한다.
-5. 기존 TOOL016→TOOL044 인계기를 재사용한다. 새 병렬 인계 시스템을 만들지 않는다.
-6. batch fixture로 여러 대화, 중복 오류, 반복 피드백, PASS 재등장, HOLD 재등장을 한꺼번에 시험한다.
-7. 실패를 먼저 전부 모은 후 한 번의 repair batch로 고친다.
-8. 최소 Git/GitHub 왕복으로 반영하고 마지막에 E2E read-back 한다.
-9. 실제 ChatGPT 전체 대화기록 접근 API/입력원이 제공되지 않으면 그 부분만 `PLATFORM_ACCESS_HOLD`로 남기고, 나머지 ingest/parser/dedup/TOOL016→TOOL044 연결은 fixture/실제 접근가능 입력으로 검증한다.
+### 전체 압축 batch 안에서 이 ROOT가 할 일
+1. 다른 미완료 ROOT들과 함께 접근 가능한 입력원/오류 범위를 한 번에 수집한다.
+2. mutation 전에 전체 오류·피드백 후보를 집계한다.
+3. 전 대화/전 파일 교차 ROOT dedup/group한다.
+4. TOOL016 canonical ingest로 변환한다.
+5. 기존 TOOL016→TOOL044 인계기를 재사용한다.
+6. 여러 대화/중복 오류/반복 피드백/PASS 재등장/HOLD 재등장을 다른 batch 시험들과 함께 시험한다.
+7. 이 ROOT의 실패도 다른 실패들과 먼저 모은 후 repair batch에 합쳐 고친다.
+8. 이 ROOT 때문에 별도 commit/push/cloud/read-back을 만들지 않는다. 전체 batch의 Git/GitHub/cloud/read-back에 합친다.
+9. 플랫폼 전체 대화기록 입력원이 없으면 PLATFORM_ACCESS_HOLD만 남기고 그 HOLD 때문에 전체 Work를 붙잡지 않는다. 접근 가능한 범위의 parser/dedup/TOOL016→TOOL044 검증을 끝내고 다른 ROOT로 계속 진행한다.
 
 ## Work 낭비 방지 — 강제
+- STANDALONE_WORK_FOR_THIS_ROOT = FORBIDDEN
+- BLOCK_OTHER_WORK_FOR_THIS_ROOT = FORBIDDEN
 - ONE_FILE_ONE_OPERATION = FORBIDDEN
 - ONE_ERROR_ONE_OPERATION = FORBIDDEN
 - COLLECT_ALL_ERRORS_BEFORE_MUTATION = REQUIRED
@@ -65,15 +53,7 @@ Work는 `지난번 어디까지 했지?`를 재탐색하지 않는다. 기존 SA
 - 변화 없는 HOLD 재시도 금지
 - 조사만 하는 Work 금지
 
-## 완료 판정
-다음이 모두 증거로 확인될 때만 `E2E_PASS`:
-1. 실제 접근 가능한 복수 대화기록 입력
-2. 최근 오류/피드백 추출
-3. ROOT/occurrence dedup
-4. TOOL016 canonical ingest
-5. TOOL044 대상 자동 선별
-6. TOOL044 inbox/atomic queue receipt
-7. 중복 재실행 시 idempotent
-8. remote read-back
+## 이 ROOT의 완료 판정
+실제 접근 가능한 복수 대화기록 입력 → 최근 오류/피드백 추출 → ROOT/occurrence dedup → TOOL016 canonical ingest → TOOL044 대상 자동선별 → TOOL044 receipt → idempotent → 전체 batch final remote read-back까지 확인되면 해당 범위 PASS.
 
-ChatGPT 플랫폼이 전체 대화창 자동열람 통로를 제공하지 않는 경우 전체 시스템 상태는 `PARTIAL_PASS_PLATFORM_ACCESS_HOLD`; 해당 통로가 확보된 뒤 같은 E2E 시험을 실제 전체 대화 범위로 다시 통과해야 최종 PASS한다.
+ChatGPT 플랫폼 전체 대화창 자동열람 통로가 없으면 해당 항목만 PARTIAL_PASS_PLATFORM_ACCESS_HOLD로 남긴다. **이 HOLD는 다른 WIC 실제 작업의 진행을 막는 critical blocker로 취급하지 않는다.**
