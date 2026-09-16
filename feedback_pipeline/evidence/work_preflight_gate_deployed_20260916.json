@@ -1,0 +1,21 @@
+{
+  "scope": "WORK_PREFLIGHT_POLICY_INVALIDATION_AND_BATCH_ADMISSION_ONLY",
+  "source_commit": "dcea29ba27db4b95e443c3ad45758129392ff263",
+  "actual_use_folder": "I:\\GPT 도구 작업\\44번 완성부품 가져오기\\feedback_pipeline",
+  "deployed_files": {
+    "work_execution_enforcer.py": "15385BEE4648336CBF13D94A16CC150E8D4FEC4D0122E39D5E57B0BFF697C07F",
+    "work_execution_enforcer_legacy.py": "2D23762383DA6917BD189FD89D77523C5912DDA3BD9249DC7A61D06FAE4EEC45",
+    "work_credit_waste_start_gate.py": "5145A6A9B5A17856FD80F1BC32DED0D7122FFED266854CF2CC9807A21EB928DF",
+    "WIC_WORK_CREDIT_WASTE_PREVENTION_MANUAL.md": "AE16EC3AF2F5ABB4D78A1F94A7654F377DA90DCFB9DD2902C1374C26F3E556DD",
+    "WIC_WORK_COMMON_EXECUTION_BLOCK.md": "860D7CC5B4B8CF099B59F0C7CD7B129D6A4BBE6C4B0514B0F1A0374E5C716BE6"
+  },
+  "source_deployed_sha256_match": true,
+  "deployed_tests": [
+    "PASS: automatic waste-manual gate",
+    "PASS: work execution fail-closed audit",
+    "PASS: legacy execution audit preserved + automatic waste gate enforced before scope"
+  ],
+  "rollback_copy": "C:\\Users\\obk36\\AppData\\Local\\Temp\\wic_preflight_backup_2f1274460ea440c8a6ae48b0612cb32a",
+  "result": "WORK_PREFLIGHT_GATE_DEPLOYED_PASS",
+  "excluded_claims": ["ALL_WIC_TOOLS_COMPLETE", "CUSTOMER_BUSINESS_E2E_PASS", "CHAT_AUTO_EXECUTION_PROVEN"]
+}
