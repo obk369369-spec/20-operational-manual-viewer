@@ -9,6 +9,8 @@ HANDOFF = PIPE / 'tool045_tool016_handoff.json'
 RECEIPT = PIPE / 'tool016_tool045_receipt.json'
 PENDING = PIPE / 'tool016_tool045_root_pending.json'
 INBOX = PIPE / 'TOOL044_REQUEST_INBOX.json'
+SOURCE_MANIFEST = PIPE / 'tool045_source_manifest.json'
+ROOT_REVIEW = PIPE / 'tool016_tool045_root_review.json'
 
 def now():
     return datetime.now(timezone.utc).isoformat()
@@ -63,6 +65,9 @@ def main():
             'missing_capability_review_state': 'PENDING_VERIFICATION' if r.get('missing_capability') in (None, '', 'MISSING_CAPABILITY_UNVERIFIED') else 'CAPABILITY_PRESENT_UNVERIFIED'
         }
     pending_records = list(existing_by_id.values())
+    pinned_manifest = load_json(SOURCE_MANIFEST, {})
+    root_review = load_json(ROOT_REVIEW, {})
+    pinned_review_available = bool(not pending_records and pinned_manifest and root_review)
 
     eligible = []
     for r in pending_records:
@@ -107,7 +112,8 @@ def main():
         existing_req.add(rid)
         added += 1
 
-    PENDING.write_text(json.dumps({'schema_version':1,'source':'TOOL045','receiver':'TOOL016','updated_at':now(),'records':pending_records}, ensure_ascii=False, indent=2), encoding='utf-8')
+    if not pinned_review_available:
+        PENDING.write_text(json.dumps({'schema_version':1,'source':'TOOL045','receiver':'TOOL016','updated_at':now(),'records':pending_records}, ensure_ascii=False, indent=2), encoding='utf-8')
     if added:
         INBOX.write_text(json.dumps(inbox, ensure_ascii=False, indent=2), encoding='utf-8')
 
@@ -116,7 +122,9 @@ def main():
         'source': 'TOOL045',
         'receiver': 'TOOL016',
         'received': True,
-        'state': 'RECEIVED_ROOT_REVIEW_PENDING' if pending_records else 'RECEIVED_EMPTY',
+        'state': ('RECEIVED_ROOT_REVIEW_PENDING' if pending_records else
+                  'PINNED_ROOT_REVIEW_REUSED_SOURCE_ASSET_NOT_MOUNTED' if pinned_review_available else
+                  'RECEIVED_EMPTY'),
         'received_at': now(),
         'handoff_state_seen': handoff.get('state'),
         'record_count': len(records),
@@ -124,6 +132,11 @@ def main():
         'pending_root_review_count': len(pending_records),
         'eligible_for_tool044_count': len(eligible),
         'tool044_handoff_count_this_run': added,
+        'pinned_source_occurrence_count': pinned_manifest.get('occurrence_count') if pinned_review_available else None,
+        'pinned_source_root_candidate_count': pinned_manifest.get('root_candidate_count') if pinned_review_available else None,
+        'reviewed_global_root_family_count': root_review.get('duplicate_review', {}).get('global_root_families') if pinned_review_available else None,
+        'verified_missing_capability_count': root_review.get('missing_capability_review', {}).get('verified_missing_capabilities') if pinned_review_available else None,
+        'source_asset_sha256': pinned_manifest.get('asset_zip_sha256') if pinned_review_available else None,
         'truth_contract': 'TOOL044_ONLY_AFTER_VERIFIED_ROOT_AND_VERIFIED_MISSING_CAPABILITY'
     }
     RECEIPT.write_text(json.dumps(receipt, ensure_ascii=False, indent=2), encoding='utf-8')

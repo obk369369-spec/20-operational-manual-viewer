@@ -8,6 +8,7 @@ INPUT=ROOT/'feedback_pipeline'/'tool045_input'
 STATE=ROOT/'feedback_pipeline'/'tool045_state.json'
 OUT=ROOT/'feedback_pipeline'/'tool045_occurrences.jsonl'
 HANDOFF=ROOT/'feedback_pipeline'/'tool045_tool016_handoff.json'
+SOURCE_MANIFEST=ROOT/'feedback_pipeline'/'tool045_source_manifest.json'
 
 ERROR_TERMS=('오류','실패','안됨','안 돼','문제','불편','수정','개선','재발','검증','테스트','껍데기','PASS','GitHub','배포','중간승인','떠넘','크레딧','누락','전달','받지','시작하지')
 TOOL_RE=re.compile(r'(?:TOOL\s*0*(\d{1,3})|(?<!\d)(\d{1,3})번)')
@@ -30,6 +31,19 @@ def main():
         occurrences=[json.loads(x) for x in OUT.read_text(encoding='utf-8').splitlines() if x.strip()]
     known={o['occurrence_id'] for o in occurrences}
     files=[p for p in INPUT.rglob('*') if p.is_file() and p.suffix.lower() in {'.txt','.md','.json','.jsonl'}]
+    # The pinned one-year asset is the canonical cumulative source.  A cloud
+    # run without that mounted asset is not an empty corpus and must never
+    # overwrite the existing handoff/lineage with zero records.
+    if not files and SOURCE_MANIFEST.exists():
+        manifest=json.loads(SOURCE_MANIFEST.read_text(encoding='utf-8'))
+        state.update({'last_run':now(),'current_input_files':0,
+                      'cumulative_occurrence_count':manifest.get('occurrence_count'),
+                      'cumulative_root_candidate_count':manifest.get('root_candidate_count'),
+                      'source_asset_sha256':manifest.get('asset_zip_sha256'),
+                      'handoff_state':'SOURCE_ASSET_NOT_MOUNTED_REUSE_PINNED_MANIFEST'})
+        STATE.write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding='utf-8')
+        print(json.dumps(state,ensure_ascii=False))
+        return
     for p in files:
         rel=p.relative_to(ROOT).as_posix(); raw=p.read_text(encoding='utf-8',errors='replace')
         digest=hashlib.sha256(raw.encode()).hexdigest()
