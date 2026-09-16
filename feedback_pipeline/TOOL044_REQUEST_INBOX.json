@@ -103,6 +103,24 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "cfbbb93e0c5991f482f3",
+      "root_id": "4c4baaa30ab6e13af241",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/24",
+      "feedback": "[WIC / TOOL048 — 42번 실제 발송 메일·안내서 전수검사 → TOOL016 입력]\n\nSOURCE_SCOPE\n- 사용자 제공 ZIP 1건\n- 실제 EML 41건 확인\n- 실제 발송일 범위: 2026-08-13 ~ 2026-09-16\n- USER_WORK=0 / USER_MANUAL_RELAY=0\n\n현재 1차 실제 대조에서 확정한 반복 ROOT\n\nROOT-048-001 SUPPLY_PRICE_EMPTY_SENT\n- 현상: 고객에게 실제 발송된 안내서 본문에서 `공급가격: 원`처럼 금액 숫자가 비어 있는 상태로 발송됨.\n- occurrence: 29/41 EML에서 확인.\n- 대표 occurrence: 2026-09-09 탄소복합재기술연구조합 전지현, 한국탄소나노산업협회 이수병, 한국탄소산업진흥원 송현도/이민구; 2026-09-08 양재연/윤동훈; 2026-09-10 송호준; 2026-09-11 현대자동차 연구분야별 공학도서; 2026-09-15 SK스페셜티 조용준; 2026-09-16 경인양행 장예은/세종대 김용석/생기원 임대영 등.\n- ROOT 원인: 발송 전 필수필드 검증 없이 템플릿의 미완성 가격 슬롯을 그대로 고객 발송 단계까지 통과시킴.\n- 개선: 발송 직전 `공급가격` 필수값 validator. 숫자/통화값 없으면 SEND_BLOCK + HOLD_PRICE_REQUIRED. 빈 슬롯을 공백으로 숨기지 말고 발송 자체를 차단. 가격 비공개 정책이면 해당 줄 전체 제거하는 명시적 정책값을 사용.\n- 회귀검사: `공급가격:\\s*원`, `공급가격:\\s*$`, placeholder/공백-only를 실제 발송 EML에서 0건으로 강제.\n\nROOT-048-002 CUSTOMER_GUIDE_PRE_SEND_VALIDATION_GAP\n- 현상: 위와 같은 미완성 필드가 다수 고객·다수 날짜에 반복되어 단건 작성 실수가 아니라 발송 전 품질게이트 부재로 확인됨.\n- occurrence: ROOT-048-001의 29건을 증거 occurrence로 연결.\n- 개선: 고객명/기관/보고서 제목/발행사/발행일/정가/공급가격/상세 URL/목차 존재 및 형식 검사 → PASS일 때만 발송. 하나라도 실패하면 고객 발송 금지, 자동 HOLD 큐.\n\n추가 확인 중인 항목\n- 동일 고객 중복/추가 발송 구분\n- 제목의 고객·기관과 본문 호칭 일치\n- 보고서명/한글명/발행사/발행일/가격/URL 상호 일치\n- 링크 누락·잘못된 상세페이지·리셀러/브로셔 링크 여부\n- 목차 누락/다른 보고서 목차 혼입/서식 파손\n- 고객별 추천분야와 실제 보고서의 적합성\n- 메일 제목/본문/안내서 간 불일치\n\nTOOL016 처리 요구\n1. 기존 ROOT와 동일하면 새 ROOT 생성 금지, 기존 ROOT에 29 occurrence 누적.\n2. occurrence마다 source=TOOL048, source_chat=48번, source_tool=TOOL042, sent_date/customer/evidence를 보존.\n3. 신규 ROOT일 때만 atomic demand 생성.\n4. TOOL044 후보는 외부 완성·검증 부품으로 무수정 교체 가능한 validator/parser/dedup 계열만 분리하고, TOOL044 내부 개발 금지.\n5. 41건 전수검사가 끝나면 후속 증분 결과를 같은 source lineage로 병합.\n\n상태: PARTIAL_REGISTERED — 41건 파일 회수 완료, 1차 반복 ROOT 실제 등록 완료, 개별 고객별 전체 필드 대조는 진행 중. 전체 완료로 표시 금지.",
+      "actual_input": "github_issue:5471379573",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
