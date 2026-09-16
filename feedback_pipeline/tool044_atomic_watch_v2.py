@@ -61,6 +61,52 @@ def visible_backoff_state(queue_path: Path, registry_path: Path, state_path: Pat
     state["backoff_demands_kept_visible"] = changed
     state["duplicate_searches_blocked"] = changed
     state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Return the persisted worker outcome through the existing TOOL016 central
+    # checkpoint contract.  This is a read-back/ACK of watcher results, not a
+    # second transport or a synthetic component PASS.
+    root = queue_path.parent
+    inbox_path = root / "TOOL044_REQUEST_INBOX.json"
+    central_path = root / "state.json"
+    if inbox_path.exists() and central_path.exists():
+        inbox = json.loads(inbox_path.read_text(encoding="utf-8"))
+        central = json.loads(central_path.read_text(encoding="utf-8"))
+        checkpoints = central.get("integration_core", {}).get("feedback_checkpoints", {})
+        result_by_demand = {item.get("demand_id"): item for item in state.get("results", [])}
+        queue_demands = queue.get("demands", [])
+        returned = 0
+        for request in inbox.get("requests", []):
+            request_id = str(request.get("request_id") or "")
+            if not request_id or request_id not in checkpoints:
+                continue
+            demand_ids = [d.get("demand_id") for d in queue_demands if str(d.get("request_id") or "") == request_id]
+            demand_results = [result_by_demand[d] for d in demand_ids if d in result_by_demand]
+            if not demand_results:
+                continue
+            receipt = {
+                "cycle_id": state.get("cycle_id"),
+                "trigger_source": state.get("trigger_source"),
+                "work_triggered": state.get("work_triggered"),
+                "user_triggered": state.get("user_triggered"),
+                "demand_results": [{"demand_id": r.get("demand_id"), "result": r.get("result"),
+                                    "matched": r.get("matched", {}), "missing": r.get("missing", [])}
+                                   for r in demand_results],
+                "ack": "TOOL016_CENTRAL_RECEIVED",
+                "user_manual_relay": 0,
+            }
+            checkpoints[request_id]["tool044_natural_worker_return"] = receipt
+            checkpoints[request_id]["tool044_worker_checkpoint"] = state.get("cycle_id")
+            checkpoints[request_id]["tool044_worker_return_ack"] = "PASS"
+            returned += 1
+        if returned:
+            central_path.write_text(json.dumps(central, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+            read_back = json.loads(central_path.read_text(encoding="utf-8"))
+            acknowledged = sum(1 for cp in read_back["integration_core"]["feedback_checkpoints"].values()
+                               if cp.get("tool044_worker_checkpoint") == state.get("cycle_id")
+                               and cp.get("tool044_worker_return_ack") == "PASS")
+            if acknowledged != returned:
+                raise RuntimeError("TOOL016 central worker-result return read-back mismatch")
+        state["tool016_result_returns"] = returned
+        state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return state
 
 
