@@ -170,7 +170,7 @@
         "status": "TOOL044_RESULT_RETURN_ACK",
         "tool044_natural_worker_return": {
           "ack": "TOOL016_CENTRAL_RECEIVED",
-          "cycle_id": "20260916T024944Z",
+          "cycle_id": "20260916T075610Z",
           "demand_results": [
             {
               "demand_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
@@ -202,7 +202,7 @@
           "user_triggered": false,
           "work_triggered": false
         },
-        "tool044_worker_checkpoint": "20260916T024944Z",
+        "tool044_worker_checkpoint": "20260916T075610Z",
         "tool044_worker_return_ack": "PASS",
         "user_manual_relay": 0
       },
@@ -212,6 +212,42 @@
         "result_sha256": "a364781ce893b6c837407ee2cc480bf35b374905107d4cfcd52ee2e37b25477d",
         "root_id": "4c4baaa30ab6e13af241",
         "status": "TOOL044_RESULT_RETURN_ACK",
+        "tool044_natural_worker_return": {
+          "ack": "TOOL016_CENTRAL_RECEIVED",
+          "cycle_id": "20260916T075610Z",
+          "demand_results": [
+            {
+              "demand_id": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
+              "matched": {},
+              "missing": [
+                "INPUT_CONTRACT_VALIDATION"
+              ],
+              "result": "NO_READY_ATOMIC_COMPONENT"
+            },
+            {
+              "demand_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+              "matched": {},
+              "missing": [
+                "EXPECTED_ACTUAL_VALIDATION"
+              ],
+              "result": "NO_READY_ATOMIC_COMPONENT"
+            },
+            {
+              "demand_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+              "matched": {
+                "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+              },
+              "missing": [],
+              "result": "READY_ATOMIC_COMPONENT_FOUND"
+            }
+          ],
+          "trigger_source": "SCHEDULED",
+          "user_manual_relay": 0,
+          "user_triggered": false,
+          "work_triggered": false
+        },
+        "tool044_worker_checkpoint": "20260916T075610Z",
+        "tool044_worker_return_ack": "PASS",
         "user_manual_relay": 0
       },
       "e8044eff2acbb5214dbf": {
@@ -222,7 +258,7 @@
         "status": "TOOL044_RESULT_RETURN_ACK",
         "tool044_natural_worker_return": {
           "ack": "TOOL016_CENTRAL_RECEIVED",
-          "cycle_id": "20260916T024944Z",
+          "cycle_id": "20260916T075610Z",
           "demand_results": [
             {
               "demand_id": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
@@ -254,7 +290,7 @@
           "user_triggered": false,
           "work_triggered": false
         },
-        "tool044_worker_checkpoint": "20260916T024944Z",
+        "tool044_worker_checkpoint": "20260916T075610Z",
         "tool044_worker_return_ack": "PASS",
         "user_manual_relay": 0
       },
@@ -271,7 +307,7 @@
         "status": "TOOL044_RESULT_RETURN_ACK",
         "tool044_natural_worker_return": {
           "ack": "TOOL016_CENTRAL_RECEIVED",
-          "cycle_id": "20260916T024944Z",
+          "cycle_id": "20260916T075610Z",
           "demand_results": [
             {
               "demand_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
@@ -303,7 +339,7 @@
           "user_triggered": false,
           "work_triggered": false
         },
-        "tool044_worker_checkpoint": "20260916T024944Z",
+        "tool044_worker_checkpoint": "20260916T075610Z",
         "tool044_worker_return_ack": "PASS",
         "user_manual_relay": 0
       }
