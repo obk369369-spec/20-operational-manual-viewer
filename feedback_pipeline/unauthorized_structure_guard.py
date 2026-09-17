@@ -152,10 +152,11 @@ ACTION_DENIAL = {
 
 
 def _explicit_approval(action: str, directive: str) -> bool:
-    t = _norm(directive)
-    if any(_norm(x) in t for x in ACTION_DENIAL.get(action, ())):
+    clauses = [_norm(part) for part in re.split(r"[.!?。\n]+", directive) if part.strip()]
+    relevant = [part for part in clauses if _mentions_action(action, part)]
+    if any(any(_norm(x) in part for x in ACTION_DENIAL.get(action, ())) for part in relevant):
         return False
-    return any(x in t for x in POSITIVE_APPROVAL)
+    return any(any(x in part for x in POSITIVE_APPROVAL) for part in relevant)
 
 
 def deny(reason: str, p: ChangeProposal) -> GuardDecision:

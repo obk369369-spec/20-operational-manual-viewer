@@ -9,11 +9,14 @@ from work_ready_tracker import assess_work_ready, update_work_ready_state
 ROOT = Path(__file__).resolve().parent
 STATE = ROOT / "state.json"
 BATCH = ROOT / "actual_feedback_batch_20260825.json"
+REGISTRY = ROOT / "wic_target_registry.json"
 
 
-def main() -> None:
-    state = json.loads(STATE.read_text(encoding="utf-8"))
-    batch = json.loads(BATCH.read_text(encoding="utf-8"))
+def run(state_path: Path = STATE, batch_path: Path = BATCH, registry_path: Path = REGISTRY) -> dict[str, Any]:
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    batch = json.loads(batch_path.read_text(encoding="utf-8"))
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    active = {tool for tool, row in registry["targets"].items() if row["status"] == "ACTIVE"}
     integration = dict(state.get("integration_core", {}))
     roots = dict(integration.get("actual_feedback_roots", {}))
     seen = set(integration.get("actual_occurrence_ids", []))
@@ -21,7 +24,8 @@ def main() -> None:
     skipped = 0
     for event in batch["events"]:
         assert event["event_kind"] == "ACTUAL_USER"
-        assert event["tool"] in {"TOOL006", "TOOL041", "TOOL042"}
+        if event["tool"] not in active:
+            raise ValueError(f"unregistered or inactive WIC target: {event['tool']}")
         occurrence_id = event["occurrence_id"]
         if occurrence_id in seen:
             skipped += 1
@@ -53,19 +57,22 @@ def main() -> None:
         "root_count": len(roots),
         "by_tool": {
             tool: sum(1 for item in roots.values() if item["tool"] == tool)
-            for tool in ("TOOL006", "TOOL041", "TOOL042")
+            for tool in sorted({item["tool"] for item in roots.values()})
         },
         "fixture_or_test_events_counted": 0,
     }
     state["integration_core"] = integration
     state["last_context_cursor"] = max(event["observed_at"] for event in batch["events"])
-    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    read_back = json.loads(STATE.read_text(encoding="utf-8"))
-    assert read_back["integration_core"]["actual_feedback_summary"]["by_tool"] == {
-        "TOOL006": 4, "TOOL041": 1, "TOOL042": 1
-    }
+    state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    read_back = json.loads(state_path.read_text(encoding="utf-8"))
+    assert read_back["integration_core"]["actual_feedback_summary"]["by_tool"] == integration["actual_feedback_summary"]["by_tool"]
     assert read_back["integration_core"]["actual_feedback_summary"]["fixture_or_test_events_counted"] == 0
-    print(json.dumps({"result":"PASS", "inserted":inserted, "skipped":skipped, "roots":len(roots)}, ensure_ascii=False))
+    return {"result":"PASS", "inserted":inserted, "skipped":skipped, "roots":len(roots),
+            "by_tool": integration["actual_feedback_summary"]["by_tool"]}
+
+
+def main() -> None:
+    print(json.dumps(run(), ensure_ascii=False))
 
 
 if __name__ == "__main__":

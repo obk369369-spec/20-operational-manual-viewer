@@ -31,6 +31,17 @@ def stable_id(*parts: str) -> str:
     return hashlib.sha256("\0".join(parts).encode()).hexdigest()[:20]
 
 
+def preserve_user_directive(event: Mapping[str, Any]) -> dict[str, Any]:
+    """Keep the full directive as the operational feedback input when supplied."""
+    normalized = dict(event)
+    directive = event.get("directive_text")
+    if directive is not None:
+        if not isinstance(directive, str) or not directive.strip():
+            raise ValueError("empty or invalid directive_text")
+        normalized["feedback"] = directive
+    return normalized
+
+
 def validate_registry(registry: Mapping[str, Any], *, target: str | None = None) -> None:
     if registry.get("schema_version") != 1: raise ValueError("unsupported registry schema")
     seen: dict[str, str] = {}
@@ -167,6 +178,7 @@ def build_packets(event: Mapping[str, Any], target: str, row: Mapping[str, Any])
 def run_event(event: Mapping[str, Any], registry: Mapping[str, Any], receipts: Mapping[str, Any], *, fixture_mode: bool = False) -> dict[str, Any]:
     if not fixture_mode:
         raise RuntimeError("receipt injection is fixture-only; use execute_actual_transport for operation")
+    event = preserve_user_directive(event)
     state: dict[str, Any] = {"pipeline_id":stable_id(str(event.get("source_ref","")),str(event.get("feedback",""))),"stage":"CAPTURED","status":"RUNNING"}
     if event.get("event_kind") != "ACTUAL_USER":
         return fail(state,"CAPTURED","fixture/test events cannot increment actual recurrence",False,"ISOLATE_NON_ACTUAL_EVENT")
@@ -256,6 +268,7 @@ def canonical_execution_audit() -> dict[str, Any]:
 
 def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, Any], workspace: Path, *, bundled_python: str = "") -> dict[str, Any]:
     """Create evidence DIFF, test, commit, push and remote read-back from actual Git results."""
+    event = preserve_user_directive(event)
     required_event={"event_kind","source_chat","source_ref","feedback"}
     missing_event=sorted(required_event-set(event))
     if missing_event:
