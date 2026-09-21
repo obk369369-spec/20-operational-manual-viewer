@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "f59cc24927ab0d6f41ce",
+  "target": "CENTRAL",
+  "target_apply_receipt": ".wic/pipeline_receipts/f59cc24927ab0d6f41ce.json",
+  "failure_injection": {
+    "kind": "SAFE_UNTRACKED_SENTINEL",
+    "path": ".wic/failure_injection_round2.tmp",
+    "expected_exit": 23,
+    "actual_exit": 23,
+    "detected": true
+  },
+  "promotion_gate": {
+    "path": ".wic/promotion_round2.ok",
+    "created": false,
+    "blocked": true
+  },
+  "rollback": {
+    "action": "REMOVE_FAILURE_SENTINEL",
+    "executed": true,
+    "pre_failure_checkpoint": "3f107d082b25f1bcafc67fc0fe3c90a0061d10b1",
+    "post_rollback_head": "3f107d082b25f1bcafc67fc0fe3c90a0061d10b1",
+    "pre_failure_tree": "4bfc995b3142e91871592dd771d3e0491109eeff",
+    "post_rollback_tree": "4bfc995b3142e91871592dd771d3e0491109eeff",
+    "worktree_clean": true,
+    "matches_previous_normal_state": true
+  },
+  "status": "FAILURE_DETECTED_PROMOTION_BLOCKED_ROLLBACK_PASS",
+  "next_stage": "CHECKPOINT_RESUME_VERIFICATION"
+}
