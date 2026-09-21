@@ -18,7 +18,18 @@
     "scope": "REMOVE_INTERRUPTED_COPY_FROM_CANONICAL_CHECKOUT",
     "result": "PRE_DEPLOYMENT_STATE_RESTORED"
   },
-  "status": "HOLD_ACTUAL_USE_CONTRACT_NOT_PRESENT",
-  "reason": "The specified actual-use root exists, but none of the four required pre-existing deployment paths exists. Creating a new unconnected runtime structure is outside this round.",
-  "next_stage": "CONFIRM_EXISTING_ACTUAL_USE_ENTRYPOINT_CONTRACT"
+  "contract_adjudication": {
+    "decision": "B",
+    "target_role": "CENTRAL",
+    "requested_root_role": "TOOL044_EXTERNAL_COMPONENT_FACTORY",
+    "target_root_role_match": false,
+    "feedback_pipeline/state.json_required": false,
+    "feedback_pipeline/global_pipeline.py_required": false,
+    "feedback_pipeline/unauthorized_structure_guard.py_required": false,
+    "feedback_pipeline/ingest_actual_feedback_batch.py_required": false,
+    "basis": "The receipt identifies a CENTRAL target while the requested actual-use root is the established TOOL044 external-component factory. The four CENTRAL feedback-pipeline paths are therefore not requirements of that TOOL044 runtime root."
+  },
+  "status": "HOLD_CONDITION_INVALIDATED_WRONG_DEPLOYMENT_ROOT_ROLE",
+  "reason": "The four missing paths were incorrectly treated as mandatory for a TOOL044 actual-use root; no runtime contract is missing there.",
+  "next_stage": "RESOLVE_EXISTING_CENTRAL_ACTUAL_USE_DEPLOYMENT_TARGET_WITHOUT_CREATING_TOOL044_PATHS"
 }
