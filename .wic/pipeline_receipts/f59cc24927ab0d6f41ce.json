@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "f59cc24927ab0d6f41ce",
+  "source_ref": "CURRENT_CHAT#WIC_FINAL_ROUND1",
+  "target": "CENTRAL",
+  "repository": "obk369369-spec/20-operational-manual-viewer",
+  "registry_status": "ACTIVE",
+  "adapter": "CENTRAL_LANE_DIFF_ONLY",
+  "pre_apply_commit": "297b777ffc1fe63e39a7610f77d987d94c0aeff2",
+  "applied_commit": "57ff5f93e0c518583fb6216a49571e115989b243",
+  "mutation_scope": "CENTRAL_DIFF_APPLIED",
+  "material_files": [
+    {
+      "path": "feedback_pipeline/global_pipeline.py",
+      "before_blob": "6d9dda90d5bc9d2d798fda144507713565db53cc",
+      "after_blob": "29ab0c8316371502c9c9b5692a2a0c11ba68f73e"
+    },
+    {
+      "path": "feedback_pipeline/ingest_actual_feedback_batch.py",
+      "before_blob": "2026e0d28eef8c5e6111f22fa886831efc937759",
+      "after_blob": "c3a34fb6bfcd5ca72bad34fd0b1ecf443b38e172"
+    },
+    {
+      "path": "feedback_pipeline/test_common_input_batch.py",
+      "before_blob": null,
+      "after_blob": "585bfbd32d391c65eeb63aef1e93fd37d7124317"
+    },
+    {
+      "path": "feedback_pipeline/unauthorized_structure_guard.py",
+      "before_blob": "98fd459d1cc75474ae398f551620be25c5a73b25",
+      "after_blob": "05e5ef68ec3d932c8f15fa52c234350aecd6d1ac"
+    }
+  ],
+  "customer_data_mutated": false,
+  "duplicate_key": "CURRENT_CHAT#WIC_FINAL_ROUND1:f59cc24927ab0d6f41ce",
+  "status": "TARGET_APPLIED",
+  "next_stage": "TEST_AND_REMOTE_VERIFICATION"
+}
