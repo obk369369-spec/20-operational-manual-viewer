@@ -286,6 +286,15 @@
       "rollback_point": "pre-sync state blob 095781d639c88793facd5b79d3c0a14ca9637693"
     }
   },
+  "active_transaction_sync": {
+    "pipeline_id": "f59cc24927ab0d6f41ce",
+    "target": "CENTRAL",
+    "execution_status": "CHECKPOINT_RESUME_PASS",
+    "execution_checkpoint": "eda1c36c059e3a33bf0596b393713c21975a13cb",
+    "receipt": ".wic/pipeline_receipts/f59cc24927ab0d6f41ce-checkpoint-resume.json",
+    "feedback_state_status": "TARGET_APPLIED",
+    "sync_contract": "EXECUTION_FIELDS_ONLY"
+  },
   "restart_point": [
     "CENTRAL_STATE_TO_OBSERVER is PASS with automated GitHub read-back; do not repeat it unless new failure evidence appears.",
     "Use the retained WIC34 runtime at D:\\오부장 AI (인공지능)\\WIC34_C_REBUILD; once accessible, wire its existing reader to canonical WIC_OBSERVER_STATUS.md without creating a new UI or repository.",

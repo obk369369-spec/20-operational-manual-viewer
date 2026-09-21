@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "f59cc24927ab0d6f41ce",
+  "target": "CENTRAL",
+  "execution_state": {
+    "path": "WIC_EXECUTION_STATE.json",
+    "role": "EXECUTION_STATE_ONLY_NOT_RULES",
+    "blob": "ed0ade4882ffdfdaacc273ce61ecf0938277186b"
+  },
+  "feedback_state": {
+    "path": "feedback_pipeline/state.json",
+    "role": "FEEDBACK_FACTS_AND_CHECKPOINTS",
+    "blob": "e36092df1bef087e67451de2f1cd0cf8eb3da1b9"
+  },
+  "synchronized_fields": [
+    "pipeline_id",
+    "target",
+    "execution_status",
+    "execution_checkpoint",
+    "feedback_state_status",
+    "receipt_link"
+  ],
+  "role_preserved": true,
+  "minimal_sync": true,
+  "unrelated_fields_unchanged": true,
+  "state_contradiction": false,
+  "duplicate_resync_change": false,
+  "execution_excluded_hash": "c06aa5623923cdcf54fa3f3823fbfcae6175950ae440aac3b384f18c6aee3d2a",
+  "feedback_excluded_hash": "40af221f446a3dfc4f6379529c6001a088a1f9fdba3872b0f91fde50ec2888a6",
+  "status": "STATE_SYNC_PASS",
+  "next_stage": "ACTUAL_USE_DEPLOYMENT_VERIFICATION"
+}
