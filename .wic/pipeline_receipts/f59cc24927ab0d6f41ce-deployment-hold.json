@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "f59cc24927ab0d6f41ce",
+  "target": "CENTRAL",
+  "requested_actual_use_root": "I:\\GPT 도구 작업\\44번 완성부품 가져오기",
+  "required_existing_paths": [
+    "feedback_pipeline/state.json",
+    "feedback_pipeline/global_pipeline.py",
+    "feedback_pipeline/unauthorized_structure_guard.py",
+    "feedback_pipeline/ingest_actual_feedback_batch.py"
+  ],
+  "observed_existing_paths": [],
+  "deployment_performed": false,
+  "read_back_performed": false,
+  "runtime_test_performed": false,
+  "rollback": {
+    "performed": true,
+    "scope": "REMOVE_INTERRUPTED_COPY_FROM_CANONICAL_CHECKOUT",
+    "result": "PRE_DEPLOYMENT_STATE_RESTORED"
+  },
+  "status": "HOLD_ACTUAL_USE_CONTRACT_NOT_PRESENT",
+  "reason": "The specified actual-use root exists, but none of the four required pre-existing deployment paths exists. Creating a new unconnected runtime structure is outside this round.",
+  "next_stage": "CONFIRM_EXISTING_ACTUAL_USE_ENTRYPOINT_CONTRACT"
+}
