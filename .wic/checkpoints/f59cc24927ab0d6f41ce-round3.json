@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "f59cc24927ab0d6f41ce",
+  "base_checkpoint": "32ecd453bb323f41598fc48a94008964cb641381",
+  "status": "RESUMED_COMPLETE",
+  "completed_steps": [
+    {"step": "STEP_1", "value": 17, "execution_count": 1},
+    {"step": "STEP_2", "value": 29, "execution_count": 1}
+  ],
+  "accumulated_result": 46,
+  "resumed_step": {"step": "STEP_3", "value": 43, "execution_count": 1},
+  "next_step": null,
+  "expected_continuous_result": 89,
+  "actual_resumed_result": 89,
+  "completed_steps_reexecuted": 0,
+  "resume_policy": "START_AT_NEXT_STEP_ONLY"
+}

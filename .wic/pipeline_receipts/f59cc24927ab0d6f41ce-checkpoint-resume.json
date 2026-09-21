@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "f59cc24927ab0d6f41ce",
+  "target": "CENTRAL",
+  "base_checkpoint": "32ecd453bb323f41598fc48a94008964cb641381",
+  "checkpoint_path": ".wic/checkpoints/f59cc24927ab0d6f41ce-round3.json",
+  "interruption": {
+    "exit_code": 75,
+    "completed_steps": ["STEP_1", "STEP_2"],
+    "accumulated_result": 46,
+    "next_step": "STEP_3"
+  },
+  "resume": {
+    "started_at": "STEP_3",
+    "completed_steps_reexecuted": 0,
+    "resumed_step_execution_count": 1
+  },
+  "expected_continuous_result": 89,
+  "actual_resumed_result": 89,
+  "result_match": true,
+  "status": "CHECKPOINT_RESUME_PASS",
+  "next_stage": "STATE_SYNC_VERIFICATION"
+}
