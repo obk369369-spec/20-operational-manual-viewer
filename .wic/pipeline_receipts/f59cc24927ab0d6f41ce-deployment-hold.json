@@ -29,7 +29,21 @@
     "feedback_pipeline/ingest_actual_feedback_batch.py_required": false,
     "basis": "The receipt identifies a CENTRAL target while the requested actual-use root is the established TOOL044 external-component factory. The four CENTRAL feedback-pipeline paths are therefore not requirements of that TOOL044 runtime root."
   },
+  "deployment_target_adjudication": {
+    "decision": "A",
+    "repository": "obk369369-spec/20-operational-manual-viewer",
+    "branch": "main",
+    "actual_use_location": "GitHub Actions checkout of repository main",
+    "runtime_entrypoint": "feedback_pipeline/global_pipeline.py",
+    "state_path": "feedback_pipeline/state.json",
+    "evidence": [
+      "feedback_pipeline/wic_target_registry.json CENTRAL status=ACTIVE adapter=CENTRAL_LANE_DIFF_ONLY",
+      ".github/workflows/wic-feedback-event.yml actions/checkout@v4",
+      ".github/workflows/wic-feedback-event.yml executes feedback_pipeline/global_pipeline.py with workspace=."
+    ],
+    "local_folder_deployment_required": false
+  },
   "status": "HOLD_CONDITION_INVALIDATED_WRONG_DEPLOYMENT_ROOT_ROLE",
   "reason": "The four missing paths were incorrectly treated as mandatory for a TOOL044 actual-use root; no runtime contract is missing there.",
-  "next_stage": "RESOLVE_EXISTING_CENTRAL_ACTUAL_USE_DEPLOYMENT_TARGET_WITHOUT_CREATING_TOOL044_PATHS"
+  "next_stage": "DEPLOY_CANDIDATE_TO_CENTRAL_REPOSITORY_MAIN_AND_VERIFY_WORKFLOW_CHECKOUT"
 }
