@@ -182,3 +182,20 @@
 - 단일출처 규칙을 다시 강제한다. 한 보고서에서 첫 번째 사이트가 필수정보/목차를 완전하게 제공하지 못하면 그 사이트의 일부 값을 남겨 두고 두 번째 사이트 목차를 붙이지 않는다. 두 번째 사이트를 채택하면 제목·발행사·페이지·가격·발행일·목차 등 고객용 필드를 그 두 번째 사이트 하나에서 다시 전부 확인해 SOURCE_ID=1로 고정한다.
 - `출처를 섞지 말라`는 규칙은 검색단계가 아니라 최종 안내서 데이터 조립단계에서 실제 검사해야 한다. 출력 직전 보고서별 필드 출처표를 내부 생성하고 SOURCE_ID가 2개 이상이면 즉시 FAIL한다.
 - 사용자가 직접 수정하여 실제 발송 직전 EML을 제시한 경우, 그 파일의 문구·제목·메타데이터·표시 목차 구조를 해당 고객 건의 회귀검증 정답으로 우선 사용한다. 이후 같은 고객 안내를 재생성할 때 모델의 이전 출력으로 되돌리지 않는다.
+
+
+## 18. 2026-09-22 강승구 공학도서 안내서 실물양식 / 최신성 / 링크 LOCK
+- 사용자가 직접 만든 실물 안내서 `Functional Textiles and Clothing -월드산업정보센터.doc`와 `Advances in Electrically Conductive Textiles -월드산업정보센터.doc`를 공학도서 안내서 GOLDEN FORMAT으로 등록한다.
+- 공학도서 고객용 출력은 설명용 초안이나 빈칸 많은 표가 아니라, 사용자가 Word 안내서에 그대로 복사·붙여넣을 수 있는 완성 텍스트를 우선 출력한다.
+- 고정 순서: `신간자료안내 → WIC URL/전화/FAX/E-mail → 영문 정확한 Title/Subtitle → (한글 타이틀) → 구분선 → 발행사 / Pages / 정가 → 발행일 / 공급가격 공란 → 목차 전체 → 공식 상세페이지 링크`.
+- 공급가격은 사용자가 정하지 않은 경우 기존 양식대로 공란을 유지한다.
+- 영문 공학도서는 한글 제목을 별도 괄호행으로 넣는다. 원문 영문 Title/Subtitle은 임의 축약하지 않는다.
+- 링크 누락은 FAIL이다. 각 자료마다 고객 또는 작업자가 즉시 원문을 재검증할 수 있도록 공식 발행사/공식 판매 상세페이지 링크를 반드시 함께 출력한다.
+- 후보를 고를 때 메타데이터 빈칸이 많은 자료를 먼저 내보내지 않는다. 발행사, 페이지, 정가, 발행일, 목차, 링크가 한 공식 상세페이지에서 충분히 확인되는 자료를 우선한다.
+- 사용자가 최신 자료를 요구하거나 기존 후보가 오래되었다고 지적하면 오래된 후보를 유지하지 않는다. 동일 관심축에서 최신 2025~2026, 가능하면 2026 발행 자료로 교체한다.
+- 강승구/한일첨단소재 건은 과거 실제 구매한 군용·보호용 섬유 전문도서의 구매행동을 우선 신호로 사용한다. 일반 시장보고서보다 기능성·보호용·Technical/Smart Textiles, coating/finishing, high-performance textile/composite 등 공학도서를 우선 탐색한다.
+- `Functional Textiles and Clothing: Proceedings of 4th International Conference on Functional Textiles and Clothing (FTC) 2025` 실물 안내서 확인값: Springer / 332 Pages / Eur 219.99 / 2026-02-06. 이 자료는 최신 후보로 유지한다.
+- `Advances in Electrically Conductive Textiles: Materials, Characterization, and Applications` 실물 안내서 확인값: Elsevier / 853 Pages / $270.00 / 2024-10-24. 내용 적합성은 있으나 최신성 요구에서는 교체 대상이다.
+- 동일 세트에서는 가능하면 발행사 중복을 피한다. 최신 공학도서 세트도 Springer + Wiley-VCH + CRC Press처럼 서로 다른 발행사를 우선 구성한다.
+- 2026-09-22 교체 후보로 공식 상세페이지에서 확인된 자료: `Technical Textiles and Smart Textiles: Materials, Technologies and Applications` (Wiley-VCH, 1st Ed. Sep 2026, 496 Pages, $167.29, 18 chapters) 및 `Textile Composites and Sustainability: A Circular Approach` (CRC Press, 2026, 270 Pages, official page current list price $189.99, 12 chapters).
+- 고객 발송 직전에는 사용자가 만든 Word 안내서의 시각적 필드 순서와 실제 출력 텍스트를 대조하고, 빈칸/링크누락/오래된 발행일/발행사 중복/목차 누락을 STOP_CHECK한다.
