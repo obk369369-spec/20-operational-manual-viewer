@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: tool044-cloud-local-shared-state
@@ -83,13 +84,28 @@ jobs:
           git push origin HEAD:main
 
   isolated-central-return:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.isolated_test }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.isolated_test) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Restore previous isolated state
+        if: ${{ github.event_name == 'schedule' }}
+        id: restore
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WIC_ISOLATED_DIR: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          artifact=$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?per_page=100" --jq '[.artifacts[] | select((.name | startswith("wic-isolated-")) and (.expired == false))] | sort_by(.created_at) | last | "\(.workflow_run.id) \(.name)"')
+          read -r source_run artifact_name <<< "$artifact"
+          test -n "$source_run" && test "$source_run" != null
+          mkdir -p "$WIC_ISOLATED_DIR"
+          gh run download "$source_run" --repo "$GITHUB_REPOSITORY" --name "$artifact_name" --dir "$WIC_ISOLATED_DIR"
+          echo "source_run=$source_run" >> "$GITHUB_OUTPUT"
       - name: Process isolated synthetic demand and record central ACK
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           WIC_ISOLATED_DIR: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}
           PYTHONDONTWRITEBYTECODE: '1'
@@ -137,6 +153,52 @@ jobs:
           }
           assert receipt['tool044_processed'] == 1 and receipt['central_returns'] == 1
           assert receipt['central_ack'] == 'PASS' and receipt['central_received'] == 'TOOL016_CENTRAL_RECEIVED'
+          assert receipt['isolated_persistence'] and receipt['production_mutations'] == 0
+          assert not subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True,
+                                    check=True).stdout.strip()
+          (root / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(receipt))
+          PY
+      - name: Verify scheduled isolated cross-run continuity
+        if: ${{ github.event_name == 'schedule' }}
+        env:
+          WIC_ISOLATED_DIR: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}
+          WIC_SOURCE_RUN: ${{ steps.restore.outputs.source_run }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path(os.environ['WIC_ISOLATED_DIR'])
+          state_path = root / 'evidence' / 'watch_state.json'
+          before = json.loads(state_path.read_text(encoding='utf-8'))
+          previous_receipt = json.loads((root / 'receipt.json').read_text(encoding='utf-8'))
+          test_id = previous_receipt['test_id']
+          central_path = root / 'state.json'
+          previous_checkpoint = json.loads(central_path.read_text(encoding='utf-8'))['integration_core']['feedback_checkpoints'][test_id]
+          subprocess.run([sys.executable, 'feedback_pipeline/tool044_atomic_watch_v2.py',
+                          '--queue', str(root / 'queue.json'), '--registry', str(root / 'registry.json'),
+                          '--state', str(state_path), '--trigger-source', 'SCHEDULED'],
+                         check=True, capture_output=True, text=True)
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          checkpoint = json.loads(central_path.read_text(encoding='utf-8'))['integration_core']['feedback_checkpoints'][test_id]
+          receipt = {
+              'test_id': test_id, 'source_run': os.environ['WIC_SOURCE_RUN'],
+              'restored_state_id': before['cycle_id'], 'state_id': state['cycle_id'],
+              'previous_state_restored': any(item.get('demand_id') == test_id for item in before['results']),
+              'completed_reprocessed': state.get('demands_processed'),
+              'duplicate_central_returns': state.get('tool016_result_returns'),
+              'new_processed': 0, 'new_central_returns': 0,
+              'checkpoint_preserved': checkpoint == previous_checkpoint,
+              'isolated_persistence': state_path.is_file(),
+              'production_mutations': state.get('production_mutations'),
+          }
+          assert receipt['previous_state_restored'] and receipt['checkpoint_preserved']
+          assert receipt['completed_reprocessed'] == 0 and receipt['duplicate_central_returns'] == 0
           assert receipt['isolated_persistence'] and receipt['production_mutations'] == 0
           assert not subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True,
                                     check=True).stdout.strip()
