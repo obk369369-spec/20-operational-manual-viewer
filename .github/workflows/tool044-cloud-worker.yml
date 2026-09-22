@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+    inputs:
+      isolated_test:
+        description: Run one synthetic demand without touching production state
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -14,6 +19,7 @@ concurrency:
 
 jobs:
   public-safe-worker:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.isolated_test }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -75,3 +81,69 @@ jobs:
           git commit -m 'tool044: persist accelerated cloud factory checkpoint'
           git pull --rebase origin main
           git push origin HEAD:main
+
+  isolated-central-return:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.isolated_test }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Process isolated synthetic demand and record central ACK
+        env:
+          WIC_ISOLATED_DIR: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path(os.environ['WIC_ISOLATED_DIR'])
+          (root / 'evidence').mkdir(parents=True)
+          test_id = f"WIC-ISOLATED-{os.environ['GITHUB_RUN_ID']}"
+          demand = {
+              'demand_id': test_id, 'request_id': test_id, 'root_id': test_id,
+              'target_tool': 'TOOL044', 'atomic_capabilities': ['FIXTURE_UNAVAILABLE_CAPABILITY'],
+              'status': 'OPEN', 'source': 'TOOL044_REQUEST_INBOX',
+              'source_records': [{'ROOT_ID': test_id, 'TOOL044_DEMAND_ID': test_id,
+                                  'SOURCE_EVIDENCE': 'synthetic-fixture'}],
+          }
+          inputs = {
+              'queue.json': {'schema_version': 1, 'demands': [demand]},
+              'registry.json': {'components': [], 'verified_atomic_component_pool': []},
+              'TOOL044_REQUEST_INBOX.json': {'requests': [
+                  {'request_id': test_id, 'root_id': test_id, 'source_evidence': 'synthetic-fixture'}]},
+              'state.json': {'integration_core': {'feedback_checkpoints': {test_id: {}}}},
+          }
+          for name, value in inputs.items():
+              (root / name).write_text(json.dumps(value), encoding='utf-8')
+          subprocess.run([sys.executable, 'feedback_pipeline/tool044_atomic_watch_v2.py',
+                          '--queue', str(root / 'queue.json'), '--registry', str(root / 'registry.json'),
+                          '--state', str(root / 'evidence' / 'watch_state.json'),
+                          '--trigger-source', 'WORK'], check=True, capture_output=True, text=True)
+          state = json.loads((root / 'evidence' / 'watch_state.json').read_text(encoding='utf-8'))
+          checkpoint = json.loads((root / 'state.json').read_text(encoding='utf-8'))['integration_core']['feedback_checkpoints'][test_id]
+          receipt = {
+              'test_id': test_id, 'demand_id': test_id,
+              'tool044_processed': state.get('demands_processed'),
+              'central_returns': state.get('tool016_result_returns'),
+              'central_ack': checkpoint.get('tool044_worker_return_ack'),
+              'central_received': checkpoint.get('tool044_natural_worker_return', {}).get('ack'),
+              'isolated_persistence': (root / 'evidence' / 'watch_state.json').is_file(),
+              'production_mutations': state.get('production_mutations'),
+          }
+          assert receipt['tool044_processed'] == 1 and receipt['central_returns'] == 1
+          assert receipt['central_ack'] == 'PASS' and receipt['central_received'] == 'TOOL016_CENTRAL_RECEIVED'
+          assert receipt['isolated_persistence'] and receipt['production_mutations'] == 0
+          assert not subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True,
+                                    check=True).stdout.strip()
+          (root / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(receipt))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wic-isolated-${{ github.run_id }}
+          path: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}/
