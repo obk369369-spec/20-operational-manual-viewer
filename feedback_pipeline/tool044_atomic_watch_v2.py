@@ -11,6 +11,8 @@ import argparse
 import hashlib
 import json
 import os
+import tempfile
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -138,8 +140,64 @@ def return_verified_results(queue_path: Path, registry_path: Path, state_path: P
     return {"acknowledged": acknowledged, "blocked": blocked}
 
 
+@contextmanager
+def _pending_queue(queue_path: Path, pending: list[dict]):
+    descriptor, name = tempfile.mkstemp(prefix="tool044-pending-", suffix=".json", dir=queue_path.parent)
+    os.close(descriptor)
+    path = Path(name)
+    try:
+        queue = json.loads(queue_path.read_text(encoding="utf-8"))
+        queue["demands"] = pending
+        path.write_text(json.dumps(queue, ensure_ascii=False), encoding="utf-8")
+        yield path
+    finally:
+        path.unlink(missing_ok=True)
+
+
 def visible_backoff_state(queue_path: Path, registry_path: Path, state_path: Path,
                           external: bool, trigger_source: str) -> dict:
+    completed = []
+    previous = None
+    if state_path.exists():
+        queued = json.loads(queue_path.read_text(encoding="utf-8")).get("demands", [])
+        central_path = queue_path.parent / "state.json"
+        if queued and central_path.exists():
+            previous = json.loads(state_path.read_text(encoding="utf-8"))
+            checkpoints = json.loads(central_path.read_text(encoding="utf-8")).get(
+                "integration_core", {}).get("feedback_checkpoints", {})
+            prior_results = {item.get("demand_id"): item for item in previous.get("results", [])}
+
+            def already_returned(demand: dict) -> bool:
+                checkpoint = checkpoints.get(demand.get("request_id"), {})
+                receipt = checkpoint.get("tool044_natural_worker_return", {})
+                return (
+                    checkpoint.get("tool044_worker_return_ack") == "PASS"
+                    and receipt.get("cycle_id")
+                    and checkpoint.get("tool044_worker_checkpoint") == receipt.get("cycle_id")
+                    and prior_results.get(demand.get("demand_id"), {}).get("query_signature") == signature(demand)
+                    and any(item.get("demand_id") == demand.get("demand_id")
+                            for item in receipt.get("demand_results", []))
+                )
+
+            if len({item.get("demand_id") for item in queued}) == len(queued):
+                completed = [demand for demand in queued if already_returned(demand)]
+                if len(completed) == len(queued):
+                    idle = dict(previous)
+                    idle.update(demands_processed=0, tool016_result_returns=0,
+                                duplicate_searches_blocked=0, next_state="WAITING_FOR_NEXT_TRIGGER")
+                    state_path.write_text(json.dumps(idle, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                    return idle
+    if completed:
+        with _pending_queue(queue_path, [demand for demand in queued if demand not in completed]) as pending_path:
+            return _process_pending(pending_path, registry_path, state_path, external, trigger_source,
+                                    previous, completed)
+    return _process_pending(queue_path, registry_path, state_path, external, trigger_source,
+                            previous, completed)
+
+
+def _process_pending(queue_path: Path, registry_path: Path, state_path: Path,
+                     external: bool, trigger_source: str, previous: dict | None,
+                     completed: list[dict]) -> dict:
     state = run_cycle(queue_path, registry_path, state_path, external=external,
                       artifact_dir=state_path.parent.parent / "external_candidate_pool",
                       trigger_source=trigger_source)
@@ -187,6 +245,10 @@ def visible_backoff_state(queue_path: Path, registry_path: Path, state_path: Pat
     returned = return_verified_results(queue_path, registry_path, state_path, state)
     state["tool016_result_returns"] = returned["acknowledged"]
     state["tool016_result_return_blocks"] = returned["blocked"]
+    if completed and previous:
+        completed_ids = {demand["demand_id"] for demand in completed}
+        state["results"] = [result for result in previous.get("results", [])
+                            if result.get("demand_id") in completed_ids] + state["results"]
     state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return state
 
