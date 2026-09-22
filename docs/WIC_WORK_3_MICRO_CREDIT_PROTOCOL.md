@@ -20,6 +20,16 @@ Use ChatGPT Work with the smallest practical bounded batch while WIC is being co
 - After a failed validation, record the first disconnect only. Do not immediately perform multiple repairs/retries in the same batch unless explicitly scoped.
 - User receives/pastes only the final result of the 3-MICRO bundle; no intermediate manual relay is required.
 
+## MICRO consolidation rule
+
+- MAX_MICRO = 3 remains a hard ceiling.
+- Within that ceiling, combine work only when the combined work reuses the same evidence, repository reads, execution, or validation and therefore reduces total time, credit usage, approval prompts, or duplicate setup.
+- Prefer one MICRO that batches closely related reads/checks over multiple MICRO tasks that repeat the same context or evidence.
+- Do not combine work merely to reduce the visible number of rounds.
+- If consolidation would materially increase execution scope, retries, approval count, failure blast radius, or credit use, keep the work separated using the existing bounded method.
+- PASS evidence must be reused rather than re-created as part of a consolidated task.
+- The decision rule is: **consolidate only when it is actually cheaper/safer; otherwise preserve the current split workflow.**
+
 ## Observer-mode approval rule
 
 The user is an observer. The preferred flow is:
@@ -121,21 +131,31 @@ The following validations are PASS and must not be repeated unless a later chang
 Relevant deployed evidence:
 - isolated-contract commit: 591b75bf056424e295625c91e14c8e37bf1fd188
 - successful isolated run: 35676184779
+- RUN A artifact id: 10672364968
+- scheduled-restore contract commit reported by Work: 95c3f1ea5339bb73d6bc85e190e9863f1d018529
 - central ACK: TOOL016_CENTRAL_RECEIVED
 
 ## Current next target
 
 Current target: **SCHEDULED_CROSS_RUN_CONTINUITY**
 
-Current interruption is not a newly proven technical defect. The previous Work round was intentionally stopped because a repeated read-only artifact approval was denied to prevent approval/credit waste.
+Current state:
+- RUN A isolated artifact exists.
+- A scheduled isolated-artifact restore contract was reported written to main at commit 95c3f1ea5339bb73d6bc85e190e9863f1d018529.
+- At the last Work check, no scheduled RUN B after that change existed yet.
+- Final remote read-back was intentionally not approved to avoid another fragmented approval prompt.
+- Therefore continuity PASS is not yet declared.
 
-Resume from the smallest missing evidence:
-- identify the existing isolated artifact/source-run recovery identifier;
-- establish the minimal cross-run restore contract without production mutation;
-- prove a later scheduled GitHub-hosted run restores prior isolated state;
+Next evidence should be consolidated when doing so reduces duplicate work:
+- confirm the deployed restore contract;
+- find a natural scheduled RUN B after the contract;
+- verify prior isolated state restoration;
 - completed-demand reprocessing = 0;
 - duplicate central return = 0;
-- preserve state across separate external runs.
+- production mutation = 0;
+- persistence preserved.
+
+If the same evidence can safely support FREE_MULTI_BATCH_SCHEDULED_CYCLE without extra broad execution, combine that validation in the same max-3-MICRO Work round. Otherwise keep it separate.
 
 Do not redo FREE_EXTERNAL_SINGLE_RUN or earlier synthetic multi-cycle validations.
 
