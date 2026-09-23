@@ -19,7 +19,7 @@ on:
     types: [completed]
     branches: [main]
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       user_explicit_request:
@@ -37,6 +37,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  tool044-watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check TOOL044 cloud worker heartbeat and recover
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORKFLOW='tool044-cloud-worker.yml'
+          MAX_AGE_SECONDS=4500
+          NOW=$(date +%s)
+          LAST=$(gh run list --workflow "$WORKFLOW" --limit 1 --json createdAt,status,conclusion,databaseId --jq '.[0]')
+          test -n "$LAST" && test "$LAST" != null
+          CREATED=$(jq -r '.createdAt' <<<"$LAST")
+          STATUS=$(jq -r '.status' <<<"$LAST")
+          CONCLUSION=$(jq -r '.conclusion // ""' <<<"$LAST")
+          RUN_ID=$(jq -r '.databaseId' <<<"$LAST")
+          CREATED_EPOCH=$(date -d "$CREATED" +%s)
+          AGE=$((NOW-CREATED_EPOCH))
+          echo "TOOL044 latest run=$RUN_ID age=${AGE}s status=$STATUS conclusion=$CONCLUSION"
+          if [ "$AGE" -gt "$MAX_AGE_SECONDS" ] || { [ "$STATUS" = completed ] && [ "$CONCLUSION" != success ]; }; then
+            echo "::warning::TOOL044 worker stale/failed; dispatching recovery run."
+            gh workflow run "$WORKFLOW" --ref main
+            sleep 10
+            gh run list --workflow "$WORKFLOW" --limit 1 --json databaseId,createdAt,status,conclusion
+          else
+            echo 'TOOL044_WATCHDOG=HEALTHY'
+          fi
+
   check-observer-heartbeat:
     if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
