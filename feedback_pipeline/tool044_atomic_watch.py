@@ -12,7 +12,7 @@ import tempfile
 import time
 import urllib.request
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 
 from tool044_composition import test_url_provenance_composition
@@ -158,13 +158,6 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         old = receipts.get(sig)
         matched = {cap: capability_map[cap] for cap in demand["atomic_capabilities"] if cap in capability_map}
         missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
-        # A component verified after an earlier failed search must immediately
-        # satisfy the demand. The 24-hour backoff only blocks another external
-        # query for capabilities that are still missing.
-        if missing and old and old.get("next_eligible_search") and now < datetime.fromisoformat(old["next_eligible_search"]):
-            duplicate_blocks += 1
-            results.append({"demand_id": demand["demand_id"], "result": "DUPLICATE_SEARCH_BLOCKED", "query_signature": sig})
-            continue
         harvests = []
         if external:
             for candidate in demand.get("official_candidates", []):
@@ -184,7 +177,7 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
         receipt = {
             "demand_id": demand["demand_id"], "query_signature": sig, "last_searched": now.isoformat(),
             "matched": matched, "missing": missing, "result": result,
-            "next_eligible_search": (now + timedelta(hours=24)).isoformat(),
+            "next_eligible_search": None,
             "external_search_executed": bool(harvests), "external_receipts": harvests,
         }
         receipts[sig] = receipt
