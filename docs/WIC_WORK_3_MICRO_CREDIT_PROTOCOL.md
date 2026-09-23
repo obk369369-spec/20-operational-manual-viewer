@@ -281,3 +281,20 @@ The scope includes, where still incomplete:
 The target is to complete and verify as much of the entire remaining WIC scope as safely possible within the 20% hard cap, using the fewest MICRO tasks and the largest genuinely credit-saving batches.
 
 No item may be marked PASS merely to fit the credit target. Evidence that inherently requires elapsed real time, including a true 24-hour unattended observation, must remain evidence-waiting until the elapsed-time condition is actually satisfied. The system should automate collection of that evidence so the observer does not manually monitor it.
+
+
+## MICRO-1 enforcement update — 2026-09-23
+
+- CURRENT_5H_REMAINING_BASELINE = 89_PERCENT
+- FINAL_REMAINING_FLOOR = 80_PERCENT
+- REMAINING_SPEND_BUDGET = ABOUT_9_PERCENTAGE_POINTS
+- DEFAULT_MICRO = 1
+- MICRO_2_AND_3 = EXCEPTION_ONLY
+- Repository/document lookup, evidence reading, error collection, classification, repair, deployment, and validation must not be split into separate MICRO tasks merely because they are different phases.
+- Before repair, collect as many remaining actionable errors as practical and group common causes into shared ROOT batches.
+- MICRO 2 may begin only when MICRO 1 cannot safely include the work for a concrete technical reason and splitting is expected to reduce total credit/risk. The reason must be recorded as WHY_MICRO_1_CANNOT_SAFELY_INCLUDE_THIS.
+- The same requirement applies before MICRO 3.
+- A different task type, file, tool number, or validation phase is not by itself a valid reason to create another MICRO.
+- Reuse local commit 93761db1b and its verified changes; do not re-create or revalidate them unless a later change directly affects them.
+- Preserve all prior anti-waste locks: PASS revalidation forbidden, duplicate queries forbidden, unnecessary Actions forbidden, unchanged HOLD/RETRY_BLOCKED retry forbidden.
+- Current priority is to use the remaining budget for actionable bulk repair + deployment + integrated validation, not preparation or repeated status discovery.
