@@ -1,0 +1,95 @@
+name: TOOL044 Verified Component Multi Gate
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: tool044-multi-gate-coordinator
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      has_jobs: ${{ steps.plan.outputs.has_jobs }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - id: plan
+        name: Persist claims before execution
+        run: python feedback_pipeline/tool044_multi_gate.py plan --github-output "$GITHUB_OUTPUT"
+      - name: Persist durable claim state
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- feedback_pipeline/evidence/tool044_multi_gate_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'tool044: persist multi-gate claims'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+  lane:
+    needs: prepare
+    if: ${{ needs.prepare.outputs.has_jobs == 'true' }}
+    strategy:
+      fail-fast: false
+      max-parallel: 15
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: tool044-job-${{ matrix.job_id }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Run isolated component lane
+        run: >-
+          python feedback_pipeline/tool044_multi_gate.py run-lane
+          --job-id '${{ matrix.job_id }}'
+          --owner '${{ matrix.owner }}'
+          --result 'tool044-result-${{ matrix.gate_id }}.json'
+      - if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: tool044-result-${{ matrix.gate_id }}-${{ github.run_attempt }}
+          path: tool044-result-${{ matrix.gate_id }}.json
+          retention-days: 14
+
+  aggregate:
+    needs: [prepare, lane]
+    if: ${{ always() && needs.prepare.outputs.has_jobs == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: tool044-result-*
+          path: tool044-results
+          merge-multiple: true
+      - name: Return all lane results to TOOL016 central state
+        run: python feedback_pipeline/tool044_multi_gate.py aggregate tool044-results/*.json
+      - name: Persist result and checkpoint
+        if: ${{ always() }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- feedback_pipeline/state.json feedback_pipeline/evidence/tool044_multi_gate_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'tool044: return multi-gate results'
+          git pull --rebase origin main
+          git push origin HEAD:main

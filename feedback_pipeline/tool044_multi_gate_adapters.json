@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "default_gate_capacity": 10,
+  "target_gate_capacity": 15,
+  "providers": [
+    {
+      "adapter_id": "GITHUB_ACTIONS_MATRIX_V1",
+      "provider": "GitHub Actions",
+      "status": "ACTIVE",
+      "free_tier": "public_repository_github_hosted",
+      "config_file": ".github/workflows/tool044-multi-gate.yml",
+      "matrix_lanes": 15,
+      "failure_isolation": "strategy.fail-fast=false",
+      "duplicate_guard": "repository concurrency group per job_id",
+      "artifact_contract": "tool044-result-<job_id>-<run_attempt>",
+      "limitations": [
+        "concurrency is a duplicate guard, not a FIFO queue or lease store",
+        "actual hosted concurrency is limited by GitHub account capacity"
+      ],
+      "source_docs": [
+        "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations",
+        "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+        "https://docs.github.com/en/actions/concepts/workflows-and-actions/workflow-artifacts"
+      ]
+    },
+    {
+      "adapter_id": "WOODPECKER_MULTI_AGENT_V1",
+      "provider": "Woodpecker CI",
+      "status": "BLOCKED_EXTERNAL_AUTH",
+      "required_secrets": ["WOODPECKER_SERVER", "WOODPECKER_AGENT_SECRET"],
+      "supports": ["matrix", "depends_on", "concurrency", "multiple_agents"],
+      "result_callback": "TOOL016_RESULT_RETURN_V1",
+      "source_docs": [
+        "https://woodpecker-ci.org/docs/usage/matrix-workflows",
+        "https://woodpecker-ci.org/docs/administration/configuration/agent"
+      ]
+    },
+    {
+      "adapter_id": "GITLAB_PARALLEL_MATRIX_V1",
+      "provider": "GitLab CI/CD",
+      "status": "BLOCKED_EXTERNAL_AUTH",
+      "required_secrets": ["GITLAB_PROJECT_URL", "GITLAB_RUNNER_AUTH_TOKEN"],
+      "supports": ["parallel_matrix", "needs_dag", "resource_group", "artifacts"],
+      "result_callback": "TOOL016_RESULT_RETURN_V1",
+      "source_docs": [
+        "https://docs.gitlab.com/ci/jobs/job_control/",
+        "https://docs.gitlab.com/ci/yaml/needs/",
+        "https://docs.gitlab.com/runner/register/"
+      ]
+    },
+    {
+      "adapter_id": "VALKEY_RQ_SHARED_LEASE_V1",
+      "provider": "Valkey plus RQ",
+      "status": "BLOCKED_EXTERNAL_AUTH",
+      "license": "BSD-3-Clause",
+      "required_secrets": ["WIC_VALKEY_URL"],
+      "claim_contract": "SET key owner NX PX lease_ms; token-checked renew/release",
+      "recovery_contract": "heartbeat TTL plus expired reclaim plus retry/requeue",
+      "source_docs": [
+        "https://github.com/valkey-io/valkey",
+        "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/",
+        "https://python-rq.org/docs/workers/"
+      ]
+    }
+  ]
+}

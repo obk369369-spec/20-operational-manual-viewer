@@ -16,9 +16,10 @@ HERE = Path(__file__).resolve().parent
 EVIDENCE = HERE / "evidence" / "tool044_safe_integration_fixture.json"
 
 READY_COMPONENT_FIELDS = (
-    "component_id", "target_root", "target_tool", "version",
+    "component_id", "source", "license", "target_root", "target_tool", "version",
     "input_contract", "output_contract", "install_target", "validator",
-    "success_condition", "rollback_condition", "evidence",
+    "install_method", "success_condition", "failure_condition", "rollback_method",
+    "rollback_condition", "evidence",
 )
 
 WORK_REENTRY_RECEIPTS = (
