@@ -27,12 +27,14 @@ jobs:
       - id: plan
         name: Persist claims before execution
         run: python feedback_pipeline/tool044_multi_gate.py plan --github-output "$GITHUB_OUTPUT"
+      - name: Refresh visible TOOL016 TOOL044 handoff
+        run: python feedback_pipeline/tool016_visible_handoff.py
       - name: Persist durable claim state
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/evidence/tool044_multi_gate_state.json feedback_pipeline/evidence/tool044_verified_external_component_pool.json
+          git add -- feedback_pipeline/state.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/tool044_multi_gate_state.json feedback_pipeline/evidence/tool044_verified_external_component_pool.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'tool044: persist multi-gate claims'
           git pull --rebase origin main
@@ -81,14 +83,16 @@ jobs:
           path: tool044-results
           merge-multiple: true
       - name: Return all lane results to TOOL016 central state
-        run: python feedback_pipeline/tool044_multi_gate.py aggregate tool044-results/*.json
+        run: |
+          python feedback_pipeline/tool044_multi_gate.py aggregate tool044-results/*.json
+          python feedback_pipeline/tool016_visible_handoff.py
       - name: Persist result and checkpoint
         if: ${{ always() }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/state.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool044_multi_gate_state.json
+          git add -- feedback_pipeline/state.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/tool044_multi_gate_state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'tool044: return multi-gate results'
           git pull --rebase origin main
