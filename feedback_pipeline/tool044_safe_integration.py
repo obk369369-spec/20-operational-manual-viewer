@@ -15,6 +15,17 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 EVIDENCE = HERE / "evidence" / "tool044_safe_integration_fixture.json"
 
+READY_COMPONENT_FIELDS = (
+    "component_id", "target_root", "target_tool", "version",
+    "input_contract", "output_contract", "install_target", "validator",
+    "success_condition", "rollback_condition", "evidence",
+)
+
+WORK_REENTRY_RECEIPTS = (
+    "target_file_confirmed", "root_confirmed", "ready_component_confirmed",
+    "expected_change_confirmed", "validation_method_confirmed", "sandbox_component_pass",
+)
+
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -30,6 +41,22 @@ def gate(receipt: dict) -> tuple[bool, list[str]]:
     )
     missing = [key for key in required if receipt.get(key) is not True]
     return not missing, missing
+
+
+def component_reentry_gate(component: dict, receipts: dict) -> dict:
+    """Fail closed until a TOOL044 component is directly installable and testable."""
+    missing_fields = [key for key in READY_COMPONENT_FIELDS if not component.get(key)]
+    missing_receipts = [key for key in WORK_REENTRY_RECEIPTS if receipts.get(key) is not True]
+    allowed = not missing_fields and not missing_receipts
+    return {
+        "status": "READY_FOR_WORK_REENTRY" if allowed else "HOLD_COMPONENT_CONTRACT_INCOMPLETE",
+        "work_reentry_allowed": allowed,
+        "component_id": component.get("component_id"),
+        "target_root": component.get("target_root"),
+        "target_tool": component.get("target_tool"),
+        "missing_fields": missing_fields,
+        "missing_receipts": missing_receipts,
+    }
 
 
 def run_fixture() -> dict:
