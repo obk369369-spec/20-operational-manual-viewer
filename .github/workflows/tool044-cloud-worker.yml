@@ -35,11 +35,15 @@ jobs:
         run: python feedback_pipeline/tool044_dynamic_discovery.py --self-test
       - name: Preload high-volume TOOL044 discovery queue for TOOL016
         env:
-          TOOL044_PRELOAD_TARGET: '500'
+          TOOL044_PRELOAD_TARGET: '1000'
+          TOOL044_PRELOAD_GROWTH_MODE: 'REPORT_CYCLE_ESCALATE'
+          TOOL044_PRELOAD_MIN_INCREMENT: '500'
           TOOL044_PRELOAD_MODE: 'PARALLEL'
         run: |
           echo "TOOL044_PRELOAD_TARGET=$TOOL044_PRELOAD_TARGET"
           echo "TOOL044_PRELOAD_MODE=$TOOL044_PRELOAD_MODE"
+          echo "TOOL044_PRELOAD_GROWTH_MODE=$TOOL044_PRELOAD_GROWTH_MODE"
+          echo "TOOL044_PRELOAD_MIN_INCREMENT=$TOOL044_PRELOAD_MIN_INCREMENT"
           python feedback_pipeline/tool044_request_router.py
           python feedback_pipeline/tool044_dynamic_discovery.py
       - name: Fail-closed safe deployment and rollback fixture
