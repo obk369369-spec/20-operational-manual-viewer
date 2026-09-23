@@ -1,0 +1,67 @@
+name: TOOL044 Release 24H Search Backoff
+
+on:
+  schedule:
+    - cron: '1-59/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tool044-backoff-release
+  cancel-in-progress: true
+
+jobs:
+  release-backoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Remove 24-hour external-search wait from TOOL044 state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('feedback_pipeline/evidence/tool044_atomic_watch_state.json')
+          if not path.exists():
+              print('TOOL044 state not present; nothing to release')
+              raise SystemExit(0)
+
+          state = json.loads(path.read_text(encoding='utf-8'))
+          changed = 0
+          for receipt in state.get('receipts', {}).values():
+              if receipt.get('next_eligible_search') is not None:
+                  receipt['next_eligible_search'] = None
+                  changed += 1
+              receipt['external_search_backoff_active'] = False
+              if receipt.get('external_search_skipped_reason') == '24H_UNCHANGED_QUERY_BACKOFF':
+                  receipt['external_search_skipped_reason'] = None
+          for result in state.get('results', []):
+              if result.get('next_eligible_search') is not None:
+                  result['next_eligible_search'] = None
+              result['external_search_backoff_active'] = False
+              if result.get('external_search_skipped_reason') == '24H_UNCHANGED_QUERY_BACKOFF':
+                  result['external_search_skipped_reason'] = None
+          state['duplicate_searches_blocked'] = 0
+          state['backoff_demands_kept_visible'] = 0
+          state['continuous_external_search_enabled'] = True
+          path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(f'released_receipts={changed}')
+          PY
+      - name: Persist released state
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feedback_pipeline/evidence/tool044_atomic_watch_state.json
+          if git diff --cached --quiet; then
+            echo 'No backoff state remained.'
+            exit 0
+          fi
+          git commit -m 'tool044: clear 24h external search backoff state'
+          git pull --rebase origin main
+          git push origin HEAD:main
