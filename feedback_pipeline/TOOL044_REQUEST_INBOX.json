@@ -121,6 +121,47 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "CURRENT_WIC_WORK",
+      "source_evidence": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+      "purpose": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+      "desired_result": "Verified ready components or explicit NO_READY_COMPONENT evidence for source ingress, executable contracts, real checkpoint resume, and cross-runtime atomic claim.",
+      "required_capabilities": [
+        "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+        "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+        "CHECKPOINT_STAGE_RESUME_EXECUTION",
+        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+      ],
+      "capability_contracts": {
+        "AUTHENTICATED_SOURCE_EVENT_PRODUCER": {
+          "existing_reusable_part": "TOOL044_REQUEST_INBOX + tool044_request_router + GitHub/file/state/artifact ingress",
+          "required_ready_component": "Authenticated source-side producer that emits a durable event without user relay",
+          "validation_condition": "One real source event reaches TOOL016 with lineage and user_manual_relay=0"
+        },
+        "VERIFIED_EXECUTABLE_WORK_CONTRACT": {
+          "existing_reusable_part": "selected_work_id + selected_work_contract + local executable queue",
+          "required_ready_component": "Evidence-backed target/handler/args/success-condition adapter; missing targets must fail closed as NO_EXECUTION_TARGET",
+          "validation_condition": "A real declared handler runs and completion is recorded only after its success condition passes"
+        },
+        "CHECKPOINT_STAGE_RESUME_EXECUTION": {
+          "existing_reusable_part": "durable checkpoint/state and queue persistence",
+          "required_ready_component": "Stage-aware resume consumer for an existing real handler",
+          "validation_condition": "Injected interruption resumes after the saved stage with no duplicate completed work"
+        },
+        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM": {
+          "existing_reusable_part": "work_id, deterministic claim_id, GitHub workflow concurrency and durable state",
+          "required_ready_component": "Free shared compare-and-set/lease implementation with owner, expiry, heartbeat, release and stale recovery",
+          "validation_condition": "Two runtimes contend for one work_id; exactly one claim succeeds and stale recovery safely transfers ownership"
+        }
+      },
+      "priority": "HIGH",
+      "status": "OPEN",
+      "user_action": "NONE",
+      "created_at": "2026-09-23T00:00:00+09:00"
     }
   ]
 }

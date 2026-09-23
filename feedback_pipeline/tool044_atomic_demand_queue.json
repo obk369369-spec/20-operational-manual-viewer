@@ -1366,6 +1366,126 @@
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION"
         }
       ]
+    },
+    {
+      "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+        }
+      ]
+    },
+    {
+      "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
+        }
+      ]
+    },
+    {
+      "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "CHECKPOINT_STAGE_RESUME_EXECUTION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
+        }
+      ]
+    },
+    {
+      "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+        }
+      ]
     }
   ]
 }
