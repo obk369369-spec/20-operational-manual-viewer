@@ -298,3 +298,23 @@ No item may be marked PASS merely to fit the credit target. Evidence that inhere
 - Reuse local commit 93761db1b and its verified changes; do not re-create or revalidate them unless a later change directly affects them.
 - Preserve all prior anti-waste locks: PASS revalidation forbidden, duplicate queries forbidden, unnecessary Actions forbidden, unchanged HOLD/RETRY_BLOCKED retry forbidden.
 - Current priority is to use the remaining budget for actionable bulk repair + deployment + integrated validation, not preparation or repeated status discovery.
+
+
+## MINIMUM MICRO — ABSOLUTE RULE
+
+- DEFAULT_MICRO = 1
+- MAX_MICRO = 3
+- If the remaining work can be completed safely in 1 MICRO, it MUST be completed in 1 MICRO.
+- MAX 3 MICRO is an absolute ceiling, never a target.
+- Different task types, files, tool numbers, or phases such as lookup → repair → deployment → validation are not valid reasons by themselves to split MICRO tasks.
+- Repository/document lookup, existing-evidence reading, error collection, common-ROOT classification, repair, linking, deployment, and validation MUST stay inside one MICRO whenever they can be safely combined.
+- MICRO 2 is allowed only when including that work in MICRO 1 would concretely increase failure risk, rework, credit use, approval prompts, or Actions. Record the concrete reason before starting MICRO 2.
+- MICRO 3 is governed by the same exception rule.
+- Decision: 1 MICRO possible → MUST use 1; otherwise 2; otherwise maximum 3; MICRO 4 forbidden.
+- Collect as many actionable errors as practical before repair.
+- Group the same ROOT cause and repair it once as a batch.
+- Reuse one validation for all related changes it validly proves.
+- PASS revalidation forbidden.
+- Same/near-duplicate query repetition forbidden.
+- Unnecessary Actions repetition forbidden.
+- HOLD/RETRY_BLOCKED retry without new evidence forbidden.
