@@ -1278,7 +1278,7 @@
     "execution_location": "LOCAL",
     "cloud": {
       "status": "VERIFIED",
-      "checkpoint": "35772512448",
+      "checkpoint": "35803000318",
       "jobs": 4,
       "deferred_backoff": 4,
       "paid_api_calls": 0,
@@ -1287,8 +1287,8 @@
     "local_required_queue": 1,
     "operational_counts": {
       "open_error_count": 0,
-      "open_capability_count": 37,
-      "atomic_demand_count": 37,
+      "open_capability_count": 41,
+      "atomic_demand_count": 41,
       "external_candidates_found": 130,
       "verified_component_count": 14,
       "verified_atomic_count": 6,
@@ -1306,7 +1306,7 @@
         "TOOL016_FUNCTION_STATE": 4,
         "TOOL016": 9,
         "TOOL013": 2,
-        "CENTRAL": 12
+        "CENTRAL": 16
       }
     },
     "safe_integration_truth": {
@@ -1661,9 +1661,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-09-22T21:17:57.104679+00:00",
-  "source_revision": "38bc22be328c2250a91afe71dd4854d28310df70",
-  "github_actions_run": "35785758806",
+  "observer_generated_at": "2026-09-23T04:44:20.183428+00:00",
+  "source_revision": "0f0e54dee0c8f23b72cfbb73405bbae570dad348",
+  "github_actions_run": "35819541382",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -1675,7 +1675,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-09-22T21:17:57.104044+00:00",
+      "executed_at": "2026-09-23T04:44:20.182836+00:00",
       "status": "COMPLETED"
     }
   ]
