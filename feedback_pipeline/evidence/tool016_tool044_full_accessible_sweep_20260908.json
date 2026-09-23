@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T09:59:37.121056+00:00",
+  "generated_at": "2026-09-23T14:52:40.025954+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "c9ecbf498e6ed24adb8778c3d430f4c1821d789a4d48259436524091f252224f"
+      "sha256": "f7ebead400754938796024699eef08f80ba9d322289f2eb2b35dfdb3abc7f08f"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,19 +29,19 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "0fc414e8cc551714638aa95b19aab1fe4d0e28754c979e5330842ab263780ee8"
+      "sha256": "af90b9e504db5d6174defde3d524e2810bd8874b3ed35b3a1bfbc7dc81d0aa6b"
     }
   ],
   "counts": {
     "checked_tools": 16,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 112,
+    "automatically_recoverable_records": 113,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 67,
-    "roots_after_deduplication": 55,
+    "collected_error_records": 68,
+    "roots_after_deduplication": 56,
     "verified_skip_reuse_records": 11,
-    "records_handed_to_tool044": 33,
+    "records_handed_to_tool044": 34,
     "atomic_demands": 42
   },
   "checked_tool_ids": [
@@ -1216,9 +1216,26 @@
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
     }
   ],
   "deduplicated_root_ids": [
+    "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
     "CURRENT_LEDGER_ROW_NOT_RESOLVED",
     "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
     "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
@@ -1807,6 +1824,22 @@
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": [
         "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
