@@ -33,6 +33,15 @@ jobs:
         run: python feedback_pipeline/tool044_request_router.py --self-test
       - name: Dynamic discovery self-test
         run: python feedback_pipeline/tool044_dynamic_discovery.py --self-test
+      - name: Preload high-volume TOOL044 discovery queue for TOOL016
+        env:
+          TOOL044_PRELOAD_TARGET: '500'
+          TOOL044_PRELOAD_MODE: 'PARALLEL'
+        run: |
+          echo "TOOL044_PRELOAD_TARGET=$TOOL044_PRELOAD_TARGET"
+          echo "TOOL044_PRELOAD_MODE=$TOOL044_PRELOAD_MODE"
+          python feedback_pipeline/tool044_request_router.py
+          python feedback_pipeline/tool044_dynamic_discovery.py
       - name: Fail-closed safe deployment and rollback fixture
         run: python feedback_pipeline/tool044_safe_integration.py
       - name: Process public-safe handoff
