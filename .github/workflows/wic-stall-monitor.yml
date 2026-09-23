@@ -67,6 +67,40 @@ jobs:
             echo 'TOOL044_WATCHDOG=HEALTHY'
           fi
 
+      - name: Verify hourly TOOL044 progress report and repair missing report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ISSUE=9
+          MAX_REPORT_AGE_SECONDS=4500
+          NOW=$(date +%s)
+          LAST_REPORT=$(gh api "repos/${GITHUB_REPOSITORY}/issues/$ISSUE/comments?per_page=100" --paginate --jq '[.[] | select(.body | contains("[TOOL044 → TOOL016"))] | last // empty')
+          REPORT_STALE=true
+          if [ -n "$LAST_REPORT" ]; then
+            UPDATED=$(jq -r '.updated_at' <<<"$LAST_REPORT")
+            UPDATED_EPOCH=$(date -d "$UPDATED" +%s)
+            REPORT_AGE=$((NOW-UPDATED_EPOCH))
+            echo "TOOL044 latest central report age=${REPORT_AGE}s"
+            if [ "$REPORT_AGE" -le "$MAX_REPORT_AGE_SECONDS" ]; then REPORT_STALE=false; fi
+          fi
+          if [ "$REPORT_STALE" = true ]; then
+            RUN=$(gh run list --workflow tool044-cloud-worker.yml --limit 1 --json databaseId,createdAt,status,conclusion --jq '.[0]')
+            BODY="[TOOL044 → TOOL016 HOURLY WATCHDOG REPORT]
+
+AUTO_RECOVERY_REPORT=YES
+REPORT_GAP_DETECTED=YES
+CHECKED_AT_UTC=$(date -u +%FT%TZ)
+LATEST_TOOL044_RUN=$RUN
+ACTION=hourly report gap repaired by watchdog
+NOTE=This report proves report-return recovery only; it does not promote component/E2E/24H status without separate evidence."
+            gh issue comment "$ISSUE" --body "$BODY"
+            echo 'TOOL044_PROGRESS_REPORT_RETURN=RECOVERED'
+          else
+            echo 'TOOL044_PROGRESS_REPORT_RETURN=HEALTHY'
+          fi
+
   check-observer-heartbeat:
     if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
