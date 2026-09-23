@@ -164,3 +164,120 @@ After scheduled cross-run continuity, advance toward:
 2. 24H_UNATTENDED_CYCLE evidence
 
 Do not call the entire WIC business system fully autonomous solely from these runtime proofs; separate structural business-path HOLDs remain until independently resolved.
+
+
+## Final Work operating lock — 2026-09-23
+
+This section supersedes narrower round-planning guidance when preparing the final remaining WIC Work.
+
+### Credit and MICRO ceiling
+
+- FINAL_WORK_CREDIT_HARD_CAP = 20_PERCENT
+- CREDIT_RESERVE_FOR_UNEXPECTED_VARIABLES = 80_PERCENT
+- MINIMIZE_MICRO_COUNT = REQUIRED
+- If the remaining safe work can be completed in 1 MICRO, finish it in 1 MICRO.
+- Use 2 MICRO only when separation is actually safer or cheaper.
+- MAX_MICRO = 3 remains a hard ceiling.
+- Do not spend up to the cap merely because the cap exists.
+
+### Maximum batch repair rule
+
+- Collect remaining errors/work before repair whenever practical.
+- Group common errors by common ROOT cause.
+- Repair each common ROOT as one batch rather than occurrence-by-occurrence.
+- Reuse one validation to prove multiple related fixes whenever the evidence is valid for all of them.
+- Maximize consolidation only when it reduces real time, credit, approvals, duplicate reads, setup, Actions, or validation.
+- Do not consolidate when doing so increases retry risk, blast radius, approvals, Actions, or credit consumption.
+
+### Non-repeat locks
+
+- PASS_REVALIDATION = FORBIDDEN
+- SAME_OR_NEAR_DUPLICATE_QUERY_REPEAT = FORBIDDEN
+- UNNECESSARY_ACTIONS_REPEAT = FORBIDDEN
+- UNCHANGED_HOLD_RETRY = FORBIDDEN
+- RETRY_BLOCKED_WITHOUT_NEW_EVIDENCE = FORBIDDEN
+- RUN_B_POLLING_WITHOUT_NEW_EVIDENCE = FORBIDDEN
+- ONE_ERROR_ONE_REPAIR = FORBIDDEN
+- ONE_ROOT_ONE_PUSH = FORBIDDEN
+- ONE_ROOT_ONE_ACTIONS_RUN = FORBIDDEN
+
+### Final remaining-work scope
+
+The final Work scope is not limited to TOOL044 runtime completion. It must account for the remaining WIC system as a whole, while reusing already verified evidence and excluding unchanged RETRY_BLOCKED work.
+
+The scope includes, where still incomplete:
+1. observer manual-work removal;
+2. automatic collection of errors and feedback across WIC chats/tools;
+3. reuse and application of the existing TOOL045 171,910 occurrences / 315 ROOT candidates / 12 ROOT families without re-extraction;
+4. application of TOOL046/047 repeated-error and repair instructions;
+5. incorporation of actual customer-guide/mail errors and feedback;
+6. common-ROOT batch repair;
+7. preservation of actual work information from ingress through tracking;
+8. automatic HOLD/FAIL return to TOOL016 central;
+9. durable state and resume after interruption;
+10. duplicate-work prevention / atomic claim;
+11. state recovery across runtimes/work sessions where supported;
+12. TOOL016↔TOOL044 automatic routing and result return;
+13. automatic routing among other WIC tools where evidence/contracts exist;
+14. automatic next-work selection;
+15. isolation of blocked work so it does not stop independent work;
+16. TOOL001 remaining real-use customer-guide automation;
+17. TOOL006 remaining TOC/summary work;
+18. TOOL007 customer-contact judgment automation;
+19. TOOL013 metadata/Excel upload automation;
+20. TOOL014 website work that remains actually incomplete;
+21. TOOL041→TOOL007→TOOL042 customer-work chain;
+22. TOOL042 real guide quality and repeated-output-error removal;
+23. TOOL043 actual external release evidence;
+24. TOOL044 ready-component import, validation, regression, deployment;
+25. reuse of TOOL045 results as improvement input;
+26. TOOL048 error/component database accumulation and reuse;
+27. remaining HOLD/FAIL/OPEN or undeployed work in other known WIC tools, including previously referenced TOOL009/010/012/018/027/028/029/034/035/039 when still applicable;
+28. automatic validation of existing tools;
+29. deployment of validated tools to real use locations where a safe contract exists;
+30. automatic judgment of whether a new tool is actually needed;
+31. external ready-component-first policy;
+32. quarantine/HOLD of failed or unsuitable components;
+33. automatic selection of revenue-relevant work where a verified business contract exists;
+34. customer-work automatic cycle where the required real contracts exist;
+35. enforcement of user fixed rules before work and before output;
+36. prevention of repeated Work/credit waste;
+37. enforcement of the minimum-MICRO / maximum-3-MICRO rule;
+38. free external execution;
+39. free multi-runtime/failover execution;
+40. continuous multi-work processing;
+41. safe batch processing without omission/duplication;
+42. runtime-failure recovery and handoff;
+43. post-deployment revalidation only for newly changed/deployed scope;
+44. full WIC E2E cycle;
+45. 24-hour unattended operation evidence;
+46. persistent final evidence/receipts rather than label-only completion;
+47. final omission audit for remaining HOLD/FAIL/OPEN/undeployed/manual-observer work.
+
+### Current newly verified/fixed fact
+
+- FIRST_INFORMATION_LOSS_POINT was identified at the candidate creation path:
+  apply_feedback_event.py → work_ready_tracker.py / assess_work_ready().
+- Existing source information was not fully preserved in the work candidate.
+- Work reported a local fix preserving the then-existing input information and work ID through candidate creation → tracker storage.
+- Reported local changed files:
+  - feedback_pipeline/apply_feedback_event.py
+  - feedback_pipeline/work_ready_tracker.py
+- Reported change size: +18 / -5.
+- No commit was made in that Work round.
+- Existing uncommitted feedback_pipeline/tool044_atomic_watch_v2.py changes must also be preserved.
+- Actions = 0 and approval buttons = 0 for that round.
+
+### Current RETRY_BLOCKED fact
+
+- ACTUAL_EXECUTION_TARGET_NOT_PRESENT_AT_SOURCE = RETRY_BLOCKED
+- The original candidate input does not currently contain a verified per-job execution handler, arguments, and success criteria.
+- Do not retry this problem with reworded prompts.
+- Reopen only when new evidence identifies a real job ↔ existing handler contract.
+- If such evidence appears naturally during other final work, it may be integrated then.
+
+### Final completion rule
+
+The target is to complete and verify as much of the entire remaining WIC scope as safely possible within the 20% hard cap, using the fewest MICRO tasks and the largest genuinely credit-saving batches.
+
+No item may be marked PASS merely to fit the credit target. Evidence that inherently requires elapsed real time, including a true 24-hour unattended observation, must remain evidence-waiting until the elapsed-time condition is actually satisfied. The system should automate collection of that evidence so the observer does not manually monitor it.
