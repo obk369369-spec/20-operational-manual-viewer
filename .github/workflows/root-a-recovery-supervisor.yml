@@ -1,0 +1,67 @@
+name: ROOT A Recovery Supervisor
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+    - cron: '22,37,52 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: root-a-recovery-supervisor
+  cancel-in-progress: false
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect primary TOOL044 worker and recover if stalled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          repo="$GITHUB_REPOSITORY"
+          workflow="tool044-cloud-worker.yml"
+          now=$(date -u +%s)
+          data=$(gh api "repos/$repo/actions/workflows/$workflow/runs?per_page=20")
+          active=$(jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' <<<"$data")
+          last=$(jq -r '[.workflow_runs[] | select(.conclusion=="success")][0].updated_at // empty' <<<"$data")
+          stale=1
+          if [ -n "$last" ]; then
+            last_epoch=$(date -u -d "$last" +%s)
+            age=$((now-last_epoch))
+            if [ "$age" -lt 1200 ]; then stale=0; fi
+          fi
+          echo "active=$active last_success=${last:-none} stale=$stale"
+          if [ "$active" -eq 0 ] && [ "$stale" -eq 1 ]; then
+            gh workflow run "$workflow" --repo "$repo" --ref main
+            echo "RECOVERY_DISPATCHED=1"
+          else
+            echo "RECOVERY_DISPATCHED=0"
+          fi
+
+      - name: Independent second-pass verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sleep 10
+          repo="$GITHUB_REPOSITORY"
+          workflow="tool044-cloud-worker.yml"
+          data=$(gh api "repos/$repo/actions/workflows/$workflow/runs?per_page=10")
+          active=$(jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' <<<"$data")
+          last=$(jq -r '.workflow_runs[0].created_at // empty' <<<"$data")
+          echo "second_pass_active=$active newest_run=${last:-none}"
+          test "$active" -gt 0 || test -n "$last"
+
+      - name: Hourly supervisor report
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          repo="$GITHUB_REPOSITORY"
+          echo "ROOT_A_SUPERVISOR_UTC=$(date -u +%FT%TZ)"
+          gh api "repos/$repo/actions/workflows/tool044-cloud-worker.yml/runs?per_page=5" --jq '.workflow_runs[] | [.id,.status,(.conclusion//"-"),.created_at] | @tsv' || true
