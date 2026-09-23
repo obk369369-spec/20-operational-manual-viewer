@@ -171,7 +171,7 @@
         }
       ],
       "status": "SATISFIED_BY_COMMON_COMPONENT",
-      "satisfied_at": "2026-09-23T06:24:05.458944+00:00",
+      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
       "satisfied_component": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
     },
     {
@@ -938,7 +938,7 @@
           "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-23T06:24:05.458944+00:00",
+      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
@@ -1059,7 +1059,7 @@
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-23T06:24:05.458944+00:00",
+      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
@@ -1142,7 +1142,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "SATISFIED_BY_COMMON_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1179,7 +1179,9 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
@@ -1261,7 +1263,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "SATISFIED_BY_COMMON_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1298,7 +1300,9 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
@@ -1497,7 +1501,9 @@
     {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
       "target_tool": "TOOL044",
-      "atomic_capabilities": ["AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"],
+      "atomic_capabilities": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
       "status": "OPEN",
       "source": "WORK_BULK_PROVIDER_CLASSIFICATION",
       "request_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK",
@@ -1510,7 +1516,9 @@
           "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
           "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
           "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-          "MISSING_CAPABILITY": ["AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"],
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
           "CURRENT_STATUS": "TOOL044_RECEIVED",
           "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
           "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"

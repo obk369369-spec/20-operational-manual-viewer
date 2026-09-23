@@ -665,9 +665,9 @@
       "work_ready_count": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-23T06:24:05.458944+00:00",
+      "updated_at": "2026-09-23T07:18:26.368314+00:00",
       "capacity": 15,
-      "results_returned": 1,
+      "results_returned": 2,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -778,22 +778,66 @@
             "heartbeat": "2026-09-23T06:23:57.340254+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF": {
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "owner": "GITHUB_ACTIONS:35830978075:GATE_01",
+            "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "root_id": "48db0c6ef39a7ffc3a81",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-23T07:18:13.837917+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF": {
+          "ROOT_ID": "4c4baaa30ab6e13af241",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "owner": "GITHUB_ACTIONS:35830978075:GATE_02",
+            "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "root_id": "4c4baaa30ab6e13af241",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-23T07:18:16.410238+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "tool044_external_progress": {
-      "TOTAL_DEMAND": 41,
+      "TOTAL_DEMAND": 42,
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 5,
+      "COMPONENT_FOUND": 7,
       "VALIDATING": 0,
-      "PASS": 5,
+      "PASS": 7,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 1,
-      "REMAINING": 38,
-      "LAST_HEARTBEAT": "2026-09-23T06:24:05.458944+00:00",
+      "RETURNED": 2,
+      "REMAINING": 37,
+      "LAST_HEARTBEAT": "2026-09-23T07:18:26.368314+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -801,51 +845,13 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-23T07:18:02.713243+00:00",
-      "UNFINISHED_SCANNED": 39,
-      "ALREADY_PASS_EXCLUDED": 3,
-      "ROOTS_MERGED": 2,
-      "WORK_FIXABLE_ROOTS": 2,
-      "WORK_REQUIRED": [
-        {
-          "demand_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
-          "root_id": "48db0c6ef39a7ffc3a81",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "INPUT_CONTRACT_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
-          "root_id": "4c4baaa30ab6e13af241",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "INPUT_CONTRACT_VALIDATION"
-          ]
-        }
-      ],
-      "WORK_BATCHES": [
-        {
-          "root_id": "48db0c6ef39a7ffc3a81",
-          "demands": [
-            "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
-          ],
-          "target_tools": [
-            "CENTRAL"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        },
-        {
-          "root_id": "4c4baaa30ab6e13af241",
-          "demands": [
-            "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
-          ],
-          "target_tools": [
-            "CENTRAL"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        }
-      ],
+      "updated_at": "2026-09-23T07:18:26.395961+00:00",
+      "UNFINISHED_SCANNED": 37,
+      "ALREADY_PASS_EXCLUDED": 5,
+      "ROOTS_MERGED": 0,
+      "WORK_FIXABLE_ROOTS": 0,
+      "WORK_REQUIRED": [],
+      "WORK_BATCHES": [],
       "TOOL044_AUTO_HANDED_OFF": 37,
       "TOOL044_QUEUE": [
         {
@@ -1149,12 +1155,11 @@
           ]
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 2,
+      "WORK_REQUIRED_REMAINDER": 0,
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 5,
-          "CLAIMED": 2
+          "PASS": 7
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1179,7 +1184,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-23T07:18:02.713243+00:00",
+      "LAST_HEARTBEAT": "2026-09-23T07:18:26.395961+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0

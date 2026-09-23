@@ -1,50 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-23T07:18:02.713243+00:00",
-  "UNFINISHED_SCANNED": 39,
-  "ALREADY_PASS_EXCLUDED": 3,
-  "ROOTS_MERGED": 2,
-  "WORK_FIXABLE_ROOTS": 2,
-  "WORK_REQUIRED": [
-    {
-      "demand_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
-      "root_id": "48db0c6ef39a7ffc3a81",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
-      "root_id": "4c4baaa30ab6e13af241",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    }
-  ],
-  "WORK_BATCHES": [
-    {
-      "root_id": "48db0c6ef39a7ffc3a81",
-      "demands": [
-        "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
-      ],
-      "target_tools": [
-        "CENTRAL"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "4c4baaa30ab6e13af241",
-      "demands": [
-        "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
-      ],
-      "target_tools": [
-        "CENTRAL"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    }
-  ],
+  "updated_at": "2026-09-23T07:18:26.395961+00:00",
+  "UNFINISHED_SCANNED": 37,
+  "ALREADY_PASS_EXCLUDED": 5,
+  "ROOTS_MERGED": 0,
+  "WORK_FIXABLE_ROOTS": 0,
+  "WORK_REQUIRED": [],
+  "WORK_BATCHES": [],
   "TOOL044_AUTO_HANDED_OFF": 37,
   "TOOL044_QUEUE": [
     {
@@ -348,12 +310,11 @@
       ]
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 2,
+  "WORK_REQUIRED_REMAINDER": 0,
   "MULTI_GATE": {
     "capacity": 15,
     "statuses": {
-      "PASS": 5,
-      "CLAIMED": 2
+      "PASS": 7
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -378,7 +339,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-23T07:18:02.713243+00:00",
+  "LAST_HEARTBEAT": "2026-09-23T07:18:26.395961+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0
