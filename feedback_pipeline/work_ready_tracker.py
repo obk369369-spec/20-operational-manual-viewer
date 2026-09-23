@@ -4,7 +4,8 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 
-def assess_work_ready(*, root_cause_id: str, text: str, recur_count: int, classification: str) -> dict[str, Any]:
+def assess_work_ready(*, root_cause_id: str, text: str, recur_count: int, classification: str,
+                      source_ref: str = "", targets: tuple[str, ...] = ()) -> dict[str, Any]:
     normalized = " ".join(text.lower().split())
     customer = any(word in normalized for word in ("고객", "안내서", "컨택", "메일", "엑셀", "목차", "보고서"))
     blocking = any(word in normalized for word in ("업무 중단", "사용 불가", "작동하지", "데이터 손실", "고객업무를 막")) or (customer and "중단" in normalized)
@@ -23,6 +24,12 @@ def assess_work_ready(*, root_cause_id: str, text: str, recur_count: int, classi
         "repeatability": "REPEATED" if repeated else "FIRST_SEEN",
         "work_ready": work_ready,
         "work_status": "WORK_READY" if work_ready else "ACCUMULATING",
+        "source_context": {
+            "business_task_type": classification,
+            "sanitized_input": text,
+            "source_ref": source_ref,
+            "targets": list(targets),
+        },
     }
 
 

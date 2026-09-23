@@ -69,7 +69,8 @@ def return_verified_results(queue_path: Path, registry_path: Path, state_path: P
             continue
         capability_components.update((cap, item.get("component_id")) for cap in
                                      item.get("atomic_capabilities", [item.get("atomic_capability")]))
-    blocked, acknowledged = [], 0
+    blocked, acknowledged, held = [], 0, 0
+    updated_requests = set()
     for request in inbox.get("requests", []):
         request_id = str(request.get("request_id") or "")
         if not request_id or request_id not in checkpoints:
@@ -123,21 +124,39 @@ def return_verified_results(queue_path: Path, registry_path: Path, state_path: P
         checkpoint["tool044_worker_checkpoint"] = state.get("cycle_id")
         checkpoint["tool044_worker_return_ack"] = "PASS"
         acknowledged += 1
-    if acknowledged:
+        updated_requests.add(request_id)
+    for item in blocked:
+        request_id = item["request_id"]
+        checkpoint = checkpoints.get(request_id)
+        if checkpoint is None or checkpoint.get("tool044_worker_return_ack") == "PASS":
+            continue
+        fail_prefixes = ("DUPLICATE_DEMAND_OR_RESULT_ID", "SOURCE_LINEAGE_MISMATCH",
+                         "COMPONENT_OR_CLASSIFICATION_MISMATCH", "EXISTING_ACK_RECEIPT_MISMATCH")
+        status = "FAIL" if any(error.startswith(fail_prefixes) for error in item["errors"]) else "HOLD"
+        receipt = {"cycle_id": state.get("cycle_id"), "ack": "TOOL016_CENTRAL_" + status,
+                   "status": status, "errors": item["errors"]}
+        if (checkpoint.get("tool044_natural_worker_return") == receipt and
+            checkpoint.get("tool044_worker_return_ack") == status):
+            continue
+        checkpoint["tool044_natural_worker_return"] = receipt
+        checkpoint["tool044_worker_checkpoint"] = state.get("cycle_id")
+        checkpoint["tool044_worker_return_ack"] = status
+        held += 1
+        updated_requests.add(request_id)
+    if updated_requests:
         try:
             writer(central_path, central)
             actual = json.loads(central_path.read_text(encoding="utf-8"))
-            for request_id, checkpoint in checkpoints.items():
-                if checkpoint.get("tool044_worker_checkpoint") == state.get("cycle_id") and checkpoint.get("tool044_worker_return_ack") == "PASS":
-                    if actual["integration_core"]["feedback_checkpoints"].get(request_id) != checkpoint:
-                        raise RuntimeError("TOOL016 central worker-result read-back mismatch")
+            for request_id in updated_requests:
+                if actual["integration_core"]["feedback_checkpoints"].get(request_id) != checkpoints[request_id]:
+                    raise RuntimeError("TOOL016 central worker-result read-back mismatch")
         except Exception:
             # Restore the exact prior checkpoint if a writer partially mutated it.
             temporary = central_path.with_name(central_path.name + ".tool044-rollback")
             temporary.write_bytes(before)
             os.replace(temporary, central_path)
             raise
-    return {"acknowledged": acknowledged, "blocked": blocked}
+    return {"acknowledged": acknowledged, "blocked": blocked, "held": held}
 
 
 @contextmanager

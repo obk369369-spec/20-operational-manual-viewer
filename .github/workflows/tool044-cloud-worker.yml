@@ -54,6 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python feedback_pipeline/tool044_dynamic_discovery.py
       - name: Persist shared state checkpoint
+        if: ${{ always() }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'

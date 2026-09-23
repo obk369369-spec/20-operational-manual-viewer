@@ -108,6 +108,8 @@ def main() -> int:
             text=item.sanitized_excerpt,
             recur_count=recurrence[item.feedback_id],
             classification=item.classification,
+            source_ref=item.source_ref,
+            targets=item.targets,
         ))
         state["integration_core"] = integration
         write_json(STATE, state)
@@ -129,6 +131,8 @@ def main() -> int:
                 text=item.sanitized_excerpt,
                 recur_count=1,
                 classification=item.classification,
+                source_ref=item.source_ref,
+                targets=item.targets,
             ))
             state["integration_core"] = integration
             state["processed_feedback_ids"] = list(dict.fromkeys([
@@ -292,6 +296,8 @@ def main() -> int:
         text=item.sanitized_excerpt,
         recur_count=1,
         classification=item.classification,
+        source_ref=item.source_ref,
+        targets=item.targets,
     ))
     integration["structure_pass"] = False
     integration["structure_pass_reason"] = (

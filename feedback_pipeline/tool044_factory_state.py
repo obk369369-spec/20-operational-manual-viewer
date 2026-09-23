@@ -13,6 +13,17 @@ def save(path, value):
     pending.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     pending.replace(path)
 
+def attach_next_work(state):
+    central_state = read(HERE / "state.json", {})
+    candidates = central_state.get("integration_core", {}).get("work_ready_candidates", {})
+    selected_work_id = next(
+        (identifier for identifier in sorted(candidates) if candidates[identifier].get("work_ready") is True),
+        None,
+    ) if central_state.get("pipeline_status") == "ACTIVE" else None
+    state["selected_work_id"] = selected_work_id
+    state["selected_work_contract"] = candidates.get(selected_work_id) if selected_work_id else None
+    return state
+
 def intake():
     source = read(HERE / "tool044_function_state.json", {})
     path = HERE / "tool044_factory_runtime.json"
@@ -27,7 +38,9 @@ def intake():
             "attempts": old.get("attempts", 0)}
     state.update(current_stage="INTAKE", queue_length=sum(x["status"] != "COMPLETED" for x in state["jobs"].values()),
                  updated_at=datetime.now(timezone.utc).isoformat())
-    save(path, state); return state
+    attach_next_work(state)
+    save(path, state)
+    return state
 
 def finalize():
     path = HERE / "tool044_factory_runtime.json"
@@ -47,6 +60,7 @@ def finalize():
     state.update(current_stage="CHECKPOINT", queue_length=waiting, completed_jobs=complete, active_workers=0,
                  last_success=now if complete else state.get("last_success"), last_heartbeat=now,
                  checkpoint=cycle.get("cycle_id"), updated_at=now)
+    attach_next_work(state)
     save(path, state); return state
 
 if __name__ == "__main__":
