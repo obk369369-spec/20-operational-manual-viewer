@@ -48,6 +48,17 @@ def validate_component(component: dict) -> list[str]:
     return [field for field in READY_COMPONENT_FIELDS if not component.get(field)]
 
 
+def expand_command(command: list[str], sandbox: Path) -> list[str]:
+    values = {"python": sys.executable, "repo": str(HERE.parent), "sandbox": str(sandbox)}
+    expanded = []
+    for part in command:
+        value = str(part)
+        for key, replacement in values.items():
+            value = value.replace("{" + key + "}", replacement)
+        expanded.append(value)
+    return expanded
+
+
 def _components(pool: dict) -> list[dict]:
     return pool.get("components", []) + pool.get("verified_atomic_component_pool", [])
 
@@ -124,19 +135,31 @@ def run_lane(state_path: Path, job_id: str, owner: str, result_path: Path) -> di
         atomic_json(result_path, result)
         return result
     with tempfile.TemporaryDirectory(prefix="wic-component-") as raw:
-        env = {**os.environ, "WIC_COMPONENT_SANDBOX": raw}
-        installed = subprocess.run(install, cwd=raw, env=env, capture_output=True, text=True, timeout=600)
+        sandbox = Path(raw)
+        site = sandbox / "site"
+        env = {**os.environ, "WIC_COMPONENT_SANDBOX": raw,
+               "PYTHONPATH": str(site) + os.pathsep + os.environ.get("PYTHONPATH", "")}
+        progress = {"job_id": job_id, "owner": owner, "status": "RUNNING",
+                    "checkpoint": "FETCH_COMPLETE", "heartbeat": stamp(utcnow())}
+        atomic_json(result_path, progress)
+        installed = subprocess.run(expand_command(install, sandbox), cwd=raw, env=env,
+                                   capture_output=True, text=True, timeout=600)
         validated = None
         if installed.returncode == 0:
-            validated = subprocess.run(validator, cwd=raw, env=env, capture_output=True, text=True, timeout=600)
+            progress.update(checkpoint="INSTALL_COMPLETE", heartbeat=stamp(utcnow()))
+            atomic_json(result_path, progress)
+            validated = subprocess.run(expand_command(validator, sandbox), cwd=raw, env=env,
+                                       capture_output=True, text=True, timeout=600)
         passed = installed.returncode == 0 and validated is not None and validated.returncode == 0
         rolled_back = None
         if not passed:
-            rolled_back = subprocess.run(rollback, cwd=raw, env=env, capture_output=True, text=True, timeout=600)
+            rolled_back = subprocess.run(expand_command(rollback, sandbox), cwd=raw, env=env,
+                                         capture_output=True, text=True, timeout=600)
         result = {
             "job_id": job_id, "owner": owner, "component_id": job["COMPONENT_ID"],
             "root_id": job["ROOT_ID"], "target_tool": job["TARGET_TOOL"],
-            "status": "PASS" if passed else "FAIL", "checkpoint": "VALIDATION_COMPLETE",
+            "status": "PASS" if passed else "FAIL",
+            "checkpoint": "REGRESSION_COMPLETE" if passed else "ROLLBACK_COMPLETE",
             "install_returncode": installed.returncode,
             "validator_returncode": validated.returncode if validated else None,
             "rollback_returncode": rolled_back.returncode if rolled_back else None,
