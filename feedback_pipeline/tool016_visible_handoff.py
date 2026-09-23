@@ -10,6 +10,7 @@ HERE = Path(__file__).resolve().parent
 QUEUE = HERE / "tool044_atomic_demand_queue.json"
 POOL = HERE / "evidence" / "tool044_verified_external_component_pool.json"
 GATES = HERE / "evidence" / "tool044_multi_gate_state.json"
+PROVIDERS = HERE / "tool044_multi_gate_adapters.json"
 CENTRAL = HERE / "state.json"
 OUT = HERE / "evidence" / "tool016_visible_handoff_state.json"
 TERMINAL = {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT"}
@@ -26,7 +27,7 @@ def atomic_json(path: Path, value: dict) -> None:
     os.replace(pending, path)
 
 
-def build(queue: dict, pool: dict, gates: dict, now: str) -> dict:
+def build(queue: dict, pool: dict, gates: dict, now: str, providers: dict | None = None) -> dict:
     demands = queue.get("demands", [])
     unfinished = [row for row in demands if row.get("status") not in TERMINAL]
     excluded = len(demands) - len(unfinished)
@@ -60,6 +61,8 @@ def build(queue: dict, pool: dict, gates: dict, now: str) -> dict:
     for job in gates.get("jobs", {}).values():
         status = job.get("STATUS", "UNKNOWN")
         statuses[status] = statuses.get(status, 0) + 1
+    providers = providers or {"providers": [], "bulk_summary": {}}
+    provider_rows = providers.get("providers", [])
     return {
         "schema_version": 1, "updated_at": now,
         "UNFINISHED_SCANNED": len(unfinished), "ALREADY_PASS_EXCLUDED": excluded,
@@ -69,6 +72,14 @@ def build(queue: dict, pool: dict, gates: dict, now: str) -> dict:
         "TOOL044_QUEUE": tool044_required,
         "WORK_REQUIRED_REMAINDER": len(work_required),
         "MULTI_GATE": {"capacity": gates.get("capacity", 15), "statuses": statuses},
+        "FREE_EXTERNAL_RUNNER_POOL": {
+            "target": providers.get("target_provider_count", 15),
+            "actual_run_pass": [row.get("provider_id") for row in provider_rows
+                                if row.get("status") == "ACTUAL_RUN_PASS"],
+            "blocked_user_action": [row.get("provider_id") for row in provider_rows
+                                    if row.get("status") == "BLOCKED_USER_ACTION"],
+            "bulk_summary": providers.get("bulk_summary", {}),
+        },
         "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
         "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
         "LAST_HEARTBEAT": now, "WATCHDOG": "SCHEDULED_15_MINUTES",
@@ -81,7 +92,8 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
         central_path: Path = CENTRAL, out_path: Path = OUT) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     result = build(load(queue_path, {"demands": []}), load(pool_path, {"components": []}),
-                   load(gate_path, {"jobs": {}, "capacity": 15}), now)
+                   load(gate_path, {"jobs": {}, "capacity": 15}), now,
+                   load(PROVIDERS, {"providers": [], "bulk_summary": {}}))
     atomic_json(out_path, result)
     central = load(central_path, {})
     central.setdefault("integration_core", {})["visible_handoff"] = result

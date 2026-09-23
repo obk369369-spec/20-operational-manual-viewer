@@ -117,7 +117,6 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
         for component in _components(pool) if component.get("status") == "VERIFIED_REUSABLE"
         for capability in component.get("atomic_capabilities", [])
     }
-    used_components = set()
     for demand in (queue or {}).get("demands", []):
         if demand.get("status") in {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT"}:
             continue
@@ -126,8 +125,6 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
             continue
         component = capability_map[capabilities[0]]
         component_id = component["component_id"]
-        if component_id in used_components:
-            continue
         demand_id = demand.get("demand_id")
         job_id = f"DEMAND::{demand_id}::{component_id}"
         jobs.setdefault(job_id, {
@@ -137,7 +134,6 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
             "CHECKPOINT": "COMMON_COMPONENT_MATCHED", "STATUS": "READY", "RETRY_COUNT": 0,
             "RESULT": None, "COMPONENT": component,
         })
-        used_components.add(component_id)
 
     ready = sorted((job for job in jobs.values() if job.get("STATUS") == "READY"),
                    key=lambda row: row["JOB_ID"])[:MAX_GATES]

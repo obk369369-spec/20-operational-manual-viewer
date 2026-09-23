@@ -801,8 +801,8 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-23T06:24:05.495501+00:00",
-      "UNFINISHED_SCANNED": 38,
+      "updated_at": "2026-09-23T07:14:48.252522+00:00",
+      "UNFINISHED_SCANNED": 39,
       "ALREADY_PASS_EXCLUDED": 3,
       "ROOTS_MERGED": 2,
       "WORK_FIXABLE_ROOTS": 2,
@@ -846,7 +846,7 @@
           "status": "READY_FOR_MULTI_GATE"
         }
       ],
-      "TOOL044_AUTO_HANDED_OFF": 36,
+      "TOOL044_AUTO_HANDED_OFF": 37,
       "TOOL044_QUEUE": [
         {
           "demand_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
@@ -1139,6 +1139,14 @@
           "atomic_capabilities": [
             "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
           ]
+        },
+        {
+          "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ]
         }
       ],
       "WORK_REQUIRED_REMAINDER": 2,
@@ -1148,9 +1156,29 @@
           "PASS": 5
         }
       },
+      "FREE_EXTERNAL_RUNNER_POOL": {
+        "target": 15,
+        "actual_run_pass": [
+          "GITHUB_ACTIONS_MATRIX_V1"
+        ],
+        "blocked_user_action": [
+          "WOODPECKER_MULTI_AGENT_V1",
+          "GITLAB_PARALLEL_MATRIX_V1"
+        ],
+        "bulk_summary": {
+          "collected": 4,
+          "a_ready": 0,
+          "b_ready": 0,
+          "blocked_user_action": 2,
+          "rejected": 1,
+          "actual_run_pass": 1,
+          "remaining_to_target": 14,
+          "next_root_bundle": "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+        }
+      },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-23T06:24:05.495501+00:00",
+      "LAST_HEARTBEAT": "2026-09-23T07:14:48.252522+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0

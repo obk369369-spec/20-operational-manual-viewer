@@ -79,3 +79,19 @@ def test_verified_component_auto_claims_real_demand(tmp_path: Path):
     assert json.loads(queue.read_text(encoding="utf-8"))["demands"][0]["status"] == "SATISFIED_BY_COMMON_COMPONENT"
     progress = json.loads(central.read_text(encoding="utf-8"))["integration_core"]["tool044_external_progress"]
     assert progress["REMAINING"] == 0 and progress["USER_MANUAL_RELAY_REQUIRED"] == 0
+
+
+def test_verified_component_claims_multiple_independent_demands_in_one_batch(tmp_path: Path):
+    row = component("SHARED-MATCHER")
+    row.update(status="VERIFIED_REUSABLE", atomic_capabilities=["INPUT_CONTRACT_VALIDATION"])
+    pool = tmp_path / "pool.json"; state = tmp_path / "state.json"; queue = tmp_path / "queue.json"
+    pool.write_text(json.dumps({"components": [row]}), encoding="utf-8")
+    queue.write_text(json.dumps({"demands": [
+        {"demand_id": "DEMAND-A", "root_id": "ROOT-A", "status": "OPEN",
+         "atomic_capabilities": ["INPUT_CONTRACT_VALIDATION"]},
+        {"demand_id": "DEMAND-B", "root_id": "ROOT-B", "status": "OPEN",
+         "atomic_capabilities": ["INPUT_CONTRACT_VALIDATION"]},
+    ]}), encoding="utf-8")
+    matrix = plan(pool, state, "RUN-BATCH", queue)
+    assert len(matrix) == 2
+    assert {row["job_id"].split("::")[1] for row in matrix} == {"DEMAND-A", "DEMAND-B"}

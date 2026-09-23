@@ -1493,6 +1493,29 @@
           "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
         }
       ]
+    },
+    {
+      "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "target_tool": "TOOL044",
+      "atomic_capabilities": ["AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"],
+      "status": "OPEN",
+      "source": "WORK_BULK_PROVIDER_CLASSIFICATION",
+      "request_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK",
+      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "EXTERNAL_COMPONENT_COLLECTOR",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
+          "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
+          "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "MISSING_CAPABILITY": ["AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"],
+          "CURRENT_STATUS": "TOOL044_RECEIVED",
+          "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        }
+      ]
     }
   ]
 }
