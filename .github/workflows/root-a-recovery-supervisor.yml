@@ -63,3 +63,5 @@ jobs:
           repo="$GITHUB_REPOSITORY"
           echo "ROOT_A_SUPERVISOR_UTC=$(date -u +%FT%TZ)"
           gh api "repos/$repo/actions/workflows/tool044-cloud-worker.yml/runs?per_page=5" --jq '.workflow_runs[] | [.id,.status,(.conclusion//"-"),.created_at] | @tsv' || true
+
+# recovery-generation: 2
