@@ -21,6 +21,7 @@ HERE = Path(__file__).resolve().parent
 POOL = HERE / "evidence" / "tool044_verified_external_component_pool.json"
 STATE = HERE / "evidence" / "tool044_multi_gate_state.json"
 CENTRAL = HERE / "state.json"
+QUEUE = HERE / "tool044_atomic_demand_queue.json"
 MAX_GATES = 15
 TERMINAL = {"PASS", "FAIL", "HOLD", "BLOCKED", "RETURNED"}
 
@@ -63,7 +64,8 @@ def _components(pool: dict) -> list[dict]:
     return pool.get("components", []) + pool.get("verified_atomic_component_pool", [])
 
 
-def build_plan(pool: dict, state: dict, run_id: str, now: datetime) -> tuple[dict, list[dict]]:
+def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
+               queue: dict | None = None) -> tuple[dict, list[dict]]:
     jobs = state.setdefault("jobs", {})
     events = state.setdefault("events", [])
     for job in jobs.values():
@@ -96,6 +98,47 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime) -> tuple[dic
             "RESULT": None, "COMPONENT": component,
         })
 
+    # A component becomes reusable only after the prior isolated lane returned PASS.
+    for job in jobs.values():
+        if (job.get("JOB_ID", "").startswith("COMPONENT::") and
+                job.get("STATUS") == "PASS" and job.get("RESULT", {}).get("status") == "PASS"):
+            component_id = job.get("COMPONENT_ID")
+            for component in _components(pool):
+                if component.get("component_id") == component_id:
+                    component["status"] = "VERIFIED_REUSABLE"
+                    component["multi_gate_evidence"] = {
+                        "job_id": job["JOB_ID"], "owner": job.get("OWNER"),
+                        "checkpoint": job.get("CHECKPOINT"), "result": job.get("RESULT"),
+                    }
+
+    # Feed real unfinished atomic demands into the same verified-component lanes.
+    capability_map = {
+        capability: component
+        for component in _components(pool) if component.get("status") == "VERIFIED_REUSABLE"
+        for capability in component.get("atomic_capabilities", [])
+    }
+    used_components = set()
+    for demand in (queue or {}).get("demands", []):
+        if demand.get("status") in {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT"}:
+            continue
+        capabilities = demand.get("atomic_capabilities", [])
+        if len(capabilities) != 1 or capabilities[0] not in capability_map:
+            continue
+        component = capability_map[capabilities[0]]
+        component_id = component["component_id"]
+        if component_id in used_components:
+            continue
+        demand_id = demand.get("demand_id")
+        job_id = f"DEMAND::{demand_id}::{component_id}"
+        jobs.setdefault(job_id, {
+            "JOB_ID": job_id, "DEMAND_ID": demand_id, "ROOT_ID": demand.get("root_id") or demand_id,
+            "TARGET_TOOL": demand.get("target_tool") or "CENTRAL", "COMPONENT_ID": component_id,
+            "OWNER": None, "CLAIM_TIME": None, "LEASE_EXPIRY": None,
+            "CHECKPOINT": "COMMON_COMPONENT_MATCHED", "STATUS": "READY", "RETRY_COUNT": 0,
+            "RESULT": None, "COMPONENT": component,
+        })
+        used_components.add(component_id)
+
     ready = sorted((job for job in jobs.values() if job.get("STATUS") == "READY"),
                    key=lambda row: row["JOB_ID"])[:MAX_GATES]
     matrix = []
@@ -111,9 +154,11 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime) -> tuple[dic
     return state, matrix
 
 
-def plan(pool_path: Path, state_path: Path, run_id: str) -> list[dict]:
-    state, matrix = build_plan(load(pool_path, {"components": []}),
-                               load(state_path, {"jobs": {}, "events": []}), run_id, utcnow())
+def plan(pool_path: Path, state_path: Path, run_id: str, queue_path: Path = QUEUE) -> list[dict]:
+    pool = load(pool_path, {"components": []})
+    state, matrix = build_plan(pool, load(state_path, {"jobs": {}, "events": []}),
+                               run_id, utcnow(), load(queue_path, {"demands": []}))
+    atomic_json(pool_path, pool)
     atomic_json(state_path, state)
     return matrix
 
@@ -171,7 +216,8 @@ def run_lane(state_path: Path, job_id: str, owner: str, result_path: Path) -> di
     return result
 
 
-def aggregate(state_path: Path, central_path: Path, result_paths: list[Path]) -> dict:
+def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
+              queue_path: Path = QUEUE) -> dict:
     state = load(state_path, {"jobs": {}, "events": []})
     returned = 0
     for path in result_paths:
@@ -184,6 +230,19 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path]) ->
         returned += 1
     state.update(updated_at=stamp(utcnow()), active_claims=0, results_returned=returned)
     atomic_json(state_path, state)
+    queue = load(queue_path, {"demands": []})
+    returned_demand_ids = {
+        row.get("DEMAND_ID") for row in state.get("jobs", {}).values()
+        if row.get("DEMAND_ID") and row.get("STATUS") == "PASS"
+    }
+    for demand in queue.get("demands", []):
+        if demand.get("demand_id") in returned_demand_ids:
+            demand.update(status="SATISFIED_BY_COMMON_COMPONENT",
+                          satisfied_at=state["updated_at"],
+                          satisfied_component=next(
+                              row["COMPONENT_ID"] for row in state["jobs"].values()
+                              if row.get("DEMAND_ID") == demand.get("demand_id")))
+    atomic_json(queue_path, queue)
     central = load(central_path, {})
     core = central.setdefault("integration_core", {})
     core["tool044_multi_gate"] = {
@@ -192,6 +251,23 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path]) ->
         "jobs": {key: {field: row.get(field) for field in (
             "ROOT_ID", "TARGET_TOOL", "COMPONENT_ID", "STATUS", "CHECKPOINT", "RESULT")}
                  for key, row in state.get("jobs", {}).items()},
+    }
+    counts = {}
+    for row in state.get("jobs", {}).values():
+        counts[row.get("STATUS", "UNKNOWN")] = counts.get(row.get("STATUS", "UNKNOWN"), 0) + 1
+    total_demands = len(queue.get("demands", []))
+    remaining = sum(d.get("status") not in {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT"}
+                    for d in queue.get("demands", []))
+    core["tool044_external_progress"] = {
+        "TOTAL_DEMAND": total_demands, "READY": counts.get("READY", 0),
+        "CLAIMED": counts.get("CLAIMED", 0), "RUNNING": counts.get("RUNNING", 0),
+        "COMPONENT_FOUND": sum(bool(row.get("COMPONENT_ID")) for row in state.get("jobs", {}).values()),
+        "VALIDATING": counts.get("VALIDATING", 0), "PASS": counts.get("PASS", 0),
+        "FAIL": counts.get("FAIL", 0), "HOLD": counts.get("HOLD", 0),
+        "RETURNED": returned, "REMAINING": remaining,
+        "LAST_HEARTBEAT": state["updated_at"], "CURRENT_RUNNER": "GITHUB_ACTIONS",
+        "CURRENT_COMPONENT": None, "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
+        "USER_MANUAL_RELAY_REQUIRED": 0,
     }
     atomic_json(central_path, central)
     return state
@@ -202,16 +278,18 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     p = sub.add_parser("plan")
     p.add_argument("--pool", type=Path, default=POOL); p.add_argument("--state", type=Path, default=STATE)
+    p.add_argument("--queue", type=Path, default=QUEUE)
     p.add_argument("--run-id", default=os.environ.get("GITHUB_RUN_ID", "LOCAL")); p.add_argument("--github-output")
     r = sub.add_parser("run-lane")
     r.add_argument("--state", type=Path, default=STATE); r.add_argument("--job-id", required=True)
     r.add_argument("--owner", required=True); r.add_argument("--result", type=Path, required=True)
     a = sub.add_parser("aggregate")
     a.add_argument("--state", type=Path, default=STATE); a.add_argument("--central", type=Path, default=CENTRAL)
+    a.add_argument("--queue", type=Path, default=QUEUE)
     a.add_argument("results", nargs="*", type=Path)
     args = parser.parse_args()
     if args.command == "plan":
-        matrix = plan(args.pool, args.state, args.run_id)
+        matrix = plan(args.pool, args.state, args.run_id, args.queue)
         payload = json.dumps({"include": matrix or [{"gate_id": "GATE_01", "job_id": "NOOP", "owner": "NOOP"}]})
         if args.github_output:
             with Path(args.github_output).open("a", encoding="utf-8") as handle:
@@ -220,7 +298,7 @@ def main() -> None:
     elif args.command == "run-lane":
         print(json.dumps(run_lane(args.state, args.job_id, args.owner, args.result)))
     else:
-        print(json.dumps(aggregate(args.state, args.central, args.results)))
+        print(json.dumps(aggregate(args.state, args.central, args.results, args.queue)))
 
 
 if __name__ == "__main__":
