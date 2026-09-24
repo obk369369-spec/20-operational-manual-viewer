@@ -1,0 +1,91 @@
+name: ROOT A ENV1 CircleCI status read-back
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/root-a-env1-circleci-readback.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  statuses: read
+
+concurrency:
+  group: root-a-env1-circleci-readback
+  cancel-in-progress: false
+
+jobs:
+  readback:
+    runs-on: ubuntu-latest
+    env:
+      CORRELATION_ID: ROOT-A-2286601c5bd963d13f4f3a9efa2f8d283c34c0b9
+      ENV2_COMMIT_SHA: 2286601c5bd963d13f4f3a9efa2f8d283c34c0b9
+      EXPECTED_CONTEXT: 'ci/circleci: say-hello'
+      EXPECTED_STATUS_ID: '54852461741'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read CircleCI result from GitHub commit status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/commits/${ENV2_COMMIT_SHA}/status" > /tmp/circleci-status.json
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          payload=json.loads(Path('/tmp/circleci-status.json').read_text())
+          matches=[
+              s for s in payload.get('statuses', [])
+              if s.get('context') == os.environ['EXPECTED_CONTEXT']
+              and str(s.get('id')) == os.environ['EXPECTED_STATUS_ID']
+          ]
+          if len(matches) != 1:
+              raise SystemExit(f"expected one CircleCI status, got {len(matches)}")
+          status=matches[0]
+          if status.get('state') != 'success':
+              raise SystemExit(f"CircleCI status is {status.get('state')}")
+          if payload.get('sha') != os.environ['ENV2_COMMIT_SHA']:
+              raise SystemExit('correlation commit mismatch')
+
+          evidence={
+              'schema_version':1,
+              'root':'ROOT_A_MINIMUM_TWO_INDEPENDENT_EXECUTION_ENVIRONMENTS',
+              'correlation_id':os.environ['CORRELATION_ID'],
+              'environment_1':'GITHUB_ACTIONS',
+              'environment_2':'CIRCLECI_CLOUD',
+              'env2_commit_sha':payload['sha'],
+              'circleci_status_id':status['id'],
+              'circleci_context':status['context'],
+              'circleci_state':status['state'],
+              'circleci_target_url':status['target_url'],
+              'env1_status_readback':'PASS',
+              'correlation_id_match':'PASS',
+              'checkpoint_write':'PASS',
+              'env1_env2_minimum_roundtrip':'PASS',
+              'root_a_final_status':'INCOMPLETE_FAILOVER_PENDING',
+              'heartbeat':'NOT_RUN',
+              'failover':'NOT_RUN',
+              'checkpoint_resume':'NOT_RUN',
+              'recorded_at':datetime.now(timezone.utc).isoformat(),
+              'github_actions_run_id':os.environ.get('GITHUB_RUN_ID')
+          }
+          out=Path('feedback_pipeline/evidence/root_a_env1_env2_roundtrip.json')
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          readback=json.loads(out.read_text(encoding='utf-8'))
+          assert readback['env1_status_readback']=='PASS'
+          assert readback['correlation_id_match']=='PASS'
+          PY
+
+      - name: Persist WIC checkpoint
+        run: |
+          git config user.name "wic-root-a-bot"
+          git config user.email "wic-root-a-bot@users.noreply.github.com"
+          git add feedback_pipeline/evidence/root_a_env1_env2_roundtrip.json
+          git commit -m "root-a: persist ENV1 ENV2 minimum roundtrip"
+          git push origin HEAD:main
