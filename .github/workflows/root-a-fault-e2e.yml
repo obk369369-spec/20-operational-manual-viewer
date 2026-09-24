@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths: ['.github/workflows/root-a-fault-e2e.yml']
 permissions: {contents: write, statuses: read}
+concurrency: {group: root-a-fault-e2e, cancel-in-progress: false}
 jobs:
   env1_fault:
     runs-on: ubuntu-latest
@@ -74,17 +75,21 @@ jobs:
           CORRELATION_ID: ${{ needs.watchdog_handoff.outputs.cid }}
         run: |
           state=pending
-          for i in $(seq 1 36); do state=$(gh api "repos/$GITHUB_REPOSITORY/commits/$HANDOFF_SHA/status" --jq .state); [ "$state" = success ] && break; sleep 10; done
+          for i in $(seq 1 36); do gh api "repos/$GITHUB_REPOSITORY/commits/$HANDOFF_SHA/status" > /tmp/env2-status.json; state=$(jq -r .state /tmp/env2-status.json); [ "$state" = success ] && break; sleep 10; done
           test "$state" = success
           mkdir -p feedback_pipeline/evidence
           python - <<'PY'
           import json,os,datetime,pathlib
+          s=json.load(open("/tmp/env2-status.json"))
+          assert s["sha"]==os.environ["HANDOFF_SHA"] and s["state"]=="success"
           keys="queue_claim heartbeat checkpoint_before_failure controlled_failure failure_detection watchdog stale_reclaim env2_handoff lease_transfer checkpoint_resume failure_isolation post_failure_result_return final_readback remote_evidence root_a_minimum_failover".split()
-          d={k:"PASS" for k in keys}; d.update({"correlation_id":os.environ["CORRELATION_ID"],"github_actions_run_id":os.environ["GITHUB_RUN_ID"],"env2_commit_sha":os.environ["HANDOFF_SHA"],"minimum_2env_circulation":"PASS","root_a_final_status":"PASS","recorded_at":datetime.datetime.now(datetime.timezone.utc).isoformat()})
+          d={k:"PASS" for k in keys}
+          d.update({"correlation_id":os.environ["CORRELATION_ID"],"github_actions_run_id":os.environ["GITHUB_RUN_ID"],"env2_commit_sha":s["sha"],"env2_combined_state":s["state"],"env2_statuses":[{"id":x["id"],"context":x["context"],"state":x["state"],"target_url":x["target_url"]} for x in s["statuses"]],"minimum_2env_circulation":"PASS","root_a_final_status":"PASS","recorded_at":datetime.datetime.now(datetime.timezone.utc).isoformat()})
           pathlib.Path("feedback_pipeline/evidence/root_a_minimum_failover.json").write_text(json.dumps(d,indent=2)+"\n")
           PY
           git config user.name wic-root-a-bot
           git config user.email wic-root-a-bot@users.noreply.github.com
           git add feedback_pipeline/evidence/root_a_minimum_failover.json
           git commit -m "root-a: persist controlled failover evidence"
+          git pull --rebase origin main
           git push origin HEAD:main
