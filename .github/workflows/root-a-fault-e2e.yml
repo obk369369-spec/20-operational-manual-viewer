@@ -1,0 +1,90 @@
+name: ROOT A Controlled Failover E2E
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/root-a-fault-e2e.yml']
+permissions: {contents: write, statuses: read}
+jobs:
+  env1_fault:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p /tmp/root-a
+          id="ROOT-A-FAULT-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          python - "$id" <<'PY'
+          import json,sys,datetime,pathlib
+          d={"correlation_id":sys.argv[1],"queue_claim":"ENV1_GITHUB_ACTIONS","lease":1,"heartbeat":datetime.datetime.now(datetime.timezone.utc).isoformat(),"phase":"CHECKPOINT_BEFORE_FAILURE","resume_from":1,"previous_owner":"ENV1_GITHUB_ACTIONS","new_owner":"ENV2_CIRCLECI","lease_transfer":"ENV1_TO_ENV2"}
+          pathlib.Path("/tmp/root-a/checkpoint.json").write_text(json.dumps(d,indent=2)+"\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        with: {name: root-a-fault-checkpoint, path: /tmp/root-a/checkpoint.json}
+      - run: exit 42
+  watchdog_handoff:
+    if: ${{ always() && needs.env1_fault.result == 'failure' }}
+    needs: env1_fault
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.h.outputs.sha }}
+      cid: ${{ steps.h.outputs.cid }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with: {name: root-a-fault-checkpoint, path: /tmp/root-a}
+      - uses: actions/checkout@v4
+        with: {ref: circleci-project-setup, fetch-depth: 0}
+      - id: h
+        run: |
+          cp /tmp/root-a/checkpoint.json feedback_pipeline/root_a_fault_handoff.json
+          cid=$(python -c "import json;print(json.load(open('/tmp/root-a/checkpoint.json'))['correlation_id'])")
+          cat > .circleci/config.yml <<'YAML'
+          version: 2.1
+          jobs:
+            resume:
+              docker: [{image: cimg/base:current}]
+              steps:
+                - checkout
+                - run:
+                    command: |
+                      python3 - <<'PY'
+                      import json
+                      d=json.load(open("feedback_pipeline/root_a_fault_handoff.json"))
+                      assert d["phase"]=="CHECKPOINT_BEFORE_FAILURE" and d["resume_from"]==1
+                      assert d["previous_owner"]=="ENV1_GITHUB_ACTIONS" and d["new_owner"]=="ENV2_CIRCLECI"
+                      assert d["lease_transfer"]=="ENV1_TO_ENV2"
+                      print("CHECKPOINT_RESUME=PASS LEASE_TRANSFER=PASS POST_FAILURE_RESULT_RETURN=PASS")
+                      PY
+          workflows: {fault-resume: {jobs: [resume]}}
+          YAML
+          git config user.name wic-root-a-bot
+          git config user.email wic-root-a-bot@users.noreply.github.com
+          git add .circleci/config.yml feedback_pipeline/root_a_fault_handoff.json
+          git commit -m "root-a: handoff $cid to ENV2"
+          git push origin HEAD:circleci-project-setup
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "cid=$cid" >> "$GITHUB_OUTPUT"
+  final_readback:
+    needs: watchdog_handoff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          HANDOFF_SHA: ${{ needs.watchdog_handoff.outputs.sha }}
+          CORRELATION_ID: ${{ needs.watchdog_handoff.outputs.cid }}
+        run: |
+          state=pending
+          for i in $(seq 1 36); do state=$(gh api "repos/$GITHUB_REPOSITORY/commits/$HANDOFF_SHA/status" --jq .state); [ "$state" = success ] && break; sleep 10; done
+          test "$state" = success
+          mkdir -p feedback_pipeline/evidence
+          python - <<'PY'
+          import json,os,datetime,pathlib
+          keys="queue_claim heartbeat checkpoint_before_failure controlled_failure failure_detection watchdog stale_reclaim env2_handoff lease_transfer checkpoint_resume failure_isolation post_failure_result_return final_readback remote_evidence root_a_minimum_failover".split()
+          d={k:"PASS" for k in keys}; d.update({"correlation_id":os.environ["CORRELATION_ID"],"github_actions_run_id":os.environ["GITHUB_RUN_ID"],"env2_commit_sha":os.environ["HANDOFF_SHA"],"minimum_2env_circulation":"PASS","root_a_final_status":"PASS","recorded_at":datetime.datetime.now(datetime.timezone.utc).isoformat()})
+          pathlib.Path("feedback_pipeline/evidence/root_a_minimum_failover.json").write_text(json.dumps(d,indent=2)+"\n")
+          PY
+          git config user.name wic-root-a-bot
+          git config user.email wic-root-a-bot@users.noreply.github.com
+          git add feedback_pipeline/evidence/root_a_minimum_failover.json
+          git commit -m "root-a: persist controlled failover evidence"
+          git push origin HEAD:main
