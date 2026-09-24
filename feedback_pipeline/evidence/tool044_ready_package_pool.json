@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-24T06:48:33.256399+00:00",
+  "ready_package_count": 2,
+  "rejected_count": 0,
+  "packages": [
+    {
+      "PACKAGE_ID": "READY::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+      "COMPONENT_ID": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+      "SOURCE": "https://pypi.org/project/doit/0.37.0/",
+      "VERSION": "0.37.0",
+      "HASH": "a9f181566aa90faac515e276f85e6526019554ed7e13c12cf9dc094ffecf3e1b",
+      "LICENSE": "MIT",
+      "TARGET_ROOT": "COMMON_WORKFLOW_ORCHESTRATION",
+      "TARGET_TOOL": "TOOL016,TOOL044",
+      "FUNCTION": "LOCAL_DAG_EXECUTION_ENGINE",
+      "INPUT_CONTRACT": "Python task graph with deterministic task identifiers",
+      "OUTPUT_CONTRACT": "DAG execution result and dependency-state resume receipt",
+      "CONFIG": {
+        "install_target": "isolated sandbox/site"
+      },
+      "CONNECTION_METHOD": "Use the verified install_method exactly; do not modify the external component.",
+      "EXECUTION_COMMAND": [
+        "{python}",
+        "-m",
+        "pip",
+        "install",
+        "--no-deps",
+        "--target",
+        "{sandbox}/site",
+        "{repo}/feedback_pipeline/external_candidate_pool/doit-0.37.0-py3-none-any.whl"
+      ],
+      "VALIDATION_METHOD": [
+        "{python}",
+        "-c",
+        "import doit; assert doit.__version__ == (0, 37, 0)"
+      ],
+      "SUCCESS_CONDITION": "isolated import reports doit 0.37.0",
+      "FAILURE_CONDITION": "wheel install or isolated import returns non-zero",
+      "ROLLBACK_CONDITION": "any install or validation failure",
+      "ROLLBACK_METHOD": [
+        "{python}",
+        "-c",
+        "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+      ],
+      "SANDBOX_COMPONENT_PASS": "YES",
+      "ACTUAL_EXECUTION_EVIDENCE": {
+        "job_id": "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+        "owner": "GITHUB_ACTIONS:35823572291:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+          "owner": "GITHUB_ACTIONS:35823572291:GATE_01",
+          "component_id": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+          "root_id": "COMMON_WORKFLOW_ORCHESTRATION",
+          "target_tool": "TOOL016,TOOL044",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-23T05:43:26.745467+00:00",
+          "production_mutation": 0
+        }
+      },
+      "TOOL016_HANDOFF_CONTRACT": "TOOL016 selects PACKAGE_ID by FUNCTION/TARGET_ROOT and hands the unchanged package to final installer.",
+      "TOOL016_RETURN_CONTRACT": "Return PACKAGE_ID, install result, validation result, evidence ref, rollback result if any.",
+      "WORK_INSTRUCTION": "Install READY package DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE exactly as specified. Do not modify/customize the external component. Run VALIDATION_METHOD, fail closed on any mismatch, rollback on failure, then return execution evidence to TOOL016.",
+      "READY_TO_PLUG": true,
+      "EVIDENCE_REFS": [
+        "feedback_pipeline/evidence/tool044_free_factory_deployed_20260908.json"
+      ]
+    },
+    {
+      "PACKAGE_ID": "READY::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "COMPONENT_ID": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "SOURCE": "https://pypi.org/project/fastjsonschema/2.21.2/",
+      "VERSION": "2.21.2",
+      "HASH": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+      "LICENSE": "BSD-3-Clause",
+      "TARGET_ROOT": "COMMON_SCHEMA_VALIDATION",
+      "TARGET_TOOL": "TOOL016,TOOL043,TOOL044",
+      "FUNCTION": "INPUT_CONTRACT_VALIDATION",
+      "INPUT_CONTRACT": "JSON Schema plus JSON-compatible instance",
+      "OUTPUT_CONTRACT": "validated instance or deterministic schema exception",
+      "CONFIG": {
+        "install_target": "isolated sandbox/site"
+      },
+      "CONNECTION_METHOD": "Use the verified install_method exactly; do not modify the external component.",
+      "EXECUTION_COMMAND": [
+        "{python}",
+        "-m",
+        "pip",
+        "install",
+        "--no-deps",
+        "--target",
+        "{sandbox}/site",
+        "{repo}/tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl"
+      ],
+      "VALIDATION_METHOD": [
+        "{python}",
+        "-c",
+        "import fastjsonschema; validate=fastjsonschema.compile({'type':'object','required':['job_id']}); validate({'job_id':'WIC-MULTI-GATE'})"
+      ],
+      "SUCCESS_CONDITION": "isolated schema compilation and valid instance pass",
+      "FAILURE_CONDITION": "wheel install, schema compilation, or validation returns non-zero",
+      "ROLLBACK_CONDITION": "any install or validation failure",
+      "ROLLBACK_METHOD": [
+        "{python}",
+        "-c",
+        "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+      ],
+      "SANDBOX_COMPONENT_PASS": "YES",
+      "ACTUAL_EXECUTION_EVIDENCE": {
+        "job_id": "COMPONENT::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+        "owner": "GITHUB_ACTIONS:35823572291:GATE_02",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+          "owner": "GITHUB_ACTIONS:35823572291:GATE_02",
+          "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+          "root_id": "COMMON_SCHEMA_VALIDATION",
+          "target_tool": "TOOL016,TOOL043,TOOL044",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-23T05:43:29.021488+00:00",
+          "production_mutation": 0
+        }
+      },
+      "TOOL016_HANDOFF_CONTRACT": "TOOL016 selects PACKAGE_ID by FUNCTION/TARGET_ROOT and hands the unchanged package to final installer.",
+      "TOOL016_RETURN_CONTRACT": "Return PACKAGE_ID, install result, validation result, evidence ref, rollback result if any.",
+      "WORK_INSTRUCTION": "Install READY package FASTJSONSCHEMA_2_21_2_TOOL043_PROOF exactly as specified. Do not modify/customize the external component. Run VALIDATION_METHOD, fail closed on any mismatch, rollback on failure, then return execution evidence to TOOL016.",
+      "READY_TO_PLUG": true,
+      "EVIDENCE_REFS": [
+        "feedback_pipeline/evidence/tool043_proof_deployed.json"
+      ]
+    }
+  ],
+  "rejected": [],
+  "rule": "ONLY_ACTUAL_EXECUTION_VERIFIED_EXTERNAL_COMPONENTS_CAN_BECOME_READY_PACKAGES"
+}
