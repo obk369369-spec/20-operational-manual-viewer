@@ -64,6 +64,7 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "cid=$cid" >> "$GITHUB_OUTPUT"
   final_readback:
+    if: ${{ always() && needs.watchdog_handoff.result == 'success' }}
     needs: watchdog_handoff
     runs-on: ubuntu-latest
     steps:
