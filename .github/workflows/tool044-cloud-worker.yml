@@ -65,7 +65,12 @@ jobs:
       - name: Parallel discover public candidates for unresolved atomic capabilities
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TOOL044_PRELOAD_TARGET: '1000'
         run: python feedback_pipeline/tool044_dynamic_discovery.py
+      - name: Build evidence-gated ready-to-plug packages
+        run: |
+          python feedback_pipeline/tool044_ready_package.py --self-test
+          python feedback_pipeline/tool044_ready_package.py
       - name: Persist shared state checkpoint
         if: ${{ always() }}
         run: |
@@ -82,6 +87,7 @@ jobs:
             feedback_pipeline/evidence/tool044_verified_external_component_pool.json \
             feedback_pipeline/evidence/tool044_verified_composition_pool.json \
             feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json \
+            feedback_pipeline/evidence/tool044_ready_package_pool.json \
             feedback_pipeline/evidence/tool044_safe_integration_fixture.json; do
             if [ -e "$path" ]; then git add -- "$path"; fi
           done
