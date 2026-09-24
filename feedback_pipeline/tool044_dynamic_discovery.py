@@ -1,5 +1,5 @@
 from __future__ import annotations
-import argparse, concurrent.futures, json, os, re, urllib.parse, urllib.request
+import argparse, concurrent.futures, json, math, os, re, urllib.parse, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -17,9 +17,9 @@ def query_terms(cap):
     if not words: words=[w.lower() for w in re.split(r'[_\- ]+',cap) if w]
     return ' '.join(words[:5])
 
-def discover_one(cap):
+def discover_one(cap, per_page):
     q=query_terms(cap)
-    url='https://api.github.com/search/repositories?q='+urllib.parse.quote(q+' in:name,description,readme')+'&sort=stars&order=desc&per_page=5'
+    url='https://api.github.com/search/repositories?q='+urllib.parse.quote(q+' in:name,description,readme')+'&sort=stars&order=desc&per_page='+str(per_page)
     headers={'Accept':'application/vnd.github+json','User-Agent':'WIC-TOOL044'}
     token=os.environ.get('GITHUB_TOKEN') or os.environ.get('GH_TOKEN')
     if token: headers['Authorization']='Bearer '+token
@@ -44,16 +44,19 @@ def run():
         if d.get('status') in ('COMPLETED','VERIFIED'): continue
         caps.extend(d.get('atomic_capabilities',[]) or [])
     caps=list(dict.fromkeys(caps))
+    target=max(1,int(os.environ.get('TOOL044_PRELOAD_TARGET','1000')))
+    per_page=min(100,max(5,math.ceil(target/max(1,len(caps)))))
+    workers=min(4,max(1,len(caps)))
     results={}; errors={}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=min(8,max(1,len(caps)))) as pool:
-        futs={pool.submit(discover_one,c):c for c in caps}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
+        futs={pool.submit(discover_one,c,per_page):c for c in caps}
         for fut in concurrent.futures.as_completed(futs):
             cap=futs[fut]
             try:
                 _,rows=fut.result(); results[cap]=rows
             except Exception as exc:
                 errors[cap]=type(exc).__name__
-    payload={'schema_version':1,'updated_at':datetime.now(timezone.utc).isoformat(),'parallel_workers':min(8,max(1,len(caps))),
+    payload={'schema_version':1,'updated_at':datetime.now(timezone.utc).isoformat(),'parallel_workers':workers,'requested_target':target,'per_capability_limit':per_page,
              'capabilities_queried':len(caps),'candidate_count':sum(map(len,results.values())),'candidates_by_capability':results,
              'errors':errors,'rule':'DISCOVERY_ONLY_NO_PROMOTION_WITHOUT_RECEIPT_ARTIFACT_BEHAVIOR_TEST'}
     OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
