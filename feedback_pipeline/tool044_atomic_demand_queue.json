@@ -1426,7 +1426,7 @@
       "atomic_capabilities": [
         "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
       ],
-      "status": "OPEN",
+      "status": "PLATFORM_LIMIT_HOLD",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
       "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
@@ -1464,7 +1464,15 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_COMPRESSION_20260925",
+        "evidence": [
+          "feedback_pipeline/evidence/tool016_tool044_source_lineage_e2e_20260908.json"
+        ],
+        "scope": "GitHub/CENTRAL authenticated ingress exists; ordinary ChatGPT native automatic interceptor is unavailable in current platform.",
+        "retry_policy": "TRIGGER_BASED_REVISIT_ONLY"
+      }
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
@@ -1472,7 +1480,7 @@
       "atomic_capabilities": [
         "VERIFIED_EXECUTABLE_WORK_CONTRACT"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
       "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
@@ -1510,7 +1518,16 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_COMPRESSION_20260925",
+        "evidence": [
+          "feedback_pipeline/evidence/tool044_production_loop.json",
+          "feedback_pipeline/evidence/tool044_production_loop_history.jsonl"
+        ],
+        "scope": "Verified executable contract creation and real WIC execution proven on T42 official publisher production run.",
+        "retry_policy": "SKIP_REUSE"
+      }
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
@@ -1518,7 +1535,7 @@
       "atomic_capabilities": [
         "CHECKPOINT_STAGE_RESUME_EXECUTION"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
       "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
@@ -1556,7 +1573,15 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_COMPRESSION_20260925",
+        "evidence": [
+          "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_expansion_fault_loop.json"
+        ],
+        "scope": "Checkpoint stage resume and watchdog recovery proven in GitHub Actions ENV1.",
+        "retry_policy": "SKIP_REUSE"
+      }
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
@@ -1564,7 +1589,7 @@
       "atomic_capabilities": [
         "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
       ],
-      "status": "OPEN",
+      "status": "OPTIONAL_EXPANSION_HOLD_ENV2",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923",
       "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
@@ -1602,7 +1627,16 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_COMPRESSION_20260925",
+        "evidence": [
+          "feedback_pipeline/evidence/tool016_tool044_multi_env_final_20260925.json",
+          "feedback_pipeline/evidence/root_a_external_env2_hold_20260924.json"
+        ],
+        "scope": "Same-runtime durable claim is proven; true cross-runtime claim awaits a usable independent ENV2.",
+        "retry_policy": "TRIGGER_BASED_REVISIT_ONLY"
+      }
     },
     {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
@@ -1610,7 +1644,7 @@
       "atomic_capabilities": [
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
       ],
-      "status": "OPEN",
+      "status": "AUTOMATED_WATCH_HOLD_NO_READY_ENV2",
       "source": "WORK_BULK_PROVIDER_CLASSIFICATION",
       "request_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK",
       "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
@@ -1645,7 +1679,17 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_COMPRESSION_20260925",
+        "evidence": [
+          "feedback_pipeline/tool044_dynamic_discovery.py",
+          ".github/workflows/tool044-multi-gate.yml",
+          "feedback_pipeline/evidence/tool016_tool044_multi_env_final_20260925.json"
+        ],
+        "scope": "Periodic free-runner candidate discovery is automated; no usable credential-free independent ENV2 is currently READY.",
+        "retry_policy": "TRIGGER_BASED_REVISIT_ONLY"
+      }
     },
     {
       "demand_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
