@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "batch_id": "T16-T44-NEXT-EXECUTION-PACKET-20260925",
+  "source_evidence": "feedback_pipeline/evidence/T16-T44-FINAL-CHAT-COMPRESSION-20260925.json",
+  "execution_policy": "DIFF_ONLY_NO_RESEARCH_NO_REEXECUTE_EXISTING_PASS",
+  "target_retests": {
+    "TOOL042": [
+      {
+        "demand_id": "T42-PROVENANCE-VALIDATION",
+        "reuse": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+        "required": "target deployed-copy EXPECTED_ACTUAL retest"
+      },
+      {
+        "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+        "reuse": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+        "required": "TOOL042 target deployed-copy EXPECTED_ACTUAL retest"
+      },
+      {
+        "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
+        "reuse": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+        "required": "TOOL042 target deployed-copy EXPECTED_ACTUAL retest"
+      },
+      {
+        "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+        "reuse": "VALIDATORS_0_35_0_URL_VALIDATION",
+        "required": "test only URL-validation subcapability; do not claim official-page identity"
+      }
+    ],
+    "CENTRAL": [
+      {
+        "root_id": "201185b55b374df24d1e",
+        "request_id": "f8bc3e81228256cba56e"
+      },
+      {
+        "root_id": "be0b7e6874fdbe79c9be",
+        "request_id": "e8044eff2acbb5214dbf"
+      },
+      {
+        "root_id": "48db0c6ef39a7ffc3a81",
+        "request_id": "ca9c23dfa4f0bee5ba54"
+      },
+      {
+        "root_id": "4c4baaa30ab6e13af241",
+        "request_id": "cfbbb93e0c5991f482f3"
+      }
+    ]
+  },
+  "central_required_per_root": [
+    "EXPECTED_ACTUAL_VALIDATION",
+    "FAILURE_ISOLATION"
+  ],
+  "reuse_receipts": [
+    ".wic/pipeline_receipts/<request_id>.json",
+    "feedback_pipeline/evidence/<request_id>_tool044_result_return.json"
+  ],
+  "forbidden": [
+    "repeat external component search",
+    "repeat common-core tests",
+    "repeat authentication investigation",
+    "claim PASS from lineage/ACK alone",
+    "reopen terminal HOLD rows"
+  ],
+  "completion_gate": [
+    "actual target/root-specific execution",
+    "EXPECTED_ACTUAL receipt",
+    "failure-isolation receipt where applicable",
+    "GitHub evidence persistence",
+    "remote read-back"
+  ],
+  "user_manual_relay_required": 0
+}
