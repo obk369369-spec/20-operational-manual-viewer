@@ -3,6 +3,7 @@ name: TOOL044 Verified Component Multi Gate
 on:
   schedule:
     - cron: '*/15 * * * *'
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -27,6 +28,11 @@ jobs:
       - id: plan
         name: Persist claims before execution
         run: python feedback_pipeline/tool044_multi_gate.py plan --github-output "$GITHUB_OUTPUT"
+      - name: Refresh external runner candidates on periodic discovery cycle
+        if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 */6 * * *' }}
+        env:
+          TOOL044_PRELOAD_TARGET: '1000'
+        run: python feedback_pipeline/tool044_dynamic_discovery.py
       - name: Refresh visible TOOL016 TOOL044 handoff
         run: python feedback_pipeline/tool016_visible_handoff.py
       - name: Persist durable claim state
@@ -34,7 +40,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/state.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/tool044_multi_gate_state.json feedback_pipeline/evidence/tool044_verified_external_component_pool.json
+          git add -- feedback_pipeline/state.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/tool044_multi_gate_state.json feedback_pipeline/evidence/tool044_verified_external_component_pool.json feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'tool044: persist multi-gate claims'
           git pull --rebase origin main
