@@ -1,0 +1,79 @@
+{
+  "run_id": "36080444119",
+  "correlation_id": "T16-T44-MINCIRC-20260925-001",
+  "queue_claim": true,
+  "heartbeat": true,
+  "checkpoint_before_failure": true,
+  "controlled_failure": true,
+  "failure_detection": true,
+  "watchdog_recovery": true,
+  "stale_reclaim": true,
+  "lease_transfer": true,
+  "checkpoint_resume": true,
+  "failure_isolation": true,
+  "post_failure_result_return": true,
+  "bulk_execution_verified": true,
+  "parallel_independent_jobs": 3,
+  "actual_environment": "GITHUB_ACTIONS",
+  "multi_env": "HOLD_NO_APPROVED_CREDENTIAL_FREE_ENV2",
+  "jobs": [
+    {
+      "job_id": "T16-T44-MINCIRC-20260925-001-NORMAL-A-36080444119",
+      "correlation_id": "T16-T44-MINCIRC-20260925-001",
+      "status": "COMPLETED",
+      "lease_owner": "GITHUB_ACTIONS:NORMAL-A",
+      "heartbeat": "2026-09-25T01:05:12.311795+00:00",
+      "checkpoint": {
+        "stage": 1,
+        "total_stages": 2,
+        "saved_at": "2026-09-25T01:05:12.311795+00:00"
+      },
+      "result": "EXPECTED_ACTUAL_MATCH",
+      "claim": "2026-09-25T01:05:12.311795+00:00",
+      "completed_at": "2026-09-25T01:05:12.311795+00:00"
+    },
+    {
+      "job_id": "T16-T44-MINCIRC-20260925-001-NORMAL-B-36080444119",
+      "correlation_id": "T16-T44-MINCIRC-20260925-001",
+      "status": "COMPLETED",
+      "lease_owner": "GITHUB_ACTIONS:NORMAL-B",
+      "heartbeat": "2026-09-25T01:05:10.865720+00:00",
+      "checkpoint": {
+        "stage": 1,
+        "total_stages": 2,
+        "saved_at": "2026-09-25T01:05:10.865720+00:00"
+      },
+      "result": "EXPECTED_ACTUAL_MATCH",
+      "claim": "2026-09-25T01:05:10.865720+00:00",
+      "completed_at": "2026-09-25T01:05:10.865720+00:00"
+    },
+    {
+      "job_id": "T16-T44-MINCIRC-20260925-001-FAULT-36080444119",
+      "correlation_id": "T16-T44-MINCIRC-20260925-001",
+      "status": "COMPLETED_AFTER_RECOVERY",
+      "lease_owner": "GITHUB_ACTIONS:WATCHDOG",
+      "heartbeat": "2026-09-25T01:05:13.513089+00:00",
+      "checkpoint": {
+        "stage": 2,
+        "total_stages": 2,
+        "saved_at": "2026-09-25T01:05:22.634344+00:00"
+      },
+      "result": "EXPECTED_ACTUAL_MATCH_AFTER_RESUME",
+      "claim": "2026-09-25T01:05:13.513089+00:00",
+      "failure_detectable": true,
+      "failure_at": "2026-09-25T01:05:13.513089+00:00",
+      "watchdog_detected": true,
+      "stale_reclaim": true,
+      "prior_lease_owner": "GITHUB_ACTIONS:FAULT",
+      "reclaimed_at": "2026-09-25T01:05:22.634344+00:00",
+      "resumed_from_stage": 1,
+      "completed_at": "2026-09-25T01:05:22.634344+00:00"
+    }
+  ],
+  "timestamp": "2026-09-25T01:05:22.634344+00:00",
+  "tool016_status_update": "PASS",
+  "next_job_ready": true,
+  "user_manual_relay_required": 0,
+  "unattended_loop_started": true,
+  "continuous_24h_verified": "IN_PROGRESS"
+}
