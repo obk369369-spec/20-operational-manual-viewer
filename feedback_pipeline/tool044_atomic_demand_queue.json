@@ -1107,7 +1107,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "f8bc3e81228256cba56e",
       "root_id": "201185b55b374df24d1e",
@@ -1152,6 +1152,12 @@
           "feedback_pipeline/evidence/f8bc3e81228256cba56e_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "PASS",
+        "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
+        "note": "Root-specific Work execution reported PASS."
       }
     },
     {
@@ -1160,7 +1166,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "f8bc3e81228256cba56e",
       "root_id": "201185b55b374df24d1e",
@@ -1189,6 +1195,12 @@
           "feedback_pipeline/evidence/f8bc3e81228256cba56e_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "PASS",
+        "scope": "FAILURE_ISOLATION",
+        "note": "Work final output reported FAILURE_ISOLATION=PASS."
       }
     },
     {
@@ -1244,7 +1256,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e8044eff2acbb5214dbf",
       "root_id": "be0b7e6874fdbe79c9be",
@@ -1289,6 +1301,12 @@
           "feedback_pipeline/evidence/e8044eff2acbb5214dbf_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "PASS",
+        "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
+        "note": "Root-specific Work execution reported PASS."
       }
     },
     {
@@ -1297,7 +1315,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e8044eff2acbb5214dbf",
       "root_id": "be0b7e6874fdbe79c9be",
@@ -1326,6 +1344,12 @@
           "feedback_pipeline/evidence/e8044eff2acbb5214dbf_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "PASS",
+        "scope": "FAILURE_ISOLATION",
+        "note": "Work final output reported FAILURE_ISOLATION=PASS."
       }
     },
     {
@@ -1381,7 +1405,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "HOLD_WORK_ROOT_SPECIFIC_EXPECTED_ACTUAL",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1426,6 +1450,12 @@
           "feedback_pipeline/evidence/ca9c23dfa4f0bee5ba54_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "HOLD",
+        "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
+        "note": "Work reported 2 CENTRAL roots HOLD; exact per-root HOLD payload was not persisted because Work GitHub write was blocked. Root mapping retained conservatively for unresolved roots."
       }
     },
     {
@@ -1434,7 +1464,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1463,6 +1493,12 @@
           "feedback_pipeline/evidence/ca9c23dfa4f0bee5ba54_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "PASS",
+        "scope": "FAILURE_ISOLATION",
+        "note": "Work final output reported FAILURE_ISOLATION=PASS."
       }
     },
     {
@@ -1518,7 +1554,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "HOLD_WORK_ROOT_SPECIFIC_EXPECTED_ACTUAL",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1563,6 +1599,12 @@
           "feedback_pipeline/evidence/cfbbb93e0c5991f482f3_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "HOLD",
+        "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
+        "note": "Work reported 2 CENTRAL roots HOLD; exact per-root HOLD payload was not persisted because Work GitHub write was blocked. Root mapping retained conservatively for unresolved roots."
       }
     },
     {
@@ -1571,7 +1613,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
+      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1600,6 +1642,12 @@
           "feedback_pipeline/evidence/cfbbb93e0c5991f482f3_tool044_result_return.json"
         ],
         "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      },
+      "work_reconciliation": {
+        "source": "WORK_FINAL_OUTPUT_20260925",
+        "result": "PASS",
+        "scope": "FAILURE_ISOLATION",
+        "note": "Work final output reported FAILURE_ISOLATION=PASS."
       }
     },
     {
