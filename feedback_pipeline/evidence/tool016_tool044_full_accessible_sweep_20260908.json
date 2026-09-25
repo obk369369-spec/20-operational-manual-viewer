@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T01:25:51.245214+00:00",
+  "generated_at": "2026-09-25T01:53:06.256644+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "2ede96b44a1955a321b9369d479d0d84b40bf7733f6b661de7c3275dfca8527d"
+      "sha256": "96fdffbb875b40597ad131fce0441857d7e4238ccb0cbe347d85f61643893754"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,19 +29,19 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "b7cc9f9aab363f27c509a31a662f2ec825548b66b0207a7d8002d0e90b7d1c5d"
+      "sha256": "64bbcc09d86075248a96abf5fd657076635c2e4e784468e522377420ba3d93d7"
     }
   ],
   "counts": {
     "checked_tools": 16,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 113,
+    "automatically_recoverable_records": 116,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 68,
-    "roots_after_deduplication": 56,
+    "collected_error_records": 71,
+    "roots_after_deduplication": 59,
     "verified_skip_reuse_records": 11,
-    "records_handed_to_tool044": 34,
+    "records_handed_to_tool044": 36,
     "atomic_demands": 45
   },
   "checked_tool_ids": [
@@ -1232,6 +1232,52 @@
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+      "ROOT_ID": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+      "CURRENT_STATUS": "IMPROVED_PARTIAL",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [
+        "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      ],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
     }
   ],
   "deduplicated_root_ids": [
@@ -1245,6 +1291,9 @@
     "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
     "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
     "ONLINE_COLLECTION_EXECUTION_PATH_INCOMPLETE",
+    "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+    "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+    "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
     "T41-T42-NATIVE-AUTOMATION",
     "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
     "T42-OFFICIAL-PUBLISHER-VALIDATION",
@@ -1840,6 +1889,38 @@
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": [
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "EXPECTED_ACTUAL_VALIDATION"
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
