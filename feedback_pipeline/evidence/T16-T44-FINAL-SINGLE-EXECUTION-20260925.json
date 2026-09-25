@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "timestamp_recorded_kst": "2026-09-25T13:21:00+09:00",
+  "source": "Work final single execution report supplied by user; GitHub read-back independently checked from chat",
+  "final_single_execution": "HOLD",
+  "common_core": "PASS",
+  "regression": "PASS",
+  "remote_readback": "PASS_AFTER_CHAT_RECOVERY",
+  "work_remote_readback": "FAIL_AUTH_WRITE_BLOCKED",
+  "env1": "PASS",
+  "env2": "HOLD_NO_READY_ENV2",
+  "cross_runtime": "OPTIONAL_EXPANSION_HOLD_ENV2",
+  "continuous_24h": "HOLD_INSUFFICIENT_24H_HISTORY",
+  "ordinary_chat_native_interceptor": "PLATFORM_LIMIT_HOLD",
+  "existing_pass_reexecuted": 0,
+  "work_changed_files": "NONE",
+  "recovery_action": "Evidence persisted through connected GitHub write path after Work AUTH_WRITE_BLOCKED",
+  "verified_existing_source": "feedback_pipeline/evidence/T16-T44-FINAL-COMPRESSION-20260925.json",
+  "unattended_history_records_verified": 1,
+  "remaining_real_blockers": [
+    "ENV2_NO_READY_PROVIDER",
+    "24H_HISTORY_HAS_ONLY_1_RECORD",
+    "PLATFORM_NATIVE_INTERCEPTOR_UNAVAILABLE"
+  ],
+  "resolved_blocker": [
+    "AUTH_WRITE_BLOCKED_FOR_FINAL_EVIDENCE_PERSISTENCE_VIA_CHAT_GITHUB_CONNECTOR"
+  ],
+  "next_claim": "SCAN_READY_NO_CLAIM_EXECUTED",
+  "user_manual_relay_required": 0,
+  "truth_boundary": "No ENV2 or 24h PASS claimed. This record preserves the Work result and the subsequent chat-side GitHub persistence/read-back recovery."
+}
