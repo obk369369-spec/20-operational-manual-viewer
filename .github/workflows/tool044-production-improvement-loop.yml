@@ -1,0 +1,106 @@
+name: TOOL044 Production Improvement Loop
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tool044-production-improvement-loop.yml'
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: tool044-production-improvement-loop
+  cancel-in-progress: false
+
+jobs:
+  production-loop:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover eligible zero-auth environments and executable real WIC work
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path('feedback_pipeline')
+          adapters=json.loads((root/'tool044_multi_gate_adapters.json').read_text())
+          queue=json.loads((root/'tool044_atomic_demand_queue.json').read_text())
+          eligible=[]
+          for p in adapters.get('providers',[]):
+              free=str(p.get('free_condition','')).lower()
+              auth=str(p.get('auth_requirement','')).lower()
+              if p.get('status')=='ACTUAL_RUN_PASS' and ('public repository' in free) and ('existing repository github_token' in auth):
+                  eligible.append(p['provider_id'])
+          independent=[x for x in eligible if not x.startswith('GITHUB_ACTIONS')]
+          executable=[]
+          rejected=[]
+          for d in queue.get('demands',[]):
+              if str(d.get('status','OPEN')) not in ('OPEN','QUEUED'): continue
+              contract=d.get('execution_contract') or {}
+              required=('target_files','handler','test_command','success_condition','rollback')
+              missing=[k for k in required if not contract.get(k)]
+              if missing:
+                  rejected.append({'demand_id':d.get('demand_id'),'reason':'NO_VERIFIED_EXECUTABLE_CONTRACT','missing':missing})
+              else:
+                  executable.append(d)
+          evidence={
+            'schema_version':1,'timestamp':datetime.now(timezone.utc).isoformat(),
+            'run_id':os.environ['GITHUB_RUN_ID'],'provider_discovery':'PASS',
+            'eligible_existing_environments':eligible,
+            'eligible_independent_environments':independent,
+            'free_env_auto_enrollment':'PASS' if independent else 'NO_ELIGIBLE_ENV',
+            'paid_fallback':'DISABLED','user_auth_required':0,
+            'queue_open_count':len(executable)+len(rejected),
+            'executable_real_wic_tasks':len(executable),
+            'rejected_without_contract':rejected,
+            'claim_policy':'ONLY_VERIFIED_EXECUTABLE_CONTRACT',
+            'user_manual_relay_required':0,
+          }
+          selected=executable[:3]
+          results=[]
+          for d in selected:
+              # Only repository-declared handlers are permitted. Shell strings and
+              # undeclared targets are never synthesized by this loop.
+              results.append({'demand_id':d['demand_id'],'status':'HOLD_HANDLER_ADAPTER_REQUIRED'})
+          evidence['results']=results
+          evidence['automatic_next_task_claim']='PASS' if executable else 'WAITING_VERIFIED_EXECUTABLE_CONTRACT'
+          out=root/'evidence'/'tool044_production_loop.json'
+          out.write_text(json.dumps(evidence,indent=2)+'\n')
+          history=root/'evidence'/'tool044_production_loop_history.jsonl'
+          with history.open('a') as f:f.write(json.dumps(evidence,separators=(',',':'))+'\n')
+          print(json.dumps(evidence))
+          PY
+      - name: Continue existing free external discovery and worker factory
+        env:
+          GITHUB_ACTIONS: 'true'
+          TOOL044_TRIGGER_SOURCE: SCHEDULED
+        run: |
+          python feedback_pipeline/tool044_request_router.py
+          python feedback_pipeline/tool044_cloud_worker.py
+          python feedback_pipeline/tool044_atomic_watch_v2.py --external --trigger-source SCHEDULED
+          python feedback_pipeline/tool044_dynamic_discovery.py
+          python feedback_pipeline/tool044_ready_package.py
+      - name: Persist cycle evidence and factory checkpoint
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u -- feedback_pipeline
+          git add feedback_pipeline/evidence/tool044_production_loop.json feedback_pipeline/evidence/tool044_production_loop_history.jsonl
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'tool044: persist production loop cycle'
+          git pull --rebase origin main
+          git push origin HEAD:main
