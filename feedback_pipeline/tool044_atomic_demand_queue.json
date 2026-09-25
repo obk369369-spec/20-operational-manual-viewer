@@ -1041,7 +1041,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "f8bc3e81228256cba56e",
       "root_id": "201185b55b374df24d1e",
@@ -1078,7 +1078,15 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/f8bc3e81228256cba56e.json",
+          "feedback_pipeline/evidence/f8bc3e81228256cba56e_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
@@ -1086,7 +1094,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "f8bc3e81228256cba56e",
       "root_id": "201185b55b374df24d1e",
@@ -1107,7 +1115,15 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/16",
           "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-FAILURE_ISOLATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/f8bc3e81228256cba56e.json",
+          "feedback_pipeline/evidence/f8bc3e81228256cba56e_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
@@ -1162,7 +1178,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e8044eff2acbb5214dbf",
       "root_id": "be0b7e6874fdbe79c9be",
@@ -1199,7 +1215,15 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/e8044eff2acbb5214dbf.json",
+          "feedback_pipeline/evidence/e8044eff2acbb5214dbf_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
@@ -1207,7 +1231,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e8044eff2acbb5214dbf",
       "root_id": "be0b7e6874fdbe79c9be",
@@ -1228,7 +1252,15 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/22",
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/e8044eff2acbb5214dbf.json",
+          "feedback_pipeline/evidence/e8044eff2acbb5214dbf_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
@@ -1283,7 +1315,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1320,7 +1352,15 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/ca9c23dfa4f0bee5ba54.json",
+          "feedback_pipeline/evidence/ca9c23dfa4f0bee5ba54_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
@@ -1328,7 +1368,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1349,7 +1389,15 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
           "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/ca9c23dfa4f0bee5ba54.json",
+          "feedback_pipeline/evidence/ca9c23dfa4f0bee5ba54_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
@@ -1404,7 +1452,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1441,7 +1489,15 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/cfbbb93e0c5991f482f3.json",
+          "feedback_pipeline/evidence/cfbbb93e0c5991f482f3_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
@@ -1449,7 +1505,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1470,7 +1526,15 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/24",
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925_COMMON_PASS_NOT_SUFFICIENT_FOR_ROOT_SPECIFIC_PASS",
+        "existing_receipts": [
+          ".wic/pipeline_receipts/cfbbb93e0c5991f482f3.json",
+          "feedback_pipeline/evidence/cfbbb93e0c5991f482f3_tool044_result_return.json"
+        ],
+        "note": "Lineage/result-return and common pipeline self-test exist; root-specific expected/actual or failure-isolation retest is not evidenced."
+      }
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
