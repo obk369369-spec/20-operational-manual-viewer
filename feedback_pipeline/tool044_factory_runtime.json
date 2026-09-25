@@ -52,6 +52,20 @@
       "attempts": 2,
       "last_result": "DUPLICATE_SEARCH_BLOCKED",
       "updated_at": "2026-09-08T05:50:20.765725+00:00"
+    },
+    "T16-T44-MINCIRC-20260925-001": {
+      "job_id": "T16-T44-MINCIRC-20260925-001",
+      "correlation_id": "T16-T44-MINCIRC-20260925-001",
+      "source": "TOOL016_FUNCTION_STATE",
+      "source_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
+      "missing_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "QUEUED",
+      "target": "TOOL044",
+      "user_manual_relay": 0
     }
   },
   "last_failure": null,

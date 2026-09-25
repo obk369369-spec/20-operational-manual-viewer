@@ -162,6 +162,24 @@
       "status": "OPEN",
       "user_action": "NONE",
       "created_at": "2026-09-23T00:00:00+09:00"
+    },
+    {
+      "request_id": "T16-T44-MINCIRC-20260925-001",
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "related_tool": "TOOL016",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
+      "feedback": "TOOL044 minimum circulation using existing verified external worker",
+      "actual_input": "github_issue:T16-T44-MINCIRC-20260925-001",
+      "wrong_output": "CORRELATION_EVIDENCE_NOT_PERSISTED_AFTER_INGRESS",
+      "expected": "READY selection, queue/claim, execution, heartbeat/checkpoint, result return, validation, TOOL016 update",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
