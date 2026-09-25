@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "recorded_kst": "2026-09-25T13:21:00+09:00",
+  "work_budget_note": {
+    "five_hour_remaining_percent": 30,
+    "previous_percent": 32,
+    "reset_kst": "14:30",
+    "weekly_remaining_percent": 7
+  },
+  "current_core": "PASS",
+  "remaining_major_streams": [
+    {
+      "stream": "WAIT_AND_VERIFY",
+      "items": [
+        "24H_CONTINUOUS"
+      ],
+      "status": "WAIT_FOR_REAL_HISTORY",
+      "due_kst_from_existing_evidence": "2026-09-26T10:05:22+09:00",
+      "action": "Do not spend Work now; read actual history after due time."
+    },
+    {
+      "stream": "EXTERNAL_RUNTIME",
+      "items": [
+        "ENV2_READY_PROVIDER",
+        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+      ],
+      "status": "AUTOMATED_WATCH_HOLD",
+      "action": "Periodic candidate discovery already installed. Act only when a real READY candidate appears."
+    },
+    {
+      "stream": "PLATFORM_LIMIT",
+      "items": [
+        "ORDINARY_CHAT_NATIVE_INTERCEPTOR"
+      ],
+      "status": "PLATFORM_LIMIT_HOLD",
+      "action": "Do not retry with GitHub-only code."
+    },
+    {
+      "stream": "DEFERRED_EXPANSION",
+      "items": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "status": "DEFERRED_FINAL_REAL_MISSING",
+      "action": "Keep separate from completed common core; execute later as expansion, not as a blocker."
+    }
+  ],
+  "do_not_reopen": [
+    "MINIMUM_CIRCULATION",
+    "MASS_PARALLEL_8_WAY",
+    "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+    "CHECKPOINT_STAGE_RESUME",
+    "REGISTERED_TARGET_DEPLOYMENT",
+    "DEPLOYED_COPY_VALIDATION",
+    "SAFE_AUTOMATIC_ROLLBACK"
+  ],
+  "recommended_work_usage": "0% now; reserve remaining 30% five-hour and 7% weekly for a trigger: READY ENV2, 24h evidence due, or a genuine deferred expansion execution.",
+  "user_manual_relay_required": 0
+}
