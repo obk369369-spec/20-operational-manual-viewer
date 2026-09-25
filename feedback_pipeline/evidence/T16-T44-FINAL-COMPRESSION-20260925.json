@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "READY_FOR_SINGLE_FINAL_EXECUTION",
+  "completed_common_core": [
+    "MINIMUM_CIRCULATION_PASS",
+    "MASS_PARALLEL_8_WAY_PASS",
+    "REGISTERED_TARGET_DEPLOYMENT_PASS",
+    "DEPLOYED_COPY_VALIDATION_PASS",
+    "SAFE_AUTOMATIC_ROLLBACK_PASS",
+    "VERIFIED_EXECUTABLE_WORK_CONTRACT_PASS",
+    "CHECKPOINT_STAGE_RESUME_EXECUTION_PASS",
+    "ENV2_PERIODIC_CANDIDATE_DISCOVERY_AUTOMATED"
+  ],
+  "explicit_non_blocking_holds": {
+    "continuous_24h": "WAIT_FOR_TIME_AND_READBACK",
+    "env2": "AUTOMATED_WATCH_HOLD_NO_READY_ENV2",
+    "cross_runtime_claim": "WAIT_FOR_READY_ENV2",
+    "ordinary_chat_native_interceptor": "PLATFORM_LIMIT_HOLD"
+  },
+  "final_execution_scope": [
+    "Run one final changed-scope regression/readback only",
+    "Confirm queue/function-state reconciliation is remotely persisted",
+    "Do not research ENV2 again unless discovery produces a READY candidate",
+    "Do not claim 24h PASS before history supports it",
+    "Do not reopen verified PASS components"
+  ],
+  "user_manual_relay_required": 0,
+  "work_policy": "ONE_FINAL_EXECUTION_ONLY_IF_CHAT_CANNOT_COMPLETE_CHANGED_SCOPE_VALIDATION"
+}
