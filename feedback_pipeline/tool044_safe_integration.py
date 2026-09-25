@@ -158,12 +158,19 @@ def registered_target_deploy(component: dict, receipts: dict, workspace: Path) -
 
     final_match = deployed.exists() and sha256(deployed) == expected_hash
     passed = copy_match and validator_pass and final_match
+    if rollback:
+        rollback_restored = (
+            (checkpoint is None and not deployed.exists())
+            or (checkpoint is not None and deployed.exists() and deployed.read_bytes() == checkpoint)
+        )
+    else:
+        rollback_restored = True
     return {
         **admission,
         "deployment_status": "DEPLOYED_PASS" if passed else "FAIL_ROLLED_BACK",
         "verified_target_deployment": passed,
         "deployed_copy_validation": passed,
-        "safe_automatic_rollback": rollback if not passed else True,
+        "safe_automatic_rollback": rollback_restored,
         "canonical_sha256": expected_hash,
         "deployed_sha256": sha256(deployed) if deployed.exists() else None,
         "rollback_executed": rollback,
