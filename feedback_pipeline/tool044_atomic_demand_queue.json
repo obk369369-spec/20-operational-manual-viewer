@@ -1405,7 +1405,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "HOLD_WORK_ROOT_SPECIFIC_EXPECTED_ACTUAL",
+      "status": "HOLD_ROOT_SPECIFIC_CLASSIFICATION_RECEIPTS_MISSING",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1456,6 +1456,13 @@
         "result": "HOLD",
         "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
         "note": "Work reported 2 CENTRAL roots HOLD; exact per-root HOLD payload was not persisted because Work GitHub write was blocked. Root mapping retained conservatively for unresolved roots."
+      },
+      "correction": {
+        "work_expected_blocker_count": 23,
+        "current_atomic_watch_duplicate_searches_blocked": 0,
+        "current_issue23_state": "SOURCE_ROUTER_LOST_ORIGINAL_23_DEMAND_MAPPING",
+        "required": "RECOVER_ORIGINAL_23_DEMAND_IDS_AND_PERSIST_23_CLASSIFICATION_RECEIPTS",
+        "not_a_component_failure": true
       }
     },
     {
@@ -1554,7 +1561,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "HOLD_WORK_ROOT_SPECIFIC_EXPECTED_ACTUAL",
+      "status": "HOLD_STALE_EXPECTED_INVALIDATED_BY_USER_POLICY",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1605,6 +1612,25 @@
         "result": "HOLD",
         "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
         "note": "Work reported 2 CENTRAL roots HOLD; exact per-root HOLD payload was not persisted because Work GitHub write was blocked. Root mapping retained conservatively for unresolved roots."
+      },
+      "correction": {
+        "stale_expected": {
+          "eml_total": 41,
+          "supply_price_empty_occurrences": 29,
+          "pre_send_gate": "BLOCK_EMPTY_OR_PLACEHOLDER_PRICE"
+        },
+        "authoritative_issue24_correction": "SUPPLY_PRICE_BLANK_ALLOWED=true; 29 price-blank occurrences INVALIDATED",
+        "actual_remaining_scope": [
+          "LINK_LABEL_LOWERCASE_L",
+          "SOURCE_BACKED_PAGE_METADATA",
+          "TOC_URL_USED_AS_REPORT_DETAIL_URL",
+          "REPORT_ID_TITLE_TOC_CROSS_CONTAMINATION",
+          "PUBLISH_DATE_SOURCE_MISMATCH",
+          "DETAIL_URL_CANONICALIZATION_FAILURE",
+          "KOREAN_TITLE_TEXT_QUALITY_GATE_MISSING"
+        ],
+        "required": "REBUILD_ROOT_SPECIFIC_EXPECTED_FROM_CORRECTED_ISSUE24_STATE; DO_NOT_VALIDATE_PRICE_BLANK_AS_ERROR",
+        "not_a_component_failure": true
       }
     },
     {
