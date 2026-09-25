@@ -615,45 +615,49 @@
       "TOOL_ID": "TOOL044",
       "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
       "FUNCTION_NAME": "Tool044 Auto Rollback",
-      "CURRENT_STATUS": "MISSING_CAPABILITY",
-      "LAST_VERIFIED_DATE": null,
-      "IMPROVEMENT_EVIDENCE": [],
-      "REMAINING_ERROR": [
-        "SAFE_AUTOMATIC_ROLLBACK"
+      "CURRENT_STATUS": "SKIP_REUSE_VERIFIED_PASS",
+      "LAST_VERIFIED_DATE": "2026-09-25",
+      "IMPROVEMENT_EVIDENCE": [
+        "feedback_pipeline/evidence/tool044_registered_target_adapter.json",
+        "994f1e7fdf67acfb5bdda21f87f862cb3c543311"
       ],
+      "REMAINING_ERROR": [],
       "REPEATED_ERROR_COUNT": 0,
       "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
-      "EXISTING_VERIFIED_COMPONENT": [],
-      "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
-      "MISSING_CAPABILITY": [
-        "SAFE_AUTOMATIC_ROLLBACK"
+      "EXISTING_VERIFIED_COMPONENT": [
+        "TOOL044_REGISTERED_TARGET_DEPLOY_ADAPTER"
       ],
-      "TOOL044_SEARCH_REQUIRED": true,
+      "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+      "MISSING_CAPABILITY": [],
+      "TOOL044_SEARCH_REQUIRED": false,
       "SEARCH_PRIORITY": "NORMAL",
-      "ACTION": "SEARCH"
+      "ACTION": "SKIP_REUSE",
+      "VERIFIED_SCOPE": "registered verified targets only; unregistered targets fail closed",
+      "PRODUCTION_TARGET_CLAIM": false
     },
     {
       "TOOL_ID": "TOOL044",
       "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
       "FUNCTION_NAME": "Tool044 Arbitrary Wic Deploy",
-      "CURRENT_STATUS": "MISSING_CAPABILITY",
-      "LAST_VERIFIED_DATE": null,
-      "IMPROVEMENT_EVIDENCE": [],
-      "REMAINING_ERROR": [
-        "VERIFIED_TARGET_DEPLOYMENT",
-        "DEPLOYED_COPY_VALIDATION"
+      "CURRENT_STATUS": "SKIP_REUSE_VERIFIED_PASS",
+      "LAST_VERIFIED_DATE": "2026-09-25",
+      "IMPROVEMENT_EVIDENCE": [
+        "feedback_pipeline/evidence/tool044_registered_target_adapter.json",
+        "994f1e7fdf67acfb5bdda21f87f862cb3c543311"
       ],
+      "REMAINING_ERROR": [],
       "REPEATED_ERROR_COUNT": 0,
       "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
-      "EXISTING_VERIFIED_COMPONENT": [],
-      "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
-      "MISSING_CAPABILITY": [
-        "VERIFIED_TARGET_DEPLOYMENT",
-        "DEPLOYED_COPY_VALIDATION"
+      "EXISTING_VERIFIED_COMPONENT": [
+        "TOOL044_REGISTERED_TARGET_DEPLOY_ADAPTER"
       ],
-      "TOOL044_SEARCH_REQUIRED": true,
+      "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+      "MISSING_CAPABILITY": [],
+      "TOOL044_SEARCH_REQUIRED": false,
       "SEARCH_PRIORITY": "NORMAL",
-      "ACTION": "SEARCH"
+      "ACTION": "SKIP_REUSE",
+      "VERIFIED_SCOPE": "registered verified targets only; unregistered targets fail closed",
+      "PRODUCTION_TARGET_CLAIM": false
     },
     {
       "TOOL_ID": null,
