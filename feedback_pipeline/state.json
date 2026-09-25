@@ -164,6 +164,44 @@
         "result_sha256": "6c23989ecaa8490d128727232aaed362239fec80fdc1fc8ce78cedc229a29986",
         "root_id": "T16-T44-MINCIRC-20260925-001",
         "status": "PASS",
+        "tool044_natural_worker_return": {
+          "ack": "TOOL016_CENTRAL_RECEIVED",
+          "cycle_id": "20260925T012551Z",
+          "demand_results": [
+            {
+              "demand_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+              "matched": {},
+              "missing": [
+                "INPUT_CONTRACT_VALIDATION"
+              ],
+              "result": "NO_READY_ATOMIC_COMPONENT"
+            },
+            {
+              "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+              "matched": {},
+              "missing": [
+                "EXPECTED_ACTUAL_VALIDATION"
+              ],
+              "result": "NO_READY_ATOMIC_COMPONENT"
+            },
+            {
+              "demand_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+              "matched": {
+                "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+              },
+              "missing": [],
+              "result": "READY_ATOMIC_COMPONENT_FOUND"
+            }
+          ],
+          "source_receipt_sha256": "dc05abac13c1a7b6526bbbbcdd42312749addb2fecc4559d0217e869736ad73e",
+          "trigger_source": "WORK",
+          "user_manual_relay": 0,
+          "user_triggered": false,
+          "work_triggered": true,
+          "worker_receipt_sha256": "008dc8995b1e5a7739072c15a9731da95a80fe813c6bd876a3903ebb242d4226"
+        },
+        "tool044_worker_checkpoint": "20260925T012551Z",
+        "tool044_worker_return_ack": "PASS",
         "user_manual_relay": 0
       },
       "b51d5eda93f7bece6b5f": {
