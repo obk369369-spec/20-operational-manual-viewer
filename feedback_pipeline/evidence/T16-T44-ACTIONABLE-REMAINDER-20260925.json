@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "batch_id": "T16-T44-ACTIONABLE-REMAINDER-20260925",
+  "purpose": "One major execution batch for current actionable remainder.",
+  "queue_blob_sha": "b32990a62ffa4b2ed678169c1d7d2b1bbfb104d5",
+  "total_actionable_demands": 21,
+  "demand_ids": [
+    "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+    "T42-RESELLER-DETECTION",
+    "T42-PROVENANCE-VALIDATION",
+    "T42-WEBPAGE-TEXT-EXTRACTION",
+    "T42-TOC-STRUCTURE-EXTRACTION",
+    "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+    "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+    "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+    "FS-FUNCTION-RESELLER_DETECTION",
+    "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+    "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+    "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+    "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+    "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+    "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+    "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+    "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+    "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+    "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+    "cfbbb93e0c5991f482f3-FAILURE_ISOLATION"
+  ],
+  "excluded": [
+    "24H_CONTINUOUS",
+    "ENV2_READY_PROVIDER",
+    "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+    "ORDINARY_CHAT_NATIVE_INTERCEPTOR"
+  ],
+  "rules": [
+    "reuse existing verified components",
+    "target-specific validation required",
+    "persist evidence and status",
+    "remote read-back required",
+    "no user relay"
+  ],
+  "user_manual_relay_required": 0
+}
