@@ -58,3 +58,15 @@ def test_url_provenance_composition(wheel: Path, actual_failure_fixture: Path) -
         "known_limitations": ["Does not establish publisher ownership or page semantics"],
         "ready_for_integration": passed, "status": "VERIFIED_COMPOSITION" if passed else "COMPOSITION_FAILED",
     }
+
+def validate_official_publisher_domain(url: str, official_domains: list[str]) -> dict:
+    """Fail-closed official-domain validation against an authoritative caller allowlist."""
+    from urllib.parse import urlparse
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower().rstrip(".")
+    allowed = sorted({str(x).lower().strip().rstrip(".") for x in official_domains if str(x).strip()})
+    if parsed.scheme not in {"http", "https"} or not host:
+        return {"status": "HOLD_INVALID_URL", "host": host, "matched_domain": None}
+    matched = next((domain for domain in allowed if host == domain or host.endswith("." + domain)), None)
+    return {"status": "VERIFIED_OFFICIAL_DOMAIN" if matched else "HOLD_NOT_OFFICIAL_DOMAIN", "host": host, "matched_domain": matched}
+
