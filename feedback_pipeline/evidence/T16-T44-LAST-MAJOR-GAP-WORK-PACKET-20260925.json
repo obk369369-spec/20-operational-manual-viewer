@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "batch_id": "T16-T44-LAST-MAJOR-GAP-CLOSURE-20260925",
+  "status": "READY_FOR_ONE_WORK_EXECUTION",
+  "objective": "Close the only two structural gaps without repeating existing PASS work.",
+  "facts": {
+    "chat_ingress": {
+      "receiver_exists": true,
+      "receiver": ".github/workflows/wic-feedback-event.yml",
+      "boundary_evidence": "feedback_pipeline/evidence/chat_source_boundary_20260831.json",
+      "missing": "SOURCE_SIDE_SUPPORTED_CONVERSATION_MESSAGE_EVENT_OR_GUARANTEED_TOOL_BINDING",
+      "central_retest_forbidden": true
+    },
+    "independent_free_runtime": {
+      "env1": "GitHub Actions ACTUAL_RUN_PASS",
+      "env2_ready": 0,
+      "candidates": {
+        "gitlab": "BLOCKED_EXTERNAL_AUTH_AND_PROJECT",
+        "woodpecker": "BLOCKED_EXTERNAL_MACHINE_AND_SECRET"
+      },
+      "discovery": "feedback_pipeline/tool044_dynamic_discovery.py",
+      "inventory": "feedback_pipeline/tool044_multi_gate_adapters.json",
+      "missing": "VERIFIED_FREE_INDEPENDENT_RUNTIME_WITH_USABLE_EXISTING_AUTH_OR_CREDENTIAL_FREE_PATH"
+    }
+  },
+  "work_scope": [
+    "First inspect actual Work/platform capabilities for an already-authorized source-side conversation-message event/binding. If available, connect it to existing wic_feedback receiver and execute one real source-origin E2E. If unavailable, persist PLATFORM_LIMIT_HOLD with exact unavailable capability; do not build another receiver.",
+    "Search/select only a genuinely independent free runtime that does not depend on GitHub Actions being alive. Prefer already-authorized/credential-free provider. Install/configure only if no new paid key/account/manual user relay is required.",
+    "For ENV2 PASS require actual independent job round-trip, heartbeat, forced ENV1/GitHub-Action-side failure or isolation scenario, watchdog handoff, checkpoint resume, result return to TOOL016, and remote evidence readback.",
+    "If no provider can be installed without user-created account/secret/machine, terminal HOLD_NO_AUTHORIZED_FREE_ENV2; do not repeat broad candidate research."
+  ],
+  "forbidden": [
+    "repeat common core",
+    "repeat TOOL042",
+    "repeat prior 21-demand batch",
+    "repeat GitHub auth investigation",
+    "create fake ChatGPT interceptor",
+    "count GitHub self-hosted/matrix runner as independent ENV2",
+    "paid API/service",
+    "ask user to manually relay intermediate data"
+  ],
+  "completion": {
+    "chat_ingress_pass": "one actual ordinary source-origin message/update event automatically reaches existing receiver -> classification/dedup -> TOOL016 -> conditional TOOL044 -> result/ACK",
+    "env2_pass": "one free independent non-GitHub-Actions runtime performs actual round-trip and failover/resume/result-return",
+    "otherwise": "persist exact terminal/platform/auth prerequisite HOLD and stop, with no false PASS"
+  },
+  "evidence_path": "feedback_pipeline/evidence/T16-T44-LAST-MAJOR-GAP-CLOSURE-20260925.json",
+  "user_manual_relay_required": 0
+}
