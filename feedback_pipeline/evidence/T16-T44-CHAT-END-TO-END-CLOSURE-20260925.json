@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "batch_id": "T16-T44-CHAT-END-TO-END-CLOSURE-20260925",
+  "execution": "CHAT_MAXIMUM_COMPRESSION_COMPLETE",
+  "work_credit_used": 0,
+  "roots": [
+    {
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "request_id": "ca9c23dfa4f0bee5ba54",
+      "status": "HOLD_HISTORICAL_23_ID_LIST_NOT_PERSISTED",
+      "runtime_failure": false,
+      "facts": {
+        "historical_source": "28 demands / 23 DUPLICATE_SEARCH_BLOCKED",
+        "exact_legacy_ids_recovered": [
+          "T42-OFFICIAL-PUBLISHER-VALIDATION",
+          "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "T42-RESELLER-DETECTION",
+          "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
+        ],
+        "current_duplicate_searches_blocked": 0
+      },
+      "blocker": "Complete historical 23-demand ID snapshot/classification receipts are not present in current searchable repository evidence. Inventing the other IDs is forbidden.",
+      "executable_next": "Only historical/external evidence recovery can close the exact 23/23 receipt requirement; current runtime backoff is already cleared."
+    },
+    {
+      "root_id": "4c4baaa30ab6e13af241",
+      "request_id": "cfbbb93e0c5991f482f3",
+      "status": "HOLD_CORRECTED_SCOPE_SOURCE_ARTIFACT_REVALIDATION_REQUIRED",
+      "runtime_failure": false,
+      "facts": {
+        "invalidated_policy": "SUPPLY_PRICE_BLANK_ALLOWED / NOT_ERROR",
+        "invalidated_occurrences": 29,
+        "canonical_root": "REPORT_IDENTITY_CONSISTENCY"
+      },
+      "blocker": "Actual customer EML/guide source artifacts are required to revalidate identity/metadata/TOC against the corrected policy. Repository explicitly says PASS is forbidden before original/customer-deployed artifact revalidation.",
+      "executable_next": "Revalidate only real identity/metadata/TOC occurrences when source artifacts are available; never reopen blank supply price."
+    }
+  ],
+  "actionable_runtime_remaining": 0,
+  "evidence_gated_remaining": 2,
+  "work_reexecution_now": "NOT_JUSTIFIED",
+  "queue_commit": "a57f09a5617621c08072318e942a2d305dd36ec9",
+  "user_manual_relay_required": 0
+}
