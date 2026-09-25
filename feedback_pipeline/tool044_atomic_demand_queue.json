@@ -94,7 +94,14 @@
           ],
           "TOOL044_DEMAND_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION"
         }
-      ]
+      ],
+      "status": "HOLD_TARGET_RETET_REQUIRED_VERIFIED_URL_COMPONENT_ONLY",
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "VALIDATORS_0_35_0_URL_VALIDATION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "T42-RESELLER-DETECTION",
@@ -118,13 +125,27 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "T42-RESELLER-DETECTION"
         }
-      ]
+      ],
+      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER",
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "atomic_capabilities": [
         "PROVENANCE_VALIDATION"
-      ]
+      ],
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED",
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
@@ -140,7 +161,14 @@
           "capability": "WEBPAGE_TEXT_EXTRACTION",
           "verifier": "html2text_extract"
         }
-      ]
+      ],
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED",
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
@@ -156,7 +184,14 @@
           "capability": "TOC_STRUCTURE_EXTRACTION",
           "verifier": "mistune_heading_ast"
         }
-      ]
+      ],
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED",
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
@@ -180,7 +215,14 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
         }
-      ]
+      ],
+      "status": "HOLD_MISSING_HIERARCHY_VALIDATOR",
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
@@ -279,7 +321,7 @@
       "atomic_capabilities": [
         "OFFICIAL_DOMAIN_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION",
       "source": "TOOL016_FUNCTION_STATE",
       "source_records": [
         {
@@ -298,7 +340,13 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
@@ -306,7 +354,7 @@
       "atomic_capabilities": [
         "OFFICIAL_DETAIL_PAGE_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_MISSING_OFFICIAL_DETAIL_CLASSIFIER",
       "source": "TOOL016_FUNCTION_STATE",
       "source_records": [
         {
@@ -325,7 +373,13 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "VALIDATORS_0_35_0_URL_VALIDATION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
@@ -333,7 +387,7 @@
       "atomic_capabilities": [
         "RESELLER_DETECTION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER",
       "source": "TOOL016_FUNCTION_STATE",
       "source_records": [
         {
@@ -352,7 +406,13 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FS-FUNCTION-RESELLER_DETECTION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
@@ -360,7 +420,7 @@
       "atomic_capabilities": [
         "TOC_HIERARCHY_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_MISSING_HIERARCHY_VALIDATOR",
       "source": "TOOL016_FUNCTION_STATE",
       "source_records": [
         {
@@ -379,7 +439,13 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "component": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
+        "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
