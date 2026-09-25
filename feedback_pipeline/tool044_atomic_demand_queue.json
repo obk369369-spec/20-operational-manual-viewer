@@ -241,7 +241,7 @@
         }
       ],
       "status": "SATISFIED_BY_COMMON_COMPONENT",
-      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
       "satisfied_component": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
     },
     {
@@ -1098,7 +1098,7 @@
           "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
@@ -1247,7 +1247,7 @@
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
@@ -1396,7 +1396,7 @@
           "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
@@ -1569,7 +1569,7 @@
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-23T07:18:26.368314+00:00",
+      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
@@ -1986,7 +1986,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "SATISFIED_BY_COMMON_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "T16-T44-MINCIRC-20260925-001",
       "root_id": "T16-T44-MINCIRC-20260925-001",
@@ -2027,7 +2027,9 @@
       "reconciliation": {
         "evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_expansion_fault_loop.json",
         "basis": "Existing actual minimum-circulation execution evidence satisfies this capability; stale OPEN reconciled without re-execution."
-      }
+      },
+      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
     },
     {
       "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",

@@ -1,32 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-25T05:34:23.470196+00:00",
-  "UNFINISHED_SCANNED": 39,
-  "ALREADY_PASS_EXCLUDED": 6,
-  "ROOTS_MERGED": 1,
-  "WORK_FIXABLE_ROOTS": 1,
-  "WORK_REQUIRED": [
-    {
-      "demand_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
-      "root_id": "T16-T44-MINCIRC-20260925-001",
-      "target_tool": "TOOL016",
-      "atomic_capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    }
-  ],
-  "WORK_BATCHES": [
-    {
-      "root_id": "T16-T44-MINCIRC-20260925-001",
-      "demands": [
-        "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION"
-      ],
-      "target_tools": [
-        "TOOL016"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    }
-  ],
+  "updated_at": "2026-09-25T05:34:44.830312+00:00",
+  "UNFINISHED_SCANNED": 38,
+  "ALREADY_PASS_EXCLUDED": 7,
+  "ROOTS_MERGED": 0,
+  "WORK_FIXABLE_ROOTS": 0,
+  "WORK_REQUIRED": [],
+  "WORK_BATCHES": [],
   "TOOL044_AUTO_HANDED_OFF": 38,
   "TOOL044_QUEUE": [
     {
@@ -336,12 +316,11 @@
       ]
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 1,
+  "WORK_REQUIRED_REMAINDER": 0,
   "MULTI_GATE": {
     "capacity": 15,
     "statuses": {
-      "PASS": 7,
-      "CLAIMED": 1
+      "PASS": 8
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -366,7 +345,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-25T05:34:23.470196+00:00",
+  "LAST_HEARTBEAT": "2026-09-25T05:34:44.830312+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0
