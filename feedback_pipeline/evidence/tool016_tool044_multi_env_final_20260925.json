@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-25T01:10:58.287Z",
+  "correlation_id": "T16-T44-MINCIRC-20260925-001",
+  "multi_env": "BLOCKED_NO_USABLE_APPROVED_ENV2",
+  "env1": {
+    "name": "GitHub Actions",
+    "status": "PASS",
+    "evidence_run": 36080444119
+  },
+  "env2": {
+    "status": "BLOCKED",
+    "requirements": [
+      "independent execution environment",
+      "free",
+      "already approved",
+      "no new credential",
+      "automatic claim/resume/result-return"
+    ],
+    "actual": null
+  },
+  "checked_paths": {
+    "circleci": "EXCLUDED_VERIFIED_TRIGGER_CREDENTIAL_BLOCKER_NO_RETRY",
+    "gitlab": "NO_CONNECTED_REPOSITORY_RUNTIME_FOUND",
+    "woodpecker": "EXISTING_ADAPTER/HOLD_RECORD_ONLY; NO_APPROVED_RUNNING_ENV2",
+    "other_approved_credential_free": "NONE_FOUND"
+  },
+  "exact_blocker": "No independent external runtime is both already approved/connected and capable of credential-free automatic claim, checkpoint resume, and result return.",
+  "required_future_condition": "An independently hosted free runtime must become pre-authorized with a non-secret-reentry trigger and durable GitHub result-return permission.",
+  "retry_policy": "TRIGGER_BASED_REVISIT_ONLY",
+  "unattended": {
+    "loop_started": "PASS",
+    "continuous_24h_verified": "IN_PROGRESS",
+    "verification_due_kst": "2026-09-26T10:05:22+09:00",
+    "history_path": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_unattended_history.jsonl",
+    "observed_cycles": 1,
+    "scheduled_cycle_evidence": "PENDING_FIRST_SCHEDULED_CYCLE",
+    "next_validation": "ONE_BULK_READBACK_AFTER_DUE"
+  },
+  "existing_pass_reexecuted": 0,
+  "user_manual_relay_required": 0
+}
