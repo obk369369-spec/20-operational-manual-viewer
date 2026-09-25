@@ -208,7 +208,7 @@
       "atomic_capabilities": [
         "SAFE_AUTOMATIC_ROLLBACK"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "FINAL_FOUNDATION_GAP",
       "source_records": [
         {
@@ -227,7 +227,14 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL044-AUTO-ROLLBACK"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "COMMON_REGISTERED_TARGET_ADAPTER_E2E_PASS",
+        "evidence": "feedback_pipeline/evidence/tool044_registered_target_adapter.json",
+        "evidence_commit": "994f1e7fdf67acfb5bdda21f87f862cb3c543311",
+        "scope": "registered verified targets only; unregistered targets remain fail-closed",
+        "production_target_claim": false
+      }
     },
     {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
@@ -236,7 +243,7 @@
         "VERIFIED_TARGET_DEPLOYMENT",
         "DEPLOYED_COPY_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "FINAL_FOUNDATION_GAP",
       "source_records": [
         {
@@ -257,7 +264,14 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL044-ARBITRARY-WIC-DEPLOY"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "COMMON_REGISTERED_TARGET_ADAPTER_E2E_PASS",
+        "evidence": "feedback_pipeline/evidence/tool044_registered_target_adapter.json",
+        "evidence_commit": "994f1e7fdf67acfb5bdda21f87f862cb3c543311",
+        "scope": "registered verified targets only; unregistered targets remain fail-closed",
+        "production_target_claim": false
+      }
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
