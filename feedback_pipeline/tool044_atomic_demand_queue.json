@@ -387,7 +387,7 @@
       "atomic_capabilities": [
         "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -430,7 +430,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
@@ -438,7 +443,7 @@
       "atomic_capabilities": [
         "HISTORICAL_FEEDBACK_INGEST"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -481,7 +486,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
@@ -489,7 +499,7 @@
       "atomic_capabilities": [
         "ACCESS_BOUNDARY_CLASSIFICATION"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -532,7 +542,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
@@ -540,7 +555,7 @@
       "atomic_capabilities": [
         "ROOT_CAUSE_DEDUPLICATION"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -583,7 +598,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
@@ -591,7 +611,7 @@
       "atomic_capabilities": [
         "MISSING_CAPABILITY_EXTRACTION"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -634,7 +654,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
@@ -642,7 +667,7 @@
       "atomic_capabilities": [
         "VERIFIED_SKIP_REUSE_FILTER"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -685,7 +710,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
@@ -693,7 +723,7 @@
       "atomic_capabilities": [
         "TOOL016_TO_TOOL044_HANDOFF"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -736,7 +766,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
@@ -744,7 +779,7 @@
       "atomic_capabilities": [
         "ATOMIC_CAPABILITY_DECOMPOSITION"
       ],
-      "status": "OPEN",
+      "status": "SKIP_REUSE_VERIFIED_PASS",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -787,7 +822,12 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
+        "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
+      }
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
