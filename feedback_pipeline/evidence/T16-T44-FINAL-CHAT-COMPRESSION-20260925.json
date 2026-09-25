@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "batch_id": "T16-T44-FINAL-CHAT-COMPRESSION-20260925",
+  "source_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925",
+  "queue_sha": "b5865025b34d55722f0fb1defb36c04ad1293484",
+  "total_original": 21,
+  "rows": [
+    {
+      "id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "status": "HOLD_TARGET_RETET_REQUIRED_VERIFIED_URL_COMPONENT_ONLY"
+    },
+    {
+      "id": "T42-RESELLER-DETECTION",
+      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER"
+    },
+    {
+      "id": "T42-PROVENANCE-VALIDATION",
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED"
+    },
+    {
+      "id": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED"
+    },
+    {
+      "id": "T42-TOC-STRUCTURE-EXTRACTION",
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED"
+    },
+    {
+      "id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "status": "HOLD_MISSING_HIERARCHY_VALIDATOR"
+    },
+    {
+      "id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "status": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION"
+    },
+    {
+      "id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "status": "HOLD_MISSING_OFFICIAL_DETAIL_CLASSIFIER"
+    },
+    {
+      "id": "FS-FUNCTION-RESELLER_DETECTION",
+      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER"
+    },
+    {
+      "id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "status": "HOLD_MISSING_HIERARCHY_VALIDATOR"
+    },
+    {
+      "id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "status": "DEFERRED_FINAL_REAL_MISSING"
+    },
+    {
+      "id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+      "status": "HOLD_MISSING_VERIFIED_COMPONENT"
+    },
+    {
+      "id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+      "status": "HOLD_MISSING_CANONICAL_CATEGORY_LIST_AND_VERIFIED_MATCHER"
+    },
+    {
+      "id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    }
+  ],
+  "work_execution_candidates": [
+    {
+      "id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "status": "HOLD_TARGET_RETET_REQUIRED_VERIFIED_URL_COMPONENT_ONLY"
+    },
+    {
+      "id": "T42-PROVENANCE-VALIDATION",
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED"
+    },
+    {
+      "id": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED"
+    },
+    {
+      "id": "T42-TOC-STRUCTURE-EXTRACTION",
+      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED"
+    },
+    {
+      "id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    }
+  ],
+  "terminal_or_deferred_without_work": [
+    {
+      "id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "status": "HOLD_TARGET_RETET_REQUIRED_VERIFIED_URL_COMPONENT_ONLY"
+    },
+    {
+      "id": "T42-RESELLER-DETECTION",
+      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER"
+    },
+    {
+      "id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "status": "HOLD_MISSING_HIERARCHY_VALIDATOR"
+    },
+    {
+      "id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "status": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION"
+    },
+    {
+      "id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "status": "HOLD_MISSING_OFFICIAL_DETAIL_CLASSIFIER"
+    },
+    {
+      "id": "FS-FUNCTION-RESELLER_DETECTION",
+      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER"
+    },
+    {
+      "id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "status": "HOLD_MISSING_HIERARCHY_VALIDATOR"
+    },
+    {
+      "id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "status": "DEFERRED_FINAL_REAL_MISSING"
+    },
+    {
+      "id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+      "status": "HOLD_MISSING_VERIFIED_COMPONENT"
+    },
+    {
+      "id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+      "status": "HOLD_MISSING_CANONICAL_CATEGORY_LIST_AND_VERIFIED_MATCHER"
+    },
+    {
+      "id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    },
+    {
+      "id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+      "status": "HOLD_ROOT_SPECIFIC_RETET_REQUIRED"
+    }
+  ],
+  "user_manual_relay_required": 0,
+  "note": "Compression only; no target-specific runtime retest was falsely claimed."
+}
