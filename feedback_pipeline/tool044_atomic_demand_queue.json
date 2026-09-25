@@ -835,7 +835,7 @@
       "atomic_capabilities": [
         "PAST_FAILURE_FIXTURE_GENERATION"
       ],
-      "status": "OPEN",
+      "status": "DEFERRED_FINAL_REAL_MISSING",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -878,7 +878,11 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json"
+      }
     },
     {
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
@@ -886,7 +890,7 @@
       "atomic_capabilities": [
         "LOCAL_TITLE_TRANSLATION"
       ],
-      "status": "OPEN",
+      "status": "HOLD_MISSING_VERIFIED_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908",
       "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
@@ -926,7 +930,11 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "evidence": "feedback_pipeline/evidence/tool013_three_feature_admission_20260908.json"
+      }
     },
     {
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
@@ -934,7 +942,7 @@
       "atomic_capabilities": [
         "CANONICAL_CATEGORY_MATCHING"
       ],
-      "status": "OPEN",
+      "status": "HOLD_MISSING_CANONICAL_CATEGORY_LIST_AND_VERIFIED_MATCHER",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908",
       "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
@@ -974,7 +982,11 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING"
         }
-      ]
+      ],
+      "reconciliation": {
+        "reason": "FINAL_CHAT_COMPRESSION_20260925",
+        "evidence": "feedback_pipeline/evidence/tool013_three_feature_admission_20260908.json"
+      }
     },
     {
       "demand_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
