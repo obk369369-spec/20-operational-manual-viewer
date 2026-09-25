@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "batch_id": "T16-T44-FINAL-HOLD-ROOT-CORRECTION-20260925",
+  "status": "CHAT_CORRECTION_PERSISTED",
+  "source_work_evidence": "T16-T44-ACTIONABLE-FINAL-CLOSURE-20260925.json",
+  "root_48db0c6ef39a7ffc3a81": {
+    "work_hold": "23_ROOT_SPECIFIC_CLASSIFICATION_RECEIPTS_NOT_PERSISTED",
+    "verified_current_state": {
+      "atomic_watch_cycle": "20260925T044650Z",
+      "duplicate_searches_blocked": 0,
+      "issue23_original_requirement": "23 DUPLICATE_SEARCH_BLOCKED demands classified individually",
+      "compression_record": "Issue #23 router replaced original 23 with generic 3; original demand IDs must be fixed source"
+    },
+    "corrected_interpretation": "HOLD_EVIDENCE_MAPPING_GAP_NOT_PROVEN_COMPONENT_FAILURE",
+    "next_required": "Recover original 23 demand IDs from historical watch/checkpoint, map current terminal states, persist 23/23 classification receipts. Do not re-search already verified components."
+  },
+  "root_4c4baaa30ab6e13af241": {
+    "work_hold": "41_EML_ROOT_SPECIFIC_VALIDATION_EXECUTION_RECEIPT_NOT_PERSISTED",
+    "stale_work_expected": {
+      "eml_total": 41,
+      "supply_price_empty_occurrences": 29,
+      "pre_send_gate": "BLOCK_EMPTY_OR_PLACEHOLDER_PRICE"
+    },
+    "authoritative_correction": {
+      "source": "GitHub Issue #24 comment",
+      "policy": "SUPPLY_PRICE_BLANK_ALLOWED=true",
+      "invalidated": [
+        "ROOT-048-001",
+        "price-based occurrences of ROOT-048-002",
+        "29 supply-price blank occurrences"
+      ]
+    },
+    "corrected_actual_scope": [
+      "ROOT-048-A LINK_LABEL_LOWERCASE_L",
+      "ROOT-048-B/D/I source-backed page metadata errors",
+      "ROOT-048-C/G detail URL canonicalization",
+      "ROOT-048-E report identity cross contamination",
+      "ROOT-048-F publication-date source mismatch",
+      "ROOT-048-H Korean title/text quality gate"
+    ],
+    "corrected_interpretation": "HOLD_STALE_EXPECTED_INVALIDATED; WORK EXPECTED_ACTUAL FAIL IS NOT A VALID FAILURE VERDICT",
+    "next_required": "Build expected/actual only from corrected Issue #24 state; never block blank supply price."
+  },
+  "queue_commit": "5814dc6db02441be97628b455fa457c316161887",
+  "work_credit_policy": "PRESERVE_REMAINING_WORK_CREDIT; CHAT_FIRST",
+  "user_manual_relay_required": 0
+}
