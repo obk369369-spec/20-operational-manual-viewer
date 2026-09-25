@@ -1,0 +1,135 @@
+name: TOOL044 Minimum Circulation Autonomous Loop
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tool044-minimum-circulation.yml'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tool044-minimum-circulation
+  cancel-in-progress: false
+
+jobs:
+  circulation:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ID: T16-T44-MINCIRC-20260925-001
+      CORRELATION_ID: T16-T44-MINCIRC-20260925-001
+      SOURCE_REF: https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25
+      GITHUB_ACTIONS: 'true'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: TOOL016 receive, decide, and persist TOOL044 request
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root=Path('feedback_pipeline')
+          job=os.environ['JOB_ID']; source=os.environ['SOURCE_REF']
+          inbox_path=root/'TOOL044_REQUEST_INBOX.json'
+          inbox=json.loads(inbox_path.read_text(encoding='utf-8'))
+          request={
+            'request_id':job,'root_id':job,'related_tool':'TOOL016',
+            'source_chat_or_tool':'github_issue','source_evidence':source,
+            'feedback':'TOOL044 minimum circulation using existing verified external worker',
+            'actual_input':f'github_issue:{job}','wrong_output':'CORRELATION_EVIDENCE_NOT_PERSISTED_AFTER_INGRESS',
+            'expected':'READY selection, queue/claim, execution, heartbeat/checkpoint, result return, validation, TOOL016 update',
+            'required_capabilities':['INPUT_CONTRACT_VALIDATION','EXPECTED_ACTUAL_VALIDATION','FAILURE_ISOLATION'],
+            'status':'OPEN','user_action':'NONE'
+          }
+          if not any(str(x.get('request_id'))==job for x in inbox.get('requests',[])):
+              inbox.setdefault('requests',[]).append(request)
+              inbox_path.write_text(json.dumps(inbox,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          runtime_path=root/'tool044_factory_runtime.json'
+          runtime=json.loads(runtime_path.read_text(encoding='utf-8'))
+          runtime.setdefault('jobs',{})[job]={
+            'job_id':job,'correlation_id':job,'source':'TOOL016_FUNCTION_STATE',
+            'source_ref':source,'missing_capabilities':request['required_capabilities'],
+            'status':'QUEUED','target':'TOOL044','user_manual_relay':0
+          }
+          runtime_path.write_text(json.dumps(runtime,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          python feedback_pipeline/tool044_request_router.py
+      - name: Existing external worker execution and checkpoint
+        run: python feedback_pipeline/tool044_cloud_worker.py
+      - name: Actual result validation and TOOL016 return
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          root=Path('feedback_pipeline'); job=os.environ['JOB_ID']; source=os.environ['SOURCE_REF']
+          queue=json.loads((root/'tool044_atomic_demand_queue.json').read_text(encoding='utf-8'))
+          cloud=json.loads((root/'tool044_cloud_state.json').read_text(encoding='utf-8'))
+          state_path=root/'state.json'; state=json.loads(state_path.read_text(encoding='utf-8'))
+          demands=[d for d in queue.get('demands',[]) if str(d.get('request_id'))==job]
+          worker=cloud.get('jobs',{}).get(job,{})
+          ready=[x for x in cloud.get('artifact_jobs',[]) if x.get('status')=='VERIFIED' and x.get('expected_actual_result')=='MATCH']
+          actual={
+            'tool016_received': bool(demands),
+            'tool016_decision': 'EXTERNAL_VALIDATION_WORKER',
+            'tool044_ready_selected': bool(ready),
+            'ready_components':[x.get('component_id') for x in ready],
+            'queue': bool(demands),
+            'claim': worker.get('status')=='COMPLETED',
+            'external_execution': worker.get('worker')=='GITHUB_ACTIONS' and worker.get('status')=='COMPLETED',
+            'heartbeat': bool(cloud.get('last_heartbeat')),
+            'checkpoint': str(cloud.get('checkpoint') or ''),
+            'result_return': worker.get('result')=='PUBLIC_SAFE_HANDOFF_ACCEPTED',
+            'validation': worker.get('status')=='COMPLETED' and bool(worker.get('receipt')),
+          }
+          minimum=all(actual[k] for k in ('tool016_received','tool044_ready_selected','queue','claim','external_execution','heartbeat','checkpoint','result_return','validation'))
+          now=datetime.now(timezone.utc).isoformat()
+          result={
+            'schema_version':1,'generated_at_utc':now,'job_id':job,'correlation_id':job,
+            'source_ref':source,'environment':'GITHUB_ACTIONS','run_id':os.environ.get('GITHUB_RUN_ID'),
+            'actual':actual,'expected_actual_match':minimum,
+            'tool016_status_update':'PASS' if minimum else 'HOLD',
+            'next_job_ready':minimum,'minimum_circulation':'PASS' if minimum else 'HOLD',
+            'user_manual_relay_required':0,
+            'schedule_reinvoke_enabled':True,
+            'unattended_loop_started': minimum and os.environ.get('GITHUB_EVENT_NAME') in ('push','schedule','workflow_dispatch'),
+            'continuous_24h_verified':'IN_PROGRESS' if minimum else 'NOT_STARTED',
+            'multi_env':'HOLD_NOT_EXECUTED',
+            'parallel_execution':'PASS' if cloud.get('parallel_jobs',0)>=2 and len(ready)>=2 else 'HOLD',
+            'bulk_expansion':'ACTIVE' if len(queue.get('demands',[]))>0 else 'HOLD',
+            'external_source_loop':'ACTIVE' if cloud.get('verified_asset_count',0)>0 else 'HOLD',
+            'watchdog_recovery':'READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE',
+            'checkpoint_resume':'READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE'
+          }
+          result['evidence_sha256']=hashlib.sha256(json.dumps(result,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+          evidence_path=root/'evidence'/f'{job}_minimum_circulation.json'
+          evidence_path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          cp=state.setdefault('integration_core',{}).setdefault('feedback_checkpoints',{}).setdefault(job,{})
+          cp.update(status=result['tool016_status_update'],last_stage='NEXT_JOB_READY' if minimum else 'HOLD',
+                    root_id=job,correlation_id=job,result_evidence=str(evidence_path).replace('\\','/'),
+                    result_sha256=result['evidence_sha256'],last_heartbeat=cloud.get('last_heartbeat'),
+                    checkpoint=cloud.get('checkpoint'),user_manual_relay=0,next_job_ready=minimum)
+          state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          if not minimum: raise SystemExit('minimum circulation actual validation failed')
+          print(json.dumps(result,ensure_ascii=False))
+          PY
+      - name: Persist autonomous evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add feedback_pipeline/TOOL044_REQUEST_INBOX.json feedback_pipeline/tool044_factory_runtime.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/tool044_cloud_state.json feedback_pipeline/tool044_local_required_queue.json feedback_pipeline/state.json feedback_pipeline/evidence
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'tool044: persist minimum circulation checkpoint'
+          git pull --rebase origin main
+          git push origin HEAD:main
