@@ -114,6 +114,116 @@ def run_fixture() -> dict:
         }
 
 
+
+def registered_target_deploy(component: dict, receipts: dict, workspace: Path) -> dict:
+    """Deploy only an explicitly registered target contract; fail closed otherwise."""
+    admission = component_reentry_gate(component, receipts)
+    if not admission["work_reentry_allowed"]:
+        return {**admission, "deployment_status": "HOLD_NOT_REGISTERED_READY"}
+
+    workspace = workspace.resolve()
+    canonical = (workspace / component["source_file"]).resolve()
+    deployed = (workspace / component["install_target"]).resolve()
+    try:
+        canonical.relative_to(workspace)
+        deployed.relative_to(workspace)
+    except ValueError:
+        return {**admission, "deployment_status": "HOLD_TARGET_OUTSIDE_WORKSPACE"}
+
+    if not canonical.is_file():
+        return {**admission, "deployment_status": "HOLD_CANONICAL_MISSING"}
+    deployed.parent.mkdir(parents=True, exist_ok=True)
+    checkpoint = deployed.read_bytes() if deployed.exists() else None
+    expected_hash = sha256(canonical)
+
+    deployed.write_bytes(canonical.read_bytes())
+    copy_match = sha256(deployed) == expected_hash
+    validator = component.get("deployed_validator")
+    validator_pass = bool(copy_match)
+    if validator:
+        import subprocess
+        proc = subprocess.run(
+            [str(x).replace("{deployed}", str(deployed)) for x in validator],
+            cwd=workspace, capture_output=True, text=True
+        )
+        validator_pass = proc.returncode == 0
+
+    rollback = False
+    if not (copy_match and validator_pass):
+        rollback = True
+        if checkpoint is None:
+            deployed.unlink(missing_ok=True)
+        else:
+            deployed.write_bytes(checkpoint)
+
+    final_match = deployed.exists() and sha256(deployed) == expected_hash
+    passed = copy_match and validator_pass and final_match
+    return {
+        **admission,
+        "deployment_status": "DEPLOYED_PASS" if passed else "FAIL_ROLLED_BACK",
+        "verified_target_deployment": passed,
+        "deployed_copy_validation": passed,
+        "safe_automatic_rollback": rollback if not passed else True,
+        "canonical_sha256": expected_hash,
+        "deployed_sha256": sha256(deployed) if deployed.exists() else None,
+        "rollback_executed": rollback,
+    }
+
+
+def registered_target_self_test() -> dict:
+    """Exercise the reusable registered-target adapter, including forced rollback."""
+    with tempfile.TemporaryDirectory(prefix="tool044-registered-target-") as raw:
+        root = Path(raw)
+        source = root / "canonical.txt"
+        target = root / "deployed.txt"
+        source.write_text("release-v2\n", encoding="utf-8")
+        target.write_text("release-v1\n", encoding="utf-8")
+        base = {
+            "component_id": "REGISTERED_TARGET_FIXTURE",
+            "source": "LOCAL_VERIFIED_FIXTURE",
+            "license": "INTERNAL_TEST",
+            "target_root": "TOOL044-ARBITRARY-WIC-DEPLOY",
+            "target_tool": "TOOL044",
+            "version": "1",
+            "input_contract": "verified canonical bytes",
+            "output_contract": "byte-identical deployed copy",
+            "install_target": "deployed.txt",
+            "validator": ["hash"],
+            "install_method": ["copy"],
+            "success_condition": "byte identity",
+            "failure_condition": "copy or validator mismatch",
+            "rollback_method": ["restore checkpoint"],
+            "rollback_condition": "any validation failure",
+            "evidence": "self-test",
+            "source_file": "canonical.txt",
+        }
+        receipts = {key: True for key in WORK_REENTRY_RECEIPTS}
+        ok = registered_target_deploy(base, receipts, root)
+
+        target.write_text("release-v1\n", encoding="utf-8")
+        bad = {**base, "deployed_validator": ["python", "-c", "raise SystemExit(1)"]}
+        failed = registered_target_deploy(bad, receipts, root)
+        rollback_restored = target.read_text(encoding="utf-8") == "release-v1\n"
+
+        passed = (
+            ok["deployment_status"] == "DEPLOYED_PASS"
+            and ok["verified_target_deployment"]
+            and ok["deployed_copy_validation"]
+            and failed["deployment_status"] == "FAIL_ROLLED_BACK"
+            and failed["rollback_executed"]
+            and rollback_restored
+        )
+        return {
+            "status": "PASS" if passed else "FAIL",
+            "scope": "REUSABLE_REGISTERED_TARGET_ADAPTER_MECHANICS",
+            "verified_target_deployment": ok["verified_target_deployment"],
+            "deployed_copy_validation": ok["deployed_copy_validation"],
+            "forced_failure_rollback": rollback_restored,
+            "unregistered_target_allowed": False,
+            "production_target_claim": False,
+        }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--self-test", action="store_true")
