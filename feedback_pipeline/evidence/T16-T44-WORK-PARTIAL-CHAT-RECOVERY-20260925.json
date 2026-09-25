@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "CHAT_RECOVERY_AFTER_WORK_PARTIAL",
+  "source_work_summary": {
+    "execution": "PARTIAL",
+    "tool042": {
+      "pass": 4,
+      "hold": 0,
+      "fail": 0
+    },
+    "central_roots": {
+      "pass": 2,
+      "hold": 2,
+      "fail": 0
+    },
+    "expected_actual": "PARTIAL",
+    "failure_isolation": "PASS",
+    "open_actionable_remaining": 2,
+    "work_commit": "AUTH_WRITE_BLOCKED",
+    "work_remote_readback": "NOT_AVAILABLE",
+    "user_manual_relay_required": 0
+  },
+  "chat_recovery": {
+    "tool042": "PASS_4_ACCEPTED_FROM_WORK_OUTPUT",
+    "failure_isolation": "PASS_ACCEPTED_FROM_WORK_OUTPUT",
+    "central_pass_roots": [
+      "201185b55b374df24d1e",
+      "be0b7e6874fdbe79c9be"
+    ],
+    "unresolved_roots": [
+      "48db0c6ef39a7ffc3a81",
+      "4c4baaa30ab6e13af241"
+    ],
+    "unresolved_reason": "Work reported 2 CENTRAL HOLD roots but its detailed local evidence file was not persisted to GitHub. Existing GitHub receipts prove lineage/input/common self-test, not root-specific EXPECTED_ACTUAL completion.",
+    "queue_commit": "36a28935bde968df699e8e391cbc6dfab83c4c37"
+  },
+  "next_execution": {
+    "scope": "ONLY_TWO_UNRESOLVED_CENTRAL_ROOTS",
+    "roots": [
+      {
+        "root_id": "48db0c6ef39a7ffc3a81",
+        "request_id": "ca9c23dfa4f0bee5ba54",
+        "source_issue": 23,
+        "required": "ROOT_SPECIFIC_EXPECTED_ACTUAL_ONLY"
+      },
+      {
+        "root_id": "4c4baaa30ab6e13af241",
+        "request_id": "cfbbb93e0c5991f482f3",
+        "source_issue": 24,
+        "required": "ROOT_SPECIFIC_EXPECTED_ACTUAL_ONLY"
+      }
+    ],
+    "skip": [
+      "TOOL042",
+      "FAILURE_ISOLATION",
+      "INPUT_CONTRACT_VALIDATION",
+      "PASS CENTRAL roots",
+      "component research",
+      "authentication investigation"
+    ],
+    "completion_gate": [
+      "actual root-specific expected/actual execution",
+      "evidence persistence",
+      "GitHub commit",
+      "remote read-back"
+    ]
+  },
+  "user_manual_relay_required": 0
+}
