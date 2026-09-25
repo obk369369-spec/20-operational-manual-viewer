@@ -2,6 +2,8 @@ import json
 import os
 import time
 import uuid
+import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import Lock
@@ -45,6 +47,23 @@ def run_probe_job():
         STATE["last_result"] = dict(job)
         return dict(job)
 
+def return_to_tool016(job):
+    url = os.environ.get("TOOL016_RETURN_URL", "").strip()
+    token = os.environ.get("TOOL016_RETURN_TOKEN", "").strip()
+    if not url:
+        return {"status": "HOLD_NO_RETURN_URL", "user_manual_relay_required": 0}
+    payload = json.dumps({"event_type": "render_env2_result", "result": job}).encode("utf-8")
+    headers = {"Content-Type": "application/json", "User-Agent": "WIC-Render-ENV2"}
+    if token:
+        headers["Authorization"] = "Bearer " + token
+    try:
+        req = urllib.request.Request(url, data=payload, headers=headers, method="POST")
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            body = resp.read().decode("utf-8", errors="replace")[:2000]
+            return {"status": "PASS", "http_status": resp.status, "response": body}
+    except Exception as exc:
+        return {"status": "HOLD_RETURN_FAILED", "error": type(exc).__name__, "detail": str(exc)[:500], "user_manual_relay_required": 0}
+
 class Handler(BaseHTTPRequestHandler):
     def _send(self, code, payload):
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -66,13 +85,21 @@ class Handler(BaseHTTPRequestHandler):
                 "last_result": STATE["last_result"],
             })
         elif self.path == "/selftest":
+            job = run_probe_job()
+            returned = return_to_tool016(job)
+            with LOCK:
+                STATE["jobs"][job["job_id"]]["tool016_return"] = returned
+                if returned.get("status") == "PASS":
+                    STATE["jobs"][job["job_id"]]["tool016_ack"] = "RETURN_HTTP_PASS"
+                STATE["last_result"] = dict(STATE["jobs"][job["job_id"]])
             self._send(200, {
-                "status": "PASS",
+                "status": "PASS" if returned.get("status") == "PASS" else "PARTIAL",
                 "service": SERVICE,
-                "independent_env2_execution": run_probe_job(),
+                "independent_env2_execution": STATE["last_result"],
+                "tool016_result_return": returned,
                 "truth_boundary": {
                     "env2_execution": "PASS",
-                    "tool016_external_result_return": "PENDING_EXTERNAL_RETURN_PATH",
+                    "tool016_external_result_return": returned.get("status"),
                     "github_actions_required_for_this_job": False,
                     "user_manual_relay_required": 0,
                 },
