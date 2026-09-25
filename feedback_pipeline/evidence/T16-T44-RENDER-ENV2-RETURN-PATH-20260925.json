@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "ENV2_RETURN_PATH_PREPARED",
+  "provider": "Render Free Web Service",
+  "service": "two0-operational-manual-viewer",
+  "env2_execution": "DEPLOYED_PASS_PREVIOUSLY_OBSERVED",
+  "change": {
+    "file": "external_runtime/render_env2.py",
+    "commit": "b5ad765091a0baa57675bdb989a8ad5b8d346f8d",
+    "selftest_now": "executes ENV2 probe then POSTs result to TOOL016_RETURN_URL",
+    "optional_auth": "TOOL016_RETURN_TOKEN",
+    "github_actions_required_for_env2_job": false,
+    "user_manual_relay_required": 0
+  },
+  "remaining_verification": [
+    "Render auto-deploy of commit b5ad765091a0baa57675bdb989a8ad5b8d346f8d",
+    "TOOL016_RETURN_URL configured in Render",
+    "one /selftest external round trip",
+    "TOOL016 receipt/readback"
+  ],
+  "truth_boundary": "Do not mark TOOL016 external result return PASS until an actual HTTP round trip and receipt/readback are observed."
+}
