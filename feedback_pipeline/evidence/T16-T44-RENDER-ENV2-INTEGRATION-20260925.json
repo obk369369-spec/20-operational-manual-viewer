@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "ENV2_EXECUTION_ADAPTER_DEPLOY_TRIGGERED",
+  "generated_at": "2026-09-25",
+  "provider": "Render",
+  "service": "WIC_RENDER_ENV2",
+  "deployment_source_commit": "cd5be187c7e1c5e4c381ec56f94adef508c4059f",
+  "implemented": [
+    "health_endpoint",
+    "independent_selftest_job",
+    "claim",
+    "heartbeat",
+    "checkpoint",
+    "expected_actual_match",
+    "local_result_receipt"
+  ],
+  "truth_boundary": {
+    "env2_service_deployment": "AUTO_DEPLOY_TRIGGERED_BY_GITHUB_COMMIT",
+    "env2_actual_selftest_readback": "PENDING_RENDER_DEPLOY_READBACK",
+    "tool016_external_result_return": "PENDING_EXTERNAL_RETURN_PATH",
+    "github_actions_required_for_env2_selftest": false,
+    "user_manual_relay_required": 0
+  },
+  "next_exact_action": "After Render auto-deploy, invoke /selftest and read /health. Only then mark ENV2 execution PASS. TOOL016 return remains separate until authenticated return path exists."
+}
