@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "MAX_COMPRESSED_BEFORE_EXTERNAL_PREREQUISITE",
+  "chat_ingress": {
+    "current": "PLATFORM_LIMIT_HOLD",
+    "proven_receiver": ".github/workflows/wic-feedback-event.yml",
+    "proven_downstream": "TOOL016_TO_TOOL044_HANDOFF_AND_ACK_PASS",
+    "exact_missing": "SUPPORTED_SOURCE_EVENT_FROM_ORDINARY_CHATGPT_CONVERSATION",
+    "current_official_alternative": "Event-triggered Work supports supported connected-app events such as Gmail, Slack, GitHub PR; this does not establish arbitrary existing ChatGPT conversation message interception.",
+    "implementation_now": "NO_CODE_CHANGE_CAN_CREATE_PLATFORM_EVENT"
+  },
+  "independent_free_env2": {
+    "current": "HOLD_NO_AUTHORIZED_FREE_ENV2",
+    "viable_hosted_options": [
+      {
+        "provider": "CircleCI Cloud Free",
+        "free": "$0/month; free monthly credits",
+        "independent_of_github_actions": true,
+        "prerequisite": "CircleCI account/project authorization"
+      },
+      {
+        "provider": "GitLab.com hosted runners Free",
+        "free": "Free tier with monthly compute quota",
+        "independent_of_github_actions": true,
+        "prerequisite": "GitLab account/project authorization"
+      }
+    ],
+    "rejected_as_env2": [
+      "GitHub Actions matrix",
+      "GitHub self-hosted runner controlled by GitHub Actions"
+    ],
+    "exact_missing": "ONE_PREAUTHORIZED_EXTERNAL_CI_ACCOUNT/PROJECT_OR_EQUIVALENT_INDEPENDENT_RUNTIME",
+    "install_now": "BLOCKED_BEFORE_AUTHORIZATION"
+  },
+  "work_again_now": "NO_VALUE",
+  "next_execution_gate": "When one external provider is authorized, configure adapter and perform job round-trip -> heartbeat -> forced ENV1 isolation -> handoff -> checkpoint resume -> TOOL016 result return -> remote readback in one run.",
+  "user_manual_relay_required": 0
+}
