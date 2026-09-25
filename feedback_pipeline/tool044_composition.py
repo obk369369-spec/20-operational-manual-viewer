@@ -8,7 +8,10 @@ import sys
 import tempfile
 from pathlib import Path
 
-from wic_asset_provenance import classify
+try:
+    from .wic_asset_provenance import classify
+except ImportError:
+    from wic_asset_provenance import classify
 
 
 def _url_valid(wheel: Path, value: str) -> bool:
