@@ -2,7 +2,7 @@ name: WIC GitHub issue ingress adapter
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 permissions:
   contents: write
@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   dispatch-wic-feedback:
-    if: github.event.issue.user.login == github.repository_owner && (startsWith(github.event.issue.title, '[WIC]') || startsWith(github.event.issue.title, 'TOOL'))
+    if: github.event.issue.user.login == github.repository_owner && (startsWith(github.event.issue.title, '[WIC]') || startsWith(github.event.issue.title, '[WIC FEEDBACK]') || startsWith(github.event.issue.title, 'TOOL'))
     runs-on: ubuntu-latest
     steps:
       - name: Normalize real GitHub issue and dispatch canonical WIC event
