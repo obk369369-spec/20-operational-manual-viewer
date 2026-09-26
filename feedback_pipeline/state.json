@@ -155,13 +155,13 @@
         "status": "PASS_GLOBAL_PROTOCOL"
       },
       "T16-T44-MINCIRC-20260925-001": {
-        "checkpoint": "36199269090",
+        "checkpoint": "36208470863",
         "correlation_id": "T16-T44-MINCIRC-20260925-001",
-        "last_heartbeat": "2026-09-25T23:00:49.138238+00:00",
+        "last_heartbeat": "2026-09-26T01:27:19.415673+00:00",
         "last_stage": "NEXT_JOB_READY",
         "next_job_ready": true,
         "result_evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_minimum_circulation.json",
-        "result_sha256": "f2e0723b225b8f734709601fa85a6e123a3692a55d93553740f7f0e0d900a055",
+        "result_sha256": "3231304d9d5e6f88237fbe7fd7f65924fe9229db232753dedd4fd80d22fb4e28",
         "root_id": "T16-T44-MINCIRC-20260925-001",
         "status": "PASS",
         "tool044_natural_worker_return": {
@@ -797,332 +797,9 @@
       "updated_at": "2026-09-25T05:34:44.689673+00:00"
     },
     "visible_handoff": {
-      "schema_version": 1,
-      "updated_at": "2026-09-26T01:02:58.439696+00:00",
-      "UNFINISHED_SCANNED": 38,
       "ALREADY_PASS_EXCLUDED": 7,
-      "ROOTS_MERGED": 0,
-      "WORK_FIXABLE_ROOTS": 0,
-      "WORK_REQUIRED": [],
-      "WORK_BATCHES": [],
-      "TOOL044_AUTO_HANDED_OFF": 38,
-      "TOOL044_QUEUE": [
-        {
-          "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-          "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "OFFICIAL_DETAIL_PAGE_VALIDATION",
-            "URL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "T42-RESELLER-DETECTION",
-          "root_id": "T42-RESELLER-DETECTION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "RESELLER_DETECTION"
-          ]
-        },
-        {
-          "demand_id": "T42-PROVENANCE-VALIDATION",
-          "root_id": "T42-PROVENANCE-VALIDATION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "PROVENANCE_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-          "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "WEBPAGE_TEXT_EXTRACTION"
-          ]
-        },
-        {
-          "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
-          "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "TOC_STRUCTURE_EXTRACTION"
-          ]
-        },
-        {
-          "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-          "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "TOC_HIERARCHY_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "TOOL044-AUTO-ROLLBACK",
-          "root_id": "TOOL044-AUTO-ROLLBACK",
-          "target_tool": "TOOL044",
-          "atomic_capabilities": [
-            "SAFE_AUTOMATIC_ROLLBACK"
-          ]
-        },
-        {
-          "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
-          "root_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
-          "target_tool": "TOOL044",
-          "atomic_capabilities": [
-            "DEPLOYED_COPY_VALIDATION",
-            "VERIFIED_TARGET_DEPLOYMENT"
-          ]
-        },
-        {
-          "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
-          "root_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "OFFICIAL_DETAIL_PAGE_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
-          "root_id": "FS-FUNCTION-RESELLER_DETECTION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "RESELLER_DETECTION"
-          ]
-        },
-        {
-          "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-          "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "TOC_HIERARCHY_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "HISTORICAL_FEEDBACK_INGEST"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "ACCESS_BOUNDARY_CLASSIFICATION"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "ROOT_CAUSE_DEDUPLICATION"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "MISSING_CAPABILITY_EXTRACTION"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "VERIFIED_SKIP_REUSE_FILTER"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "TOOL016_TO_TOOL044_HANDOFF"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "ATOMIC_CAPABILITY_DECOMPOSITION"
-          ]
-        },
-        {
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ]
-        },
-        {
-          "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
-          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
-          "target_tool": "TOOL013",
-          "atomic_capabilities": [
-            "LOCAL_TITLE_TRANSLATION"
-          ]
-        },
-        {
-          "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
-          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
-          "target_tool": "TOOL013",
-          "atomic_capabilities": [
-            "CANONICAL_CATEGORY_MATCHING"
-          ]
-        },
-        {
-          "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "201185b55b374df24d1e",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
-          "root_id": "201185b55b374df24d1e",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "be0b7e6874fdbe79c9be",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
-          "root_id": "be0b7e6874fdbe79c9be",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "48db0c6ef39a7ffc3a81",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
-          "root_id": "48db0c6ef39a7ffc3a81",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "4c4baaa30ab6e13af241",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
-          "root_id": "4c4baaa30ab6e13af241",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-          ]
-        },
-        {
-          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
-          ]
-        },
-        {
-          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "CHECKPOINT_STAGE_RESUME_EXECUTION"
-          ]
-        },
-        {
-          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ]
-        },
-        {
-          "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-          "target_tool": "TOOL044",
-          "atomic_capabilities": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ]
-        },
-        {
-          "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "T16-T44-MINCIRC-20260925-001",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
-          "root_id": "T16-T44-MINCIRC-20260925-001",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        }
-      ],
-      "WORK_REQUIRED_REMAINDER": 0,
-      "MULTI_GATE": {
-        "capacity": 15,
-        "statuses": {
-          "PASS": 8
-        }
-      },
+      "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
       "FREE_EXTERNAL_RUNNER_POOL": {
-        "target": 15,
         "actual_run_pass": [
           "GITHUB_ACTIONS_MATRIX_V1"
         ],
@@ -1131,22 +808,345 @@
           "GITLAB_PARALLEL_MATRIX_V1"
         ],
         "bulk_summary": {
-          "collected": 4,
           "a_ready": 0,
+          "actual_run_pass": 1,
           "b_ready": 0,
           "blocked_user_action": 2,
+          "collected": 4,
+          "next_root_bundle": "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY",
           "rejected": 1,
-          "actual_run_pass": 1,
-          "remaining_to_target": 14,
-          "next_root_bundle": "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          "remaining_to_target": 14
+        },
+        "target": 15
+      },
+      "LAST_HEARTBEAT": "2026-09-26T01:02:58.439696+00:00",
+      "MULTI_GATE": {
+        "capacity": 15,
+        "statuses": {
+          "PASS": 8
         }
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
-      "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-26T01:02:58.439696+00:00",
-      "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
-      "USER_MANUAL_RELAY_REQUIRED": 0
+      "ROOTS_MERGED": 0,
+      "TOOL044_AUTO_HANDED_OFF": 38,
+      "TOOL044_QUEUE": [
+        {
+          "atomic_capabilities": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION",
+            "URL_VALIDATION"
+          ],
+          "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "RESELLER_DETECTION"
+          ],
+          "demand_id": "T42-RESELLER-DETECTION",
+          "root_id": "T42-RESELLER-DETECTION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "PROVENANCE_VALIDATION"
+          ],
+          "demand_id": "T42-PROVENANCE-VALIDATION",
+          "root_id": "T42-PROVENANCE-VALIDATION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "WEBPAGE_TEXT_EXTRACTION"
+          ],
+          "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+          "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "TOC_STRUCTURE_EXTRACTION"
+          ],
+          "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
+          "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "demand_id": "TOOL044-AUTO-ROLLBACK",
+          "root_id": "TOOL044-AUTO-ROLLBACK",
+          "target_tool": "TOOL044"
+        },
+        {
+          "atomic_capabilities": [
+            "DEPLOYED_COPY_VALIDATION",
+            "VERIFIED_TARGET_DEPLOYMENT"
+          ],
+          "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "root_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "target_tool": "TOOL044"
+        },
+        {
+          "atomic_capabilities": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "root_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "RESELLER_DETECTION"
+          ],
+          "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
+          "root_id": "FS-FUNCTION-RESELLER_DETECTION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "HISTORICAL_FEEDBACK_INGEST"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "ACCESS_BOUNDARY_CLASSIFICATION"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "ROOT_CAUSE_DEDUPLICATION"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "MISSING_CAPABILITY_EXTRACTION"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "VERIFIED_SKIP_REUSE_FILTER"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "TOOL016_TO_TOOL044_HANDOFF"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "ATOMIC_CAPABILITY_DECOMPOSITION"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "LOCAL_TITLE_TRANSLATION"
+          ],
+          "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
+          "target_tool": "TOOL013"
+        },
+        {
+          "atomic_capabilities": [
+            "CANONICAL_CATEGORY_MATCHING"
+          ],
+          "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
+          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
+          "target_tool": "TOOL013"
+        },
+        {
+          "atomic_capabilities": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+          "root_id": "201185b55b374df24d1e",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "FAILURE_ISOLATION"
+          ],
+          "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+          "root_id": "201185b55b374df24d1e",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "demand_id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+          "root_id": "be0b7e6874fdbe79c9be",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "FAILURE_ISOLATION"
+          ],
+          "demand_id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+          "root_id": "be0b7e6874fdbe79c9be",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "demand_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+          "root_id": "48db0c6ef39a7ffc3a81",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "FAILURE_ISOLATION"
+          ],
+          "demand_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+          "root_id": "48db0c6ef39a7ffc3a81",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "demand_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+          "root_id": "4c4baaa30ab6e13af241",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "FAILURE_ISOLATION"
+          ],
+          "demand_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+          "root_id": "4c4baaa30ab6e13af241",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+          ],
+          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+          ],
+          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "CHECKPOINT_STAGE_RESUME_EXECUTION"
+          ],
+          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "target_tool": "CENTRAL"
+        },
+        {
+          "atomic_capabilities": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "target_tool": "TOOL044"
+        },
+        {
+          "atomic_capabilities": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+          "root_id": "T16-T44-MINCIRC-20260925-001",
+          "target_tool": "TOOL016"
+        },
+        {
+          "atomic_capabilities": [
+            "FAILURE_ISOLATION"
+          ],
+          "demand_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+          "root_id": "T16-T44-MINCIRC-20260925-001",
+          "target_tool": "TOOL016"
+        }
+      ],
+      "UNFINISHED_SCANNED": 38,
+      "USER_MANUAL_RELAY_REQUIRED": 0,
+      "WATCHDOG": "SCHEDULED_15_MINUTES",
+      "WORK_BATCHES": [],
+      "WORK_FIXABLE_ROOTS": 0,
+      "WORK_REQUIRED": [],
+      "WORK_REQUIRED_REMAINDER": 0,
+      "schema_version": 1,
+      "updated_at": "2026-09-26T01:02:58.439696+00:00"
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
