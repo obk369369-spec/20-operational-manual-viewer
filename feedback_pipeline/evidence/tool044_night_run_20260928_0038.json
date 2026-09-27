@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-09-27T15:38:48Z",
+  "root_id": "ROOT-HOURLY-REPORT-E2E",
+  "status": "FAIL_INTERNAL_FIX_REQUIRED",
+  "latest_watchdog": {
+    "run_id": 36324464068,
+    "conclusion": "success",
+    "created_at": "2026-09-27T14:02:05Z"
+  },
+  "latest_tool044_worker": {
+    "run_id": 36324917463,
+    "conclusion": "failure",
+    "created_at": "2026-09-27T14:09:49Z",
+    "failed_step": "Harvest official pre-qualified candidates and test compositions",
+    "error": "KeyError: atomic_capabilities"
+  },
+  "latest_production_loop": {
+    "run_id": 36329344922,
+    "conclusion": "failure",
+    "created_at": "2026-09-27T15:23:01Z"
+  },
+  "observer_delivery": {
+    "current_chat": "CHAT_DELIVERY_UNSUPPORTED_OR_UNPROVEN",
+    "control_tower": "REQUIRES_LIVE_PROJECTION_READBACK"
+  },
+  "diagnosis": "The hourly watchdog itself has a recent successful run, but the TOOL044 worker is failing because the atomic component watcher receives backlog entries without atomic_capabilities. Those non-component backlog entries must be preserved for another eligible runner instead of crashing the component watcher.",
+  "pass_prohibited": [
+    "24H_AUTONOMOUS_CIRCULATION",
+    "CURRENT_44_CHAT_VISIBLE_PASS"
+  ],
+  "next_action": "Guard/filter non-component backlog before atomic component harvest, rerun TOOL044 cloud worker, then verify watchdog report/read-back and Control Tower projection."
+}
