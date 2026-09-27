@@ -141,3 +141,61 @@ ACTUAL_PASS / IN_PROGRESS / NOT_EXECUTED / HOLD / FAIL / SUPERSEDED / TRUE_EXTER
 Do not say GitHub updated unless commit/readback exists.
 Do not ask user to repeat history.
 Do not require repeated 'continue'.
+
+
+## 14. Scope correction added at chat end — FULL development-history collision audit
+The requested collision check is NOT limited to TOOL043 vs a separate profitable-small-app tool.
+
+Because, from the earliest development period onward, chat windows and tool numbers were repeatedly created, renamed, removed, reused, merged, split, or repurposed, perform an exhaustive CHAT-SIDE audit across ALL historical tools/conversations. This is intentionally done in chat-side retrieval first so it does not waste Work credits.
+
+For every historical identity recover where evidence permits:
+- historical TOOL number
+- historical conversation/chat name
+- date/range
+- original purpose
+- functions originally requested
+- later-added purpose/functions
+- rename/renumber events
+- deletion/retirement evidence
+- merge/split/absorption evidence
+- duplicate implementation
+- number reuse
+- name reuse
+- purpose drift
+- conflicting documents
+- current canonical successor/owner
+- implementation/evidence owner
+
+Required identity classifications:
+CURRENT
+SUPERSEDED
+MERGED
+SPLIT
+ABSORBED
+DUPLICATE
+NUMBER_CONFLICT
+NAME_CONFLICT
+PURPOSE_DRIFT
+RENUMBERED
+RETIRED
+UNRESOLVED_IDENTITY
+
+Never assume:
+same number = same tool,
+same name = same purpose,
+different number = different capability,
+old tool absent from active list = intentionally deprecated.
+
+Build two exhaustive matrices before the final Work packet:
+1. HISTORICAL_ID | DATE/RANGE | NUMBER | CHAT/TOOL_NAME | ORIGINAL_PURPOSE | LATER_PURPOSE | SOURCE/PROVENANCE | CURRENT_CANONICAL_ID | RELATION | COLLISION_TYPE | STATUS
+2. CAPABILITY | ORIGINAL_OWNER | LATER_OWNER(S) | DUPLICATED? | MERGED/ABSORBED? | CURRENT_OWNER | ACTUAL_IMPLEMENTATION_EVIDENCE | MISSING_IMPLEMENTATION | TRUE_ROOT
+
+This audit must catch not only numbering conflicts but also capability/function mixing and duplicated development across chats/tools.
+
+TOOL043 is only one discovered example. Its correction must NOT narrow the audit scope.
+
+## 15. Next-chat continuity rule
+The next conversation must NOT ask the user to restate this work.
+First read this GitHub checkpoint and continue from Section 14 collision audit.
+Do the collision audit in a large consolidated pass rather than sending small incremental reports.
+After collision audit, continue the execution order in Section 12.
