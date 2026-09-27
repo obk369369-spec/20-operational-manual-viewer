@@ -1,8 +1,10 @@
 name: WIC Central Hourly Watchdog
 'on':
   push:
-    branches: [main]
-    paths: ['.github/workflows/wic-stall-monitor.yml']
+    branches:
+      - main
+    paths:
+      - .github/workflows/wic-stall-monitor.yml
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch: {}
@@ -14,42 +16,36 @@ jobs:
   watchdog:
     runs-on: ubuntu-latest
     steps:
-      - name: Check TOOL044 and return report
+      - name: TOOL044 watchdog
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
           set -euo pipefail
           repo="$GITHUB_REPOSITORY"
           worker="tool044-cloud-worker.yml"
-          issue=9
-          run_json=$(gh api "repos/$repo/actions/workflows/$worker/runs?per_page=1" --jq '.workflow_runs[0]')
-          test -n "$run_json" && test "$run_json" != null
-          created=$(jq -r '.created_at' <<<"$run_json")
-          status=$(jq -r '.status' <<<"$run_json")
-          conclusion=$(jq -r '.conclusion // ""' <<<"$run_json")
-          run_id=$(jq -r '.id' <<<"$run_json")
-          age=$(( $(date -u +%s) - $(date -u -d "$created" +%s) ))
-          recovered=NO
-          if [ "$age" -gt 4500 ] || { [ "$status" = completed ] && [ "$conclusion" != success ]; }; then
+          issue="9"
+          run_json="$(gh api "repos/$repo/actions/workflows/$worker/runs?per_page=1" --jq '.workflow_runs[0]')"
+          test -n "$run_json"
+          created="$(jq -r '.created_at' <<<"$run_json")"
+          status="$(jq -r '.status' <<<"$run_json")"
+          conclusion="$(jq -r '.conclusion // ""' <<<"$run_json")"
+          run_id="$(jq -r '.id' <<<"$run_json")"
+          age="$(( $(date -u +%s) - $(date -u -d "$created" +%s) ))"
+          recovered="NO"
+          if [ "$age" -gt 4500 ] || { [ "$status" = "completed" ] && [ "$conclusion" != "success" ]; }; then
             gh workflow run "$worker" --repo "$repo" --ref main
-            recovered=YES
+            recovered="YES"
           fi
-          last=$(gh api "repos/$repo/issues/$issue/comments?per_page=100" --paginate --jq '[.[]|select(.body|contains("[TOOL044 → TOOL016 HOURLY WATCHDOG REPORT]"))]|last//empty')
-          stale=YES
+          last="$(gh api "repos/$repo/issues/$issue/comments?per_page=100" --paginate --jq '[.[]|select(.body|contains("TOOL044 HOURLY WATCHDOG REPORT"))]|last//empty')"
+          stale="YES"
           if [ -n "$last" ]; then
-            updated=$(jq -r '.updated_at' <<<"$last")
-            report_age=$(( $(date -u +%s) - $(date -u -d "$updated" +%s) ))
-            [ "$report_age" -le 4500 ] && stale=NO
+            updated="$(jq -r '.updated_at' <<<"$last")"
+            report_age="$(( $(date -u +%s) - $(date -u -d "$updated" +%s) ))"
+            if [ "$report_age" -le 4500 ]; then stale="NO"; fi
           fi
-          if [ "$stale" = YES ]; then
-            body="[TOOL044 → TOOL016 HOURLY WATCHDOG REPORT]
-
-CHECKED_AT_UTC=$(date -u +%FT%TZ)
-LATEST_TOOL044_RUN=$run_id
-WORKER_STATUS=$status
-WORKER_CONCLUSION=$conclusion
-RECOVERY_DISPATCHED=$recovered
-REPORT_GAP_RECOVERY=PASS"
+          if [ "$stale" = "YES" ]; then
+            printf -v body 'TOOL044 HOURLY WATCHDOG REPORT\n\nCHECKED_AT_UTC=%s\nLATEST_TOOL044_RUN=%s\nWORKER_STATUS=%s\nWORKER_CONCLUSION=%s\nRECOVERY_DISPATCHED=%s\nREPORT_GAP_RECOVERY=PASS' "$(date -u +%FT%TZ)" "$run_id" "$status" "$conclusion" "$recovered"
             gh issue comment "$issue" --repo "$repo" --body "$body"
           fi
           echo "TOOL044_WATCHDOG=PASS run=$run_id recovered=$recovered report_stale=$stale"
