@@ -7,6 +7,13 @@
       "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
       "revision": 1,
       "directive": "Persist conflict-free directive intake; merge into existing ROOT; block duplicates; reuse PASS; preserve checkpoint; latest explicit directive supersedes conflicting older directive; connect to TOOL016/TOOL044 queue/claim/result loop; preserve 5-minute/HOLD-resume/24h evidence structures."
+    },
+    {
+      "directive_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
+      "target_tool": "TOOL044",
+      "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+      "revision": 1,
+      "directive": "Use one GitHub canonical SSoT for TOOL016/043/044/Work; compress root before Work; central atomic claim with lease; ACTIVE_ELSEWHERE on existing owner or asset lock; minimal Work package; automatic result return/read-back; user manual relay zero; platform-limited Work UI invocation stays PLATFORM_LIMIT."
     }
   ]
 }
