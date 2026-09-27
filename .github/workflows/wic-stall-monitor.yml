@@ -14,10 +14,6 @@ on:
       - 'tool043/night_observer.py'
       - 'tool043/status_snapshot.js'
       - '.github/workflows/wic-stall-monitor.yml'
-  workflow_run:
-    workflows: ['WIC feedback event apply']
-    types: [completed]
-    branches: [main]
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
