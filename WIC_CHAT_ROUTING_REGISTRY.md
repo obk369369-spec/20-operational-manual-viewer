@@ -26,7 +26,7 @@
 | TOOL006 | TOC 정리 | 기존 6번/TOC 흐름 재사용 |
 | TOOL027 | 기술도서 검증·추천·1번 이관 | 기존 27번 기술도서 검증 흐름 재사용 |
 | TOOL042 | 고객 안내·추천자료·메일 문안·중간/최종 안내서 | `docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md` 흐름 재사용 |
-| TOOL043 | `43번 소형 앱 출시 실행도구` | 기존 `소형 앱 출시` 흐름 재사용 |
+| TOOL043 | 일반 ChatGPT 가능 작업 연속 실행층 | 기존 TOOL043 실행/관찰 흐름 재사용; 수익화 소형앱 출시 lane과 병합 금지 |
 | CRM_RESPONSE | 통화/회신 후 분기·다음행동 | 기존 고객후속/CRM 흐름 재사용 |
 
 도구·업무별 실행 규칙과 예외는 이 파일에 두지 않는다. 해당 규범은 Global 단일 원본 및 Global이 명시적으로 가리키는 현재 업무군 원본에서 관리한다.
@@ -44,7 +44,7 @@ route: TOOL013 = 13번 | 엑셀 자동 업로드 | 46145
 route: TOOL027 = 27번 | 기술도서 | 기술 도서 | technical book | technical-book-verifier | 도서 검증
 route: TOOL037 = 37번 | 메타데이터 | 상품명 | 한글명 | isbn | code
 route: TOOL042 = 42번 | 고객 안내 | 고객 안내 대화창 | customer guidance | unified customer guidance | 추천자료 | 중간 안내서 | 최종 안내서
-route: TOOL043 = 43번 | 소형 앱 출시 실행도구 | 소형 앱 출시 | 앱 출시 | 모바일 관찰 | 아이디어 출시 | 외부 증거 게이트
+route: TOOL043 = 43번 | 일반 ChatGPT 가능 작업 연속 실행층 | 채팅 가능 작업 | 모바일 관찰 | 외부 증거 게이트 | night observer
 route: EMAIL_DB = 메일 수집 | 이메일 수집 | email collection | new_online | dormant_ledger | recent_trade | 고객 db
 route: WORK_GATE = 워크 | work | 크레딧 | credit | 이관
 route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 | 관찰자
@@ -60,6 +60,6 @@ route: CENTRAL = 중앙 마스터 | 깃허브 | github | 대화창 | 피드백 |
 
 과거 이 Registry에 있던 `NO_NEW_CHAT`, UI-title gate, pointed-issue scope lock, 이메일 공통 규칙, TOOL040 실행 DELTA 등의 규범 문구는 라우팅 데이터와 섞여 있던 legacy 내용이다. 현재 실행 기준으로 사용하지 않으며, 최신 확정 규칙은 `WIC_GLOBAL_OPERATING_RULES.md` 단일 원본에서 관리한다.
 
-과거 `TOOL040` / `40번 출시 앱 도구` 표기는 사용자 지정 번호 근거가 없어 폐기한다. 2026-08-17 중복 조사 후 정식 번호는 `43번`, machine route key는 `TOOL043`, 사용자-facing 도구명은 `43번 소형 앱 출시 실행도구`로 고정한다.
+과거 출시 앱 관련 번호/명칭은 현재 TOOL043 실행층의 기능 정체성과 분리한다. machine route key `TOOL043`은 일반 ChatGPT 가능 작업 연속 실행층에만 사용하며, 수익화 소형앱 출시 lane은 별도 canonical identity가 확인될 때까지 이 route에 합치지 않는다.
 
 이 Registry의 PASS 기준은 **필요한 route 데이터가 파싱되고, 규범 실행 규칙이 다시 유입되지 않는 것**이다.
