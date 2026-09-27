@@ -1,0 +1,50 @@
+name: TOOL044 Canonical Instruction Intake
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'feedback_pipeline/tool044_instruction_intake.py'
+      - 'feedback_pipeline/tool044_instruction_inbox.json'
+      - 'feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md'
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: tool044-canonical-instruction-intake
+  cancel-in-progress: false
+
+jobs:
+  verify-and-apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: EXPECTED-ACTUAL intake self test
+        run: python feedback_pipeline/tool044_instruction_intake.py --self-test
+      - name: Apply canonical inbox to central TOOL044 queue
+        run: python feedback_pipeline/tool044_instruction_intake.py --apply
+      - name: Regression - existing multi gate compiles
+        run: python -m py_compile feedback_pipeline/tool044_multi_gate.py feedback_pipeline/tool044_instruction_intake.py
+      - name: Regression - preserve existing 24h evidence and HOLD structures
+        run: |
+          test -f feedback_pipeline/tool044_atomic_demand_queue.json
+          test -f feedback_pipeline/tool044_multi_gate.py
+          grep -q 'resume_conditions' feedback_pipeline/tool044_multi_gate.py
+      - name: Persist intake state and queue
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool044_instruction_intake_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'tool044: persist canonical instruction intake result'
+          git pull --rebase origin main
+          git push origin HEAD:main
