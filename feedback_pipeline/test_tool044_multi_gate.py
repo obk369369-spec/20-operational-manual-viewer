@@ -95,3 +95,33 @@ def test_verified_component_claims_multiple_independent_demands_in_one_batch(tmp
     matrix = plan(pool, state, "RUN-BATCH", queue)
     assert len(matrix) == 2
     assert {row["job_id"].split("::")[1] for row in matrix} == {"DEMAND-A", "DEMAND-B"}
+
+
+def test_pass_hold_fail_returns_preserve_demand_resume_contract(tmp_path: Path):
+    state = tmp_path / "state.json"; queue = tmp_path / "queue.json"; central = tmp_path / "central.json"
+    jobs = {}
+    results = []
+    for outcome in ("PASS", "HOLD", "FAIL"):
+        demand_id = f"DEMAND-{outcome}"
+        job_id = f"DEMAND::{demand_id}::COMPONENT-{outcome}"
+        owner = f"OWNER-{outcome}"
+        jobs[job_id] = {"JOB_ID": job_id, "DEMAND_ID": demand_id, "ROOT_ID": demand_id,
+                        "TARGET_TOOL": "TOOL016", "COMPONENT_ID": f"COMPONENT-{outcome}",
+                        "OWNER": owner, "STATUS": "CLAIMED", "CHECKPOINT": "CLAIM_DURABLE"}
+        path = tmp_path / f"{outcome}.json"
+        path.write_text(json.dumps({"job_id": job_id, "owner": owner, "status": outcome,
+                                    "checkpoint": "RETURNED", "reason": f"{outcome}_FIXTURE"}), encoding="utf-8")
+        results.append(path)
+    state.write_text(json.dumps({"jobs": jobs, "events": []}), encoding="utf-8")
+    queue.write_text(json.dumps({"demands": [
+        {"demand_id": f"DEMAND-{outcome}", "status": "OPEN"}
+        for outcome in ("PASS", "HOLD", "FAIL")]}), encoding="utf-8")
+    central.write_text(json.dumps({"integration_core": {}}), encoding="utf-8")
+    aggregate(state, central, results, queue)
+    demands = {row["demand_id"]: row for row in json.loads(queue.read_text(encoding="utf-8"))["demands"]}
+    assert demands["DEMAND-PASS"]["status"] == "SATISFIED_BY_COMMON_COMPONENT"
+    assert demands["DEMAND-HOLD"]["status"] == "RETURNED_HOLD"
+    assert demands["DEMAND-FAIL"]["status"] == "RETURNED_FAIL"
+    assert demands["DEMAND-HOLD"]["result_return"]["resume_condition"] == "RETRY_WHEN_COMPONENT_CONTRACT_OR_EXTERNAL_TRIGGER_CHANGES"
+    assert demands["DEMAND-FAIL"]["result_return"]["resume_condition"] == "RETRY_AFTER_ROOT_CAUSE_FIX_AND_RESET_TO_READY"
+    assert all(row["result_return"]["tool016_ack"] == "RECEIVED" for row in demands.values())

@@ -227,17 +227,33 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
     state.update(updated_at=stamp(utcnow()), active_claims=0, results_returned=returned)
     atomic_json(state_path, state)
     queue = load(queue_path, {"demands": []})
-    returned_demand_ids = {
-        row.get("DEMAND_ID") for row in state.get("jobs", {}).values()
-        if row.get("DEMAND_ID") and row.get("STATUS") == "PASS"
+    demand_results = {
+        row.get("DEMAND_ID"): row
+        for row in state.get("jobs", {}).values()
+        if row.get("DEMAND_ID") and row.get("STATUS") in {"PASS", "FAIL", "HOLD", "BLOCKED"}
+    }
+    resume_conditions = {
+        "FAIL": "RETRY_AFTER_ROOT_CAUSE_FIX_AND_RESET_TO_READY",
+        "HOLD": "RETRY_WHEN_COMPONENT_CONTRACT_OR_EXTERNAL_TRIGGER_CHANGES",
+        "BLOCKED": "RETRY_AFTER_CLAIM_OR_EXECUTION_CONTRACT_REPAIRED",
     }
     for demand in queue.get("demands", []):
-        if demand.get("demand_id") in returned_demand_ids:
+        returned_job = demand_results.get(demand.get("demand_id"))
+        if returned_job and returned_job.get("STATUS") == "PASS":
             demand.update(status="SATISFIED_BY_COMMON_COMPONENT",
                           satisfied_at=state["updated_at"],
-                          satisfied_component=next(
-                              row["COMPONENT_ID"] for row in state["jobs"].values()
-                              if row.get("DEMAND_ID") == demand.get("demand_id")))
+                          satisfied_component=returned_job["COMPONENT_ID"],
+                          result_return={"status": "PASS", "tool016_ack": "RECEIVED",
+                                         "returned_at": state["updated_at"]})
+        elif returned_job:
+            outcome = returned_job["STATUS"]
+            demand.update(status=f"RETURNED_{outcome}", result_return={
+                "status": outcome, "tool016_ack": "RECEIVED",
+                "returned_at": state["updated_at"],
+                "component_id": returned_job.get("COMPONENT_ID"),
+                "result": returned_job.get("RESULT"),
+                "resume_condition": resume_conditions[outcome],
+            })
     atomic_json(queue_path, queue)
     central = load(central_path, {})
     core = central.setdefault("integration_core", {})
