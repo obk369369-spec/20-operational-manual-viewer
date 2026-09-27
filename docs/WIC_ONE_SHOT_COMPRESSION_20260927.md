@@ -1,6 +1,6 @@
 # WIC ONE-SHOT COMPRESSION — 2026-09-27
 
-Status: COMPRESSED_CHECKPOINT / EVIDENCE_BACKED / NOT_GLOBAL_COMPLETE
+Status: COMPRESSED_CHECKPOINT / EVIDENCE_BACKED / DIRECT-FIX-FIRST
 Source handoff: docs/WIC_CHAT_HANDOFF_20260927.md
 
 ## 1. Compression rule
@@ -91,3 +91,32 @@ Do not regress to "env2 unavailable" unless new evidence proves CircleCI unusabl
 
 ## 8. Completion gate
 ONE_SHOT_COMPRESSION is complete as an evidence-backed checkpoint when this file is committed and remotely read back. This does NOT mean all WIC development is complete. Global WIC COMPLETE requires the unresolved ROOTs above to be actually implemented/tested/deployed/read-back where applicable.
+
+
+## 9. Direct-fix-first compression rule — 2026-09-27
+This supersedes any execution ordering that unnecessarily sends repairable repository work to Work.
+
+For every unresolved ROOT, classify and act in one pass:
+1. DIRECT_FIX: if this chat can inspect/edit GitHub and verify the result, fix it here immediately.
+2. DIRECT_VERIFY: if implementation already exists, run/read current evidence and close stale HOLD without rebuilding.
+3. WORK_REQUIRED: only code/runtime work that cannot be safely executed with the currently connected tools goes to the compressed Work packet.
+4. TRUE_EXTERNAL_INPUT_REQUIRED: only inaccessible local PC files, external credentials/permissions, or unsupported external actions remain for user/external input.
+
+Do not stop after classification when DIRECT_FIX or DIRECT_VERIFY is available. Apply -> verify actual execution -> commit/read-back -> update state in the same pass.
+
+### Actual proof of this rule
+The previously broken .github/workflows/wic-stall-monitor.yml was repaired directly from this chat.
+- repair commit: 5eb3ffbd74c4967a1ef57ecd00312d2752b0f75f
+- GitHub Actions run: 36286727554
+- workflow: WIC Central Hourly Watchdog
+- job: watchdog
+- actual conclusion: SUCCESS
+Therefore ROOT-WATCHDOG-WORKFLOW-INVALID is RESOLVED and must not be sent to Work or reopened without new failure evidence.
+
+### Updated compression target
+Compress all remaining ROOTs by capability, not by old numeric order:
+- direct repository fixes and evidence reconciliation -> execute here now
+- already-proven functions -> REUSE/SKIP
+- only genuinely inaccessible implementation/E2E/deployment -> one Work packet
+- only real external dependency -> TRUE_EXTERNAL_INPUT_REQUIRED
+No per-root user confirmation and no sequential waiting.
