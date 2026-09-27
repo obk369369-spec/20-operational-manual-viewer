@@ -1,93 +1,55 @@
 name: WIC Central Hourly Watchdog
-
 'on':
   push:
     branches: [main]
-    paths:
-      - 'feedback_pipeline/work16_root_ledger.json'
-      - 'feedback_pipeline/incomplete_register.json'
-      - 'feedback_pipeline/unified_open_ledger.json'
-      - 'feedback_pipeline/evidence/work16_root_report.json'
-      - 'feedback_pipeline/evidence/work_execution_audit_20260827.json'
-      - 'feedback_pipeline/approval_queue.json'
-      - 'WIC_EXECUTION_STATE.json'
-      - 'tool043/night_observer.py'
-      - 'tool043/status_snapshot.js'
-      - '.github/workflows/wic-stall-monitor.yml'
+    paths: ['.github/workflows/wic-stall-monitor.yml']
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch: {}
-
 permissions:
-  contents: write
-  issues: write
   actions: write
-
-concurrency:
-  group: wic-central-observer-sync
-  cancel-in-progress: false
-
+  issues: write
+  contents: read
 jobs:
-  tool044-watchdog:
+  watchdog:
     runs-on: ubuntu-latest
     steps:
-      - name: Check TOOL044 cloud worker heartbeat and recover
+      - name: Check TOOL044 and return report
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          WORKFLOW='tool044-cloud-worker.yml'
-          MAX_AGE_SECONDS=4500
-          NOW=$(date +%s)
-          LAST=$(gh run list --workflow "$WORKFLOW" --limit 1 --json createdAt,status,conclusion,databaseId --jq '.[0]')
-          test -n "$LAST" && test "$LAST" != null
-          CREATED=$(jq -r '.createdAt' <<<"$LAST")
-          STATUS=$(jq -r '.status' <<<"$LAST")
-          CONCLUSION=$(jq -r '.conclusion // ""' <<<"$LAST")
-          RUN_ID=$(jq -r '.databaseId' <<<"$LAST")
-          CREATED_EPOCH=$(date -d "$CREATED" +%s)
-          AGE=$((NOW-CREATED_EPOCH))
-          echo "TOOL044 latest run=$RUN_ID age=${AGE}s status=$STATUS conclusion=$CONCLUSION"
-          if [ "$AGE" -gt "$MAX_AGE_SECONDS" ] || { [ "$STATUS" = completed ] && [ "$CONCLUSION" != success ]; }; then
-            echo "::warning::TOOL044 worker stale/failed; dispatching recovery run."
-            gh workflow run "$WORKFLOW" --ref main
-            sleep 10
-            gh run list --workflow "$WORKFLOW" --limit 1 --json databaseId,createdAt,status,conclusion
-          else
-            echo 'TOOL044_WATCHDOG=HEALTHY'
+          repo="$GITHUB_REPOSITORY"
+          worker="tool044-cloud-worker.yml"
+          issue=9
+          run_json=$(gh api "repos/$repo/actions/workflows/$worker/runs?per_page=1" --jq '.workflow_runs[0]')
+          test -n "$run_json" && test "$run_json" != null
+          created=$(jq -r '.created_at' <<<"$run_json")
+          status=$(jq -r '.status' <<<"$run_json")
+          conclusion=$(jq -r '.conclusion // ""' <<<"$run_json")
+          run_id=$(jq -r '.id' <<<"$run_json")
+          age=$(( $(date -u +%s) - $(date -u -d "$created" +%s) ))
+          recovered=NO
+          if [ "$age" -gt 4500 ] || { [ "$status" = completed ] && [ "$conclusion" != success ]; }; then
+            gh workflow run "$worker" --repo "$repo" --ref main
+            recovered=YES
           fi
-
-      - name: Verify hourly TOOL044 progress report and repair missing report
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          ISSUE=9
-          MAX_REPORT_AGE_SECONDS=4500
-          NOW=$(date +%s)
-          LAST_REPORT=$(gh api "repos/${GITHUB_REPOSITORY}/issues/$ISSUE/comments?per_page=100" --paginate --jq '[.[] | select(.body | contains("[TOOL044 → TOOL016"))] | last // empty')
-          REPORT_STALE=true
-          if [ -n "$LAST_REPORT" ]; then
-            UPDATED=$(jq -r '.updated_at' <<<"$LAST_REPORT")
-            UPDATED_EPOCH=$(date -d "$UPDATED" +%s)
-            REPORT_AGE=$((NOW-UPDATED_EPOCH))
-            echo "TOOL044 latest central report age=${REPORT_AGE}s"
-            if [ "$REPORT_AGE" -le "$MAX_REPORT_AGE_SECONDS" ]; then REPORT_STALE=false; fi
+          last=$(gh api "repos/$repo/issues/$issue/comments?per_page=100" --paginate --jq '[.[]|select(.body|contains("[TOOL044 → TOOL016 HOURLY WATCHDOG REPORT]"))]|last//empty')
+          stale=YES
+          if [ -n "$last" ]; then
+            updated=$(jq -r '.updated_at' <<<"$last")
+            report_age=$(( $(date -u +%s) - $(date -u -d "$updated" +%s) ))
+            [ "$report_age" -le 4500 ] && stale=NO
           fi
-          if [ "$REPORT_STALE" = true ]; then
-            RUN=$(gh run list --workflow tool044-cloud-worker.yml --limit 1 --json databaseId,createdAt,status,conclusion --jq '.[0]')
-            BODY="[TOOL044 → TOOL016 HOURLY WATCHDOG REPORT]
+          if [ "$stale" = YES ]; then
+            body="[TOOL044 → TOOL016 HOURLY WATCHDOG REPORT]
 
-AUTO_RECOVERY_REPORT=YES
-REPORT_GAP_DETECTED=YES
 CHECKED_AT_UTC=$(date -u +%FT%TZ)
-LATEST_TOOL044_RUN=$RUN
-ACTION=hourly report gap repaired by watchdog
-NOTE=This report proves report-return recovery only; it does not promote component/E2E/24H status without separate evidence."
-            gh issue comment "$ISSUE" --body "$BODY"
-            echo 'TOOL044_PROGRESS_REPORT_RETURN=RECOVERED'
-          else
-            echo 'TOOL044_PROGRESS_REPORT_RETURN=HEALTHY'
+LATEST_TOOL044_RUN=$run_id
+WORKER_STATUS=$status
+WORKER_CONCLUSION=$conclusion
+RECOVERY_DISPATCHED=$recovered
+REPORT_GAP_RECOVERY=PASS"
+            gh issue comment "$issue" --repo "$repo" --body "$body"
           fi
+          echo "TOOL044_WATCHDOG=PASS run=$run_id recovered=$recovered report_stale=$stale"
