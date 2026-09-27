@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "WAITING_EXTERNAL_CONDITIONS",
+  "generated_at": "2026-09-27",
+  "root_families": [
+    {
+      "root_id": "EXTERNAL_ASSET_AND_RUNTIME_AVAILABILITY",
+      "status": "HOLD",
+      "absorbed_holds": [
+        "LIBRARY_SOURCE_BYTES_NOT_MOUNTED",
+        "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_UNAVAILABLE",
+        "INDEPENDENT_EXTERNAL_VERIFIER_UNAVAILABLE",
+        "RETAINED_CONTROL_TOWER_RUNTIME_UNAVAILABLE",
+        "INDEPENDENT_ENV2_PC_OFF_LOGGED_OFF_RUNTIME_UNAVAILABLE"
+      ],
+      "automatic_resume_condition": "ANY_REQUIRED_EXTERNAL_ASSET_OR_RUNTIME_BECOMES_ACCESSIBLE",
+      "resume_policy": "Resume only the affected child contract, preserve all other HOLD states, run one shared external-boundary E2E, and persist timestamped artifact plus remote read-back.",
+      "user_manual_relay_required": false,
+      "fake_pass_forbidden": true
+    },
+    {
+      "root_id": "ELAPSED_TIME_EVIDENCE",
+      "status": "WAITING",
+      "absorbed_holds": [
+        "ACTUAL_24H_SCHEDULE_CONTINUITY"
+      ],
+      "automatic_resume_condition": "24H_SCHEDULE_SPAN_WITHOUT_FAILED_OR_OVERDUE_INTERVAL",
+      "evidence_collector": "feedback_pipeline/tool044_unattended_evidence.py",
+      "workflow": ".github/workflows/tool044-minimum-circulation.yml",
+      "user_manual_relay_required": false,
+      "fake_pass_forbidden": true
+    }
+  ],
+  "original_hold_count": 6,
+  "compressed_root_count": 2,
+  "internal_fixable_remaining": 0,
+  "next_action": "AUTOMATIC_TRIGGER_ONLY"
+}
