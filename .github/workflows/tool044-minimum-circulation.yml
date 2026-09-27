@@ -71,6 +71,7 @@ jobs:
           import hashlib, json, os
           from datetime import datetime, timezone
           from pathlib import Path
+          from feedback_pipeline.tool044_unattended_evidence import update_history
           root=Path('feedback_pipeline'); job=os.environ['JOB_ID']; source=os.environ['SOURCE_REF']
           queue=json.loads((root/'tool044_atomic_demand_queue.json').read_text(encoding='utf-8'))
           cloud=json.loads((root/'tool044_cloud_state.json').read_text(encoding='utf-8'))
@@ -102,7 +103,7 @@ jobs:
             'user_manual_relay_required':0,
             'schedule_reinvoke_enabled':True,
             'unattended_loop_started': minimum and os.environ.get('GITHUB_EVENT_NAME') in ('push','schedule','workflow_dispatch'),
-            'continuous_24h_verified':'IN_PROGRESS' if minimum else 'NOT_STARTED',
+            'continuous_24h_verified':'WAITING' if minimum else 'NOT_STARTED',
             'multi_env':'HOLD_NOT_EXECUTED',
             'parallel_execution':'PASS' if cloud.get('parallel_jobs',0)>=2 and len(ready)>=2 else 'HOLD',
             'bulk_expansion':'ACTIVE' if len(queue.get('demands',[]))>0 else 'HOLD',
@@ -110,6 +111,14 @@ jobs:
             'watchdog_recovery':'READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE',
             'checkpoint_resume':'READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE'
           }
+          history_record={
+            'run_id':os.environ.get('GITHUB_RUN_ID'),'generated_at_utc':now,
+            'event':os.environ.get('GITHUB_EVENT_NAME'),'minimum_circulation':result['minimum_circulation'],
+            'production_mutation':0,'external_runtime':'GITHUB_ACTIONS'
+          }
+          verdict=update_history(root/'evidence'/f'{job}_unattended_history.jsonl',history_record)
+          result['continuous_24h_verified']=verdict['status']
+          result['unattended_evidence']=verdict
           result['evidence_sha256']=hashlib.sha256(json.dumps(result,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
           evidence_path=root/'evidence'/f'{job}_minimum_circulation.json'
           evidence_path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
