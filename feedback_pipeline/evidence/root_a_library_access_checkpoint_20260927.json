@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "root": "ROOT-A-PRODUCTION-STABLE-RELEASE-BLOCKERS",
+  "recorded_at": "2026-09-27",
+  "status": "IN_PROGRESS",
+  "completed_this_checkpoint": [
+    "deduplicated stale source-not-available HOLD wording",
+    "confirmed persistent Library archive registry",
+    "removed observer re-upload as a normal recovery action"
+  ],
+  "blocked_by_execution_environment": [
+    {
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "tool": "TOOL006",
+      "blocker": "Work runtime cannot mount archived Library bytes",
+      "automatic_trigger": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+    },
+    {
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "tool": "TOOL001",
+      "blocker": "Work runtime cannot mount archived Library bytes",
+      "automatic_trigger": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+    }
+  ],
+  "source_registry": "docs/WIC_SOURCE_ARCHIVE_REGISTRY_20260927.md",
+  "observer_reupload_required": false,
+  "exact_resume_point": "Mount the registered Library source bytes, extract the deduplicated TOOL006 publisher/layout batch and five TOOL001 provenance-backed report payloads, then run actual STABLE E2E and deployed-copy read-back."
+}

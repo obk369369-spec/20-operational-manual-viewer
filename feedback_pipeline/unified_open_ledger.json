@@ -78,15 +78,18 @@
     {
       "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
       "layer": "EXTERNAL",
-      "target": "EXTERNAL",
+      "target": "TOOL006",
       "source": "work16_root_ledger",
       "type": "HOLD_OR_LIMIT",
-      "status": "HOLD_EVIDENCE_WAITING",
-      "evidence": null,
-      "actual_action": "WAIT_TRIGGER",
-      "result": "UNRESOLVED",
-      "next_trigger": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE",
-      "next_start": "Run only the publisher-specific actual pair regression"
+      "status": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+      "evidence": {
+        "path": "docs/WIC_SOURCE_ARCHIVE_REGISTRY_20260927.md",
+        "scope": "ARCHIVED_SOURCE_EXISTS_BUT_BYTES_NOT_MOUNTED_IN_WORK_RUNTIME"
+      },
+      "actual_action": "WAIT_AUTOMATIC_LIBRARY_ACCESS",
+      "result": "SOURCE_ARCHIVED_REUPLOAD_NOT_REQUIRED",
+      "next_trigger": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+      "next_start": "Retrieve the archived canonical guide corpus and actual EML TOCs from Library, then run only the publisher/layout batch regression; never ask the observer to re-upload."
     },
     {
       "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
@@ -117,12 +120,15 @@
       "target": "TOOL001",
       "source": "work16_root_ledger",
       "type": "HOLD_OR_LIMIT",
-      "status": "HOLD_EVIDENCE_WAITING",
-      "evidence": null,
-      "actual_action": "WAIT_TRIGGER",
-      "result": "UNRESOLVED",
-      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
-      "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
+      "status": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+      "evidence": {
+        "path": "docs/WIC_SOURCE_ARCHIVE_REGISTRY_20260927.md",
+        "scope": "ARCHIVED_2026_MAIL_AND_GUIDE_SOURCES_EXIST_BUT_BYTES_NOT_MOUNTED_IN_WORK_RUNTIME"
+      },
+      "actual_action": "WAIT_AUTOMATIC_LIBRARY_ACCESS",
+      "result": "SOURCE_ARCHIVED_REUPLOAD_NOT_REQUIRED",
+      "next_trigger": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+      "next_start": "Recover five provenance-backed report payloads from the archived Library sources and run the actual report-to-final-guide E2E; never ask the observer to re-upload.",
       "deployment_gap": [
         "actual_tested",
         "deployed",
