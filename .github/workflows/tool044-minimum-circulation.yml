@@ -71,6 +71,7 @@ jobs:
           import hashlib, json, os
           from datetime import datetime, timezone
           from pathlib import Path
+          from feedback_pipeline.final_hold_auto_resume import persist as persist_final_hold_resume
           from feedback_pipeline.tool044_unattended_evidence import update_history
           root=Path('feedback_pipeline'); job=os.environ['JOB_ID']; source=os.environ['SOURCE_REF']
           queue=json.loads((root/'tool044_atomic_demand_queue.json').read_text(encoding='utf-8'))
@@ -119,6 +120,8 @@ jobs:
           verdict=update_history(root/'evidence'/f'{job}_unattended_history.jsonl',history_record)
           result['continuous_24h_verified']=verdict['status']
           result['unattended_evidence']=verdict
+          result['final_hold_auto_resume']=persist_final_hold_resume(
+            root/'evidence'/'final_external_hold_runtime_state.json', verdict)
           result['evidence_sha256']=hashlib.sha256(json.dumps(result,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
           evidence_path=root/'evidence'/f'{job}_minimum_circulation.json'
           evidence_path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
