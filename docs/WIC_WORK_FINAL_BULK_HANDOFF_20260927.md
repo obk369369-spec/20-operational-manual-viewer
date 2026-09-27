@@ -114,3 +114,12 @@ A tool is operationally complete only when the observer's remaining action is th
 - customer tools: choose/receive a real customer case and receive validated guidance/action output.
 - common infrastructure: observer reads status/results; no relay or repeated approvals.
 Any repeated formatting, duplicate cleanup, source re-upload, cross-chat copying, manual regression checking, or publisher-specific re-teaching remains an automation defect.
+
+
+## 2026-09-27 execution budget guard
+- Current 5-hour usage observed by user at handoff: 63% remaining.
+- HARD_STOP_THRESHOLD = 60% remaining.
+- Stop before crossing below 60%; preserve checkpoint/state/evidence first.
+- Do not spend budget on re-reading/researching unchanged PASS evidence.
+- Use remaining budget only for actual ROOT execution with highest priority on PRODUCTION-STABLE.
+- On stop: commit/read-back any safe completed changes and record exact resume point; do not claim unfinished work complete.
