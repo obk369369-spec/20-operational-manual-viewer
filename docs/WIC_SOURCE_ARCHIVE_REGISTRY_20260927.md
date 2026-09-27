@@ -15,6 +15,18 @@ Archived originals:
 4. 안내자료양식 (틀)-월드산업정보센터.zip
    - Library ID: libfile_19380961f9548191bcee7aa75224a7f2
 
+
+5. 1번 고객 자동화 안내서 1.zip
+   - Current conversation upload inspected: YES
+   - Size: 66,669,405 bytes
+   - ZIP entries: 287
+   - Uncompressed total: 300,340,976 bytes
+   - SHA-256: b3c7307788a8783790587c2c3f12626911871be30071ebee45a6d1c5bc95eecb
+   - Key recovered identity: TOOL021 = 영업 도우미 (`21번 영업 도우미.doc`)
+   - Persistent Library upload attempt: FAILED — `library_storage_limit_exceeded`
+   - Therefore raw ZIP is NOT yet marked SOURCE_ARCHIVED. Do not claim otherwise.
+   - GitHub inventory/hash: `docs/WIC_TOOL_CHAT_REGISTRY_20260927.md`
+
 Rules:
 - Do not ask the observer to re-upload these originals.
 - Retrieve them from the Library when byte-level source access is required.
