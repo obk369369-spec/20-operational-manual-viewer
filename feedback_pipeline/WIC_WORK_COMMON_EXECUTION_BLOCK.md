@@ -387,3 +387,25 @@ TOOL044_LATEST_DIRECTIVE_WINS = TRUE
 TOOL044_CHECKPOINT_RESUME = REQUIRED
 TOOL044_CROSS_TOOL_ISOLATION = REQUIRED
 CHATGPT_ALL_CHAT_REALTIME_WATCH = PLATFORM_LIMIT
+
+
+## TOOL044 ↔ Work 병렬협업·무충돌 자동인계 — REQUIRED (2026-09-27)
+- GitHub canonical queue/state 하나를 SSoT로 사용한다. 실행단위는 ROOT → atomic demand → dependency → owner → lease → checkpoint → status → evidence → result → resume condition이다.
+- 동일 ROOT/atomic demand에 유효 owner/lease가 있으면 다른 runner는 `ACTIVE_ELSEWHERE`로 빠진다. 독립 atomic demand만 병렬 claim하며 동일 파일/기능/출력은 dependency/asset lock으로 직렬화한다.
+- TOOL016은 원시 피드백을 SOURCE와 함께 수집하고 중복/PASS/SUPERSEDED/ACTIVE_ELSEWHERE를 제거한 뒤 공통 ROOT/atomic demand로 압축한다.
+- TOOL043은 Work가 필요 없는 조사·정리·분류·비교·검증준비를 먼저 소진한다. 실제 연속 business-task 실행은 별도 E2E 증거 전 PASS하지 않는다.
+- TOOL044/무료 runner는 검증부품 재사용·외부 완성부품·queue/checkpoint/failover/24h 순환을 담당한다.
+- Work/Codex는 코드/파일 수정·통합·회귀·배포가 필요한 ROOT만 받는다. 전체 대화/GitHub 재독해, 기존 PASS 재시험, 변하지 않은 HOLD 재검사를 금지한다.
+- Work 패키지는 ROOT 전체 오류를 선수집·압축한 뒤 최소 atomic execution batch로 생성하며 ROOT_ID/CURRENT_STATE/EXACT_ERROR/COMMON_CAUSE/EXPECTED/FILES_TO_CHANGE/FILES_NOT_TO_TOUCH/EXISTING_PASS_TO_REUSE/DEPENDENCIES/ACCEPTANCE_TEST/DEPLOY_TARGET/CHECKPOINT를 포함한다.
+- Work 결과 반환 후 commit/read-back → demand 상태 → dependency 해제 → 다음 claim을 갱신한다. 이전 checkpoint가 최신 canonical commit을 덮어쓰지 못한다.
+- 충돌은 임의 merge하지 않고 `CONFLICT_DETECTED`로 격리한다. 최신 사용자 요구 → canonical 규칙 → VERIFIED/PASS → dependency → 최신 정상 commit 순으로 판단하며 실제 요구 자체가 모순일 때만 `TRUE_USER_DECISION_REQUIRED`.
+- 일반 ChatGPT 전체 대화 실시간 감시는 `PLATFORM_LIMIT`. Work 승인/UI 우회도 금지하며 자동호출이 지원되지 않으면 Work 패키지 생성·실행준비 직전까지 자동화한다.
+- 사용자는 Chat↔TOOL016↔TOOL044↔Work 결과의 정상 중계자가 아니다.
+TOOL044_WORK_SHARED_SSoT = REQUIRED
+CROSS_RUNNER_ATOMIC_CLAIM = REQUIRED
+ACTIVE_ELSEWHERE_ON_VALID_LEASE = REQUIRED
+SAME_ASSET_PARALLEL_MUTATION = FORBIDDEN
+ROOT_COMPRESS_BEFORE_WORK = REQUIRED
+WORK_MINIMAL_EXECUTION_PACKAGE = REQUIRED
+USER_MANUAL_RELAY = 0
+WORK_UI_BYPASS = FORBIDDEN
