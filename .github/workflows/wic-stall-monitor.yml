@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Check TOOL044 cloud worker heartbeat and recover
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -60,7 +60,7 @@ jobs:
 
       - name: Verify hourly TOOL044 progress report and repair missing report
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -104,7 +104,7 @@ NOTE=This report proves report-return recovery only; it does not promote compone
 
       - name: Build canonical night queue and mobile observer state
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -210,7 +210,7 @@ NOTE=This report proves report-return recovery only; it does not promote compone
         id: issue
         if: steps.age.outputs.stale == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AGE_MIN: ${{ steps.age.outputs.age_minutes }}
           STRUCTURE_STATUS: ${{ steps.age.outputs.structure_status }}
         shell: bash
@@ -233,7 +233,7 @@ NOTE=This report proves report-return recovery only; it does not promote compone
       - name: Re-dispatch existing recovery audit once
         if: steps.age.outputs.stale == 'true' && steps.issue.outputs.created == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -243,7 +243,7 @@ NOTE=This report proves report-return recovery only; it does not promote compone
       - name: Close resolved stall issue
         if: steps.age.outputs.stale == 'false'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
