@@ -1,32 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-27T08:24:17.239044+00:00",
-  "UNFINISHED_SCANNED": 43,
-  "ALREADY_PASS_EXCLUDED": 7,
-  "ROOTS_MERGED": 1,
-  "WORK_FIXABLE_ROOTS": 1,
-  "WORK_REQUIRED": [
-    {
-      "demand_id": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
-      "root_id": "1755eed95f7a0daaae1f",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    }
-  ],
-  "WORK_BATCHES": [
-    {
-      "root_id": "1755eed95f7a0daaae1f",
-      "demands": [
-        "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION"
-      ],
-      "target_tools": [
-        "CENTRAL"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    }
-  ],
+  "updated_at": "2026-09-27T08:24:38.713729+00:00",
+  "UNFINISHED_SCANNED": 42,
+  "ALREADY_PASS_EXCLUDED": 8,
+  "ROOTS_MERGED": 0,
+  "WORK_FIXABLE_ROOTS": 0,
+  "WORK_REQUIRED": [],
+  "WORK_BATCHES": [],
   "TOOL044_AUTO_HANDED_OFF": 42,
   "TOOL044_QUEUE": [
     {
@@ -364,12 +344,11 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 1,
+  "WORK_REQUIRED_REMAINDER": 0,
   "MULTI_GATE": {
     "capacity": 15,
     "statuses": {
-      "PASS": 8,
-      "CLAIMED": 1
+      "PASS": 9
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -394,7 +373,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-27T08:24:17.239044+00:00",
+  "LAST_HEARTBEAT": "2026-09-27T08:24:38.713729+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

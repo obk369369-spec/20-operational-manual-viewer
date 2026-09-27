@@ -241,8 +241,13 @@
         }
       ],
       "status": "SATISFIED_BY_COMMON_COMPONENT",
-      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
-      "satisfied_component": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "TOOL044-AUTO-ROLLBACK",
@@ -1098,8 +1103,13 @@
           "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
-      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
@@ -1247,8 +1257,13 @@
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
-      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
@@ -1396,8 +1411,13 @@
           "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
-      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
@@ -1569,8 +1589,13 @@
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
-      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
@@ -2028,8 +2053,13 @@
         "evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_expansion_fault_loop.json",
         "basis": "Existing actual minimum-circulation execution evidence satisfies this capability; stale OPEN reconciled without re-execution."
       },
-      "satisfied_at": "2026-09-25T05:34:44.689673+00:00",
-      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
@@ -2119,7 +2149,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "SATISFIED_BY_COMMON_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "69ff43b8de90d6f44d5e",
       "root_id": "1755eed95f7a0daaae1f",
@@ -2156,7 +2186,14 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+      }
     },
     {
       "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
