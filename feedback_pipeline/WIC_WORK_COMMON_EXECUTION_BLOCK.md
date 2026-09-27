@@ -368,3 +368,22 @@ WORK_RETRY_BEFORE_TOOL044_EXHAUSTION = FORBIDDEN
 WORK_APPROVAL_WITHOUT_EXHAUSTION_EVIDENCE = BLOCKED
 WORK_NEW_BUILD = LAST_RESORT_ONLY
 WORK_INDEPENDENT_FULL_E2E_REQUIRES_EVIDENCE = TRUE
+
+
+## TOOL044 상시 지시 무충돌 접수·병합 — REQUIRED (2026-09-27)
+- 신규 지시는 canonical inbox → 기존 ROOT 검색 → MERGE/NEW_ROOT → 중복/PASS 재사용 차단 → 중앙 queue → claim → checkpoint → result-return 순서로 처리한다.
+- 동일 지시는 `SKIP_DUPLICATE`, 이미 PASS/VERIFIED인 동일 ROOT는 `SKIP_REUSE_PASS`로 재실행하지 않는다.
+- 실행 중 ROOT의 추가 지시는 기존 checkpoint를 폐기하거나 처음부터 재시작하지 않고 해당 ROOT에 증분 MERGE한다.
+- 서로 다른 TOOL/ROOT 지시는 별도 demand로 유지하며 상태·claim·checkpoint·result를 섞지 않는다.
+- 사용자의 최신 명시 지시가 이전 지시와 충돌하면 이전 항목을 `SUPERSEDED`하고 최신 revision만 유효하게 한다.
+- 중단/lease 변경/다른 runner 재개 시 durable checkpoint의 `resume_from`에서 이어간다.
+- canonical 구현은 `feedback_pipeline/tool044_instruction_intake.py`, inbox는 `feedback_pipeline/tool044_instruction_inbox.json`, 증거상태는 `feedback_pipeline/evidence/tool044_instruction_intake_state.json`을 사용한다.
+- 5분 intake는 기존 multi-gate/5분 순환/HOLD 자동재개/24시간 증거수집을 대체하지 않고 앞단 접수 계층으로만 동작한다.
+- 일반 ChatGPT 모든 대화창을 플랫폼 밖에서 자동 실시간 감시한다고 주장하지 않는다. 접근 불가 범위는 `PLATFORM_LIMIT`으로 분리한다.
+TOOL044_CONFLICT_FREE_INTAKE = REQUIRED
+TOOL044_DUPLICATE_ACTION = SKIP_DUPLICATE
+TOOL044_PASS_REUSE_ACTION = SKIP_REUSE_PASS
+TOOL044_LATEST_DIRECTIVE_WINS = TRUE
+TOOL044_CHECKPOINT_RESUME = REQUIRED
+TOOL044_CROSS_TOOL_ISOLATION = REQUIRED
+CHATGPT_ALL_CHAT_REALTIME_WATCH = PLATFORM_LIMIT
