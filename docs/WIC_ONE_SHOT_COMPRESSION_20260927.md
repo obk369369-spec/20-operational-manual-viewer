@@ -120,3 +120,31 @@ Compress all remaining ROOTs by capability, not by old numeric order:
 - only genuinely inaccessible implementation/E2E/deployment -> one Work packet
 - only real external dependency -> TRUE_EXTERNAL_INPUT_REQUIRED
 No per-root user confirmation and no sequential waiting.
+
+
+## 10. Final direct-fix compression reconciliation — 2026-09-27
+
+### Closed without Work
+- ROOT-WATCHDOG-WORKFLOW-INVALID: ACTUAL_PASS. Commit 5eb3ffbd74c4967a1ef57ecd00312d2752b0f75f; Actions run 36286727554 SUCCESS.
+- ROOT-HOURLY-REPORT-E2E: ACTUAL_PASS for report-return recovery. Issue #9 received actual watchdog report comment 5851750784 after the successful run; latest TOOL044 worker referenced as successful.
+- ROOT-A-FAILOVER: PASS by existing evidence feedback_pipeline/evidence/root_a_minimum_failover.json. Heartbeat, controlled failure, watchdog, ENV2 handoff, lease transfer, checkpoint resume, post-failure result return, final readback and minimum two-environment circulation are all recorded PASS. Do not rerun merely to recreate evidence.
+- ROOT-IDENTITY-043: repository identity collision repaired. TOOL043 now means the ordinary-Chat-capable continuous execution layer; the revenue small-app launch lane is explicitly separate/HOLD_IDENTITY until its own canonical number/source is recovered.
+
+### Reuse/close stale work
+- TOOL013: existing actual 114-file / 823-row evidence and deployed XLS/XLSX E2E are SKIP_REUSE. TOOL037 remains a separate upstream metadata-production/validation responsibility; do not merge it into TOOL013.
+- TOOL006 implementation regression: 9/9 functional/chronic fixtures and 4/4 smoke are already PASS. Remaining publisher golden pair is not an implementation repair; it is TRUE_EXTERNAL_INPUT_REQUIRED because the actual publisher source/expected pair is absent.
+- TOOL041→007→042 dependency boundary: representative actual customer cross-tool integration is PASS and fail-closed behavior is correct. The remaining positive business operation needs authenticated/current customer interest/history plus verified saleable material evidence; this is external business evidence, not a reason to rebuild the already-passing boundary.
+
+### Remaining real external/input boundaries
+- TOOL006: ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE.
+- TOOL001: FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE.
+- TOOL041/042 positive customer operation: AUTHENTICATED_CURRENT_CUSTOMER_HISTORY_AND_MATERIAL_EVIDENCE_AVAILABLE.
+- ordinary ChatGPT all-message native interceptor: PLATFORM_LIMIT until platform support exists.
+- TOOL048 mail-validation: actual mail/source packets are required for any not-yet-audited cases; do not fabricate or reclassify the intentional blank supply-price field as an error.
+- revenue small-app launch lane identity: canonical number/source still needs recovery from authoritative history; do not merge into TOOL043.
+
+### Work packet decision
+No remaining ROOT above is justified for a broad Work rebuild merely because it was historically HOLD. Work receives only a concrete implementation diff when an actual required input exists and the connected chat/GitHub tools cannot safely execute that diff. Until then, external-input/platform holds remain holds rather than fake Work tasks.
+
+### Compression completion
+The accessible repository repair/reconciliation pass is COMPLETE. No user confirmation is required between roots. New work reopens only on new actual failure evidence or arrival of a listed external input.
