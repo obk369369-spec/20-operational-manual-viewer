@@ -866,8 +866,8 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-28T12:15:09.043140+00:00",
-      "UNFINISHED_SCANNED": 78,
+      "updated_at": "2026-09-28T12:19:32.851431+00:00",
+      "UNFINISHED_SCANNED": 75,
       "ALREADY_PASS_EXCLUDED": 26,
       "ROOTS_MERGED": 2,
       "WORK_FIXABLE_ROOTS": 2,
@@ -1074,6 +1074,12 @@
           "atomic_capabilities": []
         },
         {
+          "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+          "atomic_capabilities": []
+        },
+        {
           "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
           "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
           "target_tool": "TOOL016/TOOL044",
@@ -1136,12 +1142,6 @@
           "atomic_capabilities": [
             "FAILURE_ISOLATION"
           ]
-        },
-        {
-          "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
-          "atomic_capabilities": []
         }
       ],
       "WORK_REQUIRED_REMAINDER": 2,
@@ -1174,12 +1174,10 @@
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
         "ready": 37,
-        "waiting": 41,
-        "next_demand": null,
-        "duplicate_demand_ids": [
-          "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928"
-        ],
-        "dedup_gate": "FAIL",
+        "waiting": 38,
+        "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+        "duplicate_demand_ids": [],
+        "dedup_gate": "PASS",
         "result_returns": 26,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
@@ -1196,7 +1194,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-28T12:15:09.043140+00:00",
+      "LAST_HEARTBEAT": "2026-09-28T12:19:32.851431+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
