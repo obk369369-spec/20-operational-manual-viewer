@@ -3442,7 +3442,13 @@
         "resume_condition": "INDEPENDENT_RUNTIME_OR_OFFICIAL_CHAT_DELIVERY_AVAILABLE",
         "returned_at": "2026-09-28T10:56:38.767Z"
       },
-      "auto_handoff": null,
+      "auto_handoff": {
+        "target": "TOOL016_TOOL044_EXTERNAL_IMPROVEMENT_QUEUE",
+        "status": "REGISTERED_FOR_AUTOMATIC_RETRY",
+        "member_count": 5,
+        "trigger": "INDEPENDENT_RUNTIME_OR_OFFICIAL_CHAT_DELIVERY_AVAILABLE",
+        "user_relay": "NONE"
+      },
       "user_action": "NONE"
     },
     {
@@ -3602,7 +3608,13 @@
         "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE",
         "returned_at": "2026-09-28T10:56:38.767Z"
       },
-      "auto_handoff": null,
+      "auto_handoff": {
+        "target": "TOOL016_TOOL044_EXTERNAL_IMPROVEMENT_QUEUE",
+        "status": "REGISTERED_FOR_AUTOMATIC_RETRY",
+        "member_count": 4,
+        "trigger": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE",
+        "user_relay": "NONE"
+      },
       "user_action": "NONE"
     },
     {
