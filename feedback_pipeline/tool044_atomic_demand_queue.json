@@ -3970,6 +3970,21 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "SUPERSEDES and merges the 2026-09-28 residual-autocirculation, 24h large-parallel expansion, observer separation, Work automatic handoff, approval/rejection/credit governance, and MULTI instructions into ONE COMMON_ROOT. Preserve already-PASS TOOL016→TOOL044 baseline; do not rebuild it. Exclude TOOL013 and individual TOOL completion from this Work. Use remaining Work resources only for this common infrastructure. Goal: unattended 24h collection of errors/feedback/residuals→TOOL016 dedupe+COMMON_ROOT→TOOL044→multiple free independent execution flows for different roots→actual validation/evidence/deploy/read-back→central result return→PASS lock→immediate next selection; only large unresolved roots become WORK_REQUIRED→handoff layer→Work when platform permits→automatic result recovery→TOOL016/044→validation→next. User relay/copy-paste/continuous monitoring is FAIL. Handoff layer owns WORK_REQUIRED collection, dedupe, COMMON_ROOT compression, prior Work/PASS reuse check, Work input generation, permitted automatic handoff, result recovery/integrity check, return and recirculation. It also classifies approval/rejection: safe pre-authorized platform-permitted repeat actions may proceed; duplicate/PASS reruns/low-value repetitions rejected or returned to free circulation; mandatory human approval is never bypassed and is batched as PLATFORM_LIMIT without stopping other work. Credit telemetry: use real readable telemetry only; otherwise CREDIT_TELEMETRY_UNAVAILABLE; never invent values. Work forbidden when free circulation, verified component, or PASS reuse can solve. MULTI requires shared central queue, independent COMMON_ROOT parallelism, atomic claim/lease, exactly-once, duplicate prevention, heartbeat, checkpoint/resume, timeout takeover/failover, PASS reselection block, idle-runner next selection, central result return, TOOL016/044+Observer/Control Tower projection, and 24h evidence accumulation. Same ROOT has one owner; different roots may run concurrently. First run full-system/bulk parallel test and FIND ALL FAILURES, then GROUP BY COMMON_ROOT→FIX EACH ROOT ONCE→APPLY ALL→PARALLEL BULK TEST→INDIVIDUAL EVIDENCE→DEPLOY→REMOTE READ-BACK→RESULT RETURN→PASS LOCK. Do not fix atomic items one-by-one. Minimum MULTI proof: >=2 independent execution flows concurrently claim different real queue tasks, zero duplicate execution, both results return centrally, and intentional failure of one flow is recovered/taken over while circulation continues. Minimum Work proof: one real WORK_REQUIRED travels circulation→handoff→Work processing→automatic result recovery→TOOL016/044→validation→next without user relay; if platform cannot programmatically invoke Work or retrieve its result, record only that stage PLATFORM_LIMIT and keep all other circulation active. 24H_ACTUAL_PASS only after real elapsed 24h evidence; 24h execution/evidence collection continues meanwhile. Existing PASS/SKIP_REUSE_PASS/Work↔Work PASS remain REOPEN_BLOCKED unless real regression/new requirement. All new failures are deduped into this/root-related COMMON_ROOTs, not separate duplicate projects.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
