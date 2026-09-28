@@ -26,7 +26,7 @@ def utc_now() -> datetime:
 
 
 def signature(demand: dict) -> str:
-    value = json.dumps({"id": demand["demand_id"], "capabilities": sorted(demand["atomic_capabilities"]),
+    value = json.dumps({"id": demand["demand_id"], "capabilities": sorted(demand.get("atomic_capabilities") or []),
                         "candidates": demand.get("official_candidates", [])}, sort_keys=True)
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
@@ -156,8 +156,9 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
     for demand in queue.get("demands", []):
         sig = signature(demand)
         old = receipts.get(sig)
-        matched = {cap: capability_map[cap] for cap in demand["atomic_capabilities"] if cap in capability_map}
-        missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
+        capabilities = demand.get("atomic_capabilities") or []
+        matched = {cap: capability_map[cap] for cap in capabilities if cap in capability_map}
+        missing = [cap for cap in capabilities if cap not in matched]
         harvests = []
         if external:
             for candidate in demand.get("official_candidates", []):
@@ -172,7 +173,7 @@ def run_cycle(queue_path: Path, registry_path: Path, state_path: Path, now: date
                 if harvested.get("status") == "VERIFIED_REUSABLE":
                     verified_external.append(harvested)
                     matched[candidate["capability"]] = harvested["component_id"]
-            missing = [cap for cap in demand["atomic_capabilities"] if cap not in matched]
+            missing = [cap for cap in capabilities if cap not in matched]
         result = "READY_ATOMIC_COMPONENT_FOUND" if matched and not missing else "PARTIAL_ATOMIC_COMPONENT_SET" if matched else "NO_READY_ATOMIC_COMPONENT"
         receipt = {
             "demand_id": demand["demand_id"], "query_signature": sig, "last_searched": now.isoformat(),

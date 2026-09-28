@@ -24,6 +24,13 @@ def _digest(value: object) -> str:
                                      separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+def _cycle_eligible(demand: dict) -> bool:
+    """Exclude completed bundles and the explicitly out-of-scope TOOL013 lane."""
+    text = json.dumps(demand, ensure_ascii=False).upper()
+    returned = (demand.get("result_return") or {}).get("tool016_ack") == "RECEIVED"
+    return not returned and "TOOL013" not in text and not str(demand.get("demand_id", "")).startswith("T13-")
+
+
 def _atomic_json(path: Path, value: dict) -> None:
     temporary = path.with_name(path.name + ".tool044-pending")
     try:
@@ -217,6 +224,12 @@ def visible_backoff_state(queue_path: Path, registry_path: Path, state_path: Pat
 def _process_pending(queue_path: Path, registry_path: Path, state_path: Path,
                      external: bool, trigger_source: str, previous: dict | None,
                      completed: list[dict]) -> dict:
+    original = json.loads(queue_path.read_text(encoding="utf-8"))
+    eligible = [row for row in original.get("demands", []) if _cycle_eligible(row)]
+    if len(eligible) != len(original.get("demands", [])):
+        with _pending_queue(queue_path, eligible) as eligible_path:
+            return _process_pending(eligible_path, registry_path, state_path, external,
+                                    trigger_source, previous, completed)
     state = run_cycle(queue_path, registry_path, state_path, external=external,
                       artifact_dir=state_path.parent.parent / "external_candidate_pool",
                       trigger_source=trigger_source)
