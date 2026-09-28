@@ -12,6 +12,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -72,7 +73,8 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
         expiry = job.get("LEASE_EXPIRY")
         if job.get("STATUS") in {"CLAIMED", "RUNNING", "VALIDATING"} and expiry:
             if datetime.fromisoformat(expiry) <= now:
-                job.update(STATUS="READY", OWNER=None, CLAIM_TIME=None, LEASE_EXPIRY=None)
+                job.update(STATUS="READY", OWNER=None, CLAIM_TIME=None, LEASE_EXPIRY=None,
+                           FENCING_TOKEN=None)
                 events.append({"event": "STALE_RECLAIM", "job_id": job["JOB_ID"], "at": stamp(now)})
 
     for component in _components(pool):
@@ -141,10 +143,12 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
     for index, job in enumerate(ready, 1):
         gate_id = f"GATE_{index:02d}"
         owner = f"GITHUB_ACTIONS:{run_id}:{gate_id}"
+        fencing_token = uuid.uuid4().hex
         job.update(OWNER=owner, CLAIM_TIME=stamp(now),
                    LEASE_EXPIRY=stamp(now + timedelta(minutes=30)),
-                   CHECKPOINT="CLAIM_DURABLE", STATUS="CLAIMED")
-        matrix.append({"gate_id": gate_id, "job_id": job["JOB_ID"], "owner": owner})
+                   FENCING_TOKEN=fencing_token, CHECKPOINT="CLAIM_DURABLE", STATUS="CLAIMED")
+        matrix.append({"gate_id": gate_id, "job_id": job["JOB_ID"], "owner": owner,
+                       "fencing_token": fencing_token})
     state.update(schema_version=1, updated_at=stamp(now), capacity=MAX_GATES,
                  active_claims=len(matrix), provider="GITHUB_ACTIONS")
     return state, matrix
@@ -159,10 +163,12 @@ def plan(pool_path: Path, state_path: Path, run_id: str, queue_path: Path = QUEU
     return matrix
 
 
-def run_lane(state_path: Path, job_id: str, owner: str, result_path: Path) -> dict:
+def run_lane(state_path: Path, job_id: str, owner: str, result_path: Path,
+             fencing_token: str = "") -> dict:
     state = load(state_path, {"jobs": {}})
     job = state.get("jobs", {}).get(job_id)
-    if not job or job.get("STATUS") != "CLAIMED" or job.get("OWNER") != owner:
+    if (not job or job.get("STATUS") != "CLAIMED" or job.get("OWNER") != owner
+            or not fencing_token or job.get("FENCING_TOKEN") != fencing_token):
         result = {"job_id": job_id, "status": "BLOCKED", "reason": "CLAIM_MISMATCH"}
         atomic_json(result_path, result)
         return result
@@ -180,7 +186,8 @@ def run_lane(state_path: Path, job_id: str, owner: str, result_path: Path) -> di
         site = sandbox / "site"
         env = {**os.environ, "WIC_COMPONENT_SANDBOX": raw,
                "PYTHONPATH": str(site) + os.pathsep + os.environ.get("PYTHONPATH", "")}
-        progress = {"job_id": job_id, "owner": owner, "status": "RUNNING",
+        progress = {"job_id": job_id, "owner": owner, "fencing_token": fencing_token,
+                    "status": "RUNNING",
                     "checkpoint": "FETCH_COMPLETE", "heartbeat": stamp(utcnow())}
         atomic_json(result_path, progress)
         installed = subprocess.run(expand_command(install, sandbox), cwd=raw, env=env,
@@ -197,7 +204,8 @@ def run_lane(state_path: Path, job_id: str, owner: str, result_path: Path) -> di
             rolled_back = subprocess.run(expand_command(rollback, sandbox), cwd=raw, env=env,
                                          capture_output=True, text=True, timeout=600)
         result = {
-            "job_id": job_id, "owner": owner, "component_id": job["COMPONENT_ID"],
+            "job_id": job_id, "owner": owner, "fencing_token": fencing_token,
+            "component_id": job["COMPONENT_ID"],
             "root_id": job["ROOT_ID"], "target_tool": job["TARGET_TOOL"],
             "status": "PASS" if passed else "FAIL",
             "checkpoint": "REGRESSION_COMPLETE" if passed else "ROLLBACK_COMPLETE",
@@ -219,7 +227,8 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
     for path in result_paths:
         result = load(path, {})
         job = state.get("jobs", {}).get(result.get("job_id"))
-        if not job or result.get("owner") != job.get("OWNER"):
+        if (not job or result.get("owner") != job.get("OWNER")
+                or result.get("fencing_token") != job.get("FENCING_TOKEN")):
             continue
         job.update(STATUS=result["status"], CHECKPOINT=result.get("checkpoint", "RETURNED"),
                    RESULT=result, LEASE_EXPIRY=None)
@@ -261,7 +270,8 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
         "updated_at": state["updated_at"], "capacity": MAX_GATES,
         "results_returned": returned,
         "jobs": {key: {field: row.get(field) for field in (
-            "ROOT_ID", "TARGET_TOOL", "COMPONENT_ID", "STATUS", "CHECKPOINT", "RESULT")}
+            "ROOT_ID", "TARGET_TOOL", "COMPONENT_ID", "OWNER", "LEASE_EXPIRY",
+            "FENCING_TOKEN", "STATUS", "CHECKPOINT", "RESULT")}
                  for key, row in state.get("jobs", {}).items()},
     }
     counts = {}
@@ -295,6 +305,7 @@ def main() -> None:
     r = sub.add_parser("run-lane")
     r.add_argument("--state", type=Path, default=STATE); r.add_argument("--job-id", required=True)
     r.add_argument("--owner", required=True); r.add_argument("--result", type=Path, required=True)
+    r.add_argument("--fencing-token", required=True)
     a = sub.add_parser("aggregate")
     a.add_argument("--state", type=Path, default=STATE); a.add_argument("--central", type=Path, default=CENTRAL)
     a.add_argument("--queue", type=Path, default=QUEUE)
@@ -308,7 +319,8 @@ def main() -> None:
                 handle.write(f"matrix={payload}\nhas_jobs={'true' if matrix else 'false'}\n")
         print(payload)
     elif args.command == "run-lane":
-        print(json.dumps(run_lane(args.state, args.job_id, args.owner, args.result)))
+        print(json.dumps(run_lane(args.state, args.job_id, args.owner, args.result,
+                                  args.fencing_token)))
     else:
         print(json.dumps(aggregate(args.state, args.central, args.results, args.queue)))
 

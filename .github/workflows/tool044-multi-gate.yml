@@ -66,6 +66,7 @@ jobs:
           python feedback_pipeline/tool044_multi_gate.py run-lane
           --job-id '${{ matrix.job_id }}'
           --owner '${{ matrix.owner }}'
+          --fencing-token '${{ matrix.fencing_token }}'
           --result 'tool044-result-${{ matrix.gate_id }}.json'
       - if: ${{ always() }}
         uses: actions/upload-artifact@v4

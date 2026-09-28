@@ -1,6 +1,6 @@
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from tool044_multi_gate import aggregate, plan, run_lane
@@ -27,7 +27,8 @@ def test_plan_claim_run_and_central_return(tmp_path: Path):
     claimed = json.loads(state.read_text(encoding="utf-8"))["jobs"]["COMPONENT::READY-ONE"]
     assert claimed["STATUS"] == "CLAIMED" and claimed["CHECKPOINT"] == "CLAIM_DURABLE"
     result = tmp_path / "result.json"
-    actual = run_lane(state, matrix[0]["job_id"], matrix[0]["owner"], result)
+    actual = run_lane(state, matrix[0]["job_id"], matrix[0]["owner"], result,
+                      matrix[0]["fencing_token"])
     assert actual["status"] == "PASS" and actual["production_mutation"] == 0
     merged = aggregate(state, central, [result], queue)
     assert merged["jobs"][matrix[0]["job_id"]]["STATUS"] == "PASS"
@@ -52,7 +53,8 @@ def test_failed_validator_runs_rollback(tmp_path: Path):
     pool.write_text(json.dumps({"components": [row]}), encoding="utf-8")
     queue = tmp_path / "queue.json"; queue.write_text(json.dumps({"demands": []}), encoding="utf-8")
     matrix = plan(pool, state, "RUN-3", queue)
-    result = run_lane(state, matrix[0]["job_id"], matrix[0]["owner"], tmp_path / "result.json")
+    result = run_lane(state, matrix[0]["job_id"], matrix[0]["owner"], tmp_path / "result.json",
+                      matrix[0]["fencing_token"])
     assert result["status"] == "FAIL"
     assert result["rollback_pass"] is True
 
@@ -69,12 +71,13 @@ def test_verified_component_auto_claims_real_demand(tmp_path: Path):
     central.write_text(json.dumps({"integration_core": {}}), encoding="utf-8")
     first = plan(pool, state, "RUN-4", queue)
     result = tmp_path / "component.json"
-    run_lane(state, first[0]["job_id"], first[0]["owner"], result)
+    run_lane(state, first[0]["job_id"], first[0]["owner"], result, first[0]["fencing_token"])
     aggregate(state, central, [result], queue)
     second = plan(pool, state, "RUN-5", queue)
     assert second[0]["job_id"].startswith("DEMAND::REAL-DEMAND-1::MATCHER")
     demand_result = tmp_path / "demand.json"
-    run_lane(state, second[0]["job_id"], second[0]["owner"], demand_result)
+    run_lane(state, second[0]["job_id"], second[0]["owner"], demand_result,
+             second[0]["fencing_token"])
     aggregate(state, central, [demand_result], queue)
     assert json.loads(queue.read_text(encoding="utf-8"))["demands"][0]["status"] == "SATISFIED_BY_COMMON_COMPONENT"
     progress = json.loads(central.read_text(encoding="utf-8"))["integration_core"]["tool044_external_progress"]
@@ -125,3 +128,22 @@ def test_pass_hold_fail_returns_preserve_demand_resume_contract(tmp_path: Path):
     assert demands["DEMAND-HOLD"]["result_return"]["resume_condition"] == "RETRY_WHEN_COMPONENT_CONTRACT_OR_EXTERNAL_TRIGGER_CHANGES"
     assert demands["DEMAND-FAIL"]["result_return"]["resume_condition"] == "RETRY_AFTER_ROOT_CAUSE_FIX_AND_RESET_TO_READY"
     assert all(row["result_return"]["tool016_ack"] == "RECEIVED" for row in demands.values())
+
+
+def test_fencing_rejects_old_owner_and_expired_lease_is_reclaimed(tmp_path: Path):
+    row = component("FENCED")
+    pool = tmp_path / "pool.json"; state = tmp_path / "state.json"; queue = tmp_path / "queue.json"
+    pool.write_text(json.dumps({"components": [row]}), encoding="utf-8")
+    queue.write_text(json.dumps({"demands": []}), encoding="utf-8")
+    first = plan(pool, state, "RUN-OLD", queue)[0]
+    blocked = run_lane(state, first["job_id"], first["owner"], tmp_path / "blocked.json", "wrong-token")
+    assert blocked["status"] == "BLOCKED" and blocked["reason"] == "CLAIM_MISMATCH"
+    current = json.loads(state.read_text(encoding="utf-8"))
+    current["jobs"][first["job_id"]]["LEASE_EXPIRY"] = (datetime.now(timezone.utc) - timedelta(seconds=1)).isoformat()
+    state.write_text(json.dumps(current), encoding="utf-8")
+    second = plan(pool, state, "RUN-TAKEOVER", queue)[0]
+    assert second["owner"] != first["owner"] and second["fencing_token"] != first["fencing_token"]
+    stale = run_lane(state, first["job_id"], first["owner"], tmp_path / "stale.json", first["fencing_token"])
+    assert stale["status"] == "BLOCKED"
+    passed = run_lane(state, second["job_id"], second["owner"], tmp_path / "passed.json", second["fencing_token"])
+    assert passed["status"] == "PASS"
