@@ -198,6 +198,74 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "related_tool": "TOOL016/TOOL044",
+      "purpose": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+      "desired_result": "root claim -> bulk execution/validation -> item evidence -> result return -> next unresolved root",
+      "required_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "COMMON_ROOT_DEDUPLICATION",
+        "ITEM_EVIDENCE_RETURN",
+        "AUTO_NEXT_ROOT"
+      ],
+      "member_atomic_count": 37,
+      "common_root_ids": [
+        "CR-EVIDENCE-VALIDATION",
+        "CR-TRANSLATION-COMPONENT",
+        "CR-BUSINESS-EXECUTABLE-CONTRACT",
+        "CR-EXTERNAL-OBSERVER-RUNTIME",
+        "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+        "CR-ELAPSED-TIME"
+      ],
+      "status": "RETURNED",
+      "user_action": "NONE",
+      "completed_at": "2026-09-28T10:18:00.471Z",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "registered_items": 37,
+        "common_roots": 6,
+        "root_demands": [
+          {
+            "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
+            "status": "RETURNED_WITH_ITEM_EVIDENCE",
+            "resume_condition": "NEW_ITEM_SPECIFIC_ACTUAL_EVIDENCE",
+            "member_count": 9
+          },
+          {
+            "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
+            "status": "HOLD_NO_READY_COMPONENT_RETURNED",
+            "resume_condition": "VERIFIED_TRANSLATION_COMPONENT_REGISTERED",
+            "member_count": 1
+          },
+          {
+            "demand_id": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
+            "status": "HOLD_EXTERNAL_INPUT_OR_CONTRACT_RETURNED",
+            "resume_condition": "SOURCE_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+            "member_count": 16
+          },
+          {
+            "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+            "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+            "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE",
+            "member_count": 6
+          },
+          {
+            "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+            "status": "HOLD_EXTERNAL_RUNTIME_CAPACITY_RETURNED",
+            "resume_condition": "SECOND_SHARED_RUNTIME_WITH_SHARED_LEASE_STORE_AVAILABLE",
+            "member_count": 4
+          },
+          {
+            "demand_id": "FINAL-37-CR-ELAPSED-TIME",
+            "status": "WAITING_ELAPSED_TIME_RETURNED",
+            "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS",
+            "member_count": 1
+          }
+        ]
+      }
     }
   ]
 }

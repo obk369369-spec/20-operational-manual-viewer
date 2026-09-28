@@ -2300,6 +2300,7 @@
       "result_return": null
     },
     {
+<<<<<<< HEAD
       "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
       "target_tool": "TOOL044_CENTERED_CIRCULATION",
       "source": "USER_FINAL_ALL_UNFINISHED_BATCH_DIRECTIVE_20260928",
@@ -2339,6 +2340,260 @@
         "USER_MANUAL_COPY_OR_REINSTRUCTION_REQUIRED_EQUALS_FAIL"
       ],
       "pass_condition": "All currently internally executable unfinished units are processed in the same batch circulation through actual validation, individual evidence, required deployment/readback and result return; genuine external-condition units remain explicitly separated; circulation continues to the next unfinished unit without user reinstruction."
+=======
+      "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
+      "root_id": "CR-EVIDENCE-VALIDATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "member_atomic_ids": [
+        "T13-01",
+        "T13-03",
+        "T13-04",
+        "T13-07A",
+        "T13-07B",
+        "T13-07C",
+        "T02-01",
+        "T46-01",
+        "T47-01"
+      ],
+      "member_count": 9,
+      "status": "RETURNED_WITH_ITEM_EVIDENCE",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:18:00.471Z",
+        "member_count": 9
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "NEW_ITEM_SPECIFIC_ACTUAL_EVIDENCE"
+      },
+      "result_return": {
+        "status": "RETURNED_WITH_ITEM_EVIDENCE",
+        "tool016_ack": "RECEIVED",
+        "member_count": 9,
+        "member_state_counts": {
+          "FAIL": 8,
+          "TRUE_EXTERNAL_INPUT_REQUIRED": 1
+        },
+        "reason": "Existing item evidence linked without re-running completed work.",
+        "resume_condition": "NEW_ITEM_SPECIFIC_ACTUAL_EVIDENCE",
+        "returned_at": "2026-09-28T10:18:00.471Z"
+      },
+      "user_action": "NONE",
+      "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+    },
+    {
+      "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
+      "root_id": "CR-TRANSLATION-COMPONENT",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "member_atomic_ids": [
+        "T13-02"
+      ],
+      "member_count": 1,
+      "status": "HOLD_NO_READY_COMPONENT_RETURNED",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:18:00.471Z",
+        "member_count": 1
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "VERIFIED_TRANSLATION_COMPONENT_REGISTERED"
+      },
+      "result_return": {
+        "status": "HOLD_NO_READY_COMPONENT_RETURNED",
+        "tool016_ack": "RECEIVED",
+        "member_count": 1,
+        "member_state_counts": {
+          "PLATFORM_LIMIT": 1
+        },
+        "reason": "No verified ready component exists; no guessed implementation.",
+        "resume_condition": "VERIFIED_TRANSLATION_COMPONENT_REGISTERED",
+        "returned_at": "2026-09-28T10:18:00.471Z"
+      },
+      "user_action": "NONE",
+      "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+    },
+    {
+      "demand_id": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
+      "root_id": "CR-BUSINESS-EXECUTABLE-CONTRACT",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "member_atomic_ids": [
+        "T06-03",
+        "T07-01",
+        "T41-01",
+        "T42-01",
+        "T43-02",
+        "T01-01",
+        "T16-02",
+        "T48-01",
+        "T009-01",
+        "T010-01",
+        "T018-01",
+        "T028-01",
+        "T029-01",
+        "T034-01",
+        "T035-01",
+        "T039-01"
+      ],
+      "member_count": 16,
+      "status": "HOLD_EXTERNAL_INPUT_OR_CONTRACT_RETURNED",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:18:00.471Z",
+        "member_count": 16
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "SOURCE_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+      },
+      "result_return": {
+        "status": "HOLD_EXTERNAL_INPUT_OR_CONTRACT_RETURNED",
+        "tool016_ack": "RECEIVED",
+        "member_count": 16,
+        "member_state_counts": {
+          "TRUE_EXTERNAL_INPUT_REQUIRED": 16
+        },
+        "reason": "Actual handler/input/success contract is absent at source.",
+        "resume_condition": "SOURCE_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+        "returned_at": "2026-09-28T10:18:00.471Z"
+      },
+      "user_action": "NONE",
+      "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+    },
+    {
+      "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+      "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "member_atomic_ids": [
+        "T07-02",
+        "OBS-01",
+        "EXT-01A",
+        "EXT-01B",
+        "EXT-01C",
+        "EXT-01D"
+      ],
+      "member_count": 6,
+      "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:18:00.471Z",
+        "member_count": 6
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+      },
+      "result_return": {
+        "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+        "tool016_ack": "RECEIVED",
+        "member_count": 6,
+        "member_state_counts": {
+          "PLATFORM_LIMIT": 6
+        },
+        "reason": "Independent observer/runtime capacity is external.",
+        "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE",
+        "returned_at": "2026-09-28T10:18:00.471Z"
+      },
+      "user_action": "NONE",
+      "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+    },
+    {
+      "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+      "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "member_atomic_ids": [
+        "T44-02",
+        "T44-03A",
+        "R6-01B",
+        "R6-01G"
+      ],
+      "member_count": 4,
+      "status": "HOLD_EXTERNAL_RUNTIME_CAPACITY_RETURNED",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:18:00.471Z",
+        "member_count": 4
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "SECOND_SHARED_RUNTIME_WITH_SHARED_LEASE_STORE_AVAILABLE"
+      },
+      "result_return": {
+        "status": "HOLD_EXTERNAL_RUNTIME_CAPACITY_RETURNED",
+        "tool016_ack": "RECEIVED",
+        "member_count": 4,
+        "member_state_counts": {
+          "PLATFORM_LIMIT": 4
+        },
+        "reason": "Shared cross-runtime proof requires a second independent runtime and shared lease store.",
+        "resume_condition": "SECOND_SHARED_RUNTIME_WITH_SHARED_LEASE_STORE_AVAILABLE",
+        "returned_at": "2026-09-28T10:18:00.471Z"
+      },
+      "user_action": "NONE",
+      "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+    },
+    {
+      "demand_id": "FINAL-37-CR-ELAPSED-TIME",
+      "root_id": "CR-ELAPSED-TIME",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "member_atomic_ids": [
+        "TIME-01"
+      ],
+      "member_count": 1,
+      "status": "WAITING_ELAPSED_TIME_RETURNED",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:18:00.471Z",
+        "member_count": 1
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS"
+      },
+      "result_return": {
+        "status": "WAITING_ELAPSED_TIME_RETURNED",
+        "tool016_ack": "RECEIVED",
+        "member_count": 1,
+        "member_state_counts": {
+          "WAITING": 1
+        },
+        "reason": "Real elapsed time cannot be synthesized.",
+        "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS",
+        "returned_at": "2026-09-28T10:18:00.471Z"
+      },
+      "user_action": "NONE",
+      "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+>>>>>>> cd3f14d (Register and return 37 items by common root)
     }
   ]
 }
