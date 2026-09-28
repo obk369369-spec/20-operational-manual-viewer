@@ -2298,6 +2298,47 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
+      "target_tool": "TOOL044_CENTERED_CIRCULATION",
+      "source": "USER_FINAL_ALL_UNFINISHED_BATCH_DIRECTIVE_20260928",
+      "priority": 1,
+      "batch_mode": "ALL_AT_ONCE",
+      "status": "READY_FOR_TOOL016_TOOL044_BATCH_CIRCULATION",
+      "scope": {
+        "final_validation_units": 69,
+        "known_completed_locked": 30,
+        "known_unfinished_total": 39,
+        "last_known_internal_fail": 11,
+        "last_known_external_condition": 28,
+        "include": "ALL_CURRENT_UNFINISHED_ACROSS_ALL_WIC_TOOLS_ROOTS_CHATS_AND_CROSS_TOOL_E2E",
+        "exclude": "ALL_ACTUAL_PASS_AND_REOPEN_BLOCKED_ITEMS"
+      },
+      "mandatory_flow": [
+        "INGEST_ALL_UNFINISHED_AS_ONE_BATCH",
+        "RECONCILE_LATEST_EVIDENCE_WITHOUT_REWORKING_PASS",
+        "GROUP_BY_COMMON_ROOT",
+        "FIX_EACH_COMMON_ROOT_ONCE",
+        "APPLY_TO_ALL_AFFECTED_UNITS",
+        "BULK_ACTUAL_VALIDATION",
+        "INDIVIDUAL_EVIDENCE_PER_UNIT",
+        "DEPLOY_WHERE_REQUIRED",
+        "DEPLOYED_COPY_READBACK",
+        "RESULT_RETURN_TO_TOOL016",
+        "LOCK_PASS",
+        "AUTO_SELECT_NEXT_UNFINISHED_WITHOUT_USER_INPUT"
+      ],
+      "hard_rules": [
+        "DO_NOT_PROCESS_ONE_TOOL_AT_A_TIME",
+        "DO_NOT_STALL_ON_TOOL013",
+        "DO_NOT_REDECOMPOSE_THE_69_UNITS",
+        "DO_NOT_REWORK_EXISTING_PASS",
+        "TOOL044_MUST_USE_READY_VERIFIED_EXTERNAL_COMPONENTS_ONLY",
+        "IF_NO_READY_COMPONENT_RETURN_NO_READY_COMPONENT_AND_ROUTE_TO_OTHER_EXECUTION_LAYER",
+        "USER_MANUAL_COPY_OR_REINSTRUCTION_REQUIRED_EQUALS_FAIL"
+      ],
+      "pass_condition": "All currently internally executable unfinished units are processed in the same batch circulation through actual validation, individual evidence, required deployment/readback and result return; genuine external-condition units remain explicitly separated; circulation continues to the next unfinished unit without user reinstruction."
     }
   ]
 }
