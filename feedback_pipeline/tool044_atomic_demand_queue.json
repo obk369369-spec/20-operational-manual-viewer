@@ -241,12 +241,12 @@
         }
       ],
       "status": "SATISFIED_BY_COMMON_COMPONENT",
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -1103,12 +1103,12 @@
           "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -1257,12 +1257,12 @@
           "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -1411,12 +1411,12 @@
           "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -1589,12 +1589,12 @@
           "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -2053,12 +2053,12 @@
         "evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_expansion_fault_loop.json",
         "basis": "Existing actual minimum-circulation execution evidence satisfies this capability; stale OPEN reconciled without re-execution."
       },
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -2187,12 +2187,12 @@
           "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION"
         }
       ],
-      "satisfied_at": "2026-09-27T08:24:38.683531+00:00",
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
       "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "returned_at": "2026-09-27T08:24:38.683531+00:00"
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
       }
     },
     {
@@ -4313,7 +4313,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "SATISFIED_BY_COMMON_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
       "root_id": null,
@@ -4346,7 +4346,14 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
+      }
     },
     {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
@@ -4420,7 +4427,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "SATISFIED_BY_COMMON_COMPONENT",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
       "root_id": null,
@@ -4453,7 +4460,14 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "satisfied_at": "2026-09-28T14:03:51.996244+00:00",
+      "satisfied_component": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "result_return": {
+        "status": "PASS",
+        "tool016_ack": "RECEIVED",
+        "returned_at": "2026-09-28T14:03:51.996244+00:00"
+      }
     },
     {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
