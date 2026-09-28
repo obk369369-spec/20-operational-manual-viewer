@@ -2593,6 +2593,467 @@
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
+    },
+    {
+      "demand_id": "FINAL-39-CR-BUSINESS-INPUT",
+      "root_id": "CR-BUSINESS-INPUT",
+      "target_tool": "TOOL016/TOOL044_COMMON_CIRCULATION",
+      "member_atomic_ids": [
+        "T06-03",
+        "T07-01",
+        "T41-01",
+        "T42-01",
+        "T01-01",
+        "T48-01",
+        "T009-01",
+        "T010-01",
+        "T018-01",
+        "T028-01",
+        "T029-01",
+        "T034-01",
+        "T035-01",
+        "T039-01"
+      ],
+      "member_count": 14,
+      "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+      "classification": "EXTERNAL_CONDITION",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:38:14.731Z"
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+      },
+      "member_results": [
+        {
+          "atomic_id": "T06-03",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T07-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T41-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T42-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T01-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T48-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T009-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T010-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T018-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T028-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T029-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T034-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T035-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T039-01",
+          "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-BUSINESS-INPUT",
+          "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE"
+        }
+      ],
+      "result_return": {
+        "status": "HOLD_EXTERNAL_INPUT_RETURNED",
+        "classification": "EXTERNAL_CONDITION",
+        "tool016_ack": "RECEIVED",
+        "member_count": 14,
+        "resume_condition": "AUTHENTICATED_ACTUAL_BUSINESS_INPUT_AVAILABLE",
+        "returned_at": "2026-09-28T10:38:14.731Z"
+      },
+      "auto_handoff": null,
+      "user_action": "NONE"
+    },
+    {
+      "demand_id": "FINAL-39-CR-EVIDENCE-VALIDATION",
+      "root_id": "CR-EVIDENCE-VALIDATION",
+      "target_tool": "TOOL016/TOOL044_COMMON_CIRCULATION",
+      "member_atomic_ids": [
+        "T02-01",
+        "T46-01",
+        "T47-01",
+        "TOOL016-PAST-FAILURE-FIXTURE-GENERATION",
+        "CENTRAL-HISTORICAL-23-ID-EVIDENCE",
+        "CENTRAL-CORRECTED-SCOPE-ARTIFACT-EVIDENCE",
+        "CENTRAL-EXPECTED-ACTUAL-EVIDENCE"
+      ],
+      "member_count": 7,
+      "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+      "classification": "INTERNAL_INCOMPLETE",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:38:14.731Z"
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+      },
+      "member_results": [
+        {
+          "atomic_id": "T02-01",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        },
+        {
+          "atomic_id": "T46-01",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        },
+        {
+          "atomic_id": "T47-01",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        },
+        {
+          "atomic_id": "TOOL016-PAST-FAILURE-FIXTURE-GENERATION",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        },
+        {
+          "atomic_id": "CENTRAL-HISTORICAL-23-ID-EVIDENCE",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        },
+        {
+          "atomic_id": "CENTRAL-CORRECTED-SCOPE-ARTIFACT-EVIDENCE",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        },
+        {
+          "atomic_id": "CENTRAL-EXPECTED-ACTUAL-EVIDENCE",
+          "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EVIDENCE-VALIDATION",
+          "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE"
+        }
+      ],
+      "result_return": {
+        "status": "AUTO_HANDED_OFF_VALIDATION_LAYER",
+        "classification": "INTERNAL_INCOMPLETE",
+        "tool016_ack": "RECEIVED",
+        "member_count": 7,
+        "resume_condition": "ITEM_SPECIFIC_ACTUAL_EVIDENCE_AVAILABLE",
+        "returned_at": "2026-09-28T10:38:14.731Z"
+      },
+      "auto_handoff": {
+        "target": "ALTERNATE_COMMON_EXECUTION_LAYER",
+        "status": "QUEUED_AUTOMATICALLY",
+        "user_relay": "NONE"
+      },
+      "user_action": "NONE"
+    },
+    {
+      "demand_id": "FINAL-39-CR-EXTERNAL-RUNTIME",
+      "root_id": "CR-EXTERNAL-RUNTIME",
+      "target_tool": "TOOL016/TOOL044_COMMON_CIRCULATION",
+      "member_atomic_ids": [
+        "T07-02",
+        "OBS-01",
+        "EXT-01A",
+        "EXT-01B",
+        "EXT-01C",
+        "EXT-01D"
+      ],
+      "member_count": 6,
+      "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+      "classification": "EXTERNAL_CONDITION",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:38:14.731Z"
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+      },
+      "member_results": [
+        {
+          "atomic_id": "T07-02",
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXTERNAL-RUNTIME",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+        },
+        {
+          "atomic_id": "OBS-01",
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXTERNAL-RUNTIME",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+        },
+        {
+          "atomic_id": "EXT-01A",
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXTERNAL-RUNTIME",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+        },
+        {
+          "atomic_id": "EXT-01B",
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXTERNAL-RUNTIME",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+        },
+        {
+          "atomic_id": "EXT-01C",
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXTERNAL-RUNTIME",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+        },
+        {
+          "atomic_id": "EXT-01D",
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXTERNAL-RUNTIME",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
+        }
+      ],
+      "result_return": {
+        "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+        "classification": "EXTERNAL_CONDITION",
+        "tool016_ack": "RECEIVED",
+        "member_count": 6,
+        "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE",
+        "returned_at": "2026-09-28T10:38:14.731Z"
+      },
+      "auto_handoff": null,
+      "user_action": "NONE"
+    },
+    {
+      "demand_id": "FINAL-39-CR-EXECUTABLE-CONTRACT",
+      "root_id": "CR-EXECUTABLE-CONTRACT",
+      "target_tool": "TOOL016/TOOL044_COMMON_CIRCULATION",
+      "member_atomic_ids": [
+        "T43-02",
+        "T16-02",
+        "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+        "T42-RESELLER-DETECTION",
+        "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+        "FS-FUNCTION-OFFICIAL-DOMAIN-VALIDATION"
+      ],
+      "member_count": 6,
+      "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+      "classification": "INTERNAL_INCOMPLETE",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:38:14.731Z"
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+      },
+      "member_results": [
+        {
+          "atomic_id": "T43-02",
+          "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T16-02",
+          "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T42-RESELLER-DETECTION",
+          "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+        },
+        {
+          "atomic_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+        },
+        {
+          "atomic_id": "FS-FUNCTION-OFFICIAL-DOMAIN-VALIDATION",
+          "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE"
+        }
+      ],
+      "result_return": {
+        "status": "AUTO_HANDED_OFF_EXECUTION_LAYER",
+        "classification": "INTERNAL_INCOMPLETE",
+        "tool016_ack": "RECEIVED",
+        "member_count": 6,
+        "resume_condition": "VERIFIED_HANDLER_INPUT_OUTPUT_SUCCESS_CONTRACT_AVAILABLE",
+        "returned_at": "2026-09-28T10:38:14.731Z"
+      },
+      "auto_handoff": {
+        "target": "ALTERNATE_COMMON_EXECUTION_LAYER",
+        "status": "QUEUED_AUTOMATICALLY",
+        "user_relay": "NONE"
+      },
+      "user_action": "NONE"
+    },
+    {
+      "demand_id": "FINAL-39-CR-EXACTLY-ONCE",
+      "root_id": "CR-EXACTLY-ONCE",
+      "target_tool": "TOOL016/TOOL044_COMMON_CIRCULATION",
+      "member_atomic_ids": [
+        "T44-02",
+        "T44-03A",
+        "R6-01B",
+        "R6-01G",
+        "CENTRAL-FAILURE-ISOLATION-EVIDENCE"
+      ],
+      "member_count": 5,
+      "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+      "classification": "EXTERNAL_CONDITION",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:38:14.731Z"
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+      },
+      "member_results": [
+        {
+          "atomic_id": "T44-02",
+          "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXACTLY-ONCE",
+          "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+        },
+        {
+          "atomic_id": "T44-03A",
+          "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXACTLY-ONCE",
+          "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+        },
+        {
+          "atomic_id": "R6-01B",
+          "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXACTLY-ONCE",
+          "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+        },
+        {
+          "atomic_id": "R6-01G",
+          "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXACTLY-ONCE",
+          "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+        },
+        {
+          "atomic_id": "CENTRAL-FAILURE-ISOLATION-EVIDENCE",
+          "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXACTLY-ONCE",
+          "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+        }
+      ],
+      "result_return": {
+        "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
+        "classification": "EXTERNAL_CONDITION",
+        "tool016_ack": "RECEIVED",
+        "member_count": 5,
+        "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE",
+        "returned_at": "2026-09-28T10:38:14.731Z"
+      },
+      "auto_handoff": null,
+      "user_action": "NONE"
+    },
+    {
+      "demand_id": "FINAL-39-CR-ELAPSED-TIME",
+      "root_id": "CR-ELAPSED-TIME",
+      "target_tool": "TOOL016/TOOL044_COMMON_CIRCULATION",
+      "member_atomic_ids": [
+        "TIME-01"
+      ],
+      "member_count": 1,
+      "status": "WAITING_24H_RETURNED",
+      "classification": "TIME_WAITING",
+      "claim": {
+        "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
+        "claimed_at": "2026-09-28T10:38:14.731Z"
+      },
+      "checkpoint": {
+        "stage": "RESULT_RETURNED",
+        "resume_from": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS"
+      },
+      "member_results": [
+        {
+          "atomic_id": "TIME-01",
+          "status": "WAITING_24H_RETURNED",
+          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-ELAPSED-TIME",
+          "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS"
+        }
+      ],
+      "result_return": {
+        "status": "WAITING_24H_RETURNED",
+        "classification": "TIME_WAITING",
+        "tool016_ack": "RECEIVED",
+        "member_count": 1,
+        "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS",
+        "returned_at": "2026-09-28T10:38:14.731Z"
+      },
+      "auto_handoff": null,
+      "user_action": "NONE"
     }
   ]
 }
