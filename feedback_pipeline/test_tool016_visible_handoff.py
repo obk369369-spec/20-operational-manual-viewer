@@ -4,6 +4,7 @@ from tool016_visible_handoff import build
 def test_visible_handoff_groups_work_and_auto_routes_external():
     queue = {"demands": [
         {"demand_id": "DONE", "status": "SATISFIED_BY_COMMON_COMPONENT"},
+        {"demand_id": "OLD-PASS", "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925"},
         {"demand_id": "WORK-1", "status": "SUPERSEDED"},
         {"demand_id": "WORK-1", "root_id": "ROOT-A", "target_tool": "TOOL016",
          "status": "OPEN", "atomic_capabilities": ["SCHEMA"]},
@@ -19,7 +20,7 @@ def test_visible_handoff_groups_work_and_auto_routes_external():
     ], "bulk_summary": {"actual_run_pass": 1}}
     result = build(queue, pool, {"capacity": 15, "jobs": {}}, "NOW", providers)
     assert result["UNFINISHED_SCANNED"] == 3
-    assert result["ALREADY_PASS_EXCLUDED"] == 2
+    assert result["ALREADY_PASS_EXCLUDED"] == 3
     assert result["ROOTS_MERGED"] == 1
     assert result["WORK_FIXABLE_ROOTS"] == 1
     assert result["TOOL044_AUTO_HANDED_OFF"] == 1

@@ -10,6 +10,9 @@ QUEUE=HERE/"tool044_atomic_demand_queue.json"
 STATE=HERE/"evidence"/"tool044_work_parallel_state.json"
 REQUIRED_PACKAGE=("ROOT_ID","CURRENT_STATE","EXACT_ERROR","COMMON_CAUSE","EXPECTED","FILES_TO_CHANGE","FILES_NOT_TO_TOUCH","EXISTING_PASS_TO_REUSE","DEPENDENCIES","ACCEPTANCE_TEST","DEPLOY_TARGET","CHECKPOINT")
 TERMINAL={"PASS","COMPLETED","SATISFIED_BY_COMMON_COMPONENT","SKIP_REUSE_VERIFIED_PASS"}
+def terminal(row):
+    status=str(row.get("status",""))
+    return status in TERMINAL or status.startswith("PASS_") or status.startswith("SKIP_REUSE_VERIFIED_PASS")
 
 def load(p,d):
     try:return json.loads(Path(p).read_text(encoding="utf-8"))
@@ -36,7 +39,7 @@ def claim(queue,demand_id,owner,lease_minutes=30):
 def compress(rows):
     groups={}
     for r in rows:
-        if r.get("status") in TERMINAL or r.get("status")=="SUPERSEDED":continue
+        if terminal(r) or r.get("status")=="SUPERSEDED":continue
         k=(r.get("target_tool"),r.get("root_id",r.get("demand_id")))
         groups.setdefault(k,[]).append(r)
     out=[]
@@ -47,7 +50,7 @@ def compress(rows):
           "EXPECTED":next((x.get("expected") for x in xs if x.get("expected")), "Resolve root without regression"),
           "FILES_TO_CHANGE":sorted(set().union(*(assets(x) for x in xs))),
           "FILES_NOT_TO_TOUCH":sorted(set().union(*(set(x.get("files_not_to_touch",[])) for x in xs))),
-          "EXISTING_PASS_TO_REUSE":[x.get("demand_id") for x in rows if x.get("status") in TERMINAL],
+          "EXISTING_PASS_TO_REUSE":[x.get("demand_id") for x in rows if terminal(x)],
           "DEPENDENCIES":sorted(set().union(*(set(x.get("dependencies",[])) for x in xs))),
           "ACCEPTANCE_TEST":next((x.get("acceptance_test") for x in xs if x.get("acceptance_test")), "EXPECTED_ACTUAL_AND_REGRESSION"),
           "DEPLOY_TARGET":tool or "CENTRAL","CHECKPOINT":xs[0].get("checkpoint") or {"stage":"INTAKE","resume_from":"INTAKE"},

@@ -27,6 +27,12 @@ MAX_GATES = 15
 TERMINAL = {"PASS", "FAIL", "HOLD", "BLOCKED", "RETURNED"}
 
 
+def demand_terminal(demand: dict) -> bool:
+    status = str(demand.get("status", ""))
+    return (status in {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT", "PASS_LOCKED"}
+            or status.startswith("PASS_") or status.startswith("SKIP_REUSE_VERIFIED_PASS"))
+
+
 def utcnow() -> datetime:
     return datetime.now(timezone.utc)
 
@@ -120,7 +126,7 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
         for capability in component.get("atomic_capabilities", [])
     }
     for demand in (queue or {}).get("demands", []):
-        if demand.get("status") in {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT"}:
+        if demand_terminal(demand):
             continue
         capabilities = demand.get("atomic_capabilities", [])
         if len(capabilities) != 1 or capabilities[0] not in capability_map:
@@ -278,8 +284,7 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
     for row in state.get("jobs", {}).values():
         counts[row.get("STATUS", "UNKNOWN")] = counts.get(row.get("STATUS", "UNKNOWN"), 0) + 1
     total_demands = len(queue.get("demands", []))
-    remaining = sum(d.get("status") not in {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT"}
-                    for d in queue.get("demands", []))
+    remaining = sum(not demand_terminal(d) for d in queue.get("demands", []))
     core["tool044_external_progress"] = {
         "TOTAL_DEMAND": total_demands, "READY": counts.get("READY", 0),
         "CLAIMED": counts.get("CLAIMED", 0), "RUNNING": counts.get("RUNNING", 0),
