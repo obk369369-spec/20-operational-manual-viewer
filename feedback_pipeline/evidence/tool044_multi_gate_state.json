@@ -752,13 +752,165 @@
           }
         }
       }
+    },
+    "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF": {
+      "JOB_ID": "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "OWNER": "GITHUB_ACTIONS:36433067850:GATE_01",
+      "CLAIM_TIME": "2026-09-28T14:03:23.366569+00:00",
+      "LEASE_EXPIRY": "2026-09-28T14:33:23.366569+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/fastjsonschema/2.21.2/",
+        "license": "BSD-3-Clause",
+        "version": "2.21.2",
+        "atomic_capabilities": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "target_root": "COMMON_SCHEMA_VALIDATION",
+        "target_tool": "TOOL016,TOOL043,TOOL044",
+        "input_contract": "JSON Schema plus JSON-compatible instance",
+        "output_contract": "validated instance or deterministic schema exception",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--no-deps",
+          "--target",
+          "{sandbox}/site",
+          "{repo}/tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import fastjsonschema; validate=fastjsonschema.compile({'type':'object','required':['job_id']}); validate({'job_id':'WIC-MULTI-GATE'})"
+        ],
+        "success_condition": "isolated schema compilation and valid instance pass",
+        "failure_condition": "wheel install, schema compilation, or validation returns non-zero",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/evidence/tool043_proof_deployed.json",
+        "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+        "idempotency_key": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF@2.21.2",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+          "owner": "GITHUB_ACTIONS:35823572291:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "owner": "GITHUB_ACTIONS:35823572291:GATE_02",
+            "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "root_id": "COMMON_SCHEMA_VALIDATION",
+            "target_tool": "TOOL016,TOOL043,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-23T05:43:29.021488+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "2fde331ce7434894a76b45f223f807b1"
+    },
+    "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF": {
+      "JOB_ID": "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+      "OWNER": "GITHUB_ACTIONS:36433067850:GATE_02",
+      "CLAIM_TIME": "2026-09-28T14:03:23.366569+00:00",
+      "LEASE_EXPIRY": "2026-09-28T14:33:23.366569+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/fastjsonschema/2.21.2/",
+        "license": "BSD-3-Clause",
+        "version": "2.21.2",
+        "atomic_capabilities": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "target_root": "COMMON_SCHEMA_VALIDATION",
+        "target_tool": "TOOL016,TOOL043,TOOL044",
+        "input_contract": "JSON Schema plus JSON-compatible instance",
+        "output_contract": "validated instance or deterministic schema exception",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--no-deps",
+          "--target",
+          "{sandbox}/site",
+          "{repo}/tool043/vendor/fastjsonschema-2.21.2-py3-none-any.whl"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import fastjsonschema; validate=fastjsonschema.compile({'type':'object','required':['job_id']}); validate({'job_id':'WIC-MULTI-GATE'})"
+        ],
+        "success_condition": "isolated schema compilation and valid instance pass",
+        "failure_condition": "wheel install, schema compilation, or validation returns non-zero",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/evidence/tool043_proof_deployed.json",
+        "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463",
+        "idempotency_key": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF@2.21.2",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+          "owner": "GITHUB_ACTIONS:35823572291:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "owner": "GITHUB_ACTIONS:35823572291:GATE_02",
+            "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+            "root_id": "COMMON_SCHEMA_VALIDATION",
+            "target_tool": "TOOL016,TOOL043,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-23T05:43:29.021488+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "8390e760dae14130a2427f55077ef458"
     }
   },
   "events": [],
   "schema_version": 1,
-  "updated_at": "2026-09-28T11:52:37.716853+00:00",
+  "updated_at": "2026-09-28T14:03:23.366569+00:00",
   "capacity": 15,
-  "active_claims": 0,
+  "active_claims": 2,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 1
 }

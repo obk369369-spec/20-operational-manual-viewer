@@ -866,7 +866,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-28T12:22:12.311609+00:00",
+      "updated_at": "2026-09-28T14:03:26.940015+00:00",
       "UNFINISHED_SCANNED": 55,
       "ALREADY_PASS_EXCLUDED": 46,
       "ROOTS_MERGED": 2,
@@ -1148,7 +1148,8 @@
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 9
+          "PASS": 9,
+          "CLAIMED": 2
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1186,15 +1187,21 @@
         "observer_projection": "PERSISTED_TO_CENTRAL_AND_VISIBLE_HANDOFF"
       },
       "SCHEDULE_EVIDENCE": {
-        "runs": [],
-        "run_count": 0,
+        "runs": [
+          {
+            "run_id": "36433067850",
+            "observed_at": "2026-09-28T14:03:26.940015+00:00",
+            "event": "schedule"
+          }
+        ],
+        "run_count": 1,
         "elapsed_hours": 0.0,
         "status": "WAITING",
         "actual_24h": false
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-28T12:22:12.311609+00:00",
+      "LAST_HEARTBEAT": "2026-09-28T14:03:26.940015+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
