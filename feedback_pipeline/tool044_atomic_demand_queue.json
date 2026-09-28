@@ -3985,6 +3985,276 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "COMMON_ROOT_DEDUPLICATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "ITEM_EVIDENCE_RETURN"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "AUTO_NEXT_ROOT"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 39 unfinished verification units only by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 39 unfinished verification units only by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 39 unfinished verification units only by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 40 confirmed unfinished units plus two missing circulation verification units by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 40 confirmed unfinished units plus two missing circulation verification units by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "root_id": null,
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 40 confirmed unfinished units plus two missing circulation verification units by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
+        }
+      ]
     }
   ]
 }
