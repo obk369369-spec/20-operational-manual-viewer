@@ -181,3 +181,48 @@ def execute_registered(demand: dict, workspace: Path, store: ClaimStore, owner: 
     else:
         store.release_for_resume(job_id, owner, token, result)
     return result
+
+
+def integrate_component(component: dict, workspace: Path, store: ClaimStore, owner: str) -> dict:
+    """Validate, route, execute and deploy one component without partial STABLE writes."""
+    required = ("component_id", "target", "channel", "execution_contract")
+    missing = [key for key in required if not component.get(key)]
+    if missing:
+        return {"final_state": "HOLD", "missing": missing, "route": "HOLD", "deployed": False}
+    channel = str(component["channel"]).upper()
+    if channel not in {"STABLE", "NEXT"}:
+        return {"final_state": "HOLD", "missing": ["channel_must_be_STABLE_or_NEXT"], "route": "HOLD", "deployed": False}
+    demand = {
+        "demand_id": f"COMPONENT-{component['component_id']}",
+        "target_tool": component.get("target_tool"),
+        "execution_contract": component["execution_contract"],
+    }
+    registered, created = auto_register({"demands": []}, demand)
+    if registered["status"] != "READY":
+        return {"final_state": "HOLD", "route": "HOLD", "deployed": False,
+                "missing": registered.get("missing_contract", [])}
+    target = (workspace / component["target"]).resolve()
+    if workspace.resolve() not in target.parents:
+        return {"final_state": "HOLD", "route": "HOLD", "deployed": False,
+                "missing": ["target_outside_workspace"]}
+    before = target.read_bytes() if target.is_file() else None
+    result = execute_registered(registered, workspace, store, owner)
+    if result["final_state"] != "PASS":
+        if before is not None:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(before)
+        elif target.exists():
+            target.unlink()
+        return {**result, "route": channel, "deployed": False, "rollback": True,
+                "registered": created}
+    output = (workspace / component["execution_contract"]["output"]).resolve()
+    if channel == "NEXT":
+        return {**result, "route": "NEXT", "deployed": False, "rollback": False,
+                "registered": created, "readback": output.is_file()}
+    target.parent.mkdir(parents=True, exist_ok=True)
+    pending = target.with_suffix(target.suffix + ".next")
+    shutil.copyfile(output, pending)
+    pending.replace(target)
+    readback = target.read_bytes() == output.read_bytes()
+    return {**result, "route": "STABLE", "deployed": readback, "rollback": False,
+            "registered": created, "readback": readback}

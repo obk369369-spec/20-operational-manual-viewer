@@ -3,7 +3,7 @@ import tempfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from wic_common_execution import ClaimStore, auto_register, execute_registered
+from wic_common_execution import ClaimStore, auto_register, execute_registered, integrate_component
 
 
 def run():
@@ -50,7 +50,22 @@ def run():
             and not store.terminal("REAL-DEMAND-FAIL").exists()
             and any(store.recovery.glob("*.json"))
         )
-    return {"status": "PASS" if all(checks.values()) and len(checks) == 12 else "FAIL",
+        (root / "stable.txt").write_text("OLD", encoding="utf-8")
+        stable = integrate_component({"component_id": "STABLE-1", "target": "stable.txt",
+            "channel": "STABLE", "execution_contract": {**contract, "output": "stable-output.txt"}},
+            root, store, "RUNNER-A")
+        checks["stable_deploy_and_readback"] = stable["deployed"] and stable["readback"] and (root / "stable.txt").read_text() == "WIC"
+        (root / "stable.txt").write_text("KEEP", encoding="utf-8")
+        next_result = integrate_component({"component_id": "NEXT-1", "target": "stable.txt",
+            "channel": "NEXT", "execution_contract": {**contract, "output": "next-output.txt"}},
+            root, store, "RUNNER-A")
+        checks["stable_next_routing"] = next_result["route"] == "NEXT" and not next_result["deployed"] and (root / "stable.txt").read_text() == "KEEP"
+        failed_component = integrate_component({"component_id": "ROLLBACK-1", "target": "stable.txt",
+            "channel": "STABLE", "execution_contract": {**contract, "output": "bad-output.txt",
+            "handler": ["{python}", "-c", "raise SystemExit(9)"]}}, root, store, "RUNNER-A")
+        checks["failed_validation_rollback"] = failed_component["rollback"] and not failed_component["deployed"] and (root / "stable.txt").read_text() == "KEEP"
+        checks["component_lifecycle_admission"] = stable["registered"] and next_result["registered"] and failed_component["registered"]
+    return {"status": "PASS" if all(checks.values()) and len(checks) == 16 else "FAIL",
             "checks": checks, "passed": sum(checks.values()), "total": len(checks)}
 
 
