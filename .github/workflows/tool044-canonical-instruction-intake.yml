@@ -6,6 +6,10 @@ on:
     paths:
       - 'feedback_pipeline/tool044_instruction_intake.py'
       - 'feedback_pipeline/tool044_instruction_inbox.json'
+      - 'feedback_pipeline/TOOL044_REQUEST_INBOX.json'
+      - 'feedback_pipeline/tool044_function_state.json'
+      - 'feedback_pipeline/tool044_request_router.py'
+      - 'feedback_pipeline/tool016_visible_handoff.py'
       - 'feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md'
       - '.github/workflows/tool044-canonical-instruction-intake.yml'
   schedule:
@@ -28,6 +32,7 @@ jobs:
         with: {ref: main}
       - name: EXPECTED-ACTUAL duplicate merge supersede cross-tool PASS reuse tests
         run: |
+          python feedback_pipeline/tool044_request_router.py --self-test
           python feedback_pipeline/tool044_instruction_intake.py --self-test
           python feedback_pipeline/tool044_work_parallel.py --self-test
       - name: Existing execution regression
@@ -83,8 +88,10 @@ jobs:
           fetch-depth: 0
       - name: Apply canonical inbox to central TOOL044 queue
         run: |
+          python feedback_pipeline/tool044_request_router.py
           python feedback_pipeline/tool044_instruction_intake.py --apply
           python feedback_pipeline/tool044_work_parallel.py --packages
+          python feedback_pipeline/tool016_visible_handoff.py
       - name: Verify canonical rule reload as a fresh session
         run: |
           grep -q 'TOOL044_CONFLICT_FREE_INTAKE = REQUIRED' feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md
@@ -114,7 +121,7 @@ jobs:
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool044_instruction_intake_state.json feedback_pipeline/evidence/tool044_work_parallel_state.json feedback_pipeline/evidence/tool044_permanent_observer_operation.json
+          git add -- feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/state.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/tool044_instruction_intake_state.json feedback_pipeline/evidence/tool044_work_parallel_state.json feedback_pipeline/evidence/tool044_permanent_observer_operation.json
           if ! git diff --cached --quiet; then
             git commit -m 'tool044: persist permanent observer E2E evidence'
             git pull --rebase origin main
