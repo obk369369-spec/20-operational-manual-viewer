@@ -303,9 +303,9 @@
       "result_return": {
         "tool016_ack": "RECEIVED",
         "total": 42,
-        "completed": 0,
+        "completed": 2,
         "internal_incomplete": 14,
-        "external_condition": 27,
+        "external_condition": 25,
         "time_waiting": 1,
         "roots": {
           "CR-BUSINESS-INPUT": 16,
@@ -318,6 +318,9 @@
       },
       "circulation_priority": {
         "cycle_blockers": 17,
+        "cycle_blockers_completed": 2,
+        "cycle_blockers_internal_incomplete": 6,
+        "cycle_blockers_external_condition": 9,
         "followup_auto_circulation": 23,
         "time_evidence_unchanged": 2,
         "actual_processing_evidence": "feedback_pipeline/evidence/tool044_atomic_watch_state.json#cycle_id=20260928T110823Z",

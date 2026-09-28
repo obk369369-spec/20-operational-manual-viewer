@@ -3381,9 +3381,9 @@
         },
         {
           "atomic_id": "OBS-01",
-          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
-          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-42-CR-EXTERNAL-RUNTIME",
-          "resume_condition": "INDEPENDENT_RUNTIME_OR_OFFICIAL_CHAT_DELIVERY_AVAILABLE",
+          "status": "PASS_LOCKED",
+          "evidence": "feedback_pipeline/evidence/tool016_visible_handoff_state.json#observer_projection=PERSISTED_TO_CENTRAL_AND_VISIBLE_HANDOFF; commit=11f27cec4f9aaac5e65d7966af516ba7abb9b762",
+          "resume_condition": null,
           "result_return": "TOOL016_RECEIVED",
           "circulation_priority": "CYCLE_BLOCKER",
           "last_common_execution_evidence": "feedback_pipeline/evidence/tool044_atomic_watch_state.json#cycle_id=20260928T110823Z"
@@ -3408,9 +3408,9 @@
         },
         {
           "atomic_id": "EXT-01C",
-          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
-          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-42-CR-EXTERNAL-RUNTIME",
-          "resume_condition": "INDEPENDENT_RUNTIME_OR_OFFICIAL_CHAT_DELIVERY_AVAILABLE",
+          "status": "PASS_LOCKED",
+          "evidence": "tool043/screen_off_actual_20260831.json#run_id=33358129860; deployment_run_id=33358138327; status=ACTUAL_DEVICE_SCOPED_PASS",
+          "resume_condition": null,
           "result_return": "TOOL016_RECEIVED",
           "circulation_priority": "CYCLE_BLOCKER",
           "last_common_execution_evidence": "feedback_pipeline/evidence/tool044_atomic_watch_state.json#cycle_id=20260928T110823Z"
