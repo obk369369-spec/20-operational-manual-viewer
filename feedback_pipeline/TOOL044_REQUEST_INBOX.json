@@ -277,9 +277,9 @@
       "result_return": {
         "tool016_ack": "RECEIVED",
         "total": 39,
-        "completed": 0,
+        "completed": 1,
         "internal_incomplete": 13,
-        "external_condition": 25,
+        "external_condition": 24,
         "time_waiting": 1,
         "roots": {
           "CR-BUSINESS-INPUT": 14,
@@ -288,7 +288,9 @@
           "CR-EXECUTABLE-CONTRACT": 6,
           "CR-EXACTLY-ONCE": 5,
           "CR-ELAPSED-TIME": 1
-        }
+        },
+        "latest_actual_validation": "feedback_pipeline/test_wic_common_execution.py: PASS 16/16",
+        "updated_at": "2026-09-28T10:42:47.620Z"
       }
     }
   ]

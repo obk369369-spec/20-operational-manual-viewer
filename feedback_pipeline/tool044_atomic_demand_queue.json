@@ -2965,15 +2965,15 @@
         "CENTRAL-FAILURE-ISOLATION-EVIDENCE"
       ],
       "member_count": 5,
-      "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
-      "classification": "EXTERNAL_CONDITION",
+      "status": "PARTIAL_PASS_EXTERNAL_REMAINDER_RETURNED",
+      "classification": "MIXED_PASS_EXTERNAL_CONDITION",
       "claim": {
         "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
         "claimed_at": "2026-09-28T10:38:14.731Z"
       },
       "checkpoint": {
         "stage": "RESULT_RETURNED",
-        "resume_from": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+        "resume_from": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE_FOR_REMAINING_4"
       },
       "member_results": [
         {
@@ -3002,18 +3002,24 @@
         },
         {
           "atomic_id": "CENTRAL-FAILURE-ISOLATION-EVIDENCE",
-          "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
-          "evidence": "feedback_pipeline/tool044_atomic_demand_queue.json#FINAL-39-CR-EXACTLY-ONCE",
-          "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE"
+          "status": "PASS_LOCKED",
+          "evidence": "feedback_pipeline/test_wic_common_execution.py: PASS 16/16",
+          "resume_condition": "NONE",
+          "expected_actual": "PASS",
+          "deployment_readback": "PASS",
+          "result_return": "TOOL016_RECEIVED",
+          "completed_at": "2026-09-28T10:42:47.620Z"
         }
       ],
       "result_return": {
-        "status": "HOLD_CROSS_RUNTIME_CAPACITY_RETURNED",
-        "classification": "EXTERNAL_CONDITION",
+        "status": "PARTIAL_PASS_EXTERNAL_REMAINDER_RETURNED",
+        "classification": "MIXED_PASS_EXTERNAL_CONDITION",
         "tool016_ack": "RECEIVED",
+        "completed": 1,
+        "external_condition": 4,
         "member_count": 5,
-        "resume_condition": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE",
-        "returned_at": "2026-09-28T10:38:14.731Z"
+        "evidence": "feedback_pipeline/test_wic_common_execution.py: PASS 16/16",
+        "returned_at": "2026-09-28T10:42:47.620Z"
       },
       "auto_handoff": null,
       "user_action": "NONE"
