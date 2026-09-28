@@ -2300,7 +2300,6 @@
       "result_return": null
     },
     {
-<<<<<<< HEAD
       "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
       "target_tool": "TOOL044_CENTERED_CIRCULATION",
       "source": "USER_FINAL_ALL_UNFINISHED_BATCH_DIRECTIVE_20260928",
@@ -2340,7 +2339,8 @@
         "USER_MANUAL_COPY_OR_REINSTRUCTION_REQUIRED_EQUALS_FAIL"
       ],
       "pass_condition": "All currently internally executable unfinished units are processed in the same batch circulation through actual validation, individual evidence, required deployment/readback and result return; genuine external-condition units remain explicitly separated; circulation continues to the next unfinished unit without user reinstruction."
-=======
+    },
+    {
       "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
       "root_id": "CR-EVIDENCE-VALIDATION",
       "target_tool": "TOOL016/TOOL044",
@@ -2593,7 +2593,6 @@
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json"
->>>>>>> cd3f14d (Register and return 37 items by common root)
     }
   ]
 }
