@@ -27,7 +27,8 @@ jobs:
       - uses: actions/checkout@v4
         with: {ref: main}
       - name: EXPECTED-ACTUAL duplicate merge supersede cross-tool PASS reuse tests
-        run: python feedback_pipeline/tool044_instruction_intake.py --self-test
+        run: |
+          python feedback_pipeline/tool044_instruction_intake.py --self-test
           python feedback_pipeline/tool044_work_parallel.py --self-test
       - name: Existing execution regression
         run: |
@@ -81,7 +82,8 @@ jobs:
           ref: main
           fetch-depth: 0
       - name: Apply canonical inbox to central TOOL044 queue
-        run: python feedback_pipeline/tool044_instruction_intake.py --apply
+        run: |
+          python feedback_pipeline/tool044_instruction_intake.py --apply
           python feedback_pipeline/tool044_work_parallel.py --packages
       - name: Verify canonical rule reload as a fresh session
         run: |
