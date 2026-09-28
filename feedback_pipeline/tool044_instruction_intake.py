@@ -22,6 +22,24 @@ def sig(d):
     return hashlib.sha256(basis.encode()).hexdigest()[:20]
 def root_key(d):
     return (str(d.get("target_tool","")),str(d.get("root_id","")))
+def compact_demands(queue):
+    """Keep one durable row per demand id while preserving revision history."""
+    unique={}; order=[]
+    for row in queue.get("demands",[]):
+        did=row.get("demand_id")
+        if not did or did not in unique:
+            if did: unique[did]=row
+            order.append(row)
+            continue
+        current=unique[did]
+        winner=max((current,row),key=lambda item:(item.get("status")!="SUPERSEDED",item.get("revision",0)))
+        loser=row if winner is current else current
+        history=winner.setdefault("directive_history",[])
+        for value in loser.get("directive_history",[])+[loser.get("latest_directive")]:
+            if value and value not in history: history.append(value)
+        if winner is not current:
+            order[order.index(current)]=winner; unique[did]=winner
+    queue["demands"]=order
 def decide(d, queue, state):
     s=sig(d)
     if s in state.get("seen_signatures",[]): return "SKIP_DUPLICATE",None
@@ -44,8 +62,12 @@ def ingest(inbox,queue,state):
         if action=="SKIP_REUSE_PASS":
             state["seen_signatures"].append(s); events.append({"directive_id":d["directive_id"],"action":action}); continue
         if action=="SUPERSEDE":
-            old["status"]="SUPERSEDED"; old["superseded_by"]=d["directive_id"]
-        if action=="MERGE":
+            old.setdefault("directive_history",[]).append(old.get("latest_directive"))
+            old.update(revision=d.get("revision",old.get("revision",1)),
+                       latest_directive=d["directive"],status="OPEN")
+            old.pop("superseded_by",None)
+            target=old
+        elif action=="MERGE":
             old.setdefault("merged_directives",[]).append(d["directive_id"])
             old.setdefault("directive_history",[]).append(d["directive"])
             old["latest_directive"]=d["directive"]; old["revision"]=max(old.get("revision",0),d.get("revision",0))
@@ -60,6 +82,7 @@ def ingest(inbox,queue,state):
             queue.setdefault("demands",[]).append(target)
         state["seen_signatures"].append(s)
         events.append({"directive_id":d["directive_id"],"action":action,"root_id":d["root_id"]})
+    compact_demands(queue)
     state["last_events"]=events; state["updated_at"]=datetime.now(timezone.utc).isoformat()
     return events
 def claim(queue,tool,owner):
@@ -79,7 +102,8 @@ def self_test():
     assert ingest({"directives":[m]},q,s)[0]["action"]=="MERGE" and q["demands"][0]["demand_id"]=="A1"
     newer={"directive_id":"A3","target_tool":"TOOL044","root_id":"R1","revision":2,"directive":"latest","supersedes":"A1"}
     assert ingest({"directives":[newer]},q,s)[0]["action"]=="SUPERSEDE"
-    assert any(x.get("status")=="SUPERSEDED" for x in q["demands"])
+    active=[x for x in q["demands"] if x.get("root_id")=="R1"]
+    assert len(active)==1 and active[0]["revision"]==2 and active[0]["status"]=="OPEN"
     p={"demand_id":"P1","root_id":"RP","target_tool":"TOOL006","status":"PASS"}; q["demands"].append(p)
     pd={"directive_id":"P2","root_id":"RP","target_tool":"TOOL006","revision":1,"directive":"repeat pass"}
     assert ingest({"directives":[pd]},q,s)[0]["action"]=="SKIP_REUSE_PASS"

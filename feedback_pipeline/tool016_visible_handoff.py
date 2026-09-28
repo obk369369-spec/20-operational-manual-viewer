@@ -54,9 +54,11 @@ def _schedule_history(previous: dict, now: str, trigger: str, run_id: str) -> di
 def build(queue: dict, pool: dict, gates: dict, now: str, providers: dict | None = None,
           previous: dict | None = None, trigger: str = "manual", run_id: str = "") -> dict:
     demands = queue.get("demands", [])
-    ids = [row.get("demand_id") for row in demands]
-    duplicate_ids = sorted({item for item in ids if item and ids.count(item) > 1})
     unfinished = [row for row in demands if row.get("status") not in TERMINAL and not _returned(row)]
+    active = [row for row in unfinished if row.get("status") != "SUPERSEDED"]
+    ids = [row.get("demand_id") for row in active]
+    duplicate_ids = sorted({item for item in ids if item and ids.count(item) > 1})
+    unfinished = active
     ready = [row for row in unfinished if _ready(row)]
     waiting = [row for row in unfinished if row not in ready]
     excluded = len(demands) - len(unfinished)
