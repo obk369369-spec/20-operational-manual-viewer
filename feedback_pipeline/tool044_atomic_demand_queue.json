@@ -3955,6 +3955,21 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+      "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
+      "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+      "status": "OPEN",
+      "revision": 2,
+      "latest_directive": "Extend the handoff layer beyond transport. Observer-only operation: decide Work necessity→collect/dedupe WORK_REQUIRED→COMMON_ROOT compress→estimate resource value using only real telemetry→admit/hold Work→monitor allowed execution state→recover result→return to TOOL016/044→choose next. Classify Work-requested actions: safe pre-authorized repetitive validation/read/deploy actions only when platform permits automation; reject/cancel unnecessary or duplicate execution; reject PASS reruns; low-value repetitive work returns to free TOOL016/044 circulation; merge same-cause work into one COMMON_ROOT; never bypass platform-mandated user approval, instead batch approval-required actions to minimize user interventions without blocking other circulation. Credit management belongs to handoff layer: if actual Work credit/usage telemetry is readable, use it; otherwise record CREDIT_TELEMETRY_UNAVAILABLE and never invent numbers. Work admission order: free circulation possible=>NO WORK; reusable PASS/verified component=>NO WORK; COMMON_ROOT compression possible=>compress first; only unavoidable large root=>WORK_REQUIRED. After Work, automatic result recovery and TOOL016/044 return; free circulation owns repeat validation/regression/evidence/24h observation. User copy/paste or continuous monitoring means final FAIL. First collect all failures across approval/rejection/credit/handoff/result recovery, group by COMMON_ROOT, fix common causes once, then full revalidation. Unsupported automation remains PLATFORM_LIMIT and must not stop other 24h circulation. Preserve existing PASS and exclude TOOL013.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
