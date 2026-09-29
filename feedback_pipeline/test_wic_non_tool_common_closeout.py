@@ -11,6 +11,8 @@ queue = {"demands": [
      "residual_classification": "UNFINISHED", "atomic_capabilities": ["CAP"]},
     {"demand_id": "tool", "root_id": "TOOL013-X", "target_tool": "TOOL013",
      "residual_classification": "UNFINISHED"},
+    {"demand_id": "legacy-central-tool", "root_id": "T42-LEGACY", "target_tool": "CENTRAL",
+     "residual_classification": "UNFINISHED"},
 ]}
 observer = {
     "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": True,

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -24,6 +25,14 @@ def is_non_tool(row: dict) -> bool:
     target = str(row.get("target_tool") or "CENTRAL")
     targets = {part.strip() for part in target.split(",")}
     root = str(row.get("root_id") or row.get("request_id") or row.get("demand_id") or "")
+    # Functional-tool work is outside this common-infrastructure closeout even
+    # when a legacy record points at the CENTRAL router.
+    if re.match(r"^T\d+-", root) or root.startswith("FS-FUNCTION-"):
+        return False
+    if root.startswith("TOOL") and not root.startswith(("TOOL016", "TOOL044")):
+        return False
+    if "PUBLISHERS_TOC_EXTRACTION" in root:
+        return False
     if targets & COMMON_TARGETS:
         return True
     return any(token in root for token in ("COMMON", "CIRCULATION", "HANDOFF", "BACKLOG", "FINAL-"))
