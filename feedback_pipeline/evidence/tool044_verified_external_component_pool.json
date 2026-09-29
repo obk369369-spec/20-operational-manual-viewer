@@ -489,7 +489,7 @@
     },
     {
       "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
       "license": "WIC_REPOSITORY_COMPONENT",
       "version": "1.0.0",
@@ -525,7 +525,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "runtime_gateway, canonical instruction intake, visible handoff, Work handoff and multi-gate regression receipts",
-      "idempotency_key": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1@1.0.0"
+      "idempotency_key": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1@1.0.0",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+        "owner": "GITHUB_ACTIONS:36562842249:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+          "owner": "GITHUB_ACTIONS:36562842249:GATE_01",
+          "fencing_token": "48e0bd2030dc4a5abaccbd62a2596d27",
+          "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+          "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+          "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T11:37:11.325747+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
