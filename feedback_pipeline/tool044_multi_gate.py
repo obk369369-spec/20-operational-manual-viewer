@@ -1,7 +1,7 @@
 """Durable GitHub matrix gate for verified TOOL044 components.
 
 The coordinator serializes planning, persists claims before execution, assigns
-each job to one of 15 isolated lanes, and merges result artifacts afterwards.
+each job to one of 30 isolated lanes, and merges result artifacts afterwards.
 External-provider adapters remain fail-closed until their credentials exist.
 """
 from __future__ import annotations
@@ -23,7 +23,7 @@ POOL = HERE / "evidence" / "tool044_verified_external_component_pool.json"
 STATE = HERE / "evidence" / "tool044_multi_gate_state.json"
 CENTRAL = HERE / "state.json"
 QUEUE = HERE / "tool044_atomic_demand_queue.json"
-MAX_GATES = 15
+MAX_GATES = 30
 TERMINAL = {"PASS", "FAIL", "HOLD", "BLOCKED", "RETURNED"}
 
 

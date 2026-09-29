@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       parallel_canary_count:
-        description: 'Independent hosted-runner circulation canaries (0-15)'
+        description: 'Independent hosted-runner circulation canaries (0-30)'
         required: false
         default: '0'
 
@@ -59,7 +59,7 @@ jobs:
     if: ${{ needs.prepare.outputs.has_jobs == 'true' }}
     strategy:
       fail-fast: false
-      max-parallel: 15
+      max-parallel: 30
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     runs-on: ubuntu-latest
     concurrency:
