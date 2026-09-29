@@ -561,13 +561,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-09-29T22:19:56.681013+00:00",
+      "updated_at": "2026-09-29T23:26:55.873674+00:00",
       "counts": {
-        "COMPLETE": 37,
-        "PARTIAL": 9,
         "UNFINISHED": 15,
-        "PLATFORM_HOLD": 3,
-        "LONG_TERM_HOLD": 5
+        "COMPLETE": 37,
+        "LONG_TERM_HOLD": 5,
+        "PARTIAL": 9,
+        "PLATFORM_HOLD": 3
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3057,7 +3057,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T22:19:56.671248+00:00",
+      "updated_at": "2026-09-29T23:26:55.844028+00:00",
       "UNFINISHED_SCANNED": 46,
       "ALREADY_PASS_EXCLUDED": 69,
       "ROOTS_MERGED": 5,
@@ -3462,16 +3462,21 @@
             "run_id": "36638908353",
             "observed_at": "2026-09-29T22:19:56.671248+00:00",
             "event": "schedule"
+          },
+          {
+            "run_id": "36645244073",
+            "observed_at": "2026-09-29T23:26:55.844028+00:00",
+            "event": "schedule"
           }
         ],
-        "run_count": 15,
-        "elapsed_hours": 32.275,
+        "run_count": 16,
+        "elapsed_hours": 33.391,
         "status": "PASS",
         "actual_24h": true
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T22:19:56.671248+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T23:26:55.844028+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3598,7 +3603,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T22:19:56.671248+00:00",
+      "updated_at": "2026-09-29T23:26:55.844028+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
