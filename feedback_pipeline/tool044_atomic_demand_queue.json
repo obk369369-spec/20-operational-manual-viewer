@@ -4649,6 +4649,93 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "2879888fd53f71858876",
+      "root_id": "88f4897c09e7ad84a693",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CENTRAL",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "2879888fd53f71858876",
+      "root_id": "88f4897c09e7ad84a693",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CENTRAL",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ]
+    },
+    {
+      "demand_id": "2879888fd53f71858876-FAILURE_ISOLATION",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "source": "TOOL044_REQUEST_INBOX",
+      "request_id": "2879888fd53f71858876",
+      "root_id": "88f4897c09e7ad84a693",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CENTRAL",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-FAILURE_ISOLATION"
+        }
+      ]
     }
   ]
 }

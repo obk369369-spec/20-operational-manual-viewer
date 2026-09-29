@@ -333,6 +333,24 @@
         "tool016_result_return": "RECEIVED",
         "updated_at": "2026-09-28T11:11:55.808Z"
       }
+    },
+    {
+      "request_id": "2879888fd53f71858876",
+      "root_id": "88f4897c09e7ad84a693",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "CENTRAL",
+      "source_evidence": "CURRENT_CHAT#observer-zero-touch-20260929",
+      "feedback": "피드백 자동수집 결과를 TOOL016과 TOOL044 순환에 반영해.",
+      "actual_input": "CURRENT_CHAT#observer-zero-touch-20260929:short-input",
+      "wrong_output": "MANUAL_RELAY_REQUIRED",
+      "expected": "TOOL016 receives the request, TOOL044 creates executable demands, and the validated result returns without manual relay",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
