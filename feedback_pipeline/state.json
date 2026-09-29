@@ -646,14 +646,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 20,
+      "COMPONENT_FOUND": 22,
       "VALIDATING": 0,
-      "PASS": 20,
+      "PASS": 22,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 1,
-      "REMAINING": 71,
-      "LAST_HEARTBEAT": "2026-09-29T01:51:22.536622+00:00",
+      "RETURNED": 2,
+      "REMAINING": 69,
+      "LAST_HEARTBEAT": "2026-09-29T01:52:59.299292+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -661,9 +661,9 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T01:51:22.536622+00:00",
+      "updated_at": "2026-09-29T01:52:59.299292+00:00",
       "capacity": 15,
-      "results_returned": 1,
+      "results_returned": 2,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -1175,14 +1175,66 @@
             "heartbeat": "2026-09-29T01:51:11.475824+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::T42-OFFICIAL-DETAIL-PAGE-VALIDATION::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE": {
+          "ROOT_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+          "OWNER": "GITHUB_ACTIONS:36509889933:GATE_02",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "9b5fadbba2e2418195f605d315267694",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::T42-OFFICIAL-DETAIL-PAGE-VALIDATION::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+            "owner": "GITHUB_ACTIONS:36509889933:GATE_02",
+            "fencing_token": "9b5fadbba2e2418195f605d315267694",
+            "component_id": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+            "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T01:52:12.460718+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE": {
+          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+          "OWNER": "GITHUB_ACTIONS:36509889933:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "7fc7ca4a138545f087e0ad3d2e51fbf6",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+            "owner": "GITHUB_ACTIONS:36509889933:GATE_01",
+            "fencing_token": "7fc7ca4a138545f087e0ad3d2e51fbf6",
+            "component_id": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+            "root_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T01:52:12.423256+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T01:52:01.404889+00:00",
-      "UNFINISHED_SCANNED": 50,
-      "ALREADY_PASS_EXCLUDED": 51,
+      "updated_at": "2026-09-29T01:52:59.340246+00:00",
+      "UNFINISHED_SCANNED": 48,
+      "ALREADY_PASS_EXCLUDED": 53,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
@@ -1406,8 +1458,7 @@
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 20,
-          "CLAIMED": 2
+          "PASS": 22
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1433,11 +1484,11 @@
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
         "ready": 32,
-        "waiting": 18,
+        "waiting": 16,
         "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 31,
+        "result_returns": 33,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -1489,7 +1540,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T01:52:01.404889+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T01:52:59.340246+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
