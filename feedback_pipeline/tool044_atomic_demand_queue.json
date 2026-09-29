@@ -5176,7 +5176,7 @@
       "demand_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
       "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
       "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "USER_COMMON_ERROR_BATCH",
       "priority": "CRITICAL",
       "atomic_capabilities": [
@@ -5213,7 +5213,10 @@
       "common_error_batch": true,
       "pass_lock_policy": "E2E_EVIDENCE_ONLY",
       "platform_hold_policy": "KEEP_TRACKED_DO_NOT_BLOCK_ACTIONABLE_WORK",
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "UNFINISHED",
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:04:37.117423+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE"
     },
     {
       "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",

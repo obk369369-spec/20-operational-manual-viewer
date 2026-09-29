@@ -2908,11 +2908,11 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:04:25.100308+00:00",
+      "updated_at": "2026-09-29T12:04:37.117423+00:00",
       "UNFINISHED_SCANNED": 47,
       "ALREADY_PASS_EXCLUDED": 66,
-      "ROOTS_MERGED": 5,
-      "WORK_FIXABLE_ROOTS": 5,
+      "ROOTS_MERGED": 6,
+      "WORK_FIXABLE_ROOTS": 6,
       "WORK_REQUIRED": [
         {
           "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
@@ -2962,6 +2962,22 @@
             "BULK_ROOT_EXECUTION",
             "EXPECTED_ACTUAL_VALIDATION",
             "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "demand_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+          "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
+          "atomic_capabilities": [
+            "AUTO_NEXT_WORK_SELECTION",
+            "AUTO_STATUS_CLASSIFICATION",
+            "AUTO_UNFINISHED_REQUEUE",
+            "AUTO_USER_VISIBLE_COMPLETION_REPORT",
+            "BULK_FEEDBACK_INTAKE",
+            "GLOBAL_REQUIREMENT_RECONCILIATION",
+            "HOURLY_STATUS_RETURN_PATH",
+            "RELATED_TARGET_PROPAGATION",
+            "TOOL016_TOOL044_WORK_HANDOFF"
           ]
         }
       ],
@@ -3015,9 +3031,19 @@
             "TOOL016/TOOL044"
           ],
           "status": "READY_FOR_MULTI_GATE"
+        },
+        {
+          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+          "demands": [
+            "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
+          ],
+          "target_tools": [
+            "TOOL016/TOOL044/WORK_HANDOFF"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
         }
       ],
-      "TOOL044_AUTO_HANDED_OFF": 30,
+      "TOOL044_AUTO_HANDED_OFF": 29,
       "TOOL044_QUEUE": [
         {
           "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -3188,33 +3214,18 @@
           "atomic_capabilities": []
         },
         {
-          "demand_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
-          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
-          "atomic_capabilities": [
-            "AUTO_NEXT_WORK_SELECTION",
-            "AUTO_STATUS_CLASSIFICATION",
-            "AUTO_UNFINISHED_REQUEUE",
-            "AUTO_USER_VISIBLE_COMPLETION_REPORT",
-            "BULK_FEEDBACK_INTAKE",
-            "GLOBAL_REQUIREMENT_RECONCILIATION",
-            "HOURLY_STATUS_RETURN_PATH",
-            "RELATED_TARGET_PROPAGATION",
-            "TOOL016_TOOL044_WORK_HANDOFF"
-          ]
-        },
-        {
           "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
           "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
           "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
           "atomic_capabilities": []
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 5,
+      "WORK_REQUIRED_REMAINDER": 6,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 85
+          "PASS": 85,
+          "CLAIMED": 1
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -3316,7 +3327,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:04:25.100308+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:04:37.117423+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3443,7 +3454,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:04:25.100308+00:00",
+      "updated_at": "2026-09-29T12:04:37.117423+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3570,7 +3581,8 @@
       "AUTO_REQUEUED": [
         "FINAL-37-CR-EVIDENCE-VALIDATION",
         "FINAL-37-CR-TRANSLATION-COMPONENT",
-        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+        "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
       ],
       "NEXT_WORK": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,

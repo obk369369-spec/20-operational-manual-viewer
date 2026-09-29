@@ -550,7 +550,7 @@
     },
     {
       "component_id": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "repository://feedback_pipeline/tool016_visible_handoff.py",
       "license": "WIC-INTERNAL",
       "version": "1.0.0",
@@ -589,7 +589,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
-      "idempotency_key": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1@1.0.0"
+      "idempotency_key": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1@1.0.0",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+        "owner": "GITHUB_ACTIONS:36565539417:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+          "owner": "GITHUB_ACTIONS:36565539417:GATE_01",
+          "fencing_token": "7e9c69d40b8e423089b7f680fedcc509",
+          "component_id": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+          "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T12:03:02.445496+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
