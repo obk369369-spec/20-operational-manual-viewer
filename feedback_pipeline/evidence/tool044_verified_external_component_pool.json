@@ -129,17 +129,37 @@
       "source": "https://pypi.org/project/validators/0.35.0/",
       "license": "MIT",
       "version": "0.35.0+wic-composition.1",
-      "atomic_capabilities": ["URL_VALIDATION", "OFFICIAL_DETAIL_PAGE_VALIDATION"],
+      "atomic_capabilities": [
+        "URL_VALIDATION",
+        "OFFICIAL_DETAIL_PAGE_VALIDATION"
+      ],
       "target_root": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
       "target_tool": "TOOL042",
       "input_contract": "URL, authoritative official-domain allowlist, and explicit detail-page marker",
       "output_contract": "VERIFIED_OFFICIAL_DETAIL_PAGE or fail-closed HOLD reason",
       "install_target": "isolated sandbox/site",
-      "install_method": ["{python}", "-m", "pip", "install", "--no-deps", "--target", "{sandbox}/site", "{repo}/feedback_pipeline/external_candidate_pool/validators-0.35.0-py3-none-any.whl"],
-      "validator": ["{python}", "-c", "import sys,validators; sys.path.insert(0,r'{repo}/feedback_pipeline'); from tool044_composition import validate_official_detail_page as v; u='https://www.kiro.re.kr/enjoy/report.asp?bidx=5537'; assert validators.url(u) is True; assert v(u,['kiro.re.kr'],['bidx'])['status']=='VERIFIED_OFFICIAL_DETAIL_PAGE'; assert v('https://www.kiro.re.kr/',['kiro.re.kr'],['bidx'])['status']=='HOLD_NOT_DETAIL_PAGE'; assert v('https://kiro.example/report?bidx=1',['kiro.re.kr'],['bidx'])['status']=='HOLD_NOT_OFFICIAL_DOMAIN'"],
+      "install_method": [
+        "{python}",
+        "-m",
+        "pip",
+        "install",
+        "--no-deps",
+        "--target",
+        "{sandbox}/site",
+        "{repo}/feedback_pipeline/external_candidate_pool/validators-0.35.0-py3-none-any.whl"
+      ],
+      "validator": [
+        "{python}",
+        "-c",
+        "import sys,validators; sys.path.insert(0,r'{repo}/feedback_pipeline'); from tool044_composition import validate_official_detail_page as v; u='https://www.kiro.re.kr/enjoy/report.asp?bidx=5537'; assert validators.url(u) is True; assert v(u,['kiro.re.kr'],['bidx'])['status']=='VERIFIED_OFFICIAL_DETAIL_PAGE'; assert v('https://www.kiro.re.kr/',['kiro.re.kr'],['bidx'])['status']=='HOLD_NOT_DETAIL_PAGE'; assert v('https://kiro.example/report?bidx=1',['kiro.re.kr'],['bidx'])['status']=='HOLD_NOT_OFFICIAL_DOMAIN'"
+      ],
       "success_condition": "actual official KIRO detail URL passes and homepage/nonofficial regressions fail closed",
       "failure_condition": "wheel install or any expected/actual boundary assertion returns non-zero",
-      "rollback_method": ["{python}", "-c", "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"],
+      "rollback_method": [
+        "{python}",
+        "-c",
+        "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+      ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
       "idempotency_key": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE@0.35.0+wic-composition.1"

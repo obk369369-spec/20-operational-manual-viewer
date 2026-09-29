@@ -1154,7 +1154,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T01:21:52.131782+00:00",
+      "updated_at": "2026-09-29T01:50:58.958513+00:00",
       "UNFINISHED_SCANNED": 50,
       "ALREADY_PASS_EXCLUDED": 51,
       "ROOTS_MERGED": 0,
@@ -1380,7 +1380,8 @@
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 19
+          "PASS": 19,
+          "CLAIMED": 1
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1462,7 +1463,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T01:21:52.131782+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T01:50:58.958513+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
