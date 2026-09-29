@@ -684,14 +684,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 29,
+      "COMPONENT_FOUND": 39,
       "VALIDATING": 0,
-      "PASS": 29,
+      "PASS": 39,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 2,
-      "REMAINING": 75,
-      "LAST_HEARTBEAT": "2026-09-29T10:57:51.826107+00:00",
+      "RETURNED": 10,
+      "REMAINING": 65,
+      "LAST_HEARTBEAT": "2026-09-29T10:59:06.840651+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,9 +699,9 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T10:57:51.826107+00:00",
+      "updated_at": "2026-09-29T10:59:06.840651+00:00",
       "capacity": 15,
-      "results_returned": 2,
+      "results_returned": 10,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -1447,128 +1447,278 @@
             "heartbeat": "2026-09-29T10:57:41.694676+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_09",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "b1ff2fe485984b9799bc5c2856b108b1",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_09",
+            "fencing_token": "b1ff2fe485984b9799bc5c2856b108b1",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "48db0c6ef39a7ffc3a81",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:54.131104+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+          "ROOT_ID": "4c4baaa30ab6e13af241",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_10",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "7d52ffed81c44276908d6e0ed3ac6e8c",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_10",
+            "fencing_token": "7d52ffed81c44276908d6e0ed3ac6e8c",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "4c4baaa30ab6e13af241",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:54.865258+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+          "ROOT_ID": "1755eed95f7a0daaae1f",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_03",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "469e1aa16655441fafb49ca8a6c7d9d1",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_03",
+            "fencing_token": "469e1aa16655441fafb49ca8a6c7d9d1",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "1755eed95f7a0daaae1f",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:54.092698+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::69ff43b8de90d6f44d5e-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+          "ROOT_ID": "1755eed95f7a0daaae1f",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_04",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "e4308337d258413d87c6cd79ee41d4da",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::69ff43b8de90d6f44d5e-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_04",
+            "fencing_token": "e4308337d258413d87c6cd79ee41d4da",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "1755eed95f7a0daaae1f",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:52.498416+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+          "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_05",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "01311529c2ff490f905c17273d904ceb",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_05",
+            "fencing_token": "01311529c2ff490f905c17273d904ceb",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:55.245333+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+          "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_06",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "8d53cb80be744c8c9d4e7201e0185684",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_06",
+            "fencing_token": "8d53cb80be744c8c9d4e7201e0185684",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:51.677476+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+          "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_07",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "70435e12e6954cf8af888b0ea54fc847",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_07",
+            "fencing_token": "70435e12e6954cf8af888b0ea54fc847",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:52.428035+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+          "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_08",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "f4954f0e81a947009a47b90ece9921e1",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_08",
+            "fencing_token": "f4954f0e81a947009a47b90ece9921e1",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:54.198741+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "983a4edec2624bfc87925f3fb8384975",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_01",
+            "fencing_token": "983a4edec2624bfc87925f3fb8384975",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "88f4897c09e7ad84a693",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:55.358319+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::2879888fd53f71858876-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "TARGET_TOOL": "CENTRAL",
+          "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+          "OWNER": "GITHUB_ACTIONS:36558869941:GATE_02",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "535ee56ddbf94f9db1da8ae0acb11fa4",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::2879888fd53f71858876-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558869941:GATE_02",
+            "fencing_token": "535ee56ddbf94f9db1da8ae0acb11fa4",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "88f4897c09e7ad84a693",
+            "target_tool": "CENTRAL",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:58:50.671822+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T10:58:41.233571+00:00",
-      "UNFINISHED_SCANNED": 54,
-      "ALREADY_PASS_EXCLUDED": 56,
-      "ROOTS_MERGED": 4,
-      "WORK_FIXABLE_ROOTS": 4,
-      "WORK_REQUIRED": [
-        {
-          "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "1755eed95f7a0daaae1f",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
-          "root_id": "1755eed95f7a0daaae1f",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
-          "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
-          "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        },
-        {
-          "demand_id": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
-          "root_id": "88f4897c09e7ad84a693",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ]
-        },
-        {
-          "demand_id": "2879888fd53f71858876-FAILURE_ISOLATION",
-          "root_id": "88f4897c09e7ad84a693",
-          "target_tool": "CENTRAL",
-          "atomic_capabilities": [
-            "FAILURE_ISOLATION"
-          ]
-        }
-      ],
-      "WORK_BATCHES": [
-        {
-          "root_id": "1755eed95f7a0daaae1f",
-          "demands": [
-            "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
-            "69ff43b8de90d6f44d5e-FAILURE_ISOLATION"
-          ],
-          "target_tools": [
-            "CENTRAL"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        },
-        {
-          "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
-          "demands": [
-            "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
-            "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
-          ],
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        },
-        {
-          "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
-          "demands": [
-            "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
-            "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
-          ],
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        },
-        {
-          "root_id": "88f4897c09e7ad84a693",
-          "demands": [
-            "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
-            "2879888fd53f71858876-FAILURE_ISOLATION"
-          ],
-          "target_tools": [
-            "CENTRAL"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        }
-      ],
+      "updated_at": "2026-09-29T10:59:06.873119+00:00",
+      "UNFINISHED_SCANNED": 44,
+      "ALREADY_PASS_EXCLUDED": 66,
+      "ROOTS_MERGED": 0,
+      "WORK_FIXABLE_ROOTS": 0,
+      "WORK_REQUIRED": [],
+      "WORK_BATCHES": [],
       "TOOL044_AUTO_HANDED_OFF": 32,
       "TOOL044_QUEUE": [
         {
@@ -1772,12 +1922,11 @@
           "atomic_capabilities": []
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 8,
+      "WORK_REQUIRED_REMAINDER": 0,
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 29,
-          "CLAIMED": 10
+          "PASS": 39
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1802,12 +1951,12 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 40,
-        "waiting": 14,
-        "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+        "ready": 32,
+        "waiting": 12,
+        "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 36,
+        "result_returns": 46,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -1879,7 +2028,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T10:58:41.233571+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T10:59:06.873119+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
