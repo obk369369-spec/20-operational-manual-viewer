@@ -100,6 +100,17 @@ def test_verified_component_claims_multiple_independent_demands_in_one_batch(tmp
     assert {row["job_id"].split("::")[1] for row in matrix} == {"DEMAND-A", "DEMAND-B"}
 
 
+def test_explicit_canaries_create_independent_durable_lanes(tmp_path: Path):
+    pool = tmp_path / "pool.json"; state = tmp_path / "state.json"; queue = tmp_path / "queue.json"
+    pool.write_text(json.dumps({"components": []}), encoding="utf-8")
+    queue.write_text(json.dumps({"demands": []}), encoding="utf-8")
+    matrix = plan(pool, state, "RUN-PARALLEL", queue, canary_count=4)
+    assert len(matrix) == 4
+    assert len({row["owner"] for row in matrix}) == 4
+    saved = json.loads(state.read_text(encoding="utf-8"))["jobs"]
+    assert all(saved[row["job_id"]]["CHECKPOINT"] == "CLAIM_DURABLE" for row in matrix)
+
+
 def test_pass_hold_fail_returns_preserve_demand_resume_contract(tmp_path: Path):
     state = tmp_path / "state.json"; queue = tmp_path / "queue.json"; central = tmp_path / "central.json"
     jobs = {}

@@ -5,6 +5,11 @@ on:
     - cron: '*/15 * * * *'
     - cron: '17 */6 * * *'
   workflow_dispatch:
+    inputs:
+      parallel_canary_count:
+        description: 'Independent hosted-runner circulation canaries (0-15)'
+        required: false
+        default: '0'
 
 permissions:
   contents: write
@@ -27,7 +32,10 @@ jobs:
           fetch-depth: 0
       - id: plan
         name: Persist claims before execution
-        run: python feedback_pipeline/tool044_multi_gate.py plan --github-output "$GITHUB_OUTPUT"
+        run: >-
+          python feedback_pipeline/tool044_multi_gate.py plan
+          --parallel-canary-count '${{ inputs.parallel_canary_count || 0 }}'
+          --github-output "$GITHUB_OUTPUT"
       - name: Refresh external runner candidates on periodic discovery cycle
         if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 */6 * * *' }}
         env:

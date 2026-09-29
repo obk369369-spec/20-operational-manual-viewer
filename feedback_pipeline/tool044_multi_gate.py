@@ -72,7 +72,7 @@ def _components(pool: dict) -> list[dict]:
 
 
 def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
-               queue: dict | None = None) -> tuple[dict, list[dict]]:
+               queue: dict | None = None, canary_count: int = 0) -> tuple[dict, list[dict]]:
     jobs = state.setdefault("jobs", {})
     events = state.setdefault("events", [])
     for job in jobs.values():
@@ -104,6 +104,29 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
             "OWNER": None, "CLAIM_TIME": None, "LEASE_EXPIRY": None,
             "CHECKPOINT": "RECEIVED", "STATUS": "READY", "RETRY_COUNT": 0,
             "RESULT": None, "COMPONENT": component,
+        })
+
+    # An explicit dispatch may request real, isolated infrastructure work.  Each
+    # canary is a separate durable job and therefore a separate hosted runner;
+    # scheduled production cycles never create canaries implicitly.
+    for index in range(1, min(max(canary_count, 0), MAX_GATES) + 1):
+        job_id = f"CANARY::{run_id}::{index:02d}"
+        component_id = f"COMMON-CIRCULATION-CANARY-{index:02d}"
+        marker = f"lane-{index:02d}.txt"
+        jobs.setdefault(job_id, {
+            "JOB_ID": job_id, "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+            "TARGET_TOOL": "COMMON_INFRASTRUCTURE", "COMPONENT_ID": component_id,
+            "OWNER": None, "CLAIM_TIME": None, "LEASE_EXPIRY": None,
+            "CHECKPOINT": "CANARY_REGISTERED", "STATUS": "READY", "RETRY_COUNT": 0,
+            "RESULT": None, "COMPONENT": {
+                "component_id": component_id,
+                "install_method": ["{python}", "-c",
+                                   f"from pathlib import Path; Path('{marker}').write_text('READY')"],
+                "validator": ["{python}", "-c",
+                              f"from pathlib import Path; assert Path('{marker}').read_text() == 'READY'"],
+                "rollback_method": ["{python}", "-c",
+                                    f"from pathlib import Path; Path('{marker}').unlink(missing_ok=True)"],
+            },
         })
 
     # A component becomes reusable only after the prior isolated lane returned PASS.
@@ -160,10 +183,11 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
     return state, matrix
 
 
-def plan(pool_path: Path, state_path: Path, run_id: str, queue_path: Path = QUEUE) -> list[dict]:
+def plan(pool_path: Path, state_path: Path, run_id: str, queue_path: Path = QUEUE,
+         canary_count: int = 0) -> list[dict]:
     pool = load(pool_path, {"components": []})
     state, matrix = build_plan(pool, load(state_path, {"jobs": {}, "events": []}),
-                               run_id, utcnow(), load(queue_path, {"demands": []}))
+                               run_id, utcnow(), load(queue_path, {"demands": []}), canary_count)
     atomic_json(pool_path, pool)
     atomic_json(state_path, state)
     return matrix
@@ -338,6 +362,7 @@ def main() -> None:
     p = sub.add_parser("plan")
     p.add_argument("--pool", type=Path, default=POOL); p.add_argument("--state", type=Path, default=STATE)
     p.add_argument("--queue", type=Path, default=QUEUE)
+    p.add_argument("--parallel-canary-count", type=int, default=0)
     p.add_argument("--run-id", default=os.environ.get("GITHUB_RUN_ID", "LOCAL")); p.add_argument("--github-output")
     r = sub.add_parser("run-lane")
     r.add_argument("--state", type=Path, default=STATE); r.add_argument("--job-id", required=True)
@@ -349,7 +374,7 @@ def main() -> None:
     a.add_argument("results", nargs="*", type=Path)
     args = parser.parse_args()
     if args.command == "plan":
-        matrix = plan(args.pool, args.state, args.run_id, args.queue)
+        matrix = plan(args.pool, args.state, args.run_id, args.queue, args.parallel_canary_count)
         payload = json.dumps({"include": matrix or [{"gate_id": "GATE_01", "job_id": "NOOP", "owner": "NOOP"}]})
         if args.github_output:
             with Path(args.github_output).open("a", encoding="utf-8") as handle:
