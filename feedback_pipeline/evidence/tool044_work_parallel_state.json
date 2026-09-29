@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T03:55:37.605912+00:00",
+  "generated_at": "2026-09-29T05:40:14.733831+00:00",
   "packages": [
     {
       "ROOT_ID": "T42-RESELLER-DETECTION",
@@ -2691,7 +2691,7 @@
       "ROOT_ID": "24H-AUTONOMOUS-CIRCULATION",
       "CURRENT_STATE": "OPEN",
       "EXACT_ERROR": [
-        "Mandatory observer evidence reporting for actual 24h circulation. Each observer report must be grounded in real external execution evidence and show 24H start time, current time, actual elapsed time, latest external run time, Run ID, latest heartbeat, current TOOL/ROOT, latest checkpoint, completed/HOLD/FAIL, recovery occurrence, latest result-return, evidence location, and 24H progress. Never treat chat-authored text as evidence. If external evidence cannot be read, report EVIDENCE_UNAVAILABLE. Require actual visibility in the current TOOL044 chat when officially supported and proven; if automatic posting into this exact existing ChatGPT conversation is platform-unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT rather than fake PASS, automatically project the same evidence to CONTROL TOWER, and expose the real evidence location/status so the user can verify 24h operation from TOOL044 or one linked observer surface. This revision supersedes any weaker observer-report requirement while preserving all existing 24h workload/evidence rules."
+        "Hourly observer-report delivery residual. This does not restart any survey or reopen PASS. Preserve protected automation ID 6ab4677d5cf4819191837f83dd86f9b0 and never disable/modify/delete it as a duplicate of ROOT A. First dedupe/merge with existing queue/COMMON_ROOT; create no duplicate root. Work is forbidden. Validate the whole path separately: hourly scheduler run -> actual GitHub evidence read -> report generation -> delivery attempt -> user-visible arrival. Scheduler/report generation success is not delivery success. notifications_enabled=false alone is not assumed causal. If direct automatic posting into the existing TOOL044 chat is unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT and verify a supported free lowest-intervention observer delivery route; never fake REPORT_DELIVERED=PASS. Until actual delivery is evidenced, keep REPORT_DELIVERED=FAIL or UNSUPPORTED. Observer output must be simple: tool number/function, current work, actual improvement since prior report, remaining work, status; if no change say '새 실제 진전 없음'. PASS only after actual evidence read, report generation, real user-visible delivery, and repeated delivery on the next hourly cycle. Reporting failure must not stop other eligible TOOL044 24h circulation work."
       ],
       "COMMON_CAUSE": "ROOT_COMPRESSED",
       "EXPECTED": "Resolve root without regression",

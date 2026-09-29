@@ -30,7 +30,8 @@
     "b9eea778a7f6163e8b54",
     "d53b7f0ad99866f80ff9",
     "6e35ec2e8227e3b053a3",
-    "2012a9d8a0c919906653"
+    "2012a9d8a0c919906653",
+    "d3d55e59f836650ea9d1"
   ],
   "last_events": [
     {
@@ -135,9 +136,13 @@
     },
     {
       "directive_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
-      "action": "NEW_ROOT",
-      "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO"
+      "action": "SKIP_DUPLICATE"
+    },
+    {
+      "directive_id": "TOOL044-HOURLY-REPORT-ACTUAL-DELIVERY-20260929",
+      "action": "SUPERSEDE",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION"
     }
   ],
-  "updated_at": "2026-09-29T03:55:37.562477+00:00"
+  "updated_at": "2026-09-29T05:40:14.697781+00:00"
 }
