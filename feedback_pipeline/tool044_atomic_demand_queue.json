@@ -5265,6 +5265,24 @@
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T12:47:59.307763+00:00"
       }
+    },
+    {
+      "demand_id": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
+      "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+      "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+      "atomic_capabilities": [
+        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+        "REPORT_REQUEUE_NEXT_LOOP",
+        "OBSERVER_ZERO_MANUAL_RELAY",
+        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+        "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
+        "ITEMIZED_OBSERVER_REPORT",
+        "FIXED_BLOCK_COMPLETENESS_GATE",
+        "UNVERIFIED_COMPLETE_PROHIBITION",
+        "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
+      ],
+      "status": "OPEN",
+      "source": "feedback_pipeline/WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE_20260929.md"
     }
   ]
 }

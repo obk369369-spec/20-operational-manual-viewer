@@ -10,6 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 LEDGER = HERE / "evidence" / "wic_non_tool_common_closeout_ledger.json"
 PACKET = HERE / "evidence" / "wic_non_tool_common_work_packet.json"
+OBSERVER_REPORT = HERE / "evidence" / "wic_non_tool_observer_closeout_report.json"
 ALLOWED = {"COMPLETE", "PARTIAL", "UNFINISHED", "PLATFORM_HOLD", "LONG_TERM_HOLD"}
 COMMON_TARGETS = {"CENTRAL", "COMMON_INFRASTRUCTURE", "TOOL016", "TOOL044", "WORK", "CONTROL_TOWER"}
 
@@ -81,7 +82,18 @@ def build(queue: dict, observer: dict, visible: dict, gate_state: dict,
             "remaining_work": [] if classification == "COMPLETE" else demand.get("atomic_capabilities", []),
             "resume_condition": _resume(demand, classification),
             "pass_lock": classification == "COMPLETE" and (demand.get("result_return") or {}).get("tool016_ack") == "RECEIVED",
+            "actionable_requeued": str(demand.get("status", "")).startswith("READY_AUTO_REQUEUED"),
         })
+
+    rows.append({
+        "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
+        "root_id": "PLATFORM-NATIVE-CHAT-ACCESS",
+        "original_requirement": "actual delivery into the existing TOOL044 chat",
+        "implementation_location": [], "actual_evidence": [],
+        "status": "PLATFORM_HOLD", "remaining_work": ["OFFICIALLY_SUPPORTED_CHAT_DELIVERY_HOOK"],
+        "resume_condition": "RESUME_WHEN_OFFICIAL_CHAT_DELIVERY_API_EXISTS",
+        "pass_lock": False, "actionable_requeued": False,
+    })
 
     events = gate_state.get("events", [])
     stale_recovery = any(event.get("event") == "STALE_RECLAIM" for event in events)
@@ -118,14 +130,17 @@ def build(queue: dict, observer: dict, visible: dict, gate_state: dict,
             "remaining_work": [] if status == "COMPLETE" else ["AUTOMATIC_RECOVERY_EVIDENCE_REQUIRED"],
             "resume_condition": "PASS_LOCK_NO_REEXECUTION" if status == "COMPLETE" else "NEXT_SCHEDULED_CIRCULATION",
             "pass_lock": status == "COMPLETE",
+            "actionable_requeued": False,
         })
 
-    grouped = {}
+    grouped, actionable_grouped = {}, {}
     for row in rows:
         if row["status"] not in {"PARTIAL", "UNFINISHED"}:
             continue
         grouped.setdefault(row["root_id"], []).append(row["requirement_id"])
-    selected = next(iter(grouped), None)
+        if row.get("actionable_requeued"):
+            actionable_grouped.setdefault(row["root_id"], []).append(row["requirement_id"])
+    selected = next(iter(actionable_grouped), None)
     counts = {status: sum(row["status"] == status for row in rows) for status in ALLOWED}
     ledger = {
         "schema_version": 1, "updated_at": now,
@@ -133,13 +148,15 @@ def build(queue: dict, observer: dict, visible: dict, gate_state: dict,
         "requirements": rows, "counts": counts, "cr_status": cr_status,
         "not_worked_count": 0,
         "pass_locked": [row["requirement_id"] for row in rows if row["pass_lock"]],
-        "auto_requeued_roots": sorted(grouped), "next_auto_root": selected,
+        "residual_roots": sorted(grouped),
+        "auto_requeued_roots": sorted(actionable_grouped), "next_auto_root": selected,
         "observer_reinstruction_required": 0 if manual_zero else 1,
         "manual_relay_count": 0 if manual_zero else 1,
     }
     packet = {
         "schema_version": 1, "updated_at": now,
-        "root_batches": [{"root_id": root, "requirements": ids} for root, ids in sorted(grouped.items())],
+        "root_batches": [{"root_id": root, "requirements": ids}
+                         for root, ids in sorted(actionable_grouped.items())],
         "next_root": selected,
         "execution_policy": "FREE_VERIFIED_CIRCULATION_FIRST_WORK_ONLY_WITH_RESTART_PACKAGE",
         "workspace": os.environ.get("GITHUB_WORKSPACE") or str(HERE.parent),
@@ -151,8 +168,38 @@ def build(queue: dict, observer: dict, visible: dict, gate_state: dict,
 
 
 def run(queue: dict, observer: dict, visible: dict, gate_state: dict,
-        ledger_path: Path = LEDGER, packet_path: Path = PACKET) -> dict:
+        ledger_path: Path = LEDGER, packet_path: Path = PACKET,
+        observer_report_path: Path = OBSERVER_REPORT) -> dict:
     ledger, packet = build(queue, observer, visible, gate_state)
+    sections = {status: [row for row in ledger["requirements"] if row["status"] == status]
+                for status in ALLOWED}
+    required = ["COMPLETE", "PARTIAL", "UNFINISHED", "PLATFORM_HOLD", "LONG_TERM_HOLD",
+                "AUTO_REQUEUED", "NEXT_WORK", "EVIDENCE", "observer_reinstruction_required",
+                "manual_relay_count"]
+    report = {
+        **sections,
+        "AUTO_REQUEUED": ledger["auto_requeued_roots"],
+        "NEXT_WORK": ledger["next_auto_root"],
+        "EVIDENCE": {
+            "ledger": str(ledger_path), "work_packet": str(packet_path),
+            "tool016_ack_count": observer.get("TOOL016_RESULT_ACK_RECEIVED", 0),
+            "remote_readback": observer.get("REMOTE_GITHUB_READBACK_PASS", False),
+        },
+        "observer_reinstruction_required": ledger["observer_reinstruction_required"],
+        "manual_relay_count": ledger["manual_relay_count"],
+    }
+    report["required_report_fields"] = required
+    report["missing_report_fields"] = [key for key in required if key not in report]
+    report["fixed_block_gate"] = "PASS" if not report["missing_report_fields"] else "FAIL"
+    # An incomplete mandatory report can never leave CR-1 PASS-locked.
+    if report["fixed_block_gate"] != "PASS":
+        ledger["cr_status"]["CR-1"] = "PARTIAL"
+        for row in ledger["requirements"]:
+            if row["requirement_id"] == "CR-1":
+                row.update(status="PARTIAL", pass_lock=False,
+                           remaining_work=report["missing_report_fields"],
+                           resume_condition="REGENERATE_MANDATORY_OBSERVER_REPORT")
     atomic_json(ledger_path, ledger)
     atomic_json(packet_path, packet)
+    atomic_json(observer_report_path, report)
     return ledger
