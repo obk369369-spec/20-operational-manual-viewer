@@ -1154,14 +1154,14 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T01:13:33.874097+00:00",
-      "UNFINISHED_SCANNED": 53,
-      "ALREADY_PASS_EXCLUDED": 48,
+      "updated_at": "2026-09-29T01:21:52.131782+00:00",
+      "UNFINISHED_SCANNED": 50,
+      "ALREADY_PASS_EXCLUDED": 51,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
       "WORK_BATCHES": [],
-      "TOOL044_AUTO_HANDED_OFF": 35,
+      "TOOL044_AUTO_HANDED_OFF": 32,
       "TOOL044_QUEUE": [
         {
           "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
@@ -1207,24 +1207,6 @@
           "demand_id": "WIC-BACKLOG-ROOT7-20260927",
           "root_id": "ROOT-7",
           "target_tool": "ROOT-7",
-          "atomic_capabilities": []
-        },
-        {
-          "demand_id": "WIC-BACKLOG-TOOL013-20260927",
-          "root_id": "TOOL013",
-          "target_tool": "TOOL013",
-          "atomic_capabilities": []
-        },
-        {
-          "demand_id": "WIC-BACKLOG-TOOL006-20260927",
-          "root_id": "TOOL006",
-          "target_tool": "TOOL006",
-          "atomic_capabilities": []
-        },
-        {
-          "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
-          "root_id": "TOOL041-007-042",
-          "target_tool": "TOOL041-007-042",
           "atomic_capabilities": []
         },
         {
@@ -1423,12 +1405,12 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 35,
+        "ready": 32,
         "waiting": 18,
         "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 28,
+        "result_returns": 31,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -1480,7 +1462,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T01:13:33.874097+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T01:21:52.131782+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
