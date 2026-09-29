@@ -3013,6 +3013,966 @@
         }
       },
       "FENCING_TOKEN": "535ee56ddbf94f9db1da8ae0acb11fa4"
+    },
+    "CANARY::36559902517::01": {
+      "JOB_ID": "CANARY::36559902517::01",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-01",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_01",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "a6845cd90d2e45d2957b11230155859e",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-01",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-01.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-01.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-01.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::02": {
+      "JOB_ID": "CANARY::36559902517::02",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-02",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_02",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "1908915689d9481da48b30e03ea49b4a",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-02",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-02.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-02.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-02.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::03": {
+      "JOB_ID": "CANARY::36559902517::03",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-03",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_03",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "9f1994ce2cc342378cf4b3b8cbb0a37e",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-03",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-03.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-03.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-03.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::04": {
+      "JOB_ID": "CANARY::36559902517::04",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-04",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_04",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "14f1f8c4f8e84a42ba0ea5f9832f33c7",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-04",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-04.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-04.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-04.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::05": {
+      "JOB_ID": "CANARY::36559902517::05",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-05",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_05",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "1314f8460b09411db6f60ab83bfd0abc",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-05",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-05.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-05.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-05.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::06": {
+      "JOB_ID": "CANARY::36559902517::06",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-06",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_06",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "6b8e698063c44807a64d609f068f97c9",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-06",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-06.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-06.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-06.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::07": {
+      "JOB_ID": "CANARY::36559902517::07",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-07",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_07",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "511a68aa34e94db7a5fb0f8b76c19184",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-07",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-07.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-07.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-07.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::08": {
+      "JOB_ID": "CANARY::36559902517::08",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-08",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_08",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "57dea0c5e96c4839acbc9fcf1453b396",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-08",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-08.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-08.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-08.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::09": {
+      "JOB_ID": "CANARY::36559902517::09",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-09",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_09",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "7fe28059c48a4c358ccbc1e69cd5290b",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-09",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-09.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-09.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-09.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::10": {
+      "JOB_ID": "CANARY::36559902517::10",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-10",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_10",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "d015568cb41c4553a763037b55fe2e00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-10",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-10.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-10.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-10.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::11": {
+      "JOB_ID": "CANARY::36559902517::11",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-11",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_11",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "abdea4c345b94925a1c7d08508c38b24",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-11",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-11.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-11.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-11.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::12": {
+      "JOB_ID": "CANARY::36559902517::12",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-12",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_12",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "6915a8866ad54758bd53f2a7a11c0c89",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-12",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-12.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-12.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-12.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::13": {
+      "JOB_ID": "CANARY::36559902517::13",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-13",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_13",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "ef40bb41d98c4c99b1ad1e1fc0037149",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-13",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-13.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-13.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-13.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::14": {
+      "JOB_ID": "CANARY::36559902517::14",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-14",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_14",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "081af773e98a4bd49c697c00caf6ae60",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-14",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-14.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-14.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-14.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::15": {
+      "JOB_ID": "CANARY::36559902517::15",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-15",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_15",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "56a01c9803e549aeb6d4dd8171aa4db4",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-15",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-15.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-15.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-15.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::16": {
+      "JOB_ID": "CANARY::36559902517::16",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-16",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_16",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "8fb22ff8636742b496b314ef0b68180f",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-16",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-16.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-16.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-16.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::17": {
+      "JOB_ID": "CANARY::36559902517::17",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-17",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_17",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "e864c025668845c8847fb5ba9003d8cd",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-17",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-17.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-17.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-17.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::18": {
+      "JOB_ID": "CANARY::36559902517::18",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-18",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_18",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "ab35c465d35b4275a9b8ac8a94a03b29",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-18",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-18.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-18.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-18.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::19": {
+      "JOB_ID": "CANARY::36559902517::19",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-19",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_19",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "e15de3d5b0bd45baa0a55e7225797474",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-19",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-19.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-19.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-19.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::20": {
+      "JOB_ID": "CANARY::36559902517::20",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-20",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_20",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "322ce77be504469da867004249fb87a9",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-20",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-20.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-20.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-20.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::21": {
+      "JOB_ID": "CANARY::36559902517::21",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-21",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_21",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "e54a3b814dc44bb4a6c3e4431935fde9",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-21",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-21.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-21.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-21.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::22": {
+      "JOB_ID": "CANARY::36559902517::22",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-22",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_22",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "9a5ef626091d4d9981c8c00d6cea1df4",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-22",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-22.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-22.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-22.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::23": {
+      "JOB_ID": "CANARY::36559902517::23",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-23",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_23",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "aa8290b81b3e499c8e9d1bdcf0510f62",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-23",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-23.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-23.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-23.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::24": {
+      "JOB_ID": "CANARY::36559902517::24",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-24",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_24",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "77740fa4ffbf40b7a2441b2465135561",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-24",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-24.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-24.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-24.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::25": {
+      "JOB_ID": "CANARY::36559902517::25",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-25",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_25",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "5ba31e748e0b4671952b01afadfc1faa",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-25",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-25.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-25.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-25.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::26": {
+      "JOB_ID": "CANARY::36559902517::26",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-26",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_26",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "ed8baa20863c479ea80fef05ef1ca1e3",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-26",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-26.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-26.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-26.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::27": {
+      "JOB_ID": "CANARY::36559902517::27",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-27",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_27",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "3c39a135b2b8480da4dccb5d346d3e4c",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-27",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-27.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-27.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-27.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::28": {
+      "JOB_ID": "CANARY::36559902517::28",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-28",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_28",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "864e8096f12243a2a3568a1b0f1246a4",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-28",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-28.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-28.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-28.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::29": {
+      "JOB_ID": "CANARY::36559902517::29",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-29",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_29",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "593bea93033c496e9277724773c7df2b",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-29",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-29.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-29.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-29.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36559902517::30": {
+      "JOB_ID": "CANARY::36559902517::30",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-30",
+      "OWNER": "GITHUB_ACTIONS:36559902517:GATE_30",
+      "CLAIM_TIME": "2026-09-29T11:08:41.762144+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:38:41.762144+00:00",
+      "FENCING_TOKEN": "be99269110704a60841155365fb3233a",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-30",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-30.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-30.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-30.txt').unlink(missing_ok=True)"
+        ]
+      }
     }
   },
   "events": [
@@ -3020,12 +3980,17 @@
       "event": "STALE_RECLAIM",
       "job_id": "CANARY::36506841186::01",
       "at": "2026-09-29T01:13:13.114441+00:00"
+    },
+    {
+      "event": "STALE_RECLAIM",
+      "job_id": "CANARY::36559902517::01",
+      "at": "2026-09-29T11:08:41.762144+00:00"
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T10:59:06.840651+00:00",
-  "capacity": 15,
-  "active_claims": 0,
+  "updated_at": "2026-09-29T11:08:41.762144+00:00",
+  "capacity": 30,
+  "active_claims": 30,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 10
 }
