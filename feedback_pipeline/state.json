@@ -2934,8 +2934,8 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:04:59.085031+00:00",
-      "UNFINISHED_SCANNED": 46,
+      "updated_at": "2026-09-29T12:46:46.730983+00:00",
+      "UNFINISHED_SCANNED": 47,
       "ALREADY_PASS_EXCLUDED": 67,
       "ROOTS_MERGED": 5,
       "WORK_FIXABLE_ROOTS": 5,
@@ -3043,7 +3043,7 @@
           "status": "READY_FOR_MULTI_GATE"
         }
       ],
-      "TOOL044_AUTO_HANDED_OFF": 29,
+      "TOOL044_AUTO_HANDED_OFF": 30,
       "TOOL044_QUEUE": [
         {
           "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -3218,13 +3218,26 @@
           "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
           "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
           "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
+          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+          "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "atomic_capabilities": [
+            "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
+            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+            "OBSERVER_ZERO_MANUAL_RELAY",
+            "REPORT_REQUEUE_NEXT_LOOP",
+            "WORK_HANDOFF_CREDIT_AND_RECOVERY"
+          ]
         }
       ],
       "WORK_REQUIRED_REMAINDER": 5,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 86
+          "PASS": 86,
+          "CLAIMED": 1
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -3249,7 +3262,7 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 34,
+        "ready": 35,
         "waiting": 12,
         "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
@@ -3326,7 +3339,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:04:59.085031+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:46:46.730983+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3453,7 +3466,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:04:59.085031+00:00",
+      "updated_at": "2026-09-29T12:46:46.730983+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3556,7 +3569,8 @@
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
         "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-        "WIC-ALL-UNFINISHED-BATCH-20260928"
+        "WIC-ALL-UNFINISHED-BATCH-20260928",
+        "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929"
       ],
       "PLATFORM_HOLD": [
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
@@ -3591,6 +3605,25 @@
       "DURABLE_OBSERVER_REPORT_WRITTEN": true,
       "TOOL016_RESULT_ACK_RECEIVED": 55,
       "REMOTE_GITHUB_READBACK_PASS": true
+    },
+    "non_tool_common_closeout": {
+      "updated_at": "2026-09-29T12:46:46.742987+00:00",
+      "counts": {
+        "COMPLETE": 43,
+        "UNFINISHED": 22,
+        "LONG_TERM_HOLD": 5,
+        "PLATFORM_HOLD": 1,
+        "PARTIAL": 10
+      },
+      "cr_status": {
+        "CR-1": "COMPLETE",
+        "CR-2": "COMPLETE",
+        "CR-3": "COMPLETE",
+        "CR-4": "COMPLETE",
+        "CR-5": "COMPLETE"
+      },
+      "next_auto_root": "T42-RESELLER-DETECTION",
+      "observer_reinstruction_required": 0
     }
   },
   "last_context_cursor": "2026-08-25T00:00:00+09:00",

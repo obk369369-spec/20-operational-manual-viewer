@@ -1,0 +1,2762 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-29T12:46:46.742987+00:00",
+  "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+  "requirements": [
+    {
+      "requirement_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "root_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "CURRENT_STATUS": "IMPROVED_PARTIAL",
+          "SOURCE_EVIDENCE": [
+            "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
+            "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
+          ],
+          "TOOL044_DEMAND_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION"
+        }
+      ],
+      "implementation_location": [
+        "feedback_pipeline/tool044_composition.py"
+      ],
+      "actual_evidence": [
+        "36529626802"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "CURRENT_STATUS": "IMPROVED_PARTIAL",
+          "SOURCE_EVIDENCE": [
+            "VALIDATORS_0_35_0_URL_VALIDATION"
+          ],
+          "TOOL044_DEMAND_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "T42-RESELLER-DETECTION",
+      "root_id": "T42-RESELLER-DETECTION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-RESELLER-DETECTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "RESELLER_DETECTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-RESELLER-DETECTION",
+          "MISSING_CAPABILITY": [
+            "RESELLER_DETECTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "T42-RESELLER-DETECTION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "RESELLER_DETECTION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "T42-PROVENANCE-VALIDATION",
+      "root_id": "T42-PROVENANCE-VALIDATION",
+      "original_requirement": [
+        "PROVENANCE_VALIDATION"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "PROVENANCE_VALIDATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "original_requirement": [
+        "WEBPAGE_TEXT_EXTRACTION"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "T42-TOC-STRUCTURE-EXTRACTION",
+      "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
+      "original_requirement": [
+        "TOC_STRUCTURE_EXTRACTION"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL042",
+          "FUNCTION_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+      "root_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+      "original_requirement": [
+        "LOCAL_DAG_EXECUTION_ENGINE"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "TOOL044-AUTO-ROLLBACK",
+      "root_id": "TOOL044-AUTO-ROLLBACK",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
+          "MISSING_CAPABILITY": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL044-AUTO-ROLLBACK"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "root_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "VERIFIED_TARGET_DEPLOYMENT",
+            "DEPLOYED_COPY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "MISSING_CAPABILITY": [
+            "VERIFIED_TARGET_DEPLOYMENT",
+            "DEPLOYED_COPY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL044-ARBITRARY-WIC-DEPLOY"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "OFFICIAL_DOMAIN_VALIDATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "root_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "OFFICIAL_DETAIL_PAGE_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FS-FUNCTION-RESELLER_DETECTION",
+      "root_id": "FS-FUNCTION-RESELLER_DETECTION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-RESELLER_DETECTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "RESELLER_DETECTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-RESELLER_DETECTION",
+          "MISSING_CAPABILITY": [
+            "RESELLER_DETECTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-RESELLER_DETECTION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "RESELLER_DETECTION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": null,
+          "FUNCTION_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "TOC_HIERARCHY_VALIDATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "HISTORICAL_FEEDBACK_INGEST"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+          "MISSING_CAPABILITY": [
+            "HISTORICAL_FEEDBACK_INGEST"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "HISTORICAL_FEEDBACK_INGEST"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "ACCESS_BOUNDARY_CLASSIFICATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+          "MISSING_CAPABILITY": [
+            "ACCESS_BOUNDARY_CLASSIFICATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "ACCESS_BOUNDARY_CLASSIFICATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "ROOT_CAUSE_DEDUPLICATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+          "MISSING_CAPABILITY": [
+            "ROOT_CAUSE_DEDUPLICATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "ROOT_CAUSE_DEDUPLICATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "MISSING_CAPABILITY_EXTRACTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+          "MISSING_CAPABILITY": [
+            "MISSING_CAPABILITY_EXTRACTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "MISSING_CAPABILITY_EXTRACTION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "VERIFIED_SKIP_REUSE_FILTER"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+          "MISSING_CAPABILITY": [
+            "VERIFIED_SKIP_REUSE_FILTER"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "VERIFIED_SKIP_REUSE_FILTER"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "TOOL016_TO_TOOL044_HANDOFF"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+          "MISSING_CAPABILITY": [
+            "TOOL016_TO_TOOL044_HANDOFF"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "TOOL016_TO_TOOL044_HANDOFF"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "ATOMIC_CAPABILITY_DECOMPOSITION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+          "MISSING_CAPABILITY": [
+            "ATOMIC_CAPABILITY_DECOMPOSITION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "MISSING_CAPABILITY": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+      "root_id": "201185b55b374df24d1e",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "201185b55b374df24d1e",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/16",
+          "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "201185b55b374df24d1e",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "201185b55b374df24d1e",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/16",
+          "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "root_id": "201185b55b374df24d1e",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "201185b55b374df24d1e",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/16",
+          "TOOL044_DEMAND_ID": "f8bc3e81228256cba56e-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+      "root_id": "be0b7e6874fdbe79c9be",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "be0b7e6874fdbe79c9be",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/22",
+          "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "be0b7e6874fdbe79c9be",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "be0b7e6874fdbe79c9be",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/22",
+          "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "root_id": "be0b7e6874fdbe79c9be",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "be0b7e6874fdbe79c9be",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/22",
+          "TOOL044_DEMAND_ID": "e8044eff2acbb5214dbf-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "48db0c6ef39a7ffc3a81",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/23",
+          "TOOL044_DEMAND_ID": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
+      "root_id": "4c4baaa30ab6e13af241",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4c4baaa30ab6e13af241",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/24",
+          "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "4c4baaa30ab6e13af241",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4c4baaa30ab6e13af241",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/24",
+          "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+      "root_id": "4c4baaa30ab6e13af241",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4c4baaa30ab6e13af241",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/24",
+          "TOOL044_DEMAND_ID": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "PLATFORM_HOLD",
+      "remaining_work": [
+        "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+      ],
+      "resume_condition": "RESUME_WHEN_SUPPORTED_PLATFORM_EVENT_OR_PERMISSION_EXISTS",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+          "MISSING_CAPABILITY": [
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "CHECKPOINT_STAGE_RESUME_EXECUTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+          "MISSING_CAPABILITY": [
+            "CHECKPOINT_STAGE_RESUME_EXECUTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "CHECKPOINT_STAGE_RESUME_EXECUTION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+          "MISSING_CAPABILITY": [
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "EXTERNAL_COMPONENT_COLLECTOR",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
+          "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
+          "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "TOOL044_RECEIVED",
+          "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "T16-T44-MINCIRC-20260925-001",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
+          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "T16-T44-MINCIRC-20260925-001",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
+          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "T16-T44-MINCIRC-20260925-001",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
+          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
+      "root_id": "1755eed95f7a0daaae1f",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "1755eed95f7a0daaae1f",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/26",
+          "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "1755eed95f7a0daaae1f",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "1755eed95f7a0daaae1f",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/26",
+          "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
+      "root_id": "1755eed95f7a0daaae1f",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "1755eed95f7a0daaae1f",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/26",
+          "TOOL044_DEMAND_ID": "69ff43b8de90d6f44d5e-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+      "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
+      "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-TOOL016-20260927",
+      "root_id": "TOOL016",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-TOOL044-20260927",
+      "root_id": "TOOL044",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-24H-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+      "root_id": "WIC-FINAL-CONNECTION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+      "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+      "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "BULK_ROOT_EXECUTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "COMMON_ROOT_DEDUPLICATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+          "MISSING_CAPABILITY": [
+            "COMMON_ROOT_DEDUPLICATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "ITEM_EVIDENCE_RETURN"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+          "MISSING_CAPABILITY": [
+            "ITEM_EVIDENCE_RETURN"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 37 unresolved atomic units as six common-root bundles without tool-by-tool repair.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "MISSING_CAPABILITY": [
+            "BULK_ROOT_EXECUTION",
+            "COMMON_ROOT_DEDUPLICATION",
+            "ITEM_EVIDENCE_RETURN",
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "AUTO_NEXT_ROOT"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+          "MISSING_CAPABILITY": [
+            "AUTO_NEXT_ROOT"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 39 unfinished verification units only by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 39 unfinished verification units only by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 39 unfinished verification units only by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 40 confirmed unfinished units plus two missing circulation verification units by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 40 confirmed unfinished units plus two missing circulation verification units by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016/TOOL044",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Process all 40 confirmed unfinished units plus two missing circulation verification units by six common roots.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": null,
+          "CURRENT_STATUS": "RETURNED",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+      "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+      "root_id": "88f4897c09e7ad84a693",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CENTRAL",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "88f4897c09e7ad84a693",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CENTRAL",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "2879888fd53f71858876-FAILURE_ISOLATION",
+      "root_id": "88f4897c09e7ad84a693",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CENTRAL",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "88f4897c09e7ad84a693",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
+      "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "original_requirement": [
+        "GLOBAL_REQUIREMENT_RECONCILIATION",
+        "AUTO_STATUS_CLASSIFICATION",
+        "AUTO_USER_VISIBLE_COMPLETION_REPORT",
+        "AUTO_UNFINISHED_REQUEUE",
+        "AUTO_NEXT_WORK_SELECTION",
+        "BULK_FEEDBACK_INTAKE",
+        "RELATED_TARGET_PROPAGATION",
+        "TOOL016_TOOL044_WORK_HANDOFF",
+        "HOURLY_STATUS_RETURN_PATH"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
+      "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+      "original_requirement": [
+        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+        "REPORT_REQUEUE_NEXT_LOOP",
+        "OBSERVER_ZERO_MANUAL_RELAY",
+        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+        "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+        "REPORT_REQUEUE_NEXT_LOOP",
+        "OBSERVER_ZERO_MANUAL_RELAY",
+        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+        "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false
+    },
+    {
+      "requirement_id": "CR-1",
+      "root_id": "WIC-NON-TOOL-CR-1",
+      "original_requirement": "WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE::CR-1",
+      "implementation_location": [
+        "feedback_pipeline/tool016_visible_handoff.py",
+        "feedback_pipeline/wic_non_tool_common_closeout.py",
+        ".github/workflows/tool044-multi-gate.yml"
+      ],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+        "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
+        "feedback_pipeline/evidence/tool044_multi_gate_state.json"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "CR-2",
+      "root_id": "WIC-NON-TOOL-CR-2",
+      "original_requirement": "WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE::CR-2",
+      "implementation_location": [
+        "feedback_pipeline/tool016_visible_handoff.py",
+        "feedback_pipeline/wic_non_tool_common_closeout.py",
+        ".github/workflows/tool044-multi-gate.yml"
+      ],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+        "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
+        "feedback_pipeline/evidence/tool044_multi_gate_state.json"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "CR-3",
+      "root_id": "WIC-NON-TOOL-CR-3",
+      "original_requirement": "WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE::CR-3",
+      "implementation_location": [
+        "feedback_pipeline/tool016_visible_handoff.py",
+        "feedback_pipeline/wic_non_tool_common_closeout.py",
+        ".github/workflows/tool044-multi-gate.yml"
+      ],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+        "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
+        "feedback_pipeline/evidence/tool044_multi_gate_state.json"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "CR-4",
+      "root_id": "WIC-NON-TOOL-CR-4",
+      "original_requirement": "WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE::CR-4",
+      "implementation_location": [
+        "feedback_pipeline/tool016_visible_handoff.py",
+        "feedback_pipeline/wic_non_tool_common_closeout.py",
+        ".github/workflows/tool044-multi-gate.yml"
+      ],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+        "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
+        "feedback_pipeline/evidence/tool044_multi_gate_state.json"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    },
+    {
+      "requirement_id": "CR-5",
+      "root_id": "WIC-NON-TOOL-CR-5",
+      "original_requirement": "WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE::CR-5",
+      "implementation_location": [
+        "feedback_pipeline/tool016_visible_handoff.py",
+        "feedback_pipeline/wic_non_tool_common_closeout.py",
+        ".github/workflows/tool044-multi-gate.yml"
+      ],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+        "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
+        "feedback_pipeline/evidence/tool044_multi_gate_state.json"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true
+    }
+  ],
+  "counts": {
+    "COMPLETE": 43,
+    "UNFINISHED": 22,
+    "LONG_TERM_HOLD": 5,
+    "PLATFORM_HOLD": 1,
+    "PARTIAL": 10
+  },
+  "cr_status": {
+    "CR-1": "COMPLETE",
+    "CR-2": "COMPLETE",
+    "CR-3": "COMPLETE",
+    "CR-4": "COMPLETE",
+    "CR-5": "COMPLETE"
+  },
+  "not_worked_count": 0,
+  "pass_locked": [
+    "T42-OFFICIAL-PUBLISHER-VALIDATION",
+    "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+    "T42-WEBPAGE-TEXT-EXTRACTION",
+    "T42-TOC-STRUCTURE-EXTRACTION",
+    "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+    "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+    "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+    "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+    "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+    "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+    "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+    "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+    "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+    "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+    "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+    "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
+    "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+    "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+    "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+    "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+    "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+    "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
+    "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+    "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
+    "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+    "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+    "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+    "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+    "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+    "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+    "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+    "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+    "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+    "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+    "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+    "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+    "2879888fd53f71858876-FAILURE_ISOLATION",
+    "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+    "CR-1",
+    "CR-2",
+    "CR-3",
+    "CR-4",
+    "CR-5"
+  ],
+  "auto_requeued_roots": [
+    "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
+    "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+    "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+    "FS-FUNCTION-RESELLER_DETECTION",
+    "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+    "OBSERVER-SEPARATION-WORK-HANDOFF",
+    "T42-PROVENANCE-VALIDATION",
+    "T42-RESELLER-DETECTION",
+    "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+    "TOOL016",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+    "TOOL044",
+    "TOOL044-ARBITRARY-WIC-DEPLOY",
+    "TOOL044-AUTO-ROLLBACK",
+    "TOOL044-PERMANENT-OBSERVER-INTAKE",
+    "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+    "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
+    "WIC-CIRCULATION-FINAL-CLOSEOUT",
+    "WIC-COMMON-AUTOMATION-BLOCKERS",
+    "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+    "WIC-FINAL-CONNECTION",
+    "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5"
+  ],
+  "next_auto_root": "T42-RESELLER-DETECTION",
+  "observer_reinstruction_required": 0,
+  "manual_relay_count": 0
+}

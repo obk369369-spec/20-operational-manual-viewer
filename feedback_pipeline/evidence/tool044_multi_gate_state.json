@@ -5892,6 +5892,59 @@
         }
       },
       "FENCING_TOKEN": "38074cfb717f46de8b483129920dfcf0"
+    },
+    "COMPONENT::WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1": {
+      "JOB_ID": "COMPONENT::WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+      "ROOT_ID": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+      "TARGET_TOOL": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+      "COMPONENT_ID": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+      "OWNER": "GITHUB_ACTIONS:36570398077:GATE_01",
+      "CLAIM_TIME": "2026-09-29T12:46:46.662607+00:00",
+      "LEASE_EXPIRY": "2026-09-29T13:16:46.662607+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+        "status": "READY",
+        "source": "repository://feedback_pipeline/wic_non_tool_common_closeout.py",
+        "license": "WIC-INTERNAL",
+        "version": "1.0.0",
+        "atomic_capabilities": [
+          "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+          "REPORT_REQUEUE_NEXT_LOOP",
+          "OBSERVER_ZERO_MANUAL_RELAY",
+          "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+          "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+        ],
+        "target_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+        "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+        "input_contract": "durable queue, observer report, visible handoff, multi-gate recovery state",
+        "output_contract": "complete non-tool ledger, evidence/work packets, pass locks, automatic next root",
+        "install_target": "isolated validation sandbox",
+        "install_method": [
+          "{python}",
+          "-m",
+          "py_compile",
+          "{repo}/feedback_pipeline/wic_non_tool_common_closeout.py"
+        ],
+        "validator": [
+          "{python}",
+          "{repo}/feedback_pipeline/test_wic_non_tool_common_closeout.py"
+        ],
+        "success_condition": "10/10 CR-1 through CR-5 closeout assertions pass",
+        "failure_condition": "compile or circulation regression returns non-zero",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json",
+        "idempotency_key": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1@1.0.0"
+      },
+      "FENCING_TOKEN": "59f88d9a3c044eafa75160872b71d4c4"
     }
   },
   "events": [
@@ -5907,9 +5960,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:04:59.033345+00:00",
+  "updated_at": "2026-09-29T12:46:46.662607+00:00",
   "capacity": 30,
-  "active_claims": 0,
+  "active_claims": 1,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 1
 }
