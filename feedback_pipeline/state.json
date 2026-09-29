@@ -646,14 +646,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 15,
+      "COMPONENT_FOUND": 19,
       "VALIDATING": 0,
-      "PASS": 15,
+      "PASS": 19,
       "FAIL": 0,
       "HOLD": 0,
       "RETURNED": 4,
       "REMAINING": 71,
-      "LAST_HEARTBEAT": "2026-09-29T01:11:03.845931+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T01:13:33.831913+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -661,7 +661,7 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T01:11:03.845931+00:00",
+      "updated_at": "2026-09-29T01:13:33.831913+00:00",
       "capacity": 15,
       "results_returned": 4,
       "jobs": {
@@ -1045,12 +1045,116 @@
             "heartbeat": "2026-09-29T01:10:52.231652+00:00",
             "production_mutation": 0
           }
+        },
+        "CANARY::36506841186::01": {
+          "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+          "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+          "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-01",
+          "OWNER": "GITHUB_ACTIONS:36506841186:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "de8f0acf11ee406a9c954ad6257f4122",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "CANARY::36506841186::01",
+            "owner": "GITHUB_ACTIONS:36506841186:GATE_01",
+            "fencing_token": "de8f0acf11ee406a9c954ad6257f4122",
+            "component_id": "COMMON-CIRCULATION-CANARY-01",
+            "root_id": "COMMON_MULTI_RUNNER_CIRCULATION",
+            "target_tool": "COMMON_INFRASTRUCTURE",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T01:13:21.399315+00:00",
+            "production_mutation": 0
+          }
+        },
+        "CANARY::36506841186::02": {
+          "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+          "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+          "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-02",
+          "OWNER": "GITHUB_ACTIONS:36506841186:GATE_02",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "fd43df55012545f9a7f54651399fcf81",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "CANARY::36506841186::02",
+            "owner": "GITHUB_ACTIONS:36506841186:GATE_02",
+            "fencing_token": "fd43df55012545f9a7f54651399fcf81",
+            "component_id": "COMMON-CIRCULATION-CANARY-02",
+            "root_id": "COMMON_MULTI_RUNNER_CIRCULATION",
+            "target_tool": "COMMON_INFRASTRUCTURE",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T01:13:21.580330+00:00",
+            "production_mutation": 0
+          }
+        },
+        "CANARY::36506841186::03": {
+          "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+          "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+          "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-03",
+          "OWNER": "GITHUB_ACTIONS:36506841186:GATE_03",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "1f6cd4658a28470aa9ff2462da07c28d",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "CANARY::36506841186::03",
+            "owner": "GITHUB_ACTIONS:36506841186:GATE_03",
+            "fencing_token": "1f6cd4658a28470aa9ff2462da07c28d",
+            "component_id": "COMMON-CIRCULATION-CANARY-03",
+            "root_id": "COMMON_MULTI_RUNNER_CIRCULATION",
+            "target_tool": "COMMON_INFRASTRUCTURE",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T01:13:23.513477+00:00",
+            "production_mutation": 0
+          }
+        },
+        "CANARY::36506841186::04": {
+          "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+          "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+          "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-04",
+          "OWNER": "GITHUB_ACTIONS:36506841186:GATE_04",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "257a0ad30e0542439a3bc0a5c89f5250",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "CANARY::36506841186::04",
+            "owner": "GITHUB_ACTIONS:36506841186:GATE_04",
+            "fencing_token": "257a0ad30e0542439a3bc0a5c89f5250",
+            "component_id": "COMMON-CIRCULATION-CANARY-04",
+            "root_id": "COMMON_MULTI_RUNNER_CIRCULATION",
+            "target_tool": "COMMON_INFRASTRUCTURE",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T01:13:22.363681+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T01:13:13.179364+00:00",
+      "updated_at": "2026-09-29T01:13:33.874097+00:00",
       "UNFINISHED_SCANNED": 53,
       "ALREADY_PASS_EXCLUDED": 48,
       "ROOTS_MERGED": 0,
@@ -1294,8 +1398,7 @@
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 15,
-          "CLAIMED": 4
+          "PASS": 19
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1377,7 +1480,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T01:13:13.179364+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T01:13:33.874097+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
