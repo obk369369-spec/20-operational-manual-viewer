@@ -4846,6 +4846,60 @@
         }
       },
       "FENCING_TOKEN": "4d444c9dfc9a49ad830e1ce5a02eace1"
+    },
+    "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1": {
+      "JOB_ID": "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+      "ROOT_ID": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+      "TARGET_TOOL": "TOOL016,TOOL044,WORK_HANDOFF",
+      "COMPONENT_ID": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+      "OWNER": "GITHUB_ACTIONS:36562842249:GATE_01",
+      "CLAIM_TIME": "2026-09-29T11:37:01.643459+00:00",
+      "LEASE_EXPIRY": "2026-09-29T12:07:01.643459+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+        "status": "READY",
+        "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
+        "license": "WIC_REPOSITORY_COMPONENT",
+        "version": "1.0.0",
+        "atomic_capabilities": [
+          "OUTPUT_GATE_ENFORCEMENT",
+          "INSTRUCTION_CONFLICT_DEDUP",
+          "HOURLY_STATUS_RETURN",
+          "AUTOMATIC_FEEDBACK_COLLECTION",
+          "WORK_HANDOFF_E2E",
+          "RESIDUAL_RECONCILIATION"
+        ],
+        "target_root": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+        "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+        "input_contract": "durable WIC feedback event, current registries, queue, checkpoint and PASS locks",
+        "output_contract": "fail-closed output, conflict-safe intake, central status return, Work handoff and next eligible residual selection",
+        "install_target": "isolated GitHub Actions sandbox",
+        "install_method": [
+          "{python}",
+          "-c",
+          "import sys; sys.path.insert(0,r'{repo}/feedback_pipeline'); import runtime_gateway,tool044_instruction_intake,work_gate_handoff"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import json,subprocess,sys,tempfile; from pathlib import Path; r=Path(r'{repo}'); f=r/'feedback_pipeline'; sys.path.insert(0,str(f)); import cross_chat_feedback_ingest as c, test_tool016_visible_handoff as v, test_tool044_multi_gate as m; assert c.run_fixtures().startswith('PASS'); v.test_visible_handoff_groups_work_and_auto_routes_external(); names=['test_verified_component_claims_multiple_independent_demands_in_one_batch','test_pass_hold_fail_returns_preserve_demand_resume_contract','test_pass_propagates_only_to_exact_common_root_contract']; [getattr(m,n)(Path(tempfile.mkdtemp(prefix='wic-closeout-'))) for n in names]; [subprocess.check_call([sys.executable,str(f/s),'--self-test']) for s in ['runtime_gateway.py','tool044_instruction_intake.py','work_gate_handoff.py']]; st=json.loads((f/'state.json').read_text(encoding='utf-8')); assert st.get('collector_frequency')=='hourly' and st['integration_core']['tool044_external_progress']['USER_MANUAL_RELAY_REQUIRED']==0"
+        ],
+        "success_condition": "all six accessible lifecycle gates pass together in one external run and return one terminal TOOL016 ACK",
+        "failure_condition": "any output, conflict, collection, reporting, handoff or residual-selection assertion fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import shutil,os; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "runtime_gateway, canonical instruction intake, visible handoff, Work handoff and multi-gate regression receipts",
+        "idempotency_key": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1@1.0.0"
+      },
+      "FENCING_TOKEN": "48e0bd2030dc4a5abaccbd62a2596d27"
     }
   },
   "events": [
@@ -4861,9 +4915,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T11:24:00.739469+00:00",
+  "updated_at": "2026-09-29T11:37:01.643459+00:00",
   "capacity": 30,
-  "active_claims": 0,
+  "active_claims": 1,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 4
 }

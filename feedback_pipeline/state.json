@@ -2622,14 +2622,14 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T11:24:00.787764+00:00",
-      "UNFINISHED_SCANNED": 40,
+      "updated_at": "2026-09-29T11:37:01.712197+00:00",
+      "UNFINISHED_SCANNED": 41,
       "ALREADY_PASS_EXCLUDED": 70,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
       "WORK_BATCHES": [],
-      "TOOL044_AUTO_HANDED_OFF": 28,
+      "TOOL044_AUTO_HANDED_OFF": 29,
       "TOOL044_QUEUE": [
         {
           "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -2798,13 +2798,27 @@
           "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
           "target_tool": "TOOL044",
           "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
+          "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+          "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
+          "atomic_capabilities": [
+            "AUTOMATIC_FEEDBACK_COLLECTION",
+            "HOURLY_STATUS_RETURN",
+            "INSTRUCTION_CONFLICT_DEDUP",
+            "OUTPUT_GATE_ENFORCEMENT",
+            "RESIDUAL_RECONCILIATION",
+            "WORK_HANDOFF_E2E"
+          ]
         }
       ],
       "WORK_REQUIRED_REMAINDER": 0,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 74
+          "PASS": 74,
+          "CLAIMED": 1
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -2829,7 +2843,7 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 28,
+        "ready": 29,
         "waiting": 12,
         "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
@@ -2906,7 +2920,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T11:24:00.787764+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T11:37:01.712197+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
