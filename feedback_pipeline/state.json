@@ -1370,14 +1370,14 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T02:56:53.410420+00:00",
-      "UNFINISHED_SCANNED": 51,
+      "updated_at": "2026-09-29T03:55:37.638866+00:00",
+      "UNFINISHED_SCANNED": 52,
       "ALREADY_PASS_EXCLUDED": 56,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
       "WORK_BATCHES": [],
-      "TOOL044_AUTO_HANDED_OFF": 37,
+      "TOOL044_AUTO_HANDED_OFF": 38,
       "TOOL044_QUEUE": [
         {
           "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
@@ -1624,6 +1624,12 @@
           "atomic_capabilities": [
             "FAILURE_ISOLATION"
           ]
+        },
+        {
+          "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
+          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
+          "target_tool": "TOOL016-TOOL044",
+          "atomic_capabilities": []
         }
       ],
       "WORK_REQUIRED_REMAINDER": 0,
@@ -1655,7 +1661,7 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 37,
+        "ready": 38,
         "waiting": 14,
         "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
         "duplicate_demand_ids": [],
@@ -1717,7 +1723,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T02:56:53.410420+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T03:55:37.638866+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0

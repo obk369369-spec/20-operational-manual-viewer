@@ -4743,6 +4743,21 @@
           "TOOL044_DEMAND_ID": "2879888fd53f71858876-FAILURE_ISOLATION"
         }
       ]
+    },
+    {
+      "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
+      "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
+      "target_tool": "TOOL016-TOOL044",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "Incremental all-WIC completion sweep using current registry/state/queue/ledgers only; NEVER restart historical full extraction, reopen actual PASS, rerun TOOL045 315/171910, or duplicate an existing queue demand. Find only currently evidenced non-PASS states across every registered/known WIC tool: incomplete, validation/evidence gap, error/failure, HOLD/DEFERRED/WAITING, result-return gap, GitHub persist/read-back gap. First map every finding onto canonical residual R1-R16 or an already-open COMMON_ROOT; same cause merges, one modification per COMMON_ROOT. Register only genuinely uncovered residuals not already represented in TOOL044 queue. Work is FORBIDDEN for this directive. Eligible internal work uses free TOOL044 circulation and existing VERIFIED_COMPONENT first, then free externally verifiable component/runtime; independent roots may MULTI/BATCH, no artificial runner filling and no per-small-item push/watch. Required lifecycle: claim -> execute -> actual validation -> recovery/revalidation -> batch GitHub persist -> remote read-back -> TOOL016 result return -> PASS LOCK -> automatic next eligible root. External auth/original/runtime/platform constraints only WAITING/PLATFORM_LIMIT and must not block other roots. Existing queue items continue from current checkpoint/status, never re-enqueued. Goal: internally executable residual=0, PASS rework=0, duplicate execution=0, user relay=0, only genuine external WAITING/PLATFORM_LIMIT remains, unattended free 24h circulation continues. Current sweep must explicitly reconcile registered targets plus central state evidence for known tools not in registry (including currently evidenced TOOL004/008/009 holds/failure) without inventing completion.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
