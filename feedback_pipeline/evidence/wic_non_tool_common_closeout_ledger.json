@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:47:06.292450+00:00",
+  "updated_at": "2026-09-29T12:47:39.225308+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -2573,7 +2573,7 @@
         "WORK_HANDOFF_CREDIT_AND_RECOVERY",
         "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
       "pass_lock": false
     },
     {
@@ -2674,9 +2674,9 @@
   ],
   "counts": {
     "PARTIAL": 10,
+    "UNFINISHED": 22,
     "LONG_TERM_HOLD": 5,
     "COMPLETE": 43,
-    "UNFINISHED": 22,
     "PLATFORM_HOLD": 1
   },
   "cr_status": {

@@ -5252,9 +5252,12 @@
         "WORK_HANDOFF_CREDIT_AND_RECOVERY",
         "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "feedback_pipeline/WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE_20260929.md",
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "UNFINISHED",
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:47:39.124021+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE"
     }
   ]
 }
