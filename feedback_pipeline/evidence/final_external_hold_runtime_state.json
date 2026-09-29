@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-29T08:39:57.094591+00:00",
+  "external_root_status": "HOLD",
+  "elapsed_time_status": "WAITING",
+  "children": {
+    "LIBRARY_SOURCE_BYTES": {
+      "status": "HOLD",
+      "trigger": "WIC_LIBRARY_MOUNT_EVIDENCE_PATH",
+      "evidence": null
+    },
+    "VERIFIED_REPORT_PAYLOADS": {
+      "status": "HOLD",
+      "trigger": "WIC_VERIFIED_REPORT_EVIDENCE_PATH",
+      "evidence": null
+    },
+    "INDEPENDENT_VERIFIER": {
+      "status": "HOLD",
+      "trigger": "WIC_EXTERNAL_VERIFIER_EVIDENCE_PATH",
+      "evidence": null
+    },
+    "CONTROL_TOWER_RUNTIME": {
+      "status": "HOLD",
+      "trigger": "WIC_CONTROL_TOWER_EVIDENCE_PATH",
+      "evidence": null
+    },
+    "INDEPENDENT_ENV2": {
+      "status": "HOLD",
+      "trigger": "WIC_ENV2_EVIDENCE_PATH",
+      "evidence": null
+    }
+  },
+  "automatic_resume_queue": [],
+  "automatic_resume_required": false,
+  "user_manual_relay_required": false,
+  "fake_pass_forbidden": true
+}

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-27T02:03:40.761455+00:00",
+  "generated_at_utc": "2026-09-29T08:39:57.094315+00:00",
   "job_id": "T16-T44-MINCIRC-20260925-001",
   "correlation_id": "T16-T44-MINCIRC-20260925-001",
   "source_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
   "environment": "GITHUB_ACTIONS",
-  "run_id": "36287388067",
+  "run_id": "36544144637",
   "actual": {
     "tool016_received": true,
     "tool016_decision": "EXTERNAL_VALIDATION_WORKER",
@@ -18,7 +18,7 @@
     "claim": true,
     "external_execution": true,
     "heartbeat": true,
-    "checkpoint": "36287388067",
+    "checkpoint": "36544144637",
     "result_return": true,
     "validation": true
   },
@@ -29,12 +29,58 @@
   "user_manual_relay_required": 0,
   "schedule_reinvoke_enabled": true,
   "unattended_loop_started": true,
-  "continuous_24h_verified": "IN_PROGRESS",
+  "continuous_24h_verified": "WAITING",
   "multi_env": "HOLD_NOT_EXECUTED",
   "parallel_execution": "PASS",
   "bulk_expansion": "ACTIVE",
   "external_source_loop": "ACTIVE",
   "watchdog_recovery": "READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE",
   "checkpoint_resume": "READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE",
-  "evidence_sha256": "2b546a3866e21539c406ea1ef7287edfa2f91fc6593b1234f9469e5dc2cb7d3b"
+  "unattended_evidence": {
+    "status": "WAITING",
+    "scheduled_records": 1,
+    "passing_records": 1,
+    "span_hours": 0,
+    "max_gap_minutes": 0,
+    "automatic_resume_condition": "24H_SCHEDULE_SPAN_WITHOUT_FAILED_OR_OVERDUE_INTERVAL",
+    "pc_off_logged_off": "HOLD_EXTERNAL_EVIDENCE_UNTIL_24H_VERDICT"
+  },
+  "final_hold_auto_resume": {
+    "schema_version": 1,
+    "updated_at": "2026-09-29T08:39:57.094591+00:00",
+    "external_root_status": "HOLD",
+    "elapsed_time_status": "WAITING",
+    "children": {
+      "LIBRARY_SOURCE_BYTES": {
+        "status": "HOLD",
+        "trigger": "WIC_LIBRARY_MOUNT_EVIDENCE_PATH",
+        "evidence": null
+      },
+      "VERIFIED_REPORT_PAYLOADS": {
+        "status": "HOLD",
+        "trigger": "WIC_VERIFIED_REPORT_EVIDENCE_PATH",
+        "evidence": null
+      },
+      "INDEPENDENT_VERIFIER": {
+        "status": "HOLD",
+        "trigger": "WIC_EXTERNAL_VERIFIER_EVIDENCE_PATH",
+        "evidence": null
+      },
+      "CONTROL_TOWER_RUNTIME": {
+        "status": "HOLD",
+        "trigger": "WIC_CONTROL_TOWER_EVIDENCE_PATH",
+        "evidence": null
+      },
+      "INDEPENDENT_ENV2": {
+        "status": "HOLD",
+        "trigger": "WIC_ENV2_EVIDENCE_PATH",
+        "evidence": null
+      }
+    },
+    "automatic_resume_queue": [],
+    "automatic_resume_required": false,
+    "user_manual_relay_required": false,
+    "fake_pass_forbidden": true
+  },
+  "evidence_sha256": "29674addf48b716284d6a81bcb305d0ab6af843bcf1ae374ea3ab515e50e4990"
 }
