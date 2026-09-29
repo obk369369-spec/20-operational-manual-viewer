@@ -32,7 +32,8 @@
     "6e35ec2e8227e3b053a3",
     "2012a9d8a0c919906653",
     "d3d55e59f836650ea9d1",
-    "afef923480524dbf71ee"
+    "afef923480524dbf71ee",
+    "425bebb6932bf0cd9a0d"
   ],
   "last_events": [
     {
@@ -145,9 +146,13 @@
     },
     {
       "directive_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
-      "action": "NEW_ROOT",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION"
+      "action": "SKIP_DUPLICATE"
+    },
+    {
+      "directive_id": "TOOL044-DIRECTIVE-DEDUP-CONFLICT-GUARD-20260929",
+      "action": "SUPERSEDE",
+      "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE"
     }
   ],
-  "updated_at": "2026-09-29T06:01:35.170489+00:00"
+  "updated_at": "2026-09-29T06:02:36.671553+00:00"
 }

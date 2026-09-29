@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T06:01:35.228076+00:00",
+  "generated_at": "2026-09-29T06:02:36.718903+00:00",
   "packages": [
     {
       "ROOT_ID": "T42-RESELLER-DETECTION",
@@ -765,7 +765,7 @@
       "ROOT_ID": "TOOL044-PERMANENT-OBSERVER-INTAKE",
       "CURRENT_STATE": "OPEN",
       "EXACT_ERROR": [
-        "Persist conflict-free directive intake; merge into existing ROOT; block duplicates; reuse PASS; preserve checkpoint; latest explicit directive supersedes conflicting older directive; connect to TOOL016/TOOL044 queue/claim/result loop; preserve 5-minute/HOLD-resume/24h evidence structures."
+        "TOP-LEVEL cumulative-directive dedup/conflict guard. Before any newly received directive creates or executes work, compare it against the complete existing directive inbox, Queue, COMMON_ROOTs, canonical R1-R16, PASS locks, and active claim/lease plus asset/file locks. Mandatory path: intake -> semantic equivalence/cause/function comparison -> dedupe -> conflict detection -> merge into existing COMMON_ROOT -> recalculate priority -> execute. Same purpose/cause/function must not create a new execution item even when wording differs. If a new directive extends existing work, preserve checkpoint/current progress and add only the delta; never restart completed work. Conflict precedence: latest explicit user directive > PASS protection > existing verified execution structure > older directive, except latest text alone never reopens evidenced PASS without a genuinely new requirement or regression. Enforce atomic claim/lease and asset/file/deployment-target locks so same ROOT cannot have concurrent owners and different ROOTs cannot concurrently mutate the same shared asset. Reuse completed portions -> execute delta only -> validate -> merge result. Ten duplicate directives for one cause must resolve to one executable COMMON_ROOT. If inbox/Queue/old/new states disagree, reconcile from actual GitHub evidence and latest remote read-back; directive text alone cannot change PASS/FAIL/HOLD. Required invariants under parallel expansion: same-root duplicate execution=0; same-asset concurrent mutation=0; PASS rework=0; same-cause duplicate Queue item=0. Apply this guard automatically to every future directive so the user need not remember prior instructions. Goal: cumulative directives continuously compress into the minimum necessary executable COMMON_ROOT set instead of making the Queue grow or conflict."
       ],
       "COMMON_CAUSE": "ROOT_COMPRESSED",
       "EXPECTED": "Resolve root without regression",
