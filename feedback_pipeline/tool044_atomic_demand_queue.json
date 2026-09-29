@@ -4136,8 +4136,8 @@
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
       "target_tool": "TOOL044",
       "status": "OPEN",
-      "revision": 3,
-      "latest_directive": "Hourly observer-report delivery residual. This does not restart any survey or reopen PASS. Preserve protected automation ID 6ab4677d5cf4819191837f83dd86f9b0 and never disable/modify/delete it as a duplicate of ROOT A. First dedupe/merge with existing queue/COMMON_ROOT; create no duplicate root. Work is forbidden. Validate the whole path separately: hourly scheduler run -> actual GitHub evidence read -> report generation -> delivery attempt -> user-visible arrival. Scheduler/report generation success is not delivery success. notifications_enabled=false alone is not assumed causal. If direct automatic posting into the existing TOOL044 chat is unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT and verify a supported free lowest-intervention observer delivery route; never fake REPORT_DELIVERED=PASS. Until actual delivery is evidenced, keep REPORT_DELIVERED=FAIL or UNSUPPORTED. Observer output must be simple: tool number/function, current work, actual improvement since prior report, remaining work, status; if no change say '새 실제 진전 없음'. PASS only after actual evidence read, report generation, real user-visible delivery, and repeated delivery on the next hourly cycle. Reporting failure must not stop other eligible TOOL044 24h circulation work.",
+      "revision": 4,
+      "latest_directive": "Observer ETA reporting must be evidence-derived, never format-only or invented. For each executable work item collect actual start timestamp, latest actual execution timestamp, Run ID, Runner, checkpoint, completed atomic count, confirmed total atomic count, recent throughput, failure/retry time, WAITING time, and current verified parallel runner count. From those actual records calculate actual elapsed work time, completed quantity, remaining quantity, recent throughput, estimated remaining active work time, and estimated completion timestamp. If total workload or throughput sample is insufficient, output exactly ETA_PENDING_INSUFFICIENT_WORKLOAD_OR_EXECUTION_SAMPLE (observer-facing Korean: 'ETA 산정 대기 — 작업량/실행표본 부족') and automatically gather the missing execution evidence; never invent an ETA. Separate WAITING/auth/PLATFORM_LIMIT duration from active work time. Recalculate ETA when verified parallelism changes, after failure/retry/recovery, at each meaningful checkpoint, and at minimum for every hourly observer report. Independently calculate ETA for highest-priority TOOL013, TOOL041->TOOL007->TOOL042, and TOOL006. For 24H circulation report actual elapsed 24H time plus roots/atomic work completed during that window, currently executing work, remaining eligible work, WAITING work, and actual verified parallelism; do not report only elapsed hours. Hourly observer output must be concise and show actual calculated values and evidence basis, not technical log dumps. If ETA changes materially from prior report, state the evidence-based reason in one line. No evidence => no ETA. Evidence-based ETA is mandatory in hourly observer reporting when calculable; if not calculable, state why and collect the needed sample automatically. Never ask the user to calculate time or workload.",
       "source": "TOOL044_CANONICAL_INTAKE",
       "claim": null,
       "checkpoint": {
@@ -4146,7 +4146,8 @@
       },
       "result_return": null,
       "directive_history": [
-        "Mandatory observer evidence reporting for actual 24h circulation. Each observer report must be grounded in real external execution evidence and show 24H start time, current time, actual elapsed time, latest external run time, Run ID, latest heartbeat, current TOOL/ROOT, latest checkpoint, completed/HOLD/FAIL, recovery occurrence, latest result-return, evidence location, and 24H progress. Never treat chat-authored text as evidence. If external evidence cannot be read, report EVIDENCE_UNAVAILABLE. Require actual visibility in the current TOOL044 chat when officially supported and proven; if automatic posting into this exact existing ChatGPT conversation is platform-unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT rather than fake PASS, automatically project the same evidence to CONTROL TOWER, and expose the real evidence location/status so the user can verify 24h operation from TOOL044 or one linked observer surface. This revision supersedes any weaker observer-report requirement while preserving all existing 24h workload/evidence rules."
+        "Mandatory observer evidence reporting for actual 24h circulation. Each observer report must be grounded in real external execution evidence and show 24H start time, current time, actual elapsed time, latest external run time, Run ID, latest heartbeat, current TOOL/ROOT, latest checkpoint, completed/HOLD/FAIL, recovery occurrence, latest result-return, evidence location, and 24H progress. Never treat chat-authored text as evidence. If external evidence cannot be read, report EVIDENCE_UNAVAILABLE. Require actual visibility in the current TOOL044 chat when officially supported and proven; if automatic posting into this exact existing ChatGPT conversation is platform-unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT rather than fake PASS, automatically project the same evidence to CONTROL TOWER, and expose the real evidence location/status so the user can verify 24h operation from TOOL044 or one linked observer surface. This revision supersedes any weaker observer-report requirement while preserving all existing 24h workload/evidence rules.",
+        "Hourly observer-report delivery residual. This does not restart any survey or reopen PASS. Preserve protected automation ID 6ab4677d5cf4819191837f83dd86f9b0 and never disable/modify/delete it as a duplicate of ROOT A. First dedupe/merge with existing queue/COMMON_ROOT; create no duplicate root. Work is forbidden. Validate the whole path separately: hourly scheduler run -> actual GitHub evidence read -> report generation -> delivery attempt -> user-visible arrival. Scheduler/report generation success is not delivery success. notifications_enabled=false alone is not assumed causal. If direct automatic posting into the existing TOOL044 chat is unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT and verify a supported free lowest-intervention observer delivery route; never fake REPORT_DELIVERED=PASS. Until actual delivery is evidenced, keep REPORT_DELIVERED=FAIL or UNSUPPORTED. Observer output must be simple: tool number/function, current work, actual improvement since prior report, remaining work, status; if no change say '새 실제 진전 없음'. PASS only after actual evidence read, report generation, real user-visible delivery, and repeated delivery on the next hourly cycle. Reporting failure must not stop other eligible TOOL044 24h circulation work."
       ]
     },
     {
@@ -4682,6 +4683,22 @@
           "CURRENT_STATUS": "OPEN",
           "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
           "TOOL044_DEMAND_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION"
         }
       ],
       "satisfied_at": "2026-09-29T02:56:53.368028+00:00",
@@ -4717,6 +4734,22 @@
           ],
           "CURRENT_STATUS": "OPEN",
           "SOURCE_EVIDENCE": "CURRENT_CHAT#observer-zero-touch-20260929",
+          "TOOL044_DEMAND_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+          "MISSING_CAPABILITY": [
+            "EXPECTED_ACTUAL_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION"
         }
       ]
