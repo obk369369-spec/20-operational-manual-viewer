@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:59:47.519149+00:00",
+  "updated_at": "2026-09-29T13:16:43.483362+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -2152,15 +2152,38 @@
       "requirement_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
       "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
       "original_requirement": [
-        "GLOBAL_REQUIREMENT_RECONCILIATION",
-        "AUTO_STATUS_CLASSIFICATION",
-        "AUTO_USER_VISIBLE_COMPLETION_REPORT",
-        "AUTO_UNFINISHED_REQUEUE",
-        "AUTO_NEXT_WORK_SELECTION",
-        "BULK_FEEDBACK_INTAKE",
-        "RELATED_TARGET_PROPAGATION",
-        "TOOL016_TOOL044_WORK_HANDOFF",
-        "HOURLY_STATUS_RETURN_PATH"
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016/TOOL044/WORK_HANDOFF",
+          "FUNCTION_ID": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "GLOBAL_REQUIREMENT_RECONCILIATION",
+            "AUTO_STATUS_CLASSIFICATION",
+            "AUTO_USER_VISIBLE_COMPLETION_REPORT",
+            "AUTO_UNFINISHED_REQUEUE",
+            "AUTO_NEXT_WORK_SELECTION",
+            "BULK_FEEDBACK_INTAKE",
+            "RELATED_TARGET_PROPAGATION",
+            "TOOL016_TOOL044_WORK_HANDOFF",
+            "HOURLY_STATUS_RETURN_PATH"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+          "MISSING_CAPABILITY": [
+            "GLOBAL_REQUIREMENT_RECONCILIATION",
+            "AUTO_STATUS_CLASSIFICATION",
+            "AUTO_USER_VISIBLE_COMPLETION_REPORT",
+            "AUTO_UNFINISHED_REQUEUE",
+            "AUTO_NEXT_WORK_SELECTION",
+            "BULK_FEEDBACK_INTAKE",
+            "RELATED_TARGET_PROPAGATION",
+            "TOOL016_TOOL044_WORK_HANDOFF",
+            "HOURLY_STATUS_RETURN_PATH"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
+        }
       ],
       "implementation_location": [],
       "actual_evidence": [
@@ -2190,11 +2213,30 @@
       "requirement_id": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
       "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
       "original_requirement": [
-        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-        "REPORT_REQUEUE_NEXT_LOOP",
-        "OBSERVER_ZERO_MANUAL_RELAY",
-        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
-        "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "FUNCTION_ID": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+            "REPORT_REQUEUE_NEXT_LOOP",
+            "OBSERVER_ZERO_MANUAL_RELAY",
+            "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+            "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
+          "MISSING_CAPABILITY": [
+            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+            "REPORT_REQUEUE_NEXT_LOOP",
+            "OBSERVER_ZERO_MANUAL_RELAY",
+            "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+            "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929"
+        }
       ],
       "implementation_location": [],
       "actual_evidence": [
@@ -2210,15 +2252,38 @@
       "requirement_id": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
       "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
       "original_requirement": [
-        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-        "REPORT_REQUEUE_NEXT_LOOP",
-        "OBSERVER_ZERO_MANUAL_RELAY",
-        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
-        "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
-        "ITEMIZED_OBSERVER_REPORT",
-        "FIXED_BLOCK_COMPLETENESS_GATE",
-        "UNVERIFIED_COMPLETE_PROHIBITION",
-        "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "FUNCTION_ID": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+            "REPORT_REQUEUE_NEXT_LOOP",
+            "OBSERVER_ZERO_MANUAL_RELAY",
+            "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+            "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
+            "ITEMIZED_OBSERVER_REPORT",
+            "FIXED_BLOCK_COMPLETENESS_GATE",
+            "UNVERIFIED_COMPLETE_PROHIBITION",
+            "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
+          "MISSING_CAPABILITY": [
+            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+            "REPORT_REQUEUE_NEXT_LOOP",
+            "OBSERVER_ZERO_MANUAL_RELAY",
+            "WORK_HANDOFF_CREDIT_AND_RECOVERY",
+            "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
+            "ITEMIZED_OBSERVER_REPORT",
+            "FIXED_BLOCK_COMPLETENESS_GATE",
+            "UNVERIFIED_COMPLETE_PROHIBITION",
+            "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
+        }
       ],
       "implementation_location": [],
       "actual_evidence": [
@@ -2241,6 +2306,21 @@
         "OFFICIALLY_SUPPORTED_CHAT_DELIVERY_HOOK"
       ],
       "resume_condition": "RESUME_WHEN_OFFICIAL_CHAT_DELIVERY_API_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL043-HOLD-REEVALUATE",
+      "root_id": "TOOL043-CHATGPT-OVERLAP-REEVALUATION",
+      "original_requirement": "reevaluate TOOL043 overlap separately without executing or changing it",
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "PLATFORM_HOLD",
+      "display_status": "HOLD_REEVALUATE",
+      "remaining_work": [
+        "SEPARATE_CHATGPT_AND_EXISTING_CIRCULATION_OVERLAP_REEVALUATION"
+      ],
+      "resume_condition": "RESUME_ONLY_IN_A_SEPARATE_EXPLICIT_TOOL043_REEVALUATION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2347,10 +2427,10 @@
   ],
   "counts": {
     "COMPLETE": 37,
-    "LONG_TERM_HOLD": 5,
-    "PLATFORM_HOLD": 2,
     "PARTIAL": 9,
-    "UNFINISHED": 15
+    "UNFINISHED": 15,
+    "LONG_TERM_HOLD": 5,
+    "PLATFORM_HOLD": 3
   },
   "cr_status": {
     "CR-1": "COMPLETE",
