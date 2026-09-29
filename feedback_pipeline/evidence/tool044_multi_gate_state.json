@@ -4854,11 +4854,26 @@
       "COMPONENT_ID": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
       "OWNER": "GITHUB_ACTIONS:36562842249:GATE_01",
       "CLAIM_TIME": "2026-09-29T11:37:01.643459+00:00",
-      "LEASE_EXPIRY": "2026-09-29T12:07:01.643459+00:00",
-      "CHECKPOINT": "CLAIM_DURABLE",
-      "STATUS": "CLAIMED",
+      "LEASE_EXPIRY": null,
+      "CHECKPOINT": "REGRESSION_COMPLETE",
+      "STATUS": "PASS",
       "RETRY_COUNT": 0,
-      "RESULT": null,
+      "RESULT": {
+        "job_id": "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+        "owner": "GITHUB_ACTIONS:36562842249:GATE_01",
+        "fencing_token": "48e0bd2030dc4a5abaccbd62a2596d27",
+        "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+        "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+        "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+        "status": "PASS",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "install_returncode": 0,
+        "validator_returncode": 0,
+        "rollback_returncode": null,
+        "rollback_pass": true,
+        "heartbeat": "2026-09-29T11:37:11.325747+00:00",
+        "production_mutation": 0
+      },
       "COMPONENT": {
         "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
         "status": "READY",
@@ -4915,9 +4930,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T11:37:01.643459+00:00",
+  "updated_at": "2026-09-29T11:37:19.825281+00:00",
   "capacity": 30,
-  "active_claims": 1,
+  "active_claims": 0,
   "provider": "GITHUB_ACTIONS",
-  "results_returned": 4
+  "results_returned": 1
 }

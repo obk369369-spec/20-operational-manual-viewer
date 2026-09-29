@@ -680,18 +680,18 @@
       }
     },
     "tool044_external_progress": {
-      "TOTAL_DEMAND": 110,
+      "TOTAL_DEMAND": 111,
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 74,
+      "COMPONENT_FOUND": 75,
       "VALIDATING": 0,
-      "PASS": 74,
+      "PASS": 75,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 4,
-      "REMAINING": 61,
-      "LAST_HEARTBEAT": "2026-09-29T11:24:00.739469+00:00",
+      "RETURNED": 1,
+      "REMAINING": 62,
+      "LAST_HEARTBEAT": "2026-09-29T11:37:19.825281+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,9 +699,9 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T11:24:00.739469+00:00",
+      "updated_at": "2026-09-29T11:37:19.825281+00:00",
       "capacity": 30,
-      "results_returned": 4,
+      "results_returned": 1,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -2617,12 +2617,38 @@
             "heartbeat": "2026-09-29T11:23:47.785339+00:00",
             "production_mutation": 0
           }
+        },
+        "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1": {
+          "ROOT_ID": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+          "TARGET_TOOL": "TOOL016,TOOL044,WORK_HANDOFF",
+          "COMPONENT_ID": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+          "OWNER": "GITHUB_ACTIONS:36562842249:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "48e0bd2030dc4a5abaccbd62a2596d27",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "COMPONENT::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+            "owner": "GITHUB_ACTIONS:36562842249:GATE_01",
+            "fencing_token": "48e0bd2030dc4a5abaccbd62a2596d27",
+            "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+            "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+            "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:37:11.325747+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T11:37:01.712197+00:00",
+      "updated_at": "2026-09-29T11:37:19.873413+00:00",
       "UNFINISHED_SCANNED": 41,
       "ALREADY_PASS_EXCLUDED": 70,
       "ROOTS_MERGED": 0,
@@ -2817,8 +2843,7 @@
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 74,
-          "CLAIMED": 1
+          "PASS": 75
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -2920,7 +2945,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T11:37:01.712197+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T11:37:19.873413+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
