@@ -684,14 +684,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 69,
+      "COMPONENT_FOUND": 70,
       "VALIDATING": 0,
-      "PASS": 69,
+      "PASS": 70,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 30,
+      "RETURNED": 1,
       "REMAINING": 65,
-      "LAST_HEARTBEAT": "2026-09-29T11:09:13.518000+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T11:22:59.604133+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,9 +699,9 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T11:09:13.518000+00:00",
+      "updated_at": "2026-09-29T11:22:59.604133+00:00",
       "capacity": 30,
-      "results_returned": 30,
+      "results_returned": 1,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -2487,12 +2487,38 @@
             "heartbeat": "2026-09-29T11:08:51.306014+00:00",
             "production_mutation": 0
           }
+        },
+        "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "TARGET_TOOL": "TOOL016,TOOL044",
+          "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "OWNER": "GITHUB_ACTIONS:36561329889:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "c84d5b89229c41a7b9f7c81e2ec1f776",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+            "fencing_token": "c84d5b89229c41a7b9f7c81e2ec1f776",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:22:45.977583+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T11:22:35.599581+00:00",
+      "updated_at": "2026-09-29T11:22:59.692263+00:00",
       "UNFINISHED_SCANNED": 44,
       "ALREADY_PASS_EXCLUDED": 66,
       "ROOTS_MERGED": 0,
@@ -2706,8 +2732,7 @@
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 69,
-          "CLAIMED": 1
+          "PASS": 70
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -2809,7 +2834,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T11:22:35.599581+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T11:22:59.692263+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
