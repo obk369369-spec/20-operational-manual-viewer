@@ -1,0 +1,32 @@
+name: Deploy WIC Observer Dashboard
+on:
+  push:
+    branches: [main]
+    paths: ['observer/**', '.github/workflows/wic-observer-pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}observer/
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Preserve existing pages and add observer dashboard
+        run: |
+          mkdir -p _site/tool020 _site/observer
+          cp -R tool043/. _site/
+          cp public/index.html _site/tool020/index.html
+          cp observer/index.html _site/observer/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: _site}
+      - id: deployment
+        uses: actions/deploy-pages@v4

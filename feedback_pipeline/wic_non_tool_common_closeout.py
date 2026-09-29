@@ -94,6 +94,16 @@ def build(queue: dict, observer: dict, visible: dict, gate_state: dict,
         "resume_condition": "RESUME_WHEN_OFFICIAL_CHAT_DELIVERY_API_EXISTS",
         "pass_lock": False, "actionable_requeued": False,
     })
+    rows.append({
+        "requirement_id": "TOOL043-HOLD-REEVALUATE",
+        "root_id": "TOOL043-CHATGPT-OVERLAP-REEVALUATION",
+        "original_requirement": "reevaluate TOOL043 overlap separately without executing or changing it",
+        "implementation_location": [], "actual_evidence": [],
+        "status": "PLATFORM_HOLD", "display_status": "HOLD_REEVALUATE",
+        "remaining_work": ["SEPARATE_CHATGPT_AND_EXISTING_CIRCULATION_OVERLAP_REEVALUATION"],
+        "resume_condition": "RESUME_ONLY_IN_A_SEPARATE_EXPLICIT_TOOL043_REEVALUATION",
+        "pass_lock": False, "actionable_requeued": False,
+    })
 
     events = gate_state.get("events", [])
     stale_recovery = any(event.get("event") == "STALE_RECLAIM" for event in events)

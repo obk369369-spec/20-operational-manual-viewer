@@ -28,7 +28,7 @@ observer = {
 visible = {"CIRCULATION": {"dedup_gate": "PASS"}, "USER_MANUAL_RELAY_REQUIRED": 0}
 gates = {"events": [{"event": "STALE_RECLAIM"}]}
 ledger, packet = build(queue, observer, visible, gates, "2026-09-29T00:00:00+00:00")
-assert len(ledger["requirements"]) == 8
+assert len(ledger["requirements"]) == 9
 assert ledger["not_worked_count"] == 0
 assert ledger["cr_status"] == {f"CR-{n}": "COMPLETE" for n in range(1, 6)}
 assert ledger["observer_reinstruction_required"] == 0 and ledger["manual_relay_count"] == 0
@@ -41,5 +41,6 @@ with tempfile.TemporaryDirectory() as raw:
     assert result["counts"]["COMPLETE"] == 6
     report = __import__("json").loads(report_path.read_text())
     assert report["fixed_block_gate"] == "PASS" and report["missing_report_fields"] == []
-    assert report["PLATFORM_HOLD"][0]["requirement_id"] == "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY"
+    hold_ids = {row["requirement_id"] for row in report["PLATFORM_HOLD"]}
+    assert hold_ids == {"PLATFORM-TOOL044-CHAT-REPORT-DELIVERY", "TOOL043-HOLD-REEVALUATE"}
 print("WIC_NON_TOOL_COMMON_CLOSEOUT: PASS (12/12)")
