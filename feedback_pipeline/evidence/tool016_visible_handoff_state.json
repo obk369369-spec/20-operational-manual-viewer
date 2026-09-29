@@ -1,14 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T10:57:51.868071+00:00",
+  "updated_at": "2026-09-29T10:58:41.233571+00:00",
   "UNFINISHED_SCANNED": 54,
   "ALREADY_PASS_EXCLUDED": 56,
-  "ROOTS_MERGED": 0,
-  "WORK_FIXABLE_ROOTS": 0,
-  "WORK_REQUIRED": [],
-  "WORK_BATCHES": [],
-  "TOOL044_AUTO_HANDED_OFF": 40,
-  "TOOL044_QUEUE": [
+  "ROOTS_MERGED": 4,
+  "WORK_FIXABLE_ROOTS": 4,
+  "WORK_REQUIRED": [
     {
       "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
       "root_id": "1755eed95f7a0daaae1f",
@@ -25,6 +22,103 @@
         "FAILURE_ISOLATION"
       ]
     },
+    {
+      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "88f4897c09e7ad84a693",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "2879888fd53f71858876-FAILURE_ISOLATION",
+      "root_id": "88f4897c09e7ad84a693",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    }
+  ],
+  "WORK_BATCHES": [
+    {
+      "root_id": "1755eed95f7a0daaae1f",
+      "demands": [
+        "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+        "69ff43b8de90d6f44d5e-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
+      "demands": [
+        "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+        "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
+      "demands": [
+        "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+        "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "88f4897c09e7ad84a693",
+      "demands": [
+        "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+        "2879888fd53f71858876-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    }
+  ],
+  "TOOL044_AUTO_HANDED_OFF": 32,
+  "TOOL044_QUEUE": [
     {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
@@ -190,38 +284,6 @@
       ]
     },
     {
-      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
-      "root_id": "FINAL-39-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "FAILURE_ISOLATION"
-      ]
-    },
-    {
-      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
-      "root_id": "FINAL-42-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "FAILURE_ISOLATION"
-      ]
-    },
-    {
       "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
       "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
       "target_tool": "TOOL016-TOOL044",
@@ -238,22 +300,6 @@
       "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
       "target_tool": "TOOL016-TOOL044",
       "atomic_capabilities": []
-    },
-    {
-      "demand_id": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "88f4897c09e7ad84a693",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "2879888fd53f71858876-FAILURE_ISOLATION",
-      "root_id": "88f4897c09e7ad84a693",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "FAILURE_ISOLATION"
-      ]
     },
     {
       "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
@@ -274,11 +320,12 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 0,
+  "WORK_REQUIRED_REMAINDER": 8,
   "MULTI_GATE": {
     "capacity": 15,
     "statuses": {
-      "PASS": 29
+      "PASS": 29,
+      "CLAIMED": 10
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -380,7 +427,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T10:57:51.868071+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T10:58:41.233571+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

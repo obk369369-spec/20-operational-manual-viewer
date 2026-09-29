@@ -2113,6 +2113,756 @@
         "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4"
       },
       "FENCING_TOKEN": "24392aa2d06e4f88886d95e2c90c3411"
+    },
+    "DEMAND::ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+      "JOB_ID": "DEMAND::ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "DEMAND_ID": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "48db0c6ef39a7ffc3a81",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_09",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/jsonschema/4.26.0/",
+        "license": "MIT",
+        "version": "4.26.0",
+        "atomic_capabilities": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "expected JSON schema plus actual result object",
+        "output_contract": "validation succeeds only when actual conforms to expected",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "jsonschema==4.26.0"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+        ],
+        "success_condition": "actual result satisfies the declared expected-result schema",
+        "failure_condition": "installation fails or actual output violates the expected schema",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+            "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "b1ff2fe485984b9799bc5c2856b108b1"
+    },
+    "DEMAND::cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+      "JOB_ID": "DEMAND::cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "DEMAND_ID": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "4c4baaa30ab6e13af241",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_10",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/jsonschema/4.26.0/",
+        "license": "MIT",
+        "version": "4.26.0",
+        "atomic_capabilities": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "expected JSON schema plus actual result object",
+        "output_contract": "validation succeeds only when actual conforms to expected",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "jsonschema==4.26.0"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+        ],
+        "success_condition": "actual result satisfies the declared expected-result schema",
+        "failure_condition": "installation fails or actual output violates the expected schema",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+            "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "7d52ffed81c44276908d6e0ed3ac6e8c"
+    },
+    "DEMAND::69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+      "JOB_ID": "DEMAND::69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "DEMAND_ID": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "1755eed95f7a0daaae1f",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_03",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/jsonschema/4.26.0/",
+        "license": "MIT",
+        "version": "4.26.0",
+        "atomic_capabilities": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "expected JSON schema plus actual result object",
+        "output_contract": "validation succeeds only when actual conforms to expected",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "jsonschema==4.26.0"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+        ],
+        "success_condition": "actual result satisfies the declared expected-result schema",
+        "failure_condition": "installation fails or actual output violates the expected schema",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+            "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "469e1aa16655441fafb49ca8a6c7d9d1"
+    },
+    "DEMAND::69ff43b8de90d6f44d5e-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+      "JOB_ID": "DEMAND::69ff43b8de90d6f44d5e-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+      "DEMAND_ID": "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
+      "ROOT_ID": "1755eed95f7a0daaae1f",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_04",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/tenacity/9.1.4/",
+        "license": "Apache-2.0",
+        "version": "9.1.4",
+        "atomic_capabilities": [
+          "FAILURE_ISOLATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "one isolated callable with bounded retry policy",
+        "output_contract": "transient failures remain isolated and the bounded retry returns one terminal result",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "tenacity==9.1.4"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from tenacity import retry,stop_after_attempt,wait_none; n={'v':0}; exec(\"@retry(stop=stop_after_attempt(3),wait=wait_none(),reraise=True)\\ndef run():\\n n['v']+=1\\n if n['v']<3: raise RuntimeError('transient')\\n return 'PASS'\"); assert run()=='PASS' and n['v']==3"
+        ],
+        "success_condition": "two transient failures are isolated and the third bounded attempt returns PASS",
+        "failure_condition": "installation fails, retry escapes early, or terminal result is missing",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI project metadata, Apache-2.0 license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+            "fencing_token": "24392aa2d06e4f88886d95e2c90c3411",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:41.694676+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "e4308337d258413d87c6cd79ee41d4da"
+    },
+    "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+      "JOB_ID": "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_05",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/jsonschema/4.26.0/",
+        "license": "MIT",
+        "version": "4.26.0",
+        "atomic_capabilities": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "expected JSON schema plus actual result object",
+        "output_contract": "validation succeeds only when actual conforms to expected",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "jsonschema==4.26.0"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+        ],
+        "success_condition": "actual result satisfies the declared expected-result schema",
+        "failure_condition": "installation fails or actual output violates the expected schema",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+            "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "01311529c2ff490f905c17273d904ceb"
+    },
+    "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+      "JOB_ID": "DEMAND::FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+      "DEMAND_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "ROOT_ID": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_06",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/tenacity/9.1.4/",
+        "license": "Apache-2.0",
+        "version": "9.1.4",
+        "atomic_capabilities": [
+          "FAILURE_ISOLATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "one isolated callable with bounded retry policy",
+        "output_contract": "transient failures remain isolated and the bounded retry returns one terminal result",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "tenacity==9.1.4"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from tenacity import retry,stop_after_attempt,wait_none; n={'v':0}; exec(\"@retry(stop=stop_after_attempt(3),wait=wait_none(),reraise=True)\\ndef run():\\n n['v']+=1\\n if n['v']<3: raise RuntimeError('transient')\\n return 'PASS'\"); assert run()=='PASS' and n['v']==3"
+        ],
+        "success_condition": "two transient failures are isolated and the third bounded attempt returns PASS",
+        "failure_condition": "installation fails, retry escapes early, or terminal result is missing",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI project metadata, Apache-2.0 license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+            "fencing_token": "24392aa2d06e4f88886d95e2c90c3411",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:41.694676+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "8d53cb80be744c8c9d4e7201e0185684"
+    },
+    "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+      "JOB_ID": "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_07",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/jsonschema/4.26.0/",
+        "license": "MIT",
+        "version": "4.26.0",
+        "atomic_capabilities": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "expected JSON schema plus actual result object",
+        "output_contract": "validation succeeds only when actual conforms to expected",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "jsonschema==4.26.0"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+        ],
+        "success_condition": "actual result satisfies the declared expected-result schema",
+        "failure_condition": "installation fails or actual output violates the expected schema",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+            "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "70435e12e6954cf8af888b0ea54fc847"
+    },
+    "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+      "JOB_ID": "DEMAND::FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+      "DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "ROOT_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_08",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/tenacity/9.1.4/",
+        "license": "Apache-2.0",
+        "version": "9.1.4",
+        "atomic_capabilities": [
+          "FAILURE_ISOLATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "one isolated callable with bounded retry policy",
+        "output_contract": "transient failures remain isolated and the bounded retry returns one terminal result",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "tenacity==9.1.4"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from tenacity import retry,stop_after_attempt,wait_none; n={'v':0}; exec(\"@retry(stop=stop_after_attempt(3),wait=wait_none(),reraise=True)\\ndef run():\\n n['v']+=1\\n if n['v']<3: raise RuntimeError('transient')\\n return 'PASS'\"); assert run()=='PASS' and n['v']==3"
+        ],
+        "success_condition": "two transient failures are isolated and the third bounded attempt returns PASS",
+        "failure_condition": "installation fails, retry escapes early, or terminal result is missing",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI project metadata, Apache-2.0 license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+            "fencing_token": "24392aa2d06e4f88886d95e2c90c3411",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:41.694676+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "f4954f0e81a947009a47b90ece9921e1"
+    },
+    "DEMAND::2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE": {
+      "JOB_ID": "DEMAND::2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "DEMAND_ID": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
+      "ROOT_ID": "88f4897c09e7ad84a693",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_01",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/jsonschema/4.26.0/",
+        "license": "MIT",
+        "version": "4.26.0",
+        "atomic_capabilities": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "expected JSON schema plus actual result object",
+        "output_contract": "validation succeeds only when actual conforms to expected",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "jsonschema==4.26.0"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+        ],
+        "success_condition": "actual result satisfies the declared expected-result schema",
+        "failure_condition": "installation fails or actual output violates the expected schema",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+            "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+            "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "983a4edec2624bfc87925f3fb8384975"
+    },
+    "DEMAND::2879888fd53f71858876-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION": {
+      "JOB_ID": "DEMAND::2879888fd53f71858876-FAILURE_ISOLATION::TENACITY_9_1_4_FAILURE_ISOLATION",
+      "DEMAND_ID": "2879888fd53f71858876-FAILURE_ISOLATION",
+      "ROOT_ID": "88f4897c09e7ad84a693",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "TENACITY_9_1_4_FAILURE_ISOLATION",
+      "OWNER": "GITHUB_ACTIONS:36558869941:GATE_02",
+      "CLAIM_TIME": "2026-09-29T10:58:41.170724+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:28:41.170724+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/tenacity/9.1.4/",
+        "license": "Apache-2.0",
+        "version": "9.1.4",
+        "atomic_capabilities": [
+          "FAILURE_ISOLATION"
+        ],
+        "target_root": "OBSERVER_ZERO_TOUCH",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "one isolated callable with bounded retry policy",
+        "output_contract": "transient failures remain isolated and the bounded retry returns one terminal result",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--target",
+          "{sandbox}/site",
+          "tenacity==9.1.4"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from tenacity import retry,stop_after_attempt,wait_none; n={'v':0}; exec(\"@retry(stop=stop_after_attempt(3),wait=wait_none(),reraise=True)\\ndef run():\\n n['v']+=1\\n if n['v']<3: raise RuntimeError('transient')\\n return 'PASS'\"); assert run()=='PASS' and n['v']==3"
+        ],
+        "success_condition": "two transient failures are isolated and the third bounded attempt returns PASS",
+        "failure_condition": "installation fails, retry escapes early, or terminal result is missing",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "PyPI project metadata, Apache-2.0 license, pinned version and isolated multi-gate receipt",
+        "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+            "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+            "fencing_token": "24392aa2d06e4f88886d95e2c90c3411",
+            "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+            "root_id": "OBSERVER_ZERO_TOUCH",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T10:57:41.694676+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "535ee56ddbf94f9db1da8ae0acb11fa4"
     }
   },
   "events": [
@@ -2123,9 +2873,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T10:57:51.826107+00:00",
+  "updated_at": "2026-09-29T10:58:41.170724+00:00",
   "capacity": 15,
-  "active_claims": 0,
+  "active_claims": 10,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 2
 }

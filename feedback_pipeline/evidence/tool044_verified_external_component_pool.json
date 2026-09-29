@@ -310,7 +310,7 @@
     },
     {
       "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://pypi.org/project/jsonschema/4.26.0/",
       "license": "MIT",
       "version": "4.26.0",
@@ -345,11 +345,32 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
-      "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0"
+      "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+        "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_01",
+          "fencing_token": "152782762d1d4a3bbeb3da5cf8b17a53",
+          "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+          "root_id": "OBSERVER_ZERO_TOUCH",
+          "target_tool": "TOOL016,TOOL044",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T10:57:42.896289+00:00",
+          "production_mutation": 0
+        }
+      }
     },
     {
       "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://pypi.org/project/tenacity/9.1.4/",
       "license": "Apache-2.0",
       "version": "9.1.4",
@@ -384,7 +405,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "PyPI project metadata, Apache-2.0 license, pinned version and isolated multi-gate receipt",
-      "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4"
+      "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+        "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::TENACITY_9_1_4_FAILURE_ISOLATION",
+          "owner": "GITHUB_ACTIONS:36558748055:GATE_02",
+          "fencing_token": "24392aa2d06e4f88886d95e2c90c3411",
+          "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+          "root_id": "OBSERVER_ZERO_TOUCH",
+          "target_tool": "TOOL016,TOOL044",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T10:57:41.694676+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
