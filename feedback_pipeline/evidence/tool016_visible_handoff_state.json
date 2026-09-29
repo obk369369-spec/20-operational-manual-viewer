@@ -1,13 +1,60 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T11:22:59.692263+00:00",
+  "updated_at": "2026-09-29T11:23:38.205214+00:00",
   "UNFINISHED_SCANNED": 44,
   "ALREADY_PASS_EXCLUDED": 66,
-  "ROOTS_MERGED": 0,
-  "WORK_FIXABLE_ROOTS": 0,
-  "WORK_REQUIRED": [],
-  "WORK_BATCHES": [],
-  "TOOL044_AUTO_HANDED_OFF": 32,
+  "ROOTS_MERGED": 1,
+  "WORK_FIXABLE_ROOTS": 1,
+  "WORK_REQUIRED": [
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "COMMON_ROOT_DEDUPLICATION"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "ITEM_EVIDENCE_RETURN"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "AUTO_NEXT_ROOT"
+      ]
+    }
+  ],
+  "WORK_BATCHES": [
+    {
+      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "demands": [
+        "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+        "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+        "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+        "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    }
+  ],
+  "TOOL044_AUTO_HANDED_OFF": 28,
   "TOOL044_QUEUE": [
     {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -142,38 +189,6 @@
       "atomic_capabilities": []
     },
     {
-      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
-      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "BULK_ROOT_EXECUTION"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
-      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "COMMON_ROOT_DEDUPLICATION"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
-      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "ITEM_EVIDENCE_RETURN"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
-      "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "AUTO_NEXT_ROOT"
-      ]
-    },
-    {
       "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
       "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
       "target_tool": "TOOL016-TOOL044",
@@ -210,11 +225,12 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 0,
+  "WORK_REQUIRED_REMAINDER": 4,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
-      "PASS": 70
+      "PASS": 70,
+      "CLAIMED": 4
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -316,7 +332,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T11:22:59.692263+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T11:23:38.205214+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

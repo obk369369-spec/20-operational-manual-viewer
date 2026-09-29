@@ -430,7 +430,7 @@
     },
     {
       "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
       "license": "WIC_REPOSITORY_COMPONENT",
       "version": "1.0.0",
@@ -464,7 +464,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/test_tool044_multi_gate.py and external multi-gate run receipt",
-      "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0"
+      "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+        "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+          "fencing_token": "c84d5b89229c41a7b9f7c81e2ec1f776",
+          "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "target_tool": "TOOL016,TOOL044",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T11:22:45.977583+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"

@@ -4490,6 +4490,302 @@
         "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0"
       },
       "FENCING_TOKEN": "c84d5b89229c41a7b9f7c81e2ec1f776"
+    },
+    "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+      "JOB_ID": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
+      "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "OWNER": "GITHUB_ACTIONS:36561443400:GATE_02",
+      "CLAIM_TIME": "2026-09-29T11:23:38.146703+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:53:38.146703+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
+        "license": "WIC_REPOSITORY_COMPONENT",
+        "version": "1.0.0",
+        "atomic_capabilities": [
+          "BULK_ROOT_EXECUTION",
+          "COMMON_ROOT_DEDUPLICATION",
+          "ITEM_EVIDENCE_RETURN",
+          "AUTO_NEXT_ROOT"
+        ],
+        "target_root": "FINAL-37-COMMON-ROOT-CIRCULATION",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "non-terminal demands with stable demand_id, root_id and atomic_capabilities",
+        "output_contract": "one durable claim per demand, exact-contract deduplication, item result return and next eligible demand selection",
+        "install_target": "isolated GitHub Actions sandbox",
+        "install_method": [
+          "{python}",
+          "-c",
+          "import sys; sys.path.insert(0, r'{repo}/feedback_pipeline'); import tool044_multi_gate"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import sys,tempfile; from pathlib import Path; sys.path.insert(0,r'{repo}/feedback_pipeline'); import test_tool044_multi_gate as t; names=['test_verified_component_claims_multiple_independent_demands_in_one_batch','test_pass_hold_fail_returns_preserve_demand_resume_contract','test_fencing_rejects_old_owner_and_expired_lease_is_reclaimed','test_pass_propagates_only_to_exact_common_root_contract']; [getattr(t,n)(Path(tempfile.mkdtemp(prefix='wic-common-root-'))) for n in names]"
+        ],
+        "success_condition": "all four existing common-circulation regressions pass in one isolated external lane",
+        "failure_condition": "any batch, result-return, fencing/recovery or exact-contract deduplication regression fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import shutil,os; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/test_tool044_multi_gate.py and external multi-gate run receipt",
+        "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+            "fencing_token": "c84d5b89229c41a7b9f7c81e2ec1f776",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:22:45.977583+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "a68b476e73d0427ca7df3e9677820fa7"
+    },
+    "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+      "JOB_ID": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
+      "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "OWNER": "GITHUB_ACTIONS:36561443400:GATE_03",
+      "CLAIM_TIME": "2026-09-29T11:23:38.146703+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:53:38.146703+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
+        "license": "WIC_REPOSITORY_COMPONENT",
+        "version": "1.0.0",
+        "atomic_capabilities": [
+          "BULK_ROOT_EXECUTION",
+          "COMMON_ROOT_DEDUPLICATION",
+          "ITEM_EVIDENCE_RETURN",
+          "AUTO_NEXT_ROOT"
+        ],
+        "target_root": "FINAL-37-COMMON-ROOT-CIRCULATION",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "non-terminal demands with stable demand_id, root_id and atomic_capabilities",
+        "output_contract": "one durable claim per demand, exact-contract deduplication, item result return and next eligible demand selection",
+        "install_target": "isolated GitHub Actions sandbox",
+        "install_method": [
+          "{python}",
+          "-c",
+          "import sys; sys.path.insert(0, r'{repo}/feedback_pipeline'); import tool044_multi_gate"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import sys,tempfile; from pathlib import Path; sys.path.insert(0,r'{repo}/feedback_pipeline'); import test_tool044_multi_gate as t; names=['test_verified_component_claims_multiple_independent_demands_in_one_batch','test_pass_hold_fail_returns_preserve_demand_resume_contract','test_fencing_rejects_old_owner_and_expired_lease_is_reclaimed','test_pass_propagates_only_to_exact_common_root_contract']; [getattr(t,n)(Path(tempfile.mkdtemp(prefix='wic-common-root-'))) for n in names]"
+        ],
+        "success_condition": "all four existing common-circulation regressions pass in one isolated external lane",
+        "failure_condition": "any batch, result-return, fencing/recovery or exact-contract deduplication regression fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import shutil,os; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/test_tool044_multi_gate.py and external multi-gate run receipt",
+        "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+            "fencing_token": "c84d5b89229c41a7b9f7c81e2ec1f776",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:22:45.977583+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "1f53d992fe3a4425ac9d83f0f034a107"
+    },
+    "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+      "JOB_ID": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
+      "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "OWNER": "GITHUB_ACTIONS:36561443400:GATE_04",
+      "CLAIM_TIME": "2026-09-29T11:23:38.146703+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:53:38.146703+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
+        "license": "WIC_REPOSITORY_COMPONENT",
+        "version": "1.0.0",
+        "atomic_capabilities": [
+          "BULK_ROOT_EXECUTION",
+          "COMMON_ROOT_DEDUPLICATION",
+          "ITEM_EVIDENCE_RETURN",
+          "AUTO_NEXT_ROOT"
+        ],
+        "target_root": "FINAL-37-COMMON-ROOT-CIRCULATION",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "non-terminal demands with stable demand_id, root_id and atomic_capabilities",
+        "output_contract": "one durable claim per demand, exact-contract deduplication, item result return and next eligible demand selection",
+        "install_target": "isolated GitHub Actions sandbox",
+        "install_method": [
+          "{python}",
+          "-c",
+          "import sys; sys.path.insert(0, r'{repo}/feedback_pipeline'); import tool044_multi_gate"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import sys,tempfile; from pathlib import Path; sys.path.insert(0,r'{repo}/feedback_pipeline'); import test_tool044_multi_gate as t; names=['test_verified_component_claims_multiple_independent_demands_in_one_batch','test_pass_hold_fail_returns_preserve_demand_resume_contract','test_fencing_rejects_old_owner_and_expired_lease_is_reclaimed','test_pass_propagates_only_to_exact_common_root_contract']; [getattr(t,n)(Path(tempfile.mkdtemp(prefix='wic-common-root-'))) for n in names]"
+        ],
+        "success_condition": "all four existing common-circulation regressions pass in one isolated external lane",
+        "failure_condition": "any batch, result-return, fencing/recovery or exact-contract deduplication regression fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import shutil,os; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/test_tool044_multi_gate.py and external multi-gate run receipt",
+        "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+            "fencing_token": "c84d5b89229c41a7b9f7c81e2ec1f776",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:22:45.977583+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "763638ce3f9d4bdf820c1af09ec753c9"
+    },
+    "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+      "JOB_ID": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "DEMAND_ID": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
+      "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+      "TARGET_TOOL": "TOOL016/TOOL044",
+      "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "OWNER": "GITHUB_ACTIONS:36561443400:GATE_01",
+      "CLAIM_TIME": "2026-09-29T11:23:38.146703+00:00",
+      "LEASE_EXPIRY": "2026-09-29T11:53:38.146703+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://github.com/obk369369-spec/20-operational-manual-viewer",
+        "license": "WIC_REPOSITORY_COMPONENT",
+        "version": "1.0.0",
+        "atomic_capabilities": [
+          "BULK_ROOT_EXECUTION",
+          "COMMON_ROOT_DEDUPLICATION",
+          "ITEM_EVIDENCE_RETURN",
+          "AUTO_NEXT_ROOT"
+        ],
+        "target_root": "FINAL-37-COMMON-ROOT-CIRCULATION",
+        "target_tool": "TOOL016,TOOL044",
+        "input_contract": "non-terminal demands with stable demand_id, root_id and atomic_capabilities",
+        "output_contract": "one durable claim per demand, exact-contract deduplication, item result return and next eligible demand selection",
+        "install_target": "isolated GitHub Actions sandbox",
+        "install_method": [
+          "{python}",
+          "-c",
+          "import sys; sys.path.insert(0, r'{repo}/feedback_pipeline'); import tool044_multi_gate"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import sys,tempfile; from pathlib import Path; sys.path.insert(0,r'{repo}/feedback_pipeline'); import test_tool044_multi_gate as t; names=['test_verified_component_claims_multiple_independent_demands_in_one_batch','test_pass_hold_fail_returns_preserve_demand_resume_contract','test_fencing_rejects_old_owner_and_expired_lease_is_reclaimed','test_pass_propagates_only_to_exact_common_root_contract']; [getattr(t,n)(Path(tempfile.mkdtemp(prefix='wic-common-root-'))) for n in names]"
+        ],
+        "success_condition": "all four existing common-circulation regressions pass in one isolated external lane",
+        "failure_condition": "any batch, result-return, fencing/recovery or exact-contract deduplication regression fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import shutil,os; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/test_tool044_multi_gate.py and external multi-gate run receipt",
+        "idempotency_key": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1@1.0.0",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561329889:GATE_01",
+            "fencing_token": "c84d5b89229c41a7b9f7c81e2ec1f776",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016,TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:22:45.977583+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "4d444c9dfc9a49ad830e1ce5a02eace1"
     }
   },
   "events": [
@@ -4505,9 +4801,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T11:22:59.604133+00:00",
+  "updated_at": "2026-09-29T11:23:38.146703+00:00",
   "capacity": 30,
-  "active_claims": 0,
+  "active_claims": 4,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 1
 }
