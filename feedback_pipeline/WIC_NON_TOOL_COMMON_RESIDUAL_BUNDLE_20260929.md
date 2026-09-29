@@ -73,3 +73,38 @@ Scope: common Work/TOOL016/TOOL044 infrastructure only. Individual tool function
 - HOLD items retain exact resume condition.
 - observer_reinstruction_required = 0 for all supported stages.
 - Never claim 100% completion unless the historical ledger completeness itself is proven and every ledger row has evidence-backed status.
+
+
+## Final recovered non-tool common requirements added after historical cross-check
+10. CANONICAL_REGISTRY_AND_FUTURE_INHERITANCE
+- Central registry must resolve chat/domain to canonical repo/branch/master/state/evidence/test/checkpoint/verified commit/status without observer guessing.
+- Registered current WIC chats and normally registered future WIC chats inherit the same central pipeline.
+- Registry failures are fixed as registry failures; do not ask observer to rediscover repo/path.
+- Native platform-wide chat event capture remains PLATFORM_HOLD if unavailable.
+
+11. EVIDENCE_PACKET_AND_WORK_PACKET_AUTOPREP
+- Recover available source feedback, actual input, wrong output, expected correction, existing rule/code path, recurrence, severity, target path, protected PASS scope and minimum regression evidence before Work.
+- Do not use HOLD_EVIDENCE before searching accessible evidence.
+- Build the Work packet automatically; observer does not rewrite long Work instructions or recollect evidence.
+- If Work launch itself needs a platform action, isolate only that action as PLATFORM_HOLD.
+
+12. MASTER_TO_RUNTIME_COMPLETION_GATE
+- A changed file, master update, commit, CI PASS or checkpoint alone is not completion.
+- For common infrastructure changes, require applicable target apply -> validation -> commit/push -> remote read-back -> central state sync -> restart/reconnect/reuse verification before COMPLETE.
+- Where a stage is outside accessible runtime, classify that exact stage HOLD rather than false PASS.
+
+13. LATEST_STATE_AND_CONFLICT_SAFETY
+- Always read latest main/current state rather than treating an old fixed SHA as current.
+- Preserve source identity, existing root/recurrence/conflict checks and DIFF-only updates.
+- Never reopen VERIFIED_CLOSED/PASS without regression or a materially new requirement.
+
+14. OBSERVER_MANUAL_STEP_AUDIT
+- Closeout must explicitly calculate remaining observer manual steps.
+- Internal WIC steps such as routing, root organization, evidence preparation, Work packet preparation, repo/master lookup, GitHub/read-back checking, unfinished requeue and next-condition calculation must not be assigned to observer.
+- Only unavoidable platform-required interaction may remain HOLD.
+
+15. COMPRESSED_CONTINUOUS_WORK_MODE
+- Chat/control stage performs recoverable decision/preparation in batch.
+- Work execution uses one prepared common bundle with independent lanes where applicable instead of repeated small Chat-to-Work round trips.
+- One blocked independent lane must not stop other prepared independent lanes.
+- Save SAFE_CHECKPOINT and return evidence; resume rather than restart.
