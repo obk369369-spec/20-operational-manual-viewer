@@ -7,7 +7,12 @@ from pathlib import Path
 
 
 def _time(row: dict) -> datetime:
-    return datetime.fromisoformat(row["generated_at_utc"].replace("Z", "+00:00"))
+    # The first deployed evidence record used ``timestamp``.  Keep it
+    # readable so a schema upgrade cannot stop the unattended loop.
+    raw = row.get("generated_at_utc") or row.get("timestamp")
+    if not raw:
+        raise ValueError("unattended evidence record has no timestamp")
+    return datetime.fromisoformat(raw.replace("Z", "+00:00"))
 
 
 def update_history(path: Path, record: dict, max_gap_minutes: int = 20) -> dict:

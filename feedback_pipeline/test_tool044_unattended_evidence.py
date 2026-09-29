@@ -29,3 +29,15 @@ def test_failure_or_large_gap_never_passes(tmp_path: Path):
     broken = tmp_path / "broken.jsonl"
     update_history(broken, row("a", start, status="HOLD"))
     assert update_history(broken, row("b", start + timedelta(hours=24)))["status"] == "WAITING"
+
+
+def test_legacy_timestamp_record_does_not_stop_evidence_collection(tmp_path: Path):
+    history = tmp_path / "history.jsonl"
+    start = datetime(2026, 1, 1, tzinfo=timezone.utc)
+    legacy = {"run_id": "legacy", "timestamp": start.isoformat(), "event": "push"}
+    history.write_text(json.dumps(legacy) + "\n", encoding="utf-8")
+
+    verdict = update_history(history, row("scheduled", start + timedelta(minutes=5)))
+
+    assert verdict["status"] == "WAITING"
+    assert verdict["scheduled_records"] == 1
