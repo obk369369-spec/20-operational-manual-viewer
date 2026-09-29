@@ -8,4 +8,6 @@ first = page.split("<details>", 1)[0]
 for hidden_term in ("ROOT", "ACK", "SHA", "read-back", "runtime", "contract", "lane", "handoff", "checkpoint", "PARTIAL", "UNFINISHED"):
     assert hidden_term not in first, hidden_term
 assert "wic_non_tool_observer_closeout_report.json" in page
-print("WIC_OBSERVER_DASHBOARD: PASS (12/12)")
+assert "필요한 장치가 준비되면 자동으로 다시 시작합니다." in page
+assert '<summary>기술정보</summary>' in page
+print("WIC_OBSERVER_DASHBOARD: PASS (14/14)")
