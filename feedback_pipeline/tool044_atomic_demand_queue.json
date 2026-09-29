@@ -5281,9 +5281,12 @@
         "UNVERIFIED_COMPLETE_PROHIBITION",
         "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "feedback_pipeline/WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE_20260929.md",
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "UNFINISHED",
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:59:17.456548+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE"
     }
   ]
 }

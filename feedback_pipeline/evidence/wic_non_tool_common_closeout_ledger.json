@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:58:46.420976+00:00",
+  "updated_at": "2026-09-29T12:59:17.468962+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -2234,9 +2234,9 @@
         "UNVERIFIED_COMPLETE_PROHIBITION",
         "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
       "pass_lock": false,
-      "actionable_requeued": false
+      "actionable_requeued": true
     },
     {
       "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
@@ -2354,11 +2354,11 @@
     }
   ],
   "counts": {
-    "PARTIAL": 9,
-    "PLATFORM_HOLD": 2,
-    "LONG_TERM_HOLD": 5,
     "UNFINISHED": 16,
-    "COMPLETE": 36
+    "PARTIAL": 9,
+    "COMPLETE": 36,
+    "PLATFORM_HOLD": 2,
+    "LONG_TERM_HOLD": 5
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2423,8 +2423,10 @@
     "WIC-FINAL-CONNECTION",
     "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5"
   ],
-  "auto_requeued_roots": [],
-  "next_auto_root": null,
+  "auto_requeued_roots": [
+    "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5"
+  ],
+  "next_auto_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "observer_reinstruction_required": 0,
   "manual_relay_count": 0
 }

@@ -674,7 +674,7 @@
     },
     {
       "component_id": "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "repository://feedback_pipeline/wic_non_tool_common_closeout.py",
       "license": "WIC-INTERNAL",
       "version": "2.0.0",
@@ -713,7 +713,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json",
-      "idempotency_key": "WIC_NON_TOOL_COMMON_CLOSEOUT_ITEMIZED_REPORT_V2@2.0.0"
+      "idempotency_key": "WIC_NON_TOOL_COMMON_CLOSEOUT_ITEMIZED_REPORT_V2@2.0.0",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
+        "owner": "GITHUB_ACTIONS:36571734092:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
+          "owner": "GITHUB_ACTIONS:36571734092:GATE_01",
+          "fencing_token": "3a55493ea2d54329bd9910fdfff51fbb",
+          "component_id": "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
+          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+          "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T12:58:36.286240+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"

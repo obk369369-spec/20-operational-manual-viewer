@@ -3012,11 +3012,11 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:58:46.408031+00:00",
+      "updated_at": "2026-09-29T12:59:17.456548+00:00",
       "UNFINISHED_SCANNED": 47,
       "ALREADY_PASS_EXCLUDED": 68,
-      "ROOTS_MERGED": 5,
-      "WORK_FIXABLE_ROOTS": 5,
+      "ROOTS_MERGED": 6,
+      "WORK_FIXABLE_ROOTS": 6,
       "WORK_REQUIRED": [
         {
           "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
@@ -3066,6 +3066,22 @@
             "BULK_ROOT_EXECUTION",
             "EXPECTED_ACTUAL_VALIDATION",
             "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "demand_id": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
+          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+          "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "atomic_capabilities": [
+            "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
+            "FIXED_BLOCK_COMPLETENESS_GATE",
+            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
+            "ITEMIZED_OBSERVER_REPORT",
+            "OBSERVER_ZERO_MANUAL_RELAY",
+            "REPORT_REQUEUE_NEXT_LOOP",
+            "TOOL044_CHAT_REPORT_EVIDENCE_GATE",
+            "UNVERIFIED_COMPLETE_PROHIBITION",
+            "WORK_HANDOFF_CREDIT_AND_RECOVERY"
           ]
         }
       ],
@@ -3119,9 +3135,19 @@
             "TOOL016/TOOL044"
           ],
           "status": "READY_FOR_MULTI_GATE"
+        },
+        {
+          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+          "demands": [
+            "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
+          ],
+          "target_tools": [
+            "TOOL016,TOOL044,WORK,CONTROL_TOWER"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
         }
       ],
-      "TOOL044_AUTO_HANDED_OFF": 30,
+      "TOOL044_AUTO_HANDED_OFF": 29,
       "TOOL044_QUEUE": [
         {
           "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -3296,29 +3322,14 @@
           "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
           "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
           "atomic_capabilities": []
-        },
-        {
-          "demand_id": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
-          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
-          "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
-          "atomic_capabilities": [
-            "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
-            "FIXED_BLOCK_COMPLETENESS_GATE",
-            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-            "ITEMIZED_OBSERVER_REPORT",
-            "OBSERVER_ZERO_MANUAL_RELAY",
-            "REPORT_REQUEUE_NEXT_LOOP",
-            "TOOL044_CHAT_REPORT_EVIDENCE_GATE",
-            "UNVERIFIED_COMPLETE_PROHIBITION",
-            "WORK_HANDOFF_CREDIT_AND_RECOVERY"
-          ]
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 5,
+      "WORK_REQUIRED_REMAINDER": 6,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 89
+          "PASS": 89,
+          "CLAIMED": 1
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -3411,16 +3422,21 @@
             "run_id": "36544848568",
             "observed_at": "2026-09-29T08:46:28.651956+00:00",
             "event": "schedule"
+          },
+          {
+            "run_id": "36571831649",
+            "observed_at": "2026-09-29T12:59:17.456548+00:00",
+            "event": "schedule"
           }
         ],
-        "run_count": 11,
-        "elapsed_hours": 18.717,
+        "run_count": 12,
+        "elapsed_hours": 22.931,
         "status": "WAITING",
         "actual_24h": false
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:58:46.408031+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:59:17.456548+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3547,7 +3563,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:58:46.408031+00:00",
+      "updated_at": "2026-09-29T12:59:17.456548+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3676,7 +3692,8 @@
       "AUTO_REQUEUED": [
         "FINAL-37-CR-EVIDENCE-VALIDATION",
         "FINAL-37-CR-TRANSLATION-COMPONENT",
-        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+        "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
       ],
       "NEXT_WORK": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,
@@ -3689,13 +3706,13 @@
       "REMOTE_GITHUB_READBACK_PASS": true
     },
     "non_tool_common_closeout": {
-      "updated_at": "2026-09-29T12:58:46.420976+00:00",
+      "updated_at": "2026-09-29T12:59:17.468962+00:00",
       "counts": {
-        "PARTIAL": 9,
-        "PLATFORM_HOLD": 2,
-        "LONG_TERM_HOLD": 5,
         "UNFINISHED": 16,
-        "COMPLETE": 36
+        "PARTIAL": 9,
+        "COMPLETE": 36,
+        "PLATFORM_HOLD": 2,
+        "LONG_TERM_HOLD": 5
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3704,7 +3721,7 @@
         "CR-4": "COMPLETE",
         "CR-5": "COMPLETE"
       },
-      "next_auto_root": null,
+      "next_auto_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
       "observer_reinstruction_required": 0
     }
   },
