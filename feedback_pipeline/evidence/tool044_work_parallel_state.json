@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T05:40:14.733831+00:00",
+  "generated_at": "2026-09-29T06:01:35.228076+00:00",
   "packages": [
     {
       "ROOT_ID": "T42-RESELLER-DETECTION",
@@ -3337,6 +3337,64 @@
       },
       "atomic_demand_ids": [
         "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929"
+      ]
+    },
+    {
+      "ROOT_ID": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "CURRENT_STATE": "OPEN",
+      "EXACT_ERROR": [
+        "EXPANSION ONLY; preserve existing TOOL044 circulation and PASS locks, do not restart prior work. Highest execution priority: TOOL013, TOOL041->TOOL007->TOOL042, TOOL006. Maximize real parallel throughput using only actually available and verified free independent Runner/Worker environments; never fabricate/fill runner counts. Work is forbidden. Same COMMON_ROOT has exactly one owner; independent roots may run concurrently. Central Queue -> atomic claim/lease -> independent runner execution -> checkpoint -> actual validation -> failure isolation/takeover -> GitHub persist/deploy and remote read-back -> TOOL016 result return -> PASS LOCK -> idle runner immediately selects next eligible unresolved root. If a priority root is WAITING on a real external condition, do not idle other runners; process the next eligible root. Prefer existing WIC verified runners/components, then free externally verified runtime/components; external ready parts require actual-use, maintenance, license, security/dependency and no-modification usability checks before admission. Expansion gates: duplicate execution=0, same-root concurrent owner=0, independent-root concurrency, central result return, heartbeat, checkpoint/resume, failed-runner isolation/takeover, PASS reselection blocked. One runner failure must not stop circulation. 24H FULL EXPANSION: the 24h window is active work, not passive waiting. Throughout real elapsed 24h continuously perform unresolved auto-selection -> maximum safe parallel execution -> validation -> recovery -> result return -> PASS lock -> next selection while accumulating real timestamps, heartbeat, Run ID, checkpoint, completion/HOLD/FAIL, recovery, result-return and next-selection evidence. During the window, discover and validate additional free independent Runner/Worker capacity and add it when actually proven; replace with more stable verified free components where appropriate. If no eligible internal work temporarily exists, keep heartbeat/watchdog/queue monitoring alive. Never declare 24H_ACTUAL_PASS before >=24 real elapsed hours of evidence. Goal: maximum verified free independent runner utilization + maximum safe COMMON_ROOT parallelism + priority completion for TOOL013/041-007-042/006 + automatic fault recovery + zero user relay/intervention + real continuous 24h evidence."
+      ],
+      "COMMON_CAUSE": "ROOT_COMPRESSED",
+      "EXPECTED": "Resolve root without regression",
+      "FILES_TO_CHANGE": [],
+      "FILES_NOT_TO_TOUCH": [],
+      "EXISTING_PASS_TO_REUSE": [
+        "T42-OFFICIAL-PUBLISHER-VALIDATION",
+        "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+        "T42-WEBPAGE-TEXT-EXTRACTION",
+        "T42-TOC-STRUCTURE-EXTRACTION",
+        "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+        "TOOL044-AUTO-ROLLBACK",
+        "TOOL044-ARBITRARY-WIC-DEPLOY",
+        "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
+        "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
+        "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+        "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+        "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
+        "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+        "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+        "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
+        "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+        "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
+        "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+        "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
+        "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+        "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+        "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
+        "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+        "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
+        "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION"
+      ],
+      "DEPENDENCIES": [],
+      "ACCEPTANCE_TEST": "EXPECTED_ACTUAL_AND_REGRESSION",
+      "DEPLOY_TARGET": "TOOL044",
+      "CHECKPOINT": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "atomic_demand_ids": [
+        "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
       ]
     }
   ]
