@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T06:40:17.549303+00:00",
-  "UNFINISHED_SCANNED": 53,
+  "updated_at": "2026-09-29T06:45:12.021909+00:00",
+  "UNFINISHED_SCANNED": 54,
   "ALREADY_PASS_EXCLUDED": 56,
   "ROOTS_MERGED": 0,
   "WORK_FIXABLE_ROOTS": 0,
   "WORK_REQUIRED": [],
   "WORK_BATCHES": [],
-  "TOOL044_AUTO_HANDED_OFF": 39,
+  "TOOL044_AUTO_HANDED_OFF": 40,
   "TOOL044_QUEUE": [
     {
       "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
@@ -266,6 +266,12 @@
       "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
       "target_tool": "TOOL044",
       "atomic_capabilities": []
+    },
+    {
+      "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
+      "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
+      "target_tool": "TOOL044",
+      "atomic_capabilities": []
     }
   ],
   "WORK_REQUIRED_REMAINDER": 0,
@@ -297,7 +303,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 39,
+    "ready": 40,
     "waiting": 14,
     "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
     "duplicate_demand_ids": [],
@@ -364,7 +370,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T06:40:17.549303+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T06:45:12.021909+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0
