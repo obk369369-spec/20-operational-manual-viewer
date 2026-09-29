@@ -125,7 +125,7 @@
     },
     {
       "component_id": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://pypi.org/project/validators/0.35.0/",
       "license": "MIT",
       "version": "0.35.0+wic-composition.1",
@@ -162,7 +162,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
-      "idempotency_key": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE@0.35.0+wic-composition.1"
+      "idempotency_key": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE@0.35.0+wic-composition.1",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+        "owner": "GITHUB_ACTIONS:36509812819:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+          "owner": "GITHUB_ACTIONS:36509812819:GATE_01",
+          "fencing_token": "1f293bba011c4d2d92acf854f28ee39d",
+          "component_id": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+          "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+          "target_tool": "TOOL042",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T01:51:11.475824+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
