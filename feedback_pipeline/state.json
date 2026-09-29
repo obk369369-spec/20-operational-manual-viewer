@@ -684,14 +684,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 85,
+      "COMPONENT_FOUND": 86,
       "VALIDATING": 0,
-      "PASS": 85,
+      "PASS": 86,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 9,
-      "REMAINING": 63,
-      "LAST_HEARTBEAT": "2026-09-29T12:04:25.059102+00:00",
+      "RETURNED": 1,
+      "REMAINING": 62,
+      "LAST_HEARTBEAT": "2026-09-29T12:04:59.033345+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,9 +699,9 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T12:04:25.059102+00:00",
+      "updated_at": "2026-09-29T12:04:59.033345+00:00",
       "capacity": 30,
-      "results_returned": 9,
+      "results_returned": 1,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -2903,16 +2903,42 @@
             "heartbeat": "2026-09-29T12:03:05.682169+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929::WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1": {
+          "ROOT_ID": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+          "TARGET_TOOL": "TOOL016/TOOL044/WORK_HANDOFF",
+          "COMPONENT_ID": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+          "OWNER": "GITHUB_ACTIONS:36565653037:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "38074cfb717f46de8b483129920dfcf0",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929::WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+            "owner": "GITHUB_ACTIONS:36565653037:GATE_01",
+            "fencing_token": "38074cfb717f46de8b483129920dfcf0",
+            "component_id": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+            "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+            "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T12:04:48.397599+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:04:37.117423+00:00",
-      "UNFINISHED_SCANNED": 47,
-      "ALREADY_PASS_EXCLUDED": 66,
-      "ROOTS_MERGED": 6,
-      "WORK_FIXABLE_ROOTS": 6,
+      "updated_at": "2026-09-29T12:04:59.085031+00:00",
+      "UNFINISHED_SCANNED": 46,
+      "ALREADY_PASS_EXCLUDED": 67,
+      "ROOTS_MERGED": 5,
+      "WORK_FIXABLE_ROOTS": 5,
       "WORK_REQUIRED": [
         {
           "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
@@ -2962,22 +2988,6 @@
             "BULK_ROOT_EXECUTION",
             "EXPECTED_ACTUAL_VALIDATION",
             "ITEM_EVIDENCE_RETURN"
-          ]
-        },
-        {
-          "demand_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
-          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
-          "atomic_capabilities": [
-            "AUTO_NEXT_WORK_SELECTION",
-            "AUTO_STATUS_CLASSIFICATION",
-            "AUTO_UNFINISHED_REQUEUE",
-            "AUTO_USER_VISIBLE_COMPLETION_REPORT",
-            "BULK_FEEDBACK_INTAKE",
-            "GLOBAL_REQUIREMENT_RECONCILIATION",
-            "HOURLY_STATUS_RETURN_PATH",
-            "RELATED_TARGET_PROPAGATION",
-            "TOOL016_TOOL044_WORK_HANDOFF"
           ]
         }
       ],
@@ -3029,16 +3039,6 @@
           ],
           "target_tools": [
             "TOOL016/TOOL044"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        },
-        {
-          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-          "demands": [
-            "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
-          ],
-          "target_tools": [
-            "TOOL016/TOOL044/WORK_HANDOFF"
           ],
           "status": "READY_FOR_MULTI_GATE"
         }
@@ -3220,12 +3220,11 @@
           "atomic_capabilities": []
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 6,
+      "WORK_REQUIRED_REMAINDER": 5,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 85,
-          "CLAIMED": 1
+          "PASS": 86
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -3250,12 +3249,12 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 35,
+        "ready": 34,
         "waiting": 12,
         "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 54,
+        "result_returns": 55,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -3327,7 +3326,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:04:37.117423+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:04:59.085031+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3454,7 +3453,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:04:37.117423+00:00",
+      "updated_at": "2026-09-29T12:04:59.085031+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3493,7 +3492,8 @@
         "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
         "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
         "2879888fd53f71858876-FAILURE_ISOLATION",
-        "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929"
+        "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
+        "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
       ],
       "PARTIAL": [
         "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -3556,8 +3556,7 @@
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
         "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-        "WIC-ALL-UNFINISHED-BATCH-20260928",
-        "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
+        "WIC-ALL-UNFINISHED-BATCH-20260928"
       ],
       "PLATFORM_HOLD": [
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
@@ -3581,8 +3580,7 @@
       "AUTO_REQUEUED": [
         "FINAL-37-CR-EVIDENCE-VALIDATION",
         "FINAL-37-CR-TRANSLATION-COMPONENT",
-        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
-        "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929"
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
       ],
       "NEXT_WORK": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,
@@ -3591,7 +3589,7 @@
       "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF": true,
       "observer_reinstruction_required": 0,
       "DURABLE_OBSERVER_REPORT_WRITTEN": true,
-      "TOOL016_RESULT_ACK_RECEIVED": 54,
+      "TOOL016_RESULT_ACK_RECEIVED": 55,
       "REMOTE_GITHUB_READBACK_PASS": true
     }
   },
