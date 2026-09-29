@@ -3822,7 +3822,7 @@
       "demand_id": "WIC-BACKLOG-TOOL013-20260927",
       "root_id": "TOOL013",
       "target_tool": "TOOL013",
-      "status": "OPEN",
+      "status": "RETURNED_HOLD_VERIFIED_COMPONENTS_REQUIRED",
       "revision": 1,
       "latest_directive": "Preserve old two HTML files; complete separate 13번_완전개선본.html for Korean title without semantic reversal, English original preservation, publisher rules, official 18 secondary categories, required/missing/duplicate validation, actual Excel save and reopen. Reuse 114 files/823 rows, BIFF8, mapping, regime, cache/resume PASS. Keep NEXT separate.",
       "source": "TOOL044_CANONICAL_INTAKE",
@@ -3831,13 +3831,19 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": {
+        "status": "HOLD",
+        "tool016_ack": "RECEIVED",
+        "reason": "Existing 114-file/823-row batch, XLS/XLSX and resume evidence stays locked; title translation and canonical-category components remain unverified.",
+        "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool013",
+        "resume_condition": "VERIFIED_TRANSLATION_AND_CANONICAL_CATEGORY_COMPONENTS_AVAILABLE"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL006-20260927",
       "root_id": "TOOL006",
       "target_tool": "TOOL006",
-      "status": "OPEN",
+      "status": "RETURNED_HOLD_GOLDEN_PAIR_REQUIRED",
       "revision": 1,
       "latest_directive": "Preserve stable/PASS; fix only residual depth2 leakage, hierarchy, parenthetical noise, footnote *, List of Tables/Figures, unwanted TOC items, copyable stable UI; real-data E2E. Keep generalized paste/URL/login/JS/anti-bot NEXT fail-closed.",
       "source": "TOOL044_CANONICAL_INTAKE",
@@ -3846,13 +3852,19 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": {
+        "status": "HOLD",
+        "tool016_ack": "RECEIVED",
+        "reason": "Functional 9/9 and smoke 4/4 evidence stays locked; publisher golden pair is external input.",
+        "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool006",
+        "resume_condition": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
       "root_id": "TOOL041-007-042",
       "target_tool": "TOOL041-007-042",
-      "status": "OPEN",
+      "status": "RETURNED_HOLD_ACTUAL_CUSTOMER_EVIDENCE_REQUIRED",
       "revision": 1,
       "latest_directive": "Reuse existing functions/real-customer PASS; verify no-manual-relay customer E2E TOOL041 -> TOOL007 -> TOOL042; HOLD missing evidence without guessing; supply-price blank is intentional normal.",
       "source": "TOOL044_CANONICAL_INTAKE",
@@ -3861,7 +3873,13 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": {
+        "status": "HOLD",
+        "tool016_ack": "RECEIVED",
+        "reason": "The shared fact-boundary regression is verified; current customer/runtime semantic evidence is still external.",
+        "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool041-tool007-tool042",
+        "resume_condition": "CURRENT_VERIFIED_CUSTOMER_AND_RUNTIME_EVIDENCE_AVAILABLE"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
