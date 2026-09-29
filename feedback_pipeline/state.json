@@ -680,18 +680,18 @@
       }
     },
     "tool044_external_progress": {
-      "TOTAL_DEMAND": 113,
+      "TOTAL_DEMAND": 114,
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 86,
+      "COMPONENT_FOUND": 87,
       "VALIDATING": 0,
-      "PASS": 86,
+      "PASS": 87,
       "FAIL": 0,
       "HOLD": 0,
       "RETURNED": 1,
-      "REMAINING": 62,
-      "LAST_HEARTBEAT": "2026-09-29T12:04:59.033345+00:00",
+      "REMAINING": 63,
+      "LAST_HEARTBEAT": "2026-09-29T12:47:06.245439+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,7 +699,7 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T12:04:59.033345+00:00",
+      "updated_at": "2026-09-29T12:47:06.245439+00:00",
       "capacity": 30,
       "results_returned": 1,
       "jobs": {
@@ -2929,12 +2929,38 @@
             "heartbeat": "2026-09-29T12:04:48.397599+00:00",
             "production_mutation": 0
           }
+        },
+        "COMPONENT::WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1": {
+          "ROOT_ID": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+          "TARGET_TOOL": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "COMPONENT_ID": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+          "OWNER": "GITHUB_ACTIONS:36570398077:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "59f88d9a3c044eafa75160872b71d4c4",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "COMPONENT::WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+            "owner": "GITHUB_ACTIONS:36570398077:GATE_01",
+            "fencing_token": "59f88d9a3c044eafa75160872b71d4c4",
+            "component_id": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+            "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+            "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T12:46:56.038282+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:46:46.730983+00:00",
+      "updated_at": "2026-09-29T12:47:06.283910+00:00",
       "UNFINISHED_SCANNED": 47,
       "ALREADY_PASS_EXCLUDED": 67,
       "ROOTS_MERGED": 5,
@@ -3236,8 +3262,7 @@
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 86,
-          "CLAIMED": 1
+          "PASS": 87
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -3339,7 +3364,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:46:46.730983+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:47:06.283910+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3466,7 +3491,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:46:46.730983+00:00",
+      "updated_at": "2026-09-29T12:47:06.283910+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3607,13 +3632,13 @@
       "REMOTE_GITHUB_READBACK_PASS": true
     },
     "non_tool_common_closeout": {
-      "updated_at": "2026-09-29T12:46:46.742987+00:00",
+      "updated_at": "2026-09-29T12:47:06.292450+00:00",
       "counts": {
+        "PARTIAL": 10,
+        "LONG_TERM_HOLD": 5,
         "COMPLETE": 43,
         "UNFINISHED": 22,
-        "LONG_TERM_HOLD": 5,
-        "PLATFORM_HOLD": 1,
-        "PARTIAL": 10
+        "PLATFORM_HOLD": 1
       },
       "cr_status": {
         "CR-1": "COMPLETE",
