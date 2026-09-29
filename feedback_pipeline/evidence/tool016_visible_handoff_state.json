@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T02:30:08.124504+00:00",
-  "UNFINISHED_SCANNED": 48,
+  "updated_at": "2026-09-29T02:43:12.736669+00:00",
+  "UNFINISHED_SCANNED": 49,
   "ALREADY_PASS_EXCLUDED": 55,
   "ROOTS_MERGED": 0,
   "WORK_FIXABLE_ROOTS": 0,
   "WORK_REQUIRED": [],
   "WORK_BATCHES": [],
-  "TOOL044_AUTO_HANDED_OFF": 34,
+  "TOOL044_AUTO_HANDED_OFF": 35,
   "TOOL044_QUEUE": [
     {
       "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
@@ -232,6 +232,12 @@
       "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
       "target_tool": "TOOL016-TOOL044",
       "atomic_capabilities": []
+    },
+    {
+      "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
+      "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
+      "target_tool": "TOOL016-TOOL044",
+      "atomic_capabilities": []
     }
   ],
   "WORK_REQUIRED_REMAINDER": 0,
@@ -263,7 +269,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 34,
+    "ready": 35,
     "waiting": 14,
     "next_demand": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
     "duplicate_demand_ids": [],
@@ -325,7 +331,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T02:30:08.124504+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T02:43:12.736669+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

@@ -4634,6 +4634,21 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
+      "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
+      "target_tool": "TOOL016-TOOL044",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "FINAL canonical residual compression. Do not re-survey or individually rerun historical 37/39/42/69/tool backlogs; absorb them into only these residual COMMON_ROOTs: R1 TOOL013 translation; R2 TOOL013 official 18 categories+matcher; R3 TOOL006 actual publisher golden pair; R4 TOOL041->007->042 actual-customer E2E; R5 reseller classifier; R6 TOC hierarchy validator; R7 provenance/official identity target validation; R8 historical-failure fixture; R9 missing expected<->actual evidence; R10 real-work input->execution->validation contract; R11 ROOT6 last minimum validation; R12 ROOT7 new-tool auto-enrollment E2E; R13 independent ENV2; R14 cross-runtime exactly-once; R15 actual 24h unattended evidence; R16 PLATFORM_LIMIT. Existing PASS=REOPEN_BLOCKED. Never re-extract TOOL045 315 ROOT/171910 occurrences. Atomically decompose each ROOT for scheduling/evidence but modify each COMMON_ROOT only once. Classify A=currently auto-executable and run now with eligible MULTI/BATCH; B=requires free component/source and keep 24h discovery, auto-promote when verified; C=authentication/external original/platform constraint and isolate WAITING/PLATFORM_LIMIT without blocking A/B. For executable A/B repeat unattended: discover->claim->execute->actual validation->regression->batch deploy->remote read-back->TOOL016 return->PASS LOCK->next ROOT. Do not fill four runners artificially; parallelize only genuinely independent work. No per-small-item push/watch; batch changes/evidence. Use the latest 24h evidence accumulator and only finalize R15 after actual >=24h naturally scheduled execution evidence. For non-GitHub ENV2 reuse prior evidence and investigate/validate only unproven portions; no redevelopment from zero. From now on never resurvey the entire backlog: add only new errors incrementally, merging into an existing R1-R16 ROOT when same cause; create a new root only for a genuinely new cause not represented here. Goal: executable internal incomplete=0, PASS rework=0, duplicate execution=0, only external conditions WAITING/PLATFORM_LIMIT, actual evidence accumulated.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
