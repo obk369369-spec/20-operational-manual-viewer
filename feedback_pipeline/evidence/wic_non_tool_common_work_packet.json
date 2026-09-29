@@ -1,106 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:49:52.425020+00:00",
-  "root_batches": [
-    {
-      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-      "requirements": [
-        "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
-      ]
-    },
-    {
-      "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
-      "requirements": [
-        "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928"
-      ]
-    },
-    {
-      "root_id": "TOOL016",
-      "requirements": [
-        "WIC-BACKLOG-TOOL016-20260927"
-      ]
-    },
-    {
-      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-      "requirements": [
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
-        "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-      ]
-    },
-    {
-      "root_id": "TOOL044",
-      "requirements": [
-        "WIC-BACKLOG-TOOL044-20260927"
-      ]
-    },
-    {
-      "root_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
-      "requirements": [
-        "TOOL044-ARBITRARY-WIC-DEPLOY"
-      ]
-    },
-    {
-      "root_id": "TOOL044-AUTO-ROLLBACK",
-      "requirements": [
-        "TOOL044-AUTO-ROLLBACK"
-      ]
-    },
-    {
-      "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
-      "requirements": [
-        "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927"
-      ]
-    },
-    {
-      "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
-      "requirements": [
-        "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927"
-      ]
-    },
-    {
-      "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
-      "requirements": [
-        "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928"
-      ]
-    },
-    {
-      "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
-      "requirements": [
-        "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929"
-      ]
-    },
-    {
-      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-      "requirements": [
-        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
-        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
-        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-      ]
-    },
-    {
-      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "requirements": [
-        "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929"
-      ]
-    },
-    {
-      "root_id": "WIC-FINAL-CONNECTION",
-      "requirements": [
-        "WIC-BACKLOG-FINAL-CONNECTION-20260927"
-      ]
-    }
-  ],
-  "next_root": "TOOL044-AUTO-ROLLBACK",
+  "updated_at": "2026-09-29T12:58:26.098891+00:00",
+  "root_batches": [],
+  "next_root": null,
   "execution_policy": "FREE_VERIFIED_CIRCULATION_FIRST_WORK_ONLY_WITH_RESTART_PACKAGE",
   "workspace": "/home/runner/work/20-operational-manual-viewer/20-operational-manual-viewer",
   "branch": "main",
-  "source_commit": "fdbbd7092fad5f45efe13417c7945433d2482ab2",
+  "source_commit": "d6bb051aca9d88f8dca44c314b6ef06651e74a97",
   "observer_manual_relay_required": 0
 }
