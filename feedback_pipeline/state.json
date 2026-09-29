@@ -646,14 +646,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 22,
+      "COMPONENT_FOUND": 24,
       "VALIDATING": 0,
-      "PASS": 22,
+      "PASS": 24,
       "FAIL": 0,
       "HOLD": 0,
       "RETURNED": 2,
       "REMAINING": 69,
-      "LAST_HEARTBEAT": "2026-09-29T01:52:59.299292+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T02:11:36.415667+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -661,7 +661,7 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T01:52:59.299292+00:00",
+      "updated_at": "2026-09-29T02:11:36.415667+00:00",
       "capacity": 15,
       "results_returned": 2,
       "jobs": {
@@ -1227,12 +1227,64 @@
             "heartbeat": "2026-09-29T01:52:12.423256+00:00",
             "production_mutation": 0
           }
+        },
+        "COMPONENT::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT": {
+          "ROOT_ID": "T42-WEBPAGE-TEXT-EXTRACTION",
+          "TARGET_TOOL": "TOOL042",
+          "COMPONENT_ID": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+          "OWNER": "GITHUB_ACTIONS:36511380058:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "7cde4e5985aa447cb99ac20c51cbeeef",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "COMPONENT::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+            "owner": "GITHUB_ACTIONS:36511380058:GATE_01",
+            "fencing_token": "7cde4e5985aa447cb99ac20c51cbeeef",
+            "component_id": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+            "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+            "target_tool": "TOOL042",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T02:11:22.364150+00:00",
+            "production_mutation": 0
+          }
+        },
+        "COMPONENT::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE": {
+          "ROOT_ID": "T42-TOC-STRUCTURE-EXTRACTION",
+          "TARGET_TOOL": "TOOL042",
+          "COMPONENT_ID": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+          "OWNER": "GITHUB_ACTIONS:36511380058:GATE_02",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "6727938c662d4202aeffad9855818789",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "COMPONENT::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+            "owner": "GITHUB_ACTIONS:36511380058:GATE_02",
+            "fencing_token": "6727938c662d4202aeffad9855818789",
+            "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+            "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
+            "target_tool": "TOOL042",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T02:11:26.829542+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T02:11:00.184209+00:00",
+      "updated_at": "2026-09-29T02:11:36.443984+00:00",
       "UNFINISHED_SCANNED": 48,
       "ALREADY_PASS_EXCLUDED": 53,
       "ROOTS_MERGED": 0,
@@ -1458,8 +1510,7 @@
       "MULTI_GATE": {
         "capacity": 15,
         "statuses": {
-          "PASS": 22,
-          "CLAIMED": 2
+          "PASS": 24
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -1541,7 +1592,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T02:11:00.184209+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T02:11:36.443984+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
