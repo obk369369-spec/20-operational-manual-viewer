@@ -4604,6 +4604,21 @@
           "TOOL044_DEMAND_ID": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION"
         }
       ]
+    },
+    {
+      "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "target_tool": "TOOL016-TOOL044",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "Register ALL actually non-PASS items discovered in stages 1-3 into TOOL044 24h circulation without reopening PASS-locked work. REOPEN_BLOCKED for existing actual PASS. Deduplicate same causes into COMMON_ROOT; reuse existing verified code/fixtures/evidence/components first; free/existing verified components first; batch small work; parallelize independent roots with MULTI runners where actual runners exist; isolate external-data/auth requirements as WAITING/PLATFORM_LIMIT without blocking other eligible work; automatically promote WAITING back to eligible when new source/executable component/resume condition becomes available. PASS requires actual execution -> validation -> regression -> deploy -> remote read-back -> TOOL016 result return; then block reselection. Do not repeatedly ask the user for intermediate confirmation. Include TOOL013 translation residual: English->Korean title auto-translation remains incomplete; candidates M2M100 and OPUS-MT en->ko are CANDIDATE_ONLY, never PASS; Bergamot excluded due currently identified lack of Korean model. Required path: free execution environment -> install/run verification -> compare against existing WIC translation samples preserving title semantics/order -> quality validation -> actual TOOL013 connection -> regression -> deploy/read-back -> TOOL016 return. Include TOOL013 category residual: official 18-category semantic auto-matching remains incomplete; current TOOL013 repo/MASTER/existing E2E/user folders did not yield the official 18-category source, and existing mapping is column-name mapping rather than semantic 18-category matcher. Never invent an 18-category table or matcher before official source is obtained. Required path: obtain official source -> provenance validation -> matcher acquisition or minimal implementation only if no ready component -> actual WIC data validation -> regression -> deploy/read-back -> TOOL016 return. Also include every other stage1-3 item that is actually not PASS; do not re-analyze/revalidate items already PASS solely because of this registration.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
