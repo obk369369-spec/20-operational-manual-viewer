@@ -307,6 +307,84 @@
           "production_mutation": 0
         }
       }
+    },
+    {
+      "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "status": "READY",
+      "source": "https://pypi.org/project/jsonschema/4.26.0/",
+      "license": "MIT",
+      "version": "4.26.0",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "target_root": "OBSERVER_ZERO_TOUCH",
+      "target_tool": "TOOL016,TOOL044",
+      "input_contract": "expected JSON schema plus actual result object",
+      "output_contract": "validation succeeds only when actual conforms to expected",
+      "install_target": "isolated sandbox/site",
+      "install_method": [
+        "{python}",
+        "-m",
+        "pip",
+        "install",
+        "--target",
+        "{sandbox}/site",
+        "jsonschema==4.26.0"
+      ],
+      "validator": [
+        "{python}",
+        "-c",
+        "from jsonschema import validate; expected={'type':'object','required':['status','tool016_ack'],'properties':{'status':{'const':'PASS'},'tool016_ack':{'const':'RECEIVED'}}}; actual={'status':'PASS','tool016_ack':'RECEIVED'}; validate(actual,expected)"
+      ],
+      "success_condition": "actual result satisfies the declared expected-result schema",
+      "failure_condition": "installation fails or actual output violates the expected schema",
+      "rollback_method": [
+        "{python}",
+        "-c",
+        "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+      ],
+      "rollback_condition": "any install or validation failure",
+      "evidence": "PyPI verified publisher metadata, MIT license, pinned version and isolated multi-gate receipt",
+      "idempotency_key": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE@4.26.0"
+    },
+    {
+      "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+      "status": "READY",
+      "source": "https://pypi.org/project/tenacity/9.1.4/",
+      "license": "Apache-2.0",
+      "version": "9.1.4",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ],
+      "target_root": "OBSERVER_ZERO_TOUCH",
+      "target_tool": "TOOL016,TOOL044",
+      "input_contract": "one isolated callable with bounded retry policy",
+      "output_contract": "transient failures remain isolated and the bounded retry returns one terminal result",
+      "install_target": "isolated sandbox/site",
+      "install_method": [
+        "{python}",
+        "-m",
+        "pip",
+        "install",
+        "--target",
+        "{sandbox}/site",
+        "tenacity==9.1.4"
+      ],
+      "validator": [
+        "{python}",
+        "-c",
+        "from tenacity import retry,stop_after_attempt,wait_none; n={'v':0}; exec(\"@retry(stop=stop_after_attempt(3),wait=wait_none(),reraise=True)\\ndef run():\\n n['v']+=1\\n if n['v']<3: raise RuntimeError('transient')\\n return 'PASS'\"); assert run()=='PASS' and n['v']==3"
+      ],
+      "success_condition": "two transient failures are isolated and the third bounded attempt returns PASS",
+      "failure_condition": "installation fails, retry escapes early, or terminal result is missing",
+      "rollback_method": [
+        "{python}",
+        "-c",
+        "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+      ],
+      "rollback_condition": "any install or validation failure",
+      "evidence": "PyPI project metadata, Apache-2.0 license, pinned version and isolated multi-gate receipt",
+      "idempotency_key": "TENACITY_9_1_4_FAILURE_ISOLATION@9.1.4"
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
