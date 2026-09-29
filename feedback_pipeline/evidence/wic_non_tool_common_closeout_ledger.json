@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:47:39.225308+00:00",
+  "updated_at": "2026-09-29T12:47:59.375241+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -2564,17 +2564,13 @@
         "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-        "REPORT_REQUEUE_NEXT_LOOP",
-        "OBSERVER_ZERO_MANUAL_RELAY",
-        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
-        "CANONICAL_PIPELINE_RUNTIME_COMPLETION"
+      "actual_evidence": [
+        "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1"
       ],
+      "status": "COMPLETE",
+      "remaining_work": [],
       "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false
+      "pass_lock": true
     },
     {
       "requirement_id": "CR-1",
@@ -2674,10 +2670,10 @@
   ],
   "counts": {
     "PARTIAL": 10,
-    "UNFINISHED": 22,
+    "PLATFORM_HOLD": 1,
     "LONG_TERM_HOLD": 5,
-    "COMPLETE": 43,
-    "PLATFORM_HOLD": 1
+    "UNFINISHED": 21,
+    "COMPLETE": 44
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2726,6 +2722,7 @@
     "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
     "2879888fd53f71858876-FAILURE_ISOLATION",
     "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+    "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
     "CR-1",
     "CR-2",
     "CR-3",
@@ -2753,8 +2750,7 @@
     "WIC-CIRCULATION-FINAL-CLOSEOUT",
     "WIC-COMMON-AUTOMATION-BLOCKERS",
     "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-    "WIC-FINAL-CONNECTION",
-    "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5"
+    "WIC-FINAL-CONNECTION"
   ],
   "next_auto_root": "T42-RESELLER-DETECTION",
   "observer_reinstruction_required": 0,

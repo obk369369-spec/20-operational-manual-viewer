@@ -5969,11 +5969,26 @@
       "COMPONENT_ID": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
       "OWNER": "GITHUB_ACTIONS:36570492678:GATE_01",
       "CLAIM_TIME": "2026-09-29T12:47:38.995285+00:00",
-      "LEASE_EXPIRY": "2026-09-29T13:17:38.995285+00:00",
-      "CHECKPOINT": "CLAIM_DURABLE",
-      "STATUS": "CLAIMED",
+      "LEASE_EXPIRY": null,
+      "CHECKPOINT": "REGRESSION_COMPLETE",
+      "STATUS": "PASS",
       "RETRY_COUNT": 0,
-      "RESULT": null,
+      "RESULT": {
+        "job_id": "DEMAND::WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929::WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+        "owner": "GITHUB_ACTIONS:36570492678:GATE_01",
+        "fencing_token": "28c9300e318a4e378b7f450b0c9b91fe",
+        "component_id": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+        "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+        "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+        "status": "PASS",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "install_returncode": 0,
+        "validator_returncode": 0,
+        "rollback_returncode": null,
+        "rollback_pass": true,
+        "heartbeat": "2026-09-29T12:47:48.561377+00:00",
+        "production_mutation": 0
+      },
       "COMPONENT": {
         "component_id": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
         "status": "VERIFIED_REUSABLE",
@@ -6050,9 +6065,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:47:38.995285+00:00",
+  "updated_at": "2026-09-29T12:47:59.307763+00:00",
   "capacity": 30,
-  "active_claims": 1,
+  "active_claims": 0,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 1
 }

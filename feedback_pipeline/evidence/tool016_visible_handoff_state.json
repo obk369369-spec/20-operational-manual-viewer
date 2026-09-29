@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:47:39.124021+00:00",
-  "UNFINISHED_SCANNED": 47,
-  "ALREADY_PASS_EXCLUDED": 67,
-  "ROOTS_MERGED": 6,
-  "WORK_FIXABLE_ROOTS": 6,
+  "updated_at": "2026-09-29T12:47:59.362859+00:00",
+  "UNFINISHED_SCANNED": 46,
+  "ALREADY_PASS_EXCLUDED": 68,
+  "ROOTS_MERGED": 5,
+  "WORK_FIXABLE_ROOTS": 5,
   "WORK_REQUIRED": [
     {
       "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
@@ -54,18 +54,6 @@
         "BULK_ROOT_EXECUTION",
         "EXPECTED_ACTUAL_VALIDATION",
         "ITEM_EVIDENCE_RETURN"
-      ]
-    },
-    {
-      "demand_id": "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
-      "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
-      "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
-      "atomic_capabilities": [
-        "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
-        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-        "OBSERVER_ZERO_MANUAL_RELAY",
-        "REPORT_REQUEUE_NEXT_LOOP",
-        "WORK_HANDOFF_CREDIT_AND_RECOVERY"
       ]
     }
   ],
@@ -117,16 +105,6 @@
       ],
       "target_tools": [
         "TOOL016/TOOL044"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
-      "demands": [
-        "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929"
-      ],
-      "target_tools": [
-        "TOOL016,TOOL044,WORK,CONTROL_TOWER"
       ],
       "status": "READY_FOR_MULTI_GATE"
     }
@@ -308,12 +286,11 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 6,
+  "WORK_REQUIRED_REMAINDER": 5,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
-      "PASS": 87,
-      "CLAIMED": 1
+      "PASS": 88
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -338,12 +315,12 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 35,
+    "ready": 34,
     "waiting": 12,
     "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
     "duplicate_demand_ids": [],
     "dedup_gate": "PASS",
-    "result_returns": 55,
+    "result_returns": 56,
     "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
     "external_failover": "HOLD_SECOND_RUNTIME",
     "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -415,7 +392,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T12:47:39.124021+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T12:47:59.362859+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0
