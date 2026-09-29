@@ -159,7 +159,9 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
         component = sorted(matches, key=lambda row: row["component_id"])[0]
         component_id = component["component_id"]
         demand_id = demand.get("demand_id")
-        job_id = f"DEMAND::{demand_id}::{component_id}"
+        generation = int(demand.get("requeue_generation", 0))
+        suffix = f"::REQUEUE_{generation}" if generation else ""
+        job_id = f"DEMAND::{demand_id}::{component_id}{suffix}"
         jobs.setdefault(job_id, {
             "JOB_ID": job_id, "DEMAND_ID": demand_id, "ROOT_ID": demand.get("root_id") or demand_id,
             "TARGET_TOOL": demand.get("target_tool") or "CENTRAL", "COMPONENT_ID": component_id,

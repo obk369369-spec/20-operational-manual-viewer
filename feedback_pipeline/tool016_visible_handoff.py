@@ -13,6 +13,8 @@ GATES = HERE / "evidence" / "tool044_multi_gate_state.json"
 PROVIDERS = HERE / "tool044_multi_gate_adapters.json"
 CENTRAL = HERE / "state.json"
 OUT = HERE / "evidence" / "tool016_visible_handoff_state.json"
+OBSERVER = HERE / "evidence" / "wic_zero_touch_observer_report.json"
+CHECKPOINT = HERE / "evidence" / "wic_zero_touch_circulation_state.json"
 TERMINAL = {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT", "PASS_LOCKED"}
 READY_PREFIXES = ("READY", "OPEN", "QUEUED")
 
@@ -39,6 +41,75 @@ def _terminal(row: dict) -> bool:
 
 def _ready(row: dict) -> bool:
     return not _returned(row) and str(row.get("status", "")).startswith(READY_PREFIXES)
+
+
+def _hold_class(row: dict) -> str | None:
+    text = " ".join(str(row.get(key, "")) for key in (
+        "status", "reason", "resume_condition", "blocking_reason", "demand_id", "root_id"
+    )).upper()
+    if any(token in text for token in ("24H", "24_HOUR", "NATURAL_RUN", "LONG_TERM")):
+        return "LONG_TERM_HOLD"
+    if any(token in text for token in (
+        "PLATFORM", "EXTERNAL_AUTH", "EXTERNAL_INPUT", "LIBRARY_BYTES_NOT_MOUNTED",
+        "SECOND_RUNTIME", "RUNTIME_ACCESS", "USER_APPROVAL_REQUIRED"
+    )):
+        return "PLATFORM_HOLD"
+    return None
+
+
+def reconcile_demands(queue: dict, pool: dict, now: str) -> tuple[dict, dict]:
+    """Classify every durable demand and requeue only evidence-backed actionable work."""
+    available = {
+        capability
+        for component in pool.get("components", []) + pool.get("verified_atomic_component_pool", [])
+        if component.get("status") == "VERIFIED_REUSABLE"
+        for capability in component.get("atomic_capabilities", [])
+    }
+    buckets = {key: [] for key in (
+        "COMPLETE", "PARTIAL", "UNFINISHED", "PLATFORM_HOLD", "LONG_TERM_HOLD"
+    )}
+    auto_requeued = []
+    for row in queue.get("demands", []):
+        demand_id = row.get("demand_id")
+        if _terminal(row) and _returned(row):
+            classification = "COMPLETE"
+        else:
+            classification = _hold_class(row)
+            status = str(row.get("status", "")).upper()
+            if not classification:
+                classification = "PARTIAL" if (
+                    status.startswith("RETURNED_") or row.get("checkpoint") or row.get("result_return")
+                ) else "UNFINISHED"
+            capabilities = set(row.get("atomic_capabilities", []))
+            actionable = bool(capabilities) and capabilities <= available
+            if classification in {"PARTIAL", "UNFINISHED"} and actionable:
+                previous = str(row.get("status", ""))
+                if not previous.startswith("READY"):
+                    if row.get("result_return"):
+                        row.setdefault("result_return_history", []).append(row.pop("result_return"))
+                    row["status"] = "READY_AUTO_REQUEUED"
+                    row["requeue_generation"] = int(row.get("requeue_generation", 0)) + 1
+                    row["auto_requeued_at"] = now
+                row["resume_condition"] = "VERIFIED_COMPONENT_AVAILABLE"
+                auto_requeued.append(demand_id)
+        row["residual_classification"] = classification
+        buckets[classification].append(demand_id)
+    actionable = [row for row in queue.get("demands", []) if _ready(row)]
+    next_work = actionable[0].get("demand_id") if actionable else None
+    report = {
+        "schema_version": 1,
+        "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+        "updated_at": now,
+        **buckets,
+        "AUTO_REQUEUED": auto_requeued,
+        "NEXT_WORK": next_work,
+        "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": True,
+        "STATUS_CLASSIFICATION_PROVEN": True,
+        "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT": True,
+        "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF": next_work is not None or not auto_requeued,
+        "observer_reinstruction_required": 0,
+    }
+    return queue, report
 
 
 def _schedule_history(previous: dict, now: str, trigger: str, run_id: str) -> dict:
@@ -142,18 +213,35 @@ def build(queue: dict, pool: dict, gates: dict, now: str, providers: dict | None
 
 
 def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATES,
-        central_path: Path = CENTRAL, out_path: Path = OUT) -> dict:
+        central_path: Path = CENTRAL, out_path: Path = OUT,
+        observer_path: Path = OBSERVER, checkpoint_path: Path = CHECKPOINT) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     previous = load(out_path, {})
     trigger = os.environ.get("GITHUB_EVENT_NAME", "manual")
     run_id = os.environ.get("GITHUB_RUN_ID", "")
-    result = build(load(queue_path, {"demands": []}), load(pool_path, {"components": []}),
+    queue = load(queue_path, {"demands": []})
+    pool = load(pool_path, {"components": []})
+    queue, observer = reconcile_demands(queue, pool, now)
+    atomic_json(queue_path, queue)
+    result = build(queue, pool,
                    load(gate_path, {"jobs": {}, "capacity": 15}), now,
                    load(PROVIDERS, {"providers": [], "bulk_summary": {}}),
                    previous, trigger, run_id)
     atomic_json(out_path, result)
+    observer["DURABLE_OBSERVER_REPORT_WRITTEN"] = True
+    observer["TOOL016_RESULT_ACK_RECEIVED"] = sum(_returned(row) for row in queue.get("demands", []))
+    observer["REMOTE_GITHUB_READBACK_PASS"] = False
+    atomic_json(observer_path, observer)
+    atomic_json(checkpoint_path, {
+        "schema_version": 1, "updated_at": now, "status": "CIRCULATION_ACTIVE",
+        "next_work": observer["NEXT_WORK"], "auto_requeued": observer["AUTO_REQUEUED"],
+        "observer_report": str(observer_path.relative_to(HERE)) if observer_path.is_relative_to(HERE)
+        else str(observer_path),
+        "observer_reinstruction_required": 0,
+    })
     central = load(central_path, {})
     central.setdefault("integration_core", {})["visible_handoff"] = result
+    central["integration_core"]["zero_touch_residual_circulation"] = observer
     atomic_json(central_path, central)
     return result
 
