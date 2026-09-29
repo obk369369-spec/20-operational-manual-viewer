@@ -1318,11 +1318,26 @@
       "COMPONENT_ID": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
       "OWNER": "GITHUB_ACTIONS:36509812819:GATE_01",
       "CLAIM_TIME": "2026-09-29T01:50:58.892463+00:00",
-      "LEASE_EXPIRY": "2026-09-29T02:20:58.892463+00:00",
-      "CHECKPOINT": "CLAIM_DURABLE",
-      "STATUS": "CLAIMED",
+      "LEASE_EXPIRY": null,
+      "CHECKPOINT": "REGRESSION_COMPLETE",
+      "STATUS": "PASS",
       "RETRY_COUNT": 0,
-      "RESULT": null,
+      "RESULT": {
+        "job_id": "COMPONENT::VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+        "owner": "GITHUB_ACTIONS:36509812819:GATE_01",
+        "fencing_token": "1f293bba011c4d2d92acf854f28ee39d",
+        "component_id": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
+        "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+        "target_tool": "TOOL042",
+        "status": "PASS",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "install_returncode": 0,
+        "validator_returncode": 0,
+        "rollback_returncode": null,
+        "rollback_pass": true,
+        "heartbeat": "2026-09-29T01:51:11.475824+00:00",
+        "production_mutation": 0
+      },
       "COMPONENT": {
         "component_id": "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE",
         "status": "READY",
@@ -1375,9 +1390,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T01:50:58.892463+00:00",
+  "updated_at": "2026-09-29T01:51:22.536622+00:00",
   "capacity": 15,
-  "active_claims": 1,
+  "active_claims": 0,
   "provider": "GITHUB_ACTIONS",
-  "results_returned": 4
+  "results_returned": 1
 }
