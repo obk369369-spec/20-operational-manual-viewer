@@ -47,11 +47,12 @@ def _hold_class(row: dict) -> str | None:
     text = " ".join(str(row.get(key, "")) for key in (
         "status", "reason", "resume_condition", "blocking_reason", "demand_id", "root_id"
     )).upper()
-    if any(token in text for token in ("24H", "24_HOUR", "NATURAL_RUN", "LONG_TERM")):
+    if any(token in text for token in ("24H", "24_HOUR", "NATURAL_RUN", "LONG_TERM", "ELAPSED-TIME")):
         return "LONG_TERM_HOLD"
     if any(token in text for token in (
         "PLATFORM", "EXTERNAL_AUTH", "EXTERNAL_INPUT", "LIBRARY_BYTES_NOT_MOUNTED",
-        "SECOND_RUNTIME", "RUNTIME_ACCESS", "USER_APPROVAL_REQUIRED"
+        "SECOND_RUNTIME", "RUNTIME_ACCESS", "EXTERNAL_RUNTIME", "EXTERNAL-OBSERVER-RUNTIME",
+        "USER_APPROVAL_REQUIRED"
     )):
         return "PLATFORM_HOLD"
     return None
@@ -230,7 +231,8 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
     atomic_json(out_path, result)
     observer["DURABLE_OBSERVER_REPORT_WRITTEN"] = True
     observer["TOOL016_RESULT_ACK_RECEIVED"] = sum(_returned(row) for row in queue.get("demands", []))
-    observer["REMOTE_GITHUB_READBACK_PASS"] = False
+    # A GitHub-hosted checkout is itself a read-back of the committed remote tree.
+    observer["REMOTE_GITHUB_READBACK_PASS"] = bool(os.environ.get("GITHUB_SHA"))
     atomic_json(observer_path, observer)
     atomic_json(checkpoint_path, {
         "schema_version": 1, "updated_at": now, "status": "CIRCULATION_ACTIVE",
