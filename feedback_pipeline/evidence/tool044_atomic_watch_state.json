@@ -1,8 +1,8 @@
 {
-  "cycle_id": "20260928T204400Z",
+  "cycle_id": "20260929T003628Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
-  "scheduled_start": "2026-09-28T20:44:00.834231+00:00",
-  "actual_start": "2026-09-28T20:44:00.834231+00:00",
+  "scheduled_start": "2026-09-29T00:36:28.601428+00:00",
+  "actual_start": "2026-09-29T00:36:28.601428+00:00",
   "trigger_source": "SCHEDULED",
   "work_triggered": false,
   "user_triggered": false,
@@ -285,7 +285,7 @@
     {
       "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
       "query_signature": "ffc3255a9f826a7db9d7b4db7166dd07f071e728963b2f0223a6e66b87ea7b38",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "URL_VALIDATION": "VALIDATORS_0_35_0_URL_VALIDATION"
       },
@@ -295,13 +295,12 @@
       "result": "PARTIAL_ATOMIC_COMPONENT_SET",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-RESELLER-DETECTION",
       "query_signature": "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -309,13 +308,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
@@ -323,13 +321,12 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
@@ -337,13 +334,12 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
@@ -351,13 +347,12 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
       "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -365,13 +360,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-AUTO-ROLLBACK",
       "query_signature": "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "SAFE_AUTOMATIC_ROLLBACK"
@@ -379,13 +373,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
       "query_signature": "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_TARGET_DEPLOYMENT",
@@ -394,13 +387,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
       "query_signature": "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "OFFICIAL_DOMAIN_VALIDATION"
@@ -408,13 +400,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
       "query_signature": "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "OFFICIAL_DETAIL_PAGE_VALIDATION"
@@ -422,13 +413,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
       "query_signature": "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -436,13 +426,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
       "query_signature": "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -450,13 +439,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
       "query_signature": "caf05e95e15e4e9dbdd34888fe1bdd7044afcd522faf09a09e52a5975d7a4eea",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
@@ -464,13 +452,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
       "query_signature": "403eca1ccd10677e3024f4b9e4b4cf166a9a6ce79000eaddf1911c02bf8832fa",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "HISTORICAL_FEEDBACK_INGEST"
@@ -478,13 +465,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
       "query_signature": "2c2f535f9337550b8608419a7f44149d1164d4fa8e66976b66af462e20683f4b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ACCESS_BOUNDARY_CLASSIFICATION"
@@ -492,13 +478,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
       "query_signature": "d4179a117f438b6231fa0f5e4888d45eada45546831c1c4883ce639dea2647df",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ROOT_CAUSE_DEDUPLICATION"
@@ -506,13 +491,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
       "query_signature": "221e786f77d4b8b80e6281a949bf9de125872579dd5452e8f8c10995344c410a",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "MISSING_CAPABILITY_EXTRACTION"
@@ -520,13 +504,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
       "query_signature": "1a1bcdadcdd7bbb90792f410b3cc6a4d8f76f7edb9992b22d62ca95e1205101d",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_SKIP_REUSE_FILTER"
@@ -534,13 +517,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
       "query_signature": "ae173d052eff007b99ab19260bfdef18cd93b6cf06e35565b47e5059820f91dc",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "TOOL016_TO_TOOL044_HANDOFF"
@@ -548,13 +530,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
       "query_signature": "fa3a40f4d9ff542dfd40a40b673a35e716471af5b0b338993fe1fa53a03dc8c3",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ATOMIC_CAPABILITY_DECOMPOSITION"
@@ -562,13 +543,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
       "query_signature": "6a1892f4d4c7a3c6ea27060cb3de74a9a9c7198f9889668e34b5433ec4d481f1",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "PAST_FAILURE_FIXTURE_GENERATION"
@@ -576,13 +556,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
       "query_signature": "c241de31fdd6a1aecf683761a892e6382054f5deee6a1a90b37919dae46d6a56",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
@@ -590,13 +569,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
       "query_signature": "98f05582d42231f738c86dfd560f224bad79c7798dcc0873b2ae9da6e683c1bb",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_EXECUTABLE_WORK_CONTRACT"
@@ -604,13 +582,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
       "query_signature": "92d6c559f23ec9daf7a0f0d65cbcc102c991c6905af9a47dfdd6148f9e4a7626",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "CHECKPOINT_STAGE_RESUME_EXECUTION"
@@ -618,13 +595,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
       "query_signature": "02ae7033ecb821bd0ed4d93b95eca8438402fd4e435b0224cddc7525001c73a2",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
@@ -632,13 +608,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
       "query_signature": "31089cfea283572b47308313e130a372b13f13704828b14dd481d95bb405df8f",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
@@ -646,253 +621,232 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "query_signature": "bfe104f446463f7df1065f0f33ab53e8cb492fefe2ede1626bd183b5c6d75452",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
       "query_signature": "e037cc139109c366b8f329c1bdd41dbf654ec9a689bc9129593f8d161979bf67",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-ROOT6-20260927",
       "query_signature": "cce80812ef45d0e7ffc08ccc99e6a9f7dac449a54b814ef8354a1d1e7fda73c5",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-ROOT7-20260927",
       "query_signature": "ff77d756252d1d4aa90322108828d19156c0542098a16dbad25e8f464a7bb25a",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL006-20260927",
       "query_signature": "2835b53348c836147b3bef5d3b4bbf7ae976b49d9e5452f74a5c6c580b8896d9",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
       "query_signature": "d6a7098d8d0e5d8674bff6fd4dc6c02a92f24ee44641cb7ebdcf2b21cfd0cce1",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
       "query_signature": "7776aba9343bab130119df9ee13bed807dcb1e81708d1cf710393e5479e4831b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
       "query_signature": "9aeed709c4a82dfd06a3c35eeb7117f22d48dda0f93c5679db7d6b2baeaa3325",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL016-20260927",
       "query_signature": "785c8d2ecde7e8e155a5b1540b18db27d3008f39789207f4e0cbb0457652f3fc",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
       "query_signature": "211b231c9f5fd69b31a06f23e9cd4e8fc6e825cc9dce9c513159b692b22d7d57",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL044-20260927",
       "query_signature": "145d26ae4aa805727769885b95b55a3a8d3216d6100aba36ee881868a823018a",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
       "query_signature": "ec66e77731c6a6b5606705a5455316dd37e241e6d122502b029434a154f810ee",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL048-20260927",
       "query_signature": "24b0ce7b3a622f997ae893a9a54c35d9e71a4db06e0e1feee4b90f14ee2a4800",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
       "query_signature": "1355c4ddc4751c8dbe99fa2ce076af1a4ebc3b1130aac735a7df8972152852a7",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
       "query_signature": "359a548e8131cec2c11da6faefc26737b0e90d50edbc231088cb6dfc9e2efef7",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
       "query_signature": "1795d16feada5e8819d54c4da92b433341ab8f3ba8e999f35e86245d8eb613dd",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-ENV2-20260927",
       "query_signature": "7e6fdb48b11879e3686cc1e14f5a859fc53d144a4d6f19312c7e865329c2303b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-24H-20260927",
       "query_signature": "c04d93327524e0d8a63afff372c09b8ca55cfa40ef5ab7cad20bd4e52b735f1f",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
       "query_signature": "b30798f3933591778cc7ebab65e801d62d05ba4e85cd3e925da9105af82c679d",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
       "query_signature": "804060b16ac134e2dda9e8598dfbffa06da28b51406ffa1112ef3f1126b2e360",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
       "query_signature": "883b09e979ddfada4a6acc399fff07746375d2525bdd20271910298c7e71b108",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION"
@@ -900,13 +854,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
       "query_signature": "73fc157f828a49e428cc70bc6ab4dd45c916e40c10945cf6b592926d53dc8223",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "COMMON_ROOT_DEDUPLICATION"
@@ -914,13 +867,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
       "query_signature": "1bce20502a28788c85596deab99db2525533316b76e2b28ebf9a438b8f1ccace",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ITEM_EVIDENCE_RETURN"
@@ -928,13 +880,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
       "query_signature": "75a910e49cfa5fa030759da51bd6478d86caf829e0f64633510f269c9cf3d314",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "AUTO_NEXT_ROOT"
@@ -942,13 +893,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
       "query_signature": "2a2cf51d0438dccc1d10b4aa0c8df1d27fc6c45cc6f54d2a30323bf8d32a0730",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "EXPECTED_ACTUAL_VALIDATION"
@@ -956,13 +906,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
       "query_signature": "08a58fbc8881451d4d3117c7bb0dc7e413f89008e7b2fb5f6037e383280a7e93",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
@@ -970,13 +919,12 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
       "query_signature": "ffc4ebc36f8cadba71625a03165ce941dea771cde20446bb5dc9587683a06a94",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "EXPECTED_ACTUAL_VALIDATION"
@@ -984,13 +932,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
       "query_signature": "683b7779832999a6f4d7924cbafa093f3929fa3baaf62aed8674efa96b2cecce",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
@@ -998,8 +945,7 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     }
   ],
   "receipts": {
@@ -1133,7 +1079,7 @@
     "ffc3255a9f826a7db9d7b4db7166dd07f071e728963b2f0223a6e66b87ea7b38": {
       "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
       "query_signature": "ffc3255a9f826a7db9d7b4db7166dd07f071e728963b2f0223a6e66b87ea7b38",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "URL_VALIDATION": "VALIDATORS_0_35_0_URL_VALIDATION"
       },
@@ -1143,13 +1089,12 @@
       "result": "PARTIAL_ATOMIC_COMPONENT_SET",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb": {
       "demand_id": "T42-RESELLER-DETECTION",
       "query_signature": "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -1157,13 +1102,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
@@ -1171,8 +1115,7 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "e4e9ebf4962ec8b20ae47d1868d8a412dbe89cbd6da52563b33fde5415558209": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
@@ -1205,7 +1148,7 @@
     "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b": {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
       "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -1213,13 +1156,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
       "query_signature": "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "WEBPAGE_TEXT_EXTRACTION": "HTML2TEXT_2025_4_15_WEBPAGE_TEXT_EXTRACTION"
       },
@@ -1227,13 +1169,12 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02": {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
       "query_signature": "aacc0af14e7781e462a3d9c604187f1dc5a2fcb4dba1ad9a7f4a3e55810a1c02",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "TOC_STRUCTURE_EXTRACTION": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION"
       },
@@ -1241,8 +1182,7 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "d557cb9fd408c13d20734c355228f2f8402bf5143fc6f8a342004c0b420c9755": {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
@@ -1261,7 +1201,7 @@
     "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3": {
       "demand_id": "TOOL044-AUTO-ROLLBACK",
       "query_signature": "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "SAFE_AUTOMATIC_ROLLBACK"
@@ -1269,13 +1209,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd": {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
       "query_signature": "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_TARGET_DEPLOYMENT",
@@ -1284,13 +1223,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3": {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
       "query_signature": "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "OFFICIAL_DOMAIN_VALIDATION"
@@ -1298,13 +1236,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d": {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
       "query_signature": "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "OFFICIAL_DETAIL_PAGE_VALIDATION"
@@ -1312,13 +1249,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2": {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
       "query_signature": "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -1326,13 +1262,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9": {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
       "query_signature": "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -1340,13 +1275,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "caf05e95e15e4e9dbdd34888fe1bdd7044afcd522faf09a09e52a5975d7a4eea": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
       "query_signature": "caf05e95e15e4e9dbdd34888fe1bdd7044afcd522faf09a09e52a5975d7a4eea",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
@@ -1354,13 +1288,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "403eca1ccd10677e3024f4b9e4b4cf166a9a6ce79000eaddf1911c02bf8832fa": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
       "query_signature": "403eca1ccd10677e3024f4b9e4b4cf166a9a6ce79000eaddf1911c02bf8832fa",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "HISTORICAL_FEEDBACK_INGEST"
@@ -1368,13 +1301,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "2c2f535f9337550b8608419a7f44149d1164d4fa8e66976b66af462e20683f4b": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
       "query_signature": "2c2f535f9337550b8608419a7f44149d1164d4fa8e66976b66af462e20683f4b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ACCESS_BOUNDARY_CLASSIFICATION"
@@ -1382,13 +1314,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "d4179a117f438b6231fa0f5e4888d45eada45546831c1c4883ce639dea2647df": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
       "query_signature": "d4179a117f438b6231fa0f5e4888d45eada45546831c1c4883ce639dea2647df",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ROOT_CAUSE_DEDUPLICATION"
@@ -1396,13 +1327,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "221e786f77d4b8b80e6281a949bf9de125872579dd5452e8f8c10995344c410a": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
       "query_signature": "221e786f77d4b8b80e6281a949bf9de125872579dd5452e8f8c10995344c410a",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "MISSING_CAPABILITY_EXTRACTION"
@@ -1410,13 +1340,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1a1bcdadcdd7bbb90792f410b3cc6a4d8f76f7edb9992b22d62ca95e1205101d": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
       "query_signature": "1a1bcdadcdd7bbb90792f410b3cc6a4d8f76f7edb9992b22d62ca95e1205101d",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_SKIP_REUSE_FILTER"
@@ -1424,13 +1353,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ae173d052eff007b99ab19260bfdef18cd93b6cf06e35565b47e5059820f91dc": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
       "query_signature": "ae173d052eff007b99ab19260bfdef18cd93b6cf06e35565b47e5059820f91dc",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "TOOL016_TO_TOOL044_HANDOFF"
@@ -1438,13 +1366,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "fa3a40f4d9ff542dfd40a40b673a35e716471af5b0b338993fe1fa53a03dc8c3": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
       "query_signature": "fa3a40f4d9ff542dfd40a40b673a35e716471af5b0b338993fe1fa53a03dc8c3",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ATOMIC_CAPABILITY_DECOMPOSITION"
@@ -1452,13 +1379,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "6a1892f4d4c7a3c6ea27060cb3de74a9a9c7198f9889668e34b5433ec4d481f1": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
       "query_signature": "6a1892f4d4c7a3c6ea27060cb3de74a9a9c7198f9889668e34b5433ec4d481f1",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "PAST_FAILURE_FIXTURE_GENERATION"
@@ -1466,8 +1392,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "de92acd5d5b89475e7ca7c2ff5cd1657da6214f5b1b0493cabbda11a78258e24": {
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
@@ -1684,7 +1609,7 @@
     "c241de31fdd6a1aecf683761a892e6382054f5deee6a1a90b37919dae46d6a56": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
       "query_signature": "c241de31fdd6a1aecf683761a892e6382054f5deee6a1a90b37919dae46d6a56",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
@@ -1692,13 +1617,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "98f05582d42231f738c86dfd560f224bad79c7798dcc0873b2ae9da6e683c1bb": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
       "query_signature": "98f05582d42231f738c86dfd560f224bad79c7798dcc0873b2ae9da6e683c1bb",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_EXECUTABLE_WORK_CONTRACT"
@@ -1706,13 +1630,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "92d6c559f23ec9daf7a0f0d65cbcc102c991c6905af9a47dfdd6148f9e4a7626": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
       "query_signature": "92d6c559f23ec9daf7a0f0d65cbcc102c991c6905af9a47dfdd6148f9e4a7626",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "CHECKPOINT_STAGE_RESUME_EXECUTION"
@@ -1720,13 +1643,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "02ae7033ecb821bd0ed4d93b95eca8438402fd4e435b0224cddc7525001c73a2": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
       "query_signature": "02ae7033ecb821bd0ed4d93b95eca8438402fd4e435b0224cddc7525001c73a2",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
@@ -1734,13 +1656,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "31089cfea283572b47308313e130a372b13f13704828b14dd481d95bb405df8f": {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
       "query_signature": "31089cfea283572b47308313e130a372b13f13704828b14dd481d95bb405df8f",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
@@ -1748,8 +1669,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "60e06f14aa955ba63c3903555ab55573855f65f0847289cbf06785d175b39de3": {
       "demand_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
@@ -1838,26 +1758,24 @@
     "bfe104f446463f7df1065f0f33ab53e8cb492fefe2ede1626bd183b5c6d75452": {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "query_signature": "bfe104f446463f7df1065f0f33ab53e8cb492fefe2ede1626bd183b5c6d75452",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "e037cc139109c366b8f329c1bdd41dbf654ec9a689bc9129593f8d161979bf67": {
       "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
       "query_signature": "e037cc139109c366b8f329c1bdd41dbf654ec9a689bc9129593f8d161979bf67",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "996e654eccee2ca9391fade6478bc8058ff97a9a0a765f9f369454a87e6f4cc7": {
       "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
@@ -2114,223 +2032,205 @@
     "cce80812ef45d0e7ffc08ccc99e6a9f7dac449a54b814ef8354a1d1e7fda73c5": {
       "demand_id": "WIC-BACKLOG-ROOT6-20260927",
       "query_signature": "cce80812ef45d0e7ffc08ccc99e6a9f7dac449a54b814ef8354a1d1e7fda73c5",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ff77d756252d1d4aa90322108828d19156c0542098a16dbad25e8f464a7bb25a": {
       "demand_id": "WIC-BACKLOG-ROOT7-20260927",
       "query_signature": "ff77d756252d1d4aa90322108828d19156c0542098a16dbad25e8f464a7bb25a",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "2835b53348c836147b3bef5d3b4bbf7ae976b49d9e5452f74a5c6c580b8896d9": {
       "demand_id": "WIC-BACKLOG-TOOL006-20260927",
       "query_signature": "2835b53348c836147b3bef5d3b4bbf7ae976b49d9e5452f74a5c6c580b8896d9",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "d6a7098d8d0e5d8674bff6fd4dc6c02a92f24ee44641cb7ebdcf2b21cfd0cce1": {
       "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
       "query_signature": "d6a7098d8d0e5d8674bff6fd4dc6c02a92f24ee44641cb7ebdcf2b21cfd0cce1",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "7776aba9343bab130119df9ee13bed807dcb1e81708d1cf710393e5479e4831b": {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
       "query_signature": "7776aba9343bab130119df9ee13bed807dcb1e81708d1cf710393e5479e4831b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "9aeed709c4a82dfd06a3c35eeb7117f22d48dda0f93c5679db7d6b2baeaa3325": {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
       "query_signature": "9aeed709c4a82dfd06a3c35eeb7117f22d48dda0f93c5679db7d6b2baeaa3325",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "785c8d2ecde7e8e155a5b1540b18db27d3008f39789207f4e0cbb0457652f3fc": {
       "demand_id": "WIC-BACKLOG-TOOL016-20260927",
       "query_signature": "785c8d2ecde7e8e155a5b1540b18db27d3008f39789207f4e0cbb0457652f3fc",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "211b231c9f5fd69b31a06f23e9cd4e8fc6e825cc9dce9c513159b692b22d7d57": {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
       "query_signature": "211b231c9f5fd69b31a06f23e9cd4e8fc6e825cc9dce9c513159b692b22d7d57",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "145d26ae4aa805727769885b95b55a3a8d3216d6100aba36ee881868a823018a": {
       "demand_id": "WIC-BACKLOG-TOOL044-20260927",
       "query_signature": "145d26ae4aa805727769885b95b55a3a8d3216d6100aba36ee881868a823018a",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ec66e77731c6a6b5606705a5455316dd37e241e6d122502b029434a154f810ee": {
       "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
       "query_signature": "ec66e77731c6a6b5606705a5455316dd37e241e6d122502b029434a154f810ee",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "24b0ce7b3a622f997ae893a9a54c35d9e71a4db06e0e1feee4b90f14ee2a4800": {
       "demand_id": "WIC-BACKLOG-TOOL048-20260927",
       "query_signature": "24b0ce7b3a622f997ae893a9a54c35d9e71a4db06e0e1feee4b90f14ee2a4800",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1355c4ddc4751c8dbe99fa2ce076af1a4ebc3b1130aac735a7df8972152852a7": {
       "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
       "query_signature": "1355c4ddc4751c8dbe99fa2ce076af1a4ebc3b1130aac735a7df8972152852a7",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "359a548e8131cec2c11da6faefc26737b0e90d50edbc231088cb6dfc9e2efef7": {
       "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
       "query_signature": "359a548e8131cec2c11da6faefc26737b0e90d50edbc231088cb6dfc9e2efef7",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1795d16feada5e8819d54c4da92b433341ab8f3ba8e999f35e86245d8eb613dd": {
       "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
       "query_signature": "1795d16feada5e8819d54c4da92b433341ab8f3ba8e999f35e86245d8eb613dd",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "7e6fdb48b11879e3686cc1e14f5a859fc53d144a4d6f19312c7e865329c2303b": {
       "demand_id": "WIC-BACKLOG-ENV2-20260927",
       "query_signature": "7e6fdb48b11879e3686cc1e14f5a859fc53d144a4d6f19312c7e865329c2303b",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "c04d93327524e0d8a63afff372c09b8ca55cfa40ef5ab7cad20bd4e52b735f1f": {
       "demand_id": "WIC-BACKLOG-24H-20260927",
       "query_signature": "c04d93327524e0d8a63afff372c09b8ca55cfa40ef5ab7cad20bd4e52b735f1f",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "b30798f3933591778cc7ebab65e801d62d05ba4e85cd3e925da9105af82c679d": {
       "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
       "query_signature": "b30798f3933591778cc7ebab65e801d62d05ba4e85cd3e925da9105af82c679d",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "804060b16ac134e2dda9e8598dfbffa06da28b51406ffa1112ef3f1126b2e360": {
       "demand_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
       "query_signature": "804060b16ac134e2dda9e8598dfbffa06da28b51406ffa1112ef3f1126b2e360",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "883b09e979ddfada4a6acc399fff07746375d2525bdd20271910298c7e71b108": {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
       "query_signature": "883b09e979ddfada4a6acc399fff07746375d2525bdd20271910298c7e71b108",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION"
@@ -2338,13 +2238,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "73fc157f828a49e428cc70bc6ab4dd45c916e40c10945cf6b592926d53dc8223": {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
       "query_signature": "73fc157f828a49e428cc70bc6ab4dd45c916e40c10945cf6b592926d53dc8223",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "COMMON_ROOT_DEDUPLICATION"
@@ -2352,13 +2251,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1bce20502a28788c85596deab99db2525533316b76e2b28ebf9a438b8f1ccace": {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
       "query_signature": "1bce20502a28788c85596deab99db2525533316b76e2b28ebf9a438b8f1ccace",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "ITEM_EVIDENCE_RETURN"
@@ -2366,13 +2264,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "75a910e49cfa5fa030759da51bd6478d86caf829e0f64633510f269c9cf3d314": {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
       "query_signature": "75a910e49cfa5fa030759da51bd6478d86caf829e0f64633510f269c9cf3d314",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "AUTO_NEXT_ROOT"
@@ -2380,8 +2277,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "4d670bac9d1b38af00419b7b22eb70f40a85cf3e45221331175a89cb09556d0d": {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
@@ -2400,7 +2296,7 @@
     "2a2cf51d0438dccc1d10b4aa0c8df1d27fc6c45cc6f54d2a30323bf8d32a0730": {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
       "query_signature": "2a2cf51d0438dccc1d10b4aa0c8df1d27fc6c45cc6f54d2a30323bf8d32a0730",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "EXPECTED_ACTUAL_VALIDATION"
@@ -2408,13 +2304,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "08a58fbc8881451d4d3117c7bb0dc7e413f89008e7b2fb5f6037e383280a7e93": {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
       "query_signature": "08a58fbc8881451d4d3117c7bb0dc7e413f89008e7b2fb5f6037e383280a7e93",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
@@ -2422,8 +2317,7 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "454674d9ebc7e5f7d3e3de51d0e2e82775c1d7e02a4fefa1e35d81be189f819c": {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
@@ -2442,7 +2336,7 @@
     "ffc4ebc36f8cadba71625a03165ce941dea771cde20446bb5dc9587683a06a94": {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
       "query_signature": "ffc4ebc36f8cadba71625a03165ce941dea771cde20446bb5dc9587683a06a94",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {},
       "missing": [
         "EXPECTED_ACTUAL_VALIDATION"
@@ -2450,13 +2344,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "683b7779832999a6f4d7924cbafa093f3929fa3baaf62aed8674efa96b2cecce": {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
       "query_signature": "683b7779832999a6f4d7924cbafa093f3929fa3baaf62aed8674efa96b2cecce",
-      "last_searched": "2026-09-28T20:44:00.834231+00:00",
+      "last_searched": "2026-09-29T00:36:28.601428+00:00",
       "matched": {
         "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
       },
@@ -2464,8 +2357,7 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     }
   },
   "next_state": "WAITING_FOR_NEXT_TRIGGER",
@@ -2507,6 +2399,5 @@
   },
   "backoff_demands_kept_visible": 0,
   "tool016_result_returns": 0,
-  "tool016_result_return_blocks": [],
-  "continuous_external_search_enabled": true
+  "tool016_result_return_blocks": []
 }
