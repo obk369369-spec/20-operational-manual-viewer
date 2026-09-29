@@ -6,6 +6,8 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
+from wic_non_tool_common_closeout import run as run_non_tool_closeout
+
 HERE = Path(__file__).resolve().parent
 QUEUE = HERE / "tool044_atomic_demand_queue.json"
 POOL = HERE / "evidence" / "tool044_verified_external_component_pool.json"
@@ -244,6 +246,13 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
     central = load(central_path, {})
     central.setdefault("integration_core", {})["visible_handoff"] = result
     central["integration_core"]["zero_touch_residual_circulation"] = observer
+    closeout = run_non_tool_closeout(queue, observer, result,
+                                     load(gate_path, {"jobs": {}, "events": []}))
+    central["integration_core"]["non_tool_common_closeout"] = {
+        "updated_at": closeout["updated_at"], "counts": closeout["counts"],
+        "cr_status": closeout["cr_status"], "next_auto_root": closeout["next_auto_root"],
+        "observer_reinstruction_required": closeout["observer_reinstruction_required"],
+    }
     atomic_json(central_path, central)
     return result
 
