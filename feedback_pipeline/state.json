@@ -684,14 +684,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 70,
+      "COMPONENT_FOUND": 74,
       "VALIDATING": 0,
-      "PASS": 70,
+      "PASS": 74,
       "FAIL": 0,
       "HOLD": 0,
-      "RETURNED": 1,
-      "REMAINING": 65,
-      "LAST_HEARTBEAT": "2026-09-29T11:22:59.604133+00:00",
+      "RETURNED": 4,
+      "REMAINING": 61,
+      "LAST_HEARTBEAT": "2026-09-29T11:24:00.739469+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,9 +699,9 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T11:22:59.604133+00:00",
+      "updated_at": "2026-09-29T11:24:00.739469+00:00",
       "capacity": 30,
-      "results_returned": 1,
+      "results_returned": 4,
       "jobs": {
         "COMPONENT::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE": {
           "ROOT_ID": "COMMON_WORKFLOW_ORCHESTRATION",
@@ -2513,65 +2513,122 @@
             "heartbeat": "2026-09-29T11:22:45.977583+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "OWNER": "GITHUB_ACTIONS:36561443400:GATE_02",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "a68b476e73d0427ca7df3e9677820fa7",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561443400:GATE_02",
+            "fencing_token": "a68b476e73d0427ca7df3e9677820fa7",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:23:47.393230+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "OWNER": "GITHUB_ACTIONS:36561443400:GATE_03",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "1f53d992fe3a4425ac9d83f0f034a107",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561443400:GATE_03",
+            "fencing_token": "1f53d992fe3a4425ac9d83f0f034a107",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:23:49.239664+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "OWNER": "GITHUB_ACTIONS:36561443400:GATE_04",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "763638ce3f9d4bdf820c1af09ec753c9",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561443400:GATE_04",
+            "fencing_token": "763638ce3f9d4bdf820c1af09ec753c9",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:23:48.081443+00:00",
+            "production_mutation": 0
+          }
+        },
+        "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1": {
+          "ROOT_ID": "FINAL-37-COMMON-ROOT-CIRCULATION",
+          "TARGET_TOOL": "TOOL016/TOOL044",
+          "COMPONENT_ID": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+          "OWNER": "GITHUB_ACTIONS:36561443400:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "4d444c9dfc9a49ad830e1ce5a02eace1",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT::WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "owner": "GITHUB_ACTIONS:36561443400:GATE_01",
+            "fencing_token": "4d444c9dfc9a49ad830e1ce5a02eace1",
+            "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+            "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
+            "target_tool": "TOOL016/TOOL044",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:23:47.785339+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T11:23:38.205214+00:00",
-      "UNFINISHED_SCANNED": 44,
-      "ALREADY_PASS_EXCLUDED": 66,
-      "ROOTS_MERGED": 1,
-      "WORK_FIXABLE_ROOTS": 1,
-      "WORK_REQUIRED": [
-        {
-          "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
-          "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "BULK_ROOT_EXECUTION"
-          ]
-        },
-        {
-          "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
-          "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "COMMON_ROOT_DEDUPLICATION"
-          ]
-        },
-        {
-          "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
-          "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "ITEM_EVIDENCE_RETURN"
-          ]
-        },
-        {
-          "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
-          "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-          "target_tool": "TOOL016/TOOL044",
-          "atomic_capabilities": [
-            "AUTO_NEXT_ROOT"
-          ]
-        }
-      ],
-      "WORK_BATCHES": [
-        {
-          "root_id": "FINAL-37-COMMON-ROOT-CIRCULATION",
-          "demands": [
-            "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
-            "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
-            "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
-            "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT"
-          ],
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        }
-      ],
+      "updated_at": "2026-09-29T11:24:00.787764+00:00",
+      "UNFINISHED_SCANNED": 40,
+      "ALREADY_PASS_EXCLUDED": 70,
+      "ROOTS_MERGED": 0,
+      "WORK_FIXABLE_ROOTS": 0,
+      "WORK_REQUIRED": [],
+      "WORK_BATCHES": [],
       "TOOL044_AUTO_HANDED_OFF": 28,
       "TOOL044_QUEUE": [
         {
@@ -2743,12 +2800,11 @@
           "atomic_capabilities": []
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 4,
+      "WORK_REQUIRED_REMAINDER": 0,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 70,
-          "CLAIMED": 4
+          "PASS": 74
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -2773,12 +2829,12 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 32,
+        "ready": 28,
         "waiting": 12,
         "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 46,
+        "result_returns": 50,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -2850,7 +2906,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T11:23:38.205214+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T11:24:00.787764+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
