@@ -84,3 +84,25 @@ def validate_official_detail_page(url: str, official_domains: list[str], detail_
         return {**domain, "status": "HOLD_NOT_DETAIL_PAGE", "detail_marker": None}
     return {**domain, "status": "VERIFIED_OFFICIAL_DETAIL_PAGE", "detail_marker": matched}
 
+def extract_webpage_text_and_toc(html: str) -> dict:
+    """Extract readable Markdown and heading structure with the verified wheel pair."""
+    import html2text
+    import mistune
+
+    markdown = html2text.html2text(str(html))
+    ast = mistune.create_markdown(renderer="ast")(markdown)
+
+    def walk(nodes):
+        for node in nodes if isinstance(nodes, list) else []:
+            if isinstance(node, dict):
+                if node.get("type") == "heading":
+                    yield node
+                yield from walk(node.get("children", []))
+
+    headings = list(walk(ast))
+    if not markdown.strip():
+        return {"status": "HOLD_EMPTY_TEXT", "text_length": 0, "heading_count": 0}
+    if not headings:
+        return {"status": "HOLD_NO_TOC_STRUCTURE", "text_length": len(markdown), "heading_count": 0}
+    return {"status": "VERIFIED_WEBPAGE_TEXT_AND_TOC", "text_length": len(markdown), "heading_count": len(headings)}
+

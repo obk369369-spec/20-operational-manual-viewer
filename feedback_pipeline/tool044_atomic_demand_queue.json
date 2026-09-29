@@ -181,6 +181,12 @@
           "verifier": "html2text_extract"
         }
       ],
+      "execution_contract": {
+        "status": "VERIFIED_EXECUTABLE_CONTRACT",
+        "actual_input": "https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1",
+        "success_condition": "actual official page fetch produces more than 1000 characters of readable Markdown",
+        "source_evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json"
+      },
       "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED",
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",
@@ -204,6 +210,12 @@
           "verifier": "mistune_heading_ast"
         }
       ],
+      "execution_contract": {
+        "status": "VERIFIED_EXECUTABLE_CONTRACT",
+        "actual_input": "https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1",
+        "success_condition": "actual official page extraction produces a parsed heading structure",
+        "source_evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json"
+      },
       "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED",
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",

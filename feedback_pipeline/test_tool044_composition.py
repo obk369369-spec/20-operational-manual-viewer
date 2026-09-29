@@ -1,5 +1,5 @@
 from pathlib import Path
-from tool044_composition import test_url_provenance_composition, validate_official_detail_page
+from tool044_composition import test_url_provenance_composition, validate_official_detail_page, extract_webpage_text_and_toc
 
 root = Path(__file__).resolve().parent
 result = test_url_provenance_composition(
@@ -15,3 +15,10 @@ assert validate_official_detail_page(actual, ["kiro.re.kr"], ["bidx"])["status"]
 assert validate_official_detail_page("https://www.kiro.re.kr/", ["kiro.re.kr"], ["bidx"])["status"] == "HOLD_NOT_DETAIL_PAGE"
 assert validate_official_detail_page("https://kiro.example/report?bidx=5537", ["kiro.re.kr"], ["bidx"])["status"] == "HOLD_NOT_OFFICIAL_DOMAIN"
 print("3/3 PASS OFFICIAL_DETAIL_PAGE_VALIDATION")
+
+sample = "<html><body><h1>Annual Report</h1><h2>Overview</h2><p>Verified actual content.</p></body></html>"
+structured = extract_webpage_text_and_toc(sample)
+assert structured["status"] == "VERIFIED_WEBPAGE_TEXT_AND_TOC"
+assert structured["heading_count"] == 2
+assert extract_webpage_text_and_toc("<html></html>")["status"] == "HOLD_EMPTY_TEXT"
+print("3/3 PASS WEBPAGE_TEXT_AND_TOC_COMPOSITION")

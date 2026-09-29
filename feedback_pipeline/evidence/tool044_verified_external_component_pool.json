@@ -184,6 +184,48 @@
           "production_mutation": 0
         }
       }
+    },
+    {
+      "component_id": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+      "status": "READY",
+      "source": "https://pypi.org/project/html2text/2025.4.15/",
+      "license": "GPL-3.0-or-later",
+      "version": "2025.4.15+wic-actual.1",
+      "atomic_capabilities": ["WEBPAGE_TEXT_EXTRACTION"],
+      "target_root": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "target_tool": "TOOL042",
+      "input_contract": "actual official KIRO detail-page URL",
+      "output_contract": "non-empty readable Markdown extracted from the fetched official page",
+      "install_target": "isolated sandbox/site",
+      "install_method": ["{python}", "-m", "pip", "install", "--no-deps", "--target", "{sandbox}/site", "{repo}/feedback_pipeline/external_candidate_pool/html2text-2025.4.15-py3-none-any.whl"],
+      "validator": ["{python}", "-c", "import urllib.request,html2text; u='https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1'; h=urllib.request.urlopen(u,timeout=30).read().decode('utf-8','replace'); m=html2text.html2text(h); assert len(h)>10000 and len(m)>1000"],
+      "success_condition": "actual official page is fetched and produces substantial readable text",
+      "failure_condition": "fetch, isolated install, or actual extraction assertion fails",
+      "rollback_method": ["{python}", "-c", "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"],
+      "rollback_condition": "any install or validation failure",
+      "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
+      "idempotency_key": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT@2025.4.15+wic-actual.1"
+    },
+    {
+      "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+      "status": "READY",
+      "source": "https://pypi.org/project/mistune/3.3.4/",
+      "license": "BSD-3-Clause",
+      "version": "2025.4.15+3.3.4+wic-composition.1",
+      "atomic_capabilities": ["TOC_STRUCTURE_EXTRACTION"],
+      "target_root": "T42-TOC-STRUCTURE-EXTRACTION",
+      "target_tool": "TOOL042",
+      "input_contract": "actual official KIRO HTML with headings",
+      "output_contract": "non-empty Markdown and parsed heading AST",
+      "install_target": "isolated sandbox/site",
+      "install_method": ["{python}", "-m", "pip", "install", "--no-deps", "--target", "{sandbox}/site", "{repo}/feedback_pipeline/external_candidate_pool/html2text-2025.4.15-py3-none-any.whl", "{repo}/feedback_pipeline/external_candidate_pool/mistune-3.3.4-py3-none-any.whl"],
+      "validator": ["{python}", "-c", "import sys,urllib.request; sys.path.insert(0,r'{repo}/feedback_pipeline'); from tool044_composition import extract_webpage_text_and_toc as x; u='https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1'; h=urllib.request.urlopen(u,timeout=30).read().decode('utf-8','replace'); r=x(h); assert r['status']=='VERIFIED_WEBPAGE_TEXT_AND_TOC' and r['heading_count']>=1"],
+      "success_condition": "actual official page yields readable text and at least one parsed heading",
+      "failure_condition": "fetch, isolated install, extraction, or heading assertion fails",
+      "rollback_method": ["{python}", "-c", "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"],
+      "rollback_condition": "any install or validation failure",
+      "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
+      "idempotency_key": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE@2025.4.15+3.3.4+wic-composition.1"
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
