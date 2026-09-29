@@ -70,3 +70,17 @@ def validate_official_publisher_domain(url: str, official_domains: list[str]) ->
     matched = next((domain for domain in allowed if host == domain or host.endswith("." + domain)), None)
     return {"status": "VERIFIED_OFFICIAL_DOMAIN" if matched else "HOLD_NOT_OFFICIAL_DOMAIN", "host": host, "matched_domain": matched}
 
+def validate_official_detail_page(url: str, official_domains: list[str], detail_markers: list[str]) -> dict:
+    """Require valid URL, an allowlisted official domain, and an explicit detail-page marker."""
+    from urllib.parse import parse_qs, urlparse
+    domain = validate_official_publisher_domain(url, official_domains)
+    if domain["status"] != "VERIFIED_OFFICIAL_DOMAIN":
+        return {**domain, "detail_marker": None}
+    parsed = urlparse(url)
+    query = parse_qs(parsed.query)
+    markers = [str(item).strip() for item in detail_markers if str(item).strip()]
+    matched = next((item for item in markers if item in query or item in parsed.path), None)
+    if not matched:
+        return {**domain, "status": "HOLD_NOT_DETAIL_PAGE", "detail_marker": None}
+    return {**domain, "status": "VERIFIED_OFFICIAL_DETAIL_PAGE", "detail_marker": matched}
+

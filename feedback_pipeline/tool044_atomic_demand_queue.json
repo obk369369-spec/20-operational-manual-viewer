@@ -95,6 +95,14 @@
           "TOOL044_DEMAND_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION"
         }
       ],
+      "execution_contract": {
+        "status": "VERIFIED_EXECUTABLE_CONTRACT",
+        "actual_input": "https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1",
+        "official_domains": ["kiro.re.kr"],
+        "detail_markers": ["bidx"],
+        "success_condition": "valid URL, official KIRO domain, and explicit bidx detail identifier",
+        "source_evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json"
+      },
       "status": "HOLD_TARGET_RETET_REQUIRED_VERIFIED_URL_COMPONENT_ONLY",
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",

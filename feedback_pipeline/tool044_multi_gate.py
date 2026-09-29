@@ -146,18 +146,17 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
                     }
 
     # Feed real unfinished atomic demands into the same verified-component lanes.
-    capability_map = {
-        capability: component
-        for component in _components(pool) if component.get("status") == "VERIFIED_REUSABLE"
-        for capability in component.get("atomic_capabilities", [])
-    }
+    reusable_components = [component for component in _components(pool)
+                           if component.get("status") == "VERIFIED_REUSABLE"]
     for demand in (queue or {}).get("demands", []):
         if demand_terminal(demand):
             continue
-        capabilities = demand.get("atomic_capabilities", [])
-        if len(capabilities) != 1 or capabilities[0] not in capability_map:
+        capabilities = set(demand.get("atomic_capabilities", []))
+        matches = [component for component in reusable_components
+                   if capabilities and capabilities <= set(component.get("atomic_capabilities", []))]
+        if not matches:
             continue
-        component = capability_map[capabilities[0]]
+        component = sorted(matches, key=lambda row: row["component_id"])[0]
         component_id = component["component_id"]
         demand_id = demand.get("demand_id")
         job_id = f"DEMAND::{demand_id}::{component_id}"

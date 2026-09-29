@@ -114,6 +114,17 @@ def test_explicit_canaries_create_independent_durable_lanes(tmp_path: Path):
                for row in persisted["events"])
 
 
+def test_one_verified_component_can_satisfy_exact_multi_capability_contract(tmp_path: Path):
+    row = component("COMPOSED")
+    row.update(status="VERIFIED_REUSABLE", atomic_capabilities=["URL_VALIDATION", "OFFICIAL_DETAIL_PAGE_VALIDATION"])
+    pool = tmp_path / "pool.json"; state = tmp_path / "state.json"; queue = tmp_path / "queue.json"
+    pool.write_text(json.dumps({"components": [row]}), encoding="utf-8")
+    queue.write_text(json.dumps({"demands": [{"demand_id": "DETAIL", "root_id": "ROOT-DETAIL",
+        "status": "OPEN", "atomic_capabilities": ["OFFICIAL_DETAIL_PAGE_VALIDATION", "URL_VALIDATION"]}]}), encoding="utf-8")
+    matrix = plan(pool, state, "RUN-COMPOSED", queue)
+    assert len(matrix) == 1 and matrix[0]["job_id"] == "DEMAND::DETAIL::COMPOSED"
+
+
 def test_pass_hold_fail_returns_preserve_demand_resume_contract(tmp_path: Path):
     state = tmp_path / "state.json"; queue = tmp_path / "queue.json"; central = tmp_path / "central.json"
     jobs = {}
