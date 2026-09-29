@@ -684,14 +684,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 89,
+      "COMPONENT_FOUND": 90,
       "VALIDATING": 0,
-      "PASS": 89,
+      "PASS": 90,
       "FAIL": 0,
       "HOLD": 0,
       "RETURNED": 1,
-      "REMAINING": 63,
-      "LAST_HEARTBEAT": "2026-09-29T12:58:46.350971+00:00",
+      "REMAINING": 62,
+      "LAST_HEARTBEAT": "2026-09-29T12:59:35.696531+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,7 +699,7 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T12:58:46.350971+00:00",
+      "updated_at": "2026-09-29T12:59:35.696531+00:00",
       "capacity": 30,
       "results_returned": 1,
       "jobs": {
@@ -3007,16 +3007,42 @@
             "heartbeat": "2026-09-29T12:58:36.286240+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929::WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2": {
+          "ROOT_ID": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+          "TARGET_TOOL": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+          "COMPONENT_ID": "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
+          "OWNER": "GITHUB_ACTIONS:36571831649:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "58b251f83b324efca8962867949a4237",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929::WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
+            "owner": "GITHUB_ACTIONS:36571831649:GATE_01",
+            "fencing_token": "58b251f83b324efca8962867949a4237",
+            "component_id": "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
+            "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+            "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T12:59:26.525649+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:59:17.456548+00:00",
-      "UNFINISHED_SCANNED": 47,
-      "ALREADY_PASS_EXCLUDED": 68,
-      "ROOTS_MERGED": 6,
-      "WORK_FIXABLE_ROOTS": 6,
+      "updated_at": "2026-09-29T12:59:35.752269+00:00",
+      "UNFINISHED_SCANNED": 46,
+      "ALREADY_PASS_EXCLUDED": 69,
+      "ROOTS_MERGED": 5,
+      "WORK_FIXABLE_ROOTS": 5,
       "WORK_REQUIRED": [
         {
           "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
@@ -3066,22 +3092,6 @@
             "BULK_ROOT_EXECUTION",
             "EXPECTED_ACTUAL_VALIDATION",
             "ITEM_EVIDENCE_RETURN"
-          ]
-        },
-        {
-          "demand_id": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
-          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
-          "target_tool": "TOOL016,TOOL044,WORK,CONTROL_TOWER",
-          "atomic_capabilities": [
-            "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
-            "FIXED_BLOCK_COMPLETENESS_GATE",
-            "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-            "ITEMIZED_OBSERVER_REPORT",
-            "OBSERVER_ZERO_MANUAL_RELAY",
-            "REPORT_REQUEUE_NEXT_LOOP",
-            "TOOL044_CHAT_REPORT_EVIDENCE_GATE",
-            "UNVERIFIED_COMPLETE_PROHIBITION",
-            "WORK_HANDOFF_CREDIT_AND_RECOVERY"
           ]
         }
       ],
@@ -3133,16 +3143,6 @@
           ],
           "target_tools": [
             "TOOL016/TOOL044"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        },
-        {
-          "root_id": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
-          "demands": [
-            "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
-          ],
-          "target_tools": [
-            "TOOL016,TOOL044,WORK,CONTROL_TOWER"
           ],
           "status": "READY_FOR_MULTI_GATE"
         }
@@ -3324,12 +3324,11 @@
           "atomic_capabilities": []
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 6,
+      "WORK_REQUIRED_REMAINDER": 5,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 89,
-          "CLAIMED": 1
+          "PASS": 90
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -3354,12 +3353,12 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 35,
+        "ready": 34,
         "waiting": 12,
         "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 56,
+        "result_returns": 57,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -3436,7 +3435,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:59:17.456548+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:59:35.752269+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3563,7 +3562,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:59:17.456548+00:00",
+      "updated_at": "2026-09-29T12:59:35.752269+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3604,7 +3603,8 @@
         "2879888fd53f71858876-FAILURE_ISOLATION",
         "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
         "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
-        "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929"
+        "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
+        "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
       ],
       "PARTIAL": [
         "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -3667,8 +3667,7 @@
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
         "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-        "WIC-ALL-UNFINISHED-BATCH-20260928",
-        "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
+        "WIC-ALL-UNFINISHED-BATCH-20260928"
       ],
       "PLATFORM_HOLD": [
         "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
@@ -3692,8 +3691,7 @@
       "AUTO_REQUEUED": [
         "FINAL-37-CR-EVIDENCE-VALIDATION",
         "FINAL-37-CR-TRANSLATION-COMPONENT",
-        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
-        "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
       ],
       "NEXT_WORK": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
       "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,
@@ -3702,17 +3700,17 @@
       "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF": true,
       "observer_reinstruction_required": 0,
       "DURABLE_OBSERVER_REPORT_WRITTEN": true,
-      "TOOL016_RESULT_ACK_RECEIVED": 56,
+      "TOOL016_RESULT_ACK_RECEIVED": 57,
       "REMOTE_GITHUB_READBACK_PASS": true
     },
     "non_tool_common_closeout": {
-      "updated_at": "2026-09-29T12:59:17.468962+00:00",
+      "updated_at": "2026-09-29T12:59:35.764637+00:00",
       "counts": {
-        "UNFINISHED": 16,
         "PARTIAL": 9,
-        "COMPLETE": 36,
+        "COMPLETE": 37,
+        "LONG_TERM_HOLD": 5,
         "PLATFORM_HOLD": 2,
-        "LONG_TERM_HOLD": 5
+        "UNFINISHED": 15
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3721,7 +3719,7 @@
         "CR-4": "COMPLETE",
         "CR-5": "COMPLETE"
       },
-      "next_auto_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+      "next_auto_root": null,
       "observer_reinstruction_required": 0
     }
   },

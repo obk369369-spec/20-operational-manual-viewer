@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:59:17.468962+00:00",
+  "updated_at": "2026-09-29T12:59:35.764637+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -2221,22 +2221,14 @@
         "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "HISTORICAL_LEDGER_AND_CLOSEOUT_AUDIT",
-        "REPORT_REQUEUE_NEXT_LOOP",
-        "OBSERVER_ZERO_MANUAL_RELAY",
-        "WORK_HANDOFF_CREDIT_AND_RECOVERY",
-        "CANONICAL_PIPELINE_RUNTIME_COMPLETION",
-        "ITEMIZED_OBSERVER_REPORT",
-        "FIXED_BLOCK_COMPLETENESS_GATE",
-        "UNVERIFIED_COMPLETE_PROHIBITION",
-        "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
+      "actual_evidence": [
+        "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2"
       ],
+      "status": "COMPLETE",
+      "remaining_work": [],
       "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
+      "pass_lock": true,
+      "actionable_requeued": false
     },
     {
       "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
@@ -2354,11 +2346,11 @@
     }
   ],
   "counts": {
-    "UNFINISHED": 16,
     "PARTIAL": 9,
-    "COMPLETE": 36,
+    "COMPLETE": 37,
+    "LONG_TERM_HOLD": 5,
     "PLATFORM_HOLD": 2,
-    "LONG_TERM_HOLD": 5
+    "UNFINISHED": 15
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2400,6 +2392,7 @@
     "2879888fd53f71858876-FAILURE_ISOLATION",
     "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
     "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
+    "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
     "CR-1",
     "CR-2",
     "CR-3",
@@ -2420,13 +2413,10 @@
     "WIC-CIRCULATION-FINAL-CLOSEOUT",
     "WIC-COMMON-AUTOMATION-BLOCKERS",
     "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-    "WIC-FINAL-CONNECTION",
-    "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5"
+    "WIC-FINAL-CONNECTION"
   ],
-  "auto_requeued_roots": [
-    "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5"
-  ],
-  "next_auto_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
+  "auto_requeued_roots": [],
+  "next_auto_root": null,
   "observer_reinstruction_required": 0,
   "manual_relay_count": 0
 }
