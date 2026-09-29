@@ -180,8 +180,38 @@
       "directive_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
       "target_tool": "TOOL016-TOOL044",
       "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
-      "revision": 1,
-      "directive": "Incremental all-WIC completion sweep using current registry/state/queue/ledgers only; NEVER restart historical full extraction, reopen actual PASS, rerun TOOL045 315/171910, or duplicate an existing queue demand. Find only currently evidenced non-PASS states across every registered/known WIC tool: incomplete, validation/evidence gap, error/failure, HOLD/DEFERRED/WAITING, result-return gap, GitHub persist/read-back gap. First map every finding onto canonical residual R1-R16 or an already-open COMMON_ROOT; same cause merges, one modification per COMMON_ROOT. Register only genuinely uncovered residuals not already represented in TOOL044 queue. Work is FORBIDDEN for this directive. Eligible internal work uses free TOOL044 circulation and existing VERIFIED_COMPONENT first, then free externally verifiable component/runtime; independent roots may MULTI/BATCH, no artificial runner filling and no per-small-item push/watch. Required lifecycle: claim -> execute -> actual validation -> recovery/revalidation -> batch GitHub persist -> remote read-back -> TOOL016 result return -> PASS LOCK -> automatic next eligible root. External auth/original/runtime/platform constraints only WAITING/PLATFORM_LIMIT and must not block other roots. Existing queue items continue from current checkpoint/status, never re-enqueued. Goal: internally executable residual=0, PASS rework=0, duplicate execution=0, user relay=0, only genuine external WAITING/PLATFORM_LIMIT remains, unattended free 24h circulation continues. Current sweep must explicitly reconcile registered targets plus central state evidence for known tools not in registry (including currently evidenced TOOL004/008/009 holds/failure) without inventing completion."
+      "revision": 2,
+      "directive": "Incremental all-WIC completion sweep using current registry/state/queue/ledgers only; NEVER restart historical full extraction, reopen actual PASS, rerun TOOL045 315/171910, or duplicate an existing queue demand. Find only currently evidenced non-PASS states across every registered/known WIC tool: incomplete, validation/evidence gap, error/failure, HOLD/DEFERRED/WAITING, result-return gap, GitHub persist/read-back gap. First map every finding onto canonical residual R1-R16 or an already-open COMMON_ROOT; same cause merges, one modification per COMMON_ROOT. Register only genuinely uncovered residuals not already represented in TOOL044 queue. Work is FORBIDDEN for this directive. Eligible internal work uses free TOOL044 circulation and existing VERIFIED_COMPONENT first, then free externally verifiable component/runtime; independent roots may MULTI/BATCH, no artificial runner filling and no per-small-item push/watch. Required lifecycle: claim -> execute -> actual validation -> recovery/revalidation -> batch GitHub persist -> remote read-back -> TOOL016 result return -> PASS LOCK -> automatic next eligible root. External auth/original/runtime/platform constraints only WAITING/PLATFORM_LIMIT and must not block other roots. Existing queue items continue from current checkpoint/status, never re-enqueued. Goal: internally executable residual=0, PASS rework=0, duplicate execution=0, user relay=0, only genuine external WAITING/PLATFORM_LIMIT remains, unattended free 24h circulation continues. Current sweep must explicitly reconcile registered targets plus central state evidence for known tools not in registry (including currently evidenced TOOL004/008/009 holds/failure) without inventing completion.",
+      "priority": "CRITICAL_AFTER_PREEXECUTION_CONFLICT_GATE",
+      "delta_20260930": {
+        "purpose": "all-domain final omission recovery, dedupe, conflict-safe incremental integration",
+        "scope": [
+          "all WIC chats",
+          "all WIC tools including registry-missing historical tools",
+          "common infrastructure",
+          "automations",
+          "external runners/workers",
+          "checkpoints/result-return/deployment/reporting",
+          "historical user error/feedback records",
+          "Work directives"
+        ],
+        "preexecution_gate": "TOOL044-DIRECTIVE-DEDUP-CONFLICT-GUARD",
+        "rules": [
+          "Do not restart prior full extraction; reuse existing error DB/fixtures/Queue/ROOT results and recover only later/newly-missed deltas.",
+          "Evidence-backed PASS remains REOPEN_BLOCKED unless a genuinely new requirement or actual regression affects that scope.",
+          "Any required missing actual execution/input/output/validator/EXPECTED-ACTUAL/regression/checkpoint-resume/result-return/remote-readback/deployment/user-path/next-work-selection/report-delivery remains incomplete.",
+          "Recover registry-missing tools/functions from chat/file/queue/github traces; user memory of tool numbers is never a prerequisite.",
+          "Preserve priority for TOOL013, TOOL041→TOOL007→TOOL042, TOOL006 plus conflict guard, global TOC source-transformation gate, external-runner E2E evidence, hourly report actual delivery, and 24h actual circulation.",
+          "Recover previously verified non-GitHub external executors from evidence before discovering new ones; distinguish candidates from VERIFIED_EXTERNAL_EXECUTOR.",
+          "For every verified executor prove CENTRAL QUEUE→claim/lease→EXECUTOR_ASSIGNED→actual run→checkpoint→actual result→validator→RESULT_RETURNED→central/GitHub read-back→PASS/HOLD/FAIL→next eligible ROOT.",
+          "Classify broken executor chains as RUNNER_NOT_ASSIGNED, RUNNER_ASSIGNED_BUT_NOT_EXECUTED, EXECUTED_BUT_CHECKPOINT_MISSING, RESULT_NOT_RETURNED, CENTRAL_STATE_NOT_UPDATED, NEXT_WORK_NOT_SELECTED, EVIDENCE_NOT_PERSISTED, RUNNER_STALE, SCHEDULER_NOT_CONNECTED, or PLATFORM_LIMIT; repair only the broken delta.",
+          "24H_ACTUAL_PASS requires real elapsed 24h evidence of repeated actual work chains, not scheduler heartbeat.",
+          "Hourly report generation is separate from actual user-visible delivery; unproven delivery remains REPORT_DESTINATION_FAIL or CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT.",
+          "USER_FORCED_MANUAL_REPAIR=FAIL for automatable work.",
+          "Final discovered items must have evidence-backed VERIFIED_PASS, ACTIVE_EXECUTING, WAITING_EXTERNAL, PLATFORM_LIMIT, or NO_READY_COMPONENT; unknown/duplicate/evidence-free-PASS/PASS-rework/manual-repair/known-uninvestigated domains must reach zero."
+        ],
+        "toc_gate": "Preserve existing ALL_PUBLISHERS_TOC_EXTRACT source-transformation-only requirements; do not duplicate that root."
+      }
     },
     {
       "directive_id": "TOOL044-HOURLY-REPORT-ACTUAL-DELIVERY-20260929",
