@@ -4997,6 +4997,21 @@
       "common_error_batch": true,
       "pass_lock_policy": "E2E_EVIDENCE_ONLY",
       "platform_hold_policy": "KEEP_TRACKED_DO_NOT_BLOCK_ACTIONABLE_WORK"
+    },
+    {
+      "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "COMMON ERROR execution. At every work closeout automatically reconcile ALL prior unresolved plus newly added requirements; classify COMPLETE/PARTIAL/UNFINISHED/PLATFORM_HOLD/LONG_TERM_HOLD from actual evidence; PASS-lock only proven COMPLETE; automatically requeue every actionable PARTIAL/UNFINISHED item without observer instruction; auto-select and hand off next work; return a user-visible status report so the observer never has to ask 'check again' or manually say requeue. Bulk-ingest all accessible feedback/error directives once from TOOL016/TOOL044, deduplicate into COMMON_ROOTs, and propagate each directive to every related chat/tool/program target that is accessible. Preserve existing PASS locks and checkpoints. Full ChatGPT all-chat native access remains PLATFORM_HOLD unless actually supported and evidenced; it must stay tracked and must not block actionable work. PASS requires E2E evidence of reconciliation + automatic requeue + next-work handoff + result return with observer_reinstruction_required=0. Merely storing/reporting unfinished items is FAIL.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
