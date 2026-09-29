@@ -187,7 +187,7 @@
     },
     {
       "component_id": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://pypi.org/project/html2text/2025.4.15/",
       "license": "GPL-3.0-or-later",
       "version": "2025.4.15+wic-actual.1",
@@ -223,11 +223,32 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
-      "idempotency_key": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT@2025.4.15+wic-actual.1"
+      "idempotency_key": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT@2025.4.15+wic-actual.1",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+        "owner": "GITHUB_ACTIONS:36511380058:GATE_01",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+          "owner": "GITHUB_ACTIONS:36511380058:GATE_01",
+          "fencing_token": "7cde4e5985aa447cb99ac20c51cbeeef",
+          "component_id": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+          "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+          "target_tool": "TOOL042",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T02:11:22.364150+00:00",
+          "production_mutation": 0
+        }
+      }
     },
     {
       "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
-      "status": "READY",
+      "status": "VERIFIED_REUSABLE",
       "source": "https://pypi.org/project/mistune/3.3.4/",
       "license": "BSD-3-Clause",
       "version": "2025.4.15+3.3.4+wic-composition.1",
@@ -264,7 +285,28 @@
       ],
       "rollback_condition": "any install or validation failure",
       "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
-      "idempotency_key": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE@2025.4.15+3.3.4+wic-composition.1"
+      "idempotency_key": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE@2025.4.15+3.3.4+wic-composition.1",
+      "multi_gate_evidence": {
+        "job_id": "COMPONENT::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+        "owner": "GITHUB_ACTIONS:36511380058:GATE_02",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "result": {
+          "job_id": "COMPONENT::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+          "owner": "GITHUB_ACTIONS:36511380058:GATE_02",
+          "fencing_token": "6727938c662d4202aeffad9855818789",
+          "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+          "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
+          "target_tool": "TOOL042",
+          "status": "PASS",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "install_returncode": 0,
+          "validator_returncode": 0,
+          "rollback_returncode": null,
+          "rollback_pass": true,
+          "heartbeat": "2026-09-29T02:11:26.829542+00:00",
+          "production_mutation": 0
+        }
+      }
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"

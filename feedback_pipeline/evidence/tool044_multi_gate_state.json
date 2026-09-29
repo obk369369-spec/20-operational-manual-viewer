@@ -1703,6 +1703,159 @@
         "idempotency_key": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE@2025.4.15+3.3.4+wic-composition.1"
       },
       "FENCING_TOKEN": "6727938c662d4202aeffad9855818789"
+    },
+    "DEMAND::T42-WEBPAGE-TEXT-EXTRACTION::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT": {
+      "JOB_ID": "DEMAND::T42-WEBPAGE-TEXT-EXTRACTION::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+      "DEMAND_ID": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "ROOT_ID": "T42-WEBPAGE-TEXT-EXTRACTION",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+      "OWNER": "GITHUB_ACTIONS:36511532031:GATE_02",
+      "CLAIM_TIME": "2026-09-29T02:12:58.920857+00:00",
+      "LEASE_EXPIRY": "2026-09-29T02:42:58.920857+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/html2text/2025.4.15/",
+        "license": "GPL-3.0-or-later",
+        "version": "2025.4.15+wic-actual.1",
+        "atomic_capabilities": [
+          "WEBPAGE_TEXT_EXTRACTION"
+        ],
+        "target_root": "T42-WEBPAGE-TEXT-EXTRACTION",
+        "target_tool": "TOOL042",
+        "input_contract": "actual official KIRO detail-page URL",
+        "output_contract": "non-empty readable Markdown extracted from the fetched official page",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--no-deps",
+          "--target",
+          "{sandbox}/site",
+          "{repo}/feedback_pipeline/external_candidate_pool/html2text-2025.4.15-py3-none-any.whl"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import urllib.request,html2text; u='https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1'; h=urllib.request.urlopen(u,timeout=30).read().decode('utf-8','replace'); m=html2text.html2text(h); assert len(h)>10000 and len(m)>1000"
+        ],
+        "success_condition": "actual official page is fetched and produces substantial readable text",
+        "failure_condition": "fetch, isolated install, or actual extraction assertion fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
+        "idempotency_key": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT@2025.4.15+wic-actual.1",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+          "owner": "GITHUB_ACTIONS:36511380058:GATE_01",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+            "owner": "GITHUB_ACTIONS:36511380058:GATE_01",
+            "fencing_token": "7cde4e5985aa447cb99ac20c51cbeeef",
+            "component_id": "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT",
+            "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
+            "target_tool": "TOOL042",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T02:11:22.364150+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "305e372a13be4904bbe8ebfcbe0e50bd"
+    },
+    "DEMAND::T42-TOC-STRUCTURE-EXTRACTION::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE": {
+      "JOB_ID": "DEMAND::T42-TOC-STRUCTURE-EXTRACTION::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+      "DEMAND_ID": "T42-TOC-STRUCTURE-EXTRACTION",
+      "ROOT_ID": "T42-TOC-STRUCTURE-EXTRACTION",
+      "TARGET_TOOL": "CENTRAL",
+      "COMPONENT_ID": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+      "OWNER": "GITHUB_ACTIONS:36511532031:GATE_01",
+      "CLAIM_TIME": "2026-09-29T02:12:58.920857+00:00",
+      "LEASE_EXPIRY": "2026-09-29T02:42:58.920857+00:00",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+        "status": "VERIFIED_REUSABLE",
+        "source": "https://pypi.org/project/mistune/3.3.4/",
+        "license": "BSD-3-Clause",
+        "version": "2025.4.15+3.3.4+wic-composition.1",
+        "atomic_capabilities": [
+          "TOC_STRUCTURE_EXTRACTION"
+        ],
+        "target_root": "T42-TOC-STRUCTURE-EXTRACTION",
+        "target_tool": "TOOL042",
+        "input_contract": "actual official KIRO HTML with headings",
+        "output_contract": "non-empty Markdown and parsed heading AST",
+        "install_target": "isolated sandbox/site",
+        "install_method": [
+          "{python}",
+          "-m",
+          "pip",
+          "install",
+          "--no-deps",
+          "--target",
+          "{sandbox}/site",
+          "{repo}/feedback_pipeline/external_candidate_pool/html2text-2025.4.15-py3-none-any.whl",
+          "{repo}/feedback_pipeline/external_candidate_pool/mistune-3.3.4-py3-none-any.whl"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "import sys,urllib.request; sys.path.insert(0,r'{repo}/feedback_pipeline'); from tool044_composition import extract_webpage_text_and_toc as x; u='https://www.kiro.re.kr/enjoy/report.asp?GTXT=&SFIELD=&bcat=&bgbn=R&bidx=5537&gbn=R06&page=1'; h=urllib.request.urlopen(u,timeout=30).read().decode('utf-8','replace'); r=x(h); assert r['status']=='VERIFIED_WEBPAGE_TEXT_AND_TOC' and r['heading_count']>=1"
+        ],
+        "success_condition": "actual official page yields readable text and at least one parsed heading",
+        "failure_condition": "fetch, isolated install, extraction, or heading assertion fails",
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "import os,shutil; shutil.rmtree(os.environ['WIC_COMPONENT_SANDBOX'], ignore_errors=True)"
+        ],
+        "rollback_condition": "any install or validation failure",
+        "evidence": "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
+        "idempotency_key": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE@2025.4.15+3.3.4+wic-composition.1",
+        "multi_gate_evidence": {
+          "job_id": "COMPONENT::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+          "owner": "GITHUB_ACTIONS:36511380058:GATE_02",
+          "checkpoint": "REGRESSION_COMPLETE",
+          "result": {
+            "job_id": "COMPONENT::HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+            "owner": "GITHUB_ACTIONS:36511380058:GATE_02",
+            "fencing_token": "6727938c662d4202aeffad9855818789",
+            "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+            "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
+            "target_tool": "TOOL042",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T02:11:26.829542+00:00",
+            "production_mutation": 0
+          }
+        }
+      },
+      "FENCING_TOKEN": "0dd9da81252b4a9795a51ec9f133b46f"
     }
   },
   "events": [
@@ -1713,9 +1866,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T02:11:36.415667+00:00",
+  "updated_at": "2026-09-29T02:12:58.920857+00:00",
   "capacity": 15,
-  "active_claims": 0,
+  "active_claims": 2,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 2
 }
