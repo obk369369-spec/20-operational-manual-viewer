@@ -1,12 +1,231 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T11:52:59.049219+00:00",
-  "UNFINISHED_SCANNED": 42,
-  "ALREADY_PASS_EXCLUDED": 71,
-  "ROOTS_MERGED": 0,
-  "WORK_FIXABLE_ROOTS": 0,
-  "WORK_REQUIRED": [],
-  "WORK_BATCHES": [],
+  "updated_at": "2026-09-29T12:00:40.656492+00:00",
+  "UNFINISHED_SCANNED": 55,
+  "ALREADY_PASS_EXCLUDED": 58,
+  "ROOTS_MERGED": 10,
+  "WORK_FIXABLE_ROOTS": 10,
+  "WORK_REQUIRED": [
+    {
+      "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "201185b55b374df24d1e",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
+      "root_id": "201185b55b374df24d1e",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "be0b7e6874fdbe79c9be",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
+      "root_id": "be0b7e6874fdbe79c9be",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
+      "root_id": "4c4baaa30ab6e13af241",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "target_tool": "TOOL016",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
+      "root_id": "CR-EVIDENCE-VALIDATION",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
+      "root_id": "CR-TRANSLATION-COMPONENT",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+      "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+      "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ]
+    },
+    {
+      "demand_id": "FINAL-37-CR-ELAPSED-TIME",
+      "root_id": "CR-ELAPSED-TIME",
+      "target_tool": "TOOL016/TOOL044",
+      "atomic_capabilities": [
+        "BULK_ROOT_EXECUTION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "ITEM_EVIDENCE_RETURN"
+      ]
+    }
+  ],
+  "WORK_BATCHES": [
+    {
+      "root_id": "201185b55b374df24d1e",
+      "demands": [
+        "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
+        "f8bc3e81228256cba56e-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "be0b7e6874fdbe79c9be",
+      "demands": [
+        "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
+        "e8044eff2acbb5214dbf-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "48db0c6ef39a7ffc3a81",
+      "demands": [
+        "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "4c4baaa30ab6e13af241",
+      "demands": [
+        "cfbbb93e0c5991f482f3-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "T16-T44-MINCIRC-20260925-001",
+      "demands": [
+        "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
+        "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "TOOL016"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "CR-EVIDENCE-VALIDATION",
+      "demands": [
+        "FINAL-37-CR-EVIDENCE-VALIDATION"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "CR-TRANSLATION-COMPONENT",
+      "demands": [
+        "FINAL-37-CR-TRANSLATION-COMPONENT"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+      "demands": [
+        "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+      "demands": [
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    },
+    {
+      "root_id": "CR-ELAPSED-TIME",
+      "demands": [
+        "FINAL-37-CR-ELAPSED-TIME"
+      ],
+      "target_tools": [
+        "TOOL016/TOOL044"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    }
+  ],
   "TOOL044_AUTO_HANDED_OFF": 30,
   "TOOL044_QUEUE": [
     {
@@ -200,7 +419,7 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 0,
+  "WORK_REQUIRED_REMAINDER": 13,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
@@ -229,12 +448,12 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 30,
+    "ready": 43,
     "waiting": 12,
-    "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+    "next_demand": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
     "duplicate_demand_ids": [],
     "dedup_gate": "PASS",
-    "result_returns": 51,
+    "result_returns": 46,
     "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
     "external_failover": "HOLD_SECOND_RUNTIME",
     "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -306,7 +525,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T11:52:59.049219+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T12:00:40.656492+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

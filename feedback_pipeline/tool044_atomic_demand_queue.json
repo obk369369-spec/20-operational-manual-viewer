@@ -57,7 +57,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "run_id": "36529626802"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -120,7 +121,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "T42-RESELLER-DETECTION",
@@ -151,7 +153,8 @@
         "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
@@ -164,7 +167,8 @@
         "component": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
@@ -200,7 +204,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "T42-TOC-STRUCTURE-EXTRACTION",
@@ -236,7 +241,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
@@ -267,7 +273,8 @@
         "component": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
@@ -292,7 +299,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "TOOL044-AUTO-ROLLBACK",
@@ -326,7 +334,8 @@
         "evidence_commit": "994f1e7fdf67acfb5bdda21f87f862cb3c543311",
         "scope": "registered verified targets only; unregistered targets remain fail-closed",
         "production_target_claim": false
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
@@ -363,7 +372,8 @@
         "evidence_commit": "994f1e7fdf67acfb5bdda21f87f862cb3c543311",
         "scope": "registered verified targets only; unregistered targets remain fail-closed",
         "production_target_claim": false
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
@@ -396,7 +406,8 @@
         "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
@@ -436,7 +447,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
@@ -469,7 +481,8 @@
         "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
@@ -502,7 +515,8 @@
         "component": "MISTUNE_3_3_4_TOC_STRUCTURE_EXTRACTION",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
@@ -558,7 +572,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
@@ -614,7 +629,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
@@ -670,7 +686,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
@@ -726,7 +743,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
@@ -782,7 +800,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
@@ -838,7 +857,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
@@ -894,7 +914,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
@@ -950,7 +971,8 @@
         "reason": "TOOL016_FALSE_MISSING_RECONCILIATION_20260914",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
@@ -1005,7 +1027,8 @@
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
@@ -1057,7 +1080,8 @@
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",
         "evidence": "feedback_pipeline/evidence/tool013_three_feature_admission_20260908.json"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
@@ -1109,7 +1133,8 @@
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",
         "evidence": "feedback_pipeline/evidence/tool013_three_feature_admission_20260908.json"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
@@ -1161,7 +1186,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
@@ -1169,7 +1195,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "f8bc3e81228256cba56e",
       "root_id": "201185b55b374df24d1e",
@@ -1220,7 +1246,11 @@
         "result": "PASS",
         "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
         "note": "Root-specific Work execution reported PASS."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "f8bc3e81228256cba56e-FAILURE_ISOLATION",
@@ -1228,7 +1258,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "f8bc3e81228256cba56e",
       "root_id": "201185b55b374df24d1e",
@@ -1263,7 +1293,11 @@
         "result": "PASS",
         "scope": "FAILURE_ISOLATION",
         "note": "Work final output reported FAILURE_ISOLATION=PASS."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "e8044eff2acbb5214dbf-INPUT_CONTRACT_VALIDATION",
@@ -1315,7 +1349,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "e8044eff2acbb5214dbf-EXPECTED_ACTUAL_VALIDATION",
@@ -1323,7 +1358,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e8044eff2acbb5214dbf",
       "root_id": "be0b7e6874fdbe79c9be",
@@ -1374,7 +1409,11 @@
         "result": "PASS",
         "scope": "CENTRAL_ROOT_EXPECTED_ACTUAL",
         "note": "Root-specific Work execution reported PASS."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "e8044eff2acbb5214dbf-FAILURE_ISOLATION",
@@ -1382,7 +1421,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e8044eff2acbb5214dbf",
       "root_id": "be0b7e6874fdbe79c9be",
@@ -1417,7 +1456,11 @@
         "result": "PASS",
         "scope": "FAILURE_ISOLATION",
         "note": "Work final output reported FAILURE_ISOLATION=PASS."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-INPUT_CONTRACT_VALIDATION",
@@ -1469,7 +1512,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
@@ -1559,7 +1603,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
@@ -1567,7 +1612,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "ca9c23dfa4f0bee5ba54",
       "root_id": "48db0c6ef39a7ffc3a81",
@@ -1602,7 +1647,11 @@
         "result": "PASS",
         "scope": "FAILURE_ISOLATION",
         "note": "Work final output reported FAILURE_ISOLATION=PASS."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
@@ -1654,7 +1703,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
@@ -1755,7 +1805,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
@@ -1763,7 +1814,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "PASS_WORK_ROOT_SPECIFIC_RETET_20260925",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "cfbbb93e0c5991f482f3",
       "root_id": "4c4baaa30ab6e13af241",
@@ -1798,7 +1849,11 @@
         "result": "PASS",
         "scope": "FAILURE_ISOLATION",
         "note": "Work final output reported FAILURE_ISOLATION=PASS."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
@@ -1852,7 +1907,8 @@
         ],
         "scope": "GitHub/CENTRAL authenticated ingress exists; ordinary ChatGPT native automatic interceptor is unavailable in current platform.",
         "retry_policy": "TRIGGER_BASED_REVISIT_ONLY"
-      }
+      },
+      "residual_classification": "PLATFORM_HOLD"
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
@@ -1907,7 +1963,8 @@
         ],
         "scope": "Verified executable contract creation and real WIC execution proven on T42 official publisher production run.",
         "retry_policy": "SKIP_REUSE"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
@@ -1961,7 +2018,8 @@
         ],
         "scope": "Checkpoint stage resume and watchdog recovery proven in GitHub Actions ENV1.",
         "retry_policy": "SKIP_REUSE"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
@@ -2016,7 +2074,8 @@
         ],
         "scope": "Same-runtime durable claim is proven; true cross-runtime claim awaits a usable independent ENV2.",
         "retry_policy": "TRIGGER_BASED_REVISIT_ONLY"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
@@ -2069,7 +2128,8 @@
         ],
         "scope": "Periodic free-runner candidate discovery is automated; no usable credential-free independent ENV2 is currently READY.",
         "retry_policy": "TRIGGER_BASED_REVISIT_ONLY"
-      }
+      },
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
@@ -2125,7 +2185,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
@@ -2133,7 +2194,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "T16-T44-MINCIRC-20260925-001",
       "root_id": "T16-T44-MINCIRC-20260925-001",
@@ -2174,7 +2235,11 @@
       "reconciliation": {
         "evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_expansion_fault_loop.json",
         "basis": "Existing actual minimum-circulation execution evidence satisfies this capability; stale OPEN reconciled without re-execution."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
@@ -2182,7 +2247,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "T16-T44-MINCIRC-20260925-001",
       "root_id": "T16-T44-MINCIRC-20260925-001",
@@ -2207,7 +2272,11 @@
       "reconciliation": {
         "evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_expansion_fault_loop.json",
         "basis": "Existing actual minimum-circulation execution evidence satisfies this capability; stale OPEN reconciled without re-execution."
-      }
+      },
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
@@ -2259,7 +2328,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
@@ -2311,7 +2381,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
@@ -2347,7 +2418,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -2366,7 +2438,8 @@
       "directive_history": [
         "Persist conflict-free directive intake; merge into existing ROOT; block duplicates; reuse PASS; preserve checkpoint; latest explicit directive supersedes conflicting older directive; connect to TOOL016/TOOL044 queue/claim/result loop; preserve 5-minute/HOLD-resume/24h evidence structures.",
         "TOP-LEVEL cumulative-directive dedup/conflict guard. Before any newly received directive creates or executes work, compare it against the complete existing directive inbox, Queue, COMMON_ROOTs, canonical R1-R16, PASS locks, and active claim/lease plus asset/file locks. Mandatory path: intake -> semantic equivalence/cause/function comparison -> dedupe -> conflict detection -> merge into existing COMMON_ROOT -> recalculate priority -> execute. Same purpose/cause/function must not create a new execution item even when wording differs. If a new directive extends existing work, preserve checkpoint/current progress and add only the delta; never restart completed work. Conflict precedence: latest explicit user directive > PASS protection > existing verified execution structure > older directive, except latest text alone never reopens evidenced PASS without a genuinely new requirement or regression. Enforce atomic claim/lease and asset/file/deployment-target locks so same ROOT cannot have concurrent owners and different ROOTs cannot concurrently mutate the same shared asset. Reuse completed portions -> execute delta only -> validate -> merge result. Ten duplicate directives for one cause must resolve to one executable COMMON_ROOT. If inbox/Queue/old/new states disagree, reconcile from actual GitHub evidence and latest remote read-back; directive text alone cannot change PASS/FAIL/HOLD. Required invariants under parallel expansion: same-root duplicate execution=0; same-asset concurrent mutation=0; PASS rework=0; same-cause duplicate Queue item=0. Apply this guard automatically to every future directive so the user need not remember prior instructions. Goal: cumulative directives continuously compress into the minimum necessary executable COMMON_ROOT set instead of making the Queue grow or conflict."
-      ]
+      ],
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
@@ -2381,7 +2454,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
@@ -2422,7 +2496,8 @@
         "IF_NO_READY_COMPONENT_RETURN_NO_READY_COMPONENT_AND_ROUTE_TO_OTHER_EXECUTION_LAYER",
         "USER_MANUAL_COPY_OR_REINSTRUCTION_REQUIRED_EQUALS_FAIL"
       ],
-      "pass_condition": "All currently internally executable unfinished units are processed in the same batch circulation through actual validation, individual evidence, required deployment/readback and result return; genuine external-condition units remain explicitly separated; circulation continues to the next unfinished unit without user reinstruction."
+      "pass_condition": "All currently internally executable unfinished units are processed in the same batch circulation through actual validation, individual evidence, required deployment/readback and result return; genuine external-condition units remain explicitly separated; circulation continues to the next unfinished unit without user reinstruction.",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
@@ -2445,7 +2520,7 @@
         "T47-01"
       ],
       "member_count": 9,
-      "status": "RETURNED_WITH_ITEM_EVIDENCE",
+      "status": "READY_AUTO_REQUEUED",
       "claim": {
         "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
         "claimed_at": "2026-09-28T10:18:00.471Z",
@@ -2454,18 +2529,6 @@
       "checkpoint": {
         "stage": "RESULT_RETURNED",
         "resume_from": "NEW_ITEM_SPECIFIC_ACTUAL_EVIDENCE"
-      },
-      "result_return": {
-        "status": "RETURNED_WITH_ITEM_EVIDENCE",
-        "tool016_ack": "RECEIVED",
-        "member_count": 9,
-        "member_state_counts": {
-          "FAIL": 8,
-          "TRUE_EXTERNAL_INPUT_REQUIRED": 1
-        },
-        "reason": "Existing item evidence linked without re-running completed work.",
-        "resume_condition": "NEW_ITEM_SPECIFIC_ACTUAL_EVIDENCE",
-        "returned_at": "2026-09-28T10:18:00.471Z"
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json",
@@ -2490,7 +2553,25 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-37-CR-EVIDENCE-VALIDATION"
         }
-      ]
+      ],
+      "result_return_history": [
+        {
+          "status": "RETURNED_WITH_ITEM_EVIDENCE",
+          "tool016_ack": "RECEIVED",
+          "member_count": 9,
+          "member_state_counts": {
+            "FAIL": 8,
+            "TRUE_EXTERNAL_INPUT_REQUIRED": 1
+          },
+          "reason": "Existing item evidence linked without re-running completed work.",
+          "resume_condition": "NEW_ITEM_SPECIFIC_ACTUAL_EVIDENCE",
+          "returned_at": "2026-09-28T10:18:00.471Z"
+        }
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
@@ -2505,7 +2586,7 @@
         "T13-02"
       ],
       "member_count": 1,
-      "status": "HOLD_NO_READY_COMPONENT_RETURNED",
+      "status": "READY_AUTO_REQUEUED",
       "claim": {
         "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
         "claimed_at": "2026-09-28T10:18:00.471Z",
@@ -2514,17 +2595,6 @@
       "checkpoint": {
         "stage": "RESULT_RETURNED",
         "resume_from": "VERIFIED_TRANSLATION_COMPONENT_REGISTERED"
-      },
-      "result_return": {
-        "status": "HOLD_NO_READY_COMPONENT_RETURNED",
-        "tool016_ack": "RECEIVED",
-        "member_count": 1,
-        "member_state_counts": {
-          "PLATFORM_LIMIT": 1
-        },
-        "reason": "No verified ready component exists; no guessed implementation.",
-        "resume_condition": "VERIFIED_TRANSLATION_COMPONENT_REGISTERED",
-        "returned_at": "2026-09-28T10:18:00.471Z"
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json",
@@ -2549,7 +2619,24 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-37-CR-TRANSLATION-COMPONENT"
         }
-      ]
+      ],
+      "result_return_history": [
+        {
+          "status": "HOLD_NO_READY_COMPONENT_RETURNED",
+          "tool016_ack": "RECEIVED",
+          "member_count": 1,
+          "member_state_counts": {
+            "PLATFORM_LIMIT": 1
+          },
+          "reason": "No verified ready component exists; no guessed implementation.",
+          "resume_condition": "VERIFIED_TRANSLATION_COMPONENT_REGISTERED",
+          "returned_at": "2026-09-28T10:18:00.471Z"
+        }
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
@@ -2623,7 +2710,8 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT"
         }
-      ]
+      ],
+      "residual_classification": "PLATFORM_HOLD"
     },
     {
       "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
@@ -2643,7 +2731,7 @@
         "EXT-01D"
       ],
       "member_count": 6,
-      "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+      "status": "READY_AUTO_REQUEUED",
       "claim": {
         "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
         "claimed_at": "2026-09-28T10:18:00.471Z",
@@ -2652,17 +2740,6 @@
       "checkpoint": {
         "stage": "RESULT_RETURNED",
         "resume_from": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE"
-      },
-      "result_return": {
-        "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
-        "tool016_ack": "RECEIVED",
-        "member_count": 6,
-        "member_state_counts": {
-          "PLATFORM_LIMIT": 6
-        },
-        "reason": "Independent observer/runtime capacity is external.",
-        "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE",
-        "returned_at": "2026-09-28T10:18:00.471Z"
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json",
@@ -2687,7 +2764,24 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
         }
-      ]
+      ],
+      "result_return_history": [
+        {
+          "status": "HOLD_EXTERNAL_RUNTIME_RETURNED",
+          "tool016_ack": "RECEIVED",
+          "member_count": 6,
+          "member_state_counts": {
+            "PLATFORM_LIMIT": 6
+          },
+          "reason": "Independent observer/runtime capacity is external.",
+          "resume_condition": "INDEPENDENT_EXTERNAL_RUNTIME_AVAILABLE",
+          "returned_at": "2026-09-28T10:18:00.471Z"
+        }
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
@@ -2705,7 +2799,7 @@
         "R6-01G"
       ],
       "member_count": 4,
-      "status": "HOLD_EXTERNAL_RUNTIME_CAPACITY_RETURNED",
+      "status": "READY_AUTO_REQUEUED",
       "claim": {
         "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
         "claimed_at": "2026-09-28T10:18:00.471Z",
@@ -2714,17 +2808,6 @@
       "checkpoint": {
         "stage": "RESULT_RETURNED",
         "resume_from": "SECOND_SHARED_RUNTIME_WITH_SHARED_LEASE_STORE_AVAILABLE"
-      },
-      "result_return": {
-        "status": "HOLD_EXTERNAL_RUNTIME_CAPACITY_RETURNED",
-        "tool016_ack": "RECEIVED",
-        "member_count": 4,
-        "member_state_counts": {
-          "PLATFORM_LIMIT": 4
-        },
-        "reason": "Shared cross-runtime proof requires a second independent runtime and shared lease store.",
-        "resume_condition": "SECOND_SHARED_RUNTIME_WITH_SHARED_LEASE_STORE_AVAILABLE",
-        "returned_at": "2026-09-28T10:18:00.471Z"
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json",
@@ -2749,7 +2832,24 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
         }
-      ]
+      ],
+      "result_return_history": [
+        {
+          "status": "HOLD_EXTERNAL_RUNTIME_CAPACITY_RETURNED",
+          "tool016_ack": "RECEIVED",
+          "member_count": 4,
+          "member_state_counts": {
+            "PLATFORM_LIMIT": 4
+          },
+          "reason": "Shared cross-runtime proof requires a second independent runtime and shared lease store.",
+          "resume_condition": "SECOND_SHARED_RUNTIME_WITH_SHARED_LEASE_STORE_AVAILABLE",
+          "returned_at": "2026-09-28T10:18:00.471Z"
+        }
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-37-CR-ELAPSED-TIME",
@@ -2764,7 +2864,7 @@
         "TIME-01"
       ],
       "member_count": 1,
-      "status": "WAITING_ELAPSED_TIME_RETURNED",
+      "status": "READY_AUTO_REQUEUED",
       "claim": {
         "owner": "TOOL016_TO_TOOL044_COMMON_ROOT_CIRCULATION",
         "claimed_at": "2026-09-28T10:18:00.471Z",
@@ -2773,17 +2873,6 @@
       "checkpoint": {
         "stage": "RESULT_RETURNED",
         "resume_from": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS"
-      },
-      "result_return": {
-        "status": "WAITING_ELAPSED_TIME_RETURNED",
-        "tool016_ack": "RECEIVED",
-        "member_count": 1,
-        "member_state_counts": {
-          "WAITING": 1
-        },
-        "reason": "Real elapsed time cannot be synthesized.",
-        "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS",
-        "returned_at": "2026-09-28T10:18:00.471Z"
       },
       "user_action": "NONE",
       "source_evidence": "EVIDENCE/WIC_ATOMIC_EVIDENCE_20260928.json",
@@ -2808,7 +2897,24 @@
           "SOURCE_EVIDENCE": [],
           "TOOL044_DEMAND_ID": "FINAL-37-CR-ELAPSED-TIME"
         }
-      ]
+      ],
+      "result_return_history": [
+        {
+          "status": "WAITING_ELAPSED_TIME_RETURNED",
+          "tool016_ack": "RECEIVED",
+          "member_count": 1,
+          "member_state_counts": {
+            "WAITING": 1
+          },
+          "reason": "Real elapsed time cannot be synthesized.",
+          "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS",
+          "returned_at": "2026-09-28T10:18:00.471Z"
+        }
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-09-29T12:00:40.656492+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-39-CR-BUSINESS-INPUT",
@@ -2936,7 +3042,8 @@
         "returned_at": "2026-09-28T10:38:14.731Z"
       },
       "auto_handoff": null,
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PLATFORM_HOLD"
     },
     {
       "demand_id": "FINAL-39-CR-EVIDENCE-VALIDATION",
@@ -3019,7 +3126,8 @@
         "status": "QUEUED_AUTOMATICALLY",
         "user_relay": "NONE"
       },
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-39-CR-EXTERNAL-RUNTIME",
@@ -3091,7 +3199,8 @@
         "returned_at": "2026-09-28T10:38:14.731Z"
       },
       "auto_handoff": null,
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-39-CR-EXECUTABLE-CONTRACT",
@@ -3167,7 +3276,8 @@
         "status": "QUEUED_AUTOMATICALLY",
         "user_relay": "NONE"
       },
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-39-CR-EXACTLY-ONCE",
@@ -3238,7 +3348,8 @@
         "returned_at": "2026-09-28T10:42:47.62Z"
       },
       "auto_handoff": null,
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-39-CR-ELAPSED-TIME",
@@ -3275,7 +3386,8 @@
         "returned_at": "2026-09-28T10:38:14.731Z"
       },
       "auto_handoff": null,
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "FINAL-42-CR-BUSINESS-INPUT",
@@ -3449,7 +3561,8 @@
         "returned_at": "2026-09-28T10:56:38.767Z"
       },
       "auto_handoff": null,
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PLATFORM_HOLD"
     },
     {
       "demand_id": "FINAL-42-CR-EVIDENCE-VALIDATION",
@@ -3559,7 +3672,8 @@
         "status": "QUEUED_AUTOMATICALLY",
         "user_relay": "NONE"
       },
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-42-CR-EXTERNAL-RUNTIME",
@@ -3665,7 +3779,8 @@
         "trigger": "INDEPENDENT_RUNTIME_OR_OFFICIAL_CHAT_DELIVERY_AVAILABLE",
         "user_relay": "NONE"
       },
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-42-CR-EXECUTABLE-CONTRACT",
@@ -3755,7 +3870,8 @@
         "status": "QUEUED_AUTOMATICALLY",
         "user_relay": "NONE"
       },
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-42-CR-EXACTLY-ONCE",
@@ -3831,7 +3947,8 @@
         "trigger": "SECOND_RUNTIME_AND_SHARED_LEASE_STORE_AVAILABLE",
         "user_relay": "NONE"
       },
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "FINAL-42-CR-ELAPSED-TIME",
@@ -3870,7 +3987,8 @@
         "returned_at": "2026-09-28T10:56:38.767Z"
       },
       "auto_handoff": null,
-      "user_action": "NONE"
+      "user_action": "NONE",
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "WIC-BACKLOG-ROOT6-20260927",
@@ -3885,7 +4003,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-ROOT7-20260927",
@@ -3900,7 +4019,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL013-20260927",
@@ -3921,7 +4041,8 @@
         "reason": "Existing 114-file/823-row batch, XLS/XLSX and resume evidence stays locked; title translation and canonical-category components remain unverified.",
         "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool013",
         "resume_condition": "VERIFIED_TRANSLATION_AND_CANONICAL_CATEGORY_COMPONENTS_AVAILABLE"
-      }
+      },
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL006-20260927",
@@ -3942,7 +4063,8 @@
         "reason": "Functional 9/9 and smoke 4/4 evidence stays locked; publisher golden pair is external input.",
         "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool006",
         "resume_condition": "ACTUAL_PUBLISHER_GOLDEN_PAIR_AVAILABLE"
-      }
+      },
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
@@ -3963,7 +4085,8 @@
         "reason": "The shared fact-boundary regression is verified; current customer/runtime semantic evidence is still external.",
         "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool041-tool007-tool042",
         "resume_condition": "CURRENT_VERIFIED_CUSTOMER_AND_RUNTIME_EVIDENCE_AVAILABLE"
-      }
+      },
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
@@ -3978,7 +4101,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
@@ -3993,7 +4117,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL016-20260927",
@@ -4008,7 +4133,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
@@ -4023,7 +4149,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL044-20260927",
@@ -4038,7 +4165,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
@@ -4053,7 +4181,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL048-20260927",
@@ -4068,7 +4197,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
@@ -4083,7 +4213,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
@@ -4098,7 +4229,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
@@ -4113,7 +4245,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-ENV2-20260927",
@@ -4128,7 +4261,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-24H-20260927",
@@ -4143,7 +4277,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
@@ -4158,7 +4293,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
@@ -4177,7 +4313,8 @@
       "directive_history": [
         "Mandatory observer evidence reporting for actual 24h circulation. Each observer report must be grounded in real external execution evidence and show 24H start time, current time, actual elapsed time, latest external run time, Run ID, latest heartbeat, current TOOL/ROOT, latest checkpoint, completed/HOLD/FAIL, recovery occurrence, latest result-return, evidence location, and 24H progress. Never treat chat-authored text as evidence. If external evidence cannot be read, report EVIDENCE_UNAVAILABLE. Require actual visibility in the current TOOL044 chat when officially supported and proven; if automatic posting into this exact existing ChatGPT conversation is platform-unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT rather than fake PASS, automatically project the same evidence to CONTROL TOWER, and expose the real evidence location/status so the user can verify 24h operation from TOOL044 or one linked observer surface. This revision supersedes any weaker observer-report requirement while preserving all existing 24h workload/evidence rules.",
         "Hourly observer-report delivery residual. This does not restart any survey or reopen PASS. Preserve protected automation ID 6ab4677d5cf4819191837f83dd86f9b0 and never disable/modify/delete it as a duplicate of ROOT A. First dedupe/merge with existing queue/COMMON_ROOT; create no duplicate root. Work is forbidden. Validate the whole path separately: hourly scheduler run -> actual GitHub evidence read -> report generation -> delivery attempt -> user-visible arrival. Scheduler/report generation success is not delivery success. notifications_enabled=false alone is not assumed causal. If direct automatic posting into the existing TOOL044 chat is unsupported, record CHAT_DELIVERY_UNSUPPORTED/PLATFORM_LIMIT and verify a supported free lowest-intervention observer delivery route; never fake REPORT_DELIVERED=PASS. Until actual delivery is evidenced, keep REPORT_DELIVERED=FAIL or UNSUPPORTED. Observer output must be simple: tool number/function, current work, actual improvement since prior report, remaining work, status; if no change say '새 실제 진전 없음'. PASS only after actual evidence read, report generation, real user-visible delivery, and repeated delivery on the next hourly cycle. Reporting failure must not stop other eligible TOOL044 24h circulation work."
-      ]
+      ],
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
@@ -4192,7 +4329,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
@@ -4207,7 +4345,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
@@ -4227,7 +4366,8 @@
         "SUPERSEDES and merges the 2026-09-28 residual-autocirculation, 24h large-parallel expansion, observer separation, Work automatic handoff, approval/rejection/credit governance, and MULTI instructions into ONE COMMON_ROOT. Preserve already-PASS TOOL016→TOOL044 baseline; do not rebuild it. Exclude TOOL013 and individual TOOL completion from this Work. Use remaining Work resources only for this common infrastructure. Goal: unattended 24h collection of errors/feedback/residuals→TOOL016 dedupe+COMMON_ROOT→TOOL044→multiple free independent execution flows for different roots→actual validation/evidence/deploy/read-back→central result return→PASS lock→immediate next selection; only large unresolved roots become WORK_REQUIRED→handoff layer→Work when platform permits→automatic result recovery→TOOL016/044→validation→next. User relay/copy-paste/continuous monitoring is FAIL. Handoff layer owns WORK_REQUIRED collection, dedupe, COMMON_ROOT compression, prior Work/PASS reuse check, Work input generation, permitted automatic handoff, result recovery/integrity check, return and recirculation. It also classifies approval/rejection: safe pre-authorized platform-permitted repeat actions may proceed; duplicate/PASS reruns/low-value repetitions rejected or returned to free circulation; mandatory human approval is never bypassed and is batched as PLATFORM_LIMIT without stopping other work. Credit telemetry: use real readable telemetry only; otherwise CREDIT_TELEMETRY_UNAVAILABLE; never invent values. Work forbidden when free circulation, verified component, or PASS reuse can solve. MULTI requires shared central queue, independent COMMON_ROOT parallelism, atomic claim/lease, exactly-once, duplicate prevention, heartbeat, checkpoint/resume, timeout takeover/failover, PASS reselection block, idle-runner next selection, central result return, TOOL016/044+Observer/Control Tower projection, and 24h evidence accumulation. Same ROOT has one owner; different roots may run concurrently. First run full-system/bulk parallel test and FIND ALL FAILURES, then GROUP BY COMMON_ROOT→FIX EACH ROOT ONCE→APPLY ALL→PARALLEL BULK TEST→INDIVIDUAL EVIDENCE→DEPLOY→REMOTE READ-BACK→RESULT RETURN→PASS LOCK. Do not fix atomic items one-by-one. Minimum MULTI proof: >=2 independent execution flows concurrently claim different real queue tasks, zero duplicate execution, both results return centrally, and intentional failure of one flow is recovered/taken over while circulation continues. Minimum Work proof: one real WORK_REQUIRED travels circulation→handoff→Work processing→automatic result recovery→TOOL016/044→validation→next without user relay; if platform cannot programmatically invoke Work or retrieve its result, record only that stage PLATFORM_LIMIT and keep all other circulation active. 24H_ACTUAL_PASS only after real elapsed 24h evidence; 24h execution/evidence collection continues meanwhile. Existing PASS/SKIP_REUSE_PASS/Work↔Work PASS remain REOPEN_BLOCKED unless real regression/new requirement. All new failures are deduped into this/root-related COMMON_ROOTs, not separate duplicate projects.",
         "SUPERSEDES and merges the 2026-09-28 residual-autocirculation, 24h large-parallel expansion, observer separation, Work automatic handoff, approval/rejection/credit governance, and MULTI instructions into ONE COMMON_ROOT. Preserve already-PASS TOOL016→TOOL044 baseline; do not rebuild it. Exclude TOOL013 and individual TOOL completion from this Work. Use remaining Work resources only for this common infrastructure. Goal: unattended 24h collection of errors/feedback/residuals→TOOL016 dedupe+COMMON_ROOT→TOOL044→multiple free independent execution flows for different roots→actual validation/evidence/deploy/read-back→central result return→PASS lock→immediate next selection; only large unresolved roots become WORK_REQUIRED→handoff layer→Work when platform permits→automatic result recovery→TOOL016/044→validation→next. User relay/copy-paste/continuous monitoring is FAIL. Handoff layer owns WORK_REQUIRED collection, dedupe, COMMON_ROOT compression, prior Work/PASS reuse check, Work input generation, permitted automatic handoff, result recovery/integrity check, return and recirculation. It also classifies approval/rejection: safe pre-authorized platform-permitted repeat actions may proceed; duplicate/PASS reruns/low-value repetitions rejected or returned to free circulation; mandatory human approval is never bypassed and is batched as PLATFORM_LIMIT without stopping other work. Credit telemetry: use real readable telemetry only; otherwise CREDIT_TELEMETRY_UNAVAILABLE; never invent values. Work forbidden when free circulation, verified component, or PASS reuse can solve. MULTI requires shared central queue, independent COMMON_ROOT parallelism, atomic claim/lease, exactly-once, duplicate prevention, heartbeat, checkpoint/resume, timeout takeover/failover, PASS reselection block, idle-runner next selection, central result return, TOOL016/044+Observer/Control Tower projection, and 24h evidence accumulation. Same ROOT has one owner; different roots may run concurrently. First run full-system/bulk parallel test and FIND ALL FAILURES, then GROUP BY COMMON_ROOT→FIX EACH ROOT ONCE→APPLY ALL→PARALLEL BULK TEST→INDIVIDUAL EVIDENCE→DEPLOY→REMOTE READ-BACK→RESULT RETURN→PASS LOCK. Do not fix atomic items one-by-one. Minimum MULTI proof: >=2 independent execution flows concurrently claim different real queue tasks, zero duplicate execution, both results return centrally, and intentional failure of one flow is recovered/taken over while circulation continues. Minimum Work proof: one real WORK_REQUIRED travels circulation→handoff→Work processing→automatic result recovery→TOOL016/044→validation→next without user relay; if platform cannot programmatically invoke Work or retrieve its result, record only that stage PLATFORM_LIMIT and keep all other circulation active. 24H_ACTUAL_PASS only after real elapsed 24h evidence; 24h execution/evidence collection continues meanwhile. Existing PASS/SKIP_REUSE_PASS/Work↔Work PASS remain REOPEN_BLOCKED unless real regression/new requirement. All new failures are deduped into this/root-related COMMON_ROOTs, not separate duplicate projects. BASELINE/RESIDUAL UPDATE: Keep the existing PASS TOOL016↔TOOL044 circulation PASS-locked; do not stop, rebuild, or revalidate it absent a real regression/new requirement. Current reconciliation baseline supplied for circulation: new actual errors=0; existing actual incomplete=37; previously misincluded PASS=20 and must be excluded/REOPEN_BLOCKED; duplicate/parent-group items=8 and must not execute independently; external/PLATFORM_LIMIT=6; evidence-waiting=8. Counts are reconciliation metadata, not a target to force to zero. Do not fix 37 atomics individually: collect→exclude PASS/duplicates→group same-cause residuals by COMMON_ROOT→fix each root once→apply all affected items→actual execute/validate→automatic recirculation on failure→deploy→remote read-back→individual evidence→PASS lock. TOOL013 and other individual-tool residuals remain queued under their applicable root/task; no manual per-tool work is requested here. WAITING/PLATFORM_LIMIT and real-time evidence waits never block solvable circulation; resume automatically when conditions clear. Evidence-waiting accumulates naturally with elapsed time. After each completion automatically select the next unresolved item/root. User remains observer; no intermediate approval/copy-paste/per-item confirmation. Final objective is real PASS for solvable items, not artificial zero counts.",
         "SUPERSEDES and merges the 2026-09-28 residual-autocirculation, 24h large-parallel expansion, observer separation, Work automatic handoff, approval/rejection/credit governance, and MULTI instructions into ONE COMMON_ROOT. Preserve already-PASS TOOL016→TOOL044 baseline; do not rebuild it. Exclude TOOL013 and individual TOOL completion from this Work. Use remaining Work resources only for this common infrastructure. Goal: unattended 24h collection of errors/feedback/residuals→TOOL016 dedupe+COMMON_ROOT→TOOL044→multiple free independent execution flows for different roots→actual validation/evidence/deploy/read-back→central result return→PASS lock→immediate next selection; only large unresolved roots become WORK_REQUIRED→handoff layer→Work when platform permits→automatic result recovery→TOOL016/044→validation→next. User relay/copy-paste/continuous monitoring is FAIL. Handoff layer owns WORK_REQUIRED collection, dedupe, COMMON_ROOT compression, prior Work/PASS reuse check, Work input generation, permitted automatic handoff, result recovery/integrity check, return and recirculation. It also classifies approval/rejection: safe pre-authorized platform-permitted repeat actions may proceed; duplicate/PASS reruns/low-value repetitions rejected or returned to free circulation; mandatory human approval is never bypassed and is batched as PLATFORM_LIMIT without stopping other work. Credit telemetry: use real readable telemetry only; otherwise CREDIT_TELEMETRY_UNAVAILABLE; never invent values. Work forbidden when free circulation, verified component, or PASS reuse can solve. MULTI requires shared central queue, independent COMMON_ROOT parallelism, atomic claim/lease, exactly-once, duplicate prevention, heartbeat, checkpoint/resume, timeout takeover/failover, PASS reselection block, idle-runner next selection, central result return, TOOL016/044+Observer/Control Tower projection, and 24h evidence accumulation. Same ROOT has one owner; different roots may run concurrently. First run full-system/bulk parallel test and FIND ALL FAILURES, then GROUP BY COMMON_ROOT→FIX EACH ROOT ONCE→APPLY ALL→PARALLEL BULK TEST→INDIVIDUAL EVIDENCE→DEPLOY→REMOTE READ-BACK→RESULT RETURN→PASS LOCK. Do not fix atomic items one-by-one. Minimum MULTI proof: >=2 independent execution flows concurrently claim different real queue tasks, zero duplicate execution, both results return centrally, and intentional failure of one flow is recovered/taken over while circulation continues. Minimum Work proof: one real WORK_REQUIRED travels circulation→handoff→Work processing→automatic result recovery→TOOL016/044→validation→next without user relay; if platform cannot programmatically invoke Work or retrieve its result, record only that stage PLATFORM_LIMIT and keep all other circulation active. 24H_ACTUAL_PASS only after real elapsed 24h evidence; 24h execution/evidence collection continues meanwhile. Existing PASS/SKIP_REUSE_PASS/Work↔Work PASS remain REOPEN_BLOCKED unless real regression/new requirement. All new failures are deduped into this/root-related COMMON_ROOTs, not separate duplicate projects. BASELINE/RESIDUAL UPDATE: Keep the existing PASS TOOL016↔TOOL044 circulation PASS-locked; do not stop, rebuild, or revalidate it absent a real regression/new requirement. Current reconciliation baseline supplied for circulation: new actual errors=0; existing actual incomplete=37; previously misincluded PASS=20 and must be excluded/REOPEN_BLOCKED; duplicate/parent-group items=8 and must not execute independently; external/PLATFORM_LIMIT=6; evidence-waiting=8. Counts are reconciliation metadata, not a target to force to zero. Do not fix 37 atomics individually: collect→exclude PASS/duplicates→group same-cause residuals by COMMON_ROOT→fix each root once→apply all affected items→actual execute/validate→automatic recirculation on failure→deploy→remote read-back→individual evidence→PASS lock. TOOL013 and other individual-tool residuals remain queued under their applicable root/task; no manual per-tool work is requested here. WAITING/PLATFORM_LIMIT and real-time evidence waits never block solvable circulation; resume automatically when conditions clear. Evidence-waiting accumulates naturally with elapsed time. After each completion automatically select the next unresolved item/root. User remains observer; no intermediate approval/copy-paste/per-item confirmation. Final objective is real PASS for solvable items, not artificial zero counts. HANDOFF SELF-MONITORING UPDATE: The handoff layer itself is inside the circulation watchdog/recovery scope. Automatically detect handoff heartbeat loss, missing result return, duplicate handoff, excessive Work invocation, unnecessary credit consumption when real telemetry exists, and approval-wait stalls; dedupe/group these failures into COMMON_ROOT and re-register for automatic recovery/fix/validation/redeploy where platform permits. Never bypass explicit human approval/allow-deny requirements: isolate them as PLATFORM_LIMIT, batch approval-required work to minimize intervention count, and keep all unrelated TOOL016↔TOOL044 24h circulation running. Handoff-layer failure must be fail-isolated, not a global circulation stop condition."
-      ]
+      ],
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
@@ -4280,7 +4420,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-COMMON_ROOT_DEDUPLICATION",
@@ -4333,7 +4474,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-ITEM_EVIDENCE_RETURN",
@@ -4386,7 +4528,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
@@ -4439,7 +4582,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
@@ -4487,7 +4631,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
@@ -4535,7 +4680,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-39-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
@@ -4567,7 +4713,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-INPUT_CONTRACT_VALIDATION",
@@ -4615,7 +4762,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-EXPECTED_ACTUAL_VALIDATION",
@@ -4663,7 +4811,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "FINAL-42-COMMON-ROOT-CIRCULATION-FAILURE_ISOLATION",
@@ -4695,7 +4844,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
@@ -4710,7 +4860,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
@@ -4725,7 +4876,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
@@ -4740,7 +4892,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "2879888fd53f71858876-INPUT_CONTRACT_VALIDATION",
@@ -4792,7 +4945,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "2879888fd53f71858876-EXPECTED_ACTUAL_VALIDATION",
@@ -4844,7 +4998,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "2879888fd53f71858876-FAILURE_ISOLATION",
@@ -4880,7 +5035,8 @@
         "status": "PASS",
         "tool016_ack": "RECEIVED",
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
-      }
+      },
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
@@ -4895,7 +5051,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
@@ -4910,7 +5067,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "LONG_TERM_HOLD"
     },
     {
       "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
@@ -4928,7 +5086,8 @@
       "result_return": null,
       "directive_history": [
         "EMERGENCY GLOBAL IMPROVEMENT. Treat recurring WIC TOC failures as root ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE, not CAR-025/MarketsandMarkets-only. RULE_NOT_ENFORCED: do not solve by adding more prose rules. Apply to all WIC market-report publishers. Before extraction lock SOURCE_ID = Publisher + Exact Report Title + Official Report URL; reseller/search snippet/other or similar report cannot be TOC source. Extract every TOC item actually published on the official publisher page from first through last, preserving official hierarchy, numbering, titles, order, and all published subitems; forbid summarization, ellipsis, rewriting, renumbering, reconstruction, or using Scope/Segments/Methodology as TOC. Mandatory common validator after publisher-specific extractor/adaptor: chapter/subnumber continuity, source/output counts, exact titles, hierarchy depth, order, omissions, duplicates, and foreign SOURCE_ID contamination. Mandatory line-by-line SOURCE↔OUTPUT diff; output only when SOURCE_COUNT=OUTPUT_COUNT and content/order/hierarchy all PASS. If sufficient official TOC unavailable, HOLD or replace candidate; do not select a report for final three if user would need manual TOC creation. Recover all historical TOOL042/WIC TOC user corrections/errors/FAIL as regression fixtures across publishers; use verified normal cases as GOLDEN SAMPLE. TOOL044 ready-component-first: investigate free/open-source, maintained, actually-used components for HTML tree extraction, structured-data parsing, schema validation, DOM diff, hierarchical list validation; sandbox candidate → historical WIC fixture test → only PASS component enters runtime; if none usable without modification, NO_READY_COMPONENT plus minimum gap. Mandatory TOOL042 path: customer selection → report candidate → official page verification → TOC extraction → TOC validator → PASS → guidance output. Validator bypass must block final output. Any user manual recovery/check/renumber/copy is USER_FORCED_MANUAL_REPAIR=FAIL. PASS requires actual regression across different publishers/report structures with TOC omission=0, arbitrary abbreviation=0, foreign-report contamination=0, fabricated TOC=0, user manual correction=0, plus actual TOOL042 runtime read-back evidence. Failure returns cause to TOOL016 then TOOL044 component replacement/retest circulation. Also finish automatic intake for future WIC chats when user says '이것도 44번에 넣어라': package user correction + actual failure output + existing ROOT + required delta and route to central intake/TOOL016/044 without user copy/paste/re-explanation/intermediate approval. GitHub Issue comment alone is not registration. Required evidenced lifecycle: CENTRAL_INBOX_RECEIVED → ROOT_MERGED/CREATED → TOOL044_QUEUE_CREATED → EXECUTOR_ASSIGNED → TEST_RUNNING → RESULT_RETURNED. User remains observer. Respect highest pre-execution dedup/conflict gate; merge same-cause existing R6/R7/R8/R9 or other roots rather than duplicate work; preserve PASS locks/checkpoints."
-      ]
+      ],
+      "residual_classification": "PARTIAL"
     },
     {
       "demand_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
@@ -4954,7 +5113,8 @@
         "returned_at": "2026-09-29T11:38:20.724246+00:00"
       },
       "satisfied_at": "2026-09-29T11:38:20.724246+00:00",
-      "satisfied_component": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1"
+      "satisfied_component": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
@@ -4996,7 +5156,8 @@
       ],
       "common_error_batch": true,
       "pass_lock_policy": "E2E_EVIDENCE_ONLY",
-      "platform_hold_policy": "KEEP_TRACKED_DO_NOT_BLOCK_ACTIONABLE_WORK"
+      "platform_hold_policy": "KEEP_TRACKED_DO_NOT_BLOCK_ACTIONABLE_WORK",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
@@ -5011,7 +5172,8 @@
         "stage": "INTAKE_ACCEPTED",
         "resume_from": "INTAKE_ACCEPTED"
       },
-      "result_return": null
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     }
   ]
 }
