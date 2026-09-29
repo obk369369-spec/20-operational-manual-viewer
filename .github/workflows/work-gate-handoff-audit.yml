@@ -23,6 +23,8 @@ jobs:
         run: python feedback_pipeline/work_credit_waste_start_gate.py
       - name: Work execution audit regression
         run: python feedback_pipeline/work_execution_enforcer.py --self-test
+      - name: Work and TOOL044 mutual exclusion and resume regression
+        run: python feedback_pipeline/tool044_work_parallel.py --self-test
       - name: Deterministic Work gate fixtures
         run: python feedback_pipeline/work_gate_handoff.py --self-test
       - name: Generate exact Work handoff and exit template

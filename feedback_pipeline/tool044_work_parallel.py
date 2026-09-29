@@ -29,13 +29,32 @@ def assets(d):return set(d.get("files_to_change") or d.get("FILES_TO_CHANGE") or
 def claim(queue,demand_id,owner,lease_minutes=30):
     now=datetime.now(timezone.utc)
     d=next(x for x in queue["demands"] if x.get("demand_id")==demand_id)
+    if terminal(d) or (d.get("result_return") or {}).get("status")=="PASS":
+        return {"decision":"BLOCKED_COMPLETED","owner":(d.get("claim") or {}).get("owner")}
     if active(d,now) and d["claim"]["owner"]!=owner:return {"decision":"ACTIVE_ELSEWHERE","owner":d["claim"]["owner"]}
     for other in queue["demands"]:
         if other is d or not active(other,now):continue
         if assets(d)&assets(other):return {"decision":"ACTIVE_ELSEWHERE","owner":other["claim"]["owner"],"reason":"ASSET_LOCK"}
+    previous=d.get("claim") or {}; takeover=bool(previous.get("owner")) and not active(d,now)
     d["claim"]={"owner":owner,"claimed_at":now.isoformat(),"lease_expiry":(now+timedelta(minutes=lease_minutes)).isoformat()}
-    d["status"]="CLAIMED";d.setdefault("checkpoint",{"stage":"CLAIMED","resume_from":"CLAIMED"})
-    return {"decision":"CLAIMED","owner":owner}
+    d["status"]="WORK_IN_PROGRESS" if str(owner).startswith("WORK") else "CLAIMED"
+    d.setdefault("checkpoint",{"stage":"CLAIMED","resume_from":"CLAIMED"})
+    if takeover:d["checkpoint"].update(stage="STALE_CLAIM_RECOVERED",resume_from=d["checkpoint"].get("resume_from","CLAIMED"))
+    return {"decision":"CLAIMED","owner":owner,"takeover":takeover}
+
+def return_result(queue,demand_id,owner,outcome,result=None):
+    d=next(x for x in queue["demands"] if x.get("demand_id")==demand_id)
+    claim_state=d.get("claim") or {}
+    if claim_state.get("owner")!=owner:return {"decision":"STALE_OWNER_REJECTED"}
+    now=datetime.now(timezone.utc).isoformat();outcome=str(outcome).upper()
+    if outcome=="PASS":
+        d.update(status="PASS_LOCKED",result_return={"status":"PASS","tool016_ack":"RECEIVED","returned_at":now,"result":result},claim=None)
+        d["checkpoint"]={"stage":"PASS_LOCKED","resume_from":"TERMINAL"}
+        return {"decision":"PASS_LOCKED"}
+    resume="RETRY_AFTER_WORK_INTERRUPTION" if outcome in {"FAIL","INTERRUPTED","CREDIT_LIMIT"} else "RETRY_WHEN_EXTERNAL_CONDITION_CHANGES"
+    d.update(status="READY_FOR_TOOL044_RESUME",result_return={"status":outcome,"tool016_ack":"RECEIVED","returned_at":now,"result":result,"resume_condition":resume},claim=None)
+    d["checkpoint"]={"stage":"RETURNED_FOR_RESUME","resume_from":d.get("checkpoint",{}).get("resume_from","CLAIMED")}
+    return {"decision":"RETURNED_FOR_RESUME","resume_condition":resume}
 def compress(rows):
     groups={}
     for r in rows:
@@ -69,7 +88,16 @@ def self_test():
     assert claim(q,"C","TOOL044")["decision"]=="CLAIMED"
     q["demands"].append({"demand_id":"D","root_id":"R3","target_tool":"TOOL007","status":"OPEN","files_to_change":["a.py"]})
     assert claim(q,"D","RUNNER3")["decision"]=="ACTIVE_ELSEWHERE"
-    return {"ROOT_COMPRESSION_PASS":"PASS","CROSS_RUNNER_CLAIM_PASS":"PASS","NO_DUPLICATE_EXECUTION_PASS":"PASS","WORK_PACKAGE_PASS":"PASS"}
+    assert return_result(q,"A","WORK","PASS",{"evidence":"ACTUAL"})["decision"]=="PASS_LOCKED"
+    assert claim(q,"A","TOOL044")["decision"]=="BLOCKED_COMPLETED"
+    assert return_result(q,"C","TOOL044","INTERRUPTED")["decision"]=="RETURNED_FOR_RESUME"
+    assert claim(q,"C","WORK-RESUME")["decision"]=="CLAIMED"
+    assert return_result(q,"C","WORK-RESUME","PASS")["decision"]=="PASS_LOCKED"
+    q["demands"].append({"demand_id":"E","root_id":"R4","target_tool":"TOOL044","status":"WORK_IN_PROGRESS","claim":{"owner":"WORK-DEAD","lease_expiry":(now-timedelta(seconds=1)).isoformat()},"checkpoint":{"stage":"RUNNING","resume_from":"VALIDATE"}})
+    recovered=claim(q,"E","TOOL044-RECOVERY")
+    assert recovered["decision"]=="CLAIMED" and recovered["takeover"] is True
+    assert q["demands"][-1]["checkpoint"]=={"stage":"STALE_CLAIM_RECOVERED","resume_from":"VALIDATE"}
+    return {"ROOT_COMPRESSION_PASS":"PASS","CROSS_RUNNER_CLAIM_PASS":"PASS","NO_DUPLICATE_EXECUTION_PASS":"PASS","WORK_PACKAGE_PASS":"PASS","WORK_RESULT_RETURN_PASS":"PASS","INTERRUPTION_RESUME_PASS":"PASS","TERMINAL_RESELECTION_BLOCK_PASS":"PASS","STALE_WORK_TAKEOVER_PASS":"PASS"}
 def main():
     ap=argparse.ArgumentParser();ap.add_argument("--self-test",action="store_true");ap.add_argument("--packages",action="store_true");a=ap.parse_args()
     if a.self_test:print(json.dumps(self_test(),sort_keys=True));return
