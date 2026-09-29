@@ -1895,11 +1895,26 @@
       "COMPONENT_ID": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
       "OWNER": "GITHUB_ACTIONS:36514908124:GATE_01",
       "CLAIM_TIME": "2026-09-29T02:56:31.551846+00:00",
-      "LEASE_EXPIRY": "2026-09-29T03:26:31.551846+00:00",
-      "CHECKPOINT": "CLAIM_DURABLE",
-      "STATUS": "CLAIMED",
+      "LEASE_EXPIRY": null,
+      "CHECKPOINT": "REGRESSION_COMPLETE",
+      "STATUS": "PASS",
       "RETRY_COUNT": 0,
-      "RESULT": null,
+      "RESULT": {
+        "job_id": "DEMAND::2879888fd53f71858876-INPUT_CONTRACT_VALIDATION::FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+        "owner": "GITHUB_ACTIONS:36514908124:GATE_01",
+        "fencing_token": "55acf0d28fa54014b00765b9c98ef046",
+        "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
+        "root_id": "88f4897c09e7ad84a693",
+        "target_tool": "CENTRAL",
+        "status": "PASS",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "install_returncode": 0,
+        "validator_returncode": 0,
+        "rollback_returncode": null,
+        "rollback_pass": true,
+        "heartbeat": "2026-09-29T02:56:42.535561+00:00",
+        "production_mutation": 0
+      },
       "COMPONENT": {
         "component_id": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF",
         "status": "VERIFIED_REUSABLE",
@@ -1972,9 +1987,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-29T02:56:31.551846+00:00",
+  "updated_at": "2026-09-29T02:56:53.368028+00:00",
   "capacity": 15,
-  "active_claims": 1,
+  "active_claims": 0,
   "provider": "GITHUB_ACTIONS",
-  "results_returned": 2
+  "results_returned": 1
 }
