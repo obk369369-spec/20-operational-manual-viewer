@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T06:09:30.906786+00:00",
+  "updated_at": "2026-09-29T13:03:19.875030+00:00",
   "ready_package_count": 2,
-  "rejected_count": 3,
+  "rejected_count": 10,
   "packages": [
     {
       "PACKAGE_ID": "READY::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
@@ -158,6 +158,55 @@
     },
     {
       "component_id": "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "TENACITY_9_1_4_FAILURE_ISOLATION",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "WIC_COMMON_RESIDUAL_CIRCULATION_CONTROLLER_V1",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "WIC_ZERO_TOUCH_RESIDUAL_CIRCULATION_V1",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "WIC_NON_TOOL_COMMON_CLOSEOUT_CR1_CR5_V1",
+      "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
       "missing": [
         "source_sha256"
       ],
