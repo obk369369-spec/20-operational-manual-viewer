@@ -3038,7 +3038,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T13:16:43.475545+00:00",
+      "updated_at": "2026-09-29T13:29:14.938712+00:00",
       "UNFINISHED_SCANNED": 46,
       "ALREADY_PASS_EXCLUDED": 69,
       "ROOTS_MERGED": 5,
@@ -3334,20 +3334,22 @@
       "FREE_EXTERNAL_RUNNER_POOL": {
         "target": 15,
         "actual_run_pass": [
-          "GITHUB_ACTIONS_MATRIX_V1"
+          "GITHUB_ACTIONS_MATRIX_V1",
+          "CIRCLECI_CLOUD_ENV2_V1",
+          "DENO_DEPLOY_ENV2_V1"
         ],
         "blocked_user_action": [
           "WOODPECKER_MULTI_AGENT_V1",
           "GITLAB_PARALLEL_MATRIX_V1"
         ],
         "bulk_summary": {
-          "collected": 4,
+          "collected": 6,
           "a_ready": 0,
           "b_ready": 0,
           "blocked_user_action": 2,
           "rejected": 1,
-          "actual_run_pass": 1,
-          "remaining_to_target": 14,
+          "actual_run_pass": 3,
+          "remaining_to_target": 12,
           "next_root_bundle": "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
         }
       },
@@ -3360,7 +3362,7 @@
         "dedup_gate": "PASS",
         "result_returns": 57,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
-        "external_failover": "HOLD_SECOND_RUNTIME",
+        "external_failover": "READY",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
         "chat_report": "CONTROL_TOWER_ONLY_CHAT_DELIVERY_UNSUPPORTED",
         "observer_projection": "PERSISTED_TO_CENTRAL_AND_VISIBLE_HANDOFF"
@@ -3435,7 +3437,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T13:16:43.475545+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T13:29:14.938712+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3562,7 +3564,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T13:16:43.475545+00:00",
+      "updated_at": "2026-09-29T13:29:14.938712+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3704,12 +3706,12 @@
       "REMOTE_GITHUB_READBACK_PASS": true
     },
     "non_tool_common_closeout": {
-      "updated_at": "2026-09-29T13:16:43.483362+00:00",
+      "updated_at": "2026-09-29T13:29:14.951402+00:00",
       "counts": {
         "COMPLETE": 37,
-        "PARTIAL": 9,
         "UNFINISHED": 15,
         "LONG_TERM_HOLD": 5,
+        "PARTIAL": 9,
         "PLATFORM_HOLD": 3
       },
       "cr_status": {
