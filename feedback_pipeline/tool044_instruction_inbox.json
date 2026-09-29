@@ -278,6 +278,13 @@
       "observer_reinstruction_required": 0,
       "auto_requeue_required": true,
       "pass_policy": "E2E_EVIDENCE_ONLY"
+    },
+    {
+      "directive_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+      "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
+      "revision": 1,
+      "directive": "Execute feedback_pipeline/WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE_20260929.md. Exclude individual tool functional work. Preserve evidence-backed PASS. Reconcile historical common-infrastructure requirements, work only incomplete common roots, report status at each closeout, automatically requeue actionable residuals, select next eligible root, and keep unsupported platform stages explicit HOLD."
     }
   ]
 }
