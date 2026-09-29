@@ -4955,6 +4955,30 @@
       },
       "satisfied_at": "2026-09-29T11:38:20.724246+00:00",
       "satisfied_component": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1"
+    },
+    {
+      "demand_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
+      "root_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE",
+      "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
+      "status": "OPEN",
+      "source": "USER_PRIORITY_WRIST_REDUCTION",
+      "priority": "CRITICAL",
+      "atomic_capabilities": [
+        "GLOBAL_REQUIREMENT_RECONCILIATION",
+        "AUTO_STATUS_CLASSIFICATION",
+        "AUTO_USER_VISIBLE_COMPLETION_REPORT",
+        "AUTO_UNFINISHED_REQUEUE",
+        "AUTO_NEXT_WORK_SELECTION"
+      ],
+      "success_condition": "After every work cycle, automatically compare all previously unresolved and newly added requirements; classify each as COMPLETE/PARTIAL/UNFINISHED/PLATFORM_HOLD/LONG_TERM_HOLD; PASS-lock only proven COMPLETE items; automatically requeue all actionable PARTIAL/UNFINISHED items; select next work; produce a user-visible completion report without requiring the observer to ask again.",
+      "failure_condition": "Any prior unresolved requirement is silently dropped, marked complete without evidence, requires the observer to retype/recheck it, or actionable unfinished work is not automatically requeued.",
+      "dedup_rule": "Merge with existing RESIDUAL_RECONCILIATION/AUTO_NEXT_ROOT capabilities; do not rework existing PASS locks. This root remains OPEN until user-visible automatic reporting and requeue are proven end-to-end.",
+      "observer_manual_relay_required": 0,
+      "long_term_excluded": [
+        "SECOND_INDEPENDENT_EXTERNAL_RUNTIME",
+        "ACTUAL_24H_ELAPSED_EVIDENCE",
+        "EXTERNAL_AUTH_OR_PLATFORM_PERMISSION"
+      ]
     }
   ]
 }
