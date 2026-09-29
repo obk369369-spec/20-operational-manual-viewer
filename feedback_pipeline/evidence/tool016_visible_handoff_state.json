@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T05:40:14.763448+00:00",
+  "updated_at": "2026-09-29T05:49:12.748484+00:00",
   "UNFINISHED_SCANNED": 52,
   "ALREADY_PASS_EXCLUDED": 56,
   "ROOTS_MERGED": 0,
@@ -344,16 +344,21 @@
         "run_id": "36511900969",
         "observed_at": "2026-09-29T02:17:35.492095+00:00",
         "event": "schedule"
+      },
+      {
+        "run_id": "36527913383",
+        "observed_at": "2026-09-29T05:49:12.748484+00:00",
+        "event": "schedule"
       }
     ],
-    "run_count": 8,
-    "elapsed_hours": 12.236,
+    "run_count": 9,
+    "elapsed_hours": 15.763,
     "status": "WAITING",
     "actual_24h": false
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T05:40:14.763448+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T05:49:12.748484+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0
