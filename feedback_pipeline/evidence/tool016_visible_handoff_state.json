@@ -1,37 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T11:37:59.794467+00:00",
-  "UNFINISHED_SCANNED": 41,
-  "ALREADY_PASS_EXCLUDED": 70,
-  "ROOTS_MERGED": 1,
-  "WORK_FIXABLE_ROOTS": 1,
-  "WORK_REQUIRED": [
-    {
-      "demand_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
-      "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
-      "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
-      "atomic_capabilities": [
-        "AUTOMATIC_FEEDBACK_COLLECTION",
-        "HOURLY_STATUS_RETURN",
-        "INSTRUCTION_CONFLICT_DEDUP",
-        "OUTPUT_GATE_ENFORCEMENT",
-        "RESIDUAL_RECONCILIATION",
-        "WORK_HANDOFF_E2E"
-      ]
-    }
-  ],
-  "WORK_BATCHES": [
-    {
-      "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
-      "demands": [
-        "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929"
-      ],
-      "target_tools": [
-        "TOOL016/TOOL044/WORK_HANDOFF"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    }
-  ],
+  "updated_at": "2026-09-29T11:38:20.762310+00:00",
+  "UNFINISHED_SCANNED": 40,
+  "ALREADY_PASS_EXCLUDED": 71,
+  "ROOTS_MERGED": 0,
+  "WORK_FIXABLE_ROOTS": 0,
+  "WORK_REQUIRED": [],
+  "WORK_BATCHES": [],
   "TOOL044_AUTO_HANDED_OFF": 28,
   "TOOL044_QUEUE": [
     {
@@ -203,12 +178,11 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 1,
+  "WORK_REQUIRED_REMAINDER": 0,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
-      "PASS": 75,
-      "CLAIMED": 1
+      "PASS": 76
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -233,12 +207,12 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 29,
+    "ready": 28,
     "waiting": 12,
     "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
     "duplicate_demand_ids": [],
     "dedup_gate": "PASS",
-    "result_returns": 50,
+    "result_returns": 51,
     "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
     "external_failover": "HOLD_SECOND_RUNTIME",
     "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -310,7 +284,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-09-29T11:37:59.794467+00:00",
+  "LAST_HEARTBEAT": "2026-09-29T11:38:20.762310+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

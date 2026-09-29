@@ -684,14 +684,14 @@
       "READY": 0,
       "CLAIMED": 0,
       "RUNNING": 0,
-      "COMPONENT_FOUND": 75,
+      "COMPONENT_FOUND": 76,
       "VALIDATING": 0,
-      "PASS": 75,
+      "PASS": 76,
       "FAIL": 0,
       "HOLD": 0,
       "RETURNED": 1,
-      "REMAINING": 62,
-      "LAST_HEARTBEAT": "2026-09-29T11:37:19.825281+00:00",
+      "REMAINING": 61,
+      "LAST_HEARTBEAT": "2026-09-29T11:38:20.724246+00:00",
       "CURRENT_RUNNER": "GITHUB_ACTIONS",
       "CURRENT_COMPONENT": null,
       "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
@@ -699,7 +699,7 @@
       "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "tool044_multi_gate": {
-      "updated_at": "2026-09-29T11:37:19.825281+00:00",
+      "updated_at": "2026-09-29T11:38:20.724246+00:00",
       "capacity": 30,
       "results_returned": 1,
       "jobs": {
@@ -2643,43 +2643,44 @@
             "heartbeat": "2026-09-29T11:37:11.325747+00:00",
             "production_mutation": 0
           }
+        },
+        "DEMAND::WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1": {
+          "ROOT_ID": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+          "TARGET_TOOL": "TOOL016/TOOL044/WORK_HANDOFF",
+          "COMPONENT_ID": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+          "OWNER": "GITHUB_ACTIONS:36562944052:GATE_01",
+          "LEASE_EXPIRY": null,
+          "FENCING_TOKEN": "b05c52e234b3431093372756f1f90409",
+          "STATUS": "PASS",
+          "CHECKPOINT": "REGRESSION_COMPLETE",
+          "RESULT": {
+            "job_id": "DEMAND::WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929::WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+            "owner": "GITHUB_ACTIONS:36562944052:GATE_01",
+            "fencing_token": "b05c52e234b3431093372756f1f90409",
+            "component_id": "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+            "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
+            "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
+            "status": "PASS",
+            "checkpoint": "REGRESSION_COMPLETE",
+            "install_returncode": 0,
+            "validator_returncode": 0,
+            "rollback_returncode": null,
+            "rollback_pass": true,
+            "heartbeat": "2026-09-29T11:38:10.400388+00:00",
+            "production_mutation": 0
+          }
         }
       }
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T11:37:59.794467+00:00",
-      "UNFINISHED_SCANNED": 41,
-      "ALREADY_PASS_EXCLUDED": 70,
-      "ROOTS_MERGED": 1,
-      "WORK_FIXABLE_ROOTS": 1,
-      "WORK_REQUIRED": [
-        {
-          "demand_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
-          "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
-          "target_tool": "TOOL016/TOOL044/WORK_HANDOFF",
-          "atomic_capabilities": [
-            "AUTOMATIC_FEEDBACK_COLLECTION",
-            "HOURLY_STATUS_RETURN",
-            "INSTRUCTION_CONFLICT_DEDUP",
-            "OUTPUT_GATE_ENFORCEMENT",
-            "RESIDUAL_RECONCILIATION",
-            "WORK_HANDOFF_E2E"
-          ]
-        }
-      ],
-      "WORK_BATCHES": [
-        {
-          "root_id": "WIC-ACCESSIBLE-CYCLE-CLOSEOUT",
-          "demands": [
-            "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929"
-          ],
-          "target_tools": [
-            "TOOL016/TOOL044/WORK_HANDOFF"
-          ],
-          "status": "READY_FOR_MULTI_GATE"
-        }
-      ],
+      "updated_at": "2026-09-29T11:38:20.762310+00:00",
+      "UNFINISHED_SCANNED": 40,
+      "ALREADY_PASS_EXCLUDED": 71,
+      "ROOTS_MERGED": 0,
+      "WORK_FIXABLE_ROOTS": 0,
+      "WORK_REQUIRED": [],
+      "WORK_BATCHES": [],
       "TOOL044_AUTO_HANDED_OFF": 28,
       "TOOL044_QUEUE": [
         {
@@ -2851,12 +2852,11 @@
           "atomic_capabilities": []
         }
       ],
-      "WORK_REQUIRED_REMAINDER": 1,
+      "WORK_REQUIRED_REMAINDER": 0,
       "MULTI_GATE": {
         "capacity": 30,
         "statuses": {
-          "PASS": 75,
-          "CLAIMED": 1
+          "PASS": 76
         }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
@@ -2881,12 +2881,12 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 29,
+        "ready": 28,
         "waiting": 12,
         "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
-        "result_returns": 50,
+        "result_returns": 51,
         "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
         "external_failover": "HOLD_SECOND_RUNTIME",
         "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -2958,7 +2958,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T11:37:59.794467+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T11:38:20.762310+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
