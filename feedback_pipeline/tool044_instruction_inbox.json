@@ -240,8 +240,46 @@
       "directive_id": "TOOL044-EVIDENCE-BASED-ETA-OBSERVER-REPORT-20260929",
       "target_tool": "TOOL044",
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "revision": 4,
-      "directive": "Observer ETA reporting must be evidence-derived, never format-only or invented. For each executable work item collect actual start timestamp, latest actual execution timestamp, Run ID, Runner, checkpoint, completed atomic count, confirmed total atomic count, recent throughput, failure/retry time, WAITING time, and current verified parallel runner count. From those actual records calculate actual elapsed work time, completed quantity, remaining quantity, recent throughput, estimated remaining active work time, and estimated completion timestamp. If total workload or throughput sample is insufficient, output exactly ETA_PENDING_INSUFFICIENT_WORKLOAD_OR_EXECUTION_SAMPLE (observer-facing Korean: 'ETA 산정 대기 — 작업량/실행표본 부족') and automatically gather the missing execution evidence; never invent an ETA. Separate WAITING/auth/PLATFORM_LIMIT duration from active work time. Recalculate ETA when verified parallelism changes, after failure/retry/recovery, at each meaningful checkpoint, and at minimum for every hourly observer report. Independently calculate ETA for highest-priority TOOL013, TOOL041->TOOL007->TOOL042, and TOOL006. For 24H circulation report actual elapsed 24H time plus roots/atomic work completed during that window, currently executing work, remaining eligible work, WAITING work, and actual verified parallelism; do not report only elapsed hours. Hourly observer output must be concise and show actual calculated values and evidence basis, not technical log dumps. If ETA changes materially from prior report, state the evidence-based reason in one line. No evidence => no ETA. Evidence-based ETA is mandatory in hourly observer reporting when calculable; if not calculable, state why and collect the needed sample automatically. Never ask the user to calculate time or workload."
+      "revision": 5,
+      "directive": "Observer ETA reporting must be evidence-derived, never format-only or invented. For each executable work item collect actual start timestamp, latest actual execution timestamp, Run ID, Runner, checkpoint, completed atomic count, confirmed total atomic count, recent throughput, failure/retry time, WAITING time, and current verified parallel runner count. From those actual records calculate actual elapsed work time, completed quantity, remaining quantity, recent throughput, estimated remaining active work time, and estimated completion timestamp. If total workload or throughput sample is insufficient, output exactly ETA_PENDING_INSUFFICIENT_WORKLOAD_OR_EXECUTION_SAMPLE (observer-facing Korean: 'ETA 산정 대기 — 작업량/실행표본 부족') and automatically gather the missing execution evidence; never invent an ETA. Separate WAITING/auth/PLATFORM_LIMIT duration from active work time. Recalculate ETA when verified parallelism changes, after failure/retry/recovery, at each meaningful checkpoint, and at minimum for every hourly observer report. Independently calculate ETA for highest-priority TOOL013, TOOL041->TOOL007->TOOL042, and TOOL006. For 24H circulation report actual elapsed 24H time plus roots/atomic work completed during that window, currently executing work, remaining eligible work, WAITING work, and actual verified parallelism; do not report only elapsed hours. Hourly observer output must be concise and show actual calculated values and evidence basis, not technical log dumps. If ETA changes materially from prior report, state the evidence-based reason in one line. No evidence => no ETA. Evidence-based ETA is mandatory in hourly observer reporting when calculable; if not calculable, state why and collect the needed sample automatically. Never ask the user to calculate time or workload.",
+      "priority": "HIGHEST_AFTER_DEDUP_GATE",
+      "delta_20260930_major_tool_eta": {
+        "priority_order": [
+          "TOOL042",
+          "TOOL041",
+          "TOOL007",
+          "TOOL013",
+          "TOOL002"
+        ],
+        "objective": "Make ETA calculable automatically for the five highest-priority tools; do not stop at ETA_PENDING because telemetry is missing.",
+        "mandatory_actions": [
+          "For each priority tool automatically enumerate remaining executable atomic work after excluding evidenced PASS, duplicates, parent-only groups, WAITING_EXTERNAL and PLATFORM_LIMIT.",
+          "Persist confirmed total atomic count, completed atomic count, remaining atomic count, active claim count, actual Runner ID/environment, claim/start/latest/checkpoint/result-return timestamps, retry/failure active time, WAITING time, and verified parallel runner count.",
+          "If throughput sample is absent, immediately claim and execute the smallest safe real remaining atomic task on an available verified runner to create a real sample; synthetic/sample-only work cannot be used.",
+          "Calculate per-tool recent throughput from actual completed work and active elapsed execution time; recalculate after every checkpoint/result-return and whenever verified parallelism changes.",
+          "Calculate ETA = remaining executable workload / measured effective throughput, with retry/recovery overhead derived from actual runs; show a range when samples are sparse rather than inventing precision.",
+          "Do not let one tool lacking telemetry block other priority tools; collect telemetry and execute independent roots in parallel while preserving priority order TOOL042 > TOOL041 > TOOL007 > TOOL013 > TOOL002.",
+          "After each calculation persist observer-readable ETA evidence and project it to the Control Tower/hourly observer report.",
+          "ETA_PENDING_INSUFFICIENT_WORKLOAD_OR_EXECUTION_SAMPLE is temporary only: automatically gather missing workload/execution evidence until calculable or classify the exact external/platform blocker.",
+          "Never ask the user to count work, measure speed, open GitHub, or provide Runner information."
+        ],
+        "required_output_fields": [
+          "tool",
+          "priority",
+          "remaining_atomic",
+          "completed_atomic",
+          "total_atomic",
+          "active_runner_count",
+          "measured_throughput",
+          "active_elapsed",
+          "waiting_elapsed",
+          "eta_active_work",
+          "eta_completion_window",
+          "evidence_ref",
+          "status"
+        ],
+        "pass_condition": "All five priority tools have evidence-derived ETA or an evidence-backed WAITING_EXTERNAL/PLATFORM_LIMIT/NO_READY_COMPONENT reason that makes ETA genuinely non-calculable."
+      }
     },
     {
       "directive_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
