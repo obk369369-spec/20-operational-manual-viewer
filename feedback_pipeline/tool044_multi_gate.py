@@ -75,6 +75,32 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
                queue: dict | None = None, canary_count: int = 0) -> tuple[dict, list[dict]]:
     jobs = state.setdefault("jobs", {})
     events = state.setdefault("events", [])
+    # The first explicitly requested canary starts as an expired orphan.  The
+    # normal reclaim path below must recover it before any runner can claim it.
+    for index in range(1, min(max(canary_count, 0), MAX_GATES) + 1):
+        job_id = f"CANARY::{run_id}::{index:02d}"
+        component_id = f"COMMON-CIRCULATION-CANARY-{index:02d}"
+        marker = f"lane-{index:02d}.txt"
+        orphan = index == 1
+        jobs.setdefault(job_id, {
+            "JOB_ID": job_id, "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+            "TARGET_TOOL": "COMMON_INFRASTRUCTURE", "COMPONENT_ID": component_id,
+            "OWNER": "EXPIRED_RUNNER" if orphan else None,
+            "CLAIM_TIME": stamp(now - timedelta(minutes=31)) if orphan else None,
+            "LEASE_EXPIRY": stamp(now - timedelta(seconds=1)) if orphan else None,
+            "FENCING_TOKEN": "EXPIRED_FENCE" if orphan else None,
+            "CHECKPOINT": "ORPHANED_AFTER_CHECKPOINT" if orphan else "CANARY_REGISTERED",
+            "STATUS": "CLAIMED" if orphan else "READY", "RETRY_COUNT": 0,
+            "RESULT": None, "COMPONENT": {
+                "component_id": component_id,
+                "install_method": ["{python}", "-c",
+                                   f"from pathlib import Path; Path('{marker}').write_text('READY')"],
+                "validator": ["{python}", "-c",
+                              f"from pathlib import Path; assert Path('{marker}').read_text() == 'READY'"],
+                "rollback_method": ["{python}", "-c",
+                                    f"from pathlib import Path; Path('{marker}').unlink(missing_ok=True)"],
+            },
+        })
     for job in jobs.values():
         expiry = job.get("LEASE_EXPIRY")
         if job.get("STATUS") in {"CLAIMED", "RUNNING", "VALIDATING"} and expiry:
@@ -104,29 +130,6 @@ def build_plan(pool: dict, state: dict, run_id: str, now: datetime,
             "OWNER": None, "CLAIM_TIME": None, "LEASE_EXPIRY": None,
             "CHECKPOINT": "RECEIVED", "STATUS": "READY", "RETRY_COUNT": 0,
             "RESULT": None, "COMPONENT": component,
-        })
-
-    # An explicit dispatch may request real, isolated infrastructure work.  Each
-    # canary is a separate durable job and therefore a separate hosted runner;
-    # scheduled production cycles never create canaries implicitly.
-    for index in range(1, min(max(canary_count, 0), MAX_GATES) + 1):
-        job_id = f"CANARY::{run_id}::{index:02d}"
-        component_id = f"COMMON-CIRCULATION-CANARY-{index:02d}"
-        marker = f"lane-{index:02d}.txt"
-        jobs.setdefault(job_id, {
-            "JOB_ID": job_id, "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
-            "TARGET_TOOL": "COMMON_INFRASTRUCTURE", "COMPONENT_ID": component_id,
-            "OWNER": None, "CLAIM_TIME": None, "LEASE_EXPIRY": None,
-            "CHECKPOINT": "CANARY_REGISTERED", "STATUS": "READY", "RETRY_COUNT": 0,
-            "RESULT": None, "COMPONENT": {
-                "component_id": component_id,
-                "install_method": ["{python}", "-c",
-                                   f"from pathlib import Path; Path('{marker}').write_text('READY')"],
-                "validator": ["{python}", "-c",
-                              f"from pathlib import Path; assert Path('{marker}').read_text() == 'READY'"],
-                "rollback_method": ["{python}", "-c",
-                                    f"from pathlib import Path; Path('{marker}').unlink(missing_ok=True)"],
-            },
         })
 
     # A component becomes reusable only after the prior isolated lane returned PASS.

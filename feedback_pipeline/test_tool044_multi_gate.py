@@ -107,8 +107,11 @@ def test_explicit_canaries_create_independent_durable_lanes(tmp_path: Path):
     matrix = plan(pool, state, "RUN-PARALLEL", queue, canary_count=4)
     assert len(matrix) == 4
     assert len({row["owner"] for row in matrix}) == 4
-    saved = json.loads(state.read_text(encoding="utf-8"))["jobs"]
+    persisted = json.loads(state.read_text(encoding="utf-8"))
+    saved = persisted["jobs"]
     assert all(saved[row["job_id"]]["CHECKPOINT"] == "CLAIM_DURABLE" for row in matrix)
+    assert any(row["event"] == "STALE_RECLAIM" and row["job_id"].endswith("::01")
+               for row in persisted["events"])
 
 
 def test_pass_hold_fail_returns_preserve_demand_resume_contract(tmp_path: Path):
