@@ -4970,14 +4970,25 @@
         "AUTO_UNFINISHED_REQUEUE",
         "AUTO_NEXT_WORK_SELECTION"
       ],
-      "success_condition": "After every work cycle, automatically compare all previously unresolved and newly added requirements; classify each as COMPLETE/PARTIAL/UNFINISHED/PLATFORM_HOLD/LONG_TERM_HOLD; PASS-lock only proven COMPLETE items; automatically requeue all actionable PARTIAL/UNFINISHED items; select next work; produce a user-visible completion report without requiring the observer to ask again.",
-      "failure_condition": "Any prior unresolved requirement is silently dropped, marked complete without evidence, requires the observer to retype/recheck it, or actionable unfinished work is not automatically requeued.",
+      "success_condition": "After every work cycle, automatically compare all previously unresolved and newly added requirements; classify each as COMPLETE/PARTIAL/UNFINISHED/PLATFORM_HOLD/LONG_TERM_HOLD; PASS-lock only proven COMPLETE items; without any observer re-instruction automatically requeue every actionable PARTIAL/UNFINISHED item into the next TOOL044 circulation queue; automatically select and hand off the next work; produce the user-visible completion report without requiring the observer to ask again.",
+      "failure_condition": "Any prior unresolved requirement is silently dropped, merely reported without automatic requeue, marked complete without evidence, requires the observer to say reinsert/requeue/check again, or next work is not automatically selected/handed off.",
       "dedup_rule": "Merge with existing RESIDUAL_RECONCILIATION/AUTO_NEXT_ROOT capabilities; do not rework existing PASS locks. This root remains OPEN until user-visible automatic reporting and requeue are proven end-to-end.",
       "observer_manual_relay_required": 0,
       "long_term_excluded": [
         "SECOND_INDEPENDENT_EXTERNAL_RUNTIME",
         "ACTUAL_24H_ELAPSED_EVIDENCE",
         "EXTERNAL_AUTH_OR_PLATFORM_PERMISSION"
+      ],
+      "auto_requeue_required": true,
+      "observer_reinstruction_required": 0,
+      "requeue_trigger": "EVERY_WORK_CYCLE_CLOSEOUT",
+      "requeue_scope": "ALL_ACTIONABLE_PARTIAL_AND_UNFINISHED_REQUIREMENTS",
+      "requeue_destination": "NEXT_TOOL044_CIRCULATION_QUEUE",
+      "pass_gate": [
+        "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN",
+        "USER_VISIBLE_STATUS_REPORT_PROVEN",
+        "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT",
+        "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF"
       ]
     }
   ]
