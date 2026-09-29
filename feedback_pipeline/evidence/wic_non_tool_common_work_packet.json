@@ -1,13 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:47:59.375241+00:00",
+  "updated_at": "2026-09-29T12:49:52.425020+00:00",
   "root_batches": [
-    {
-      "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
-      "requirements": [
-        "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929"
-      ]
-    },
     {
       "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
       "requirements": [
@@ -15,45 +9,9 @@
       ]
     },
     {
-      "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-      "requirements": [
-        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
-      ]
-    },
-    {
-      "root_id": "FS-FUNCTION-RESELLER_DETECTION",
-      "requirements": [
-        "FS-FUNCTION-RESELLER_DETECTION"
-      ]
-    },
-    {
-      "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-      "requirements": [
-        "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
-      ]
-    },
-    {
       "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
       "requirements": [
         "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928"
-      ]
-    },
-    {
-      "root_id": "T42-PROVENANCE-VALIDATION",
-      "requirements": [
-        "T42-PROVENANCE-VALIDATION"
-      ]
-    },
-    {
-      "root_id": "T42-RESELLER-DETECTION",
-      "requirements": [
-        "T42-RESELLER-DETECTION"
-      ]
-    },
-    {
-      "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-      "requirements": [
-        "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
       ]
     },
     {
@@ -139,10 +97,10 @@
       ]
     }
   ],
-  "next_root": "T42-RESELLER-DETECTION",
+  "next_root": "TOOL044-AUTO-ROLLBACK",
   "execution_policy": "FREE_VERIFIED_CIRCULATION_FIRST_WORK_ONLY_WITH_RESTART_PACKAGE",
   "workspace": "/home/runner/work/20-operational-manual-viewer/20-operational-manual-viewer",
   "branch": "main",
-  "source_commit": "3ae3b254cbd477262afe1dfbf6455ca7eba1faf6",
+  "source_commit": "fdbbd7092fad5f45efe13417c7945433d2482ab2",
   "observer_manual_relay_required": 0
 }

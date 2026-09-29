@@ -1,180 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T12:47:59.375241+00:00",
+  "updated_at": "2026-09-29T12:49:52.425020+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
-    {
-      "requirement_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
-      "root_id": "T42-OFFICIAL-PUBLISHER-VALIDATION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL042",
-          "FUNCTION_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION",
-          "MISSING_CAPABILITY": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "CURRENT_STATUS": "IMPROVED_PARTIAL",
-          "SOURCE_EVIDENCE": [
-            "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
-            "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
-          ],
-          "TOOL044_DEMAND_ID": "T42-OFFICIAL-PUBLISHER-VALIDATION"
-        }
-      ],
-      "implementation_location": [
-        "feedback_pipeline/tool044_composition.py"
-      ],
-      "actual_evidence": [
-        "36529626802"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-      "root_id": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL042",
-          "FUNCTION_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "OFFICIAL_DETAIL_PAGE_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-          "MISSING_CAPABILITY": [
-            "OFFICIAL_DETAIL_PAGE_VALIDATION"
-          ],
-          "CURRENT_STATUS": "IMPROVED_PARTIAL",
-          "SOURCE_EVIDENCE": [
-            "VALIDATORS_0_35_0_URL_VALIDATION"
-          ],
-          "TOOL044_DEMAND_ID": "T42-OFFICIAL-DETAIL-PAGE-VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "T42-RESELLER-DETECTION",
-      "root_id": "T42-RESELLER-DETECTION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL042",
-          "FUNCTION_ID": "T42-RESELLER-DETECTION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "RESELLER_DETECTION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "T42-RESELLER-DETECTION",
-          "MISSING_CAPABILITY": [
-            "RESELLER_DETECTION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "T42-RESELLER-DETECTION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "RESELLER_DETECTION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
-    {
-      "requirement_id": "T42-PROVENANCE-VALIDATION",
-      "root_id": "T42-PROVENANCE-VALIDATION",
-      "original_requirement": [
-        "PROVENANCE_VALIDATION"
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "PROVENANCE_VALIDATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
-    {
-      "requirement_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-      "root_id": "T42-WEBPAGE-TEXT-EXTRACTION",
-      "original_requirement": [
-        "WEBPAGE_TEXT_EXTRACTION"
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "HTML2TEXT_2025_4_15_ACTUAL_WEBPAGE_TEXT"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "T42-TOC-STRUCTURE-EXTRACTION",
-      "root_id": "T42-TOC-STRUCTURE-EXTRACTION",
-      "original_requirement": [
-        "TOC_STRUCTURE_EXTRACTION"
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "HTML2TEXT_MISTUNE_ACTUAL_TOC_STRUCTURE"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-      "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL042",
-          "FUNCTION_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "TOC_HIERARCHY_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-          "MISSING_CAPABILITY": [
-            "TOC_HIERARCHY_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "TOC_HIERARCHY_VALIDATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
     {
       "requirement_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
       "root_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
@@ -249,126 +77,6 @@
       "remaining_work": [
         "VERIFIED_TARGET_DEPLOYMENT",
         "DEPLOYED_COPY_VALIDATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
-    {
-      "requirement_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-      "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": null,
-          "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "MISSING_CAPABILITY": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "OFFICIAL_DOMAIN_VALIDATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
-    {
-      "requirement_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
-      "root_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": null,
-          "FUNCTION_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "OFFICIAL_DETAIL_PAGE_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
-          "MISSING_CAPABILITY": [
-            "OFFICIAL_DETAIL_PAGE_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "VALIDATORS_0_35_0_OFFICIAL_DETAIL_PAGE"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "FS-FUNCTION-RESELLER_DETECTION",
-      "root_id": "FS-FUNCTION-RESELLER_DETECTION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": null,
-          "FUNCTION_ID": "FS-FUNCTION-RESELLER_DETECTION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "RESELLER_DETECTION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "FS-FUNCTION-RESELLER_DETECTION",
-          "MISSING_CAPABILITY": [
-            "RESELLER_DETECTION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "FS-FUNCTION-RESELLER_DETECTION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "RESELLER_DETECTION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
-    {
-      "requirement_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-      "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": null,
-          "FUNCTION_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "TOC_HIERARCHY_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-          "MISSING_CAPABILITY": [
-            "TOC_HIERARCHY_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "TOC_HIERARCHY_VALIDATION"
       ],
       "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
       "pass_lock": false
@@ -1562,128 +1270,6 @@
       "pass_lock": false
     },
     {
-      "requirement_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
-      "root_id": "T16-T44-MINCIRC-20260925-001",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "T16-T44-MINCIRC-20260925-001",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
-          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "INPUT_CONTRACT_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "T16-T44-MINCIRC-20260925-001",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "T16-T44-MINCIRC-20260925-001",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
-          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
-          "MISSING_CAPABILITY": [
-            "EXPECTED_ACTUAL_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": true
-    },
-    {
-      "requirement_id": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
-      "root_id": "T16-T44-MINCIRC-20260925-001",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "T16-T44-MINCIRC-20260925-001",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
-          "TOOL044_DEMAND_ID": "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "TENACITY_9_1_4_FAILURE_ISOLATION"
-      ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": true
-    },
-    {
       "requirement_id": "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
       "root_id": "1755eed95f7a0daaae1f",
       "original_requirement": [
@@ -2505,19 +2091,6 @@
       "pass_lock": false
     },
     {
-      "requirement_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
-      "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false
-    },
-    {
       "requirement_id": "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
       "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
       "original_requirement": [
@@ -2669,11 +2242,11 @@
     }
   ],
   "counts": {
-    "PARTIAL": 10,
-    "PLATFORM_HOLD": 1,
+    "UNFINISHED": 15,
+    "PARTIAL": 9,
     "LONG_TERM_HOLD": 5,
-    "UNFINISHED": 21,
-    "COMPLETE": 44
+    "PLATFORM_HOLD": 1,
+    "COMPLETE": 36
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2684,12 +2257,7 @@
   },
   "not_worked_count": 0,
   "pass_locked": [
-    "T42-OFFICIAL-PUBLISHER-VALIDATION",
-    "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
-    "T42-WEBPAGE-TEXT-EXTRACTION",
-    "T42-TOC-STRUCTURE-EXTRACTION",
     "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
-    "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
     "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
     "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
     "f8bc3e81228256cba56e-FAILURE_ISOLATION",
@@ -2702,9 +2270,6 @@
     "cfbbb93e0c5991f482f3-INPUT_CONTRACT_VALIDATION",
     "cfbbb93e0c5991f482f3-EXPECTED_ACTUAL_VALIDATION",
     "cfbbb93e0c5991f482f3-FAILURE_ISOLATION",
-    "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
-    "T16-T44-MINCIRC-20260925-001-EXPECTED_ACTUAL_VALIDATION",
-    "T16-T44-MINCIRC-20260925-001-FAILURE_ISOLATION",
     "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
     "69ff43b8de90d6f44d5e-EXPECTED_ACTUAL_VALIDATION",
     "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
@@ -2730,15 +2295,8 @@
     "CR-5"
   ],
   "auto_requeued_roots": [
-    "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
     "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-    "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-    "FS-FUNCTION-RESELLER_DETECTION",
-    "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
     "OBSERVER-SEPARATION-WORK-HANDOFF",
-    "T42-PROVENANCE-VALIDATION",
-    "T42-RESELLER-DETECTION",
-    "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
     "TOOL016",
     "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
     "TOOL044",
@@ -2752,7 +2310,7 @@
     "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
     "WIC-FINAL-CONNECTION"
   ],
-  "next_auto_root": "T42-RESELLER-DETECTION",
+  "next_auto_root": "TOOL044-AUTO-ROLLBACK",
   "observer_reinstruction_required": 0,
   "manual_relay_count": 0
 }

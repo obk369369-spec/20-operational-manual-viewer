@@ -2986,7 +2986,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-09-29T12:47:59.362859+00:00",
+      "updated_at": "2026-09-29T12:49:52.415637+00:00",
       "UNFINISHED_SCANNED": 46,
       "ALREADY_PASS_EXCLUDED": 68,
       "ROOTS_MERGED": 5,
@@ -3378,7 +3378,7 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-09-29T12:47:59.362859+00:00",
+      "LAST_HEARTBEAT": "2026-09-29T12:49:52.415637+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -3505,7 +3505,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-09-29T12:47:59.362859+00:00",
+      "updated_at": "2026-09-29T12:49:52.415637+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -3646,13 +3646,13 @@
       "REMOTE_GITHUB_READBACK_PASS": true
     },
     "non_tool_common_closeout": {
-      "updated_at": "2026-09-29T12:47:59.375241+00:00",
+      "updated_at": "2026-09-29T12:49:52.425020+00:00",
       "counts": {
-        "PARTIAL": 10,
-        "PLATFORM_HOLD": 1,
+        "UNFINISHED": 15,
+        "PARTIAL": 9,
         "LONG_TERM_HOLD": 5,
-        "UNFINISHED": 21,
-        "COMPLETE": 44
+        "PLATFORM_HOLD": 1,
+        "COMPLETE": 36
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3661,7 +3661,7 @@
         "CR-4": "COMPLETE",
         "CR-5": "COMPLETE"
       },
-      "next_auto_root": "T42-RESELLER-DETECTION",
+      "next_auto_root": "TOOL044-AUTO-ROLLBACK",
       "observer_reinstruction_required": 0
     }
   },
