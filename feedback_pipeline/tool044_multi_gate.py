@@ -252,6 +252,7 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
         "HOLD": "RETRY_WHEN_COMPONENT_CONTRACT_OR_EXTERNAL_TRIGGER_CHANGES",
         "BLOCKED": "RETRY_AFTER_CLAIM_OR_EXECUTION_CONTRACT_REPAIRED",
     }
+    passed_sources = []
     for demand in queue.get("demands", []):
         returned_job = demand_results.get(demand.get("demand_id"))
         if returned_job and returned_job.get("STATUS") == "PASS":
@@ -260,6 +261,10 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
                           satisfied_component=returned_job["COMPONENT_ID"],
                           result_return={"status": "PASS", "tool016_ack": "RECEIVED",
                                          "returned_at": state["updated_at"]})
+            root_id = demand.get("root_id")
+            capabilities = tuple(sorted(demand.get("atomic_capabilities", [])))
+            if root_id and capabilities:
+                passed_sources.append((root_id, capabilities, demand, returned_job))
         elif returned_job:
             outcome = returned_job["STATUS"]
             demand.update(status=f"RETURNED_{outcome}", result_return={
@@ -269,6 +274,33 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
                 "result": returned_job.get("RESULT"),
                 "resume_condition": resume_conditions[outcome],
             })
+    # Propagate a verified common-root result only across an exact contract match.
+    # This avoids re-running duplicates while never treating a related but different
+    # capability as complete.
+    propagated = 0
+    for root_id, capabilities, source, returned_job in passed_sources:
+        for demand in queue.get("demands", []):
+            if demand is source or demand_terminal(demand):
+                continue
+            if (demand.get("root_id") != root_id or
+                    tuple(sorted(demand.get("atomic_capabilities", []))) != capabilities):
+                continue
+            demand.update(
+                status="SATISFIED_BY_COMMON_COMPONENT",
+                satisfied_at=state["updated_at"],
+                satisfied_component=returned_job["COMPONENT_ID"],
+                cross_impact={
+                    "source_demand_id": source.get("demand_id"),
+                    "root_id": root_id,
+                    "contract_match": "EXACT_ATOMIC_CAPABILITIES",
+                },
+                result_return={
+                    "status": "PASS", "tool016_ack": "RECEIVED",
+                    "returned_at": state["updated_at"],
+                    "source_demand_id": source.get("demand_id"),
+                },
+            )
+            propagated += 1
     atomic_json(queue_path, queue)
     central = load(central_path, {})
     core = central.setdefault("integration_core", {})
@@ -294,7 +326,7 @@ def aggregate(state_path: Path, central_path: Path, result_paths: list[Path],
         "RETURNED": returned, "REMAINING": remaining,
         "LAST_HEARTBEAT": state["updated_at"], "CURRENT_RUNNER": "GITHUB_ACTIONS",
         "CURRENT_COMPONENT": None, "RECENT_EVENT": "RESULTS_RETURNED_TO_TOOL016",
-        "USER_MANUAL_RELAY_REQUIRED": 0,
+        "CROSS_IMPACT_PROPAGATED": propagated, "USER_MANUAL_RELAY_REQUIRED": 0,
     }
     atomic_json(central_path, central)
     return state

@@ -147,3 +147,33 @@ def test_fencing_rejects_old_owner_and_expired_lease_is_reclaimed(tmp_path: Path
     assert stale["status"] == "BLOCKED"
     passed = run_lane(state, second["job_id"], second["owner"], tmp_path / "passed.json", second["fencing_token"])
     assert passed["status"] == "PASS"
+
+
+def test_pass_propagates_only_to_exact_common_root_contract(tmp_path: Path):
+    state = tmp_path / "state.json"; queue = tmp_path / "queue.json"; central = tmp_path / "central.json"
+    job_id = "DEMAND::SOURCE::COMPONENT-X"
+    state.write_text(json.dumps({"jobs": {job_id: {
+        "JOB_ID": job_id, "DEMAND_ID": "SOURCE", "ROOT_ID": "ROOT-X",
+        "TARGET_TOOL": "CENTRAL", "COMPONENT_ID": "COMPONENT-X",
+        "OWNER": "OWNER-X", "FENCING_TOKEN": "TOKEN-X", "STATUS": "CLAIMED",
+    }}, "events": []}), encoding="utf-8")
+    queue.write_text(json.dumps({"demands": [
+        {"demand_id": "SOURCE", "root_id": "ROOT-X", "status": "OPEN",
+         "atomic_capabilities": ["CAP-A"]},
+        {"demand_id": "SAME-CONTRACT", "root_id": "ROOT-X", "status": "OPEN",
+         "atomic_capabilities": ["CAP-A"]},
+        {"demand_id": "OTHER-CONTRACT", "root_id": "ROOT-X", "status": "OPEN",
+         "atomic_capabilities": ["CAP-B"]},
+    ]}), encoding="utf-8")
+    central.write_text(json.dumps({"integration_core": {}}), encoding="utf-8")
+    result = tmp_path / "result.json"
+    result.write_text(json.dumps({"job_id": job_id, "owner": "OWNER-X",
+                                  "fencing_token": "TOKEN-X", "status": "PASS",
+                                  "checkpoint": "REGRESSION_COMPLETE"}), encoding="utf-8")
+    aggregate(state, central, [result], queue)
+    demands = {row["demand_id"]: row for row in json.loads(queue.read_text(encoding="utf-8"))["demands"]}
+    assert demands["SAME-CONTRACT"]["status"] == "SATISFIED_BY_COMMON_COMPONENT"
+    assert demands["SAME-CONTRACT"]["cross_impact"]["source_demand_id"] == "SOURCE"
+    assert demands["OTHER-CONTRACT"]["status"] == "OPEN"
+    progress = json.loads(central.read_text(encoding="utf-8"))["integration_core"]["tool044_external_progress"]
+    assert progress["CROSS_IMPACT_PROPAGATED"] == 1
