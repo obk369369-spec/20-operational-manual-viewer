@@ -4619,6 +4619,21 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null
+    },
+    {
+      "demand_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+      "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
+      "target_tool": "TOOL016-TOOL044",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "Close out only remaining non-PASS WIC circulation gaps. Preserve evidenced PASS as REOPEN_BLOCKED and reuse prior ENV1, MULTI/BATCH, dedup/claim, checkpoint/recovery, TOOL016 return and evidenced ENV2/failover results. Classify remaining gaps A=automatically executable now, B=needs free verified component/source, C=real external condition; C is WAITING/PLATFORM_LIMIT and must not block A/B. Keep all stage1-3 non-PASS backlog including TOOL013 translation and official 18-category matching. Never invent the official category source. Process by COMMON_ROOT: find many, remove PASS, fix once, batch/MULTI validate, create evidence, batch deploy, remote read-back, TOOL016 return, PASS lock. Work only missing external-runner evidence such as sustained independent execution, GitHub-outage continuity, central result return, restart/recovery, heartbeat, deployment read-back and free-limit sustainability; reuse existing ENV2 and Public Safe Cloud Worker evidence/failure causes rather than starting over. Functional completion is separate from actual 24h elapsed evidence. Continue unattended evidence accumulation and next-unresolved selection. Exit only when A=0, B has no currently executable item, C contains only real external conditions, PASS rework=0, and validation/deploy/read-back/TOOL016 return/PASS lock are evidenced. User remains observer.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null
     }
   ]
 }
