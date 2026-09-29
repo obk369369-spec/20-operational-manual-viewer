@@ -252,6 +252,32 @@
       ],
       "observer_reinstruction_required": 0,
       "auto_requeue_required": true
+    },
+    {
+      "directive_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+      "target_tool": "TOOL016,TOOL044,WORK_HANDOFF,OBSERVER_REPORT",
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+      "revision": 1,
+      "priority": "CRITICAL_AFTER_PREEXECUTION_CONFLICT_GATE",
+      "directive": "COMMON ERROR MERGE. Build the canonical requirement ledger from every user directive supplied to ChatGPT Work from the first WIC Work session through current time, plus every later delta. At every Work/circulation closeout reconcile that entire ledger against actual GitHub/runtime/TOOL016 evidence, classify each requirement COMPLETE/PARTIAL/UNFINISHED/PLATFORM_HOLD/LONG_TERM_HOLD, PASS-lock only evidenced COMPLETE, and FIRST deliver an observer-facing completion/uncompleted table. Then automatically requeue every actionable PARTIAL/UNFINISHED item, merge same causes into the minimum COMMON_ROOT set, auto-select/hand off the next work, execute where permitted, recover results, and repeat the full historical reconciliation after each closeout without observer prompts. The required user-visible destination is the existing ChatGPT conversation named '44번 완성부품 가져오기'; creating another conversation, renaming that existing conversation, or treating a GitHub JSON/file as chat delivery is NOT delivery PASS. If the platform cannot post autonomously into that exact existing conversation, classify CHAT_DELIVERY_TO_EXISTING_TOOL044_CONVERSATION as PLATFORM_HOLD/UNSUPPORTED and do not fake AUTO_USER_VISIBLE_COMPLETION_REPORT PASS. Also treat unexpected creation of user-uncreated related chats and automatic renaming of the original chat when reservations/automations are created as tracked common errors; do not count such chats as successful observer delivery. WORK_HANDOFF must minimize observer intervention and Work credit use: eliminate manual copy/paste, repeated Work-package transfer, redundant PASS reruns, repeated status checking, and unnecessary Work invocation; batch COMMON_ROOT work and use free/existing verified circulation first. Explicit allow/deny approvals that the platform mandates must never be bypassed: batch/minimize them and classify unavoidable approval clicks as PLATFORM_HOLD until a supported no-click path is actually proven. Handoff heartbeat loss, missing result return, duplicate handoff, approval-wait stalls, and excessive Work invocation must automatically re-enter the same common-error circulation. Preserve all existing PASS locks/checkpoints. Final PASS requires actual E2E proof of historical-ledger reconciliation, observer table delivery into the exact existing TOOL044 chat where supported, automatic requeue, next selection, result return, duplicate prevention, credit-minimizing routing, and observer_reinstruction_required=0. Merely writing observer_report.json is insufficient.",
+      "required_capabilities": [
+        "HISTORICAL_WORK_DIRECTIVE_LEDGER_FROM_FIRST_WORK",
+        "FULL_LEDGER_EVIDENCE_RECONCILIATION_EVERY_CLOSEOUT",
+        "COMPLETE_UNFINISHED_HOLD_OBSERVER_TABLE_FIRST",
+        "EXACT_EXISTING_TOOL044_CHAT_DELIVERY",
+        "NO_UNREQUESTED_CHAT_CREATION",
+        "NO_AUTOMATIC_ORIGINAL_CHAT_RENAME",
+        "AUTO_UNFINISHED_REQUEUE_AFTER_REPORT",
+        "COMMON_ROOT_COMPRESSION",
+        "AUTO_NEXT_WORK_SELECTION_AND_HANDOFF",
+        "WORK_HANDOFF_MANUAL_RELAY_ZERO",
+        "WORK_CREDIT_MINIMIZATION",
+        "MANDATORY_APPROVAL_PLATFORM_HOLD_CLASSIFICATION",
+        "HANDOFF_SELF_WATCH_AND_RECOVERY"
+      ],
+      "observer_reinstruction_required": 0,
+      "auto_requeue_required": true,
+      "pass_policy": "E2E_EVIDENCE_ONLY"
     }
   ]
 }
