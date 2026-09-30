@@ -353,6 +353,116 @@
       "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
       "revision": 1,
       "directive": "Execute feedback_pipeline/WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE_20260929.md. Exclude individual tool functional work. Preserve evidence-backed PASS. Reconcile historical common-infrastructure requirements, work only incomplete common roots, report status at each closeout, automatically requeue actionable residuals, select next eligible root, and keep unsupported platform stages explicit HOLD."
+    },
+    {
+      "directive_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "root": "GLOBAL_CONFIRMED_RULE_RECALL_AND_ENFORCEMENT_GATE",
+      "priority": "HIGHEST_AFTER_DEDUP_GATE",
+      "status": "OPEN_IMPLEMENT_TEST_DEPLOY",
+      "source": "CAR-026_JANG_MYUNGJIN_REPEAT_ERRORS_AND_ALL_WIC_COMMON_GATE",
+      "scope": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_CHATS_EXECUTORS",
+      "user_role": "OBSERVER",
+      "required_pipeline": [
+        "GLOBAL_RULE_REGISTRY",
+        "CONTEXT_RETRIEVER",
+        "PRE_WORK_GATE",
+        "EXECUTOR",
+        "PRE_OUTPUT_VALIDATOR",
+        "EVIDENCE_LOGGER"
+      ],
+      "prework_required": [
+        "chat_user_rules",
+        "historical_errors_feedback",
+        "cross_wic_common_rules",
+        "TOOL016_ROOT_atomic",
+        "TOOL044_verified_rules",
+        "customer_send_history",
+        "customer_email_response_contact_history",
+        "customer_research_interest",
+        "publisher_usage_history",
+        "publisher_master",
+        "forbidden_publishers",
+        "report_selection_rules",
+        "output_format",
+        "TOC_rules",
+        "HOLD_FAIL_rules",
+        "latest_user_corrections"
+      ],
+      "hard_blocks": [
+        "PREWORK_CONTEXT_NOT_LOADED",
+        "OFFICIAL_PUBLISHER_SOURCE_NOT_FOUND",
+        "RESELLER_USED",
+        "PUBLISHER_MASTER_FAIL",
+        "CUSTOMER_HISTORY_NOT_LOADED",
+        "PAST_REPORT_DUPLICATION_FAIL",
+        "TOC_SOURCE_NOT_VERIFIED",
+        "AI_TOC_RECONSTRUCTION",
+        "RULE_CONFLICT_DETECTED"
+      ],
+      "customer_report_sequence": [
+        "CUSTOMER_CONTEXT_LOAD",
+        "HISTORICAL_SEND_CHECK",
+        "REPORT_DISCOVERY",
+        "OFFICIAL_SOURCE_VERIFY",
+        "PUBLISHER_ROTATION_CHECK",
+        "TOC_VERIFY",
+        "REPORT_SELECTION",
+        "GUIDE_GENERATION",
+        "MAIL_COMPOSITION"
+      ],
+      "car026_rules": {
+        "customer": "CAR-026 장명진 / 한국섬유개발연구원 / 신사업기획팀 / 팀장",
+        "research_axis": [
+          "금속사 기반 무납 방사선 차폐 섬유",
+          "금속사/금속섬유",
+          "전도성 섬유/직물",
+          "스마트 섬유",
+          "E-Textiles",
+          "방사선/EMI 차폐",
+          "웨어러블/센서 연장선"
+        ],
+        "historical_2024": [
+          "Healthcare Fabrics",
+          "Medical Textile",
+          "Biomedical Textiles",
+          "Antimicrobial Medical Textiles"
+        ],
+        "historical_2025": [
+          "Plant Fiber",
+          "Natural Fiber",
+          "Recycled Fibers"
+        ],
+        "title_rule": "exact official English title first word must be Global",
+        "publication_rule": "2026 priority",
+        "publisher_rule": "WIC trading publisher master only; QYResearch excluded; rotation; avoid 3 consecutive same publisher",
+        "source_rule": "original publisher official detail page only",
+        "toc_rule": "full official TOC source then deletion/filter only to top + direct child; no inference/reconstruction"
+      },
+      "regression_tests": [
+        "reseller URL => REJECT",
+        "no official TOC => TOC_SOURCE_NOT_VERIFIED",
+        "segmentation only => no TOC generation and REJECT",
+        "same publisher 3 consecutive => rotation gate block",
+        "historical send exists but UNSENT input => recover actual email history first",
+        "CAR-026 South Korea title => GLOBAL_TITLE_RULE reject",
+        "Global Forecast only at title tail => reject",
+        "complex official TOC => deletion-only top+direct-child",
+        "new chat/tool missing confirmed rules => PREWORK_CONTEXT_NOT_LOADED output block"
+      ],
+      "repeat_error_policy": "merge as REPEAT_OCCURRENCE into existing ROOT; auto-escalate to validator/hard-gate/regression-test, never prompt-only fix",
+      "completion_chain": [
+        "ROOT_MERGED_OR_CREATED",
+        "GLOBAL_RULE_REGISTRY_CONNECTED",
+        "TOOL044_QUEUE_CREATED",
+        "EXECUTOR_ASSIGNED",
+        "CROSS_TOOL_TEST_RUNNING",
+        "VIOLATION_BLOCKED",
+        "RESULT_RETURNED"
+      ],
+      "no_manual_user_repair": true,
+      "no_issue_comment_only_pass": true,
+      "source_file_lines": "uploaded directive lines 1-575",
+      "revision": 1
     }
   ]
 }
