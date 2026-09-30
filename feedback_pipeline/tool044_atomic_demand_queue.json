@@ -5518,7 +5518,25 @@
       "reason": "The attachment is visible in the current ChatGPT conversation but no supported mounted file path or attachment byte handle was delivered to this Work runtime.",
       "evidence": "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json",
       "resume_condition": "AUTO_RESUME_WHEN_SUPPORTED_CURRENT_CHAT_ATTACHMENT_MOUNT_OR_BYTE_HANDLE_EXISTS",
-      "residual_classification": "PLATFORM_HOLD"
+      "residual_classification": "PLATFORM_HOLD",
+      "source_records": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016,TOOL044,WORK_HANDOFF",
+          "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+          "MISSING_CAPABILITY": [
+            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
+        }
+      ]
     }
   ]
 }

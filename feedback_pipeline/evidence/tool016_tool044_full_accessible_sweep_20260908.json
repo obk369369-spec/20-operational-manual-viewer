@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T06:45:52.217584+00:00",
+  "generated_at": "2026-09-30T07:32:09.844294+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "7d249488a461a023e7a6dd91e1a095de04de02a4a71af16d81a6994d1b651929"
+      "sha256": "d1e5306fd3cf9b5fd5207c0526117095be14735479c66f608f47bd98bb0ff25e"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,19 +29,19 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "8b3b8bb729cbbbd31892f22678920f8eab3a4dc9b1feb33b6b7ce961b50243d1"
+      "sha256": "47f7b9608fa2378b3034300471015c52353f11755162a97f7481e2d7188b6ccd"
     }
   ],
   "counts": {
     "checked_tools": 18,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 226,
+    "automatically_recoverable_records": 228,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 181,
-    "roots_after_deduplication": 129,
+    "collected_error_records": 183,
+    "roots_after_deduplication": 130,
     "verified_skip_reuse_records": 11,
-    "records_handed_to_tool044": 76,
+    "records_handed_to_tool044": 78,
     "atomic_demands": 116
   },
   "checked_tool_ids": [
@@ -2928,6 +2928,38 @@
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
     }
   ],
   "deduplicated_root_ids": [
@@ -2938,6 +2970,7 @@
     "69ff43b8de90d6f44d5e-FAILURE_ISOLATION",
     "69ff43b8de90d6f44d5e-INPUT_CONTRACT_VALIDATION",
     "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+    "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
     "CURRENT_LEDGER_ROW_NOT_RESOLVED",
     "FINAL-37-COMMON-ROOT-CIRCULATION-AUTO_NEXT_ROOT",
     "FINAL-37-COMMON-ROOT-CIRCULATION-BULK_ROOT_EXECUTION",
@@ -4432,6 +4465,38 @@
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
     }
   ],
   "queue_lineage_missing": [
@@ -5155,6 +5220,38 @@
         "FIXED_BLOCK_COMPLETENESS_GATE",
         "UNVERIFIED_COMPLETE_PROHIBITION",
         "TOOL044_CHAT_REPORT_EVIDENCE_GATE"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL044"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
       ],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL044"
