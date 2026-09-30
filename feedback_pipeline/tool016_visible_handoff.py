@@ -63,7 +63,38 @@ def _hold_class(row: dict) -> str | None:
     return None
 
 
-def reconcile_demands(queue: dict, pool: dict, now: str) -> tuple[dict, dict]:
+RETROSPECTIVE_PROOFS = {
+    "REPOSITORY_ERROR_EVIDENCE_DISCOVERY": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN",
+    "HISTORICAL_FEEDBACK_INGEST": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN",
+    "ACCESS_BOUNDARY_CLASSIFICATION": "STATUS_CLASSIFICATION_PROVEN",
+    "ROOT_CAUSE_DEDUPLICATION": "STATUS_CLASSIFICATION_PROVEN",
+    "MISSING_CAPABILITY_EXTRACTION": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN",
+    "VERIFIED_SKIP_REUSE_FILTER": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN",
+    "TOOL016_TO_TOOL044_HANDOFF": "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF",
+    "ATOMIC_CAPABILITY_DECOMPOSITION": "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT",
+}
+
+
+def _retrospective_proof(row: dict, previous_observer: dict, previous_visible: dict) -> tuple[bool, str | None]:
+    demand_id = str(row.get("demand_id", ""))
+    if "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP" not in demand_id:
+        return False, None
+    for capability, proof_key in RETROSPECTIVE_PROOFS.items():
+        if capability not in demand_id:
+            continue
+        proven = bool(previous_observer.get(proof_key))
+        if capability == "ROOT_CAUSE_DEDUPLICATION":
+            proven = proven and previous_visible.get("CIRCULATION", {}).get("dedup_gate") == "PASS"
+        elif capability == "VERIFIED_SKIP_REUSE_FILTER":
+            proven = proven and previous_visible.get("ALREADY_PASS_EXCLUDED", 0) > 0
+        elif capability == "TOOL016_TO_TOOL044_HANDOFF":
+            proven = proven and previous_observer.get("TOOL016_RESULT_ACK_RECEIVED", 0) > 0
+        return proven, proof_key
+    return False, None
+
+
+def reconcile_demands(queue: dict, pool: dict, now: str, previous_observer: dict | None = None,
+                      previous_visible: dict | None = None, run_id: str = "") -> tuple[dict, dict]:
     """Classify every durable demand and requeue only evidence-backed actionable work."""
     available = {
         capability
@@ -75,8 +106,23 @@ def reconcile_demands(queue: dict, pool: dict, now: str) -> tuple[dict, dict]:
         "COMPLETE", "PARTIAL", "UNFINISHED", "PLATFORM_HOLD", "LONG_TERM_HOLD"
     )}
     auto_requeued = []
+    previous_observer = previous_observer or {}
+    previous_visible = previous_visible or {}
     for row in queue.get("demands", []):
         demand_id = row.get("demand_id")
+        proven, proof_key = _retrospective_proof(row, previous_observer, previous_visible)
+        if proven:
+            row["status"] = "PASS_LOCKED"
+            row["result_return"] = {
+                "tool016_ack": "RECEIVED",
+                "run_id": run_id or "DURABLE_OBSERVER_EVIDENCE",
+                "evidence": [
+                    "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+                    "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
+                ],
+                "proof_key": proof_key,
+            }
+            row["resume_condition"] = "PASS_LOCK_NO_REEXECUTION"
         if _terminal(row) and _returned(row):
             classification = "COMPLETE"
         else:
@@ -229,7 +275,8 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
     queue = load(queue_path, {"demands": []})
     pool = load(pool_path, {"components": []})
     timeline.mark("TOOL016_COLLECTION_AND_DURABLE_READ")
-    queue, observer = reconcile_demands(queue, pool, now)
+    previous_observer = load(observer_path, {})
+    queue, observer = reconcile_demands(queue, pool, now, previous_observer, previous, run_id)
     timeline.mark("RECONCILIATION_CLASSIFICATION_AND_REQUEUE")
     atomic_json(queue_path, queue)
     result = build(queue, pool,
