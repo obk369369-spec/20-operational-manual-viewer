@@ -6216,6 +6216,70 @@
         }
       },
       "FENCING_TOKEN": "58b251f83b324efca8962867949a4237"
+    },
+    "CANARY::36654658261::01": {
+      "JOB_ID": "CANARY::36654658261::01",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-01",
+      "OWNER": "GITHUB_ACTIONS:36654658261:GATE_01",
+      "CLAIM_TIME": "2026-09-30T01:20:49.596170+00:00",
+      "LEASE_EXPIRY": "2026-09-30T01:50:49.596170+00:00",
+      "FENCING_TOKEN": "509febabb6264454854bac3e0f97f66f",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-01",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-01.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-01.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-01.txt').unlink(missing_ok=True)"
+        ]
+      }
+    },
+    "CANARY::36654658261::02": {
+      "JOB_ID": "CANARY::36654658261::02",
+      "ROOT_ID": "COMMON_MULTI_RUNNER_CIRCULATION",
+      "TARGET_TOOL": "COMMON_INFRASTRUCTURE",
+      "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-02",
+      "OWNER": "GITHUB_ACTIONS:36654658261:GATE_02",
+      "CLAIM_TIME": "2026-09-30T01:20:49.596170+00:00",
+      "LEASE_EXPIRY": "2026-09-30T01:50:49.596170+00:00",
+      "FENCING_TOKEN": "0b82ca4b90f4472cb1760fe2fbf7a1c3",
+      "CHECKPOINT": "CLAIM_DURABLE",
+      "STATUS": "CLAIMED",
+      "RETRY_COUNT": 0,
+      "RESULT": null,
+      "COMPONENT": {
+        "component_id": "COMMON-CIRCULATION-CANARY-02",
+        "install_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-02.txt').write_text('READY')"
+        ],
+        "validator": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; assert Path('lane-02.txt').read_text() == 'READY'"
+        ],
+        "rollback_method": [
+          "{python}",
+          "-c",
+          "from pathlib import Path; Path('lane-02.txt').unlink(missing_ok=True)"
+        ]
+      }
     }
   },
   "events": [
@@ -6228,12 +6292,17 @@
       "event": "STALE_RECLAIM",
       "job_id": "CANARY::36559902517::01",
       "at": "2026-09-29T11:08:41.762144+00:00"
+    },
+    {
+      "event": "STALE_RECLAIM",
+      "job_id": "CANARY::36654658261::01",
+      "at": "2026-09-30T01:20:49.596170+00:00"
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-30T00:59:34.487187+00:00",
+  "updated_at": "2026-09-30T01:20:49.596170+00:00",
   "capacity": 30,
-  "active_claims": 0,
+  "active_claims": 2,
   "provider": "GITHUB_ACTIONS",
   "results_returned": 1
 }
