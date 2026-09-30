@@ -23,6 +23,24 @@
   "tool013_e2e_status": "PARTIAL_CANDIDATE_ONLY",
   "central_evidence_return": "PASS",
   "tool016_ack": "PENDING_NEXT_SCHEDULED_RECONCILIATION",
+  "start_gate": {
+    "goal": "Close the TOOL013 translation and official-category production gates without inventing missing source data.",
+    "definition_of_done": "Human-approved translation fixture comparison and authoritative 18-category fixture both pass, followed by full Excel E2E, negative tests, deployment, result read-back and central acknowledgement.",
+    "validation": "Compare actual input/output to authoritative fixtures, reopen the produced workbook, assert protected columns are unchanged, and prove deliberately bad fixtures are rejected.",
+    "required_evidence": "run id, fixture provenance, expected/actual comparison, output hash, negative-test results, deployment commit, remote read-back and TOOL016 acknowledgement",
+    "canonical_evidence_path": "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json"
+  },
+  "source_recovery_audit": {
+    "repo_content_search": "COMPLETE_NO_AUTHORITATIVE_FIXTURE_FOUND",
+    "repo_history_search": "COMPLETE_NO_AUTHORITATIVE_FIXTURE_FOUND",
+    "wic_evidence_search": "COMPLETE_ONLY_PRIOR_MISSING-SOURCE_EVIDENCE_FOUND",
+    "tool016_tool044_records": "COMPLETE_RESIDUAL_ALREADY_DURABLY_QUEUED",
+    "missing_translation_artifact": "human-approved Korean title acceptance fixture",
+    "missing_category_artifact": "authoritative 18-category list and approved expected mappings"
+  },
+  "negative_test_status": "NOT_RUN_BECAUSE_AUTHORITATIVE_EXPECTED_FIXTURES_ARE_MISSING",
+  "automatic_requeue": "ACTIVE_IN_TOOL044_ATOMIC_DEMAND_QUEUE",
+  "resume_condition": "The next scheduled reconciliation detects both authoritative fixtures and then runs the candidate comparison, negative suite and full Excel E2E.",
   "stable_runtime_mutated": false,
   "observer_manual_relay_required": 0,
   "next_automatic_actions": [
