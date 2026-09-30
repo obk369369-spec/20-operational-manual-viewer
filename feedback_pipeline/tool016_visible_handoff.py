@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from wic_non_tool_common_closeout import run as run_non_tool_closeout
+from wic_automatic_handoff import run as run_automatic_handoff
 
 HERE = Path(__file__).resolve().parent
 QUEUE = HERE / "tool044_atomic_demand_queue.json"
@@ -253,6 +254,8 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
         "cr_status": closeout["cr_status"], "next_auto_root": closeout["next_auto_root"],
         "observer_reinstruction_required": closeout["observer_reinstruction_required"],
     }
+    automatic = run_automatic_handoff(queue, pool, load(gate_path, {"jobs": {}, "events": []}))
+    central["integration_core"]["automatic_handoff"] = automatic
     atomic_json(central_path, central)
     return result
 

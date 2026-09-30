@@ -10,4 +10,6 @@ for hidden_term in ("ROOT", "ACK", "SHA", "read-back", "runtime", "contract", "l
 assert "wic_non_tool_observer_closeout_report.json" in page
 assert "필요한 장치가 준비되면 자동으로 다시 시작합니다." in page
 assert '<summary>기술정보</summary>' in page
-print("WIC_OBSERVER_DASHBOARD: PASS (14/14)")
+for text in ("도구별 남은 일과 예상기간", "남은 작업:", "남은 수:", "예상 남은 기간:", "계산 중", "시간 남음"):
+    assert text in page, text
+print("WIC_OBSERVER_DASHBOARD: PASS (20/20)")
