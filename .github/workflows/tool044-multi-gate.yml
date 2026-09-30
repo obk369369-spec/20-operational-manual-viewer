@@ -36,6 +36,8 @@ jobs:
           python feedback_pipeline/tool044_multi_gate.py plan
           --parallel-canary-count '${{ inputs.parallel_canary_count || 0 }}'
           --github-output "$GITHUB_OUTPUT"
+      - name: Verify common closeout and missing-evidence rejection
+        run: python feedback_pipeline/test_wic_cycle_audit.py
       - name: Refresh external runner candidates on periodic discovery cycle
         if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 1 * * *' }}
         env:
