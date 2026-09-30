@@ -48,7 +48,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/state.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/wic_zero_touch_observer_report.json feedback_pipeline/evidence/wic_zero_touch_circulation_state.json feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json feedback_pipeline/evidence/wic_non_tool_common_work_packet.json feedback_pipeline/evidence/wic_non_tool_observer_closeout_report.json feedback_pipeline/evidence/wic_automatic_handoff_state.json feedback_pipeline/evidence/tool044_multi_gate_state.json feedback_pipeline/evidence/tool044_verified_external_component_pool.json feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json
+          git add -- feedback_pipeline/state.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/wic_zero_touch_observer_report.json feedback_pipeline/evidence/wic_zero_touch_circulation_state.json feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json feedback_pipeline/evidence/wic_non_tool_common_work_packet.json feedback_pipeline/evidence/wic_non_tool_observer_closeout_report.json feedback_pipeline/evidence/wic_automatic_handoff_state.json feedback_pipeline/evidence/wic_cycle_timing.json feedback_pipeline/evidence/tool044_multi_gate_state.json feedback_pipeline/evidence/tool044_verified_external_component_pool.json feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'tool044: persist multi-gate claims'
           git pull --rebase origin main
@@ -107,7 +107,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/state.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/wic_zero_touch_observer_report.json feedback_pipeline/evidence/wic_zero_touch_circulation_state.json feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json feedback_pipeline/evidence/wic_non_tool_common_work_packet.json feedback_pipeline/evidence/wic_non_tool_observer_closeout_report.json feedback_pipeline/evidence/wic_automatic_handoff_state.json feedback_pipeline/evidence/tool044_multi_gate_state.json
+          git add -- feedback_pipeline/state.json feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/wic_zero_touch_observer_report.json feedback_pipeline/evidence/wic_zero_touch_circulation_state.json feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json feedback_pipeline/evidence/wic_non_tool_common_work_packet.json feedback_pipeline/evidence/wic_non_tool_observer_closeout_report.json feedback_pipeline/evidence/wic_automatic_handoff_state.json feedback_pipeline/evidence/wic_cycle_timing.json feedback_pipeline/evidence/tool044_multi_gate_state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'tool044: return multi-gate results'
           git pull --rebase origin main

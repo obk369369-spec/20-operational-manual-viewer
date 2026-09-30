@@ -8,6 +8,7 @@ from pathlib import Path
 
 from wic_non_tool_common_closeout import run as run_non_tool_closeout
 from wic_automatic_handoff import run as run_automatic_handoff
+from wic_cycle_audit import Timeline, atomic_json as audit_json
 
 HERE = Path(__file__).resolve().parent
 QUEUE = HERE / "tool044_atomic_demand_queue.json"
@@ -18,6 +19,7 @@ CENTRAL = HERE / "state.json"
 OUT = HERE / "evidence" / "tool016_visible_handoff_state.json"
 OBSERVER = HERE / "evidence" / "wic_zero_touch_observer_report.json"
 CHECKPOINT = HERE / "evidence" / "wic_zero_touch_circulation_state.json"
+TIMING = HERE / "evidence" / "wic_cycle_timing.json"
 TERMINAL = {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT", "PASS_LOCKED"}
 READY_PREFIXES = ("READY", "OPEN", "QUEUED")
 
@@ -219,18 +221,22 @@ def build(queue: dict, pool: dict, gates: dict, now: str, providers: dict | None
 def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATES,
         central_path: Path = CENTRAL, out_path: Path = OUT,
         observer_path: Path = OBSERVER, checkpoint_path: Path = CHECKPOINT) -> dict:
+    timeline = Timeline()
     now = datetime.now(timezone.utc).isoformat()
     previous = load(out_path, {})
     trigger = os.environ.get("GITHUB_EVENT_NAME", "manual")
     run_id = os.environ.get("GITHUB_RUN_ID", "")
     queue = load(queue_path, {"demands": []})
     pool = load(pool_path, {"components": []})
+    timeline.mark("TOOL016_COLLECTION_AND_DURABLE_READ")
     queue, observer = reconcile_demands(queue, pool, now)
+    timeline.mark("RECONCILIATION_CLASSIFICATION_AND_REQUEUE")
     atomic_json(queue_path, queue)
     result = build(queue, pool,
                    load(gate_path, {"jobs": {}, "capacity": 15}), now,
                    load(PROVIDERS, {"providers": [], "bulk_summary": {}}),
                    previous, trigger, run_id)
+    timeline.mark("TOOL044_ROUTING_AND_RUNNER_SELECTION")
     atomic_json(out_path, result)
     observer["DURABLE_OBSERVER_REPORT_WRITTEN"] = True
     observer["TOOL016_RESULT_ACK_RECEIVED"] = sum(_returned(row) for row in queue.get("demands", []))
@@ -255,8 +261,15 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
         "observer_reinstruction_required": closeout["observer_reinstruction_required"],
     }
     automatic = run_automatic_handoff(queue, pool, load(gate_path, {"jobs": {}, "events": []}))
+    timeline.mark("WORK_BATCH_AND_NEXT_SELECTION")
     central["integration_core"]["automatic_handoff"] = automatic
     atomic_json(central_path, central)
+    timeline.mark("RESULT_RETURN_AND_CENTRAL_PERSIST")
+    measured = timeline.result()
+    measured["scheduler_interval_minutes_before"] = 15
+    measured["scheduler_interval_minutes_after"] = 5
+    measured["configured_max_wait_reduction_percent"] = 66.7
+    audit_json(TIMING, measured)
     return result
 
 
