@@ -956,3 +956,22 @@ TOOL master가 아직 없으면 중앙 공통마스터 로드 후 기존 registr
 `FULL_AUDIT = FORBIDDEN`
 `AUTO_EXPAND_SCOPE = FORBIDDEN`
 `FULL_COMMONIZATION_PROJECT = FORBIDDEN`
+
+
+## 확정규칙 자동회수·반복위반 차단 HARD GATE — 2026-09-30
+
+적용범위는 특정 고객안내창에 한정하지 않는다. 모든 현재/미래 WIC 대화창·TOOL·Work·자동화·TOOL044 실행구조에 공통 적용한다.
+
+- 작업 전 중앙 master + 대상 TOOL canonical master + latest checkpoint/handoff의 관련 확정규칙을 자동 회수한다.
+- `PREWORK_CONTEXT_LOADED`가 확인되지 않으면 결과 생성을 차단한다.
+- 사용자가 이미 확정한 구체적 규칙은 모델의 일반적 작업방식보다 우선한다.
+- 출력 직전 현재 산출물과 회수된 확정규칙을 다시 대조한다.
+- 충돌 발견 시 `RULE_CONFLICT_DETECTED -> OUTPUT_BLOCKED -> AUTO_REWORK -> REVALIDATE`로 처리하고 잘못된 결과를 먼저 사용자에게 검수시키지 않는다.
+- 이미 지적된 오류의 재발은 신규 단발 규칙으로 만들지 않고 기존 ROOT에 `REPEAT_OCCURRENCE`로 병합한다.
+- 반복될수록 단순 문구 추가가 아니라 validator/hard gate/regression test로 승격한다.
+- GitHub comment, 대화창 기록, 메모리 기록만으로 실행/통합 완료라고 보고하지 않는다.
+- 사용자는 규칙 재전달자나 반복 검수자가 아니라 관찰자다. 이미 한 번 확정한 규칙을 매 작업마다 다시 붙이게 하는 구조는 실패다.
+
+### 보고서 조사에서 확인된 대표 회귀사례
+원발행사 공식사이트 ONLY가 확정된 작업에서 MarketResearch.com, ResearchAndMarkets 등 reseller/aggregator를 조사·검증·후보선정 근거로 다시 사용한 것은 HARD GATE 실패다. 공식 원발행사 페이지를 찾지 못하면 후보를 탈락시켜야 하며 reseller 데이터로 보충하지 않는다.
+TOC도 동일하게 공식 동일 보고서 full TOC가 확인되지 않으면 추론·재구성·다른 보고서 차용 없이 탈락시킨다.
