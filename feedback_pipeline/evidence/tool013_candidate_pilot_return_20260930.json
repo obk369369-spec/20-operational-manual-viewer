@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-09-30T01:51:51Z",
+  "source_repository": "obk369369-spec/13-excel-upload",
+  "source_commit": "7b2443fa00eecfb8a4d4b685afacaf844df6b340",
+  "source_run_id": 36657007982,
+  "source_run_url": "https://github.com/obk369369-spec/13-excel-upload/actions/runs/36657007982",
+  "actual_input": {
+    "title": "China Semiconductor Market for Automotive by Component, Global Export Trends and Strategic Recommendation",
+    "category": "Automotive and Transportation"
+  },
+  "translation_candidate": {
+    "component": "Argos Translate 1.10.0",
+    "actual_output": "중국 반도체 시장은 부품, 글로벌 수출 동향 및 전략적 추천",
+    "candidate_canary": "PASS",
+    "production_status": "HOLD_ACCEPTANCE_FIXTURE_COMPARISON_REQUIRED"
+  },
+  "category_matching_candidate": {
+    "exact_and_normalized_algorithm_canary": "PASS",
+    "actual_match": null,
+    "production_status": "HOLD_OFFICIAL_18_CATEGORY_SOURCE_NOT_PRESENT"
+  },
+  "tool013_e2e_status": "PARTIAL_CANDIDATE_ONLY",
+  "central_evidence_return": "PASS",
+  "tool016_ack": "PENDING_NEXT_SCHEDULED_RECONCILIATION",
+  "stable_runtime_mutated": false,
+  "observer_manual_relay_required": 0,
+  "next_automatic_actions": [
+    "Compare the translated title with the existing human-approved acceptance fixture when that fixture is accessible.",
+    "Recover the authoritative 18-category source without inventing a replacement taxonomy.",
+    "Run the full TOOL013 input-to-two-output E2E only after both production gates are satisfied."
+  ]
+}
