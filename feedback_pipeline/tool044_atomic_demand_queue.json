@@ -1169,7 +1169,7 @@
       "atomic_capabilities": [
         "CANONICAL_CATEGORY_MATCHING"
       ],
-      "status": "HOLD_MISSING_CANONICAL_CATEGORY_LIST_AND_VERIFIED_MATCHER",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908",
       "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
@@ -1211,10 +1211,18 @@
         }
       ],
       "reconciliation": {
-        "reason": "FINAL_CHAT_COMPRESSION_20260925",
-        "evidence": "feedback_pipeline/evidence/tool013_three_feature_admission_20260908.json"
+        "reason": "USER_OFFICIAL_18_CATEGORY_SOURCE_AND_REMOTE_CANARY_20260930",
+        "evidence": "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json"
       },
-      "residual_classification": "UNFINISHED"
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36661474384",
+        "component_id": "TOOL013_V2_OFFICIAL_18_CATEGORY_MATCHER",
+        "remote_commit": "c1faaeac3f5be2dd25dda9d95a783c720954c15d",
+        "evidence": "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "residual_classification": "COMPLETE"
     },
     {
       "demand_id": "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
@@ -5496,6 +5504,21 @@
           "TOOL044_DEMAND_ID": "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
         }
       ]
+    },
+    {
+      "demand_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+      "atomic_capabilities": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "status": "PLATFORM_HOLD_CURRENT_CHAT_ATTACHMENT_BYTES_NOT_MOUNTED",
+      "source": "CURRENT_USER_CHAT_TOOL013",
+      "request_id": "TOOL013-V2-ATTACHMENT-HANDOFF-20260930",
+      "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+      "reason": "The attachment is visible in the current ChatGPT conversation but no supported mounted file path or attachment byte handle was delivered to this Work runtime.",
+      "evidence": "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json",
+      "resume_condition": "AUTO_RESUME_WHEN_SUPPORTED_CURRENT_CHAT_ATTACHMENT_MOUNT_OR_BYTE_HANDLE_EXISTS",
+      "residual_classification": "PLATFORM_HOLD"
     }
   ]
 }

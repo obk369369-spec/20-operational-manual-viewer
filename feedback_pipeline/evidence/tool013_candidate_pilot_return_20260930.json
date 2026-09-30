@@ -2,9 +2,9 @@
   "schema_version": 1,
   "recorded_at_utc": "2026-09-30T01:51:51Z",
   "source_repository": "obk369369-spec/13-excel-upload",
-  "source_commit": "7b2443fa00eecfb8a4d4b685afacaf844df6b340",
-  "source_run_id": 36657007982,
-  "source_run_url": "https://github.com/obk369369-spec/13-excel-upload/actions/runs/36657007982",
+  "source_commit": "c1faaeac3f5be2dd25dda9d95a783c720954c15d",
+  "source_run_id": 36661474384,
+  "source_run_url": "https://github.com/obk369369-spec/13-excel-upload/actions/runs/36661474384",
   "actual_input": {
     "title": "China Semiconductor Market for Automotive by Component, Global Export Trends and Strategic Recommendation",
     "category": "Automotive and Transportation"
@@ -16,11 +16,36 @@
     "production_status": "HOLD_ACCEPTANCE_FIXTURE_COMPARISON_REQUIRED"
   },
   "category_matching_candidate": {
-    "exact_and_normalized_algorithm_canary": "PASS",
-    "actual_match": null,
-    "production_status": "HOLD_OFFICIAL_18_CATEGORY_SOURCE_NOT_PRESENT"
+    "official_source": "USER_PROVIDED_18_CATEGORIES_20260930",
+    "official_category_count": 18,
+    "expected_category_id": "1060",
+    "actual_category_id": "1060",
+    "actual_category_name": "자동차/우주항공",
+    "expected_actual_validation": "PASS",
+    "production_status": "PASS_LOCKED"
   },
-  "tool013_e2e_status": "PARTIAL_CANDIDATE_ONLY",
+  "negative_tests": {
+    "passed": 8,
+    "total": 8,
+    "status": "PASS",
+    "covered": [
+      "nonexistent category",
+      "wrong category",
+      "blank category",
+      "blank translation",
+      "bad translation",
+      "changed column order",
+      "changed protected field",
+      "missing required value"
+    ]
+  },
+  "tool013_e2e_status": "PARTIAL_ATTACHMENT_BYTES_NOT_HANDED_TO_WORK_RUNTIME",
+  "attachment_handoff": {
+    "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+    "status": "PLATFORM_HOLD",
+    "missing_asset": "엑셀-입력-양식(6).xls bytes",
+    "resume_condition": "Resume automatically when the current-chat attachment is mounted in the Work runtime through a supported path."
+  },
   "central_evidence_return": "PASS",
   "tool016_ack": "PENDING_NEXT_SCHEDULED_RECONCILIATION",
   "start_gate": {
@@ -36,16 +61,16 @@
     "wic_evidence_search": "COMPLETE_ONLY_PRIOR_MISSING-SOURCE_EVIDENCE_FOUND",
     "tool016_tool044_records": "COMPLETE_RESIDUAL_ALREADY_DURABLY_QUEUED",
     "missing_translation_artifact": "human-approved Korean title acceptance fixture",
-    "missing_category_artifact": "authoritative 18-category list and approved expected mappings"
+    "missing_category_artifact": null
   },
-  "negative_test_status": "NOT_RUN_BECAUSE_AUTHORITATIVE_EXPECTED_FIXTURES_ARE_MISSING",
+  "negative_test_status": "PASS_8_OF_8",
   "automatic_requeue": "ACTIVE_IN_TOOL044_ATOMIC_DEMAND_QUEUE",
   "resume_condition": "The next scheduled reconciliation detects both authoritative fixtures and then runs the candidate comparison, negative suite and full Excel E2E.",
   "stable_runtime_mutated": false,
   "observer_manual_relay_required": 0,
   "next_automatic_actions": [
     "Compare the translated title with the existing human-approved acceptance fixture when that fixture is accessible.",
-    "Recover the authoritative 18-category source without inventing a replacement taxonomy.",
-    "Run the full TOOL013 input-to-two-output E2E only after both production gates are satisfied."
+    "Receive the current-chat XLS bytes through a supported automatic attachment handoff.",
+    "Run the full TOOL013 input-to-two-output E2E after attachment bytes are mounted."
   ]
 }
