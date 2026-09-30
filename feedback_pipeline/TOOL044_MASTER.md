@@ -112,3 +112,44 @@
 - Candidate receipts and verified external components are stored separately; unchanged demand/candidate signatures are suppressed for 24 hours.
 - Arbitrary downloaded code is not executed. A candidate without a declared verifier remains unverified.
 - Verified-component composition is not inferred from individual PASS results. The composition pool remains empty until a real contract-compatible pair passes a separate fixture test.
+
+
+## TOOL042 고객자료 선정 반복오류 → TOOL044 공통 개선 요구 (2026-09-30 / CAR-026 재발)
+
+### 발생 사실
+- TOOL042의 확정 규칙이 대화창 이동 뒤 실제 자료선정 실행에 강제되지 않아 동일 오류가 재발했다.
+- CAR-026 장명진 자료 선정 중 reseller/aggregator를 근거로 후보를 채택하거나, 공식 원발행사 TOC가 완전 검증되지 않은 후보를 PASS처럼 취급하려는 오류가 다시 발생했다.
+- 사용자가 과거 대화기록을 다시 첨부해야만 규칙이 복원되는 상태는 순환구조 PASS가 아니다.
+
+### 반복 오류 원인
+1. RULE-STORED != RULE-EXECUTED: 중앙마스터/피드백에 규칙이 있어도 실행 직전 최신 규칙을 읽고 강제하는 gate가 없다.
+2. SOURCE DRIFT: 원발행사 ONLY 규칙보다 검색 편의성을 우선하여 reseller/aggregator 정보를 섞는다.
+3. TOC FABRICATION/INCOMPLETE: Description/Scope/Segmentation 또는 일부 공개 목차를 실제 전체 TOC처럼 취급하거나 깊이를 임의 재구성한다.
+4. SELECTED-SET DRIFT: 대화 이동/검색 실패 때 기존 선정 세트를 실제 체크포인트에서 복원하지 않고 새 후보로 재구성한다.
+5. UNVERIFIED FIELD FILL: Pages/가격/발행일 등 미확인 필드를 추정하거나 다른 출처로 보충한다.
+6. PREMATURE OUTPUT: 요구된 3종 모두 PASS하기 전에 1~2종 또는 미검증 후보를 사용자에게 결과처럼 보고한다.
+7. USER-AS-VALIDATOR: 오류를 시스템이 막지 못하고 사용자가 매번 대화기록 첨부/수동 대조로 검증하게 만든다.
+
+### TOOL044가 강제할 공통 실행 계약
+- 모든 WIC 도구는 작업 시작 시 해당 도구의 최신 canonical rule/checkpoint를 실제 read-back하고 RULESET_SHA를 실행 receipt에 기록한다.
+- 사용자 확정 규칙은 chat memory가 아니라 canonical rule source에서 로드하며, 대화창 이동은 규칙 초기화 사유가 될 수 없다.
+- 고객용 시장보고서 선정은 후보별로 SOURCE_GATE / TITLE_GATE / YEAR_GATE / PUBLISHER_ROTATION_GATE / HISTORY_DUPLICATE_GATE / TOC_GATE를 모두 통과해야 PASS다.
+- SOURCE_GATE: 최종 고객용 근거는 원발행사 공식 상세페이지 1개만 허용. MarketResearch.com, ResearchAndMarkets 및 reseller/aggregator는 최종 근거·가격·TOC·링크로 금지.
+- TITLE_GATE: 사용자가 정확히 Global 시작을 요구한 작업은 공식 영문 title의 첫 단어가 Global인지 문자열 검사한다. 불일치 즉시 REJECT.
+- TOC_GATE: 해당 보고서 공식 상세페이지에서 실제 TOC 원문 전체를 확보하지 못하면 TOC_SOURCE_NOT_VERIFIED로 REJECT. Description/Scope/Segmentation을 TOC로 변환 금지. 다른 보고서 TOC 재사용 금지.
+- TOC 축약이 허용된 작업은 공식 TOC를 먼저 전량 확보한 뒤 상위목차 + 직접 하위목차만 deterministic pruning 한다. 원문에 없는 문자열 추가 금지.
+- HISTORY_DUPLICATE_GATE: 고객 과거 발송 제목/주제와 동일·과도 유사한 후보를 자동 차단하고, UNSENT 여부를 실제 이력으로 판정한다.
+- PUBLISHER_ROTATION_GATE: 사용자의 거래 발행사 pool과 최근 사용 이력을 읽고 QYResearch 제외 및 동일 발행사 연속 3회 이상을 차단한다.
+- COMPLETE-SET GATE: 기본 3종 요구 시 3/3 모두 PASS 전에는 최종 결과를 출력하지 않는다. 실패 후보는 자동 폐기하고 검색 예산 안에서 대체 후보를 계속 탐색한다.
+- FAIL-CLOSED: 공식 source 또는 실제 TOC가 없으면 '비슷해 보임'으로 통과시키지 않는다.
+- OUTPUT RECEIPT: 최종 3종 각각 exact title / publisher / official URL / publication date / source-id / TOC verification / duplicate check / rotation check를 기계적으로 남긴다.
+- REGRESSION: 과거 GOLDEN SAMPLE 및 사용자 수정본과 출력 필드/순서/목차 depth를 자동 비교하고 차이가 있으면 사용자 출력 전에 FAIL 처리한다.
+- 사용자에게 과거 대화기록 재첨부를 요구하는 것을 정상 운영경로로 두지 않는다. canonical 자료가 없거나 손상된 경우에만 BLOCKER로 보고한다.
+
+### CAR-026 즉시 회귀시험
+- 대상: 장명진 / 한국섬유개발연구원 / 신사업기획팀.
+- 과거 발송: 2024 Healthcare/Medical/Biomedical/Antimicrobial textiles, 2025 Plant/Natural/Recycled fibers.
+- 신규축: smart / conductive / radiation shielding / protective textiles.
+- 정확한 공식 영문 title이 Global로 시작해야 함; 특정 국가판 제외; QYResearch 제외; 2026 우선; 가능하면 서로 다른 발행사 3종.
+- 3종 모두 원발행사 공식페이지와 실제 공식 TOC 원문 검증 완료 전 최종 PASS 금지.
+- 이 회귀시험에서 reseller 사용, TOC 추론, 3종 미완성 출력, 과거발송 중복 중 하나라도 발생하면 TOOL044 개선 미완료로 판정한다.
