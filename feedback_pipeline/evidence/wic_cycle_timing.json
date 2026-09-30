@@ -1,31 +1,31 @@
 {
-  "measured_at": "2026-09-30T12:43:43.007979+00:00",
-  "total_seconds": 0.023051,
+  "measured_at": "2026-09-30T18:08:16.084546+00:00",
+  "total_seconds": 0.024272,
   "stages": [
     {
       "stage": "TOOL016_COLLECTION_AND_DURABLE_READ",
-      "duration_seconds": 0.002294
+      "duration_seconds": 0.002274
     },
     {
       "stage": "RECONCILIATION_CLASSIFICATION_AND_REQUEUE",
-      "duration_seconds": 0.000439
+      "duration_seconds": 0.000484
     },
     {
       "stage": "TOOL044_ROUTING_AND_RUNNER_SELECTION",
-      "duration_seconds": 0.007243
+      "duration_seconds": 0.008374
     },
     {
       "stage": "WORK_BATCH_AND_NEXT_SELECTION",
-      "duration_seconds": 0.009752
+      "duration_seconds": 0.009801
     },
     {
       "stage": "RESULT_RETURN_AND_CENTRAL_PERSIST",
-      "duration_seconds": 0.003308
+      "duration_seconds": 0.003324
     }
   ],
   "measured_bottleneck": {
     "stage": "WORK_BATCH_AND_NEXT_SELECTION",
-    "duration_seconds": 0.009752
+    "duration_seconds": 0.009801
   },
   "scheduler_interval_minutes_before": 15,
   "scheduler_interval_minutes_after": 5,
