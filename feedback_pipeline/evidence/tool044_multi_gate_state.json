@@ -6224,12 +6224,27 @@
       "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-01",
       "OWNER": "GITHUB_ACTIONS:36654658261:GATE_01",
       "CLAIM_TIME": "2026-09-30T01:20:49.596170+00:00",
-      "LEASE_EXPIRY": "2026-09-30T01:50:49.596170+00:00",
+      "LEASE_EXPIRY": null,
       "FENCING_TOKEN": "509febabb6264454854bac3e0f97f66f",
-      "CHECKPOINT": "CLAIM_DURABLE",
-      "STATUS": "CLAIMED",
+      "CHECKPOINT": "REGRESSION_COMPLETE",
+      "STATUS": "PASS",
       "RETRY_COUNT": 0,
-      "RESULT": null,
+      "RESULT": {
+        "job_id": "CANARY::36654658261::01",
+        "owner": "GITHUB_ACTIONS:36654658261:GATE_01",
+        "fencing_token": "509febabb6264454854bac3e0f97f66f",
+        "component_id": "COMMON-CIRCULATION-CANARY-01",
+        "root_id": "COMMON_MULTI_RUNNER_CIRCULATION",
+        "target_tool": "COMMON_INFRASTRUCTURE",
+        "status": "PASS",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "install_returncode": 0,
+        "validator_returncode": 0,
+        "rollback_returncode": null,
+        "rollback_pass": true,
+        "heartbeat": "2026-09-30T01:20:58.821067+00:00",
+        "production_mutation": 0
+      },
       "COMPONENT": {
         "component_id": "COMMON-CIRCULATION-CANARY-01",
         "install_method": [
@@ -6256,12 +6271,27 @@
       "COMPONENT_ID": "COMMON-CIRCULATION-CANARY-02",
       "OWNER": "GITHUB_ACTIONS:36654658261:GATE_02",
       "CLAIM_TIME": "2026-09-30T01:20:49.596170+00:00",
-      "LEASE_EXPIRY": "2026-09-30T01:50:49.596170+00:00",
+      "LEASE_EXPIRY": null,
       "FENCING_TOKEN": "0b82ca4b90f4472cb1760fe2fbf7a1c3",
-      "CHECKPOINT": "CLAIM_DURABLE",
-      "STATUS": "CLAIMED",
+      "CHECKPOINT": "REGRESSION_COMPLETE",
+      "STATUS": "PASS",
       "RETRY_COUNT": 0,
-      "RESULT": null,
+      "RESULT": {
+        "job_id": "CANARY::36654658261::02",
+        "owner": "GITHUB_ACTIONS:36654658261:GATE_02",
+        "fencing_token": "0b82ca4b90f4472cb1760fe2fbf7a1c3",
+        "component_id": "COMMON-CIRCULATION-CANARY-02",
+        "root_id": "COMMON_MULTI_RUNNER_CIRCULATION",
+        "target_tool": "COMMON_INFRASTRUCTURE",
+        "status": "PASS",
+        "checkpoint": "REGRESSION_COMPLETE",
+        "install_returncode": 0,
+        "validator_returncode": 0,
+        "rollback_returncode": null,
+        "rollback_pass": true,
+        "heartbeat": "2026-09-30T01:21:00.265396+00:00",
+        "production_mutation": 0
+      },
       "COMPONENT": {
         "component_id": "COMMON-CIRCULATION-CANARY-02",
         "install_method": [
@@ -6300,9 +6330,9 @@
     }
   ],
   "schema_version": 1,
-  "updated_at": "2026-09-30T01:20:49.596170+00:00",
+  "updated_at": "2026-09-30T01:21:11.666688+00:00",
   "capacity": 30,
-  "active_claims": 2,
+  "active_claims": 0,
   "provider": "GITHUB_ACTIONS",
-  "results_returned": 1
+  "results_returned": 2
 }
