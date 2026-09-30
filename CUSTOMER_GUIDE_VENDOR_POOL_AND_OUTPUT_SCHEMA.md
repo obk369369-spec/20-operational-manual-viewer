@@ -202,3 +202,21 @@
 - 새 대화창에서는 먼저 GitHub 중앙 원본과 해당 분야 고객 상태를 읽고 마지막 작업지점 다음부터 즉시 재개한다.
 - 자동 피드백 흡수 구조가 완성되기 전까지는 대화창 이동 직전 새로 생긴 미반영 피드백이 있는지 확인해 증분 반영한다.
 - 자동 통합 구조가 완성되면 이 수동 이동 전 반영 절차도 제거하고 자동 route/conflict/dedup/canonical write/read-back으로 전환한다.
+
+
+## 12. 2026-09-30 원발행사/TOC/Global-title 회귀 차단
+
+- 고객 안내용 보고서 조사·검증·선정·최종링크는 원발행사 공식 상세페이지 ONLY.
+- MarketResearch.com, ResearchAndMarkets 및 기타 reseller/aggregator/판매대행 사이트를 제목·발행일·페이지·가격·TOC·설명·후보선정의 근거로 사용하지 않는다.
+- reseller에서 후보를 발견했더라도 원발행사 공식 동일 보고서 페이지를 다시 찾아 처음부터 검증한다. 찾지 못하면 `OFFICIAL_PUBLISHER_SOURCE_NOT_FOUND -> 후보 탈락`.
+- TOC는 해당 원발행사 공식 상세페이지에 공개된 동일 보고서의 실제 full TOC만 허용한다.
+- title/segmentation/scope/description에서 TOC를 추론하거나, 다른 보고서 구조를 차용하거나, 누락 항목을 보충하지 않는다.
+- 고객용 TOC 축약은 검증된 full TOC에서 상위 + 직접 하위만 남기는 삭제/filter 작업으로만 수행한다.
+- full TOC 미확보 시 `TOC_SOURCE_NOT_VERIFIED -> 후보 탈락`.
+- 사용자/고객 작업에서 `영문 타이틀이 Global로 시작` 조건이 명시되면 공식 H1/대표 제목의 첫 단어가 정확히 `Global`인 보고서만 PASS한다. 특정 국가/지역판 및 제목 중간의 Global Forecast는 이 조건의 대체가 아니다.
+- 최근 발행사 사용이력을 먼저 확인하고 동일 발행사 3회 연속 선정을 금지한다. 고객당 3종은 가능하면 서로 다른 거래 발행사로 구성한다.
+- QYResearch 제외 규칙이 활성화된 고객안내 작업에서는 후보로 사용하지 않는다.
+- 위 조건 중 하나라도 실패한 자료를 억지로 3종에 채우지 말고 거래 발행사 풀에서 교체한다.
+
+### CAR-026 occurrence
+장명진 고객 선정 중 `Conductive Textile Market in South Korea` 지역판 선정, reseller 근거 사용, 공식 full TOC 미확보 후보의 부분확정이 발생했다. 모두 FAIL occurrence로 보존하며 다음 작업에서 기존 후보를 자동 PASS로 승계하지 않는다. CAR-026은 과거 실제 발송 EML 이력을 먼저 반영한 뒤 스마트/전도성/방사선·전자파 차폐/보호 섬유 축으로 다시 선정한다.
