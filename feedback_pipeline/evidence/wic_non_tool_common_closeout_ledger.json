@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30T02:14:27.469816+00:00",
+  "updated_at": "2026-09-30T02:28:34.625985+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -128,13 +128,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -181,13 +181,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "HISTORICAL_FEEDBACK_INGEST"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -234,13 +234,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "ACCESS_BOUNDARY_CLASSIFICATION"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -287,13 +287,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "ROOT_CAUSE_DEDUPLICATION"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -340,13 +340,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "MISSING_CAPABILITY_EXTRACTION"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -393,13 +393,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "VERIFIED_SKIP_REUSE_FILTER"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -446,13 +446,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "TOOL016_TO_TOOL044_HANDOFF"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -499,13 +499,13 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "ATOMIC_CAPABILITY_DECOMPOSITION"
+      "actual_evidence": [
+        "36660001772"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     },
     {
@@ -2426,11 +2426,11 @@
     }
   ],
   "counts": {
-    "COMPLETE": 37,
-    "UNFINISHED": 15,
     "PLATFORM_HOLD": 3,
+    "LONG_TERM_HOLD": 5,
+    "COMPLETE": 45,
     "PARTIAL": 9,
-    "LONG_TERM_HOLD": 5
+    "UNFINISHED": 7
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2442,6 +2442,14 @@
   "not_worked_count": 0,
   "pass_locked": [
     "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
+    "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
     "f8bc3e81228256cba56e-INPUT_CONTRACT_VALIDATION",
     "f8bc3e81228256cba56e-EXPECTED_ACTUAL_VALIDATION",
     "f8bc3e81228256cba56e-FAILURE_ISOLATION",

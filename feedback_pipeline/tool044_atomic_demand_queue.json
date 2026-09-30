@@ -524,7 +524,7 @@
       "atomic_capabilities": [
         "REPOSITORY_ERROR_EVIDENCE_DISCOVERY"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -573,7 +573,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
@@ -581,7 +591,7 @@
       "atomic_capabilities": [
         "HISTORICAL_FEEDBACK_INGEST"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -630,7 +640,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
@@ -638,7 +658,7 @@
       "atomic_capabilities": [
         "ACCESS_BOUNDARY_CLASSIFICATION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -687,7 +707,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "STATUS_CLASSIFICATION_PROVEN"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ROOT_CAUSE_DEDUPLICATION",
@@ -695,7 +725,7 @@
       "atomic_capabilities": [
         "ROOT_CAUSE_DEDUPLICATION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -744,7 +774,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "STATUS_CLASSIFICATION_PROVEN"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-MISSING_CAPABILITY_EXTRACTION",
@@ -752,7 +792,7 @@
       "atomic_capabilities": [
         "MISSING_CAPABILITY_EXTRACTION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -801,7 +841,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-VERIFIED_SKIP_REUSE_FILTER",
@@ -809,7 +859,7 @@
       "atomic_capabilities": [
         "VERIFIED_SKIP_REUSE_FILTER"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -858,7 +908,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-TOOL016_TO_TOOL044_HANDOFF",
@@ -866,7 +926,7 @@
       "atomic_capabilities": [
         "TOOL016_TO_TOOL044_HANDOFF"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -915,7 +975,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ATOMIC_CAPABILITY_DECOMPOSITION",
@@ -923,7 +993,7 @@
       "atomic_capabilities": [
         "ATOMIC_CAPABILITY_DECOMPOSITION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_PASS",
+      "status": "PASS_LOCKED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
       "root_id": null,
@@ -972,7 +1042,17 @@
         "evidence": "feedback_pipeline/evidence/tool016_false_missing_reconciliation_20260914.json",
         "final_batch": "T16-T44-ACTIONABLE-REMAINDER-20260925"
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "result_return": {
+        "tool016_ack": "RECEIVED",
+        "run_id": "36660001772",
+        "evidence": [
+          "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
+          "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+        ],
+        "proof_key": "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT"
+      },
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION"
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
