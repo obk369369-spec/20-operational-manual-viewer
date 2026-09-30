@@ -3,7 +3,7 @@ name: TOOL044 Verified Component Multi Gate
 on:
   schedule:
     - cron: '*/5 * * * *'
-    - cron: '17 */6 * * *'
+    - cron: '17 1 * * *'
   workflow_dispatch:
     inputs:
       parallel_canary_count:
@@ -37,7 +37,7 @@ jobs:
           --parallel-canary-count '${{ inputs.parallel_canary_count || 0 }}'
           --github-output "$GITHUB_OUTPUT"
       - name: Refresh external runner candidates on periodic discovery cycle
-        if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 */6 * * *' }}
+        if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 1 * * *' }}
         env:
           TOOL044_PRELOAD_TARGET: '1000'
         run: python feedback_pipeline/tool044_dynamic_discovery.py
