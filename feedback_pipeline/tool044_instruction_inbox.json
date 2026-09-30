@@ -463,6 +463,92 @@
       "no_issue_comment_only_pass": true,
       "source_file_lines": "uploaded directive lines 1-575",
       "revision": 1
+    },
+    {
+      "directive_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "root": "GLOBAL_CONFIRMED_RULE_RECALL_AND_ENFORCEMENT_GATE",
+      "priority": "HIGHEST_AFTER_DEDUP_GATE",
+      "status": "OPEN_IMPLEMENT_TEST_DEPLOY",
+      "scope": "TOOL042_AND_CUSTOMER_GUIDE_PIPELINE",
+      "trigger": [
+        "USER_MANUAL_CORRECTION_DETECTED",
+        "CUSTOMER_GUIDE_FINAL_REVIEW_TRIGGER"
+      ],
+      "golden_rule": "User-edited actual send-ready guide/mail/EML/DOC/PDF is USER_FINAL_GOLDEN_SAMPLE for that task; AI prior output is not ground truth.",
+      "compare_fields": [
+        "selected_reports",
+        "report_order",
+        "english_title",
+        "korean_title",
+        "publisher",
+        "pages",
+        "list_price",
+        "published_date",
+        "official_link",
+        "toc",
+        "customer_research_axis",
+        "publisher_diversity",
+        "topic_diversity",
+        "mail_subject",
+        "mail_body"
+      ],
+      "diff_classes": [
+        "REPORT_REPLACED",
+        "PUBLISHER_CHANGED",
+        "DATE_CORRECTED",
+        "PRICE_CORRECTED",
+        "PAGE_CORRECTED",
+        "TITLE_CORRECTED",
+        "LINK_CORRECTED",
+        "TOC_CORRECTED",
+        "REPORT_ORDER_CHANGED",
+        "RESEARCH_AXIS_CHANGED",
+        "PUBLISHER_DIVERSITY_CORRECTED",
+        "FORMAT_CORRECTED"
+      ],
+      "automatic_flow": [
+        "AI_PREVIOUS_OUTPUT",
+        "USER_FINAL_GOLDEN_SAMPLE",
+        "FIELD_BY_FIELD_DIFF",
+        "ROOT_CAUSE_CLASSIFICATION",
+        "NEW_RULE_EXTRACTION",
+        "EXISTING_RULE_NONENFORCEMENT_CHECK",
+        "TOOL016_TOOL044_IMPROVEMENT_DEMAND",
+        "REGRESSION_FIXTURE",
+        "NEXT_CUSTOMER_ENFORCEMENT"
+      ],
+      "car026_required_learning": {
+        "year": "Use PUBLISHED_DATE for requested publication year; never substitute LAST_UPDATED_DATE.",
+        "publisher_set_diversity": "PUBLISHER_SET_DIVERSITY_GATE: for a 3-report recommendation use one report per publisher by default when other suitable WIC trading publishers exist; avoid recent repetition where possible.",
+        "set_level_pass": "Individual PASS reports do not imply set PASS. Require REPORT_COUNT,PUBLISHER_DIVERSITY,TOPIC_DIVERSITY,YEAR,CUSTOMER_RELEVANCE,PAST_SEND_DUPLICATION,TITLE,LINK,METADATA then SET_LEVEL_PASS.",
+        "manual_correction": "User correction automatically triggers diff/error extraction/improvement demand/regression fixture without another user instruction."
+      },
+      "mail_final_qc": [
+        "read_full_attached_guide",
+        "report_count",
+        "customer_research_axis",
+        "titles",
+        "publishers",
+        "published_dates",
+        "pages",
+        "prices",
+        "official_links",
+        "publisher_duplicates",
+        "past_guide_duplicates",
+        "obvious_typos_or_omissions"
+      ],
+      "generalization_boundary": "Learn why AI output differed from user final; do not generalize customer-specific report/publisher/topic choices into global rules without evidence.",
+      "observer_rule": "Do not ask user to manually verify/research/repeat improvement instruction when system can resolve from existing records or official sources.",
+      "required_report_fields": [
+        "manual_diff_complete",
+        "new_errors",
+        "existing_rules_not_enforced",
+        "new_rules",
+        "tool044_improvement_target",
+        "regression_fixture_status"
+      ],
+      "pass_condition": "Actual trigger->diff->classification->TOOL016/044 demand->fixture->next-customer enforcement E2E demonstrated; registration alone is not PASS.",
+      "revision": 1
     }
   ]
 }
