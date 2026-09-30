@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30T02:28:34.625985+00:00",
+  "updated_at": "2026-09-30T02:52:11.017897+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -129,7 +129,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -182,7 +182,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -235,7 +235,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -288,7 +288,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -341,7 +341,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -394,7 +394,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -447,7 +447,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -500,7 +500,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36660001772"
+        "36661799663"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -2296,6 +2296,24 @@
       "actionable_requeued": false
     },
     {
+      "requirement_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+      "original_requirement": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json"
+      ],
+      "status": "PLATFORM_HOLD",
+      "remaining_work": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "resume_condition": "AUTO_RESUME_WHEN_SUPPORTED_CURRENT_CHAT_ATTACHMENT_MOUNT_OR_BYTE_HANDLE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
       "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
       "root_id": "PLATFORM-NATIVE-CHAT-ACCESS",
       "original_requirement": "actual delivery into the existing TOOL044 chat",
@@ -2426,11 +2444,11 @@
     }
   ],
   "counts": {
-    "PLATFORM_HOLD": 3,
+    "UNFINISHED": 7,
     "LONG_TERM_HOLD": 5,
     "COMPLETE": 45,
     "PARTIAL": 9,
-    "UNFINISHED": 7
+    "PLATFORM_HOLD": 4
   },
   "cr_status": {
     "CR-1": "COMPLETE",

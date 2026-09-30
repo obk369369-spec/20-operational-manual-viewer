@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30T02:28:34.629462+00:00",
+  "updated_at": "2026-09-30T02:52:11.023539+00:00",
   "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
   "unfinished_detected": 54,
   "common_roots": [
@@ -91,6 +91,12 @@
       ]
     },
     {
+      "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+      "demands": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
+      ]
+    },
+    {
       "root_id": "ENV2",
       "demands": [
         "WIC-BACKLOG-ENV2-20260927"
@@ -147,8 +153,7 @@
     {
       "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
       "demands": [
-        "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
-        "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING"
+        "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION"
       ]
     },
     {
@@ -561,14 +566,6 @@
       "reason": "HOLD_MISSING_VERIFIED_COMPONENT"
     },
     {
-      "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
-      "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-CANONICAL_CATEGORY_MATCHING",
-      "capabilities": [
-        "CANONICAL_CATEGORY_MATCHING"
-      ],
-      "reason": "HOLD_MISSING_CANONICAL_CATEGORY_LIST_AND_VERIFIED_MATCHER"
-    },
-    {
       "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
       "capabilities": [
@@ -641,6 +638,14 @@
     {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
       "reason": "HOLD_REEVALUATE"
+    },
+    {
+      "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+      "demand_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "capabilities": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "reason": "PLATFORM_HOLD_CURRENT_CHAT_ATTACHMENT_BYTES_NOT_MOUNTED"
     }
   ],
   "duplicates_removed": [
