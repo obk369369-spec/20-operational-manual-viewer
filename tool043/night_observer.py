@@ -16,6 +16,11 @@ PIPE = ROOT / "feedback_pipeline"
 ALLOWED_NIGHT_ACTIONS = {"REFRESH_OBSERVER_FROM_CENTRAL"}
 
 
+def repository_text_sha256(path: Path) -> str:
+    """Hash text as Git stores it so Windows checkout line endings do not stale the projection."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def verified_checkpoint(roots: dict, previous_status: dict) -> str:
     # Never promote GITHUB_SHA (an unvalidated in-flight revision) to a safe point.
     for candidate in (previous_status.get("safe_checkpoint"), roots.get("safe_checkpoint")):
@@ -184,7 +189,7 @@ def build() -> tuple[dict, dict]:
     blocked = current["waiting_total"]
     status = {
         "schema_version": 1,
-        "central_input_sha256": {str(p.relative_to(ROOT)).replace(chr(92), '/'): hashlib.sha256(p.read_bytes()).hexdigest()
+        "central_input_sha256": {str(p.relative_to(ROOT)).replace(chr(92), '/'): repository_text_sha256(p)
                                  for p in (PIPE / 'work16_root_ledger.json', PIPE / 'incomplete_register.json',
                                            PIPE / 'unified_open_ledger.json', PIPE / 'approval_queue.json',
                                            PIPE / 'evidence' / 'work_execution_audit_20260827.json')},
