@@ -5,11 +5,16 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pages: write
+  id-token: write
 concurrency:
   group: wic-24h-tools-revenue-cycle
   cancel-in-progress: false
 jobs:
   cycle:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}revenue-lab/
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,3 +34,15 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m 'wic: persist daily tools and revenue cycle'
           git push
+      - uses: actions/configure-pages@v5
+      - name: Stage complete existing site with latest revenue result
+        run: |
+          mkdir -p _site/tool020 _site/observer _site/revenue-lab
+          cp -R tool043/. _site/
+          cp public/index.html _site/tool020/index.html
+          cp observer/index.html _site/observer/index.html
+          cp -R public/revenue-lab/. _site/revenue-lab/
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: _site}
+      - id: deployment
+        uses: actions/deploy-pages@v4
