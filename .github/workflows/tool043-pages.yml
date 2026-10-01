@@ -29,9 +29,10 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Stage existing tool entrypoints
         run: |
-          mkdir -p _site/tool020
+          mkdir -p _site/tool020 _site/revenue-lab
           cp -R tool043/. _site/
           cp public/index.html _site/tool020/index.html
+          cp -R public/revenue-lab/. _site/revenue-lab/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

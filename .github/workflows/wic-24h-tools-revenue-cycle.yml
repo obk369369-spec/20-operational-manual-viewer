@@ -1,0 +1,31 @@
+name: WIC 24H Tools and Revenue Cycle
+on:
+  schedule:
+    - cron: '23 1 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: wic-24h-tools-revenue-cycle
+  cancel-in-progress: false
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Run actual A-L cycle
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python feedback_pipeline/wic_24h_tools_revenue_cycle.py
+      - name: Validate actual result
+        run: python feedback_pipeline/test_wic_24h_tools_revenue_cycle.py
+      - name: Persist changed evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add public/revenue-lab/state.json feedback_pipeline/evidence/wic_24h_tools_revenue_cycle.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'wic: persist daily tools and revenue cycle'
+          git push
