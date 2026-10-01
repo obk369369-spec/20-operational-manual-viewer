@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "status": "DEPLOYED_COMPLETE_WITH_REVENUE_WAITING",
+  "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+  "actual_cycle": {
+    "execution_id": "WIC24H-20261001T054610Z",
+    "github_actions_run_id": 36821360531,
+    "github_actions_url": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/36821360531",
+    "result": "PASS",
+    "scheduled_cron": "23 1 * * *",
+    "tool_inventory_count": 15,
+    "platform_candidates_found": 1000,
+    "platform_candidates_qualified": 670,
+    "search_stop_reason": "SOURCE_EXHAUSTED"
+  },
+  "public_pilot": {
+    "name": "WIC 웹사이트 안심 점검",
+    "url": "https://obk369369-spec.github.io/20-operational-manual-viewer/revenue-lab/",
+    "http_status": 200,
+    "actual_function": "PASS",
+    "external_revenue_evidence": "PASS",
+    "revenue_path": "PASS",
+    "customer_response": "WAITING",
+    "lead": "WAITING",
+    "order": "WAITING",
+    "payment": "WAITING",
+    "revenue": "WAITING"
+  },
+  "platform_chain": {
+    "kestra_version": "2.0.4",
+    "kestra_execution_id": "x8ZWTrUFdJYBI56GNZyvE",
+    "kestra_status": "SUCCESS",
+    "node_red_version": "4.1.0",
+    "node_red_pid_at_closeout": 3256,
+    "node_red_result_status": "PASS",
+    "node_red_source_run_id": "WIC24H-20261001T054020Z",
+    "node_red_flow_sha256": "36071a07c1e7749938fa768af525ecd9264464fff35e78b833a805130bed03c0",
+    "node_red_result_path": "CONTROL_TOWER/external_platforms/node-red/wic-revenue-cycle-result.json"
+  },
+  "source_receipts": [
+    {
+      "name": "UptimeRobot paid monitoring market evidence",
+      "url": "https://uptimerobot.com/pricing/",
+      "checked": "PASS"
+    },
+    {
+      "name": "Uptime Kuma",
+      "url": "https://github.com/louislam/uptime-kuma",
+      "license": "MIT",
+      "checked": "PASS"
+    },
+    {
+      "name": "Plausible public SaaS revenue evidence",
+      "url": "https://plausible.io/blog/open-source-saas",
+      "checked": "PASS"
+    }
+  ],
+  "remote": {
+    "implementation_commit": "a01760d820c56d44604c00a25ac893393f80a441",
+    "publish_fix_commit": "4ca7e4979f",
+    "automatic_result_commit": "a91fa1ab1610418de4b7267c27ecbce6a0f9bc8a",
+    "remote_readback": "PASS"
+  },
+  "truth": {
+    "actual_customer_payment": false,
+    "actual_revenue": false,
+    "financial_action_performed": false,
+    "observer_manual_relay_required": 0,
+    "natural_24h_elapsed_for_new_cycle": false,
+    "daily_cycle_registered_and_first_run_passed": true
+  }
+}
