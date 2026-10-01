@@ -5,11 +5,24 @@
       "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
       "layer": "L5",
       "target": "TOOL016 / TOOL044 / KESTRA / NODE_RED / GITHUB_PAGES",
-      "status": "OPEN",
-      "next_trigger": "IMMEDIATE",
-      "last_actual_point": "Kestra 2.0.4 and Node-RED 4.1.0 are verified; daily free-platform discovery executed and survived restart. Tool inventory and revenue A-L cycle are not yet connected to a public result.",
-      "next_start": "Reuse verified Kestra, Node-RED and GitHub Actions; connect the inventory, revenue evidence gate, one public pilot, durable result and daily recurrence without paid financial actions.",
-      "evidence_ref": "feedback_pipeline/evidence/tool044_node_red_discovery_platform_20261001.json"
+      "status": "DEPLOYED_COMPLETE",
+      "next_trigger": "DAILY_SCHEDULE_OR_NEW_CUSTOMER_EVENT",
+      "last_actual_point": "Daily A-L cycle run 36821360531 succeeded, public pilot returned HTTP 200, Node-RED recovered the durable result, and Kestra remained SUCCESS. Payment and revenue remain evidence-gated WAITING.",
+      "next_start": "SKIP_REUSE the deployed cycle; continue scheduled discovery and only advance customer/payment/revenue stages on new external evidence.",
+      "completion_evidence": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "e6f919ca8df49956d70ffa1e3cd7a9114772a957",
+        "path": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json",
+        "remote_blob_sha": "547ad122d079a5e5668bad09f10126a1189fc9a1",
+        "scope": "Daily WIC tool recovery and revenue discovery cycle, public monitoring pilot, Node-RED result recovery, Kestra status link, and honest revenue-stage waiting states"
+      },
+      "execution_receipts": [
+        {
+          "operation_id": "connect-daily-tools-revenue-cycle-and-public-pilot",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "e6f919ca8df49956d70ffa1e3cd7a9114772a957:feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
+        }
+      ]
     },
     {
       "root_id":"WIC-0702-SCOPED-RECOVERY",
