@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-01T05:59:37.806358+00:00",
+  "generated_at": "2026-10-01T08:50:33.513308+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "cb88f75001d8f7ba47bab305e92ff6e32e54a47987231910b1d723b75f43e6d7"
+      "sha256": "f2e5bdc10d351161609501c41cd96c4c2d69ede5cf2367a95b009b76bb07ac02"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,17 +29,17 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "ad97cc89de2360aac4a7663a77cca0bd4a40166a55d7f7b36a95b1ebef4ce484"
+      "sha256": "dd3f8ec20b81a6ca5994ee1d7a8047bf5952a6188d62256f29c61cbe36555348"
     }
   ],
   "counts": {
     "checked_tools": 18,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 229,
+    "automatically_recoverable_records": 231,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 183,
-    "roots_after_deduplication": 130,
+    "collected_error_records": 185,
+    "roots_after_deduplication": 131,
     "verified_skip_reuse_records": 11,
     "records_handed_to_tool044": 78,
     "atomic_demands": 116
@@ -254,6 +254,42 @@
       "MISSING_CAPABILITY": null,
       "IMPROVEMENT_EVIDENCE": "tool043/TEST_EVIDENCE.md",
       "ROUTING": "SKIP_REUSE"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+      "ROOT_ID": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Daily A-L cycle run 36821360531 succeeded, public pilot returned HTTP 200, Node-RED recovered the durable result, and Kestra remained SUCCESS. Payment and revenue remain evidence-gated WAITING.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "e6f919ca8df49956d70ffa1e3cd7a9114772a957",
+        "path": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json",
+        "remote_blob_sha": "547ad122d079a5e5668bad09f10126a1189fc9a1",
+        "scope": "Daily WIC tool recovery and revenue discovery cycle, public monitoring pilot, Node-RED result recovery, Kestra status link, and honest revenue-stage waiting states"
+      },
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+      "ROOT_ID": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+      "CURRENT_STATUS": "UNKNOWN",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Daily A-L cycle run 36821360531 succeeded, public pilot returned HTTP 200, Node-RED recovered the durable result, and Kestra remained SUCCESS. Payment and revenue remain evidence-gated WAITING.",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": null,
+      "IMPROVEMENT_EVIDENCE": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "e6f919ca8df49956d70ffa1e3cd7a9114772a957",
+        "path": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json",
+        "remote_blob_sha": "547ad122d079a5e5668bad09f10126a1189fc9a1",
+        "scope": "Daily WIC tool recovery and revenue discovery cycle, public monitoring pilot, Node-RED result recovery, Kestra status link, and honest revenue-stage waiting states"
+      },
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
     },
     {
       "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
@@ -3046,6 +3082,7 @@
     "VERIFIED_REPORT_PAYLOAD_NOT_READY",
     "WIC-0702-SCOPED-RECOVERY",
     "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+    "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
     "WIC-ACCESSIBLE-CYCLE-CLOSEOUT-20260929",
     "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
     "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
