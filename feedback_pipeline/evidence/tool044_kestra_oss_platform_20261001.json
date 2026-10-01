@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-01T04:33:27.0909524Z",
+  "component_id": "KESTRA_OSS_STANDALONE_2_0_4",
+  "status": "VERIFIED_CONNECTED_LOCAL_EXECUTOR",
+  "source": "https://github.com/kestra-io/kestra/releases/tag/v2.0.4",
+  "license": "Apache-2.0",
+  "version": "2.0.4",
+  "free_condition": "self-hosted open-source core; no paid license used",
+  "runtime": {
+    "java_distribution": "Eclipse Temurin JRE",
+    "java_version": "25.0.4.1+1",
+    "java_archive_sha256": "4c95451cea98556def2c54f7782933f52a26d4a36bd85e1d59f0364464828b07",
+    "kestra_sha256": "88ee8d44c3d4a234c9d04689e72b8ba903ae8f9f2c6ae5f94bad89f3bcd68513",
+    "ui": "http://127.0.0.1:18080/",
+    "hidden_process": true
+  },
+  "actual_execution": {
+    "execution_id": "3c8RXzA4u3Yp865cCb1vs7",
+    "flow": "wic.platform.wic_platform_smoke",
+    "state": "SUCCESS",
+    "request_id": "WIC-PLATFORM-GITHUB-READBACK-002",
+    "tasks": {
+      "read_wic_central_state": "SUCCESS",
+      "publish_result": "SUCCESS",
+      "persist_result": "SUCCESS"
+    },
+    "github_readback_http_code": 200,
+    "github_readback_bytes": 18209,
+    "result_uri": "kestra:///wic/platform/wic-platform-smoke/executions/3c8RXzA4u3Yp865cCb1vs7/tasks/persist-result/4YxoHMFXXTwK7JP882kN0D/10360479462782099820.json"
+  },
+  "recovery_test": {
+    "previous_execution_recovered": "5TLzCCrSYdzw2zwdSVXYAN:SUCCESS",
+    "post_restart_execution": "1I36lvJ2vN4clwTxE7qQDV:SUCCESS",
+    "process_restart": "PASS"
+  },
+  "automation": {
+    "schedule": "every five minutes",
+    "durable_state": true,
+    "automatic_retry_platform_capability": true,
+    "central_state_readback": true
+  },
+  "limits": {
+    "pc_off_independent": false,
+    "natural_24h_evidence": "WAITING",
+    "reason": "This verified Kestra instance is local; existing GitHub Actions remains the screen-off external runtime. A continuously hosted second Kestra server was not provisioned without external capacity."
+  }
+}
+

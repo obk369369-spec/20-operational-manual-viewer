@@ -735,6 +735,33 @@
           "production_mutation": 0
         }
       }
+    },
+    {
+      "component_id": "KESTRA_OSS_STANDALONE_2_0_4",
+      "status": "VERIFIED_REUSABLE",
+      "source": "https://github.com/kestra-io/kestra/releases/tag/v2.0.4",
+      "license": "Apache-2.0",
+      "version": "2.0.4",
+      "atomic_capabilities": [
+        "SCHEDULER",
+        "DURABLE_EXECUTION_STATE",
+        "RETRY_AND_RECOVERY",
+        "WORKFLOW_ORCHESTRATION",
+        "WIC_CENTRAL_STATE_READBACK",
+        "RESULT_ARTIFACT_STORAGE"
+      ],
+      "target_root": "WIC-FREE-24H-AUTOMATION-PLATFORM",
+      "target_tool": "TOOL016,TOOL044,CONTROL_TOWER",
+      "input_contract": "WIC durable central state URL and atomic request identifier",
+      "output_contract": "Kestra execution state, durable result URI, and central-state read-back receipt",
+      "install_target": "CONTROL_TOWER/external_platforms/kestra",
+      "success_condition": "actual Kestra execution succeeds, reads WIC central state, persists result, and survives process restart",
+      "failure_condition": "server, task, WIC read-back, result storage, or restart recovery fails",
+      "evidence": "feedback_pipeline/evidence/tool044_kestra_oss_platform_20261001.json",
+      "idempotency_key": "KESTRA_OSS_STANDALONE_2_0_4@2.0.4",
+      "verified_execution_id": "3c8RXzA4u3Yp865cCb1vs7",
+      "natural_24h_evidence": "WAITING",
+      "pc_off_independent": false
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
