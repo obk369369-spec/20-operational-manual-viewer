@@ -2,6 +2,16 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+      "layer": "L5",
+      "target": "TOOL016 / TOOL044 / KESTRA / NODE_RED / GITHUB_PAGES",
+      "status": "OPEN",
+      "next_trigger": "IMMEDIATE",
+      "last_actual_point": "Kestra 2.0.4 and Node-RED 4.1.0 are verified; daily free-platform discovery executed and survived restart. Tool inventory and revenue A-L cycle are not yet connected to a public result.",
+      "next_start": "Reuse verified Kestra, Node-RED and GitHub Actions; connect the inventory, revenue evidence gate, one public pilot, durable result and daily recurrence without paid financial actions.",
+      "evidence_ref": "feedback_pipeline/evidence/tool044_node_red_discovery_platform_20261001.json"
+    },
+    {
       "root_id":"WIC-0702-SCOPED-RECOVERY",
       "layer":"L5",
       "target":"TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
@@ -219,6 +229,13 @@
   "execution_policy": {
     "schema_version": 1,
     "scope_grants": [{
+      "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+      "directive_ref": "USER_WIC_24H_REVENUE_EXECUTION_20261001",
+      "actions": ["CONNECT_AND_DEPLOY_REUSED_PLATFORMS"],
+      "assets": ["TOOL016", "TOOL044", "KESTRA", "NODE_RED", "GITHUB_ACTIONS", "GITHUB_PAGES", "WIC_TARGET_REGISTRY", "REVENUE_PILOT"],
+      "reusable_assets": ["verified Kestra 2.0.4", "verified Node-RED 4.1.0", "existing GitHub Actions and Pages", "current WIC target registry"],
+      "scope": "Connect the existing verified automation platforms to a daily A-L tool and revenue cycle, deploy one public no-payment pilot, verify the visible result, and keep customer payment stages WAITING"
+    },{
       "root_id":"WIC-0702-SCOPED-RECOVERY",
       "directive_ref":"USER_0702A258_RESUME",
       "actions":["SCOPED_READ_ONLY_RECOVERY"],

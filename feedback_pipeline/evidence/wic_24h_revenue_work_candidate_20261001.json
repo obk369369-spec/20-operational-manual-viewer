@@ -1,0 +1,23 @@
+{
+  "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+  "operation_id": "connect-daily-tools-revenue-cycle-and-public-pilot",
+  "directive_ref": "USER_WIC_24H_REVENUE_EXECUTION_20261001",
+  "action": "CONNECT_AND_DEPLOY_REUSED_PLATFORMS",
+  "target_assets": [
+    "TOOL016",
+    "TOOL044",
+    "KESTRA",
+    "NODE_RED",
+    "GITHUB_ACTIONS",
+    "GITHUB_PAGES",
+    "WIC_TARGET_REGISTRY",
+    "REVENUE_PILOT"
+  ],
+  "execution_goal": "Reuse verified automation platforms to connect the full authorized scope in one batch, run one public revenue pilot, verify the visible output, persist evidence, and continue daily without financial actions",
+  "blocker": "The verified scheduler currently covers free-platform discovery only; tool inventory, evidence-backed revenue discovery, public pilot and stage-separated measurement are not connected",
+  "restart_point": "Node-RED discovery run DISCOVERY-1790831631040 and central revision 541c1a1b17ebc664096d8ae18c692fb42d862881",
+  "target_repository": "obk369369-spec/20-operational-manual-viewer",
+  "success_evidence": "Actual cycle execution ID, visible GitHub Pages result, stage-separated revenue state, daily schedule, GitHub run, TOOL016/TOOL044 evidence and remote read-back",
+  "rollback_point": "541c1a1b17ebc664096d8ae18c692fb42d862881",
+  "exact_next_step": "Apply only the reusable-platform batch, run one integrated validation, publish once, and read back once"
+}
