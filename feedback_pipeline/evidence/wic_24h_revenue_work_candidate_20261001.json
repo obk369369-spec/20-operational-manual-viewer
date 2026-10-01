@@ -13,6 +13,11 @@
     "WIC_TARGET_REGISTRY",
     "REVENUE_PILOT"
   ],
+  "gates": {
+    "chat_files": false,
+    "github": false,
+    "ordinary_runtime": false
+  },
   "execution_goal": "Reuse verified automation platforms to connect the full authorized scope in one batch, run one public revenue pilot, verify the visible output, persist evidence, and continue daily without financial actions",
   "blocker": "The verified scheduler currently covers free-platform discovery only; tool inventory, evidence-backed revenue discovery, public pilot and stage-separated measurement are not connected",
   "restart_point": "Node-RED discovery run DISCOVERY-1790831631040 and central revision 541c1a1b17ebc664096d8ae18c692fb42d862881",
