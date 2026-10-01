@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-01T02:01:46.128203+00:00",
+  "updated_at": "2026-10-01T08:44:38.830610+00:00",
   "ready_package_count": 2,
-  "rejected_count": 10,
+  "rejected_count": 12,
   "packages": [
     {
       "PACKAGE_ID": "READY::DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
@@ -208,6 +208,28 @@
     {
       "component_id": "WIC_NON_TOOL_ITEMIZED_REPORT_GATE_V2",
       "missing": [
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "KESTRA_OSS_STANDALONE_2_0_4",
+      "missing": [
+        "install_method",
+        "validator",
+        "rollback_method",
+        "rollback_condition",
+        "source_sha256"
+      ],
+      "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
+    },
+    {
+      "component_id": "NODE_RED_4_1_0",
+      "missing": [
+        "install_method",
+        "validator",
+        "rollback_method",
+        "rollback_condition",
         "source_sha256"
       ],
       "reason": "ACTUAL_EXECUTION_EVIDENCE_REQUIRED"
