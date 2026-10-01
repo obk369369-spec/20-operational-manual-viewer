@@ -238,6 +238,26 @@
   "user_feedback_courier_count": 0,
   "observer_repetition_required_total": 0,
   "pass": true,
+  "active_operating_root": {
+    "root_id": "WIC-AUTONOMOUS-ONE-PERSON-BUSINESS",
+    "directive_ref": "USER_WIC_FINAL_COMPRESSED_ROOT_20261001",
+    "mode": "CONTINUOUS_OBSERVER_ONLY",
+    "pass_lock_policy": "SKIP_REUSE_ALL_REMOTE_VERIFIED_COMPLETE",
+    "default_delivery": "ADOPT_CONNECT_CONFIGURE_VERIFIED_EXTERNAL_COMPONENTS",
+    "evidence_rule": "REAL_WIC_INPUT_OUTPUT_UI_AND_REMOTE_READBACK_REQUIRED",
+    "revenue_rule": "EXTERNAL_REVENUE_EVIDENCE_AND_WIC_ACTUAL_REVENUE_RECORDED_SEPARATELY",
+    "human_approval_rule": "ONLY_EXTERNAL_SEND_CONTRACT_PURCHASE_PAYMENT_OR_TRANSFER",
+    "current_waiting": [
+      "NATURAL_24H_ELAPSED_EVIDENCE",
+      "CUSTOMER_RESPONSE",
+      "LEAD",
+      "ORDER",
+      "PAYMENT",
+      "ACTUAL_WIC_REVENUE",
+      "REPEAT_REVENUE"
+    ],
+    "next_automatic_action": "CONTINUE_DAILY_DISCOVERY_GAP_ANALYSIS_RUNTIME_PROBE_AND_EVIDENCE_COLLECTION"
+  },
   "open_candidate_total": 0,
   "execution_policy": {
     "schema_version": 1,

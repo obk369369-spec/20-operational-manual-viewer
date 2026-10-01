@@ -152,6 +152,7 @@ def build_result() -> dict:
     ]
     return {
         "schema_version": "1.0", "run_id": run_id, "started_at": started, "finished_at": utc_now(),
+        "operating_root": "WIC-AUTONOMOUS-ONE-PERSON-BUSINESS",
         "scheduler": "GitHub Actions daily + Node-RED/Kestra health link", "tool_inventory_count": len(tools),
         "tools": tools, "platform_discovery": platform_discovery,
         "candidates": candidates, "selected_pilot": selected["id"] if selected else None,
