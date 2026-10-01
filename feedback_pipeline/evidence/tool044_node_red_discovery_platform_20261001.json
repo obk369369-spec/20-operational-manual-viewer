@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "recorded_at": "2026-10-01T05:14:00Z",
+  "final_status": "PASS",
+  "platform": {
+    "name": "Node-RED",
+    "version": "4.1.0",
+    "source": "https://github.com/node-red/node-red/tree/4.1.0",
+    "license": "Apache-2.0",
+    "package_json_sha256": "f028752bcb9f3190fe53c8ebaa8104030f723f1ab9290770da10cecc27838dea",
+    "flow_sha256": "da05565f57a1a6da780a67a94f49b7a4068cefadc8c9b31d473755e797b252dc",
+    "runtime_url": "http://127.0.0.1:18082",
+    "runtime_pid_at_validation": 9788
+  },
+  "kestra_connection": {
+    "status": "PASS",
+    "kestra_execution_id": "2d9ZFxcbcWc5LuLLEgJ33u",
+    "kestra_status": "SUCCESS",
+    "checked_at": "2026-10-01T05:13:49.999Z",
+    "durable_result": "CONTROL_TOWER/external_platforms/node-red/wic-node-red-result.json"
+  },
+  "scheduled_discovery": {
+    "status": "PASS",
+    "schedule_seconds": 86400,
+    "first_run_id": "DISCOVERY-1790831606850",
+    "post_restart_run_id": "DISCOVERY-1790831631040",
+    "restart_persistence": true,
+    "candidates_found": 30,
+    "passed_to_runtime_probe": 16,
+    "connected_verified": 1,
+    "rejected": 13,
+    "durable_result": "CONTROL_TOWER/external_platforms/node-red/wic-platform-discovery.json",
+    "flow_definition": "CONTROL_TOWER/external_platforms/node-red/user/wic-flows.json",
+    "runtime_log": "CONTROL_TOWER/external_platforms/node-red/runtime/node-red.stdout.log"
+  },
+  "acceptance": {
+    "second_platform_besides_kestra_connected": true,
+    "actual_kestra_state_link": true,
+    "scheduled_discovery_executed": true,
+    "candidate_pass_reject_recorded": true,
+    "next_connection_queue_recorded": true,
+    "survives_restart": true,
+    "natural_24h_elapsed": false
+  },
+  "notes": [
+    "Node-RED is a distinct Apache-2.0 automation platform connected to Kestra through its execution API.",
+    "The discovery schedule executed on startup and executed again after process restart.",
+    "Natural 24-hour elapsed evidence remains WAITING and is not represented as passed."
+  ]
+}

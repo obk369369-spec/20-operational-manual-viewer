@@ -762,6 +762,34 @@
       "verified_execution_id": "3c8RXzA4u3Yp865cCb1vs7",
       "natural_24h_evidence": "WAITING",
       "pc_off_independent": false
+    },
+    {
+      "component_id": "NODE_RED_4_1_0",
+      "status": "VERIFIED_REUSABLE",
+      "source": "https://github.com/node-red/node-red/tree/4.1.0",
+      "license": "Apache-2.0",
+      "version": "4.1.0",
+      "atomic_capabilities": [
+        "EVENT_DRIVEN_AUTOMATION",
+        "SCHEDULED_DISCOVERY",
+        "HTTP_API_ADAPTER",
+        "KESTRA_STATE_LINK",
+        "DURABLE_RESULT_STORAGE",
+        "TOOL044_RUNTIME_PROBE_QUEUE"
+      ],
+      "target_root": "WIC-FREE-24H-AUTOMATION-PLATFORM",
+      "target_tool": "TOOL016,TOOL044,CONTROL_TOWER",
+      "input_contract": "Kestra execution API and GitHub repository discovery API",
+      "output_contract": "Kestra state receipt, classified candidates, durable runtime-probe queue, and restart-persistent schedule",
+      "install_target": "CONTROL_TOWER/external_platforms/node-red",
+      "success_condition": "Node-RED reads a live Kestra success, runs scheduled discovery, classifies candidates, writes the next queue, and repeats after restart",
+      "failure_condition": "Kestra read, discovery, classification, durable output, or restart persistence fails",
+      "evidence": "feedback_pipeline/evidence/tool044_node_red_discovery_platform_20261001.json",
+      "idempotency_key": "NODE_RED_4_1_0@4.1.0",
+      "verified_execution_id": "DISCOVERY-1790831631040",
+      "linked_kestra_execution_id": "2d9ZFxcbcWc5LuLLEgJ33u",
+      "natural_24h_evidence": "WAITING",
+      "pc_off_independent": false
     }
   ],
   "reason": "TWO_EXISTING_VERIFIED_WHEELS_PROMOTED_TO_READY_COMPONENT_CONTRACT"
