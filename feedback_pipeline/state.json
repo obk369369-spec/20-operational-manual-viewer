@@ -126,7 +126,7 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-02T07:00:37.297484+00:00",
+      "updated_at": "2026-10-02T08:38:33.565969+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
       "unfinished_detected": 54,
       "common_roots": [
@@ -1248,13 +1248,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-02T07:00:37.291650+00:00",
+      "updated_at": "2026-10-02T08:38:33.561074+00:00",
       "counts": {
         "LONG_TERM_HOLD": 5,
+        "COMPLETE": 45,
         "UNFINISHED": 7,
         "PARTIAL": 9,
-        "PLATFORM_HOLD": 4,
-        "COMPLETE": 45
+        "PLATFORM_HOLD": 4
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3796,7 +3796,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-02T07:00:37.278415+00:00",
+      "updated_at": "2026-10-02T08:38:33.549503+00:00",
       "UNFINISHED_SCANNED": 46,
       "ALREADY_PASS_EXCLUDED": 70,
       "ROOTS_MERGED": 5,
@@ -4266,16 +4266,21 @@
             "run_id": "36976320317",
             "observed_at": "2026-10-02T07:00:37.278415+00:00",
             "event": "schedule"
+          },
+          {
+            "run_id": "36985183349",
+            "observed_at": "2026-10-02T08:38:33.549503+00:00",
+            "event": "schedule"
           }
         ],
-        "run_count": 28,
-        "elapsed_hours": 88.953,
+        "run_count": 29,
+        "elapsed_hours": 90.585,
         "status": "PASS",
         "actual_24h": true
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-02T07:00:37.278415+00:00",
+      "LAST_HEARTBEAT": "2026-10-02T08:38:33.549503+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0
@@ -4402,7 +4407,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-02T07:00:37.278415+00:00",
+      "updated_at": "2026-10-02T08:38:33.549503+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
