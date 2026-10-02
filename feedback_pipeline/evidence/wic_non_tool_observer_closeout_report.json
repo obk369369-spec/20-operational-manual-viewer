@@ -1,4 +1,625 @@
 {
+  "LONG_TERM_HOLD": [
+    {
+      "requirement_id": "WIC-BACKLOG-24H-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
+  "UNFINISHED": [
+    {
+      "requirement_id": "TOOL044-AUTO-ROLLBACK",
+      "root_id": "TOOL044-AUTO-ROLLBACK",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
+          "MISSING_CAPABILITY": [
+            "SAFE_AUTOMATIC_ROLLBACK"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL044-AUTO-ROLLBACK"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "SAFE_AUTOMATIC_ROLLBACK"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "root_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "VERIFIED_TARGET_DEPLOYMENT",
+            "DEPLOYED_COPY_VALIDATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
+          "MISSING_CAPABILITY": [
+            "VERIFIED_TARGET_DEPLOYMENT",
+            "DEPLOYED_COPY_VALIDATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL044-ARBITRARY-WIC-DEPLOY"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "VERIFIED_TARGET_DEPLOYMENT",
+        "DEPLOYED_COPY_VALIDATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "MISSING_CAPABILITY": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+          "MISSING_CAPABILITY": [
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "VERIFIED_EXECUTABLE_WORK_CONTRACT"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "CHECKPOINT_STAGE_RESUME_EXECUTION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+          "MISSING_CAPABILITY": [
+            "CHECKPOINT_STAGE_RESUME_EXECUTION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "CHECKPOINT_STAGE_RESUME_EXECUTION"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+          "MISSING_CAPABILITY": [
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "EXTERNAL_COMPONENT_COLLECTOR",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
+          "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
+          "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "TOOL044_RECEIVED",
+          "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
+  "PARTIAL": [
+    {
+      "requirement_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+      "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
+      "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-TOOL016-20260927",
+      "root_id": "TOOL016",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-TOOL044-20260927",
+      "root_id": "TOOL044",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+      "root_id": "WIC-FINAL-CONNECTION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+      "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+      "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+      "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
+  "PLATFORM_HOLD": [
+    {
+      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
+            "CHECKPOINT_STAGE_RESUME_EXECUTION",
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+          "MISSING_CAPABILITY": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "PLATFORM_HOLD",
+      "remaining_work": [
+        "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+      ],
+      "resume_condition": "RESUME_WHEN_SUPPORTED_PLATFORM_EVENT_OR_PERMISSION_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+      "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016,TOOL044,WORK_HANDOFF",
+          "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+          "MISSING_CAPABILITY": [
+            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json"
+      ],
+      "status": "PLATFORM_HOLD",
+      "remaining_work": [
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+      ],
+      "resume_condition": "AUTO_RESUME_WHEN_SUPPORTED_CURRENT_CHAT_ATTACHMENT_MOUNT_OR_BYTE_HANDLE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
+      "root_id": "PLATFORM-NATIVE-CHAT-ACCESS",
+      "original_requirement": "actual delivery into the existing TOOL044 chat",
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "PLATFORM_HOLD",
+      "remaining_work": [
+        "OFFICIALLY_SUPPORTED_CHAT_DELIVERY_HOOK"
+      ],
+      "resume_condition": "RESUME_WHEN_OFFICIAL_CHAT_DELIVERY_API_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL043-HOLD-REEVALUATE",
+      "root_id": "TOOL043-CHATGPT-OVERLAP-REEVALUATION",
+      "original_requirement": "reevaluate TOOL043 overlap separately without executing or changing it",
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "PLATFORM_HOLD",
+      "display_status": "HOLD_REEVALUATE",
+      "remaining_work": [
+        "SEPARATE_CHATGPT_AND_EXISTING_CIRCULATION_OVERLAP_REEVALUATION"
+      ],
+      "resume_condition": "RESUME_ONLY_IN_A_SEPARATE_EXPLICIT_TOOL043_REEVALUATION",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
   "COMPLETE": [
     {
       "requirement_id": "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
@@ -61,7 +682,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -114,7 +735,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -167,7 +788,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -220,7 +841,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -273,7 +894,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -326,7 +947,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -379,7 +1000,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -432,7 +1053,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "36955114630"
+        "36976320317"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -1839,627 +2460,6 @@
       "remaining_work": [],
       "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": true,
-      "actionable_requeued": false
-    }
-  ],
-  "PLATFORM_HOLD": [
-    {
-      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "MISSING_CAPABILITY": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
-            "CHECKPOINT_STAGE_RESUME_EXECUTION",
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-          "MISSING_CAPABILITY": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "PLATFORM_HOLD",
-      "remaining_work": [
-        "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-      ],
-      "resume_condition": "RESUME_WHEN_SUPPORTED_PLATFORM_EVENT_OR_PERMISSION_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
-      "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL016,TOOL044,WORK_HANDOFF",
-          "FUNCTION_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
-          "MISSING_CAPABILITY": [
-            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [
-        "feedback_pipeline/evidence/tool013_candidate_pilot_return_20260930.json"
-      ],
-      "status": "PLATFORM_HOLD",
-      "remaining_work": [
-        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
-      ],
-      "resume_condition": "AUTO_RESUME_WHEN_SUPPORTED_CURRENT_CHAT_ATTACHMENT_MOUNT_OR_BYTE_HANDLE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
-      "root_id": "PLATFORM-NATIVE-CHAT-ACCESS",
-      "original_requirement": "actual delivery into the existing TOOL044 chat",
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "PLATFORM_HOLD",
-      "remaining_work": [
-        "OFFICIALLY_SUPPORTED_CHAT_DELIVERY_HOOK"
-      ],
-      "resume_condition": "RESUME_WHEN_OFFICIAL_CHAT_DELIVERY_API_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL043-HOLD-REEVALUATE",
-      "root_id": "TOOL043-CHATGPT-OVERLAP-REEVALUATION",
-      "original_requirement": "reevaluate TOOL043 overlap separately without executing or changing it",
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "PLATFORM_HOLD",
-      "display_status": "HOLD_REEVALUATE",
-      "remaining_work": [
-        "SEPARATE_CHATGPT_AND_EXISTING_CIRCULATION_OVERLAP_REEVALUATION"
-      ],
-      "resume_condition": "RESUME_ONLY_IN_A_SEPARATE_EXPLICIT_TOOL043_REEVALUATION",
-      "pass_lock": false,
-      "actionable_requeued": false
-    }
-  ],
-  "LONG_TERM_HOLD": [
-    {
-      "requirement_id": "WIC-BACKLOG-24H-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    }
-  ],
-  "UNFINISHED": [
-    {
-      "requirement_id": "TOOL044-AUTO-ROLLBACK",
-      "root_id": "TOOL044-AUTO-ROLLBACK",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL044",
-          "FUNCTION_ID": "TOOL044-AUTO-ROLLBACK",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "SAFE_AUTOMATIC_ROLLBACK"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "TOOL044-AUTO-ROLLBACK",
-          "MISSING_CAPABILITY": [
-            "SAFE_AUTOMATIC_ROLLBACK"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "TOOL044-AUTO-ROLLBACK"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "SAFE_AUTOMATIC_ROLLBACK"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
-      "root_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL044",
-          "FUNCTION_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "VERIFIED_TARGET_DEPLOYMENT",
-            "DEPLOYED_COPY_VALIDATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "TOOL044-ARBITRARY-WIC-DEPLOY",
-          "MISSING_CAPABILITY": [
-            "VERIFIED_TARGET_DEPLOYMENT",
-            "DEPLOYED_COPY_VALIDATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "TOOL044-ARBITRARY-WIC-DEPLOY"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "VERIFIED_TARGET_DEPLOYMENT",
-        "DEPLOYED_COPY_VALIDATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": null,
-          "MISSING_CAPABILITY": [
-            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
-            "HISTORICAL_FEEDBACK_INGEST",
-            "ACCESS_BOUNDARY_CLASSIFICATION",
-            "ROOT_CAUSE_DEDUPLICATION",
-            "MISSING_CAPABILITY_EXTRACTION",
-            "VERIFIED_SKIP_REUSE_FILTER",
-            "TOOL016_TO_TOOL044_HANDOFF",
-            "ATOMIC_CAPABILITY_DECOMPOSITION",
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": null,
-          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-          "MISSING_CAPABILITY": [
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "PAST_FAILURE_FIXTURE_GENERATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
-      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "MISSING_CAPABILITY": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
-            "CHECKPOINT_STAGE_RESUME_EXECUTION",
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
-          "MISSING_CAPABILITY": [
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "VERIFIED_EXECUTABLE_WORK_CONTRACT"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
-      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "MISSING_CAPABILITY": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
-            "CHECKPOINT_STAGE_RESUME_EXECUTION",
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "CHECKPOINT_STAGE_RESUME_EXECUTION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
-          "MISSING_CAPABILITY": [
-            "CHECKPOINT_STAGE_RESUME_EXECUTION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "CHECKPOINT_STAGE_RESUME_EXECUTION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
-      "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Close only the remaining common automation gaps without revalidating existing PASS paths or inventing handlers.",
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS",
-          "MISSING_CAPABILITY": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-            "VERIFIED_EXECUTABLE_WORK_CONTRACT",
-            "CHECKPOINT_STAGE_RESUME_EXECUTION",
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "Existing TOOL016/TOOL044 queue, checkpoint, result-return and CONTROL TOWER evidence",
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
-          "MISSING_CAPABILITY": [
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
-          "TOOL_ID": "TOOL044",
-          "FUNCTION_ID": "EXTERNAL_COMPONENT_COLLECTOR",
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
-          "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
-          "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-          "MISSING_CAPABILITY": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "CURRENT_STATUS": "TOOL044_RECEIVED",
-          "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
-          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL044",
-          "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-          "MISSING_CAPABILITY": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    }
-  ],
-  "PARTIAL": [
-    {
-      "requirement_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
-      "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
-      "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-BACKLOG-TOOL016-20260927",
-      "root_id": "TOOL016",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-BACKLOG-TOOL044-20260927",
-      "root_id": "TOOL044",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
-      "root_id": "WIC-FINAL-CONNECTION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
-      "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
-      "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
-      "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
-      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
       "actionable_requeued": false
     }
   ],
