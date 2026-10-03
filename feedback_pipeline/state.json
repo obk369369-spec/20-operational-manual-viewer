@@ -125,323 +125,653 @@
       "20260825-T6-RC-04"
     ],
     "automatic_handoff": {
-      "anomalies": {
-        "duplicate_demands": [
-          "FINAL-42-CR-BUSINESS-INPUT",
-          "FINAL-42-CR-EVIDENCE-VALIDATION",
-          "FINAL-42-CR-EXTERNAL-RUNTIME",
-          "FINAL-42-CR-EXECUTABLE-CONTRACT",
-          "FINAL-42-CR-EXACTLY-ONCE",
-          "FINAL-42-CR-ELAPSED-TIME",
-          "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-          "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
-        ],
-        "missing_results": [],
-        "stalled_claims": []
-      },
+      "schema_version": 1,
+      "updated_at": "2026-10-03T01:58:05.648485+00:00",
+      "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
+      "unfinished_detected": 54,
       "common_roots": [
         {
+          "root_id": "24H-AUTONOMOUS-CIRCULATION",
           "demands": [
             "WIC-BACKLOG-24H-20260927"
-          ],
-          "root_id": "24H-AUTONOMOUS-CIRCULATION"
+          ]
         },
         {
+          "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
           "demands": [
             "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929"
-          ],
-          "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE"
+          ]
         },
         {
+          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
           "demands": [
             "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
-          ],
-          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK"
+          ]
         },
         {
+          "root_id": "CONTROL-TOWER",
           "demands": [
             "WIC-BACKLOG-CONTROL-TOWER-20260927"
-          ],
-          "root_id": "CONTROL-TOWER"
+          ]
         },
         {
+          "root_id": "CR-BUSINESS-EXECUTABLE-CONTRACT",
           "demands": [
             "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT"
-          ],
-          "root_id": "CR-BUSINESS-EXECUTABLE-CONTRACT"
+          ]
         },
         {
+          "root_id": "CR-BUSINESS-INPUT",
           "demands": [
             "FINAL-39-CR-BUSINESS-INPUT"
-          ],
-          "root_id": "CR-BUSINESS-INPUT"
+          ]
         },
         {
+          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
           "demands": [
             "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
-          ],
-          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE"
+          ]
         },
         {
+          "root_id": "CR-ELAPSED-TIME",
           "demands": [
             "FINAL-37-CR-ELAPSED-TIME",
             "FINAL-39-CR-ELAPSED-TIME"
-          ],
-          "root_id": "CR-ELAPSED-TIME"
+          ]
         },
         {
+          "root_id": "CR-EVIDENCE-VALIDATION",
           "demands": [
             "FINAL-37-CR-EVIDENCE-VALIDATION",
             "FINAL-39-CR-EVIDENCE-VALIDATION"
-          ],
-          "root_id": "CR-EVIDENCE-VALIDATION"
+          ]
         },
         {
+          "root_id": "CR-EXACTLY-ONCE",
           "demands": [
             "FINAL-39-CR-EXACTLY-ONCE"
-          ],
-          "root_id": "CR-EXACTLY-ONCE"
+          ]
         },
         {
+          "root_id": "CR-EXECUTABLE-CONTRACT",
           "demands": [
             "FINAL-39-CR-EXECUTABLE-CONTRACT"
-          ],
-          "root_id": "CR-EXECUTABLE-CONTRACT"
+          ]
         },
         {
+          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
           "demands": [
             "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
-          ],
-          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME"
+          ]
         },
         {
+          "root_id": "CR-EXTERNAL-RUNTIME",
           "demands": [
             "FINAL-39-CR-EXTERNAL-RUNTIME"
-          ],
-          "root_id": "CR-EXTERNAL-RUNTIME"
+          ]
         },
         {
+          "root_id": "CR-TRANSLATION-COMPONENT",
           "demands": [
             "FINAL-37-CR-TRANSLATION-COMPONENT"
-          ],
-          "root_id": "CR-TRANSLATION-COMPONENT"
+          ]
         },
         {
+          "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
           "demands": [
             "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
-          ],
-          "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+          ]
         },
         {
+          "root_id": "ENV2",
           "demands": [
             "WIC-BACKLOG-ENV2-20260927"
-          ],
-          "root_id": "ENV2"
+          ]
         },
         {
+          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
           "demands": [
             "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
+          ]
         },
         {
+          "root_id": "FS-FUNCTION-RESELLER_DETECTION",
           "demands": [
             "FS-FUNCTION-RESELLER_DETECTION"
-          ],
-          "root_id": "FS-FUNCTION-RESELLER_DETECTION"
+          ]
         },
         {
+          "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
           "demands": [
             "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
-          ],
-          "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
+          ]
         },
         {
+          "root_id": "GITHUB-REMOTE",
           "demands": [
             "WIC-BACKLOG-GITHUB-REMOTE-20260927"
-          ],
-          "root_id": "GITHUB-REMOTE"
+          ]
         },
         {
+          "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
           "demands": [
             "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928"
-          ],
-          "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF"
+          ]
         },
         {
+          "root_id": "ROOT-6",
           "demands": [
             "WIC-BACKLOG-ROOT6-20260927"
-          ],
-          "root_id": "ROOT-6"
+          ]
         },
         {
+          "root_id": "ROOT-7",
           "demands": [
             "WIC-BACKLOG-ROOT7-20260927"
-          ],
-          "root_id": "ROOT-7"
+          ]
         },
         {
+          "root_id": "SOURCE-ZIP",
           "demands": [
             "WIC-BACKLOG-SOURCE-ZIP-20260927"
-          ],
-          "root_id": "SOURCE-ZIP"
+          ]
         },
         {
+          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
           "demands": [
             "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION"
-          ],
-          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP"
+          ]
         },
         {
+          "root_id": "T42-PROVENANCE-VALIDATION",
           "demands": [
             "T42-PROVENANCE-VALIDATION"
-          ],
-          "root_id": "T42-PROVENANCE-VALIDATION"
+          ]
         },
         {
+          "root_id": "T42-RESELLER-DETECTION",
           "demands": [
             "T42-RESELLER-DETECTION"
-          ],
-          "root_id": "T42-RESELLER-DETECTION"
+          ]
         },
         {
+          "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
           "demands": [
             "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
-          ],
-          "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
+          ]
         },
         {
+          "root_id": "TOOL001",
           "demands": [
             "WIC-BACKLOG-TOOL001-20260927"
-          ],
-          "root_id": "TOOL001"
+          ]
         },
         {
+          "root_id": "TOOL002",
           "demands": [
             "WIC-BACKLOG-TOOL002-20260927"
-          ],
-          "root_id": "TOOL002"
+          ]
         },
         {
+          "root_id": "TOOL006",
           "demands": [
             "WIC-BACKLOG-TOOL006-20260927"
-          ],
-          "root_id": "TOOL006"
+          ]
         },
         {
+          "root_id": "TOOL013",
           "demands": [
             "WIC-BACKLOG-TOOL013-20260927"
-          ],
-          "root_id": "TOOL013"
+          ]
         },
         {
+          "root_id": "TOOL016",
           "demands": [
             "WIC-BACKLOG-TOOL016-20260927"
-          ],
-          "root_id": "TOOL016"
+          ]
         },
         {
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
           "demands": [
             "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+          ]
         },
         {
+          "root_id": "TOOL041-007-042",
           "demands": [
             "WIC-BACKLOG-TOOL041-007-042-20260927"
-          ],
-          "root_id": "TOOL041-007-042"
+          ]
         },
         {
+          "root_id": "TOOL044",
           "demands": [
             "WIC-BACKLOG-TOOL044-20260927"
-          ],
-          "root_id": "TOOL044"
+          ]
         },
         {
+          "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
           "demands": [
             "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927"
-          ],
-          "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE"
+          ]
         },
         {
+          "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
           "demands": [
             "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927"
-          ],
-          "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT"
+          ]
         },
         {
+          "root_id": "TOOL045-047",
           "demands": [
             "WIC-BACKLOG-TOOL045-046-047-20260927"
-          ],
-          "root_id": "TOOL045-047"
+          ]
         },
         {
+          "root_id": "TOOL048",
           "demands": [
             "WIC-BACKLOG-TOOL048-20260927"
-          ],
-          "root_id": "TOOL048"
+          ]
         },
         {
+          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
           "demands": [
             "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928"
-          ],
-          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION"
+          ]
         },
         {
+          "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
           "demands": [
             "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928"
-          ],
-          "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION"
+          ]
         },
         {
+          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
           "demands": [
             "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929"
-          ],
-          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO"
+          ]
         },
         {
+          "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
           "demands": [
             "WIC-ALL-UNFINISHED-BATCH-20260928"
-          ],
-          "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928"
+          ]
         },
         {
+          "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
           "demands": [
             "WIC-CANONICAL-RESIDUAL-R1-R16-20260929"
-          ],
-          "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16"
+          ]
         },
         {
+          "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
           "demands": [
             "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929"
-          ],
-          "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT"
+          ]
         },
         {
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
           "demands": [
             "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
             "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS"
+          ]
         },
         {
+          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
           "demands": [
             "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929"
-          ],
-          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION"
+          ]
         },
         {
+          "root_id": "WIC-FINAL-CONNECTION",
           "demands": [
             "WIC-BACKLOG-FINAL-CONNECTION-20260927"
-          ],
-          "root_id": "WIC-FINAL-CONNECTION"
+          ]
         },
         {
+          "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
           "demands": [
             "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929"
+          ]
+        }
+      ],
+      "easy_queue": [
+        {
+          "root_id": "CR-EVIDENCE-VALIDATION",
+          "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
+          "capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "root_id": "CR-TRANSLATION-COMPONENT",
+          "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
+          "capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+          "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+          "capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+          "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+          "capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "root_id": "CR-ELAPSED-TIME",
+          "demand_id": "FINAL-37-CR-ELAPSED-TIME",
+          "capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        }
+      ],
+      "work_batch": [
+        {
+          "root_id": "T42-PROVENANCE-VALIDATION",
+          "demand_id": "T42-PROVENANCE-VALIDATION",
+          "capabilities": [
+            "PROVENANCE_VALIDATION"
+          ]
+        },
+        {
+          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "capabilities": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ]
+        },
+        {
+          "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
+          "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+          "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
+          "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
+          "capabilities": []
+        },
+        {
+          "root_id": "CR-EVIDENCE-VALIDATION",
+          "demand_id": "FINAL-39-CR-EVIDENCE-VALIDATION",
+          "capabilities": []
+        },
+        {
+          "root_id": "CR-EXECUTABLE-CONTRACT",
+          "demand_id": "FINAL-39-CR-EXECUTABLE-CONTRACT",
+          "capabilities": []
+        },
+        {
+          "root_id": "CR-EXACTLY-ONCE",
+          "demand_id": "FINAL-39-CR-EXACTLY-ONCE",
+          "capabilities": []
+        },
+        {
+          "root_id": "ROOT-6",
+          "demand_id": "WIC-BACKLOG-ROOT6-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "ROOT-7",
+          "demand_id": "WIC-BACKLOG-ROOT7-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL002",
+          "demand_id": "WIC-BACKLOG-TOOL002-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL001",
+          "demand_id": "WIC-BACKLOG-TOOL001-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL016",
+          "demand_id": "WIC-BACKLOG-TOOL016-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL044",
+          "demand_id": "WIC-BACKLOG-TOOL044-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL045-047",
+          "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "TOOL048",
+          "demand_id": "WIC-BACKLOG-TOOL048-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "CONTROL-TOWER",
+          "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "SOURCE-ZIP",
+          "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "GITHUB-REMOTE",
+          "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "ENV2",
+          "demand_id": "WIC-BACKLOG-ENV2-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "24H-AUTONOMOUS-CIRCULATION",
+          "demand_id": "WIC-BACKLOG-24H-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-FINAL-CONNECTION",
+          "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
+          "demand_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+          "capabilities": []
+        },
+        {
+          "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
+          "demand_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+          "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+          "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
+          "demand_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
+          "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
+          "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
+          "capabilities": []
+        },
+        {
+          "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
+          "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
+          "capabilities": []
+        },
+        {
+          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+          "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+          "capabilities": []
+        }
+      ],
+      "holds": [
+        {
+          "root_id": "T42-RESELLER-DETECTION",
+          "demand_id": "T42-RESELLER-DETECTION",
+          "capabilities": [
+            "RESELLER_DETECTION"
           ],
-          "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION"
+          "reason": "HOLD_MISSING_IDENTITY_CLASSIFIER"
+        },
+        {
+          "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
+          "capabilities": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "reason": "HOLD_MISSING_HIERARCHY_VALIDATOR"
+        },
+        {
+          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+          "capabilities": [
+            "OFFICIAL_DOMAIN_VALIDATION"
+          ],
+          "reason": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION"
+        },
+        {
+          "root_id": "FS-FUNCTION-RESELLER_DETECTION",
+          "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
+          "capabilities": [
+            "RESELLER_DETECTION"
+          ],
+          "reason": "HOLD_MISSING_IDENTITY_CLASSIFIER"
+        },
+        {
+          "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
+          "capabilities": [
+            "TOC_HIERARCHY_VALIDATION"
+          ],
+          "reason": "HOLD_MISSING_HIERARCHY_VALIDATOR"
+        },
+        {
+          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
+          "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
+          "capabilities": [
+            "LOCAL_TITLE_TRANSLATION"
+          ],
+          "reason": "HOLD_MISSING_VERIFIED_COMPONENT"
+        },
+        {
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+          "capabilities": [
+            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
+          ],
+          "reason": "PLATFORM_LIMIT_HOLD"
+        },
+        {
+          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS",
+          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
+          "capabilities": [
+            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+          ],
+          "reason": "OPTIONAL_EXPANSION_HOLD_ENV2"
+        },
+        {
+          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "capabilities": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "reason": "AUTOMATED_WATCH_HOLD_NO_READY_ENV2"
+        },
+        {
+          "root_id": "CR-BUSINESS-EXECUTABLE-CONTRACT",
+          "demand_id": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
+          "capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ],
+          "reason": "HOLD_EXTERNAL_INPUT_OR_CONTRACT_RETURNED"
+        },
+        {
+          "root_id": "CR-BUSINESS-INPUT",
+          "demand_id": "FINAL-39-CR-BUSINESS-INPUT",
+          "capabilities": [],
+          "reason": "HOLD_EXTERNAL_INPUT_RETURNED"
+        },
+        {
+          "root_id": "CR-EXTERNAL-RUNTIME",
+          "demand_id": "FINAL-39-CR-EXTERNAL-RUNTIME",
+          "capabilities": [],
+          "reason": "HOLD_EXTERNAL_RUNTIME_RETURNED"
+        },
+        {
+          "root_id": "CR-ELAPSED-TIME",
+          "demand_id": "FINAL-39-CR-ELAPSED-TIME",
+          "capabilities": [],
+          "reason": "WAITING_24H_RETURNED"
+        },
+        {
+          "root_id": "TOOL013",
+          "demand_id": "WIC-BACKLOG-TOOL013-20260927",
+          "capabilities": [],
+          "reason": "RETURNED_HOLD_VERIFIED_COMPONENTS_REQUIRED"
+        },
+        {
+          "root_id": "TOOL006",
+          "demand_id": "WIC-BACKLOG-TOOL006-20260927",
+          "capabilities": [],
+          "reason": "RETURNED_HOLD_GOLDEN_PAIR_REQUIRED"
+        },
+        {
+          "root_id": "TOOL041-007-042",
+          "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
+          "capabilities": [],
+          "reason": "RETURNED_HOLD_ACTUAL_CUSTOMER_EVIDENCE_REQUIRED"
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL043-20260927",
+          "reason": "HOLD_REEVALUATE"
+        },
+        {
+          "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF",
+          "demand_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
+          "capabilities": [
+            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
+          ],
+          "reason": "PLATFORM_HOLD_CURRENT_CHAT_ATTACHMENT_BYTES_NOT_MOUNTED"
         }
       ],
       "duplicates_removed": [
@@ -454,362 +784,32 @@
         "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
         "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
       ],
-      "easy_queue": [
-        {
-          "capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
-          "root_id": "CR-EVIDENCE-VALIDATION"
-        },
-        {
-          "capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
-          "root_id": "CR-TRANSLATION-COMPONENT"
-        },
-        {
-          "capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
-          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME"
-        },
-        {
-          "capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
-          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE"
-        },
-        {
-          "capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-ELAPSED-TIME",
-          "root_id": "CR-ELAPSED-TIME"
-        }
-      ],
-      "holds": [
-        {
-          "capabilities": [
-            "RESELLER_DETECTION"
-          ],
-          "demand_id": "T42-RESELLER-DETECTION",
-          "reason": "HOLD_MISSING_IDENTITY_CLASSIFIER",
-          "root_id": "T42-RESELLER-DETECTION"
-        },
-        {
-          "capabilities": [
-            "TOC_HIERARCHY_VALIDATION"
-          ],
-          "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-          "reason": "HOLD_MISSING_HIERARCHY_VALIDATOR",
-          "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION"
-        },
-        {
-          "capabilities": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "reason": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION",
-          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
-        },
-        {
-          "capabilities": [
-            "RESELLER_DETECTION"
-          ],
-          "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
-          "reason": "HOLD_MISSING_IDENTITY_CLASSIFIER",
-          "root_id": "FS-FUNCTION-RESELLER_DETECTION"
-        },
-        {
-          "capabilities": [
-            "TOC_HIERARCHY_VALIDATION"
-          ],
-          "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
-          "reason": "HOLD_MISSING_HIERARCHY_VALIDATOR",
-          "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
-        },
-        {
-          "capabilities": [
-            "LOCAL_TITLE_TRANSLATION"
-          ],
-          "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
-          "reason": "HOLD_MISSING_VERIFIED_COMPONENT",
-          "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP"
-        },
-        {
-          "capabilities": [
-            "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
-          ],
-          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-          "reason": "PLATFORM_LIMIT_HOLD",
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS"
-        },
-        {
-          "capabilities": [
-            "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-          ],
-          "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
-          "reason": "OPTIONAL_EXPANSION_HOLD_ENV2",
-          "root_id": "WIC-COMMON-AUTOMATION-BLOCKERS"
-        },
-        {
-          "capabilities": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-          "reason": "AUTOMATED_WATCH_HOLD_NO_READY_ENV2",
-          "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK"
-        },
-        {
-          "capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
-          "reason": "HOLD_EXTERNAL_INPUT_OR_CONTRACT_RETURNED",
-          "root_id": "CR-BUSINESS-EXECUTABLE-CONTRACT"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "FINAL-39-CR-BUSINESS-INPUT",
-          "reason": "HOLD_EXTERNAL_INPUT_RETURNED",
-          "root_id": "CR-BUSINESS-INPUT"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "FINAL-39-CR-EXTERNAL-RUNTIME",
-          "reason": "HOLD_EXTERNAL_RUNTIME_RETURNED",
-          "root_id": "CR-EXTERNAL-RUNTIME"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "FINAL-39-CR-ELAPSED-TIME",
-          "reason": "WAITING_24H_RETURNED",
-          "root_id": "CR-ELAPSED-TIME"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL013-20260927",
-          "reason": "RETURNED_HOLD_VERIFIED_COMPONENTS_REQUIRED",
-          "root_id": "TOOL013"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL006-20260927",
-          "reason": "RETURNED_HOLD_GOLDEN_PAIR_REQUIRED",
-          "root_id": "TOOL006"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
-          "reason": "RETURNED_HOLD_ACTUAL_CUSTOMER_EVIDENCE_REQUIRED",
-          "root_id": "TOOL041-007-042"
-        },
-        {
-          "demand_id": "WIC-BACKLOG-TOOL043-20260927",
-          "reason": "HOLD_REEVALUATE"
-        },
-        {
-          "capabilities": [
-            "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
-          ],
-          "demand_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930",
-          "reason": "PLATFORM_HOLD_CURRENT_CHAT_ATTACHMENT_BYTES_NOT_MOUNTED",
-          "root_id": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF"
-        }
-      ],
-      "manual_relay_count": 0,
+      "work_batch_full": true,
+      "work_batch_units": 31,
+      "work_batch_full_threshold": 10,
+      "threshold_basis": {
+        "completed_jobs": 92,
+        "historical_runs": 28,
+        "actual_completed_per_run": 3.29
+      },
+      "work_delivery": "PLATFORM_HOLD_NO_SUPPORTED_UNATTENDED_CHATGPT_WORK_INSERT_API",
+      "anomalies": {
+        "duplicate_demands": [
+          "FINAL-42-CR-BUSINESS-INPUT",
+          "FINAL-42-CR-EVIDENCE-VALIDATION",
+          "FINAL-42-CR-EXTERNAL-RUNTIME",
+          "FINAL-42-CR-EXECUTABLE-CONTRACT",
+          "FINAL-42-CR-EXACTLY-ONCE",
+          "FINAL-42-CR-ELAPSED-TIME",
+          "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+          "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
+        ],
+        "stalled_claims": [],
+        "missing_results": []
+      },
       "next_easy_root": "CR-EVIDENCE-VALIDATION",
       "observer_reinstruction_required": 0,
-      "schema_version": 1,
-      "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-      "threshold_basis": {
-        "actual_completed_per_run": 3.29,
-        "completed_jobs": 92,
-        "historical_runs": 28
-      },
-      "unfinished_detected": 54,
-      "updated_at": "2026-10-02T23:15:24.020834+00:00",
-      "work_batch": [
-        {
-          "capabilities": [
-            "PROVENANCE_VALIDATION"
-          ],
-          "demand_id": "T42-PROVENANCE-VALIDATION",
-          "root_id": "T42-PROVENANCE-VALIDATION"
-        },
-        {
-          "capabilities": [
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-          "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
-          "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
-          "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
-          "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "FINAL-39-CR-EVIDENCE-VALIDATION",
-          "root_id": "CR-EVIDENCE-VALIDATION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "FINAL-39-CR-EXECUTABLE-CONTRACT",
-          "root_id": "CR-EXECUTABLE-CONTRACT"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "FINAL-39-CR-EXACTLY-ONCE",
-          "root_id": "CR-EXACTLY-ONCE"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-ROOT6-20260927",
-          "root_id": "ROOT-6"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-ROOT7-20260927",
-          "root_id": "ROOT-7"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL002-20260927",
-          "root_id": "TOOL002"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL001-20260927",
-          "root_id": "TOOL001"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL016-20260927",
-          "root_id": "TOOL016"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL044-20260927",
-          "root_id": "TOOL044"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
-          "root_id": "TOOL045-047"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL048-20260927",
-          "root_id": "TOOL048"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
-          "root_id": "CONTROL-TOWER"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
-          "root_id": "SOURCE-ZIP"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
-          "root_id": "GITHUB-REMOTE"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-ENV2-20260927",
-          "root_id": "ENV2"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-24H-20260927",
-          "root_id": "24H-AUTONOMOUS-CIRCULATION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
-          "root_id": "WIC-FINAL-CONNECTION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
-          "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
-          "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-          "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
-          "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
-          "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
-          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
-          "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE"
-        },
-        {
-          "capabilities": [],
-          "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
-          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION"
-        }
-      ],
-      "work_batch_full": true,
-      "work_batch_full_threshold": 10,
-      "work_batch_units": 31,
-      "work_delivery": "PLATFORM_HOLD_NO_SUPPORTED_UNATTENDED_CHATGPT_WORK_INSERT_API"
+      "manual_relay_count": 0
     },
     "canonical_layers": [
       "GLOBAL",
@@ -1248,12 +1248,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
+      "updated_at": "2026-10-03T01:58:05.638959+00:00",
       "counts": {
         "COMPLETE": 45,
-        "LONG_TERM_HOLD": 5,
         "PARTIAL": 9,
+        "UNFINISHED": 7,
         "PLATFORM_HOLD": 4,
-        "UNFINISHED": 7
+        "LONG_TERM_HOLD": 5
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -1263,8 +1264,7 @@
         "CR-5": "COMPLETE"
       },
       "next_auto_root": null,
-      "observer_reinstruction_required": 0,
-      "updated_at": "2026-10-02T23:15:24.015135+00:00"
+      "observer_reinstruction_required": 0
     },
     "root_cause_recurrence": {
       "72c2843cb52fd87ee879": 2,
@@ -3795,23 +3795,302 @@
       "updated_at": "2026-09-30T01:21:11.666688+00:00"
     },
     "visible_handoff": {
+      "schema_version": 1,
+      "updated_at": "2026-10-03T01:58:05.621245+00:00",
+      "UNFINISHED_SCANNED": 46,
       "ALREADY_PASS_EXCLUDED": 70,
-      "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "CIRCULATION": {
-        "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
-        "chat_report": "CONTROL_TOWER_ONLY_CHAT_DELIVERY_UNSUPPORTED",
-        "dedup_gate": "PASS",
-        "duplicate_demand_ids": [],
-        "external_failover": "READY",
-        "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
-        "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
-        "observer_projection": "PERSISTED_TO_CENTRAL_AND_VISIBLE_HANDOFF",
-        "ready": 34,
-        "result_returns": 66,
-        "tool016_to_tool044": "ACTIVE",
-        "waiting": 12
+      "ROOTS_MERGED": 5,
+      "WORK_FIXABLE_ROOTS": 5,
+      "WORK_REQUIRED": [
+        {
+          "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
+          "root_id": "CR-EVIDENCE-VALIDATION",
+          "target_tool": "TOOL016/TOOL044",
+          "atomic_capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
+          "root_id": "CR-TRANSLATION-COMPONENT",
+          "target_tool": "TOOL016/TOOL044",
+          "atomic_capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+          "target_tool": "TOOL016/TOOL044",
+          "atomic_capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+          "target_tool": "TOOL016/TOOL044",
+          "atomic_capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        },
+        {
+          "demand_id": "FINAL-37-CR-ELAPSED-TIME",
+          "root_id": "CR-ELAPSED-TIME",
+          "target_tool": "TOOL016/TOOL044",
+          "atomic_capabilities": [
+            "BULK_ROOT_EXECUTION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "ITEM_EVIDENCE_RETURN"
+          ]
+        }
+      ],
+      "WORK_BATCHES": [
+        {
+          "root_id": "CR-EVIDENCE-VALIDATION",
+          "demands": [
+            "FINAL-37-CR-EVIDENCE-VALIDATION"
+          ],
+          "target_tools": [
+            "TOOL016/TOOL044"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
+        },
+        {
+          "root_id": "CR-TRANSLATION-COMPONENT",
+          "demands": [
+            "FINAL-37-CR-TRANSLATION-COMPONENT"
+          ],
+          "target_tools": [
+            "TOOL016/TOOL044"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
+        },
+        {
+          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+          "demands": [
+            "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
+          ],
+          "target_tools": [
+            "TOOL016/TOOL044"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
+        },
+        {
+          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+          "demands": [
+            "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
+          ],
+          "target_tools": [
+            "TOOL016/TOOL044"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
+        },
+        {
+          "root_id": "CR-ELAPSED-TIME",
+          "demands": [
+            "FINAL-37-CR-ELAPSED-TIME"
+          ],
+          "target_tools": [
+            "TOOL016/TOOL044"
+          ],
+          "status": "READY_FOR_MULTI_GATE"
+        }
+      ],
+      "TOOL044_AUTO_HANDED_OFF": 29,
+      "TOOL044_QUEUE": [
+        {
+          "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+          "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
+          "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
+          "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
+          "target_tool": "TOOL044_CENTERED_CIRCULATION",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-ROOT6-20260927",
+          "root_id": "ROOT-6",
+          "target_tool": "ROOT-6",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-ROOT7-20260927",
+          "root_id": "ROOT-7",
+          "target_tool": "ROOT-7",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL002-20260927",
+          "root_id": "TOOL002",
+          "target_tool": "TOOL002",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL001-20260927",
+          "root_id": "TOOL001",
+          "target_tool": "TOOL001",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL016-20260927",
+          "root_id": "TOOL016",
+          "target_tool": "TOOL016",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL043-20260927",
+          "root_id": "TOOL043",
+          "target_tool": "TOOL043",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL044-20260927",
+          "root_id": "TOOL044",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
+          "root_id": "TOOL045-047",
+          "target_tool": "TOOL045-047",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-TOOL048-20260927",
+          "root_id": "TOOL048",
+          "target_tool": "TOOL048",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
+          "root_id": "CONTROL-TOWER",
+          "target_tool": "CONTROL-TOWER",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
+          "root_id": "SOURCE-ZIP",
+          "target_tool": "SOURCE-ZIP",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
+          "root_id": "GITHUB-REMOTE",
+          "target_tool": "GITHUB-REMOTE",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-ENV2-20260927",
+          "root_id": "ENV2",
+          "target_tool": "ENV2",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-24H-20260927",
+          "root_id": "24H-AUTONOMOUS-CIRCULATION",
+          "target_tool": "24H-AUTONOMOUS-CIRCULATION",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+          "root_id": "WIC-FINAL-CONNECTION",
+          "target_tool": "WIC-FINAL-CONNECTION",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+          "root_id": "24H-AUTONOMOUS-CIRCULATION",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+          "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
+          "target_tool": "TOOL016-TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+          "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
+          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+          "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+          "target_tool": "TOOL016-TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+          "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
+          "target_tool": "TOOL016-TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
+          "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
+          "target_tool": "TOOL016-TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
+          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
+          "target_tool": "TOOL016-TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
+          "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
+          "target_tool": "TOOL044",
+          "atomic_capabilities": []
+        },
+        {
+          "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+          "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
+          "atomic_capabilities": []
+        }
+      ],
+      "WORK_REQUIRED_REMAINDER": 5,
+      "MULTI_GATE": {
+        "capacity": 30,
+        "statuses": {
+          "PASS": 92
+        }
       },
       "FREE_EXTERNAL_RUNNER_POOL": {
+        "target": 15,
         "actual_run_pass": [
           "GITHUB_ACTIONS_MATRIX_V1",
           "CIRCLECI_CLOUD_ENV2_V1",
@@ -3822,483 +4101,209 @@
           "GITLAB_PARALLEL_MATRIX_V1"
         ],
         "bulk_summary": {
+          "collected": 6,
           "a_ready": 0,
-          "actual_run_pass": 3,
           "b_ready": 0,
           "blocked_user_action": 2,
-          "collected": 6,
-          "next_root_bundle": "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY",
           "rejected": 1,
-          "remaining_to_target": 12
-        },
-        "target": 15
-      },
-      "LAST_HEARTBEAT": "2026-10-02T23:15:24.001909+00:00",
-      "MULTI_GATE": {
-        "capacity": 30,
-        "statuses": {
-          "PASS": 92
+          "actual_run_pass": 3,
+          "remaining_to_target": 12,
+          "next_root_bundle": "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
         }
       },
-      "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
-      "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
-      "ROOTS_MERGED": 5,
+      "CIRCULATION": {
+        "tool016_to_tool044": "ACTIVE",
+        "ready": 34,
+        "waiting": 12,
+        "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+        "duplicate_demand_ids": [],
+        "dedup_gate": "PASS",
+        "result_returns": 66,
+        "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
+        "external_failover": "READY",
+        "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
+        "chat_report": "CONTROL_TOWER_ONLY_CHAT_DELIVERY_UNSUPPORTED",
+        "observer_projection": "PERSISTED_TO_CENTRAL_AND_VISIBLE_HANDOFF"
+      },
       "SCHEDULE_EVIDENCE": {
-        "actual_24h": true,
-        "elapsed_hours": 105.199,
-        "run_count": 32,
         "runs": [
           {
-            "event": "schedule",
+            "run_id": "36433067850",
             "observed_at": "2026-09-28T14:03:26.940015+00:00",
-            "run_id": "36433067850"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36447238978",
             "observed_at": "2026-09-28T15:55:46.607137+00:00",
-            "run_id": "36447238978"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36456068233",
             "observed_at": "2026-09-28T17:08:57.232707+00:00",
-            "run_id": "36456068233"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36486616203",
             "observed_at": "2026-09-28T21:31:29.423038+00:00",
-            "run_id": "36486616203"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36492888137",
             "observed_at": "2026-09-28T22:31:28.515121+00:00",
-            "run_id": "36492888137"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36497380548",
             "observed_at": "2026-09-28T23:19:39.129380+00:00",
-            "run_id": "36497380548"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36506778918",
             "observed_at": "2026-09-29T01:12:42.998879+00:00",
-            "run_id": "36506778918"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36511900969",
             "observed_at": "2026-09-29T02:17:35.492095+00:00",
-            "run_id": "36511900969"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36527913383",
             "observed_at": "2026-09-29T05:49:12.748484+00:00",
-            "run_id": "36527913383"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36533542508",
             "observed_at": "2026-09-29T06:54:41.494084+00:00",
-            "run_id": "36533542508"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36544848568",
             "observed_at": "2026-09-29T08:46:28.651956+00:00",
-            "run_id": "36544848568"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36571831649",
             "observed_at": "2026-09-29T12:59:17.456548+00:00",
-            "run_id": "36571831649"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36588398247",
             "observed_at": "2026-09-29T15:12:26.003359+00:00",
-            "run_id": "36588398247"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36623012691",
             "observed_at": "2026-09-29T19:58:35.907948+00:00",
-            "run_id": "36623012691"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36638908353",
             "observed_at": "2026-09-29T22:19:56.671248+00:00",
-            "run_id": "36638908353"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36645244073",
             "observed_at": "2026-09-29T23:26:55.844028+00:00",
-            "run_id": "36645244073"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36677577225",
             "observed_at": "2026-09-30T06:18:49.483484+00:00",
-            "run_id": "36677577225"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36716635569",
             "observed_at": "2026-09-30T12:43:42.984941+00:00",
-            "run_id": "36716635569"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36756396031",
             "observed_at": "2026-09-30T18:08:16.060284+00:00",
-            "run_id": "36756396031"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36784023498",
             "observed_at": "2026-09-30T22:10:45.867402+00:00",
-            "run_id": "36784023498"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36800280189",
             "observed_at": "2026-10-01T01:16:15.222812+00:00",
-            "run_id": "36800280189"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36828903670",
             "observed_at": "2026-10-01T07:11:33.828908+00:00",
-            "run_id": "36828903670"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36828948491",
             "observed_at": "2026-10-01T07:12:00.729051+00:00",
-            "run_id": "36828948491"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36876289814",
             "observed_at": "2026-10-01T14:26:10.628407+00:00",
-            "run_id": "36876289814"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36915831135",
             "observed_at": "2026-10-01T19:39:05.140930+00:00",
-            "run_id": "36915831135"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36940587600",
             "observed_at": "2026-10-01T23:24:03.594767+00:00",
-            "run_id": "36940587600"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36955114630",
             "observed_at": "2026-10-02T02:19:53.312712+00:00",
-            "run_id": "36955114630"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36976320317",
             "observed_at": "2026-10-02T07:00:37.278415+00:00",
-            "run_id": "36976320317"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "36985183349",
             "observed_at": "2026-10-02T08:38:33.549503+00:00",
-            "run_id": "36985183349"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "37023513723",
             "observed_at": "2026-10-02T14:57:29.380894+00:00",
-            "run_id": "37023513723"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "37055837910",
             "observed_at": "2026-10-02T19:42:21.787294+00:00",
-            "run_id": "37055837910"
+            "event": "schedule"
           },
           {
-            "event": "schedule",
+            "run_id": "37076686307",
             "observed_at": "2026-10-02T23:15:24.001909+00:00",
-            "run_id": "37076686307"
+            "event": "schedule"
+          },
+          {
+            "run_id": "37088081865",
+            "observed_at": "2026-10-03T01:58:05.621245+00:00",
+            "event": "schedule"
           }
         ],
-        "status": "PASS"
+        "run_count": 33,
+        "elapsed_hours": 107.911,
+        "status": "PASS",
+        "actual_24h": true
       },
-      "TOOL044_AUTO_HANDED_OFF": 29,
-      "TOOL044_QUEUE": [
-        {
-          "atomic_capabilities": [],
-          "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
-          "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
-          "target_tool": "TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
-          "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
-          "target_tool": "TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
-          "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
-          "target_tool": "TOOL044_CENTERED_CIRCULATION"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-ROOT6-20260927",
-          "root_id": "ROOT-6",
-          "target_tool": "ROOT-6"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-ROOT7-20260927",
-          "root_id": "ROOT-7",
-          "target_tool": "ROOT-7"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL002-20260927",
-          "root_id": "TOOL002",
-          "target_tool": "TOOL002"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL001-20260927",
-          "root_id": "TOOL001",
-          "target_tool": "TOOL001"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL016-20260927",
-          "root_id": "TOOL016",
-          "target_tool": "TOOL016"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL043-20260927",
-          "root_id": "TOOL043",
-          "target_tool": "TOOL043"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL044-20260927",
-          "root_id": "TOOL044",
-          "target_tool": "TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
-          "root_id": "TOOL045-047",
-          "target_tool": "TOOL045-047"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-TOOL048-20260927",
-          "root_id": "TOOL048",
-          "target_tool": "TOOL048"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
-          "root_id": "CONTROL-TOWER",
-          "target_tool": "CONTROL-TOWER"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
-          "root_id": "SOURCE-ZIP",
-          "target_tool": "SOURCE-ZIP"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
-          "root_id": "GITHUB-REMOTE",
-          "target_tool": "GITHUB-REMOTE"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-ENV2-20260927",
-          "root_id": "ENV2",
-          "target_tool": "ENV2"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-24H-20260927",
-          "root_id": "24H-AUTONOMOUS-CIRCULATION",
-          "target_tool": "24H-AUTONOMOUS-CIRCULATION"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
-          "root_id": "WIC-FINAL-CONNECTION",
-          "target_tool": "WIC-FINAL-CONNECTION"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-          "root_id": "24H-AUTONOMOUS-CIRCULATION",
-          "target_tool": "TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
-          "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
-          "target_tool": "TOOL016-TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
-          "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
-          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-          "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
-          "target_tool": "TOOL016-TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
-          "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
-          "target_tool": "TOOL016-TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
-          "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
-          "target_tool": "TOOL016-TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
-          "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
-          "target_tool": "TOOL016-TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
-          "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-          "target_tool": "TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
-          "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
-          "target_tool": "TOOL044"
-        },
-        {
-          "atomic_capabilities": [],
-          "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
-          "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-          "target_tool": "TOOL016,TOOL044,WORK_HANDOFF"
-        }
-      ],
-      "UNFINISHED_SCANNED": 46,
-      "USER_MANUAL_RELAY_REQUIRED": 0,
+      "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
+      "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
+      "LAST_HEARTBEAT": "2026-10-03T01:58:05.621245+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
-      "WORK_BATCHES": [
-        {
-          "demands": [
-            "FINAL-37-CR-EVIDENCE-VALIDATION"
-          ],
-          "root_id": "CR-EVIDENCE-VALIDATION",
-          "status": "READY_FOR_MULTI_GATE",
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ]
-        },
-        {
-          "demands": [
-            "FINAL-37-CR-TRANSLATION-COMPONENT"
-          ],
-          "root_id": "CR-TRANSLATION-COMPONENT",
-          "status": "READY_FOR_MULTI_GATE",
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ]
-        },
-        {
-          "demands": [
-            "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
-          ],
-          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
-          "status": "READY_FOR_MULTI_GATE",
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ]
-        },
-        {
-          "demands": [
-            "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
-          ],
-          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
-          "status": "READY_FOR_MULTI_GATE",
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ]
-        },
-        {
-          "demands": [
-            "FINAL-37-CR-ELAPSED-TIME"
-          ],
-          "root_id": "CR-ELAPSED-TIME",
-          "status": "READY_FOR_MULTI_GATE",
-          "target_tools": [
-            "TOOL016/TOOL044"
-          ]
-        }
-      ],
-      "WORK_FIXABLE_ROOTS": 5,
-      "WORK_REQUIRED": [
-        {
-          "atomic_capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
-          "root_id": "CR-EVIDENCE-VALIDATION",
-          "target_tool": "TOOL016/TOOL044"
-        },
-        {
-          "atomic_capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
-          "root_id": "CR-TRANSLATION-COMPONENT",
-          "target_tool": "TOOL016/TOOL044"
-        },
-        {
-          "atomic_capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
-          "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
-          "target_tool": "TOOL016/TOOL044"
-        },
-        {
-          "atomic_capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
-          "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
-          "target_tool": "TOOL016/TOOL044"
-        },
-        {
-          "atomic_capabilities": [
-            "BULK_ROOT_EXECUTION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "ITEM_EVIDENCE_RETURN"
-          ],
-          "demand_id": "FINAL-37-CR-ELAPSED-TIME",
-          "root_id": "CR-ELAPSED-TIME",
-          "target_tool": "TOOL016/TOOL044"
-        }
-      ],
-      "WORK_REQUIRED_REMAINDER": 5,
-      "schema_version": 1,
-      "updated_at": "2026-10-02T23:15:24.001909+00:00"
+      "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
+      "USER_MANUAL_RELAY_REQUIRED": 0
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
@@ -4420,12 +4425,9 @@
       "work_ready_count": 0
     },
     "zero_touch_residual_circulation": {
-      "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT": true,
-      "AUTO_REQUEUED": [
-        "FINAL-37-CR-EVIDENCE-VALIDATION",
-        "FINAL-37-CR-TRANSLATION-COMPONENT",
-        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
-      ],
+      "schema_version": 1,
+      "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "updated_at": "2026-10-03T01:58:05.621245+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -4478,20 +4480,6 @@
         "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
         "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
       ],
-      "DURABLE_OBSERVER_REPORT_WRITTEN": true,
-      "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,
-      "LONG_TERM_HOLD": [
-        "FINAL-37-CR-ELAPSED-TIME",
-        "FINAL-39-CR-ELAPSED-TIME",
-        "FINAL-42-CR-ELAPSED-TIME",
-        "WIC-BACKLOG-24H-20260927",
-        "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-        "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-        "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-        "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
-      ],
-      "NEXT_WORK": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
-      "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF": true,
       "PARTIAL": [
         "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
         "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
@@ -4529,19 +4517,6 @@
         "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
         "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929"
       ],
-      "PLATFORM_HOLD": [
-        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
-        "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
-        "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
-        "FINAL-39-CR-BUSINESS-INPUT",
-        "FINAL-39-CR-EXTERNAL-RUNTIME",
-        "FINAL-42-CR-BUSINESS-INPUT",
-        "FINAL-42-CR-EXTERNAL-RUNTIME",
-        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
-      ],
-      "REMOTE_GITHUB_READBACK_PASS": true,
-      "STATUS_CLASSIFICATION_PROVEN": true,
-      "TOOL016_RESULT_ACK_RECEIVED": 66,
       "UNFINISHED": [
         "T42-RESELLER-DETECTION",
         "T42-PROVENANCE-VALIDATION",
@@ -4559,10 +4534,40 @@
         "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
         "WIC-ALL-UNFINISHED-BATCH-20260928"
       ],
-      "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "PLATFORM_HOLD": [
+        "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
+        "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
+        "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+        "FINAL-39-CR-BUSINESS-INPUT",
+        "FINAL-39-CR-EXTERNAL-RUNTIME",
+        "FINAL-42-CR-BUSINESS-INPUT",
+        "FINAL-42-CR-EXTERNAL-RUNTIME",
+        "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
+      ],
+      "LONG_TERM_HOLD": [
+        "FINAL-37-CR-ELAPSED-TIME",
+        "FINAL-39-CR-ELAPSED-TIME",
+        "FINAL-42-CR-ELAPSED-TIME",
+        "WIC-BACKLOG-24H-20260927",
+        "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+        "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+        "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+        "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
+      ],
+      "AUTO_REQUEUED": [
+        "FINAL-37-CR-EVIDENCE-VALIDATION",
+        "FINAL-37-CR-TRANSLATION-COMPONENT",
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
+      ],
+      "NEXT_WORK": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+      "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,
+      "STATUS_CLASSIFICATION_PROVEN": true,
+      "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT": true,
+      "NEXT_WORK_AUTO_SELECTED_AND_HANDED_OFF": true,
       "observer_reinstruction_required": 0,
-      "schema_version": 1,
-      "updated_at": "2026-10-02T23:15:24.001909+00:00"
+      "DURABLE_OBSERVER_REPORT_WRITTEN": true,
+      "TOOL016_RESULT_ACK_RECEIVED": 66,
+      "REMOTE_GITHUB_READBACK_PASS": true
     }
   },
   "last_context_cursor": "2026-08-25T00:00:00+09:00",
