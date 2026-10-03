@@ -287,3 +287,181 @@ USER OPERATOR -> USER OBSERVER
 ZERO-REPETITION + MAXIMUM READY-MADE FACTORY = JOINT ABSOLUTE PRIORITY #1.
 Platform research/comparison/selection is closed.
 Work executes, validates, and preserves evidence.
+
+
+## 20. 2026-10-03 mandatory Work expansion — Universal composable ROOT and full closure queue
+
+This section is a mandatory extension of the prior handoff. It does not replace or weaken any earlier PASS doctrine, protected Kestra/Node-RED asset, or execution order. Work resumes at the last actual Paperclip installation checkpoint, then carries this expanded scope through actual implementation, validation, evidence, and read-back.
+
+### 20.1 Absolute operating target
+- USER MANUAL REPETITION = 0.
+- Observer must not repeatedly say: find this / connect this / validate this / apply this rule / leave evidence / continue.
+- If the system can continue by itself, returning an incomplete result to Observer or waiting for a generic "continue" is FAIL.
+- The ROOT must continuously discover missing capabilities, repeated manual work, recurring failures, internal feature updates, external ready-made products, and revenue opportunities for WIC and future personal businesses.
+
+### 20.2 Universal composable ROOT — procure verified structures before building
+Do not default to creating a new Universal Socket Platform, Rule Composition Engine, Component Factory, Hard Gate Engine, or validator from scratch.
+Forced order:
+1. VERIFIED COMPLETE PRODUCT
+2. VERIFIED COMPOSITE
+3. VERIFIED COMPONENT COMPOSITION
+4. EXTERNALLY PROCURED VERIFIED COMPONENT + COMPOSITION
+5. only true remaining gap using already-verified composition/runtime capabilities.
+A name, README, source download, install, startup, UI, API 200, or connection is never functional PASS.
+
+### 20.3 Central Component/Socket Registry
+Verified assets must be registered with at least:
+ID / Name / Purpose / Version / Input Schema / Output Schema / Contract / Dependency / Compatibility / Policy / Tests / Positive Golden Samples / Negative Golden Samples / Evidence / Health / Failure Mode / Retry / Recovery / Rollback / Usage-Dependency Map.
+Every new task must query Registry first: complete product -> composite -> reusable components -> external verified product -> only unresolved gap.
+Duplicate implementation across chats/tool numbers is a system failure.
+
+### 20.4 Composition must work at every size
+Rule/Parser/Validator/Search/Decision/Transformation/Policy/Evidence/Recovery/Agent/Workflow/Application/Tool/Program/Factory/Platform may all be components.
+Prove actual:
+Component + Component -> Composite;
+Composite + other components -> Program/App;
+Programs/Apps/Agents -> Factory;
+Factories -> higher automation/business platform;
+and a completed Composite/Tool/App/Factory can itself become a reusable higher-level socket.
+No size ceiling/floor.
+
+### 20.5 Executable rules and global inheritance
+Convert enforceable user rules from text/memory into Policy / Contract / Schema / Assertion / Precondition / Postcondition / Validator / Test / Gate.
+All current and future Chat/Tool/Program/App/Agent/Skill/MCP/Connector/Workflow/Scheduler/Factory/external Runner must automatically inherit Registry + Contract + Policy + Hard Gate + Validation + Test + Evidence + Observability + Recovery.
+No child or external component may bypass ROOT Gate and produce operational output directly.
+External component native safety -> WIC ROOT Hard Gate -> actual execution is mandatory dual control.
+
+### 20.6 Connection itself requires verification
+A PASS + B PASS does not mean A+B PASS.
+Every connection requires Contract / Dependency / Compatibility / Integration / E2E / Negative / Failure / Recovery / Regression tests and Evidence.
+Different runtimes/platforms may connect through verified Adapter/Wrapper/Bridge/API/MCP/Container, but explicit Contract is mandatory.
+
+### 20.7 Autonomous 24H Discovery / Procurement / Composition / Verification / Improvement
+This must be an actual persistent loop, not a chat-time research list:
+problem/repetition/gap/opportunity/internal update/external update detection
+-> Registry search
+-> existing complete product/composite search
+-> external search when needed
+-> license/commercial-use/cost/security/maintenance/API-connectivity/automation/validation/fail-closed/retry/recovery/rollback/observability/audit/evidence check
+-> sandbox
+-> actual WIC E2E
+-> Positive/Negative tests
+-> Hard Gate
+-> Evidence/read-back
+-> safe promotion.
+If no complete product exists, use already-existing verified Rule/Component/Workflow composition capabilities to assemble verified components automatically.
+Failed composition: isolate -> alternative component search -> recompose -> retest -> rollback when necessary.
+Do not ask Observer to procure or assemble normal components.
+
+### 20.8 Hot-swap and platform-wide improvement
+When a superior verified component appears, do not rebuild the whole system. If Contract is compatible, test hot-swap, run regression, and rollback automatically on failure.
+Repeated feedback/error is SYSTEM CONTROL FAILURE, not merely another user correction:
+Evidence -> root component/rule/workflow -> Registry -> alternative/internal/external discovery -> recomposition -> validation -> regression -> safe promotion.
+Inspect every dependent system that uses the same cause/component. One fix becomes a platform asset.
+
+### 20.9 Mandatory Negative Golden Samples
+At minimum include these historical failures as executable regression tests:
+A. GLOBAL-only rule violated by an Asia Pacific candidate. Required behavior: block before Observer, continue search for Global.
+B. Distributor-modified title used instead of official original publisher title (including the Mordor case). Required behavior: official-source/title validator blocks and revalidates.
+C. Actual TOC exists but only a partial/arbitrary TOC is output. Required behavior: TOC COMPLETE Gate blocks, recollects actual complete TOC, then validates.
+D. "2/3 need to be redone" / incomplete set returned. Required behavior: COMPLETE-SET Gate blocks final output and continues autonomously.
+All historical WIC chats, especially Tool42, must contribute Positive samples, Negative/failure samples, user correction diffs, recurring complaints, and final accepted outputs to regression assets.
+
+### 20.10 Universal real-work coverage
+Prove the same Registry/Contract/Policy/Component/Hard-Gate/Evidence principles across materially different actual WIC work, not only one TOC case:
+- unstructured TOC normalization (Tool6),
+- customer/report matching and customer guidance (Tool42),
+- EML original analysis,
+- Excel/DB processing (including Tool13),
+- official-source web research,
+- automation workflow,
+- agent execution,
+- app creation/operation,
+- factory-internal program,
+- external component connection.
+Use the actual Jeon Cho-hyeon sent-mail case as one real E2E, but not the only Golden Sample. Expand to other actual customers and historical WIC cases.
+
+### 20.11 Customer-guide/business production module
+Automate actual chain:
+new report discovery -> publisher eligibility -> official detail page -> exact title/date/pages/price/license/URL/TOC -> WIC validation -> guide generation -> validation -> persistent searchable registration;
+customer master -> current employment/dept/title/research -> inquiry/quote/purchase/send history -> duplicate/new-edition/update checks -> semantic guide match -> only missing count research/create -> customer-specific subject/body -> confirmed guide insertion -> recipient/layout/link/final duplicate-send validation.
+Separate validated source data from renderers so the same data can produce current WIC guide / DOCX / PDF / HTML / email-inline / webpage / short / detailed / customer-specific outputs.
+Do not pad to three with irrelevant reports.
+
+### 20.12 Legacy/asset full inventory
+Exhaustively classify WIC tools 1,6,7,13,16,19,21,23,24,25,28,30-2,34,41,42,43,44,45-48 and related assets as real / partial / shell / duplicate / obsolete / broken / evidence/reference.
+Tool1 and other large composite legacy programs are source material for requirements/data/rules/positive-negative samples; repairing them indefinitely is not the default.
+Inventory USB historical code/programs/DB/instructions/evidence/archives and GitHub WIC repos/branches/files; promote verified useful assets to canonical storage with commit/read-back where appropriate. Do not delete shells before extracting requirements/failure evidence.
+
+### 20.13 Failure/recovery matrix
+Actually test process kill / API failure / network failure / missing data / invalid input / invalid output / partial completion / restart / duplicate execution.
+Evidence must prove fail-closed, retry, resume, deduplication, recovery, rollback, state persistence, and fresh verification.
+
+### 20.14 Observer
+One live Observer surface must make it easy to see:
+current work / current component + version / composition relationship / passed and failed Gates / automatic blocks / replacements / recovery / regression / RUNNING-GREEN-HOLD-FAIL-WAITING / Evidence / read-back / revenue/business KPIs.
+Observer must not need to inspect raw logs to decide whether rules were followed.
+
+### 20.15 Revenue evidence
+The ROOT continuously searches internal/external capabilities and business opportunities for WIC and future personal businesses.
+Track time/click/copy-paste/manual-search/manual-edit reduction and business metrics.
+Architecture/revenue opportunity claims are not actual revenue PASS. Actual WIC revenue PASS still requires real transaction/payment/revenue evidence.
+Prefer profitable, reusable, automated, partner/ready-made structures over labor-heavy custom work, subject to legal/license/security/policy gates.
+
+### 20.16 Mandatory continuation and final closure queue
+The prior detailed combined checklist is authoritative in substance. Work must cover all items from resume through final closure, including:
+Paperclip install/start/UI/API/state/restart/persistence/minimum E2E;
+FlowWink prerequisites/Supabase/start/module-skill/state;
+Paperclip-Kestra-FlowWink-existing execution integration;
+global Hard Gate/inheritance/bypass prevention;
+Canonical Master;
+Registry and universal sockets;
+Golden/Negative samples and user diff;
+Tools/USB/GitHub inventory;
+common socketization;
+24H internal/external discovery/procurement/composition/improvement;
+revenue opportunity and repetition detection;
+failure/recovery/hot-swap/rollback;
+Observer;
+Evidence/read-back;
+actual WIC outputs;
+final omission audit and automatic requeue.
+
+Do not stop after Paperclip installation. Do not declare completion because a platform or workflow merely exists.
+
+### 20.17 Required evidence chain before final claims
+Actual existence/function/structure/composability/reuse/enforcement
+-> actual acquisition/install
+-> ROOT connection
+-> Registry registration
+-> different-size component composition
+-> cross-runtime reuse
+-> Composite used as higher socket
+-> global Hard Gate
+-> actual WIC data E2E
+-> Positive Golden Test
+-> Negative Golden Test
+-> actual Output Block
+-> automatic search/replacement/recomposition
+-> failure/recovery
+-> hot-swap
+-> rollback
+-> regression
+-> Observer
+-> Evidence
+-> read-back.
+
+Until all claimed-scope evidence exists, do NOT declare:
+UNIVERSAL COMPOSABLE PLATFORM VERIFIED
+24H AUTONOMOUS COMPOSITION VERIFIED
+GLOBAL HARD GATE VERIFIED
+or final Work COMPLETE.
+
+### 20.18 Final closure gate
+Final claimed closure requires:
+INCOMPLETE = 0
+UNVERIFIED = 0
+NO-EVIDENCE = 0
+USER MANUAL REPETITION = 0
+for the claimed final scope.
+Before closure, perform a full omission audit from all retained WIC requirements, feedback, failures, tools, data, connections, tests, and evidence. Any discovered residue automatically returns to the central queue.
