@@ -465,3 +465,46 @@ NO-EVIDENCE = 0
 USER MANUAL REPETITION = 0
 for the claimed final scope.
 Before closure, perform a full omission audit from all retained WIC requirements, feedback, failures, tools, data, connections, tests, and evidence. Any discovered residue automatically returns to the central queue.
+
+
+## 21. 2026-10-03 mandatory FREE-ONLY + USB-INDEPENDENT execution gate
+
+### 21.1 FREE-ONLY absolute gate
+All newly adopted top-platform structures, components, sockets, AI runtimes, APIs, agents, workflows, connectors, and dependencies must be verified as usable without mandatory paid API/service charges for the claimed WIC operating path.
+OpenAI paid API is NOT a mandatory dependency and must not be introduced as a hidden required runtime.
+If a candidate requires paid API/service usage for the required operating path:
+PAID_REQUIRED -> FAIL/REJECT -> automatically search a free/open-source/local/self-hosted verified substitute -> sandbox -> actual WIC E2E -> failure/recovery -> Evidence/read-back.
+A free download or free trial is not enough. Verify license, commercial-use conditions, mandatory cloud/API costs, model license, local execution path, and required infrastructure.
+Any future paid candidate can only be considered separately after explicit Observer approval and profitability evidence; it cannot silently become a ROOT dependency.
+
+### 21.2 Free AI/API replacement candidate validation
+Treat LocalAI as a current candidate, not PASS:
+- official documentation states MIT-licensed open source;
+- supports local/on-prem inference;
+- exposes an OpenAI-compatible API/drop-in style endpoint;
+- supports text, vision, audio, embeddings, function calling and agents depending on installed backend/model.
+Work must verify actual laptop/runtime compatibility, install, local model acquisition with commercially acceptable model license, actual API response, function/tool path if required, restart/state, integration behind WIC ROOT/Kestra Gate, actual WIC input E2E, intentional failure/STOP, recovery/rerun, and Evidence/read-back.
+Also search/validate other genuinely free local alternatives when they provide a better verified fit. Ollama/local execution may be evaluated as an alternative/adapter, but cloud credits/paid plans must not be confused with permanent free local execution.
+No AI runtime is PASS merely because it is open source; the selected model and all required dependencies must independently pass license/commercial-use/cost/security/runtime gates.
+
+### 21.3 USB-INDEPENDENT ROOT
+USB is an optional historical-asset source, not a required ROOT runtime dependency.
+The final target platform must continue core operation when USB is absent.
+Mandatory actual negative/dependency test:
+USB absent -> detect dependency unavailable -> only USB-specific inventory/import work becomes WAITING_USB -> all independent central queue work continues -> actual WIC E2E completes without USB -> restart preserves queue/state -> Observer shows USB-only WAITING reason -> Evidence stored -> read-back verifies evidence.
+If USB absence stops Paperclip/ROOT/Kestra/Factory/Registry/Hard Gate/24H Discovery/normal WIC E2E, the architecture FAILS.
+
+### 21.4 USB later reattachment behavior
+When the office USB becomes physically available, perform the previously required exhaustive USB inventory/classification/promotion work.
+Target behavior to validate then:
+USB detected -> WAITING_USB tasks re-enter executable queue -> inventory/classify real/partial/shell/duplicate/obsolete/broken/evidence -> extract requirements/failure history before any deletion -> validate reusable assets -> promote appropriate assets to canonical/GitHub -> read-back -> regression.
+Do not claim this physical USB inventory PASS until the actual USB is present and tested.
+
+### 21.5 Work stopping rule for the current no-USB session
+Do not stop merely because USB is absent.
+Continue every independent item as far as actual available environment permits.
+For this session, completion claims are scoped:
+- USB-independent top structure/runtime/functionality may become PASS only with actual evidence;
+- physical USB inventory remains WAITING_USB;
+- final whole-program COMPLETE remains prohibited until every mandatory final-scope dependency, including later USB-specific work if retained as mandatory, is actually verified.
+The architecture itself must nevertheless prove that USB absence does not obstruct the final operating target.
