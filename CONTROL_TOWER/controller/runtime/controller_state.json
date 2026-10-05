@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T08:43:25.459012+00:00",
+  "updated_at": "2026-10-05T08:55:00.815315+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -595,12 +595,12 @@
       "id": 54,
       "name": "주요 도구 공통 Socket 흡수",
       "group": "ASSET_OBSERVER_CLOSURE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 55,
@@ -661,12 +661,12 @@
       "id": 60,
       "name": "발견 즉시 READY-MADE 구조 연결",
       "group": "ASSET_OBSERVER_CLOSURE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 61,
@@ -804,12 +804,12 @@
       "id": 74,
       "name": "PAID_API_DEPENDENCY=0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 75,
@@ -881,67 +881,49 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-05T09:43:25.459019+00:00",
+  "next_run_at": "2026-10-05T09:55:00.815326+00:00",
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37285384923",
+    "run_id": "37286611917",
     "run_attempt": "1",
     "completed_reexecution_blocked": true,
     "locked_before": [
       1,
       2,
+      6,
       8,
       9,
       10,
+      11,
+      12,
       15,
+      33,
       34,
       35,
+      36,
+      37,
       45,
       47,
+      55,
+      64,
+      65,
+      66,
       71,
       72,
       73
     ],
     "processed": [
       {
-        "requirement_id": 33,
-        "proof": "CANONICAL_REQUIREMENT_LEDGER_LOADED"
+        "requirement_id": 54,
+        "proof": "COMMON_COMPONENT_SOCKET_REGISTRY_CONNECTED"
       },
       {
-        "requirement_id": 36,
-        "proof": "NEGATIVE_GOLDEN_CASES_EXECUTED"
+        "requirement_id": 60,
+        "proof": "VERIFIED_READY_MADE_COMPONENT_CONNECTED_ON_DISCOVERY"
       },
       {
-        "requirement_id": 37,
-        "proof": "FAILURE_CLASS_PROMOTED_TO_COMMON_GATE"
-      },
-      {
-        "requirement_id": 55,
-        "proof": "REAL_PARTIAL_SHELL_FAIL_CLOSED_CLASSIFICATION"
-      },
-      {
-        "requirement_id": 64,
-        "proof": "COMMON_QUEUE_BATCH_CLOSURE"
-      },
-      {
-        "requirement_id": 65,
-        "proof": "STALE_PASS_WITH_MISSING_EVIDENCE_BLOCKED"
-      },
-      {
-        "requirement_id": 66,
-        "proof": "COMMON_E2E_BULK_CLOSURE"
-      },
-      {
-        "requirement_id": 6,
-        "proof": "EXISTING_CONTROLLER_CONNECTED_TO_HOSTED_RUNTIME"
-      },
-      {
-        "requirement_id": 11,
-        "proof": "COMPONENT_REGISTRY_READ_AND_VALIDATED"
-      },
-      {
-        "requirement_id": 12,
-        "proof": "VERIFIED_REUSE_SELECTED_BEFORE_NEW_BUILD"
+        "requirement_id": 74,
+        "proof": "HOSTED_CYCLE_EXECUTED_WITH_ZERO_PAID_API_CALLS"
       }
     ],
     "queue_continues": true

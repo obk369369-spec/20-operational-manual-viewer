@@ -1,8 +1,8 @@
 {
   "schema": "wic.top_controller.independent_runtime.v1",
-  "created_at": "2026-10-05T08:43:25.460630+00:00",
+  "created_at": "2026-10-05T08:55:00.817259+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "37285384923",
+  "run_id": "37286611917",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
@@ -11,50 +11,22 @@
   "multiple_requirement_auto_processing": true,
   "processed": [
     {
-      "requirement_id": 33,
-      "proof": "CANONICAL_REQUIREMENT_LEDGER_LOADED"
+      "requirement_id": 54,
+      "proof": "COMMON_COMPONENT_SOCKET_REGISTRY_CONNECTED"
     },
     {
-      "requirement_id": 36,
-      "proof": "NEGATIVE_GOLDEN_CASES_EXECUTED"
+      "requirement_id": 60,
+      "proof": "VERIFIED_READY_MADE_COMPONENT_CONNECTED_ON_DISCOVERY"
     },
     {
-      "requirement_id": 37,
-      "proof": "FAILURE_CLASS_PROMOTED_TO_COMMON_GATE"
-    },
-    {
-      "requirement_id": 55,
-      "proof": "REAL_PARTIAL_SHELL_FAIL_CLOSED_CLASSIFICATION"
-    },
-    {
-      "requirement_id": 64,
-      "proof": "COMMON_QUEUE_BATCH_CLOSURE"
-    },
-    {
-      "requirement_id": 65,
-      "proof": "STALE_PASS_WITH_MISSING_EVIDENCE_BLOCKED"
-    },
-    {
-      "requirement_id": 66,
-      "proof": "COMMON_E2E_BULK_CLOSURE"
-    },
-    {
-      "requirement_id": 6,
-      "proof": "EXISTING_CONTROLLER_CONNECTED_TO_HOSTED_RUNTIME"
-    },
-    {
-      "requirement_id": 11,
-      "proof": "COMPONENT_REGISTRY_READ_AND_VALIDATED"
-    },
-    {
-      "requirement_id": 12,
-      "proof": "VERIFIED_REUSE_SELECTED_BEFORE_NEW_BUILD"
+      "requirement_id": 74,
+      "proof": "HOSTED_CYCLE_EXECUTED_WITH_ZERO_PAID_API_CALLS"
     }
   ],
   "queue_persisted": true,
   "state_persisted": true,
   "queue_auto_continuation": true,
-  "remaining_queue_count": 44,
+  "remaining_queue_count": 41,
   "failure_recovery": {
     "status": "SKIP_REUSE_PASS_LOCKED",
     "state_preserved": true,
