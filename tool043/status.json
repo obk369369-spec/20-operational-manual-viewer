@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
-    "feedback_pipeline/unified_open_ledger.json": "78b937b9a311221fa11fb31fd32f1fcb1512bbec9cfc69fed576609da8987891",
+    "feedback_pipeline/unified_open_ledger.json": "8f8b323eca455d4825c73a1fb30934ae2b46fe0a8c967acfe6dbfa755b150936",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -3019,6 +3019,18 @@
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
       },
       {
+        "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+        "target": "TOOL016 / TOOL044 / GITHUB_ACTIONS",
+        "label": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Reuse the verified controller unchanged where possible; deploy it to the existing GitHub Actions runtime and verify persistence, completed-item blocking, multiple different requirements, automatic continuation, and evidence read-back.",
+        "last_actual_point": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven."
+      },
+      {
         "root_id": "WIC-0702-SCOPED-RECOVERY",
         "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
         "label": "WIC-0702-SCOPED-RECOVERY",
@@ -3111,6 +3123,18 @@
     ],
     "pending": [
       {
+        "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+        "target": "TOOL016 / TOOL044 / GITHUB_ACTIONS",
+        "label": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Reuse the verified controller unchanged where possible; deploy it to the existing GitHub Actions runtime and verify persistence, completed-item blocking, multiple different requirements, automatic continuation, and evidence read-back.",
+        "last_actual_point": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven."
+      },
+      {
         "root_id": "WIC-0702-SCOPED-RECOVERY",
         "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
         "label": "WIC-0702-SCOPED-RECOVERY",
@@ -3137,14 +3161,15 @@
         "last_actual_point": "Latest resume 10f40460 loaded. Completed proof/cache adapters SKIP_REUSE; existing external holds remain unchanged. TOOL013 master-to-output residual identified: filename and N Pages casing."
       }
     ],
-    "remaining_total": 6,
+    "remaining_total": 7,
     "running_total": 0,
     "waiting_total": 4,
-    "pending_total": 2,
-    "open_internal_total": 2,
+    "pending_total": 3,
+    "open_internal_total": 3,
     "open_internal_roots": [
       "WIC-0702-SCOPED-RECOVERY",
-      "WIC-PARALLEL-RESIDUAL-20260903"
+      "WIC-PARALLEL-RESIDUAL-20260903",
+      "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005"
     ],
     "checkpoint_open_internal_total": 0,
     "checkpoint_open_internal_roots": [],
@@ -3188,9 +3213,9 @@
   },
   "max_status_age_seconds": 28800,
   "night_processed": 1,
-  "new_open": 2,
+  "new_open": 3,
   "blocked_work": 4,
-  "next_work": "WIC-0702-SCOPED-RECOVERY / WIC-PARALLEL-RESIDUAL-20260903",
+  "next_work": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005 / WIC-0702-SCOPED-RECOVERY / WIC-PARALLEL-RESIDUAL-20260903",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -3243,7 +3268,7 @@
   },
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 6,
+  "incomplete_total": 7,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -3251,7 +3276,7 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-10-05T03:16:18.029211+00:00",
+  "observer_generated_at": "2026-10-05T03:21:05.332721+00:00",
   "source_revision": "LOCAL_ONLY",
   "github_actions_run": "LOCAL_ONLY",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",

@@ -2,6 +2,17 @@
   "schema_version": 1,
   "entries": [
     {
+      "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+      "layer": "L5",
+      "target": "TOOL016 / TOOL044 / GITHUB_ACTIONS",
+      "status": "OPEN",
+      "next_trigger": "IMMEDIATE",
+      "last_actual_point": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven.",
+      "next_start": "Reuse the verified controller unchanged where possible; deploy it to the existing GitHub Actions runtime and verify persistence, completed-item blocking, multiple different requirements, automatic continuation, and evidence read-back.",
+      "source": "USER_CURRENT_REMAINING_WORK_ONLY_20261005",
+      "execution_receipts": []
+    },
+    {
       "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
       "layer": "L5",
       "target": "TOOL016 / TOOL044 / KESTRA / NODE_RED / GITHUB_PAGES",
@@ -262,6 +273,13 @@
   "execution_policy": {
     "schema_version": 1,
     "scope_grants": [{
+      "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+      "directive_ref": "USER_CURRENT_REMAINING_WORK_ONLY_20261005",
+      "actions": ["DEPLOY_EXISTING_CONTROLLER_RUNTIME"],
+      "assets": ["TOOL016", "TOOL044", "GITHUB_ACTIONS", "WIC_TOP_CONTROLLER", "CONTROLLER_RUNTIME_STATE"],
+      "reusable_assets": ["existing verified WIC top controller", "existing GitHub Actions runtime", "existing 75-requirement queue/state/evidence"],
+      "scope": "Deploy the already verified controller to an independent scheduled runtime and prove persisted automatic multi-requirement continuation without rebuilding completed controller logic"
+    },{
       "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
       "directive_ref": "USER_WIC_24H_REVENUE_EXECUTION_20261001",
       "actions": ["CONNECT_AND_DEPLOY_REUSED_PLATFORMS"],
