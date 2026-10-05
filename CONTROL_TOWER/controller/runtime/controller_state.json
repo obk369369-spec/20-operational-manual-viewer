@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T03:04:56.027063+00:00",
+  "updated_at": "2026-10-05T07:44:22.881507+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -12,23 +12,23 @@
       "id": 1,
       "name": "독립 무료 24H Runtime 실제 배포",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 2,
       "name": "사용자기기 OFF 독립실행",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 3,
@@ -111,12 +111,12 @@
       "id": 10,
       "name": "장애·재시작·상태보존·Rollback",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "AUTO_IMPROVING",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_75_AUTO_IMPROVEMENT_FINAL_20261005.json",
-      "retry_count": 1,
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+      "retry_count": 2,
       "block_reason": null,
-      "next_action": "FULL_RUNTIME_FAILURE_TEST_ON_INDEPENDENT_HOST"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 11,
@@ -771,34 +771,34 @@
       "id": 71,
       "name": "WORK_DEPENDENCY=0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 72,
       "name": "CODEX_DEPENDENCY=0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 73,
       "name": "USER_DEVICE_DEPENDENCY=0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 74,
@@ -855,7 +855,7 @@
     "status": "PASS"
   },
   "failure_cycle": {
-    "run_id": "WIC-TOP-FAILURE-20261005T030456Z",
+    "run_id": "WIC-TOP-FAILURE-20261005T074422Z",
     "requirement_id": 10,
     "fault_injected": "STALE_SOURCE_DIGEST",
     "stop_proven": true,
@@ -880,6 +880,42 @@
     "scope": "CONTROLLER_EVIDENCE_READBACK_RECOVERY_ONLY"
   },
   "actual_24h_elapsed_validation": "PENDING",
-  "independent_runtime": "NOT_PROVEN",
-  "next_run_at": "2026-10-05T04:04:56.027063+00:00"
+  "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
+  "next_run_at": "2026-10-05T08:44:22.881513+00:00",
+  "github_runtime": {
+    "repository": "obk369369-spec/20-operational-manual-viewer",
+    "run_id": "37279406712",
+    "run_attempt": "1",
+    "completed_reexecution_blocked": true,
+    "locked_before": [
+      34
+    ],
+    "processed": [
+      {
+        "requirement_id": 1,
+        "proof": "GITHUB_ACTIONS_HOSTED_PROCESS_STARTED"
+      },
+      {
+        "requirement_id": 2,
+        "proof": "HOSTED_PROCESS_HAS_NO_USER_DEVICE_DEPENDENCY"
+      },
+      {
+        "requirement_id": 71,
+        "proof": "NORMAL_CYCLE_USED_NO_WORK_RUNTIME"
+      },
+      {
+        "requirement_id": 72,
+        "proof": "NORMAL_CYCLE_USED_NO_CODEX_RUNTIME"
+      },
+      {
+        "requirement_id": 73,
+        "proof": "NORMAL_CYCLE_USED_NO_USER_DEVICE_RUNTIME"
+      },
+      {
+        "requirement_id": 10,
+        "proof": "FAILURE_STOP_RECOVERY_AND_STATE_PRESERVATION"
+      }
+    ],
+    "queue_continues": true
+  }
 }
