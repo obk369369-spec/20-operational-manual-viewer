@@ -1,9 +1,9 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T11:00:27.687402+00:00",
+  "updated_at": "2026-10-05T11:01:20.422623+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
+  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -881,37 +881,12 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-05T12:00:27.687402+00:00",
+  "next_run_at": "2026-10-05T12:01:20.422629+00:00",
   "github_runtime": {
-    "repository": "UNKNOWN",
-    "run_id": "LOCAL-NO-RUN-ID",
+    "repository": "obk369369-spec/20-operational-manual-viewer",
+    "run_id": "37300243701",
     "run_attempt": "1",
-    "processed": [
-      {
-        "requirement_id": 61,
-        "contract_id": "ACTUAL_PUBLIC_OBSERVER",
-        "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
-        "evidence": [
-          "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json"
-        ]
-      },
-      {
-        "requirement_id": 62,
-        "contract_id": "ACTUAL_PUBLIC_OBSERVER",
-        "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
-        "evidence": [
-          "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json"
-        ]
-      },
-      {
-        "requirement_id": 63,
-        "contract_id": "ACTUAL_PUBLIC_OBSERVER",
-        "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
-        "evidence": [
-          "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json"
-        ]
-      }
-    ],
+    "processed": [],
     "held": [],
     "queue_continues": true,
     "queue_drained": false

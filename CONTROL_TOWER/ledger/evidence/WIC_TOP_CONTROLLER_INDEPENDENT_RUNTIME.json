@@ -1,42 +1,17 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-05T11:00:27.982152+00:00",
-  "repository": "UNKNOWN",
-  "run_id": "LOCAL-NO-RUN-ID",
+  "created_at": "2026-10-05T11:01:20.424604+00:00",
+  "repository": "obk369369-spec/20-operational-manual-viewer",
+  "run_id": "37300243701",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
   "dynamic_requirement_router": true,
   "hardcoded_requirement_pass_routes": 0,
   "parallel_contract_workers": 4,
-  "processed": [
-    {
-      "requirement_id": 61,
-      "contract_id": "ACTUAL_PUBLIC_OBSERVER",
-      "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
-      "evidence": [
-        "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json"
-      ]
-    },
-    {
-      "requirement_id": 62,
-      "contract_id": "ACTUAL_PUBLIC_OBSERVER",
-      "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
-      "evidence": [
-        "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json"
-      ]
-    },
-    {
-      "requirement_id": 63,
-      "contract_id": "ACTUAL_PUBLIC_OBSERVER",
-      "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
-      "evidence": [
-        "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json"
-      ]
-    }
-  ],
+  "processed": [],
   "held": [],
-  "multiple_requirement_auto_processing": true,
+  "multiple_requirement_auto_processing": false,
   "locked_contract_requirements": [
     3,
     4,
