@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-05T16:04:02.432506+00:00",
+  "generated_at": "2026-10-05T21:57:05.511577+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "2cf19859ca02bdeea74b85fd38ff40cafc4524b4cede1698901f749deb805048"
+      "sha256": "624205cff64a5bf0fb2778ec31e95416abe7e56c2896868444d7fdd19c775ccb"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,7 +29,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "3c04658a92c3e252f8e20b4de75ef2d4ea74620b5f1cb1a9664b351bf3877869"
+      "sha256": "72cb1555570cb37343b2c407b75ce622e26281d80a3973e2007783f4b0ac9406"
     }
   ],
   "counts": {
@@ -38,9 +38,9 @@
     "automatically_recoverable_records": 234,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 187,
-    "roots_after_deduplication": 132,
-    "verified_skip_reuse_records": 11,
+    "collected_error_records": 185,
+    "roots_after_deduplication": 131,
+    "verified_skip_reuse_records": 13,
     "records_handed_to_tool044": 78,
     "atomic_demands": 116
   },
@@ -260,24 +260,42 @@
       "TOOL_ID": "TOOL016",
       "FUNCTION_ID": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
       "ROOT_ID": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven.",
+      "CURRENT_STATUS": "IMPROVED_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": null,
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
-      "IMPROVEMENT_EVIDENCE": null,
-      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+      "IMPROVEMENT_EVIDENCE": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "3af0909d6e796ced534404f25ad67c91aa10b237",
+        "path": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+        "workflow_runs": [
+          "37279406712",
+          "37280663400"
+        ],
+        "scope": "Independent hosted runtime structure, two persisted cycles, completed-item blocking, multi-requirement auto-processing, queue continuation, recovery, and remote read-back; excludes actual 24-hour elapsed proof"
+      },
+      "ROUTING": "SKIP_REUSE"
     },
     {
       "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
       "TOOL_ID": "TOOL044",
       "FUNCTION_ID": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
       "ROOT_ID": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven.",
+      "CURRENT_STATUS": "IMPROVED_VERIFIED",
+      "ORIGINAL_ERROR_OR_FEEDBACK": null,
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
-      "IMPROVEMENT_EVIDENCE": null,
-      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+      "IMPROVEMENT_EVIDENCE": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "3af0909d6e796ced534404f25ad67c91aa10b237",
+        "path": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+        "workflow_runs": [
+          "37279406712",
+          "37280663400"
+        ],
+        "scope": "Independent hosted runtime structure, two persisted cycles, completed-item blocking, multi-requirement auto-processing, queue continuation, recovery, and remote read-back; excludes actual 24-hour elapsed proof"
+      },
+      "ROUTING": "SKIP_REUSE"
     },
     {
       "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
@@ -3141,7 +3159,6 @@
     "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
     "WIC-PARALLEL-RESIDUAL-20260903",
     "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-    "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
     "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
     "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
     "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
