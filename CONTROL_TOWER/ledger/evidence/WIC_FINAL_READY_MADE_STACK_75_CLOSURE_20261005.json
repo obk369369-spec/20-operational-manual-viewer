@@ -1,0 +1,709 @@
+{
+  "schema": "wic.final_ready_made_stack_75_closure.v1",
+  "created_at": "2026-10-05T00:00:00+09:00",
+  "qualified_ready_made_top_stack": "FAIL",
+  "top_stack_selected": "NO",
+  "technical_closure": "INCOMPLETE",
+  "requirement_75_closure": "INCOMPLETE",
+  "execution_started": "NO",
+  "selected_products": [
+    "Backstage",
+    "Windmill",
+    "Dify",
+    "ERPNext"
+  ],
+  "selection_status": "BEST_AVAILABLE_STACK_NOT_QUALIFIED",
+  "reason": "공식 API/Webhook/Plugin은 있으나 제품 간 ready-made integration 및 자동 제품탐색→license/security/commercial 검증→조달→조합→acceptance test→rollback 전체를 제공하는 공식 완제품 경로가 없다. 이를 충족하려면 별도 상위 workflow/controller 개발이 필요하다.",
+  "official_integration_evidence": [
+    {
+      "product": "Backstage",
+      "evidence": [
+        "REST Software Catalog API",
+        "GitHub/GitLab/Bitbucket/LDAP/cloud integrations",
+        "scheduled/webhook entity providers"
+      ],
+      "source": "https://backstage.io/docs/features/software-catalog/external-integrations/"
+    },
+    {
+      "product": "Windmill",
+      "evidence": [
+        "sync/async webhooks",
+        "job result polling",
+        "OpenAPI 3.1 routes"
+      ],
+      "source": "https://www.windmill.dev/docs/core_concepts/webhooks"
+    },
+    {
+      "product": "Dify",
+      "evidence": [
+        "agentic workflows",
+        "RAG",
+        "plugins",
+        "HTTP webhook extensions"
+      ],
+      "source": "https://github.com/langgenius/dify"
+    },
+    {
+      "product": "ERPNext",
+      "evidence": [
+        "DocType REST API",
+        "document event webhooks",
+        "background queues/scheduler"
+      ],
+      "source": "https://docs.frappe.io/erpnext/integrating-erpnext-with-other-applications"
+    }
+  ],
+  "licenses": {
+    "Backstage": "Apache-2.0",
+    "Windmill": "AGPLv3 core; commercial enterprise features",
+    "Dify": "Dify Open Source License based on Apache-2.0 with additional conditions",
+    "ERPNext": "GPLv3"
+  },
+  "auto_procure_compose": {
+    "status": "NO_EVIDENCE",
+    "target_60s": "NOT_TESTED",
+    "actual_time": null,
+    "exceeded_reason": null,
+    "external_wait": null,
+    "bottleneck": "ready-made cross-product procurement/composition path absent",
+    "runtime_e2e": "NOT_RUN",
+    "failure_recovery": "NOT_RUN",
+    "rollback": "NOT_RUN",
+    "evidence_readback": "NOT_RUN",
+    "observer": "NOT_RUN"
+  },
+  "counts": {
+    "executable_remaining": 67,
+    "external_blocked": 4,
+    "market_validation_pending": 4,
+    "no_evidence": 67,
+    "verified_native": 0,
+    "verified_composed": 0,
+    "verified_runtime": 0,
+    "user_manual_repetition": "NOT_PROVEN_ZERO",
+    "work_dependency": "NOT_PROVEN_ZERO",
+    "codex_dependency": "NOT_PROVEN_ZERO",
+    "user_device_dependency": "NOT_PROVEN_ZERO",
+    "paid_api_dependency": "NOT_PROVEN_ZERO"
+  },
+  "excluded_verified_requirement": {
+    "id": 67,
+    "name": "Evidence 생성 후 실제 Read-back",
+    "status": "VERIFIED_EVIDENCE_REUSED"
+  },
+  "requirements": [
+    {
+      "id": 1,
+      "requirement": "독립 무료 24H Runtime 실제 배포",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 2,
+      "requirement": "사용자기기 OFF 독립실행",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 3,
+      "requirement": "여러 무료 외부 실행장치 연결·분산실행",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 4,
+      "requirement": "최상위 플랫폼과 여러 Factory 실제 실행",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 5,
+      "requirement": "필요 Factory 자동발견·조달",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 6,
+      "requirement": "기존 운영구조 연결 또는 흡수",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 7,
+      "requirement": "FlowWink 복구 또는 교체",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 8,
+      "requirement": "전역 Hard Gate 자동상속",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 9,
+      "requirement": "Positive·Negative·STOP·Recovery·GREEN 검증",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 10,
+      "requirement": "장애·재시작·상태보존·Rollback",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 11,
+      "requirement": "Component/Socket Registry",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 12,
+      "requirement": "READY-MADE FIRST 자동강제",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 13,
+      "requirement": "필요에서 완성구조 60초 목표",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 14,
+      "requirement": "완성품 24H 사전조달·검증",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 15,
+      "requirement": "무료·상업사용·License·Security 자동 Gate",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 16,
+      "requirement": "영상 URL 자동인식·분석",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 17,
+      "requirement": "영상에서 도구·사업모델 자동추출",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 18,
+      "requirement": "추출결과와 기존 사업역량 자동결합",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 19,
+      "requirement": "추출결과와 개인사업기회 자동결합",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 20,
+      "requirement": "발견한 무료 완제품 확보",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 21,
+      "requirement": "YouTube Channel 지속분석 등록",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 22,
+      "requirement": "CONNECT-AI-LAB 콘텐츠 분석",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 23,
+      "requirement": "다른 영상·Channel 자동등록·분석",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 24,
+      "requirement": "URL·Channel 자동추적 승격",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 25,
+      "requirement": "콘텐츠에서 기술·사업기회 Queue",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 26,
+      "requirement": "유용 Source 자동발견",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 27,
+      "requirement": "형태 제한 없는 사업기회 탐색",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 28,
+      "requirement": "발견에서 수익평가·조달·검증 자동화",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 29,
+      "requirement": "24H Self-Audit",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 30,
+      "requirement": "Self-Audit 누락기능 자동발견",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 31,
+      "requirement": "더 좋은 완제품 자동비교",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 32,
+      "requirement": "안전 Hot-swap·Rollback",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 33,
+      "requirement": "과거 지시 Requirement Ledger",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 34,
+      "requirement": "Ledger·Queue·Evidence 자동대조",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 35,
+      "requirement": "미완료 자동 ReQueue",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 36,
+      "requirement": "Feedback/Error Negative Golden Sample",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 37,
+      "requirement": "반복 Feedback ROOT 승격",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 38,
+      "requirement": "실제 WIC 고객 Data E2E",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 39,
+      "requirement": "고객 재직·부서·업무 자동검증",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 40,
+      "requirement": "과거 거래·문의 이력 통합",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 41,
+      "requirement": "고객 관심분야·판매자료 자동매칭",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 42,
+      "requirement": "구판·중복·부적합 자동차단",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 43,
+      "requirement": "안내서·메일·견적·거래준비 자동화",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 44,
+      "requirement": "고객 후속관리·결과 자동기록",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 45,
+      "requirement": "TECH_PASS·BUSINESS_PASS 분리",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 46,
+      "requirement": "실제 고객반응·계약·매출 Evidence",
+      "status": "MARKET_VALIDATION_PENDING",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "실제 외부 고객·거래 사건 없음"
+    },
+    {
+      "id": 47,
+      "requirement": "TECH_PASS·MARKET_PENDING 분리",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 48,
+      "requirement": "시장검증 Queue 유지",
+      "status": "MARKET_VALIDATION_PENDING",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "실제 외부 고객·거래 사건 없음"
+    },
+    {
+      "id": 49,
+      "requirement": "수익성 KPI",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 50,
+      "requirement": "무수익 구조 자동개선",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 51,
+      "requirement": "발행사 계약·Commission·판매",
+      "status": "MARKET_VALIDATION_PENDING",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "실제 외부 고객·거래 사건 없음"
+    },
+    {
+      "id": 52,
+      "requirement": "컨설팅기관 Partnership·수익화",
+      "status": "MARKET_VALIDATION_PENDING",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "실제 외부 고객·거래 사건 없음"
+    },
+    {
+      "id": 53,
+      "requirement": "새 사업구조 자동발견",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 54,
+      "requirement": "주요 도구 공통 Socket 흡수",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 55,
+      "requirement": "Program/File REAL·PARTIAL·SHELL 판별",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 56,
+      "requirement": "USB 전수조사·Canonical·폐기",
+      "status": "EXTERNAL_BLOCKED",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "현재 물리 접근/자료 실행 증거 없음"
+    },
+    {
+      "id": 57,
+      "requirement": "USB_DEPENDENCY=0",
+      "status": "EXTERNAL_BLOCKED",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "현재 물리 접근/자료 실행 증거 없음"
+    },
+    {
+      "id": 58,
+      "requirement": "사무실 PC 자료 전수흡수",
+      "status": "EXTERNAL_BLOCKED",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "현재 물리 접근/자료 실행 증거 없음"
+    },
+    {
+      "id": 59,
+      "requirement": "사무실자료에서 신규 업무·Factory 발견",
+      "status": "EXTERNAL_BLOCKED",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "현재 물리 접근/자료 실행 증거 없음"
+    },
+    {
+      "id": 60,
+      "requirement": "발견 즉시 READY-MADE 구조 연결",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 61,
+      "requirement": "최상위 Observer 실제 화면",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 62,
+      "requirement": "운영상태 Observer 표시",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 63,
+      "requirement": "사업·수익성 Observer 표시",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 64,
+      "requirement": "중앙 Queue 미완료 일괄 Closure",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 65,
+      "requirement": "stale PASS 재조정",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 66,
+      "requirement": "공통 E2E 동시 Closure",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 68,
+      "requirement": "외부 물리조건 제외 실행가능 잔여 0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 69,
+      "requirement": "UNVERIFIED·NO_EVIDENCE=0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 70,
+      "requirement": "사용자 반복작업 0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 71,
+      "requirement": "WORK_DEPENDENCY=0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 72,
+      "requirement": "CODEX_DEPENDENCY=0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 73,
+      "requirement": "USER_DEVICE_DEPENDENCY=0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 74,
+      "requirement": "PAID_API_DEPENDENCY=0",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 75,
+      "requirement": "플랫폼 완성 후 24H 자기개선",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    },
+    {
+      "id": 76,
+      "requirement": "모든 사용자기기 OFF 지속 운영",
+      "status": "NO_EVIDENCE",
+      "responsible_products": "Backstage + Windmill + Dify + ERPNext (candidate only; not deployed)",
+      "fulfillment_mode": "UNVERIFIED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json"
+    }
+  ],
+  "prohibited_work_confirmed": {
+    "paperclip_repair": false,
+    "kestra_flow_development": false,
+    "nodered_flow_development": false,
+    "flowwink_repair": false,
+    "custom_registry_gate_validator_recovery_observer_factory": false,
+    "file_discovery": false
+  },
+  "next_autonomous_action": "새 공식 ready-made cross-product integration 또는 procurement control product의 증거가 생긴 경우에만 이 checkpoint에서 증분 재평가한다. 현재 stack의 도입·개발은 시작하지 않는다.",
+  "source_checkpoint": {
+    "path": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+    "sha256": "B57944EABD683372BC8B156DB57E22BF00272FFF9F83EFD5B5B08D0CC042FC3C"
+  }
+}

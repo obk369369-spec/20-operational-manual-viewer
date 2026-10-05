@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "run_id": "WIC-LEDGER-RECONCILIATION-20261005T030455Z",
+  "executed_at": "2026-10-05T03:04:55.827335+00:00",
+  "inputs": {
+    "master": "CONTROL_TOWER/ledger/WIC_MASTER_INCOMPLETE_LEDGER_20261004.json",
+    "master_sha256": "5D2AD303CDDEED1F2811D7106DBD5680E4F9FFD114AE1B9400F15C23B6B6FBBE",
+    "queue": "_wic_speed_runner_audit/feedback_pipeline/tool044_atomic_demand_queue.json",
+    "queue_sha256": "B61A7D5C33F109C41C88541A2A0A03F5AE8DFC6D4468D617B51FFA32042A934D",
+    "canonical": "_wic_speed_runner_audit/feedback_pipeline/unified_open_ledger.json",
+    "canonical_sha256": "EC5E90AA07BDBD0AE08DEB97F476758FDEA9D46D68DB10F0DDE4B334FAD6F61D"
+  },
+  "master_item_count": 11,
+  "queue_demand_count": 116,
+  "queue_classification": {
+    "ACTIONABLE": 38,
+    "HOLD": 22,
+    "REVIEW_REQUIRED": 1,
+    "TERMINAL": 55
+  },
+  "actionable_common_root_count": 33,
+  "actionable_common_roots": [
+    {
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "demand_count": 2,
+      "demand_ids": [
+        "WIC-BACKLOG-24H-20260927",
+        "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927"
+      ]
+    },
+    {
+      "root_id": "ALL_PUBLISHERS_TOC_EXTRACTION_SYSTEM_FAILURE",
+      "demand_count": 1,
+      "demand_ids": [
+        "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929"
+      ]
+    },
+    {
+      "root_id": "CONTROL-TOWER",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-CONTROL-TOWER-20260927"
+      ]
+    },
+    {
+      "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
+      "demand_count": 1,
+      "demand_ids": [
+        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
+      ]
+    },
+    {
+      "root_id": "CR-ELAPSED-TIME",
+      "demand_count": 1,
+      "demand_ids": [
+        "FINAL-37-CR-ELAPSED-TIME"
+      ]
+    },
+    {
+      "root_id": "CR-EVIDENCE-VALIDATION",
+      "demand_count": 3,
+      "demand_ids": [
+        "FINAL-37-CR-EVIDENCE-VALIDATION",
+        "FINAL-39-CR-EVIDENCE-VALIDATION",
+        "FINAL-42-CR-EVIDENCE-VALIDATION"
+      ]
+    },
+    {
+      "root_id": "CR-EXECUTABLE-CONTRACT",
+      "demand_count": 2,
+      "demand_ids": [
+        "FINAL-39-CR-EXECUTABLE-CONTRACT",
+        "FINAL-42-CR-EXECUTABLE-CONTRACT"
+      ]
+    },
+    {
+      "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
+      "demand_count": 1,
+      "demand_ids": [
+        "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
+      ]
+    },
+    {
+      "root_id": "CR-TRANSLATION-COMPONENT",
+      "demand_count": 1,
+      "demand_ids": [
+        "FINAL-37-CR-TRANSLATION-COMPONENT"
+      ]
+    },
+    {
+      "root_id": "ENV2",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-ENV2-20260927"
+      ]
+    },
+    {
+      "root_id": "GITHUB-REMOTE",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-GITHUB-REMOTE-20260927"
+      ]
+    },
+    {
+      "root_id": "OBSERVER-SEPARATION-WORK-HANDOFF",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928"
+      ]
+    },
+    {
+      "root_id": "ROOT-6",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-ROOT6-20260927"
+      ]
+    },
+    {
+      "root_id": "ROOT-7",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-ROOT7-20260927"
+      ]
+    },
+    {
+      "root_id": "SOURCE-ZIP",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-SOURCE-ZIP-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL001",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL001-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL002",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL002-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL016",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL016-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL043",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL043-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL044",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL044-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL044-PERMANENT-OBSERVER-INTAKE",
+      "demand_count": 1,
+      "demand_ids": [
+        "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT",
+      "demand_count": 1,
+      "demand_ids": [
+        "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL045-047",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL045-046-047-20260927"
+      ]
+    },
+    {
+      "root_id": "TOOL048",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-TOOL048-20260927"
+      ]
+    },
+    {
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "demand_count": 2,
+      "demand_ids": [
+        "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+        "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928"
+      ]
+    },
+    {
+      "root_id": "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928"
+      ]
+    },
+    {
+      "root_id": "WIC-ALL-TOOLS-INTERNAL-ZERO",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929"
+      ]
+    },
+    {
+      "root_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-ALL-UNFINISHED-BATCH-20260928"
+      ]
+    },
+    {
+      "root_id": "WIC-CANONICAL-RESIDUAL-R1-R16",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-CANONICAL-RESIDUAL-R1-R16-20260929"
+      ]
+    },
+    {
+      "root_id": "WIC-CIRCULATION-FINAL-CLOSEOUT",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929"
+      ]
+    },
+    {
+      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
+      "demand_count": 1,
+      "demand_ids": [
+        "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929"
+      ]
+    },
+    {
+      "root_id": "WIC-FINAL-CONNECTION",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-BACKLOG-FINAL-CONNECTION-20260927"
+      ]
+    },
+    {
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "demand_count": 1,
+      "demand_ids": [
+        "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929"
+      ]
+    }
+  ],
+  "canonical_nonclosed_roots": [
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+    "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+    "T41-T42-NATIVE-AUTOMATION",
+    "WIC-0702-SCOPED-RECOVERY",
+    "WIC-PARALLEL-RESIDUAL-20260903"
+  ],
+  "duplicate_active_demand_ids": [],
+  "false_complete_without_evidence": [],
+  "pass": true,
+  "closure": "RECONCILIATION_AUDIT_PASS"
+}
