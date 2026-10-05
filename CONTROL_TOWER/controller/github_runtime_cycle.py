@@ -112,6 +112,41 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
     return processed, held
 
 
+def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry: dict[str, Any],
+                         processed: list[dict[str, Any]], held: list[dict[str, Any]], run_id: str) -> None:
+    rows = state["requirements"]
+    complete = [row for row in rows if row["queue_status"] == "PASS_LOCKED"]
+    waiting = [row for row in rows if row["queue_status"] == "WAITING"]
+    queued_ids = set(map(int, queue["queued_requirement_ids"]))
+    queued = [row for row in rows if int(row["id"]) in queued_ids]
+    revenue_path = body.ROOT / "feedback_pipeline" / "evidence" / "wic_24h_tools_revenue_closeout_20261001.json"
+    revenue = body.load(revenue_path) if revenue_path.exists() else {}
+    def item(row: dict[str, Any], status: str) -> dict[str, Any]:
+        return {"requirement_id": str(row["id"]), "name": row["name"], "status": status,
+                "evidence": row.get("evidence"), "resume_condition": row.get("next_action")}
+    payload = {
+        "schema": "wic.observer.actual_state.v1", "updated_at": body.now(),
+        "COMPLETE": [item(row, "COMPLETE") for row in complete],
+        "PARTIAL": [item(row, "PARTIAL") for row in queued], "UNFINISHED": [],
+        "PLATFORM_HOLD": [item(row, "PLATFORM_HOLD") for row in waiting], "LONG_TERM_HOLD": [],
+        "NEXT_WORK": str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"] else None,
+        "current": {"run_id": run_id, "runtime": "GitHub Actions", "status": "작업 중" if queued else "완료",
+                    "queue": len(queued), "pass_locked": len(complete), "hold": len(waiting),
+                    "fail": sum(1 for row in rows if row["status"] == "FAIL"),
+                    "processing": len(processed), "factory": "공통 실행계약 Large Factory",
+                    "new_components": len(registry.get("execution_contracts", [])),
+                    "errors": len(held), "recovery": "자동 복구 준비됨",
+                    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+                    "actual_24h": "실제 시간 증거 수집 중", "recent_completed": [x["requirement_id"] for x in processed],
+                    "queue_reduction": len(processed)},
+        "business": {"public_pilot": revenue.get("public_pilot", {}).get("name"),
+                     "customer_response": revenue.get("public_pilot", {}).get("customer_response", "WAITING"),
+                     "actual_revenue": revenue.get("truth", {}).get("actual_revenue", False)},
+        "observer_reinstruction_required": 0,
+    }
+    body.atomic_json(body.ROOT / "public" / "wic_observer_state.json", payload)
+
+
 def main() -> None:
     fd = body.acquire_lock()
     state_before: dict[str, Any] | None = None
@@ -144,6 +179,7 @@ def main() -> None:
             "run_attempt": run_attempt, "processed": processed, "held": held,
             "queue_continues": not queue_drained, "queue_drained": queue_drained}
         queue.update({"updated_at": state["updated_at"], "claim_lease": None})
+        write_observer_state(state, queue, registry, processed, held, run_id)
         body.atomic_json(body.STATE, state)
         body.atomic_json(body.QUEUE, queue)
         body.write_tool_state(state, "PASS")

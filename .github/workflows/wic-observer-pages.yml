@@ -2,7 +2,7 @@ name: Deploy WIC Observer Dashboard
 on:
   push:
     branches: [main]
-    paths: ['observer/**', 'public/revenue-lab/**', '.github/workflows/wic-observer-pages.yml']
+    paths: ['observer/**', 'public/wic_observer_state.json', 'public/revenue-lab/**', '.github/workflows/wic-observer-pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,10 +22,11 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Preserve existing pages and add observer dashboard
         run: |
-          mkdir -p _site/tool020 _site/observer _site/revenue-lab
+          mkdir -p _site/tool020 _site/observer _site/revenue-lab _site/state
           cp -R tool043/. _site/
           cp public/index.html _site/tool020/index.html
           cp observer/index.html _site/observer/index.html
+          cp public/wic_observer_state.json _site/state/current.json
           cp -R public/revenue-lab/. _site/revenue-lab/
       - uses: actions/upload-pages-artifact@v3
         with: {path: _site}

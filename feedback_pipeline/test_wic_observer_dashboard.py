@@ -7,7 +7,9 @@ for text in ("지금 하는 일", "현재 상태", "끝난 일", "아직 할 일
 first = page.split("<details>", 1)[0]
 for hidden_term in ("ROOT", "ACK", "SHA", "read-back", "runtime", "contract", "lane", "handoff", "checkpoint", "PARTIAL", "UNFINISHED"):
     assert hidden_term not in first, hidden_term
-assert "wic_non_tool_observer_closeout_report.json" in page
+assert "public/wic_observer_state.json" in page
+for text in ("처리 공장", "실행 장소", "자동 복구", "24시간 상태", "새로 연결된 부품", "오류와 자동 차단", "실제 증거", "사업 상태"):
+    assert text in page, text
 assert "필요한 장치가 준비되면 자동으로 다시 시작합니다." in page
 assert '<summary>기술정보</summary>' in page
 for text in ("도구별 남은 일과 예상기간", "남은 작업:", "남은 수:", "예상 남은 기간:", "계산 중", "시간 남음"):
