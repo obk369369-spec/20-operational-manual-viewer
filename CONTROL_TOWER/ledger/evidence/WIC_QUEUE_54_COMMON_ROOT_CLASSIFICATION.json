@@ -1,0 +1,268 @@
+{
+  "schema": "wic.queue.common_root.classification.v1",
+  "created_at": "2026-10-05T08:29:56.186882+00:00",
+  "queue_sha256": "059723EA6AE2F7C86F77F37B369000ED0C250B35351F4903477DCC10A6FA8E3A",
+  "state_sha256": "F13B0865DDD24FD0166BB34285E72DE865880687710CBE9CAAF56DD61210B7E8",
+  "start_queue": 54,
+  "queue_54_outside_unfinished_count": 8,
+  "duplicates_removed": 0,
+  "total_unfinished_unique": 62,
+  "classified_total": 62,
+  "unclassified_total": 0,
+  "common_root_count": 8,
+  "roots": [
+    {
+      "root_id": "HOSTED_MULTI_FACTORY_AND_FAILOVER",
+      "category": "COMMON_ROOT",
+      "count": 6,
+      "requirement_ids": [
+        3,
+        4,
+        5,
+        7,
+        13,
+        14
+      ],
+      "requirements": [
+        "여러 무료 외부 실행장치 연결·분산실행",
+        "최상위 플랫폼과 여러 Factory 실제 실행",
+        "필요 Factory 자동발견·조달",
+        "FlowWink 복구 또는 교체",
+        "필요에서 완성구조 60초 목표",
+        "완성품 24H 사전조달·검증"
+      ]
+    },
+    {
+      "root_id": "VERIFIED_COMPONENT_REGISTRY_AND_REUSE",
+      "category": "COMMON_ROOT",
+      "count": 3,
+      "requirement_ids": [
+        6,
+        11,
+        12
+      ],
+      "requirements": [
+        "기존 운영구조 연결 또는 흡수",
+        "Component/Socket Registry",
+        "READY-MADE FIRST 자동강제"
+      ]
+    },
+    {
+      "root_id": "KNOWLEDGE_TO_BUSINESS_DISCOVERY_PIPELINE",
+      "category": "COMMON_ROOT",
+      "count": 13,
+      "requirement_ids": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "requirements": [
+        "영상 URL 자동인식·분석",
+        "영상에서 도구·사업모델 자동추출",
+        "추출결과와 기존 사업역량 자동결합",
+        "추출결과와 개인사업기회 자동결합",
+        "발견한 무료 완제품 확보",
+        "YouTube Channel 지속분석 등록",
+        "CONNECT-AI-LAB 콘텐츠 분석",
+        "다른 영상·Channel 자동등록·분석",
+        "URL·Channel 자동추적 승격",
+        "콘텐츠에서 기술·사업기회 Queue",
+        "유용 Source 자동발견",
+        "형태 제한 없는 사업기회 탐색",
+        "발견에서 수익평가·조달·검증 자동화"
+      ]
+    },
+    {
+      "root_id": "SELF_AUDIT_FAILURE_CLASS_AND_RECOVERY",
+      "category": "COMMON_ROOT",
+      "count": 7,
+      "requirement_ids": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        36,
+        37
+      ],
+      "requirements": [
+        "24H Self-Audit",
+        "Self-Audit 누락기능 자동발견",
+        "더 좋은 완제품 자동비교",
+        "안전 Hot-swap·Rollback",
+        "과거 지시 Requirement Ledger",
+        "Feedback/Error Negative Golden Sample",
+        "반복 Feedback ROOT 승격"
+      ]
+    },
+    {
+      "root_id": "ACTUAL_CUSTOMER_BUSINESS_E2E",
+      "category": "COMMON_ROOT",
+      "count": 7,
+      "requirement_ids": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "requirements": [
+        "실제 WIC 고객 Data E2E",
+        "고객 재직·부서·업무 자동검증",
+        "과거 거래·문의 이력 통합",
+        "고객 관심분야·판매자료 자동매칭",
+        "구판·중복·부적합 자동차단",
+        "안내서·메일·견적·거래준비 자동화",
+        "고객 후속관리·결과 자동기록"
+      ]
+    },
+    {
+      "root_id": "REVENUE_DISCOVERY_AND_KPI",
+      "category": "COMMON_ROOT",
+      "count": 3,
+      "requirement_ids": [
+        49,
+        50,
+        53
+      ],
+      "requirements": [
+        "수익성 KPI",
+        "무수익 구조 자동개선",
+        "새 사업구조 자동발견"
+      ]
+    },
+    {
+      "root_id": "ASSET_OBSERVER_AND_BULK_CLOSURE",
+      "category": "COMMON_ROOT",
+      "count": 9,
+      "requirement_ids": [
+        54,
+        55,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "requirements": [
+        "주요 도구 공통 Socket 흡수",
+        "Program/File REAL·PARTIAL·SHELL 판별",
+        "발견 즉시 READY-MADE 구조 연결",
+        "최상위 Observer 실제 화면",
+        "운영상태 Observer 표시",
+        "사업·수익성 Observer 표시",
+        "중앙 Queue 미완료 일괄 Closure",
+        "stale PASS 재조정",
+        "공통 E2E 동시 Closure"
+      ]
+    },
+    {
+      "root_id": "FINAL_ZERO_DEPENDENCY_AND_CONTINUOUS_OPERATION",
+      "category": "COMMON_ROOT",
+      "count": 6,
+      "requirement_ids": [
+        68,
+        69,
+        70,
+        74,
+        75,
+        76
+      ],
+      "requirements": [
+        "외부 물리조건 제외 실행가능 잔여 0",
+        "UNVERIFIED·NO_EVIDENCE=0",
+        "사용자 반복작업 0",
+        "PAID_API_DEPENDENCY=0",
+        "플랫폼 완성 후 24H 자기개선",
+        "모든 사용자기기 OFF 지속 운영"
+      ]
+    }
+  ],
+  "classified_requirement_ids": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    49,
+    50,
+    53,
+    54,
+    55,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    68,
+    69,
+    70,
+    74,
+    75,
+    76
+  ],
+  "sum_matches_queue": true,
+  "sum_matches_total_unfinished": true,
+  "external_blocked_waiting": [
+    56,
+    57,
+    58,
+    59
+  ],
+  "market_validation_pending": [
+    46,
+    48,
+    51,
+    52
+  ],
+  "time_pending_in_queue": [],
+  "independent_roots_in_queue": [],
+  "status": "PASS"
+}
