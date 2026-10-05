@@ -1,0 +1,21 @@
+{
+  "schema": "wic.controller.component_registry.v1",
+  "components": [
+    {
+      "id": "WIC_EXISTING_TOP_CONTROLLER",
+      "type": "CONTROLLER",
+      "path": "CONTROL_TOWER/controller/wic_top_controller.py",
+      "status": "VERIFIED_REUSE",
+      "runtime": "GITHUB_ACTIONS",
+      "capabilities": ["QUEUE", "STATE", "RECOVERY", "EVIDENCE"]
+    },
+    {
+      "id": "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
+      "type": "ENFORCEMENT",
+      "path": "CONTROL_TOWER/controller/universal_enforcement.py",
+      "status": "VERIFIED_REUSE",
+      "runtime": "PYTHON",
+      "capabilities": ["FAIL_CLOSED", "NEGATIVE_TEST", "COVERAGE_GATE", "EVIDENCE_GATE"]
+    }
+  ]
+}
