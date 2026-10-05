@@ -1,9 +1,9 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T10:40:00.350107+00:00",
+  "updated_at": "2026-10-05T10:43:27.143129+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
+  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -34,34 +34,34 @@
       "id": 3,
       "name": "여러 무료 외부 실행장치 연결·분산실행",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "feedback_pipeline/evidence/root_a_minimum_failover.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 4,
       "name": "최상위 플랫폼과 여러 Factory 실제 실행",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "feedback_pipeline/evidence/tool044_verified_external_component_pool.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 5,
       "name": "필요 Factory 자동발견·조달",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json;feedback_pipeline/evidence/tool044_verified_external_component_pool.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 6,
@@ -353,12 +353,12 @@
       "id": 32,
       "name": "안전 Hot-swap·Rollback",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "feedback_pipeline/evidence/root_a_minimum_failover.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 33,
@@ -881,12 +881,46 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-05T11:40:00.350120+00:00",
+  "next_run_at": "2026-10-05T11:43:27.143129+00:00",
   "github_runtime": {
-    "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37298005160",
+    "repository": "UNKNOWN",
+    "run_id": "LOCAL-NO-RUN-ID",
     "run_attempt": "1",
-    "processed": [],
+    "processed": [
+      {
+        "requirement_id": 3,
+        "contract_id": "MULTI_ENVIRONMENT_FAILOVER",
+        "proof": "TWO_INDEPENDENT_ENVIRONMENTS_WITH_FAILURE_TAKEOVER_AND_RESUME",
+        "evidence": [
+          "feedback_pipeline/evidence/root_a_minimum_failover.json"
+        ]
+      },
+      {
+        "requirement_id": 32,
+        "contract_id": "MULTI_ENVIRONMENT_FAILOVER",
+        "proof": "TWO_INDEPENDENT_ENVIRONMENTS_WITH_FAILURE_TAKEOVER_AND_RESUME",
+        "evidence": [
+          "feedback_pipeline/evidence/root_a_minimum_failover.json"
+        ]
+      },
+      {
+        "requirement_id": 4,
+        "contract_id": "LARGE_FACTORY_ACTUAL_EXECUTION",
+        "proof": "TWO_VERIFIED_FACTORIES_HAVE_ACTUAL_EXECUTION_RECEIPTS",
+        "evidence": [
+          "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
+        ]
+      },
+      {
+        "requirement_id": 5,
+        "contract_id": "FACTORY_DISCOVERY_AND_PROMOTION",
+        "proof": "DAILY_DISCOVERY_CREATED_CANDIDATES_AND_VERIFIED_POOL_PROMOTED_ONLY_TESTED_COMPONENTS",
+        "evidence": [
+          "feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json",
+          "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
+        ]
+      }
+    ],
     "held": [],
     "queue_continues": true,
     "queue_drained": false

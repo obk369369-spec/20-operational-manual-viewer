@@ -32,29 +32,44 @@ def rule_passes(payload: dict[str, Any], rule: dict[str, Any]) -> bool:
         return actual is True
     if operation == "minimum_items":
         return isinstance(actual, list) and len(actual) >= int(rule["expected"])
+    if operation == "minimum_number":
+        return isinstance(actual, (int, float)) and actual >= rule["expected"]
     if operation == "all_field_in":
         allowed = set(rule["expected"])
         return isinstance(actual, list) and bool(actual) and all(
             isinstance(item, dict) and item.get(rule["field"]) in allowed for item in actual
         )
+    if operation == "contains_items":
+        if not isinstance(actual, list):
+            return False
+        key = rule["key"]
+        indexed = {item.get(key): item for item in actual if isinstance(item, dict)}
+        for expected in rule["expected"]:
+            item = indexed.get(expected[key])
+            if item is None or any(item.get(field) != value for field, value in expected.items() if field != key):
+                return False
+            if any(not item.get(field) for field in rule.get("required_fields", [])):
+                return False
+        return True
     return False
 
 
 def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
-    evidence_path = body.ROOT / contract["evidence"]
+    evidence_refs = contract.get("evidence_files") or [contract["evidence"]]
     last_reason = "EVIDENCE_NOT_FOUND"
     for attempt in range(1, 3):
         try:
-            payload = body.load(evidence_path)
-            results = [{"rule": rule, "pass": rule_passes(payload, rule)} for rule in contract["rules"]]
+            payloads = [body.load(body.ROOT / ref) for ref in evidence_refs]
+            results = [{"rule": rule, "pass": rule_passes(payloads[int(rule.get("source", 0))], rule)}
+                       for rule in contract["rules"]]
             passed = bool(results) and all(item["pass"] for item in results)
             return {"status": "PASS" if passed else "HOLD",
                     "reason": None if passed else "CONTRACT_VALIDATION_FAILED",
-                    "evidence": contract["evidence"], "rules": results,
+                    "evidence": evidence_refs, "rules": results,
                     "readback_pass": True, "attempts": attempt}
         except (OSError, ValueError):
             last_reason = "EVIDENCE_READBACK_FAILED"
-    return {"status": "HOLD", "reason": last_reason, "evidence": contract["evidence"],
+    return {"status": "HOLD", "reason": last_reason, "evidence": evidence_refs,
             "readback_pass": False, "attempts": 2}
 
 
@@ -86,13 +101,14 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
                             "next_action": "AUTO_REQUEUE_AFTER_CONTRACT_EVIDENCE"})
                 held.append({"requirement_id": requirement_id, "contract_id": contract["id"], **receipt})
                 continue
+            evidence_refs = contract.get("evidence_files") or [contract["evidence"]]
             row.update({"status": "VERIFIED_CLOSED", "queue_status": "PASS_LOCKED",
-                        "evidence": contract["evidence"], "block_reason": None,
+                        "evidence": ";".join(evidence_refs), "block_reason": None,
                         "next_action": "NONE_PASS_LOCKED"})
             queue["queued_requirement_ids"] = [value for value in queue["queued_requirement_ids"]
                                                  if int(value) != requirement_id]
             processed.append({"requirement_id": requirement_id, "contract_id": contract["id"],
-                              "proof": contract["proof"], "evidence": contract["evidence"]})
+                              "proof": contract["proof"], "evidence": evidence_refs})
     return processed, held
 
 

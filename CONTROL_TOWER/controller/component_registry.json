@@ -55,6 +55,49 @@
         {"path": "unclassified_total", "operation": "equals", "expected": 0},
         {"path": "sum_matches_total_unfinished", "operation": "truthy"}
       ]
+    },
+    {
+      "id": "MULTI_ENVIRONMENT_FAILOVER",
+      "requirement_ids": [3, 32],
+      "proof": "TWO_INDEPENDENT_ENVIRONMENTS_WITH_FAILURE_TAKEOVER_AND_RESUME",
+      "evidence": "feedback_pipeline/evidence/root_a_minimum_failover.json",
+      "rules": [
+        {"path": "root_a_minimum_failover", "operation": "equals", "expected": "PASS"},
+        {"path": "minimum_2env_circulation", "operation": "equals", "expected": "PASS"},
+        {"path": "checkpoint_resume", "operation": "equals", "expected": "PASS"},
+        {"path": "failure_isolation", "operation": "equals", "expected": "PASS"},
+        {"path": "final_readback", "operation": "equals", "expected": "PASS"},
+        {"path": "remote_evidence", "operation": "equals", "expected": "PASS"}
+      ]
+    },
+    {
+      "id": "LARGE_FACTORY_ACTUAL_EXECUTION",
+      "requirement_ids": [4],
+      "proof": "TWO_VERIFIED_FACTORIES_HAVE_ACTUAL_EXECUTION_RECEIPTS",
+      "evidence": "feedback_pipeline/evidence/tool044_verified_external_component_pool.json",
+      "rules": [
+        {"path": "components", "operation": "contains_items", "key": "component_id",
+         "expected": [
+           {"component_id": "KESTRA_OSS_STANDALONE_2_0_4", "status": "VERIFIED_REUSABLE"},
+           {"component_id": "NODE_RED_4_1_0", "status": "VERIFIED_REUSABLE"}
+         ], "required_fields": ["verified_execution_id", "evidence"]}
+      ]
+    },
+    {
+      "id": "FACTORY_DISCOVERY_AND_PROMOTION",
+      "requirement_ids": [5],
+      "proof": "DAILY_DISCOVERY_CREATED_CANDIDATES_AND_VERIFIED_POOL_PROMOTED_ONLY_TESTED_COMPONENTS",
+      "evidence_files": [
+        "feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json",
+        "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
+      ],
+      "rules": [
+        {"source": 0, "path": "daily_discovery_executed", "operation": "truthy"},
+        {"source": 0, "path": "candidate_count", "operation": "minimum_number", "expected": 1},
+        {"source": 0, "path": "new_results_this_run", "operation": "minimum_number", "expected": 1},
+        {"source": 1, "path": "components", "operation": "minimum_items", "expected": 1},
+        {"source": 1, "path": "components", "operation": "all_field_in", "field": "status", "expected": ["VERIFIED_REUSABLE"]}
+      ]
     }
   ]
 }
