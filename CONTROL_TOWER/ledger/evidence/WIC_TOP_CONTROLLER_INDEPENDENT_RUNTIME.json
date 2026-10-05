@@ -1,8 +1,8 @@
 {
   "schema": "wic.top_controller.independent_runtime.v1",
-  "created_at": "2026-10-05T07:57:28.889349+00:00",
+  "created_at": "2026-10-05T08:43:25.460630+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "37280663400",
+  "run_id": "37285384923",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
@@ -11,34 +11,50 @@
   "multiple_requirement_auto_processing": true,
   "processed": [
     {
-      "requirement_id": 8,
-      "proof": "GLOBAL_HARD_GATE_FAIL_CLOSED"
+      "requirement_id": 33,
+      "proof": "CANONICAL_REQUIREMENT_LEDGER_LOADED"
     },
     {
-      "requirement_id": 9,
-      "proof": "POSITIVE_NEGATIVE_STOP_RECOVERY"
+      "requirement_id": 36,
+      "proof": "NEGATIVE_GOLDEN_CASES_EXECUTED"
     },
     {
-      "requirement_id": 15,
-      "proof": "TRACEABLE_EVIDENCE_AND_READBACK_GATE"
+      "requirement_id": 37,
+      "proof": "FAILURE_CLASS_PROMOTED_TO_COMMON_GATE"
     },
     {
-      "requirement_id": 35,
-      "proof": "UNFINISHED_QUEUE_AUTO_RETAINED"
+      "requirement_id": 55,
+      "proof": "REAL_PARTIAL_SHELL_FAIL_CLOSED_CLASSIFICATION"
     },
     {
-      "requirement_id": 45,
-      "proof": "TECHNICAL_AND_BUSINESS_STATUS_SEPARATED"
+      "requirement_id": 64,
+      "proof": "COMMON_QUEUE_BATCH_CLOSURE"
     },
     {
-      "requirement_id": 47,
-      "proof": "MARKET_PENDING_NOT_PROMOTED_TO_PASS"
+      "requirement_id": 65,
+      "proof": "STALE_PASS_WITH_MISSING_EVIDENCE_BLOCKED"
+    },
+    {
+      "requirement_id": 66,
+      "proof": "COMMON_E2E_BULK_CLOSURE"
+    },
+    {
+      "requirement_id": 6,
+      "proof": "EXISTING_CONTROLLER_CONNECTED_TO_HOSTED_RUNTIME"
+    },
+    {
+      "requirement_id": 11,
+      "proof": "COMPONENT_REGISTRY_READ_AND_VALIDATED"
+    },
+    {
+      "requirement_id": 12,
+      "proof": "VERIFIED_REUSE_SELECTED_BEFORE_NEW_BUILD"
     }
   ],
   "queue_persisted": true,
   "state_persisted": true,
   "queue_auto_continuation": true,
-  "remaining_queue_count": 54,
+  "remaining_queue_count": 44,
   "failure_recovery": {
     "status": "SKIP_REUSE_PASS_LOCKED",
     "state_preserved": true,
@@ -62,6 +78,11 @@
       "missing_evidence": "HOLD",
       "validation_failure": "FAIL"
     }
+  },
+  "component_registry": {
+    "path": "CONTROL_TOWER/controller/component_registry.json",
+    "component_count": 2,
+    "readback_pass": true
   },
   "work_dependency": 0,
   "codex_dependency": 0,

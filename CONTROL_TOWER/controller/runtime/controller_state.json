@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T07:57:28.887748+00:00",
+  "updated_at": "2026-10-05T08:43:25.459012+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -67,12 +67,12 @@
       "id": 6,
       "name": "기존 운영구조 연결 또는 흡수",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 7,
@@ -122,23 +122,23 @@
       "id": 11,
       "name": "Component/Socket Registry",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 12,
       "name": "READY-MADE FIRST 자동강제",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 13,
@@ -364,12 +364,12 @@
       "id": 33,
       "name": "과거 지시 Requirement Ledger",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 34,
@@ -397,23 +397,23 @@
       "id": 36,
       "name": "Feedback/Error Negative Golden Sample",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 37,
       "name": "반복 Feedback ROOT 승격",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 38,
@@ -606,12 +606,12 @@
       "id": 55,
       "name": "Program/File REAL·PARTIAL·SHELL 판별",
       "group": "ASSET_OBSERVER_CLOSURE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 56,
@@ -705,34 +705,34 @@
       "id": 64,
       "name": "중앙 Queue 미완료 일괄 Closure",
       "group": "ASSET_OBSERVER_CLOSURE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 65,
       "name": "stale PASS 재조정",
       "group": "ASSET_OBSERVER_CLOSURE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 66,
       "name": "공통 E2E 동시 Closure",
       "group": "ASSET_OBSERVER_CLOSURE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 68,
@@ -881,45 +881,67 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-05T08:57:28.887755+00:00",
+  "next_run_at": "2026-10-05T09:43:25.459019+00:00",
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37280663400",
+    "run_id": "37285384923",
     "run_attempt": "1",
     "completed_reexecution_blocked": true,
     "locked_before": [
       1,
       2,
+      8,
+      9,
       10,
+      15,
       34,
+      35,
+      45,
+      47,
       71,
       72,
       73
     ],
     "processed": [
       {
-        "requirement_id": 8,
-        "proof": "GLOBAL_HARD_GATE_FAIL_CLOSED"
+        "requirement_id": 33,
+        "proof": "CANONICAL_REQUIREMENT_LEDGER_LOADED"
       },
       {
-        "requirement_id": 9,
-        "proof": "POSITIVE_NEGATIVE_STOP_RECOVERY"
+        "requirement_id": 36,
+        "proof": "NEGATIVE_GOLDEN_CASES_EXECUTED"
       },
       {
-        "requirement_id": 15,
-        "proof": "TRACEABLE_EVIDENCE_AND_READBACK_GATE"
+        "requirement_id": 37,
+        "proof": "FAILURE_CLASS_PROMOTED_TO_COMMON_GATE"
       },
       {
-        "requirement_id": 35,
-        "proof": "UNFINISHED_QUEUE_AUTO_RETAINED"
+        "requirement_id": 55,
+        "proof": "REAL_PARTIAL_SHELL_FAIL_CLOSED_CLASSIFICATION"
       },
       {
-        "requirement_id": 45,
-        "proof": "TECHNICAL_AND_BUSINESS_STATUS_SEPARATED"
+        "requirement_id": 64,
+        "proof": "COMMON_QUEUE_BATCH_CLOSURE"
       },
       {
-        "requirement_id": 47,
-        "proof": "MARKET_PENDING_NOT_PROMOTED_TO_PASS"
+        "requirement_id": 65,
+        "proof": "STALE_PASS_WITH_MISSING_EVIDENCE_BLOCKED"
+      },
+      {
+        "requirement_id": 66,
+        "proof": "COMMON_E2E_BULK_CLOSURE"
+      },
+      {
+        "requirement_id": 6,
+        "proof": "EXISTING_CONTROLLER_CONNECTED_TO_HOSTED_RUNTIME"
+      },
+      {
+        "requirement_id": 11,
+        "proof": "COMPONENT_REGISTRY_READ_AND_VALIDATED"
+      },
+      {
+        "requirement_id": 12,
+        "proof": "VERIFIED_REUSE_SELECTED_BEFORE_NEW_BUILD"
       }
     ],
     "queue_continues": true
