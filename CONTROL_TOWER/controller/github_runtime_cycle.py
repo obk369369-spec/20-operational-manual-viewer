@@ -110,6 +110,9 @@ def main() -> None:
             (6, "EXISTING_CONTROLLER_CONNECTED_TO_HOSTED_RUNTIME"),
             (11, "COMPONENT_REGISTRY_READ_AND_VALIDATED"),
             (12, "VERIFIED_REUSE_SELECTED_BEFORE_NEW_BUILD"),
+            (54, "COMMON_COMPONENT_SOCKET_REGISTRY_CONNECTED"),
+            (60, "VERIFIED_READY_MADE_COMPONENT_CONNECTED_ON_DISCOVERY"),
+            (74, "HOSTED_CYCLE_EXECUTED_WITH_ZERO_PAID_API_CALLS"),
         ):
             row = body.find_requirement(state, requirement_id)
             if row["queue_status"] == "PASS_LOCKED":
