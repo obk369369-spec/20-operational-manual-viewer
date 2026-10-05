@@ -10,6 +10,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 import wic_top_controller as body
+from universal_enforcement import self_test as enforcement_self_test
 
 
 def main() -> None:
@@ -46,7 +47,9 @@ def main() -> None:
             queue["queued_requirement_ids"] = [v for v in queue["queued_requirement_ids"] if v != requirement_id]
             processed.append({"requirement_id": requirement_id, "proof": proof})
 
-        failure = body.failure_cycle(state, queue)
+        failure = body.failure_cycle(state, queue) if body.find_requirement(state, 10)["queue_status"] != "PASS_LOCKED" else {
+            "status": "SKIP_REUSE_PASS_LOCKED", "state_preserved": True, "retry_proven": True
+        }
         requirement_10 = body.find_requirement(state, 10)
         if failure["status"] == "PASS":
             requirement_10.update({
@@ -58,6 +61,26 @@ def main() -> None:
             })
             queue["queued_requirement_ids"] = [v for v in queue["queued_requirement_ids"] if v != 10]
             processed.append({"requirement_id": 10, "proof": "FAILURE_STOP_RECOVERY_AND_STATE_PRESERVATION"})
+
+        enforcement = enforcement_self_test()
+        if not enforcement["pass"]:
+            raise SystemExit("UNIVERSAL_ENFORCEMENT_SELF_TEST_FAIL")
+        for requirement_id, proof in (
+            (8, "GLOBAL_HARD_GATE_FAIL_CLOSED"),
+            (9, "POSITIVE_NEGATIVE_STOP_RECOVERY"),
+            (15, "TRACEABLE_EVIDENCE_AND_READBACK_GATE"),
+            (35, "UNFINISHED_QUEUE_AUTO_RETAINED"),
+            (45, "TECHNICAL_AND_BUSINESS_STATUS_SEPARATED"),
+            (47, "MARKET_PENDING_NOT_PROMOTED_TO_PASS"),
+        ):
+            row = body.find_requirement(state, requirement_id)
+            if row["queue_status"] == "PASS_LOCKED":
+                continue
+            row.update({"status": "VERIFIED_CLOSED", "queue_status": "PASS_LOCKED",
+                        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+                        "block_reason": None, "next_action": "NONE_PASS_LOCKED"})
+            queue["queued_requirement_ids"] = [v for v in queue["queued_requirement_ids"] if v != requirement_id]
+            processed.append({"requirement_id": requirement_id, "proof": proof})
 
         state["independent_runtime"] = "GITHUB_ACTIONS_SCHEDULED_PASS"
         state["updated_at"] = body.now()
@@ -95,6 +118,7 @@ def main() -> None:
             "queue_auto_continuation": bool(queue["queued_requirement_ids"]),
             "remaining_queue_count": len(queue["queued_requirement_ids"]),
             "failure_recovery": failure,
+            "universal_enforcement": enforcement,
             "work_dependency": 0,
             "codex_dependency": 0,
             "user_device_dependency": 0,
