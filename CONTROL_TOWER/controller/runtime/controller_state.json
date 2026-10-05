@@ -1,9 +1,9 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T11:01:20.422623+00:00",
+  "updated_at": "2026-10-05T11:02:43.651313+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
+  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -826,12 +826,12 @@
       "id": 76,
       "name": "모든 사용자기기 OFF 지속 운영",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     }
   ],
   "normal_cycle": {
@@ -881,12 +881,21 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-05T12:01:20.422629+00:00",
+  "next_run_at": "2026-10-05T12:02:43.651313+00:00",
   "github_runtime": {
-    "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37300243701",
+    "repository": "UNKNOWN",
+    "run_id": "LOCAL-NO-RUN-ID",
     "run_attempt": "1",
-    "processed": [],
+    "processed": [
+      {
+        "requirement_id": 76,
+        "contract_id": "OFF_DEVICE_RUNTIME_CONTINUITY",
+        "proof": "FOUR_HOSTED_RUNS_PERSISTED_QUEUE_AND_STATE_WITH_ZERO_USER_DEVICE_DEPENDENCY",
+        "evidence": [
+          "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json"
+        ]
+      }
+    ],
     "held": [],
     "queue_continues": true,
     "queue_drained": false

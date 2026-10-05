@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-05T11:01:20.422719+00:00",
+  "updated_at": "2026-10-05T11:02:43.652370+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -267,6 +267,13 @@
       "status": "COMPLETE",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
+      "requirement_id": "76",
+      "name": "모든 사용자기기 OFF 지속 운영",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json",
+      "resume_condition": "NONE_PASS_LOCKED"
     }
   ],
   "PARTIAL": [
@@ -465,13 +472,6 @@
       "status": "PARTIAL",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "76",
-      "name": "모든 사용자기기 OFF 지속 운영",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     }
   ],
   "UNFINISHED": [],
@@ -536,22 +536,24 @@
   "LONG_TERM_HOLD": [],
   "NEXT_WORK": "7",
   "current": {
-    "run_id": "37300243701",
+    "run_id": "LOCAL-NO-RUN-ID",
     "runtime": "GitHub Actions",
     "status": "작업 중",
-    "queue": 29,
-    "pass_locked": 38,
+    "queue": 28,
+    "pass_locked": 39,
     "hold": 8,
     "fail": 0,
-    "processing": 0,
+    "processing": 1,
     "factory": "공통 실행계약 Large Factory",
-    "new_components": 7,
+    "new_components": 8,
     "errors": 0,
     "recovery": "자동 복구 준비됨",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
     "actual_24h": "실제 시간 증거 수집 중",
-    "recent_completed": [],
-    "queue_reduction": 0
+    "recent_completed": [
+      76
+    ],
+    "queue_reduction": 1
   },
   "business": {
     "public_pilot": "WIC 웹사이트 안심 점검",

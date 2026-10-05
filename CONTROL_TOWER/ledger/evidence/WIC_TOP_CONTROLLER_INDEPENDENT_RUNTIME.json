@@ -1,15 +1,24 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-05T11:01:20.424604+00:00",
-  "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "37300243701",
+  "created_at": "2026-10-05T11:02:43.953026+00:00",
+  "repository": "UNKNOWN",
+  "run_id": "LOCAL-NO-RUN-ID",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
   "dynamic_requirement_router": true,
   "hardcoded_requirement_pass_routes": 0,
   "parallel_contract_workers": 4,
-  "processed": [],
+  "processed": [
+    {
+      "requirement_id": 76,
+      "contract_id": "OFF_DEVICE_RUNTIME_CONTINUITY",
+      "proof": "FOUR_HOSTED_RUNS_PERSISTED_QUEUE_AND_STATE_WITH_ZERO_USER_DEVICE_DEPENDENCY",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json"
+      ]
+    }
+  ],
   "held": [],
   "multiple_requirement_auto_processing": false,
   "locked_contract_requirements": [
@@ -24,14 +33,15 @@
     53,
     61,
     62,
-    63
+    63,
+    76
   ],
   "contract_state_readback_pass": true,
   "queue_persisted": true,
   "state_persisted": true,
   "queue_auto_continuation": true,
   "queue_drained": false,
-  "remaining_queue_count": 29,
+  "remaining_queue_count": 28,
   "fail_closed": {
     "pass": true,
     "total": 5,
@@ -57,7 +67,7 @@
   "component_registry": {
     "path": "CONTROL_TOWER/controller/component_registry.json",
     "component_count": 2,
-    "execution_contract_count": 7,
+    "execution_contract_count": 8,
     "readback_pass": true
   },
   "work_dependency": 0,

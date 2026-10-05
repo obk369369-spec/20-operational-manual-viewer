@@ -118,6 +118,24 @@
         {"path": "observer_reinstruction_required", "operation": "equals", "expected": 0},
         {"path": "readback_pass", "operation": "truthy"}
       ]
+    },
+    {
+      "id": "OFF_DEVICE_RUNTIME_CONTINUITY",
+      "requirement_ids": [76],
+      "proof": "FOUR_HOSTED_RUNS_PERSISTED_QUEUE_AND_STATE_WITH_ZERO_USER_DEVICE_DEPENDENCY",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json",
+      "rules": [
+        {"path": "runtime", "operation": "equals", "expected": "GITHUB_ACTIONS_HOSTED"},
+        {"path": "successful_run_count", "operation": "minimum_number", "expected": 4},
+        {"path": "work_dependency", "operation": "equals", "expected": 0},
+        {"path": "codex_dependency", "operation": "equals", "expected": 0},
+        {"path": "user_device_dependency", "operation": "equals", "expected": 0},
+        {"path": "queue_persisted", "operation": "truthy"},
+        {"path": "state_persisted", "operation": "truthy"},
+        {"path": "scheduled_next_cycle", "operation": "truthy"},
+        {"path": "actual_24h_elapsed_validation", "operation": "equals", "expected": "PENDING_NATURAL_TIME"},
+        {"path": "remote_readback", "operation": "equals", "expected": "PASS"}
+      ]
     }
   ]
 }
