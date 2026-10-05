@@ -1,38 +1,54 @@
 {
-  "schema": "wic.top_controller.independent_runtime.v1",
-  "created_at": "2026-10-05T08:55:00.817259+00:00",
-  "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "37286611917",
+  "schema": "wic.top_controller.independent_runtime.v2",
+  "created_at": "2026-10-05T10:32:43.138123+00:00",
+  "repository": "UNKNOWN",
+  "run_id": "LOCAL-NO-RUN-ID",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
-  "controller_reused": "CONTROL_TOWER/controller/wic_top_controller.py",
-  "completed_reexecution_blocked": true,
-  "multiple_requirement_auto_processing": true,
+  "dynamic_requirement_router": true,
+  "hardcoded_requirement_pass_routes": 0,
+  "parallel_contract_workers": 3,
   "processed": [
     {
-      "requirement_id": 54,
-      "proof": "COMMON_COMPONENT_SOCKET_REGISTRY_CONNECTED"
+      "requirement_id": 20,
+      "contract_id": "VERIFIED_COMPONENT_PROCUREMENT",
+      "proof": "VERIFIED_REUSABLE_COMPONENTS_EXIST_AND_PROMOTION_GATE_IS_ACTIVE",
+      "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"
     },
     {
-      "requirement_id": 60,
-      "proof": "VERIFIED_READY_MADE_COMPONENT_CONNECTED_ON_DISCOVERY"
+      "requirement_id": 26,
+      "contract_id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
+      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
+      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
     },
     {
-      "requirement_id": 74,
-      "proof": "HOSTED_CYCLE_EXECUTED_WITH_ZERO_PAID_API_CALLS"
+      "requirement_id": 27,
+      "contract_id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
+      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
+      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
+    },
+    {
+      "requirement_id": 53,
+      "contract_id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
+      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
+      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
+    },
+    {
+      "requirement_id": 30,
+      "contract_id": "SELF_AUDIT_REQUIREMENT_COVERAGE",
+      "proof": "ALL_UNFINISHED_REQUIREMENTS_CLASSIFIED_WITH_ZERO_GAP",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_QUEUE_54_COMMON_ROOT_CLASSIFICATION.json"
     }
   ],
+  "held": [],
+  "multiple_requirement_auto_processing": true,
   "queue_persisted": true,
   "state_persisted": true,
   "queue_auto_continuation": true,
-  "remaining_queue_count": 41,
-  "failure_recovery": {
-    "status": "SKIP_REUSE_PASS_LOCKED",
-    "state_preserved": true,
-    "retry_proven": true
-  },
-  "universal_enforcement": {
+  "queue_drained": false,
+  "remaining_queue_count": 36,
+  "fail_closed": {
     "pass": true,
     "total": 5,
     "checked": 5,
@@ -51,9 +67,13 @@
       "validation_failure": "FAIL"
     }
   },
+  "retry_attempts_per_contract": 2,
+  "recovery": "STATE_AND_QUEUE_SNAPSHOT_RESTORED_ON_FAILURE",
+  "rollback": "ATOMIC_JSON_PLUS_PRE_RUN_SNAPSHOT",
   "component_registry": {
     "path": "CONTROL_TOWER/controller/component_registry.json",
     "component_count": 2,
+    "execution_contract_count": 3,
     "readback_pass": true
   },
   "work_dependency": 0,

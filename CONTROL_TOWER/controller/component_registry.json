@@ -17,5 +17,44 @@
       "runtime": "PYTHON",
       "capabilities": ["FAIL_CLOSED", "NEGATIVE_TEST", "COVERAGE_GATE", "EVIDENCE_GATE"]
     }
+  ],
+  "execution_contracts": [
+    {
+      "id": "VERIFIED_COMPONENT_PROCUREMENT",
+      "requirement_ids": [20],
+      "proof": "VERIFIED_REUSABLE_COMPONENTS_EXIST_AND_PROMOTION_GATE_IS_ACTIVE",
+      "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+      "rules": [
+        {"path": "policy", "operation": "equals", "expected": "EVIDENCE_REQUIRED_REUSE_FIRST"},
+        {"path": "components", "operation": "minimum_items", "expected": 1},
+        {"path": "components", "operation": "all_field_in", "field": "status", "expected": ["VERIFIED_REUSABLE"]},
+        {"path": "promotion_gate.requires_actual_test", "operation": "truthy"},
+        {"path": "promotion_gate.requires_remote_read_back", "operation": "truthy"}
+      ]
+    },
+    {
+      "id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
+      "requirement_ids": [26, 27, 53],
+      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
+      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json",
+      "rules": [
+        {"path": "status", "operation": "equals", "expected": "DEPLOYED_COMPLETE_WITH_REVENUE_WAITING"},
+        {"path": "actual_cycle.result", "operation": "equals", "expected": "PASS"},
+        {"path": "public_pilot.actual_function", "operation": "equals", "expected": "PASS"},
+        {"path": "remote.remote_readback", "operation": "equals", "expected": "PASS"},
+        {"path": "truth.daily_cycle_registered_and_first_run_passed", "operation": "truthy"}
+      ]
+    },
+    {
+      "id": "SELF_AUDIT_REQUIREMENT_COVERAGE",
+      "requirement_ids": [30],
+      "proof": "ALL_UNFINISHED_REQUIREMENTS_CLASSIFIED_WITH_ZERO_GAP",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_QUEUE_54_COMMON_ROOT_CLASSIFICATION.json",
+      "rules": [
+        {"path": "status", "operation": "equals", "expected": "PASS"},
+        {"path": "unclassified_total", "operation": "equals", "expected": 0},
+        {"path": "sum_matches_total_unfinished", "operation": "truthy"}
+      ]
+    }
   ]
 }
