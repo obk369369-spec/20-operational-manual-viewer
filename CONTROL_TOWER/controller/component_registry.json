@@ -98,6 +98,26 @@
         {"source": 1, "path": "components", "operation": "minimum_items", "expected": 1},
         {"source": 1, "path": "components", "operation": "all_field_in", "field": "status", "expected": ["VERIFIED_REUSABLE"]}
       ]
+    },
+    {
+      "id": "ACTUAL_PUBLIC_OBSERVER",
+      "requirement_ids": [61, 62, 63],
+      "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json",
+      "rules": [
+        {"path": "dashboard_http_status", "operation": "equals", "expected": 200},
+        {"path": "state_http_status", "operation": "equals", "expected": 200},
+        {"path": "easy_dashboard", "operation": "truthy"},
+        {"path": "actual_state_connected", "operation": "truthy"},
+        {"path": "factory_visible", "operation": "truthy"},
+        {"path": "runtime_visible", "operation": "truthy"},
+        {"path": "recovery_visible", "operation": "truthy"},
+        {"path": "evidence_visible", "operation": "truthy"},
+        {"path": "business_status_visible", "operation": "truthy"},
+        {"path": "actual_24h_state_visible", "operation": "truthy"},
+        {"path": "observer_reinstruction_required", "operation": "equals", "expected": 0},
+        {"path": "readback_pass", "operation": "truthy"}
+      ]
     }
   ]
 }
