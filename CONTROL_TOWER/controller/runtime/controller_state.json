@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-05T07:44:22.881507+00:00",
+  "updated_at": "2026-10-05T07:57:28.887748+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -89,23 +89,23 @@
       "id": 8,
       "name": "전역 Hard Gate 자동상속",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 9,
       "name": "Positive·Negative·STOP·Recovery·GREEN 검증",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 10,
@@ -166,12 +166,12 @@
       "id": 15,
       "name": "무료·상업사용·License·Security 자동 Gate",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 16,
@@ -386,12 +386,12 @@
       "id": 35,
       "name": "미완료 자동 ReQueue",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 36,
@@ -496,12 +496,12 @@
       "id": 45,
       "name": "TECH_PASS·BUSINESS_PASS 분리",
       "group": "BUSINESS_REVENUE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 46,
@@ -518,12 +518,12 @@
       "id": 47,
       "name": "TECH_PASS·MARKET_PENDING 분리",
       "group": "BUSINESS_REVENUE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 48,
@@ -881,39 +881,45 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-05T08:44:22.881513+00:00",
+  "next_run_at": "2026-10-05T08:57:28.887755+00:00",
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37279406712",
+    "run_id": "37280663400",
     "run_attempt": "1",
     "completed_reexecution_blocked": true,
     "locked_before": [
-      34
+      1,
+      2,
+      10,
+      34,
+      71,
+      72,
+      73
     ],
     "processed": [
       {
-        "requirement_id": 1,
-        "proof": "GITHUB_ACTIONS_HOSTED_PROCESS_STARTED"
+        "requirement_id": 8,
+        "proof": "GLOBAL_HARD_GATE_FAIL_CLOSED"
       },
       {
-        "requirement_id": 2,
-        "proof": "HOSTED_PROCESS_HAS_NO_USER_DEVICE_DEPENDENCY"
+        "requirement_id": 9,
+        "proof": "POSITIVE_NEGATIVE_STOP_RECOVERY"
       },
       {
-        "requirement_id": 71,
-        "proof": "NORMAL_CYCLE_USED_NO_WORK_RUNTIME"
+        "requirement_id": 15,
+        "proof": "TRACEABLE_EVIDENCE_AND_READBACK_GATE"
       },
       {
-        "requirement_id": 72,
-        "proof": "NORMAL_CYCLE_USED_NO_CODEX_RUNTIME"
+        "requirement_id": 35,
+        "proof": "UNFINISHED_QUEUE_AUTO_RETAINED"
       },
       {
-        "requirement_id": 73,
-        "proof": "NORMAL_CYCLE_USED_NO_USER_DEVICE_RUNTIME"
+        "requirement_id": 45,
+        "proof": "TECHNICAL_AND_BUSINESS_STATUS_SEPARATED"
       },
       {
-        "requirement_id": 10,
-        "proof": "FAILURE_STOP_RECOVERY_AND_STATE_PRESERVATION"
+        "requirement_id": 47,
+        "proof": "MARKET_PENDING_NOT_PROMOTED_TO_PASS"
       }
     ],
     "queue_continues": true
