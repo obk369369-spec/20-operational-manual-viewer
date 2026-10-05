@@ -5,12 +5,25 @@
       "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
       "layer": "L5",
       "target": "TOOL016 / TOOL044 / GITHUB_ACTIONS",
-      "status": "OPEN",
-      "next_trigger": "IMMEDIATE",
-      "last_actual_point": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven.",
-      "next_start": "Reuse the verified controller unchanged where possible; deploy it to the existing GitHub Actions runtime and verify persistence, completed-item blocking, multiple different requirements, automatic continuation, and evidence read-back.",
+      "status": "VERIFIED_CLOSED",
+      "next_trigger": "ACTUAL_24H_NATURAL_ELAPSED_EVIDENCE",
+      "last_actual_point": "GitHub Actions runs 37279406712 and 37280663400 succeeded. The hosted controller reused durable state, blocked completed requirement 34, processed two different six-requirement batches, reduced the queue from 60 to 54, persisted state and queue to remote main, and passed evidence read-back.",
+      "next_start": "SKIP_REUSE the independent runtime structure; retain actual 24-hour elapsed validation as PENDING and continue only remaining unlocked common roots.",
       "source": "USER_CURRENT_REMAINING_WORK_ONLY_20261005",
-      "execution_receipts": []
+      "completion_evidence": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "3af0909d6e796ced534404f25ad67c91aa10b237",
+        "path": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+        "workflow_runs": ["37279406712", "37280663400"],
+        "scope": "Independent hosted runtime structure, two persisted cycles, completed-item blocking, multi-requirement auto-processing, queue continuation, recovery, and remote read-back; excludes actual 24-hour elapsed proof"
+      },
+      "execution_receipts": [
+        {
+          "operation_id": "deploy-existing-controller-independent-runtime-20261005",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "3af0909d6e796ced534404f25ad67c91aa10b237:CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json"
+        }
+      ]
     },
     {
       "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
