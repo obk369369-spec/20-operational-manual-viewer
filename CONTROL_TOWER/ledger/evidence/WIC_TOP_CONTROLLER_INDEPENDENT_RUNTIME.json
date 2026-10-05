@@ -1,51 +1,17 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-05T10:43:27.371043+00:00",
-  "repository": "UNKNOWN",
-  "run_id": "LOCAL-NO-RUN-ID",
+  "created_at": "2026-10-05T10:44:08.244438+00:00",
+  "repository": "obk369369-spec/20-operational-manual-viewer",
+  "run_id": "37298442749",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
   "dynamic_requirement_router": true,
   "hardcoded_requirement_pass_routes": 0,
   "parallel_contract_workers": 4,
-  "processed": [
-    {
-      "requirement_id": 3,
-      "contract_id": "MULTI_ENVIRONMENT_FAILOVER",
-      "proof": "TWO_INDEPENDENT_ENVIRONMENTS_WITH_FAILURE_TAKEOVER_AND_RESUME",
-      "evidence": [
-        "feedback_pipeline/evidence/root_a_minimum_failover.json"
-      ]
-    },
-    {
-      "requirement_id": 32,
-      "contract_id": "MULTI_ENVIRONMENT_FAILOVER",
-      "proof": "TWO_INDEPENDENT_ENVIRONMENTS_WITH_FAILURE_TAKEOVER_AND_RESUME",
-      "evidence": [
-        "feedback_pipeline/evidence/root_a_minimum_failover.json"
-      ]
-    },
-    {
-      "requirement_id": 4,
-      "contract_id": "LARGE_FACTORY_ACTUAL_EXECUTION",
-      "proof": "TWO_VERIFIED_FACTORIES_HAVE_ACTUAL_EXECUTION_RECEIPTS",
-      "evidence": [
-        "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
-      ]
-    },
-    {
-      "requirement_id": 5,
-      "contract_id": "FACTORY_DISCOVERY_AND_PROMOTION",
-      "proof": "DAILY_DISCOVERY_CREATED_CANDIDATES_AND_VERIFIED_POOL_PROMOTED_ONLY_TESTED_COMPONENTS",
-      "evidence": [
-        "feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json",
-        "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
-      ]
-    }
-  ],
+  "processed": [],
   "held": [],
-  "multiple_requirement_auto_processing": true,
+  "multiple_requirement_auto_processing": false,
   "locked_contract_requirements": [
     3,
     4,
