@@ -34,7 +34,7 @@ jobs:
           from pathlib import Path
           p=Path('CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json')
           e=json.loads(p.read_text(encoding='utf-8'))
-          required=('process_started','dynamic_requirement_router','multiple_requirement_auto_processing','queue_persisted','state_persisted')
+          required=('process_started','dynamic_requirement_router','contract_state_readback_pass','queue_persisted','state_persisted')
           assert all(e[k] for k in required), e
           assert e['queue_auto_continuation'] or e['queue_drained'], e
           print('PASS', e['run_id'], e['remaining_queue_count'])

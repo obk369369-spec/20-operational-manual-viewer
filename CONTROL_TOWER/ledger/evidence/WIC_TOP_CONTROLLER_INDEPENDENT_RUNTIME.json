@@ -1,6 +1,6 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-05T10:32:43.138123+00:00",
+  "created_at": "2026-10-05T10:38:57.989165+00:00",
   "repository": "UNKNOWN",
   "run_id": "LOCAL-NO-RUN-ID",
   "run_attempt": "1",
@@ -9,40 +9,17 @@
   "dynamic_requirement_router": true,
   "hardcoded_requirement_pass_routes": 0,
   "parallel_contract_workers": 3,
-  "processed": [
-    {
-      "requirement_id": 20,
-      "contract_id": "VERIFIED_COMPONENT_PROCUREMENT",
-      "proof": "VERIFIED_REUSABLE_COMPONENTS_EXIST_AND_PROMOTION_GATE_IS_ACTIVE",
-      "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"
-    },
-    {
-      "requirement_id": 26,
-      "contract_id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
-      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
-      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
-    },
-    {
-      "requirement_id": 27,
-      "contract_id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
-      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
-      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
-    },
-    {
-      "requirement_id": 53,
-      "contract_id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
-      "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
-      "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
-    },
-    {
-      "requirement_id": 30,
-      "contract_id": "SELF_AUDIT_REQUIREMENT_COVERAGE",
-      "proof": "ALL_UNFINISHED_REQUIREMENTS_CLASSIFIED_WITH_ZERO_GAP",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_QUEUE_54_COMMON_ROOT_CLASSIFICATION.json"
-    }
-  ],
+  "processed": [],
   "held": [],
-  "multiple_requirement_auto_processing": true,
+  "multiple_requirement_auto_processing": false,
+  "locked_contract_requirements": [
+    20,
+    26,
+    27,
+    30,
+    53
+  ],
+  "contract_state_readback_pass": true,
   "queue_persisted": true,
   "state_persisted": true,
   "queue_auto_continuation": true,

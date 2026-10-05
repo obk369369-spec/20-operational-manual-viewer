@@ -114,6 +114,12 @@ def main() -> None:
         if not registry_ok or not enforcement["pass"]:
             raise RuntimeError("RUNTIME_PRECONDITION_GATE_FAIL")
         processed, held = route_contracts(state, queue, registry)
+        contract_ids = {int(value) for contract in registry.get("execution_contracts", [])
+                        for value in contract["requirement_ids"]}
+        locked_contract_requirements = sorted(
+            int(row["id"]) for row in state["requirements"]
+            if int(row["id"]) in contract_ids and row["queue_status"] == "PASS_LOCKED"
+        )
         queue_drained = not queue["queued_requirement_ids"]
         state["independent_runtime"] = "GITHUB_ACTIONS_SCHEDULED_PASS"
         state["updated_at"] = body.now()
@@ -133,6 +139,8 @@ def main() -> None:
             "parallel_contract_workers": min(4, len(registry.get("execution_contracts", []))),
             "processed": processed, "held": held,
             "multiple_requirement_auto_processing": len(processed) >= 2,
+            "locked_contract_requirements": locked_contract_requirements,
+            "contract_state_readback_pass": len(locked_contract_requirements) >= 2,
             "queue_persisted": body.QUEUE.exists(), "state_persisted": body.STATE.exists(),
             "queue_auto_continuation": not queue_drained, "queue_drained": queue_drained,
             "remaining_queue_count": len(queue["queued_requirement_ids"]),
