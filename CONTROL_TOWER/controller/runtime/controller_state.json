@@ -1,9 +1,9 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-06T10:29:35.302025+00:00",
+  "updated_at": "2026-10-06T10:38:40.499273+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
+  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -78,12 +78,12 @@
       "id": 7,
       "name": "FlowWink 복구 또는 교체",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 8,
@@ -144,20 +144,22 @@
       "id": 13,
       "name": "필요에서 완성구조 60초 목표",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 14,
       "name": "완성품 24H 사전조달·검증",
       "group": "RUNTIME_FACTORY_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_NATURAL_TIME",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -177,9 +179,11 @@
       "id": 16,
       "name": "영상 URL 자동인식·분석",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -188,9 +192,11 @@
       "id": 17,
       "name": "영상에서 도구·사업모델 자동추출",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -199,9 +205,11 @@
       "id": 18,
       "name": "추출결과와 기존 사업역량 자동결합",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -210,9 +218,11 @@
       "id": 19,
       "name": "추출결과와 개인사업기회 자동결합",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -232,9 +242,11 @@
       "id": 21,
       "name": "YouTube Channel 지속분석 등록",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -243,9 +255,11 @@
       "id": 22,
       "name": "CONNECT-AI-LAB 콘텐츠 분석",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -254,9 +268,11 @@
       "id": 23,
       "name": "다른 영상·Channel 자동등록·분석",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -265,9 +281,11 @@
       "id": 24,
       "name": "URL·Channel 자동추적 승격",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -276,9 +294,11 @@
       "id": 25,
       "name": "콘텐츠에서 기술·사업기회 Queue",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -309,9 +329,11 @@
       "id": 28,
       "name": "발견에서 수익평가·조달·검증 자동화",
       "group": "KNOWLEDGE_DISCOVERY_PROCUREMENT",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_INPUT",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -320,9 +342,11 @@
       "id": 29,
       "name": "24H Self-Audit",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_NATURAL_TIME",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -342,12 +366,12 @@
       "id": 31,
       "name": "더 좋은 완제품 자동비교",
       "group": "SELF_IMPROVEMENT_REQUIREMENT_GOVERNANCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 32,
@@ -430,9 +454,11 @@
       "id": 39,
       "name": "고객 재직·부서·업무 자동검증",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_CUSTOMER_DATA_OR_PERMISSION",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -441,9 +467,11 @@
       "id": 40,
       "name": "과거 거래·문의 이력 통합",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_CUSTOMER_DATA_OR_PERMISSION",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -452,9 +480,11 @@
       "id": 41,
       "name": "고객 관심분야·판매자료 자동매칭",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_CUSTOMER_DATA_OR_PERMISSION",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -463,20 +493,22 @@
       "id": 42,
       "name": "구판·중복·부적합 자동차단",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 43,
       "name": "안내서·메일·견적·거래준비 자동화",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_CUSTOMER_DATA_OR_PERMISSION",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -485,9 +517,11 @@
       "id": 44,
       "name": "고객 후속관리·결과 자동기록",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_EXTERNAL_CUSTOMER_DATA_OR_PERMISSION",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -540,9 +574,11 @@
       "id": 49,
       "name": "수익성 KPI",
       "group": "BUSINESS_REVENUE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "MARKET_VALIDATION_PENDING",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -551,9 +587,11 @@
       "id": 50,
       "name": "무수익 구조 자동개선",
       "group": "BUSINESS_REVENUE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "MARKET_VALIDATION_PENDING",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -738,34 +776,34 @@
       "id": 68,
       "name": "외부 물리조건 제외 실행가능 잔여 0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 69,
       "name": "UNVERIFIED·NO_EVIDENCE=0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 70,
       "name": "사용자 반복작업 0",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 71,
@@ -815,9 +853,11 @@
       "id": 75,
       "name": "플랫폼 완성 후 24H 자기개선",
       "group": "FINAL_INDEPENDENCE",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PENDING_NATURAL_TIME",
+      "queue_status": "WAITING",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "retry_count": 0,
       "block_reason": null,
       "next_action": "AUTO_SELECT_READY_COMPONENT"
@@ -881,14 +921,31 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-06T11:29:35.302031+00:00",
+  "next_run_at": "2026-10-06T11:38:40.499273+00:00",
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37450115143",
+    "run_id": "LOCAL-FINAL-INTERNAL-CLOSURE-20261006",
     "run_attempt": "1",
-    "processed": [],
+    "processed": [
+      {
+        "requirement_id": 68,
+        "contract_id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
+        "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
+        "evidence": [
+          "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+        ]
+      },
+      {
+        "requirement_id": 69,
+        "contract_id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
+        "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
+        "evidence": [
+          "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+        ]
+      }
+    ],
     "held": [],
-    "queue_continues": true,
-    "queue_drained": false
+    "queue_continues": false,
+    "queue_drained": true
   }
 }

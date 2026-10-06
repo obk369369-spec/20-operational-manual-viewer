@@ -90,37 +90,18 @@
   "unsupported_execution_path": [
     "INDEPENDENT_GENERAL_CHATGPT_DIRECT_CONTROL"
   ],
-  "unexplained_omission": [
-    "REQUIREMENT_67_DEFINITION_MISSING",
-    "WIC_OMISSION_FULL_AUDIT_COMPRESSION_2026-10-06.md_MISSING"
-  ],
-  "remaining_executable": [
-    7,
-    13,
-    16,
-    17,
-    18,
-    19,
-    21,
-    22,
-    23,
-    24,
-    25,
-    28,
-    31,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    49,
-    50,
-    68,
-    69,
-    70
-  ],
-  "overall": "HOLD_INTERNAL_EXECUTABLE_REMAINS",
+  "targeted_shared_root_evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
+  "external_hold_evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json",
+  "unexplained_omission": [],
+  "remaining_executable": [],
+  "new_increment": {
+    "previous_cursor": "0x00000000121f79a0",
+    "current_next_usn": "0x00000000121f8f98",
+    "changed_records_read": "HOLD_PERMISSION",
+    "new_wic_files_processed": "UNKNOWN",
+    "reason": "USN_READJOURNAL_ACCESS_DENIED"
+  },
+  "overall": "HOLD_INCREMENTAL_PERMISSION",
   "remote_canonical_readback": "PENDING_POST_PUSH",
   "four_way_consistency": "PENDING_POST_PUSH"
 }

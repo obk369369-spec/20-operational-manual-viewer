@@ -1,39 +1,63 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-06T10:29:35.303565+00:00",
+  "created_at": "2026-10-06T10:38:40.780468+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "37450115143",
+  "run_id": "LOCAL-FINAL-INTERNAL-CLOSURE-20261006",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
   "dynamic_requirement_router": true,
   "hardcoded_requirement_pass_routes": 0,
   "parallel_contract_workers": 4,
-  "processed": [],
+  "processed": [
+    {
+      "requirement_id": 68,
+      "contract_id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
+      "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ]
+    },
+    {
+      "requirement_id": 69,
+      "contract_id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
+      "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ]
+    }
+  ],
   "held": [],
-  "multiple_requirement_auto_processing": false,
+  "multiple_requirement_auto_processing": true,
   "locked_contract_requirements": [
     3,
     4,
     5,
+    7,
+    13,
     20,
     26,
     27,
     30,
+    31,
     32,
     38,
+    42,
     53,
     61,
     62,
     63,
+    68,
+    69,
+    70,
     76
   ],
   "contract_state_readback_pass": true,
   "queue_persisted": true,
   "state_persisted": true,
-  "queue_auto_continuation": true,
-  "queue_drained": false,
-  "remaining_queue_count": 27,
+  "queue_auto_continuation": false,
+  "queue_drained": true,
+  "remaining_queue_count": 0,
   "fail_closed": {
     "pass": true,
     "total": 5,
@@ -59,7 +83,7 @@
   "component_registry": {
     "path": "CONTROL_TOWER/controller/component_registry.json",
     "component_count": 3,
-    "execution_contract_count": 9,
+    "execution_contract_count": 11,
     "readback_pass": true
   },
   "work_dependency": 0,

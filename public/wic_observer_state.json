@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-06T10:29:35.302108+00:00",
+  "updated_at": "2026-10-06T10:38:40.499273+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -45,6 +45,13 @@
       "resume_condition": "NONE_PASS_LOCKED"
     },
     {
+      "requirement_id": "7",
+      "name": "FlowWink 복구 또는 교체",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
       "requirement_id": "8",
       "name": "전역 Hard Gate 자동상속",
       "status": "COMPLETE",
@@ -80,6 +87,13 @@
       "resume_condition": "NONE_PASS_LOCKED"
     },
     {
+      "requirement_id": "13",
+      "name": "필요에서 완성구조 60초 목표",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
       "requirement_id": "15",
       "name": "무료·상업사용·License·Security 자동 Gate",
       "status": "COMPLETE",
@@ -112,6 +126,13 @@
       "name": "Self-Audit 누락기능 자동발견",
       "status": "COMPLETE",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_QUEUE_54_COMMON_ROOT_CLASSIFICATION.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
+      "requirement_id": "31",
+      "name": "더 좋은 완제품 자동비교",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "resume_condition": "NONE_PASS_LOCKED"
     },
     {
@@ -161,6 +182,13 @@
       "name": "실제 WIC 고객 Data E2E",
       "status": "COMPLETE",
       "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
+      "requirement_id": "42",
+      "name": "구판·중복·부적합 자동차단",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "resume_condition": "NONE_PASS_LOCKED"
     },
     {
@@ -248,6 +276,27 @@
       "resume_condition": "NONE_PASS_LOCKED"
     },
     {
+      "requirement_id": "68",
+      "name": "외부 물리조건 제외 실행가능 잔여 0",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
+      "requirement_id": "69",
+      "name": "UNVERIFIED·NO_EVIDENCE=0",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
+      "requirement_id": "70",
+      "name": "사용자 반복작업 0",
+      "status": "COMPLETE",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
       "requirement_id": "71",
       "name": "WORK_DEPENDENCY=0",
       "status": "COMPLETE",
@@ -283,199 +332,162 @@
       "resume_condition": "NONE_PASS_LOCKED"
     }
   ],
-  "PARTIAL": [
-    {
-      "requirement_id": "7",
-      "name": "FlowWink 복구 또는 교체",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "13",
-      "name": "필요에서 완성구조 60초 목표",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
+  "PARTIAL": [],
+  "UNFINISHED": [],
+  "PLATFORM_HOLD": [
     {
       "requirement_id": "14",
       "name": "완성품 24H 사전조달·검증",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "16",
       "name": "영상 URL 자동인식·분석",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "17",
       "name": "영상에서 도구·사업모델 자동추출",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "18",
       "name": "추출결과와 기존 사업역량 자동결합",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "19",
       "name": "추출결과와 개인사업기회 자동결합",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "21",
       "name": "YouTube Channel 지속분석 등록",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "22",
       "name": "CONNECT-AI-LAB 콘텐츠 분석",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "23",
       "name": "다른 영상·Channel 자동등록·분석",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "24",
       "name": "URL·Channel 자동추적 승격",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "25",
       "name": "콘텐츠에서 기술·사업기회 Queue",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "28",
       "name": "발견에서 수익평가·조달·검증 자동화",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "29",
       "name": "24H Self-Audit",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "31",
-      "name": "더 좋은 완제품 자동비교",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "39",
       "name": "고객 재직·부서·업무 자동검증",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "40",
       "name": "과거 거래·문의 이력 통합",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "41",
       "name": "고객 관심분야·판매자료 자동매칭",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "42",
-      "name": "구판·중복·부적합 자동차단",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "43",
       "name": "안내서·메일·견적·거래준비 자동화",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "44",
       "name": "고객 후속관리·결과 자동기록",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
-    {
-      "requirement_id": "49",
-      "name": "수익성 KPI",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "50",
-      "name": "무수익 구조 자동개선",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "68",
-      "name": "외부 물리조건 제외 실행가능 잔여 0",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "69",
-      "name": "UNVERIFIED·NO_EVIDENCE=0",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "70",
-      "name": "사용자 반복작업 0",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
-      "requirement_id": "75",
-      "name": "플랫폼 완성 후 24H 자기개선",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    }
-  ],
-  "UNFINISHED": [],
-  "PLATFORM_HOLD": [
     {
       "requirement_id": "46",
       "name": "실제 고객반응·계약·매출 Evidence",
@@ -489,6 +501,24 @@
       "status": "PLATFORM_HOLD",
       "evidence": "실제 외부 고객·거래 사건 없음",
       "resume_condition": "WAIT_FOR_EXTERNAL_CONDITION"
+    },
+    {
+      "requirement_id": "49",
+      "name": "수익성 KPI",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
+      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
+    },
+    {
+      "requirement_id": "50",
+      "name": "무수익 구조 자동개선",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
+      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
       "requirement_id": "51",
@@ -531,27 +561,39 @@
       "status": "PLATFORM_HOLD",
       "evidence": "현재 물리 접근/자료 실행 증거 없음",
       "resume_condition": "WAIT_FOR_EXTERNAL_CONDITION"
+    },
+    {
+      "requirement_id": "75",
+      "name": "플랫폼 완성 후 24H 자기개선",
+      "status": "PLATFORM_HOLD",
+      "evidence": [
+        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
+      ],
+      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     }
   ],
   "LONG_TERM_HOLD": [],
-  "NEXT_WORK": "7",
+  "NEXT_WORK": null,
   "current": {
-    "run_id": "37450115143",
+    "run_id": "LOCAL-FINAL-INTERNAL-CLOSURE-20261006",
     "runtime": "GitHub Actions",
-    "status": "작업 중",
-    "queue": 27,
-    "pass_locked": 40,
-    "hold": 8,
+    "status": "완료",
+    "queue": 0,
+    "pass_locked": 47,
+    "hold": 28,
     "fail": 0,
-    "processing": 0,
+    "processing": 2,
     "factory": "공통 실행계약 Large Factory",
-    "new_components": 9,
+    "new_components": 11,
     "errors": 0,
     "recovery": "자동 복구 준비됨",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
     "actual_24h": "실제 시간 증거 수집 중",
-    "recent_completed": [],
-    "queue_reduction": 0
+    "recent_completed": [
+      68,
+      69
+    ],
+    "queue_reduction": 2
   },
   "business": {
     "public_pilot": "WIC 웹사이트 안심 점검",

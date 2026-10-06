@@ -1,0 +1,129 @@
+{
+  "schema": "wic.chat-factory-shared-root.v1",
+  "created_at": "2026-10-06T10:38:10.891776+00:00",
+  "chat_to_handoff": "PASS",
+  "ruled_output_only": "PASS",
+  "chat_to_factory": "PASS",
+  "ready_made_first": "PASS",
+  "external_finished_product_intake": "PASS",
+  "external_component_composition": "PASS",
+  "factory_actual_execution": "PASS",
+  "composition_independent_validation": "PASS",
+  "factory_evidence": "PASS",
+  "registry_reuse": "PASS",
+  "candidate_comparison": "PASS",
+  "execution_seconds": 0.015844300000026124,
+  "execution_under_60_seconds": true,
+  "24h_discovery_execution_path": "PASS",
+  "factory_recursive_expansion": "PASS",
+  "output_rule_enforcement": "PASS",
+  "factory_shared_root": "PASS",
+  "zero_repetition": "PASS",
+  "user_manual_repetition": 0,
+  "south_korea_negative": "PASS",
+  "exhaustive_356_355_block": "PASS",
+  "cases": {
+    "finished_product": {
+      "status": "PASS",
+      "handoff": "PASS",
+      "rules_loaded": "PASS",
+      "registry_prechecked": true,
+      "ready_made_first": true,
+      "external_discovery_executed": true,
+      "selected_components": [
+        "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1"
+      ],
+      "composition": "NOT_REQUIRED",
+      "factory_execution": "PASS",
+      "universal_socket": "PASS",
+      "output_gate": "PASS",
+      "independent_validation": "PASS",
+      "registry_reuse": false,
+      "candidate_count_compared": 14,
+      "best_candidate_selected": true,
+      "manual_repetition": 0,
+      "output": {
+        "name": "WIC 고객용 시장보고서 안내",
+        "function": "검증된 자료 자동선정",
+        "contract": {
+          "language": "ko",
+          "verified_only": true
+        }
+      },
+      "registry_component_count": 3
+    },
+    "composition": {
+      "status": "PASS",
+      "handoff": "PASS",
+      "rules_loaded": "PASS",
+      "registry_prechecked": true,
+      "ready_made_first": true,
+      "external_discovery_executed": true,
+      "selected_components": [
+        "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1",
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "composition": "PASS",
+      "factory_execution": "PASS",
+      "universal_socket": "PASS",
+      "output_gate": "PASS",
+      "independent_validation": "PASS",
+      "registry_reuse": true,
+      "candidate_count_compared": 14,
+      "best_candidate_selected": true,
+      "manual_repetition": 0,
+      "output": {
+        "name": "WIC 고객용 시장보고서 안내",
+        "function": "검증된 자료 자동선정",
+        "contract": {
+          "language": "ko",
+          "verified_only": true
+        }
+      },
+      "registry_component_count": 3
+    },
+    "rule_block": {
+      "status": "BLOCKED",
+      "gate": "GLOBAL_OUTPUT_GATE",
+      "reason": "REGION_EDITION_EXCLUDED"
+    },
+    "reuse": {
+      "status": "PASS",
+      "handoff": "PASS",
+      "rules_loaded": "PASS",
+      "registry_prechecked": true,
+      "ready_made_first": true,
+      "external_discovery_executed": true,
+      "selected_components": [
+        "WIC_ACCESSIBLE_CYCLE_CLOSEOUT_E2E_V1"
+      ],
+      "composition": "NOT_REQUIRED",
+      "factory_execution": "PASS",
+      "universal_socket": "PASS",
+      "output_gate": "PASS",
+      "independent_validation": "PASS",
+      "registry_reuse": true,
+      "candidate_count_compared": 14,
+      "best_candidate_selected": true,
+      "manual_repetition": 0,
+      "output": {
+        "name": "WIC 고객용 시장보고서 안내",
+        "function": "검증된 자료 자동선정",
+        "contract": {
+          "language": "ko",
+          "verified_only": true
+        }
+      },
+      "registry_component_count": 3
+    },
+    "coverage": {
+      "status": "BLOCKED",
+      "gate": "EXHAUSTIVE_COVERAGE_GATE",
+      "total": 356,
+      "checked": 355
+    }
+  },
+  "pending_natural_time": [
+    "24H_ELAPSED_OPERATION"
+  ]
+}
