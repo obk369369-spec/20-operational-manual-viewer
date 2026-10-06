@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "incident_id": "ASSET_AVAILABLE_YESTERDAY_UNRESOLVABLE_TODAY",
+  "recorded_at": "2026-10-06",
+  "status": "SOURCE_RECOVERED_GATE_REMAINS_UNTIL_CORPUS_ENUMERATION",
+  "scope": "WIC completed manual-guide corpus used by customer matching",
+  "reset_or_historical_rescan": false,
+  "evidence": {
+    "canonical_registry": "docs/WIC_SOURCE_ARCHIVE_REGISTRY_20260927.md",
+    "recovered_library_folder": "/WIC/2026-09-27 Work 인계 원본",
+    "recovered_archives": [
+      {
+        "name": "지난 안내서 모음(20260927-041440).zip",
+        "library_id": "libfile_31ccc3e31adc8191b92e444cde6abd5b",
+        "size_bytes": 356166558
+      },
+      {
+        "name": "2020-공학도서-양서.zip",
+        "library_id": "libfile_aae1885966808191ac4cdc34748ab463",
+        "size_bytes": 427863225
+      },
+      {
+        "name": "[시장자료 안내] 한국탄소산업진흥원 김희망님 - 탄소제품 시험·인증 및 표준시험 관련 최신 자료.zip",
+        "library_id": "libfile_7ac1f0182480819185dfc254f124a099",
+        "size_bytes": 269776293
+      },
+      {
+        "name": "안내자료양식 (틀)-월드산업정보센터.zip",
+        "library_id": "libfile_19380961f9548191bcee7aa75224a7f2",
+        "size_bytes": 2325085
+      }
+    ],
+    "previous_blocker": "LIBRARY_BYTES_NOT_MOUNTED",
+    "current_observation": "Library archive objects are resolvable and raw-file materialization succeeded for both canonical guide-corpus ZIPs in the current ChatGPT execution path."
+  },
+  "enforced_rules": [
+    "Never ask Observer to re-upload a registered source before Library-ID resolution is attempted.",
+    "Customer-guide matching must resolve canonical asset -> materialize/read -> enumerate authoritative corpus -> CHECKED=TOTAL -> SKIPPED=0 before final TOP3.",
+    "If asset resolution, enumeration, or read-back fails, set ASSET_UNRESOLVED/HOLD and block external-report fallback.",
+    "Existing completed guides are searched before external report research; external research may fill only the verified missing count.",
+    "A prior PASS or chat statement cannot substitute for current asset/read-back evidence."
+  ],
+  "next_required_evidence": [
+    "Enumerate the recovered canonical guide corpus and record authoritative TOTAL/hash/manifest.",
+    "Run customer matching regression using CAR-039 Kim Tae Hee and prove existing-guide-first behavior.",
+    "Record CHECKED=TOTAL, SKIPPED=0, unresolved count, selected exact guide filenames, and only then allow missing-count external research."
+  ],
+  "failure_classes": [
+    "ASSET_AVAILABLE_YESTERDAY_UNRESOLVABLE_TODAY",
+    "PREMATURE_COMPLETION_AFTER_PARTIAL_ENUMERATION",
+    "PREMATURE_EXTERNAL_RESEARCH_BEFORE_EXISTING_GUIDE_EXHAUSTION",
+    "EVIDENCE_FREE_COMPLETION",
+    "UNVERIFIED_PERSISTENCE_CLAIM"
+  ]
+}
