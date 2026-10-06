@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-06",
+  "gate_id": "MANUAL_GUIDE_CORPUS_RUNTIME_GATE",
+  "status": "HOLD_RUNTIME_ENUMERATION_UNAVAILABLE",
+  "source_assets": [
+    {
+      "library_id": "libfile_31ccc3e31adc8191b92e444cde6abd5b",
+      "name": "지난 안내서 모음(20260927-041440).zip",
+      "size_bytes": 356166558
+    },
+    {
+      "library_id": "libfile_aae1885966808191ac4cdc34748ab463",
+      "name": "2020-공학도서-양서.zip",
+      "size_bytes": 427863225
+    }
+  ],
+  "verified_now": [
+    "Library path and both canonical archive objects resolve.",
+    "Raw-file materialization succeeds.",
+    "Files read/text extraction returns zero readable lines for both ZIPs.",
+    "Container/Python execution path failed, so authoritative ZIP entry enumeration is not currently evidenced."
+  ],
+  "hard_gate": {
+    "final_top3_requires": [
+      "AUTHORITATIVE_TOTAL",
+      "CHECKED_EQUALS_TOTAL",
+      "SKIPPED_0",
+      "UNRESOLVED_0_OR_EXPLICIT_HOLD",
+      "EXACT_GUIDE_FILENAMES"
+    ],
+    "external_fallback": "BLOCKED until existing-guide corpus exhaustive check is evidenced",
+    "premature_complete": "FAIL",
+    "observer_reupload": "NOT_REQUIRED while registered Library sources remain resolvable"
+  },
+  "regression_customer": "CAR-039 Kim Tae Hee",
+  "regression_state": "HOLD_PENDING_CORPUS_ENUMERATION",
+  "allowed_next_action": "Use a runtime capable of opening the registered Library ZIP bytes; enumerate once, persist manifest/hash/index to canonical storage, then reuse index for all later customers without rescanning the archive.",
+  "prohibited": [
+    "claim 356/356 without manifest",
+    "external research before corpus gate",
+    "ask observer to repeat prior matching work",
+    "mark COMPLETE from semantic-search hits"
+  ]
+}
