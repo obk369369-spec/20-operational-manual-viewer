@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-06T03:05:47.001534+00:00",
+  "updated_at": "2026-10-06T10:17:44.821033+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -154,6 +154,13 @@
       "name": "반복 Feedback ROOT 승격",
       "status": "COMPLETE",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+      "resume_condition": "NONE_PASS_LOCKED"
+    },
+    {
+      "requirement_id": "38",
+      "name": "실제 WIC 고객 Data E2E",
+      "status": "COMPLETE",
+      "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
       "resume_condition": "NONE_PASS_LOCKED"
     },
     {
@@ -383,13 +390,6 @@
       "resume_condition": "AUTO_SELECT_READY_COMPONENT"
     },
     {
-      "requirement_id": "38",
-      "name": "실제 WIC 고객 Data E2E",
-      "status": "PARTIAL",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
-      "resume_condition": "AUTO_SELECT_READY_COMPONENT"
-    },
-    {
       "requirement_id": "39",
       "name": "고객 재직·부서·업무 자동검증",
       "status": "PARTIAL",
@@ -536,22 +536,24 @@
   "LONG_TERM_HOLD": [],
   "NEXT_WORK": "7",
   "current": {
-    "run_id": "37407341534",
+    "run_id": "LOCAL-REPAIR-20261006",
     "runtime": "GitHub Actions",
     "status": "작업 중",
-    "queue": 28,
-    "pass_locked": 39,
+    "queue": 27,
+    "pass_locked": 40,
     "hold": 8,
     "fail": 0,
-    "processing": 0,
+    "processing": 1,
     "factory": "공통 실행계약 Large Factory",
-    "new_components": 8,
+    "new_components": 9,
     "errors": 0,
     "recovery": "자동 복구 준비됨",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
     "actual_24h": "실제 시간 증거 수집 중",
-    "recent_completed": [],
-    "queue_reduction": 0
+    "recent_completed": [
+      38
+    ],
+    "queue_reduction": 1
   },
   "business": {
     "public_pilot": "WIC 웹사이트 안심 점검",
