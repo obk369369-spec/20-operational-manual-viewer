@@ -16,6 +16,14 @@
       "status": "VERIFIED_REUSE",
       "runtime": "PYTHON",
       "capabilities": ["FAIL_CLOSED", "NEGATIVE_TEST", "COVERAGE_GATE", "EVIDENCE_GATE"]
+    },
+    {
+      "id": "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET",
+      "type": "UNIVERSAL_SOCKET",
+      "path": "customer_pipeline/cross_tool_customer_flow.py",
+      "status": "VERIFIED_REUSE",
+      "runtime": "PYTHON_NODE",
+      "capabilities": ["TOOL041_INPUT", "TOOL007_HANDOFF", "TOOL042_EXECUTION", "OUTPUT_BLOCK", "RECOVERY"]
     }
   ],
   "execution_contracts": [

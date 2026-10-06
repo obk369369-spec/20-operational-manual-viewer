@@ -1,0 +1,171 @@
+{
+  "schema": "wic.final.platform.lane_a.v1",
+  "created_at": "2026-10-06T01:27:22.404600+00:00",
+  "run_id": "WIC-FINAL-PLATFORM-LANE-A-20261006",
+  "path": [
+    "HANDOFF_PASS_LOCK",
+    "WASTE_DEDUP_GATE",
+    "REGISTRY",
+    "LARGE_FACTORY",
+    "UNIVERSAL_SOCKET",
+    "TOOL044_PROMOTION",
+    "TOOL041",
+    "TOOL007",
+    "TOOL042",
+    "GLOBAL_HARD_GATE",
+    "BUSINESS_OUTPUT"
+  ],
+  "handoff": {
+    "status": "PASS_LOCK_REUSED",
+    "sha256": "7df6cb93b6a9ee04325ce74e6a52e0b8d530530468fcc6ce2089f933ba3558e3"
+  },
+  "waste_gate": {
+    "status": "PASS",
+    "classes_blocked": [
+      "W1_FILE_BY_FILE",
+      "W2_ONE_ERROR_ONE_OPERATION",
+      "W3_PER_ITEM_REMOTE_LOOP",
+      "W4_REPEAT_PASS",
+      "W5_UNCHANGED_HOLD_RETRY",
+      "W6_IMMEDIATE_FIX_REMOTE_LOOP",
+      "W7_ROUND_BY_ROUND",
+      "W8_BLIND_RETRY"
+    ]
+  },
+  "closure_reserve": "PASS",
+  "registry": {
+    "status": "PASS",
+    "path": "CONTROL_TOWER/controller/component_registry.json",
+    "sha256": "72230476f47fef4fde9864a65fd947f1d96bba64d774c69ea25a61303da67357"
+  },
+  "large_factory": {
+    "status": "PASS",
+    "reason": null,
+    "evidence": [
+      "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
+    ],
+    "rules": [
+      {
+        "rule": {
+          "path": "components",
+          "operation": "contains_items",
+          "key": "component_id",
+          "expected": [
+            {
+              "component_id": "KESTRA_OSS_STANDALONE_2_0_4",
+              "status": "VERIFIED_REUSABLE"
+            },
+            {
+              "component_id": "NODE_RED_4_1_0",
+              "status": "VERIFIED_REUSABLE"
+            }
+          ],
+          "required_fields": [
+            "verified_execution_id",
+            "evidence"
+          ]
+        },
+        "pass": true
+      }
+    ],
+    "readback_pass": true,
+    "attempts": 1
+  },
+  "universal_socket": {
+    "status": "PASS",
+    "component": "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET",
+    "path": "customer_pipeline/cross_tool_customer_flow.py"
+  },
+  "tool044": {
+    "status": "PASS",
+    "reason": null,
+    "evidence": [
+      "feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json",
+      "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
+    ],
+    "rules": [
+      {
+        "rule": {
+          "source": 0,
+          "path": "daily_discovery_executed",
+          "operation": "truthy"
+        },
+        "pass": true
+      },
+      {
+        "rule": {
+          "source": 0,
+          "path": "candidate_count",
+          "operation": "minimum_number",
+          "expected": 1
+        },
+        "pass": true
+      },
+      {
+        "rule": {
+          "source": 0,
+          "path": "new_results_this_run",
+          "operation": "minimum_number",
+          "expected": 1
+        },
+        "pass": true
+      },
+      {
+        "rule": {
+          "source": 1,
+          "path": "components",
+          "operation": "minimum_items",
+          "expected": 1
+        },
+        "pass": true
+      },
+      {
+        "rule": {
+          "source": 1,
+          "path": "components",
+          "operation": "all_field_in",
+          "field": "status",
+          "expected": [
+            "VERIFIED_REUSABLE"
+          ]
+        },
+        "pass": true
+      }
+    ],
+    "readback_pass": true,
+    "attempts": 1
+  },
+  "actual_execution": {
+    "status": "PASS",
+    "result_sha256": "ba50725004d966129f0dee99855efe9da36477df03033d9131e74fa65665047d"
+  },
+  "positive_negative_failure": {
+    "positive": "PASS",
+    "negative": "PASS",
+    "failure": "PASS"
+  },
+  "retry_recovery_rollback": {
+    "status": "PASS",
+    "deterministic": true,
+    "rollback": "NO_OUTPUT_COMMITTED_ON_FAILURE"
+  },
+  "global_hard_gate": {
+    "positive": "PASS",
+    "missing_evidence": "HOLD",
+    "validation_failure": "FAIL"
+  },
+  "business_output": {
+    "status": "PASS",
+    "path": "customer_pipeline/evidence/WIC_FINAL_PLATFORM_BUSINESS_OUTPUT_20261006.json",
+    "sha256": "4d2b43df3dd5c6ada2bb83331fd1a1a2729bce1d247cbcc2f124260e40d22e00",
+    "readback": "PASS"
+  },
+  "pending_external": [
+    "CUSTOMER_RESPONSE",
+    "ORDER",
+    "PAYMENT",
+    "REVENUE",
+    "ACTUAL_24H_ELAPSED"
+  ],
+  "overall": "PASS_INTERNAL_PENDING_EXTERNAL"
+}

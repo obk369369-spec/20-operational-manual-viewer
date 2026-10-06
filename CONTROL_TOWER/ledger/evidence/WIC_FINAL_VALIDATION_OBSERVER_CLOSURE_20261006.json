@@ -1,0 +1,62 @@
+{
+  "schema": "wic.final.validation.observer.closure.v1",
+  "checked_at": "2026-10-06T00:00:00+09:00",
+  "lane": "B_VALIDATION_OBSERVER",
+  "positive_test": {
+    "status": "PASS",
+    "command": "python feedback_pipeline/test_wic_observer_dashboard.py",
+    "actual": "WIC_OBSERVER_DASHBOARD: PASS (20/20)"
+  },
+  "negative_test": {
+    "status": "PASS",
+    "actual": "observer fetch failure is caught and a visible Korean error is rendered"
+  },
+  "output_block": {
+    "status": "PASS",
+    "rule": "public user surface HTTP failure blocks top-level operational PASS",
+    "actual": "FINAL_USER_SURFACE_FALSE_PASS"
+  },
+  "retry": {
+    "status": "PASS",
+    "actual": "observer refresh retries every 60000 milliseconds"
+  },
+  "recovery": {
+    "status": "PASS",
+    "evidence": "feedback_pipeline/evidence/root_a_minimum_failover.json",
+    "actual": "controlled failure, stale reclaim, lease transfer, checkpoint resume, and post-failure result return are PASS"
+  },
+  "rollback": {
+    "status": "PASS",
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+    "actual": "ATOMIC_JSON_PLUS_PRE_RUN_SNAPSHOT"
+  },
+  "observer_local_contract": "PASS",
+  "observer_public_surface": {
+    "url": "https://obk369369-spec.github.io/20-operational-manual-viewer/observer/",
+    "http_status": 404,
+    "easy_surface_visible": false,
+    "status": "FAIL_REMOTE_REVALIDATION_PENDING",
+    "failure_class": "FINAL_USER_SURFACE_FALSE_PASS",
+    "fix": "Observer Pages deploy is now chained to every successful independent Runtime completion",
+    "local_artifact_path": "_site/observer/index.html",
+    "local_artifact_validation": "PASS",
+    "local_artifact_actual": {
+      "artifact_exists": true,
+      "easy_surface": true,
+      "actual_state_connected": true,
+      "runtime_deploy_chain": true
+    },
+    "remote_revalidation": "PENDING_ROOT_FINAL_RUN"
+  },
+  "remote_canonical_state": {
+    "url": "https://raw.githubusercontent.com/obk369369-spec/20-operational-manual-viewer/main/public/wic_observer_state.json",
+    "http_status": 200,
+    "runtime_run_id": "37387114815",
+    "queue": 28,
+    "errors": 0,
+    "status": "PASS"
+  },
+  "runtime_evidence_observer_remote_match": "PENDING_ROOT_FINAL_RUN",
+  "wic_platform_operational_verified": "HOLD",
+  "pass_lock_allowed": false
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "wic.platform-final-evidence-pack.v1",
+  "generated_at": "2026-10-06T01:11:51.468893+00:00",
+  "mode": "FINAL_CLOSURE_FAIL_CLOSED",
+  "closed_reuse_only": [
+    "INCREMENTAL_FILES",
+    "HANDOFF_GATE"
+  ],
+  "final_platform_run_id": null,
+  "actual_wic_input": null,
+  "actual_wic_business_output": null,
+  "gates": {
+    "actual_wic_e2e": false,
+    "actual_business_output": false,
+    "observer_user_surface": false,
+    "failure_recovery": false,
+    "runtime_state_readback": true,
+    "observer_state_readback": true,
+    "remote_canonical_readback": false,
+    "runtime_evidence_observer_consistency": false
+  },
+  "canonical_receipts": {
+    "final_actual_wic_e2e": {
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
+      "exists": false,
+      "readback": "MISSING",
+      "sha256": null
+    },
+    "observer_actual_public_e2e": {
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json",
+      "exists": true,
+      "sha256": "060c90914e2d2fdd9b8264addb69e07c24aa5a1e57b065d29e44c086c448211f",
+      "readback": "PASS"
+    },
+    "off_device_runtime_continuity": {
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json",
+      "exists": true,
+      "sha256": "6da2ef5920f15922de3ab34eacaf985df56b32d463c9fb3f37b29eee70cbc664",
+      "readback": "PASS"
+    },
+    "runtime_controller_state": {
+      "path": "CONTROL_TOWER/controller/runtime/controller_state.json",
+      "exists": true,
+      "sha256": "82c6b973f9755033e78d192277646577a18cef7388e58ab5279bd82eb5787107",
+      "readback": "PASS"
+    },
+    "runtime_requirement_queue": {
+      "path": "CONTROL_TOWER/controller/runtime/requirement_queue.json",
+      "exists": true,
+      "sha256": "82b3a86d91b7030f547eb935964aa683f7dea3b6c198b7a7aea1d13ea0bff427",
+      "readback": "PASS"
+    },
+    "public_observer_state": {
+      "path": "public/wic_observer_state.json",
+      "exists": true,
+      "sha256": "c8784d08658f4f47f32b318396727cdc6f485d6b8cf0e71b1b0339f448f40cd6",
+      "readback": "PASS"
+    },
+    "handoff_gate": {
+      "path": "feedback_pipeline/evidence/wic_automatic_handoff_state.json",
+      "exists": true,
+      "sha256": "96c6abe01c00bd9570655801668cf83b4c1ae6a778fa8c15105ee67e5fe598e0",
+      "readback": "PASS"
+    },
+    "incremental_files": {
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_INCREMENTAL_FILE_DISCOVERY.json",
+      "exists": false,
+      "readback": "MISSING",
+      "sha256": null
+    }
+  },
+  "remote": {
+    "commit": null,
+    "runtime_run_id": null,
+    "canonical_readback": "PENDING"
+  },
+  "pending_external": [],
+  "closure_status": "HOLD",
+  "WIC_PLATFORM_OPERATIONAL_VERIFIED": "HOLD",
+  "missing_or_failed_gates": [
+    "actual_wic_e2e",
+    "actual_business_output",
+    "observer_user_surface",
+    "failure_recovery",
+    "remote_canonical_readback",
+    "runtime_evidence_observer_consistency"
+  ]
+}

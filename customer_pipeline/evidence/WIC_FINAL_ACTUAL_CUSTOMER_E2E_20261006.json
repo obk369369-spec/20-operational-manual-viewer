@@ -1,0 +1,49 @@
+{
+  "schema": "wic.final_actual_customer_e2e.v2",
+  "created_at": "2026-10-06T01:07:09.486572+00:00",
+  "run_id": "WIC-FINAL-ACTUAL-20261006",
+  "input": {
+    "path": "customer_pipeline/fixtures/cross_tool_actual_kimtaeho_20260907.json",
+    "sha256": "00E1405405B974D87FD62DE90452B237B257195AD7457866115BC025C4CBF319",
+    "class": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD"
+  },
+  "path": [
+    "TOOL041",
+    "TOOL007",
+    "TOOL042"
+  ],
+  "positive": {
+    "status": "PASS",
+    "result_sha256": "BA50725004D966129F0DEE99855EFE9DA36477DF03033D9131E74FA65665047D"
+  },
+  "negative": {
+    "status": "PASS",
+    "blocked_as": "TOOL007_HANDOFF_REJECTED"
+  },
+  "failure": {
+    "status": "PASS",
+    "blocked_as": "TOOL042_RUNTIME_ERROR"
+  },
+  "retry_recovery_rollback": {
+    "status": "PASS",
+    "deterministic": true,
+    "result_sha256": "BA50725004D966129F0DEE99855EFE9DA36477DF03033D9131E74FA65665047D"
+  },
+  "business_output": {
+    "status": "PASS",
+    "path": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_OUTPUT_20261006.json",
+    "sha256": "3499DC3C2E19B7407BE868A0E95241B60E7112D047EE406C505A6CB22F6A92BC"
+  },
+  "observer_surface": {
+    "status": "PASS",
+    "path": "public/wic_observer_state.json"
+  },
+  "pending_external": [
+    "CUSTOMER_RESPONSE",
+    "ORDER",
+    "PAYMENT",
+    "REVENUE",
+    "ACTUAL_24H_ELAPSED"
+  ],
+  "overall": "PASS_INTERNAL_PENDING_EXTERNAL"
+}

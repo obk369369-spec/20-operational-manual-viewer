@@ -1,0 +1,48 @@
+{
+  "schema": "wic.final.platform.business_output.v1",
+  "created_at": "2026-10-06T01:27:22.357025+00:00",
+  "actual_input": "customer_pipeline/fixtures/cross_tool_actual_kimtaeho_20260907.json",
+  "actual_input_sha256": "00e1405405b974d87fd62de90452b237b257195ad7457866115bc025c4cbf319",
+  "customer": {
+    "고유번호": "KRICT-KIM-TAE-HO-7379",
+    "분야": "수소에너지",
+    "날짜": "2026-09-07",
+    "기관": "한국화학연구원",
+    "부서": "수소에너지연구센터",
+    "직책": "센터장",
+    "성명": "김태호",
+    "이메일": "thkim@krict.re.kr",
+    "전화번호": "042-860-7379",
+    "보조전화": "",
+    "담당업무_연구분야": "수소 생산·활용용 이온전달 소재 | 수전해·연료전지용 촉매 소재",
+    "관심분야": "",
+    "접촉이력_고객반응": "3월 4일 안내서 발송",
+    "후속조치": "현재 범위 확인 후 검증 자료만 안내",
+    "검증상태": "VERIFIED",
+    "출처": "https://school.krict.re.kr/kor/sub02_02_06.do | https://www.krict.re.kr/thumbnail/viewer/1727681617410/index.html | TOOL041 ACTUAL-DUPLICATE-CUSTOMER-MERGE"
+  },
+  "contact_decision": {
+    "decision": "PASS",
+    "blockers": [],
+    "warnings": [
+      "ONE_WAY_NOTICE_NOT_CUSTOMER_NEED"
+    ],
+    "channel": "MATERIAL_FIRST",
+    "copy_generation_allowed": true,
+    "next_action": "GENERATE_PERSONALIZED_COPY_LAST"
+  },
+  "recommendation_decision": {
+    "decision": "HOLD",
+    "contact": "NO_CONTACT",
+    "reason": "VERIFY_CUSTOMER_STATE",
+    "missing_evidence": [
+      "current_interests"
+    ],
+    "phone_message": "",
+    "guidance_message": "고객 현재 상태를 확인한 뒤 안내 방향을 정합니다.",
+    "recommendations": [],
+    "next_action": "VERIFY_CUSTOMER_STATE"
+  },
+  "external_send_executed": false,
+  "external_customer_action": "PENDING_EXTERNAL"
+}

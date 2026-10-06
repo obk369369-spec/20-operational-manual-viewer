@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
     paths: ['observer/**', 'public/wic_observer_state.json', 'public/revenue-lab/**', '.github/workflows/wic-observer-pages.yml']
+  workflow_run:
+    workflows: ['WIC Top Controller Independent Runtime']
+    types: [completed]
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,6 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}observer/
