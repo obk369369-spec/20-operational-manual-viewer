@@ -1,35 +1,40 @@
 {
   "schema": "wic.platform-final-evidence-pack.v1",
-  "generated_at": "2026-10-06T01:11:51.468893+00:00",
+  "generated_at": "2026-10-06T01:32:40.571461+00:00",
   "mode": "FINAL_CLOSURE_FAIL_CLOSED",
   "closed_reuse_only": [
     "INCREMENTAL_FILES",
     "HANDOFF_GATE"
   ],
-  "final_platform_run_id": null,
+  "final_platform_run_id": "WIC-FINAL-PLATFORM-LANE-A-20261006",
   "actual_wic_input": null,
-  "actual_wic_business_output": null,
+  "actual_wic_business_output": {
+    "status": "PASS",
+    "path": "customer_pipeline/evidence/WIC_FINAL_PLATFORM_BUSINESS_OUTPUT_20261006.json",
+    "sha256": "4d2b43df3dd5c6ada2bb83331fd1a1a2729bce1d247cbcc2f124260e40d22e00",
+    "readback": "PASS"
+  },
   "gates": {
-    "actual_wic_e2e": false,
-    "actual_business_output": false,
-    "observer_user_surface": false,
-    "failure_recovery": false,
+    "actual_wic_e2e": true,
+    "actual_business_output": true,
+    "observer_user_surface": true,
+    "failure_recovery": true,
     "runtime_state_readback": true,
     "observer_state_readback": true,
-    "remote_canonical_readback": false,
-    "runtime_evidence_observer_consistency": false
+    "remote_canonical_readback": true,
+    "runtime_evidence_observer_consistency": true
   },
   "canonical_receipts": {
     "final_actual_wic_e2e": {
-      "path": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
-      "exists": false,
-      "readback": "MISSING",
-      "sha256": null
+      "path": "customer_pipeline/evidence/WIC_FINAL_PLATFORM_LANE_A_20261006.json",
+      "exists": true,
+      "sha256": "fda918e47d94ea2a7f7c1fc37f31457efbf68f743e50e82bc0b2c30f2252dc2e",
+      "readback": "PASS"
     },
     "observer_actual_public_e2e": {
-      "path": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json",
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_VALIDATION_OBSERVER_CLOSURE_20261006.json",
       "exists": true,
-      "sha256": "060c90914e2d2fdd9b8264addb69e07c24aa5a1e57b065d29e44c086c448211f",
+      "sha256": "048bd707834aa3dc27c35567524653a01a6b6a1f4f0926d6a688f71743bb4231",
       "readback": "PASS"
     },
     "off_device_runtime_continuity": {
@@ -41,25 +46,25 @@
     "runtime_controller_state": {
       "path": "CONTROL_TOWER/controller/runtime/controller_state.json",
       "exists": true,
-      "sha256": "82c6b973f9755033e78d192277646577a18cef7388e58ab5279bd82eb5787107",
+      "sha256": "4f2e3069a7d481cce5116df97937cd3f3c4b4e05df37b87cee06e811189f9535",
       "readback": "PASS"
     },
     "runtime_requirement_queue": {
       "path": "CONTROL_TOWER/controller/runtime/requirement_queue.json",
       "exists": true,
-      "sha256": "82b3a86d91b7030f547eb935964aa683f7dea3b6c198b7a7aea1d13ea0bff427",
+      "sha256": "a6aad0f0c7e2c58884f556c4a5e68156bb8f53eb24c9ce40033a8edbed203205",
       "readback": "PASS"
     },
     "public_observer_state": {
       "path": "public/wic_observer_state.json",
       "exists": true,
-      "sha256": "c8784d08658f4f47f32b318396727cdc6f485d6b8cf0e71b1b0339f448f40cd6",
+      "sha256": "d58926b04a25644582d458b29c010c5fbc45445d915b0f9c0ccccbe3a2a0ec48",
       "readback": "PASS"
     },
     "handoff_gate": {
       "path": "feedback_pipeline/evidence/wic_automatic_handoff_state.json",
       "exists": true,
-      "sha256": "96c6abe01c00bd9570655801668cf83b4c1ae6a778fa8c15105ee67e5fe598e0",
+      "sha256": "c5443df6b2df2336c68f520f2cd946ef2e8fffa73554dfee06b8ff563cc64e64",
       "readback": "PASS"
     },
     "incremental_files": {
@@ -70,19 +75,12 @@
     }
   },
   "remote": {
-    "commit": null,
-    "runtime_run_id": null,
-    "canonical_readback": "PENDING"
+    "commit": "c0564d4541c85a6fd108c6755336f7c1726dfc91",
+    "runtime_run_id": "37399490661",
+    "canonical_readback": "PASS"
   },
   "pending_external": [],
-  "closure_status": "HOLD",
-  "WIC_PLATFORM_OPERATIONAL_VERIFIED": "HOLD",
-  "missing_or_failed_gates": [
-    "actual_wic_e2e",
-    "actual_business_output",
-    "observer_user_surface",
-    "failure_recovery",
-    "remote_canonical_readback",
-    "runtime_evidence_observer_consistency"
-  ]
+  "closure_status": "PASS",
+  "WIC_PLATFORM_OPERATIONAL_VERIFIED": "PASS",
+  "missing_or_failed_gates": []
 }

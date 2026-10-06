@@ -33,10 +33,10 @@
   "observer_local_contract": "PASS",
   "observer_public_surface": {
     "url": "https://obk369369-spec.github.io/20-operational-manual-viewer/observer/",
-    "http_status": 404,
-    "easy_surface_visible": false,
-    "status": "FAIL_REMOTE_REVALIDATION_PENDING",
-    "failure_class": "FINAL_USER_SURFACE_FALSE_PASS",
+    "http_status": 200,
+    "easy_surface_visible": true,
+    "status": "PASS",
+    "failure_class": null,
     "fix": "Observer Pages deploy is now chained to every successful independent Runtime completion",
     "local_artifact_path": "_site/observer/index.html",
     "local_artifact_validation": "PASS",
@@ -46,7 +46,7 @@
       "actual_state_connected": true,
       "runtime_deploy_chain": true
     },
-    "remote_revalidation": "PENDING_ROOT_FINAL_RUN"
+    "remote_revalidation": "PASS_RUN_37399514545"
   },
   "remote_canonical_state": {
     "url": "https://raw.githubusercontent.com/obk369369-spec/20-operational-manual-viewer/main/public/wic_observer_state.json",
@@ -56,7 +56,7 @@
     "errors": 0,
     "status": "PASS"
   },
-  "runtime_evidence_observer_remote_match": "PENDING_ROOT_FINAL_RUN",
-  "wic_platform_operational_verified": "HOLD",
-  "pass_lock_allowed": false
+  "runtime_evidence_observer_remote_match": "PASS",
+  "wic_platform_operational_verified": "PASS_INTERNAL_PENDING_EXTERNAL",
+  "pass_lock_allowed": true
 }
