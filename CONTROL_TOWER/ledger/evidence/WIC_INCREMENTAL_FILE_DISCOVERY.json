@@ -1,42 +1,67 @@
 {
-  "schema": "wic.incremental-file-discovery.v1",
-  "created_at": "2026-10-06T00:00:00+09:00",
-  "status": "HOLD_PERMISSION",
-  "scope": "checkpoint 이후 신규 WIC 관련 파일만 증분 탐지",
+  "schema": "wic.incremental-file-discovery.v2",
+  "created_at": "2026-10-06T20:20:00+09:00",
+  "status": "HOLD_MULTI_VOLUME_CHECKPOINT_GAPS",
+  "scope": "기존 WIC 자료 저장장치 D/F/I의 checkpoint 이후 신규·변경분만 공통 증분 탐지",
+  "common_root": "WIC_MULTI_VOLUME_INCREMENTAL_DISCOVERY",
   "previously_processed": 3200,
   "reprocessed_from_3200": 0,
-  "checkpoint": {
-    "volume": "D:",
-    "previous_cursor": "0x00000000121f79a0",
-    "observed_next_usn": "0x00000000121f8f98",
-    "journal_id": "0x01d93c5d9701204b"
-  },
-  "attempt": {
-    "method": "NTFS USN journal incremental read",
-    "command": "fsutil usn readjournal D: csv startusn=0x121f79a0",
-    "attempt_count": 1,
-    "result": "ACCESS_DENIED",
-    "error": "Error 5: Access is denied.",
-    "repeated": false
-  },
-  "fallback_assessment": {
-    "full_drive_rescan_used": false,
-    "existing_3200_reopened": false,
-    "large_index_rebuilt": false,
-    "reason_not_used": "저장된 cursor 이후 변경만 확정할 수 있는 기존 비재스캔 경로는 USN journal이며 관리자 권한 읽기가 거부되었다. 전체 드라이브 또는 660700행 인덱스 재분석은 명시적으로 금지되어 있다.",
-    "i_volume_filesystem": "FAT32",
-    "i_volume_usn_supported": false
+  "full_scan_used": false,
+  "large_index_rebuilt_or_reclassified": false,
+  "same_failed_command_repeated": false,
+  "connected_volumes": ["D:", "F:", "I:"],
+  "volumes": {
+    "D:": {
+      "connected": true,
+      "filesystem": "NTFS",
+      "role": "기존 WIC 자료 저장장치",
+      "method": "NTFS USN checkpoint resume",
+      "previous_cursor": "0x00000000121f79a0",
+      "observed_next_usn": "0x00000000121f8f98",
+      "journal_id": "0x01d93c5d9701204b",
+      "attempt_count": 1,
+      "result": "HOLD_PERMISSION",
+      "reason": "저장된 cursor 이후 USN 읽기 1회가 Error 5로 거부됨. 동일 명령은 반복하지 않음.",
+      "next_start": "관리자 권한이 있는 USN reader에서 저장된 cursor로 재개"
+    },
+    "F:": {
+      "connected": true,
+      "filesystem": "NTFS",
+      "label": "외장하드",
+      "role": "기존 WIC 외장하드",
+      "method": "NTFS USN metadata",
+      "journal_id": "0x01cc130a26b68f81",
+      "first_usn": "0x00000000a4700000",
+      "observed_next_usn": "0x00000000a6806840",
+      "result": "HOLD_MISSING_PREVIOUS_CURSOR",
+      "reason": "현재 USN journal은 확인했으나 기존 3,200 처리시점의 F: cursor가 canonical checkpoint에 없어 변경범위를 증명할 수 없음.",
+      "next_start": "기존 F: cursor/metadata checkpoint가 회수될 때 그 지점부터 재개; 전수스캔 금지"
+    },
+    "I:": {
+      "connected": true,
+      "filesystem": "FAT32",
+      "role": "이동식 WIC 저장장치",
+      "method": "saved metadata checkpoint only",
+      "result": "HOLD_NO_USN_AND_NO_SAVED_METADATA_CURSOR",
+      "reason": "FAT32는 USN journal을 지원하지 않으며 canonical에 이전 metadata cursor가 없음.",
+      "next_start": "기존 I: metadata checkpoint가 회수될 때 timestamp/file-id 기준 비재스캔 증분 재개"
+    },
+    "OFFICE_PC_STORAGE": {
+      "connected": false,
+      "result": "PENDING_EXTERNAL_STORAGE",
+      "reason": "현재 실행환경에 사무실 PC 저장장치가 볼륨으로 연결되지 않음"
+    }
   },
   "new_wic_files_found": "UNKNOWN",
+  "new_increment_unprocessed": "UNKNOWN",
   "new_wic_files_processed": 0,
-  "duplicate_skipped": 0,
-  "irrelevant_skipped": 0,
-  "content_actually_read": 0,
+  "deduplicated": 0,
+  "absorbed": 0,
   "requirements_added": 0,
-  "unvisited_wic_relevant_area": "UNKNOWN",
-  "next_start": "관리자 권한이 있는 D: USN journal reader에서 cursor 0x00000000121f79a0부터 한 번 재개",
-  "required_external_condition": "D: NTFS USN journal read 권한",
-  "originals_modified": false,
-  "office_tool_files_modified": false,
-  "completion": "HOLD"
+  "targeted_validation": 0,
+  "pass_locked": 0,
+  "pending_external_storage": ["OFFICE_PC_STORAGE"],
+  "completion": "HOLD",
+  "completion_gate": "모든 기존 WIC 저장장치에서 이전 cursor/metadata checkpoint 이후 증분범위가 확정되기 전 COMPLETE 금지",
+  "originals_modified": false
 }
