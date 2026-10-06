@@ -246,3 +246,13 @@
 - 책임 기준: 사용자가 최종 출력에서 같은 형식오류를 다시 발견했다면 사용자 검수 실패가 아니라 **OUTPUT GATE FAILURE**로 기록한다. 해당 결과는 PASS 취소 -> failure evidence -> regression sample -> 동일 원인 의존 출력 전수점검 -> 수정 -> 재검증 순서로 처리한다. 증거 없이 '재발방지 완료'라고 말하지 않는다.
 - 일반 Chat 자체가 GitHub 파일을 마법처럼 자동 실행한다는 주장을 금지한다. 대신 TOOL042 작업을 수행하는 실행 경로가 이 단일 계약을 **선조회하지 않으면 출력 자체를 금지**하는 fail-closed 규칙을 사용한다. 플랫폼 전역 자동상속의 실제 E2E 강제는 별도 검증 전까지 VERIFIED라고 부르지 않는다.
 - 배치 완료 조건: CUSTOMER_TOTAL=CHECKED, CUSTOMER_SKIPPED=0, 고객별 중복검사 PASS, 선정 타이틀별 SOURCE/TOC/메타데이터 PASS, GUIDE_ASSET 중복 제거 PASS, PRINT_ASSET 중복 제거 PASS, 출력스키마 회귀검증 PASS. 하나라도 아니면 전체 COMPLETE 선언 금지.
+
+
+## 23. 2026-10-06 PLATFORM-ONLY EXECUTION / TOC INHERITANCE HARD GATE
+- 사용자 역할은 관찰자다. TOOL042 및 동일 고객안내 계열 작업을 ChatGPT/단일 모델/단일 대화창이 독립적으로 생성·검증·완료하는 실행을 금지한다.
+- 작업 시작 전 상위 플랫폼의 실제 분업 실행경로(조달/추출/매칭/사실검증/TOC검증/중복검증/렌더검증/Evidence)가 확인되어야 한다. 이 경로가 확인되지 않거나 단일 모델만으로 우회하려 하면 PRE-START HARD FAIL로 처리하고 고객안내 생성 자체를 시작하지 않는다.
+- 각 단계의 생산자와 검증자를 분리하고, 동일 생산자가 자기 결과만 보고 PASS를 부여하는 것을 금지한다. 교차검증 증거가 없는 PASS는 무효다.
+- TOC 규칙은 새로 축약·재정의하지 않는다. 본 파일의 기존 TOC 규칙과 사용자가 누적 승인한 Golden Sample/실물양식을 그대로 상속한다. 상위/하위/하하위 등 실제 공개된 모든 계층을 원문 번호·문구·순서·계층 그대로 유지하고 공식 공개 마지막 항목까지 terminal scan한다. 임의 depth 제한, 요약, 생략, 재분류, 모델식 재정리는 FAIL이다.
+- 샘플도 간이 출력이 아니다. 실제 최종 배치와 동일한 RENDER_SCHEMA, 동일 TOC terminal rule, 동일 검증부품 및 Hard Gate를 통과해야 한다. 샘플 전용 우회경로를 금지한다.
+- 샘플 FAIL 시 사용자에게 오류탐지·대조·수정 책임을 넘기지 않는다. FAIL evidence 등록 -> 원인 의존 부품/경로 격리 -> 검증된 대체 부품/경로 선택 -> 재실행 -> 독립 교차검증 -> Hard Gate 재판정 순으로 자동 복구한다. 해결 불가 항목만 HOLD한다.
+- 위 PRE-START PLATFORM GATE는 이 대화창에만 한정한 설명이 아니라 WIC 고객안내 실행계약의 전역 요구사항이다. 단, 실제 플랫폼 전역 자동상속/E2E 강제가 증거로 검증되기 전에는 VERIFIED라고 선언하지 않는다.
