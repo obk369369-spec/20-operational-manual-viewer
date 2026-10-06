@@ -1,0 +1,46 @@
+{
+  "schema": "wic.incremental.wic.asset.candidates.v1",
+  "created_at": "2026-10-06T20:34:00+09:00",
+  "source": "중단된 metadata inventory의 저장된 부분 결과만 재사용",
+  "collection_restarted": false,
+  "content_scope": "발견 후보 2개만 읽기 전용 확인",
+  "common_root": "WIC_MARKET_GUIDE_ASSET_INGEST",
+  "candidates": [
+    {
+      "volume": "D:",
+      "path": "D:\\오부장 자료 안내서\\2026-양서\\Thermoplastic Composites Market Size & Share Analysis - Growth Trends and Forecast (2026 - 2031) -월드산업정보센터.doc",
+      "size": 42496,
+      "mtime_utc": "2026-10-05T06:03:51.654000+00:00",
+      "sha256": "641EBE26BAEE165BA7EA27EC8771DBAF1341D26891AD4C9F4267C06B518C9587",
+      "dedup": "UNIQUE_WITHIN_SAVED_PARTIAL_INVENTORY",
+      "canonical_reference_match": false,
+      "content_validation": "PASS_WIC_MARKET_GUIDE",
+      "validated_fields": ["월드산업정보센터", "영문·한글 보고서명", "발행사", "페이지", "정가", "발행일", "공식 보고서 URL", "목차"],
+      "absorbed_as": "VERIFIED_INCREMENTAL_BUSINESS_ASSET"
+    },
+    {
+      "volume": "D:",
+      "path": "D:\\오부장 자료 안내서\\2026-양서\\Long Fiber Thermoplastics Market by Fiber Type (Glass, Carbon)-월드산업정보센터.doc",
+      "size": 41472,
+      "mtime_utc": "2026-10-05T06:03:00.253000+00:00",
+      "sha256": "AA9E719C1DED723902C3FACAC278C6B1F1CE84BB0728B6A15EBB4ED97779C73E",
+      "dedup": "UNIQUE_WITHIN_SAVED_PARTIAL_INVENTORY",
+      "canonical_reference_match": false,
+      "content_validation": "PASS_WIC_MARKET_GUIDE",
+      "validated_fields": ["월드산업정보센터", "영문·한글 보고서명", "발행사", "페이지", "정가", "발행월", "공식 보고서 URL", "기존 자료 있음 표시"],
+      "absorbed_as": "VERIFIED_INCREMENTAL_BUSINESS_ASSET"
+    }
+  ],
+  "candidate_count": 2,
+  "deduplicated_count": 2,
+  "content_validated_count": 2,
+  "absorbed_count": 2,
+  "targeted_validation": "PASS",
+  "pass_lock": "LOCKED_FOR_THESE_TWO_ASSETS_ONLY",
+  "originals_modified": false,
+  "limitations": [
+    "기존 3,200 inventory 원장이 canonical에서 발견되지 않아 3,200 대비 신규 여부는 최종 확정 불가",
+    "중단된 임시 inventory는 D: 완료 후 F: 일부까지만 포함하며 I:는 포함하지 않음",
+    "따라서 전체 저장장치 증분탐지는 COMPLETE가 아님"
+  ]
+}
