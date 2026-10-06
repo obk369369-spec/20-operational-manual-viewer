@@ -1,34 +1,17 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-06T10:38:40.780468+00:00",
+  "created_at": "2026-10-06T10:41:01.632072+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "LOCAL-FINAL-INTERNAL-CLOSURE-20261006",
+  "run_id": "37451380154",
   "run_attempt": "1",
   "runtime": "GITHUB_ACTIONS_HOSTED",
   "process_started": true,
   "dynamic_requirement_router": true,
   "hardcoded_requirement_pass_routes": 0,
   "parallel_contract_workers": 4,
-  "processed": [
-    {
-      "requirement_id": 68,
-      "contract_id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
-      "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
-      "evidence": [
-        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
-      ]
-    },
-    {
-      "requirement_id": 69,
-      "contract_id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
-      "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
-      "evidence": [
-        "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json"
-      ]
-    }
-  ],
+  "processed": [],
   "held": [],
-  "multiple_requirement_auto_processing": true,
+  "multiple_requirement_auto_processing": false,
   "locked_contract_requirements": [
     3,
     4,
