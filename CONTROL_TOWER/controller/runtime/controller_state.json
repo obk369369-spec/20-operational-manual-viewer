@@ -1,9 +1,9 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-06T10:17:44.812059+00:00",
+  "updated_at": "2026-10-06T10:18:34.776919+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
+  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -881,21 +881,12 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-06T11:17:44.812059+00:00",
+  "next_run_at": "2026-10-06T11:18:34.776925+00:00",
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "LOCAL-REPAIR-20261006",
+    "run_id": "37448901255",
     "run_attempt": "1",
-    "processed": [
-      {
-        "requirement_id": 38,
-        "contract_id": "ACTUAL_WIC_CUSTOMER_E2E",
-        "proof": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD_COMPLETED_CROSS_TOOL_EXECUTION_WITH_OUTPUT_AND_FAILURE_RECOVERY_EVIDENCE",
-        "evidence": [
-          "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json"
-        ]
-      }
-    ],
+    "processed": [],
     "held": [],
     "queue_continues": true,
     "queue_drained": false
