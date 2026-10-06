@@ -1,9 +1,13 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
+<<<<<<< HEAD
   "updated_at": "2026-10-06T03:05:47.001402+00:00",
+=======
+  "updated_at": "2026-10-06T01:43:48.538562+00:00",
+>>>>>>> 5b0e944 (Record final one-shot closure audit and remaining gates)
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
+  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -419,12 +423,12 @@
       "id": 38,
       "name": "실제 WIC 고객 Data E2E",
       "group": "WIC_CUSTOMER_WORK",
-      "status": "NO_EVIDENCE",
-      "queue_status": "QUEUED",
-      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_RELAXED_TOP_PLATFORM_QUALIFICATION_20261005.json",
+      "status": "VERIFIED_CLOSED",
+      "queue_status": "PASS_LOCKED",
+      "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
       "retry_count": 0,
       "block_reason": null,
-      "next_action": "AUTO_SELECT_READY_COMPONENT"
+      "next_action": "NONE_PASS_LOCKED"
     },
     {
       "id": 39,
@@ -881,12 +885,28 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
+<<<<<<< HEAD
   "next_run_at": "2026-10-06T04:05:47.001409+00:00",
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
     "run_id": "37407341534",
+=======
+  "next_run_at": "2026-10-06T02:43:48.538562+00:00",
+  "github_runtime": {
+    "repository": "UNKNOWN",
+    "run_id": "LOCAL-NO-RUN-ID",
+>>>>>>> 5b0e944 (Record final one-shot closure audit and remaining gates)
     "run_attempt": "1",
-    "processed": [],
+    "processed": [
+      {
+        "requirement_id": 38,
+        "contract_id": "ACTUAL_WIC_CUSTOMER_E2E",
+        "proof": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD_COMPLETED_CROSS_TOOL_EXECUTION_WITH_OUTPUT_AND_FAILURE_RECOVERY_EVIDENCE",
+        "evidence": [
+          "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json"
+        ]
+      }
+    ],
     "held": [],
     "queue_continues": true,
     "queue_drained": false

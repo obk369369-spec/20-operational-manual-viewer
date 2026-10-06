@@ -144,6 +144,22 @@
         {"path": "actual_24h_elapsed_validation", "operation": "equals", "expected": "PENDING_NATURAL_TIME"},
         {"path": "remote_readback", "operation": "equals", "expected": "PASS"}
       ]
+    },
+    {
+      "id": "ACTUAL_WIC_CUSTOMER_E2E",
+      "requirement_ids": [38],
+      "proof": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD_COMPLETED_CROSS_TOOL_EXECUTION_WITH_OUTPUT_AND_FAILURE_RECOVERY_EVIDENCE",
+      "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
+      "rules": [
+        {"path": "input.class", "operation": "equals", "expected": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD"},
+        {"path": "positive.status", "operation": "equals", "expected": "PASS"},
+        {"path": "negative.status", "operation": "equals", "expected": "PASS"},
+        {"path": "failure.status", "operation": "equals", "expected": "PASS"},
+        {"path": "retry_recovery_rollback.status", "operation": "equals", "expected": "PASS"},
+        {"path": "business_output.status", "operation": "equals", "expected": "PASS"},
+        {"path": "observer_surface.status", "operation": "equals", "expected": "PASS"},
+        {"path": "overall", "operation": "equals", "expected": "PASS_INTERNAL_PENDING_EXTERNAL"}
+      ]
     }
   ]
 }

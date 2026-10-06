@@ -1,86 +1,126 @@
 {
-  "schema": "wic.platform-final-evidence-pack.v1",
-  "generated_at": "2026-10-06T01:32:40.571461+00:00",
-  "mode": "FINAL_CLOSURE_FAIL_CLOSED",
-  "closed_reuse_only": [
-    "INCREMENTAL_FILES",
-    "HANDOFF_GATE"
+  "schema": "wic.platform.final_evidence_pack.v1",
+  "created_at": "2026-10-06T10:13:25.536970+00:00",
+  "final_platform_run_id": "WIC-FULL-PLATFORM-20261006-FINAL-ONCE",
+  "actual_input": {
+    "path": "customer_pipeline/fixtures/cross_tool_actual_kimtaeho_20260907.json",
+    "sha256": "00e1405405b974d87fd62de90452b237b257195ad7457866115bc025c4cbf319"
+  },
+  "full_platform_path": [
+    "Handoff",
+    "Waste/Dedup",
+    "Central Queue/Router",
+    "Registry",
+    "Large Factory",
+    "Universal Socket",
+    "Tool044 procurement",
+    "Actual WIC execution",
+    "Global Hard Gate",
+    "Positive/Negative/Failure",
+    "Retry/Recovery/Rollback",
+    "Evidence",
+    "Observer"
   ],
-  "final_platform_run_id": "WIC-FINAL-PLATFORM-LANE-A-20261006",
-  "actual_wic_input": null,
-  "actual_wic_business_output": {
+  "handoff_waste_credit_safe_batch_closure_reserve": "PASS",
+  "registry_factory_socket_tool044": "PASS",
+  "positive": {
     "status": "PASS",
+    "sha256": "ba50725004d966129f0dee99855efe9da36477df03033d9131e74fa65665047d"
+  },
+  "negative": {
+    "status": "PASS",
+    "blocked_as": "TOOL007_HANDOFF_REJECTED"
+  },
+  "failure": {
+    "status": "PASS",
+    "blocked_as": "TOOL042_RUNTIME_ERROR"
+  },
+  "retry_recovery_rollback": {
+    "status": "PASS",
+    "deterministic": true,
+    "sha256": "ba50725004d966129f0dee99855efe9da36477df03033d9131e74fa65665047d"
+  },
+  "zero_repetition": {
+    "status": "PASS",
+    "user_manual_repetition": 0,
+    "waste_classes_blocked": [
+      "W1_FILE_BY_FILE",
+      "W2_ONE_ERROR_ONE_OPERATION",
+      "W3_PER_ITEM_REMOTE_LOOP",
+      "W4_REPEAT_PASS",
+      "W5_UNCHANGED_HOLD_RETRY",
+      "W6_IMMEDIATE_FIX_REMOTE_LOOP",
+      "W7_ROUND_BY_ROUND",
+      "W8_BLIND_RETRY"
+    ]
+  },
+  "actual_business_output": {
     "path": "customer_pipeline/evidence/WIC_FINAL_PLATFORM_BUSINESS_OUTPUT_20261006.json",
-    "sha256": "4d2b43df3dd5c6ada2bb83331fd1a1a2729bce1d247cbcc2f124260e40d22e00",
+    "sha256": "72ac7e29977cd9c2ece7d84bfca2b0a6419c4b8081f412d3b12b60a24f6895a8",
     "readback": "PASS"
   },
-  "gates": {
-    "actual_wic_e2e": true,
-    "actual_business_output": true,
-    "observer_user_surface": true,
-    "failure_recovery": true,
-    "runtime_state_readback": true,
-    "observer_state_readback": true,
-    "remote_canonical_readback": true,
-    "runtime_evidence_observer_consistency": true
+  "observer": {
+    "path": "public/wic_observer_state.json",
+    "readback": "PASS"
   },
-  "canonical_receipts": {
-    "final_actual_wic_e2e": {
-      "path": "customer_pipeline/evidence/WIC_FINAL_PLATFORM_LANE_A_20261006.json",
-      "exists": true,
-      "sha256": "fda918e47d94ea2a7f7c1fc37f31457efbf68f743e50e82bc0b2c30f2252dc2e",
-      "readback": "PASS"
-    },
-    "observer_actual_public_e2e": {
-      "path": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_VALIDATION_OBSERVER_CLOSURE_20261006.json",
-      "exists": true,
-      "sha256": "048bd707834aa3dc27c35567524653a01a6b6a1f4f0926d6a688f71743bb4231",
-      "readback": "PASS"
-    },
-    "off_device_runtime_continuity": {
-      "path": "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json",
-      "exists": true,
-      "sha256": "6da2ef5920f15922de3ab34eacaf985df56b32d463c9fb3f37b29eee70cbc664",
-      "readback": "PASS"
-    },
-    "runtime_controller_state": {
-      "path": "CONTROL_TOWER/controller/runtime/controller_state.json",
-      "exists": true,
-      "sha256": "4f2e3069a7d481cce5116df97937cd3f3c4b4e05df37b87cee06e811189f9535",
-      "readback": "PASS"
-    },
-    "runtime_requirement_queue": {
-      "path": "CONTROL_TOWER/controller/runtime/requirement_queue.json",
-      "exists": true,
-      "sha256": "a6aad0f0c7e2c58884f556c4a5e68156bb8f53eb24c9ce40033a8edbed203205",
-      "readback": "PASS"
-    },
-    "public_observer_state": {
-      "path": "public/wic_observer_state.json",
-      "exists": true,
-      "sha256": "d58926b04a25644582d458b29c010c5fbc45445d915b0f9c0ccccbe3a2a0ec48",
-      "readback": "PASS"
-    },
-    "handoff_gate": {
-      "path": "feedback_pipeline/evidence/wic_automatic_handoff_state.json",
-      "exists": true,
-      "sha256": "c5443df6b2df2336c68f520f2cd946ef2e8fffa73554dfee06b8ff563cc64e64",
-      "readback": "PASS"
-    },
-    "incremental_files": {
-      "path": "CONTROL_TOWER/ledger/evidence/WIC_INCREMENTAL_FILE_DISCOVERY.json",
-      "exists": false,
-      "readback": "MISSING",
-      "sha256": null
-    }
+  "runtime": {
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+    "readback": "PASS"
   },
-  "remote": {
-    "commit": "c0564d4541c85a6fd108c6755336f7c1726dfc91",
-    "runtime_run_id": "37399490661",
-    "canonical_readback": "PASS"
-  },
-  "pending_external": [],
-  "closure_status": "PASS",
-  "WIC_PLATFORM_OPERATIONAL_VERIFIED": "PASS",
-  "missing_or_failed_gates": []
+  "pending_external": [
+    "CUSTOMER_RESPONSE",
+    "INQUIRY",
+    "QUOTE",
+    "CONTRACT",
+    "ORDER",
+    "PAYMENT",
+    "REVENUE"
+  ],
+  "pending_natural_time": [
+    "ACTUAL_24H_ELAPSED"
+  ],
+  "pending_usb": [
+    56,
+    57
+  ],
+  "pending_office": [
+    58,
+    59
+  ],
+  "unsupported_execution_path": [
+    "INDEPENDENT_GENERAL_CHATGPT_DIRECT_CONTROL"
+  ],
+  "unexplained_omission": [
+    "REQUIREMENT_67_DEFINITION_MISSING",
+    "WIC_OMISSION_FULL_AUDIT_COMPRESSION_2026-10-06.md_MISSING"
+  ],
+  "remaining_executable": [
+    7,
+    13,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    28,
+    31,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    49,
+    50,
+    68,
+    69,
+    70
+  ],
+  "overall": "HOLD_INTERNAL_EXECUTABLE_REMAINS",
+  "remote_canonical_readback": "PENDING_POST_PUSH",
+  "four_way_consistency": "PENDING_POST_PUSH"
 }
