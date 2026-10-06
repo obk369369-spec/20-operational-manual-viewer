@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-06T10:41:01.589717+00:00",
+  "updated_at": "2026-10-06T11:00:55.085345+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -597,5 +597,24 @@
     "customer_response": "WAITING",
     "actual_revenue": false
   },
-  "observer_reinstruction_required": 0
+  "observer_reinstruction_required": 0,
+  "office_core_final": {
+    "status": "외부 입력을 기다리고 있습니다",
+    "run_id": "WIC-OFFICE-CORE-FINAL-20261006",
+    "finished": [
+      "13번",
+      "41번",
+      "7번",
+      "42번 내부 처리",
+      "6번 검증판",
+      "2번 내부 처리"
+    ],
+    "waiting": [
+      "1번 실제 보고서 5개",
+      "6번 발행사 정답자료",
+      "2번 외부 공개 검증"
+    ],
+    "result": "customer_pipeline/evidence/WIC_OFFICE_CORE_BUSINESS_OUTPUT_20261006.json",
+    "evidence": "customer_pipeline/evidence/WIC_OFFICE_CORE_FINAL_E2E_20261006.json"
+  }
 }

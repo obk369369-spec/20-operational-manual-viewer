@@ -1,0 +1,69 @@
+{
+  "schema": "wic.office.core.final.e2e.v1",
+  "run_id": "WIC-OFFICE-CORE-FINAL-20261006",
+  "created_at": "2026-10-06T11:00:55.042099+00:00",
+  "execution_count": 1,
+  "actual_execution": {
+    "status": "PASS",
+    "path": [
+      "TOOL041",
+      "TOOL007",
+      "TOOL042"
+    ]
+  },
+  "pass_lock_reused_without_retest": [
+    "TOOL013",
+    "TOOL006"
+  ],
+  "independent_branch_reused": [
+    "TOOL002"
+  ],
+  "states": {
+    "TOOL013": "PASS_LOCK_REUSED",
+    "TOOL041": "PASS_LIVE",
+    "TOOL007": "PASS_LIVE",
+    "TOOL042": "PASS_INTERNAL_PENDING_EXTERNAL_CUSTOMER_ACTION",
+    "TOOL006": "PASS_LOCK_REUSED_PENDING_PUBLISHER_GOLDEN_EVIDENCE",
+    "TOOL002": "PASS_INTERNAL_PENDING_EXTERNAL_PUBLIC_VERIFIER",
+    "TOOL001": "HOLD_EVIDENCE_WAITING_ACTUAL_5_REPORT_INPUTS"
+  },
+  "positive": "PASS",
+  "negative_failure_recovery": "PASS_LOCK_REUSED",
+  "output": {
+    "path": "customer_pipeline/evidence/WIC_OFFICE_CORE_BUSINESS_OUTPUT_20261006.json",
+    "sha256": "EAED0B6D5765678D3A8DC343BC1BD293FAD9627507C66CC3BEA23F759B59F38E",
+    "read_back": "PASS"
+  },
+  "locked_evidence": {
+    "TOOL013": {
+      "path": "feedback_pipeline/evidence/tool013_v2_operations_ready_20260930.json",
+      "sha256": "53EB0048B4559E69F95049AD312397D62A057A89377A2032DA4BDE3C7681C814"
+    },
+    "TOOL006": {
+      "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_work16_tool006_finalize\\TOOL006_CHECKPOINT.json",
+      "sha256": "186C6EEB595BD29614C1DB0AB1B77F8875EDD045B14EC3203A4277C558FA29B8"
+    },
+    "TOOL001": {
+      "path": "feedback_pipeline/evidence/tool001_actual_report_input_registry_20260907.json",
+      "sha256": "395894DA8F56B4BD1B9EC73C7AC41EC7C63E3D7AA5508426BA8A5D96E9CF6EAA"
+    },
+    "TOOL002": {
+      "path": "feedback_pipeline/evidence/tool002_historical_retrieval_20260826.json",
+      "sha256": "6B5A43A3D743E657ECBBE9CC0CE9C10159FB9EC1E6BB0F2E4C9FCC7A02F680AD"
+    },
+    "TOOL041_007_042": {
+      "path": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
+      "sha256": "8DE99342E21F2E6CB517006C0ADCE94D8C575AD61FA7C8C5D39FF214469F617B"
+    }
+  },
+  "pending_external": [
+    "TOOL001_ACTUAL_VERIFIED_5_REPORT_PAYLOADS",
+    "TOOL006_PUBLISHER_GOLDEN_PAIR",
+    "TOOL002_PUBLIC_EXTERNAL_VERIFIER",
+    "CUSTOMER_RESPONSE_ORDER_PAYMENT_REVENUE"
+  ],
+  "remaining_executable": 0,
+  "unexplained_omission": 0,
+  "user_manual_repetition": 0,
+  "overall": "HOLD_EXTERNAL_INPUT"
+}
