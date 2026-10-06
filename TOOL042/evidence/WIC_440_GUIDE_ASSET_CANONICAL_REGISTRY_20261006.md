@@ -51,3 +51,9 @@ GLOBAL_BINARY_CANONICALIZATION may become PASS only when all four source package
 - manifest/index
 - read-back evidence
 and a new chat can resolve the source without observer re-upload.
+
+
+## 2026 sent-email dedup canonical source
+Canonical evidence: TOOL042/evidence/WIC_2026_SENT_EMAIL_ARCHIVE_CANONICAL_20261006.md
+Purpose: mandatory cross-chat duplicate-send prevention before customer/material matching.
+Rule: all TOOL042/customer-matching workflows must consult the 2026 sent-mail archive evidence/history before output.
