@@ -137,3 +137,26 @@ TOOL041_TOOL007_TOOL042_AFTER_COMMON_EXPANSION_BASELINE = TRUE
 - 핵심 신규사항은 `대화창 이동 전 CENTRAL flush 강제`, `검증자료와 껍데기 분리 및 정상자료 정본승격`, `실행기기 독립/USB 단일장애점 제거`, `사용자 기기 직접변경 기본금지`, `TOOL043 최종 확장 기준선`, `공통 확장 후 TOOL041·TOOL042 투입 순서`다.
 - 이후 새 대화는 이 master + 최신 checkpoint/handoff를 먼저 읽고 마지막 실제 작업지점부터 재개한다.
 - 실제 GitHub write/commit/read-back 없이 업데이트 완료라고 보고하지 않는다.
+
+
+## 15. 2026-10-06 Work FINAL 34% 진행 체크포인트
+- 목적: WIC 최상위 플랫폼의 현재 실행가능 잔여를 최대 병렬 폐쇄하고, 마지막 실제 WIC 업무 FULL PLATFORM FINAL RUN과 원격 증거 폐쇄까지 수행한다.
+- 현재 Work 잔여 크레딧 보고값: 약 34%. 이후 Work 실행은 마지막 폐쇄 실행으로 취급한다.
+- 현재 대화에서 완료 보고되어 재진입 금지로 잠근 항목: `Incremental files`, `Handoff gate`, `Lane C Evidence`.
+- 위 완료 항목과 기존 약 3200개 발견 파일은 재조사/재실행하지 않는다. 신규 파일은 저장된 증분 checkpoint 이후만 처리한다.
+- 현재 미폐쇄 실행 단위는 개별 Requirement/Queue/ROOT 순차처리가 아니라 두 병렬 Lane으로 압축한다: `Lane A PLATFORM CLOSURE`와 `Lane B VALIDATION/USER SURFACE`.
+- Lane A 범위: 현재 수정된 `customer_pipeline/test_final_actual_wic_e2e.py`(+92/-4로 관찰된 변경)의 최종 검증, 현재 실행가능 Queue, Registry, Universal Socket, Large Factory, 필요 시 Tool044, 실제 WIC 업무 산출물. 이 +92/-4 로컬 변경 자체가 원격 반영되었다고 이 checkpoint는 주장하지 않는다.
+- Lane B 범위: 공개 Observer 실제 사용자 Surface, Positive/Negative/Failure, Output Block, Retry/Recovery/Rollback.
+- Lane C Evidence는 완료 보고 상태를 보존하고 A/B 결과만 기존 Evidence에 합류한다.
+- 금지: Planning 재개, 전체 재설계, Queue 재계수, ROOT 재분석, 3200개 재검색, 완료 Lane 재진입, 반복 git status/rg/Select-String/Get-ChildItem, 이유 없는 동일 E2E 반복, 문서/UI 꾸미기/리팩터링/신규기능 확대.
+- 하나가 막히면 전체를 정지하지 않고 해당 항목만 증거와 함께 FAIL/HOLD/PENDING_EXTERNAL로 분리한다. 실제 시간 경과·고객 행동·주문·결제·매출·외부승인만 PENDING_EXTERNAL 허용.
+- A/B 합류 후 부분 테스트로 종료하지 않고 완성된 WIC 최상위 플랫폼을 실제 WIC 업무 입력으로 FULL FINAL RUN 1회 실행한다: `Actual WIC Input → Handoff → Waste/Dedup → Queue/Router → ROOT/shared-fix → Registry → Large Factory → Universal Socket/Component Composition → Tool044 if needed → Actual Execution → Global Hard Gate → Positive/Negative/Failure → Output Block → Retry/Recovery/Rollback → actual WIC business artifact → Evidence → PASS_LOCK → Observer actual user surface`.
+- FINAL RUN 성공 뒤 최종 변경을 묶어 commit/push하고 remote runtime, public Observer 실제 접근, canonical read-back, Evidence read-back을 수행한다. `Runtime ↔ Evidence ↔ Observer ↔ Remote canonical state` 일치가 필요하다.
+- Evidence 없는 PASS 금지. 파일/코드/commit/workflow 존재만으로 PASS 금지. 공개 Observer가 실제 사용자 Surface에서 열리지 않으면 PASS 금지.
+- 최종 조건이 실제 증거로 일치할 때만 `WIC_PLATFORM_OPERATIONAL_VERIFIED=PASS`를 기록한다.
+- 현재 체크포인트는 **작업상황/실행계약의 CENTRAL MASTER 반영**이다. Work 로컬 미커밋 파일 자체의 GitHub 반영 여부와 혼동하지 않는다.
+
+FINAL_34_PERCENT_EXECUTION_MODE = MAX_PARALLEL_CLOSURE
+COMPLETED_LANES_REENTRY = FORBIDDEN
+FINAL_FULL_PLATFORM_REAL_WIC_RUN = REQUIRED
+FINAL_REMOTE_FOUR_WAY_CONSISTENCY = REQUIRED
