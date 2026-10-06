@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-05T23:12:18.309407+00:00",
+  "updated_at": "2026-10-06T01:30:22.781825+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -536,7 +536,7 @@
   "LONG_TERM_HOLD": [],
   "NEXT_WORK": "7",
   "current": {
-    "run_id": "37387114815",
+    "run_id": "37399490661",
     "runtime": "GitHub Actions",
     "status": "작업 중",
     "queue": 28,
@@ -558,11 +558,5 @@
     "customer_response": "WAITING",
     "actual_revenue": false
   },
-  "observer_reinstruction_required": 0,
-  "final_actual_wic_e2e": {
-    "status": "PASS_INTERNAL_PENDING_EXTERNAL",
-    "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
-    "business_output": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_OUTPUT_20261006.json",
-    "external_customer_action": "PENDING_EXTERNAL"
-  }
+  "observer_reinstruction_required": 0
 }
