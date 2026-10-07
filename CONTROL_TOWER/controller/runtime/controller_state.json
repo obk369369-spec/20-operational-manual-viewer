@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-07T12:25:44.841650+00:00",
+  "updated_at": "2026-10-07T12:27:28.635868+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -921,13 +921,93 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-07T13:25:44.841657+00:00",
+  "next_run_at": "2026-10-07T13:27:28.635874+00:00",
+  "handoff_traces": {
+    "REMOTE-37621099472": {
+      "status": "ACCEPTED",
+      "trace_id": "REMOTE-37621099472",
+      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+      "ready_made_first": true,
+      "selected_components": [
+        "WIC_EXISTING_TOP_CONTROLLER",
+        "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
+        "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
+      ],
+      "backend_route": "TOOL43_BACKEND",
+      "user_manual_repetition": 0
+    }
+  },
+  "runtime_progress_gate": {
+    "seen_signatures": [
+      "bb7b38264bf574723e0b95940a513ab88dcda5732d9a22789b51efe26e43d032",
+      "3fc36d9b8259a702b20eea3b1b2ea2b328d1160b29d1a95794f53c519d8846be"
+    ],
+    "stopped_roots": {},
+    "last_checkpoint": {
+      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-37621099472",
+      "CENTRAL_RUNTIME_CYCLE": "37621099472"
+    },
+    "events": [
+      {
+        "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+        "decision": "ALLOW",
+        "reason": null,
+        "signature": "bb7b38264bf574723e0b95940a513ab88dcda5732d9a22789b51efe26e43d032",
+        "deltas": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "root_id": "CENTRAL_RUNTIME_CYCLE",
+        "decision": "ALLOW",
+        "reason": null,
+        "signature": "3fc36d9b8259a702b20eea3b1b2ea2b328d1160b29d1a95794f53c519d8846be",
+        "deltas": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      }
+    ]
+  },
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "37620894130",
+    "run_id": "37621099472",
     "run_attempt": "1",
     "processed": [],
     "held": [],
+    "handoff": {
+      "status": "ACCEPTED",
+      "trace_id": "REMOTE-37621099472",
+      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+      "ready_made_first": true,
+      "selected_components": [
+        "WIC_EXISTING_TOP_CONTROLLER",
+        "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
+        "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
+      ],
+      "backend_route": "TOOL43_BACKEND",
+      "user_manual_repetition": 0
+    },
+    "progress_gate": {
+      "root_id": "CENTRAL_RUNTIME_CYCLE",
+      "decision": "ALLOW",
+      "reason": null,
+      "signature": "3fc36d9b8259a702b20eea3b1b2ea2b328d1160b29d1a95794f53c519d8846be",
+      "deltas": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
     "queue_continues": false,
     "queue_drained": true
   }
