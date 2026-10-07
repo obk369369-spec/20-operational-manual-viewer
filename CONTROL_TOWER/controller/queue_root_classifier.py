@@ -6,6 +6,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+import wic_top_controller as body
+
 ROOT = Path(__file__).resolve().parents[2]
 STATE = ROOT / "CONTROL_TOWER/controller/runtime/controller_state.json"
 QUEUE = ROOT / "CONTROL_TOWER/controller/runtime/requirement_queue.json"
@@ -81,8 +83,7 @@ def main() -> None:
         "independent_roots_in_queue": [],
         "status": "PASS" if classified_total == total_unfinished_unique and not unclassified else "FAIL",
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    body.atomic_json(OUT, result)
     readback = load(OUT)
     if (readback["status"] != "PASS" or not readback["sum_matches_queue"]
             or not readback["sum_matches_total_unfinished"]):

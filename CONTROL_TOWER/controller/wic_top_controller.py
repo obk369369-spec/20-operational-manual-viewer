@@ -16,6 +16,8 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+from pre_work_admission import verify_work_start_token
+
 ROOT = Path(__file__).resolve().parents[2]
 CONTROL_TOWER = ROOT / "CONTROL_TOWER"
 RUNTIME = CONTROL_TOWER / "controller" / "runtime"
@@ -45,6 +47,7 @@ def load(path: Path) -> dict[str, Any]:
 
 
 def atomic_json(path: Path, payload: Any) -> None:
+    verify_work_start_token("FILE_WRITE")
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".new")
     temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -52,17 +55,20 @@ def atomic_json(path: Path, payload: Any) -> None:
 
 
 def append_event(event: dict[str, Any]) -> None:
+    verify_work_start_token("EVENT_APPEND")
     EVENTS.parent.mkdir(parents=True, exist_ok=True)
     with EVENTS.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(event, ensure_ascii=False) + "\n")
 
 
 def acquire_lock() -> int:
+    verify_work_start_token("LOCK_CREATE")
     RUNTIME.mkdir(parents=True, exist_ok=True)
     return os.open(LOCK, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
 
 
 def release_lock(fd: int) -> None:
+    verify_work_start_token("LOCK_DELETE")
     os.close(fd)
     LOCK.unlink(missing_ok=True)
 

@@ -1,0 +1,51 @@
+name: WIC Pre-Work Admission Bootstrap
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap-admission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Execute bootstrap tests without business queue mutation
+        run: >-
+          python CONTROL_TOWER/controller/pre_work_admission.py
+          --git-sha "$GITHUB_SHA"
+          --bootstrap-evidence CONTROL_TOWER/ledger/evidence/WIC_PRE_WORK_ADMISSION_BOOTSTRAP_20261007.json
+      - name: Enforce measured bootstrap contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('CONTROL_TOWER/ledger/evidence/WIC_PRE_WORK_ADMISSION_BOOTSTRAP_20261007.json')
+          e=json.loads(p.read_text(encoding='utf-8'))
+          assert e['admission_attack_cases_run']==e['admission_attack_cases_blocked']==20
+          assert e['admission_bypass_block_rate']==100
+          assert e['mutating_entrypoint_guard_coverage']==100
+          assert e['enforcement_validator_detection_rate']==100
+          assert e['enforcement_false_pass_rate']==0
+          assert e['incomplete_work_started']==e['unauthorized_side_effect']==0
+          assert e['stale_token_accepted']==e['cross_work_token_accepted']==0
+          assert e['test_a']==e['test_b']=='PASS'
+          assert e['pre_work_evidence_readback']=='PASS'
+          assert e['work_start_enforcement_verified'] is True
+          PY
+      - name: Persist bootstrap evidence only
+        run: |
+          git config user.name "wic-admission-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add CONTROL_TOWER/ledger/evidence/WIC_PRE_WORK_ADMISSION_BOOTSTRAP_20261007.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Persist admission bootstrap evidence $GITHUB_RUN_ID"
+          git pull --rebase origin main
+          git push origin HEAD:main

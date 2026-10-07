@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import wic_top_controller as body
+from pre_work_admission import activate_token, issue_token, runtime_pack
 from universal_enforcement import self_test as enforcement_self_test
 
 
@@ -148,15 +149,20 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
 
 
 def main() -> None:
+    repository = os.environ.get("GITHUB_REPOSITORY", "UNKNOWN")
+    run_id = os.environ.get("GITHUB_RUN_ID", "LOCAL-NO-RUN-ID")
+    git_sha = os.environ.get("GITHUB_SHA", "LOCAL")
+    secret = os.environ.get("WIC_ADMISSION_SECRET") or os.urandom(32).hex()
+    admission_pack = runtime_pack(git_sha, "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json")
+    token = issue_token(admission_pack, secret)
+    activate_token(token, secret, {"work_id": "WIC-RUNTIME-CYCLE", "git_sha": git_sha})
     fd = body.acquire_lock()
     state_before: dict[str, Any] | None = None
     queue_before: dict[str, Any] | None = None
     try:
         state, queue = body.initialize()
         state_before, queue_before = copy.deepcopy(state), copy.deepcopy(queue)
-        run_id = os.environ.get("GITHUB_RUN_ID", "LOCAL-NO-RUN-ID")
         run_attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
-        repository = os.environ.get("GITHUB_REPOSITORY", "UNKNOWN")
         registry_path = body.CONTROL_TOWER / "controller" / "component_registry.json"
         registry = body.load(registry_path)
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"
@@ -186,6 +192,9 @@ def main() -> None:
         evidence_path = body.CONTROL_TOWER / "ledger" / "evidence" / "WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json"
         evidence = {"schema": "wic.top_controller.independent_runtime.v2", "created_at": body.now(),
             "repository": repository, "run_id": run_id, "run_attempt": run_attempt,
+            "work_start_token": {"token_id": token["payload"]["token_id"],
+                "work_id": token["payload"]["work_id"], "git_sha": token["payload"]["git_sha"],
+                "scope_verified": True},
             "runtime": "GITHUB_ACTIONS_HOSTED", "process_started": True,
             "dynamic_requirement_router": True, "hardcoded_requirement_pass_routes": 0,
             "parallel_contract_workers": min(4, len(registry.get("execution_contracts", []))),
