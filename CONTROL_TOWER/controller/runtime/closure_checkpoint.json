@@ -1,0 +1,79 @@
+{
+  "schema": "wic.central.closure-checkpoint.v1",
+  "checkpoint_id": "WIC-CP-20261007-STALE-COMMON-PLATFORM-11",
+  "completed_root": "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
+  "completed_requirement_ids": [
+    "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+    "WIC-BACKLOG-CONTROL-TOWER-20260927",
+    "WIC-BACKLOG-GITHUB-REMOTE-20260927",
+    "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+    "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+    "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+    "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+    "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+  ],
+  "pass_lock_ids": [
+    "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+    "WIC-BACKLOG-CONTROL-TOWER-20260927",
+    "WIC-BACKLOG-GITHUB-REMOTE-20260927",
+    "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+    "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+    "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+    "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+    "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+  ],
+  "evidence_path": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_INCOMPLETE_RECONCILIATION_20261007.json",
+  "evidence_status": "PASS_REMOTE_READBACK",
+  "git_sha": "6d374d93eebae91e70522ab44f9ad46a93be2867",
+  "queue_state": {
+    "queued": 0,
+    "status": "DRAINED"
+  },
+  "incomplete_register_state": {
+    "moved_to_complete": 11,
+    "removed_from_partial_or_unfinished": 11,
+    "pass_locked": 11
+  },
+  "last_completed_position": "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER/11",
+  "round2_selection": {
+    "performed_once_from_existing_snapshot": true,
+    "raw_a_item_count": 0,
+    "compressed_root_count": 0,
+    "reason": "remaining items require tool scope, external/market input, file discovery, natural time, large change, or unverified expected result"
+  },
+  "next_resume_position": "B_C_REASSESSMENT_REQUIRES_SEPARATE_FUTURE_ADMISSION",
+  "hold": [
+    "EXTERNAL_INPUT_OR_PERMISSION",
+    "MARKET_VALIDATION",
+    "UNVERIFIED_EXPECTED_RESULT_OR_LARGE_CHANGE"
+  ],
+  "deferred": [
+    "DEFERRED_FILE_DISCOVERY_SCOPE",
+    "DEFERRED_HISTORICAL_CHAT_AUDIT_SCOPE",
+    "PENDING_NATURAL_TIME",
+    "DEFERRED_TOOL_SCOPE"
+  ],
+  "never_requery": [
+    "PREVIOUSLY_PROCESSED_3200",
+    "D_METADATA_110415",
+    "D_NEW_WIC_DOCUMENTS_2",
+    "F_PARTIAL_100000",
+    "USB_LEDGER_262",
+    "COMPLETED_COMMON_PLATFORM_FINAL",
+    "COMPLETED_REQUIREMENTS_ABOVE"
+  ],
+  "storage_boundaries": {
+    "D": "110415 plus 2 WIC documents locked",
+    "F": "100000 saved; remainder deferred",
+    "I": "unscanned deferred",
+    "USB": "262 ledger locked",
+    "office": "PENDING_EXTERNAL_STORAGE"
+  },
+  "work_start_token_id": "a6f1a3cedd6f6cdc416b58e16df009ac"
+}
