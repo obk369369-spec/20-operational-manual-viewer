@@ -1,0 +1,50 @@
+{
+  "schema": "wic.common-platform.targeted-validation.v1",
+  "work_id": "WIC-COMMON-PLATFORM-TARGETED-CLOSE-20261007",
+  "git_sha": "f1c8a36ccb209ea48d07835c7f2b54e6d032a082",
+  "actual_input": {
+    "trace_id": "ACTUAL-CENTRAL-INPUT-1",
+    "input_count": 1
+  },
+  "actual": {
+    "positive_accepted": 1,
+    "duplicate_blocked": 1,
+    "deferred_scope_blocked": 1,
+    "no_progress_injections": 6,
+    "no_progress_stopped": 6,
+    "stale_checkpoint_blocked": 1,
+    "independent_root_allowed": 1,
+    "rollback_restored": true,
+    "universal_enforcement_regression": {
+      "passed": 5,
+      "required": 5
+    }
+  },
+  "expected": {
+    "positive": 1,
+    "negative_blocked": 2,
+    "failure_injection_stopped": 6,
+    "rollback_restored": true,
+    "regression_pass": true
+  },
+  "comparison": {
+    "positive": "PASS",
+    "negative": "PASS",
+    "failure_injection": "PASS",
+    "rollback": "PASS",
+    "regression": "PASS"
+  },
+  "repeat_block_rate": 100,
+  "no_progress_stop_rate": 100,
+  "user_manual_repetition": 0,
+  "deferred_scopes": [
+    "ALL_TOOLS",
+    "FILE_DISCOVERY",
+    "HISTORICAL_CHAT_AUDIT"
+  ],
+  "pass_lock": {
+    "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "PASS_LOCKED"
+  },
+  "overall": "PASS",
+  "token_id": "fed5d9fd068c709d1b822d075ecd20d2"
+}

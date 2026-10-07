@@ -1,0 +1,40 @@
+{
+  "schema": "wic.common-platform.allowed-scope.final.v1",
+  "run_id": "LOCAL-FINAL-ALLOWED-SCOPE-20261007",
+  "actual_input": {
+    "status": "ACCEPTED",
+    "trace_id": "FINAL-ALLOWED-SCOPE-INPUT-20261007",
+    "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+    "ready_made_first": true,
+    "selected_components": [
+      "WIC_EXISTING_TOP_CONTROLLER",
+      "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
+      "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
+    ],
+    "backend_route": "TOOL43_BACKEND",
+    "user_manual_repetition": 0
+  },
+  "runtime_evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+  "targeted_evidence": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_TARGETED_VALIDATION_20261007.json",
+  "queue_count": 0,
+  "pass_locked_count": 47,
+  "registry_components": 3,
+  "repeat_block_enforcement": "PASS",
+  "no_progress_gate": "PASS",
+  "credit_waste_gate": "PASS",
+  "rule_to_enforcement": "PASS",
+  "handoff_allowed_scope": "PASS",
+  "user_manual_repetition_allowed_scope": 0,
+  "remaining_executable_allowed_scope": 0,
+  "unexplained_omission_allowed_scope": 0,
+  "four_way_local_consistency": "PASS",
+  "remote_canonical_readback": "PENDING_REMOTE_CLOSE",
+  "deferred_scopes": [
+    "DEFERRED_TOOL_SCOPE",
+    "DEFERRED_FILE_DISCOVERY_SCOPE",
+    "DEFERRED_HISTORICAL_CHAT_AUDIT_SCOPE"
+  ],
+  "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
+  "overall": "PASS_LOCAL_PENDING_REMOTE",
+  "token_id": "5f342ae5ce627f06812348295e7511ca"
+}

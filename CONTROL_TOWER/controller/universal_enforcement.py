@@ -5,6 +5,8 @@ from typing import Any
 
 
 def verdict(receipt: dict[str, Any]) -> str:
+    if receipt.get("repeat_blocked") is False or receipt.get("no_progress_stopped") is False:
+        return "FAIL"
     status = str(receipt.get("status", "UNKNOWN"))
     if status in {"UNKNOWN", "PARTIAL"}:
         return "HOLD"

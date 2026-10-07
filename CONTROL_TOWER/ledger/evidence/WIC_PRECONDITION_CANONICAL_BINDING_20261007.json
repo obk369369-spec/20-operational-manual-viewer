@@ -1,0 +1,37 @@
+{
+  "schema": "wic.precondition.canonical-binding.v1",
+  "created_from_read_only_snapshot": true,
+  "additional_lookup_count": 0,
+  "precondition_recovery_admission": "PASS",
+  "canonical_binding": {
+    "controller": "CONTROL_TOWER/controller/wic_top_controller.py",
+    "queue": "CONTROL_TOWER/controller/runtime/requirement_queue.json",
+    "runtime_state": "CONTROL_TOWER/controller/runtime/controller_state.json",
+    "requirement_source_ledger": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
+    "checkpoint_ledger": "feedback_pipeline/work16_root_ledger.json",
+    "registry": "CONTROL_TOWER/controller/component_registry.json"
+  },
+  "git_execution_baseline": {
+    "local_head": "f1c8a36ccb209ea48d07835c7f2b54e6d032a082",
+    "local_head_state": "DETACHED_LOCAL_CHECKPOINT_NOT_CANONICAL_MAIN",
+    "observed_origin_main_ref": "de76f1cdf4faca463c5358b8fe14a571eacc9f6b",
+    "execution_rule": "FUTURE_MUTATION_MUST_BEGIN_FROM_CANONICAL_ORIGIN_MAIN_AFTER_SEPARATELY_ADMITTED_SYNC",
+    "local_f1c8_promotion": "NOT_AUTHORIZED_IN_THIS_WORK"
+  },
+  "scope_locks": {
+    "ROOT_A_D": "LOCKED",
+    "FINAL_E2E": "LOCKED",
+    "TOOLS": "LOCKED",
+    "FILE_DISCOVERY": "LOCKED",
+    "HISTORICAL_CHAT_AUDIT": "LOCKED"
+  },
+  "pass_lock_preserved": true,
+  "queue_mutated": false,
+  "tool_data_mutated": false,
+  "work_start_token": {
+    "token_id": "8fa2a2cdaea73cfb1e4091283d7f65f9",
+    "work_id": "WIC-PRECONDITION-CANONICAL-BINDING-20261007",
+    "git_sha": "f1c8a36ccb209ea48d07835c7f2b54e6d032a082",
+    "scope_match": true
+  }
+}

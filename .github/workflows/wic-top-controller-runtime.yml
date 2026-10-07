@@ -26,6 +26,9 @@ jobs:
       - name: Provide existing reconciler repository path
         run: ln -s . _wic_speed_runner_audit
       - name: Run existing controller through independent adapter
+        env:
+          WIC_HANDOFF_INPUT_JSON: >-
+            {"trace_id":"REMOTE-${{ github.run_id }}","root_id":"CENTRAL_AUTONOMY_REPEAT_ASSURANCE","input":"사용자 입력 1회","expected_output":"central execution evidence","scope":"COMMON_PLATFORM","checkpoint":"REMOTE-${{ github.run_id }}"}
         run: python CONTROL_TOWER/controller/github_runtime_cycle.py
       - name: Validate durable result
         run: |
@@ -40,6 +43,11 @@ jobs:
           assert e['work_start_token']['git_sha']==os.environ['GITHUB_SHA'], e
           assert e['work_start_token']['scope_verified'] is True, e
           assert e['queue_auto_continuation'] or e['queue_drained'], e
+          assert e['repeat_block_enforcement'] is True, e
+          assert e['no_progress_gate'] is True, e
+          assert e['credit_waste_gate'] is True, e
+          assert e['handoff']['status']=='ACCEPTED', e
+          assert e['handoff']['user_manual_repetition']==0, e
           print('PASS', e['run_id'], e['remaining_queue_count'])
           PY
       - name: Persist queue state and evidence

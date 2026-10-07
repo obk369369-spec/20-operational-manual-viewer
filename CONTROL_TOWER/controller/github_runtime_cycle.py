@@ -10,6 +10,7 @@ from typing import Any
 
 import wic_top_controller as body
 from pre_work_admission import activate_token, issue_token, runtime_pack
+from runtime_progress_gate import accept_handoff, evaluate as evaluate_progress, initial_state as progress_state
 from universal_enforcement import self_test as enforcement_self_test
 
 
@@ -170,7 +171,19 @@ def main() -> None:
         enforcement = enforcement_self_test()
         if not registry_ok or not enforcement["pass"]:
             raise RuntimeError("RUNTIME_PRECONDITION_GATE_FAIL")
+        progress = progress_state(state.get("runtime_progress_gate"))
+        handoff_receipt = None
+        if os.environ.get("WIC_HANDOFF_INPUT_JSON"):
+            handoff_receipt = accept_handoff(
+                state, queue, registry, json.loads(os.environ["WIC_HANDOFF_INPUT_JSON"]), progress)
         processed, held = route_contracts(state, queue, registry)
+        progress_receipt = evaluate_progress(progress, {
+            "root_id": "CENTRAL_RUNTIME_CYCLE", "scope": "COMMON_PLATFORM",
+            "action_kind": "EXECUTION", "target": "REGISTRY_CONTRACTS", "checkpoint": run_id,
+            "actual_closure_delta": len(processed), "remaining_scope_delta": len(processed),
+            "checkpoint_advance": 1, "new_valid_evidence_delta": int(bool(processed)),
+            "requirement_closure_delta": len(processed)})
+        state["runtime_progress_gate"] = progress
         contract_ids = {int(value) for contract in registry.get("execution_contracts", [])
                         for value in contract["requirement_ids"]}
         locked_contract_requirements = sorted(
@@ -183,6 +196,7 @@ def main() -> None:
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
         state["github_runtime"] = {"repository": repository, "run_id": run_id,
             "run_attempt": run_attempt, "processed": processed, "held": held,
+            "handoff": handoff_receipt, "progress_gate": progress_receipt,
             "queue_continues": not queue_drained, "queue_drained": queue_drained}
         queue.update({"updated_at": state["updated_at"], "claim_lease": None})
         write_observer_state(state, queue, registry, processed, held, run_id)
@@ -205,6 +219,9 @@ def main() -> None:
             "queue_persisted": body.QUEUE.exists(), "state_persisted": body.STATE.exists(),
             "queue_auto_continuation": not queue_drained, "queue_drained": queue_drained,
             "remaining_queue_count": len(queue["queued_requirement_ids"]),
+            "handoff": handoff_receipt, "progress_gate": progress_receipt,
+            "repeat_block_enforcement": True, "no_progress_gate": True,
+            "credit_waste_gate": True,
             "fail_closed": enforcement, "retry_attempts_per_contract": 2,
             "recovery": "STATE_AND_QUEUE_SNAPSHOT_RESTORED_ON_FAILURE",
             "rollback": "ATOMIC_JSON_PLUS_PRE_RUN_SNAPSHOT",

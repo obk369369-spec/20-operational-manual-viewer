@@ -1,0 +1,75 @@
+{
+  "schema": "wic.common-platform.prework.v1",
+  "work_id": "WIC-COMMON-PLATFORM-RUNTIME-20261007",
+  "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+  "git_sha": "f1c8a36ccb209ea48d07835c7f2b54e6d032a082",
+  "segments": [
+    {
+      "segment_id": "COMMON-RUNTIME-ENFORCEMENT",
+      "user_intent": "중앙 handoff와 반복·무진전·Hard Gate를 기존 runtime에 공통 연결",
+      "requirement_ids": [
+        "HANDOFF_ALLOWED_SCOPE",
+        "REPEAT_BLOCK_ENFORCEMENT",
+        "NO_PROGRESS_GATE",
+        "CREDIT_WASTE_GATE",
+        "RULE_TO_ENFORCEMENT"
+      ],
+      "actual_input": "one central handoff envelope plus injected forbidden repeat actions",
+      "input_source": "current canonical controller/registry/queue bindings",
+      "expected_output": "accepted unique handoff, blocked repeats, isolated stopped root, valid independent root continuation",
+      "expected_value": {
+        "repeat_block_rate": 100,
+        "no_progress_stop_rate": 100,
+        "user_manual_repetition": 0
+      },
+      "expected_value_basis": "current user hard gates",
+      "expected_value_verified": true,
+      "comparator": "equals",
+      "tolerance": 0,
+      "boundary_cases": [
+        "empty queue",
+        "duplicate trace",
+        "stopped root with independent root"
+      ],
+      "negative_cases": [
+        "completed scope requery",
+        "history reconstruction",
+        "evidence regeneration",
+        "planning/test/E2E repeat"
+      ],
+      "failure_injection_cases": [
+        "zero progress",
+        "stale checkpoint restart",
+        "injected post-intake failure rollback"
+      ],
+      "validator": "test_common_platform_runtime.py expected/actual assertions",
+      "validator_expected_detection": "all injected violations detected with zero false pass",
+      "recovery_path": "pre-run snapshot rollback and root-local STOP",
+      "recovery_expected_result": "queue/state restored; independent root continues",
+      "regression_targets": [
+        "PASS_LOCK preservation",
+        "existing contract routing",
+        "observer truthful projection"
+      ],
+      "rollback_checkpoint": "f1c8a36ccb209ea48d07835c7f2b54e6d032a082",
+      "evidence_destination": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_PREWORK_20261007.json",
+      "runtime_binding": "github_runtime_cycle.py plus universal_enforcement.py",
+      "next_segment_condition": "targeted tests and evidence read-back pass"
+    }
+  ],
+  "expected": {
+    "repeat_block_rate": 100,
+    "no_progress_stop_rate": 100,
+    "user_manual_repetition": 0
+  },
+  "token": {
+    "token_id": "b3810e374f8a76623fbae6513b5682ae",
+    "scope_match": true
+  },
+  "excluded_scopes": [
+    "ALL_TOOLS",
+    "FILE_DISCOVERY",
+    "HISTORICAL_CHAT_AUDIT"
+  ],
+  "readback_required": true
+}
