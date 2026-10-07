@@ -1,0 +1,37 @@
+{
+  "actual_input": {
+    "trace_id": "LARGE-SHARED-ACTUAL-1",
+    "root_id": "LARGE_SHARED_PLATFORM",
+    "input": "현재 중앙 미완료 공통묶음",
+    "expected_output": "central execution receipt"
+  },
+  "expected": {
+    "positive": "ACCEPTED",
+    "duplicate": "BLOCKED",
+    "locked_scope": "BLOCKED",
+    "no_progress": "STOP",
+    "recovery": "ALLOW"
+  },
+  "positive": "PASS",
+  "negative_failure_injection": "PASS",
+  "targeted_regression": "PASS",
+  "recovery": "PASS",
+  "rollback": "PASS",
+  "no_progress_gate": "PASS",
+  "user_manual_repetition": 0,
+  "schema": "wic.large-shared-platform.targeted-closure.v1",
+  "root_id": "LARGE_SHARED_PLATFORM",
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-ROOT6-20260927",
+    "WIC-BACKLOG-ROOT7-20260927",
+    "WIC-CANONICAL-RESIDUAL-R1-R16-20260929",
+    "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
+    "WIC-ALL-UNFINISHED-BATCH-20260928"
+  ],
+  "actual_closure_delta": 5,
+  "requirement_closure_delta": 5,
+  "pass_lock_delta": 5,
+  "new_valid_evidence_delta": 1,
+  "overall": "PASS",
+  "work_start_token_id": "333dadeb3c2d45cd44a2644c8a0a48ec"
+}
