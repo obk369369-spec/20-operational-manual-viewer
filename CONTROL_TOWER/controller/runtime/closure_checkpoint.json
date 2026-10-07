@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261007-TOOL044-DEPLOY-RECOVERY-HOLD",
-  "parent_checkpoint_id": "WIC-CP-20261007-LARGE-SHARED-PLATFORM-CLOSED",
-  "parent_git_sha": "7a293e4681ad2fffd861ed7e37b86be7ec1f2af3",
+  "checkpoint_id": "WIC-CP-20261007-FINAL-NEXT-WORK-HANDOFF-LOCK",
+  "parent_checkpoint_id": "WIC-CP-20261007-TOOL044-DEPLOY-RECOVERY-HOLD",
+  "parent_git_sha": "e4efa953727cbd2428f8a26da96be17cb8f7221f",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -58,6 +58,47 @@
     "next_root_id": "NONE_WITHIN_ALLOWED_COST_AND_SCOPE",
     "absolute_no_research_scope": ["COMPLETED_PASS", "3200_D_F_I_USB", "HISTORICAL_CHAT", "PENDING_EXTERNAL", "PENDING_NATURAL_TIME"]
   },
+  "next_work_handoff": {
+    "mode": "FINAL_LARGE_EXECUTION",
+    "inherit_without_reclassification": {
+      "needs_new_verification_initial": 39,
+      "new_pass_locked": 15,
+      "needs_new_verification_remaining": 24,
+      "tool044_deploy_recovery_hold": 2,
+      "deferred_remaining": 22
+    },
+    "execution_order": [
+      "TOOL_CLOSURE",
+      "SINGLE_ACTUAL_TOOL_E2E",
+      "TOOL_FINAL_CHECKPOINT_REMOTE_READBACK",
+      "STORAGE_INCREMENTAL_CLOSURE",
+      "FILE_FINAL_CHECKPOINT_REMOTE_READBACK",
+      "FINAL_REMAINDER_REPORT"
+    ],
+    "tool_closure": {
+      "priority": ["TOOL013", "TOOL006", "TOOL002_AND_TOOL007", "TOOL041_AND_TOOL042", "TOOL001", "TOOL044_DEPLOY_RECOVERY"],
+      "tool013": "REUSE_TRANSLATION_CATEGORY_MATCHING_PAGE_DISPLAY; REPAIR_ASSEMBLY_CANONICAL_VERSION_BINDING; NO_REBUILD",
+      "tool006": "USE_ACTUAL_COMPLEX_TOC; PROVE_FULL_OUTPUT_BELOW_DEPTH2",
+      "tool002_tool007": "PRESERVE_DISTINCT_TSV_MVP_AND_XLSX_WORKER_ROLES; CONNECT_CANONICAL; REQUIRE_ACTUAL_RESULT",
+      "tool041_tool042": "NO_INDEPENDENT_REBUILD; VALIDATE_EXISTING_IMPLEMENTATION_IN_ACTUAL_CUSTOMER_E2E",
+      "tool001": "USE_AT_FINAL_OUTPUT; MODIFY_ONLY_IF_ACTUAL_FINAL_GUIDE_OUTPUT_FAILS",
+      "tool044": "KEEP_CURRENT_HOLD; VALIDATE_WITH_ACTUAL_DEPLOY_INPUT_AND_EXPECTED_CONTRACT_OBTAINED_DURING_TOOL_WORK",
+      "single_actual_e2e_order": ["TOOL013", "TOOL041", "TOOL007", "TOOL042", "TOOL006", "TOOL001"]
+    },
+    "strict_closure_contract": ["ACTUAL_INPUT", "ACTUAL_EXECUTION", "EXPECTED_OUTPUT", "ACTUAL_OUTPUT", "EXPECTED_ACTUAL_COMPARISON", "POSITIVE", "NEGATIVE_FAILURE_INJECTION", "TARGETED_REGRESSION", "RECOVERY_ROLLBACK", "GENERATED_FILE", "GENERATED_FILE_REOPEN", "EVIDENCE_READBACK", "PASS_LOCK", "CHECKPOINT_REMOTE_READBACK"],
+    "storage_boundaries": {
+      "previously_processed_3200": "LOCKED_NO_RESCAN",
+      "D": {"metadata_records": 110415, "new_wic_documents_closed": 2, "action": "NO_RESCAN_NO_REPROCESS"},
+      "F": {"partial_records": 100000, "action": "REUSE_CHECKPOINT_AND_CONTINUE_ONLY_UNVISITED_REMAINDER"},
+      "I": {"temporary_inventory_records": 0, "meaning": "NOT_SCANNED_NOT_EMPTY", "action": "START_ONLY_UNVISITED_AREA"},
+      "USB": {"records": 262, "hold": 245, "deletion_candidates": 17, "action": "NO_RESCAN_NO_RECLASSIFICATION"},
+      "disconnected_storage": "PENDING_EXTERNAL_STORAGE",
+      "connected_storage": "CHECKPOINT_CURSOR_INCREMENT_ONLY"
+    },
+    "storage_evidence_required": ["STORAGE", "PREVIOUS_CURSOR", "START_BOUNDARY", "END_BOUNDARY", "ACTUAL_RANGE", "CANDIDATES", "DUPLICATES", "NEW_OR_CHANGED", "ABSORPTION_RESULT", "UNVISITED_REMAINDER", "ORIGINALS_MODIFIED_FALSE", "EVIDENCE_PATH", "GIT_SHA", "REMOTE_READBACK"],
+    "absolute_prohibitions": ["RECLASSIFY_CURRENT_STATE", "RETEST_PASS_LOCKED", "RESCAN_3200", "RESCAN_D_110415", "RESCAN_F_100000", "RESCAN_USB_262", "NEW_FULL_METADATA_INVENTORY", "FULL_HASH_INVENTORY", "REPEAT_USN_FROM_START", "BROAD_GIT_HISTORY", "HISTORICAL_CHAT_AUDIT", "USER_MANUAL_RELAY"],
+    "current_work_action": "HANDOFF_CHECKPOINT_ONLY_NO_TOOL_OR_STORAGE_EXECUTION"
+  },
   "selection_basis": "parent checkpoint round2_selection; no repeated classification",
   "hold_b_reason": "large change, unclear expected result, or additional proof required",
   "deferred": [
@@ -78,6 +119,6 @@
     "F_PARTIAL_100000",
     "USB_LEDGER_262"
   ],
-  "next_resume_position": "SEPARATE_ADMISSION_REQUIRED_FOR_COST4_OR_TOOL044_ACTUAL_DEPLOY_CONTRACT",
+  "next_resume_position": "TOOL013_ASSEMBLY_CANONICAL_VERSION_BINDING_THEN_FIXED_TOOL_SEQUENCE",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
