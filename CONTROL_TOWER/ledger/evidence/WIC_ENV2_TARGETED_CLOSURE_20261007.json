@@ -1,0 +1,54 @@
+{
+  "actual_input": "feedback_pipeline/evidence/root_a_minimum_failover.json",
+  "expected": [
+    {
+      "path": "root_a_minimum_failover",
+      "operation": "equals",
+      "expected": "PASS"
+    },
+    {
+      "path": "minimum_2env_circulation",
+      "operation": "equals",
+      "expected": "PASS"
+    },
+    {
+      "path": "checkpoint_resume",
+      "operation": "equals",
+      "expected": "PASS"
+    },
+    {
+      "path": "failure_isolation",
+      "operation": "equals",
+      "expected": "PASS"
+    },
+    {
+      "path": "final_readback",
+      "operation": "equals",
+      "expected": "PASS"
+    },
+    {
+      "path": "remote_evidence",
+      "operation": "equals",
+      "expected": "PASS"
+    }
+  ],
+  "positive": "PASS",
+  "negative_failure_injection": "PASS",
+  "regression": "PASS",
+  "recovery": "PASS",
+  "rollback": "PASS",
+  "remote_readback": "PASS",
+  "actual_run_id": "36025119922",
+  "actual_correlation_id": "ROOT-A-FAULT-36025119922-1",
+  "schema": "wic.env2.targeted-closure.v1",
+  "root_id": "MULTI_ENVIRONMENT_FAILOVER",
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-ENV2-20260927"
+  ],
+  "actual_closure_delta": 1,
+  "requirement_closure_delta": 1,
+  "pass_lock_delta": 1,
+  "new_valid_evidence_delta": 1,
+  "overall": "PASS",
+  "work_start_token_id": "00c8ad6cf8eb83aba0eba125d880d26c"
+}

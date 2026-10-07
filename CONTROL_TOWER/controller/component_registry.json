@@ -7,7 +7,12 @@
       "path": "CONTROL_TOWER/controller/wic_top_controller.py",
       "status": "VERIFIED_REUSE",
       "runtime": "GITHUB_ACTIONS",
-      "capabilities": ["QUEUE", "STATE", "RECOVERY", "EVIDENCE"]
+      "capabilities": [
+        "QUEUE",
+        "STATE",
+        "RECOVERY",
+        "EVIDENCE"
+      ]
     },
     {
       "id": "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
@@ -15,7 +20,12 @@
       "path": "CONTROL_TOWER/controller/universal_enforcement.py",
       "status": "VERIFIED_REUSE",
       "runtime": "PYTHON",
-      "capabilities": ["FAIL_CLOSED", "NEGATIVE_TEST", "COVERAGE_GATE", "EVIDENCE_GATE"]
+      "capabilities": [
+        "FAIL_CLOSED",
+        "NEGATIVE_TEST",
+        "COVERAGE_GATE",
+        "EVIDENCE_GATE"
+      ]
     },
     {
       "id": "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET",
@@ -23,171 +33,486 @@
       "path": "customer_pipeline/cross_tool_customer_flow.py",
       "status": "VERIFIED_REUSE",
       "runtime": "PYTHON_NODE",
-      "capabilities": ["TOOL041_INPUT", "TOOL007_HANDOFF", "TOOL042_EXECUTION", "OUTPUT_BLOCK", "RECOVERY"]
+      "capabilities": [
+        "TOOL041_INPUT",
+        "TOOL007_HANDOFF",
+        "TOOL042_EXECUTION",
+        "OUTPUT_BLOCK",
+        "RECOVERY"
+      ]
     }
   ],
   "execution_contracts": [
     {
       "id": "VERIFIED_COMPONENT_PROCUREMENT",
-      "requirement_ids": [20],
+      "requirement_ids": [
+        20
+      ],
       "proof": "VERIFIED_REUSABLE_COMPONENTS_EXIST_AND_PROMOTION_GATE_IS_ACTIVE",
       "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
       "rules": [
-        {"path": "policy", "operation": "equals", "expected": "EVIDENCE_REQUIRED_REUSE_FIRST"},
-        {"path": "components", "operation": "minimum_items", "expected": 1},
-        {"path": "components", "operation": "all_field_in", "field": "status", "expected": ["VERIFIED_REUSABLE"]},
-        {"path": "promotion_gate.requires_actual_test", "operation": "truthy"},
-        {"path": "promotion_gate.requires_remote_read_back", "operation": "truthy"}
+        {
+          "path": "policy",
+          "operation": "equals",
+          "expected": "EVIDENCE_REQUIRED_REUSE_FIRST"
+        },
+        {
+          "path": "components",
+          "operation": "minimum_items",
+          "expected": 1
+        },
+        {
+          "path": "components",
+          "operation": "all_field_in",
+          "field": "status",
+          "expected": [
+            "VERIFIED_REUSABLE"
+          ]
+        },
+        {
+          "path": "promotion_gate.requires_actual_test",
+          "operation": "truthy"
+        },
+        {
+          "path": "promotion_gate.requires_remote_read_back",
+          "operation": "truthy"
+        }
       ]
     },
     {
       "id": "KNOWLEDGE_AND_REVENUE_DISCOVERY_CYCLE",
-      "requirement_ids": [26, 27, 53],
+      "requirement_ids": [
+        26,
+        27,
+        53
+      ],
       "proof": "DAILY_DISCOVERY_AND_REVENUE_CYCLE_ACTUALLY_EXECUTED",
       "evidence": "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json",
       "rules": [
-        {"path": "status", "operation": "equals", "expected": "DEPLOYED_COMPLETE_WITH_REVENUE_WAITING"},
-        {"path": "actual_cycle.result", "operation": "equals", "expected": "PASS"},
-        {"path": "public_pilot.actual_function", "operation": "equals", "expected": "PASS"},
-        {"path": "remote.remote_readback", "operation": "equals", "expected": "PASS"},
-        {"path": "truth.daily_cycle_registered_and_first_run_passed", "operation": "truthy"}
+        {
+          "path": "status",
+          "operation": "equals",
+          "expected": "DEPLOYED_COMPLETE_WITH_REVENUE_WAITING"
+        },
+        {
+          "path": "actual_cycle.result",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "public_pilot.actual_function",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "remote.remote_readback",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "truth.daily_cycle_registered_and_first_run_passed",
+          "operation": "truthy"
+        }
       ]
     },
     {
       "id": "SELF_AUDIT_REQUIREMENT_COVERAGE",
-      "requirement_ids": [30],
+      "requirement_ids": [
+        30
+      ],
       "proof": "ALL_UNFINISHED_REQUIREMENTS_CLASSIFIED_WITH_ZERO_GAP",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_QUEUE_54_COMMON_ROOT_CLASSIFICATION.json",
       "rules": [
-        {"path": "status", "operation": "equals", "expected": "PASS"},
-        {"path": "unclassified_total", "operation": "equals", "expected": 0},
-        {"path": "sum_matches_total_unfinished", "operation": "truthy"}
+        {
+          "path": "status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "unclassified_total",
+          "operation": "equals",
+          "expected": 0
+        },
+        {
+          "path": "sum_matches_total_unfinished",
+          "operation": "truthy"
+        }
       ]
     },
     {
       "id": "MULTI_ENVIRONMENT_FAILOVER",
-      "requirement_ids": [3, 32],
+      "requirement_ids": [
+        3,
+        32
+      ],
       "proof": "TWO_INDEPENDENT_ENVIRONMENTS_WITH_FAILURE_TAKEOVER_AND_RESUME",
       "evidence": "feedback_pipeline/evidence/root_a_minimum_failover.json",
       "rules": [
-        {"path": "root_a_minimum_failover", "operation": "equals", "expected": "PASS"},
-        {"path": "minimum_2env_circulation", "operation": "equals", "expected": "PASS"},
-        {"path": "checkpoint_resume", "operation": "equals", "expected": "PASS"},
-        {"path": "failure_isolation", "operation": "equals", "expected": "PASS"},
-        {"path": "final_readback", "operation": "equals", "expected": "PASS"},
-        {"path": "remote_evidence", "operation": "equals", "expected": "PASS"}
+        {
+          "path": "root_a_minimum_failover",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "minimum_2env_circulation",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "checkpoint_resume",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "failure_isolation",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "final_readback",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "remote_evidence",
+          "operation": "equals",
+          "expected": "PASS"
+        }
       ]
     },
     {
       "id": "LARGE_FACTORY_ACTUAL_EXECUTION",
-      "requirement_ids": [4],
+      "requirement_ids": [
+        4
+      ],
       "proof": "TWO_VERIFIED_FACTORIES_HAVE_ACTUAL_EXECUTION_RECEIPTS",
       "evidence": "feedback_pipeline/evidence/tool044_verified_external_component_pool.json",
       "rules": [
-        {"path": "components", "operation": "contains_items", "key": "component_id",
-         "expected": [
-           {"component_id": "KESTRA_OSS_STANDALONE_2_0_4", "status": "VERIFIED_REUSABLE"},
-           {"component_id": "NODE_RED_4_1_0", "status": "VERIFIED_REUSABLE"}
-         ], "required_fields": ["verified_execution_id", "evidence"]}
+        {
+          "path": "components",
+          "operation": "contains_items",
+          "key": "component_id",
+          "expected": [
+            {
+              "component_id": "KESTRA_OSS_STANDALONE_2_0_4",
+              "status": "VERIFIED_REUSABLE"
+            },
+            {
+              "component_id": "NODE_RED_4_1_0",
+              "status": "VERIFIED_REUSABLE"
+            }
+          ],
+          "required_fields": [
+            "verified_execution_id",
+            "evidence"
+          ]
+        }
       ]
     },
     {
       "id": "FACTORY_DISCOVERY_AND_PROMOTION",
-      "requirement_ids": [5],
+      "requirement_ids": [
+        5
+      ],
       "proof": "DAILY_DISCOVERY_CREATED_CANDIDATES_AND_VERIFIED_POOL_PROMOTED_ONLY_TESTED_COMPONENTS",
       "evidence_files": [
         "feedback_pipeline/evidence/tool044_dynamic_candidate_pool.json",
         "feedback_pipeline/evidence/tool044_verified_external_component_pool.json"
       ],
       "rules": [
-        {"source": 0, "path": "daily_discovery_executed", "operation": "truthy"},
-        {"source": 0, "path": "candidate_count", "operation": "minimum_number", "expected": 1},
-        {"source": 0, "path": "new_results_this_run", "operation": "minimum_number", "expected": 1},
-        {"source": 1, "path": "components", "operation": "minimum_items", "expected": 1},
-        {"source": 1, "path": "components", "operation": "all_field_in", "field": "status", "expected": ["VERIFIED_REUSABLE"]}
+        {
+          "source": 0,
+          "path": "daily_discovery_executed",
+          "operation": "truthy"
+        },
+        {
+          "source": 0,
+          "path": "candidate_count",
+          "operation": "minimum_number",
+          "expected": 1
+        },
+        {
+          "source": 0,
+          "path": "new_results_this_run",
+          "operation": "minimum_number",
+          "expected": 1
+        },
+        {
+          "source": 1,
+          "path": "components",
+          "operation": "minimum_items",
+          "expected": 1
+        },
+        {
+          "source": 1,
+          "path": "components",
+          "operation": "all_field_in",
+          "field": "status",
+          "expected": [
+            "VERIFIED_REUSABLE"
+          ]
+        }
       ]
     },
     {
       "id": "ACTUAL_PUBLIC_OBSERVER",
-      "requirement_ids": [61, 62, 63],
+      "requirement_ids": [
+        61,
+        62,
+        63
+      ],
       "proof": "PUBLIC_OBSERVER_READS_ACTUAL_QUEUE_RUNTIME_FACTORY_RECOVERY_EVIDENCE_AND_BUSINESS_STATE",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_ACTUAL_PUBLIC_E2E.json",
       "rules": [
-        {"path": "dashboard_http_status", "operation": "equals", "expected": 200},
-        {"path": "state_http_status", "operation": "equals", "expected": 200},
-        {"path": "easy_dashboard", "operation": "truthy"},
-        {"path": "actual_state_connected", "operation": "truthy"},
-        {"path": "factory_visible", "operation": "truthy"},
-        {"path": "runtime_visible", "operation": "truthy"},
-        {"path": "recovery_visible", "operation": "truthy"},
-        {"path": "evidence_visible", "operation": "truthy"},
-        {"path": "business_status_visible", "operation": "truthy"},
-        {"path": "actual_24h_state_visible", "operation": "truthy"},
-        {"path": "observer_reinstruction_required", "operation": "equals", "expected": 0},
-        {"path": "readback_pass", "operation": "truthy"}
+        {
+          "path": "dashboard_http_status",
+          "operation": "equals",
+          "expected": 200
+        },
+        {
+          "path": "state_http_status",
+          "operation": "equals",
+          "expected": 200
+        },
+        {
+          "path": "easy_dashboard",
+          "operation": "truthy"
+        },
+        {
+          "path": "actual_state_connected",
+          "operation": "truthy"
+        },
+        {
+          "path": "factory_visible",
+          "operation": "truthy"
+        },
+        {
+          "path": "runtime_visible",
+          "operation": "truthy"
+        },
+        {
+          "path": "recovery_visible",
+          "operation": "truthy"
+        },
+        {
+          "path": "evidence_visible",
+          "operation": "truthy"
+        },
+        {
+          "path": "business_status_visible",
+          "operation": "truthy"
+        },
+        {
+          "path": "actual_24h_state_visible",
+          "operation": "truthy"
+        },
+        {
+          "path": "observer_reinstruction_required",
+          "operation": "equals",
+          "expected": 0
+        },
+        {
+          "path": "readback_pass",
+          "operation": "truthy"
+        }
       ]
     },
     {
       "id": "OFF_DEVICE_RUNTIME_CONTINUITY",
-      "requirement_ids": [76],
+      "requirement_ids": [
+        76
+      ],
       "proof": "FOUR_HOSTED_RUNS_PERSISTED_QUEUE_AND_STATE_WITH_ZERO_USER_DEVICE_DEPENDENCY",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_OFF_DEVICE_RUNTIME_CONTINUITY.json",
       "rules": [
-        {"path": "runtime", "operation": "equals", "expected": "GITHUB_ACTIONS_HOSTED"},
-        {"path": "successful_run_count", "operation": "minimum_number", "expected": 4},
-        {"path": "work_dependency", "operation": "equals", "expected": 0},
-        {"path": "codex_dependency", "operation": "equals", "expected": 0},
-        {"path": "user_device_dependency", "operation": "equals", "expected": 0},
-        {"path": "queue_persisted", "operation": "truthy"},
-        {"path": "state_persisted", "operation": "truthy"},
-        {"path": "scheduled_next_cycle", "operation": "truthy"},
-        {"path": "actual_24h_elapsed_validation", "operation": "equals", "expected": "PENDING_NATURAL_TIME"},
-        {"path": "remote_readback", "operation": "equals", "expected": "PASS"}
+        {
+          "path": "runtime",
+          "operation": "equals",
+          "expected": "GITHUB_ACTIONS_HOSTED"
+        },
+        {
+          "path": "successful_run_count",
+          "operation": "minimum_number",
+          "expected": 4
+        },
+        {
+          "path": "work_dependency",
+          "operation": "equals",
+          "expected": 0
+        },
+        {
+          "path": "codex_dependency",
+          "operation": "equals",
+          "expected": 0
+        },
+        {
+          "path": "user_device_dependency",
+          "operation": "equals",
+          "expected": 0
+        },
+        {
+          "path": "queue_persisted",
+          "operation": "truthy"
+        },
+        {
+          "path": "state_persisted",
+          "operation": "truthy"
+        },
+        {
+          "path": "scheduled_next_cycle",
+          "operation": "truthy"
+        },
+        {
+          "path": "actual_24h_elapsed_validation",
+          "operation": "equals",
+          "expected": "PENDING_NATURAL_TIME"
+        },
+        {
+          "path": "remote_readback",
+          "operation": "equals",
+          "expected": "PASS"
+        }
       ]
     },
     {
       "id": "ACTUAL_WIC_CUSTOMER_E2E",
-      "requirement_ids": [38],
+      "requirement_ids": [
+        38
+      ],
       "proof": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD_COMPLETED_CROSS_TOOL_EXECUTION_WITH_OUTPUT_AND_FAILURE_RECOVERY_EVIDENCE",
       "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
       "rules": [
-        {"path": "input.class", "operation": "equals", "expected": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD"},
-        {"path": "positive.status", "operation": "equals", "expected": "PASS"},
-        {"path": "negative.status", "operation": "equals", "expected": "PASS"},
-        {"path": "failure.status", "operation": "equals", "expected": "PASS"},
-        {"path": "retry_recovery_rollback.status", "operation": "equals", "expected": "PASS"},
-        {"path": "business_output.status", "operation": "equals", "expected": "PASS"},
-        {"path": "observer_surface.status", "operation": "equals", "expected": "PASS"},
-        {"path": "overall", "operation": "equals", "expected": "PASS_INTERNAL_PENDING_EXTERNAL"}
+        {
+          "path": "input.class",
+          "operation": "equals",
+          "expected": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD"
+        },
+        {
+          "path": "positive.status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "negative.status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "failure.status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "retry_recovery_rollback.status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "business_output.status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "observer_surface.status",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "overall",
+          "operation": "equals",
+          "expected": "PASS_INTERNAL_PENDING_EXTERNAL"
+        }
       ]
     },
     {
       "id": "CHAT_FACTORY_SHARED_ROOT_ENFORCEMENT",
-      "requirement_ids": [7, 13, 31, 42, 70],
+      "requirement_ids": [
+        7,
+        13,
+        31,
+        42,
+        70
+      ],
       "proof": "ONE_INPUT_READY_MADE_FACTORY_OUTPUT_BLOCK_AND_ZERO_REPETITION_TARGETED_EXECUTION",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_FACTORY_SHARED_ROOT_20261006.json",
       "rules": [
-        {"path": "chat_to_handoff", "operation": "equals", "expected": "PASS"},
-        {"path": "ready_made_first", "operation": "equals", "expected": "PASS"},
-        {"path": "candidate_comparison", "operation": "equals", "expected": "PASS"},
-        {"path": "execution_under_60_seconds", "operation": "truthy"},
-        {"path": "factory_actual_execution", "operation": "equals", "expected": "PASS"},
-        {"path": "output_rule_enforcement", "operation": "equals", "expected": "PASS"},
-        {"path": "south_korea_negative", "operation": "equals", "expected": "PASS"},
-        {"path": "zero_repetition", "operation": "equals", "expected": "PASS"},
-        {"path": "user_manual_repetition", "operation": "equals", "expected": 0}
+        {
+          "path": "chat_to_handoff",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "ready_made_first",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "candidate_comparison",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "execution_under_60_seconds",
+          "operation": "truthy"
+        },
+        {
+          "path": "factory_actual_execution",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "output_rule_enforcement",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "south_korea_negative",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "zero_repetition",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        {
+          "path": "user_manual_repetition",
+          "operation": "equals",
+          "expected": 0
+        }
       ]
     },
     {
       "id": "FINAL_INTERNAL_EXECUTABLE_CLOSURE",
-      "requirement_ids": [68, 69],
+      "requirement_ids": [
+        68,
+        69
+      ],
       "proof": "ALL_OTHER_ACTIVE_REQUIREMENTS_ARE_PASS_LOCKED_OR_EXPLICIT_EXTERNAL_NATURAL_TIME_HOLDS",
       "evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_EXTERNAL_HOLD_CLASSIFICATION_20261006.json",
       "rules": [
-        {"path": "remaining_executable_zero", "operation": "truthy"},
-        {"path": "no_unverified_active_except_self_closure", "operation": "truthy"},
-        {"path": "unexplained_omission", "operation": "equals", "expected": 0}
+        {
+          "path": "remaining_executable_zero",
+          "operation": "truthy"
+        },
+        {
+          "path": "no_unverified_active_except_self_closure",
+          "operation": "truthy"
+        },
+        {
+          "path": "unexplained_omission",
+          "operation": "equals",
+          "expected": 0
+        }
       ]
+    }
+  ],
+  "demand_bindings": [
+    {
+      "demand_id": "WIC-BACKLOG-ENV2-20260927",
+      "contract_id": "MULTI_ENVIRONMENT_FAILOVER",
+      "status": "PASS_LOCKED",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json"
     }
   ]
 }
