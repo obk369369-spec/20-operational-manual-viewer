@@ -1,0 +1,38 @@
+{
+  "schema": "wic.common-platform.incomplete-reconciliation.v1",
+  "root": "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
+  "raw_a_item_count": 11,
+  "compressed_root_count": 1,
+  "root_compression_ratio": "11:1",
+  "requirements_per_root": 11,
+  "closed": [
+    "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
+    "WIC-BACKLOG-CONTROL-TOWER-20260927",
+    "WIC-BACKLOG-GITHUB-REMOTE-20260927",
+    "WIC-BACKLOG-FINAL-CONNECTION-20260927",
+    "WIC-ALL-RESIDUAL-AUTOCIRCULATION-20260928",
+    "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
+    "WIC-CIRCULATION-FINAL-CLOSEOUT-20260929",
+    "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
+    "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
+  ],
+  "actual_closure_delta": 11,
+  "requirement_closure_delta": 11,
+  "new_valid_evidence_delta": 1,
+  "pass_lock_delta": 11,
+  "positive": "PASS",
+  "negative_failure_injection": "PASS",
+  "regression": "PASS",
+  "recovery": "PASS",
+  "rollback": "PASS",
+  "source_evidence": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007.json",
+  "deferred": [
+    "DEFERRED_FILE_DISCOVERY_SCOPE",
+    "DEFERRED_HISTORICAL_CHAT_AUDIT_SCOPE",
+    "PENDING_NATURAL_TIME"
+  ],
+  "overall": "PASS",
+  "work_start_token_id": "135cdf5c62c7559696a60af48187c2cf"
+}
