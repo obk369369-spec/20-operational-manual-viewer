@@ -1,0 +1,37 @@
+{
+  "schema": "wic.fi.minimal.incremental.resume.v1",
+  "created_at": "2026-10-07T11:28:13.405782+00:00",
+  "work_start_token": {
+    "token_id": "b9899fb711b2e1c985e3b9e8828a5d83",
+    "work_id": "WIC-F-I-MINIMAL-INCREMENTAL-20261007",
+    "git_sha": "de76f1cdf4faca463c5358b8fe14a571eacc9f6b",
+    "scope_match": true
+  },
+  "full_metadata_inventory_restarted": false,
+  "previously_processed": 3200,
+  "reprocessed_from_3200": 0,
+  "F": {
+    "saved_partial_rows": 100000,
+    "confirmed_candidates_in_saved_scope": 0,
+    "unscanned_remainder": "UNKNOWN",
+    "status": "HOLD_PARTIAL_SAVED_INVENTORY"
+  },
+  "I": {
+    "prior_inventory_asset_count": 262,
+    "prior_classification": {
+      "HOLD": 245,
+      "DISCARD_CANDIDATE": 17,
+      "MIGRATE": 0,
+      "KEEP": 0
+    },
+    "new_detailed_candidate_manifest_available": false,
+    "status": "HOLD_EXISTING_DETAIL_NOT_AVAILABLE"
+  },
+  "confirmed_new_candidates": 0,
+  "new_increment_unprocessed": "UNKNOWN",
+  "pending_external_storage": [
+    "OFFICE_PC_STORAGE"
+  ],
+  "completion": "HOLD",
+  "next_start": "reuse a newly available existing F/I detailed checkpoint only; do not rebuild whole inventory"
+}
