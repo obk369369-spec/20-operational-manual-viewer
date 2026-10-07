@@ -1,19 +1,21 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261007-ENV2-COST1-CLOSED",
-  "parent_checkpoint_id": "WIC-CP-20261007-PLATFORM-REMAINDER-NO-A",
-  "parent_git_sha": "56d98b7da3e85cb0911f385f75a3f9d67627dfd6",
+  "checkpoint_id": "WIC-CP-20261007-EXECUTION-CONTRACT-COST2-CLOSED",
+  "parent_checkpoint_id": "WIC-CP-20261007-ENV2-COST1-CLOSED",
+  "parent_git_sha": "b567946a42004d5ac97144422feed5c560b311d5",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
-    "MULTI_ENVIRONMENT_FAILOVER"
+    "MULTI_ENVIRONMENT_FAILOVER",
+    "EXECUTION_CONTRACT_AND_EXACTLY_ONCE"
   ],
-  "completed_requirement_ids_count": 12,
-  "pass_lock_ids_count": 12,
+  "completed_requirement_ids_count": 21,
+  "pass_lock_ids_count": 21,
   "evidence": [
     "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007.json",
     "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_INCOMPLETE_RECONCILIATION_20261007.json",
-    "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json"
+    "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_EXECUTION_CONTRACT_EXACTLY_ONCE_20261007.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -38,20 +40,20 @@
   },
   "selected_verification_round": {
     "needs_new_verification_before": 39,
-    "needs_new_verification_after": 38,
+    "needs_new_verification_after": 29,
     "raw_requirement_count": 39,
     "compressed_root_count": 7,
     "root_compression_ratio": "39:7",
-    "completed_root_ids": ["MULTI_ENVIRONMENT_FAILOVER"],
-    "closed_requirement_ids": ["WIC-BACKLOG-ENV2-20260927"],
-    "pass_lock_ids": ["WIC-BACKLOG-ENV2-20260927"],
-    "actual_closure_delta": 1,
-    "requirement_closure_delta": 1,
-    "pass_lock_delta": 1,
-    "new_valid_evidence_delta": 1,
+    "completed_root_ids": ["MULTI_ENVIRONMENT_FAILOVER", "EXECUTION_CONTRACT_AND_EXACTLY_ONCE"],
+    "closed_requirement_ids": ["WIC-BACKLOG-ENV2-20260927", "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927", "FINAL-37-CR-EVIDENCE-VALIDATION", "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE", "FINAL-39-CR-EVIDENCE-VALIDATION", "FINAL-39-CR-EXECUTABLE-CONTRACT", "FINAL-39-CR-EXACTLY-ONCE", "FINAL-42-CR-EVIDENCE-VALIDATION", "FINAL-42-CR-EXECUTABLE-CONTRACT", "FINAL-42-CR-EXACTLY-ONCE"],
+    "pass_lock_ids": ["WIC-BACKLOG-ENV2-20260927", "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927", "FINAL-37-CR-EVIDENCE-VALIDATION", "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE", "FINAL-39-CR-EVIDENCE-VALIDATION", "FINAL-39-CR-EXECUTABLE-CONTRACT", "FINAL-39-CR-EXACTLY-ONCE", "FINAL-42-CR-EVIDENCE-VALIDATION", "FINAL-42-CR-EXECUTABLE-CONTRACT", "FINAL-42-CR-EXACTLY-ONCE"],
+    "actual_closure_delta": 10,
+    "requirement_closure_delta": 10,
+    "pass_lock_delta": 10,
+    "new_valid_evidence_delta": 2,
     "hold_roots": ["COST3_LARGE_SHARED_PLATFORM", "COST4_TOOL_OR_SOURCE_SCOPE"],
     "deferred_roots": ["DEFERRED_TOOL_SCOPE", "DEFERRED_FILE_DISCOVERY_SCOPE", "DEFERRED_HISTORICAL_CHAT_AUDIT_SCOPE"],
-    "next_root_id": "EXECUTION_CONTRACT_AND_EXACTLY_ONCE",
+    "next_root_id": "LARGE_SHARED_PLATFORM_OR_TOOL_SCOPE",
     "absolute_no_research_scope": ["COMPLETED_PASS", "3200_D_F_I_USB", "HISTORICAL_CHAT", "PENDING_EXTERNAL", "PENDING_NATURAL_TIME"]
   },
   "selection_basis": "parent checkpoint round2_selection; no repeated classification",
@@ -74,6 +76,6 @@
     "F_PARTIAL_100000",
     "USB_LEDGER_262"
   ],
-  "next_resume_position": "COST2_EXECUTION_CONTRACT_AND_EXACTLY_ONCE_TARGETED_VALIDATION",
+  "next_resume_position": "STOP_LOW_COST_ROOTS_EXHAUSTED_DEFER_COST3_4",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

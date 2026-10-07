@@ -1,0 +1,66 @@
+{
+  "actual_input": [
+    {
+      "trace_id": "TARGET-37",
+      "root_id": "FINAL-37",
+      "input": {
+        "actual": "wic-37"
+      },
+      "expected_output": "ACCEPTED"
+    },
+    {
+      "trace_id": "TARGET-39",
+      "root_id": "FINAL-39",
+      "input": {
+        "actual": "wic-39"
+      },
+      "expected_output": "ACCEPTED"
+    },
+    {
+      "trace_id": "TARGET-42",
+      "root_id": "FINAL-42",
+      "input": {
+        "actual": "wic-42"
+      },
+      "expected_output": "ACCEPTED"
+    }
+  ],
+  "expected": {
+    "unique": "ACCEPTED",
+    "duplicate": "BLOCKED",
+    "incomplete": "BLOCKED",
+    "missing_component": "HOLD",
+    "recovery": "ACCEPTED"
+  },
+  "positive": "PASS",
+  "negative_failure_injection": "PASS",
+  "parallel_no_conflict": "PASS",
+  "regression": "PASS",
+  "recovery": "PASS",
+  "rollback": "PASS",
+  "hard_gate": "PASS",
+  "processed_trace_ids": [
+    "TARGET-37",
+    "TARGET-39",
+    "TARGET-42"
+  ],
+  "schema": "wic.execution-contract.targeted-closure.v1",
+  "root_id": "EXECUTION_CONTRACT_AND_EXACTLY_ONCE",
+  "closed_requirement_ids": [
+    "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
+    "FINAL-37-CR-EVIDENCE-VALIDATION",
+    "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+    "FINAL-39-CR-EVIDENCE-VALIDATION",
+    "FINAL-39-CR-EXECUTABLE-CONTRACT",
+    "FINAL-39-CR-EXACTLY-ONCE",
+    "FINAL-42-CR-EVIDENCE-VALIDATION",
+    "FINAL-42-CR-EXECUTABLE-CONTRACT",
+    "FINAL-42-CR-EXACTLY-ONCE"
+  ],
+  "actual_closure_delta": 9,
+  "requirement_closure_delta": 9,
+  "pass_lock_delta": 9,
+  "new_valid_evidence_delta": 1,
+  "overall": "PASS",
+  "work_start_token_id": "ac60f46df9efb96372641ceb4570532f"
+}
