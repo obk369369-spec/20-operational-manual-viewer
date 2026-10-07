@@ -1,9 +1,11 @@
 {
-  "schema": "wic.common-platform.allowed-scope.final.v1",
-  "run_id": "LOCAL-FINAL-ALLOWED-SCOPE-20261007",
+  "schema": "wic.common-platform.allowed-scope.final.v2",
+  "remote_run_id": 37621099472,
+  "deployed_code_sha": "5389c74af53e410042d4a5213e44b446b8328edf",
+  "remote_state_sha": "bc116a9be85392ed008dd04e583ed4519cc4aa73",
   "actual_input": {
     "status": "ACCEPTED",
-    "trace_id": "FINAL-ALLOWED-SCOPE-INPUT-20261007",
+    "trace_id": "REMOTE-37621099472",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -27,14 +29,14 @@
   "user_manual_repetition_allowed_scope": 0,
   "remaining_executable_allowed_scope": 0,
   "unexplained_omission_allowed_scope": 0,
-  "four_way_local_consistency": "PASS",
-  "remote_canonical_readback": "PENDING_REMOTE_CLOSE",
+  "runtime_evidence_observer_remote_consistency": "PASS",
+  "remote_canonical_readback": "PASS",
   "deferred_scopes": [
     "DEFERRED_TOOL_SCOPE",
     "DEFERRED_FILE_DISCOVERY_SCOPE",
     "DEFERRED_HISTORICAL_CHAT_AUDIT_SCOPE"
   ],
   "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
-  "overall": "PASS_LOCAL_PENDING_REMOTE",
-  "token_id": "5f342ae5ce627f06812348295e7511ca"
+  "overall": "PASS_ALLOWED_SCOPE",
+  "token_id": "ac54528e230f20c5dab708bbe8c983f1"
 }
