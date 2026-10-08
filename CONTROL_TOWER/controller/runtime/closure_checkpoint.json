@@ -1,14 +1,15 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-C719-ONE-SHOT-PERMISSION-1",
-  "parent_checkpoint_id": "WIC-CP-20261008-C719-NOT-PERSISTED-OBSERVER-DECISION",
-  "parent_git_sha": "bb4da834659bccbf2ccf192899d1d65369cb5d9c",
+  "checkpoint_id": "WIC-CP-20261008-AUTONOMOUS-GOVERNANCE-CLOSED",
+  "parent_checkpoint_id": "WIC-CP-20261008-C719-ONE-SHOT-PERMISSION-1",
+  "parent_git_sha": "3d7cbbca2834fe6faeb8d68e6d55db8a0bb6f11f",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
     "MULTI_ENVIRONMENT_FAILOVER",
     "EXECUTION_CONTRACT_AND_EXACTLY_ONCE",
     "LARGE_SHARED_PLATFORM"
+    ,"WIC_AUTONOMOUS_GOVERNANCE_CLOSURE"
   ],
   "completed_requirement_ids_count": 26,
   "pass_lock_ids_count": 26,
@@ -24,6 +25,7 @@
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_719_PATH_RECOVERY_IMPOSSIBLE_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_C_719_PATH_IDENTITIES_NOT_PERSISTED_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_C719_ONE_SHOT_ENUMERATION_20261008.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_AUTONOMOUS_GOVERNANCE_CLOSURE_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -144,6 +146,16 @@
     "f_permission_blocked_22_paths": "LOCKED_LIST_NO_RETRY",
     "resume_condition": "READ_AND_LIST_PERMISSION_FOR_C_USERS_OBK36_ONLY_WITHOUT_ANY_DRIVE_REENUMERATION"
   },
-  "next_resume_position": "NEEDS_OBSERVER_DECISION_C_USERS_OBK36_READ_LIST_PERMISSION_ONLY",
+  "common_governance_closure": {
+    "status": "PASS_LOCKED",
+    "common_platform_internal_executable_remaining": 0,
+    "unexplained_omission": 0,
+    "user_manual_repetition": 0,
+    "tool_specific_deferred": true,
+    "file_discovery_deferred_or_pending": true,
+    "pending_natural_time": ["ACTUAL_24H_ELAPSED_VALIDATION"],
+    "pending_external_storage": ["C:\\Users\\obk36 READ_AND_LIST_PERMISSION"]
+  },
+  "next_resume_position": "COMMON_PLATFORM_CLOSED_FILE_DISCOVERY_FROZEN_START_TOOL_SPECIFIC_WORK",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

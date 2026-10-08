@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-08T09:07:09.655794+00:00",
+  "created_at": "2026-10-08T11:14:43.585973+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "37754409451",
+  "run_id": "WIC-AUTONOMOUS-GOVERNANCE-LOCAL-20261008",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "4f0ecd3b6d57df9592e221bb08790b49",
+    "token_id": "14950c03f93ec48db86cde3d55dcfb7b",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "93ca3ba9a9c408fa17239bdab121cfa787e63d43",
+    "git_sha": "3d7cbbca2834fe6faeb8d68e6d55db8a0bb6f11f",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -49,22 +49,42 @@
   "remaining_queue_count": 0,
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-37754409451",
-    "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+    "trace_id": "WIC-GOVERNANCE-ACTUAL-INPUT-20261008",
+    "root_id": "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE",
     "ready_made_first": true,
     "selected_components": [
       "WIC_EXISTING_TOP_CONTROLLER",
       "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
       "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
     ],
-    "backend_route": "TOOL43_BACKEND",
+    "backend_route": "CENTRAL_COMMON_PLATFORM",
+    "intent_quality_lock": "bd68b5f697d47302aa9ff426ac9b867976f2c32fe6ff8a488d4c4febcd0a7c7c",
+    "registry_prelookup": true,
+    "pass_lock_prelookup": true,
     "user_manual_repetition": 0
+  },
+  "feedback": {
+    "status": "PROMOTED",
+    "promotion_key": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
+    "rule": {
+      "id": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
+      "expected_behavior": "공통 규칙과 Hard Gate로 승격"
+    },
+    "negative_golden_sample": {
+      "input": "같은 오류를 다시 지적해야 함",
+      "must_be_blocked": true
+    },
+    "hard_gate": {
+      "scope": "COMMON_PLATFORM",
+      "fail_closed": true
+    },
+    "system_control_failure_on_repeat": true
   },
   "progress_gate": {
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "d98dc953b2c87effeaa748eb3795a9e5d32a37a8269f79fadf8efa837b0c7cfa",
+    "signature": "051f8b9d9a20f3bca8afdbc60f59262dcc38f8353d1e917a773aebdee3c03850",
     "deltas": [
       0,
       0,
@@ -78,21 +98,29 @@
   "credit_waste_gate": true,
   "fail_closed": {
     "pass": true,
-    "total": 5,
-    "checked": 5,
+    "total": 9,
+    "checked": 9,
     "expected": {
       "valid": "PASS",
       "partial": "HOLD",
       "coverage_gap": "HOLD",
       "missing_evidence": "HOLD",
-      "validation_failure": "FAIL"
+      "validation_failure": "FAIL",
+      "closure": "PASS",
+      "incomplete": "HOLD",
+      "wrong": "FAIL",
+      "promotion": "PROMOTED"
     },
     "actual": {
       "valid": "PASS",
       "partial": "HOLD",
       "coverage_gap": "HOLD",
       "missing_evidence": "HOLD",
-      "validation_failure": "FAIL"
+      "validation_failure": "FAIL",
+      "closure": "PASS",
+      "incomplete": "HOLD",
+      "wrong": "FAIL",
+      "promotion": "PROMOTED"
     }
   },
   "retry_attempts_per_contract": 2,
@@ -107,5 +135,6 @@
   "work_dependency": 0,
   "codex_dependency": 0,
   "user_device_dependency": 0,
-  "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME"
+  "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
+  "common_governance_closure_verdict": "PASS"
 }

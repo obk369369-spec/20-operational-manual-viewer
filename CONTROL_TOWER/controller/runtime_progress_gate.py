@@ -54,6 +54,9 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
         return {"status": "BLOCKED", "reason": "HANDOFF_CONTRACT_INCOMPLETE"}
     trace_id = str(envelope["trace_id"])
     traces = state.setdefault("handoff_traces", {})
+    pass_locked_roots = set(state.get("pass_locked_roots", []))
+    if str(envelope["root_id"]) in pass_locked_roots:
+        return {"status": "BLOCKED", "reason": "PASS_LOCKED_SCOPE", "trace_id": trace_id}
     if trace_id in traces:
         return {"status": "BLOCKED", "reason": "DUPLICATE_TRACE", "trace_id": trace_id}
     receipt_gate = evaluate(gate, {"root_id": envelope["root_id"],
@@ -65,9 +68,29 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
     selected = [item["id"] for item in registry.get("components", []) if item.get("status") == "VERIFIED_REUSE"]
     if not selected:
         return {"status": "HOLD", "reason": "NO_VERIFIED_COMPONENT", "trace_id": trace_id}
+    intent_lock = hashlib.sha256(json.dumps({"input": envelope["input"],
+        "expected_output": envelope["expected_output"]}, sort_keys=True,
+        ensure_ascii=False).encode()).hexdigest()
     receipt = {"status": "ACCEPTED", "trace_id": trace_id, "root_id": envelope["root_id"],
                "ready_made_first": True, "selected_components": selected,
-               "backend_route": "TOOL43_BACKEND", "user_manual_repetition": 0}
+               "backend_route": "CENTRAL_COMMON_PLATFORM", "intent_quality_lock": intent_lock,
+               "registry_prelookup": True, "pass_lock_prelookup": True,
+               "user_manual_repetition": 0}
     traces[trace_id] = receipt
     queue.setdefault("handoff_inbox", []).append(receipt)
     return receipt
+
+
+def accept_feedback(state: dict[str, Any], feedback: dict[str, Any]) -> dict[str, Any]:
+    """Persist one correction as a shared failure-class rule, never a local-only patch."""
+    from universal_enforcement import promote_failure
+    promoted = promote_failure(feedback)
+    if promoted["status"] != "PROMOTED":
+        return promoted
+    rules = state.setdefault("shared_failure_rules", {})
+    key = promoted["promotion_key"]
+    if key in rules:
+        rules[key]["repeat_count"] = int(rules[key].get("repeat_count", 1)) + 1
+        return {**promoted, "status": "SYSTEM_CONTROL_FAILURE", "repeat_count": rules[key]["repeat_count"]}
+    rules[key] = {**promoted, "repeat_count": 1}
+    return promoted

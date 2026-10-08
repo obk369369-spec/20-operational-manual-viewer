@@ -1,21 +1,24 @@
 {
   "schema": "wic.top_controller.queue.v1",
-  "updated_at": "2026-10-08T09:07:09.653109+00:00",
+  "updated_at": "2026-10-08T11:14:43.308819+00:00",
   "queued_requirement_ids": [],
   "deduplicated": true,
   "claim_lease": null,
   "handoff_inbox": [
     {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-37754409451",
-      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+      "trace_id": "WIC-GOVERNANCE-ACTUAL-INPUT-20261008",
+      "root_id": "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE",
       "ready_made_first": true,
       "selected_components": [
         "WIC_EXISTING_TOP_CONTROLLER",
         "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
         "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
       ],
-      "backend_route": "TOOL43_BACKEND",
+      "backend_route": "CENTRAL_COMMON_PLATFORM",
+      "intent_quality_lock": "bd68b5f697d47302aa9ff426ac9b867976f2c32fe6ff8a488d4c4febcd0a7c7c",
+      "registry_prelookup": true,
+      "pass_lock_prelookup": true,
       "user_manual_repetition": 0
     }
   ]

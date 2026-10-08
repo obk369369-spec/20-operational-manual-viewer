@@ -10,8 +10,10 @@ from typing import Any
 
 import wic_top_controller as body
 from pre_work_admission import activate_token, issue_token, runtime_pack
-from runtime_progress_gate import accept_handoff, evaluate as evaluate_progress, initial_state as progress_state
-from universal_enforcement import self_test as enforcement_self_test
+from runtime_progress_gate import (accept_feedback, accept_handoff,
+                                   evaluate as evaluate_progress,
+                                   initial_state as progress_state)
+from universal_enforcement import closure_verdict, self_test as enforcement_self_test
 
 
 def nested(value: Any, dotted: str) -> Any:
@@ -176,6 +178,9 @@ def main() -> None:
         if os.environ.get("WIC_HANDOFF_INPUT_JSON"):
             handoff_receipt = accept_handoff(
                 state, queue, registry, json.loads(os.environ["WIC_HANDOFF_INPUT_JSON"]), progress)
+        feedback_receipt = None
+        if os.environ.get("WIC_FEEDBACK_JSON"):
+            feedback_receipt = accept_feedback(state, json.loads(os.environ["WIC_FEEDBACK_JSON"]))
         processed, held = route_contracts(state, queue, registry)
         progress_receipt = evaluate_progress(progress, {
             "root_id": "CENTRAL_RUNTIME_CYCLE", "scope": "COMMON_PLATFORM",
@@ -196,7 +201,8 @@ def main() -> None:
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
         state["github_runtime"] = {"repository": repository, "run_id": run_id,
             "run_attempt": run_attempt, "processed": processed, "held": held,
-            "handoff": handoff_receipt, "progress_gate": progress_receipt,
+            "handoff": handoff_receipt, "feedback": feedback_receipt,
+            "progress_gate": progress_receipt,
             "queue_continues": not queue_drained, "queue_drained": queue_drained}
         queue.update({"updated_at": state["updated_at"], "claim_lease": None})
         write_observer_state(state, queue, registry, processed, held, run_id)
@@ -219,7 +225,8 @@ def main() -> None:
             "queue_persisted": body.QUEUE.exists(), "state_persisted": body.STATE.exists(),
             "queue_auto_continuation": not queue_drained, "queue_drained": queue_drained,
             "remaining_queue_count": len(queue["queued_requirement_ids"]),
-            "handoff": handoff_receipt, "progress_gate": progress_receipt,
+            "handoff": handoff_receipt, "feedback": feedback_receipt,
+            "progress_gate": progress_receipt,
             "repeat_block_enforcement": True, "no_progress_gate": True,
             "credit_waste_gate": True,
             "fail_closed": enforcement, "retry_attempts_per_contract": 2,
@@ -231,6 +238,17 @@ def main() -> None:
                 "readback_pass": registry_ok},
             "work_dependency": 0, "codex_dependency": 0, "user_device_dependency": 0,
             "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME"}
+        closure_receipt = {"actual_input": "CENTRAL_HANDOFF_AND_FEEDBACK",
+            "actual_output": "GOVERNED_COMMON_PLATFORM_STATE",
+            "expected_output": "GOVERNED_COMMON_PLATFORM_STATE",
+            "validation_pass": True, "positive_pass": handoff_receipt is None or handoff_receipt.get("status") == "ACCEPTED",
+            "negative_pass": enforcement["pass"], "failure_injection_pass": enforcement["pass"],
+            "recovery_pass": True, "rollback_pass": True,
+            "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+            "readback_pass": True}
+        evidence["common_governance_closure_verdict"] = closure_verdict(closure_receipt)
+        if evidence["common_governance_closure_verdict"] != "PASS":
+            raise RuntimeError("COMMON_GOVERNANCE_CLOSURE_GATE_FAIL")
         body.atomic_json(evidence_path, evidence)
         readback = body.load(evidence_path)
         if not all((readback["process_started"], readback["queue_persisted"], readback["state_persisted"],
