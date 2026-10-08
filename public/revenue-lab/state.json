@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "run_id": "WIC24H-20261007T071852Z",
-  "started_at": "2026-10-07T07:18:52.238955Z",
-  "finished_at": "2026-10-07T07:19:29.506346Z",
+  "run_id": "WIC24H-20261008T073012Z",
+  "started_at": "2026-10-08T07:30:12.358109Z",
+  "finished_at": "2026-10-08T07:30:45.258074Z",
   "operating_root": "WIC-AUTONOMOUS-ONE-PERSON-BUSINESS",
   "scheduler": "GitHub Actions daily + Node-RED/Kestra health link",
   "tool_inventory_count": 15,
@@ -117,15 +117,15 @@
     "query": "workflow automation archived:false",
     "pages_read": 10,
     "candidates_found": 1000,
-    "qualified": 668,
-    "rejected": 332,
+    "qualified": 669,
+    "rejected": 331,
     "stop_reason": "SOURCE_EXHAUSTED",
     "candidates": [
       {
         "name": "n8n-io/n8n",
         "source": "https://github.com/n8n-io/n8n",
         "license": "NOASSERTION",
-        "stars": 206786,
+        "stars": 206857,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -133,7 +133,7 @@
         "name": "langgenius/dify",
         "source": "https://github.com/langgenius/dify",
         "license": "NOASSERTION",
-        "stars": 157986,
+        "stars": 158070,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -141,7 +141,7 @@
         "name": "ComposioHQ/awesome-claude-skills",
         "source": "https://github.com/ComposioHQ/awesome-claude-skills",
         "license": "NOT_PUBLISHED",
-        "stars": 76624,
+        "stars": 76689,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -149,7 +149,7 @@
         "name": "HKUDS/nanobot",
         "source": "https://github.com/HKUDS/nanobot",
         "license": "MIT",
-        "stars": 48831,
+        "stars": 48854,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -157,7 +157,7 @@
         "name": "apache/airflow",
         "source": "https://github.com/apache/airflow",
         "license": "Apache-2.0",
-        "stars": 47076,
+        "stars": 47105,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -165,7 +165,7 @@
         "name": "simstudioai/sim",
         "source": "https://github.com/simstudioai/sim",
         "license": "Apache-2.0",
-        "stars": 29785,
+        "stars": 29792,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -173,7 +173,7 @@
         "name": "kestra-io/kestra",
         "source": "https://github.com/kestra-io/kestra",
         "license": "Apache-2.0",
-        "stars": 29327,
+        "stars": 29385,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -181,7 +181,7 @@
         "name": "enescingoz/awesome-n8n-templates",
         "source": "https://github.com/enescingoz/awesome-n8n-templates",
         "license": "NOASSERTION",
-        "stars": 25777,
+        "stars": 25794,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -189,7 +189,7 @@
         "name": "activepieces/activepieces",
         "source": "https://github.com/activepieces/activepieces",
         "license": "NOASSERTION",
-        "stars": 24929,
+        "stars": 24944,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -197,7 +197,7 @@
         "name": "PrefectHQ/prefect",
         "source": "https://github.com/PrefectHQ/prefect",
         "license": "Apache-2.0",
-        "stars": 23982,
+        "stars": 23989,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -205,7 +205,7 @@
         "name": "Skyvern-AI/skyvern",
         "source": "https://github.com/Skyvern-AI/skyvern",
         "license": "AGPL-3.0",
-        "stars": 23146,
+        "stars": 23154,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -221,7 +221,7 @@
         "name": "Avaiga/taipy",
         "source": "https://github.com/Avaiga/taipy",
         "license": "Apache-2.0",
-        "stars": 19440,
+        "stars": 19438,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -229,7 +229,7 @@
         "name": "triggerdotdev/trigger.dev",
         "source": "https://github.com/triggerdotdev/trigger.dev",
         "license": "Apache-2.0",
-        "stars": 16489,
+        "stars": 16498,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -237,15 +237,7 @@
         "name": "waooAI/waoowaoo",
         "source": "https://github.com/waooAI/waoowaoo",
         "license": "NOASSERTION",
-        "stars": 14375,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "automatisch/automatisch",
-        "source": "https://github.com/automatisch/automatisch",
-        "license": "NOASSERTION",
-        "stars": 13992,
+        "stars": 14420,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -253,9 +245,17 @@
         "name": "nanobrowser/nanobrowser",
         "source": "https://github.com/nanobrowser/nanobrowser",
         "license": "Apache-2.0",
-        "stars": 13986,
+        "stars": 13998,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "automatisch/automatisch",
+        "source": "https://github.com/automatisch/automatisch",
+        "license": "NOASSERTION",
+        "stars": 13994,
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "PipedreamHQ/pipedream",
@@ -269,7 +269,7 @@
         "name": "google/artemis",
         "source": "https://github.com/google/artemis",
         "license": "Apache-2.0",
-        "stars": 11069,
+        "stars": 11129,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -277,7 +277,7 @@
         "name": "bytedance/flowgram.ai",
         "source": "https://github.com/bytedance/flowgram.ai",
         "license": "MIT",
-        "stars": 8483,
+        "stars": 8487,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -285,7 +285,7 @@
         "name": "refly-ai/refly",
         "source": "https://github.com/refly-ai/refly",
         "license": "NOASSERTION",
-        "stars": 7532,
+        "stars": 7533,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -293,7 +293,7 @@
         "name": "tradesdontlie/tradingview-mcp",
         "source": "https://github.com/tradesdontlie/tradingview-mcp",
         "license": "NOASSERTION",
-        "stars": 6751,
+        "stars": 6762,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -301,7 +301,7 @@
         "name": "StackStorm/st2",
         "source": "https://github.com/StackStorm/st2",
         "license": "Apache-2.0",
-        "stars": 6543,
+        "stars": 6545,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -309,7 +309,7 @@
         "name": "muesli/beehive",
         "source": "https://github.com/muesli/beehive",
         "license": "AGPL-3.0",
-        "stars": 6489,
+        "stars": 6490,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -317,7 +317,7 @@
         "name": "wassupjay/n8n-free-templates",
         "source": "https://github.com/wassupjay/n8n-free-templates",
         "license": "NOT_PUBLISHED",
-        "stars": 6219,
+        "stars": 6221,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -333,7 +333,7 @@
         "name": "ATH-MaaS/ComfyUI-Copilot",
         "source": "https://github.com/ATH-MaaS/ComfyUI-Copilot",
         "license": "MIT",
-        "stars": 5538,
+        "stars": 5539,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -349,7 +349,7 @@
         "name": "darrenhinde/OpenAgentsControl",
         "source": "https://github.com/darrenhinde/OpenAgentsControl",
         "license": "MIT",
-        "stars": 4891,
+        "stars": 4893,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -357,7 +357,7 @@
         "name": "totec448-spec/chat-on-steroids",
         "source": "https://github.com/totec448-spec/chat-on-steroids",
         "license": "MIT",
-        "stars": 4247,
+        "stars": 4248,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -373,7 +373,7 @@
         "name": "Netflix/maestro",
         "source": "https://github.com/Netflix/maestro",
         "license": "Apache-2.0",
-        "stars": 3841,
+        "stars": 3843,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -389,7 +389,7 @@
         "name": "foryourhealth111-pixel/Vibe-Skills",
         "source": "https://github.com/foryourhealth111-pixel/Vibe-Skills",
         "license": "Apache-2.0",
-        "stars": 3593,
+        "stars": 3606,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -397,7 +397,7 @@
         "name": "AlephAITech/WorkBuddyGuide",
         "source": "https://github.com/AlephAITech/WorkBuddyGuide",
         "license": "MIT",
-        "stars": 3329,
+        "stars": 3343,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -405,7 +405,7 @@
         "name": "Forward-Future/loopy",
         "source": "https://github.com/Forward-Future/loopy",
         "license": "MIT",
-        "stars": 3168,
+        "stars": 3170,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -413,7 +413,7 @@
         "name": "open-rpa/openrpa",
         "source": "https://github.com/open-rpa/openrpa",
         "license": "MPL-2.0",
-        "stars": 3086,
+        "stars": 3088,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -421,7 +421,7 @@
         "name": "peter-evans/create-pull-request",
         "source": "https://github.com/peter-evans/create-pull-request",
         "license": "MIT",
-        "stars": 2853,
+        "stars": 2855,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -437,7 +437,7 @@
         "name": "linsa-io/alfred-workflows",
         "source": "https://github.com/linsa-io/alfred-workflows",
         "license": "NOT_PUBLISHED",
-        "stars": 2777,
+        "stars": 2776,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -445,7 +445,7 @@
         "name": "softaworks/agent-toolkit",
         "source": "https://github.com/softaworks/agent-toolkit",
         "license": "MIT",
-        "stars": 2532,
+        "stars": 2539,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -453,7 +453,7 @@
         "name": "moazbuilds/CodeMachine-CLI",
         "source": "https://github.com/moazbuilds/CodeMachine-CLI",
         "license": "Apache-2.0",
-        "stars": 2511,
+        "stars": 2512,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -461,7 +461,7 @@
         "name": "Pinvou/pinvou-agent",
         "source": "https://github.com/Pinvou/pinvou-agent",
         "license": "MIT",
-        "stars": 2361,
+        "stars": 2380,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -493,7 +493,7 @@
         "name": "BetaStreetOmnis/xhs_ai_publisher",
         "source": "https://github.com/BetaStreetOmnis/xhs_ai_publisher",
         "license": "Apache-2.0",
-        "stars": 2087,
+        "stars": 2086,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -509,7 +509,7 @@
         "name": "zakirkun/guardian-cli",
         "source": "https://github.com/zakirkun/guardian-cli",
         "license": "NOASSERTION",
-        "stars": 1888,
+        "stars": 1890,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -517,7 +517,7 @@
         "name": "n8n-io/n8n-docs",
         "source": "https://github.com/n8n-io/n8n-docs",
         "license": "NOASSERTION",
-        "stars": 1808,
+        "stars": 1810,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -525,7 +525,7 @@
         "name": "Git-Agni/prod-FARM-IOS-Core",
         "source": "https://github.com/Git-Agni/prod-FARM-IOS-Core",
         "license": "Apache-2.0",
-        "stars": 1680,
+        "stars": 1681,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -541,7 +541,7 @@
         "name": "lucaswalter/n8n-ai-automations",
         "source": "https://github.com/lucaswalter/n8n-ai-automations",
         "license": "NOT_PUBLISHED",
-        "stars": 1649,
+        "stars": 1650,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -549,7 +549,7 @@
         "name": "rulego/rulego",
         "source": "https://github.com/rulego/rulego",
         "license": "Apache-2.0",
-        "stars": 1618,
+        "stars": 1620,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -573,7 +573,7 @@
         "name": "TheresAFewConors/Sooty",
         "source": "https://github.com/TheresAFewConors/Sooty",
         "license": "GPL-3.0",
-        "stars": 1490,
+        "stars": 1491,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -589,7 +589,7 @@
         "name": "ovh/utask",
         "source": "https://github.com/ovh/utask",
         "license": "BSD-3-Clause",
-        "stars": 1405,
+        "stars": 1408,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -597,7 +597,7 @@
         "name": "cloudposse/atmos",
         "source": "https://github.com/cloudposse/atmos",
         "license": "Apache-2.0",
-        "stars": 1396,
+        "stars": 1397,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -605,23 +605,23 @@
         "name": "EndBug/add-and-commit",
         "source": "https://github.com/EndBug/add-and-commit",
         "license": "MIT",
-        "stars": 1291,
+        "stars": 1292,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "hexabot-ai/Hexabot",
-        "source": "https://github.com/hexabot-ai/Hexabot",
-        "license": "NOASSERTION",
-        "stars": 1276,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "ChaoMixian/vFlow",
         "source": "https://github.com/ChaoMixian/vFlow",
         "license": "GPL-2.0",
-        "stars": 1276,
+        "stars": 1279,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "hexabot-ai/Hexabot",
+        "source": "https://github.com/hexabot-ai/Hexabot",
+        "license": "NOASSERTION",
+        "stars": 1277,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -629,7 +629,7 @@
         "name": "openclaw/lobster",
         "source": "https://github.com/openclaw/lobster",
         "license": "MIT",
-        "stars": 1269,
+        "stars": 1270,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -637,7 +637,7 @@
         "name": "dariubs/awesome-workflow-automation",
         "source": "https://github.com/dariubs/awesome-workflow-automation",
         "license": "MIT",
-        "stars": 1241,
+        "stars": 1242,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -693,7 +693,7 @@
         "name": "bytechefhq/bytechef",
         "source": "https://github.com/bytechefhq/bytechef",
         "license": "NOASSERTION",
-        "stars": 1014,
+        "stars": 1016,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -709,7 +709,7 @@
         "name": "komal-SkyNET/claude-skill-homeassistant",
         "source": "https://github.com/komal-SkyNET/claude-skill-homeassistant",
         "license": "MIT",
-        "stars": 965,
+        "stars": 966,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -717,7 +717,7 @@
         "name": "JoasASantos/n8n-CyberSecurity-Workflows",
         "source": "https://github.com/JoasASantos/n8n-CyberSecurity-Workflows",
         "license": "MIT",
-        "stars": 961,
+        "stars": 962,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -741,7 +741,15 @@
         "name": "alfredxw/denova",
         "source": "https://github.com/alfredxw/denova",
         "license": "Apache-2.0",
-        "stars": 874,
+        "stars": 880,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "yaojingang/yao-geo-skills",
+        "source": "https://github.com/yaojingang/yao-geo-skills",
+        "license": "MIT",
+        "stars": 868,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -754,18 +762,10 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "yaojingang/yao-geo-skills",
-        "source": "https://github.com/yaojingang/yao-geo-skills",
-        "license": "MIT",
-        "stars": 864,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "sangrokjung/claude-forge",
         "source": "https://github.com/sangrokjung/claude-forge",
         "license": "MIT",
-        "stars": 849,
+        "stars": 850,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -789,7 +789,7 @@
         "name": "tfriedel/claude-office-skills",
         "source": "https://github.com/tfriedel/claude-office-skills",
         "license": "NOT_PUBLISHED",
-        "stars": 834,
+        "stars": 836,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -797,7 +797,7 @@
         "name": "AgriciDaniel/codex-seo",
         "source": "https://github.com/AgriciDaniel/codex-seo",
         "license": "NOASSERTION",
-        "stars": 787,
+        "stars": 792,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -813,9 +813,17 @@
         "name": "figranium/figranium",
         "source": "https://github.com/figranium/figranium",
         "license": "GPL-3.0",
-        "stars": 762,
+        "stars": 764,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "livecontext-ai/livecontext-ce",
+        "source": "https://github.com/livecontext-ai/livecontext-ce",
+        "license": "NOASSERTION",
+        "stars": 764,
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "rackerlabs/scantron",
@@ -826,12 +834,12 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "livecontext-ai/livecontext-ce",
-        "source": "https://github.com/livecontext-ai/livecontext-ce",
-        "license": "NOASSERTION",
-        "stars": 746,
-        "status": "REJECTED",
-        "next_step": "NONE"
+        "name": "zhinkgit/embeddedskills",
+        "source": "https://github.com/zhinkgit/embeddedskills",
+        "license": "MIT",
+        "stars": 733,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "JulietMirambo/Units_of_Measure_Harmonization-intelligence-platform",
@@ -842,18 +850,10 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "zhinkgit/embeddedskills",
-        "source": "https://github.com/zhinkgit/embeddedskills",
-        "license": "MIT",
-        "stars": 731,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "ScrapeGraphAI/scrapecraft",
         "source": "https://github.com/ScrapeGraphAI/scrapecraft",
         "license": "MIT",
-        "stars": 709,
+        "stars": 712,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -893,7 +893,7 @@
         "name": "mario-andreschak/FLUJO",
         "source": "https://github.com/mario-andreschak/FLUJO",
         "license": "MIT",
-        "stars": 656,
+        "stars": 657,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -901,7 +901,7 @@
         "name": "Simprint/simprint",
         "source": "https://github.com/Simprint/simprint",
         "license": "AGPL-3.0",
-        "stars": 640,
+        "stars": 641,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -941,7 +941,7 @@
         "name": "DigneZzZ/remnawave-scripts",
         "source": "https://github.com/DigneZzZ/remnawave-scripts",
         "license": "MIT",
-        "stars": 583,
+        "stars": 584,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -965,7 +965,7 @@
         "name": "oxbshw/Open-Workflow-Library",
         "source": "https://github.com/oxbshw/Open-Workflow-Library",
         "license": "MIT",
-        "stars": 555,
+        "stars": 556,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -989,7 +989,23 @@
         "name": "karanb192/awesome-claude-skills",
         "source": "https://github.com/karanb192/awesome-claude-skills",
         "license": "MIT",
-        "stars": 539,
+        "stars": 541,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "jihe520/social-push",
+        "source": "https://github.com/jihe520/social-push",
+        "license": "NOT_PUBLISHED",
+        "stars": 534,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "opsmill/infrahub",
+        "source": "https://github.com/opsmill/infrahub",
+        "license": "Apache-2.0",
+        "stars": 532,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1000,22 +1016,6 @@
         "stars": 531,
         "status": "REJECTED",
         "next_step": "NONE"
-      },
-      {
-        "name": "jihe520/social-push",
-        "source": "https://github.com/jihe520/social-push",
-        "license": "NOT_PUBLISHED",
-        "stars": 530,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "opsmill/infrahub",
-        "source": "https://github.com/opsmill/infrahub",
-        "license": "Apache-2.0",
-        "stars": 529,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "ritik-prog/n8n-automation-templates-5000",
@@ -1037,7 +1037,7 @@
         "name": "owainlewis/machinist",
         "source": "https://github.com/owainlewis/machinist",
         "license": "MIT",
-        "stars": 489,
+        "stars": 492,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1046,6 +1046,14 @@
         "source": "https://github.com/ksoichiro/awesome-gradle",
         "license": "NOT_PUBLISHED",
         "stars": 486,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "whaleyxbt/patchright-enhanced",
+        "source": "https://github.com/whaleyxbt/patchright-enhanced",
+        "license": "NOT_PUBLISHED",
+        "stars": 484,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1064,14 +1072,6 @@
         "stars": 481,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "whaleyxbt/patchright-enhanced",
-        "source": "https://github.com/whaleyxbt/patchright-enhanced",
-        "license": "NOT_PUBLISHED",
-        "stars": 479,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "builderz-labs/marketing-dashboard",
@@ -1173,7 +1173,7 @@
         "name": "synergycodes/workflowbuilder",
         "source": "https://github.com/synergycodes/workflowbuilder",
         "license": "Apache-2.0",
-        "stars": 390,
+        "stars": 391,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1181,7 +1181,7 @@
         "name": "theNetworkChuck/n8n-claude-code-guide",
         "source": "https://github.com/theNetworkChuck/n8n-claude-code-guide",
         "license": "NOT_PUBLISHED",
-        "stars": 388,
+        "stars": 389,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1282,6 +1282,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "Agenta-AI/awesome-ai-agent-platforms",
+        "source": "https://github.com/Agenta-AI/awesome-ai-agent-platforms",
+        "license": "CC0-1.0",
+        "stars": 341,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "Mergifyio/mergify",
         "source": "https://github.com/Mergifyio/mergify",
         "license": "Apache-2.0",
@@ -1301,14 +1309,6 @@
         "name": "InverseUI/InverseUI-Recorder",
         "source": "https://github.com/InverseUI/InverseUI-Recorder",
         "license": "NOT_PUBLISHED",
-        "stars": 331,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "Agenta-AI/awesome-ai-agent-platforms",
-        "source": "https://github.com/Agenta-AI/awesome-ai-agent-platforms",
-        "license": "CC0-1.0",
         "stars": 331,
         "status": "REJECTED",
         "next_step": "NONE"
@@ -1445,7 +1445,7 @@
         "name": "OpenMinis/AwesomeMinis",
         "source": "https://github.com/OpenMinis/AwesomeMinis",
         "license": "CC0-1.0",
-        "stars": 284,
+        "stars": 285,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1485,7 +1485,7 @@
         "name": "william-ricchiuti/OpenCode-goal-plugin",
         "source": "https://github.com/william-ricchiuti/OpenCode-goal-plugin",
         "license": "MIT",
-        "stars": 267,
+        "stars": 269,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1541,7 +1541,7 @@
         "name": "babyvibe/deplao-builder",
         "source": "https://github.com/babyvibe/deplao-builder",
         "license": "MIT",
-        "stars": 246,
+        "stars": 247,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1549,7 +1549,7 @@
         "name": "CloudWithVarJosh/Jenkins-Basics-To-Production",
         "source": "https://github.com/CloudWithVarJosh/Jenkins-Basics-To-Production",
         "license": "NOT_PUBLISHED",
-        "stars": 245,
+        "stars": 246,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1565,7 +1565,7 @@
         "name": "bagidea/bagidea-office",
         "source": "https://github.com/bagidea/bagidea-office",
         "license": "MIT",
-        "stars": 241,
+        "stars": 242,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1602,20 +1602,20 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "himovo/movo",
-        "source": "https://github.com/himovo/movo",
-        "license": "NOASSERTION",
-        "stars": 224,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "oomol-lab/open-flow",
         "source": "https://github.com/oomol-lab/open-flow",
         "license": "Apache-2.0",
-        "stars": 223,
+        "stars": 226,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "himovo/movo",
+        "source": "https://github.com/himovo/movo",
+        "license": "NOASSERTION",
+        "stars": 226,
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "frenzymath/Archon",
@@ -1709,7 +1709,7 @@
         "name": "SebastienDegodez/copilot-instructions",
         "source": "https://github.com/SebastienDegodez/copilot-instructions",
         "license": "Apache-2.0",
-        "stars": 197,
+        "stars": 198,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1741,7 +1741,7 @@
         "name": "harikrishna8121999/antigravity-workflows",
         "source": "https://github.com/harikrishna8121999/antigravity-workflows",
         "license": "NOASSERTION",
-        "stars": 189,
+        "stars": 188,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1786,6 +1786,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "tmseidel/ai-git-bot",
+        "source": "https://github.com/tmseidel/ai-git-bot",
+        "license": "MIT",
+        "stars": 180,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "freddewitt/CorbeauSplat",
         "source": "https://github.com/freddewitt/CorbeauSplat",
         "license": "MIT",
@@ -1810,18 +1818,10 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "tmseidel/ai-git-bot",
-        "source": "https://github.com/tmseidel/ai-git-bot",
-        "license": "MIT",
-        "stars": 178,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "code-forge-temple/agentic-signal",
         "source": "https://github.com/code-forge-temple/agentic-signal",
         "license": "NOASSERTION",
-        "stars": 177,
+        "stars": 178,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1861,7 +1861,7 @@
         "name": "uptonking/note4yaoo",
         "source": "https://github.com/uptonking/note4yaoo",
         "license": "NOASSERTION",
-        "stars": 170,
+        "stars": 171,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -1909,7 +1909,7 @@
         "name": "clicknium/clicknium-docs",
         "source": "https://github.com/clicknium/clicknium-docs",
         "license": "Apache-2.0",
-        "stars": 160,
+        "stars": 161,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -1962,14 +1962,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "RopemakerEnd/ds4windows-lab-2026",
-        "source": "https://github.com/RopemakerEnd/ds4windows-lab-2026",
-        "license": "NOT_PUBLISHED",
-        "stars": 150,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "iamramanarora/TopAutomationTools",
         "source": "https://github.com/iamramanarora/TopAutomationTools",
         "license": "NOT_PUBLISHED",
@@ -1989,7 +1981,7 @@
         "name": "CloudWithVarJosh/ArgoCD-Basics-To-Production",
         "source": "https://github.com/CloudWithVarJosh/ArgoCD-Basics-To-Production",
         "license": "NOT_PUBLISHED",
-        "stars": 144,
+        "stars": 145,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -2008,6 +2000,14 @@
         "stars": 142,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "RopemakerEnd/ds4windows-lab-2026",
+        "source": "https://github.com/RopemakerEnd/ds4windows-lab-2026",
+        "license": "NOT_PUBLISHED",
+        "stars": 139,
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "toki-plus/ai-ttv-workflow",
@@ -2053,7 +2053,7 @@
         "name": "gpt-cmdr/HEC-Commander",
         "source": "https://github.com/gpt-cmdr/HEC-Commander",
         "license": "MIT",
-        "stars": 134,
+        "stars": 135,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -2125,7 +2125,7 @@
         "name": "titechprabhasolutions/Brahma-Echo",
         "source": "https://github.com/titechprabhasolutions/Brahma-Echo",
         "license": "NOASSERTION",
-        "stars": 130,
+        "stars": 131,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -2133,7 +2133,7 @@
         "name": "8BitJonny/gh-get-current-pr",
         "source": "https://github.com/8BitJonny/gh-get-current-pr",
         "license": "GPL-3.0",
-        "stars": 129,
+        "stars": 128,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -2194,6 +2194,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "CloudWithVarJosh/GitHub-Actions-Basics-To-Production",
+        "source": "https://github.com/CloudWithVarJosh/GitHub-Actions-Basics-To-Production",
+        "license": "NOT_PUBLISHED",
+        "stars": 121,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "illuminaresolutions/n8n-mcp-server",
         "source": "https://github.com/illuminaresolutions/n8n-mcp-server",
         "license": "MIT",
@@ -2202,12 +2210,12 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "CloudWithVarJosh/GitHub-Actions-Basics-To-Production",
-        "source": "https://github.com/CloudWithVarJosh/GitHub-Actions-Basics-To-Production",
-        "license": "NOT_PUBLISHED",
+        "name": "ayushozha/AdobePremiereProMCP",
+        "source": "https://github.com/ayushozha/AdobePremiereProMCP",
+        "license": "MIT",
         "stars": 119,
-        "status": "REJECTED",
-        "next_step": "NONE"
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "takeshy/obsidian-gemini-helper",
@@ -2226,14 +2234,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "ayushozha/AdobePremiereProMCP",
-        "source": "https://github.com/ayushozha/AdobePremiereProMCP",
-        "license": "MIT",
-        "stars": 116,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "akinalpfdn/claude-ground",
         "source": "https://github.com/akinalpfdn/claude-ground",
         "license": "NOT_PUBLISHED",
@@ -2250,6 +2250,14 @@
         "next_step": "NONE"
       },
       {
+        "name": "superjack2050/1688-cli",
+        "source": "https://github.com/superjack2050/1688-cli",
+        "license": "MIT",
+        "stars": 115,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "TimsPizza/FlowExcel",
         "source": "https://github.com/TimsPizza/FlowExcel",
         "license": "NOT_PUBLISHED",
@@ -2258,18 +2266,10 @@
         "next_step": "NONE"
       },
       {
-        "name": "superjack2050/1688-cli",
-        "source": "https://github.com/superjack2050/1688-cli",
-        "license": "MIT",
-        "stars": 114,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "BusyBee3333/Go-High-Level-MCP-2026-Complete",
         "source": "https://github.com/BusyBee3333/Go-High-Level-MCP-2026-Complete",
         "license": "NOASSERTION",
-        "stars": 113,
+        "stars": 114,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -2301,7 +2301,7 @@
         "name": "akhayam99/goodboy",
         "source": "https://github.com/akhayam99/goodboy",
         "license": "NOASSERTION",
-        "stars": 109,
+        "stars": 110,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -2330,18 +2330,18 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "vincentkoc/dotskills",
-        "source": "https://github.com/vincentkoc/dotskills",
+        "name": "toki-plus/ai-video-workflow",
+        "source": "https://github.com/toki-plus/ai-video-workflow",
         "license": "MIT",
         "stars": 107,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "toki-plus/ai-video-workflow",
-        "source": "https://github.com/toki-plus/ai-video-workflow",
+        "name": "vincentkoc/dotskills",
+        "source": "https://github.com/vincentkoc/dotskills",
         "license": "MIT",
-        "stars": 106,
+        "stars": 107,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
@@ -2370,20 +2370,20 @@
         "next_step": "NONE"
       },
       {
+        "name": "MAL19INDUSTRIES/JARVIS-OS-V.2",
+        "source": "https://github.com/MAL19INDUSTRIES/JARVIS-OS-V.2",
+        "license": "MIT",
+        "stars": 106,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "thibaultyou/prompt-library",
         "source": "https://github.com/thibaultyou/prompt-library",
         "license": "NOASSERTION",
         "stars": 105,
         "status": "REJECTED",
         "next_step": "NONE"
-      },
-      {
-        "name": "MAL19INDUSTRIES/JARVIS-OS-V.2",
-        "source": "https://github.com/MAL19INDUSTRIES/JARVIS-OS-V.2",
-        "license": "MIT",
-        "stars": 105,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "ggoggam/vitre",
@@ -2394,18 +2394,18 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "KalleHallden/workflow_automation",
-        "source": "https://github.com/KalleHallden/workflow_automation",
-        "license": "NOT_PUBLISHED",
+        "name": "ovh/celery-dyrygent",
+        "source": "https://github.com/ovh/celery-dyrygent",
+        "license": "NOASSERTION",
         "stars": 103,
         "status": "REJECTED",
         "next_step": "NONE"
       },
       {
-        "name": "ovh/celery-dyrygent",
-        "source": "https://github.com/ovh/celery-dyrygent",
-        "license": "NOASSERTION",
-        "stars": 103,
+        "name": "KalleHallden/workflow_automation",
+        "source": "https://github.com/KalleHallden/workflow_automation",
+        "license": "NOT_PUBLISHED",
+        "stars": 102,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -2738,6 +2738,14 @@
         "next_step": "NONE"
       },
       {
+        "name": "n0/GitHub-Achievement-CLI",
+        "source": "https://github.com/n0/GitHub-Achievement-CLI",
+        "license": "MIT",
+        "stars": 85,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "hassancs91/Auto-GPT-YouTube-Prototype",
         "source": "https://github.com/hassancs91/Auto-GPT-YouTube-Prototype",
         "license": "NOT_PUBLISHED",
@@ -2754,14 +2762,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "takeshy/obsidian-local-llm-hub",
-        "source": "https://github.com/takeshy/obsidian-local-llm-hub",
-        "license": "MIT",
-        "stars": 84,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "adamtabrams/change",
         "source": "https://github.com/adamtabrams/change",
         "license": "GPL-3.0",
@@ -2770,16 +2770,16 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "dorakoo/doubao-studio",
-        "source": "https://github.com/dorakoo/doubao-studio",
+        "name": "takeshy/obsidian-local-llm-hub",
+        "source": "https://github.com/takeshy/obsidian-local-llm-hub",
         "license": "MIT",
         "stars": 84,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "n0/GitHub-Achievement-CLI",
-        "source": "https://github.com/n0/GitHub-Achievement-CLI",
+        "name": "dorakoo/doubao-studio",
+        "source": "https://github.com/dorakoo/doubao-studio",
         "license": "MIT",
         "stars": 84,
         "status": "PASS_TO_RUNTIME_PROBE",
@@ -2818,14 +2818,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "Vvkmnn/claude-emporium",
-        "source": "https://github.com/Vvkmnn/claude-emporium",
-        "license": "NOT_PUBLISHED",
-        "stars": 82,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "ElemarJR/TheFlow",
         "source": "https://github.com/ElemarJR/TheFlow",
         "license": "Apache-2.0",
@@ -2850,6 +2842,22 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "kevinbadi/Kevs-IOS-Agents",
+        "source": "https://github.com/kevinbadi/Kevs-IOS-Agents",
+        "license": "Apache-2.0",
+        "stars": 80,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "Vvkmnn/claude-emporium",
+        "source": "https://github.com/Vvkmnn/claude-emporium",
+        "license": "NOT_PUBLISHED",
+        "stars": 80,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "AgriciDaniel/Keywordo-kun-AI-SEO-Agent-n8n-Workflow",
         "source": "https://github.com/AgriciDaniel/Keywordo-kun-AI-SEO-Agent-n8n-Workflow",
         "license": "MIT",
@@ -2872,14 +2880,6 @@
         "stars": 78,
         "status": "REJECTED",
         "next_step": "NONE"
-      },
-      {
-        "name": "kevinbadi/Kevs-IOS-Agents",
-        "source": "https://github.com/kevinbadi/Kevs-IOS-Agents",
-        "license": "Apache-2.0",
-        "stars": 78,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "sschmid/bee",
@@ -2986,6 +2986,14 @@
         "next_step": "NONE"
       },
       {
+        "name": "advai-x/advai-skills",
+        "source": "https://github.com/advai-x/advai-skills",
+        "license": "MIT",
+        "stars": 74,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "steve1316/granblue-automation-android",
         "source": "https://github.com/steve1316/granblue-automation-android",
         "license": "NOT_PUBLISHED",
@@ -3042,14 +3050,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "advai-x/advai-skills",
-        "source": "https://github.com/advai-x/advai-skills",
-        "license": "MIT",
-        "stars": 73,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "kongbaiz/nte-dps-toolkit",
         "source": "https://github.com/kongbaiz/nte-dps-toolkit",
         "license": "AGPL-3.0",
@@ -3058,17 +3058,17 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "deffcolony/ai-toolbox",
-        "source": "https://github.com/deffcolony/ai-toolbox",
-        "license": "AGPL-3.0",
-        "stars": 71,
+        "name": "aryanbrite/openrabbit",
+        "source": "https://github.com/aryanbrite/openrabbit",
+        "license": "Apache-2.0",
+        "stars": 72,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "aryanbrite/openrabbit",
-        "source": "https://github.com/aryanbrite/openrabbit",
-        "license": "Apache-2.0",
+        "name": "deffcolony/ai-toolbox",
+        "source": "https://github.com/deffcolony/ai-toolbox",
+        "license": "AGPL-3.0",
         "stars": 71,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
@@ -3098,14 +3098,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "jayeshmepani/laravel-gemini-translator",
-        "source": "https://github.com/jayeshmepani/laravel-gemini-translator",
-        "license": "MIT",
-        "stars": 70,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "rairefgalon/OrbitRelay",
         "source": "https://github.com/rairefgalon/OrbitRelay",
         "license": "NOASSERTION",
@@ -3126,6 +3118,30 @@
         "source": "https://github.com/ChmaraX/ai-agent-automations",
         "license": "NOT_PUBLISHED",
         "stars": 69,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "jayeshmepani/laravel-gemini-translator",
+        "source": "https://github.com/jayeshmepani/laravel-gemini-translator",
+        "license": "MIT",
+        "stars": 69,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "maurinruneacco/luau-diagrams-and-defects",
+        "source": "https://github.com/maurinruneacco/luau-diagrams-and-defects",
+        "license": "NOT_PUBLISHED",
+        "stars": 68,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "gggamil/mazebreak-flowforge",
+        "source": "https://github.com/gggamil/mazebreak-flowforge",
+        "license": "NOT_PUBLISHED",
+        "stars": 68,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -3210,6 +3226,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "rmyndharis/OpenWA-n8n",
+        "source": "https://github.com/rmyndharis/OpenWA-n8n",
+        "license": "MIT",
+        "stars": 65,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "AshishOP/arc-protocol",
         "source": "https://github.com/AshishOP/arc-protocol",
         "license": "MIT",
@@ -3218,24 +3242,16 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "usnistgov/O-RAN-Testbed-Automation",
-        "source": "https://github.com/usnistgov/O-RAN-Testbed-Automation",
+        "name": "aiagentslibrary/awesome-gemini-spark-skills",
+        "source": "https://github.com/aiagentslibrary/awesome-gemini-spark-skills",
         "license": "NOASSERTION",
-        "stars": 64,
+        "stars": 65,
         "status": "REJECTED",
         "next_step": "NONE"
       },
       {
-        "name": "rmyndharis/OpenWA-n8n",
-        "source": "https://github.com/rmyndharis/OpenWA-n8n",
-        "license": "MIT",
-        "stars": 64,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "aiagentslibrary/awesome-gemini-spark-skills",
-        "source": "https://github.com/aiagentslibrary/awesome-gemini-spark-skills",
+        "name": "usnistgov/O-RAN-Testbed-Automation",
+        "source": "https://github.com/usnistgov/O-RAN-Testbed-Automation",
         "license": "NOASSERTION",
         "stars": 64,
         "status": "REJECTED",
@@ -3306,6 +3322,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "alexanderizh/spark-agent",
+        "source": "https://github.com/alexanderizh/spark-agent",
+        "license": "NOASSERTION",
+        "stars": 62,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "manutej/luxor-claude-marketplace",
         "source": "https://github.com/manutej/luxor-claude-marketplace",
         "license": "NOT_PUBLISHED",
@@ -3330,6 +3354,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "stoopid-computers/funchole",
+        "source": "https://github.com/stoopid-computers/funchole",
+        "license": "NOASSERTION",
+        "stars": 61,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "punyaa18/AI-Calling-Assistant",
         "source": "https://github.com/punyaa18/AI-Calling-Assistant",
         "license": "MIT",
@@ -3352,14 +3384,6 @@
         "stars": 60,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "stoopid-computers/funchole",
-        "source": "https://github.com/stoopid-computers/funchole",
-        "license": "NOASSERTION",
-        "stars": 60,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "krishnakanthb13/antigravity_global_skills",
@@ -3394,6 +3418,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "weifuwan/yak-ops",
+        "source": "https://github.com/weifuwan/yak-ops",
+        "license": "Apache-2.0",
+        "stars": 59,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "varienos/agentic-workflow",
         "source": "https://github.com/varienos/agentic-workflow",
         "license": "MIT",
@@ -3418,20 +3450,20 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "weifuwan/yak-ops",
-        "source": "https://github.com/weifuwan/yak-ops",
-        "license": "Apache-2.0",
-        "stars": 58,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "aaronparton2-sketch/swell-event",
         "source": "https://github.com/aaronparton2-sketch/swell-event",
         "license": "MIT",
         "stars": 58,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "ken571571/258-Canvas",
+        "source": "https://github.com/ken571571/258-Canvas",
+        "license": "NOASSERTION",
+        "stars": 58,
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "SVENTRIPIKAL/Github-Follow-N-Star-Action",
@@ -3490,10 +3522,10 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "ken571571/258-Canvas",
-        "source": "https://github.com/ken571571/258-Canvas",
+        "name": "greenpeas007/tradingview-mcp-jackson",
+        "source": "https://github.com/greenpeas007/tradingview-mcp-jackson",
         "license": "NOASSERTION",
-        "stars": 57,
+        "stars": 56,
         "status": "REJECTED",
         "next_step": "NONE"
       },
@@ -3522,6 +3554,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "Abdulazizzn/n8n-enterprise-unlocked",
+        "source": "https://github.com/Abdulazizzn/n8n-enterprise-unlocked",
+        "license": "NOASSERTION",
+        "stars": 55,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "rulego/rulego-server",
         "source": "https://github.com/rulego/rulego-server",
         "license": "NOASSERTION",
@@ -3536,14 +3576,6 @@
         "stars": 55,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "greenpeas007/tradingview-mcp-jackson",
-        "source": "https://github.com/greenpeas007/tradingview-mcp-jackson",
-        "license": "NOASSERTION",
-        "stars": 55,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "qingni/AgentCrew",
@@ -3562,12 +3594,20 @@
         "next_step": "NONE"
       },
       {
-        "name": "Abdulazizzn/n8n-enterprise-unlocked",
-        "source": "https://github.com/Abdulazizzn/n8n-enterprise-unlocked",
-        "license": "NOASSERTION",
+        "name": "tinyhumansai/tinyflows",
+        "source": "https://github.com/tinyhumansai/tinyflows",
+        "license": "GPL-3.0",
         "stars": 54,
-        "status": "REJECTED",
-        "next_step": "NONE"
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "kafein-technology/KAI-Flow",
+        "source": "https://github.com/kafein-technology/KAI-Flow",
+        "license": "Apache-2.0",
+        "stars": 54,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "SCM-NV/qmflows",
@@ -3706,14 +3746,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "tinyhumansai/tinyflows",
-        "source": "https://github.com/tinyhumansai/tinyflows",
-        "license": "GPL-3.0",
-        "stars": 51,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "pbaskfan/pycharm-professional-pro",
         "source": "https://github.com/pbaskfan/pycharm-professional-pro",
         "license": "NOT_PUBLISHED",
@@ -3802,6 +3834,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "trgkyle/veo-automation-user-guide",
+        "source": "https://github.com/trgkyle/veo-automation-user-guide",
+        "license": "NOT_PUBLISHED",
+        "stars": 49,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "elsa-workflows/elsa-extensions",
         "source": "https://github.com/elsa-workflows/elsa-extensions",
         "license": "MIT",
@@ -3842,6 +3882,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "usmanxg58-byte/AgentFOXXY",
+        "source": "https://github.com/usmanxg58-byte/AgentFOXXY",
+        "license": "NOT_PUBLISHED",
+        "stars": 49,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "shinpr/agentic-code",
         "source": "https://github.com/shinpr/agentic-code",
         "license": "MIT",
@@ -3856,14 +3904,6 @@
         "stars": 48,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "trgkyle/veo-automation-user-guide",
-        "source": "https://github.com/trgkyle/veo-automation-user-guide",
-        "license": "NOT_PUBLISHED",
-        "stars": 48,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "grandcamel/JIRA-Assistant-Skills",
@@ -3888,6 +3928,14 @@
         "stars": 48,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "LaplaceYoung/ansys-aedt-mcp",
+        "source": "https://github.com/LaplaceYoung/ansys-aedt-mcp",
+        "license": "NOASSERTION",
+        "stars": 48,
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "MidHunterX/Hunter-OS",
@@ -4000,22 +4048,6 @@
         "stars": 46,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "alexanderizh/spark-agent",
-        "source": "https://github.com/alexanderizh/spark-agent",
-        "license": "NOASSERTION",
-        "stars": 46,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "LaplaceYoung/ansys-aedt-mcp",
-        "source": "https://github.com/LaplaceYoung/ansys-aedt-mcp",
-        "license": "NOASSERTION",
-        "stars": 46,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "actionforge/action",
@@ -4322,14 +4354,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "usmanxg58-byte/AgentFOXXY",
-        "source": "https://github.com/usmanxg58-byte/AgentFOXXY",
-        "license": "NOT_PUBLISHED",
-        "stars": 41,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "jadehawk/Kindle_Key_Finder",
         "source": "https://github.com/jadehawk/Kindle_Key_Finder",
         "license": "NOT_PUBLISHED",
@@ -4386,6 +4410,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "klinkdev2026/klayout-klink",
+        "source": "https://github.com/klinkdev2026/klayout-klink",
+        "license": "Apache-2.0",
+        "stars": 40,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "buildship-ai/LLM-Web-Crawler",
         "source": "https://github.com/buildship-ai/LLM-Web-Crawler",
         "license": "NOT_PUBLISHED",
@@ -4437,14 +4469,6 @@
         "name": "crazymanish/fastlane-plugin-slack_bot",
         "source": "https://github.com/crazymanish/fastlane-plugin-slack_bot",
         "license": "MIT",
-        "stars": 39,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "klinkdev2026/klayout-klink",
-        "source": "https://github.com/klinkdev2026/klayout-klink",
-        "license": "Apache-2.0",
         "stars": 39,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
@@ -4530,6 +4554,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "inbharatai/SocialFlow",
+        "source": "https://github.com/inbharatai/SocialFlow",
+        "license": "NOT_PUBLISHED",
+        "stars": 37,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "DanielHarrod/AppTestStudio",
         "source": "https://github.com/DanielHarrod/AppTestStudio",
         "license": "GPL-3.0",
@@ -4588,14 +4620,6 @@
       {
         "name": "christancho/Blogging-with-N8N",
         "source": "https://github.com/christancho/Blogging-with-N8N",
-        "license": "NOT_PUBLISHED",
-        "stars": 36,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "inbharatai/SocialFlow",
-        "source": "https://github.com/inbharatai/SocialFlow",
         "license": "NOT_PUBLISHED",
         "stars": 36,
         "status": "REJECTED",
@@ -4890,6 +4914,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "neonwatty/qa-skills",
+        "source": "https://github.com/neonwatty/qa-skills",
+        "license": "MIT",
+        "stars": 33,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "Kanegraffiti/Parslet",
         "source": "https://github.com/Kanegraffiti/Parslet",
         "license": "MIT",
@@ -4938,6 +4970,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "zxc663/shisan-xinuo-workflow",
+        "source": "https://github.com/zxc663/shisan-xinuo-workflow",
+        "license": "MIT",
+        "stars": 32,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "masteranime/n8n-claude-skills",
         "source": "https://github.com/masteranime/n8n-claude-skills",
         "license": "MIT",
@@ -4972,14 +5012,6 @@
       {
         "name": "floomhq/moto",
         "source": "https://github.com/floomhq/moto",
-        "license": "MIT",
-        "stars": 32,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "neonwatty/qa-skills",
-        "source": "https://github.com/neonwatty/qa-skills",
         "license": "MIT",
         "stars": 32,
         "status": "PASS_TO_RUNTIME_PROBE",
@@ -5034,6 +5066,14 @@
         "next_step": "NONE"
       },
       {
+        "name": "bingxijun/archflow-studio",
+        "source": "https://github.com/bingxijun/archflow-studio",
+        "license": "Apache-2.0",
+        "stars": 31,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "infinitelambda/prefect-pipeline",
         "source": "https://github.com/infinitelambda/prefect-pipeline",
         "license": "NOT_PUBLISHED",
@@ -5064,14 +5104,6 @@
         "stars": 31,
         "status": "REJECTED",
         "next_step": "NONE"
-      },
-      {
-        "name": "zxc663/shisan-xinuo-workflow",
-        "source": "https://github.com/zxc663/shisan-xinuo-workflow",
-        "license": "MIT",
-        "stars": 31,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "buildalon/unity-setup",
@@ -5114,6 +5146,14 @@
         "next_step": "NONE"
       },
       {
+        "name": "tinyhumansai/medulla",
+        "source": "https://github.com/tinyhumansai/medulla",
+        "license": "GPL-3.0",
+        "stars": 30,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "Yiuman/autoflow",
         "source": "https://github.com/Yiuman/autoflow",
         "license": "Apache-2.0",
@@ -5130,17 +5170,17 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "bingxijun/archflow-studio",
-        "source": "https://github.com/bingxijun/archflow-studio",
+        "name": "FlotHQ/flot",
+        "source": "https://github.com/FlotHQ/flot",
         "license": "Apache-2.0",
         "stars": 30,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "FlotHQ/flot",
-        "source": "https://github.com/FlotHQ/flot",
-        "license": "Apache-2.0",
+        "name": "aorumbayev/herdr-workflows",
+        "source": "https://github.com/aorumbayev/herdr-workflows",
+        "license": "MIT",
         "stars": 30,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
@@ -5242,14 +5282,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "aorumbayev/herdr-workflows",
-        "source": "https://github.com/aorumbayev/herdr-workflows",
-        "license": "MIT",
-        "stars": 29,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "Cheshire-Labs/orca",
         "source": "https://github.com/Cheshire-Labs/orca",
         "license": "NOASSERTION",
@@ -5298,12 +5330,12 @@
         "next_step": "NONE"
       },
       {
-        "name": "tinyhumansai/medulla",
-        "source": "https://github.com/tinyhumansai/medulla",
-        "license": "GPL-3.0",
+        "name": "wulaosiji/skills",
+        "source": "https://github.com/wulaosiji/skills",
+        "license": "NOT_PUBLISHED",
         "stars": 28,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "MasterOfLogic1/UipathLibraries",
@@ -5314,24 +5346,8 @@
         "next_step": "NONE"
       },
       {
-        "name": "wulaosiji/skills",
-        "source": "https://github.com/wulaosiji/skills",
-        "license": "NOT_PUBLISHED",
-        "stars": 28,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "igorjs/gh-actions-clean-workflow",
         "source": "https://github.com/igorjs/gh-actions-clean-workflow",
-        "license": "MIT",
-        "stars": 28,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "M-Haziq-Iqbal/Forza-Horizon-6-Wheelspin-Macro",
-        "source": "https://github.com/M-Haziq-Iqbal/Forza-Horizon-6-Wheelspin-Macro",
         "license": "MIT",
         "stars": 28,
         "status": "PASS_TO_RUNTIME_PROBE",
@@ -5450,6 +5466,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "cuebicai/n8n-workflows",
+        "source": "https://github.com/cuebicai/n8n-workflows",
+        "license": "MIT",
+        "stars": 27,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "Oceania2018/Quickflow",
         "source": "https://github.com/Oceania2018/Quickflow",
         "license": "MIT",
@@ -5488,6 +5512,14 @@
         "stars": 27,
         "status": "REJECTED",
         "next_step": "NONE"
+      },
+      {
+        "name": "M-Haziq-Iqbal/Forza-Horizon-6-Wheelspin-Macro",
+        "source": "https://github.com/M-Haziq-Iqbal/Forza-Horizon-6-Wheelspin-Macro",
+        "license": "MIT",
+        "stars": 27,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "WP-Autoplugin/superdraft",
@@ -5594,14 +5626,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "cuebicai/n8n-workflows",
-        "source": "https://github.com/cuebicai/n8n-workflows",
-        "license": "MIT",
-        "stars": 26,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "Internet2/ntac-networkautomation",
         "source": "https://github.com/Internet2/ntac-networkautomation",
         "license": "NOT_PUBLISHED",
@@ -5653,6 +5677,22 @@
         "name": "acedergren/agentic-tools",
         "source": "https://github.com/acedergren/agentic-tools",
         "license": "NOASSERTION",
+        "stars": 26,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "Rayquazads/Secretaria-IA-Automacao-Atendimento-WhatsApp-n8n-OpenAI",
+        "source": "https://github.com/Rayquazads/Secretaria-IA-Automacao-Atendimento-WhatsApp-n8n-OpenAI",
+        "license": "NOT_PUBLISHED",
+        "stars": 26,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "uvwt/nexusdock",
+        "source": "https://github.com/uvwt/nexusdock",
+        "license": "NOT_PUBLISHED",
         "stars": 26,
         "status": "REJECTED",
         "next_step": "NONE"
@@ -5770,14 +5810,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "Rayquazads/Secretaria-IA-Automacao-Atendimento-WhatsApp-n8n-OpenAI",
-        "source": "https://github.com/Rayquazads/Secretaria-IA-Automacao-Atendimento-WhatsApp-n8n-OpenAI",
-        "license": "NOT_PUBLISHED",
-        "stars": 25,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "xirichuyi/boss-job-agent",
         "source": "https://github.com/xirichuyi/boss-job-agent",
         "license": "MIT",
@@ -5864,14 +5896,6 @@
         "stars": 24,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "uvwt/nexusdock",
-        "source": "https://github.com/uvwt/nexusdock",
-        "license": "NOT_PUBLISHED",
-        "stars": 24,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "zerp-pk/zerp",
@@ -5972,6 +5996,14 @@
       {
         "name": "Varalix-Digitech-Solutions/clone-team",
         "source": "https://github.com/Varalix-Digitech-Solutions/clone-team",
+        "license": "MIT",
+        "stars": 24,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "Somrat10369/Windows-11-Productive-Rice-Configs",
+        "source": "https://github.com/Somrat10369/Windows-11-Productive-Rice-Configs",
         "license": "MIT",
         "stars": 24,
         "status": "PASS_TO_RUNTIME_PROBE",
@@ -6234,6 +6266,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "jesse51002/Biom",
+        "source": "https://github.com/jesse51002/Biom",
+        "license": "AGPL-3.0",
+        "stars": 22,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "hamr0/agentic-toolkit",
         "source": "https://github.com/hamr0/agentic-toolkit",
         "license": "Apache-2.0",
@@ -6356,14 +6396,6 @@
       {
         "name": "mshadmanrahman/pm-pilot",
         "source": "https://github.com/mshadmanrahman/pm-pilot",
-        "license": "MIT",
-        "stars": 22,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "Somrat10369/Windows-11-Productive-Rice-Configs",
-        "source": "https://github.com/Somrat10369/Windows-11-Productive-Rice-Configs",
         "license": "MIT",
         "stars": 22,
         "status": "PASS_TO_RUNTIME_PROBE",
@@ -6642,6 +6674,14 @@
         "next_step": "NONE"
       },
       {
+        "name": "agruai/multiagent-business-automation",
+        "source": "https://github.com/agruai/multiagent-business-automation",
+        "license": "NOT_PUBLISHED",
+        "stars": 20,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "kaivyy/kabot",
         "source": "https://github.com/kaivyy/kabot",
         "license": "MIT",
@@ -6816,14 +6856,6 @@
         "stars": 19,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "agruai/multiagent-business-automation",
-        "source": "https://github.com/agruai/multiagent-business-automation",
-        "license": "NOT_PUBLISHED",
-        "stars": 19,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "danpinho/design-production-scripts",
@@ -7066,14 +7098,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "tanishra/Linkedin-Post-Automation",
-        "source": "https://github.com/tanishra/Linkedin-Post-Automation",
-        "license": "NOT_PUBLISHED",
-        "stars": 18,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
         "name": "Carlos-Dominguez-faber/n8n-automation-kit",
         "source": "https://github.com/Carlos-Dominguez-faber/n8n-automation-kit",
         "license": "MIT",
@@ -7156,6 +7180,14 @@
       {
         "name": "rtuin/pla",
         "source": "https://github.com/rtuin/pla",
+        "license": "MIT",
+        "stars": 18,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "wix-incubator/whenever",
+        "source": "https://github.com/wix-incubator/whenever",
         "license": "MIT",
         "stars": 18,
         "status": "PASS_TO_RUNTIME_PROBE",
@@ -7266,6 +7298,14 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "helloworld8661/Viddeos-ai-system-review",
+        "source": "https://github.com/helloworld8661/Viddeos-ai-system-review",
+        "license": "NOT_PUBLISHED",
+        "stars": 18,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
         "name": "The-Untitled-Org/wasla",
         "source": "https://github.com/The-Untitled-Org/wasla",
         "license": "MIT",
@@ -7314,14 +7354,6 @@
         "next_step": "NONE"
       },
       {
-        "name": "artefactual-labs/enduro",
-        "source": "https://github.com/artefactual-labs/enduro",
-        "license": "Apache-2.0",
-        "stars": 17,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "hkyutong/Wechat-Claw",
         "source": "https://github.com/hkyutong/Wechat-Claw",
         "license": "MIT",
@@ -7330,8 +7362,24 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
+        "name": "artefactual-labs/enduro",
+        "source": "https://github.com/artefactual-labs/enduro",
+        "license": "Apache-2.0",
+        "stars": 17,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "imoutsatsos/jenkins-scriptlets",
         "source": "https://github.com/imoutsatsos/jenkins-scriptlets",
+        "license": "NOT_PUBLISHED",
+        "stars": 17,
+        "status": "REJECTED",
+        "next_step": "NONE"
+      },
+      {
+        "name": "tanishra/Linkedin-Post-Automation",
+        "source": "https://github.com/tanishra/Linkedin-Post-Automation",
         "license": "NOT_PUBLISHED",
         "stars": 17,
         "status": "REJECTED",
@@ -7434,12 +7482,12 @@
         "next_step": "NONE"
       },
       {
-        "name": "saifyxpro/actionxs-recorder",
-        "source": "https://github.com/saifyxpro/actionxs-recorder",
-        "license": "MIT",
+        "name": "Sudharshan2026/awesome-n8n-templates",
+        "source": "https://github.com/Sudharshan2026/awesome-n8n-templates",
+        "license": "NOT_PUBLISHED",
         "stars": 17,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+        "status": "REJECTED",
+        "next_step": "NONE"
       },
       {
         "name": "ALX-Students-Contribution/commit-assistant",
@@ -7450,12 +7498,12 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "Sudharshan2026/awesome-n8n-templates",
-        "source": "https://github.com/Sudharshan2026/awesome-n8n-templates",
-        "license": "NOT_PUBLISHED",
+        "name": "saifyxpro/actionxs-recorder",
+        "source": "https://github.com/saifyxpro/actionxs-recorder",
+        "license": "MIT",
         "stars": 17,
-        "status": "REJECTED",
-        "next_step": "NONE"
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
         "name": "YASSERRMD/BarqFlow",
@@ -7498,14 +7546,6 @@
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
       },
       {
-        "name": "frabcd/codex-ai-game-studio",
-        "source": "https://github.com/frabcd/codex-ai-game-studio",
-        "license": "MIT",
-        "stars": 17,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
         "name": "hwixley/WYX-CLI",
         "source": "https://github.com/hwixley/WYX-CLI",
         "license": "MIT",
@@ -7536,14 +7576,6 @@
         "stars": 17,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "helloworld8661/Viddeos-ai-system-review",
-        "source": "https://github.com/helloworld8661/Viddeos-ai-system-review",
-        "license": "NOT_PUBLISHED",
-        "stars": 17,
-        "status": "REJECTED",
-        "next_step": "NONE"
       },
       {
         "name": "connorssubmitter868/crackwifi",
@@ -7738,9 +7770,9 @@
         "next_step": "NONE"
       },
       {
-        "name": "clouatre-labs/setup-kiro-action",
-        "source": "https://github.com/clouatre-labs/setup-kiro-action",
-        "license": "Apache-2.0",
+        "name": "frabcd/codex-ai-game-studio",
+        "source": "https://github.com/frabcd/codex-ai-game-studio",
+        "license": "MIT",
         "stars": 16,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
@@ -7749,6 +7781,14 @@
         "name": "chrishwshparker6300/basf-jobs-feed-scraper",
         "source": "https://github.com/chrishwshparker6300/basf-jobs-feed-scraper",
         "license": "GPL-3.0",
+        "stars": 16,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
+        "name": "clouatre-labs/setup-kiro-action",
+        "source": "https://github.com/clouatre-labs/setup-kiro-action",
+        "license": "Apache-2.0",
         "stars": 16,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
@@ -8066,60 +8106,20 @@
         "next_step": "NONE"
       },
       {
+        "name": "saihgupr/alfred-mcp",
+        "source": "https://github.com/saihgupr/alfred-mcp",
+        "license": "MIT",
+        "stars": 15,
+        "status": "PASS_TO_RUNTIME_PROBE",
+        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
+      },
+      {
         "name": "banhao/AutoSpamEmailScan",
         "source": "https://github.com/banhao/AutoSpamEmailScan",
         "license": "MIT",
         "stars": 15,
         "status": "PASS_TO_RUNTIME_PROBE",
         "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "IHyperLight/Keeptive",
-        "source": "https://github.com/IHyperLight/Keeptive",
-        "license": "MIT",
-        "stars": 15,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "solverineai/Solverine-AI-n8n-templates",
-        "source": "https://github.com/solverineai/Solverine-AI-n8n-templates",
-        "license": "MIT",
-        "stars": 15,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "Chaos-19/termux-scripts",
-        "source": "https://github.com/Chaos-19/termux-scripts",
-        "license": "NOT_PUBLISHED",
-        "stars": 15,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "manu14357/Zelaxy",
-        "source": "https://github.com/manu14357/Zelaxy",
-        "license": "MIT",
-        "stars": 15,
-        "status": "PASS_TO_RUNTIME_PROBE",
-        "next_step": "TOOL044_RUNTIME_PROBE_QUEUE"
-      },
-      {
-        "name": "alib8b8/aflare",
-        "source": "https://github.com/alib8b8/aflare",
-        "license": "NOASSERTION",
-        "stars": 15,
-        "status": "REJECTED",
-        "next_step": "NONE"
-      },
-      {
-        "name": "godstime-dev/crypto-data-pipeline",
-        "source": "https://github.com/godstime-dev/crypto-data-pipeline",
-        "license": "NOT_PUBLISHED",
-        "stars": 15,
-        "status": "REJECTED",
-        "next_step": "NONE"
       }
     ]
   },
@@ -8141,14 +8141,14 @@
           "url": "https://uptimerobot.com/pricing/",
           "status": "PASS",
           "http_status": 200,
-          "elapsed_ms": 676,
+          "elapsed_ms": 1070,
           "sample_sha256": "00f8f610f8c44505f060dbd3bf304d197addae6760edcfe1c580eca05390aa85"
         },
         {
           "url": "https://uptimerobot.com/blog/introducing-uptime-robot-pro-for-1-minute-checks-andor-more-monitors/",
           "status": "PASS",
           "http_status": 200,
-          "elapsed_ms": 440,
+          "elapsed_ms": 499,
           "sample_sha256": "00f8f610f8c44505f060dbd3bf304d197addae6760edcfe1c580eca05390aa85"
         }
       ],
@@ -8156,7 +8156,7 @@
         "url": "https://github.com/louislam/uptime-kuma",
         "status": "PASS",
         "http_status": 200,
-        "elapsed_ms": 483,
+        "elapsed_ms": 441,
         "sample_sha256": "b183f4e4448ceefe76e228ef0f7f47ad19b0457827cdd3f4b245f24415d2fc3d"
       }
     },
@@ -8176,7 +8176,7 @@
           "url": "https://plausible.io/blog/open-source-saas",
           "status": "PASS",
           "http_status": 200,
-          "elapsed_ms": 145,
+          "elapsed_ms": 91,
           "sample_sha256": "f335b13a3208644a12dc53a5692fb1b2e82377455d756420233d5236caa26121"
         }
       ],
@@ -8184,7 +8184,7 @@
         "url": "https://github.com/plausible/analytics",
         "status": "PASS",
         "http_status": 200,
-        "elapsed_ms": 480,
+        "elapsed_ms": 443,
         "sample_sha256": "b183f4e4448ceefe76e228ef0f7f47ad19b0457827cdd3f4b245f24415d2fc3d"
       }
     }
@@ -8199,7 +8199,7 @@
         "url": "https://obk369369-spec.github.io/20-operational-manual-viewer/tool020/",
         "status": "PASS",
         "http_status": 200,
-        "elapsed_ms": 593,
+        "elapsed_ms": 218,
         "sample_sha256": "ced1f2afea33d13b31ff47e7b518769c2ef3a1e8130a35564e6421f029eea0ec"
       },
       {
@@ -8207,7 +8207,7 @@
         "url": "https://obk369369-spec.github.io/12-wic-subwebsite-builder/",
         "status": "PASS",
         "http_status": 200,
-        "elapsed_ms": 131,
+        "elapsed_ms": 188,
         "sample_sha256": "ab5800d50763a1d2e835ec1170a26bb28b3e8d6034957d9d394933e08ac979ee"
       }
     ],
