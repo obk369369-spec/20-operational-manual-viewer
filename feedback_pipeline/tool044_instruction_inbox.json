@@ -647,6 +647,55 @@
         "negative regression blocks repeated failure",
         "evidence read-back and checkpoint are persisted"
       ]
+    },
+    {
+      "directive_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+      "target_tool": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_PROGRAMS_WORKFLOWS_PLATFORM",
+      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
+      "revision": 1,
+      "priority": "HIGHEST_AFTER_DEDUP_AND_PASS_LOCK",
+      "status": "OPEN_IMPLEMENT_TEST_DEPLOY",
+      "scope": "GLOBAL_COMMON_PLATFORM",
+      "user_role": "OBSERVER",
+      "directive": "Apply to the entire top-level WIC platform, not only TOOL044. Decompose every executable tool/workflow/platform path into independently verifiable segments. Preserve and continue every segment with evidence-backed PASS; PASS_LOCK it and never stop/reopen it merely because another segment fails. Every FAIL/UNVERIFIED segment remains in 24h circulation. On each attempt narrow the failing scope into smaller segments, isolate the smallest unresolved cause, fix or compose only that unresolved scope, then actually execute and validate it. A segment may become PASS only after actual execution evidence, expected-vs-actual validation, negative regression where applicable, persisted evidence, and read-back. After a failed segment passes, lock it and continue only the remaining unresolved segments. Repeat recursively until no solvable unverified segment remains. PLATFORM_LIMIT/approval/external waits are isolated and must not block unrelated segments. Never report modification, commit, deployment, queueing, or self-test alone as completion. Hourly observer reporting must show in simple Korean: tool/work area, verified segments, unresolved segments, segment currently being retried, how the failure scope narrowed since the previous hour, latest actual evidence, blocker, next automatic retry, and evidence-based ETA only when calculable. The same rule governs dashboard/reporting/runtime/governance/handoff/external procurement and all current/future WIC tools.",
+      "invariants": [
+        "PASS_SEGMENT_CONTINUES_RUNNING",
+        "FAILED_SEGMENT_ONLY_RETRY",
+        "RECURSIVE_FAILURE_SCOPE_NARROWING",
+        "ACTUAL_EVIDENCE_REQUIRED",
+        "NO_FAKE_PASS",
+        "NO_GLOBAL_STOP_ON_LOCAL_FAIL",
+        "USER_MANUAL_REPETITION=0",
+        "PLATFORM_LIMIT_ISOLATION",
+        "HOURLY_OBSERVER_REPORT",
+        "APPLIES_TO_ALL_CURRENT_AND_FUTURE_WIC"
+      ],
+      "segment_states": [
+        "PASS_LOCKED",
+        "ACTIVE_RETRY",
+        "FAIL_NARROWING",
+        "WAITING_EXTERNAL",
+        "PLATFORM_LIMIT",
+        "NEEDS_OBSERVER_DECISION"
+      ],
+      "pass_chain": [
+        "ACTUAL_EXECUTION",
+        "EXPECTED_VS_ACTUAL",
+        "NEGATIVE_REGRESSION_IF_APPLICABLE",
+        "EVIDENCE_PERSIST",
+        "READ_BACK",
+        "PASS_LOCK"
+      ],
+      "retry_chain": [
+        "FAIL_DETECTED",
+        "SEGMENT_DECOMPOSE",
+        "SMALLEST_UNRESOLVED_SCOPE",
+        "FIX_OR_COMPOSE",
+        "ACTUAL_EXECUTION",
+        "VALIDATE",
+        "EVIDENCE_OR_REPEAT"
+      ],
+      "completion_condition": "All solvable segments are evidence-backed PASS_LOCKED; unresolved external/platform-only segments remain explicitly isolated without stopping proven segments. Registration alone is not PASS."
     }
   ]
 }
