@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-08T11:14:43.585973+00:00",
+  "created_at": "2026-10-08T11:16:54.677839+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "WIC-AUTONOMOUS-GOVERNANCE-LOCAL-20261008",
+  "run_id": "37769002540",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "14950c03f93ec48db86cde3d55dcfb7b",
+    "token_id": "869066376b9cc1bdc4910ae908861c93",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "3d7cbbca2834fe6faeb8d68e6d55db8a0bb6f11f",
+    "git_sha": "12b0317cc3e0a702adc6cc7e6b71d91983ac1855",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -49,8 +49,8 @@
   "remaining_queue_count": 0,
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "WIC-GOVERNANCE-ACTUAL-INPUT-20261008",
-    "root_id": "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE",
+    "trace_id": "REMOTE-37769002540",
+    "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
       "WIC_EXISTING_TOP_CONTROLLER",
@@ -58,33 +58,17 @@
       "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
     ],
     "backend_route": "CENTRAL_COMMON_PLATFORM",
-    "intent_quality_lock": "bd68b5f697d47302aa9ff426ac9b867976f2c32fe6ff8a488d4c4febcd0a7c7c",
+    "intent_quality_lock": "e9350493a2bffbc4404d2d514428979d6e06a2e5bc1593b735c9f617b9080b2e",
     "registry_prelookup": true,
     "pass_lock_prelookup": true,
     "user_manual_repetition": 0
   },
-  "feedback": {
-    "status": "PROMOTED",
-    "promotion_key": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
-    "rule": {
-      "id": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
-      "expected_behavior": "공통 규칙과 Hard Gate로 승격"
-    },
-    "negative_golden_sample": {
-      "input": "같은 오류를 다시 지적해야 함",
-      "must_be_blocked": true
-    },
-    "hard_gate": {
-      "scope": "COMMON_PLATFORM",
-      "fail_closed": true
-    },
-    "system_control_failure_on_repeat": true
-  },
+  "feedback": null,
   "progress_gate": {
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "051f8b9d9a20f3bca8afdbc60f59262dcc38f8353d1e917a773aebdee3c03850",
+    "signature": "14beb9f55bb3ad6cc9de791f03a120cea4102a60b133d017bb309462c613c70b",
     "deltas": [
       0,
       0,

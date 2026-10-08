@@ -1,12 +1,9 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "pass_locked_roots": [
-    "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE"
-  ],
-  "updated_at": "2026-10-08T11:14:43.308819+00:00",
+  "updated_at": "2026-10-08T11:16:54.675032+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
-  "source_matrix_sha256": "3D59A048AEE4BEDBA950366AFA85250F1A6E2E3A8491401E85C18C8834EAAC31",
+  "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
   "missing_requirements": 0,
   "duplicate_requirements": 0,
@@ -924,12 +921,12 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-08T12:14:43.308819+00:00",
+  "next_run_at": "2026-10-08T12:16:54.675040+00:00",
   "handoff_traces": {
-    "WIC-GOVERNANCE-ACTUAL-INPUT-20261008": {
+    "REMOTE-37769002540": {
       "status": "ACCEPTED",
-      "trace_id": "WIC-GOVERNANCE-ACTUAL-INPUT-20261008",
-      "root_id": "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE",
+      "trace_id": "REMOTE-37769002540",
+      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
         "WIC_EXISTING_TOP_CONTROLLER",
@@ -937,48 +934,28 @@
         "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
       ],
       "backend_route": "CENTRAL_COMMON_PLATFORM",
-      "intent_quality_lock": "bd68b5f697d47302aa9ff426ac9b867976f2c32fe6ff8a488d4c4febcd0a7c7c",
+      "intent_quality_lock": "e9350493a2bffbc4404d2d514428979d6e06a2e5bc1593b735c9f617b9080b2e",
       "registry_prelookup": true,
       "pass_lock_prelookup": true,
       "user_manual_repetition": 0
     }
   },
-  "shared_failure_rules": {
-    "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX": {
-      "status": "PROMOTED",
-      "promotion_key": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
-      "rule": {
-        "id": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
-        "expected_behavior": "공통 규칙과 Hard Gate로 승격"
-      },
-      "negative_golden_sample": {
-        "input": "같은 오류를 다시 지적해야 함",
-        "must_be_blocked": true
-      },
-      "hard_gate": {
-        "scope": "COMMON_PLATFORM",
-        "fail_closed": true
-      },
-      "system_control_failure_on_repeat": true,
-      "repeat_count": 1
-    }
-  },
   "runtime_progress_gate": {
     "seen_signatures": [
-      "547474e4ccaf5e077079782ba5d7b9f00e031b81326b2f656e09f5b917853200",
-      "051f8b9d9a20f3bca8afdbc60f59262dcc38f8353d1e917a773aebdee3c03850"
+      "d6952d0bfe2879ed1a77662b4628b65e0952a1c00b12e55e8fd26490782a8e15",
+      "14beb9f55bb3ad6cc9de791f03a120cea4102a60b133d017bb309462c613c70b"
     ],
     "stopped_roots": {},
     "last_checkpoint": {
-      "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE": "WIC-GOVERNANCE-ACTUAL-INPUT-20261008",
-      "CENTRAL_RUNTIME_CYCLE": "WIC-AUTONOMOUS-GOVERNANCE-LOCAL-20261008"
+      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-37769002540",
+      "CENTRAL_RUNTIME_CYCLE": "37769002540"
     },
     "events": [
       {
-        "root_id": "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE",
+        "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "547474e4ccaf5e077079782ba5d7b9f00e031b81326b2f656e09f5b917853200",
+        "signature": "d6952d0bfe2879ed1a77662b4628b65e0952a1c00b12e55e8fd26490782a8e15",
         "deltas": [
           0,
           0,
@@ -991,7 +968,7 @@
         "root_id": "CENTRAL_RUNTIME_CYCLE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "051f8b9d9a20f3bca8afdbc60f59262dcc38f8353d1e917a773aebdee3c03850",
+        "signature": "14beb9f55bb3ad6cc9de791f03a120cea4102a60b133d017bb309462c613c70b",
         "deltas": [
           0,
           0,
@@ -1004,14 +981,14 @@
   },
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "WIC-AUTONOMOUS-GOVERNANCE-LOCAL-20261008",
+    "run_id": "37769002540",
     "run_attempt": "1",
     "processed": [],
     "held": [],
     "handoff": {
       "status": "ACCEPTED",
-      "trace_id": "WIC-GOVERNANCE-ACTUAL-INPUT-20261008",
-      "root_id": "WIC_AUTONOMOUS_GOVERNANCE_CLOSURE",
+      "trace_id": "REMOTE-37769002540",
+      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
         "WIC_EXISTING_TOP_CONTROLLER",
@@ -1019,33 +996,17 @@
         "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
       ],
       "backend_route": "CENTRAL_COMMON_PLATFORM",
-      "intent_quality_lock": "bd68b5f697d47302aa9ff426ac9b867976f2c32fe6ff8a488d4c4febcd0a7c7c",
+      "intent_quality_lock": "e9350493a2bffbc4404d2d514428979d6e06a2e5bc1593b735c9f617b9080b2e",
       "registry_prelookup": true,
       "pass_lock_prelookup": true,
       "user_manual_repetition": 0
     },
-    "feedback": {
-      "status": "PROMOTED",
-      "promotion_key": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
-      "rule": {
-        "id": "REPEATED_USER_CORRECTION::LOCAL_ONLY_FIX",
-        "expected_behavior": "공통 규칙과 Hard Gate로 승격"
-      },
-      "negative_golden_sample": {
-        "input": "같은 오류를 다시 지적해야 함",
-        "must_be_blocked": true
-      },
-      "hard_gate": {
-        "scope": "COMMON_PLATFORM",
-        "fail_closed": true
-      },
-      "system_control_failure_on_repeat": true
-    },
+    "feedback": null,
     "progress_gate": {
       "root_id": "CENTRAL_RUNTIME_CYCLE",
       "decision": "ALLOW",
       "reason": null,
-      "signature": "051f8b9d9a20f3bca8afdbc60f59262dcc38f8353d1e917a773aebdee3c03850",
+      "signature": "14beb9f55bb3ad6cc9de791f03a120cea4102a60b133d017bb309462c613c70b",
       "deltas": [
         0,
         0,
