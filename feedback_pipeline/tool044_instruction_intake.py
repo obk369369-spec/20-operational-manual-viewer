@@ -91,7 +91,7 @@ def ingest(inbox,queue,state):
             target=old
         else:
             target={"demand_id":d["directive_id"],"root_id":effective_root_id(d),"target_tool":effective_target_tool(d),
-                    "status":"OPEN","revision":d.get("revision",1),"latest_directive":d["directive"],
+                    "status":"OPEN","revision":d.get("revision",1),"latest_directive":effective_directive(d),
                     "source":"TOOL044_CANONICAL_INTAKE","claim":None,
                     "checkpoint":{"stage":"INTAKE_ACCEPTED","resume_from":"INTAKE_ACCEPTED"},
                     "result_return":None}
