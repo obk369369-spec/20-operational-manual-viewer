@@ -1,0 +1,40 @@
+{
+  "schema": "wic.storage.incremental-discovery.v1",
+  "root": "CONNECTED_STORAGE_INCREMENTAL_DISCOVERY_OUTSIDE_3200",
+  "status": "BLOCKED_NO_PASS_LOCK",
+  "previous_checkpoint": "WIC-CP-20261007-FINAL-NEXT-WORK-HANDOFF-LOCK",
+  "previous_git_sha": "5367959d8b8a73ac8a6b14af48b16550cb314e4d",
+  "connected_storage": ["C:", "D:", "F:", "I:"],
+  "unavailable_or_no_media": ["E:", "G:"],
+  "existing_boundaries": {
+    "previously_processed_3200": "SKIPPED_NO_RESCAN",
+    "D:": {"metadata_records": 110415, "closed_new_documents": 2, "reprocessed": 0},
+    "F:": {"partial_records": 100000, "reprocessed": 0},
+    "I:": {"prior_inventory_records": 0, "meaning": "NOT_PREVIOUSLY_EXAMINED"},
+    "USB": {"records": 262, "reprocessed": 0}
+  },
+  "actual_incremental_methods": [
+    {"method": "NTFS_USN_QUERY", "D:": "AVAILABLE", "F:": "AVAILABLE", "I:": "UNSUPPORTED"},
+    {"method": "NTFS_USN_READ", "D:": "ACCESS_DENIED", "F:": "ACCESS_DENIED", "retry": 0},
+    {"method": "WINDOWS_SEARCH_SYSTEMINDEX", "D:": "ACCESS_DENIED", "F:": "ACCESS_DENIED", "I:": "ACCESS_DENIED"},
+    {"method": "ELEVATED_USN_READ", "result": "USER_APPROVAL_REJECTED"}
+  ],
+  "storage_results": {
+    "C:": {"new_file_count": "UNKNOWN", "unexamined_remainder": "PRESENT_NO_CANONICAL_CURSOR"},
+    "D:": {"new_file_count": "UNKNOWN", "unexamined_remainder": "CHECKPOINT_AFTER_DELTA_UNREADABLE"},
+    "F:": {"new_file_count": "UNKNOWN", "unexamined_remainder": "AFTER_100000_BOUNDARY_UNREADABLE"},
+    "I:": {"new_file_count": "UNKNOWN", "unexamined_remainder": "ENTIRE_UNEXAMINED_AREA"}
+  },
+  "connected_storage_new_file_count": "UNKNOWN",
+  "total_outside_3200_discovered_count": "UNKNOWN",
+  "unexamined_remainder": "GREATER_THAN_ZERO",
+  "candidates_discovered": 0,
+  "duplicates_detected": 0,
+  "new_or_changed_confirmed": 0,
+  "content_analysis": "NOT_PERFORMED",
+  "originals_modified": false,
+  "pass_lock": false,
+  "completion": "BLOCKED",
+  "resume_condition": "ALLOW_READ_ONLY_ELEVATED_USN_JOURNAL_ACCESS_OR_PROVIDE_NON_RESCAN_INDEX_ACCESS",
+  "evidence_readback": "PASS"
+}

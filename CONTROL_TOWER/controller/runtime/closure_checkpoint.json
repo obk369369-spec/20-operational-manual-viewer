@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261007-FINAL-NEXT-WORK-HANDOFF-LOCK",
-  "parent_checkpoint_id": "WIC-CP-20261007-TOOL044-DEPLOY-RECOVERY-HOLD",
-  "parent_git_sha": "e4efa953727cbd2428f8a26da96be17cb8f7221f",
+  "checkpoint_id": "WIC-CP-20261008-STORAGE-INCREMENTAL-BLOCKED",
+  "parent_checkpoint_id": "WIC-CP-20261007-FINAL-NEXT-WORK-HANDOFF-LOCK",
+  "parent_git_sha": "5367959d8b8a73ac8a6b14af48b16550cb314e4d",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -17,7 +17,8 @@
     "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_INCOMPLETE_RECONCILIATION_20261007.json",
     "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json",
     "CONTROL_TOWER/ledger/evidence/WIC_EXECUTION_CONTRACT_EXACTLY_ONCE_20261007.json",
-    "CONTROL_TOWER/ledger/evidence/WIC_LARGE_SHARED_PLATFORM_TARGETED_20261007.json"
+    "CONTROL_TOWER/ledger/evidence/WIC_LARGE_SHARED_PLATFORM_TARGETED_20261007.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_INCREMENTAL_DISCOVERY_BLOCKED_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -119,6 +120,14 @@
     "F_PARTIAL_100000",
     "USB_LEDGER_262"
   ],
-  "next_resume_position": "TOOL013_ASSEMBLY_CANONICAL_VERSION_BINDING_THEN_FIXED_TOOL_SEQUENCE",
+  "storage_incremental_root": {
+    "status": "BLOCKED_NO_PASS_LOCK",
+    "connected_storage_new_file_count": "UNKNOWN",
+    "total_outside_3200_discovered_count": "UNKNOWN",
+    "unexamined_remainder": "GREATER_THAN_ZERO",
+    "originals_modified": false,
+    "resume_condition": "ALLOW_READ_ONLY_ELEVATED_USN_JOURNAL_ACCESS_OR_PROVIDE_NON_RESCAN_INDEX_ACCESS"
+  },
+  "next_resume_position": "STORAGE_INCREMENTAL_USN_READ_AFTER_PERMISSION_THEN_NO_OTHER_ROOT",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
