@@ -636,7 +636,17 @@
         "LONG_NO_PROGRESS"
       ],
       "completion_condition": "Reuse already verified roots; register only compressed unresolved common roots; actual runtime intake->fix->validation->result-return evidence required. Registration alone is not PASS.",
-      "revision": 1
+      "revision": 1,
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "target_tool": "TOOL044",
+      "execution_class": "COMMON_ROOT_INCREMENTAL",
+      "acceptance_tests": [
+        "feedback enters central intake without user relay where supported",
+        "requirement/failure is deduped into maximum common root",
+        "actual executor claims work and returns result",
+        "negative regression blocks repeated failure",
+        "evidence read-back and checkpoint are persisted"
+      ]
     }
   ]
 }
