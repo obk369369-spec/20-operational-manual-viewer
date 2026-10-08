@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-AUTONOMOUS-GOVERNANCE-CLOSED",
-  "parent_checkpoint_id": "WIC-CP-20261008-C719-ONE-SHOT-PERMISSION-1",
-  "parent_git_sha": "3d7cbbca2834fe6faeb8d68e6d55db8a0bb6f11f",
+  "checkpoint_id": "WIC-CP-20261008-MAJOR-TOOL-SEGMENT-MATRIX-CLOSED",
+  "parent_checkpoint_id": "WIC-CP-20261008-AUTONOMOUS-GOVERNANCE-CLOSED",
+  "parent_git_sha": "8966a3a5659a54f5d7a137b7285d4c3b9015ffa4",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -10,6 +10,7 @@
     "EXECUTION_CONTRACT_AND_EXACTLY_ONCE",
     "LARGE_SHARED_PLATFORM"
     ,"WIC_AUTONOMOUS_GOVERNANCE_CLOSURE"
+    ,"MAJOR_TOOL_SEGMENT_EVIDENCE_CLOSURE"
   ],
   "completed_requirement_ids_count": 26,
   "pass_lock_ids_count": 26,
@@ -26,6 +27,7 @@
     "CONTROL_TOWER/ledger/evidence/WIC_C_719_PATH_IDENTITIES_NOT_PERSISTED_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_C719_ONE_SHOT_ENUMERATION_20261008.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_AUTONOMOUS_GOVERNANCE_CLOSURE_20261008.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_MAJOR_TOOL_SEGMENT_MATRIX_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -156,6 +158,18 @@
     "pending_natural_time": ["ACTUAL_24H_ELAPSED_VALIDATION"],
     "pending_external_storage": ["C:\\Users\\obk36 READ_AND_LIST_PERMISSION"]
   },
-  "next_resume_position": "COMMON_PLATFORM_CLOSED_FILE_DISCOVERY_FROZEN_START_TOOL_SPECIFIC_WORK",
+  "tool_segment_closure": {
+    "status": "MATRIX_CLOSED_PASS_LOCKS_REUSED",
+    "total_tool_segments": 22,
+    "pass_lock_reused": 11,
+    "new_segment_pass_lock": 0,
+    "remaining_internal_executable_segments": 0,
+    "hold_segments": 4,
+    "deferred_tool013_segments": 3,
+    "pending_external_segments": 3,
+    "not_applicable_segments": 1,
+    "unexplained_segments": 0
+  },
+  "next_resume_position": "TOOL013_ASSEMBLY_AND_ACTUAL_XLSX_VALIDATION",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
