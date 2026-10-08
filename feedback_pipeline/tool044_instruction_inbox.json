@@ -549,6 +549,94 @@
       ],
       "pass_condition": "Actual trigger->diff->classification->TOOL016/044 demand->fixture->next-customer enforcement E2E demonstrated; registration alone is not PASS.",
       "revision": 1
+    },
+    {
+      "directive_id": "TOOL044-24H-USER-FEEDBACK-AUTO-ABSORB-20261008",
+      "root": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "priority": "HIGHEST_AFTER_DEDUP_GATE",
+      "status": "OPEN_IMPLEMENT_TEST_DEPLOY",
+      "source_file": "붙여넣은 텍스트(1)(20261008-115841).txt",
+      "objective": "Automatically absorb user feedback from WIC chats into central Requirement/Failure, compress by common cause, fix/validate, and propagate without user relay.",
+      "invariants": [
+        "USER=OBSERVER",
+        "USER_MANUAL_REPETITION=0",
+        "FAKE_PASS=0",
+        "ONE_TOOL=ONE_CANONICAL",
+        "PASS_LOCK_REUSE",
+        "NO_3200_RESCAN"
+      ],
+      "flow": [
+        "USER_FEEDBACK",
+        "CENTRAL_INTAKE",
+        "REQUIREMENT_FAILURE_REGISTER",
+        "SIMILAR_FAILURE_SEARCH",
+        "ROOT_CAUSE_ANALYSIS",
+        "IMPACT_SCOPE",
+        "READY_COMPONENT_SEARCH",
+        "TOOL044_EXTERNAL_PROCUREMENT_IF_NEEDED",
+        "MAXIMUM_COMMON_ROOT",
+        "AUTO_FIX_OR_COMPOSE",
+        "ACTUAL_VALIDATION",
+        "NEGATIVE_REGRESSION",
+        "HARD_GATE",
+        "EVIDENCE",
+        "PASS_LOCK",
+        "CHECKPOINT",
+        "OBSERVER",
+        "REUSE_ALL_RELEVANT_AREAS"
+      ],
+      "failure_classes": [
+        "AUTOMATION_GAP",
+        "USER_REPETITION_FAILURE",
+        "MANUAL_RELAY_REQUIRED",
+        "FAKE_PASS",
+        "PARTIAL_PASS_AS_FULL_PASS",
+        "NO_PROGRESS_LOOP",
+        "CREDIT_WASTE",
+        "INTENT_DRIFT",
+        "QUALITY_DRIFT",
+        "FEATURE_REGRESSION",
+        "CANONICAL_AMBIGUITY"
+      ],
+      "chat_intake_rule": "Any accessible WIC chat correction/error/manual-work complaint is automatic intake. If a general ChatGPT chat is not directly accessible, do not fake access; use a supported connection first and register manual-copy requirement itself as AUTOMATION_GAP.",
+      "tool044_role": "External procurement layer for verified finished components/workflows/skills/apps/connectors/templates/agents/open-source/free services, with license/cost/commercial/security/maintenance/compatibility/function/integration/recovery/rollback validation.",
+      "pass_rule": "Code/file/UI/commit/sample/fixture/self-validation alone are not PASS; require actual input/execution/output, expected-vs-actual, positive+negative regression, output block, recovery/rollback where applicable, reopen, evidence read-back, canonical/version/SHA.",
+      "progress_gate": [
+        "CLOSURE_DELTA",
+        "PASS_LOCK_DELTA",
+        "EVIDENCE_DELTA",
+        "UNRESOLVED_DELTA",
+        "NEW_INFORMATION_VALUE"
+      ],
+      "observer_minimum": [
+        "CURRENT_ROOT",
+        "STATUS",
+        "PASS",
+        "FAIL",
+        "HOLD",
+        "PENDING_EXTERNAL",
+        "PENDING_NATURAL_TIME",
+        "NEEDS_OBSERVER_DECISION",
+        "LAST_CHECKPOINT",
+        "LAST_EVIDENCE",
+        "LAST_ACTUAL_SUCCESS",
+        "CURRENT_BLOCKER",
+        "AUTO_RECOVERY",
+        "NEXT_AUTOMATIC_WORK"
+      ],
+      "immediate_report_only": [
+        "ACTUAL_FAIL",
+        "AUTO_RECOVERY_FAILED",
+        "CHECKPOINT_ANOMALY",
+        "CANONICAL_CONFLICT",
+        "PROTECTION_GATE_FAILED",
+        "COST_PERMISSION_IRREVERSIBLE_DECISION",
+        "USER_INTENT_CONFLICT",
+        "BUSINESS_OUTPUT_BLOCKED",
+        "LONG_NO_PROGRESS"
+      ],
+      "completion_condition": "Reuse already verified roots; register only compressed unresolved common roots; actual runtime intake->fix->validation->result-return evidence required. Registration alone is not PASS.",
+      "revision": 1
     }
   ]
 }
