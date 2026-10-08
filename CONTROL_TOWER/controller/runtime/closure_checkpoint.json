@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-STORAGE-INCREMENTAL-BLOCKED",
-  "parent_checkpoint_id": "WIC-CP-20261007-FINAL-NEXT-WORK-HANDOFF-LOCK",
-  "parent_git_sha": "5367959d8b8a73ac8a6b14af48b16550cb314e4d",
+  "checkpoint_id": "WIC-CP-20261008-STORAGE-PATH-ENUMERATION-PARTIAL",
+  "parent_checkpoint_id": "WIC-CP-20261008-STORAGE-INCREMENTAL-BLOCKED",
+  "parent_git_sha": "c36150d7d4357a8bde6741ee5adc50420ad78e52",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -18,7 +18,8 @@
     "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json",
     "CONTROL_TOWER/ledger/evidence/WIC_EXECUTION_CONTRACT_EXACTLY_ONCE_20261007.json",
     "CONTROL_TOWER/ledger/evidence/WIC_LARGE_SHARED_PLATFORM_TARGETED_20261007.json",
-    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_INCREMENTAL_DISCOVERY_BLOCKED_20261008.json"
+    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_INCREMENTAL_DISCOVERY_BLOCKED_20261008.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_PATH_DELTA_ONCE_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -121,13 +122,15 @@
     "USB_LEDGER_262"
   ],
   "storage_incremental_root": {
-    "status": "BLOCKED_NO_PASS_LOCK",
+    "status": "PARTIAL_NO_PASS_LOCK",
     "connected_storage_new_file_count": "UNKNOWN",
     "total_outside_3200_discovered_count": "UNKNOWN",
-    "unexamined_remainder": "GREATER_THAN_ZERO",
+    "accessible_area_new_path_candidate_count": 2105850,
+    "count_unconfirmed_storage": 4,
+    "unexamined_remainder": 897,
     "originals_modified": false,
-    "resume_condition": "ALLOW_READ_ONLY_ELEVATED_USN_JOURNAL_ACCESS_OR_PROVIDE_NON_RESCAN_INDEX_ACCESS"
+    "resume_condition": "ACCESS_TO_897_UNEXAMINED_DIRECTORIES_WITHOUT_REENUMERATING_COMPLETED_PATHS"
   },
-  "next_resume_position": "STORAGE_INCREMENTAL_USN_READ_AFTER_PERMISSION_THEN_NO_OTHER_ROOT",
+  "next_resume_position": "STORAGE_897_UNEXAMINED_DIRECTORIES_ONLY_NO_DRIVE_REENUMERATION",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

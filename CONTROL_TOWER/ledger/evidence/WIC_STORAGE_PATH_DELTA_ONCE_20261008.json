@@ -1,0 +1,29 @@
+{
+  "schema": "wic.storage.path-delta-once.evidence.v1",
+  "root": "CONNECTED_STORAGE_INCREMENTAL_DISCOVERY_OUTSIDE_3200",
+  "method": "CURRENT_PATH_SET_MINUS_KNOWN_PATH_SET",
+  "status": "PARTIAL_NO_PASS_LOCK",
+  "previous_evidence_preserved": "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_INCREMENTAL_DISCOVERY_BLOCKED_20261008.json",
+  "connected_storage_count": 4,
+  "confirmed_storage_count": 0,
+  "count_unconfirmed_storage": 4,
+  "accessible_area_new_path_candidate_count": 2105850,
+  "total_new_path_candidate_count": "UNKNOWN",
+  "unexamined_remainder": 897,
+  "connected_storage_new_file_count_complete": false,
+  "storage": [
+    {"storage":"C:","current_path_enumeration":"PARTIAL","known_path_count":0,"current_path_count":1333535,"new_path_candidate_count":1333535,"count_confirmed":false,"unexamined_remainder":819,"path_list":".inventory_runtime/storage_path_delta_20261008/C_new_path_candidates.txt.gz"},
+    {"storage":"D:","current_path_enumeration":"PARTIAL","known_path_count":110415,"current_path_count":110464,"new_path_candidate_count":123,"count_confirmed":false,"unexamined_remainder":7,"path_list":".inventory_runtime/storage_path_delta_20261008/D_new_path_candidates.txt.gz"},
+    {"storage":"F:","current_path_enumeration":"PARTIAL","known_path_count":100000,"current_path_count":578249,"new_path_candidate_count":478249,"count_confirmed":false,"unexamined_remainder":40,"path_list":".inventory_runtime/storage_path_delta_20261008/F_new_path_candidates.txt.gz"},
+    {"storage":"I:","current_path_enumeration":"PARTIAL","known_path_count":0,"current_path_count":293943,"new_path_candidate_count":293943,"count_confirmed":false,"unexamined_remainder":31,"path_list":".inventory_runtime/storage_path_delta_20261008/I_new_path_candidates.txt.gz"}
+  ],
+  "existing_scope_reprocessed": 0,
+  "content_read": false,
+  "file_hashing": false,
+  "originals_modified": false,
+  "same_storage_enumerated_twice": false,
+  "pass_lock": false,
+  "completion": "PARTIAL",
+  "resume_condition": "ACCESS_TO_897_UNEXAMINED_DIRECTORIES_WITHOUT_REENUMERATING_COMPLETED_PATHS",
+  "local_result_readback": "PASS"
+}
