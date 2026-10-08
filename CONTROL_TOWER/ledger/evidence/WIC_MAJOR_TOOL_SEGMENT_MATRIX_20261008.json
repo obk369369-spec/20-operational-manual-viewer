@@ -30,8 +30,8 @@
 
     {"tool_id":"TOOL044","segment_id":"T44-MULTI-GATE-FACTORY","function":"claim·fencing·병렬실행·결과귀환","canonical_implementation":"feedback_pipeline/tool044_multi_gate.py","current_status":"PASS_LOCK_REUSED","existing_evidence":"feedback_pipeline/evidence/tool044_multi_gate_state.json","expected_input":"검증 component와 atomic demand","expected_output":"PASS/HOLD/FAIL 귀환과 ACK","validator":"multi-gate positive/failure/rollback/fencing tests","actual_test_required":false,"dependency":null,"failure_recovery_path":"lease takeover와 rollback","final_status":"PASS_LOCK_REUSED","evidence_id":"T44-MULTI-GATE-35823572291","segment_pass_lock":true},
     {"tool_id":"TOOL044","segment_id":"T44-VERIFIED-COMPONENT-POOL","function":"검증부품 등록·재사용","canonical_implementation":"feedback_pipeline/evidence/tool044_verified_external_component_pool.json","current_status":"PASS_LOCK_REUSED","existing_evidence":"feedback_pipeline/evidence/tool044_verified_external_component_pool.json","expected_input":"license/security/actual-use 검증 부품","expected_output":"verified reusable pool","validator":"component contract and read-back","actual_test_required":false,"dependency":null,"failure_recovery_path":"불완전 contract HOLD","final_status":"PASS_LOCK_REUSED","evidence_id":"T44-VERIFIED-POOL","segment_pass_lock":true},
-    {"tool_id":"TOOL044","segment_id":"T44-ACTUAL-DEPLOY-RECOVERY","function":"실제 대상 배포와 복구","canonical_implementation":"feedback_pipeline/tool044_fast_deploy.py","current_status":"NEEDS_ACTUAL_INPUT","existing_evidence":"CONTROL_TOWER/controller/runtime/closure_checkpoint.json","expected_input":"실제 deploy input과 Expected contract","expected_output":"실제 배포 결과와 recovery receipt","validator":"target-specific actual/expected comparison","actual_test_required":true,"dependency":"ACTUAL_DEPLOY_INPUT_AND_EXPECTED_CONTRACT","failure_recovery_path":"입력 없으면 HOLD, 임의 배포 금지","final_status":"NEEDS_ACTUAL_INPUT","evidence_id":"TOOL044_DEPLOY_RECOVERY_HOLD","segment_pass_lock":false},
-    {"tool_id":"TOOL044","segment_id":"T44-ACTUAL-24H-ELAPSED","function":"24시간 자연경과 무인순환","canonical_implementation":"GitHub scheduled runtime","current_status":"PENDING_EXTERNAL","existing_evidence":"CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json","expected_input":"24시간 실제 경과","expected_output":"연속 timestamp와 실행 evidence","validator":"elapsed time >=24h","actual_test_required":true,"dependency":"NATURAL_TIME","failure_recovery_path":"시간 미경과 시 PENDING 유지","final_status":"PENDING_EXTERNAL","evidence_id":"ACTUAL_24H_ELAPSED_VALIDATION","segment_pass_lock":false},
+    {"tool_id":"TOOL044","segment_id":"T44-ACTUAL-DEPLOY-RECOVERY","function":"실제 대상 배포와 복구","canonical_implementation":"feedback_pipeline/tool044_mechanical.py","current_status":"NEW_SEGMENT_PASS_LOCK","existing_evidence":"feedback_pipeline/evidence/tool044_mechanical_deployed.json;CONTROL_TOWER/ledger/evidence/WIC_TOOL044_DEPLOY_RECOVERY_SEGMENT_20261008.json","expected_input":"fastjsonschema immutable completion-proof manifest","expected_output":"valid proof accepted, invalid proof 6건 차단, source hash 일치","validator":"manifest mechanical gate and expected/actual subset comparison","actual_test_required":false,"dependency":null,"failure_recovery_path":"expected mismatch 시 배포 전 차단·임시 배포 rollback","final_status":"NEW_SEGMENT_PASS_LOCK","evidence_id":"WIC-TOOL044-DEPLOY-RECOVERY-20261008","segment_pass_lock":true},
+    {"tool_id":"TOOL044","segment_id":"T44-ACTUAL-24H-ELAPSED","function":"24시간 자연경과 무인순환","canonical_implementation":"GitHub scheduled runtime","current_status":"PENDING_NATURAL_TIME","existing_evidence":"CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json","expected_input":"24시간 실제 경과","expected_output":"연속 timestamp와 실행 evidence","validator":"elapsed time >=24h","actual_test_required":true,"dependency":"NATURAL_TIME","failure_recovery_path":"시간 미경과 시 PENDING 유지","final_status":"PENDING_NATURAL_TIME","evidence_id":"ACTUAL_24H_ELAPSED_VALIDATION","segment_pass_lock":false},
 
     {"tool_id":"TOOL013","segment_id":"T13-TRANSLATION-ASSEMBLY","function":"기존 번역 기능 조립","canonical_implementation":"NEXT_WORK_ONLY","current_status":"DEFERRED_NEXT_WORK","existing_evidence":"feedback_pipeline/evidence/tool013_v2_operations_ready_20260930.json","expected_input":"실제 XLSX","expected_output":"승인 스타일 번역","validator":"expected/actual translation","actual_test_required":true,"dependency":"NEXT_WORK_LOCK","failure_recovery_path":"이번 Work 실행 금지","final_status":"DEFERRED_NEXT_WORK","evidence_id":"T13-NEXT-WORK-1","segment_pass_lock":false},
     {"tool_id":"TOOL013","segment_id":"T13-CATEGORY-ASSEMBLY","function":"기존 공식 18개 자동매칭 조립","canonical_implementation":"NEXT_WORK_ONLY","current_status":"DEFERRED_NEXT_WORK","existing_evidence":"feedback_pipeline/evidence/tool013_v2_operations_ready_20260930.json","expected_input":"실제 XLSX","expected_output":"공식 카테고리 결과","validator":"expected/actual category","actual_test_required":true,"dependency":"NEXT_WORK_LOCK","failure_recovery_path":"이번 Work 실행 금지","final_status":"DEFERRED_NEXT_WORK","evidence_id":"T13-NEXT-WORK-2","segment_pass_lock":false},
@@ -40,17 +40,19 @@
   "counts": {
     "total_tool_segments": 22,
     "pass_lock_reused": 11,
-    "new_segment_pass_lock": 0,
+    "new_segment_pass_lock": 1,
     "remaining_internal_executable_segments": 0,
-    "hold_segments": 4,
+    "hold_segments": 3,
     "deferred_tool013_segments": 3,
-    "pending_external_segments": 3,
+    "pending_external_segments": 2,
+    "pending_natural_time_segments": 1,
     "not_applicable_segments": 1,
     "unexplained_segments": 0
   },
   "shared_roots": [
-    {"id":"ACTUAL_VERIFIED_INPUT_CONTRACT","segments":["T1-ACTUAL-REPORT-GUIDE","T6-COMPLEX-DEPTH2","T42-OFFICIAL-COMPLEX-TOC","T44-ACTUAL-DEPLOY-RECOVERY"],"status":"HOLD_UNTIL_REAL_INPUT_AND_EXPECTED_CONTRACT"},
-    {"id":"EXTERNAL_EVENT_OR_TIME","segments":["T2-EXTERNAL-NARA-INGEST","T43-NATIVE-CHAT-INTERCEPTOR","T44-ACTUAL-24H-ELAPSED"],"status":"PENDING_EXTERNAL"}
+    {"id":"ACTUAL_VERIFIED_INPUT_CONTRACT","segments":["T1-ACTUAL-REPORT-GUIDE","T6-COMPLEX-DEPTH2","T42-OFFICIAL-COMPLEX-TOC"],"status":"HOLD_UNTIL_REAL_INPUT_AND_EXPECTED_CONTRACT"},
+    {"id":"EXTERNAL_EVENT","segments":["T2-EXTERNAL-NARA-INGEST","T43-NATIVE-CHAT-INTERCEPTOR"],"status":"PENDING_EXTERNAL"},
+    {"id":"NATURAL_TIME","segments":["T44-ACTUAL-24H-ELAPSED"],"status":"PENDING_NATURAL_TIME"}
   ],
   "evidence_readback": "PASS",
   "next_work_first_root": "TOOL013_ASSEMBLY_AND_ACTUAL_XLSX_VALIDATION"

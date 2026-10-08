@@ -1,0 +1,44 @@
+{
+  "schema": "wic.tool-segment-closure.v1",
+  "tool_id": "TOOL044",
+  "segment_id": "T44-ACTUAL-DEPLOY-RECOVERY",
+  "status": "NEW_SEGMENT_PASS_LOCK",
+  "actual_input": "feedback_pipeline/tool044_manifests/fastjsonschema_fixture.json",
+  "actual_input_source": "immutable admitted component manifest",
+  "expected_output": {
+    "status": "PASS",
+    "valid_proof_accepted": true,
+    "invalid_proof_cases_blocked": 6,
+    "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+  },
+  "expected_source": "feedback_pipeline/tool044_expected/fastjsonschema_expected.json",
+  "actual_output": {
+    "status": "PASS",
+    "valid_proof_accepted": true,
+    "invalid_proof_cases_blocked": 6,
+    "source_sha256": "1c797122d0a86c5cace2e54bf4e819c36223b552017172f32c5c024a6b77e463"
+  },
+  "expected_vs_actual": "MATCH",
+  "positive_test": "PASS",
+  "negative_or_failure_test": "PASS_EXPECTED_ACTUAL_MISMATCH_BLOCKED_BEFORE_DEPLOY",
+  "targeted_regression": {
+    "source_metadata_hash": "PASS",
+    "sandbox_execution": "PASS",
+    "invalid_input_rejection": "PASS",
+    "registry_no_duplicate": "PASS",
+    "deploy_sync": "PASS",
+    "deployed_copy_fixture": "PASS",
+    "idempotency": "PASS"
+  },
+  "recovery_test": "PASS_SECOND_RUN_SKIP_IDENTICAL",
+  "rollback_test": "PASS_BAD_EXPECTED_CREATED_NO_DEPLOY_DIRECTORY",
+  "generated_output_path": "TEMPORARY_TEST_SCOPE_CLEANED_AFTER_RUN",
+  "output_reopen_readback": "PASS",
+  "validator_result": "PASS",
+  "validator_of_validator": "PASS_INTENTIONAL_EXPECTED_MISMATCH_REJECTED",
+  "prior_actual_deployed_evidence": "feedback_pipeline/evidence/tool044_mechanical_deployed.json",
+  "evidence_id": "WIC-TOOL044-DEPLOY-RECOVERY-20261008",
+  "evidence_readback": "PASS",
+  "canonical_version": "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF@2.21.2",
+  "final_segment_status": "NEW_SEGMENT_PASS_LOCK"
+}
