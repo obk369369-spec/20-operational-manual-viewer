@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-08T08:50:02.998064+00:00",
+  "updated_at": "2026-10-08T15:43:09.462666+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -129,7 +129,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -182,7 +182,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -235,7 +235,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -288,7 +288,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -341,7 +341,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -394,7 +394,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -447,7 +447,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -500,7 +500,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "37752454309"
+        "37802987121"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -2329,6 +2329,48 @@
       "actionable_requeued": false
     },
     {
+      "requirement_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
       "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
       "root_id": "PLATFORM-NATIVE-CHAT-ACCESS",
       "original_requirement": "actual delivery into the existing TOOL044 chat",
@@ -2459,11 +2501,11 @@
     }
   ],
   "counts": {
-    "COMPLETE": 45,
     "UNFINISHED": 7,
+    "COMPLETE": 45,
+    "PARTIAL": 12,
     "LONG_TERM_HOLD": 5,
-    "PLATFORM_HOLD": 4,
-    "PARTIAL": 9
+    "PLATFORM_HOLD": 4
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2522,6 +2564,7 @@
   ],
   "residual_roots": [
     "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+    "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
     "OBSERVER-SEPARATION-WORK-HANDOFF",
     "TOOL016",
     "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
@@ -2533,6 +2576,8 @@
     "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
     "WIC-CIRCULATION-FINAL-CLOSEOUT",
     "WIC-COMMON-AUTOMATION-BLOCKERS",
+    "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+    "WIC-COMMON-NONTOOL-RESIDUAL",
     "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
     "WIC-FINAL-CONNECTION"
   ],

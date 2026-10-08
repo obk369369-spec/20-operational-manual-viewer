@@ -38,7 +38,12 @@
     "49dd090193bdf35ff3fa",
     "ac9a573b501e7bb4c0bc",
     "6708a7be27d043cfe366",
-    "ef12815a6f2ef7da952b"
+    "ef12815a6f2ef7da952b",
+    "3484591c8b74733e5fa6",
+    "4b9c6fdc8013996cf4fc",
+    "57c9625e3bb0d407dc5c",
+    "29e76a5d90fb51cd998b",
+    "bf1eeea6cb38dff3ba12"
   ],
   "last_events": [
     {
@@ -167,9 +172,33 @@
     },
     {
       "directive_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
+      "action": "SKIP_DUPLICATE"
+    },
+    {
+      "directive_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
       "action": "NEW_ROOT",
-      "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION"
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY"
+    },
+    {
+      "directive_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+      "action": "NEW_ROOT",
+      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL"
+    },
+    {
+      "directive_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "action": "NEW_ROOT",
+      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930"
+    },
+    {
+      "directive_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "action": "NEW_ROOT",
+      "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930"
+    },
+    {
+      "directive_id": "TOOL044-24H-USER-FEEDBACK-AUTO-ABSORB-20261008",
+      "action": "MERGE",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION"
     }
   ],
-  "updated_at": "2026-09-29T11:52:58.962667+00:00"
+  "updated_at": "2026-10-08T15:43:09.359133+00:00"
 }

@@ -576,7 +576,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -643,7 +643,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -710,7 +710,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -777,7 +777,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -844,7 +844,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -911,7 +911,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -978,7 +978,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1045,7 +1045,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37752454309",
+        "run_id": "37802987121",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -5204,7 +5204,7 @@
       "target_tool": "TOOL044",
       "status": "OPEN",
       "revision": 5,
-      "latest_directive": "EXPANSION ONLY; preserve existing TOOL044 circulation and PASS locks, do not restart prior work. Highest execution priority: TOOL013, TOOL041->TOOL007->TOOL042, TOOL006. Maximize real parallel throughput using only actually available and verified free independent Runner/Worker environments; never fabricate/fill runner counts. Work is forbidden. Same COMMON_ROOT has exactly one owner; independent roots may run concurrently. Central Queue -> atomic claim/lease -> independent runner execution -> checkpoint -> actual validation -> failure isolation/takeover -> GitHub persist/deploy and remote read-back -> TOOL016 result return -> PASS LOCK -> idle runner immediately selects next eligible unresolved root. If a priority root is WAITING on a real external condition, do not idle other runners; process the next eligible root. Prefer existing WIC verified runners/components, then free externally verified runtime/components; external ready parts require actual-use, maintenance, license, security/dependency and no-modification usability checks before admission. Expansion gates: duplicate execution=0, same-root concurrent owner=0, independent-root concurrency, central result return, heartbeat, checkpoint/resume, failed-runner isolation/takeover, PASS reselection blocked. One runner failure must not stop circulation. 24H FULL EXPANSION: the 24h window is active work, not passive waiting. Throughout real elapsed 24h continuously perform unresolved auto-selection -> maximum safe parallel execution -> validation -> recovery -> result return -> PASS lock -> next selection while accumulating real timestamps, heartbeat, Run ID, checkpoint, completion/HOLD/FAIL, recovery, result-return and next-selection evidence. During the window, discover and validate additional free independent Runner/Worker capacity and add it when actually proven; replace with more stable verified free components where appropriate. If no eligible internal work temporarily exists, keep heartbeat/watchdog/queue monitoring alive. Never declare 24H_ACTUAL_PASS before >=24 real elapsed hours of evidence. Goal: maximum verified free independent runner utilization + maximum safe COMMON_ROOT parallelism + priority completion for TOOL013/041-007-042/006 + automatic fault recovery + zero user relay/intervention + real continuous 24h evidence.",
+      "latest_directive": "LEGACY_INTAKE:WIC-24H-MULTI-WORK-AUTOCIRCULATION",
       "source": "TOOL044_CANONICAL_INTAKE",
       "claim": null,
       "checkpoint": {
@@ -5212,7 +5212,13 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null,
-      "residual_classification": "LONG_TERM_HOLD"
+      "residual_classification": "LONG_TERM_HOLD",
+      "merged_directives": [
+        "TOOL044-24H-USER-FEEDBACK-AUTO-ABSORB-20261008"
+      ],
+      "directive_history": [
+        "TOOL044-24H-USER-FEEDBACK-AUTO-ABSORB-20261008"
+      ]
     },
     {
       "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
@@ -5537,6 +5543,70 @@
           "TOOL044_DEMAND_ID": "CURRENT_CHAT_ATTACHMENT_TO_WORK_HANDOFF-20260930"
         }
       ]
+    },
+    {
+      "demand_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+      "target_tool": "TOOL016,TOOL044,WORK_HANDOFF,OBSERVER_REPORT",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "COMMON ERROR MERGE. Build the canonical requirement ledger from every user directive supplied to ChatGPT Work from the first WIC Work session through current time, plus every later delta. At every Work/circulation closeout reconcile that entire ledger against actual GitHub/runtime/TOOL016 evidence, classify each requirement COMPLETE/PARTIAL/UNFINISHED/PLATFORM_HOLD/LONG_TERM_HOLD, PASS-lock only evidenced COMPLETE, and FIRST deliver an observer-facing completion/uncompleted table. Then automatically requeue every actionable PARTIAL/UNFINISHED item, merge same causes into the minimum COMMON_ROOT set, auto-select/hand off the next work, execute where permitted, recover results, and repeat the full historical reconciliation after each closeout without observer prompts. The required user-visible destination is the existing ChatGPT conversation named '44번 완성부품 가져오기'; creating another conversation, renaming that existing conversation, or treating a GitHub JSON/file as chat delivery is NOT delivery PASS. If the platform cannot post autonomously into that exact existing conversation, classify CHAT_DELIVERY_TO_EXISTING_TOOL044_CONVERSATION as PLATFORM_HOLD/UNSUPPORTED and do not fake AUTO_USER_VISIBLE_COMPLETION_REPORT PASS. Also treat unexpected creation of user-uncreated related chats and automatic renaming of the original chat when reservations/automations are created as tracked common errors; do not count such chats as successful observer delivery. WORK_HANDOFF must minimize observer intervention and Work credit use: eliminate manual copy/paste, repeated Work-package transfer, redundant PASS reruns, repeated status checking, and unnecessary Work invocation; batch COMMON_ROOT work and use free/existing verified circulation first. Explicit allow/deny approvals that the platform mandates must never be bypassed: batch/minimize them and classify unavoidable approval clicks as PLATFORM_HOLD until a supported no-click path is actually proven. Handoff heartbeat loss, missing result return, duplicate handoff, approval-wait stalls, and excessive Work invocation must automatically re-enter the same common-error circulation. Preserve all existing PASS locks/checkpoints. Final PASS requires actual E2E proof of historical-ledger reconciliation, observer table delivery into the exact existing TOOL044 chat where supported, automatic requeue, next selection, result return, duplicate prevention, credit-minimizing routing, and observer_reinstruction_required=0. Merely writing observer_report.json is insufficient.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null,
+      "residual_classification": "PARTIAL"
+    },
+    {
+      "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
+      "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "Execute feedback_pipeline/WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE_20260929.md. Exclude individual tool functional work. Preserve evidence-backed PASS. Reconcile historical common-infrastructure requirements, work only incomplete common roots, report status at each closeout, automatically requeue actionable residuals, select next eligible root, and keep unsupported platform stages explicit HOLD.",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null,
+      "residual_classification": "PARTIAL"
+    },
+    {
+      "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "target_tool": "TOOL044",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "LEGACY_INTAKE:GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null,
+      "residual_classification": "PARTIAL"
+    },
+    {
+      "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "target_tool": "TOOL044",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "LEGACY_INTAKE:TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null,
+      "residual_classification": "PARTIAL"
     }
   ]
 }

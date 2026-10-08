@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-08T08:50:02.984915+00:00",
-  "UNFINISHED_SCANNED": 46,
+  "updated_at": "2026-10-08T15:43:09.449008+00:00",
+  "UNFINISHED_SCANNED": 50,
   "ALREADY_PASS_EXCLUDED": 70,
   "ROOTS_MERGED": 5,
   "WORK_FIXABLE_ROOTS": 5,
@@ -109,7 +109,7 @@
       "status": "READY_FOR_MULTI_GATE"
     }
   ],
-  "TOOL044_AUTO_HANDED_OFF": 29,
+  "TOOL044_AUTO_HANDED_OFF": 33,
   "TOOL044_QUEUE": [
     {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -284,6 +284,30 @@
       "root_id": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
       "target_tool": "TOOL016,TOOL044,WORK_HANDOFF",
       "atomic_capabilities": []
+    },
+    {
+      "demand_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+      "target_tool": "TOOL016,TOOL044,WORK_HANDOFF,OBSERVER_REPORT",
+      "atomic_capabilities": []
+    },
+    {
+      "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
+      "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
+      "atomic_capabilities": []
+    },
+    {
+      "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+      "target_tool": "TOOL044",
+      "atomic_capabilities": []
+    },
+    {
+      "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "target_tool": "TOOL044",
+      "atomic_capabilities": []
     }
   ],
   "WORK_REQUIRED_REMAINDER": 5,
@@ -317,7 +341,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 34,
+    "ready": 38,
     "waiting": 12,
     "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
     "duplicate_demand_ids": [],
@@ -664,7 +688,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-08T08:50:02.984915+00:00",
+  "LAST_HEARTBEAT": "2026-10-08T15:43:09.449008+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0
