@@ -1,0 +1,27 @@
+{
+  "schema": "wic.storage.path-recovery-impossible.v1",
+  "root": "STORAGE_897_UNEXAMINED_DIRECTORIES_ONLY",
+  "status": "PHYSICAL_RECOVERY_IMPOSSIBLE_FROM_EXISTING_ARTIFACTS",
+  "missing_storage": "C:",
+  "initial_c_unexamined_count": 819,
+  "persisted_c_error_path_count": 100,
+  "missing_error_path_count": 719,
+  "source_code_evidence": {
+    "path": "CONTROL_TOWER/controller/enumerate_storage_path_delta_once.py",
+    "line": 52,
+    "expression": "errors[:100]"
+  },
+  "artifact_readback": {
+    "progress_json": {"C_unexamined":819,"C_error_paths":100},
+    "summary_json": {"C_unexamined":819,"C_error_paths":100},
+    "candidate_gzip_role": "SUCCESSFULLY_ENUMERATED_FILE_PATHS_ONLY",
+    "unexamined_resolution_source": "SAME_TRUNCATED_178_PATH_SET"
+  },
+  "recovery_sources_checked": ["progress.json", "summary.json", "unexamined_resolution.json", "C/D/F/I candidate gzip outputs", "enumerator emitted result object"],
+  "full_drive_reenumeration_performed": false,
+  "usn_or_search_retry_performed": false,
+  "conclusion": "THE_719_PATH_IDENTITIES_WERE_DISCARDED_BEFORE_ANY_OUTPUT_WAS_WRITTEN_AND_CANNOT_BE_RECOVERED_FROM_EXISTING_RUN_ARTIFACTS",
+  "pass_lock": false,
+  "storage_file_discovery_complete": false,
+  "evidence_readback": "PASS"
+}

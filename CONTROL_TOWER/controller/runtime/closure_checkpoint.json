@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-STORAGE-897-NEEDS-OBSERVER-DECISION",
-  "parent_checkpoint_id": "WIC-CP-20261008-STORAGE-PATH-ENUMERATION-PARTIAL",
-  "parent_git_sha": "c00f624ba7dc3fca11d4d308c3bbded6f5ed4b77",
+  "checkpoint_id": "WIC-CP-20261008-STORAGE-719-RECOVERY-IMPOSSIBLE",
+  "parent_checkpoint_id": "WIC-CP-20261008-STORAGE-897-NEEDS-OBSERVER-DECISION",
+  "parent_git_sha": "99b7621bbd14a208c3e8854e4d2fd0c18fd1e714",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -20,7 +20,8 @@
     "CONTROL_TOWER/ledger/evidence/WIC_LARGE_SHARED_PLATFORM_TARGETED_20261007.json",
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_INCREMENTAL_DISCOVERY_BLOCKED_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_PATH_DELTA_ONCE_20261008.json",
-    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_897_UNEXAMINED_RESOLUTION_20261008.json"
+    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_897_UNEXAMINED_RESOLUTION_20261008.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_719_PATH_RECOVERY_IMPOSSIBLE_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -123,7 +124,7 @@
     "USB_LEDGER_262"
   ],
   "storage_incremental_root": {
-    "status": "NEEDS_OBSERVER_DECISION_NO_PASS_LOCK",
+    "status": "PHYSICAL_PATH_RECOVERY_IMPOSSIBLE_NO_PASS_LOCK",
     "connected_storage_new_file_count": "UNKNOWN",
     "total_outside_3200_discovered_count": "UNKNOWN",
     "accessible_area_new_path_candidate_count": 2105850,
@@ -133,8 +134,8 @@
     "unrecorded_error_path_count": 719,
     "unexamined_remainder": "UNKNOWN",
     "originals_modified": false,
-    "resume_condition": "READ_ACCESS_TO_SIX_F_USER_DIRECTORIES_AND_RECOVERY_OF_719_TRUNCATED_C_ERROR_PATHS_WITHOUT_DRIVE_REENUMERATION"
+    "resume_condition": "719_IDENTITIES_REQUIRE_NEW_C_ENUMERATION_WHICH_CURRENT_INSTRUCTION_FORBIDS"
   },
-  "next_resume_position": "STORAGE_SIX_F_PERMISSION_PATHS_PLUS_719_MISSING_ERROR_PATH_IDENTITIES_ONLY",
+  "next_resume_position": "STOP_719_IDENTITIES_NOT_PRESENT_IN_EXISTING_ARTIFACTS",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
