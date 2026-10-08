@@ -18,7 +18,7 @@ def save(p,obj):
     tmp.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); tmp.replace(p)
 def norm(s): return " ".join(str(s).lower().split())
 def sig(d):
-    basis="|".join([effective_target_tool(d),str(d.get("root_id","")),norm(d.get("directive",""))])
+    basis="|".join([effective_target_tool(d),str(d.get("root_id","")),norm(effective_directive(d))])
     return hashlib.sha256(basis.encode()).hexdigest()[:20]
 def effective_root_id(d):
     """Use stable fallbacks for legacy intake rows missing canonical routing fields."""
@@ -27,6 +27,14 @@ def effective_root_id(d):
 def effective_target_tool(d):
     """Legacy/global directives belong to TOOL044 orchestration unless explicitly routed."""
     return str(d.get("target_tool") or "TOOL044")
+
+def effective_directive(d):
+    """Normalize legacy instruction payloads into one canonical directive string."""
+    for key in ("directive","instruction","request","requirement","description","title"):
+        value=d.get(key)
+        if value is not None and str(value).strip():
+            return str(value)
+    return "LEGACY_INTAKE:" + effective_root_id(d)
 
 def root_key(d):
     return (str(d.get("target_tool","")),effective_root_id(d))
@@ -72,7 +80,7 @@ def ingest(inbox,queue,state):
         if action=="SUPERSEDE":
             old.setdefault("directive_history",[]).append(old.get("latest_directive"))
             old.update(revision=d.get("revision",old.get("revision",1)),
-                       latest_directive=d["directive"],status="OPEN")
+                       latest_directive=effective_directive(d),status="OPEN")
             old.pop("superseded_by",None)
             target=old
         elif action=="MERGE":
@@ -115,10 +123,10 @@ def self_test():
     p={"demand_id":"P1","root_id":"RP","target_tool":"TOOL006","status":"PASS"}; q["demands"].append(p)
     pd={"directive_id":"P2","root_id":"RP","target_tool":"TOOL006","revision":1,"directive":"repeat pass"}
     assert ingest({"directives":[pd]},q,s)[0]["action"]=="SKIP_REUSE_PASS"
-    legacy={"directive_id":"LEGACY1","revision":1,"directive":"legacy row without root id or target tool"}
+    legacy={"directive_id":"LEGACY1","revision":1,"description":"legacy row without canonical fields"}
     legacy_event=ingest({"directives":[legacy]},q,s)[0]
     assert legacy_event["root_id"]=="LEGACY1"
-    assert any(x.get("root_id")=="LEGACY1" and x.get("target_tool")=="TOOL044" for x in q["demands"])
+    assert any(x.get("root_id")=="LEGACY1" and x.get("target_tool")=="TOOL044" and x.get("latest_directive")=="legacy row without canonical fields" for x in q["demands"])
     c=claim(q,"TOOL013","runner-A"); assert c and c["status"]=="CLAIMED"
     c["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; c["claim"]=None; c["status"]="OPEN"
     c2=claim(q,"TOOL013","runner-B"); assert c2["checkpoint"]["resume_from"]=="CLAIMED"
