@@ -576,7 +576,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -643,7 +643,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -710,7 +710,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -777,7 +777,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -844,7 +844,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -911,7 +911,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -978,7 +978,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1045,7 +1045,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "37837079361",
+        "run_id": "37861789809",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -5599,6 +5599,22 @@
       "status": "OPEN",
       "revision": 1,
       "latest_directive": "LEGACY_INTAKE:TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+      "source": "TOOL044_CANONICAL_INTAKE",
+      "claim": null,
+      "checkpoint": {
+        "stage": "INTAKE_ACCEPTED",
+        "resume_from": "INTAKE_ACCEPTED"
+      },
+      "result_return": null,
+      "residual_classification": "PARTIAL"
+    },
+    {
+      "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
+      "target_tool": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_PROGRAMS_WORKFLOWS_PLATFORM",
+      "status": "OPEN",
+      "revision": 1,
+      "latest_directive": "Apply to the entire top-level WIC platform, not only TOOL044. Decompose every executable tool/workflow/platform path into independently verifiable segments. Preserve and continue every segment with evidence-backed PASS; PASS_LOCK it and never stop/reopen it merely because another segment fails. Every FAIL/UNVERIFIED segment remains in 24h circulation. On each attempt narrow the failing scope into smaller segments, isolate the smallest unresolved cause, fix or compose only that unresolved scope, then actually execute and validate it. A segment may become PASS only after actual execution evidence, expected-vs-actual validation, negative regression where applicable, persisted evidence, and read-back. After a failed segment passes, lock it and continue only the remaining unresolved segments. Repeat recursively until no solvable unverified segment remains. PLATFORM_LIMIT/approval/external waits are isolated and must not block unrelated segments. Never report modification, commit, deployment, queueing, or self-test alone as completion. Hourly observer reporting must show in simple Korean: tool/work area, verified segments, unresolved segments, segment currently being retried, how the failure scope narrowed since the previous hour, latest actual evidence, blocker, next automatic retry, and evidence-based ETA only when calculable. The same rule governs dashboard/reporting/runtime/governance/handoff/external procurement and all current/future WIC tools.",
       "source": "TOOL044_CANONICAL_INTAKE",
       "claim": null,
       "checkpoint": {

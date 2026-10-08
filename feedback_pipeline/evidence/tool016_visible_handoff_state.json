@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-08T20:07:53.303035+00:00",
-  "UNFINISHED_SCANNED": 50,
+  "updated_at": "2026-10-08T23:52:42.055699+00:00",
+  "UNFINISHED_SCANNED": 51,
   "ALREADY_PASS_EXCLUDED": 70,
   "ROOTS_MERGED": 5,
   "WORK_FIXABLE_ROOTS": 5,
@@ -109,7 +109,7 @@
       "status": "READY_FOR_MULTI_GATE"
     }
   ],
-  "TOOL044_AUTO_HANDED_OFF": 33,
+  "TOOL044_AUTO_HANDED_OFF": 34,
   "TOOL044_QUEUE": [
     {
       "demand_id": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
@@ -308,6 +308,12 @@
       "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "target_tool": "TOOL044",
       "atomic_capabilities": []
+    },
+    {
+      "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
+      "target_tool": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_PROGRAMS_WORKFLOWS_PLATFORM",
+      "atomic_capabilities": []
     }
   ],
   "WORK_REQUIRED_REMAINDER": 5,
@@ -341,7 +347,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 38,
+    "ready": 39,
     "waiting": 12,
     "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
     "duplicate_demand_ids": [],
@@ -693,7 +699,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-08T20:07:53.303035+00:00",
+  "LAST_HEARTBEAT": "2026-10-08T23:52:42.055699+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

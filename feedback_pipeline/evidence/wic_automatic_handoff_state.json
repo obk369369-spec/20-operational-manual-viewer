@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-08T20:07:53.314306+00:00",
+  "updated_at": "2026-10-08T23:52:42.072782+00:00",
   "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-  "unfinished_detected": 58,
+  "unfinished_detected": 59,
   "common_roots": [
     {
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -326,6 +326,12 @@
       ]
     },
     {
+      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
+      "demands": [
+        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+      ]
+    },
+    {
       "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
       "demands": [
         "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929"
@@ -558,6 +564,11 @@
       "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "capabilities": []
+    },
+    {
+      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
+      "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+      "capabilities": []
     }
   ],
   "holds": [
@@ -703,7 +714,7 @@
     "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
   ],
   "work_batch_full": true,
-  "work_batch_units": 35,
+  "work_batch_units": 36,
   "work_batch_full_threshold": 10,
   "threshold_basis": {
     "completed_jobs": 92,
