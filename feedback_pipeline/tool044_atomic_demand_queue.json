@@ -37,7 +37,7 @@
         ],
         "handler": "BUILTIN_OFFICIAL_DOMAIN_ALLOWLIST_PATCH_V1",
         "test_command": [
-          "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+          "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
           "-c",
           "from feedback_pipeline.tool044_composition import validate_official_publisher_domain as v; assert v('https://reports.example.co.uk/item', ['example.co.uk'])['status']=='VERIFIED_OFFICIAL_DOMAIN'; assert v('https://evil-example.co.uk', ['example.co.uk'])['status']=='HOLD_NOT_OFFICIAL_DOMAIN'; assert v('not a url',['example.co.uk'])['status']=='HOLD_INVALID_URL'"
         ],
@@ -50,13 +50,13 @@
       },
       "status": "PASS",
       "claim": {
-        "owner": "GITHUB_ACTIONS:37720655331",
-        "claimed_at": "2026-10-08T03:00:46.976895+00:00"
+        "owner": "GITHUB_ACTIONS:37763198949",
+        "claimed_at": "2026-10-08T10:24:02.609135+00:00"
       },
       "result_return": {
         "status": "PASS",
         "tool016_ack": "RECEIVED",
-        "run_id": "37720655331"
+        "run_id": "37763198949"
       },
       "residual_classification": "COMPLETE"
     },
