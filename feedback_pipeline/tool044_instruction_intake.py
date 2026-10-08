@@ -85,7 +85,7 @@ def ingest(inbox,queue,state):
             target=old
         elif action=="MERGE":
             old.setdefault("merged_directives",[]).append(d["directive_id"])
-            old.setdefault("directive_history",[]).append(d["directive"])
+            old.setdefault("directive_history",[]).append(d.get("directive") or d.get("feedback") or d.get("title") or d.get("directive_id") or "UNSPECIFIED_DIRECTIVE")
             old["latest_directive"]=d["directive"]; old["revision"]=max(old.get("revision",0),d.get("revision",0))
             old["status"]=old.get("status","OPEN")
             target=old
