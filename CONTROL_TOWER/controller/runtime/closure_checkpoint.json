@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-TOOL044-DEPLOY-RECOVERY-SEGMENT-CLOSED",
-  "parent_checkpoint_id": "WIC-CP-20261008-MAJOR-TOOL-SEGMENT-MATRIX-CLOSED",
-  "parent_git_sha": "5eee6db2eb011fabbabefadfe6178d76980f5896",
+  "checkpoint_id": "WIC-CP-20261008-TOOL013-NEXT-WORK-HANDOFF-READY",
+  "parent_checkpoint_id": "WIC-CP-20261008-TOOL044-DEPLOY-RECOVERY-SEGMENT-CLOSED",
+  "parent_git_sha": "f012c99c1ce7d39603ccee393f602c9d52c70305",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -30,6 +30,7 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_AUTONOMOUS_GOVERNANCE_CLOSURE_20261008.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_MAJOR_TOOL_SEGMENT_MATRIX_20261008.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL044_DEPLOY_RECOVERY_SEGMENT_20261008.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL013_NEXT_WORK_HANDOFF_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -173,6 +174,16 @@
     "not_applicable_segments": 1,
     "unexplained_segments": 0
   },
-  "next_resume_position": "TOOL013_ASSEMBLY_AND_ACTUAL_XLSX_VALIDATION",
+  "tool013_next_work_handoff": {
+    "status": "READY_FOR_NEXT_WORK",
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_NEXT_WORK_HANDOFF_20261008.json",
+    "actual_xls": "C:/Users/obk36/Downloads/TOOL013_실제입력양식_원본.xls",
+    "actual_xls_sha256": "B31A4F76C797B95D4EA2A6A38DC199657C56D2258F90C1D0E7A2BF880377891D",
+    "candidate_entrypoint": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/13번_V2_최종운영판.html",
+    "candidate_sha256": "62CE7A4B39E8000D0A2B0A8C86D2DC47D5F826CD30A58618C585D2BE2C1418C6",
+    "execution_in_this_work": false,
+    "handoff_completeness": "PASS"
+  },
+  "next_resume_position": "TOOL013_ASSEMBLY_AND_ACTUAL_XLSX_VALIDATION_FROM_BOUND_HANDOFF",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
