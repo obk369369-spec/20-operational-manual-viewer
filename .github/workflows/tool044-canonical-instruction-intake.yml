@@ -121,7 +121,7 @@ jobs:
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- feedback_pipeline/tool044_atomic_demand_queue.json feedback_pipeline/state.json feedback_pipeline/evidence/tool016_visible_handoff_state.json feedback_pipeline/evidence/tool044_instruction_intake_state.json feedback_pipeline/evidence/tool044_work_parallel_state.json feedback_pipeline/evidence/tool044_permanent_observer_operation.json
+          git add -A -- feedback_pipeline
           if ! git diff --cached --quiet; then
             git commit -m 'tool044: persist permanent observer E2E evidence'
             git pull --rebase origin main
