@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-STORAGE-719-RECOVERY-IMPOSSIBLE",
-  "parent_checkpoint_id": "WIC-CP-20261008-STORAGE-897-NEEDS-OBSERVER-DECISION",
-  "parent_git_sha": "99b7621bbd14a208c3e8854e4d2fd0c18fd1e714",
+  "checkpoint_id": "WIC-CP-20261008-C719-NOT-PERSISTED-OBSERVER-DECISION",
+  "parent_checkpoint_id": "WIC-CP-20261008-STORAGE-719-RECOVERY-IMPOSSIBLE",
+  "parent_git_sha": "9950c260dc5781ca66415b6566776ea0cb3741de",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -21,7 +21,8 @@
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_INCREMENTAL_DISCOVERY_BLOCKED_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_PATH_DELTA_ONCE_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_897_UNEXAMINED_RESOLUTION_20261008.json",
-    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_719_PATH_RECOVERY_IMPOSSIBLE_20261008.json"
+    "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_719_PATH_RECOVERY_IMPOSSIBLE_20261008.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_C_719_PATH_IDENTITIES_NOT_PERSISTED_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -124,7 +125,7 @@
     "USB_LEDGER_262"
   ],
   "storage_incremental_root": {
-    "status": "PHYSICAL_PATH_RECOVERY_IMPOSSIBLE_NO_PASS_LOCK",
+    "status": "C_719_PATH_IDENTITIES_NOT_PERSISTED_NEEDS_OBSERVER_DECISION",
     "connected_storage_new_file_count": "UNKNOWN",
     "total_outside_3200_discovered_count": "UNKNOWN",
     "accessible_area_new_path_candidate_count": 2105850,
@@ -134,8 +135,10 @@
     "unrecorded_error_path_count": 719,
     "unexamined_remainder": "UNKNOWN",
     "originals_modified": false,
-    "resume_condition": "719_IDENTITIES_REQUIRE_NEW_C_ENUMERATION_WHICH_CURRENT_INSTRUCTION_FORBIDS"
+    "recorded_178_paths": "LOCKED_COMPLETE_NO_RETRY",
+    "f_permission_blocked_22_paths": "LOCKED_LIST_NO_RETRY",
+    "resume_condition": "OBSERVER_AUTHORIZATION_FOR_ONE_NEW_C_ENUMERATION_PERSISTING_ALL_ERRORS_BEFORE_TRUNCATION"
   },
-  "next_resume_position": "STOP_719_IDENTITIES_NOT_PRESENT_IN_EXISTING_ARTIFACTS",
+  "next_resume_position": "NEEDS_OBSERVER_DECISION_C719_MINIMUM_REENUMERATION_ONLY",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

@@ -1,0 +1,30 @@
+{
+  "schema": "wic.storage.c719.not-persisted.v1",
+  "root": "C_719_PATH_IDENTITIES_NOT_PERSISTED",
+  "status": "NEEDS_OBSERVER_DECISION",
+  "scope": "C_MISSING_719_ONLY",
+  "preserved_without_reprocessing": {
+    "recorded_178_paths": "LOCKED_COMPLETE_NO_RETRY",
+    "f_permission_blocked_22_paths": "LOCKED_LIST_NO_RETRY",
+    "other_storage_enumeration": "LOCKED_NO_REENUMERATION"
+  },
+  "single_existing_artifact_check": {
+    "runtime_directory": ".inventory_runtime/storage_path_delta_20261008",
+    "progress_json": "C_ERROR_PATHS_PERSISTED_100_OF_819",
+    "summary_json": "C_ERROR_PATHS_PERSISTED_100_OF_819",
+    "unexamined_resolution_json": "DERIVED_FROM_SAME_100_C_PATHS",
+    "partial_candidate_gzip": "SUCCESSFUL_FILE_PATHS_ONLY_NO_ERROR_DIRECTORY_IDENTITIES",
+    "stdout_stderr": "EMITTED_OBJECT_ALREADY_CONTAINED_ERRORS_SLICE_100",
+    "source_write_boundary": "enumerate_storage_path_delta_once.py:52 errors[:100]"
+  },
+  "c_unexamined_initial": 819,
+  "c_path_identities_persisted": 100,
+  "c_path_identities_not_persisted": 719,
+  "conclusion": "C_719_PATH_IDENTITIES_NOT_PERSISTED",
+  "automatic_recovery_attempted": false,
+  "full_c_reenumeration_performed": false,
+  "usn_search_cursor_inventory_attempted": false,
+  "minimum_required_action": "OBSERVER_MUST_AUTHORIZE_ONE_NEW_C_PATH_ENUMERATION_THAT_PERSISTS_ALL_ERROR_PATHS_BEFORE_TRUNCATION; IT_MUST_SKIP_THE_LOCKED_178_PATHS_AND MUST_NOT_REPROCESS_OTHER_STORAGE",
+  "pass_lock": false,
+  "evidence_readback": "PASS"
+}
