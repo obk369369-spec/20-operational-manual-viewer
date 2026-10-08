@@ -1,0 +1,807 @@
+{
+  "schema": "wic.storage.c-error-identities-once.v1",
+  "storage": "C:",
+  "c_total_error_path_count": 819,
+  "existing_locked_duplicate_count": 100,
+  "new_unprocessed_identity_count": 719,
+  "system_non_target_excluded_count": 588,
+  "real_user_wic_related_resolved_count": 0,
+  "permission_blocked_count": 131,
+  "final_relevant_unconfirmed_count": 131,
+  "storage_c_discovery_complete": false,
+  "directories_visited": 360682,
+  "all_errors_path": ".inventory_runtime/c_error_identity_once_20261008/all_error_paths.jsonl",
+  "permission_blocked_paths": [
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\PerfLogs",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Program Files\\WindowsApps",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Crypto\\PCPKSP\\WindowsAIK",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Crypto\\PCPKSP\\WindowsEK",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Network\\Downloader",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Provisioning\\AssetCache",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\SmsRouter",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows Defender",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows NT\\MSFax",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\AppRepository",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\CapabilityAccessManager",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\LfSvc",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\Models",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\PackagedEventProviders",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\Power Efficiency Diagnostics",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\Start Menu\\프로그램",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\wfp",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\ProgramData\\Microsoft\\Windows\\WSAIFabric",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Recovery",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Users\\Default User",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Users\\Default\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\프로그램",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Users\\obk36",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\appcompat\\AIDD",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\appcompat\\appraiser",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\appcompat\\Backup",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\appcompat\\Programs",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\appcompat\\UA",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\LiveKernelReports",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\Logs\\Telephony",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\Microsoft\\Windows\\Models\\StartMenuProviderRanking",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\ModemLogs",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\PLA\\Reports",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\PLA\\Rules",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\PLA\\Templates",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\Provisioning\\Autopilot",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\Resources\\Themes\\aero\\VSCache",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\security\\audit",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\security\\cap",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\ServiceProfiles\\LocalService\\AppData\\Local\\ConnectedDevicesPlatform",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\ServiceProfiles\\LocalService\\AppData\\LocalLow",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming\\Microsoft\\Crypto\\Keys",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\ServiceProfiles\\NetworkService\\AppData\\LocalLow",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\ServiceState",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\Com\\dmp",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\config",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\Configuration",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\drivers\\DriverData",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\DriverState",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\ias",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\LogFiles\\Fax\\Incoming",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\LogFiles\\Fax\\Outgoing",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\LogFiles\\Firewall",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\LogFiles\\WMI",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\MsDtc",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\networklist",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\Recovery\\Settings",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\spool\\PRINTERS",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\spool\\SERVERS",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\sru",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\Tasks",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\Tasks_Migrated",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\WDI",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\System32\\WebThreatDefSvc",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SystemTemp",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\Com\\dmp",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\config",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\Configuration",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\Msdtc",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\NetworkList",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\Recovery\\Settings",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\sru",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\SysWOW64\\Tasks",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\Temp",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\$WINDOWS.~BT\\NewOS\\Windows\\WUModels",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\AmountExtractionHeuristicRegexes\\3",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\AutofillStates\\2024.7.12.235938",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\CertificateRevocation\\9813",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\CookieReadinessList\\2024.11.26.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Crowd Deny\\2025.5.21.1142",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Default\\Extensions\\efaidnbmnnnibpcajpcglclefindmkaj\\25.5.2.1_0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Default\\Extensions\\ghbmnnjooekpmoecnnnilnnbdlolhkhi\\1.92.1_0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Default\\Extensions\\hkecabaloghleaicfhefejdijblljpco\\1.0.0.19_0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Default\\Extensions\\llbcnfanfmjhpedaedhbcnpgeepdnnok\\7.0.0_0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Default\\Extensions\\nmmhkkegccagdldgiimedpiccmgmieda\\1.0.0.6_0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\FileTypePolicies\\67",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\FirstPartySetsPreloaded\\2025.4.2.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\hyphen-data\\120.0.6050.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\MediaFoundationWidevineCdm\\x64\\1.0.2738.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\MEIPreload\\1.0.7.1744928549",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\OpenCookieDatabase\\2024.10.17.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\OptimizationHints\\509",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\OriginTrials\\1.0.0.17",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\PKIMetadata\\1321",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\PrivacySandboxAttestationsPreloaded\\2025.5.21.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\ProbabilisticRevealTokenRegistry\\2025.2.18.1",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\SafetyTips\\3070",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\SSLErrorAssistant\\7",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\Subresource Filter\\Unindexed Rules\\9.56.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\ThirdPartyModuleList64\\2018.8.8.0",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\TpcdMetadata\\2025.5.23.1",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\TrustTokenKeyCommitments\\2025.5.15.1",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\ChromeDev\\ZxcvbnData\\3",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Config.Msi",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Documents and Settings",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\MSOCache",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\OneDriveTemp\\S-1-5-21-2877537832-804955976-1169442094-1001",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\PerfLogs",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default User",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\AppData\\Local\\Application Data",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\AppData\\Local\\History",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\AppData\\Local\\Microsoft\\Windows\\INetCache\\Content.IE5",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\AppData\\Local\\Temporary Internet Files",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\프로그램",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Application Data",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Cookies",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Documents\\My Music",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Documents\\My Pictures",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Documents\\My Videos",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Local Settings",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\My Documents",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\NetHood",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\PrintHood",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Recent",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\SendTo",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\Templates",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Default\\시작 메뉴",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\obk36",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\My Music",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\My Pictures",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\My Videos",
+      "error": "PermissionError",
+      "result": "PERMISSION_BLOCKED_RELEVANT",
+      "reason": "POTENTIAL_USER_OR_WIC_PATH"
+    }
+  ],
+  "normal_file_paths_persisted": 0,
+  "content_read": false,
+  "file_hashing": false,
+  "other_storage_enumerated": false,
+  "originals_modified": false
+}

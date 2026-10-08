@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-C719-NOT-PERSISTED-OBSERVER-DECISION",
-  "parent_checkpoint_id": "WIC-CP-20261008-STORAGE-719-RECOVERY-IMPOSSIBLE",
-  "parent_git_sha": "9950c260dc5781ca66415b6566776ea0cb3741de",
+  "checkpoint_id": "WIC-CP-20261008-C719-ONE-SHOT-PERMISSION-1",
+  "parent_checkpoint_id": "WIC-CP-20261008-C719-NOT-PERSISTED-OBSERVER-DECISION",
+  "parent_git_sha": "bb4da834659bccbf2ccf192899d1d65369cb5d9c",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -22,7 +22,8 @@
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_PATH_DELTA_ONCE_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_897_UNEXAMINED_RESOLUTION_20261008.json",
     "CONTROL_TOWER/ledger/evidence/WIC_STORAGE_719_PATH_RECOVERY_IMPOSSIBLE_20261008.json",
-    "CONTROL_TOWER/ledger/evidence/WIC_C_719_PATH_IDENTITIES_NOT_PERSISTED_20261008.json"
+    "CONTROL_TOWER/ledger/evidence/WIC_C_719_PATH_IDENTITIES_NOT_PERSISTED_20261008.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_C719_ONE_SHOT_ENUMERATION_20261008.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -125,20 +126,24 @@
     "USB_LEDGER_262"
   ],
   "storage_incremental_root": {
-    "status": "C_719_PATH_IDENTITIES_NOT_PERSISTED_NEEDS_OBSERVER_DECISION",
+    "status": "C719_ONE_SHOT_COMPLETE_ONE_RELEVANT_PERMISSION_BLOCK_NEEDS_OBSERVER_DECISION",
     "connected_storage_new_file_count": "UNKNOWN",
     "total_outside_3200_discovered_count": "UNKNOWN",
     "accessible_area_new_path_candidate_count": 2105850,
     "count_unconfirmed_storage": 4,
     "system_non_target_excluded_count": 172,
     "permission_blocked_relevant_count": 6,
-    "unrecorded_error_path_count": 719,
-    "unexamined_remainder": "UNKNOWN",
+    "unrecorded_error_path_count": 0,
+    "c_total_error_path_count": 819,
+    "c_new_unprocessed_identity_count": 719,
+    "final_system_non_target_excluded_count": 718,
+    "final_permission_blocked_relevant_count": 1,
+    "unexamined_remainder": 1,
     "originals_modified": false,
     "recorded_178_paths": "LOCKED_COMPLETE_NO_RETRY",
     "f_permission_blocked_22_paths": "LOCKED_LIST_NO_RETRY",
-    "resume_condition": "OBSERVER_AUTHORIZATION_FOR_ONE_NEW_C_ENUMERATION_PERSISTING_ALL_ERRORS_BEFORE_TRUNCATION"
+    "resume_condition": "READ_AND_LIST_PERMISSION_FOR_C_USERS_OBK36_ONLY_WITHOUT_ANY_DRIVE_REENUMERATION"
   },
-  "next_resume_position": "NEEDS_OBSERVER_DECISION_C719_MINIMUM_REENUMERATION_ONLY",
+  "next_resume_position": "NEEDS_OBSERVER_DECISION_C_USERS_OBK36_READ_LIST_PERMISSION_ONLY",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
