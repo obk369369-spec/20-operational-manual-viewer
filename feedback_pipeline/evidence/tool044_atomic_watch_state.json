@@ -1,8 +1,8 @@
 {
-  "cycle_id": "20261009T023027Z",
+  "cycle_id": "20261009T093249Z",
   "runtime": "LOCAL_STANDARD_LIBRARY",
-  "scheduled_start": "2026-10-09T02:30:27.105208+00:00",
-  "actual_start": "2026-10-09T02:30:27.105208+00:00",
+  "scheduled_start": "2026-10-09T09:32:49.472564+00:00",
+  "actual_start": "2026-10-09T09:32:49.472564+00:00",
   "trigger_source": "SCHEDULED",
   "work_triggered": false,
   "user_triggered": false,
@@ -313,7 +313,7 @@
     {
       "demand_id": "T42-RESELLER-DETECTION",
       "query_signature": "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -321,13 +321,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
@@ -335,13 +334,12 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
       "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -349,13 +347,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-AUTO-ROLLBACK",
       "query_signature": "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "SAFE_AUTOMATIC_ROLLBACK"
@@ -363,13 +360,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
       "query_signature": "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_TARGET_DEPLOYMENT",
@@ -378,13 +374,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
       "query_signature": "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "OFFICIAL_DOMAIN_VALIDATION"
@@ -392,13 +387,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
       "query_signature": "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -406,13 +400,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
       "query_signature": "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -420,13 +413,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
       "query_signature": "6a1892f4d4c7a3c6ea27060cb3de74a9a9c7198f9889668e34b5433ec4d481f1",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "PAST_FAILURE_FIXTURE_GENERATION"
@@ -434,13 +426,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
       "query_signature": "c241de31fdd6a1aecf683761a892e6382054f5deee6a1a90b37919dae46d6a56",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
@@ -448,13 +439,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
       "query_signature": "98f05582d42231f738c86dfd560f224bad79c7798dcc0873b2ae9da6e683c1bb",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_EXECUTABLE_WORK_CONTRACT"
@@ -462,13 +452,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
       "query_signature": "92d6c559f23ec9daf7a0f0d65cbcc102c991c6905af9a47dfdd6148f9e4a7626",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "CHECKPOINT_STAGE_RESUME_EXECUTION"
@@ -476,13 +465,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
       "query_signature": "02ae7033ecb821bd0ed4d93b95eca8438402fd4e435b0224cddc7525001c73a2",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
@@ -490,13 +478,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
       "query_signature": "31089cfea283572b47308313e130a372b13f13704828b14dd481d95bb405df8f",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
@@ -504,25 +491,23 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
       "query_signature": "e037cc139109c366b8f329c1bdd41dbf654ec9a689bc9129593f8d161979bf67",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
       "query_signature": "a38021ca4ac99098530a98449a30d8ac489c54177a25e28dda124357dda8a0ac",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -532,13 +517,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
       "query_signature": "003a4cb20c50732e85c01e5b81893e4d50428816602274d183908e2a862c3457",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -548,13 +532,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
       "query_signature": "89749bfd08bd7d254dc38a181905ef6f2c40560aeac9b0072e8770f1a19d156e",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -564,13 +547,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
       "query_signature": "daa604d3beef899e43233cdbf83952c0e9e54db13a1afc9580c4ee03324fffec",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -580,13 +562,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "FINAL-37-CR-ELAPSED-TIME",
       "query_signature": "fdefbdfeb188fc5f81317a4a3fafa0e4e01e319c0078836def652648108e9474",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -596,296 +577,271 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-ROOT6-20260927",
       "query_signature": "cce80812ef45d0e7ffc08ccc99e6a9f7dac449a54b814ef8354a1d1e7fda73c5",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-ROOT7-20260927",
       "query_signature": "ff77d756252d1d4aa90322108828d19156c0542098a16dbad25e8f464a7bb25a",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
       "query_signature": "7776aba9343bab130119df9ee13bed807dcb1e81708d1cf710393e5479e4831b",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
       "query_signature": "9aeed709c4a82dfd06a3c35eeb7117f22d48dda0f93c5679db7d6b2baeaa3325",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL016-20260927",
       "query_signature": "785c8d2ecde7e8e155a5b1540b18db27d3008f39789207f4e0cbb0457652f3fc",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
       "query_signature": "211b231c9f5fd69b31a06f23e9cd4e8fc6e825cc9dce9c513159b692b22d7d57",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL044-20260927",
       "query_signature": "145d26ae4aa805727769885b95b55a3a8d3216d6100aba36ee881868a823018a",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
       "query_signature": "ec66e77731c6a6b5606705a5455316dd37e241e6d122502b029434a154f810ee",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL048-20260927",
       "query_signature": "24b0ce7b3a622f997ae893a9a54c35d9e71a4db06e0e1feee4b90f14ee2a4800",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
       "query_signature": "1355c4ddc4751c8dbe99fa2ce076af1a4ebc3b1130aac735a7df8972152852a7",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
       "query_signature": "359a548e8131cec2c11da6faefc26737b0e90d50edbc231088cb6dfc9e2efef7",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
       "query_signature": "1795d16feada5e8819d54c4da92b433341ab8f3ba8e999f35e86245d8eb613dd",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-ENV2-20260927",
       "query_signature": "7e6fdb48b11879e3686cc1e14f5a859fc53d144a4d6f19312c7e865329c2303b",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-24H-20260927",
       "query_signature": "c04d93327524e0d8a63afff372c09b8ca55cfa40ef5ab7cad20bd4e52b735f1f",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
       "query_signature": "b30798f3933591778cc7ebab65e801d62d05ba4e85cd3e925da9105af82c679d",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
       "query_signature": "140d02f635d876952e994b48fa27da49e7dc4dae5b400cf047fb786d62290a80",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
       "query_signature": "282bd6aa3a2c2c6c02aa4e8cd8e17a656566de600e714e8498022ed899c4d92e",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
       "query_signature": "697749c1bbe4c58578a1bc845c3057104491456542df6722e781096ea86f5625",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
       "query_signature": "97aba556133adf1c9d3f9d9d98147e00866b8c8bcc83e0144050f4e3e3c1c65a",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
       "query_signature": "dab2f0056c563180aae5c6ecf4f695a64383871f948de00d832bf2d67defcb46",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
       "query_signature": "3920f2e9639ec43241ce1eddc5d65cd5bddc136ec2f8eb16d77819090bc6b785",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
       "query_signature": "225b186b5d269fdaceec4f4d7622779d7f3187f42b0b1ffc786650ea7f278819",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "query_signature": "fb43f2be8f38cef41873708da0c74e0094344a89fbe5598b5d73d708a6ccd782",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     {
       "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
       "query_signature": "89a45ce2adeaf2bb2b0fd37746065ef8de5b01559ac56a93f04758b4b04b54ad",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     }
   ],
   "receipts": {
@@ -1035,7 +991,7 @@
     "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb": {
       "demand_id": "T42-RESELLER-DETECTION",
       "query_signature": "b1f207bf4df2c7fbd70d0604c55c473be944be56369c0cbe000d0b18750c45cb",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -1043,13 +999,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb": {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "query_signature": "1712fce777cba52e279e244302f17032e053fb6524fe96d123b8b38c04fa87eb",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {
         "PROVENANCE_VALIDATION": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE"
       },
@@ -1057,8 +1012,7 @@
       "result": "READY_ATOMIC_COMPONENT_FOUND",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "e4e9ebf4962ec8b20ae47d1868d8a412dbe89cbd6da52563b33fde5415558209": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
@@ -1091,7 +1045,7 @@
     "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b": {
       "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
       "query_signature": "017252123a2bba1750f93435f433eecfdbd6a6a7b1b0b4b2007375374edddc4b",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -1099,8 +1053,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ae93b9768bcd3a7f23a2c94becf6d7f1f33595d4f0cb6cdf6cdc5c095fae8eba": {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
@@ -1147,7 +1100,7 @@
     "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3": {
       "demand_id": "TOOL044-AUTO-ROLLBACK",
       "query_signature": "ff53e6c235d83d32ffb5bb8425dde5a29a544df530ec37bc00b78fadc2536eb3",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "SAFE_AUTOMATIC_ROLLBACK"
@@ -1155,13 +1108,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd": {
       "demand_id": "TOOL044-ARBITRARY-WIC-DEPLOY",
       "query_signature": "fef8fd0c11f6675ccdc95bd2009be68997b932208c51fa0b7871fa3e84b13dfd",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_TARGET_DEPLOYMENT",
@@ -1170,13 +1122,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3": {
       "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
       "query_signature": "0d16df26a8f83735df48a7f3276e81619ac5424191f1603bcede46f7bcebd7e3",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "OFFICIAL_DOMAIN_VALIDATION"
@@ -1184,8 +1135,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "31774f0181d13d3ce817ba9507d26bf9ce80736973baba2b87669384232eb85d": {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
@@ -1204,7 +1154,7 @@
     "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2": {
       "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
       "query_signature": "fe34e2c3f4f519ab103b9e5aac105c00423743660ceadd372b18b994a8997ba2",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "RESELLER_DETECTION"
@@ -1212,13 +1162,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9": {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
       "query_signature": "c4f067425a69f2c1b4a9e86d672163d1950c32aca32ce1e72e52f0d8b5182ef9",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "TOC_HIERARCHY_VALIDATION"
@@ -1226,8 +1175,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "caf05e95e15e4e9dbdd34888fe1bdd7044afcd522faf09a09e52a5975d7a4eea": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
@@ -1344,7 +1292,7 @@
     "6a1892f4d4c7a3c6ea27060cb3de74a9a9c7198f9889668e34b5433ec4d481f1": {
       "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
       "query_signature": "6a1892f4d4c7a3c6ea27060cb3de74a9a9c7198f9889668e34b5433ec4d481f1",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "PAST_FAILURE_FIXTURE_GENERATION"
@@ -1352,8 +1300,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "de92acd5d5b89475e7ca7c2ff5cd1657da6214f5b1b0493cabbda11a78258e24": {
       "demand_id": "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
@@ -1570,7 +1517,7 @@
     "c241de31fdd6a1aecf683761a892e6382054f5deee6a1a90b37919dae46d6a56": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
       "query_signature": "c241de31fdd6a1aecf683761a892e6382054f5deee6a1a90b37919dae46d6a56",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "AUTHENTICATED_SOURCE_EVENT_PRODUCER"
@@ -1578,13 +1525,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "98f05582d42231f738c86dfd560f224bad79c7798dcc0873b2ae9da6e683c1bb": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
       "query_signature": "98f05582d42231f738c86dfd560f224bad79c7798dcc0873b2ae9da6e683c1bb",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "VERIFIED_EXECUTABLE_WORK_CONTRACT"
@@ -1592,13 +1538,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "92d6c559f23ec9daf7a0f0d65cbcc102c991c6905af9a47dfdd6148f9e4a7626": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
       "query_signature": "92d6c559f23ec9daf7a0f0d65cbcc102c991c6905af9a47dfdd6148f9e4a7626",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "CHECKPOINT_STAGE_RESUME_EXECUTION"
@@ -1606,13 +1551,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "02ae7033ecb821bd0ed4d93b95eca8438402fd4e435b0224cddc7525001c73a2": {
       "demand_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
       "query_signature": "02ae7033ecb821bd0ed4d93b95eca8438402fd4e435b0224cddc7525001c73a2",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
@@ -1620,13 +1564,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "31089cfea283572b47308313e130a372b13f13704828b14dd481d95bb405df8f": {
       "demand_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
       "query_signature": "31089cfea283572b47308313e130a372b13f13704828b14dd481d95bb405df8f",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
@@ -1634,8 +1577,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "60e06f14aa955ba63c3903555ab55573855f65f0847289cbf06785d175b39de3": {
       "demand_id": "T16-T44-MINCIRC-20260925-001-INPUT_CONTRACT_VALIDATION",
@@ -1736,14 +1678,13 @@
     "e037cc139109c366b8f329c1bdd41dbf654ec9a689bc9129593f8d161979bf67": {
       "demand_id": "TOOL044-WORK-PARALLEL-NO-CONFLICT-20260927",
       "query_signature": "e037cc139109c366b8f329c1bdd41dbf654ec9a689bc9129593f8d161979bf67",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "996e654eccee2ca9391fade6478bc8058ff97a9a0a765f9f369454a87e6f4cc7": {
       "demand_id": "WIC-ALL-UNFINISHED-BATCH-20260928",
@@ -1760,7 +1701,7 @@
     "a38021ca4ac99098530a98449a30d8ac489c54177a25e28dda124357dda8a0ac": {
       "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
       "query_signature": "a38021ca4ac99098530a98449a30d8ac489c54177a25e28dda124357dda8a0ac",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -1770,13 +1711,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "003a4cb20c50732e85c01e5b81893e4d50428816602274d183908e2a862c3457": {
       "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
       "query_signature": "003a4cb20c50732e85c01e5b81893e4d50428816602274d183908e2a862c3457",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -1786,8 +1726,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "2e80019e5603c73e009d41ba77537e007e2f2d3ce291c2e14446a78092b1b36a": {
       "demand_id": "FINAL-37-CR-BUSINESS-EXECUTABLE-CONTRACT",
@@ -1808,7 +1747,7 @@
     "89749bfd08bd7d254dc38a181905ef6f2c40560aeac9b0072e8770f1a19d156e": {
       "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
       "query_signature": "89749bfd08bd7d254dc38a181905ef6f2c40560aeac9b0072e8770f1a19d156e",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -1818,13 +1757,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "daa604d3beef899e43233cdbf83952c0e9e54db13a1afc9580c4ee03324fffec": {
       "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
       "query_signature": "daa604d3beef899e43233cdbf83952c0e9e54db13a1afc9580c4ee03324fffec",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -1834,13 +1772,12 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "fdefbdfeb188fc5f81317a4a3fafa0e4e01e319c0078836def652648108e9474": {
       "demand_id": "FINAL-37-CR-ELAPSED-TIME",
       "query_signature": "fdefbdfeb188fc5f81317a4a3fafa0e4e01e319c0078836def652648108e9474",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [
         "BULK_ROOT_EXECUTION",
@@ -1850,8 +1787,7 @@
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "d08cd5b9e57fbaafc4f20101dde7c5b60171da0d952894d45926246a5f32286e": {
       "demand_id": "FINAL-39-CR-BUSINESS-INPUT",
@@ -2000,26 +1936,24 @@
     "cce80812ef45d0e7ffc08ccc99e6a9f7dac449a54b814ef8354a1d1e7fda73c5": {
       "demand_id": "WIC-BACKLOG-ROOT6-20260927",
       "query_signature": "cce80812ef45d0e7ffc08ccc99e6a9f7dac449a54b814ef8354a1d1e7fda73c5",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ff77d756252d1d4aa90322108828d19156c0542098a16dbad25e8f464a7bb25a": {
       "demand_id": "WIC-BACKLOG-ROOT7-20260927",
       "query_signature": "ff77d756252d1d4aa90322108828d19156c0542098a16dbad25e8f464a7bb25a",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "2835b53348c836147b3bef5d3b4bbf7ae976b49d9e5452f74a5c6c580b8896d9": {
       "demand_id": "WIC-BACKLOG-TOOL006-20260927",
@@ -2048,158 +1982,145 @@
     "7776aba9343bab130119df9ee13bed807dcb1e81708d1cf710393e5479e4831b": {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
       "query_signature": "7776aba9343bab130119df9ee13bed807dcb1e81708d1cf710393e5479e4831b",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "9aeed709c4a82dfd06a3c35eeb7117f22d48dda0f93c5679db7d6b2baeaa3325": {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
       "query_signature": "9aeed709c4a82dfd06a3c35eeb7117f22d48dda0f93c5679db7d6b2baeaa3325",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "785c8d2ecde7e8e155a5b1540b18db27d3008f39789207f4e0cbb0457652f3fc": {
       "demand_id": "WIC-BACKLOG-TOOL016-20260927",
       "query_signature": "785c8d2ecde7e8e155a5b1540b18db27d3008f39789207f4e0cbb0457652f3fc",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "211b231c9f5fd69b31a06f23e9cd4e8fc6e825cc9dce9c513159b692b22d7d57": {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
       "query_signature": "211b231c9f5fd69b31a06f23e9cd4e8fc6e825cc9dce9c513159b692b22d7d57",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "145d26ae4aa805727769885b95b55a3a8d3216d6100aba36ee881868a823018a": {
       "demand_id": "WIC-BACKLOG-TOOL044-20260927",
       "query_signature": "145d26ae4aa805727769885b95b55a3a8d3216d6100aba36ee881868a823018a",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "ec66e77731c6a6b5606705a5455316dd37e241e6d122502b029434a154f810ee": {
       "demand_id": "WIC-BACKLOG-TOOL045-046-047-20260927",
       "query_signature": "ec66e77731c6a6b5606705a5455316dd37e241e6d122502b029434a154f810ee",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "24b0ce7b3a622f997ae893a9a54c35d9e71a4db06e0e1feee4b90f14ee2a4800": {
       "demand_id": "WIC-BACKLOG-TOOL048-20260927",
       "query_signature": "24b0ce7b3a622f997ae893a9a54c35d9e71a4db06e0e1feee4b90f14ee2a4800",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1355c4ddc4751c8dbe99fa2ce076af1a4ebc3b1130aac735a7df8972152852a7": {
       "demand_id": "WIC-BACKLOG-CONTROL-TOWER-20260927",
       "query_signature": "1355c4ddc4751c8dbe99fa2ce076af1a4ebc3b1130aac735a7df8972152852a7",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "359a548e8131cec2c11da6faefc26737b0e90d50edbc231088cb6dfc9e2efef7": {
       "demand_id": "WIC-BACKLOG-SOURCE-ZIP-20260927",
       "query_signature": "359a548e8131cec2c11da6faefc26737b0e90d50edbc231088cb6dfc9e2efef7",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "1795d16feada5e8819d54c4da92b433341ab8f3ba8e999f35e86245d8eb613dd": {
       "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
       "query_signature": "1795d16feada5e8819d54c4da92b433341ab8f3ba8e999f35e86245d8eb613dd",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "7e6fdb48b11879e3686cc1e14f5a859fc53d144a4d6f19312c7e865329c2303b": {
       "demand_id": "WIC-BACKLOG-ENV2-20260927",
       "query_signature": "7e6fdb48b11879e3686cc1e14f5a859fc53d144a4d6f19312c7e865329c2303b",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "c04d93327524e0d8a63afff372c09b8ca55cfa40ef5ab7cad20bd4e52b735f1f": {
       "demand_id": "WIC-BACKLOG-24H-20260927",
       "query_signature": "c04d93327524e0d8a63afff372c09b8ca55cfa40ef5ab7cad20bd4e52b735f1f",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "b30798f3933591778cc7ebab65e801d62d05ba4e85cd3e925da9105af82c679d": {
       "demand_id": "WIC-BACKLOG-FINAL-CONNECTION-20260927",
       "query_signature": "b30798f3933591778cc7ebab65e801d62d05ba4e85cd3e925da9105af82c679d",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "804060b16ac134e2dda9e8598dfbffa06da28b51406ffa1112ef3f1126b2e360": {
       "demand_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
@@ -2384,110 +2305,101 @@
     "140d02f635d876952e994b48fa27da49e7dc4dae5b400cf047fb786d62290a80": {
       "demand_id": "WIC-ALL-TOOLS-INTERNAL-ZERO-WORKFREE-20260929",
       "query_signature": "140d02f635d876952e994b48fa27da49e7dc4dae5b400cf047fb786d62290a80",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "697749c1bbe4c58578a1bc845c3057104491456542df6722e781096ea86f5625": {
       "demand_id": "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
       "query_signature": "697749c1bbe4c58578a1bc845c3057104491456542df6722e781096ea86f5625",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "97aba556133adf1c9d3f9d9d98147e00866b8c8bcc83e0144050f4e3e3c1c65a": {
       "demand_id": "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
       "query_signature": "97aba556133adf1c9d3f9d9d98147e00866b8c8bcc83e0144050f4e3e3c1c65a",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "282bd6aa3a2c2c6c02aa4e8cd8e17a656566de600e714e8498022ed899c4d92e": {
       "demand_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
       "query_signature": "282bd6aa3a2c2c6c02aa4e8cd8e17a656566de600e714e8498022ed899c4d92e",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "dab2f0056c563180aae5c6ecf4f695a64383871f948de00d832bf2d67defcb46": {
       "demand_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
       "query_signature": "dab2f0056c563180aae5c6ecf4f695a64383871f948de00d832bf2d67defcb46",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "3920f2e9639ec43241ce1eddc5d65cd5bddc136ec2f8eb16d77819090bc6b785": {
       "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
       "query_signature": "3920f2e9639ec43241ce1eddc5d65cd5bddc136ec2f8eb16d77819090bc6b785",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "225b186b5d269fdaceec4f4d7622779d7f3187f42b0b1ffc786650ea7f278819": {
       "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
       "query_signature": "225b186b5d269fdaceec4f4d7622779d7f3187f42b0b1ffc786650ea7f278819",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "fb43f2be8f38cef41873708da0c74e0094344a89fbe5598b5d73d708a6ccd782": {
       "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "query_signature": "fb43f2be8f38cef41873708da0c74e0094344a89fbe5598b5d73d708a6ccd782",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     },
     "89a45ce2adeaf2bb2b0fd37746065ef8de5b01559ac56a93f04758b4b04b54ad": {
       "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
       "query_signature": "89a45ce2adeaf2bb2b0fd37746065ef8de5b01559ac56a93f04758b4b04b54ad",
-      "last_searched": "2026-10-09T02:30:27.105208+00:00",
+      "last_searched": "2026-10-09T09:32:49.472564+00:00",
       "matched": {},
       "missing": [],
       "result": "NO_READY_ATOMIC_COMPONENT",
       "next_eligible_search": null,
       "external_search_executed": false,
-      "external_receipts": [],
-      "external_search_backoff_active": false
+      "external_receipts": []
     }
   },
   "next_state": "WAITING_FOR_NEXT_TRIGGER",
@@ -2529,6 +2441,5 @@
   },
   "backoff_demands_kept_visible": 0,
   "tool016_result_returns": 0,
-  "tool016_result_return_blocks": [],
-  "continuous_external_search_enabled": true
+  "tool016_result_return_blocks": []
 }
