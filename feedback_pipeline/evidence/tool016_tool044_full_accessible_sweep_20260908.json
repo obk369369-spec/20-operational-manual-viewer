@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-09T02:12:41.575535+00:00",
+  "generated_at": "2026-10-09T06:00:47.912987+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "c1ce5b4219e0e8447b5f0d721e346578906ad394039ae52ad89717861541e696"
+      "sha256": "a187bf3f9f2a1971a105d5b1c9b6061821615f1f2d2094f54c927eae22de6072"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,17 +29,17 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "833e9a761b64a8ff42fba3a45c0316c775792f06272dfa979a8b906eaeb67f8c"
+      "sha256": "2372d687d31609b992adde00940ee64b037c9c67edb2e3102f6faebc0d20b164"
     }
   ],
   "counts": {
     "checked_tools": 18,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 240,
+    "automatically_recoverable_records": 241,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 191,
-    "roots_after_deduplication": 135,
+    "collected_error_records": 192,
+    "roots_after_deduplication": 136,
     "verified_skip_reuse_records": 13,
     "records_handed_to_tool044": 78,
     "atomic_demands": 121
@@ -3110,6 +3110,18 @@
       "MISSING_CAPABILITY": [],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": null,
+      "FUNCTION_ID": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+      "ROOT_ID": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
     }
   ],
   "deduplicated_root_ids": [
@@ -3229,6 +3241,7 @@
     "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CHECKPOINT_STAGE_RESUME_EXECUTION",
     "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM",
     "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-VERIFIED_EXECUTABLE_WORK_CONTRACT",
+    "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
     "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
     "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
     "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
