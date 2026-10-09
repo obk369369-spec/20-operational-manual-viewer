@@ -1,0 +1,78 @@
+{
+  "schema": "wic.external_autonomous_binding_runtime_final_closure.v1",
+  "date": "2026-10-09",
+  "root_id": "WIC_EXTERNAL_AUTONOMOUS_BINDING_AND_RUNTIME_FINAL_CLOSURE",
+  "status": "SEGMENTED_CLOSURE",
+  "locked_internal_roots_reused_without_retest": [
+    "WIC_GLOBAL_UNCONNECTED_EVIDENCE_OUTPUT_CLOSURE",
+    "WIC_GLOBAL_USER_INTENT_RULE_OUTPUT_ENFORCEMENT",
+    "WIC_ZERO_USER_REPETITION_AUTONOMOUS_OPERATION_CLOSURE"
+  ],
+  "actual_input": "Connect official external source binding, independent runtime, and canonical persistence without mock events or Work-local scheduler substitution.",
+  "official_capability_inventory": {
+    "github_contents_connector": "AVAILABLE",
+    "codex_heartbeat": "AVAILABLE_BUT_NOT_FINAL_INDEPENDENT_RUNTIME",
+    "arbitrary_chat_source_event_subscription": "NOT_EXPOSED",
+    "authorized_independent_runtime_deployer": "NOT_EXPOSED"
+  },
+  "segments": {
+    "platform_source_binding": {
+      "status": "PLATFORM_LIMIT",
+      "expected": "OFFICIAL_SOURCE_EVENT_TO_CENTRAL_INTAKE_WITHOUT_USER_RELAY",
+      "actual": "NO_OFFICIAL_ARBITRARY_WIC_CHAT_EVENT_SUBSCRIPTION_CAPABILITY_EXPOSED",
+      "negative_guard": "MOCK_OR_SYNTHETIC_CHAT_EVENT_REJECTED_AS_BINDING_EVIDENCE",
+      "failure_isolation": "SOURCE_BINDING_SEGMENT_ONLY",
+      "recovery_condition": "OFFICIAL_PLATFORM_SOURCE_EVENT_BINDING_BECOMES_AVAILABLE"
+    },
+    "independent_runtime": {
+      "status": "PENDING_EXTERNAL_INDEPENDENT_RUNTIME",
+      "expected": "RUNS_AFTER_WORK_AND_USER_DEVICES_STOP",
+      "actual": "NO_AUTHORIZED_DEPLOYED_LONG_TERM_EXTERNAL_RUNTIME",
+      "negative_guard": "CODEX_HEARTBEAT_AND_WORK_LOCAL_PROCESS_REJECTED_AS_FINAL_RUNTIME",
+      "failure_isolation": "RUNTIME_SEGMENT_ONLY",
+      "resume_condition": "AUTHORIZED_INDEPENDENT_RUNTIME_DEPLOYED_WITH_CHECKPOINT_CLAIM_RECOVERY_RESULT_EVIDENCE"
+    },
+    "canonical_github_persistence": {
+      "status": "WRITE_REQUESTED",
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "main",
+      "path": "feedback_pipeline/evidence/WIC_EXTERNAL_AUTONOMOUS_BINDING_AND_RUNTIME_FINAL_CLOSURE_20261009.json",
+      "expected": "REMOTE_WRITE_AND_READBACK_PASS",
+      "actual": "PENDING_TOOL_RESULT",
+      "failure_isolation": "PERSISTENCE_SEGMENT_ONLY"
+    }
+  },
+  "failure_matrix": {
+    "source_event_missing": "PLATFORM_LIMIT_ISOLATED",
+    "authentication_failure": "PENDING_EXTERNAL_SEGMENT_ONLY_NO_RETRY_LOOP",
+    "runtime_interruption": "NOT_EXECUTABLE_WITHOUT_RUNTIME_NO_FALSE_PASS",
+    "checkpoint_resume": "REUSE_LOCKED_INTERNAL_CONTROLLER_PENDING_RUNTIME_BINDING",
+    "duplicate_claim": "REUSE_LOCKED_INTERNAL_CONTROLLER_PENDING_RUNTIME_BINDING",
+    "result_return_failure": "REUSE_LOCKED_INTERNAL_CONTROLLER_PENDING_RUNTIME_BINDING",
+    "github_persistence_failure": "ISOLATE_PERSISTENCE_ONLY"
+  },
+  "continuous_loop": {
+    "STRUCTURAL_CONTINUOUS_LOOP_VERIFIED": "REUSE_PASS_LOCK",
+    "24H_RUNTIME_VERIFIED": "PENDING_NATURAL_TIME",
+    "verification_due_after_kst": "2026-10-10T19:40:33+09:00",
+    "automatic_evaluation": "PENDING_EXTERNAL_INDEPENDENT_RUNTIME"
+  },
+  "metrics": {
+    "INTERNAL_AUTOMATION_GAP": 0,
+    "PLATFORM_SOURCE_BINDING_GAP": 1,
+    "INDEPENDENT_RUNTIME_GAP": 1,
+    "REMOTE_PERSISTENCE_GAP": 1,
+    "USER_COPY_PASTE_REQUIRED": 1,
+    "USER_MANUAL_RESTART_REQUIRED": 1,
+    "USER_REEXPLANATION_REQUIRED": 0,
+    "USER_MANUAL_REPETITION": 0
+  },
+  "no_progress_gate": {
+    "repeated_platform_probe": 0,
+    "repeated_auth_attempt": 0,
+    "new_runtime_code_created": false,
+    "stop_on_confirmed_limit": true
+  },
+  "deferred_usb": 3
+}
+
