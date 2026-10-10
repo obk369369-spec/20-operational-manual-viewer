@@ -1,6 +1,6 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261010-TOOL013-ASSEMBLY-FINAL-PASS-LOCKED",
+  "checkpoint_id": "WIC-CP-20261010-18PCT-FINAL-PRESERVATION-HANDOFF",
   "parent_checkpoint_id": "WIC-CP-20261008-TOOL013-NEXT-WORK-HANDOFF-READY",
   "parent_git_sha": "1cec31675c54a03d9597b9ab50015eb8aeb2abd5",
   "completed_roots": [
@@ -37,6 +37,7 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_COMPRESSED_ROOTS_EXECUTION_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_18PCT_FINAL_PRESERVATION_CHECKPOINT_20261010.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -212,15 +213,31 @@
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
   },
   "tool013_assembly_final": {
-    "status": "PASS_LOCKED",
-    "pass_lock_id": "TOOL013_ASSEMBLY_FINAL",
-    "reopen_allowed": false,
+    "status": "BINDING_SEGMENT_EVIDENCE_PRESERVED_USER_USABLE_OVERRIDE_HOLD",
+    "pass_lock_id": "SUPERSEDED_FOR_USER_USABLE_FINAL_BY_ACTUAL_USER_OUTPUT",
+    "whole_tool_redevelopment_allowed": false,
+    "affected_path_validation_allowed_only_via_next_common_root": true,
     "new_feature_added": false,
     "whole_tool_revalidated": false,
     "user_manual_repetition": 0,
     "separated_platform_item": "CURRENT_CHAT_ACTUAL_DATASET_TO_RUNTIME_HANDOFF",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json"
   },
-  "next_resume_position": "ROOT_B_WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE_NO_TOOL013_REENTRY",
+  "emergency_closeout_18pct": {
+    "status": "PASS_HANDOFF_READY",
+    "previous_version_blob": "a787c475313efd709c67a65a04c5b4383ba0ba12",
+    "current_unverified_version_blob": "e6253eda95e6676540138c88afcfbeae22dcc89a",
+    "user_usable_final": "HOLD",
+    "autonomous_recovery": "HOLD",
+    "record_identity_integrity": "UNVERIFIED",
+    "user_manual_repetition": "FAIL",
+    "actual_input_waiting": 3,
+    "external_original_waiting": 1,
+    "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME_DO_NOT_RESTART",
+    "next_root": "USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY",
+    "new_development_started": false,
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_18PCT_FINAL_PRESERVATION_CHECKPOINT_20261010.json"
+  },
+  "next_resume_position": "USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
