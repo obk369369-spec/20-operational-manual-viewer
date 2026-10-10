@@ -1,0 +1,94 @@
+{
+  "schema": "wic.root-b.executable-segment-gate.v1",
+  "created_at": "2026-10-10T00:00:00+09:00",
+  "root": "ROOT_B_MAJOR_TOOL_SEGMENT_CLOSURE",
+  "scope": ["TOOL001", "TOOL002", "TOOL006", "TOOL007", "TOOL041", "TOOL042"],
+  "excluded_scope": ["TOOL013", "ROOT_A", "FULL_E2E", "PASS_LOCK_RETEST"],
+  "source_readback": [
+    {
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_MAJOR_TOOL_SEGMENT_MATRIX_20261008.json",
+      "sha256": "F4118D1C890E0503B628F01D4F0F6A1DB16366B3D95EE87EAF34C4D95236268E",
+      "read_back": "PASS"
+    },
+    {
+      "path": "customer_pipeline/evidence/WIC_OFFICE_CORE_FINAL_E2E_20261006.json",
+      "sha256": "4326774DC13FFBFE0F55D00BBDE56B358741B3B101CE4711D328AEAF619AC8AC",
+      "read_back": "PASS"
+    },
+    {
+      "path": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json",
+      "sha256": "8DE99342E21F2E6CB517006C0ADCE94D8C575AD61FA7C8C5D39FF214469F617B",
+      "read_back": "PASS"
+    }
+  ],
+  "segment_result": {
+    "total_segments_in_scope": 12,
+    "pass_locked_reused": 8,
+    "pending_external": 1,
+    "needs_actual_input": 3,
+    "currently_executable_unfinished": 0,
+    "new_pass_lock": 0,
+    "pass_lock_retested": 0
+  },
+  "locked_segments": [
+    "T1-RUNTIME-VERIFIED-DATA-GATE",
+    "T2-TSV-LOCAL-MANAGEMENT",
+    "T2-XLSX-INSTITUTION-ACCUMULATOR",
+    "T6-CORE-TOC-UI-RUNTIME",
+    "T7-START-GATE",
+    "T7-ACTUAL-CONTACT-JUDGMENT",
+    "T41-ACTUAL-CUSTOMER-HANDOFF",
+    "T42-ACTUAL-GUIDANCE-OUTPUT"
+  ],
+  "unresolved_segments": [
+    {
+      "segment_id": "T1-ACTUAL-REPORT-GUIDE",
+      "status": "NEEDS_ACTUAL_INPUT",
+      "required_input": "독립 검증된 실제 보고서 5건과 고객 연결",
+      "available_count": 0,
+      "source_evidence": "feedback_pipeline/evidence/tool001_verified_report_recovery_20260827.json",
+      "source_sha256": "3A6C560F1FBED7BB854E6CF740EDCA0570E90AE092D805E36FFC4E3DA49AF298",
+      "fail_closed_reason": "합성 fixture와 shell 자산은 actual input으로 승격할 수 없음",
+      "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE"
+    },
+    {
+      "segment_id": "T6-COMPLEX-DEPTH2",
+      "status": "NEEDS_ACTUAL_INPUT",
+      "required_input": "실제 publisher complex TOC와 승인 Golden Pair",
+      "source_evidence": "feedback_pipeline/evidence/tool006_usb_runtime_20260826.json",
+      "source_sha256": "D30CEEE3C480AA28EF244F9695F21237C88720E22973DFE6D0E3FEB5F17B4868",
+      "fail_closed_reason": "publisher_golden_pair=EXTERNAL_EVIDENCE_REQUIRED",
+      "next_trigger": "PUBLISHER_GOLDEN_PAIR"
+    },
+    {
+      "segment_id": "T42-OFFICIAL-COMPLEX-TOC",
+      "status": "NEEDS_ACTUAL_INPUT",
+      "required_input": "공식 publisher URL과 실제 전체 TOC",
+      "fail_closed_reason": "공식 SOURCE↔OUTPUT line diff 입력이 없음",
+      "next_trigger": "OFFICIAL_PUBLISHER_TOC_SOURCE"
+    },
+    {
+      "segment_id": "T2-EXTERNAL-NARA-INGEST",
+      "status": "PENDING_EXTERNAL",
+      "required_input": "공식 외부 원본 접근",
+      "fail_closed_reason": "외부 공식 원본 receipt 없음",
+      "next_trigger": "EXTERNAL_OFFICIAL_SOURCE_ACCESS"
+    }
+  ],
+  "targeted_gate": {
+    "actual_input_present_for_unfinished": false,
+    "expected_actual_test_authorized": false,
+    "negative_recovery_test_authorized": false,
+    "reason": "필수 실제 입력이 없으므로 재사용 PASS를 재시험하거나 합성 입력으로 대체하지 않음"
+  },
+  "invariants": {
+    "tool013_modified": false,
+    "root_a_modified": false,
+    "existing_pass_lock_preserved": true,
+    "whole_tool_reclassified": false,
+    "full_e2e_run": false,
+    "fabricated_pass": false
+  },
+  "result": "HOLD_EXTERNAL_INPUT_NO_EXECUTABLE_ROOT_B_SEGMENT",
+  "evidence_readback": "PASS"
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "wic.root-a.runtime-failover.targeted.v1",
+  "recorded_at": "2026-10-10T18:50:06+09:00",
+  "scope": "ROOT_A_ONLY",
+  "baseline_evidence_reused": [
+    "feedback_pipeline/evidence/root_a_minimum_failover.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json"
+  ],
+  "scheduled_supervisor_run": {
+    "run_id": 38039606181,
+    "conclusion": "success",
+    "stale_primary_detected": true,
+    "recovery_dispatched": true,
+    "dispatched_run_id": 38039611806
+  },
+  "production_recovery_result": {
+    "run_id": 38039611806,
+    "conclusion": "failure",
+    "failed_step": "Verify full accessible TOOL016 to TOOL044 sweep",
+    "failure": "queue_lineage_missing=38",
+    "central_return_job": "skipped",
+    "pass": false
+  },
+  "isolated_external_runtime_result": {
+    "run_id": 38042778676,
+    "head_sha": "2f78e399912cbc0811548b50d481314350d592fd",
+    "conclusion": "success",
+    "runner_cloud": "Azure",
+    "runner_region": "eastus",
+    "demand_id": "WIC-ISOLATED-38042778676",
+    "tool044_processed": 1,
+    "central_returns": 1,
+    "central_ack": "PASS",
+    "central_received": "TOOL016_CENTRAL_RECEIVED",
+    "isolated_persistence": true,
+    "production_mutations": 0,
+    "artifact_id": 11665839258,
+    "artifact_sha256": "190db94c68e594c29e8ea5297fa76b78ab9aefe95d9c05a6bc4127f12b879eb2",
+    "pass": true
+  },
+  "minimal_change": {
+    "file": ".github/workflows/root-a-recovery-supervisor.yml",
+    "purpose": "dispatch and wait for the existing isolated central-return path instead of treating the unrelated full TOOL044 sweep as the ROOT A recovery probe",
+    "committed": false,
+    "remote_verified": false
+  },
+  "gates": {
+    "external_runtime_actual_execution": "PASS",
+    "queue_receive_execute_result_return": "PASS",
+    "central_ack": "PASS",
+    "state_artifact_persisted": "PASS",
+    "production_state_isolation": "PASS",
+    "scheduled_recovery_dispatch": "PASS",
+    "scheduled_recovery_completion": "FAIL",
+    "modified_supervisor_remote_execution": "NOT_RUN_UNCOMMITTED"
+  },
+  "overall": "PARTIAL",
+  "pass_lock_changed": false,
+  "exact_blocker": "The existing scheduled supervisor dispatches the full production TOOL044 worker, whose unrelated lineage sweep currently fails before central return. The minimal supervisor correction is local and intentionally uncommitted, so its scheduled end-to-end execution is not yet proven.",
+  "next_exact_action": "Commit the single workflow change, run ROOT A Recovery Supervisor once, and require the dispatched isolated-central-return job and supervisor wait/read-back to both conclude success."
+}

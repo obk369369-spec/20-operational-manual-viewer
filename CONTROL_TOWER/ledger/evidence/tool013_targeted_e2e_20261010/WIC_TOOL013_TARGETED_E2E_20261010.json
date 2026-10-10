@@ -1,0 +1,233 @@
+{
+  "schema": "wic.tool013.targeted-e2e.v1",
+  "run_id": "TOOL013-TARGETED-E2E-20261010095030912",
+  "status": "PASS",
+  "scope": "ASSEMBLY_ONLY_TARGETED_ACTUAL_XLS_COPY",
+  "source_original": {
+    "path": "C:/Users/obk36/Downloads/TOOL013_실제입력양식_원본.xls",
+    "sha256_before": "b31a4f76c797b95d4ea2a6a38dc199657c56d2258f90c1d0e7a2bf880377891d",
+    "sha256_after": "b31a4f76c797b95d4ea2a6a38dc199657c56d2258f90c1d0e7a2bf880377891d",
+    "modified": false
+  },
+  "runtime": {
+    "path": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/13번_V2_최종운영판.html",
+    "sha256_before": "62ce7a4b39e8000d0a2b0a8c86d2dc47d5f826cd30a58618c585d2be2c1418c6",
+    "sha256_after": "62ce7a4b39e8000d0a2b0a8c86d2dc47d5f826cd30a58618c585d2be2c1418c6",
+    "modified": false,
+    "dependencies": [
+      {
+        "path": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/vendor/xlsx.full.min.js",
+        "exists": true,
+        "sha256": "c9506197caf809a075b6dee1da0d36fb19da7158ffe8a88e7b0c96c5d8623c99"
+      },
+      {
+        "path": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/vendor/idb-keyval-6.2.2.js",
+        "exists": true,
+        "sha256": "f5985c43b11e4f99700e0c97a0d44ac129821f227f17c60afd7de8d421db5a58"
+      },
+      {
+        "path": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/scripts/tool13_batch_state.js",
+        "exists": true,
+        "sha256": "10ab1d3311a46a067648705baf775df15649bb95fd3106869224dd2e5bc190cf"
+      }
+    ]
+  },
+  "input_copy": {
+    "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_targeted_e2e_20261010\\TOOL013_실제입력양식_원본_TEST_COPY.xls",
+    "sha256": "f0315ae72f9484282ef24cfcc18373e2a072e6a47bbfa1b94a18c271c8c6ac68"
+  },
+  "output": {
+    "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_targeted_e2e_20261010\\TOOL013_V2_TARGETED_OUTPUT.xlsx",
+    "sha256": "c0d7f14af5796187ee711df831e4966a1df7a05748f44a3638489ecb9f913c37",
+    "reopened": true,
+    "row_count": 1,
+    "column_count": 18
+  },
+  "expected_actual": {
+    "translation": {
+      "expected": "중국 자동차용 반도체 시장: 구성 요소별(마이크로컨트롤러, 전력 반도체, 센서 및 MEMS 소자, 메모리 칩, 아날로그 및 혼합 신호 IC), 글로벌 및 중국 반도체 수출, 대체 목적지 - 동향 및 전략적 제언",
+      "actual": "중국 자동차용 반도체 시장: 구성 요소별(마이크로컨트롤러, 전력 반도체, 센서 및 MEMS 소자, 메모리 칩, 아날로그 및 혼합 신호 IC), 글로벌 및 중국 반도체 수출, 대체 목적지 - 동향 및 전략적 제언",
+      "pass": true
+    },
+    "english_title": {
+      "expected": "China Semiconductor Market for Automotive by Component (Microcontroller, Power Semiconductor, Sensor & MEMS Device, Memory Chip, Analog & Mixed Signal IC), Global & China Semiconductor Export, Alternate Destination - Trends and Strategic Recommendation",
+      "actual": "China Semiconductor Market for Automotive by Component (Microcontroller, Power Semiconductor, Sensor & MEMS Device, Memory Chip, Analog & Mixed Signal IC), Global & China Semiconductor Export, Alternate Destination - Trends and Strategic Recommendation",
+      "pass": true
+    },
+    "category": {
+      "expected_id": "1060",
+      "actual_id": "1060",
+      "pass": true
+    },
+    "page_display": {
+      "expected_page": "321",
+      "actual_page": "321",
+      "expected_format": "321 Pages",
+      "actual_format": "321 Pages",
+      "pass": true
+    },
+    "column_order": {
+      "expected": [
+        "발행사",
+        "상품명",
+        "한글명",
+        "1차카테고리",
+        "2차카테고리",
+        "3차카테고리",
+        "페이지수",
+        "개요",
+        "목차",
+        "발행일",
+        "파일명",
+        "판매유형",
+        "환(u,e,g,j)",
+        "HardCapy가격",
+        "PDF가격",
+        "저자",
+        "체제",
+        "ISBN/CODE"
+      ],
+      "actual": [
+        "발행사",
+        "상품명",
+        "한글명",
+        "1차카테고리",
+        "2차카테고리",
+        "3차카테고리",
+        "페이지수",
+        "개요",
+        "목차",
+        "발행일",
+        "파일명",
+        "판매유형",
+        "환(u,e,g,j)",
+        "HardCapy가격",
+        "PDF가격",
+        "저자",
+        "체제",
+        "ISBN/CODE"
+      ],
+      "pass": true
+    },
+    "protected_fields": [
+      {
+        "field": "발행사",
+        "expected": "MarketsandMarkets",
+        "actual": "MarketsandMarkets",
+        "pass": true
+      },
+      {
+        "field": "개요",
+        "expected": "Automotive semiconductor market and vehicle electronics analysis.",
+        "actual": "Automotive semiconductor market and vehicle electronics analysis.",
+        "pass": true
+      },
+      {
+        "field": "목차",
+        "expected": "Automotive semiconductor; vehicle; aerospace comparison.",
+        "actual": "Automotive semiconductor; vehicle; aerospace comparison.",
+        "pass": true
+      },
+      {
+        "field": "발행일",
+        "expected": "2026-09-30",
+        "actual": "2026-09-30",
+        "pass": true
+      },
+      {
+        "field": "파일명",
+        "expected": "tool013-validated-sample.pdf",
+        "actual": "tool013-validated-sample.pdf",
+        "pass": true
+      },
+      {
+        "field": "판매유형",
+        "expected": "일반",
+        "actual": "일반",
+        "pass": true
+      },
+      {
+        "field": "환(u,e,g,j)",
+        "expected": "u",
+        "actual": "u",
+        "pass": true
+      },
+      {
+        "field": "HardCapy가격",
+        "expected": "4900",
+        "actual": "4900",
+        "pass": true
+      },
+      {
+        "field": "PDF가격",
+        "expected": "3900",
+        "actual": "3900",
+        "pass": true
+      },
+      {
+        "field": "저자",
+        "expected": "MarketsandMarkets",
+        "actual": "MarketsandMarkets",
+        "pass": true
+      },
+      {
+        "field": "ISBN/CODE",
+        "expected": "TOOL013-V2-E2E",
+        "actual": "TOOL013-V2-E2E",
+        "pass": true
+      }
+    ]
+  },
+  "negative_tests": {
+    "passed": 8,
+    "total": 8,
+    "cases": [
+      {
+        "name": "UNKNOWN_TITLE",
+        "blocked": true
+      },
+      {
+        "name": "NONEXISTENT_CATEGORY",
+        "blocked": true
+      },
+      {
+        "name": "BLANK_CATEGORY",
+        "blocked": true
+      },
+      {
+        "name": "WRONG_CATEGORY",
+        "blocked": true
+      },
+      {
+        "name": "BLANK_TRANSLATION",
+        "blocked": true
+      },
+      {
+        "name": "COLUMN_ORDER_CHANGED",
+        "blocked": true
+      },
+      {
+        "name": "PROTECTED_FIELD_CHANGED",
+        "blocked": true
+      },
+      {
+        "name": "REQUIRED_VALUE_MISSING",
+        "blocked": true
+      }
+    ]
+  },
+  "recovery_rollback_regression": {
+    "injected_failure_blocked": true,
+    "regenerated_positive_output_passed": true,
+    "rollback_source_bound": true,
+    "source_unchanged": true,
+    "runtime_unchanged": true
+  },
+  "category_registry": {
+    "expected_count": 18,
+    "actual_count": 18,
+    "pass": true
+  },
+  "errors": [],
+  "pass_lock_eligible": true
+}
