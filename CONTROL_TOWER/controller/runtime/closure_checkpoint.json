@@ -1,8 +1,8 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261008-TOOL013-NEXT-WORK-HANDOFF-READY",
-  "parent_checkpoint_id": "WIC-CP-20261008-TOOL044-DEPLOY-RECOVERY-SEGMENT-CLOSED",
-  "parent_git_sha": "f012c99c1ce7d39603ccee393f602c9d52c70305",
+  "checkpoint_id": "WIC-CP-20261010-ROOT-A-AND-TOOL013-CLOSED",
+  "parent_checkpoint_id": "WIC-CP-20261008-TOOL013-NEXT-WORK-HANDOFF-READY",
+  "parent_git_sha": "1cec31675c54a03d9597b9ab50015eb8aeb2abd5",
   "completed_roots": [
     "WIC_COMMON_PLATFORM_ALLOWED_SCOPE_FINAL_20261007",
     "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
@@ -31,6 +31,10 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_MAJOR_TOOL_SEGMENT_MATRIX_20261008.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL044_DEPLOY_RECOVERY_SEGMENT_20261008.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL013_NEXT_WORK_HANDOFF_20261008.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_ROOT_A_RUNTIME_FAILOVER_TARGETED_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_ROOT_B_EXECUTABLE_SEGMENT_GATE_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/tool013_targeted_e2e_20261010/WIC_TOOL013_TARGETED_E2E_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_COMPRESSED_ROOTS_EXECUTION_20261010.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -184,6 +188,16 @@
     "execution_in_this_work": false,
     "handoff_completeness": "PASS"
   },
-  "next_resume_position": "TOOL013_ASSEMBLY_AND_ACTUAL_XLSX_VALIDATION_FROM_BOUND_HANDOFF",
+  "compressed_roots_execution_20261010": {
+    "root_a": "PASS_LOCKED",
+    "root_b": "NO_CURRENT_EXECUTABLE_3_ACTUAL_INPUT_1_EXTERNAL",
+    "root_c_tool013": "PASS_LOCKED",
+    "root_a_supervisor_run": 38043275030,
+    "root_a_recovery_run": 38043286944,
+    "tool013_run": "TOOL013-TARGETED-E2E-20261010095030912",
+    "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
+    "user_manual_repetition": 0
+  },
+  "next_resume_position": "ROOT_B_WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

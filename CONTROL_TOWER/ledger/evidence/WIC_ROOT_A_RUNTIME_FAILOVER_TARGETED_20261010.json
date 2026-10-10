@@ -41,8 +41,14 @@
   "minimal_change": {
     "file": ".github/workflows/root-a-recovery-supervisor.yml",
     "purpose": "dispatch and wait for the existing isolated central-return path instead of treating the unrelated full TOOL044 sweep as the ROOT A recovery probe",
-    "committed": false,
-    "remote_verified": false
+    "committed": true,
+    "remote_verified": true,
+    "final_commit": "b655418718e0f3f5d39fbd3741d7046eaae490ce",
+    "supervisor_run_id": 38043275030,
+    "recovery_run_id": 38043286944,
+    "supervisor_conclusion": "success",
+    "recovery_conclusion": "success",
+    "isolated_central_return": "success"
   },
   "gates": {
     "external_runtime_actual_execution": "PASS",
@@ -51,11 +57,17 @@
     "state_artifact_persisted": "PASS",
     "production_state_isolation": "PASS",
     "scheduled_recovery_dispatch": "PASS",
-    "scheduled_recovery_completion": "FAIL",
-    "modified_supervisor_remote_execution": "NOT_RUN_UNCOMMITTED"
+    "scheduled_recovery_completion": "PASS",
+    "modified_supervisor_remote_execution": "PASS",
+    "forced_stale_primary_failover": "PASS",
+    "recovery_worker_central_return": "PASS"
   },
-  "overall": "PARTIAL",
-  "pass_lock_changed": false,
-  "exact_blocker": "The existing scheduled supervisor dispatches the full production TOOL044 worker, whose unrelated lineage sweep currently fails before central return. The minimal supervisor correction is local and intentionally uncommitted, so its scheduled end-to-end execution is not yet proven.",
-  "next_exact_action": "Commit the single workflow change, run ROOT A Recovery Supervisor once, and require the dispatched isolated-central-return job and supervisor wait/read-back to both conclude success."
+  "overall": "PASS",
+  "pass_lock_changed": true,
+  "independent_failure_domains_reused": [
+    {"environment": "GitHub Actions", "evidence_run_id": 38043286944, "state": "success"},
+    {"environment": "Deno Deploy", "evidence_commit": "ebdfc61bb322f4625efbd15756545cce9e43b620", "state": "success", "source": "feedback_pipeline/evidence/root_a_minimum_failover.json"}
+  ],
+  "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
+  "next_exact_action": "Scheduled supervisor continues accumulating time-window evidence without user or Work participation."
 }

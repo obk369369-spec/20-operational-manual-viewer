@@ -1,0 +1,44 @@
+{
+  "schema": "wic.compressed-roots.execution.v1",
+  "recorded_at": "2026-10-10T19:00:00+09:00",
+  "roots": {
+    "ROOT_A": {
+      "status": "PASS",
+      "independent_executor_count": 2,
+      "executors": ["GitHub Actions", "Deno Deploy"],
+      "supervisor_run_id": 38043275030,
+      "recovery_run_id": 38043286944,
+      "actual_failover": "PASS",
+      "queue_execute_central_return": "PASS",
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_ROOT_A_RUNTIME_FAILOVER_TARGETED_20261010.json",
+      "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME"
+    },
+    "ROOT_B": {
+      "status": "FAIL_CLOSED_NO_CURRENT_EXECUTABLE",
+      "segment_total": 12,
+      "pass_lock_reused": 8,
+      "new_pass_lock": 0,
+      "needs_actual_input": 3,
+      "pending_external": 1,
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_ROOT_B_EXECUTABLE_SEGMENT_GATE_20261010.json"
+    },
+    "ROOT_C_TOOL013": {
+      "status": "PASS_LOCKED",
+      "run_id": "TOOL013-TARGETED-E2E-20261010095030912",
+      "assembly_changed": false,
+      "actual_xls_copy_e2e": "PASS",
+      "output_reopen": "PASS",
+      "translation": "PASS",
+      "category_1060": "PASS",
+      "page_321_pages": "PASS",
+      "column_and_protected_fields": "PASS",
+      "negative_tests": "8/8 PASS",
+      "recovery_rollback": "PASS",
+      "evidence": "CONTROL_TOWER/ledger/evidence/tool013_targeted_e2e_20261010/WIC_TOOL013_TARGETED_E2E_20261010.json"
+    }
+  },
+  "actual_wic_queue_auto_intake": "ENABLED_FOR_BOUND_EXECUTABLE_CONTRACTS",
+  "platform_limit": "UNSUPPORTED_AUTOMATIC_SUBSCRIPTION_TO_ALL_EXISTING_CHATGPT_CONVERSATIONS",
+  "user_manual_repetition": 0,
+  "evidence_readback": "PASS"
+}
