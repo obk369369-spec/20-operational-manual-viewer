@@ -1,6 +1,6 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261010-USER-USABLE-FINAL-OUTPUT-PARTIAL",
+  "checkpoint_id": "WIC-CP-20261010-TOOL013-ASSEMBLY-FINAL-PASS-LOCKED",
   "parent_checkpoint_id": "WIC-CP-20261008-TOOL013-NEXT-WORK-HANDOFF-READY",
   "parent_git_sha": "1cec31675c54a03d9597b9ab50015eb8aeb2abd5",
   "completed_roots": [
@@ -36,6 +36,7 @@
     ,"CONTROL_TOWER/ledger/evidence/tool013_targeted_e2e_20261010/WIC_TOOL013_TARGETED_E2E_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_COMPRESSED_ROOTS_EXECUTION_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -210,6 +211,16 @@
     "user_manual_repetition": 0,
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
   },
-  "next_resume_position": "WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE_NO_INTERNAL_EXECUTABLE",
+  "tool013_assembly_final": {
+    "status": "PASS_LOCKED",
+    "pass_lock_id": "TOOL013_ASSEMBLY_FINAL",
+    "reopen_allowed": false,
+    "new_feature_added": false,
+    "whole_tool_revalidated": false,
+    "user_manual_repetition": 0,
+    "separated_platform_item": "CURRENT_CHAT_ACTUAL_DATASET_TO_RUNTIME_HANDOFF",
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json"
+  },
+  "next_resume_position": "ROOT_B_WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE_NO_TOOL013_REENTRY",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

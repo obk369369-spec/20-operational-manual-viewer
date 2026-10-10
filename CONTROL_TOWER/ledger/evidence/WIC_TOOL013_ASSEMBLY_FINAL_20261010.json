@@ -1,0 +1,49 @@
+{
+  "schema": "wic.tool013.assembly-final.v1",
+  "created_at": "2026-10-10T19:40:00+09:00",
+  "root": "TOOL013_ASSEMBLY_ONLY",
+  "result": "PASS_LOCK",
+  "pass_lock_id": "TOOL013_ASSEMBLY_FINAL",
+  "scope": [
+    "PRODUCT_NAME_AND_KOREAN_NAME_BINDING",
+    "CATEGORY_CODE_TO_DISPLAY_VALUE_BINDING",
+    "EXCEL_SERIAL_TO_EXISTING_DATE_DISPLAY_BINDING",
+    "EXISTING_ERROR_RECOVERY_DOWNLOAD_BINDING",
+    "ASSEMBLY_BROKEN_FIELD_BINDING_RECOVERY"
+  ],
+  "excluded": [
+    "NEW_FEATURE",
+    "UI_REDESIGN",
+    "FEATURE_REIMPLEMENTATION",
+    "WHOLE_TOOL_REVALIDATION",
+    "VERSION_RESEARCH",
+    "PASSED_SEGMENT_RETEST"
+  ],
+  "deployed_file": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/13번_V2_최종운영판.html",
+  "deployed_sha256": "A513E9461DB576DD4AB99178F2AAE05AEBC13AA26C72B184B96DC7EED0F482D9",
+  "validation_reused_without_repetition": {
+    "run_id": "TOOL013-USER-USABLE-20261010103301116",
+    "result": "PASS_FOR_BOUND_APPROVED_INPUT",
+    "final_xlsx_reopened": true,
+    "trace_xlsx_reopened": true,
+    "expected_actual_binding_match": true,
+    "negative_error_row_blocked": true,
+    "correction_download_reopened": true,
+    "corrected_reupload_revalidated": true
+  },
+  "evidence": [
+    "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/WIC_TOOL013_USER_USABLE_FINAL_OUTPUT_20261010.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json",
+    "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_UPLOAD.xlsx",
+    "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_TRACE.xlsx"
+  ],
+  "separated_common_platform_item": {
+    "id": "CURRENT_CHAT_ACTUAL_DATASET_TO_RUNTIME_HANDOFF",
+    "status": "HOLD_EXTERNAL_INPUT",
+    "reason": "The reported 114-file/823-row browser state was not persisted in the bound runtime input. This is not reopened as TOOL013 development."
+  },
+  "tool013_reopen_allowed": false,
+  "user_manual_repetition": 0,
+  "next_root": "ROOT_B_WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE",
+  "evidence_readback": "PASS"
+}
