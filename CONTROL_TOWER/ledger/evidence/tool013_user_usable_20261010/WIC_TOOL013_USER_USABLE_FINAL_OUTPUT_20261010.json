@@ -1,0 +1,101 @@
+{
+  "schema": "wic.tool013.user-usable-final-output.v1",
+  "run_id": "TOOL013-USER-USABLE-20261010103301116",
+  "status": "PASS_FOR_BOUND_E2E_FIXTURE",
+  "full_823_row_user_state_status": "NEEDS_ACTUAL_INPUT_NOT_PERSISTED_IN_BOUND_HANDOFF",
+  "runtime": {
+    "path": "I:\\GPT 도구 작업\\13번 엑셀 업로드 도구\\13번_V2_최종운영판.html",
+    "sha256_before": "a513e9461db576dd4ab99178f2aae05aebc13aa26c72b184b96dc7eed0f482d9",
+    "sha256_after": "a513e9461db576dd4ab99178f2aae05aebc13aa26c72b184b96dc7eed0f482d9",
+    "modified_during_test": false
+  },
+  "actual_template_source": "C:/Users/obk36/Downloads/TOOL013_실제입력양식_원본.xls",
+  "test_input": {
+    "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_user_usable_20261010\\TOOL013_USER_E2E_INPUT.xlsx",
+    "rows": 2,
+    "sha256": "ad4835c5259ef51f39a480423226291a8b0fe9ce2b2528e4951396baee6fe7f1"
+  },
+  "browser": {
+    "engine": "Chromium",
+    "actual_file_upload": true,
+    "preview": true,
+    "actual_downloads": 3,
+    "screenshot": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_user_usable_20261010\\TOOL013_USER_E2E_FINAL_SCREEN.png"
+  },
+  "error_flow": {
+    "blocked_rows": 1,
+    "dialog": "자동검사에서 1행을 차단했습니다. 오류 수정용 파일을 내려받았습니다. 파일의 오류_필드·오류_실제값·오류_기대값·오류_이유를 수정한 뒤 다시 업로드하세요.",
+    "download": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_user_usable_20261010\\TOOL013_USER_E2E_ERROR_DOWNLOAD.xlsx",
+    "sha256": "f9a713f62c246456af1ca5a6e886dd92532119d812bc220ee7a2350801c90cef",
+    "reopened": true,
+    "rows": 1,
+    "columns": 23,
+    "correction_reupload": true,
+    "revalidation": "PASS"
+  },
+  "expected_actual": {
+    "english_product": {
+      "expected": "China Semiconductor Market for Automotive by Component (Microcontroller, Power Semiconductor, Sensor & MEMS Device, Memory Chip, Analog & Mixed Signal IC), Global & China Semiconductor Export, Alternate Destination - Trends and Strategic Recommendation",
+      "actual": "China Semiconductor Market for Automotive by Component (Microcontroller, Power Semiconductor, Sensor & MEMS Device, Memory Chip, Analog & Mixed Signal IC), Global & China Semiconductor Export, Alternate Destination - Trends and Strategic Recommendation",
+      "pass": true
+    },
+    "korean_name": {
+      "expected": "중국 자동차용 반도체 시장: 구성 요소별(마이크로컨트롤러, 전력 반도체, 센서 및 MEMS 소자, 메모리 칩, 아날로그 및 혼합 신호 IC), 글로벌 및 중국 반도체 수출, 대체 목적지 - 동향 및 전략적 제언",
+      "actual": "중국 자동차용 반도체 시장: 구성 요소별(마이크로컨트롤러, 전력 반도체, 센서 및 MEMS 소자, 메모리 칩, 아날로그 및 혼합 신호 IC), 글로벌 및 중국 반도체 수출, 대체 목적지 - 동향 및 전략적 제언",
+      "pass": true
+    },
+    "category": {
+      "expected": "자동차/우주항공",
+      "actual": "자동차/우주항공",
+      "pass": true
+    },
+    "date": {
+      "expected": "2025-06-19",
+      "actual": "2025-06-19",
+      "pass": true
+    }
+  },
+  "final_upload": {
+    "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_user_usable_20261010\\TOOL013_USER_E2E_FINAL_UPLOAD.xlsx",
+    "sha256": "fa96ab203b167a038f6e90a2089c7ab20e54f1d0d8fd5642c9710fe21c61ba4b",
+    "reopened": true,
+    "rows": 2,
+    "columns": 18
+  },
+  "final_trace": {
+    "path": "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_speed_runner_audit\\CONTROL_TOWER\\ledger\\evidence\\tool013_user_usable_20261010\\TOOL013_USER_E2E_FINAL_TRACE.xlsx",
+    "sha256": "84d15d3decb0c005207b87d5ebd2391918dbf10ceadbd9e77de9b1c238a94e27",
+    "reopened": true,
+    "rows": 2,
+    "columns": 21
+  },
+  "protected_fields": [
+    "발행사",
+    "페이지수",
+    "파일명",
+    "판매유형",
+    "환(u,e,g,j)",
+    "HardCapy가격",
+    "PDF가격",
+    "저자",
+    "ISBN/CODE",
+    "개요",
+    "목차"
+  ],
+  "protected_fields_comparison": "PASS",
+  "negative_golden": {
+    "product_korean_swap": true,
+    "category_code_leakage": true,
+    "excel_serial_date_leakage": true,
+    "block_without_recovery": true,
+    "error_xlsx_missing": true,
+    "downloaded_xlsx_not_reopened": true,
+    "reupload_path_missing": true,
+    "user_required_manual_testing": true
+  },
+  "validator_of_validator": "PASS",
+  "rollback_required": false,
+  "user_manual_repetition": 0,
+  "user_usable_pass_lock_eligible": false,
+  "pass_lock_blocker": "The bound handoff contains only the blank official template. The reported 114-file/823-row browser state was not persisted in an accessible canonical input, so the complete user dataset cannot be honestly certified."
+}

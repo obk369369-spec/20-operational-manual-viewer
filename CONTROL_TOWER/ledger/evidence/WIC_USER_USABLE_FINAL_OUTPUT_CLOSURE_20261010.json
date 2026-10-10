@@ -1,0 +1,69 @@
+{
+  "schema": "wic.user-usable-final-output-closure.v1",
+  "created_at": "2026-10-10T19:33:01+09:00",
+  "scope": "TOOL013_USER_USABLE_FINAL_OUTPUT_AND_REMAINING_BOUND_INPUT_GATE",
+  "tool013": {
+    "deployed_file": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/13번_V2_최종운영판.html",
+    "before_sha256": "62CE7A4B39E8000D0A2B0A8C86D2DC47D5F826CD30A58618C585D2BE2C1418C6",
+    "deployed_sha256": "A513E9461DB576DD4AB99178F2AAE05AEBC13AA26C72B184B96DC7EED0F482D9",
+    "rollback_copy": "CONTROL_TOWER/work/tool013_user_output_closure/13번_V2_최종운영판.before.html",
+    "browser_run_id": "TOOL013-USER-USABLE-20261010103301116",
+    "bound_fixture_result": "PASS",
+    "actual_114_file_823_row_result": "HOLD_ACTUAL_INPUT_NOT_PERSISTED_IN_BOUND_HANDOFF",
+    "overall_user_usable_pass_lock": false,
+    "manual_validation_required": false,
+    "verified_behaviors": [
+      "ENGLISH_PRODUCT_NAME_PRESERVED",
+      "APPROVED_KOREAN_TITLE_OUTPUT",
+      "OFFICIAL_KOREAN_CATEGORY_DISPLAYED_WITH_INTERNAL_CODE_HIDDEN",
+      "DATE_SERIAL_CONVERTED_TO_YYYY_MM_DD",
+      "INVALID_ROW_BLOCKED",
+      "CORRECTION_XLSX_AUTOMATICALLY_DOWNLOADED",
+      "CORRECTION_XLSX_REOPENED_WITH_FIELD_ACTUAL_EXPECTED_REASON",
+      "CORRECTED_FILE_REUPLOADED_AND_REVALIDATED",
+      "FINAL_18_COLUMN_XLSX_DOWNLOADED_AND_REOPENED",
+      "TRACE_XLSX_DOWNLOADED_AND_REOPENED",
+      "PROTECTED_VALUES_PRESERVED"
+    ],
+    "negative_test": {
+      "blocked_rows": 1,
+      "status": "PASS"
+    },
+    "outputs": {
+      "error_xlsx": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_ERROR_DOWNLOAD.xlsx",
+      "corrected_reupload_xlsx": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_CORRECTED_REUPLOAD.xlsx",
+      "final_upload_xlsx": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_UPLOAD.xlsx",
+      "final_trace_xlsx": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_TRACE.xlsx",
+      "screenshot": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_SCREEN.png",
+      "browser_evidence": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/WIC_TOOL013_USER_USABLE_FINAL_OUTPUT_20261010.json"
+    }
+  },
+  "common_failure_classes": [
+    "BLOCK_WITHOUT_RECOVERY",
+    "OUTPUT_WITHOUT_REOPEN_VALIDATION",
+    "PASS_WITHOUT_USER_USABILITY",
+    "DISPLAY_VALUE_CORRUPTION",
+    "SOURCE_TO_OUTPUT_SEMANTIC_MISMATCH",
+    "USER_FORCED_MANUAL_VALIDATION"
+  ],
+  "remaining_segments": {
+    "needs_actual_input": [
+      "T1-ACTUAL-REPORT-GUIDE",
+      "T6-COMPLEX-DEPTH2",
+      "T42-OFFICIAL-COMPLEX-TOC",
+      "TOOL013-ACTUAL-114-FILE-823-ROW-USER-STATE"
+    ],
+    "pending_external": ["T2-EXTERNAL-NARA-INGEST"],
+    "pending_natural_time": ["ACTUAL_24H_ELAPSED_VALIDATION"],
+    "currently_executable": 0
+  },
+  "invariants": {
+    "existing_pass_locks_retested": false,
+    "root_a_retested": false,
+    "storage_scanned": false,
+    "user_manual_repetition": 0,
+    "fabricated_pass": false
+  },
+  "result": "PARTIAL_BOUND_FIXTURE_PASS_ACTUAL_USER_DATA_HOLD",
+  "evidence_readback": "PASS"
+}

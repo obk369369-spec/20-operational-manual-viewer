@@ -1,6 +1,6 @@
 {
   "schema": "wic.central.closure-checkpoint.v2",
-  "checkpoint_id": "WIC-CP-20261010-ROOT-A-AND-TOOL013-CLOSED",
+  "checkpoint_id": "WIC-CP-20261010-USER-USABLE-FINAL-OUTPUT-PARTIAL",
   "parent_checkpoint_id": "WIC-CP-20261008-TOOL013-NEXT-WORK-HANDOFF-READY",
   "parent_git_sha": "1cec31675c54a03d9597b9ab50015eb8aeb2abd5",
   "completed_roots": [
@@ -35,6 +35,7 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_ROOT_B_EXECUTABLE_SEGMENT_GATE_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/tool013_targeted_e2e_20261010/WIC_TOOL013_TARGETED_E2E_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_COMPRESSED_ROOTS_EXECUTION_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -198,6 +199,17 @@
     "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
     "user_manual_repetition": 0
   },
-  "next_resume_position": "ROOT_B_WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE",
+  "user_usable_final_output_20261010": {
+    "tool013_bound_fixture": "PASS",
+    "tool013_actual_114_file_823_row_state": "HOLD_ACTUAL_INPUT_NOT_PERSISTED_IN_BOUND_HANDOFF",
+    "tool013_overall_user_usable_pass_lock": false,
+    "root_b_currently_executable": 0,
+    "remaining_actual_input_segments": 4,
+    "remaining_external_segments": 1,
+    "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME",
+    "user_manual_repetition": 0,
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
+  },
+  "next_resume_position": "WAIT_FOR_BOUND_ACTUAL_INPUT_OR_EXTERNAL_SOURCE_NO_INTERNAL_EXECUTABLE",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
