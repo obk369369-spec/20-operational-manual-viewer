@@ -1,0 +1,46 @@
+{
+  "schema": "wic.work.environment-blocker-checkpoint.v1",
+  "created_at": "2026-10-11T00:00:00+09:00",
+  "repository": "obk369369-spec/20-operational-manual-viewer",
+  "branch": "main",
+  "status": "BLOCKED_BY_EXECUTION_ENVIRONMENT",
+  "blocker": "WINDOWS_SANDBOX_HELPER_SETUP_REFRESH_ERROR",
+  "actual_error": "Failed to create unified exec process: helper_unknown_error: setup refresh had errors",
+  "classification": "WORK_RUNTIME_INITIALIZATION_FAILURE_NOT_WIC_FAILURE",
+  "attempts_this_turn": 1,
+  "retry_policy": "NO_INFINITE_RETRY",
+  "alternate_path_used": "GITHUB_CONNECTOR_READ_AND_PERSIST",
+  "latest_handoff": {
+    "path": "handoff/WIC_NEXT_CHAT_HANDOFF_2026-10-11.md",
+    "blob_sha": "b8886159db66846a565a23a748c10eae9e9f165d"
+  },
+  "pass_lock_preserved": [
+    "TOOL013_ASSEMBLY_FINAL",
+    "WIC_GLOBAL_UNCONNECTED_EVIDENCE_OUTPUT_CLOSURE",
+    "WIC_GLOBAL_USER_INTENT_RULE_OUTPUT_ENFORCEMENT",
+    "WIC_ZERO_USER_REPETITION_AUTONOMOUS_OPERATION_CLOSURE"
+  ],
+  "tool013": {
+    "first_actual_proof_case": true,
+    "existing_pass_lock_path": "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json",
+    "pass_lock_blob_sha": "0e44835ad2d13f8793fd16442eef64ce24bbac7b",
+    "current_open_root": "USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY",
+    "actual_input_status": "HOLD_NOT_PERSISTED_IN_BOUND_HANDOFF",
+    "no_rescan_3200": true,
+    "no_manual_773_row_repair": true,
+    "no_full_rebuild": true
+  },
+  "pre_work_hard_gate": {
+    "implementation_path": "CONTROL_TOWER/controller/pre_work_admission.py",
+    "blob_sha": "87394b83f650c866fa326e5376646e07e2a2e5a0",
+    "execution_status": "NOT_RUN_ENVIRONMENT_BLOCKED",
+    "pass_claimed": false
+  },
+  "prohibited_restarts": {
+    "pass_work": false,
+    "natural_24h_verification": false,
+    "broad_drive_search": false
+  },
+  "next_exact_start": "After the Windows sandbox helper setup-refresh fault is cleared, run exactly one PRE-WORK admission bootstrap using the current canonical handoff; if it passes, bind the known TOOL013 actual input only from an already-known accessible path and execute the first actual proof without reopening PASS_LOCK work.",
+  "completion_claimed": false
+}
