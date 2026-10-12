@@ -44,10 +44,19 @@ def evaluate_runtime_continuity(runs: list[dict[str, Any]]) -> dict[str, Any]:
         if datetime.fromisoformat(item["created_at"].replace("Z", "+00:00")) > window_start
     ]
     gaps = []
+    gap_incidents = []
     for left, right in zip(window, window[1:]):
         left_at = datetime.fromisoformat(left["created_at"].replace("Z", "+00:00"))
         right_at = datetime.fromisoformat(right["created_at"].replace("Z", "+00:00"))
-        gaps.append((right_at - left_at).total_seconds() / 3600)
+        gap_hours = (right_at - left_at).total_seconds() / 3600
+        gaps.append(gap_hours)
+        if gap_hours > CONTINUITY_MAX_GAP_HOURS:
+            gap_incidents.append({
+                "left_run_id": left.get("id"), "left_created_at": left["created_at"],
+                "right_run_id": right.get("id"), "right_created_at": right["created_at"],
+                "gap_hours": round(gap_hours, 3),
+                "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START",
+            })
     failures = [item for item in window if item.get("conclusion") != "success"]
     recovered_failures = []
     unrecovered_failures = []
@@ -79,8 +88,30 @@ def evaluate_runtime_continuity(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "failure_count": len(failures), "recovered_failures": recovered_failures,
         "unrecovered_failures": unrecovered_failures, "max_gap_hours": round(max_gap, 3),
         "max_allowed_gap_hours": CONTINUITY_MAX_GAP_HOURS,
+        "gap_incidents": gap_incidents,
+        "schedule_gap_detected": bool(gap_incidents),
+        "automatic_recovery_path": "ROOT_A_RECOVERY_SUPERVISOR_TOP_CONTROLLER_WATCHDOG",
         "single_cycle_revenue_evidence_is_not_24h_proof": True,
     }
+
+
+def runtime_consistency(queue: dict[str, Any], ledger: dict[str, Any], state: dict[str, Any],
+                        observer: dict[str, Any]) -> dict[str, Any]:
+    """Fail closed when quarantine identity diverges across canonical runtime surfaces."""
+    queue_roots = sorted(item["root_id"] for item in queue.get("backlog_quarantine", [])
+                         if item.get("root_id"))
+    ledger_roots = sorted(item["root_id"] for item in ledger.get("entries", [])
+                          if str(item.get("status", "")).startswith("HOLD_EXECUTION_")
+                          and item.get("root_id"))
+    state_roots = sorted(item["root_id"] for item in state.get("central_backlog", {}).get("deferred", [])
+                         if str(item.get("status", "")).startswith("HOLD_EXECUTION_")
+                         and item.get("root_id"))
+    observer_roots = sorted(item["root_id"] for item in
+                            observer.get("backlog_recovery", {}).get("quarantined", [])
+                            if item.get("root_id"))
+    passed = queue_roots == ledger_roots == state_roots == observer_roots
+    return {"status": "PASS" if passed else "FAIL", "queue": queue_roots,
+            "ledger": ledger_roots, "state": state_roots, "observer": observer_roots}
 
 
 def load_github_runtime_history() -> list[dict[str, Any]]:
@@ -427,6 +458,10 @@ def main() -> None:
         body.atomic_json(body.STATE, state)
         body.atomic_json(body.QUEUE, queue)
         body.write_tool_state(state, "PASS")
+        observer = body.load(body.ROOT / "public" / "wic_observer_state.json")
+        consistency = runtime_consistency(queue, ledger, state, observer)
+        if consistency["status"] != "PASS":
+            raise RuntimeError("RUNTIME_CANONICAL_CONSISTENCY_GATE_FAIL")
         evidence_path = body.CONTROL_TOWER / "ledger" / "evidence" / "WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json"
         evidence = {"schema": "wic.top_controller.independent_runtime.v2", "created_at": body.now(),
             "repository": repository, "run_id": run_id, "run_attempt": run_attempt,
@@ -458,7 +493,8 @@ def main() -> None:
                 "readback_pass": registry_ok},
             "work_dependency": 0, "codex_dependency": 0, "user_device_dependency": 0,
             "actual_24h_elapsed_validation": continuity["actual_24h_elapsed_validation"],
-            "runtime_continuity": continuity}
+            "runtime_continuity": continuity,
+            "queue_ledger_state_observer_consistency": consistency}
         closure_receipt = {"actual_input": "CENTRAL_HANDOFF_AND_FEEDBACK",
             "actual_output": "GOVERNED_COMMON_PLATFORM_STATE",
             "expected_output": "GOVERNED_COMMON_PLATFORM_STATE",

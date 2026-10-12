@@ -4,7 +4,7 @@ from pathlib import Path
 
 from github_runtime_cycle import (execute_central_backlog, reconcile_central_backlog,
                                   route_contracts, validate_contract,
-                                  evaluate_runtime_continuity)
+                                  evaluate_runtime_continuity, runtime_consistency)
 from wic_top_controller import preserved_queue_runtime_fields
 
 
@@ -95,7 +95,11 @@ class CentralBacklogReconciliationTest(unittest.TestCase):
         ]
         self.assertEqual(evaluate_runtime_continuity(regular)["status"], "PASS")
         gapped = [regular[0], regular[8], regular[16], regular[24], regular[32], regular[40], regular[48]]
-        self.assertEqual(evaluate_runtime_continuity(gapped)["status"], "HOLD_SCHEDULE_GAP")
+        gap_result = evaluate_runtime_continuity(gapped)
+        self.assertEqual(gap_result["status"], "HOLD_SCHEDULE_GAP")
+        self.assertTrue(gap_result["schedule_gap_detected"])
+        self.assertEqual(gap_result["gap_incidents"][0]["cause_class"],
+                         "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START")
 
     def test_24h_failure_requires_later_recovery(self):
         runs = [
@@ -104,6 +108,24 @@ class CentralBacklogReconciliationTest(unittest.TestCase):
             for index in range(49)
         ]
         self.assertEqual(evaluate_runtime_continuity(runs)["status"], "HOLD_UNRECOVERED_RUNTIME_FAILURE")
+
+    def test_runtime_consistency_matches_all_canonical_surfaces(self):
+        root = {"root_id": "HOLD-A", "status": "HOLD_EXECUTION_INPUT"}
+        result = runtime_consistency(
+            {"backlog_quarantine": [{"root_id": "HOLD-A"}]}, {"entries": [root]},
+            {"central_backlog": {"deferred": [root]}},
+            {"backlog_recovery": {"quarantined": [{"root_id": "HOLD-A"}]}},
+        )
+        self.assertEqual(result["status"], "PASS")
+
+    def test_runtime_consistency_fails_closed_on_observer_drift(self):
+        root = {"root_id": "HOLD-A", "status": "HOLD_EXECUTION_INPUT"}
+        result = runtime_consistency(
+            {"backlog_quarantine": [{"root_id": "HOLD-A"}]}, {"entries": [root]},
+            {"central_backlog": {"deferred": [root]}},
+            {"backlog_recovery": {"quarantined": []}},
+        )
+        self.assertEqual(result["status"], "FAIL")
 
 
 if __name__ == "__main__":

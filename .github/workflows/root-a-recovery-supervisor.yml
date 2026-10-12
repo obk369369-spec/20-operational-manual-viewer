@@ -91,4 +91,30 @@ jobs:
           echo "ROOT_A_SUPERVISOR_UTC=$(date -u +%FT%TZ)"
           gh api "repos/$repo/actions/workflows/tool044-cloud-worker.yml/runs?per_page=5" --jq '.workflow_runs[] | [.id,.status,(.conclusion//"-"),.created_at] | @tsv' || true
 
+      - name: Recover stale WIC top controller schedule
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          repo="$GITHUB_REPOSITORY"
+          workflow="wic-top-controller-runtime.yml"
+          now=$(date -u +%s)
+          data=$(gh api "repos/$repo/actions/workflows/$workflow/runs?per_page=20")
+          active=$(jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' <<<"$data")
+          last=$(jq -r '[.workflow_runs[] | select(.conclusion=="success")][0].updated_at // empty' <<<"$data")
+          stale=1
+          age_seconds=-1
+          if [ -n "$last" ]; then
+            last_epoch=$(date -u -d "$last" +%s)
+            age_seconds=$((now-last_epoch))
+            if [ "$age_seconds" -lt 9000 ]; then stale=0; fi
+          fi
+          echo "top_controller_active=$active last_success=${last:-none} age_seconds=$age_seconds stale=$stale"
+          if [ "$active" -eq 0 ] && [ "$stale" -eq 1 ]; then
+            gh workflow run "$workflow" --repo "$repo" --ref main
+            echo "TOP_CONTROLLER_RECOVERY_DISPATCHED=1"
+          else
+            echo "TOP_CONTROLLER_RECOVERY_DISPATCHED=0"
+          fi
+
 # recovery-generation: 2
