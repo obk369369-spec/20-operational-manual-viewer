@@ -38,6 +38,8 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_USER_USABLE_FINAL_OUTPUT_CLOSURE_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_18PCT_FINAL_PRESERVATION_CHECKPOINT_20261010.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_PRE_WORK_ADMISSION_OFFICE_20261012.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_USER_VISIBLE_OUTPUT_AUTORECOVERY_IDENTITY_ACTUAL_51DOC_20261012.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -238,6 +240,19 @@
     "new_development_started": false,
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_18PCT_FINAL_PRESERVATION_CHECKPOINT_20261010.json"
   },
-  "next_resume_position": "USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY",
+  "user_visible_output_autorecovery_identity_20261012": {
+    "status": "COMMON_ROOT_PASS_ACTUAL_51DOC",
+    "actual_input_count": 51,
+    "normal_count": 42,
+    "auto_repaired_count": 0,
+    "quarantined_count": 9,
+    "final_usable_count": 42,
+    "identity_integrity": "PASS",
+    "count_reconciliation": "PASS",
+    "tool013_actual_xls_application": "HOLD_SEPARATE_ACTUAL_INPUT_REQUIRED",
+    "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME_DO_NOT_RESTART",
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_USER_VISIBLE_OUTPUT_AUTORECOVERY_IDENTITY_ACTUAL_51DOC_20261012.json"
+  },
+  "next_resume_position": "TOOL013_ACTUAL_XLS_APPLICATION_OR_EXTERNAL_INPUT_BINDING",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
