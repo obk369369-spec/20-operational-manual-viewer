@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-13",
+  "source": "CONTROL_TOWER/ledger/WIC_MASTER_INCOMPLETE_LEDGER_20261004.json",
+  "baseline": {
+    "actionable_demands": 38,
+    "actionable_roots": 33,
+    "holds": 22,
+    "terminal": 55,
+    "source_total": 116,
+    "partition_count_difference": 1
+  },
+  "independent_external_runtime_verified": 0,
+  "continuous_24h_verified": false,
+  "work_credit_scheduled_tasks_enabled": false,
+  "error_reduction_verified_since_baseline": 0,
+  "measurement_rule": "Only source-matched root resolution with test evidence and remote readback reduces open count; no fabricated progress.",
+  "status": "BASELINE_ONLY_NOT_RUNNING"
+}
