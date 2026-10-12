@@ -1,13 +1,17 @@
 {
   "schema": "wic.top_controller.queue.v1",
-  "updated_at": "2026-10-12T09:22:25.537084+00:00",
+  "updated_at": "2026-10-12T11:08:03.874093+00:00",
   "queued_requirement_ids": [],
   "deduplicated": true,
   "claim_lease": null,
+  "backlog_root_ids": [
+    "WIC-0702-SCOPED-RECOVERY"
+  ],
+  "next_backlog_root": "WIC-0702-SCOPED-RECOVERY",
   "handoff_inbox": [
     {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-38229451865",
+      "trace_id": "REMOTE-38240680052",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [

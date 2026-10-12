@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-12T09:22:25.539755+00:00",
+  "created_at": "2026-10-12T11:08:03.935030+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "38229451865",
+  "run_id": "38240680052",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "3eb387dd94074c2800306a3c608206bd",
+    "token_id": "47c6d569b083861786013c9f0095c641",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "27b8c08b8386568315cef2569323ade502e198c1",
+    "git_sha": "8ca4c211e94109967c66cb71e9698f6c02c4ffb4",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -44,12 +44,64 @@
   "contract_state_readback_pass": true,
   "queue_persisted": true,
   "state_persisted": true,
-  "queue_auto_continuation": false,
-  "queue_drained": true,
+  "queue_auto_continuation": true,
+  "queue_drained": false,
   "remaining_queue_count": 0,
+  "central_backlog": {
+    "open_ledger_count": 6,
+    "executable_count": 1,
+    "deferred_count": 5,
+    "executable": [
+      {
+        "root_id": "WIC-0702-SCOPED-RECOVERY",
+        "status": "OPEN",
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL."
+      }
+    ],
+    "deferred": [
+      {
+        "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+        "status": "OPEN",
+        "next_trigger": "AUTHORIZED_LOCAL_BROWSER_TEST_PATH_OR_CONCRETE_BUSINESS_HANDLER_INPUT_AVAILABLE",
+        "next_start": "Reuse policy restore, no repeat. TOOL013 resumes filename/N Pages only when permitted actual local browser test is available. TOOL043/044 require concrete real business handler/input before queue integration. Existing 001/006/041/042/007 external holds unchanged. Reconcile CI registry contract separately within authorized scope, preserving pre-existing patch.",
+        "defer_reason": "TRIGGER_NOT_READY"
+      },
+      {
+        "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+        "status": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+        "next_trigger": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+        "next_start": "Retrieve the archived canonical guide corpus and actual EML TOCs from Library, then run only the publisher/layout batch regression; never ask the observer to re-upload.",
+        "defer_reason": "EXTERNAL_OR_TIME_CONDITION"
+      },
+      {
+        "root_id": "HOLD-T7-CHATGPT-NATIVE-INTERCEPTOR",
+        "status": "PLATFORM_LIMIT",
+        "next_trigger": "AUTHORIZED_SOURCE_CONVERSATION_MESSAGE_EVENT_OR_EXISTING_SOURCE_TOOL_BINDING_AVAILABLE",
+        "next_start": "Reuse existing wic-feedback-event receiver only after source-side capability changes; one real source message to MASTER-ready, no agent injection or internal PASS retest.",
+        "defer_reason": "EXTERNAL_OR_TIME_CONDITION"
+      },
+      {
+        "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+        "status": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+        "next_trigger": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+        "next_start": "Recover five provenance-backed report payloads from the archived Library sources and run the actual report-to-final-guide E2E; never ask the observer to re-upload.",
+        "defer_reason": "EXTERNAL_OR_TIME_CONDITION"
+      },
+      {
+        "root_id": "T41-T42-NATIVE-AUTOMATION",
+        "status": "OPEN",
+        "next_trigger": "CONFIGURED_AUTHENTICATED_DEDICATED_MVP_RUNTIME_AND_CUSTOMER_EVIDENCE_AVAILABLE",
+        "next_start": "Configure dedicated MVP model/GitHub credentials and current TOOL041 checkout once; then verify only the named customer's bounded real E2E when canonical identity/history/failure evidence exists. Do not rerun existing PASS or substitute customers.",
+        "defer_reason": "TRIGGER_NOT_READY"
+      }
+    ],
+    "next_root": "WIC-0702-SCOPED-RECOVERY",
+    "pass_locked_reopened": 0
+  },
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-38229451865",
+    "trace_id": "REMOTE-38240680052",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -68,7 +120,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "adb7603e795e534785a8b95212b5022a63a38b8c496588e929bc55787c316fc5",
+    "signature": "a9b6c4b3037c668565d84aef90242d9238fce194fba70a49498403befcf37bc2",
     "deltas": [
       0,
       0,
