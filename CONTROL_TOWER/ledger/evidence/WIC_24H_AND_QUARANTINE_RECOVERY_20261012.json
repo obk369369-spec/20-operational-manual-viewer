@@ -1,0 +1,65 @@
+{
+  "schema": "wic.24h-and-quarantine-recovery.v1",
+  "created_at": "2026-10-12T20:30:00+09:00",
+  "runtime_run_id": "38242938144",
+  "runtime_continuity": {
+    "first_started_at": "2026-10-05T16:44:13+09:00",
+    "last_finished_at": "2026-10-12T20:23:51+09:00",
+    "elapsed_hours": 171.661,
+    "validation_window_start": "2026-10-11T20:23:51+09:00",
+    "window_run_count": 12,
+    "success_count": 11,
+    "failure_count": 1,
+    "recovered_failure_run_id": 38241599415,
+    "recovery_run_id": 38241772583,
+    "unrecovered_failure_count": 0,
+    "max_gap_hours": 7.97,
+    "max_allowed_gap_hours": 2.5,
+    "single_cycle_20261001_is_24h_proof": false,
+    "final_status": "HOLD_SCHEDULE_GAP"
+  },
+  "fixed_pending_literal": true,
+  "automatic_future_adjudication": true,
+  "quarantined_roots": [
+    {
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "result": "HOLD",
+      "actual_input_found": false,
+      "execution_contract_found": false,
+      "blocker": "Authoritative current customer identity/material linkage and verified actual execution contract are not bound.",
+      "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+      "evidence": [
+        "feedback_pipeline/evidence/scoped_recovery_result_0702.json",
+        "feedback_pipeline/evidence/scoped_recovery_candidate_0702.json"
+      ]
+    },
+    {
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "result": "HOLD",
+      "actual_input_found": false,
+      "execution_contract_found": true,
+      "blocker": "Archived Library bytes containing the actual publisher complex TOC and approved golden pair are not mounted in this runtime.",
+      "resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+      "evidence": [
+        "feedback_pipeline/evidence/root_a_library_access_checkpoint_20260927.json",
+        "CONTROL_TOWER/ledger/evidence/WIC_MAJOR_TOOL_SEGMENT_MATRIX_20261008.json"
+      ]
+    },
+    {
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "result": "HOLD",
+      "actual_input_found": false,
+      "execution_contract_found": true,
+      "blocker": "Five complete provenance-backed report payloads are unavailable; registry reports 3/5 recovered and 0/5 fully verified.",
+      "resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+      "evidence": [
+        "feedback_pipeline/evidence/root_a_library_access_checkpoint_20260927.json",
+        "feedback_pipeline/incomplete_register.json"
+      ]
+    }
+  ],
+  "queue_ledger_runtime_observer_consistency": "PASS",
+  "quarantine_persisted_after_restart": true,
+  "existing_pass_reopened": 0,
+  "overall": "PARTIAL_24H_GAP_AND_THREE_EXTERNAL_INPUT_HOLDS"
+}

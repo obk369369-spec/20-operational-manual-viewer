@@ -41,6 +41,7 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_PRE_WORK_ADMISSION_OFFICE_20261012.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_USER_VISIBLE_OUTPUT_AUTORECOVERY_IDENTITY_ACTUAL_51DOC_20261012.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_24H_AND_QUARANTINE_RECOVERY_20261012.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -267,6 +268,16 @@
     "runtime_evidence_observer_remote_consistency": "PASS",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
   },
-  "next_resume_position": "WIC-0702-SCOPED-RECOVERY",
+  "runtime_24h_and_quarantine_20261012": {
+    "status": "PARTIAL_HOLD_SCHEDULE_GAP",
+    "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
+    "first_started_at": "2026-10-05T16:44:13+09:00",
+    "last_finished_at": "2026-10-12T20:23:51+09:00",
+    "max_gap_hours": 7.97,
+    "quarantined_root_count": 3,
+    "pass_reopened": 0,
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_24H_AND_QUARANTINE_RECOVERY_20261012.json"
+  },
+  "next_resume_position": "AUTOMATIC_SCHEDULE_CONTINUITY_ACCUMULATION_AND_EXTERNAL_INPUT_TRIGGER_WATCH",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }
