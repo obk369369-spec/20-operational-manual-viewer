@@ -15,7 +15,10 @@
         "commit": "3af0909d6e796ced534404f25ad67c91aa10b237",
         "path": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
         "remote_blob_sha": "ed84089a6b163445213760bcdd23115b840d9858",
-        "workflow_runs": ["37279406712", "37280663400"],
+        "workflow_runs": [
+          "37279406712",
+          "37280663400"
+        ],
         "scope": "Independent hosted runtime structure, two persisted cycles, completed-item blocking, multi-requirement auto-processing, queue continuation, recovery, and remote read-back; excludes actual 24-hour elapsed proof"
       },
       "execution_receipts": [
@@ -50,14 +53,14 @@
       ]
     },
     {
-      "root_id":"WIC-0702-SCOPED-RECOVERY",
-      "layer":"L5",
-      "target":"TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
-      "status":"OPEN",
-      "next_trigger":"IMMEDIATE",
-      "last_actual_point":"Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
-      "next_start":"Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL.",
-      "evidence_ref":"feedback_pipeline/evidence/scoped_recovery_result_0702.json"
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "layer": "L5",
+      "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
+      "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+      "next_trigger": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+      "last_actual_point": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
+      "next_start": "Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL.",
+      "evidence_ref": "feedback_pipeline/evidence/scoped_recovery_result_0702.json"
     },
     {
       "root_id": "CI-REGISTRY-STAGING-STATUS",
@@ -68,9 +71,21 @@
       "source": "USER_0702A258_RESUME",
       "last_actual_point": "Existing one-line patch validated with actual staging row, ACTIVE/unknown/unproved-COMPLETE regression. Code6c5f652e; CI33724676161 and33724676034 succeeded; all3source files remote matched. Evidence18dcc83f persisted. No TOOL014 business runtime changed.",
       "next_start": "SKIP_REUSE registry staging repair; preserve separate live-site authorization HOLD.",
-      "safe_checkpoint":"6c5f652e3cf62eb061ebd01e6e77ab8268cf41f7",
-      "completion_evidence":{"repository":"obk369369-spec/20-operational-manual-viewer","commit":"18dcc83fc9aced06842e6d620a64114bf1c8bd4f","path":"feedback_pipeline/evidence/registry_staging_ci_close_20260903.json","remote_blob_sha":"4c39a7f411202d3d0aee8d09b6cb388d56edf0c0","scope":"Actual CENTRAL CI staging-status repair, not TOOL014 live deployment"},
-      "execution_receipts":[{"operation_id":"staging-status-contract-repair","status":"REMOTE_VERIFIED","evidence_ref":"18dcc83fc9aced06842e6d620a64114bf1c8bd4f:feedback_pipeline/evidence/registry_staging_ci_close_20260903.json"}]
+      "safe_checkpoint": "6c5f652e3cf62eb061ebd01e6e77ab8268cf41f7",
+      "completion_evidence": {
+        "repository": "obk369369-spec/20-operational-manual-viewer",
+        "commit": "18dcc83fc9aced06842e6d620a64114bf1c8bd4f",
+        "path": "feedback_pipeline/evidence/registry_staging_ci_close_20260903.json",
+        "remote_blob_sha": "4c39a7f411202d3d0aee8d09b6cb388d56edf0c0",
+        "scope": "Actual CENTRAL CI staging-status repair, not TOOL014 live deployment"
+      },
+      "execution_receipts": [
+        {
+          "operation_id": "staging-status-contract-repair",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "18dcc83fc9aced06842e6d620a64114bf1c8bd4f:feedback_pipeline/evidence/registry_staging_ci_close_20260903.json"
+        }
+      ]
     },
     {
       "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
@@ -82,7 +97,15 @@
       "last_actual_point": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
       "next_start": "Reuse policy restore, no repeat. TOOL013 resumes filename/N Pages only when permitted actual local browser test is available. TOOL043/044 require concrete real business handler/input before queue integration. Existing 001/006/041/042/007 external holds unchanged. Reconcile CI registry contract separately within authorized scope, preserving pre-existing patch.",
       "lane_evidence": "feedback_pipeline/evidence/parallel_resume_result_20260903.json",
-      "execution_receipts": [{"operation_id":"named-parallel-residual-deploy","status":"HOLD_CENTRAL_RESUME_UNAVAILABLE","evidence_ref":"feedback_pipeline/evidence/parallel_lane_stop_20260903.json","condition_fingerprint":"1a79d25d15c97126e152927f9ad9632ef4526ec3:ab06cd6217464b4e686ec080ddc09f24a62dd49cde34d23ac6801f390cddc7ee","persistence":"LOCAL_ONLY_REMOTE_PENDING"}]
+      "execution_receipts": [
+        {
+          "operation_id": "named-parallel-residual-deploy",
+          "status": "HOLD_CENTRAL_RESUME_UNAVAILABLE",
+          "evidence_ref": "feedback_pipeline/evidence/parallel_lane_stop_20260903.json",
+          "condition_fingerprint": "1a79d25d15c97126e152927f9ad9632ef4526ec3:ab06cd6217464b4e686ec080ddc09f24a62dd49cde34d23ac6801f390cddc7ee",
+          "persistence": "LOCAL_ONLY_REMOTE_PENDING"
+        }
+      ]
     },
     {
       "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
@@ -101,7 +124,13 @@
         "remote_blob_sha": "313c7b40df0d1c9ae6e479233e3760f1e1faef46",
         "scope": "TOOL044 production adapter for TOOL043 structured evidence and deployed-copy test; not arbitrary future adapter creation or Android retest"
       },
-      "execution_receipts": [{"operation_id":"production-proof-contract-deploy","status":"REMOTE_VERIFIED","evidence_ref":"99269456d92972fc49c875ca16c36ab23f3b5ffc:feedback_pipeline/evidence/tool044_production_run.json"}]
+      "execution_receipts": [
+        {
+          "operation_id": "production-proof-contract-deploy",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "99269456d92972fc49c875ca16c36ab23f3b5ffc:feedback_pipeline/evidence/tool044_production_run.json"
+        }
+      ]
     },
     {
       "root_id": "TOOL044-READY-COMPONENT-PILOT",
@@ -120,8 +149,24 @@
         "remote_blob_sha": "eeddfb36b0c77f35617855c0a89355175dcfe609",
         "scope": "TOOL013 idb-keyval cache pilot only; not TOOL044 autonomous production deployment"
       },
-      "search_limits": {"rounds_per_function": 2, "candidates_per_function": 3, "sandbox_tests_per_candidate": 1, "environment_retries": 1, "integration_candidates_per_tool": 2},
-      "execution_receipts": [{"operation_id":"tool013-ready-acquisition","status":"REMOTE_VERIFIED","evidence_ref":"obk369369-spec/13-excel-upload@3a70d84161d0cff9916a7a37d6c88d279df111eb:tests/tool13_idb_deployed_evidence.json","scope":"TOOL013 checkpoint-cache only","target_runtime_sha256":"af00dee8a289205f92323c607ad84e5e77fd7c24d0ab273cdd579624eb9ff42b","first_integration_failure":"Oracle omitted existing boundary-whitespace trimming; corrected once with identical input","deploy_block_observed":"Git newline byte mismatch blocked deployment; exact tested bytes preserved with path-specific attributes"}]
+      "search_limits": {
+        "rounds_per_function": 2,
+        "candidates_per_function": 3,
+        "sandbox_tests_per_candidate": 1,
+        "environment_retries": 1,
+        "integration_candidates_per_tool": 2
+      },
+      "execution_receipts": [
+        {
+          "operation_id": "tool013-ready-acquisition",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "obk369369-spec/13-excel-upload@3a70d84161d0cff9916a7a37d6c88d279df111eb:tests/tool13_idb_deployed_evidence.json",
+          "scope": "TOOL013 checkpoint-cache only",
+          "target_runtime_sha256": "af00dee8a289205f92323c607ad84e5e77fd7c24d0ab273cdd579624eb9ff42b",
+          "first_integration_failure": "Oracle omitted existing boundary-whitespace trimming; corrected once with identical input",
+          "deploy_block_observed": "Git newline byte mismatch blocked deployment; exact tested bytes preserved with path-specific attributes"
+        }
+      ]
     },
     {
       "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
@@ -286,56 +331,142 @@
   "open_candidate_total": 0,
   "execution_policy": {
     "schema_version": 1,
-    "scope_grants": [{
-      "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
-      "directive_ref": "USER_CURRENT_REMAINING_WORK_ONLY_20261005",
-      "actions": ["DEPLOY_EXISTING_CONTROLLER_RUNTIME"],
-      "assets": ["TOOL016", "TOOL044", "GITHUB_ACTIONS", "WIC_TOP_CONTROLLER", "CONTROLLER_RUNTIME_STATE"],
-      "reusable_assets": ["existing verified WIC top controller", "existing GitHub Actions runtime", "existing 75-requirement queue/state/evidence"],
-      "scope": "Deploy the already verified controller to an independent scheduled runtime and prove persisted automatic multi-requirement continuation without rebuilding completed controller logic"
-    },{
-      "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
-      "directive_ref": "USER_WIC_24H_REVENUE_EXECUTION_20261001",
-      "actions": ["CONNECT_AND_DEPLOY_REUSED_PLATFORMS"],
-      "assets": ["TOOL016", "TOOL044", "KESTRA", "NODE_RED", "GITHUB_ACTIONS", "GITHUB_PAGES", "WIC_TARGET_REGISTRY", "REVENUE_PILOT"],
-      "reusable_assets": ["verified Kestra 2.0.4", "verified Node-RED 4.1.0", "existing GitHub Actions and Pages", "current WIC target registry"],
-      "scope": "Connect the existing verified automation platforms to a daily A-L tool and revenue cycle, deploy one public no-payment pilot, verify the visible result, and keep customer payment stages WAITING"
-    },{
-      "root_id":"WIC-0702-SCOPED-RECOVERY",
-      "directive_ref":"USER_0702A258_RESUME",
-      "actions":["SCOPED_READ_ONLY_RECOVERY"],
-      "assets":["TOOL013","TOOL041","TOOL042","TOOL043","TOOL044"],
-      "reusable_assets":["current canonical MASTER/checkpoint/evidence/history index"],
-      "scope":"Recover actual available evidence and executable existing functions without releasing unchanged auth/browser restrictions"
-    },{
-      "root_id": "CI-REGISTRY-STAGING-STATUS",
-      "directive_ref": "USER_0702A258_RESUME",
-      "actions": ["REPAIR_REGISTRY_STATUS"],
-      "assets": ["CENTRAL_REGISTRY_CONTRACT"],
-      "reusable_assets": ["feedback_pipeline/global_pipeline.py"],
-      "scope": "Existing local staging-status compatibility patch and direct regression; no TOOL014 runtime development"
-    },{
-      "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
-      "directive_ref": "USER_PARALLEL_LANES_20260903",
-      "actions": ["REVIEW_RESIDUAL_AND_DEPLOY"],
-      "assets": ["TOOL044", "TOOL043", "TOOL041", "TOOL042", "TOOL006", "TOOL001", "TOOL013", "TOOL007", "VERIFIED_COMPONENT_REGISTRY"],
-      "reusable_assets": ["feedback_pipeline/tool044_acquire.py", "repo13/index.html", "existing tool MASTER/checkpoint/runtime pointers"],
-      "scope": "User named parallel lanes only, no unchanged HOLD execution, no whole-tool/history scan, no completed cache/proof tests"
-    },{
-      "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
-      "directive_ref": "USER_TOOL044_PRODUCTION_FINISH",
-      "actions": ["REPAIR_AND_DEPLOY"],
-      "assets": ["TOOL044", "TOOL043", "VERIFIED_COMPONENT_REGISTRY"],
-      "reusable_assets": ["feedback_pipeline/tool044_acquire.py", "tool043/night_observer.py", "feedback_pipeline/deployment_observer_gate.py"],
-      "scope": "Existing TOOL044 production execution and TOOL043 completion-proof structure only; no unrelated tool development"
-    },{
-      "root_id": "TOOL044-READY-COMPONENT-PILOT",
-      "directive_ref": "USER_TOOL044_RESUME_20260903",
-      "actions": ["ACQUIRE_COMPONENT"],
-      "assets": ["TOOL013", "VERIFIED_COMPONENT_REGISTRY"],
-      "reusable_assets": ["repo13/index.html", "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"],
-      "scope": "TOOL013 existing body and direct external ready-component pilot only; no whole-tool audit or unrelated changes"
-    }],
+    "scope_grants": [
+      {
+        "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
+        "directive_ref": "USER_CURRENT_REMAINING_WORK_ONLY_20261005",
+        "actions": [
+          "DEPLOY_EXISTING_CONTROLLER_RUNTIME"
+        ],
+        "assets": [
+          "TOOL016",
+          "TOOL044",
+          "GITHUB_ACTIONS",
+          "WIC_TOP_CONTROLLER",
+          "CONTROLLER_RUNTIME_STATE"
+        ],
+        "reusable_assets": [
+          "existing verified WIC top controller",
+          "existing GitHub Actions runtime",
+          "existing 75-requirement queue/state/evidence"
+        ],
+        "scope": "Deploy the already verified controller to an independent scheduled runtime and prove persisted automatic multi-requirement continuation without rebuilding completed controller logic"
+      },
+      {
+        "root_id": "WIC-24H-TOOLS-AND-REVENUE-CYCLE-20261001",
+        "directive_ref": "USER_WIC_24H_REVENUE_EXECUTION_20261001",
+        "actions": [
+          "CONNECT_AND_DEPLOY_REUSED_PLATFORMS"
+        ],
+        "assets": [
+          "TOOL016",
+          "TOOL044",
+          "KESTRA",
+          "NODE_RED",
+          "GITHUB_ACTIONS",
+          "GITHUB_PAGES",
+          "WIC_TARGET_REGISTRY",
+          "REVENUE_PILOT"
+        ],
+        "reusable_assets": [
+          "verified Kestra 2.0.4",
+          "verified Node-RED 4.1.0",
+          "existing GitHub Actions and Pages",
+          "current WIC target registry"
+        ],
+        "scope": "Connect the existing verified automation platforms to a daily A-L tool and revenue cycle, deploy one public no-payment pilot, verify the visible result, and keep customer payment stages WAITING"
+      },
+      {
+        "root_id": "WIC-0702-SCOPED-RECOVERY",
+        "directive_ref": "USER_0702A258_RESUME",
+        "actions": [
+          "SCOPED_READ_ONLY_RECOVERY"
+        ],
+        "assets": [
+          "TOOL013",
+          "TOOL041",
+          "TOOL042",
+          "TOOL043",
+          "TOOL044"
+        ],
+        "reusable_assets": [
+          "current canonical MASTER/checkpoint/evidence/history index"
+        ],
+        "scope": "Recover actual available evidence and executable existing functions without releasing unchanged auth/browser restrictions"
+      },
+      {
+        "root_id": "CI-REGISTRY-STAGING-STATUS",
+        "directive_ref": "USER_0702A258_RESUME",
+        "actions": [
+          "REPAIR_REGISTRY_STATUS"
+        ],
+        "assets": [
+          "CENTRAL_REGISTRY_CONTRACT"
+        ],
+        "reusable_assets": [
+          "feedback_pipeline/global_pipeline.py"
+        ],
+        "scope": "Existing local staging-status compatibility patch and direct regression; no TOOL014 runtime development"
+      },
+      {
+        "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+        "directive_ref": "USER_PARALLEL_LANES_20260903",
+        "actions": [
+          "REVIEW_RESIDUAL_AND_DEPLOY"
+        ],
+        "assets": [
+          "TOOL044",
+          "TOOL043",
+          "TOOL041",
+          "TOOL042",
+          "TOOL006",
+          "TOOL001",
+          "TOOL013",
+          "TOOL007",
+          "VERIFIED_COMPONENT_REGISTRY"
+        ],
+        "reusable_assets": [
+          "feedback_pipeline/tool044_acquire.py",
+          "repo13/index.html",
+          "existing tool MASTER/checkpoint/runtime pointers"
+        ],
+        "scope": "User named parallel lanes only, no unchanged HOLD execution, no whole-tool/history scan, no completed cache/proof tests"
+      },
+      {
+        "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
+        "directive_ref": "USER_TOOL044_PRODUCTION_FINISH",
+        "actions": [
+          "REPAIR_AND_DEPLOY"
+        ],
+        "assets": [
+          "TOOL044",
+          "TOOL043",
+          "VERIFIED_COMPONENT_REGISTRY"
+        ],
+        "reusable_assets": [
+          "feedback_pipeline/tool044_acquire.py",
+          "tool043/night_observer.py",
+          "feedback_pipeline/deployment_observer_gate.py"
+        ],
+        "scope": "Existing TOOL044 production execution and TOOL043 completion-proof structure only; no unrelated tool development"
+      },
+      {
+        "root_id": "TOOL044-READY-COMPONENT-PILOT",
+        "directive_ref": "USER_TOOL044_RESUME_20260903",
+        "actions": [
+          "ACQUIRE_COMPONENT"
+        ],
+        "assets": [
+          "TOOL013",
+          "VERIFIED_COMPONENT_REGISTRY"
+        ],
+        "reusable_assets": [
+          "repo13/index.html",
+          "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"
+        ],
+        "scope": "TOOL013 existing body and direct external ready-component pilot only; no whole-tool audit or unrelated changes"
+      }
+    ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
     "completed_work": {
       "root_id": "L5-19",

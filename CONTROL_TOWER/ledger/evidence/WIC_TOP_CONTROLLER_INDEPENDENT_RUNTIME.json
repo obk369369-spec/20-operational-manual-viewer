@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-12T11:08:03.935030+00:00",
+  "created_at": "2026-10-12T11:18:20.112380+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "38240680052",
+  "run_id": "38241772583",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "47c6d569b083861786013c9f0095c641",
+    "token_id": "11d0df594ac6796704648a8385b4fb28",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "8ca4c211e94109967c66cb71e9698f6c02c4ffb4",
+    "git_sha": "8e05226d128093b19f1e57f7d451876286fc8089",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -44,8 +44,8 @@
   "contract_state_readback_pass": true,
   "queue_persisted": true,
   "state_persisted": true,
-  "queue_auto_continuation": true,
-  "queue_drained": false,
+  "queue_auto_continuation": false,
+  "queue_drained": true,
   "remaining_queue_count": 0,
   "central_backlog": {
     "open_ledger_count": 6,
@@ -97,11 +97,27 @@
       }
     ],
     "next_root": "WIC-0702-SCOPED-RECOVERY",
-    "pass_locked_reopened": 0
+    "pass_locked_reopened": 0,
+    "execution_receipts": [
+      {
+        "root_id": "WIC-0702-SCOPED-RECOVERY",
+        "status": "HOLD",
+        "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
+        "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+      }
+    ]
   },
+  "central_backlog_execution": [
+    {
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "status": "HOLD",
+      "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
+      "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+    }
+  ],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-38240680052",
+    "trace_id": "REMOTE-38241772583",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -120,7 +136,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "a9b6c4b3037c668565d84aef90242d9238fce194fba70a49498403befcf37bc2",
+    "signature": "fb1e4318bb3fce6510add6b2e87478ce9fa4dadd36bc404364f3eee94763e99d",
     "deltas": [
       0,
       0,
