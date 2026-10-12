@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-12T11:18:20.112380+00:00",
+  "created_at": "2026-10-12T11:20:00.531441+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "38241772583",
+  "run_id": "38241944202",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "11d0df594ac6796704648a8385b4fb28",
+    "token_id": "47e8f06a56864f4983bba31e0fd7f9d7",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "8e05226d128093b19f1e57f7d451876286fc8089",
+    "git_sha": "f1e3268fc69794f907a49fb982fcf2e69f07af23",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -49,17 +49,17 @@
   "remaining_queue_count": 0,
   "central_backlog": {
     "open_ledger_count": 6,
-    "executable_count": 1,
-    "deferred_count": 5,
-    "executable": [
+    "executable_count": 0,
+    "deferred_count": 6,
+    "executable": [],
+    "deferred": [
       {
         "root_id": "WIC-0702-SCOPED-RECOVERY",
-        "status": "OPEN",
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL."
-      }
-    ],
-    "deferred": [
+        "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+        "next_trigger": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+        "next_start": "Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL.",
+        "defer_reason": "TRIGGER_NOT_READY"
+      },
       {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
         "status": "OPEN",
@@ -96,28 +96,14 @@
         "defer_reason": "TRIGGER_NOT_READY"
       }
     ],
-    "next_root": "WIC-0702-SCOPED-RECOVERY",
+    "next_root": null,
     "pass_locked_reopened": 0,
-    "execution_receipts": [
-      {
-        "root_id": "WIC-0702-SCOPED-RECOVERY",
-        "status": "HOLD",
-        "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
-        "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
-      }
-    ]
+    "execution_receipts": []
   },
-  "central_backlog_execution": [
-    {
-      "root_id": "WIC-0702-SCOPED-RECOVERY",
-      "status": "HOLD",
-      "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
-      "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
-    }
-  ],
+  "central_backlog_execution": [],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-38241772583",
+    "trace_id": "REMOTE-38241944202",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -136,7 +122,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "fb1e4318bb3fce6510add6b2e87478ce9fa4dadd36bc404364f3eee94763e99d",
+    "signature": "0df24b5b521d30bd163eaed64d7b19bfe9f23691433436a054183b44b814e66f",
     "deltas": [
       0,
       0,

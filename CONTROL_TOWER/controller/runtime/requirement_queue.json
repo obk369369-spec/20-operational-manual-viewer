@@ -1,23 +1,16 @@
 {
   "schema": "wic.top_controller.queue.v1",
-  "updated_at": "2026-10-12T11:18:20.109738+00:00",
+  "updated_at": "2026-10-12T11:20:00.529180+00:00",
   "queued_requirement_ids": [],
   "deduplicated": true,
   "claim_lease": null,
   "backlog_root_ids": [],
   "next_backlog_root": null,
-  "backlog_quarantine": [
-    {
-      "root_id": "WIC-0702-SCOPED-RECOVERY",
-      "status": "HOLD",
-      "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
-      "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
-    }
-  ],
+  "backlog_quarantine": [],
   "handoff_inbox": [
     {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-38241772583",
+      "trace_id": "REMOTE-38241944202",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [

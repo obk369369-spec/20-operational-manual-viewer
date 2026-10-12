@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-12T11:18:20.109877+00:00",
+  "updated_at": "2026-10-12T11:20:00.529285+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -575,7 +575,7 @@
   "LONG_TERM_HOLD": [],
   "NEXT_WORK": null,
   "current": {
-    "run_id": "38241772583",
+    "run_id": "38241944202",
     "runtime": "GitHub Actions",
     "status": "완료",
     "queue": 0,
@@ -597,5 +597,10 @@
     "customer_response": "WAITING",
     "actual_revenue": false
   },
-  "observer_reinstruction_required": 0
+  "observer_reinstruction_required": 0,
+  "backlog_recovery": {
+    "quarantined": [],
+    "user_action_required": false,
+    "next_automatic_work": null
+  }
 }

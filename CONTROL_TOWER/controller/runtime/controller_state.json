@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-12T11:18:20.109738+00:00",
+  "updated_at": "2026-10-12T11:20:00.529180+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -921,11 +921,11 @@
   },
   "actual_24h_elapsed_validation": "PENDING",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-12T12:18:20.109745+00:00",
+  "next_run_at": "2026-10-12T12:20:00.529187+00:00",
   "handoff_traces": {
-    "REMOTE-38241772583": {
+    "REMOTE-38241944202": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-38241772583",
+      "trace_id": "REMOTE-38241944202",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -942,20 +942,20 @@
   },
   "runtime_progress_gate": {
     "seen_signatures": [
-      "79eed4d3cbf02eb065d0956e138d6520f2de92f5ced6c44c46459c6057ad1026",
-      "fb1e4318bb3fce6510add6b2e87478ce9fa4dadd36bc404364f3eee94763e99d"
+      "b69c98ce4463f66b56074ddcd2209392dff8fa87ae0a87b8b2d7687ca3b0f672",
+      "0df24b5b521d30bd163eaed64d7b19bfe9f23691433436a054183b44b814e66f"
     ],
     "stopped_roots": {},
     "last_checkpoint": {
-      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-38241772583",
-      "CENTRAL_RUNTIME_CYCLE": "38241772583"
+      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-38241944202",
+      "CENTRAL_RUNTIME_CYCLE": "38241944202"
     },
     "events": [
       {
         "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "79eed4d3cbf02eb065d0956e138d6520f2de92f5ced6c44c46459c6057ad1026",
+        "signature": "b69c98ce4463f66b56074ddcd2209392dff8fa87ae0a87b8b2d7687ca3b0f672",
         "deltas": [
           0,
           0,
@@ -968,7 +968,7 @@
         "root_id": "CENTRAL_RUNTIME_CYCLE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "fb1e4318bb3fce6510add6b2e87478ce9fa4dadd36bc404364f3eee94763e99d",
+        "signature": "0df24b5b521d30bd163eaed64d7b19bfe9f23691433436a054183b44b814e66f",
         "deltas": [
           0,
           0,
@@ -981,13 +981,13 @@
   },
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "38241772583",
+    "run_id": "38241944202",
     "run_attempt": "1",
     "processed": [],
     "held": [],
     "handoff": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-38241772583",
+      "trace_id": "REMOTE-38241944202",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -1006,7 +1006,7 @@
       "root_id": "CENTRAL_RUNTIME_CYCLE",
       "decision": "ALLOW",
       "reason": null,
-      "signature": "fb1e4318bb3fce6510add6b2e87478ce9fa4dadd36bc404364f3eee94763e99d",
+      "signature": "0df24b5b521d30bd163eaed64d7b19bfe9f23691433436a054183b44b814e66f",
       "deltas": [
         0,
         0,
@@ -1020,17 +1020,17 @@
   },
   "central_backlog": {
     "open_ledger_count": 6,
-    "executable_count": 1,
-    "deferred_count": 5,
-    "executable": [
+    "executable_count": 0,
+    "deferred_count": 6,
+    "executable": [],
+    "deferred": [
       {
         "root_id": "WIC-0702-SCOPED-RECOVERY",
-        "status": "OPEN",
-        "next_trigger": "IMMEDIATE",
-        "next_start": "Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL."
-      }
-    ],
-    "deferred": [
+        "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+        "next_trigger": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+        "next_start": "Use saved exact sources, do not repeat recovery. Resolve authoritative current identity/material link and permitted tool test path. Internal collector/handler gaps remain INCOMPLETE, not HOLD_EXTERNAL.",
+        "defer_reason": "TRIGGER_NOT_READY"
+      },
       {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
         "status": "OPEN",
@@ -1067,15 +1067,8 @@
         "defer_reason": "TRIGGER_NOT_READY"
       }
     ],
-    "next_root": "WIC-0702-SCOPED-RECOVERY",
+    "next_root": null,
     "pass_locked_reopened": 0,
-    "execution_receipts": [
-      {
-        "root_id": "WIC-0702-SCOPED-RECOVERY",
-        "status": "HOLD",
-        "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
-        "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
-      }
-    ]
+    "execution_receipts": []
   }
 }
