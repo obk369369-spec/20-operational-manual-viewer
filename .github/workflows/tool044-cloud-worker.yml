@@ -1,9 +1,10 @@
 name: TOOL044 Public Safe Cloud Worker
 
-# FAIL-CLOSED: Scheduled GitHub-only factory execution is suspended until an
-# independent, free, non-GitHub runtime is verified with real execution evidence.
-# Manual dispatch remains available for bounded verification only.
+# GitHub Actions bootstrap stays scheduled while independent free runtimes are
+# discovered and verified. GitHub-only execution never counts as multi-runtime PASS.
 on:
+  schedule:
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       isolated_test:
