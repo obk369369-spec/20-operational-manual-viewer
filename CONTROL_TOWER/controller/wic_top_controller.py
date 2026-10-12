@@ -89,6 +89,17 @@ def requirement_group(requirement_id: int) -> str:
     return "FINAL_INDEPENDENCE"
 
 
+def preserved_queue_runtime_fields(previous_queue: dict[str, Any]) -> dict[str, Any]:
+    """Keep durable handoff and quarantine state while rebuilding numeric queue membership."""
+    return {
+        "handoff_inbox": previous_queue.get("handoff_inbox", []),
+        "backlog_root_ids": previous_queue.get("backlog_root_ids", []),
+        "next_backlog_root": previous_queue.get("next_backlog_root"),
+        "backlog_quarantine": previous_queue.get("backlog_quarantine", []),
+        "quarantined_requirements": previous_queue.get("quarantined_requirements", []),
+    }
+
+
 def initialize() -> tuple[dict[str, Any], dict[str, Any]]:
     source = load(SOURCE_MATRIX)
     source_rows = source["requirements"]
@@ -96,6 +107,7 @@ def initialize() -> tuple[dict[str, Any], dict[str, Any]]:
     if len(ids) != 75 or len(set(ids)) != 75 or 67 in ids:
         raise RuntimeError("REQUIREMENT_MATRIX_NOT_EXACTLY_75")
     previous = load(STATE) if STATE.exists() else {}
+    previous_queue = load(QUEUE) if QUEUE.exists() else {}
     previous_rows = {int(row["id"]): row for row in previous.get("requirements", [])}
     requirements = []
     for row in source_rows:
@@ -135,6 +147,7 @@ def initialize() -> tuple[dict[str, Any], dict[str, Any]]:
         "queued_requirement_ids": queued,
         "deduplicated": len(queued) == len(set(queued)),
         "claim_lease": None,
+        **preserved_queue_runtime_fields(previous_queue),
     }
     atomic_json(STATE, state)
     atomic_json(QUEUE, queue)

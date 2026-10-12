@@ -4,19 +4,21 @@ from pathlib import Path
 
 from github_runtime_cycle import (execute_central_backlog, reconcile_central_backlog,
                                   route_contracts, validate_contract)
+from wic_top_controller import preserved_queue_runtime_fields
 
 
 class CentralBacklogReconciliationTest(unittest.TestCase):
-    def test_actual_ledger_selects_immediate_without_reopening_closed(self):
+    def test_actual_ledger_preserves_completed_attempt_without_reopening_closed(self):
         root = Path(__file__).resolve().parents[2]
         ledger = json.loads((root / "feedback_pipeline" / "unified_open_ledger.json").read_text(encoding="utf-8"))
         queue = {"queued_requirement_ids": []}
         result = reconcile_central_backlog(queue, ledger)
         self.assertEqual(result["pass_locked_reopened"], 0)
         self.assertGreaterEqual(result["open_ledger_count"], 1)
-        self.assertEqual(result["executable_count"], 1)
-        self.assertEqual(result["next_root"], "WIC-0702-SCOPED-RECOVERY")
-        self.assertEqual(queue["backlog_root_ids"], ["WIC-0702-SCOPED-RECOVERY"])
+        self.assertEqual(result["executable_count"], 0)
+        self.assertEqual(result["deferred_count"], 6)
+        self.assertIsNone(result["next_root"])
+        self.assertEqual(queue["backlog_root_ids"], [])
 
     def test_external_and_not_ready_are_deferred(self):
         ledger = {"entries": [
@@ -71,6 +73,17 @@ class CentralBacklogReconciliationTest(unittest.TestCase):
         second = execute_central_backlog(queue, ledger, {"backlog_execution_contracts": []})
         self.assertEqual(second, [])
         self.assertEqual(len(queue["backlog_quarantine"]), 1)
+
+    def test_restart_preserves_handoff_and_quarantine(self):
+        previous = {
+            "handoff_inbox": [{"trace_id": "one"}],
+            "backlog_quarantine": [{"root_id": "blocked"}],
+            "quarantined_requirements": [{"requirement_id": 9}],
+        }
+        preserved = preserved_queue_runtime_fields(previous)
+        self.assertEqual(preserved["handoff_inbox"], previous["handoff_inbox"])
+        self.assertEqual(preserved["backlog_quarantine"], previous["backlog_quarantine"])
+        self.assertEqual(preserved["quarantined_requirements"], previous["quarantined_requirements"])
 
 
 if __name__ == "__main__":
