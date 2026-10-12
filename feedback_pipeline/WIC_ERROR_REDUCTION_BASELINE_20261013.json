@@ -15,5 +15,165 @@
   "work_credit_scheduled_tasks_enabled": false,
   "error_reduction_verified_since_baseline": 0,
   "measurement_rule": "Only source-matched root resolution with test evidence and remote readback reduces open count; no fabricated progress.",
-  "status": "BASELINE_ONLY_NOT_RUNNING"
+  "status": "BASELINE_ONLY_NOT_RUNNING",
+  "error_families": [
+    {
+      "id": "R01",
+      "name": "Customer currentness",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R02",
+      "name": "Institution vs personal interest",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R03",
+      "name": "Outbound vs inbound history",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R04",
+      "name": "Upstream evidence gate",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R05",
+      "name": "Publisher report URL TOC identity",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R06",
+      "name": "TOC hierarchy",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R07",
+      "name": "Verified report payload shortage",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R08",
+      "name": "Synthetic content fallback",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R09",
+      "name": "Excel batch stall and fidelity",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R10",
+      "name": "Cross-chat handoff and ACK",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R11",
+      "name": "Invalid NOT_ERROR reopening",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R12",
+      "name": "Premature repair before grouping",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R13",
+      "name": "Unproven PASS and deployed evidence",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R14",
+      "name": "Push conflict and source checkpoint",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R15",
+      "name": "Unchanged HOLD retry",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R16",
+      "name": "24h heartbeat and schedule gaps",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R17",
+      "name": "GitHub-only runtime dependency",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R18",
+      "name": "Queue ledger registry state drift",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R19",
+      "name": "Chat title and identity drift",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R20",
+      "name": "Provider free commercial license",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R21",
+      "name": "Shell vs live product",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R22",
+      "name": "Unsupported ChatGPT Work auto control",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R23",
+      "name": "Bid auth and verifier",
+      "status": "AUDIT_REQUIRED"
+    },
+    {
+      "id": "R24",
+      "name": "Device USB restart dependency",
+      "status": "AUDIT_REQUIRED"
+    }
+  ],
+  "common_incomplete_roots": [
+    "CR-LEDGER-QUEUE-RECONCILIATION",
+    "CR-ACCESSIBLE-BUSINESS-ASSET-CANONICALIZATION",
+    "CR-TOOL001-006-SOURCE-RECOVERY",
+    "CR-WIC-SCOPED-RECOVERY-0702",
+    "CR-T41-T42-CUSTOMER-NATIVE-E2E",
+    "CR-CONTROL-TOWER-STATE-INTEGRITY",
+    "CR-TOOL044-AUTONOMOUS-CIRCULATION-RESIDUAL",
+    "CR-INDEPENDENT-24H-EXTERNAL-RUNTIME",
+    "CR-FLOWWINK-SUPABASE-E2E",
+    "CR-CHAT-SOURCE-NATIVE-INTERCEPTOR",
+    "PAPERCLIP-FINAL-SLOT"
+  ],
+  "reporting": {
+    "fields": [
+      "timestamp",
+      "baseline_open_roots",
+      "current_open_roots",
+      "verified_fixed_roots",
+      "new_roots",
+      "reopened_roots",
+      "holds",
+      "independent_external_runtimes_verified",
+      "verified_runtime_run_ids",
+      "test_evidence",
+      "commit",
+      "24h_gap"
+    ],
+    "reduction_formula": "baseline_open_roots - current_open_roots; report separately new and reopened roots",
+    "frequency": "each verified actual correction cycle, and hourly only if an independently verified free scheduler is available",
+    "no_fake_progress": true
+  },
+  "execution_gate": {
+    "status": "STOPPED_WAITING_EXTERNAL_RUNTIME",
+    "resume": "Verified free non-GitHub runtime, independently deployed and scheduled, with job ID heartbeat and remote readback",
+    "no_github_only_factory_loop": true,
+    "no_work_credit_automation": true
+  }
 }
