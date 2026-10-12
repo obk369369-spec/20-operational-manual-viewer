@@ -16,6 +16,49 @@ from runtime_progress_gate import (accept_feedback, accept_handoff,
 from universal_enforcement import closure_verdict, self_test as enforcement_self_test
 
 
+CLOSED_LEDGER_STATUSES = {"VERIFIED_CLOSED", "PASS_LOCKED", "COMPLETE", "DEPLOYED_COMPLETE"}
+DEFERRED_LEDGER_STATUSES = {
+    "PLATFORM_LIMIT", "EXTERNAL_BLOCKED", "MARKET_VALIDATION_PENDING",
+    "PENDING_NATURAL_TIME", "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+}
+
+
+def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> dict[str, Any]:
+    """Bind the canonical open ledger to runtime selection without reopening PASS locks."""
+    executable: list[dict[str, Any]] = []
+    deferred: list[dict[str, Any]] = []
+    for entry in ledger.get("entries", []):
+        status = str(entry.get("status", "UNKNOWN"))
+        if status in CLOSED_LEDGER_STATUSES:
+            continue
+        summary = {
+            "root_id": entry.get("root_id"),
+            "status": status,
+            "next_trigger": entry.get("next_trigger"),
+            "next_start": entry.get("next_start"),
+        }
+        if status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE":
+            executable.append(summary)
+        else:
+            summary["defer_reason"] = (
+                "EXTERNAL_OR_TIME_CONDITION" if status in DEFERRED_LEDGER_STATUSES
+                else "TRIGGER_NOT_READY"
+            )
+            deferred.append(summary)
+    executable.sort(key=lambda row: str(row["root_id"]))
+    queue["backlog_root_ids"] = [row["root_id"] for row in executable]
+    queue["next_backlog_root"] = queue["backlog_root_ids"][0] if executable else None
+    return {
+        "open_ledger_count": len(executable) + len(deferred),
+        "executable_count": len(executable),
+        "deferred_count": len(deferred),
+        "executable": executable,
+        "deferred": deferred,
+        "next_root": queue["next_backlog_root"],
+        "pass_locked_reopened": 0,
+    }
+
+
 def nested(value: Any, dotted: str) -> Any:
     for part in dotted.split("."):
         if not isinstance(value, dict) or part not in value:
@@ -133,8 +176,10 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         "COMPLETE": [item(row, "COMPLETE") for row in complete],
         "PARTIAL": [item(row, "PARTIAL") for row in queued], "UNFINISHED": [],
         "PLATFORM_HOLD": [item(row, "PLATFORM_HOLD") for row in waiting], "LONG_TERM_HOLD": [],
-        "NEXT_WORK": str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"] else None,
-        "current": {"run_id": run_id, "runtime": "GitHub Actions", "status": "작업 중" if queued else "완료",
+        "NEXT_WORK": (str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"]
+                      else queue.get("next_backlog_root")),
+        "current": {"run_id": run_id, "runtime": "GitHub Actions",
+                    "status": "작업 중" if queued or queue.get("backlog_root_ids") else "완료",
                     "queue": len(queued), "pass_locked": len(complete), "hold": len(waiting),
                     "fail": sum(1 for row in rows if row["status"] == "FAIL"),
                     "processing": len(processed), "factory": "공통 실행계약 Large Factory",
@@ -168,6 +213,8 @@ def main() -> None:
         run_attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
         registry_path = body.CONTROL_TOWER / "controller" / "component_registry.json"
         registry = body.load(registry_path)
+        ledger_path = body.ROOT / "feedback_pipeline" / "unified_open_ledger.json"
+        backlog = reconcile_central_backlog(queue, body.load(ledger_path))
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"
                           for item in registry["components"])
         enforcement = enforcement_self_test()
@@ -195,7 +242,7 @@ def main() -> None:
             int(row["id"]) for row in state["requirements"]
             if int(row["id"]) in contract_ids and row["queue_status"] == "PASS_LOCKED"
         )
-        queue_drained = not queue["queued_requirement_ids"]
+        queue_drained = not queue["queued_requirement_ids"] and not queue.get("backlog_root_ids")
         state["independent_runtime"] = "GITHUB_ACTIONS_SCHEDULED_PASS"
         state["updated_at"] = body.now()
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
@@ -204,6 +251,7 @@ def main() -> None:
             "handoff": handoff_receipt, "feedback": feedback_receipt,
             "progress_gate": progress_receipt,
             "queue_continues": not queue_drained, "queue_drained": queue_drained}
+        state["central_backlog"] = backlog
         queue.update({"updated_at": state["updated_at"], "claim_lease": None})
         write_observer_state(state, queue, registry, processed, held, run_id)
         body.atomic_json(body.STATE, state)
@@ -225,6 +273,7 @@ def main() -> None:
             "queue_persisted": body.QUEUE.exists(), "state_persisted": body.STATE.exists(),
             "queue_auto_continuation": not queue_drained, "queue_drained": queue_drained,
             "remaining_queue_count": len(queue["queued_requirement_ids"]),
+            "central_backlog": backlog,
             "handoff": handoff_receipt, "feedback": feedback_receipt,
             "progress_gate": progress_receipt,
             "repeat_block_enforcement": True, "no_progress_gate": True,
