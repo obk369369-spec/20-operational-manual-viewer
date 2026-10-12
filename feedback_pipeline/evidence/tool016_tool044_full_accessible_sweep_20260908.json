@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-12T09:26:34.663490+00:00",
+  "generated_at": "2026-10-12T17:58:08.916764+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "58b28fcbd9b270fb325acaa8acc2b24f5a4a774b6869eb9c892e37e160b8fb0f"
+      "sha256": "acd1fb25f296b184d0672965b062920d8aecf6df19edd0062dcee8989ece2f7c"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -17,7 +17,7 @@
     },
     {
       "path": "feedback_pipeline/unified_open_ledger.json",
-      "sha256": "335bb1435808113be1d1583a8c7cd5f9f13724dd5aa2c90283bc6b5bf684cf2c"
+      "sha256": "5ee3ce07d2caf545aa2fe43441353b2ab8bdcd9813cceb62b74eb137fd47aa31"
     },
     {
       "path": "feedback_pipeline/incomplete_register.json",
@@ -29,20 +29,20 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "0a671418af501d4a9078e68bba526c8363559aee7729e251ce60b3958408ec54"
+      "sha256": "675b6120ff9003317aac1760f337c49b2498f282c3fd84638a24da84a31a5e7e"
     }
   ],
   "counts": {
-    "checked_tools": 18,
+    "checked_tools": 19,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 241,
+    "automatically_recoverable_records": 245,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 192,
-    "roots_after_deduplication": 136,
+    "collected_error_records": 196,
+    "roots_after_deduplication": 137,
     "verified_skip_reuse_records": 13,
     "records_handed_to_tool044": 78,
-    "atomic_demands": 121
+    "atomic_demands": 122
   },
   "checked_tool_ids": [
     "TOOL001",
@@ -55,6 +55,7 @@
     "TOOL016",
     "TOOL020",
     "TOOL027",
+    "TOOL028",
     "TOOL035",
     "TOOL037",
     "TOOL041",
@@ -77,6 +78,7 @@
     "TOOL016",
     "TOOL020",
     "TOOL027",
+    "TOOL028",
     "TOOL035",
     "TOOL037",
     "TOOL041",
@@ -340,8 +342,8 @@
       "TOOL_ID": "TOOL013",
       "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
       "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
       "IMPROVEMENT_EVIDENCE": null,
@@ -352,8 +354,8 @@
       "TOOL_ID": "TOOL041",
       "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
       "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
       "IMPROVEMENT_EVIDENCE": null,
@@ -364,8 +366,8 @@
       "TOOL_ID": "TOOL042",
       "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
       "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
       "IMPROVEMENT_EVIDENCE": null,
@@ -376,8 +378,8 @@
       "TOOL_ID": "TOOL043",
       "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
       "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
       "IMPROVEMENT_EVIDENCE": null,
@@ -388,8 +390,8 @@
       "TOOL_ID": "TOOL044",
       "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
       "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
-      "CURRENT_STATUS": "UNKNOWN",
-      "ORIGINAL_ERROR_OR_FEEDBACK": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+      "CURRENT_STATUS": "HOLD",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
       "OCCURRENCE_OR_EVIDENCE": 0,
       "MISSING_CAPABILITY": null,
       "IMPROVEMENT_EVIDENCE": null,
@@ -3124,6 +3126,54 @@
       "MISSING_CAPABILITY": [],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL016",
+      "FUNCTION_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "ROOT_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL028",
+      "FUNCTION_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "ROOT_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "ROOT_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL048",
+      "FUNCTION_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "ROOT_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
     }
   ],
   "deduplicated_root_ids": [
@@ -3249,6 +3299,7 @@
     "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
     "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
     "WIC-PARALLEL-RESIDUAL-20260903",
+    "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
     "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
     "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
     "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
