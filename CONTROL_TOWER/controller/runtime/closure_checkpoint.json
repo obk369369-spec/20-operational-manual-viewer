@@ -269,13 +269,19 @@
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
   },
   "runtime_24h_and_quarantine_20261012": {
-    "status": "PARTIAL_HOLD_SCHEDULE_GAP",
+    "status": "RECURRENCE_PREVENTION_DEPLOYED_24H_PROOF_STILL_HOLD",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
     "first_started_at": "2026-10-05T16:44:13+09:00",
     "last_finished_at": "2026-10-12T20:23:51+09:00",
     "max_gap_hours": 7.97,
     "quarantined_root_count": 3,
     "pass_reopened": 0,
+    "implementation_commit": "a0d5ebb6a79e892d7814796c8bf7c0b53e430c3f",
+    "runtime_run_id": "38243677039",
+    "supervisor_run_id": "38243679913",
+    "remote_runtime_commit": "714b0df14a2fd4f620f08025a4677eeef482eb91",
+    "canonical_consistency": "PASS",
+    "gap_recovery_watchdog": "PASS_DEPLOYED_AND_EXECUTED",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_24H_AND_QUARANTINE_RECOVERY_20261012.json"
   },
   "next_resume_position": "AUTOMATIC_SCHEDULE_CONTINUITY_ACCUMULATION_AND_EXTERNAL_INPUT_TRIGGER_WATCH",

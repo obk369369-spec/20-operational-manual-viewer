@@ -1,14 +1,16 @@
 {
   "schema": "wic.24h-and-quarantine-recovery.v1",
-  "created_at": "2026-10-12T20:30:00+09:00",
-  "runtime_run_id": "38242938144",
+  "created_at": "2026-10-12T20:36:30+09:00",
+  "runtime_run_id": "38243677039",
+  "supervisor_run_id": "38243679913",
+  "implementation_commit": "a0d5ebb6a79e892d7814796c8bf7c0b53e430c3f",
   "runtime_continuity": {
     "first_started_at": "2026-10-05T16:44:13+09:00",
-    "last_finished_at": "2026-10-12T20:23:51+09:00",
-    "elapsed_hours": 171.661,
-    "validation_window_start": "2026-10-11T20:23:51+09:00",
-    "window_run_count": 12,
-    "success_count": 11,
+    "last_finished_at": "2026-10-12T20:29:08+09:00",
+    "elapsed_hours": 171.749,
+    "validation_window_start": "2026-10-11T20:29:08+09:00",
+    "window_run_count": 13,
+    "success_count": 12,
     "failure_count": 1,
     "recovered_failure_run_id": 38241599415,
     "recovery_run_id": 38241772583,
@@ -20,6 +22,16 @@
   },
   "fixed_pending_literal": true,
   "automatic_future_adjudication": true,
+  "gap_root_cause": "GitHub scheduled runs were not created during five intervals above 2.5 hours; the observed jobs themselves finish in seconds and the one job failure was recovered, so concurrency and that failure do not explain the missing triggers.",
+  "gap_incident_count": 5,
+  "gap_recurrence_prevention": {
+    "existing_supervisor_reused": ".github/workflows/root-a-recovery-supervisor.yml",
+    "monitor_interval": "7,22,37,52 minutes each hour",
+    "stale_threshold_seconds": 9000,
+    "action": "Dispatch wic-top-controller-runtime.yml once when stale and no run is active",
+    "remote_execution": "PASS",
+    "remote_observation": "active=1, age_seconds=401, stale=0, recovery dispatch correctly suppressed"
+  },
   "quarantined_roots": [
     {
       "root_id": "WIC-0702-SCOPED-RECOVERY",
@@ -59,6 +71,11 @@
     }
   ],
   "queue_ledger_runtime_observer_consistency": "PASS",
+  "consistency_root_ids": [
+    "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+    "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+    "WIC-0702-SCOPED-RECOVERY"
+  ],
   "quarantine_persisted_after_restart": true,
   "existing_pass_reopened": 0,
   "overall": "PARTIAL_24H_GAP_AND_THREE_EXTERNAL_INPUT_HOLDS"
