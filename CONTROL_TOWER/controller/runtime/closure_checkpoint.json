@@ -255,13 +255,16 @@
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_USER_VISIBLE_OUTPUT_AUTORECOVERY_IDENTITY_ACTUAL_51DOC_20261012.json"
   },
   "central_backlog_reconciliation_20261012": {
-    "status": "LOCAL_TARGETED_PASS_REMOTE_RUNTIME_PENDING",
+    "status": "PASS_REMOTE_RUNTIME_READBACK",
     "root_cause": "NUMERIC_QUEUE_DRAINED_WHILE_OPEN_LEDGER_ROOTS_WERE_NOT_SELECTED",
     "open_ledger_count": 6,
     "executable_count": 1,
     "deferred_count": 5,
     "next_root": "WIC-0702-SCOPED-RECOVERY",
     "pass_locked_reopened": 0,
+    "remote_run_id": "38240680052",
+    "remote_runtime_commit": "6c82615dd5a2a4708dbbdb081c4e66b0f9aa74b1",
+    "runtime_evidence_observer_remote_consistency": "PASS",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
   },
   "next_resume_position": "WIC-0702-SCOPED-RECOVERY",
