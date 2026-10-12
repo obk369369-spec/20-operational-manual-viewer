@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-12T11:29:20.651130+00:00",
+  "created_at": "2026-10-12T11:36:07.905092+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "38242938144",
+  "run_id": "38243677039",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "300ef6dde0a7f171a2eb9bd3b41ffcfa",
+    "token_id": "96bc47edd482e5bdb1cccadb4c8dd3c5",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "11a45dd0b2050ccf1fe82043722a39e25df5858e",
+    "git_sha": "a0d5ebb6a79e892d7814796c8bf7c0b53e430c3f",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -103,7 +103,7 @@
   "central_backlog_execution": [],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-38242938144",
+    "trace_id": "REMOTE-38243677039",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -122,7 +122,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "c7a8f1abf7a9d31ebdebfd1d70f10b4531e03786e70a2d9509989d23fc806e6b",
+    "signature": "c96a820407582e10d03823e44c09832e6c67d339fe556b1b4d8bd8522e1fd68e",
     "deltas": [
       0,
       0,
@@ -178,11 +178,11 @@
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
     "first_started_at": "2026-10-05T07:44:13+00:00",
-    "last_finished_at": "2026-10-12T11:23:51+00:00",
-    "elapsed_hours": 171.661,
-    "window_start": "2026-10-11T11:23:51+00:00",
-    "run_count": 12,
-    "success_count": 11,
+    "last_finished_at": "2026-10-12T11:29:08+00:00",
+    "elapsed_hours": 171.749,
+    "window_start": "2026-10-11T11:29:08+00:00",
+    "run_count": 13,
+    "success_count": 12,
     "failure_count": 1,
     "recovered_failures": [
       {
@@ -193,7 +193,74 @@
     "unrecovered_failures": [],
     "max_gap_hours": 7.97,
     "max_allowed_gap_hours": 2.5,
+    "gap_incidents": [
+      {
+        "left_run_id": 38116495731,
+        "left_created_at": "2026-10-11T05:57:55Z",
+        "right_run_id": 38141632583,
+        "right_created_at": "2026-10-11T13:03:03Z",
+        "gap_hours": 7.086,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 38141632583,
+        "left_created_at": "2026-10-11T13:03:03Z",
+        "right_run_id": 38162584506,
+        "right_created_at": "2026-10-11T18:08:50Z",
+        "gap_hours": 5.096,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 38162584506,
+        "left_created_at": "2026-10-11T18:08:50Z",
+        "right_run_id": 38179019680,
+        "right_created_at": "2026-10-11T22:05:31Z",
+        "gap_hours": 3.945,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 38179019680,
+        "left_created_at": "2026-10-11T22:05:31Z",
+        "right_run_id": 38191737973,
+        "right_created_at": "2026-10-12T01:24:06Z",
+        "gap_hours": 3.31,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 38191737973,
+        "left_created_at": "2026-10-12T01:24:06Z",
+        "right_run_id": 38229451865,
+        "right_created_at": "2026-10-12T09:22:17Z",
+        "gap_hours": 7.97,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      }
+    ],
+    "schedule_gap_detected": true,
+    "automatic_recovery_path": "ROOT_A_RECOVERY_SUPERVISOR_TOP_CONTROLLER_WATCHDOG",
     "single_cycle_revenue_evidence_is_not_24h_proof": true
+  },
+  "queue_ledger_state_observer_consistency": {
+    "status": "PASS",
+    "queue": [
+      "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "WIC-0702-SCOPED-RECOVERY"
+    ],
+    "ledger": [
+      "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "WIC-0702-SCOPED-RECOVERY"
+    ],
+    "state": [
+      "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "WIC-0702-SCOPED-RECOVERY"
+    ],
+    "observer": [
+      "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "WIC-0702-SCOPED-RECOVERY"
+    ]
   },
   "common_governance_closure_verdict": "PASS"
 }
