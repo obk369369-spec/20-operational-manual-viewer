@@ -1,6 +1,6 @@
 {
   "schema": "wic.top_controller.queue.v1",
-  "updated_at": "2026-10-12T11:22:28.899553+00:00",
+  "updated_at": "2026-10-12T11:23:59.325771+00:00",
   "queued_requirement_ids": [],
   "deduplicated": true,
   "claim_lease": null,
@@ -36,10 +36,45 @@
       "registry_prelookup": true,
       "pass_lock_prelookup": true,
       "user_manual_repetition": 0
+    },
+    {
+      "status": "ACCEPTED",
+      "trace_id": "REMOTE-38242375315",
+      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+      "ready_made_first": true,
+      "selected_components": [
+        "WIC_EXISTING_TOP_CONTROLLER",
+        "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
+        "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
+      ],
+      "backend_route": "CENTRAL_COMMON_PLATFORM",
+      "intent_quality_lock": "e9350493a2bffbc4404d2d514428979d6e06a2e5bc1593b735c9f617b9080b2e",
+      "registry_prelookup": true,
+      "pass_lock_prelookup": true,
+      "user_manual_repetition": 0
     }
   ],
   "backlog_root_ids": [],
   "next_backlog_root": null,
-  "backlog_quarantine": [],
+  "backlog_quarantine": [
+    {
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "status": "HOLD",
+      "reason": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+      "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+    },
+    {
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "status": "HOLD",
+      "reason": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+      "resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+    },
+    {
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "status": "HOLD",
+      "reason": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+      "resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+    }
+  ],
   "quarantined_requirements": []
 }

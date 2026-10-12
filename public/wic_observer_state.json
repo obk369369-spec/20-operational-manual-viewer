@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-12T11:22:28.899676+00:00",
+  "updated_at": "2026-10-12T11:23:59.325878+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -573,9 +573,9 @@
     }
   ],
   "LONG_TERM_HOLD": [],
-  "NEXT_WORK": null,
+  "NEXT_WORK": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
   "current": {
-    "run_id": "38242213936",
+    "run_id": "38242375315",
     "runtime": "GitHub Actions",
     "status": "완료",
     "queue": 0,
@@ -585,8 +585,8 @@
     "processing": 0,
     "factory": "공통 실행계약 Large Factory",
     "new_components": 11,
-    "errors": 0,
-    "recovery": "자동 복구 준비됨",
+    "errors": 3,
+    "recovery": "복구할 수 없는 작업은 격리했고 다른 작업은 계속합니다",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
     "actual_24h": "실제 시간 증거 수집 중",
     "recent_completed": [],
@@ -599,8 +599,27 @@
   },
   "observer_reinstruction_required": 0,
   "backlog_recovery": {
-    "quarantined": [],
-    "user_action_required": false,
+    "quarantined": [
+      {
+        "root_id": "WIC-0702-SCOPED-RECOVERY",
+        "status": "HOLD",
+        "reason": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+        "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+      },
+      {
+        "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+        "status": "HOLD",
+        "reason": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+        "resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+      },
+      {
+        "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+        "status": "HOLD",
+        "reason": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+        "resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+      }
+    ],
+    "user_action_required": true,
     "next_automatic_work": null
   }
 }
