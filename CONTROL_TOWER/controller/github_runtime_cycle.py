@@ -89,9 +89,18 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
             entry.update({"status": "VERIFIED_CLOSED", "completion_evidence": receipt["evidence"]})
         else:
             entry.update({"status": "HOLD_EXECUTION_VALIDATION", "next_trigger": "CONTRACT_EVIDENCE_CHANGED"})
+    existing_quarantine = {
+        item.get("root_id"): item for item in queue.get("backlog_quarantine", [])
+        if item.get("root_id")
+    }
+    for item in receipts:
+        if item["status"] != "PASS":
+            existing_quarantine[item["root_id"]] = item
+        else:
+            existing_quarantine.pop(item["root_id"], None)
     queue["backlog_root_ids"] = []
     queue["next_backlog_root"] = None
-    queue["backlog_quarantine"] = [item for item in receipts if item["status"] != "PASS"]
+    queue["backlog_quarantine"] = list(existing_quarantine.values())
     return receipts
 
 
@@ -221,6 +230,11 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
     waiting = [row for row in rows if row["queue_status"] == "WAITING"]
     queued_ids = set(map(int, queue["queued_requirement_ids"]))
     queued = [row for row in rows if int(row["id"]) in queued_ids]
+    backlog_quarantine = queue.get("backlog_quarantine", [])
+    next_work = (str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"]
+                 else queue.get("next_backlog_root"))
+    if next_work is None and backlog_quarantine:
+        next_work = backlog_quarantine[0].get("resume_condition")
     revenue_path = body.ROOT / "feedback_pipeline" / "evidence" / "wic_24h_tools_revenue_closeout_20261001.json"
     revenue = body.load(revenue_path) if revenue_path.exists() else {}
     def item(row: dict[str, Any], status: str) -> dict[str, Any]:
@@ -231,15 +245,16 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         "COMPLETE": [item(row, "COMPLETE") for row in complete],
         "PARTIAL": [item(row, "PARTIAL") for row in queued], "UNFINISHED": [],
         "PLATFORM_HOLD": [item(row, "PLATFORM_HOLD") for row in waiting], "LONG_TERM_HOLD": [],
-        "NEXT_WORK": (str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"]
-                      else queue.get("next_backlog_root")),
+        "NEXT_WORK": next_work,
         "current": {"run_id": run_id, "runtime": "GitHub Actions",
                     "status": "작업 중" if queued or queue.get("backlog_root_ids") else "완료",
                     "queue": len(queued), "pass_locked": len(complete), "hold": len(waiting),
                     "fail": sum(1 for row in rows if row["status"] == "FAIL"),
                     "processing": len(processed), "factory": "공통 실행계약 Large Factory",
                     "new_components": len(registry.get("execution_contracts", [])),
-                    "errors": len(held), "recovery": "자동 복구 준비됨",
+                    "errors": len(held) + len(backlog_quarantine),
+                    "recovery": ("복구할 수 없는 작업은 격리했고 다른 작업은 계속합니다"
+                                 if backlog_quarantine else "자동 복구 준비됨"),
                     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
                     "actual_24h": "실제 시간 증거 수집 중", "recent_completed": [x["requirement_id"] for x in processed],
                     "queue_reduction": len(processed)},
@@ -247,6 +262,11 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
                      "customer_response": revenue.get("public_pilot", {}).get("customer_response", "WAITING"),
                      "actual_revenue": revenue.get("truth", {}).get("actual_revenue", False)},
         "observer_reinstruction_required": 0,
+        "backlog_recovery": {
+            "quarantined": backlog_quarantine,
+            "user_action_required": bool(backlog_quarantine),
+            "next_automatic_work": queue.get("next_backlog_root"),
+        },
     }
     body.atomic_json(body.ROOT / "public" / "wic_observer_state.json", payload)
 

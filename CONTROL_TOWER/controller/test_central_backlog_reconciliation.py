@@ -68,6 +68,9 @@ class CentralBacklogReconciliationTest(unittest.TestCase):
         self.assertEqual(receipts[0]["status"], "HOLD")
         self.assertEqual(ledger["entries"][0]["status"], "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT")
         self.assertEqual(queue["backlog_root_ids"], [])
+        second = execute_central_backlog(queue, ledger, {"backlog_execution_contracts": []})
+        self.assertEqual(second, [])
+        self.assertEqual(len(queue["backlog_quarantine"]), 1)
 
 
 if __name__ == "__main__":
