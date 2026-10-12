@@ -3,7 +3,8 @@ import unittest
 from pathlib import Path
 
 from github_runtime_cycle import (execute_central_backlog, reconcile_central_backlog,
-                                  route_contracts, validate_contract)
+                                  route_contracts, validate_contract,
+                                  evaluate_runtime_continuity)
 from wic_top_controller import preserved_queue_runtime_fields
 
 
@@ -85,6 +86,24 @@ class CentralBacklogReconciliationTest(unittest.TestCase):
         self.assertEqual(preserved["handoff_inbox"], previous["handoff_inbox"])
         self.assertEqual(preserved["backlog_quarantine"], previous["backlog_quarantine"])
         self.assertEqual(preserved["quarantined_requirements"], previous["quarantined_requirements"])
+
+    def test_24h_continuity_pass_and_gap_fail_closed(self):
+        regular = [
+            {"id": index, "created_at": f"2026-10-{10 + index // 24:02d}T{index % 24:02d}:00:00Z",
+             "status": "completed", "conclusion": "success"}
+            for index in range(49)
+        ]
+        self.assertEqual(evaluate_runtime_continuity(regular)["status"], "PASS")
+        gapped = [regular[0], regular[8], regular[16], regular[24], regular[32], regular[40], regular[48]]
+        self.assertEqual(evaluate_runtime_continuity(gapped)["status"], "HOLD_SCHEDULE_GAP")
+
+    def test_24h_failure_requires_later_recovery(self):
+        runs = [
+            {"id": index, "created_at": f"2026-10-{10 + index // 24:02d}T{index % 24:02d}:00:00Z",
+             "status": "completed", "conclusion": "failure" if index == 48 else "success"}
+            for index in range(49)
+        ]
+        self.assertEqual(evaluate_runtime_continuity(runs)["status"], "HOLD_UNRECOVERED_RUNTIME_FAILURE")
 
 
 if __name__ == "__main__":

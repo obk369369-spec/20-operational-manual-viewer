@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 import json
 import os
+import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from typing import Any
@@ -22,6 +23,82 @@ DEFERRED_LEDGER_STATUSES = {
     "PENDING_NATURAL_TIME", "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
 }
 MAX_CONTRACT_FAILURES = 2
+CONTINUITY_REQUIRED_HOURS = 24
+CONTINUITY_MAX_GAP_HOURS = 2.5
+
+
+def evaluate_runtime_continuity(runs: list[dict[str, Any]]) -> dict[str, Any]:
+    completed = sorted(
+        (item for item in runs if item.get("status") == "completed" and item.get("created_at")),
+        key=lambda item: item["created_at"],
+    )
+    if not completed:
+        return {"status": "HOLD_NO_RUNTIME_HISTORY", "actual_24h_elapsed_validation": "HOLD",
+                "first_started_at": None, "last_finished_at": None, "run_count": 0}
+    first = datetime.fromisoformat(completed[0]["created_at"].replace("Z", "+00:00"))
+    last = datetime.fromisoformat(completed[-1]["created_at"].replace("Z", "+00:00"))
+    window_start = last - timedelta(hours=CONTINUITY_REQUIRED_HOURS)
+    before = [item for item in completed if datetime.fromisoformat(item["created_at"].replace("Z", "+00:00")) <= window_start]
+    window = ([before[-1]] if before else []) + [
+        item for item in completed
+        if datetime.fromisoformat(item["created_at"].replace("Z", "+00:00")) > window_start
+    ]
+    gaps = []
+    for left, right in zip(window, window[1:]):
+        left_at = datetime.fromisoformat(left["created_at"].replace("Z", "+00:00"))
+        right_at = datetime.fromisoformat(right["created_at"].replace("Z", "+00:00"))
+        gaps.append((right_at - left_at).total_seconds() / 3600)
+    failures = [item for item in window if item.get("conclusion") != "success"]
+    recovered_failures = []
+    unrecovered_failures = []
+    for failure in failures:
+        failed_at = datetime.fromisoformat(failure["created_at"].replace("Z", "+00:00"))
+        recovery = next((item for item in window
+                         if item.get("conclusion") == "success"
+                         and datetime.fromisoformat(item["created_at"].replace("Z", "+00:00")) > failed_at), None)
+        (recovered_failures if recovery else unrecovered_failures).append({
+            "run_id": failure.get("id"), "recovery_run_id": recovery.get("id") if recovery else None,
+        })
+    elapsed = (last - first).total_seconds() / 3600
+    coverage = bool(before) and last >= window_start + timedelta(hours=CONTINUITY_REQUIRED_HOURS)
+    max_gap = max(gaps, default=0.0)
+    if elapsed < CONTINUITY_REQUIRED_HOURS or not coverage:
+        status = "PENDING_NATURAL_TIME"
+    elif unrecovered_failures:
+        status = "HOLD_UNRECOVERED_RUNTIME_FAILURE"
+    elif max_gap > CONTINUITY_MAX_GAP_HOURS:
+        status = "HOLD_SCHEDULE_GAP"
+    else:
+        status = "PASS"
+    return {
+        "status": status,
+        "actual_24h_elapsed_validation": "PASS" if status == "PASS" else status,
+        "first_started_at": first.isoformat(), "last_finished_at": last.isoformat(),
+        "elapsed_hours": round(elapsed, 3), "window_start": window_start.isoformat(),
+        "run_count": len(window), "success_count": sum(item.get("conclusion") == "success" for item in window),
+        "failure_count": len(failures), "recovered_failures": recovered_failures,
+        "unrecovered_failures": unrecovered_failures, "max_gap_hours": round(max_gap, 3),
+        "max_allowed_gap_hours": CONTINUITY_MAX_GAP_HOURS,
+        "single_cycle_revenue_evidence_is_not_24h_proof": True,
+    }
+
+
+def load_github_runtime_history() -> list[dict[str, Any]]:
+    repository = os.environ.get("GITHUB_REPOSITORY")
+    token = os.environ.get("GITHUB_TOKEN")
+    if not repository or not token:
+        return []
+    url = f"https://api.github.com/repos/{repository}/actions/workflows/wic-top-controller-runtime.yml/runs?per_page=100"
+    request = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    })
+    with urllib.request.urlopen(request, timeout=20) as response:
+        payload = json.loads(response.read().decode("utf-8"))
+    return [{"id": item["id"], "created_at": item["created_at"], "updated_at": item["updated_at"],
+             "status": item["status"], "conclusion": item["conclusion"], "event": item["event"],
+             "head_sha": item["head_sha"], "html_url": item["html_url"]}
+            for item in payload.get("workflow_runs", [])]
 
 
 def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> dict[str, Any]:
@@ -266,7 +343,8 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
                     "recovery": ("복구할 수 없는 작업은 격리했고 다른 작업은 계속합니다"
                                  if backlog_quarantine else "자동 복구 준비됨"),
                     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
-                    "actual_24h": "실제 시간 증거 수집 중", "recent_completed": [x["requirement_id"] for x in processed],
+                    "actual_24h": state.get("actual_24h_elapsed_validation", "검증 중"),
+                    "recent_completed": [x["requirement_id"] for x in processed],
                     "queue_reduction": len(processed)},
         "business": {"public_pilot": revenue.get("public_pilot", {}).get("name"),
                      "customer_response": revenue.get("public_pilot", {}).get("customer_response", "WAITING"),
@@ -298,6 +376,7 @@ def main() -> None:
         run_attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
         registry_path = body.CONTROL_TOWER / "controller" / "component_registry.json"
         registry = body.load(registry_path)
+        continuity = evaluate_runtime_continuity(load_github_runtime_history())
         ledger_path = body.ROOT / "feedback_pipeline" / "unified_open_ledger.json"
         ledger = body.load(ledger_path)
         backlog = reconcile_central_backlog(queue, ledger)
@@ -332,6 +411,8 @@ def main() -> None:
         )
         queue_drained = not queue["queued_requirement_ids"] and not queue.get("backlog_root_ids")
         state["independent_runtime"] = "GITHUB_ACTIONS_SCHEDULED_PASS"
+        state["actual_24h_elapsed_validation"] = continuity["actual_24h_elapsed_validation"]
+        state["runtime_continuity"] = continuity
         state["updated_at"] = body.now()
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
         state["github_runtime"] = {"repository": repository, "run_id": run_id,
@@ -376,7 +457,8 @@ def main() -> None:
                 "execution_contract_count": len(registry.get("execution_contracts", [])),
                 "readback_pass": registry_ok},
             "work_dependency": 0, "codex_dependency": 0, "user_device_dependency": 0,
-            "actual_24h_elapsed_validation": "PENDING_NATURAL_TIME"}
+            "actual_24h_elapsed_validation": continuity["actual_24h_elapsed_validation"],
+            "runtime_continuity": continuity}
         closure_receipt = {"actual_input": "CENTRAL_HANDOFF_AND_FEEDBACK",
             "actual_output": "GOVERNED_COMMON_PLATFORM_STATE",
             "expected_output": "GOVERNED_COMMON_PLATFORM_STATE",
