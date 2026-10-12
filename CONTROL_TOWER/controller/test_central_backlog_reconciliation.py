@@ -19,6 +19,7 @@ class CentralBacklogReconciliationTest(unittest.TestCase):
         self.assertEqual(result["deferred_count"], 6)
         self.assertIsNone(result["next_root"])
         self.assertEqual(queue["backlog_root_ids"], [])
+        self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "WIC-0702-SCOPED-RECOVERY")
 
     def test_external_and_not_ready_are_deferred(self):
         ledger = {"entries": [

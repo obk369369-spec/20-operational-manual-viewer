@@ -28,6 +28,9 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> 
     """Bind the canonical open ledger to runtime selection without reopening PASS locks."""
     executable: list[dict[str, Any]] = []
     deferred: list[dict[str, Any]] = []
+    ledger_quarantine: dict[str, dict[str, Any]] = {
+        item.get("root_id"): item for item in queue.get("backlog_quarantine", []) if item.get("root_id")
+    }
     for entry in ledger.get("entries", []):
         status = str(entry.get("status", "UNKNOWN"))
         if status in CLOSED_LEDGER_STATUSES:
@@ -46,9 +49,16 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> 
                 else "TRIGGER_NOT_READY"
             )
             deferred.append(summary)
+            if status.startswith("HOLD_EXECUTION_"):
+                ledger_quarantine[summary["root_id"]] = {
+                    "root_id": summary["root_id"], "status": "HOLD",
+                    "reason": status,
+                    "resume_condition": summary["next_trigger"],
+                }
     executable.sort(key=lambda row: str(row["root_id"]))
     queue["backlog_root_ids"] = [row["root_id"] for row in executable]
     queue["next_backlog_root"] = queue["backlog_root_ids"][0] if executable else None
+    queue["backlog_quarantine"] = list(ledger_quarantine.values())
     return {
         "open_ledger_count": len(executable) + len(deferred),
         "executable_count": len(executable),
