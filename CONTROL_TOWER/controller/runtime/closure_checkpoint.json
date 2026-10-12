@@ -42,6 +42,7 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_USER_VISIBLE_OUTPUT_AUTORECOVERY_IDENTITY_ACTUAL_51DOC_20261012.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_24H_AND_QUARANTINE_RECOVERY_20261012.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_FINAL_RUNTIME_RECOVERY_AUDIT_20261012.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -283,6 +284,17 @@
     "canonical_consistency": "PASS",
     "gap_recovery_watchdog": "PASS_DEPLOYED_AND_EXECUTED",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_24H_AND_QUARANTINE_RECOVERY_20261012.json"
+  },
+  "final_runtime_recovery_audit_20261012": {
+    "status": "PARTIAL_VERIFIED",
+    "same_platform_supervisor": "CONFIGURED_ACTIVE_EXECUTED",
+    "actual_stale_recovery_dispatch": "UNVERIFIED_NO_STALE_EVENT_YET",
+    "independent_watchdog": "HOLD_NO_PROVEN_EXISTING_INDEPENDENT_SCHEDULER",
+    "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
+    "quarantined_root_count": 3,
+    "queue_ledger_state_observer_consistency": "PASS",
+    "existing_pass_reopened": 0,
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_RUNTIME_RECOVERY_AUDIT_20261012.json"
   },
   "next_resume_position": "AUTOMATIC_SCHEDULE_CONTINUITY_ACCUMULATION_AND_EXTERNAL_INPUT_TRIGGER_WATCH",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"

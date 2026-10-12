@@ -1,0 +1,74 @@
+{
+  "schema": "wic.final-runtime-recovery-audit.v1",
+  "created_at": "2026-10-12T20:41:03+09:00",
+  "base_checkpoint": "1e33101cf8bf1a95d2bee5eb1ada60afdb459f1f",
+  "existing_pass_reopened": 0,
+  "supervisor": {
+    "workflow": ".github/workflows/root-a-recovery-supervisor.yml",
+    "github_state": "active",
+    "configured_schedule": ["7 * * * *", "22,37,52 * * * *"],
+    "permissions": {"actions": "write", "contents": "read"},
+    "repository_actions_enabled": true,
+    "scheduled_runs_exist": true,
+    "latest_scheduled_run_before_recovery_patch": 38237646765,
+    "post_patch_push_execution": 38243647301,
+    "post_patch_manual_validation": 38243679913,
+    "top_controller_watch_result": "active=1; age_seconds=401; stale=0; dispatch correctly suppressed",
+    "actual_stale_detection_and_recovery_dispatch_after_patch": "UNVERIFIED_NO_STALE_EVENT_YET"
+  },
+  "schedule_gap": {
+    "observed_max_gap_hours": 7.97,
+    "allowed_gap_hours": 2.5,
+    "root_cause_class": "GITHUB_SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START",
+    "same_platform_supervisor_limitation": "If GitHub Actions scheduling stops platform-wide, the GitHub-hosted supervisor can also stop.",
+    "existing_independent_environment_review": {
+      "deno_deploy": "BUILD_DEPLOY_STATUS_ONLY_NO_VERIFIED_SCHEDULED_WATCHDOG_CONTRACT",
+      "kestra": "PC_OFF_INDEPENDENT_FALSE",
+      "node_red": "PC_OFF_INDEPENDENT_FALSE",
+      "usable_independent_watchdog_now": false
+    },
+    "recurrence_prevention_deployed": "SAME_PLATFORM_STALE_WATCH_AND_DISPATCH",
+    "independent_recovery": "HOLD_NO_PROVEN_EXISTING_INDEPENDENT_SCHEDULER",
+    "actual_24h_continuous_operation": "HOLD_SCHEDULE_GAP"
+  },
+  "quarantined_roots": [
+    {
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+      "execution_contract_bound": false,
+      "actual_input_bound": false,
+      "automatic_resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+    },
+    {
+      "root_id": "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "status": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+      "execution_contract_bound": true,
+      "actual_input_bound": false,
+      "automatic_resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+    },
+    {
+      "root_id": "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "status": "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
+      "execution_contract_bound": true,
+      "actual_input_bound": false,
+      "automatic_resume_condition": "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME"
+    }
+  ],
+  "canonical_readback": {
+    "queue_ledger_state_observer_consistency": "PASS",
+    "root_ids": [
+      "HOLD-T1-VERIFIED-REPORT-ACQUISITION",
+      "HOLD-T6-PUBLISHER-GOLDEN-PAIR",
+      "WIC-0702-SCOPED-RECOVERY"
+    ],
+    "queued_requirement_count": 0,
+    "pass_locked_count": 47
+  },
+  "overall": "PARTIAL_VERIFIED_SAME_PLATFORM_RECOVERY_EXTERNAL_INPUT_AND_INDEPENDENT_WATCHDOG_HOLD",
+  "next_automatic_resume": [
+    "FIRST_POST_PATCH_SCHEDULED_SUPERVISOR_RUN",
+    "FIRST_ACTUAL_STALE_TOP_CONTROLLER_RECOVERY_DISPATCH",
+    "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+    "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+  ]
+}
