@@ -21,6 +21,7 @@ DEFERRED_LEDGER_STATUSES = {
     "PLATFORM_LIMIT", "EXTERNAL_BLOCKED", "MARKET_VALIDATION_PENDING",
     "PENDING_NATURAL_TIME", "HOLD_EXECUTION_ENVIRONMENT_LIBRARY_ACCESS",
 }
+MAX_CONTRACT_FAILURES = 2
 
 
 def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> dict[str, Any]:
@@ -57,6 +58,41 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> 
         "next_root": queue["next_backlog_root"],
         "pass_locked_reopened": 0,
     }
+
+
+def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], registry: dict[str, Any]) -> list[dict[str, Any]]:
+    """Attempt selected ledger roots and quarantine only roots lacking a safe executable contract."""
+    handlers = {item.get("root_id"): item for item in registry.get("backlog_execution_contracts", [])}
+    selected = list(queue.get("backlog_root_ids", []))
+    receipts: list[dict[str, Any]] = []
+    for root_id in selected:
+        entry = next((item for item in ledger.get("entries", []) if item.get("root_id") == root_id), None)
+        handler = handlers.get(root_id)
+        if entry is None:
+            receipts.append({"root_id": root_id, "status": "HOLD", "reason": "LEDGER_ENTRY_MISSING"})
+            continue
+        if handler is None:
+            entry.update({
+                "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+                "next_trigger": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+                "last_actual_point": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
+            })
+            receipts.append({
+                "root_id": root_id, "status": "HOLD",
+                "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
+                "resume_condition": entry["next_trigger"],
+            })
+            continue
+        receipt = validate_contract(handler)
+        receipts.append({"root_id": root_id, **receipt})
+        if receipt["status"] == "PASS":
+            entry.update({"status": "VERIFIED_CLOSED", "completion_evidence": receipt["evidence"]})
+        else:
+            entry.update({"status": "HOLD_EXECUTION_VALIDATION", "next_trigger": "CONTRACT_EVIDENCE_CHANGED"})
+    queue["backlog_root_ids"] = []
+    queue["next_backlog_root"] = None
+    queue["backlog_quarantine"] = [item for item in receipts if item["status"] != "PASS"]
+    return receipts
 
 
 def nested(value: Any, dotted: str) -> Any:
@@ -103,21 +139,30 @@ def rule_passes(payload: dict[str, Any], rule: dict[str, Any]) -> bool:
 
 def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
     evidence_refs = contract.get("evidence_files") or [contract["evidence"]]
+    candidate_sets = [evidence_refs]
+    recovery_refs = contract.get("recovery_evidence_files") or (
+        [contract["recovery_evidence"]] if contract.get("recovery_evidence") else []
+    )
+    if recovery_refs:
+        candidate_sets.append(recovery_refs)
     last_reason = "EVIDENCE_NOT_FOUND"
-    for attempt in range(1, 3):
+    attempts = 0
+    for candidate_index, candidates in enumerate(candidate_sets):
+        attempts += 1
         try:
-            payloads = [body.load(body.ROOT / ref) for ref in evidence_refs]
+            payloads = [body.load(body.ROOT / ref) for ref in candidates]
             results = [{"rule": rule, "pass": rule_passes(payloads[int(rule.get("source", 0))], rule)}
                        for rule in contract["rules"]]
             passed = bool(results) and all(item["pass"] for item in results)
             return {"status": "PASS" if passed else "HOLD",
                     "reason": None if passed else "CONTRACT_VALIDATION_FAILED",
-                    "evidence": evidence_refs, "rules": results,
-                    "readback_pass": True, "attempts": attempt}
+                    "evidence": candidates, "rules": results,
+                    "readback_pass": True, "attempts": attempts,
+                    "evidence_recovered": candidate_index > 0}
         except (OSError, ValueError):
             last_reason = "EVIDENCE_READBACK_FAILED"
     return {"status": "HOLD", "reason": last_reason, "evidence": evidence_refs,
-            "readback_pass": False, "attempts": 2}
+            "readback_pass": False, "attempts": attempts, "evidence_recovered": False}
 
 
 def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -143,12 +188,22 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
             if row["queue_status"] == "PASS_LOCKED":
                 continue
             if receipt["status"] != "PASS":
+                failure_count = int(row.get("retry_count", 0)) + receipt["attempts"]
                 row.update({"status": "HOLD", "block_reason": receipt["reason"],
-                            "retry_count": int(row.get("retry_count", 0)) + receipt["attempts"],
-                            "next_action": "AUTO_REQUEUE_AFTER_CONTRACT_EVIDENCE"})
+                            "retry_count": failure_count,
+                            "queue_status": "WAITING" if failure_count >= MAX_CONTRACT_FAILURES else "QUEUED",
+                            "next_action": ("REQUEUE_ONLY_AFTER_EVIDENCE_CHANGE" if failure_count >= MAX_CONTRACT_FAILURES
+                                            else "AUTO_REQUEUE_AFTER_CONTRACT_EVIDENCE")})
+                if failure_count >= MAX_CONTRACT_FAILURES:
+                    queue["queued_requirement_ids"] = [value for value in queue["queued_requirement_ids"]
+                                                         if int(value) != requirement_id]
+                    queue.setdefault("quarantined_requirements", []).append({
+                        "requirement_id": requirement_id, "contract_id": contract["id"],
+                        "reason": receipt["reason"], "resume_condition": "EVIDENCE_CHANGE",
+                    })
                 held.append({"requirement_id": requirement_id, "contract_id": contract["id"], **receipt})
                 continue
-            evidence_refs = contract.get("evidence_files") or [contract["evidence"]]
+            evidence_refs = receipt["evidence"]
             row.update({"status": "VERIFIED_CLOSED", "queue_status": "PASS_LOCKED",
                         "evidence": ";".join(evidence_refs), "block_reason": None,
                         "next_action": "NONE_PASS_LOCKED"})
@@ -214,7 +269,10 @@ def main() -> None:
         registry_path = body.CONTROL_TOWER / "controller" / "component_registry.json"
         registry = body.load(registry_path)
         ledger_path = body.ROOT / "feedback_pipeline" / "unified_open_ledger.json"
-        backlog = reconcile_central_backlog(queue, body.load(ledger_path))
+        ledger = body.load(ledger_path)
+        backlog = reconcile_central_backlog(queue, ledger)
+        backlog_execution = execute_central_backlog(queue, ledger, registry)
+        body.atomic_json(ledger_path, ledger)
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"
                           for item in registry["components"])
         enforcement = enforcement_self_test()
@@ -252,6 +310,7 @@ def main() -> None:
             "progress_gate": progress_receipt,
             "queue_continues": not queue_drained, "queue_drained": queue_drained}
         state["central_backlog"] = backlog
+        state["central_backlog"]["execution_receipts"] = backlog_execution
         queue.update({"updated_at": state["updated_at"], "claim_lease": None})
         write_observer_state(state, queue, registry, processed, held, run_id)
         body.atomic_json(body.STATE, state)
@@ -274,6 +333,7 @@ def main() -> None:
             "queue_auto_continuation": not queue_drained, "queue_drained": queue_drained,
             "remaining_queue_count": len(queue["queued_requirement_ids"]),
             "central_backlog": backlog,
+            "central_backlog_execution": backlog_execution,
             "handoff": handoff_receipt, "feedback": feedback_receipt,
             "progress_gate": progress_receipt,
             "repeat_block_enforcement": True, "no_progress_gate": True,

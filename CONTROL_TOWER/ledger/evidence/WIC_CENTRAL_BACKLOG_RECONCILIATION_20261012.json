@@ -1,6 +1,6 @@
 {
   "schema": "wic.central-backlog-reconciliation.v1",
-  "created_at": "2026-10-12T11:06:38.792034+00:00",
+  "created_at": "2026-10-12T11:15:53.602589+00:00",
   "root_cause": "RUNTIME_NUMERIC_QUEUE_DRAINED_WHILE_CANONICAL_LEDGER_RETAINED_OPEN_ROOTS",
   "actual_input": "feedback_pipeline/unified_open_ledger.json",
   "expected": {
@@ -79,5 +79,76 @@
     ],
     "next_backlog_root": "WIC-0702-SCOPED-RECOVERY"
   },
+  "scenario_results": {
+    "normal_evidence_preserved": true,
+    "missing_recoverable_auto_recovered": true,
+    "missing_unrecoverable_quarantined": true,
+    "validation_failure_did_not_block_normal": true,
+    "open_ledger_root_execution_attempted": true,
+    "repeated_failure_retry_stopped": true,
+    "checkpoint_resume_data_written": true
+  },
+  "recovery_receipt": {
+    "status": "PASS",
+    "reason": null,
+    "evidence": [
+      "CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
+    ],
+    "rules": [
+      {
+        "rule": {
+          "path": "overall",
+          "operation": "equals",
+          "expected": "PASS"
+        },
+        "pass": true
+      }
+    ],
+    "readback_pass": true,
+    "attempts": 2,
+    "evidence_recovered": true
+  },
+  "isolation": {
+    "processed": [
+      {
+        "requirement_id": 2,
+        "contract_id": "NORMAL",
+        "proof": "CONTINUE",
+        "evidence": [
+          "CONTROL_TOWER/ledger/evidence/WIC_CENTRAL_BACKLOG_RECONCILIATION_20261012.json"
+        ]
+      }
+    ],
+    "held": [
+      {
+        "requirement_id": 1,
+        "contract_id": "UNRECOVERABLE",
+        "status": "HOLD",
+        "reason": "EVIDENCE_READBACK_FAILED",
+        "evidence": [
+          "unrecoverable-evidence.json"
+        ],
+        "readback_pass": false,
+        "attempts": 1,
+        "evidence_recovered": false
+      }
+    ],
+    "quarantine": [
+      {
+        "requirement_id": 1,
+        "contract_id": "UNRECOVERABLE",
+        "reason": "EVIDENCE_READBACK_FAILED",
+        "resume_condition": "EVIDENCE_CHANGE"
+      }
+    ]
+  },
+  "backlog_execution": [
+    {
+      "root_id": "WIC-0702-SCOPED-RECOVERY",
+      "status": "HOLD",
+      "reason": "VERIFIED_EXECUTION_CONTRACT_OR_ACTUAL_INPUT_MISSING",
+      "resume_condition": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+    }
+  ],
   "overall": "PASS"
 }
