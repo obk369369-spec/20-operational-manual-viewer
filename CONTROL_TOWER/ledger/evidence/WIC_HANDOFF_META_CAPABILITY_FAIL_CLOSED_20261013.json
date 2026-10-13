@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "root_id": "ROOT-HANDOFF-META-CAPABILITY-FALSE-READY",
+  "verified_at": "2026-10-13T00:00:00+09:00",
+  "before_open": 60,
+  "root_fixed": 1,
+  "affected_demands": [
+    "FINAL-37-CR-EVIDENCE-VALIDATION",
+    "FINAL-37-CR-TRANSLATION-COMPONENT",
+    "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
+    "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
+    "FINAL-37-CR-ELAPSED-TIME"
+  ],
+  "closed_by_root": 0,
+  "new": 0,
+  "reopened": 0,
+  "after_open": 60,
+  "before_classification": {
+    "easy": 5,
+    "work": 37,
+    "hold": 18
+  },
+  "after_classification": {
+    "easy": 0,
+    "work": 37,
+    "hold": 23
+  },
+  "expected": "A generic bulk/evidence-return controller must not satisfy an item-specific input, external-runtime, or natural-time resume condition.",
+  "actual": "All five falsely-ready demands were fail-closed with their existing resume conditions; no unsupported PASS was created.",
+  "tests": {
+    "positive": "verified component capability matching remains available for demands without an unresolved returned result",
+    "negative": "READY_AUTO_REQUEUED plus HOLD/WAITING returned result is not executable",
+    "regression": "feedback_pipeline/test_wic_automatic_handoff.py PASS",
+    "visible_handoff": "feedback_pipeline/test_tool016_visible_handoff.py PASS",
+    "state_readback": "feedback_pipeline/evidence/wic_automatic_handoff_state.json"
+  },
+  "pass_lock_policy": "No demand was closed because item-specific expected/actual evidence is still absent.",
+  "status": "ROOT_FIXED_NO_FALSE_CLOSURE"
+}

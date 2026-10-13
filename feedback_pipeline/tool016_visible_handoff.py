@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from wic_non_tool_common_closeout import run as run_non_tool_closeout
-from wic_automatic_handoff import run as run_automatic_handoff
+from wic_automatic_handoff import run as run_automatic_handoff, unresolved_return
 from wic_cycle_audit import Timeline, atomic_json as audit_json
 
 HERE = Path(__file__).resolve().parent
@@ -45,7 +45,8 @@ def _terminal(row: dict) -> bool:
 
 
 def _ready(row: dict) -> bool:
-    return not _returned(row) and str(row.get("status", "")).startswith(READY_PREFIXES)
+    return (not _returned(row) and unresolved_return(row) is None
+            and str(row.get("status", "")).startswith(READY_PREFIXES))
 
 
 def _hold_class(row: dict) -> str | None:

@@ -1,4 +1,5 @@
 from wic_automatic_handoff import build
+from tool016_visible_handoff import _ready
 
 queue={"demands":[
  {"demand_id":"new","root_id":"R1","status":"OPEN","atomic_capabilities":["CAP"]},
@@ -7,6 +8,9 @@ queue={"demands":[
  {"demand_id":"same-root","root_id":"R2","status":"OPEN","atomic_capabilities":["OTHER"]},
  {"demand_id":"done","root_id":"R3","status":"PASS"},
  {"demand_id":"hold","root_id":"R4","status":"WAITING_24H"},
+ {"demand_id":"returned-hold","root_id":"R6","status":"READY_AUTO_REQUEUED",
+  "atomic_capabilities":["CAP"], "resume_condition":"EXTERNAL_RUNTIME_AVAILABLE",
+  "result_return_history":[{"status":"HOLD_EXTERNAL_RUNTIME_RETURNED"}]},
  {"demand_id":"TOOL043-X","root_id":"R5","status":"OPEN"},
 ]}
 pool={"components":[{"status":"VERIFIED_REUSABLE","atomic_capabilities":["CAP"]}]}
@@ -15,7 +19,10 @@ r=build(queue,pool,gates,"2026-09-30T00:00:00+00:00")
 assert [x["demand_id"] for x in r["easy_queue"]]==["new"]
 assert {x["demand_id"] for x in r["work_batch"]}=={"old","same-root"}
 assert r["duplicates_removed"]==["dup"]
-assert {x["demand_id"] for x in r["holds"]}=={"hold","TOOL043-X"}
+assert {x["demand_id"] for x in r["holds"]}=={"hold","returned-hold","TOOL043-X"}
+returned=next(x for x in r["holds"] if x["demand_id"]=="returned-hold")
+assert returned["resume_condition"]=="EXTERNAL_RUNTIME_AVAILABLE"
+assert not _ready(queue["demands"][6])
 assert r["next_easy_root"]=="R1" and r["observer_reinstruction_required"]==0
 assert r["work_batch_full_threshold"]>=10 and not r["work_batch_full"]
 assert r["anomalies"]=={"duplicate_demands":["dup"],"stalled_claims":[],"missing_results":[]}

@@ -1,114 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T01:31:23.874000+00:00",
+  "updated_at": "2026-10-13T01:41:08.586915+00:00",
   "UNFINISHED_SCANNED": 52,
   "ALREADY_PASS_EXCLUDED": 70,
-  "ROOTS_MERGED": 5,
-  "WORK_FIXABLE_ROOTS": 5,
-  "WORK_REQUIRED": [
-    {
-      "demand_id": "FINAL-37-CR-EVIDENCE-VALIDATION",
-      "root_id": "CR-EVIDENCE-VALIDATION",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "BULK_ROOT_EXECUTION",
-        "EXPECTED_ACTUAL_VALIDATION",
-        "ITEM_EVIDENCE_RETURN"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-CR-TRANSLATION-COMPONENT",
-      "root_id": "CR-TRANSLATION-COMPONENT",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "BULK_ROOT_EXECUTION",
-        "EXPECTED_ACTUAL_VALIDATION",
-        "ITEM_EVIDENCE_RETURN"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME",
-      "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "BULK_ROOT_EXECUTION",
-        "EXPECTED_ACTUAL_VALIDATION",
-        "ITEM_EVIDENCE_RETURN"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE",
-      "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "BULK_ROOT_EXECUTION",
-        "EXPECTED_ACTUAL_VALIDATION",
-        "ITEM_EVIDENCE_RETURN"
-      ]
-    },
-    {
-      "demand_id": "FINAL-37-CR-ELAPSED-TIME",
-      "root_id": "CR-ELAPSED-TIME",
-      "target_tool": "TOOL016/TOOL044",
-      "atomic_capabilities": [
-        "BULK_ROOT_EXECUTION",
-        "EXPECTED_ACTUAL_VALIDATION",
-        "ITEM_EVIDENCE_RETURN"
-      ]
-    }
-  ],
-  "WORK_BATCHES": [
-    {
-      "root_id": "CR-EVIDENCE-VALIDATION",
-      "demands": [
-        "FINAL-37-CR-EVIDENCE-VALIDATION"
-      ],
-      "target_tools": [
-        "TOOL016/TOOL044"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "CR-TRANSLATION-COMPONENT",
-      "demands": [
-        "FINAL-37-CR-TRANSLATION-COMPONENT"
-      ],
-      "target_tools": [
-        "TOOL016/TOOL044"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "CR-EXTERNAL-OBSERVER-RUNTIME",
-      "demands": [
-        "FINAL-37-CR-EXTERNAL-OBSERVER-RUNTIME"
-      ],
-      "target_tools": [
-        "TOOL016/TOOL044"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "CR-CROSS-RUNTIME-EXACTLY-ONCE",
-      "demands": [
-        "FINAL-37-CR-CROSS-RUNTIME-EXACTLY-ONCE"
-      ],
-      "target_tools": [
-        "TOOL016/TOOL044"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "CR-ELAPSED-TIME",
-      "demands": [
-        "FINAL-37-CR-ELAPSED-TIME"
-      ],
-      "target_tools": [
-        "TOOL016/TOOL044"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    }
-  ],
+  "ROOTS_MERGED": 0,
+  "WORK_FIXABLE_ROOTS": 0,
+  "WORK_REQUIRED": [],
+  "WORK_BATCHES": [],
   "TOOL044_AUTO_HANDED_OFF": 35,
   "TOOL044_QUEUE": [
     {
@@ -322,7 +220,7 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 5,
+  "WORK_REQUIRED_REMAINDER": 0,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
@@ -353,8 +251,8 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 40,
-    "waiting": 12,
+    "ready": 35,
+    "waiting": 17,
     "next_demand": "TOOL044-PERMANENT-OBSERVER-INTAKE-20260927",
     "duplicate_demand_ids": [],
     "dedup_gate": "PASS",
@@ -800,7 +698,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-13T01:31:23.874000+00:00",
+  "LAST_HEARTBEAT": "2026-10-13T01:41:08.586915+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0

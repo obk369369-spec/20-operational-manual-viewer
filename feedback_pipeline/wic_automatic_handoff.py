@@ -10,6 +10,30 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "evidence" / "wic_automatic_handoff_state.json"
 
+BLOCKING_RETURN_PREFIXES = ("HOLD_", "WAITING_", "RETURNED_FAIL", "RETURNED_BLOCKED")
+
+
+def unresolved_return(row: dict) -> dict | None:
+    """Return the latest unresolved item result.
+
+    Generic circulation capabilities describe *how* to run and return evidence;
+    they do not satisfy an item's external/input/time resume condition.  Treating
+    those wrapper capabilities as the missing business capability caused HOLD
+    items to be advertised as immediately executable.
+    """
+    history = row.get("result_return_history") or []
+    latest = history[-1] if history else row.get("result_return") or {}
+    status = str(latest.get("status", "")).upper()
+    resume = row.get("resume_condition") or latest.get("resume_condition")
+    member_states = latest.get("member_state_counts") or {}
+    unresolved_members = any(
+        count and str(state).upper() not in {"PASS", "PASS_LOCKED", "COMPLETED"}
+        for state, count in member_states.items()
+    )
+    if resume and (status.startswith(BLOCKING_RETURN_PREFIXES) or unresolved_members):
+        return {"status": status, "resume_condition": resume}
+    return None
+
 
 def atomic_json(path: Path, value: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -42,7 +66,11 @@ def build(queue: dict, pool: dict, gate_state: dict, now: str | None = None) -> 
         roots[root].append(did)
         capabilities = set(row.get("atomic_capabilities", []))
         item = {"root_id": root, "demand_id": did, "capabilities": sorted(capabilities)}
-        if any(token in status.upper() for token in ("HOLD", "WAITING")):
+        blocked_return = unresolved_return(row)
+        if blocked_return:
+            holds.append({**item, "reason": blocked_return["status"],
+                          "resume_condition": blocked_return["resume_condition"]})
+        elif any(token in status.upper() for token in ("HOLD", "WAITING")):
             holds.append({**item, "reason": status})
         elif capabilities and capabilities <= available:
             easy.append(item)
