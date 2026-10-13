@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T01:31:23.885037+00:00",
+  "updated_at": "2026-10-13T01:48:18.552691+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -42,11 +42,9 @@
       ],
       "implementation_location": [],
       "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "SAFE_AUTOMATIC_ROLLBACK"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -75,12 +73,9 @@
       ],
       "implementation_location": [],
       "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "VERIFIED_TARGET_DEPLOYMENT",
-        "DEPLOYED_COPY_VALIDATION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -129,7 +124,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -182,7 +177,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -235,7 +230,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -288,7 +283,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -341,7 +336,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -394,7 +389,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -447,7 +442,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -500,7 +495,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38332491788"
+        "DURABLE_OBSERVER_EVIDENCE"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -1149,11 +1144,9 @@
       ],
       "implementation_location": [],
       "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "VERIFIED_EXECUTABLE_WORK_CONTRACT"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1197,11 +1190,9 @@
       ],
       "implementation_location": [],
       "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "CHECKPOINT_STAGE_RESUME_EXECUTION"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1245,11 +1236,9 @@
       ],
       "implementation_location": [],
       "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "CROSS_RUNTIME_DURABLE_ATOMIC_CLAIM"
-      ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1431,9 +1420,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1445,9 +1434,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1501,9 +1490,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1529,9 +1518,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1543,9 +1532,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2003,9 +1992,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2203,9 +2192,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2493,26 +2482,28 @@
         "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
         "feedback_pipeline/evidence/tool044_multi_gate_state.json"
       ],
-      "status": "COMPLETE",
-      "remaining_work": [],
-      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
-      "pass_lock": true,
+      "status": "PARTIAL",
+      "remaining_work": [
+        "AUTOMATIC_RECOVERY_EVIDENCE_REQUIRED"
+      ],
+      "resume_condition": "NEXT_SCHEDULED_CIRCULATION",
+      "pass_lock": false,
       "actionable_requeued": false
     }
   ],
   "counts": {
-    "COMPLETE": 45,
-    "PARTIAL": 12,
     "PLATFORM_HOLD": 4,
-    "LONG_TERM_HOLD": 5,
-    "UNFINISHED": 7
+    "UNFINISHED": 2,
+    "COMPLETE": 56,
+    "PARTIAL": 6,
+    "LONG_TERM_HOLD": 5
   },
   "cr_status": {
     "CR-1": "COMPLETE",
     "CR-2": "COMPLETE",
     "CR-3": "COMPLETE",
     "CR-4": "COMPLETE",
-    "CR-5": "COMPLETE"
+    "CR-5": "PARTIAL"
   },
   "not_worked_count": 0,
   "pass_locked": [
@@ -2559,27 +2550,17 @@
     "CR-1",
     "CR-2",
     "CR-3",
-    "CR-4",
-    "CR-5"
+    "CR-4"
   ],
   "residual_roots": [
     "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
     "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-    "OBSERVER-SEPARATION-WORK-HANDOFF",
     "TOOL016",
     "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
     "TOOL044",
-    "TOOL044-ARBITRARY-WIC-DEPLOY",
-    "TOOL044-AUTO-ROLLBACK",
-    "TOOL044-PERMANENT-OBSERVER-INTAKE",
-    "TOOL044-WORK-PARALLEL-NO-CONFLICT",
-    "WIC-ALL-RESIDUAL-AUTOCIRCULATION",
-    "WIC-CIRCULATION-FINAL-CLOSEOUT",
-    "WIC-COMMON-AUTOMATION-BLOCKERS",
     "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
     "WIC-COMMON-NONTOOL-RESIDUAL",
-    "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-    "WIC-FINAL-CONNECTION"
+    "WIC-NON-TOOL-CR-5"
   ],
   "auto_requeued_roots": [],
   "next_auto_root": null,

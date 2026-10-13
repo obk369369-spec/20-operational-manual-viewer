@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "root_id": "ROOT-CANONICAL-PASS-LOCK-HANDOFF-PROJECTION",
+  "verified_at_kst": "2026-10-13",
+  "before_open": 60,
+  "root_fixed": 1,
+  "closed_by_root": 21,
+  "queue_rows_synchronized_to_pass_locked": 26,
+  "new": 0,
+  "reopened": 0,
+  "after_open": 39,
+  "source_roots": [
+    {
+      "root_id": "MULTI_ENVIRONMENT_FAILOVER",
+      "pass_locked_rows": 1,
+      "handoff_open_delta": 1,
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_ENV2_TARGETED_CLOSURE_20261007.json"
+    },
+    {
+      "root_id": "EXECUTION_CONTRACT_AND_EXACTLY_ONCE",
+      "pass_locked_rows": 9,
+      "handoff_open_delta": 6,
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_EXECUTION_CONTRACT_EXACTLY_ONCE_20261007.json"
+    },
+    {
+      "root_id": "LARGE_SHARED_PLATFORM",
+      "pass_locked_rows": 5,
+      "handoff_open_delta": 5,
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_LARGE_SHARED_PLATFORM_TARGETED_20261007.json"
+    },
+    {
+      "root_id": "STALE_COMMON_PLATFORM_INCOMPLETE_REGISTER",
+      "pass_locked_rows": 11,
+      "handoff_open_delta": 9,
+      "evidence": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_INCOMPLETE_RECONCILIATION_20261007.json"
+    }
+  ],
+  "dedup_accounting": "26 queue rows were synchronized; 5 were already excluded from BEFORE_OPEN by common-root dedup, so the measured Handoff KPI reduction is 21.",
+  "validation": {
+    "positive": "PASS",
+    "negative_missing_or_failing_receipt": "PASS",
+    "duplicate_receipt_import": "PASS",
+    "pass_lock_reopen_block": "PASS",
+    "regression": "WIC_AUTOMATIC_HANDOFF 10/10 PASS; TOOL016_VISIBLE_HANDOFF 4/4 PASS",
+    "queue_readback": "PASS",
+    "handoff_state_readback": "PASS"
+  },
+  "remaining": {
+    "work": 19,
+    "hold": 20,
+    "easy": 0,
+    "total": 39
+  },
+  "status": "PASS_LOCKED"
+}

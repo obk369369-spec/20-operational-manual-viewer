@@ -1,4 +1,7 @@
-from tool016_visible_handoff import build
+import json
+
+from tool016_visible_handoff import (build, reconcile_registry_pass_locks,
+                                     import_verified_closure_receipts)
 
 
 def test_visible_handoff_groups_work_and_auto_routes_external():
@@ -29,3 +32,49 @@ def test_visible_handoff_groups_work_and_auto_routes_external():
     assert result["CIRCULATION"]["dedup_gate"] == "PASS"
     assert result["FREE_EXTERNAL_RUNNER_POOL"]["actual_run_pass"] == ["GITHUB"]
     assert result["FREE_EXTERNAL_RUNNER_POOL"]["blocked_user_action"] == ["WOODPECKER"]
+
+
+def test_registry_pass_lock_requires_explicit_passing_receipt(tmp_path):
+    good = tmp_path / "good.json"
+    bad = tmp_path / "bad.json"
+    good.write_text(json.dumps({"overall": "PASS", "closed_requirement_ids": ["A"]}))
+    bad.write_text(json.dumps({"overall": "FAIL", "closed_requirement_ids": ["B"]}))
+    queue = {"demands": [
+        {"demand_id": "A", "status": "OPEN"},
+        {"demand_id": "B", "status": "OPEN"},
+        {"demand_id": "C", "status": "OPEN"},
+    ]}
+    registry = {"demand_bindings": [
+        {"demand_id": "A", "status": "PASS_LOCKED", "contract_id": "ROOT",
+         "evidence": "good.json"},
+        {"demand_id": "B", "status": "PASS_LOCKED", "contract_id": "ROOT",
+         "evidence": "bad.json"},
+        {"demand_id": "C", "status": "PASS_LOCKED", "contract_id": "ROOT",
+         "evidence": "missing.json"},
+    ]}
+    assert reconcile_registry_pass_locks(queue, registry, tmp_path) == ["A"]
+    assert queue["demands"][0]["status"] == "PASS_LOCKED"
+    assert queue["demands"][1]["status"] == "OPEN"
+    assert queue["demands"][2]["status"] == "OPEN"
+
+
+def test_verified_closure_receipt_imports_once(tmp_path):
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(json.dumps({"overall": "PASS", "root": "COMMON",
+                                   "closed": ["A", "B"]}))
+    registry = {"demand_bindings": [{"demand_id": "A", "status": "PASS_LOCKED"}]}
+    assert import_verified_closure_receipts(registry, tmp_path, ("receipt.json",)) == ["B"]
+    assert import_verified_closure_receipts(registry, tmp_path, ("receipt.json",)) == []
+
+
+def test_pass_lock_never_reopens_without_legacy_result_ack():
+    from tool016_visible_handoff import reconcile_demands
+    queue = {"demands": [{"demand_id": "LOCKED", "status": "PASS_LOCKED",
+                           "atomic_capabilities": ["CAP"],
+                           "pass_lock": {"evidence_readback": "PASS"}}]}
+    pool = {"components": [{"status": "VERIFIED_REUSABLE",
+                             "atomic_capabilities": ["CAP"]}]}
+    updated, report = reconcile_demands(queue, pool, "NOW")
+    assert updated["demands"][0]["status"] == "PASS_LOCKED"
+    assert report["COMPLETE"] == ["LOCKED"]
+    assert report["AUTO_REQUEUED"] == []

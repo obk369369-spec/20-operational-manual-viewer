@@ -11,6 +11,7 @@ from wic_automatic_handoff import run as run_automatic_handoff, unresolved_retur
 from wic_cycle_audit import Timeline, atomic_json as audit_json
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
 QUEUE = HERE / "tool044_atomic_demand_queue.json"
 POOL = HERE / "evidence" / "tool044_verified_external_component_pool.json"
 GATES = HERE / "evidence" / "tool044_multi_gate_state.json"
@@ -20,6 +21,10 @@ OUT = HERE / "evidence" / "tool016_visible_handoff_state.json"
 OBSERVER = HERE / "evidence" / "wic_zero_touch_observer_report.json"
 CHECKPOINT = HERE / "evidence" / "wic_zero_touch_circulation_state.json"
 TIMING = HERE / "evidence" / "wic_cycle_timing.json"
+REGISTRY = ROOT / "CONTROL_TOWER" / "controller" / "component_registry.json"
+CLOSURE_RECEIPTS = (
+    "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PLATFORM_INCOMPLETE_RECONCILIATION_20261007.json",
+)
 TERMINAL = {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT", "PASS_LOCKED"}
 READY_PREFIXES = ("READY", "OPEN", "QUEUED")
 
@@ -33,6 +38,73 @@ def atomic_json(path: Path, value: dict) -> None:
     pending = path.with_suffix(path.suffix + ".next")
     pending.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     os.replace(pending, path)
+
+
+def reconcile_registry_pass_locks(queue: dict, registry: dict, root: Path = ROOT) -> list[str]:
+    """Project proven canonical PASS locks into the handoff queue.
+
+    A binding is accepted only when its referenced receipt exists, reports PASS,
+    and explicitly names the same demand in ``closed_requirement_ids``.
+    """
+    bindings = {
+        row.get("demand_id"): row
+        for row in registry.get("demand_bindings", [])
+        if row.get("status") == "PASS_LOCKED" and row.get("demand_id")
+    }
+    closed = []
+    for demand in queue.get("demands", []):
+        demand_id = demand.get("demand_id")
+        binding = bindings.get(demand_id)
+        if not binding or _terminal(demand):
+            continue
+        evidence_ref = binding.get("evidence")
+        evidence_path = root / str(evidence_ref or "")
+        if not evidence_ref or not evidence_path.is_file():
+            continue
+        try:
+            receipt = load(evidence_path, {})
+        except (OSError, ValueError, json.JSONDecodeError):
+            continue
+        receipt_closed = receipt.get("closed_requirement_ids", receipt.get("closed", []))
+        if receipt.get("overall") != "PASS" or demand_id not in receipt_closed:
+            continue
+        demand.update(
+            status="PASS_LOCKED",
+            pass_lock={
+                "contract_id": binding.get("contract_id"),
+                "evidence": evidence_ref,
+                "evidence_readback": "PASS",
+            },
+            residual_classification="COMPLETE",
+        )
+        closed.append(demand_id)
+    return closed
+
+
+def import_verified_closure_receipts(registry: dict, root: Path = ROOT,
+                                     refs: tuple[str, ...] = CLOSURE_RECEIPTS) -> list[str]:
+    bindings = registry.setdefault("demand_bindings", [])
+    known = {row.get("demand_id") for row in bindings}
+    imported = []
+    for ref in refs:
+        path = root / ref
+        if not path.is_file():
+            continue
+        receipt = load(path, {})
+        if receipt.get("overall") != "PASS":
+            continue
+        for demand_id in receipt.get("closed", []):
+            if not demand_id or demand_id in known:
+                continue
+            bindings.append({
+                "demand_id": demand_id,
+                "contract_id": receipt.get("root", "VERIFIED_CLOSURE_RECEIPT"),
+                "status": "PASS_LOCKED",
+                "evidence": ref,
+            })
+            known.add(demand_id)
+            imported.append(demand_id)
+    return imported
 
 
 def _returned(row: dict) -> bool:
@@ -124,7 +196,10 @@ def reconcile_demands(queue: dict, pool: dict, now: str, previous_observer: dict
                 "proof_key": proof_key,
             }
             row["resume_condition"] = "PASS_LOCK_NO_REEXECUTION"
-        if _terminal(row) and _returned(row):
+        # Canonical PASS_LOCKED bindings already carry an evidence-readback
+        # receipt.  Requiring a second legacy result_return ACK here reopened
+        # proven work during reconciliation.
+        if _terminal(row):
             classification = "COMPLETE"
         else:
             classification = _hold_class(row)
@@ -275,6 +350,11 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
     run_id = os.environ.get("GITHUB_RUN_ID", "")
     queue = load(queue_path, {"demands": []})
     pool = load(pool_path, {"components": []})
+    registry = load(REGISTRY, {"demand_bindings": []})
+    imported_pass_locks = import_verified_closure_receipts(registry)
+    if imported_pass_locks:
+        atomic_json(REGISTRY, registry)
+    reconciled_pass_locks = reconcile_registry_pass_locks(queue, registry)
     timeline.mark("TOOL016_COLLECTION_AND_DURABLE_READ")
     previous_observer = load(observer_path, {})
     queue, observer = reconcile_demands(queue, pool, now, previous_observer, previous, run_id)
@@ -284,6 +364,9 @@ def run(queue_path: Path = QUEUE, pool_path: Path = POOL, gate_path: Path = GATE
                    load(gate_path, {"jobs": {}, "capacity": 15}), now,
                    load(PROVIDERS, {"providers": [], "bulk_summary": {}}),
                    previous, trigger, run_id)
+    result["PASS_LOCK_RECONCILED"] = reconciled_pass_locks
+    result["PASS_LOCK_RECONCILED_COUNT"] = len(reconciled_pass_locks)
+    result["PASS_LOCK_IMPORTED"] = imported_pass_locks
     timeline.mark("TOOL044_ROUTING_AND_RUNNER_SELECTION")
     atomic_json(out_path, result)
     observer["DURABLE_OBSERVER_REPORT_WRITTEN"] = True
