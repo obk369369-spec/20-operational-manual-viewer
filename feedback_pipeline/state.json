@@ -126,9 +126,9 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-13T04:48:56.496583+00:00",
+      "updated_at": "2026-10-13T04:50:33.002647+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-      "unfinished_detected": 39,
+      "unfinished_detected": 34,
       "common_roots": [
         {
           "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -210,12 +210,6 @@
           ]
         },
         {
-          "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-          "demands": [
-            "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930"
-          ]
-        },
-        {
           "root_id": "SOURCE-ZIP",
           "demands": [
             "WIC-BACKLOG-SOURCE-ZIP-20260927"
@@ -270,12 +264,6 @@
           ]
         },
         {
-          "root_id": "TOOL016",
-          "demands": [
-            "WIC-BACKLOG-TOOL016-20260927"
-          ]
-        },
-        {
           "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
           "demands": [
             "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
@@ -291,12 +279,6 @@
           "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
           "demands": [
             "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930"
-          ]
-        },
-        {
-          "root_id": "TOOL044",
-          "demands": [
-            "WIC-BACKLOG-TOOL044-20260927"
           ]
         },
         {
@@ -327,18 +309,6 @@
           "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
           "demands": [
             "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929"
-          ]
-        },
-        {
-          "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
-          "demands": [
-            "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929"
-          ]
-        },
-        {
-          "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
-          "demands": [
-            "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
           ]
         },
         {
@@ -378,16 +348,6 @@
         {
           "root_id": "TOOL001",
           "demand_id": "WIC-BACKLOG-TOOL001-20260927",
-          "capabilities": []
-        },
-        {
-          "root_id": "TOOL016",
-          "demand_id": "WIC-BACKLOG-TOOL016-20260927",
-          "capabilities": []
-        },
-        {
-          "root_id": "TOOL044",
-          "demand_id": "WIC-BACKLOG-TOOL044-20260927",
           "capabilities": []
         },
         {
@@ -431,23 +391,8 @@
           "capabilities": []
         },
         {
-          "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
-          "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-          "capabilities": []
-        },
-        {
-          "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-          "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-          "capabilities": []
-        },
-        {
           "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
           "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
-          "capabilities": []
-        },
-        {
-          "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
-          "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
           "capabilities": []
         },
         {
@@ -625,7 +570,7 @@
         "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
       ],
       "work_batch_full": true,
-      "work_batch_units": 19,
+      "work_batch_units": 14,
       "work_batch_full_threshold": 10,
       "threshold_basis": {
         "completed_jobs": 92,
@@ -1085,13 +1030,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-13T04:48:56.490797+00:00",
+      "updated_at": "2026-10-13T04:50:32.996829+00:00",
       "counts": {
-        "PARTIAL": 5,
-        "COMPLETE": 57,
+        "COMPLETE": 61,
         "LONG_TERM_HOLD": 5,
-        "PLATFORM_HOLD": 4,
-        "UNFINISHED": 2
+        "PARTIAL": 1,
+        "UNFINISHED": 2,
+        "PLATFORM_HOLD": 4
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3633,14 +3578,14 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-13T04:48:56.476658+00:00",
-      "UNFINISHED_SCANNED": 34,
-      "ALREADY_PASS_EXCLUDED": 88,
+      "updated_at": "2026-10-13T04:50:32.981872+00:00",
+      "UNFINISHED_SCANNED": 29,
+      "ALREADY_PASS_EXCLUDED": 93,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
       "WORK_BATCHES": [],
-      "TOOL044_AUTO_HANDED_OFF": 20,
+      "TOOL044_AUTO_HANDED_OFF": 15,
       "TOOL044_QUEUE": [
         {
           "demand_id": "WIC-BACKLOG-TOOL002-20260927",
@@ -3655,21 +3600,9 @@
           "atomic_capabilities": []
         },
         {
-          "demand_id": "WIC-BACKLOG-TOOL016-20260927",
-          "root_id": "TOOL016",
-          "target_tool": "TOOL016",
-          "atomic_capabilities": []
-        },
-        {
           "demand_id": "WIC-BACKLOG-TOOL043-20260927",
           "root_id": "TOOL043",
           "target_tool": "TOOL043",
-          "atomic_capabilities": []
-        },
-        {
-          "demand_id": "WIC-BACKLOG-TOOL044-20260927",
-          "root_id": "TOOL044",
-          "target_tool": "TOOL044",
           "atomic_capabilities": []
         },
         {
@@ -3733,27 +3666,9 @@
           "atomic_capabilities": []
         },
         {
-          "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-          "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
-          "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
-          "atomic_capabilities": []
-        },
-        {
-          "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-          "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-          "target_tool": "TOOL044",
-          "atomic_capabilities": []
-        },
-        {
           "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
           "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
           "target_tool": "TOOL044",
-          "atomic_capabilities": []
-        },
-        {
-          "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
-          "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
-          "target_tool": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_PROGRAMS_WORKFLOWS_PLATFORM",
           "atomic_capabilities": []
         },
         {
@@ -3794,7 +3709,7 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 20,
+        "ready": 15,
         "waiting": 14,
         "next_demand": "WIC-BACKLOG-TOOL002-20260927",
         "duplicate_demand_ids": [],
@@ -4251,13 +4166,25 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-13T04:48:56.476658+00:00",
+      "LAST_HEARTBEAT": "2026-10-13T04:50:32.981872+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
-      "PASS_LOCK_RECONCILED": [],
-      "PASS_LOCK_RECONCILED_COUNT": 0,
-      "PASS_LOCK_IMPORTED": []
+      "PASS_LOCK_RECONCILED": [
+        "WIC-BACKLOG-TOOL016-20260927",
+        "WIC-BACKLOG-TOOL044-20260927",
+        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+      ],
+      "PASS_LOCK_RECONCILED_COUNT": 5,
+      "PASS_LOCK_IMPORTED": [
+        "WIC-BACKLOG-TOOL016-20260927",
+        "WIC-BACKLOG-TOOL044-20260927",
+        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+      ]
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
@@ -4381,7 +4308,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-13T04:48:56.476658+00:00",
+      "updated_at": "2026-10-13T04:50:32.981872+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -4434,6 +4361,8 @@
         "FINAL-42-CR-EXACTLY-ONCE",
         "WIC-BACKLOG-ROOT6-20260927",
         "WIC-BACKLOG-ROOT7-20260927",
+        "WIC-BACKLOG-TOOL016-20260927",
+        "WIC-BACKLOG-TOOL044-20260927",
         "WIC-BACKLOG-CONTROL-TOWER-20260927",
         "WIC-BACKLOG-GITHUB-REMOTE-20260927",
         "WIC-BACKLOG-ENV2-20260927",
@@ -4460,7 +4389,10 @@
         "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
         "TOOL044-COMMON-ZERO-TOUCH-RESIDUAL-CIRCULATION-20260929",
         "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
-        "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929"
+        "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
+        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
       ],
       "PARTIAL": [
         "FINAL-37-CR-TRANSLATION-COMPONENT",
@@ -4469,18 +4401,13 @@
         "WIC-BACKLOG-TOOL041-007-042-20260927",
         "WIC-BACKLOG-TOOL002-20260927",
         "WIC-BACKLOG-TOOL001-20260927",
-        "WIC-BACKLOG-TOOL016-20260927",
         "WIC-BACKLOG-TOOL043-20260927",
-        "WIC-BACKLOG-TOOL044-20260927",
         "WIC-BACKLOG-TOOL045-046-047-20260927",
         "WIC-BACKLOG-TOOL048-20260927",
         "WIC-BACKLOG-SOURCE-ZIP-20260927",
         "TOOL044-ALL-PUBLISHERS-TOC-EXTRACTION-SYSTEM-FAILURE-20260929",
         "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
-        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-        "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
-        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+        "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930"
       ],
       "UNFINISHED": [
         "T42-RESELLER-DETECTION",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T04:48:56.496583+00:00",
+  "updated_at": "2026-10-13T04:50:33.002647+00:00",
   "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-  "unfinished_detected": 39,
+  "unfinished_detected": 34,
   "common_roots": [
     {
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -84,12 +84,6 @@
       ]
     },
     {
-      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-      "demands": [
-        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930"
-      ]
-    },
-    {
       "root_id": "SOURCE-ZIP",
       "demands": [
         "WIC-BACKLOG-SOURCE-ZIP-20260927"
@@ -144,12 +138,6 @@
       ]
     },
     {
-      "root_id": "TOOL016",
-      "demands": [
-        "WIC-BACKLOG-TOOL016-20260927"
-      ]
-    },
-    {
       "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
       "demands": [
         "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
@@ -165,12 +153,6 @@
       "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "demands": [
         "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930"
-      ]
-    },
-    {
-      "root_id": "TOOL044",
-      "demands": [
-        "WIC-BACKLOG-TOOL044-20260927"
       ]
     },
     {
@@ -201,18 +183,6 @@
       "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
       "demands": [
         "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929"
-      ]
-    },
-    {
-      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
-      "demands": [
-        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929"
-      ]
-    },
-    {
-      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
-      "demands": [
-        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
       ]
     },
     {
@@ -252,16 +222,6 @@
     {
       "root_id": "TOOL001",
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
-      "capabilities": []
-    },
-    {
-      "root_id": "TOOL016",
-      "demand_id": "WIC-BACKLOG-TOOL016-20260927",
-      "capabilities": []
-    },
-    {
-      "root_id": "TOOL044",
-      "demand_id": "WIC-BACKLOG-TOOL044-20260927",
       "capabilities": []
     },
     {
@@ -305,23 +265,8 @@
       "capabilities": []
     },
     {
-      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
-      "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-      "capabilities": []
-    },
-    {
-      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-      "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-      "capabilities": []
-    },
-    {
       "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
-      "capabilities": []
-    },
-    {
-      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
-      "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
       "capabilities": []
     },
     {
@@ -499,7 +444,7 @@
     "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
   ],
   "work_batch_full": true,
-  "work_batch_units": 19,
+  "work_batch_units": 14,
   "work_batch_full_threshold": 10,
   "threshold_basis": {
     "completed_jobs": 92,

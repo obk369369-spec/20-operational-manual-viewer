@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T04:48:56.476658+00:00",
-  "UNFINISHED_SCANNED": 34,
-  "ALREADY_PASS_EXCLUDED": 88,
+  "updated_at": "2026-10-13T04:50:32.981872+00:00",
+  "UNFINISHED_SCANNED": 29,
+  "ALREADY_PASS_EXCLUDED": 93,
   "ROOTS_MERGED": 0,
   "WORK_FIXABLE_ROOTS": 0,
   "WORK_REQUIRED": [],
   "WORK_BATCHES": [],
-  "TOOL044_AUTO_HANDED_OFF": 20,
+  "TOOL044_AUTO_HANDED_OFF": 15,
   "TOOL044_QUEUE": [
     {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
@@ -22,21 +22,9 @@
       "atomic_capabilities": []
     },
     {
-      "demand_id": "WIC-BACKLOG-TOOL016-20260927",
-      "root_id": "TOOL016",
-      "target_tool": "TOOL016",
-      "atomic_capabilities": []
-    },
-    {
       "demand_id": "WIC-BACKLOG-TOOL043-20260927",
       "root_id": "TOOL043",
       "target_tool": "TOOL043",
-      "atomic_capabilities": []
-    },
-    {
-      "demand_id": "WIC-BACKLOG-TOOL044-20260927",
-      "root_id": "TOOL044",
-      "target_tool": "TOOL044",
       "atomic_capabilities": []
     },
     {
@@ -100,27 +88,9 @@
       "atomic_capabilities": []
     },
     {
-      "demand_id": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-      "root_id": "WIC-COMMON-NONTOOL-RESIDUAL",
-      "target_tool": "TOOL016-TOOL044-WORK-HANDOFF",
-      "atomic_capabilities": []
-    },
-    {
-      "demand_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-      "root_id": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-      "target_tool": "TOOL044",
-      "atomic_capabilities": []
-    },
-    {
       "demand_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "root_id": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
       "target_tool": "TOOL044",
-      "atomic_capabilities": []
-    },
-    {
-      "demand_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
-      "root_id": "WIC-GLOBAL-FAILURE-SLICE-NARROWING",
-      "target_tool": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_PROGRAMS_WORKFLOWS_PLATFORM",
       "atomic_capabilities": []
     },
     {
@@ -161,7 +131,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 20,
+    "ready": 15,
     "waiting": 14,
     "next_demand": "WIC-BACKLOG-TOOL002-20260927",
     "duplicate_demand_ids": [],
@@ -618,11 +588,23 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-13T04:48:56.476658+00:00",
+  "LAST_HEARTBEAT": "2026-10-13T04:50:32.981872+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0,
-  "PASS_LOCK_RECONCILED": [],
-  "PASS_LOCK_RECONCILED_COUNT": 0,
-  "PASS_LOCK_IMPORTED": []
+  "PASS_LOCK_RECONCILED": [
+    "WIC-BACKLOG-TOOL016-20260927",
+    "WIC-BACKLOG-TOOL044-20260927",
+    "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+    "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+    "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+  ],
+  "PASS_LOCK_RECONCILED_COUNT": 5,
+  "PASS_LOCK_IMPORTED": [
+    "WIC-BACKLOG-TOOL016-20260927",
+    "WIC-BACKLOG-TOOL044-20260927",
+    "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+    "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+    "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+  ]
 }

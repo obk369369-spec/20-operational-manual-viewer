@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T04:48:56.490797+00:00",
+  "updated_at": "2026-10-13T04:50:32.996829+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -124,7 +124,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -177,7 +177,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -230,7 +230,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -283,7 +283,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -336,7 +336,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -389,7 +389,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -442,7 +442,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -495,7 +495,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38348237893"
+        "38348395012"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -1448,9 +1448,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -1462,9 +1462,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2339,9 +2339,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2353,9 +2353,9 @@
       "actual_evidence": [
         "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
       "pass_lock": false,
       "actionable_requeued": false
     },
@@ -2490,11 +2490,11 @@
     }
   ],
   "counts": {
-    "PARTIAL": 5,
-    "COMPLETE": 57,
+    "COMPLETE": 61,
     "LONG_TERM_HOLD": 5,
-    "PLATFORM_HOLD": 4,
-    "UNFINISHED": 2
+    "PARTIAL": 1,
+    "UNFINISHED": 2,
+    "PLATFORM_HOLD": 4
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2553,12 +2553,8 @@
   ],
   "residual_roots": [
     "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-    "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-    "TOOL016",
     "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-    "TOOL044",
-    "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
-    "WIC-COMMON-NONTOOL-RESIDUAL"
+    "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY"
   ],
   "auto_requeued_roots": [],
   "next_auto_root": null,
