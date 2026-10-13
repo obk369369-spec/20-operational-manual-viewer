@@ -185,7 +185,10 @@ def route_targets(text: str, route_map: Mapping[str, Iterable[str]] | None = Non
 
 
 def _feedback_id(classification: str, targets: Iterable[str], text: str, source_chat: str, source_ref: str) -> str:
-    material = "|".join((source_chat, source_ref, classification, ",".join(sorted(targets)), _canonical_text(text)))
+    # source_ref is the stable chat/thread/event identity. A mutable display title
+    # must not create another feedback row when that stable identity is available.
+    source_identity = _canonical_text(source_ref) if source_ref.strip() else _canonical_text(source_chat)
+    material = "|".join((source_identity, classification, ",".join(sorted(targets)), _canonical_text(text)))
     return sha256(material.encode("utf-8")).hexdigest()[:20]
 
 
@@ -438,6 +441,10 @@ def run_fixtures() -> str:
     assert work_gate(chat_files_possible=False, github_possible=False, terminal_possible=False,
                      concrete_work_only_blocker=True, handoff_complete=True) == "WORK_ELIGIBLE"
     assert process_batch([events[0]], {batch[0].feedback_id}) == []
+    renamed_a = normalize(FeedbackEvent("2026-08-16T09:00:00+09:00", "16번 원래 제목", "대화창 오류를 수정해.", "chat-stable-16"))
+    renamed_b = normalize(FeedbackEvent("2026-08-16T09:00:00+09:00", "자동으로 바뀐 제목", "대화창 오류를 수정해.", "chat-stable-16"))
+    assert renamed_a.feedback_id == renamed_b.feedback_id
+    assert process_batch([FeedbackEvent("2026-08-16T09:00:00+09:00", "자동으로 바뀐 제목", "대화창 오류를 수정해.", "chat-stable-16")], {renamed_a.feedback_id}) == []
     redacted = redact_sensitive("a@b.com 010-1234-5678")
     assert "a@b.com" not in redacted and "010-1234-5678" not in redacted
     json.dumps([to_json_record(x) for x in batch], ensure_ascii=False)

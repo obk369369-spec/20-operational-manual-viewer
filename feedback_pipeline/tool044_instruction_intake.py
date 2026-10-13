@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, copy, hashlib, json, tempfile
+import argparse, copy, hashlib, json, re, tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -8,6 +8,8 @@ QUEUE=HERE/"tool044_atomic_demand_queue.json"
 INBOX=HERE/"tool044_instruction_inbox.json"
 STATE=HERE/"evidence"/"tool044_instruction_intake_state.json"
 PASS_STATES={"PASS","COMPLETED","SATISFIED_BY_COMMON_COMPONENT","SKIP_REUSE_VERIFIED_PASS"}
+CENTRAL_ALIASES={"16번":"TOOL016","28번":"TOOL028","44번":"TOOL044","48번":"TOOL048",
+                 "CONTROL_PRIMARY":"CENTRAL","WORK_GATE":"CENTRAL"}
 
 def load(p, default):
     try: return json.loads(Path(p).read_text(encoding="utf-8"))
@@ -25,8 +27,14 @@ def effective_root_id(d):
     return str(d.get("root_id") or d.get("directive_id") or d.get("demand_id") or "")
 
 def effective_target_tool(d):
-    """Legacy/global directives belong to TOOL044 orchestration unless explicitly routed."""
-    return str(d.get("target_tool") or "TOOL044")
+    """Resolve display aliases once; queue identity never depends on a mutable title."""
+    raw=str(d.get("canonical_target") or d.get("tool_id") or d.get("target_tool") or "TOOL044").strip()
+    upper=raw.upper()
+    if raw in CENTRAL_ALIASES: return CENTRAL_ALIASES[raw]
+    if upper in CENTRAL_ALIASES: return CENTRAL_ALIASES[upper]
+    match=re.fullmatch(r"0*(\d{1,3})번",raw)
+    if not match: match=re.fullmatch(r"TOOL0*(\d{1,3})",upper)
+    return f"TOOL{int(match.group(1)):03d}" if match else upper
 
 def effective_directive(d):
     """Normalize legacy instruction payloads into one canonical directive string."""
@@ -37,7 +45,7 @@ def effective_directive(d):
     return "LEGACY_INTAKE:" + effective_root_id(d)
 
 def root_key(d):
-    return (str(d.get("target_tool","")),effective_root_id(d))
+    return (effective_target_tool(d),effective_root_id(d))
 def compact_demands(queue):
     """Keep one durable row per demand id while preserving revision history."""
     unique={}; order=[]
@@ -60,7 +68,7 @@ def decide(d, queue, state):
     s=sig(d)
     if s in state.get("seen_signatures",[]): return "SKIP_DUPLICATE",None
     rk=root_key(d)
-    matches=[x for x in queue.get("demands",[]) if (str(x.get("target_tool","")),str(x.get("root_id",x.get("demand_id",""))))==rk]
+    matches=[x for x in queue.get("demands",[]) if (effective_target_tool(x),str(x.get("root_id",x.get("demand_id",""))))==rk]
     if any(x.get("status") in PASS_STATES for x in matches): return "SKIP_REUSE_PASS",matches[-1]
     if matches:
         old=matches[-1]
@@ -71,10 +79,18 @@ def decide(d, queue, state):
 def ingest(inbox,queue,state):
     events=[]
     state.setdefault("seen_signatures",[])
+    metrics=state.setdefault("identity_metrics",{"alias_resolution_pass":0,"alias_resolution_fail":0,
+        "wrong_target_route":0,"duplicate_queue_from_rename":0,"checkpoint_reset_from_rename":0})
     for d in inbox.get("directives",[]):
+        canonical_target=effective_target_tool(d)
+        supplied_target=str(d.get("target_tool") or "TOOL044").strip()
+        alias_resolved=canonical_target != supplied_target.upper()
+        if alias_resolved: metrics["alias_resolution_pass"]+=1
         action,old=decide(d,queue,state); s=sig(d)
         if action=="SKIP_DUPLICATE":
-            events.append({"directive_id":d["directive_id"],"action":action}); continue
+            if alias_resolved: metrics["duplicate_queue_from_rename"]+=1
+            events.append({"directive_id":d["directive_id"],"action":action,
+                           "canonical_target":canonical_target,"alias_resolved":alias_resolved}); continue
         if action=="SKIP_REUSE_PASS":
             state["seen_signatures"].append(s); events.append({"directive_id":d["directive_id"],"action":action}); continue
         if action=="SUPERSEDE":
@@ -97,13 +113,15 @@ def ingest(inbox,queue,state):
                     "result_return":None}
             queue.setdefault("demands",[]).append(target)
         state["seen_signatures"].append(s)
-        events.append({"directive_id":d["directive_id"],"action":action,"root_id":effective_root_id(d)})
+        events.append({"directive_id":d["directive_id"],"action":action,"root_id":effective_root_id(d),
+                       "canonical_target":canonical_target,"alias_resolved":alias_resolved})
     compact_demands(queue)
     state["last_events"]=events; state["updated_at"]=datetime.now(timezone.utc).isoformat()
     return events
 def claim(queue,tool,owner):
+    tool=effective_target_tool({"target_tool":tool})
     for d in queue.get("demands",[]):
-        if d.get("target_tool")==tool and d.get("status")=="OPEN" and not d.get("claim"):
+        if effective_target_tool(d)==tool and d.get("status")=="OPEN" and not d.get("claim"):
             d["claim"]={"owner":owner,"claimed_at":datetime.now(timezone.utc).isoformat()}
             d["status"]="CLAIMED"; d["checkpoint"]={"stage":"CLAIMED","resume_from":"CLAIMED"}
             return d
@@ -123,6 +141,11 @@ def self_test():
     p={"demand_id":"P1","root_id":"RP","target_tool":"TOOL006","status":"PASS"}; q["demands"].append(p)
     pd={"directive_id":"P2","root_id":"RP","target_tool":"TOOL006","revision":1,"directive":"repeat pass"}
     assert ingest({"directives":[pd]},q,s)[0]["action"]=="SKIP_REUSE_PASS"
+    alias={"directive_id":"ALIAS1","target_tool":"44번","root_id":"R1","revision":2,"directive":"latest"}
+    alias_event=ingest({"directives":[alias]},q,s)[0]
+    assert alias_event["action"]=="SKIP_DUPLICATE" and alias_event["canonical_target"]=="TOOL044"
+    assert s["identity_metrics"]["alias_resolution_pass"]==1
+    assert s["identity_metrics"]["duplicate_queue_from_rename"]==1
     legacy={"directive_id":"LEGACY1","revision":1,"description":"legacy row without canonical fields"}
     legacy_event=ingest({"directives":[legacy]},q,s)[0]
     assert legacy_event["root_id"]=="LEGACY1"
@@ -135,7 +158,8 @@ def self_test():
     recovered=next(x for x in snap["demands"] if x["demand_id"]=="B1"); assert recovered["checkpoint"]["resume_from"]=="HALF"
     return {"PERMANENT_RULE_PASS":True,"CONFLICT_FREE_INTAKE_PASS":True,"DUPLICATE_BLOCK_PASS":True,
             "ROOT_MERGE_PASS":True,"CHECKPOINT_RESUME_PASS":True,"LATEST_DIRECTIVE_SUPERSEDE_PASS":True,
-            "AUTO_INSTRUCTION_INTAKE_PASS":True}
+            "AUTO_INSTRUCTION_INTAKE_PASS":True,"STABLE_ALIAS_IDENTITY_PASS":True,
+            "TITLE_RENAME_DUPLICATE_BLOCK_PASS":True}
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--self-test",action="store_true"); ap.add_argument("--apply",action="store_true")
     args=ap.parse_args()
