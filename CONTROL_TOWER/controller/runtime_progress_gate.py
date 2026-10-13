@@ -19,7 +19,36 @@ def initial_state(previous: dict[str, Any] | None = None) -> dict[str, Any]:
     return {"seen_signatures": list(previous.get("seen_signatures", [])),
             "stopped_roots": dict(previous.get("stopped_roots", {})),
             "last_checkpoint": dict(previous.get("last_checkpoint", {})),
-            "events": list(previous.get("events", []))[-100:]}
+            "events": list(previous.get("events", []))[-100:],
+            "permission_metrics": dict(previous.get("permission_metrics", {
+                "permission_prompt_count": 0,
+                "fragmented_permission_prompt_count": 0,
+                "user_manual_runtime_permission_required": 0,
+                "batched_permission_pass": 0,
+                "platform_forced_permission_count": 0,
+            }))}
+
+
+def record_permission_batch(gate: dict[str, Any], *, root_id: str, operations: list[str],
+                            prompt_count: int, platform_forced_count: int = 0) -> dict[str, Any]:
+    """Measure approval batching without bypassing platform security boundaries."""
+    if not operations or prompt_count < 0 or platform_forced_count < 0:
+        raise ValueError("INVALID_PERMISSION_BATCH")
+    metrics = gate.setdefault("permission_metrics", initial_state()["permission_metrics"])
+    fragmented = max(0, prompt_count - max(1, platform_forced_count))
+    metrics["permission_prompt_count"] += prompt_count
+    metrics["fragmented_permission_prompt_count"] += fragmented
+    metrics["user_manual_runtime_permission_required"] += int(prompt_count > 0)
+    metrics["platform_forced_permission_count"] += platform_forced_count
+    passed = fragmented == 0
+    metrics["batched_permission_pass"] += int(passed)
+    receipt = {"root_id": root_id, "operations": list(operations),
+               "permission_prompt_count": prompt_count,
+               "fragmented_permission_prompt_count": fragmented,
+               "platform_forced_permission_count": platform_forced_count,
+               "decision": "PASS" if passed else "HOLD_PERMISSION_FRAGMENTATION"}
+    gate["events"] = (gate.get("events", []) + [receipt])[-100:]
+    return receipt
 
 
 def evaluate(gate: dict[str, Any], action: dict[str, Any]) -> dict[str, Any]:

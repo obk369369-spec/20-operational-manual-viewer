@@ -44,6 +44,7 @@
     ,"CONTROL_TOWER/ledger/evidence/WIC_24H_AND_QUARANTINE_RECOVERY_20261012.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_FINAL_RUNTIME_RECOVERY_AUDIT_20261012.json"
     ,"CONTROL_TOWER/ledger/evidence/WIC_CHAT_IDENTITY_STABLE_ROUTING_20261013.json"
+    ,"CONTROL_TOWER/ledger/evidence/WIC_PERMISSION_BATCHING_GATE_20261013.json"
   ],
   "evidence_status": "PASS_REMOTE_READBACK",
   "queue_state": {
@@ -309,6 +310,16 @@
     "chatgpt_ui_title_control": "PLATFORM_LIMIT",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_CHAT_IDENTITY_STABLE_ROUTING_20261013.json"
   },
-  "next_resume_position": "POST_DEPLOY_CHAT_IDENTITY_REMOTE_RUNTIME_AND_AUTO_DELIVERY_PLATFORM_LIMIT",
+  "permission_batching_gate_20261013": {
+    "status": "PASS_LOCKED",
+    "permission_prompt_count": 1,
+    "fragmented_permission_prompt_count": 0,
+    "user_manual_runtime_permission_required": 1,
+    "batched_permission_pass": 1,
+    "platform_forced_permission_count": 0,
+    "negative_fragmentation_block": "PASS",
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_PERMISSION_BATCHING_GATE_20261013.json"
+  },
+  "next_resume_position": "AUTO_DELIVERY_PLATFORM_LIMIT_AND_INDEPENDENT_RUNTIME_HOLD",
   "work_start_token_id": "be35fcd85fdf797a9eb8c05007cb1b07"
 }

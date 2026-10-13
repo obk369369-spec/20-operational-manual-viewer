@@ -1,0 +1,31 @@
+{
+  "schema": "wic.permission-batching-gate.v1",
+  "created_at": "2026-10-13T10:40:00+09:00",
+  "root_id": "ROOT-USER-MANUAL-PERMISSION-FRAGMENTATION",
+  "policy": "Safe operations sharing one purpose are submitted as one approval batch; platform security is never bypassed.",
+  "actual_input": {
+    "operations": ["status", "fetch", "rebase", "read", "modify", "test", "evidence", "commit", "push", "remote_readback"],
+    "permission_prompt_count": 1,
+    "platform_forced_permission_count": 0
+  },
+  "actual_output": {
+    "permission_prompt_count": 1,
+    "fragmented_permission_prompt_count": 0,
+    "user_manual_runtime_permission_required": 1,
+    "batched_permission_pass": 1,
+    "platform_forced_permission_count": 0,
+    "decision": "PASS"
+  },
+  "negative_test": {
+    "operations": ["fetch", "push", "remote_readback"],
+    "permission_prompt_count": 3,
+    "fragmented_permission_prompt_count": 2,
+    "decision": "HOLD_PERMISSION_FRAGMENTATION"
+  },
+  "regression": {
+    "common_platform_runtime": "PASS",
+    "tool044_stable_identity_intake": "PASS",
+    "security_boundary_bypass": 0
+  },
+  "overall": "PASS"
+}

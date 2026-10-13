@@ -3,7 +3,8 @@ from __future__ import annotations
 import copy
 import json
 
-from runtime_progress_gate import accept_feedback, accept_handoff, evaluate, initial_state
+from runtime_progress_gate import (accept_feedback, accept_handoff, evaluate, initial_state,
+                                   record_permission_batch)
 from universal_enforcement import closure_verdict, self_test
 
 
@@ -34,6 +35,13 @@ def main() -> None:
         "target": "SAFE", "checkpoint": "C1", "actual_closure_delta": 1,
         "remaining_scope_delta": 1, "checkpoint_advance": 1,
         "new_valid_evidence_delta": 1, "requirement_closure_delta": 1})
+    permission_batch = record_permission_batch(gate,
+        root_id="ROOT-USER-MANUAL-PERMISSION-FRAGMENTATION",
+        operations=["status", "fetch", "rebase", "test", "commit", "push", "remote_readback"],
+        prompt_count=1)
+    fragmented_permission = record_permission_batch(gate,
+        root_id="ROOT-USER-MANUAL-PERMISSION-FRAGMENTATION-NEGATIVE",
+        operations=["fetch", "push", "remote_readback"], prompt_count=3)
     before = copy.deepcopy(queue)
     queue["handoff_inbox"].append({"injected": "failure"})
     queue = before
@@ -49,6 +57,9 @@ def main() -> None:
         "stale_checkpoint": stale, "independent_root": independent,
         "completed_scope": completed, "failure_promoted": promoted,
         "repeat_failure": repeated, "closure_verdict": closure_verdict(closure),
+        "permission_batch": permission_batch,
+        "fragmented_permission": fragmented_permission,
+        "permission_metrics": gate["permission_metrics"],
         "drift_output_verdict": closure_verdict(blocked_output),
         "validator_of_validator": self_test(),
         "rollback_restored": queue == before,
@@ -63,6 +74,9 @@ def main() -> None:
         promoted["status"] == "PROMOTED", repeated["status"] == "SYSTEM_CONTROL_FAILURE",
         result["closure_verdict"] == "PASS", result["drift_output_verdict"] == "FAIL",
         result["validator_of_validator"]["pass"],
+        permission_batch["decision"] == "PASS",
+        fragmented_permission["decision"] == "HOLD_PERMISSION_FRAGMENTATION",
+        gate["permission_metrics"]["fragmented_permission_prompt_count"] == 2,
         positive["user_manual_repetition"] == 0, result["rollback_restored"]))
     if not result["pass"]:
         raise SystemExit(json.dumps(result, ensure_ascii=False))
