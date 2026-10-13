@@ -1,0 +1,39 @@
+{
+  "schema": "wic.internal_common_governance_closure.v1",
+  "created_at": "2026-10-13T04:49:59.668851+00:00",
+  "root": "INTERNAL_COMMON_GOVERNANCE_EXECUTION",
+  "run_id": "38348344160",
+  "actual_input": "CENTRAL_QUEUE_REGISTRY_EVIDENCE_AND_HANDOFF",
+  "expected_output": "FAIL_CLOSED_PERSISTED_AUTO_CONTINUATION",
+  "actual_output": "FAIL_CLOSED_PERSISTED_AUTO_CONTINUATION",
+  "checks": {
+    "actual_runtime_cycle": true,
+    "dynamic_next_selection": true,
+    "fail_closed_negative_and_failure_injection": true,
+    "state_and_queue_persistence": true,
+    "recovery_and_rollback": true,
+    "canonical_consistency": true,
+    "registry_readback": true,
+    "observer_reinstruction_required_zero": true
+  },
+  "positive": "PASS",
+  "negative_failure_injection": "PASS",
+  "recovery": "PASS",
+  "rollback": "PASS",
+  "evidence_readback": "PASS",
+  "closed": [
+    "WIC-BACKLOG-TOOL016-20260927",
+    "WIC-BACKLOG-TOOL044-20260927",
+    "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+    "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+    "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+  ],
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-TOOL016-20260927",
+    "WIC-BACKLOG-TOOL044-20260927",
+    "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+    "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+    "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
+  ],
+  "overall": "PASS"
+}
