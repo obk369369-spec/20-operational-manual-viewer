@@ -15,6 +15,11 @@ permissions:
   contents: write
   actions: read
 
+# Tracked legacy bytecode must not be rewritten by the runner: an unstaged
+# pycache delta makes the durable-state `git pull --rebase` fail after tests.
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+
 concurrency:
   group: tool044-multi-gate-coordinator
   cancel-in-progress: false
