@@ -67,6 +67,22 @@ def test_verified_closure_receipt_imports_once(tmp_path):
     assert import_verified_closure_receipts(registry, tmp_path, ("receipt.json",)) == []
 
 
+def test_internal_common_governance_receipt_imports_pass_lock(tmp_path):
+    receipt = tmp_path / "common.json"
+    receipt.write_text(json.dumps({
+        "overall": "PASS",
+        "root": "INTERNAL_COMMON_GOVERNANCE_EXECUTION",
+        "closed": ["WIC-BACKLOG-TOOL016-20260927"],
+        "closed_requirement_ids": ["WIC-BACKLOG-TOOL016-20260927"],
+    }), encoding="utf-8")
+    registry = {"demand_bindings": []}
+    imported = import_verified_closure_receipts(
+        registry, tmp_path, ("common.json",)
+    )
+    assert imported == ["WIC-BACKLOG-TOOL016-20260927"]
+    assert registry["demand_bindings"][0]["status"] == "PASS_LOCKED"
+
+
 def test_pass_lock_never_reopens_without_legacy_result_ack():
     from tool016_visible_handoff import reconcile_demands
     queue = {"demands": [{"demand_id": "LOCKED", "status": "PASS_LOCKED",

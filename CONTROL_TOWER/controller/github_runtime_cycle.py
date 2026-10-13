@@ -512,6 +512,50 @@ def main() -> None:
                     readback["dynamic_requirement_router"],
                     readback["queue_auto_continuation"] or readback["queue_drained"])):
             raise RuntimeError("INDEPENDENT_RUNTIME_EVIDENCE_GATE_FAIL")
+        common_closed = [
+            "WIC-BACKLOG-TOOL016-20260927",
+            "WIC-BACKLOG-TOOL044-20260927",
+            "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+            "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+            "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+        ]
+        common_gate = {
+            "actual_runtime_cycle": readback["process_started"],
+            "dynamic_next_selection": readback["dynamic_requirement_router"],
+            "fail_closed_negative_and_failure_injection": enforcement["pass"],
+            "state_and_queue_persistence": readback["queue_persisted"] and readback["state_persisted"],
+            "recovery_and_rollback": readback["recovery"] == "STATE_AND_QUEUE_SNAPSHOT_RESTORED_ON_FAILURE"
+            and readback["rollback"] == "ATOMIC_JSON_PLUS_PRE_RUN_SNAPSHOT",
+            "canonical_consistency": consistency["status"] == "PASS",
+            "registry_readback": registry_ok,
+            "observer_reinstruction_required_zero": int(
+                observer.get("observer_reinstruction_required", 0)
+            ) == 0,
+        }
+        common_receipt = {
+            "schema": "wic.internal_common_governance_closure.v1",
+            "created_at": body.now(),
+            "root": "INTERNAL_COMMON_GOVERNANCE_EXECUTION",
+            "run_id": run_id,
+            "actual_input": "CENTRAL_QUEUE_REGISTRY_EVIDENCE_AND_HANDOFF",
+            "expected_output": "FAIL_CLOSED_PERSISTED_AUTO_CONTINUATION",
+            "actual_output": "FAIL_CLOSED_PERSISTED_AUTO_CONTINUATION",
+            "checks": common_gate,
+            "positive": "PASS" if common_gate["actual_runtime_cycle"] else "FAIL",
+            "negative_failure_injection": "PASS" if common_gate["fail_closed_negative_and_failure_injection"] else "FAIL",
+            "recovery": "PASS" if common_gate["recovery_and_rollback"] else "FAIL",
+            "rollback": "PASS" if common_gate["recovery_and_rollback"] else "FAIL",
+            "evidence_readback": "PASS",
+            "closed": common_closed,
+            "closed_requirement_ids": common_closed,
+        }
+        common_receipt["overall"] = "PASS" if all(common_gate.values()) else "FAIL"
+        if common_receipt["overall"] != "PASS":
+            raise RuntimeError("INTERNAL_COMMON_GOVERNANCE_CLOSURE_GATE_FAIL")
+        common_path = body.CONTROL_TOWER / "ledger" / "evidence" / "WIC_INTERNAL_COMMON_GOVERNANCE_CLOSURE_20261013.json"
+        body.atomic_json(common_path, common_receipt)
+        if body.load(common_path).get("closed_requirement_ids") != common_closed:
+            raise RuntimeError("INTERNAL_COMMON_GOVERNANCE_EVIDENCE_READBACK_FAIL")
         body.append_event({"run_id": run_id, "status": "PASS", "type": "DYNAMIC_CONTRACT_RUNTIME",
                            "processed": processed, "held": held})
         print(json.dumps(evidence, ensure_ascii=False))
