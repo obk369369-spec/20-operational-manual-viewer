@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T01:50:46.206584+00:00",
+  "updated_at": "2026-10-13T01:51:53.647056+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -124,7 +124,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -177,7 +177,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -230,7 +230,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -283,7 +283,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -336,7 +336,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -389,7 +389,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -442,7 +442,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -495,7 +495,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "DURABLE_OBSERVER_EVIDENCE"
+        "38334124809"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -2482,28 +2482,26 @@
         "feedback_pipeline/evidence/tool016_visible_handoff_state.json",
         "feedback_pipeline/evidence/tool044_multi_gate_state.json"
       ],
-      "status": "PARTIAL",
-      "remaining_work": [
-        "AUTOMATIC_RECOVERY_EVIDENCE_REQUIRED"
-      ],
-      "resume_condition": "NEXT_SCHEDULED_CIRCULATION",
-      "pass_lock": false,
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "PASS_LOCK_NO_REEXECUTION",
+      "pass_lock": true,
       "actionable_requeued": false
     }
   ],
   "counts": {
     "UNFINISHED": 2,
-    "COMPLETE": 56,
-    "LONG_TERM_HOLD": 5,
+    "COMPLETE": 57,
+    "PARTIAL": 5,
     "PLATFORM_HOLD": 4,
-    "PARTIAL": 6
+    "LONG_TERM_HOLD": 5
   },
   "cr_status": {
     "CR-1": "COMPLETE",
     "CR-2": "COMPLETE",
     "CR-3": "COMPLETE",
     "CR-4": "COMPLETE",
-    "CR-5": "PARTIAL"
+    "CR-5": "COMPLETE"
   },
   "not_worked_count": 0,
   "pass_locked": [
@@ -2550,7 +2548,8 @@
     "CR-1",
     "CR-2",
     "CR-3",
-    "CR-4"
+    "CR-4",
+    "CR-5"
   ],
   "residual_roots": [
     "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
@@ -2559,8 +2558,7 @@
     "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
     "TOOL044",
     "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
-    "WIC-COMMON-NONTOOL-RESIDUAL",
-    "WIC-NON-TOOL-CR-5"
+    "WIC-COMMON-NONTOOL-RESIDUAL"
   ],
   "auto_requeued_roots": [],
   "next_auto_root": null,
