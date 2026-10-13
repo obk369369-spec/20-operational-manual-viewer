@@ -126,7 +126,7 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-13T04:50:33.002647+00:00",
+      "updated_at": "2026-10-13T07:42:34.988896+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
       "unfinished_detected": 34,
       "common_roots": [
@@ -1030,13 +1030,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-13T04:50:32.996829+00:00",
+      "updated_at": "2026-10-13T07:42:34.983906+00:00",
       "counts": {
-        "COMPLETE": 61,
-        "LONG_TERM_HOLD": 5,
+        "PLATFORM_HOLD": 4,
         "PARTIAL": 1,
         "UNFINISHED": 2,
-        "PLATFORM_HOLD": 4
+        "LONG_TERM_HOLD": 5,
+        "COMPLETE": 61
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3578,7 +3578,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-13T04:50:32.981872+00:00",
+      "updated_at": "2026-10-13T07:42:34.971406+00:00",
       "UNFINISHED_SCANNED": 29,
       "ALREADY_PASS_EXCLUDED": 93,
       "ROOTS_MERGED": 0,
@@ -4157,34 +4157,27 @@
             "run_id": "38342512619",
             "observed_at": "2026-10-13T03:36:59.051310+00:00",
             "event": "schedule"
+          },
+          {
+            "run_id": "38364369470",
+            "observed_at": "2026-10-13T07:42:34.971406+00:00",
+            "event": "schedule"
           }
         ],
-        "run_count": 87,
-        "elapsed_hours": 349.559,
+        "run_count": 88,
+        "elapsed_hours": 353.652,
         "status": "PASS",
         "actual_24h": true
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-13T04:50:32.981872+00:00",
+      "LAST_HEARTBEAT": "2026-10-13T07:42:34.971406+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
-      "PASS_LOCK_RECONCILED": [
-        "WIC-BACKLOG-TOOL016-20260927",
-        "WIC-BACKLOG-TOOL044-20260927",
-        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
-      ],
-      "PASS_LOCK_RECONCILED_COUNT": 5,
-      "PASS_LOCK_IMPORTED": [
-        "WIC-BACKLOG-TOOL016-20260927",
-        "WIC-BACKLOG-TOOL044-20260927",
-        "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
-        "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
-        "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009"
-      ]
+      "PASS_LOCK_RECONCILED": [],
+      "PASS_LOCK_RECONCILED_COUNT": 0,
+      "PASS_LOCK_IMPORTED": []
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
@@ -4308,7 +4301,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-13T04:50:32.981872+00:00",
+      "updated_at": "2026-10-13T07:42:34.971406+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
