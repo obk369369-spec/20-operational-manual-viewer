@@ -1,0 +1,104 @@
+{
+  "schema": "wic.tool013.product-closure.v1",
+  "created_at_kst": "2026-10-14",
+  "root": "TOOL013_ACTUAL_PRODUCT_CLOSURE",
+  "overall": "PASS",
+  "pre_work_hard_gate": "PASS",
+  "blocker_released": "TOOL013_CANONICAL_AND_DEPLOYMENT_STORAGE_I_NOT_PRESENT",
+  "actual_input": {
+    "path": "C:/Users/obk36/Downloads/TOOL013_실제입력양식_원본.xls",
+    "sha256": "B31A4F76C797B95D4EA2A6A38DC199657C56D2258F90C1D0E7A2BF880377891D",
+    "original_modified": false
+  },
+  "deployed_product": {
+    "path": "I:/GPT 도구 작업/13번 엑셀 업로드 도구/13번_V2_최종운영판.html",
+    "sha256": "A513E9461DB576DD4AB99178F2AAE05AEBC13AA26C72B184B96DC7EED0F482D9",
+    "existing_verified_asset_reused": true,
+    "browser_open_readback": "PASS",
+    "modified_for_this_closure": false
+  },
+  "execution": {
+    "targeted_actual_xls_run_id": "TOOL013-TARGETED-E2E-20261014011904183",
+    "browser_product_run_id": "TOOL013-USER-USABLE-20261014011907838",
+    "actual_upload": "PASS",
+    "processing": "PASS",
+    "error_detection": "PASS",
+    "automatic_block_and_error_download": "PASS",
+    "corrected_reupload": "PASS",
+    "revalidation": "PASS",
+    "safe_records_continue": "PASS",
+    "final_xlsx_download": "PASS",
+    "final_xlsx_reopen": "PASS",
+    "trace_xlsx_reopen": "PASS"
+  },
+  "expected_actual": {
+    "translation": "PASS",
+    "english_title_identity": "PASS",
+    "category_id_and_display": "PASS",
+    "page_display": "PASS",
+    "excel_serial_date_display": "PASS",
+    "column_order": "PASS",
+    "protected_fields": "PASS",
+    "required_fields": "PASS",
+    "record_identity": "PASS"
+  },
+  "tests": {
+    "positive": "PASS",
+    "negative": "PASS_8_OF_8",
+    "failure_injection": "PASS",
+    "recovery": "PASS",
+    "rollback_binding": "PASS",
+    "regression": "PASS",
+    "source_unchanged": true,
+    "runtime_unchanged": true
+  },
+  "outputs": {
+    "targeted_xlsx": {
+      "path": "CONTROL_TOWER/ledger/evidence/tool013_targeted_e2e_20261010/TOOL013_V2_TARGETED_OUTPUT.xlsx",
+      "sha256": "C0D7F14AF5796187EE711DF831E4966A1DF7A05748F44A3638489ECB9F913C37",
+      "reopened": true
+    },
+    "final_upload_xlsx": {
+      "path": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_UPLOAD.xlsx",
+      "sha256": "FA96AB203B167A038F6E90A2089C7AB20E54F1D0D8FD5642C9710FE21C61BA4B",
+      "reopened": true
+    },
+    "trace_xlsx": {
+      "path": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_TRACE.xlsx",
+      "sha256": "84D15D3DECB0C005207B87D5EBD2391918DBF10CEADBD9E77DE9B1C238A94E27",
+      "reopened": true
+    },
+    "error_xlsx": {
+      "path": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_ERROR_DOWNLOAD.xlsx",
+      "sha256": "F9A713F62C246456AF1CA5A6E886DD92532119D812BC220EE7A2350801C90CEF",
+      "reopened": true
+    }
+  },
+  "deployment_gate": {
+    "source_valid": true,
+    "test_pass": true,
+    "negative_test_pass": true,
+    "recovery_test_pass": true,
+    "regression_pass": true,
+    "actual_e2e_pass": true,
+    "expected_actual_match": true,
+    "record_identity_pass": true,
+    "user_visible_output_pass": true,
+    "no_critical_unresolved_in_bound_product_scope": true,
+    "deployment_allowed": 1
+  },
+  "separated_external_input_state": {
+    "id": "CURRENT_CHAT_ACTUAL_DATASET_TO_RUNTIME_HANDOFF",
+    "status": "HOLD_EXTERNAL_INPUT",
+    "note": "The historical 823-row browser state remains a separate unavailable-input condition and is not represented as Tool013 product failure."
+  },
+  "closed": [
+    "WIC-BACKLOG-TOOL013-20260927"
+  ],
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-TOOL013-20260927"
+  ],
+  "product_closed": true,
+  "user_manual_repetition": 0,
+  "evidence_readback": "PASS"
+}
