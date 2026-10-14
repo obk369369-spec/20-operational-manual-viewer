@@ -1,0 +1,36 @@
+{
+  "schema": "wic.product-closure-receipt.v1",
+  "created_at": "2026-10-14T12:18:00+09:00",
+  "root": "TOOL002_CANONICAL_RUNTIME_AND_DEPLOYED_READBACK",
+  "overall": "PASS",
+  "closed": [
+    "WIC-BACKLOG-TOOL002-20260927"
+  ],
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-TOOL002-20260927"
+  ],
+  "affected_products": ["TOOL002"],
+  "actual_input": {
+    "path": "drive-discovered:GPT 도구 작업/2번 입찰 도구/임시 보관 폴더/20260316_1454_입찰공고_목록_20260316145346.xlsx",
+    "sheet": "입찰공고",
+    "rows": 48486,
+    "header_row": 5
+  },
+  "expected_actual": "MATCH",
+  "positive": "PASS",
+  "negative": "PASS",
+  "failure_injection": "PASS",
+  "regression": "PASS",
+  "recovery": "PASS",
+  "rollback": "PASS",
+  "artifact_validation": "PASS",
+  "actual_deployment": "PASS",
+  "deployed_readback": "PASS",
+  "remote_runs": [32951474062, 33030647779, 33030861619, 33030861091],
+  "canonical_repository": "obk369369-spec/02-auto-bid-narajangter-v1",
+  "canonical_commit": "b496e0f1a51e7c15aa578c5557ae5ac5c2b5fdaa",
+  "source_evidence": "feedback_pipeline/evidence/tool002_institution_accumulator_precheck_20260826.json",
+  "source_evidence_status": "REMOTE_VERIFIED_CLOSED",
+  "pass_lock": "PASS_LOCKED",
+  "reexecution": "BLOCKED"
+}
