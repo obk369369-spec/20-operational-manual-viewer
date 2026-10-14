@@ -355,6 +355,25 @@
       "input_contract": "Pinned source/local and WIC canonical/deployed receipts",
       "output_contract": "Receipt match or fail-closed assembly isolation",
       "verification_evidence": "feedback_pipeline/evidence/external_component_receipts_deployed_20260907.json"
+    },
+    {
+      "component_id": "DEVELOPMENT_RELEASE_GOVERNOR",
+      "status": "PASS_LOCKED",
+      "source_tool": "TOOL016",
+      "applied_tool": "WIC_ALL_PRODUCT_RELEASES",
+      "atomic_capabilities": [
+        "BLOCK_UNVERIFIED_RELEASE",
+        "BLOCK_REGRESSION_FAIL",
+        "BLOCK_NO_ACTUAL_E2E",
+        "BLOCK_ARTIFACT_IDENTITY_MISMATCH",
+        "BLOCK_PARTIAL_PASS_AS_PRODUCT_PASS",
+        "ALLOW_VALID_PRODUCT_RELEASE"
+      ],
+      "input_contract": "Product candidate plus stable baseline, independent test, failure test, regression, actual E2E, artifact identity, product scope and deployed read-back receipts",
+      "output_contract": "DEPLOYED_COMPLETE only when every product-release gate is true; otherwise fail-closed IMPLEMENTED_NOT_DEPLOYED",
+      "verification_evidence": "CONTROL_TOWER/ledger/evidence/WIC_DEVELOPMENT_RELEASE_GOVERNOR_20261014.json",
+      "remote_run_id": 38511426456,
+      "remote_commit": "4fe29cae6bef50485a10856baea26a5536370167"
     }
   ],
   "candidates": [

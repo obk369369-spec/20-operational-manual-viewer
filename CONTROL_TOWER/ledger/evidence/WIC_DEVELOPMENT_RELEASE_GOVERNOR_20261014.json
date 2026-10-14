@@ -1,0 +1,30 @@
+{
+  "schema": "wic.release-governor-evidence.v1",
+  "created_at": "2026-10-14T13:27:00+09:00",
+  "root": "DEVELOPMENT_RELEASE_GOVERNOR",
+  "overall": "PASS",
+  "status": "PASS_LOCKED",
+  "existing_external_structure_reused": true,
+  "platform_probe_reexecuted": false,
+  "block_unverified_release": "PASS",
+  "block_regression_fail": "PASS",
+  "block_no_actual_e2e": "PASS",
+  "block_artifact_identity_mismatch": "PASS",
+  "block_partial_pass_as_product_pass": "PASS",
+  "valid_release_path": "PASS",
+  "runtime_workflow": ".github/workflows/tool044-multi-gate.yml",
+  "governor": "feedback_pipeline/deployment_observer_gate.py",
+  "remote_run_id": 38511426456,
+  "remote_run_result": "success",
+  "remote_commit": "4fe29cae6bef50485a10856baea26a5536370167",
+  "remote_log": "PASS: DEVELOPMENT_RELEASE_GOVERNOR; 5 release escapes blocked; valid product release allowed",
+  "release_identity_required": [
+    "TOOL_ID",
+    "product_artifact_identity",
+    "artifact_version_or_hash",
+    "validation_scope",
+    "release_target",
+    "deployed_readback_target"
+  ],
+  "pass_lock": "PASS_LOCKED"
+}
