@@ -70,6 +70,30 @@ def validate_official_publisher_domain(url: str, official_domains: list[str]) ->
     matched = next((domain for domain in allowed if host == domain or host.endswith("." + domain)), None)
     return {"status": "VERIFIED_OFFICIAL_DOMAIN" if matched else "HOLD_NOT_OFFICIAL_DOMAIN", "host": host, "matched_domain": matched}
 
+
+def classify_publisher_identity(url: str, official_domains: list[str], reseller_domains: list[str]) -> dict:
+    """Fail closed across official, reseller, unknown, malformed, and lookalike domains."""
+    from urllib.parse import urlparse
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower().rstrip(".")
+    if parsed.scheme not in {"http", "https"} or not host:
+        return {"status": "HOLD_INVALID_URL", "host": host, "provenance": "UNVERIFIED"}
+
+    def match(domains: list[str]) -> str | None:
+        normalized = sorted({str(item).lower().strip().rstrip(".") for item in domains if str(item).strip()})
+        return next((domain for domain in normalized if host == domain or host.endswith("." + domain)), None)
+
+    reseller = match(reseller_domains)
+    if reseller:
+        return {"status": "REJECT_RESELLER", "host": host, "matched_domain": reseller,
+                "provenance": "RESELLER_BLOCKLIST", "output_allowed": False}
+    official = match(official_domains)
+    if official:
+        return {"status": "VERIFIED_OFFICIAL_DOMAIN", "host": host, "matched_domain": official,
+                "provenance": "OFFICIAL_ALLOWLIST", "output_allowed": True}
+    return {"status": "HOLD_UNVERIFIED_PUBLISHER", "host": host, "matched_domain": None,
+            "provenance": "UNVERIFIED", "output_allowed": False}
+
 def validate_official_detail_page(url: str, official_domains: list[str], detail_markers: list[str]) -> dict:
     """Require valid URL, an allowlisted official domain, and an explicit detail-page marker."""
     from urllib.parse import parse_qs, urlparse

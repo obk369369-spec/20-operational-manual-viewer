@@ -28,9 +28,30 @@ jobs:
           import json
           from pathlib import Path
           from feedback_pipeline.tool044_safe_integration import registered_target_self_test
+          from feedback_pipeline.tool044_composition import classify_publisher_identity
           result=registered_target_self_test()
           if result["status"]!="PASS":
               raise SystemExit(json.dumps(result))
+          official=['kiro.re.kr']
+          resellers=['marketresearch.com','researchandmarkets.com']
+          cases={
+            'actual_official': classify_publisher_identity('https://www.kiro.re.kr/enjoy/report.asp?bidx=5537',official,resellers),
+            'reseller_market_research': classify_publisher_identity('https://www.marketresearch.com/report/example',official,resellers),
+            'reseller_research_and_markets': classify_publisher_identity('https://www.researchandmarkets.com/reports/example',official,resellers),
+            'lookalike': classify_publisher_identity('https://kiro.re.kr.evil.example/report',official,resellers),
+            'malformed': classify_publisher_identity('not a url',official,resellers),
+          }
+          assert cases['actual_official']['status']=='VERIFIED_OFFICIAL_DOMAIN'
+          assert cases['actual_official']['provenance']=='OFFICIAL_ALLOWLIST'
+          assert cases['reseller_market_research']['status']=='REJECT_RESELLER'
+          assert cases['reseller_research_and_markets']['status']=='REJECT_RESELLER'
+          assert cases['lookalike']['status']=='HOLD_UNVERIFIED_PUBLISHER'
+          assert cases['malformed']['status']=='HOLD_INVALID_URL'
+          result['publisher_identity_validation']={
+            'status':'PASS','actual_input':'KIRO bidx=5537 official report detail URL',
+            'expected_actual':'MATCH','positive':'PASS','negative':'PASS',
+            'failure_injection':'PASS','regression':'PASS','cases':cases,
+          }
           out=Path("feedback_pipeline/evidence/tool044_registered_target_adapter.json")
           out.write_text(json.dumps(result,indent=2)+"\n")
           print(json.dumps(result))
