@@ -388,12 +388,12 @@ jobs:
           for key in ('source_id','intake_id','tool_id','job_id','execution_id','result_id','ack_id'):
               if str(issued.get(key)) != str(result.get(key)):
                   raise SystemExit(f'REJECT_ISSUED_IDENTITY_MISMATCH {key}')
-          if issued.get('status') != 'ISSUED':
-              raise SystemExit('REJECT_DUPLICATE_OR_CLOSED_JOB')
           completed = datetime.fromisoformat(str(result['completed_at']).replace('Z', '+00:00'))
           age = (datetime.now(timezone.utc) - completed).total_seconds()
           if age < -60 or age > 3600:
               raise SystemExit('REJECT_STALE_RESULT')
+          if issued.get('status') != 'ISSUED':
+              raise SystemExit('REJECT_DUPLICATE_OR_CLOSED_JOB')
           if result['status'] != 'PASS' or result['expected'] != result['actual']:
               raise SystemExit('REJECT_EXECUTION_RESULT')
 
