@@ -1,0 +1,33 @@
+{
+  "schema": "wic.product-closure-receipt.v1",
+  "created_at": "2026-10-14T11:31:33+09:00",
+  "root": "DEEPEST_PUBLISHER_IDENTITY_VALIDATION",
+  "overall": "PASS",
+  "closed": [
+    "T42-PROVENANCE-VALIDATION",
+    "T42-RESELLER-DETECTION",
+    "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+    "FS-FUNCTION-RESELLER_DETECTION"
+  ],
+  "closed_requirement_ids": [
+    "T42-PROVENANCE-VALIDATION",
+    "T42-RESELLER-DETECTION",
+    "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+    "FS-FUNCTION-RESELLER_DETECTION"
+  ],
+  "affected_products": ["TOOL042", "WIC_SHARED_SOURCE_VALIDATION"],
+  "actual_input": "https://www.kiro.re.kr/enjoy/report.asp?bidx=5537",
+  "expected_actual": "MATCH",
+  "positive": "PASS",
+  "negative": "PASS",
+  "failure_injection": "PASS",
+  "regression": "PASS",
+  "artifact_validation": "PASS",
+  "actual_deployment": "PASS",
+  "deployed_readback": "PASS",
+  "rollback": "PASS",
+  "remote_run_id": "38501470547",
+  "remote_commit": "fbe1cd889420fa52f3e7d4080502f3eac5f0ecc8",
+  "runtime_evidence": "feedback_pipeline/evidence/tool044_registered_target_adapter.json",
+  "pass_lock": "PASS_LOCKED"
+}
