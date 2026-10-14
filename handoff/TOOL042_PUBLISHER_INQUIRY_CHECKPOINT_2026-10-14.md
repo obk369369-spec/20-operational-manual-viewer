@@ -1,0 +1,46 @@
+# TOOL042 publisher inquiry checkpoint — 2026-10-14
+
+## Scope and state
+- WIC customer guidance: two publisher reports, semiconductor specialty gases (Straits Research) and battery metals (The Insight Partners).
+- Two detailed follow-up inquiries were sent on 2026-10-14 KST (gas 14:42, metals 14:45), as evidenced by Thunderbird .eml messages supplied in the conversation. **Sent is confirmed by local sent-message records; delivery and publisher receipt are not confirmed.**
+- Publisher follow-up responses are **pending**. No customer-facing final recommendation has been sent on the basis of these follow-ups.
+- Original .eml messages and report attachments are **not stored by this checkpoint**; do not claim archival or attachment-level validation in GitHub.
+
+## Customer requirements to preserve
+- Specialty gases: N2O, He, Ne, Kr, Xe separately; especially N2O/He/Ne quantitative figures; South Korea value/volume, annual forecasts, price trends, process/application demand, recovery/purification/reuse quantities, economics, and actual numbers behind masked samples.
+- Battery metals: Li/Ni/Co/Mn separately; Korea value/volume, prices, supply-demand gaps; spent-battery recycling, black mass, recovery/refining, lithium concentration and electrodialysis/ion recovery; distinguish quantitative vs qualitative coverage.
+- For both: standard-report deliverables vs separately charged customized/enterprise data, PDF/Excel delivery, and specific rights to cite, reproduce, adapt, and externally submit figures/charts in IR/business/government research materials.
+- Preserve previously quoted WIC customer prices in private customer communications; publisher commercial terms must not be confused with customer quotes.
+
+## Outbound follow-up coverage (do not silently collapse)
+### Straits Research — 4 sections
+1. Gas-by-gas South Korea annual value/volume in PDF and Excel; Korean gas-specific pricing or alternate geographic basis; process/application-level demand.
+2. Separate N2O/He/Ne recovery/purification/reuse market values; recoverable volumes, rates, reuse volumes; costs/economics/fresh-versus-recovered comparison; Korean breakdown; explicitly classify qualitative-only items.
+3. Masked placeholder values replaced with actual figures; accessible annual Excel data; exceptions/extra conditions.
+4. Identify any requested items not included in the quoted existing report.
+### The Insight Partners — 6 sections
+1. Annual South Korea Li/Ni/Co/Mn value/volume; metal-specific price trends and Korean prices; quantitative Korea supply-demand gaps; battery grade/application segmentation.
+2. Chapter 3 recycling, metal recovery, lithium concentration: annual global/Korean figures, metal-specific recovery, black mass/refining stages, standard-versus-custom/enterprise boundaries.
+3. Lithium concentration quantitative Korea/global sizing; whether electrodialysis-specific or broader; electrodialysis independent market sizing absence/presence; commercialization analysis scope; other metal/ion recovery.
+4. Standard report versus Enterprise and separate studies: precise inclusions, Korean customized items, appendices/data files and supply terms.
+5. Standard-license citation, original table/graph reuse, recreation/modification, government/investor submission, approvals/fees.
+6. Placeholder actual values, Excel availability, sample-versus-delivery exceptions.
+
+## External communication safeguards (mandatory)
+- Never disclose or mention other publishers, internal alternate-publisher investigations, internal sales strategy, or unrelated options.
+- Do not imply customer purchase intent, imminent purchase, final purchase review, decision, contract, or budget approval. Say only that there is a customer inquiry.
+- Do not remove, merge, or shorten unanswered customer-relevant questions merely to make the email brief. Remove only genuinely answered duplication, and preserve every material verification point.
+- Ground replies in the exact latest publisher email and **all its attachments**; do not claim attachment verification without reading it.
+- Distinguish publisher claims, independently verifiable sample structure, actual numeric verification, and license conditions.
+- Avoid repeated customer updates: seek missing answers from publishers first, then draft one consolidated accurate Korean customer email; no fabricated completeness.
+- Internal interpretation: customer chose two specific reports and asked detailed data questions; this signals meaningful interest but is **not** a confirmed order or a defensible numerical probability.
+
+## Next action on publisher replies
+1. Read each new full email and attachments, reconcile item-by-item against the 4/6-section question register.
+2. Mark each item CONFIRMED / PARTIAL / NOT INCLUDED / UNANSWERED with evidence and exact standard-license/supply boundary.
+3. Ask only genuinely outstanding questions of the relevant publisher, without buying signals or alternative-publisher references.
+4. Prepare Korean customer response covering the two selected reports only, with WIC original quotations, explicit limitations and attribution rights; verify no omitted customer requirement.
+5. Record actual sent/received status and evidence separately; do not claim customer message sent before evidence.
+
+## Privacy and evidence
+This public-repository checkpoint deliberately excludes customer name, email, direct contacts, original correspondence and attachments. It captures operational decisions only. The underlying conversation attachments are not GitHub artifacts.
