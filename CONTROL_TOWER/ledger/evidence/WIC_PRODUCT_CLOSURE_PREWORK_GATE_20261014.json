@@ -1,0 +1,47 @@
+{
+  "schema": "wic.product_closure.prework_gate.v1",
+  "checked_at_kst": "2026-10-14",
+  "baseline": {
+    "open": 34,
+    "internal_open": 14,
+    "hold_excluded": 20,
+    "closed_pass_locked": 26,
+    "new": 0,
+    "reopened": 0,
+    "canonical_main": "8867c1626375d73057b47af92571ab5df92250be"
+  },
+  "pre_work_hard_gate": "HOLD",
+  "ready_made_first": {
+    "actual_input_available": true,
+    "actual_input_path": "C:\\Users\\obk36\\Downloads\\TOOL013_실제입력양식_원본.xls",
+    "actual_input_bytes": 33792,
+    "actual_input_sha256": "B31A4F76C797B95D4EA2A6A38DC199657C56D2258F90C1D0E7A2BF880377891D",
+    "existing_canonical_worktree_available": false,
+    "existing_deployed_product_available": false,
+    "new_clone_or_rebuild_attempted": false
+  },
+  "gates": {
+    "source_valid": true,
+    "actual_run_path": false,
+    "test_path": false,
+    "expected_actual_validation": false,
+    "fail_closed_deployment_gate": true,
+    "safe_recovery": false,
+    "deployment_target_readback": false
+  },
+  "blocking_fingerprint": "TOOL013_CANONICAL_AND_DEPLOYMENT_STORAGE_I_NOT_PRESENT",
+  "blocking_condition": "CRITICAL_SOURCE_AND_DEPLOYMENT_TARGET_ACCESS_BLOCKED",
+  "observed_missing_paths": [
+    "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD",
+    "I:\\오부장 AI (인공지능)\\WIC34_C_REBUILD\\_wic_handoff_bulk_root",
+    "I:\\GPT 도구 작업\\13번 엑셀 업로드 도구\\13번_V2_최종운영판.html"
+  ],
+  "deployment_allowed": 0,
+  "product_mutation_performed": false,
+  "actual_e2e_started": false,
+  "pass_lock_changed": false,
+  "closed_by_root": 0,
+  "after_open": 34,
+  "next_auto_resume": "WHEN_I_DRIVE_IS_PRESENT, USE_EXISTING_CANONICAL_CHECKPOINT_AND_ASSEMBLY_ONLY_TOOL013; VERIFY_EXACT_SOURCE_AND_DEPLOYED_TARGET; RUN_ONE_ACTUAL_XLS_E2E; DEPLOY_ONLY_ON_EXPECTED_ACTUAL_PASS",
+  "final_status": "NOT VERIFIED COMPLETE"
+}
