@@ -1,0 +1,54 @@
+name: WIC Render ENV2 authenticated round trip
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  issue-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issue one correlated job and require Render ACK
+        env:
+          GH_CALLBACK_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          job_id = f"render-env2-gh-{os.environ['RUN_ID']}"
+          payload = {
+              'identity': {
+                  'source_id': 'WIC-CANONICAL-MAIN',
+                  'intake_id': f"TOOL044-{os.environ['RUN_ID']}",
+                  'tool_id': 'TOOL016',
+                  'job_id': job_id,
+              },
+              'callback': {
+                  'url': 'https://api.github.com/repos/obk369369-spec/20-operational-manual-viewer/dispatches',
+                  'token': os.environ['GH_CALLBACK_TOKEN'],
+              },
+          }
+          req = urllib.request.Request(
+              'https://two0-operational-manual-viewer.onrender.com/execute',
+              data=json.dumps(payload).encode(),
+              headers={'Content-Type': 'application/json', 'User-Agent': 'WIC-TOOL016'},
+              method='POST',
+          )
+          with urllib.request.urlopen(req, timeout=60) as response:
+              result = json.loads(response.read().decode())
+          if result.get('status') != 'PASS':
+              raise SystemExit(f"Render job failed: {result}")
+          job = result['job']
+          if job['job_id'] != job_id or job['tool016_return']['status'] != 'PASS':
+              raise SystemExit('Render identity/return ACK mismatch')
+          print(json.dumps({
+              'JOB_ID': job['job_id'],
+              'EXECUTION_ID': job['execution_id'],
+              'RESULT_ID': job['result_id'],
+              'ACK_ID': job['ack_id'],
+              'RESULT_RETURN': job['tool016_return']['status'],
+              'ACK_RETURN': job['tool016_ack'],
+          }))
+          PY

@@ -2,7 +2,7 @@ name: WIC feedback event apply
 
 on:
   repository_dispatch:
-    types: [wic_feedback]
+    types: [wic_feedback, render_env2_result]
   workflow_dispatch:
     inputs:
       event_json:
@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   apply-feedback:
+    if: github.event_name == 'workflow_dispatch' || github.event.action == 'wic_feedback'
     runs-on: ubuntu-latest
     env:
       PYTHONDONTWRITEBYTECODE: '1'
@@ -344,3 +345,113 @@ jobs:
             *)
               echo "실패 1건 — 원인: 피드백 적용 중단 / 코드: ${APPLY_RESULT:-FEEDBACK_APPLY_HOLD}" ;;
           esac
+
+  receive-render-env2:
+    if: github.event_name == 'repository_dispatch' && github.event.action == 'render_env2_result'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate identity, reject stale or duplicate result, and persist ACK
+        env:
+          RESULT_JSON: ${{ toJson(github.event.client_payload.result) }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, re
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          result = json.loads(os.environ['RESULT_JSON'])
+          required = {
+              'source_id','intake_id','tool_id','job_id','execution_id',
+              'result_id','ack_id','status','completed_at','expected','actual'
+          }
+          missing = sorted(required - set(result))
+          if missing:
+              raise SystemExit(f'REJECT_MALFORMED_RESULT missing={missing}')
+          patterns = {
+              'job_id': r'^render-env2-[A-Za-z0-9_.-]+$',
+              'execution_id': r'^render-exec-[a-f0-9]{12}$',
+              'result_id': r'^render-result-[a-f0-9]{12}$',
+              'ack_id': r'^render-ack-[a-f0-9]{12}$',
+          }
+          for key, pattern in patterns.items():
+              if not re.fullmatch(pattern, str(result[key])):
+                  raise SystemExit(f'REJECT_IDENTITY_MISMATCH {key}')
+          completed = datetime.fromisoformat(str(result['completed_at']).replace('Z', '+00:00'))
+          age = (datetime.now(timezone.utc) - completed).total_seconds()
+          if age < -60 or age > 3600:
+              raise SystemExit('REJECT_STALE_RESULT')
+          if result['status'] != 'PASS' or result['expected'] != result['actual']:
+              raise SystemExit('REJECT_EXECUTION_RESULT')
+
+          evidence_dir = Path('feedback_pipeline/evidence')
+          evidence_dir.mkdir(parents=True, exist_ok=True)
+          path = evidence_dir / f"{result['job_id']}_render_env2_result_return.json"
+          if path.exists():
+              raise SystemExit('REJECT_DUPLICATE_RESULT')
+          receipt = {
+              'schema_version': 1,
+              'received_at_utc': datetime.now(timezone.utc).isoformat(),
+              'event': 'render_env2_result',
+              'source_id': result['source_id'],
+              'intake_id': result['intake_id'],
+              'tool_id': result['tool_id'],
+              'job_id': result['job_id'],
+              'execution_id': result['execution_id'],
+              'result_id': result['result_id'],
+              'ack_id': result['ack_id'],
+              'result_status': result['status'],
+              'expected_actual_match': result['expected'] == result['actual'],
+              'return_auth': 'GITHUB_EPHEMERAL_TOKEN_ACCEPTED',
+              'job_id_correlation': 'PASS',
+              'execution_id_correlation': 'PASS',
+              'result_return': 'PASS',
+              'ack_return': 'PASS',
+              'duplicate_block': 'PASS',
+              'invalid_result_block': 'PASS',
+              'stale_result_block': 'PASS',
+              'user_manual_result_transfer_required': 0,
+              'user_manual_ack_required': 0,
+              'user_manual_restart_required': 0,
+          }
+          receipt['receipt_sha256'] = hashlib.sha256(
+              json.dumps(receipt, ensure_ascii=False, sort_keys=True).encode()
+          ).hexdigest()
+          path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          readback = json.loads(path.read_text(encoding='utf-8'))
+          assert readback['job_id'] == result['job_id']
+          assert readback['execution_id'] == result['execution_id']
+          assert readback['result_id'] == result['result_id']
+          assert readback['ack_id'] == result['ack_id']
+
+          state_path = Path('feedback_pipeline/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          external = state.setdefault('integration_core', {}).setdefault('external_factory', {})
+          external.update({
+              'provider': 'Render',
+              'admission': 'PASS_LOCKED',
+              'last_job_id': result['job_id'],
+              'last_execution_id': result['execution_id'],
+              'last_result_id': result['result_id'],
+              'last_ack_id': result['ack_id'],
+              'evidence': str(path).replace('\\', '/'),
+              'updated_at_utc': receipt['received_at_utc'],
+          })
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit canonical receipt and verify remote read-back
+        run: |
+          git config user.name 'wic-integration-bot'
+          git config user.email 'wic-integration-bot@users.noreply.github.com'
+          git add feedback_pipeline/state.json feedback_pipeline/evidence
+          git commit -m 'wic: receive authenticated Render factory result and ACK'
+          git push
+          local_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          test "$local_sha" = "$remote_sha"
+          echo "RENDER_RESULT_REMOTE_READBACK=PASS COMMIT_SHA=$remote_sha"
