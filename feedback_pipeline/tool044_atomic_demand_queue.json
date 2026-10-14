@@ -147,28 +147,38 @@
           "TOOL044_DEMAND_ID": "T42-RESELLER-DETECTION"
         }
       ],
-      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER",
+      "status": "PASS_LOCKED",
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",
         "component": "TLDEXTRACT_5_3_2_DOMAIN_DECOMPOSITION",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "DEEPEST_PUBLISHER_IDENTITY_VALIDATION",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_PUBLISHER_IDENTITY_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "T42-PROVENANCE-VALIDATION",
       "atomic_capabilities": [
         "PROVENANCE_VALIDATION"
       ],
-      "status": "SKIP_REUSE_VERIFIED_COMPONENT_TARGET_RETEST_REQUIRED",
+      "status": "PASS_LOCKED",
       "reconciliation": {
         "reason": "FINAL_CHAT_COMPRESSION_20260925",
         "component": "WIC_MANIFESTED_ASSET_PROVENANCE_GATE",
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "DEEPEST_PUBLISHER_IDENTITY_VALIDATION",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_PUBLISHER_IDENTITY_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "T42-WEBPAGE-TEXT-EXTRACTION",
@@ -381,7 +391,7 @@
       "atomic_capabilities": [
         "OFFICIAL_DOMAIN_VALIDATION"
       ],
-      "status": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION",
+      "status": "PASS_LOCKED",
       "source": "TOOL016_FUNCTION_STATE",
       "source_records": [
         {
@@ -407,7 +417,12 @@
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "DEEPEST_PUBLISHER_IDENTITY_VALIDATION",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_PUBLISHER_IDENTITY_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
@@ -456,7 +471,7 @@
       "atomic_capabilities": [
         "RESELLER_DETECTION"
       ],
-      "status": "HOLD_MISSING_IDENTITY_CLASSIFIER",
+      "status": "PASS_LOCKED",
       "source": "TOOL016_FUNCTION_STATE",
       "source_records": [
         {
@@ -482,7 +497,12 @@
         "evidence": "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
         "truth_boundary": "Verified component capability is narrower than full demand; no false PASS."
       },
-      "residual_classification": "UNFINISHED"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "DEEPEST_PUBLISHER_IDENTITY_VALIDATION",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_PUBLISHER_IDENTITY_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
@@ -576,7 +596,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -643,7 +663,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -710,7 +730,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -777,7 +797,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -844,7 +864,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -911,7 +931,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -978,7 +998,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1045,7 +1065,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496261239",
+        "run_id": "38501581266",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"

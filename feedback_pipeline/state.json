@@ -126,9 +126,9 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T01:32:16.854741+00:00",
+      "updated_at": "2026-10-14T02:32:44.523998+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-      "unfinished_detected": 32,
+      "unfinished_detected": 28,
       "common_roots": [
         {
           "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -192,18 +192,6 @@
           ]
         },
         {
-          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "demands": [
-            "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION"
-          ]
-        },
-        {
-          "root_id": "FS-FUNCTION-RESELLER_DETECTION",
-          "demands": [
-            "FS-FUNCTION-RESELLER_DETECTION"
-          ]
-        },
-        {
           "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
           "demands": [
             "FS-FUNCTION-TOC_HIERARCHY_VALIDATION"
@@ -219,18 +207,6 @@
           "root_id": "T13-RC-TRANSLATION-CATEGORY-CAPABILITY-GAP",
           "demands": [
             "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION"
-          ]
-        },
-        {
-          "root_id": "T42-PROVENANCE-VALIDATION",
-          "demands": [
-            "T42-PROVENANCE-VALIDATION"
-          ]
-        },
-        {
-          "root_id": "T42-RESELLER-DETECTION",
-          "demands": [
-            "T42-RESELLER-DETECTION"
           ]
         },
         {
@@ -315,13 +291,6 @@
       "easy_queue": [],
       "work_batch": [
         {
-          "root_id": "T42-PROVENANCE-VALIDATION",
-          "demand_id": "T42-PROVENANCE-VALIDATION",
-          "capabilities": [
-            "PROVENANCE_VALIDATION"
-          ]
-        },
-        {
           "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
           "demand_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
           "capabilities": [
@@ -391,36 +360,12 @@
       ],
       "holds": [
         {
-          "root_id": "T42-RESELLER-DETECTION",
-          "demand_id": "T42-RESELLER-DETECTION",
-          "capabilities": [
-            "RESELLER_DETECTION"
-          ],
-          "reason": "HOLD_MISSING_IDENTITY_CLASSIFIER"
-        },
-        {
           "root_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
           "demand_id": "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
           "capabilities": [
             "TOC_HIERARCHY_VALIDATION"
           ],
           "reason": "HOLD_MISSING_HIERARCHY_VALIDATOR"
-        },
-        {
-          "root_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "demand_id": "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-          "capabilities": [
-            "OFFICIAL_DOMAIN_VALIDATION"
-          ],
-          "reason": "HOLD_MISSING_OFFICIAL_IDENTITY_VALIDATION"
-        },
-        {
-          "root_id": "FS-FUNCTION-RESELLER_DETECTION",
-          "demand_id": "FS-FUNCTION-RESELLER_DETECTION",
-          "capabilities": [
-            "RESELLER_DETECTION"
-          ],
-          "reason": "HOLD_MISSING_IDENTITY_CLASSIFIER"
         },
         {
           "root_id": "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
@@ -546,7 +491,7 @@
         "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
       ],
       "work_batch_full": true,
-      "work_batch_units": 14,
+      "work_batch_units": 13,
       "work_batch_full_threshold": 10,
       "threshold_basis": {
         "completed_jobs": 92,
@@ -1006,13 +951,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-14T01:32:16.848984+00:00",
+      "updated_at": "2026-10-14T02:32:44.520816+00:00",
       "counts": {
-        "PLATFORM_HOLD": 4,
-        "LONG_TERM_HOLD": 5,
         "UNFINISHED": 2,
         "COMPLETE": 61,
-        "PARTIAL": 1
+        "PARTIAL": 1,
+        "LONG_TERM_HOLD": 5,
+        "PLATFORM_HOLD": 4
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3554,9 +3499,9 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T01:32:16.833996+00:00",
-      "UNFINISHED_SCANNED": 29,
-      "ALREADY_PASS_EXCLUDED": 93,
+      "updated_at": "2026-10-14T02:32:44.511466+00:00",
+      "UNFINISHED_SCANNED": 25,
+      "ALREADY_PASS_EXCLUDED": 97,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
@@ -3686,7 +3631,7 @@
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
         "ready": 15,
-        "waiting": 14,
+        "waiting": 10,
         "next_demand": "WIC-BACKLOG-TOOL002-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
@@ -4187,16 +4132,22 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-14T01:32:16.833996+00:00",
+      "LAST_HEARTBEAT": "2026-10-14T02:32:44.511466+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
       "PASS_LOCK_RECONCILED": [
-        "WIC-BACKLOG-TOOL041-007-042-20260927"
+        "T42-RESELLER-DETECTION",
+        "T42-PROVENANCE-VALIDATION",
+        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+        "FS-FUNCTION-RESELLER_DETECTION"
       ],
-      "PASS_LOCK_RECONCILED_COUNT": 1,
+      "PASS_LOCK_RECONCILED_COUNT": 4,
       "PASS_LOCK_IMPORTED": [
-        "WIC-BACKLOG-TOOL041-007-042-20260927"
+        "T42-PROVENANCE-VALIDATION",
+        "T42-RESELLER-DETECTION",
+        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
+        "FS-FUNCTION-RESELLER_DETECTION"
       ]
     },
     "work_ready_candidates": {
@@ -4321,16 +4272,20 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-14T01:32:16.833996+00:00",
+      "updated_at": "2026-10-14T02:32:44.511466+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
+        "T42-RESELLER-DETECTION",
+        "T42-PROVENANCE-VALIDATION",
         "T42-WEBPAGE-TEXT-EXTRACTION",
         "T42-TOC-STRUCTURE-EXTRACTION",
         "TOOL044-FREE-LOCAL-EXECUTION-ENGINE",
         "TOOL044-AUTO-ROLLBACK",
         "TOOL044-ARBITRARY-WIC-DEPLOY",
+        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
         "FS-FUNCTION-OFFICIAL_DETAIL_PAGE_VALIDATION",
+        "FS-FUNCTION-RESELLER_DETECTION",
         "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
         "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-HISTORICAL_FEEDBACK_INGEST",
         "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-ACCESS_BOUNDARY_CLASSIFICATION",
@@ -4423,11 +4378,7 @@
         "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930"
       ],
       "UNFINISHED": [
-        "T42-RESELLER-DETECTION",
-        "T42-PROVENANCE-VALIDATION",
         "T42-TOC-NUMBER-HIERARCHY-VALIDATION",
-        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-        "FS-FUNCTION-RESELLER_DETECTION",
         "FS-FUNCTION-TOC_HIERARCHY_VALIDATION",
         "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
         "TOOL013-TITLE-TRANSLATION-CATEGORY-20260908-LOCAL_TITLE_TRANSLATION",
