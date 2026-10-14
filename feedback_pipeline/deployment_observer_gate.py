@@ -16,6 +16,10 @@ PHASE5_FIELDS=("runtime_gate_executed","runtime_receipt_recorded",
                "deployed_receipt_recorded","canonical_deployed_match",
                "provenance_verified","impact_scope_defined",
                "impacted_regression_passed","normal_case_regression_passed")
+GOVERNOR_FIELDS=("current_stable_checked","candidate_identity_verified",
+                 "independent_test_passed","negative_failure_passed",
+                 "artifact_identity_match","product_scope_verified",
+                 "final_product_usable")
 BLOCKING_SENTINELS=("ROW_ZERO","UNKNOWN","EMPTY_OUTPUT","MID_PROCESS_STALL","HIDDEN_ERROR",
                     "BUTTON_NO_RESPONSE","PREVIEW_MISSING","DOWNLOAD_FAILED","INPUT_MISSING",
                     "DATA_MIXED","EXPECTED_MISMATCH")
@@ -23,6 +27,7 @@ BLOCKING_SENTINELS=("ROW_ZERO","UNKNOWN","EMPTY_OUTPUT","MID_PROCESS_STALL","HID
 def evaluate(row:dict)->dict:
     required=FIELDS + (RELEASE_FIELDS if row.get("release_gate_required", False) else ())
     if row.get("phase5_gate_required", False): required += PHASE5_FIELDS
+    if row.get("release_governor_required", False): required += GOVERNOR_FIELDS
     missing=[key for key in required if row.get(key) is not True]
     blockers=[value for value in row.get("release_blockers", []) if value in BLOCKING_SENTINELS]
     if row.get("test_failed") is True and row.get("same_failed_input_retested") is not True:
@@ -38,7 +43,9 @@ def audit(doc:dict)->dict:
     return {"schema_version":1,"targets":rows,"implemented_not_deployed_total":sum(r["status"]=="IMPLEMENTED_NOT_DEPLOYED" for r in rows),"external_limit_total":sum(r["status"]=="VERIFIED_EXTERNAL_LIMIT" for r in rows),"observer_intent_gap_total":sum(not r["observer_reachable"] for r in rows),"pass":not any(r["status"]=="IMPLEMENTED_NOT_DEPLOYED" for r in rows)}
 
 def self_test()->None:
-    complete={"target":"OK","root_id":"R1","release_gate_required":True,"phase5_gate_required":True,**{k:True for k in FIELDS+RELEASE_FIELDS+PHASE5_FIELDS}}
+    complete={"target":"OK","root_id":"R1","release_gate_required":True,
+              "phase5_gate_required":True,"release_governor_required":True,
+              **{k:True for k in FIELDS+RELEASE_FIELDS+PHASE5_FIELDS+GOVERNOR_FIELDS}}
     incomplete=dict(complete,target="BAD",root_id="R2",deployed=False)
     external=dict(incomplete,target="EXT",root_id="R3",external_dependency="DEVICE")
     blocked=dict(complete,target="BLOCKED",root_id="R4",release_blockers=["ROW_ZERO"])
@@ -64,7 +71,19 @@ def self_test()->None:
         mutated=dict(complete,target=name,root_id="PAST-"+name);mutated[field]=False
         checked=evaluate(mutated)
         assert checked["status"]=="IMPLEMENTED_NOT_DEPLOYED" and field in checked["missing"]
-    print("PASS: deployment/observer gate; 5 recovered failures + phase5 receipt mutations fail closed")
+    release_escapes={
+        "UNVERIFIED_CANDIDATE": "independent_test_passed",
+        "REGRESSION_FAILURE": "regression_passed",
+        "NO_ACTUAL_E2E": "actual_business_input_e2e",
+        "ARTIFACT_IDENTITY_MISMATCH": "artifact_identity_match",
+        "PARTIAL_PASS_AS_PRODUCT_PASS": "product_scope_verified",
+    }
+    for name,field in release_escapes.items():
+        mutated=dict(complete,target=name,root_id="GOVERNOR-"+name);mutated[field]=False
+        checked=evaluate(mutated)
+        assert checked["status"]=="IMPLEMENTED_NOT_DEPLOYED" and field in checked["missing"]
+    assert evaluate(complete)["status"]=="DEPLOYED_COMPLETE"
+    print("PASS: DEVELOPMENT_RELEASE_GOVERNOR; 5 release escapes blocked; valid product release allowed")
 
 def main()->None:
     p=argparse.ArgumentParser();p.add_argument("--self-test",action="store_true");p.add_argument("--record",action="store_true");a=p.parse_args()

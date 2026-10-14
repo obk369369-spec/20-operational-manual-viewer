@@ -43,6 +43,8 @@ jobs:
           --github-output "$GITHUB_OUTPUT"
       - name: Verify common closeout and missing-evidence rejection
         run: python feedback_pipeline/test_wic_cycle_audit.py
+      - name: Enforce development product release governor
+        run: python feedback_pipeline/deployment_observer_gate.py --self-test
       - name: Refresh external runner candidates on periodic discovery cycle
         if: ${{ github.event_name == 'schedule' && github.event.schedule == '17 1 * * *' }}
         env:
