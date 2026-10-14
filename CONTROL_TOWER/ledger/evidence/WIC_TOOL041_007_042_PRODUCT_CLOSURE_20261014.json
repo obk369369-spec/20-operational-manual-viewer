@@ -1,0 +1,47 @@
+{
+  "schema": "wic.product-closure-receipt.v1",
+  "created_at": "2026-10-14T02:10:00+00:00",
+  "root_id": "TOOL041_007_042_ACTUAL_CUSTOMER_PRODUCT_CLOSURE",
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-TOOL041-007-042-20260927"
+  ],
+  "products": ["TOOL041", "TOOL007", "TOOL042"],
+  "reuse_only": true,
+  "actual_input": {
+    "path": "customer_pipeline/fixtures/cross_tool_actual_kimtaeho_20260907.json",
+    "class": "PRESERVED_ACTUAL_WIC_CUSTOMER_RECORD",
+    "sha256": "00E1405405B974D87FD62DE90452B237B257195AD7457866115BC025C4CBF319"
+  },
+  "actual_e2e": {
+    "run_id": "WIC-FINAL-ACTUAL-20261006",
+    "path": ["TOOL041", "TOOL007", "TOOL042"],
+    "status": "PASS",
+    "evidence": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_E2E_20261006.json"
+  },
+  "expected_actual": {
+    "positive": "PASS",
+    "negative": "PASS",
+    "failure": "PASS",
+    "retry_recovery_rollback": "PASS",
+    "deterministic_result_sha256": "BA50725004D966129F0DEE99855EFE9DA36477DF03033D9131E74FA65665047D"
+  },
+  "user_visible_output": {
+    "path": "customer_pipeline/evidence/WIC_FINAL_ACTUAL_CUSTOMER_OUTPUT_20261006.json",
+    "sha256": "3499DC3C2E19B7407BE868A0E95241B60E7112D047EE406C505A6CB22F6A92BC",
+    "reopened": true,
+    "workflow_status": "CROSS_TOOL_INTEGRATION_PASS"
+  },
+  "deployment": {
+    "surface": "public/wic_observer_state.json",
+    "readback": "PASS",
+    "sha256_at_closure": "136097E4C903538610829223C29835700452536C30C312E46AA765860B7768EC"
+  },
+  "external_customer_action": {
+    "status": "PENDING_EXTERNAL",
+    "send_executed": false,
+    "does_not_block_internal_product_closure": true
+  },
+  "product_closed": true,
+  "pass_lock": "PASS_LOCKED",
+  "tool013_touched": false
+}
