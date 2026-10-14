@@ -27,9 +27,9 @@ ALLOWED_RETURN_PATH = "/repos/obk369369-spec/20-operational-manual-viewer/dispat
 def run_probe_job(identity=None):
     identity = identity or {}
     job_id = str(identity.get("job_id") or ("render-env2-" + uuid.uuid4().hex[:12]))
-    execution_id = "render-exec-" + uuid.uuid4().hex[:12]
-    result_id = "render-result-" + uuid.uuid4().hex[:12]
-    ack_id = "render-ack-" + uuid.uuid4().hex[:12]
+    execution_id = str(identity.get("execution_id") or ("render-exec-" + uuid.uuid4().hex[:12]))
+    result_id = str(identity.get("result_id") or ("render-result-" + uuid.uuid4().hex[:12]))
+    ack_id = str(identity.get("ack_id") or ("render-ack-" + uuid.uuid4().hex[:12]))
     with LOCK:
         STATE["jobs"][job_id] = {
             "source_id": str(identity.get("source_id", "TOOL016-CANONICAL")),
@@ -148,7 +148,10 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("invalid payload size")
             payload = json.loads(self.rfile.read(length).decode("utf-8"))
             identity = payload.get("identity") or {}
-            required = {"source_id", "intake_id", "tool_id", "job_id"}
+            required = {
+                "source_id", "intake_id", "tool_id", "job_id",
+                "execution_id", "result_id", "ack_id"
+            }
             if required - set(identity):
                 raise ValueError("missing identity")
             job = run_probe_job(identity)

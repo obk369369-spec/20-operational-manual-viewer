@@ -381,6 +381,15 @@ jobs:
           for key, pattern in patterns.items():
               if not re.fullmatch(pattern, str(result[key])):
                   raise SystemExit(f'REJECT_IDENTITY_MISMATCH {key}')
+          issued_path = Path('feedback_pipeline/evidence') / f"{result['job_id']}_render_env2_issued.json"
+          if not issued_path.exists():
+              raise SystemExit('REJECT_UNKNOWN_JOB_ID')
+          issued = json.loads(issued_path.read_text(encoding='utf-8'))
+          for key in ('source_id','intake_id','tool_id','job_id','execution_id','result_id','ack_id'):
+              if str(issued.get(key)) != str(result.get(key)):
+                  raise SystemExit(f'REJECT_ISSUED_IDENTITY_MISMATCH {key}')
+          if issued.get('status') != 'ISSUED':
+              raise SystemExit('REJECT_DUPLICATE_OR_CLOSED_JOB')
           completed = datetime.fromisoformat(str(result['completed_at']).replace('Z', '+00:00'))
           age = (datetime.now(timezone.utc) - completed).total_seconds()
           if age < -60 or age > 3600:
@@ -427,6 +436,10 @@ jobs:
           assert readback['execution_id'] == result['execution_id']
           assert readback['result_id'] == result['result_id']
           assert readback['ack_id'] == result['ack_id']
+          issued['status'] = 'ACKNOWLEDGED'
+          issued['receipt_evidence'] = str(path).replace('\\', '/')
+          issued['acknowledged_at_utc'] = receipt['received_at_utc']
+          issued_path.write_text(json.dumps(issued, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
           state_path = Path('feedback_pipeline/state.json')
           state = json.loads(state_path.read_text(encoding='utf-8'))

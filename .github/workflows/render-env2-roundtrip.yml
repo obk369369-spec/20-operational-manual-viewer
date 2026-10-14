@@ -10,6 +10,44 @@ jobs:
   issue-job:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout canonical state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Persist issued identity before external execution
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json, os, uuid
+          from datetime import datetime, timezone
+          from pathlib import Path
+          run_id = os.environ['RUN_ID']
+          issued = {
+              'schema_version': 1,
+              'status': 'ISSUED',
+              'issued_at_utc': datetime.now(timezone.utc).isoformat(),
+              'source_id': 'WIC-CANONICAL-MAIN',
+              'intake_id': f'TOOL044-{run_id}',
+              'tool_id': 'TOOL016',
+              'job_id': f'render-env2-gh-{run_id}',
+              'execution_id': 'render-exec-' + uuid.uuid4().hex[:12],
+              'result_id': 'render-result-' + uuid.uuid4().hex[:12],
+              'ack_id': 'render-ack-' + uuid.uuid4().hex[:12],
+          }
+          path = Path('feedback_pipeline/evidence') / f"{issued['job_id']}_render_env2_issued.json"
+          path.write_text(json.dumps(issued, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as out:
+              for key in ('source_id','intake_id','tool_id','job_id','execution_id','result_id','ack_id'):
+                  out.write(f"WIC_{key.upper()}={issued[key]}\n")
+          PY
+          git config user.name 'wic-integration-bot'
+          git config user.email 'wic-integration-bot@users.noreply.github.com'
+          git add feedback_pipeline/evidence
+          git commit -m 'wic: issue correlated Render factory job'
+          git push
+
       - name: Issue one correlated job and require Render ACK
         env:
           GH_CALLBACK_TOKEN: ${{ github.token }}
@@ -17,13 +55,15 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, urllib.request
-          job_id = f"render-env2-gh-{os.environ['RUN_ID']}"
           payload = {
               'identity': {
-                  'source_id': 'WIC-CANONICAL-MAIN',
-                  'intake_id': f"TOOL044-{os.environ['RUN_ID']}",
-                  'tool_id': 'TOOL016',
-                  'job_id': job_id,
+                  'source_id': os.environ['WIC_SOURCE_ID'],
+                  'intake_id': os.environ['WIC_INTAKE_ID'],
+                  'tool_id': os.environ['WIC_TOOL_ID'],
+                  'job_id': os.environ['WIC_JOB_ID'],
+                  'execution_id': os.environ['WIC_EXECUTION_ID'],
+                  'result_id': os.environ['WIC_RESULT_ID'],
+                  'ack_id': os.environ['WIC_ACK_ID'],
               },
               'callback': {
                   'url': 'https://api.github.com/repos/obk369369-spec/20-operational-manual-viewer/dispatches',
@@ -41,7 +81,7 @@ jobs:
           if result.get('status') != 'PASS':
               raise SystemExit(f"Render job failed: {result}")
           job = result['job']
-          if job['job_id'] != job_id or job['tool016_return']['status'] != 'PASS':
+          if job['job_id'] != os.environ['WIC_JOB_ID'] or job['tool016_return']['status'] != 'PASS':
               raise SystemExit('Render identity/return ACK mismatch')
           print(json.dumps({
               'JOB_ID': job['job_id'],
