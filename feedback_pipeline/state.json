@@ -126,7 +126,7 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T02:32:44.523998+00:00",
+      "updated_at": "2026-10-14T02:33:09.134114+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
       "unfinished_detected": 28,
       "common_roots": [
@@ -951,13 +951,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-14T02:32:44.520816+00:00",
+      "updated_at": "2026-10-14T02:33:09.129752+00:00",
       "counts": {
         "UNFINISHED": 2,
         "COMPLETE": 61,
         "PARTIAL": 1,
-        "LONG_TERM_HOLD": 5,
-        "PLATFORM_HOLD": 4
+        "PLATFORM_HOLD": 4,
+        "LONG_TERM_HOLD": 5
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3499,7 +3499,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T02:32:44.511466+00:00",
+      "updated_at": "2026-10-14T02:33:09.118573+00:00",
       "UNFINISHED_SCANNED": 25,
       "ALREADY_PASS_EXCLUDED": 97,
       "ROOTS_MERGED": 0,
@@ -4132,23 +4132,13 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-14T02:32:44.511466+00:00",
+      "LAST_HEARTBEAT": "2026-10-14T02:33:09.118573+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
-      "PASS_LOCK_RECONCILED": [
-        "T42-RESELLER-DETECTION",
-        "T42-PROVENANCE-VALIDATION",
-        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-        "FS-FUNCTION-RESELLER_DETECTION"
-      ],
-      "PASS_LOCK_RECONCILED_COUNT": 4,
-      "PASS_LOCK_IMPORTED": [
-        "T42-PROVENANCE-VALIDATION",
-        "T42-RESELLER-DETECTION",
-        "FS-FUNCTION-OFFICIAL_DOMAIN_VALIDATION",
-        "FS-FUNCTION-RESELLER_DETECTION"
-      ]
+      "PASS_LOCK_RECONCILED": [],
+      "PASS_LOCK_RECONCILED_COUNT": 0,
+      "PASS_LOCK_IMPORTED": []
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
@@ -4272,7 +4262,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-14T02:32:44.511466+00:00",
+      "updated_at": "2026-10-14T02:33:09.118573+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
