@@ -5,5 +5,49 @@
   "deployed_copy_validation": true,
   "forced_failure_rollback": true,
   "unregistered_target_allowed": false,
-  "production_target_claim": false
+  "production_target_claim": false,
+  "publisher_identity_validation": {
+    "status": "PASS",
+    "actual_input": "KIRO bidx=5537 official report detail URL",
+    "expected_actual": "MATCH",
+    "positive": "PASS",
+    "negative": "PASS",
+    "failure_injection": "PASS",
+    "regression": "PASS",
+    "cases": {
+      "actual_official": {
+        "status": "VERIFIED_OFFICIAL_DOMAIN",
+        "host": "www.kiro.re.kr",
+        "matched_domain": "kiro.re.kr",
+        "provenance": "OFFICIAL_ALLOWLIST",
+        "output_allowed": true
+      },
+      "reseller_market_research": {
+        "status": "REJECT_RESELLER",
+        "host": "www.marketresearch.com",
+        "matched_domain": "marketresearch.com",
+        "provenance": "RESELLER_BLOCKLIST",
+        "output_allowed": false
+      },
+      "reseller_research_and_markets": {
+        "status": "REJECT_RESELLER",
+        "host": "www.researchandmarkets.com",
+        "matched_domain": "researchandmarkets.com",
+        "provenance": "RESELLER_BLOCKLIST",
+        "output_allowed": false
+      },
+      "lookalike": {
+        "status": "HOLD_UNVERIFIED_PUBLISHER",
+        "host": "kiro.re.kr.evil.example",
+        "matched_domain": null,
+        "provenance": "UNVERIFIED",
+        "output_allowed": false
+      },
+      "malformed": {
+        "status": "HOLD_INVALID_URL",
+        "host": "",
+        "provenance": "UNVERIFIED"
+      }
+    }
+  }
 }
