@@ -1,0 +1,32 @@
+{
+  "schema": "wic.external-development-structure-evidence.v1",
+  "run_id": "38500803202",
+  "commit": "409140715654fd1ed2be8180caf6182d863bb38b",
+  "recorded_at": "2026-10-14T11:24:05.020228+09:00",
+  "scope": "INDEPENDENT_PROBE_ONLY_NO_WIC_PRODUCT_MUTATION",
+  "ready_made_components": [
+    "GitHub Actions",
+    "actions/checkout@v4",
+    "actions/setup-python@v5",
+    "GitHub Releases",
+    "actions/upload-artifact@v4"
+  ],
+  "new_connector_code": "MINIMAL_PROBE_WORKFLOW_ONLY",
+  "BROKEN_DETECTION": "PASS",
+  "REGRESSION_DETECTION": "PASS",
+  "FAIL_RELEASE_BLOCK": "PASS",
+  "ACTUAL_E2E": "PASS",
+  "ARTIFACT_VALIDATION": "PASS",
+  "ACTUAL_RELEASE": "PASS",
+  "RELEASED_READBACK": "PASS",
+  "ROLLBACK": "PASS",
+  "FULL_REGRESSION": "PASS",
+  "EVIDENCE_READBACK": "PASS",
+  "artifact_sha256": "a76f661433becf3537fcdc84d231b1c98e70d203dc8e39f74462bc72d8c56e8a",
+  "remote_artifact_download": "PASS",
+  "external_structure_verified": 1,
+  "pre_work": "PASS",
+  "product_modification_allowed": 1,
+  "deployment_allowed": 1,
+  "platform_gate": "PASS"
+}
