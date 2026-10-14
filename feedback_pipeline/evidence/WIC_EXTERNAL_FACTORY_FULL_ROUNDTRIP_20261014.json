@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-10-14T08:47:10Z",
+  "root_link": {
+    "root_id": "ABSOLUTE-BOTTOM-ROOT-0",
+    "root_name": "INDEPENDENT EXTERNAL CONTROL AUTHORITY + END-TO-END EXECUTION OWNERSHIP / CONTINUITY ABSENCE",
+    "occurrence": "SOURCE/EVENT/DELIVERY + END-TO-END RESULT RETURN CONTINUITY",
+    "new_root_created": false
+  },
+  "external_control": {
+    "provider": "Render",
+    "workspace": "My Workspace",
+    "account": "obk369369@gmail.com",
+    "service_id": "srv-dar0nu49v7es7392lim0",
+    "service_url": "https://two0-operational-manual-viewer.onrender.com",
+    "plan": "free",
+    "deploy_id": "dep-db7jtb6gekts73dvubr0",
+    "deploy_commit": "04caae898b274c4d5b6290ea474ee0cedde64da5",
+    "work_session_independence": "PASS",
+    "paid_resources_created": 0
+  },
+  "round_trip": {
+    "source_id": "WIC-CANONICAL-MAIN",
+    "intake_id": "TOOL044-38536231950",
+    "tool_id": "TOOL016",
+    "job_id": "render-env2-gh-38536231950",
+    "execution_id": "render-exec-0e87793c9763",
+    "result_id": "render-result-effa64229a99",
+    "ack_id": "render-ack-7d3a889e350e",
+    "issue_run_id": 38536231950,
+    "receiver_run_id": 38536261332,
+    "issue_manifest": "feedback_pipeline/evidence/render-env2-gh-38536231950_render_env2_issued.json",
+    "result_receipt": "feedback_pipeline/evidence/render-env2-gh-38536231950_render_env2_result_return.json",
+    "result_return": "PASS",
+    "ack_return": "PASS",
+    "job_id_correlation": "PASS",
+    "execution_id_correlation": "PASS",
+    "canonical_state_update": "PASS",
+    "remote_readback_commit": "921e29c2bac98d9aa944c37d4238016043d8103d"
+  },
+  "authentication": {
+    "tool016_return_url": "https://api.github.com/repos/obk369369-spec/20-operational-manual-viewer/dispatches",
+    "mechanism": "GitHub Actions ephemeral token scoped to contents:write",
+    "secret_persisted_in_source_or_evidence": false,
+    "return_auth": "VERIFIED"
+  },
+  "negative_tests": {
+    "malformed_payload": {
+      "result": "PASS_BLOCKED",
+      "http_status": 400,
+      "code": "BLOCKED_MALFORMED_PAYLOAD"
+    },
+    "invalid_return_url": {
+      "result": "PASS_BLOCKED",
+      "http_status": 502,
+      "code": "BLOCKED_INVALID_RETURN_URL"
+    },
+    "missing_return_auth": {
+      "result": "PASS_BLOCKED",
+      "http_status": 502,
+      "code": "BLOCKED_NO_RETURN_AUTH"
+    },
+    "unauthenticated_result": {
+      "result": "PASS_BLOCKED",
+      "http_status": 401,
+      "code": "Requires authentication"
+    },
+    "duplicate_result": {
+      "result": "PASS_BLOCKED",
+      "run_id": 38536453051,
+      "code": "REJECT_DUPLICATE_OR_CLOSED_JOB"
+    },
+    "unknown_job_id": {
+      "result": "PASS_BLOCKED",
+      "run_id": 38536454776,
+      "code": "REJECT_UNKNOWN_JOB_ID"
+    },
+    "execution_id_mismatch": {
+      "result": "PASS_BLOCKED",
+      "run_id": 38536596795,
+      "code": "REJECT_ISSUED_IDENTITY_MISMATCH execution_id"
+    },
+    "stale_result": {
+      "result": "PASS_BLOCKED",
+      "run_id": 38537578583,
+      "code": "REJECT_STALE_RESULT"
+    }
+  },
+  "gates": {
+    "TOOL016_RETURN_URL": "VERIFIED",
+    "RESULT_RECEIVER": "VERIFIED",
+    "RETURN_AUTH": "VERIFIED",
+    "JOB_ID_CORRELATION": "PASS",
+    "EXECUTION_ID_CORRELATION": "PASS",
+    "RESULT_RETURN": "PASS",
+    "ACK_RETURN": "PASS",
+    "DUPLICATE_BLOCK": "PASS",
+    "INVALID_RESULT_BLOCK": "PASS",
+    "CANONICAL_STATE_UPDATE": "PASS",
+    "REMOTE_READBACK": "PASS",
+    "WORK_SESSION_INDEPENDENCE": "PASS",
+    "EXTERNAL_CONTROL_AUTHORITY": "PASS_LOCKED",
+    "EXTERNAL_FACTORY_READY": "PASS_LOCKED",
+    "EXTERNAL_FACTORY_ADMISSION": "PASS_LOCKED",
+    "DEVELOPMENT_RELEASE_GOVERNOR": "PASS_LOCKED"
+  },
+  "manual_requirements": {
+    "USER_MANUAL_RESULT_TRANSFER_REQUIRED": 0,
+    "USER_MANUAL_ACK_REQUIRED": 0,
+    "USER_MANUAL_RESTART_REQUIRED": 0
+  },
+  "product_scope": {
+    "PRODUCT_WORK": "NOT_STARTED",
+    "OPEN_BEFORE": 26,
+    "OPEN_AFTER": 26,
+    "INTERNAL_OPEN": 11,
+    "HOLD": 15,
+    "NEW": 0,
+    "REOPENED": 0,
+    "next_gate": "SEPARATE_PRODUCT_START_GATE_REQUIRED"
+  }
+}
