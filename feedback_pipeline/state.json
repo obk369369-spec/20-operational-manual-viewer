@@ -126,9 +126,9 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T02:33:09.134114+00:00",
+      "updated_at": "2026-10-14T02:43:56.589725+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-      "unfinished_detected": 28,
+      "unfinished_detected": 27,
       "common_roots": [
         {
           "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -222,12 +222,6 @@
           ]
         },
         {
-          "root_id": "TOOL002",
-          "demands": [
-            "WIC-BACKLOG-TOOL002-20260927"
-          ]
-        },
-        {
           "root_id": "TOOL006",
           "demands": [
             "WIC-BACKLOG-TOOL006-20260927"
@@ -296,11 +290,6 @@
           "capabilities": [
             "PAST_FAILURE_FIXTURE_GENERATION"
           ]
-        },
-        {
-          "root_id": "TOOL002",
-          "demand_id": "WIC-BACKLOG-TOOL002-20260927",
-          "capabilities": []
         },
         {
           "root_id": "TOOL001",
@@ -491,7 +480,7 @@
         "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
       ],
       "work_batch_full": true,
-      "work_batch_units": 13,
+      "work_batch_units": 12,
       "work_batch_full_threshold": 10,
       "threshold_basis": {
         "completed_jobs": 92,
@@ -951,13 +940,13 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-14T02:33:09.129752+00:00",
+      "updated_at": "2026-10-14T02:43:56.586720+00:00",
       "counts": {
-        "UNFINISHED": 2,
+        "LONG_TERM_HOLD": 5,
         "COMPLETE": 61,
-        "PARTIAL": 1,
         "PLATFORM_HOLD": 4,
-        "LONG_TERM_HOLD": 5
+        "PARTIAL": 1,
+        "UNFINISHED": 2
       },
       "cr_status": {
         "CR-1": "COMPLETE",
@@ -3499,21 +3488,15 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T02:33:09.118573+00:00",
-      "UNFINISHED_SCANNED": 25,
-      "ALREADY_PASS_EXCLUDED": 97,
+      "updated_at": "2026-10-14T02:43:56.578404+00:00",
+      "UNFINISHED_SCANNED": 24,
+      "ALREADY_PASS_EXCLUDED": 98,
       "ROOTS_MERGED": 0,
       "WORK_FIXABLE_ROOTS": 0,
       "WORK_REQUIRED": [],
       "WORK_BATCHES": [],
-      "TOOL044_AUTO_HANDED_OFF": 15,
+      "TOOL044_AUTO_HANDED_OFF": 14,
       "TOOL044_QUEUE": [
-        {
-          "demand_id": "WIC-BACKLOG-TOOL002-20260927",
-          "root_id": "TOOL002",
-          "target_tool": "TOOL002",
-          "atomic_capabilities": []
-        },
         {
           "demand_id": "WIC-BACKLOG-TOOL001-20260927",
           "root_id": "TOOL001",
@@ -3630,9 +3613,9 @@
       },
       "CIRCULATION": {
         "tool016_to_tool044": "ACTIVE",
-        "ready": 15,
+        "ready": 14,
         "waiting": 10,
-        "next_demand": "WIC-BACKLOG-TOOL002-20260927",
+        "next_demand": "WIC-BACKLOG-TOOL001-20260927",
         "duplicate_demand_ids": [],
         "dedup_gate": "PASS",
         "result_returns": 66,
@@ -4132,13 +4115,17 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-14T02:33:09.118573+00:00",
+      "LAST_HEARTBEAT": "2026-10-14T02:43:56.578404+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
-      "PASS_LOCK_RECONCILED": [],
-      "PASS_LOCK_RECONCILED_COUNT": 0,
-      "PASS_LOCK_IMPORTED": []
+      "PASS_LOCK_RECONCILED": [
+        "WIC-BACKLOG-TOOL002-20260927"
+      ],
+      "PASS_LOCK_RECONCILED_COUNT": 1,
+      "PASS_LOCK_IMPORTED": [
+        "WIC-BACKLOG-TOOL002-20260927"
+      ]
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
@@ -4262,7 +4249,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-14T02:33:09.118573+00:00",
+      "updated_at": "2026-10-14T02:43:56.578404+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -4321,6 +4308,7 @@
         "WIC-BACKLOG-ROOT7-20260927",
         "WIC-BACKLOG-TOOL013-20260927",
         "WIC-BACKLOG-TOOL041-007-042-20260927",
+        "WIC-BACKLOG-TOOL002-20260927",
         "WIC-BACKLOG-TOOL016-20260927",
         "WIC-BACKLOG-TOOL044-20260927",
         "WIC-BACKLOG-CONTROL-TOWER-20260927",
@@ -4357,7 +4345,6 @@
       "PARTIAL": [
         "FINAL-37-CR-TRANSLATION-COMPONENT",
         "WIC-BACKLOG-TOOL006-20260927",
-        "WIC-BACKLOG-TOOL002-20260927",
         "WIC-BACKLOG-TOOL001-20260927",
         "WIC-BACKLOG-TOOL043-20260927",
         "WIC-BACKLOG-TOOL045-046-047-20260927",
@@ -4398,7 +4385,7 @@
       "AUTO_REQUEUED": [
         "FINAL-37-CR-TRANSLATION-COMPONENT"
       ],
-      "NEXT_WORK": "WIC-BACKLOG-TOOL002-20260927",
+      "NEXT_WORK": "WIC-BACKLOG-TOOL001-20260927",
       "GLOBAL_REQUIREMENT_RECONCILIATION_PROVEN": true,
       "STATUS_CLASSIFICATION_PROVEN": true,
       "ALL_ACTIONABLE_UNFINISHED_AUTO_REQUEUED_WITHOUT_OBSERVER_INPUT": true,

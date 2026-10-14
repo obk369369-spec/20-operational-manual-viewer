@@ -596,7 +596,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -663,7 +663,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -730,7 +730,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -797,7 +797,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -864,7 +864,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -931,7 +931,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -998,7 +998,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1065,7 +1065,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38501581693",
+        "run_id": "38502553082",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -4336,7 +4336,7 @@
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",
       "root_id": "TOOL002",
       "target_tool": "TOOL002",
-      "status": "OPEN",
+      "status": "PASS_LOCKED",
       "revision": 1,
       "latest_directive": "Reuse Playwright PASS; only independent verifier, production final validation, possible remote evidence/read-back; auth blocker => HOLD_AUTH with resume condition.",
       "source": "TOOL044_CANONICAL_INTAKE",
@@ -4346,7 +4346,12 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null,
-      "residual_classification": "PARTIAL"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "TOOL002_CANONICAL_RUNTIME_AND_DEPLOYED_READBACK",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOOL002_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",

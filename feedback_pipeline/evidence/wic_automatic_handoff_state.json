@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-14T02:33:09.134114+00:00",
+  "updated_at": "2026-10-14T02:43:56.589725+00:00",
   "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-  "unfinished_detected": 28,
+  "unfinished_detected": 27,
   "common_roots": [
     {
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -96,12 +96,6 @@
       ]
     },
     {
-      "root_id": "TOOL002",
-      "demands": [
-        "WIC-BACKLOG-TOOL002-20260927"
-      ]
-    },
-    {
       "root_id": "TOOL006",
       "demands": [
         "WIC-BACKLOG-TOOL006-20260927"
@@ -170,11 +164,6 @@
       "capabilities": [
         "PAST_FAILURE_FIXTURE_GENERATION"
       ]
-    },
-    {
-      "root_id": "TOOL002",
-      "demand_id": "WIC-BACKLOG-TOOL002-20260927",
-      "capabilities": []
     },
     {
       "root_id": "TOOL001",
@@ -365,7 +354,7 @@
     "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929"
   ],
   "work_batch_full": true,
-  "work_batch_units": 13,
+  "work_batch_units": 12,
   "work_batch_full_threshold": 10,
   "threshold_basis": {
     "completed_jobs": 92,
