@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-14",
+  "workspace": {
+    "provider": "Render",
+    "name": "My Workspace",
+    "account": "obk369369@gmail.com",
+    "workspace_id": "tea-dar0hq8473hc739cic00",
+    "authorization": "APPROVED_FOR_WIC_EXTERNAL_CONTROL_AND_DEVELOPMENT_FACTORY",
+    "paid_resource_creation": "DENIED_WITHOUT_SEPARATE_USER_APPROVAL"
+  },
+  "existing_free_runtime": {
+    "service_id": "srv-dar0nu49v7es7392lim0",
+    "service_name": "20-operational-manual-viewer",
+    "plan": "free",
+    "url": "https://two0-operational-manual-viewer.onrender.com",
+    "deploy_id": "dep-db7j6b60tbcc73bubdc0",
+    "deploy_commit": "d1bd176ea22765e66bd59b584ec4111ba20b1d2f",
+    "deploy_status": "live"
+  },
+  "actual_execution": {
+    "health": "PASS",
+    "job_id": "render-env2-d26eb0aa44a1",
+    "execution_status": "PASS",
+    "heartbeat": "PASS",
+    "checkpoint": "PASS",
+    "expected": "ENV2_EXECUTION_CONTRACT_ACCEPTED",
+    "actual": "ENV2_EXECUTION_CONTRACT_ACCEPTED",
+    "expected_actual_match": true,
+    "github_actions_required_for_job": false,
+    "user_manual_relay_required": 0
+  },
+  "result_return": {
+    "tool016_return": "HOLD_NO_RETURN_URL",
+    "tool016_ack": "PENDING_EXTERNAL_RETURN_PATH",
+    "existing_evidence_readback": [
+      "feedback_pipeline/evidence/T16-T44-RENDER-ENV2-RETURN-PATH-20260925.json",
+      "feedback_pipeline/evidence/T16-T44-RENDER-ENV2-INTEGRATION-20260925.json"
+    ],
+    "receiver_discovery": "NO_EXISTING_AUTHENTICATED_HTTP_RECEIVER_FOUND_IN_SCOPED_RUNTIME_PATHS",
+    "truth_boundary": "Independent execution is proven, but factory admission is not PASS until one authenticated result return and TOOL016 receipt/readback are observed."
+  },
+  "gates": {
+    "EXTERNAL_CONTROL_RUNTIME": "PASS",
+    "EXTERNAL_FACTORY_JOB_EXECUTION": "PASS",
+    "EXTERNAL_FACTORY_RESULT_RETURN": "HOLD",
+    "EXTERNAL_FACTORY_ADMISSION_GATE": "BLOCKED",
+    "PRODUCT_WORK_WITHOUT_FACTORY": "BLOCKED",
+    "NEXT_PRODUCT_WORK": "BLOCKED"
+  },
+  "minimal_resume_condition": {
+    "required": [
+      "authenticated TOOL016 HTTP result receiver URL",
+      "receiver credential/token when required",
+      "one Render /selftest round trip",
+      "TOOL016 receipt and canonical readback"
+    ],
+    "forbidden": [
+      "paid Render resource creation without separate approval",
+      "fake or non-persistent return endpoint",
+      "product work before admission PASS"
+    ]
+  },
+  "open_counts_unchanged": {
+    "OPEN": 26,
+    "INTERNAL_OPEN": 11,
+    "HOLD": 15
+  }
+}
