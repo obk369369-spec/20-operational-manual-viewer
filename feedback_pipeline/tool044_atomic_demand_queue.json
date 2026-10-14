@@ -576,7 +576,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -643,7 +643,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -710,7 +710,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -777,7 +777,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -844,7 +844,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -911,7 +911,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -978,7 +978,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1045,7 +1045,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38491995663",
+        "run_id": "38495325418",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -4240,7 +4240,7 @@
       "demand_id": "WIC-BACKLOG-TOOL013-20260927",
       "root_id": "TOOL013",
       "target_tool": "TOOL013",
-      "status": "RETURNED_HOLD_VERIFIED_COMPONENTS_REQUIRED",
+      "status": "PASS_LOCKED",
       "revision": 1,
       "latest_directive": "Preserve old two HTML files; complete separate 13번_완전개선본.html for Korean title without semantic reversal, English original preservation, publisher rules, official 18 secondary categories, required/missing/duplicate validation, actual Excel save and reopen. Reuse 114 files/823 rows, BIFF8, mapping, regime, cache/resume PASS. Keep NEXT separate.",
       "source": "TOOL044_CANONICAL_INTAKE",
@@ -4256,7 +4256,12 @@
         "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool013",
         "resume_condition": "VERIFIED_TRANSLATION_AND_CANONICAL_CATEGORY_COMPONENTS_AVAILABLE"
       },
-      "residual_classification": "PARTIAL"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "TOOL013_ACTUAL_PRODUCT_CLOSURE",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL006-20260927",

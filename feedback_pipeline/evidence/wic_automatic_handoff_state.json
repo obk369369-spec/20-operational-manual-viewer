@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-14T00:45:58.607638+00:00",
+  "updated_at": "2026-10-14T01:22:11.417341+00:00",
   "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-  "unfinished_detected": 34,
+  "unfinished_detected": 33,
   "common_roots": [
     {
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -129,12 +129,6 @@
       "root_id": "TOOL006",
       "demands": [
         "WIC-BACKLOG-TOOL006-20260927"
-      ]
-    },
-    {
-      "root_id": "TOOL013",
-      "demands": [
-        "WIC-BACKLOG-TOOL013-20260927"
       ]
     },
     {
@@ -404,12 +398,6 @@
       "capabilities": [],
       "reason": "WAITING_24H_RETURNED",
       "resume_condition": "NATURAL_SCHEDULE_EVIDENCE_REACHES_24_HOURS"
-    },
-    {
-      "root_id": "TOOL013",
-      "demand_id": "WIC-BACKLOG-TOOL013-20260927",
-      "capabilities": [],
-      "reason": "RETURNED_HOLD_VERIFIED_COMPONENTS_REQUIRED"
     },
     {
       "root_id": "TOOL006",
