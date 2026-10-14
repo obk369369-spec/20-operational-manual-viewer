@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-13T22:53:51.208908+00:00",
+  "created_at": "2026-10-14T01:58:21.017959+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "38480780402",
+  "run_id": "38498545547",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "07e446d374e1aa28dc96dee506dbaffa",
+    "token_id": "afe82307344a868c9875468190f54bc6",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "f8f6c8a3d65d9a85ba64300123b5b157bc4ef7e7",
+    "git_sha": "674088c5b2470facd0043754e8a1de173fde7eea",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -103,7 +103,7 @@
   "central_backlog_execution": [],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-38480780402",
+    "trace_id": "REMOTE-38498545547",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -122,7 +122,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "68b850675c51dfe0ab3db74f1accbe605b46404622a03415567fb019dba6d72c",
+    "signature": "8abfb83cfd3ed83778dcacbecf3da1d184eed916a2692880e3ea5d03adb14db1",
     "deltas": [
       0,
       0,
@@ -178,11 +178,11 @@
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
     "first_started_at": "2026-10-05T07:44:13+00:00",
-    "last_finished_at": "2026-10-13T21:31:06+00:00",
-    "elapsed_hours": 205.781,
-    "window_start": "2026-10-12T21:31:06+00:00",
-    "run_count": 9,
-    "success_count": 9,
+    "last_finished_at": "2026-10-13T22:53:41+00:00",
+    "elapsed_hours": 207.158,
+    "window_start": "2026-10-12T22:53:41+00:00",
+    "run_count": 10,
+    "success_count": 10,
     "failure_count": 0,
     "recovered_failures": [],
     "unrecovered_failures": [],
