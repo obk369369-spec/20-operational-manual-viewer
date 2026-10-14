@@ -1,0 +1,113 @@
+name: WIC External Development Structure Probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify-release-rollback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Baseline health and requirements lock
+        run: |
+          python -m json.tool external_structure_probe/requirements.json >/dev/null
+          python -m unittest external_structure_probe.test_probe
+      - name: Intentional regression must be detected and release blocked
+        run: |
+          if PROBE_BROKEN=1 python -m unittest external_structure_probe.test_probe; then
+            echo 'BROKEN_FALSE_PASS' >&2
+            exit 1
+          fi
+          echo 'BROKEN_DETECTION=PASS' > /tmp/gates.env
+          echo 'REGRESSION_DETECTION=PASS' >> /tmp/gates.env
+          echo 'FAIL_RELEASE_BLOCK=PASS' >> /tmp/gates.env
+      - name: Minimal fix, full regression and actual-data E2E
+        run: |
+          python -m unittest discover -s external_structure_probe -p 'test_*.py'
+          mkdir -p /tmp/probe-release
+          python external_structure_probe/probe.py external_structure_probe/golden_input.json /tmp/probe-release/output.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual=json.loads(Path('/tmp/probe-release/output.json').read_text())
+          expected=json.loads(Path('external_structure_probe/golden_output.json').read_text())
+          assert actual == expected
+          PY
+          cp external_structure_probe/requirements.json /tmp/probe-release/
+          cp external_structure_probe/golden_input.json /tmp/probe-release/
+          cp external_structure_probe/golden_output.json /tmp/probe-release/
+          (cd /tmp/probe-release && zip -q ../wic-external-structure-probe.zip *)
+          echo 'ACTUAL_E2E=PASS' >> /tmp/gates.env
+      - name: Final artifact validation
+        run: |
+          mkdir /tmp/artifact-readback
+          unzip -q /tmp/wic-external-structure-probe.zip -d /tmp/artifact-readback
+          cmp external_structure_probe/golden_output.json /tmp/artifact-readback/golden_output.json
+          cmp /tmp/probe-release/output.json /tmp/artifact-readback/output.json
+          sha256sum /tmp/wic-external-structure-probe.zip | tee /tmp/artifact.sha256
+          echo 'ARTIFACT_VALIDATION=PASS' >> /tmp/gates.env
+      - name: Actual trial release and released artifact read-back
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="wic-external-structure-probe-${GITHUB_RUN_ID}"
+          gh release create "$tag" /tmp/wic-external-structure-probe.zip --repo "$GITHUB_REPOSITORY" --title "$tag" --notes 'Ephemeral external release-governor verification probe' --prerelease
+          mkdir /tmp/released-readback
+          gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern 'wic-external-structure-probe.zip' --dir /tmp/released-readback
+          cmp /tmp/wic-external-structure-probe.zip /tmp/released-readback/wic-external-structure-probe.zip
+          echo "$tag" > /tmp/release-tag
+          echo 'ACTUAL_RELEASE=PASS' >> /tmp/gates.env
+          echo 'RELEASED_READBACK=PASS' >> /tmp/gates.env
+      - name: Rollback trial release and verify absence
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="wic-external-structure-probe-${GITHUB_RUN_ID}"
+          gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --cleanup-tag --yes
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'ROLLBACK_FAILED' >&2
+            exit 1
+          fi
+          echo 'ROLLBACK=PASS' >> /tmp/gates.env
+      - name: Create independent evidence
+        if: ${{ success() }}
+        run: |
+          python - <<'PY'
+          import hashlib,json,os
+          from datetime import datetime,timezone
+          from pathlib import Path
+          gates=dict(line.split('=',1) for line in Path('/tmp/gates.env').read_text().splitlines())
+          required=['BROKEN_DETECTION','REGRESSION_DETECTION','FAIL_RELEASE_BLOCK','ACTUAL_E2E','ARTIFACT_VALIDATION','ACTUAL_RELEASE','RELEASED_READBACK','ROLLBACK']
+          assert all(gates.get(k)=='PASS' for k in required)
+          artifact=Path('/tmp/wic-external-structure-probe.zip')
+          evidence={
+            'schema':'wic.external-development-structure-evidence.v1',
+            'run_id':os.environ['GITHUB_RUN_ID'],
+            'commit':os.environ['GITHUB_SHA'],
+            'recorded_at':datetime.now(timezone.utc).isoformat(),
+            'scope':'INDEPENDENT_PROBE_ONLY_NO_WIC_PRODUCT_MUTATION',
+            'ready_made_components':['GitHub Actions','actions/checkout@v4','actions/setup-python@v5','GitHub Releases','actions/upload-artifact@v4'],
+            **{k:'PASS' for k in required},
+            'FULL_REGRESSION':'PASS',
+            'EVIDENCE_READBACK':'PENDING_ARTIFACT_DOWNLOAD',
+            'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),
+            'platform_gate':'PASS_AFTER_EVIDENCE_READBACK'
+          }
+          Path('/tmp/WIC_EXTERNAL_DEVELOPMENT_STRUCTURE_EVIDENCE.json').write_text(json.dumps(evidence,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: ${{ success() }}
+        with:
+          name: wic-external-development-structure-evidence
+          path: |
+            /tmp/WIC_EXTERNAL_DEVELOPMENT_STRUCTURE_EVIDENCE.json
+            /tmp/wic-external-structure-probe.zip
+          if-no-files-found: error

@@ -1,0 +1,18 @@
+{
+  "schema": "wic.external-development-structure-probe.v1",
+  "scope": "INDEPENDENT_PROBE_ONLY_NO_WIC_PRODUCT_MUTATION",
+  "requirements_locked": true,
+  "actual_input": "external_structure_probe/golden_input.json",
+  "golden_output": "external_structure_probe/golden_output.json",
+  "do_not_touch": ["existing WIC products", "PASS_LOCK records", "deployed product targets"],
+  "release_conditions": [
+    "baseline_pass",
+    "broken_detection_pass",
+    "regression_detection_pass",
+    "failed_release_blocked",
+    "actual_e2e_pass",
+    "artifact_validation_pass",
+    "released_readback_pass",
+    "rollback_pass"
+  ]
+}
