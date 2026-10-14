@@ -576,7 +576,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -643,7 +643,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -710,7 +710,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -777,7 +777,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -844,7 +844,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -911,7 +911,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -978,7 +978,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1045,7 +1045,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38496214814",
+        "run_id": "38496261239",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -4289,7 +4289,7 @@
       "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
       "root_id": "TOOL041-007-042",
       "target_tool": "TOOL041-007-042",
-      "status": "RETURNED_HOLD_ACTUAL_CUSTOMER_EVIDENCE_REQUIRED",
+      "status": "PASS_LOCKED",
       "revision": 1,
       "latest_directive": "Reuse existing functions/real-customer PASS; verify no-manual-relay customer E2E TOOL041 -> TOOL007 -> TOOL042; HOLD missing evidence without guessing; supply-price blank is intentional normal.",
       "source": "TOOL044_CANONICAL_INTAKE",
@@ -4305,7 +4305,12 @@
         "evidence": "feedback_pipeline/TOOL016_ERROR_ROOT_LEDGER.md#tool041-tool007-tool042",
         "resume_condition": "CURRENT_VERIFIED_CUSTOMER_AND_RUNTIME_EVIDENCE_AVAILABLE"
       },
-      "residual_classification": "PARTIAL"
+      "residual_classification": "COMPLETE",
+      "pass_lock": {
+        "contract_id": "TOOL041_007_042_ACTUAL_CUSTOMER_PRODUCT_CLOSURE",
+        "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOOL041_007_042_PRODUCT_CLOSURE_20261014.json",
+        "evidence_readback": "PASS"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-TOOL002-20260927",

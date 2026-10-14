@@ -126,9 +126,9 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T01:31:45.631939+00:00",
+      "updated_at": "2026-10-14T01:32:16.854741+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-      "unfinished_detected": 33,
+      "unfinished_detected": 32,
       "common_roots": [
         {
           "root_id": "24H-AUTONOMOUS-CIRCULATION",
@@ -261,12 +261,6 @@
           "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
           "demands": [
             "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-          ]
-        },
-        {
-          "root_id": "TOOL041-007-042",
-          "demands": [
-            "WIC-BACKLOG-TOOL041-007-042-20260927"
           ]
         },
         {
@@ -530,12 +524,6 @@
           "demand_id": "WIC-BACKLOG-TOOL006-20260927",
           "capabilities": [],
           "reason": "RETURNED_HOLD_GOLDEN_PAIR_REQUIRED"
-        },
-        {
-          "root_id": "TOOL041-007-042",
-          "demand_id": "WIC-BACKLOG-TOOL041-007-042-20260927",
-          "capabilities": [],
-          "reason": "RETURNED_HOLD_ACTUAL_CUSTOMER_EVIDENCE_REQUIRED"
         },
         {
           "demand_id": "WIC-BACKLOG-TOOL043-20260927",
@@ -1018,12 +1006,12 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-14T01:31:45.626283+00:00",
+      "updated_at": "2026-10-14T01:32:16.848984+00:00",
       "counts": {
-        "UNFINISHED": 2,
         "PLATFORM_HOLD": 4,
-        "COMPLETE": 61,
         "LONG_TERM_HOLD": 5,
+        "UNFINISHED": 2,
+        "COMPLETE": 61,
         "PARTIAL": 1
       },
       "cr_status": {
@@ -3566,7 +3554,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-14T01:31:45.612272+00:00",
+      "updated_at": "2026-10-14T01:32:16.833996+00:00",
       "UNFINISHED_SCANNED": 29,
       "ALREADY_PASS_EXCLUDED": 93,
       "ROOTS_MERGED": 0,
@@ -4199,13 +4187,17 @@
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-14T01:31:45.612272+00:00",
+      "LAST_HEARTBEAT": "2026-10-14T01:32:16.833996+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
-      "PASS_LOCK_RECONCILED": [],
-      "PASS_LOCK_RECONCILED_COUNT": 0,
-      "PASS_LOCK_IMPORTED": []
+      "PASS_LOCK_RECONCILED": [
+        "WIC-BACKLOG-TOOL041-007-042-20260927"
+      ],
+      "PASS_LOCK_RECONCILED_COUNT": 1,
+      "PASS_LOCK_IMPORTED": [
+        "WIC-BACKLOG-TOOL041-007-042-20260927"
+      ]
     },
     "work_ready_candidates": {
       "8462236db3ade9342f54": {
@@ -4329,7 +4321,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-14T01:31:45.612272+00:00",
+      "updated_at": "2026-10-14T01:32:16.833996+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
@@ -4383,6 +4375,7 @@
         "WIC-BACKLOG-ROOT6-20260927",
         "WIC-BACKLOG-ROOT7-20260927",
         "WIC-BACKLOG-TOOL013-20260927",
+        "WIC-BACKLOG-TOOL041-007-042-20260927",
         "WIC-BACKLOG-TOOL016-20260927",
         "WIC-BACKLOG-TOOL044-20260927",
         "WIC-BACKLOG-CONTROL-TOWER-20260927",
@@ -4419,7 +4412,6 @@
       "PARTIAL": [
         "FINAL-37-CR-TRANSLATION-COMPONENT",
         "WIC-BACKLOG-TOOL006-20260927",
-        "WIC-BACKLOG-TOOL041-007-042-20260927",
         "WIC-BACKLOG-TOOL002-20260927",
         "WIC-BACKLOG-TOOL001-20260927",
         "WIC-BACKLOG-TOOL043-20260927",
