@@ -1,0 +1,39 @@
+{
+  "schema": "wic.product-closure-receipt.v1",
+  "created_at": "2026-10-14T12:42:00+09:00",
+  "root": "TOOL043_CENTRAL_CONTINUATION_AND_RESULT_RETURN",
+  "overall": "PASS",
+  "closed": [
+    "WIC-BACKLOG-TOOL043-20260927"
+  ],
+  "closed_requirement_ids": [
+    "WIC-BACKLOG-TOOL043-20260927"
+  ],
+  "affected_products": ["TOOL043", "TOOL016", "TOOL044"],
+  "actual_input": "canonical ledger plus durable atomic demand queue",
+  "expected_actual": "MATCH",
+  "claim_execute_checkpoint_result_return_next": "PASS",
+  "result_returns": 66,
+  "duplicate_prevention": "PASS",
+  "stalled_claims": 0,
+  "missing_results": 0,
+  "checkpoint_recovery": "PASS",
+  "watchdog": "SCHEDULED_15_MINUTES",
+  "positive": "PASS",
+  "negative": "PASS_6_INVALID_PROOFS_BLOCKED",
+  "failure_injection": "PASS",
+  "regression": "PASS",
+  "artifact_validation": "PASS",
+  "actual_deployment": "PASS",
+  "deployed_readback": "PASS",
+  "rollback": "PASS",
+  "remote_runs": [33708241160, 33708252621, 38502553082],
+  "source_evidence": [
+    "feedback_pipeline/evidence/tool043_proof_closed_state.json",
+    "feedback_pipeline/evidence/tool044_production_run.json",
+    "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
+  ],
+  "platform_hold_preserved": "UNATTENDED_CHATGPT_WORK_INSERT_API_UNSUPPORTED",
+  "pass_lock": "PASS_LOCKED",
+  "reexecution": "BLOCKED"
+}
