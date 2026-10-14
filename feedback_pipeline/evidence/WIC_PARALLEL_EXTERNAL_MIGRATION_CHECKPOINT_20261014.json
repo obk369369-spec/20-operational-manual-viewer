@@ -1,0 +1,188 @@
+{
+  "schema": "wic_parallel_external_migration_checkpoint_v1",
+  "created_at": "2026-10-14T00:00:00+09:00",
+  "repository": "obk369369-spec/20-operational-manual-viewer",
+  "execution_mode": "CHECKPOINT_RESUME_NO_REDISCOVERY",
+  "discovery_checkpoint": {
+    "cloud_candidates": "COMPLETED",
+    "canonical_socket_audit": "COMPLETED",
+    "local_automation_candidates": "PARTIAL",
+    "workspace_routing_discovery": "TIMEOUT",
+    "retry_same_discovery": "BLOCKED"
+  },
+  "parallel_external_device_discovery": "PASS_WITH_PARTIAL_TIMEOUT_ISOLATED",
+  "parallel_migration": "BLOCKED_NO_USABLE_FULL_TOP_PLATFORM",
+  "external_candidates_total": 10,
+  "candidates": [
+    {
+      "name": "GitHub canonical",
+      "status": "CONNECTED",
+      "roles": [
+        "SOURCE",
+        "CANONICAL_STATE",
+        "EVIDENCE",
+        "READBACK"
+      ]
+    },
+    {
+      "name": "GitHub Actions",
+      "status": "CONNECTED",
+      "roles": [
+        "INTAKE",
+        "JOB",
+        "EXECUTION",
+        "STATUS"
+      ],
+      "limitation": "not independent from GitHub control plane"
+    },
+    {
+      "name": "repository_dispatch",
+      "status": "CONNECTED",
+      "roles": [
+        "INTAKE",
+        "RESULT",
+        "ACK"
+      ]
+    },
+    {
+      "name": "Render free web service",
+      "status": "CONNECTED_PASS_LOCKED_FACTORY_PATH_ONLY",
+      "roles": [
+        "EXECUTION",
+        "RESULT_RETURN"
+      ],
+      "limitation": "idle spin-down; no durable queue/controller; ephemeral local storage"
+    },
+    {
+      "name": "Deno",
+      "status": "EVIDENCE_ONLY_NOT_CONNECTED",
+      "limitation": "no live account/app/job/readback; current Deploy queue gap"
+    },
+    {
+      "name": "CircleCI",
+      "status": "EVIDENCE_ONLY_NOT_CONNECTED",
+      "limitation": "no live org/project/token/pipeline; CI runner is not durable control owner"
+    },
+    {
+      "name": "Supabase",
+      "status": "EVIDENCE_ONLY_NOT_CONNECTED",
+      "limitation": "no live project/credentials/queue/run/readback"
+    },
+    {
+      "name": "Kestra",
+      "status": "PARTIAL_LOCAL_PC_DEPENDENT",
+      "limitation": "not proven independent external runtime"
+    },
+    {
+      "name": "Node-RED",
+      "status": "PARTIAL_LOCAL_PC_DEPENDENT",
+      "limitation": "not proven independent external runtime"
+    },
+    {
+      "name": "FlowWink_Paperclip_and_other_mentions",
+      "status": "PLATFORM_LIMIT_OR_EVIDENCE_ONLY",
+      "limitation": "workspace routing timeout; no current live proof"
+    }
+  ],
+  "actually_usable_external_devices": 4,
+  "devices_reused": [
+    "GitHub canonical",
+    "GitHub Actions",
+    "repository_dispatch",
+    "Render free web service"
+  ],
+  "devices_rejected_count": 6,
+  "rejection_reasons": [
+    "No current live connection/readback proof",
+    "Local-PC dependency",
+    "No durable queue/control ownership",
+    "No full development/autofix/recovery/release ownership",
+    "Workspace routing discovery timeout isolated as GAP"
+  ],
+  "gap_compression": {
+    "raw_gaps_collected": 15,
+    "raw_gaps": [
+      "general chat source auto-capture limit",
+      "unattended intake-to-Work insertion limit",
+      "external development owner absent",
+      "durable queue/control authority absent",
+      "independent heartbeat/watchdog absent",
+      "universal job identity propagation incomplete",
+      "automatic fix ownership absent",
+      "bounded retry/recovery/rollback ownership incomplete",
+      "retest/regression ownership incomplete",
+      "Release Governor not wired as full external development owner",
+      "user-visible product deploy/readback not proven",
+      "universal evidence chain incomplete",
+      "Work credit/manual recovery dependency",
+      "workspace routing discovery timeout",
+      "local automation independence unproven"
+    ],
+    "deduped_gaps": 4,
+    "deduped_clusters": [
+      "external control and persistence ownership",
+      "canonical job identity and continuity",
+      "development-to-recovery lifecycle ownership",
+      "product/evidence/user-surface closure"
+    ],
+    "roots_before_compression": 15,
+    "roots_after_compression": 1,
+    "deepest_root": "ABSOLUTE-BOTTOM-ROOT-0",
+    "deepest_root_definition": "NO_SINGLE_DURABLE_EXTERNAL_IDENTITY_BOUND_CONTROL_CONTRACT_OWNS_AND_ENFORCES_SOURCE_TO_CANONICAL_STATE_INCLUDING_DEVELOPMENT_AUTOFIX_RECOVERY_RELEASE",
+    "root_handling": "EXISTING_ROOT_OCCURRENCE_INCREMENT_ONLY",
+    "maximum_root_compression": "PASS"
+  },
+  "minimum_common_fix": {
+    "required": "Bind the existing common socket contract to one independently durable external control authority that owns job identity, queue/state persistence, development/autofix, validation, retry/recovery/rollback, release/deploy, result/ack/evidence and canonical readback.",
+    "applied": false,
+    "reason": "No currently connected candidate provides the required ownership. Applying it would require a new external resource/credentials or new platform construction, both unavailable or prohibited in this execution."
+  },
+  "socket_mapping": {
+    "SOURCE": "GitHub canonical (connected); general Chat capture limited",
+    "INTAKE": "repository_dispatch and TOOL016 (partial)",
+    "JOB": "GitHub Actions manifest plus existing Tool044 JSON queue (partial; no independent owner)",
+    "DEVELOPMENT": "Codex Work dependency",
+    "EXECUTION": "GitHub Actions plus Render factory path",
+    "STATUS": "representative Render identity-bound receipt",
+    "HEARTBEAT": "GAP_no_independent_durable_owner",
+    "RESULT": "Render to repository_dispatch",
+    "ERROR": "Render lane fail-closed validation",
+    "RETRY_RECOVERY_ROLLBACK": "GAP_not_owned_end_to_end",
+    "ARTIFACT": "GitHub canonical evidence",
+    "RELEASE": "Release Governor pass-locked but not full-job owner",
+    "DEPLOY": "Render deploy only; user product lifecycle not proven",
+    "READBACK": "GitHub canonical",
+    "ACK": "Render ACK and historical TOOL016/044 ACK",
+    "EVIDENCE": "GitHub canonical",
+    "CANONICAL_STATE": "GitHub main"
+  },
+  "representative_external_job": {
+    "reused_without_rerun": true,
+    "status": "PASS_LOCKED_FACTORY_PATH_ONLY",
+    "job_id": "render-env2-gh-38536231950",
+    "execution_id": "render-exec-0e87793c9763",
+    "result_id": "render-result-effa64229a99",
+    "ack_id": "render-ack-7d3a889e350e",
+    "evidence": "feedback_pipeline/evidence/WIC_EXTERNAL_FACTORY_FULL_ROUNDTRIP_20261014.json",
+    "evidence_commit": "bc46a4548c347575a213ccc102b69e68fa8540aa"
+  },
+  "common_fixes_applied": 0,
+  "components_recovered_by_common_fix": 0,
+  "sockets_connected": 4,
+  "final_gates": {
+    "CODEX_WORK_AS_PRIMARY_WORKSPACE": 1,
+    "WORK_CREDIT_EXECUTION_DEPENDENCY": 1,
+    "EXTERNAL_TOP_PLATFORM": "FAIL",
+    "EXTERNAL_WORKSPACE_MIGRATION": "FAIL",
+    "EXTERNAL_EVIDENCE_CHAIN": "PARTIAL",
+    "WIC_WORK_START": "BLOCKED",
+    "PRODUCT_WORK": "NOT_STARTED",
+    "OPEN26_WORK": "NOT_STARTED",
+    "WORK_CREDIT_CONSUMPTION": "STOP"
+  },
+  "exact_blocker": "A currently connected, independently durable external control authority capable of owning the complete identity-bound lifecycle does not exist. The four live components prove only a factory execution/result-return lane, not external workspace ownership.",
+  "next_resume_condition": "Provide or prove an already-authorized free external control authority with durable queue/state and API credentials, then bind the existing common socket contract and run one representative full development-to-canonical-state job.",
+  "paid_resources_created": 0,
+  "product_changes": 0,
+  "pass_locks_reopened": 0
+}
