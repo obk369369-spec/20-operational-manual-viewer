@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-15T00:37:13.042149+00:00",
-  "UNFINISHED_SCANNED": 23,
+  "updated_at": "2026-10-15T01:17:05.063706+00:00",
+  "UNFINISHED_SCANNED": 24,
   "ALREADY_PASS_EXCLUDED": 99,
   "ROOTS_MERGED": 0,
   "WORK_FIXABLE_ROOTS": 0,
   "WORK_REQUIRED": [],
   "WORK_BATCHES": [],
-  "TOOL044_AUTO_HANDED_OFF": 13,
+  "TOOL044_AUTO_HANDED_OFF": 14,
   "TOOL044_QUEUE": [
     {
       "demand_id": "WIC-BACKLOG-TOOL001-20260927",
@@ -86,6 +86,12 @@
       "root_id": "WIC-ROOT-MAX-PLATFORM-FACTORY",
       "target_tool": "TOOL016-TOOL028-TOOL044-TOOL048",
       "atomic_capabilities": []
+    },
+    {
+      "demand_id": "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
+      "root_id": "WIC-ROOT-MAX-PLATFORM-FACTORY",
+      "target_tool": "TOOL044",
+      "atomic_capabilities": []
     }
   ],
   "WORK_REQUIRED_REMAINDER": 0,
@@ -119,7 +125,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 13,
+    "ready": 14,
     "waiting": 10,
     "next_demand": "WIC-BACKLOG-TOOL001-20260927",
     "duplicate_demand_ids": [],
@@ -681,7 +687,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-15T00:37:13.042149+00:00",
+  "LAST_HEARTBEAT": "2026-10-15T01:17:05.063706+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0,
