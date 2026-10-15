@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-15T00:59:14.888427+00:00",
+  "updated_at": "2026-10-15T01:33:18.209451+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -921,11 +921,11 @@
   },
   "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-15T01:59:14.888436+00:00",
+  "next_run_at": "2026-10-15T02:33:18.209459+00:00",
   "handoff_traces": {
-    "REMOTE-38663099585": {
+    "REMOTE-38666262636": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-38663099585",
+      "trace_id": "REMOTE-38666262636",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -942,20 +942,20 @@
   },
   "runtime_progress_gate": {
     "seen_signatures": [
-      "b0775ace478bf4d88a0f07958722017e170e5fa44b6b668325081b2307a96612",
-      "1d0b27853556c534370a1a1918ebdadcc35b5b69011414a66d48ac984a99fab8"
+      "875526e9c7f868afb59228e77c94f7a391b8542b6c3053747f727f109d75fbcf",
+      "db23498aabd26c970ff355be0108b2b408f8f660088035449adffddb9caf8868"
     ],
     "stopped_roots": {},
     "last_checkpoint": {
-      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-38663099585",
-      "CENTRAL_RUNTIME_CYCLE": "38663099585"
+      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-38666262636",
+      "CENTRAL_RUNTIME_CYCLE": "38666262636"
     },
     "events": [
       {
         "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "b0775ace478bf4d88a0f07958722017e170e5fa44b6b668325081b2307a96612",
+        "signature": "875526e9c7f868afb59228e77c94f7a391b8542b6c3053747f727f109d75fbcf",
         "deltas": [
           0,
           0,
@@ -968,7 +968,7 @@
         "root_id": "CENTRAL_RUNTIME_CYCLE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "1d0b27853556c534370a1a1918ebdadcc35b5b69011414a66d48ac984a99fab8",
+        "signature": "db23498aabd26c970ff355be0108b2b408f8f660088035449adffddb9caf8868",
         "deltas": [
           0,
           0,
@@ -990,9 +990,9 @@
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
     "first_started_at": "2026-10-05T07:44:13+00:00",
-    "last_finished_at": "2026-10-14T22:21:25+00:00",
-    "elapsed_hours": 230.62,
-    "window_start": "2026-10-13T22:21:25+00:00",
+    "last_finished_at": "2026-10-15T00:59:04+00:00",
+    "elapsed_hours": 233.248,
+    "window_start": "2026-10-14T00:59:04+00:00",
     "run_count": 13,
     "success_count": 13,
     "failure_count": 0,
@@ -1048,6 +1048,14 @@
         "right_created_at": "2026-10-14T22:21:25Z",
         "gap_hours": 3.655,
         "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 38647069991,
+        "left_created_at": "2026-10-14T22:21:25Z",
+        "right_run_id": 38663099585,
+        "right_created_at": "2026-10-15T00:59:04Z",
+        "gap_hours": 2.627,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
       }
     ],
     "schedule_gap_detected": true,
@@ -1056,13 +1064,13 @@
   },
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "38663099585",
+    "run_id": "38666262636",
     "run_attempt": "1",
     "processed": [],
     "held": [],
     "handoff": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-38663099585",
+      "trace_id": "REMOTE-38666262636",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -1081,7 +1089,7 @@
       "root_id": "CENTRAL_RUNTIME_CYCLE",
       "decision": "ALLOW",
       "reason": null,
-      "signature": "1d0b27853556c534370a1a1918ebdadcc35b5b69011414a66d48ac984a99fab8",
+      "signature": "db23498aabd26c970ff355be0108b2b408f8f660088035449adffddb9caf8868",
       "deltas": [
         0,
         0,
