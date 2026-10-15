@@ -596,7 +596,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -663,7 +663,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -730,7 +730,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -797,7 +797,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -864,7 +864,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -931,7 +931,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -998,7 +998,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -1065,7 +1065,7 @@
       "residual_classification": "COMPLETE",
       "result_return": {
         "tool016_ack": "RECEIVED",
-        "run_id": "38715581162",
+        "run_id": "38730099019",
         "evidence": [
           "feedback_pipeline/evidence/wic_zero_touch_observer_report.json",
           "feedback_pipeline/evidence/tool016_visible_handoff_state.json"
@@ -6012,7 +6012,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e80923a16e0fae2ea5e9",
       "root_id": "ef2071ba71fe331e0775",
@@ -6033,7 +6033,11 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
           "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-10-15T11:50:05.330044+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
@@ -6041,7 +6045,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e80923a16e0fae2ea5e9",
       "root_id": "ef2071ba71fe331e0775",
@@ -6062,7 +6066,11 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
           "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION"
         }
-      ]
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-10-15T11:50:05.330044+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION",
@@ -6070,7 +6078,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "e80923a16e0fae2ea5e9",
       "root_id": "ef2071ba71fe331e0775",
@@ -6091,7 +6099,11 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
           "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION"
         }
-      ]
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-10-15T11:50:05.330044+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
@@ -6099,7 +6111,7 @@
       "atomic_capabilities": [
         "INPUT_CONTRACT_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "932359acefe36952e706",
       "root_id": "4d2d53344132e0ccbf57",
@@ -6120,7 +6132,11 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
           "TOOL044_DEMAND_ID": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION"
         }
-      ]
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-10-15T11:50:05.330044+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
@@ -6128,7 +6144,7 @@
       "atomic_capabilities": [
         "EXPECTED_ACTUAL_VALIDATION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "932359acefe36952e706",
       "root_id": "4d2d53344132e0ccbf57",
@@ -6149,7 +6165,11 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
           "TOOL044_DEMAND_ID": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION"
         }
-      ]
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-10-15T11:50:05.330044+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     },
     {
       "demand_id": "932359acefe36952e706-FAILURE_ISOLATION",
@@ -6157,7 +6177,7 @@
       "atomic_capabilities": [
         "FAILURE_ISOLATION"
       ],
-      "status": "OPEN",
+      "status": "READY_AUTO_REQUEUED",
       "source": "TOOL044_REQUEST_INBOX",
       "request_id": "932359acefe36952e706",
       "root_id": "4d2d53344132e0ccbf57",
@@ -6178,7 +6198,11 @@
           "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
           "TOOL044_DEMAND_ID": "932359acefe36952e706-FAILURE_ISOLATION"
         }
-      ]
+      ],
+      "requeue_generation": 1,
+      "auto_requeued_at": "2026-10-15T11:50:05.330044+00:00",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "residual_classification": "UNFINISHED"
     }
   ]
 }
