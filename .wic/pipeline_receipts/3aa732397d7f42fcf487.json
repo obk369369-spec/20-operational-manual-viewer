@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "pipeline_id": "3aa732397d7f42fcf487",
+  "target": "CENTRAL",
+  "source_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/35",
+  "root_cause_id": "4d1dfd700603938572f6",
+  "adapter": "CENTRAL_LANE_DIFF_ONLY",
+  "pre_apply_commit": "74c79cc4c8a817e11bb39280a54d298d468e926a",
+  "mutation_scope": "NO_TARGET_DIFF_REQUIRED",
+  "material_change_receipt": {
+    "decision": "NO_TARGET_DIFF_REQUIRED",
+    "master_revision": "74c79cc4c8a817e11bb39280a54d298d468e926a",
+    "asset_hashes": {
+      "WIC_GLOBAL_OPERATING_RULES.md": "1e07ad2068ffa1467feae4118119020e680bdd4cdbe55f8406b88c8e5ac62dbe",
+      "feedback_pipeline/state.json": "43d1e0f49cd4a38dfbad534eec09a6aea3c624ffe2e87c292b6b84ebc3e386e1"
+    },
+    "validator_receipt": {
+      "adapter": "COMMAND",
+      "command": [
+        "WIC_BUNDLED_PYTHON",
+        "feedback_pipeline/global_pipeline.py",
+        "--self-test"
+      ],
+      "status": "PASS",
+      "stdout": "N/A: empty manifest; PASS not claimed\nPASS: registry-driven TOOL006/041/042/other/future-chat state-machine E2E\n"
+    },
+    "output_gate_receipt": {
+      "adapter": "COMMAND",
+      "command": [
+        "WIC_BUNDLED_PYTHON",
+        "feedback_pipeline/global_pipeline.py",
+        "--self-test"
+      ],
+      "status": "PASS",
+      "stdout": "N/A: empty manifest; PASS not claimed\nPASS: registry-driven TOOL006/041/042/other/future-chat state-machine E2E\n"
+    }
+  },
+  "customer_data_mutated": false
+}
