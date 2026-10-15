@@ -1,0 +1,82 @@
+{
+  "schema": "wic_absolute_bottom_root_occurrence_v1",
+  "recorded_at": "2026-10-15T00:00:00+09:00",
+  "repository": "obk369369-spec/20-operational-manual-viewer",
+  "checkpoint_source": {
+    "path": "feedback_pipeline/evidence/WIC_PARALLEL_EXTERNAL_MIGRATION_CHECKPOINT_20261014.json",
+    "blob_sha": "a4bb2bab762df0dfa7545b0b984719e9b7735018",
+    "commit": "a93dbb15617abde4afd8f79264d1dc3089166549",
+    "remote_readback": "PASS"
+  },
+  "root": {
+    "id": "ABSOLUTE-BOTTOM-ROOT-0",
+    "definition": "NO_SINGLE_DURABLE_EXTERNAL_IDENTITY_BOUND_CONTROL_CONTRACT_OWNS_AND_ENFORCES_SOURCE_TO_CANONICAL_STATE_INCLUDING_DEVELOPMENT_AUTOFIX_RECOVERY_RELEASE",
+    "action": "OCCURRENCE_INCREMENT_ONLY",
+    "new_root_created": false
+  },
+  "occurrence": {
+    "id": "ROOT0-OCCURRENCE-20261015-WORK-REENTRY-LOOP",
+    "signals": [
+      "WORK_INTERNAL_REASONING_STALL",
+      "LOCAL_AUTOMATION_TIMEOUT",
+      "WORKSPACE_ROUTING_TIMEOUT",
+      "MANUAL_STOP_REQUIRED",
+      "MANUAL_RESTART_DIRECTIVE_REQUIRED",
+      "APPROVAL_WAIT_WITHOUT_VISIBLE_ACTION",
+      "REPEATED_CHECKPOINT_REENTRY",
+      "WORK_CREDIT_DEPENDENCY",
+      "EXTERNAL_CONTROLLER_ABSENT"
+    ],
+    "causal_chain": [
+      "No durable identity-bound external controller",
+      "Codex Work substitutes for controller",
+      "Execution depends on Work session, reasoning, approval delivery and credits",
+      "Timeout or interruption has no independent continuation owner",
+      "User must manually stop and restart",
+      "The same checkpoint is re-entered",
+      "Credit is consumed without external control transfer"
+    ],
+    "root_match": "CONFIRMED"
+  },
+  "existing_socket_state": {
+    "connected": [
+      "GitHub canonical",
+      "GitHub Actions",
+      "repository_dispatch",
+      "Render free web service"
+    ],
+    "socket_count": 4,
+    "render_factory_roundtrip": "PASS_LOCKED",
+    "release_governor": "PASS_LOCKED",
+    "limitation": "Factory execution/result-return path only; no independently durable development/autofix/recovery/release owner."
+  },
+  "minimum_common_fix": {
+    "required": "An already-authorized independently durable external controller with persistent queue/state and ownership of identity-bound development, validation, recovery, release, deployment, readback, result, ACK and evidence.",
+    "applied": false,
+    "blocker": "No such controller is currently connected or authorized. Existing four sockets cannot supply the missing ownership; continuing requires new credentials/resource or platform construction."
+  },
+  "manual_dependency_metrics": {
+    "USER_MANUAL_DIRECTIVE_REQUIRED": 1,
+    "USER_MANUAL_RESTART_REQUIRED": 1,
+    "USER_REPEAT_DIRECTIVE_REQUIRED": 1,
+    "CODEX_WORK_AS_PRIMARY_WORKSPACE": 1,
+    "WORK_CREDIT_EXECUTION_DEPENDENCY": 1,
+    "EXTERNAL_FACTORY_AUTONOMY": "FAIL"
+  },
+  "final_state": {
+    "EXTERNAL_TOP_PLATFORM": "FAIL",
+    "EXTERNAL_WORKSPACE_MIGRATION": "FAIL",
+    "EXTERNAL_EVIDENCE_CHAIN": "PARTIAL",
+    "WIC_WORK_START": "BLOCKED",
+    "PRODUCT_WORK": "NOT_STARTED",
+    "OPEN26_WORK": "NOT_STARTED",
+    "WORK_CREDIT_CONSUMPTION": "STOP",
+    "OPEN": 26,
+    "INTERNAL_OPEN": 11,
+    "HOLD": 15
+  },
+  "next_resume_condition": "Supply or prove an already-authorized free external controller with durable queue/state and API access; then bind the existing common socket contract and run one full Work-independent representative lifecycle.",
+  "paid_resource_created": 0,
+  "product_change": 0,
+  "pass_lock_reopened": 0
+}
