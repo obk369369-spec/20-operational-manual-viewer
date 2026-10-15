@@ -32,3 +32,25 @@ EXTERNAL_FACTORY=DEFAULT_WORKSPACE.
 CHATGPT_CODEX_WORK=EXCEPTION_WORKSPACE.
 외부에서 할 수 있는데 Work가 주 실행자가 되면 STRUCTURAL_FAILURE.
 목표: CODEX_WORK_AS_PRIMARY_WORKSPACE=0, WORK_CREDIT_EXECUTION_DEPENDENCY=0.
+
+## [최우선 HARD GATE — 반복조사·개선화면만 표시하는 작업 시작 금지, 2026-10-15]
+이 규칙은 모든 WIC 16번/44번 실행 및 외부 사업·제품 작업의 시작 판정에 우선한다.
+
+**금지:** 기존 플랫폼 후보 재검색·반복 비교·같은 후보 재평가, 새 지시문/보고서/Evidence만 생성하는 작업, Work 내부 코드 개선/설계/분석을 실제 외부 이전으로 포장하는 작업, “개선 중” 화면만 표시하며 Work 크레딧을 소비하는 실행. GitHub 문서/커밋만으로 CONNECTED 또는 VERIFIED 선언 금지.
+
+**작업 시작 전 필수 판정:**
+- `EXTERNAL_EXECUTION_TARGET`: 실제 외부 플랫폼/워크스페이스/서비스 식별자
+- `EXTERNAL_AUTHORITY`: 연결된 OAuth/승인된 API/실행 권한의 실제 확인
+- `EXTERNAL_ACTION`: 이번 실행에서 실제로 수행할 외부 연결/Job 발행/배포
+- `EXTERNAL_RESULT_EVIDENCE`: Provider Job ID, 로그, 외부 실행 URL, 결과 readback
+- `USER_APPROVAL_BOUNDARY`: 승인 필요한 경우 정확히 한 가지 행동, 예상 비용 및 안전 영향
+- `WORK_PRIMARY_EXECUTION`: 0; 예외적 최초 소켓 연결/bootstrap만 최소 허용
+위 조건 중 실행 대상·권한·구체적 외부 동작이 없으면 **장시간 Work 실행을 시작하지 않는다.** 승인이나 계정 연결이 필요한 경우 즉시 최소 한 가지 행동만 요청한다. 승인 없이 유료 서비스·외부 발송·실결제 금지.
+
+**완료 판정:** 실제 외부 Provider에서 Job/State 소유권과 결과 반환이 증명된 경우에만 CONNECTED/EXECUTED. 대표 Job의 외부 실패·복구·독립검증·배포·readback·canonical 증거가 있어야 FACTORY_E2E_PASS. 24시간 실제 관찰 전 24H_VERIFIED 금지. 제품은 기존 Release Governor와 실제 사용자 출력 검증 전 PASS 금지.
+
+**반복 방지:** 이전 Cloud 후보 조사 완료, Canonical socket audit 완료, Local partial 및 routing timeout, Render 무료 자원 확인, 기존 4 Socket PASS 증거를 재사용한다. Render 단독 FAIL을 다른 외부 플랫폼 전체 FAIL로 확대하지 않는다. Windmill/Activepieces 등의 **이름을 찾거나 문서 링크를 붙이는 것은 획득/연결이 아니다.** 해당 외부 계정·인스턴스가 실제 없으면 인증된 외부 연결 수단을 확인하고, 사용자 승인 경계가 나타나면 그 한 가지 승인만 요청한다. 승인 경계 이전에 보고서만 반복하지 않는다.
+
+**상태 보고는 반드시 분리:** `POLICY_REGISTERED`, `PLATFORM_DISCOVERED`, `ACCOUNT_CONNECTED`, `EXTERNAL_JOB_EXECUTED`, `FACTORY_E2E_VERIFIED`, `24H_VERIFIED`. 앞 단계가 성공해도 뒷 단계로 승격하지 않는다.
+
+**최우선 성과지표:** `REPEATED_PLATFORM_RESEARCH=0`, `WORK_ONLY_IMPROVEMENT_LOOP=0`, `EXTERNAL_JOB_ID_PRESENT`, `EXTERNAL_OWNER_INDEPENDENT_OF_WORK`, `WORK_CREDIT_EXECUTION_DEPENDENCY→0`. 외부 Job 실행 ID가 없으면 실제 이전 작업 완료=0.
