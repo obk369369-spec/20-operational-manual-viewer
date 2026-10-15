@@ -369,6 +369,24 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "e80923a16e0fae2ea5e9",
+      "root_id": "ef2071ba71fe331e0775",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
+      "feedback": "피드백 적용해: TOOL044 General external development factory bootstrap intake\nWIC_EXTERNAL_INTAKE_REQUEST_V1\n\nREQUEST_ID: WIC-GENERAL-EXTERNAL-DEV-FACTORY-BOOTSTRAP-20261015\nREQUEST_KIND: CAPABILITY_BOOTSTRAP\nJOB_CREATION_OWNER: EXTERNAL_TOP_CONTROLLER\nEXECUTION_OWNER: EXTERNAL_WORKER\nJOB_CREATED_BY_CODEX_WORK: 0\nWORK_PRIMARY_DEVELOPMENT: 0\nWORK_PRIMARY_EXECUTION: 0\nOPEN26_MUTATION_ALLOWED: 0\n\nGENERIC_JOB_CONTRACT:\nTARGET / REQUIREMENT / FILES / ACCEPTANCE_TEST / REGRESSION_TEST / FAILURE_POLICY / DEPLOY_TARGET / RESULT_RETURN / CORRELATION_ID\n\nREUSE:\nGitHub canonical + GitHub Actions + repository_dispatch + TOOL044 Queue/State/Recovery + Release Governor + Render deployment/read-back.\n\nTOP_CONTROLLER_REQUIRED_ACTION:\nPersist this intake, generate a representative non-product bootstrap development Job itself, assign the existing external TOOL044 worker path, and preserve one correlation identity through actual code change, intentional failure detection, recovery, retest, regression, governor, deployment, URL read-back, result, ACK, evidence, and canonical return.\n\nFAIL_CLOSED:\nDo not enqueue or mutate OPEN26. Missing generic contract support remains HOLD.",
+      "actual_input": "github_issue:5864810027",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
