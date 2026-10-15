@@ -1,0 +1,82 @@
+{
+  "schema": "wic_external_controller_acquisition_boundary_v1",
+  "checked_at": "2026-10-15T15:00:00+09:00",
+  "provider": "Render",
+  "workspace_id": "tea-dar0hq8473hc739cic00",
+  "external_check": "LIVE_PROVIDER_API",
+  "existing_resources": {
+    "services": [
+      {
+        "id": "srv-dar0nu49v7es7392lim0",
+        "name": "20-operational-manual-viewer",
+        "type": "web_service",
+        "plan": "free",
+        "runtime": "python",
+        "start_command": "python external_runtime/render_env2.py",
+        "auto_deploy": "yes",
+        "status": "not_suspended",
+        "role": "PASS_LOCKED_FACTORY_EXECUTION_RESULT_RETURN_ONLY"
+      }
+    ],
+    "key_value_count": 0,
+    "postgres_count": 0
+  },
+  "acquisition_attempt": {
+    "EXTERNAL_CONTROLLER_ACQUISITION": "STARTED_AND_REACHED_PROVIDER_BOUNDARY",
+    "EXTERNAL_COMPLETED_PLATFORM_REUSE": "PARTIAL_EXISTING_WEB_SERVICE",
+    "EXTERNAL_SOCKET_COMPOSITION": "PARTIAL_4_EXISTING_SOCKETS",
+    "EXTERNAL_CONTROL_CONNECTION": "FAIL",
+    "EXTERNAL_E2E_VALIDATION": "NOT_STARTED_NO_CONTROLLER_OWNER"
+  },
+  "required_controller_capabilities": [
+    "persistent state",
+    "durable queue",
+    "job identity ownership",
+    "execution control",
+    "development/executor control",
+    "failure detection",
+    "auto fix",
+    "recovery",
+    "independent validation",
+    "regression",
+    "release governance",
+    "deployment",
+    "remote readback",
+    "result return",
+    "evidence",
+    "canonical state return"
+  ],
+  "confirmed_gap": {
+    "durable_persistent_store": "ABSENT_IN_CURRENT_RENDER_WORKSPACE",
+    "durable_queue": "ABSENT_IN_CURRENT_RENDER_WORKSPACE",
+    "independent_development_autofix_owner": "ABSENT",
+    "full_lifecycle_controller": "ABSENT",
+    "reason": "The only existing resource is a free HTTP web service. It proves execution/result return but cannot own the complete durable identity-bound lifecycle."
+  },
+  "decision": {
+    "stop_condition": "E_TECHNICALLY_NOT_POSSIBLE_WITH_CURRENTLY_AVAILABLE_EXTERNAL_PLATFORM_API_AND_RESOURCES",
+    "create_unused_free_resource": false,
+    "reason_not_created": "A free datastore alone does not supply the missing independent development/autofix/recovery controller and would not satisfy admission.",
+    "paid_resource_created": 0,
+    "product_work_started": false,
+    "EXTERNAL_TOP_PLATFORM": "FAIL",
+    "EXTERNAL_WORKSPACE_MIGRATION": "FAIL",
+    "EXTERNAL_EVIDENCE_CHAIN": "PARTIAL",
+    "EXTERNAL_FACTORY_AUTONOMY": "FAIL",
+    "CODEX_WORK_AS_PRIMARY_WORKSPACE": 1,
+    "WORK_CREDIT_EXECUTION_DEPENDENCY": 1,
+    "WIC_WORK_START": "BLOCKED",
+    "PRODUCT_WORK": "NOT_STARTED",
+    "WORK_CREDIT_CONSUMPTION": "STOP"
+  },
+  "exact_blocker": "No existing authorized external resource owns persistent queue/state plus development, automatic fix, recovery, validation, release and deployment. Render API confirms one free web service and zero Key Value/Postgres resources; creating storage alone cannot create a controller.",
+  "next_external_boundary": "An already-completed external controller with API access and autonomous development/autofix capability must be connected. This cannot be supplied by the current Render workspace without new controller code or an additional authorized service.",
+  "preserved": {
+    "render_roundtrip": "PASS_LOCKED",
+    "release_governor": "PASS_LOCKED",
+    "open": 26,
+    "internal_open": 11,
+    "hold": 15,
+    "pass_locks_reopened": 0
+  }
+}
