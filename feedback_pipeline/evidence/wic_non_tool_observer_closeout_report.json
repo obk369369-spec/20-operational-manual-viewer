@@ -97,192 +97,6 @@
       "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
       "pass_lock": false,
       "actionable_requeued": false
-    },
-    {
-      "requirement_id": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION",
-      "root_id": "ef2071ba71fe331e0775",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "ef2071ba71fe331e0775",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
-          "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "INPUT_CONTRACT_VALIDATION"
-      ],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
-    },
-    {
-      "requirement_id": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "ef2071ba71fe331e0775",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "ef2071ba71fe331e0775",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
-          "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
-    },
-    {
-      "requirement_id": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION",
-      "root_id": "ef2071ba71fe331e0775",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "ef2071ba71fe331e0775",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
-          "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "FAILURE_ISOLATION"
-      ],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
-    },
-    {
-      "requirement_id": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
-      "root_id": "4d2d53344132e0ccbf57",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "4d2d53344132e0ccbf57",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
-          "TOOL044_DEMAND_ID": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "INPUT_CONTRACT_VALIDATION"
-      ],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
-    },
-    {
-      "requirement_id": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "4d2d53344132e0ccbf57",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "4d2d53344132e0ccbf57",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
-          "TOOL044_DEMAND_ID": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
-    },
-    {
-      "requirement_id": "932359acefe36952e706-FAILURE_ISOLATION",
-      "root_id": "4d2d53344132e0ccbf57",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "github_issue",
-          "TOOL_ID": "CENTRAL",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": null,
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": "4d2d53344132e0ccbf57",
-          "MISSING_CAPABILITY": [
-            "INPUT_CONTRACT_VALIDATION",
-            "EXPECTED_ACTUAL_VALIDATION",
-            "FAILURE_ISOLATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
-          "TOOL044_DEMAND_ID": "932359acefe36952e706-FAILURE_ISOLATION"
-        }
-      ],
-      "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "FAILURE_ISOLATION"
-      ],
-      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
     }
   ],
   "COMPLETE": [
@@ -2505,6 +2319,192 @@
       "actionable_requeued": false
     },
     {
+      "requirement_id": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION",
+      "root_id": "ef2071ba71fe331e0775",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "ef2071ba71fe331e0775",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
+          "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "ef2071ba71fe331e0775",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "ef2071ba71fe331e0775",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
+          "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION",
+      "root_id": "ef2071ba71fe331e0775",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "ef2071ba71fe331e0775",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/36",
+          "TOOL044_DEMAND_ID": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
+      "root_id": "4d2d53344132e0ccbf57",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4d2d53344132e0ccbf57",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
+          "TOOL044_DEMAND_ID": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "4d2d53344132e0ccbf57",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4d2d53344132e0ccbf57",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
+          "TOOL044_DEMAND_ID": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "932359acefe36952e706-FAILURE_ISOLATION",
+      "root_id": "4d2d53344132e0ccbf57",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4d2d53344132e0ccbf57",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
+          "TOOL044_DEMAND_ID": "932359acefe36952e706-FAILURE_ISOLATION"
+        }
+      ],
+      "implementation_location": [],
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
+      ],
+      "status": "COMPLETE",
+      "remaining_work": [],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
+      "pass_lock": true,
+      "actionable_requeued": false
+    },
+    {
       "requirement_id": "CR-1",
       "root_id": "WIC-NON-TOOL-CR-1",
       "original_requirement": "WIC_NON_TOOL_COMMON_RESIDUAL_BUNDLE::CR-1",
@@ -2617,78 +2617,6 @@
       "status": "PARTIAL",
       "remaining_work": [],
       "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    }
-  ],
-  "LONG_TERM_HOLD": [
-    {
-      "requirement_id": "WIC-BACKLOG-24H-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
       "pass_lock": false,
       "actionable_requeued": false
     }
@@ -2819,15 +2747,84 @@
       "actionable_requeued": false
     }
   ],
-  "AUTO_REQUEUED": [
-    "4d2d53344132e0ccbf57",
-    "ef2071ba71fe331e0775"
+  "LONG_TERM_HOLD": [
+    {
+      "requirement_id": "WIC-BACKLOG-24H-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
   ],
-  "NEXT_WORK": "ef2071ba71fe331e0775",
+  "AUTO_REQUEUED": [],
+  "NEXT_WORK": null,
   "EVIDENCE": {
     "ledger": "/home/runner/work/20-operational-manual-viewer/20-operational-manual-viewer/feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json",
     "work_packet": "/home/runner/work/20-operational-manual-viewer/20-operational-manual-viewer/feedback_pipeline/evidence/wic_non_tool_common_work_packet.json",
-    "tool016_ack_count": 69,
+    "tool016_ack_count": 75,
     "remote_readback": true
   },
   "observer_reinstruction_required": 0,

@@ -1,86 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-15T14:26:02.138741+00:00",
-  "UNFINISHED_SCANNED": 30,
-  "ALREADY_PASS_EXCLUDED": 102,
-  "ROOTS_MERGED": 2,
-  "WORK_FIXABLE_ROOTS": 2,
-  "WORK_REQUIRED": [
-    {
-      "demand_id": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION",
-      "root_id": "ef2071ba71fe331e0775",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "ef2071ba71fe331e0775",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION",
-      "root_id": "ef2071ba71fe331e0775",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "FAILURE_ISOLATION"
-      ]
-    },
-    {
-      "demand_id": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
-      "root_id": "4d2d53344132e0ccbf57",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
-      "root_id": "4d2d53344132e0ccbf57",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ]
-    },
-    {
-      "demand_id": "932359acefe36952e706-FAILURE_ISOLATION",
-      "root_id": "4d2d53344132e0ccbf57",
-      "target_tool": "CENTRAL",
-      "atomic_capabilities": [
-        "FAILURE_ISOLATION"
-      ]
-    }
-  ],
-  "WORK_BATCHES": [
-    {
-      "root_id": "ef2071ba71fe331e0775",
-      "demands": [
-        "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION",
-        "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
-        "e80923a16e0fae2ea5e9-FAILURE_ISOLATION"
-      ],
-      "target_tools": [
-        "CENTRAL"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    },
-    {
-      "root_id": "4d2d53344132e0ccbf57",
-      "demands": [
-        "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
-        "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
-        "932359acefe36952e706-FAILURE_ISOLATION"
-      ],
-      "target_tools": [
-        "CENTRAL"
-      ],
-      "status": "READY_FOR_MULTI_GATE"
-    }
-  ],
+  "updated_at": "2026-10-15T14:27:00.818975+00:00",
+  "UNFINISHED_SCANNED": 24,
+  "ALREADY_PASS_EXCLUDED": 108,
+  "ROOTS_MERGED": 0,
+  "WORK_FIXABLE_ROOTS": 0,
+  "WORK_REQUIRED": [],
+  "WORK_BATCHES": [],
   "TOOL044_AUTO_HANDED_OFF": 14,
   "TOOL044_QUEUE": [
     {
@@ -168,12 +94,11 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 6,
+  "WORK_REQUIRED_REMAINDER": 0,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
-      "PASS": 95,
-      "CLAIMED": 6
+      "PASS": 101
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -200,12 +125,12 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 20,
+    "ready": 14,
     "waiting": 10,
     "next_demand": "WIC-BACKLOG-TOOL001-20260927",
     "duplicate_demand_ids": [],
     "dedup_gate": "PASS",
-    "result_returns": 69,
+    "result_returns": 75,
     "external_runner": "GITHUB_ACTIONS_MATRIX_V1",
     "external_failover": "READY",
     "chat_collection": "PLATFORM_LIMIT_UNLESS_DURABLE_INBOX_EVENT_EXISTS",
@@ -797,7 +722,7 @@
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-15T14:26:02.138741+00:00",
+  "LAST_HEARTBEAT": "2026-10-15T14:27:00.818975+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0,
