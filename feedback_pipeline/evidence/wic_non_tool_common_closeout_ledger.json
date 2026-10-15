@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-15T09:48:00.030168+00:00",
+  "updated_at": "2026-10-15T09:48:24.983621+00:00",
   "common_root": "WIC-NON-TOOL-COMMON-INFRASTRUCTURE-CR1-CR5",
   "requirements": [
     {
@@ -2395,14 +2395,14 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "INPUT_CONTRACT_VALIDATION"
+      "actual_evidence": [
+        "FASTJSONSCHEMA_2_21_2_TOOL043_PROOF"
       ],
+      "status": "COMPLETE",
+      "remaining_work": [],
       "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
+      "pass_lock": true,
+      "actionable_requeued": false
     },
     {
       "requirement_id": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
@@ -2426,14 +2426,14 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "EXPECTED_ACTUAL_VALIDATION"
+      "actual_evidence": [
+        "JSONSCHEMA_4_26_0_EXPECTED_ACTUAL_GATE"
       ],
+      "status": "COMPLETE",
+      "remaining_work": [],
       "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
+      "pass_lock": true,
+      "actionable_requeued": false
     },
     {
       "requirement_id": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
@@ -2457,14 +2457,14 @@
         }
       ],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "FAILURE_ISOLATION"
+      "actual_evidence": [
+        "TENACITY_9_1_4_FAILURE_ISOLATION"
       ],
+      "status": "COMPLETE",
+      "remaining_work": [],
       "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": true
+      "pass_lock": true,
+      "actionable_requeued": false
     },
     {
       "requirement_id": "PLATFORM-TOOL044-CHAT-REPORT-DELIVERY",
@@ -2597,11 +2597,11 @@
     }
   ],
   "counts": {
-    "UNFINISHED": 5,
+    "UNFINISHED": 2,
+    "PARTIAL": 1,
     "PLATFORM_HOLD": 5,
-    "LONG_TERM_HOLD": 5,
-    "COMPLETE": 61,
-    "PARTIAL": 1
+    "COMPLETE": 64,
+    "LONG_TERM_HOLD": 5
   },
   "cr_status": {
     "CR-1": "COMPLETE",
@@ -2652,6 +2652,9 @@
     "WIC-AUTO-RESIDUAL-REPORT-REQUEUE-20260929",
     "WIC-NON-TOOL-COMMON-CLOSEOUT-CR1-CR5-20260929",
     "WIC-NON-TOOL-ITEMIZED-REPORT-GATE-20260929",
+    "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+    "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+    "3aa732397d7f42fcf487-FAILURE_ISOLATION",
     "CR-1",
     "CR-2",
     "CR-3",
@@ -2659,15 +2662,12 @@
     "CR-5"
   ],
   "residual_roots": [
-    "4d1dfd700603938572f6",
     "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
     "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
     "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY"
   ],
-  "auto_requeued_roots": [
-    "4d1dfd700603938572f6"
-  ],
-  "next_auto_root": "4d1dfd700603938572f6",
+  "auto_requeued_roots": [],
+  "next_auto_root": null,
   "observer_reinstruction_required": 0,
   "manual_relay_count": 0
 }

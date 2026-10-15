@@ -1,21 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-15T09:48:00.036186+00:00",
+  "updated_at": "2026-10-15T09:48:24.989518+00:00",
   "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
-  "unfinished_detected": 29,
+  "unfinished_detected": 26,
   "common_roots": [
     {
       "root_id": "24H-AUTONOMOUS-CIRCULATION",
       "demands": [
         "WIC-BACKLOG-24H-20260927"
-      ]
-    },
-    {
-      "root_id": "4d1dfd700603938572f6",
-      "demands": [
-        "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
-        "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
-        "3aa732397d7f42fcf487-FAILURE_ISOLATION"
       ]
     },
     {
@@ -164,29 +156,7 @@
       ]
     }
   ],
-  "easy_queue": [
-    {
-      "root_id": "4d1dfd700603938572f6",
-      "demand_id": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
-      "capabilities": [
-        "INPUT_CONTRACT_VALIDATION"
-      ]
-    },
-    {
-      "root_id": "4d1dfd700603938572f6",
-      "demand_id": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
-      "capabilities": [
-        "EXPECTED_ACTUAL_VALIDATION"
-      ]
-    },
-    {
-      "root_id": "4d1dfd700603938572f6",
-      "demand_id": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
-      "capabilities": [
-        "FAILURE_ISOLATION"
-      ]
-    }
-  ],
+  "easy_queue": [],
   "work_batch": [
     {
       "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
@@ -384,9 +354,9 @@
   "work_batch_units": 12,
   "work_batch_full_threshold": 10,
   "threshold_basis": {
-    "completed_jobs": 92,
-    "historical_runs": 28,
-    "actual_completed_per_run": 3.29
+    "completed_jobs": 95,
+    "historical_runs": 29,
+    "actual_completed_per_run": 3.28
   },
   "work_delivery": "PLATFORM_HOLD_NO_SUPPORTED_UNATTENDED_CHATGPT_WORK_INSERT_API",
   "anomalies": {
@@ -401,7 +371,7 @@
     "stalled_claims": [],
     "missing_results": []
   },
-  "next_easy_root": "4d1dfd700603938572f6",
+  "next_easy_root": null,
   "observer_reinstruction_required": 0,
   "manual_relay_count": 0
 }
