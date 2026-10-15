@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-15T01:29:40.000323+00:00",
+  "generated_at": "2026-10-15T06:20:59.484194+00:00",
   "scope": "ALL_CURRENTLY_ACCESSIBLE_STRUCTURED_CANONICAL_WIC_SOURCES",
   "source_receipts": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "feedback_pipeline/tool044_function_state.json",
-      "sha256": "c92789386f0692f2b31b4ec45d6994d6211a13bd45fab241bc68ccfb738bdecc"
+      "sha256": "029b3e8f1aad0dd8db20221b5b1f25993eb6ebd58a919dc8929ef426c8fadbaf"
     },
     {
       "path": "feedback_pipeline/work16_root_ledger.json",
@@ -29,17 +29,17 @@
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
-      "sha256": "8cac19f079de56942c5b626801acf82a6cac2e0d50c0e307eee0e4dae6e6ce6a"
+      "sha256": "78913f54cd52dfa91bd5332bb87190652b0f515be4e1af9c9c76b84d331672c5"
     }
   ],
   "counts": {
     "checked_tools": 19,
     "checked_record_sources": 7,
-    "automatically_recoverable_records": 245,
+    "automatically_recoverable_records": 246,
     "access_not_available_source_classes": 1,
     "access_not_available_conversation_count": null,
-    "collected_error_records": 196,
-    "roots_after_deduplication": 137,
+    "collected_error_records": 197,
+    "roots_after_deduplication": 138,
     "verified_skip_reuse_records": 13,
     "records_handed_to_tool044": 78,
     "atomic_demands": 123
@@ -3174,6 +3174,18 @@
       "MISSING_CAPABILITY": [],
       "IMPROVEMENT_EVIDENCE": [],
       "ROUTING": "TOOL016_LOCAL_OR_HOLD"
+    },
+    {
+      "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+      "TOOL_ID": "TOOL044",
+      "FUNCTION_ID": "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
+      "ROOT_ID": "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
+      "CURRENT_STATUS": "MISSING_CAPABILITY",
+      "ORIGINAL_ERROR_OR_FEEDBACK": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+      "OCCURRENCE_OR_EVIDENCE": 0,
+      "MISSING_CAPABILITY": [],
+      "IMPROVEMENT_EVIDENCE": [],
+      "ROUTING": "TOOL016_LOCAL_OR_HOLD"
     }
   ],
   "deduplicated_root_ids": [
@@ -3301,6 +3313,7 @@
     "WIC-PARALLEL-RESIDUAL-20260903",
     "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
     "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+    "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
     "WIC-WORK-HANDOFF-APPROVAL-CREDIT-OPS-20260928",
     "ca9c23dfa4f0bee5ba54-EXPECTED_ACTUAL_VALIDATION",
     "ca9c23dfa4f0bee5ba54-FAILURE_ISOLATION",
