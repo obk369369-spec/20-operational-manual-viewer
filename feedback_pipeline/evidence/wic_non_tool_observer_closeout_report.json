@@ -1,90 +1,195 @@
 {
-  "PARTIAL": [
+  "UNFINISHED": [
     {
-      "requirement_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
-      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": null,
+          "MISSING_CAPABILITY": [
+            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
+            "HISTORICAL_FEEDBACK_INGEST",
+            "ACCESS_BOUNDARY_CLASSIFICATION",
+            "ROOT_CAUSE_DEDUPLICATION",
+            "MISSING_CAPABILITY_EXTRACTION",
+            "VERIFIED_SKIP_REUSE_FILTER",
+            "TOOL016_TO_TOOL044_HANDOFF",
+            "ATOMIC_CAPABILITY_DECOMPOSITION",
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": null,
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL016",
+          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
+          "MISSING_CAPABILITY": [
+            "PAST_FAILURE_FIXTURE_GENERATION"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
+        }
       ],
-      "status": "PARTIAL",
-      "remaining_work": [],
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "PAST_FAILURE_FIXTURE_GENERATION"
+      ],
       "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
       "pass_lock": false,
       "actionable_requeued": false
-    }
-  ],
-  "LONG_TERM_HOLD": [
+    },
     {
-      "requirement_id": "WIC-BACKLOG-24H-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      "requirement_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "EXTERNAL_COMPONENT_COLLECTOR",
+          "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
+          "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
+          "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "TOOL044_RECEIVED",
+          "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        },
+        {
+          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
+          "TOOL_ID": "TOOL044",
+          "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "ORIGINAL_ERROR_OR_FEEDBACK": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "OCCURRENCE_OR_EVIDENCE": 0,
+          "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
+          "MISSING_CAPABILITY": [
+            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+          ],
+          "CURRENT_STATUS": "MISSING_CAPABILITY",
+          "SOURCE_EVIDENCE": [],
+          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
+        }
       ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      ],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
       "pass_lock": false,
       "actionable_requeued": false
     },
     {
-      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      "requirement_id": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+      "root_id": "4d1dfd700603938572f6",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4d1dfd700603938572f6",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/35",
+          "TOOL044_DEMAND_ID": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION"
+        }
       ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "INPUT_CONTRACT_VALIDATION"
+      ],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
       "pass_lock": false,
-      "actionable_requeued": false
+      "actionable_requeued": true
     },
     {
-      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      "requirement_id": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "4d1dfd700603938572f6",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4d1dfd700603938572f6",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/35",
+          "TOOL044_DEMAND_ID": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION"
+        }
       ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "implementation_location": [],
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ],
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
       "pass_lock": false,
-      "actionable_requeued": false
+      "actionable_requeued": true
     },
     {
-      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      "requirement_id": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
+      "root_id": "4d1dfd700603938572f6",
+      "original_requirement": [
+        {
+          "SOURCE_CHAT_OR_TOOL": "github_issue",
+          "TOOL_ID": "CENTRAL",
+          "FUNCTION_ID": null,
+          "ORIGINAL_ERROR_OR_FEEDBACK": null,
+          "OCCURRENCE_OR_EVIDENCE": null,
+          "ROOT_ID": "4d1dfd700603938572f6",
+          "MISSING_CAPABILITY": [
+            "INPUT_CONTRACT_VALIDATION",
+            "EXPECTED_ACTUAL_VALIDATION",
+            "FAILURE_ISOLATION"
+          ],
+          "CURRENT_STATUS": "OPEN",
+          "SOURCE_EVIDENCE": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/35",
+          "TOOL044_DEMAND_ID": "3aa732397d7f42fcf487-FAILURE_ISOLATION"
+        }
       ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
       "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      "actual_evidence": [],
+      "status": "UNFINISHED",
+      "remaining_work": [
+        "FAILURE_ISOLATION"
       ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "resume_condition": "VERIFIED_COMPONENT_AVAILABLE",
       "pass_lock": false,
-      "actionable_requeued": false
+      "actionable_requeued": true
     }
   ],
   "PLATFORM_HOLD": [
@@ -213,102 +318,74 @@
       "actionable_requeued": false
     }
   ],
-  "UNFINISHED": [
+  "LONG_TERM_HOLD": [
     {
-      "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-      "root_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL044_REQUEST_INBOX",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": null,
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Collect all currently accessible WIC tool/chat development and real-use error, failure, repeated-error, inconvenience, modification-request and feedback evidence from existing TOOL016 ledger, function state, failure evidence, error records, queues, checkpoints and other accessible repository evidence; deduplicate by ROOT and MISSING_CAPABILITY; skip already VERIFIED items; hand unresolved capability gaps to TOOL044 without requiring the user to re-enter historical errors.",
-          "OCCURRENCE_OR_EVIDENCE": null,
-          "ROOT_ID": null,
-          "MISSING_CAPABILITY": [
-            "REPOSITORY_ERROR_EVIDENCE_DISCOVERY",
-            "HISTORICAL_FEEDBACK_INGEST",
-            "ACCESS_BOUNDARY_CLASSIFICATION",
-            "ROOT_CAUSE_DEDUPLICATION",
-            "MISSING_CAPABILITY_EXTRACTION",
-            "VERIFIED_SKIP_REUSE_FILTER",
-            "TOOL016_TO_TOOL044_HANDOFF",
-            "ATOMIC_CAPABILITY_DECOMPOSITION",
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "CURRENT_STATUS": "OPEN",
-          "SOURCE_EVIDENCE": null,
-          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL016",
-          "FUNCTION_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
-          "MISSING_CAPABILITY": [
-            "PAST_FAILURE_FIXTURE_GENERATION"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION"
-        }
-      ],
+      "requirement_id": "WIC-BACKLOG-24H-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "PAST_FAILURE_FIXTURE_GENERATION"
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
       "pass_lock": false,
       "actionable_requeued": false
     },
     {
-      "requirement_id": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-      "root_id": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-      "original_requirement": [
-        {
-          "SOURCE_CHAT_OR_TOOL": "CURRENT_WIC_WORK",
-          "TOOL_ID": "TOOL044",
-          "FUNCTION_ID": "EXTERNAL_COMPONENT_COLLECTOR",
-          "ORIGINAL_ERROR_OR_FEEDBACK": "Find mature free external runners requiring no new user account, secret, billing information, or manual operation; return verified READY components only.",
-          "OCCURRENCE_OR_EVIDENCE": "GitHub Actions is ACTUAL_RUN_PASS; Woodpecker and GitLab require external authentication.",
-          "ROOT_ID": "COMMON_FREE_EXTERNAL_MULTI_RUNNER_NETWORK",
-          "MISSING_CAPABILITY": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "CURRENT_STATUS": "TOOL044_RECEIVED",
-          "SOURCE_EVIDENCE": "feedback_pipeline/tool044_multi_gate_adapters.json",
-          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
-        },
-        {
-          "SOURCE_CHAT_OR_TOOL": "TOOL016_FUNCTION_STATE",
-          "TOOL_ID": "TOOL044",
-          "FUNCTION_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-          "ORIGINAL_ERROR_OR_FEEDBACK": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "OCCURRENCE_OR_EVIDENCE": 0,
-          "ROOT_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY",
-          "MISSING_CAPABILITY": [
-            "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
-          ],
-          "CURRENT_STATUS": "MISSING_CAPABILITY",
-          "SOURCE_EVIDENCE": [],
-          "TOOL044_DEMAND_ID": "COMMON-FREE-EXTERNAL-MULTI-RUNNER-NETWORK-AUTH-FREE-PROVIDER-DISCOVERY"
-        }
-      ],
+      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
       "implementation_location": [],
-      "actual_evidence": [],
-      "status": "UNFINISHED",
-      "remaining_work": [
-        "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
       ],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
       "pass_lock": false,
       "actionable_requeued": false
     }
@@ -435,7 +512,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -488,7 +565,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -541,7 +618,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -594,7 +671,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -647,7 +724,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -700,7 +777,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -753,7 +830,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -806,7 +883,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "38692175820"
+        "38715581162"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -2508,8 +2585,26 @@
       "actionable_requeued": false
     }
   ],
-  "AUTO_REQUEUED": [],
-  "NEXT_WORK": null,
+  "PARTIAL": [
+    {
+      "requirement_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
+  "AUTO_REQUEUED": [
+    "4d1dfd700603938572f6"
+  ],
+  "NEXT_WORK": "4d1dfd700603938572f6",
   "EVIDENCE": {
     "ledger": "/home/runner/work/20-operational-manual-viewer/20-operational-manual-viewer/feedback_pipeline/evidence/wic_non_tool_common_closeout_ledger.json",
     "work_packet": "/home/runner/work/20-operational-manual-viewer/20-operational-manual-viewer/feedback_pipeline/evidence/wic_non_tool_common_work_packet.json",

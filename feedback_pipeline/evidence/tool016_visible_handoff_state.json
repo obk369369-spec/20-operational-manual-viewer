@@ -1,12 +1,50 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-15T06:24:29.678718+00:00",
-  "UNFINISHED_SCANNED": 24,
+  "updated_at": "2026-10-15T09:48:00.015061+00:00",
+  "UNFINISHED_SCANNED": 27,
   "ALREADY_PASS_EXCLUDED": 99,
-  "ROOTS_MERGED": 0,
-  "WORK_FIXABLE_ROOTS": 0,
-  "WORK_REQUIRED": [],
-  "WORK_BATCHES": [],
+  "ROOTS_MERGED": 1,
+  "WORK_FIXABLE_ROOTS": 1,
+  "WORK_REQUIRED": [
+    {
+      "demand_id": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+      "root_id": "4d1dfd700603938572f6",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "INPUT_CONTRACT_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+      "root_id": "4d1dfd700603938572f6",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "EXPECTED_ACTUAL_VALIDATION"
+      ]
+    },
+    {
+      "demand_id": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
+      "root_id": "4d1dfd700603938572f6",
+      "target_tool": "CENTRAL",
+      "atomic_capabilities": [
+        "FAILURE_ISOLATION"
+      ]
+    }
+  ],
+  "WORK_BATCHES": [
+    {
+      "root_id": "4d1dfd700603938572f6",
+      "demands": [
+        "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+        "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+        "3aa732397d7f42fcf487-FAILURE_ISOLATION"
+      ],
+      "target_tools": [
+        "CENTRAL"
+      ],
+      "status": "READY_FOR_MULTI_GATE"
+    }
+  ],
   "TOOL044_AUTO_HANDED_OFF": 14,
   "TOOL044_QUEUE": [
     {
@@ -94,11 +132,12 @@
       "atomic_capabilities": []
     }
   ],
-  "WORK_REQUIRED_REMAINDER": 0,
+  "WORK_REQUIRED_REMAINDER": 3,
   "MULTI_GATE": {
     "capacity": 30,
     "statuses": {
-      "PASS": 92
+      "PASS": 92,
+      "CLAIMED": 3
     }
   },
   "FREE_EXTERNAL_RUNNER_POOL": {
@@ -125,7 +164,7 @@
   },
   "CIRCULATION": {
     "tool016_to_tool044": "ACTIVE",
-    "ready": 14,
+    "ready": 17,
     "waiting": 10,
     "next_demand": "WIC-BACKLOG-TOOL001-20260927",
     "duplicate_demand_ids": [],
@@ -698,16 +737,21 @@
         "run_id": "38692175820",
         "observed_at": "2026-10-15T06:24:29.678718+00:00",
         "event": "schedule"
+      },
+      {
+        "run_id": "38715581162",
+        "observed_at": "2026-10-15T09:48:00.015061+00:00",
+        "event": "schedule"
       }
     ],
-    "run_count": 112,
-    "elapsed_hours": 400.351,
+    "run_count": 113,
+    "elapsed_hours": 403.743,
     "status": "PASS",
     "actual_24h": true
   },
   "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
   "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-  "LAST_HEARTBEAT": "2026-10-15T06:24:29.678718+00:00",
+  "LAST_HEARTBEAT": "2026-10-15T09:48:00.015061+00:00",
   "WATCHDOG": "SCHEDULED_15_MINUTES",
   "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
   "USER_MANUAL_RELAY_REQUIRED": 0,
