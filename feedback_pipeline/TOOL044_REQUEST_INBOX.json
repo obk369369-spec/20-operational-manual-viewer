@@ -387,6 +387,24 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "932359acefe36952e706",
+      "root_id": "4d2d53344132e0ccbf57",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/37",
+      "feedback": "피드백 적용해: TOOL044 24H continuous expansion worker-pool bootstrap\nWIC_EXTERNAL_EXPANSION_CONTRACT_V1\n\nREQUEST_KIND: CONTINUOUS_CAPABILITY_EXPANSION\nJOB_CREATION_OWNER: EXTERNAL_TOP_CONTROLLER\nEXECUTION_OWNER: EXTERNAL_WORKERS\nWORK_PRIMARY_EXECUTION: 0\nOPEN26_WORK: BLOCKED\nHISTORICAL_1Y_TOOL_WORK: BLOCKED\nPRODUCT_WORK: BLOCKED\n\nEXTERNAL_WORKER_POOLS:\n1. DEVELOPMENT\n2. VALIDATION\n3. EXECUTION\n4. RECOVERY\n5. DEPLOYMENT\n\nREUSE_ONLY:\nGitHub canonical, GitHub Actions, TOOL044, durable Queue/State, Recovery Supervisor, Release Governor, Render free Web Service, existing verified free components.\n\nCONTINUOUS_LOOP:\ndetect backlog/failure/capability gap -> select existing free verified component -> test -> register capability/worker -> assign bootstrap job -> heartbeat/checkpoint -> detect failure -> quarantine/failover/recover -> result/ACK -> canonical state -> enqueue next expansion job.\n\nMANDATORY_JOB_CONTRACT:\nTARGET / REQUIREMENT / FILES / ACCEPTANCE_TEST / REGRESSION_TEST / FAILURE_POLICY / DEPLOY_TARGET / RESULT_RETURN / CORRELATION_ID.\n\nCURRENT_EXTERNAL_JOB_LINEAGE:\nrequest=e80923a16e0fae2ea5e9\nrender_job=e80923a16e0fae2ea5e9-render-failover-bootstrap\nrender_execution=render-exec-e80923a16e0f\nrender_result=render-result-e80923a16e0f\nrender_ack=render-ack-e80923a16e0f\nrender_execution_status=PASS\nresult_return=BLOCKED_NO_RETURN_AUTH\n\nFAIL_CLOSED:\nDo not mutate OPEN26 or historical product work. Do not claim ACTIVE without claim/execution/heartbeat/checkpoint/failure-recovery/result-return evidence. Do not claim 24H_VERIFIED before natural elapsed evidence.\n\nNEXT_EXPANSION_JOBS:\n- register and test one worker per pool\n- register each capability with cost/license/socket\n- run cross-domain failure injection: GitHub scheduler unavailable -> Render/other external worker continues\n- obtain authenticated result return without storing secrets in source\n- enqueue the next capability-gap expansion cycle before completion.",
+      "actual_input": "github_issue:5865462490",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
