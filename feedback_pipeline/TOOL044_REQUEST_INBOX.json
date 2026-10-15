@@ -351,6 +351,24 @@
       ],
       "status": "OPEN",
       "user_action": "NONE"
+    },
+    {
+      "request_id": "3aa732397d7f42fcf487",
+      "root_id": "4d1dfd700603938572f6",
+      "related_tool": "CENTRAL",
+      "source_chat_or_tool": "github_issue",
+      "source_evidence": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/35",
+      "feedback": "피드백 적용해: TOOL016 External factory representative controller socket job\nRepresentative non-product external-factory job. Reuse the existing canonical queue, registry, repository_dispatch, GitHub Actions, Render free Web Service roundtrip, Release Governor, evidence return, and canonical state return. Do not open OPEN26 product work. Execute the existing external socket path, persist state, perform validation/recovery, return result evidence, and record any unavailable component as an isolated HOLD without stopping independent sockets.",
+      "actual_input": "github_issue:5862089289",
+      "wrong_output": "NONE",
+      "expected": "Route through TOOL016 and preserve source lineage",
+      "required_capabilities": [
+        "INPUT_CONTRACT_VALIDATION",
+        "EXPECTED_ACTUAL_VALIDATION",
+        "FAILURE_ISOLATION"
+      ],
+      "status": "OPEN",
+      "user_action": "NONE"
     }
   ]
 }
