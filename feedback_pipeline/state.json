@@ -567,6 +567,44 @@
         "result_sha256": "76e0d75fd3ad367d7654f7ede96c65063b6e82179d518e33bfb061fa4d0e249a",
         "root_id": "4d1dfd700603938572f6",
         "status": "TOOL044_RESULT_RETURN_ACK",
+        "tool044_natural_worker_return": {
+          "ack": "TOOL016_CENTRAL_RECEIVED",
+          "cycle_id": "20261015T092054Z",
+          "demand_results": [
+            {
+              "demand_id": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+              "matched": {},
+              "missing": [
+                "INPUT_CONTRACT_VALIDATION"
+              ],
+              "result": "NO_READY_ATOMIC_COMPONENT"
+            },
+            {
+              "demand_id": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+              "matched": {},
+              "missing": [
+                "EXPECTED_ACTUAL_VALIDATION"
+              ],
+              "result": "NO_READY_ATOMIC_COMPONENT"
+            },
+            {
+              "demand_id": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
+              "matched": {
+                "FAILURE_ISOLATION": "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+              },
+              "missing": [],
+              "result": "READY_ATOMIC_COMPONENT_FOUND"
+            }
+          ],
+          "source_receipt_sha256": "d31708de9cf2ad312b29fb551db2b238952b271b5d6a8cb1eef615cefb45e004",
+          "trigger_source": "SCHEDULED",
+          "user_manual_relay": 0,
+          "user_triggered": false,
+          "work_triggered": false,
+          "worker_receipt_sha256": "d6de6ab7e2a3d9dd7f4bd18c020abe5053c7995aeed663e20242c5cd9c5e7463"
+        },
+        "tool044_worker_checkpoint": "20261015T092054Z",
+        "tool044_worker_return_ack": "PASS",
         "user_manual_relay": 0
       },
       "49e71e666aa8395ea52c": {
