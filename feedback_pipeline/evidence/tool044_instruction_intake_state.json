@@ -51,7 +51,8 @@
     "ce9ef5d05bbc51a925f2",
     "23c6140a1773d1d3e404",
     "6e233cd8212b91044485",
-    "fa6fec4061b05e443823"
+    "fa6fec4061b05e443823",
+    "0320e8c4490f2eb16981"
   ],
   "last_events": [
     {
@@ -290,13 +291,19 @@
     },
     {
       "directive_id": "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
-      "action": "NEW_ROOT",
+      "action": "SKIP_DUPLICATE",
+      "canonical_target": "TOOL044",
+      "alias_resolved": false
+    },
+    {
+      "directive_id": "WIC-FREE-SHAREABLE-LIVE-SOCKET-EVIDENCE-GATE-20261015",
+      "action": "MERGE",
       "root_id": "WIC-ROOT-MAX-PLATFORM-FACTORY",
       "canonical_target": "TOOL044",
       "alias_resolved": false
     }
   ],
-  "updated_at": "2026-10-15T01:17:04.968197+00:00",
+  "updated_at": "2026-10-15T01:19:53.282442+00:00",
   "identity_metrics": {
     "alias_resolution_pass": 0,
     "alias_resolution_fail": 0,
