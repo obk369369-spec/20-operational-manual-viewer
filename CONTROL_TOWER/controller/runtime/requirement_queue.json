@@ -1,6 +1,6 @@
 {
   "schema": "wic.top_controller.queue.v1",
-  "updated_at": "2026-10-16T07:18:30.122416+00:00",
+  "updated_at": "2026-10-16T09:57:03.998520+00:00",
   "queued_requirement_ids": [],
   "deduplicated": true,
   "claim_lease": null,
@@ -632,6 +632,22 @@
     {
       "status": "ACCEPTED",
       "trace_id": "REMOTE-38866364344",
+      "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
+      "ready_made_first": true,
+      "selected_components": [
+        "WIC_EXISTING_TOP_CONTROLLER",
+        "WIC_UNIVERSAL_FAIL_CLOSED_GATE",
+        "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET"
+      ],
+      "backend_route": "CENTRAL_COMMON_PLATFORM",
+      "intent_quality_lock": "e9350493a2bffbc4404d2d514428979d6e06a2e5bc1593b735c9f617b9080b2e",
+      "registry_prelookup": true,
+      "pass_lock_prelookup": true,
+      "user_manual_repetition": 0
+    },
+    {
+      "status": "ACCEPTED",
+      "trace_id": "REMOTE-38883931449",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
