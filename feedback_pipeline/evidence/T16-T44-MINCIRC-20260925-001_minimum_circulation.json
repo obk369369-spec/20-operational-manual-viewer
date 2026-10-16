@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-15T22:09:33.616112+00:00",
+  "generated_at_utc": "2026-10-16T00:24:09.639898+00:00",
   "job_id": "T16-T44-MINCIRC-20260925-001",
   "correlation_id": "T16-T44-MINCIRC-20260925-001",
   "source_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/issues/25",
   "environment": "GITHUB_ACTIONS",
-  "run_id": "38815139641",
+  "run_id": "38829262027",
   "actual": {
     "tool016_received": true,
     "tool016_decision": "EXTERNAL_VALIDATION_WORKER",
@@ -18,7 +18,7 @@
     "claim": true,
     "external_execution": true,
     "heartbeat": true,
-    "checkpoint": "38815139641",
+    "checkpoint": "38829262027",
     "result_return": true,
     "validation": true
   },
@@ -38,16 +38,16 @@
   "checkpoint_resume": "READY_EXISTING_CONTRACT_NOT_RUN_THIS_CYCLE",
   "unattended_evidence": {
     "status": "WAITING",
-    "scheduled_records": 79,
-    "passing_records": 79,
-    "span_hours": 397.493,
+    "scheduled_records": 80,
+    "passing_records": 80,
+    "span_hours": 399.737,
     "max_gap_minutes": 841.355,
     "automatic_resume_condition": "24H_SCHEDULE_SPAN_WITHOUT_FAILED_OR_OVERDUE_INTERVAL",
     "pc_off_logged_off": "HOLD_EXTERNAL_EVIDENCE_UNTIL_24H_VERDICT"
   },
   "final_hold_auto_resume": {
     "schema_version": 1,
-    "updated_at": "2026-10-15T22:09:33.616842+00:00",
+    "updated_at": "2026-10-16T00:24:09.641100+00:00",
     "external_root_status": "HOLD",
     "elapsed_time_status": "WAITING",
     "children": {
@@ -82,5 +82,5 @@
     "user_manual_relay_required": false,
     "fake_pass_forbidden": true
   },
-  "evidence_sha256": "a56fc358f774b7fcbc7932f6db59013162f1fd0eb8c52311afeb7c12679b9715"
+  "evidence_sha256": "51babb35a4fd336e2eb0c49c69e6f63ad8c3a9dc5d615a80bc526ada4187872e"
 }
