@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-10-16T05:15:56.964593+00:00",
+  "created_at": "2026-10-16T07:18:30.126121+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "38854855388",
+  "run_id": "38866364344",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "ebc7dca9d3adae05e3db97e5b994d0de",
+    "token_id": "4e69c1c1fc216b506a0f7b63a0234d96",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "30697866049e8b0deeadef6fef8e20cfa695c316",
+    "git_sha": "8fef4d8cdca81cf8e675eaf4d89eaee68d028848",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -103,7 +103,7 @@
   "central_backlog_execution": [],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-38854855388",
+    "trace_id": "REMOTE-38866364344",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -122,7 +122,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "e9058b0c1a4aacb245ff7d5e8e9518ce59734db6522d6eac20a227c377ec599d",
+    "signature": "533cb31f61b683f6e35ce03e8d00fabdfe722800488879d06037259017586e31",
     "deltas": [
       0,
       0,
@@ -178,25 +178,17 @@
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
     "first_started_at": "2026-10-05T07:44:13+00:00",
-    "last_finished_at": "2026-10-16T01:28:11+00:00",
-    "elapsed_hours": 257.733,
-    "window_start": "2026-10-15T01:28:11+00:00",
-    "run_count": 11,
-    "success_count": 11,
+    "last_finished_at": "2026-10-16T05:15:46+00:00",
+    "elapsed_hours": 261.526,
+    "window_start": "2026-10-15T05:15:46+00:00",
+    "run_count": 10,
+    "success_count": 10,
     "failure_count": 0,
     "recovered_failures": [],
     "unrecovered_failures": [],
     "max_gap_hours": 4.847,
     "max_allowed_gap_hours": 2.5,
     "gap_incidents": [
-      {
-        "left_run_id": 38666262636,
-        "left_created_at": "2026-10-15T01:33:06Z",
-        "right_run_id": 38681654932,
-        "right_created_at": "2026-10-15T04:28:38Z",
-        "gap_hours": 2.926,
-        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
-      },
       {
         "left_run_id": 38681654932,
         "left_created_at": "2026-10-15T04:28:38Z",
@@ -235,6 +227,14 @@
         "right_run_id": 38834128708,
         "right_created_at": "2026-10-16T01:15:26Z",
         "gap_hours": 2.826,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 38835278363,
+        "left_created_at": "2026-10-16T01:28:11Z",
+        "right_run_id": 38854855388,
+        "right_created_at": "2026-10-16T05:15:46Z",
+        "gap_hours": 3.793,
         "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
       }
     ],
