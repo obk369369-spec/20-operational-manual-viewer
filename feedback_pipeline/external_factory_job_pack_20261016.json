@@ -1,0 +1,358 @@
+{
+  "schema": "wic.external-factory-job-pack.v1",
+  "generated_at": "2026-10-16T15:30:00+09:00",
+  "source_checkpoint": "WIC-CP-20261010-18PCT-FINAL-PRESERVATION-HANDOFF",
+  "preservation": {
+    "pass_locked_retest": false,
+    "rescan_3200": false,
+    "local_pc_execution": false,
+    "completed_requirement_ids_count": 26,
+    "needs_new_verification_remaining": 24,
+    "canonical_current_remaining": 6
+  },
+  "counts": {
+    "RAW_TASK_COUNT": 30,
+    "DEDUP_TASK_COUNT": 6,
+    "DEEPEST_COMMON_ROOT_COUNT": 6,
+    "COMMON_FIX_JOB_COUNT": 6,
+    "PARALLEL_READY_JOB_COUNT": 3,
+    "DEPENDENCY_BLOCKED_JOB_COUNT": 3,
+    "REMAINING_UNPACKAGED_TASKS": 0
+  },
+  "dependency_graph": {
+    "PARALLEL_NOW": [
+      "WIC-JP-ACTUAL-INPUT-BINDING",
+      "WIC-JP-ASSEMBLY-OUTPUT-IDENTITY",
+      "WIC-JP-EVIDENCE-DEPLOY-CHAIN"
+    ],
+    "BLOCKED_BY_DEPENDENCY": [
+      "WIC-JP-EXTERNAL-EVIDENCE-ACQUISITION",
+      "WIC-JP-PLATFORM-TIME-INTERCEPTOR"
+    ],
+    "AFTER_COMMON_FIX": [
+      "WIC-JP-FINAL-INTEGRATED-E2E"
+    ],
+    "FINAL_E2E": [
+      "WIC-JP-FINAL-INTEGRATED-E2E"
+    ]
+  },
+  "jobs": [
+    {
+      "ACTUAL_EXECUTION_REQUIRED": true,
+      "TEST_REQUIRED": [
+        "EXPECTED_ACTUAL",
+        "POSITIVE",
+        "NEGATIVE_FAILURE_INJECTION"
+      ],
+      "FAILURE_INJECTION": true,
+      "RECOVERY_REQUIRED": true,
+      "REGRESSION_REQUIRED": true,
+      "INDEPENDENT_VALIDATION_REQUIRED": true,
+      "REMOTE_READBACK_REQUIRED": true,
+      "JOB_ID": "WIC-JP-ACTUAL-INPUT-BINDING",
+      "AFFECTED_TOOLS": [
+        "TOOL001",
+        "TOOL006",
+        "TOOL013",
+        "TOOL041",
+        "TOOL042",
+        "WIC-0702-SCOPED-RECOVERY"
+      ],
+      "AFFECTED_ERRORS": [
+        "TOOL013_ACTUAL_XLS_NOT_BOUND",
+        "T41_T42_ACTUAL_CUSTOMER_PATH_HOLD",
+        "T6_GOLDEN_PAIR_MISSING",
+        "T1_FIVE_VERIFIED_REPORTS_MISSING"
+      ],
+      "ROOT_CAUSE": "VERIFIED_EXECUTION_CONTRACT_EXISTS_BUT_ACTUAL_SOURCE_PAYLOAD_IS_NOT_DURABLY_BOUND",
+      "REQUIRED_INPUT": [
+        "TOOL013 original XLS",
+        "authenticated current-customer history/material",
+        "publisher golden pair",
+        "five verified report payloads"
+      ],
+      "EXISTING_ASSETS_TO_REUSE": [
+        "TOOL013 targeted E2E",
+        "nine T41/T42 connection checks",
+        "existing TOOL001/006 handlers"
+      ],
+      "FILES/AREAS_TO_CHANGE": [
+        "canonical input binding manifests",
+        "affected producer/consumer bindings only"
+      ],
+      "DEPLOY_REQUIRED": false,
+      "EXPECTED_RESULT": "All available actual payloads are immutable, identity-safe, and consumable without rebuilding tools",
+      "PASS_CRITERIA": [
+        "actual input hash bound",
+        "expected/actual match",
+        "record identity pass",
+        "missing external payloads remain HOLD"
+      ]
+    },
+    {
+      "ACTUAL_EXECUTION_REQUIRED": true,
+      "TEST_REQUIRED": [
+        "EXPECTED_ACTUAL",
+        "POSITIVE",
+        "NEGATIVE_FAILURE_INJECTION"
+      ],
+      "FAILURE_INJECTION": true,
+      "RECOVERY_REQUIRED": true,
+      "REGRESSION_REQUIRED": true,
+      "INDEPENDENT_VALIDATION_REQUIRED": true,
+      "REMOTE_READBACK_REQUIRED": true,
+      "JOB_ID": "WIC-JP-ASSEMBLY-OUTPUT-IDENTITY",
+      "AFFECTED_TOOLS": [
+        "TOOL002",
+        "TOOL007",
+        "TOOL013",
+        "TOOL041",
+        "TOOL042"
+      ],
+      "AFFECTED_ERRORS": [
+        "TOOL013_FILENAME_DIFF",
+        "TOOL013_N_PAGES_CASING",
+        "CATEGORY_DISPLAY_BINDING",
+        "DATE_SERIAL_DISPLAY_BINDING",
+        "TSV_XLSX_ROLE_CONNECTION"
+      ],
+      "ROOT_CAUSE": "CANONICAL_ASSEMBLY_VERSION_AND_OUTPUT_FIELD_BINDINGS_DRIFT",
+      "REQUIRED_INPUT": [
+        "existing canonical implementations",
+        "actual bound fixture from Job A when available"
+      ],
+      "EXISTING_ASSETS_TO_REUSE": [
+        "translation/category/page display implementations",
+        "TOOL013 assembly evidence",
+        "distinct TSV MVP and XLSX worker"
+      ],
+      "FILES/AREAS_TO_CHANGE": [
+        "canonical entrypoint bindings",
+        "output naming/casing",
+        "field mapping only"
+      ],
+      "DEPLOY_REQUIRED": true,
+      "EXPECTED_RESULT": "Existing components produce the correct user-visible workbook without redevelopment",
+      "PASS_CRITERIA": [
+        "downloaded XLSX reopened",
+        "filename exact",
+        "N Pages exact",
+        "translation/category/date exact",
+        "no identity mixing"
+      ]
+    },
+    {
+      "ACTUAL_EXECUTION_REQUIRED": true,
+      "TEST_REQUIRED": [
+        "EXPECTED_ACTUAL",
+        "POSITIVE",
+        "NEGATIVE_FAILURE_INJECTION"
+      ],
+      "FAILURE_INJECTION": true,
+      "RECOVERY_REQUIRED": true,
+      "REGRESSION_REQUIRED": true,
+      "INDEPENDENT_VALIDATION_REQUIRED": true,
+      "REMOTE_READBACK_REQUIRED": true,
+      "JOB_ID": "WIC-JP-EVIDENCE-DEPLOY-CHAIN",
+      "AFFECTED_TOOLS": [
+        "TOOL044",
+        "TOOL016",
+        "CONTROL_TOWER",
+        "Observer"
+      ],
+      "AFFECTED_ERRORS": [
+        "TOOL044_DEPLOY_RECOVERY_HOLD_2",
+        "RESULT_ACK_GAP",
+        "EVIDENCE_CHAIN_PARTIAL",
+        "DEPLOYED_COPY_TEST_MISSING"
+      ],
+      "ROOT_CAUSE": "EXECUTION_RESULT_DEPLOYMENT_ACK_AND_CANONICAL_EVIDENCE_ARE_NOT_ONE_DURABLE_LINEAGE",
+      "REQUIRED_INPUT": [
+        "actual deploy input",
+        "expected deploy contract",
+        "job correlation identity"
+      ],
+      "EXISTING_ASSETS_TO_REUSE": [
+        "dual receipt assembly gate",
+        "Release Governor",
+        "existing Result/ACK schema",
+        "remote readback validators"
+      ],
+      "FILES/AREAS_TO_CHANGE": [
+        "job result/ACK bindings",
+        "deployment evidence linkage",
+        "observer projection"
+      ],
+      "DEPLOY_REQUIRED": true,
+      "EXPECTED_RESULT": "One job identity spans execution through deployed-copy readback and canonical Evidence",
+      "PASS_CRITERIA": [
+        "result id",
+        "ack id",
+        "deployment id",
+        "remote readback",
+        "canonical commit",
+        "observer consistency"
+      ]
+    },
+    {
+      "ACTUAL_EXECUTION_REQUIRED": false,
+      "TEST_REQUIRED": [
+        "EXPECTED_ACTUAL",
+        "POSITIVE",
+        "NEGATIVE_FAILURE_INJECTION"
+      ],
+      "FAILURE_INJECTION": true,
+      "RECOVERY_REQUIRED": true,
+      "REGRESSION_REQUIRED": true,
+      "INDEPENDENT_VALIDATION_REQUIRED": true,
+      "REMOTE_READBACK_REQUIRED": true,
+      "JOB_ID": "WIC-JP-EXTERNAL-EVIDENCE-ACQUISITION",
+      "AFFECTED_TOOLS": [
+        "TOOL001",
+        "TOOL006",
+        "TOOL041",
+        "TOOL042"
+      ],
+      "AFFECTED_ERRORS": [
+        "EXTERNAL_ORIGINALS_UNAVAILABLE",
+        "AUTHENTICATED_CUSTOMER_HISTORY_UNAVAILABLE"
+      ],
+      "ROOT_CAUSE": "REQUIRED_REAL_WORLD_SOURCE_EVIDENCE_IS_EXTERNAL_TO_CANONICAL_REPOSITORY",
+      "REQUIRED_INPUT": [
+        "authorized source payloads only"
+      ],
+      "EXISTING_ASSETS_TO_REUSE": [
+        "existing HOLD records and resume triggers"
+      ],
+      "FILES/AREAS_TO_CHANGE": [
+        "none until authorized inputs arrive"
+      ],
+      "DEPLOY_REQUIRED": false,
+      "EXPECTED_RESULT": "Acquire only genuine authorized evidence and release Job A dependencies",
+      "PASS_CRITERIA": [
+        "source provenance",
+        "access authorization",
+        "hash",
+        "no fabricated payload"
+      ],
+      "DEPENDENCIES": [
+        "external source availability"
+      ]
+    },
+    {
+      "ACTUAL_EXECUTION_REQUIRED": true,
+      "TEST_REQUIRED": [
+        "EXPECTED_ACTUAL",
+        "POSITIVE",
+        "NEGATIVE_FAILURE_INJECTION"
+      ],
+      "FAILURE_INJECTION": true,
+      "RECOVERY_REQUIRED": true,
+      "REGRESSION_REQUIRED": true,
+      "INDEPENDENT_VALIDATION_REQUIRED": true,
+      "REMOTE_READBACK_REQUIRED": true,
+      "JOB_ID": "WIC-JP-PLATFORM-TIME-INTERCEPTOR",
+      "AFFECTED_TOOLS": [
+        "TOOL007",
+        "Recovery Supervisor",
+        "external watchdog"
+      ],
+      "AFFECTED_ERRORS": [
+        "PLATFORM_NATIVE_INTERCEPTOR_LIMIT",
+        "ACTUAL_24H_HOLD_SCHEDULE_GAP",
+        "INDEPENDENT_WATCHDOG_MISSING"
+      ],
+      "ROOT_CAUSE": "NATIVE_PLATFORM_EVENT_AND_INDEPENDENT_TIME_CONTINUITY_CAPABILITIES_ARE_NOT_PROVEN",
+      "REQUIRED_INPUT": [
+        "supported native interceptor",
+        "independent scheduler runtime",
+        "24h natural evidence"
+      ],
+      "EXISTING_ASSETS_TO_REUSE": [
+        "7.97h gap evidence",
+        "deployed watchdog logic",
+        "existing schedule history"
+      ],
+      "FILES/AREAS_TO_CHANGE": [
+        "external platform configuration only when available"
+      ],
+      "DEPLOY_REQUIRED": true,
+      "EXPECTED_RESULT": "Independent event intake and continuity evidence without Work/local execution",
+      "PASS_CRITERIA": [
+        "native event proof",
+        "independent heartbeat",
+        "max gap within contract",
+        "actual 24h elapsed"
+      ],
+      "DEPENDENCIES": [
+        "external capability",
+        "natural time"
+      ]
+    },
+    {
+      "ACTUAL_EXECUTION_REQUIRED": true,
+      "TEST_REQUIRED": [
+        "EXPECTED_ACTUAL",
+        "POSITIVE",
+        "NEGATIVE_FAILURE_INJECTION"
+      ],
+      "FAILURE_INJECTION": true,
+      "RECOVERY_REQUIRED": true,
+      "REGRESSION_REQUIRED": true,
+      "INDEPENDENT_VALIDATION_REQUIRED": true,
+      "REMOTE_READBACK_REQUIRED": true,
+      "JOB_ID": "WIC-JP-FINAL-INTEGRATED-E2E",
+      "AFFECTED_TOOLS": [
+        "TOOL013",
+        "TOOL041",
+        "TOOL007",
+        "TOOL042",
+        "TOOL006",
+        "TOOL001",
+        "TOOL016",
+        "TOOL044",
+        "Observer"
+      ],
+      "AFFECTED_ERRORS": [
+        "CROSS_TOOL_PRODUCT_CLOSURE_NOT_PROVEN"
+      ],
+      "ROOT_CAUSE": "COMMON_FIXES_REQUIRE_ONE_ACTUAL_END_TO_END_BUSINESS_LINEAGE",
+      "REQUIRED_INPUT": [
+        "all released dependencies",
+        "one actual WIC business input"
+      ],
+      "EXISTING_ASSETS_TO_REUSE": [
+        "all unaffected PASS_LOCK evidence",
+        "existing validators",
+        "Governor",
+        "deployment/readback"
+      ],
+      "FILES/AREAS_TO_CHANGE": [
+        "none unless a failing segment identifies a precise root"
+      ],
+      "DEPLOY_REQUIRED": true,
+      "EXPECTED_RESULT": "Actual WIC input produces a usable artifact with recovery, deployment, readback, ACK and Evidence",
+      "PASS_CRITERIA": [
+        "actual artifact reopened",
+        "all gates pass",
+        "failure recovered",
+        "regression pass",
+        "independent validation",
+        "remote readback",
+        "PASS_LOCK"
+      ],
+      "DEPENDENCIES": [
+        "WIC-JP-ACTUAL-INPUT-BINDING",
+        "WIC-JP-ASSEMBLY-OUTPUT-IDENTITY",
+        "WIC-JP-EVIDENCE-DEPLOY-CHAIN"
+      ]
+    }
+  ],
+  "readiness": {
+    "TOOL013_JOB_READY": true,
+    "OPEN26_JOB_READY": true,
+    "HISTORICAL_JOB_READY": true,
+    "EXTERNAL_FACTORY_HANDOFF_READY": "PASS",
+    "queue_action": "CLAIM_PARALLEL_NOW_THEN_RELEASE_DEPENDENT_JOBS"
+  }
+}
