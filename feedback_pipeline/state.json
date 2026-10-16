@@ -126,7 +126,7 @@
     ],
     "automatic_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-16T00:42:15.833619+00:00",
+      "updated_at": "2026-10-16T01:41:28.814870+00:00",
       "source_scan": "DURABLE_QUEUE_REGISTRY_CHECKPOINT_AND_ACCESSIBLE_FEEDBACK",
       "unfinished_detected": 26,
       "common_roots": [
@@ -1086,11 +1086,11 @@
       "evidence"
     ],
     "non_tool_common_closeout": {
-      "updated_at": "2026-10-16T00:42:15.830024+00:00",
+      "updated_at": "2026-10-16T01:41:28.810934+00:00",
       "counts": {
         "PARTIAL": 1,
-        "UNFINISHED": 2,
         "COMPLETE": 70,
+        "UNFINISHED": 2,
         "LONG_TERM_HOLD": 5,
         "PLATFORM_HOLD": 5
       },
@@ -3868,7 +3868,7 @@
     },
     "visible_handoff": {
       "schema_version": 1,
-      "updated_at": "2026-10-16T00:42:15.708800+00:00",
+      "updated_at": "2026-10-16T01:41:28.802214+00:00",
       "UNFINISHED_SCANNED": 24,
       "ALREADY_PASS_EXCLUDED": 108,
       "ROOTS_MERGED": 0,
@@ -4616,16 +4616,21 @@
             "run_id": "38830942617",
             "observed_at": "2026-10-16T00:42:15.708800+00:00",
             "event": "schedule"
+          },
+          {
+            "run_id": "38836463469",
+            "observed_at": "2026-10-16T01:41:28.802214+00:00",
+            "event": "schedule"
           }
         ],
-        "run_count": 122,
-        "elapsed_hours": 418.647,
+        "run_count": 123,
+        "elapsed_hours": 419.634,
         "status": "PASS",
         "actual_24h": true
       },
       "MUTUAL_MONITORING": "TOOL016_CENTRAL_AND_CONTROL_TOWER",
       "AUTO_RECOVERY": "LEASE_EXPIRY_STALE_RECLAIM_AND_CHECKPOINT",
-      "LAST_HEARTBEAT": "2026-10-16T00:42:15.708800+00:00",
+      "LAST_HEARTBEAT": "2026-10-16T01:41:28.802214+00:00",
       "WATCHDOG": "SCHEDULED_15_MINUTES",
       "RECENT_EVENT": "VISIBLE_HANDOFF_REFRESHED",
       "USER_MANUAL_RELAY_REQUIRED": 0,
@@ -4755,7 +4760,7 @@
     "zero_touch_residual_circulation": {
       "schema_version": 1,
       "common_root": "WIC-COMMON-ZERO-TOUCH-FEEDBACK-CIRCULATION",
-      "updated_at": "2026-10-16T00:42:15.708800+00:00",
+      "updated_at": "2026-10-16T01:41:28.802214+00:00",
       "COMPLETE": [
         "T42-OFFICIAL-PUBLISHER-VALIDATION",
         "T42-OFFICIAL-DETAIL-PAGE-VALIDATION",
