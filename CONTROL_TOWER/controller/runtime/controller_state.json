@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-17T10:54:21.666441+00:00",
+  "updated_at": "2026-10-17T13:41:19.120796+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -921,11 +921,11 @@
   },
   "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-17T11:54:21.666448+00:00",
+  "next_run_at": "2026-10-17T14:41:19.120803+00:00",
   "handoff_traces": {
-    "REMOTE-39026658269": {
+    "REMOTE-39037577610": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-39026658269",
+      "trace_id": "REMOTE-39037577610",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -942,20 +942,20 @@
   },
   "runtime_progress_gate": {
     "seen_signatures": [
-      "397bef71686efa74eff989323ff605abd4b0a988a3711da2224dbb88202b0471",
-      "0838088f61dbd5a906d560f9bb68ae80e2f902de83ba6409870a5e373ae724f0"
+      "0eca41d926be4f374a8abac4d2cea4ca343125dc1a616a41d7b98731224307bf",
+      "8da17300342da7613e89a122e03c2295080e412b3ff4dd9a3b04e3331f17a07f"
     ],
     "stopped_roots": {},
     "last_checkpoint": {
-      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-39026658269",
-      "CENTRAL_RUNTIME_CYCLE": "39026658269"
+      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-39037577610",
+      "CENTRAL_RUNTIME_CYCLE": "39037577610"
     },
     "events": [
       {
         "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "397bef71686efa74eff989323ff605abd4b0a988a3711da2224dbb88202b0471",
+        "signature": "0eca41d926be4f374a8abac4d2cea4ca343125dc1a616a41d7b98731224307bf",
         "deltas": [
           0,
           0,
@@ -968,7 +968,7 @@
         "root_id": "CENTRAL_RUNTIME_CYCLE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "0838088f61dbd5a906d560f9bb68ae80e2f902de83ba6409870a5e373ae724f0",
+        "signature": "8da17300342da7613e89a122e03c2295080e412b3ff4dd9a3b04e3331f17a07f",
         "deltas": [
           0,
           0,
@@ -989,10 +989,10 @@
   "runtime_continuity": {
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
-    "first_started_at": "2026-10-05T08:43:17+00:00",
-    "last_finished_at": "2026-10-17T08:52:25+00:00",
-    "elapsed_hours": 288.152,
-    "window_start": "2026-10-16T08:52:25+00:00",
+    "first_started_at": "2026-10-05T08:54:51+00:00",
+    "last_finished_at": "2026-10-17T10:54:10+00:00",
+    "elapsed_hours": 289.989,
+    "window_start": "2026-10-16T10:54:10+00:00",
     "run_count": 12,
     "success_count": 12,
     "failure_count": 0,
@@ -1001,14 +1001,6 @@
     "max_gap_hours": 4.043,
     "max_allowed_gap_hours": 2.5,
     "gap_incidents": [
-      {
-        "left_run_id": 38866364344,
-        "left_created_at": "2026-10-16T07:18:19Z",
-        "right_run_id": 38883931449,
-        "right_created_at": "2026-10-16T09:56:52Z",
-        "gap_hours": 2.643,
-        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
-      },
       {
         "left_run_id": 38883931449,
         "left_created_at": "2026-10-16T09:56:52Z",
@@ -1064,13 +1056,13 @@
   },
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "39026658269",
+    "run_id": "39037577610",
     "run_attempt": "1",
     "processed": [],
     "held": [],
     "handoff": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-39026658269",
+      "trace_id": "REMOTE-39037577610",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -1089,7 +1081,7 @@
       "root_id": "CENTRAL_RUNTIME_CYCLE",
       "decision": "ALLOW",
       "reason": null,
-      "signature": "0838088f61dbd5a906d560f9bb68ae80e2f902de83ba6409870a5e373ae724f0",
+      "signature": "8da17300342da7613e89a122e03c2295080e412b3ff4dd9a3b04e3331f17a07f",
       "deltas": [
         0,
         0,
