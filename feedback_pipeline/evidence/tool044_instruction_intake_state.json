@@ -52,7 +52,8 @@
     "23c6140a1773d1d3e404",
     "6e233cd8212b91044485",
     "fa6fec4061b05e443823",
-    "0320e8c4490f2eb16981"
+    "0320e8c4490f2eb16981",
+    "0dbed63f06d81ea54142"
   ],
   "last_events": [
     {
@@ -300,9 +301,16 @@
       "action": "SKIP_DUPLICATE",
       "canonical_target": "TOOL044",
       "alias_resolved": false
+    },
+    {
+      "directive_id": "WIC-TOOL013-EXTERNAL-PARALLEL-ASSEMBLY-20261018",
+      "action": "SUPERSEDE",
+      "root_id": "TOOL013",
+      "canonical_target": "TOOL013",
+      "alias_resolved": false
     }
   ],
-  "updated_at": "2026-10-18T09:30:04.016422+00:00",
+  "updated_at": "2026-10-18T11:13:49.013723+00:00",
   "identity_metrics": {
     "alias_resolution_pass": 0,
     "alias_resolution_fail": 0,
