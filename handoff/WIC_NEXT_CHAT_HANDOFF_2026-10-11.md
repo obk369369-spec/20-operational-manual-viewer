@@ -244,3 +244,49 @@ FINAL
 (3) 완료되면 결과를 토대로 2차 지시문(13번 제외 주요도구 + 미완료 3+1 + 최근 1년 최대공통 Root 감사)을 작성한다.
 
 새 대화는 이 handoff를 기준으로 이어가며, 이 파일 작성 자체를 runtime implementation PASS로 오인하지 않는다.
+
+## 13. 2026-10-18 TOOL016 대화창 종료 증분 인계
+
+상태: `CENTRAL_RESUME=PASS` / REMOTE READ-BACK 기준 종료 인계.
+이 절은 앞선 handoff와 기존 PASS/Evidence를 폐기하거나 재검증하지 않고 최신 실행상태만 증분 추가한다.
+
+### 복원 기준
+- 복원 직전 기준 HEAD: `9849a39f01fa358558d2bb576f89103947454f78`
+- resume loader 결과: `RESUME_LOADED`
+- OPEN: 2
+- HOLD: 4
+- RUNNING: 0
+- NEXT_WORK: 2
+  1. `WIC-0702-SCOPED-RECOVERY`
+  2. `WIC-PARALLEL-RESIDUAL-20260903`
+- 사용자 checkpoint 수동 전달 횟수: 0
+
+### 현재 작업 재개 원칙
+- 오래된 로컬 checkpoint로 후퇴하지 않는다.
+- 기존 `PASS / VERIFIED / REMOTE_VERIFIED / Evidence`를 정본으로 재사용하고 재처리·재수집·재검증하지 않는다.
+- 과거 작업 재조사, 전체 저장소·드라이브·USB 재스캔, 완료 작업 재실행을 금지한다.
+- NEXT_WORK는 canonical trigger와 실행계약이 실제 충족된 지점에서만 마지막 실제 완료지점부터 이어간다.
+- 변화 없는 HOLD와 같은 원인·같은 방법의 실패는 다시 실행하지 않는다.
+
+### USB 경계
+- 현재 정상 연결 USB는 `D:`다.
+- WIC 경로·checkpoint·Job Pack·Evidence는 특정 USB 드라이브 문자에 종속시키지 않는다.
+- `D:`를 `I:`로 변경하지 않는다.
+- USB 전체 스캔, 이동, 삭제, 재구성은 금지한다.
+- 현재 TOOL/NEXT_WORK에 직접 필요한 알려진 경로만 좁게 읽는다.
+
+### 병렬 획득·복구 실행 규칙
+- 기존 검증 자산을 우선 재사용하고, 필요한 경우 외부의 완성형 Worker·Workspace·검증 부품 및 검증된 부품조합을 독립 lane으로 병렬 획득·검증한다.
+- 동일 asset/root에는 기존 owner·lease·checkpoint를 재사용하고 중복 실행하지 않는다.
+- 한 경로의 실패가 다른 독립 경로를 중단시키지 않는다. 실패 lane만 원인·증거·checkpoint와 함께 격리하고 나머지 독립 lane은 계속한다.
+- 단일 후보·단일 Worker·단일 Workspace 실패를 전체 WIC 중지나 전체 ROOT 실패로 확대하지 않는다.
+- 기존 Job Pack이 있으면 그대로 재사용하고 처음부터 다시 만들지 않는다.
+- Job Pack은 최신 canonical 상태와 충돌하는 부분만 증분 갱신하며, 기존 target/assets/acceptance/evidence/checkpoint를 보존한다.
+- 새 Job Pack·새 Worker·새 Workspace·새 파이프라인은 기존 자산으로 해결 불가능하다는 근거와 현재 scope authorization 없이는 만들지 않는다.
+- 병렬 lane의 결과는 각자 Evidence와 remote read-back을 가진 뒤 CENTRAL canonical 상태에 합류한다.
+
+### 정확한 다음 실행
+- `WIC-0702-SCOPED-RECOVERY`: 저장된 정확한 source를 재사용한다. 복구 자체를 반복하지 말고 authoritative identity/material link와 허용된 실제 tool test path가 확보될 때만 재개한다.
+- `WIC-PARALLEL-RESIDUAL-20260903`: 기존 policy restore와 Job Pack을 재사용한다. 허용된 local-browser test path 또는 concrete business handler/input이 확보된 독립 lane부터 진행하며, 다른 HOLD 때문에 전체를 중단하지 않는다.
+- TOOL013/043 및 기존 완료 범위는 변경 직접 영향이 없으면 `SKIP_REUSE`한다.
+
