@@ -305,3 +305,51 @@ FINAL
 - TOOL041/042, TOOL001/006/007은 trigger 변화가 없어 `SKIP_NO_VALUE`; 기존 PASS/HOLD를 재실행하지 않았다.
 - 한 lane의 차단을 다른 독립 lane의 실패로 확대하지 않는다. 현재 독립 lane들도 각 필수 actual input/contract가 없어 변경 없는 HOLD로 남긴다.
 
+
+## 14. 2026-10-18 TOOL013 외부 병렬 조합 실행방식 변경 checkpoint
+
+상태: 기존 코드 중심 단독 조립 즉시 중단. TOOL013 runtime 변경 0건. 기존 checkpoint/PASS/Evidence/Job Pack을 보존·재사용한다.
+
+### 실제 실행한 기존 외부 경로
+- canonical directive: `feedback_pipeline/tool044_instruction_inbox.json`
+- directive id: `WIC-TOOL013-EXTERNAL-PARALLEL-ASSEMBLY-20261018`
+- directive 저장 commit: `4dcb335ada729f48dc7320b32309f8187dc420f6`
+- 기존 GitHub Actions canonical intake가 push를 실제 수신하고 TOOL013 기존 지시를 `SUPERSEDE`했다.
+- 외부 Actions 증거 자동저장 commit: `1a514261215292005c56e5ece3bec0610ce2b14f`
+- evidence: `feedback_pipeline/evidence/tool044_instruction_intake_state.json`
+- 기존 Job Pack: `feedback_pipeline/external_factory_job_pack_20261016.json` 재사용. 새 Job Pack/Worker/Workspace/UI/DB/pipeline 생성 0건.
+
+### 독립 lane 결과
+1. GitHub Actions intake / claim 전단
+   - runner: 기존 `tool044-canonical-instruction-intake` workflow
+   - input: 위 canonical directive
+   - output: intake state의 TOOL013 `SUPERSEDE` event
+   - validator: remote evidence commit/read-back
+   - result: `PASS_EXTERNAL_EXECUTED`
+2. 실제 XLSX 처리 Worker
+   - input: 기존 pinned D: XLSX 경로
+   - required output: 원본 파일명 + ` - 월드 입력.xlsx`, 숫자 + `Pages`, identity 보존 결과
+   - connection: 기존 factory runtime에 TOOL013 job/socket 미생성
+   - evidence: `feedback_pipeline/tool044_factory_runtime.json`은 `active_workers: 0`, TOOL013 matching job 없음
+   - result: `HOLD_NO_TOOL013_EXTERNAL_JOB_AND_INPUT_MOUNT`
+3. 출력/identity validator
+   - 기존 validator 계약과 부품은 재사용 가능하나 lane 2 실제 출력이 없어 실행하지 않음
+   - result: `HOLD_NO_ACTUAL_OUTPUT`
+4. Kestra orchestration
+   - 현재 기존 자산은 health/status linkage뿐이며 TOOL013 XLSX input/output socket이 없음
+   - result: `HOLD_HEALTH_LINK_ONLY_NO_TOOL013_SOCKET`
+5. Node-RED recovery/ACK
+   - 현재 기존 자산은 result recovery/ACK/health linkage뿐이며 TOOL013 workbook 처리 socket이 없음
+   - result: `HOLD_RECOVERY_LINK_ONLY_NO_TOOL013_SOCKET`
+6. deploy/read-back/Governor
+   - 검증된 실제 산출물이 없어 배포·운영본 검증을 시작하지 않음
+   - result: `HOLD_NO_VALIDATED_ARTIFACT`
+
+### 차단 경계와 재개 조건
+- GitHub Actions 수신 lane 성공은 TOOL013 완성품 PASS가 아니다.
+- 기존 외부 조합은 현재 지시 수신까지만 실제 연결됐고, 실제 XLSX를 소비하는 TOOL013 job 생성 socket이 끊어져 있다.
+- Kestra/Node-RED 이름 존재나 health link만으로 처리 실행을 주장하지 않는다.
+- 동일 조건에서 TOOL013 코드 재조립·동일 실패 재시도를 금지한다.
+- 재개는 기존 외부 factory가 TOOL013 job을 생성하고, 허용된 external workspace가 pinned D: XLSX를 mount하여 실제 output을 낸 경우에만 한다.
+- 이후 기존 validator가 파일명/정확한 `N Pages`/row identity/download/reopen을 검증하고, 검증 artifact가 있을 때만 deploy/read-back/Governor lane을 실행한다.
+- 한 lane HOLD는 다른 독립 lane을 중지시키지 않는다. 이 checkpoint에서는 실제 실행 가능한 intake lane을 완료했고, 나머지는 각각의 정확한 플랫폼 경계로 격리했다.
