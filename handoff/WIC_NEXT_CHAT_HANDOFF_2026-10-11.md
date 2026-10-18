@@ -413,3 +413,27 @@ TOOL013 코드 중심 단독 재조립은 계속 STOP한다. 다음이 모두 �
 - cloud worker run_count 717, heartbeat_count 712, failure isolation PASS, queue length 0, status `STRUCTURE_READY_NOT_REMOTE_VERIFIED`.
 - 따라서 24시간 독립 운영 플랫폼 완료는 아직 HOLD다. 후보/부품 탐색 실행은 복구됐지만 독립 외부 runtime의 24h continuity와 완전 remote verification은 미확정이다.
 - TOOL013 수정·조립·배포는 계속 금지한다. 완전 이관 evidence 전에는 재개하지 않는다.
+
+
+## 17. 2026-10-18 최종 통합 실행 전환 — Render 외 플랫폼 선행 gate
+
+- 최종 사용자 지시에 따라 기존 `doit + fastjsonschema + GitHub Actions` 내부 workflow 확장은 외부 플랫폼 도입으로 인정하지 않고 중단했다.
+- 반영됐던 임시 변경 commit `957995ef1ce231e0bcb95aa00849318ecec3b226`은 Actions run `39123814427`에서 job 0건 / workflow invalid로 FAIL했다. 동일 방식 재실행 없음.
+- 임시 push trigger와 내부 조합 블록은 제거했다. cleanup commit `3c8a43f1eb6c06eaf7ef04efb09487d7b69d5261`.
+- 기존 5분 schedule은 보존했다. 후보 777 / 검증 부품 14 / 검증 조합 1 / ready package 2가 존재하므로 discovery·harvest·ready-package 단계는 `SKIP_REUSE`하고, 필수 부품 수가 기준 미달일 때만 재개한다.
+- Render 중심 작업은 STOP 유지.
+
+### Render 외 기존 완성형 후보 판정
+- Kestra OSS 2.0.4: 기존 execution `3c8RXzA4u3Yp865cCb1vs7` 재사용 가능. 그러나 설치 위치가 기존 로컬 CONTROL_TOWER이며 `pc_off_independent=false`; 외부 hosted endpoint/auth 없음.
+- Node-RED 4.1.0: 기존 execution `DISCOVERY-1790831631040`, linked Kestra execution `2d9ZFxcbcWc5LuLLEgJ33u`. 역시 로컬 자산이며 `pc_off_independent=false`; 외부 hosted endpoint/auth 없음.
+- Pipedream: 발견된 공개 source 후보일 뿐 account/auth, 상업 무료 조건, 실제 execution ID/ACK 없음.
+- 따라서 실제 도입 판정: `BLOCKED_NO_RENDER_EXTERNAL_HOSTED_RUNTIME_CONNECTED`. GitHub 내부 실행으로 우회 PASS하지 않는다.
+- Evidence: `feedback_pipeline/evidence/wic_non_render_external_platform_adoption_20261018.json`, commit `d8e5911d4f533f4e112e388cb45dcfb81e0d45f9`.
+- CENTRAL directive revision 5: commit `8e2124b0202d6f07e85db59f8235fbc7460ba7ee`.
+
+### 정확한 재개 조건
+1. Render 외 hosted runtime 계정 또는 기존 hosted Kestra/Node-RED endpoint를 지원되는 연결 방식으로 인증한다.
+2. 기존 Job Pack 실제 항목 1건을 외부로 전달한다.
+3. 외부 execution ID, 결과 URI, ACK, 상태/복구 evidence와 GitHub remote read-back을 동일 job identity로 확보한다.
+4. 이후에만 external migration PASS 판정 가능.
+5. TOOL013은 위 gate와 authorized actual XLSX mount가 모두 PASS하기 전까지 `STOP`. 이번 변경/조립/배포 0건.
