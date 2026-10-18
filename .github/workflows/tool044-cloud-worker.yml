@@ -3,10 +3,6 @@ name: TOOL044 Public Safe Cloud Worker
 # GitHub Actions bootstrap stays scheduled while independent free runtimes are
 # discovered and verified. GitHub-only execution never counts as multi-runtime PASS.
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/tool044-cloud-worker.yml'
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
