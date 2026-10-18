@@ -737,12 +737,18 @@
       "directive_id": "WIC-TOOL013-EXTERNAL-PARALLEL-ASSEMBLY-20261018",
       "target_tool": "TOOL013",
       "root_id": "TOOL013",
-      "revision": 2,
+      "revision": 3,
       "priority": "CRITICAL",
       "status": "OPEN",
       "user_action": "NONE",
       "created_at": "2026-10-18",
-      "directive": "LATEST OVERRIDE: stop repeated Codex/Work-only TOOL013 code assembly. Preserve every prior checkpoint, PASS and evidence. Reuse external_factory_job_pack_20261016.json and existing sockets only. Execute independent failure-isolated lanes: (A) GitHub Actions canonical intake/claim/checkpoint/result/evidence lane; (B) existing external XLSX worker using the pinned actual input D:\\홈페이지 자료 입력\\Metadata Sheet (Market Report)\\MarketsandMarkets\\입력전\\MarketsandMarkets_Latest_엑셀파일만_평면압축\\MarketsandMarkets New Reports Metadata 01072025.xlsx; (C) existing output validators for exact original-name + ' - 월드 입력.xlsx', numeric page field separate from exact 'N Pages', row identity, reopen and expected/actual; (D) existing Kestra orchestration socket; (E) existing Node-RED result recovery/ACK socket; (F) existing deployment/read-back/Governor socket. Every lane must persist runner, function, immutable input, output, validator, connection state and external run evidence. One lane failure must not stop independent lanes. Do not create new Worker, Workspace, Job Pack, UI, DB or pipeline. Do not modify TOOL013 runtime until external composition actually consumes the pinned XLSX and produces independently validated output. If the D: payload is not mounted into an authorized external workspace, or Kestra/Node-RED are only health links without TOOL013 sockets, record the exact HOLD and stop assembly; never claim completion from intake, plans, code, mocks or commits alone."
+      "directive": "LATEST OVERRIDE: migrate WIC execution, control, durable state, recovery, validation and next-work handoff from GPT/Codex/Work dependence into the already connected external platform. Reuse GitHub canonical, GitHub Actions, repository_dispatch, Render ENV2, existing Worker/Workspace/validators/Job Pack; Kestra and Node-RED remain local-only and cannot count as external ownership. Require actual independent execution, parallel failure isolation, recovery, validated result, durable canonical persistence and automatic next-work. GPT/Codex/Work are instruction/development/observation only. Do not claim completion from code/config/manifests alone. Preserve PASS locks and modify only broken sockets. TOOL013 reassembly remains STOP until external control and authenticated durable result return are proven; then use the pinned actual XLSX and run full output validation/deploy/readback. Current observed boundary: Render external execution PASS but direct selftest CENTRAL return BLOCKED_NO_RETURN_AUTH; do not retry unchanged or fake PASS.",
+      "execution_gate": {
+        "external_runtime_actual": "PASS_RENDER_ENV2",
+        "durable_result_return": "HOLD_NO_PERSISTENT_RETURN_AUTH_OUTSIDE_GITHUB_ACTIONS_EPHEMERAL_TOKEN",
+        "tool013_reassembly": "STOP_UNTIL_GATE_RELEASE",
+        "user_manual_relay_required": 0
+      }
     }
   ]
 }
