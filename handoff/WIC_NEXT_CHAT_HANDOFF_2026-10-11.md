@@ -353,3 +353,37 @@ FINAL
 - 재개는 기존 외부 factory가 TOOL013 job을 생성하고, 허용된 external workspace가 pinned D: XLSX를 mount하여 실제 output을 낸 경우에만 한다.
 - 이후 기존 validator가 파일명/정확한 `N Pages`/row identity/download/reopen을 검증하고, 검증 artifact가 있을 때만 deploy/read-back/Governor lane을 실행한다.
 - 한 lane HOLD는 다른 독립 lane을 중지시키지 않는다. 이 checkpoint에서는 실제 실행 가능한 intake lane을 완료했고, 나머지는 각각의 정확한 플랫폼 경계로 격리했다.
+
+
+## 15. 2026-10-18 외부 플랫폼 완전 이관 강화 지시 checkpoint
+
+### 실제 확인·실행
+- 최신 외부 top controller schedule run: GitHub Actions run `39122777013`, evidence commit `9551463f807893180b3e22d80aae3fb615773954`.
+- 해당 run은 GitHub-hosted runtime에서 process/router/fail-closed/repeat block/queue-state persistence/read-back을 PASS했고 `work_dependency=0`, `codex_dependency=0`, `user_device_dependency=0`을 기록했다.
+- durable canonical state는 GitHub main에 유지되며 최신 cycle의 queue는 executable 0, deferred 6, queue drained다. 실행할 실제 payload가 없는 상태를 가짜 병렬처리로 채우지 않는다.
+- Render workspace `My Workspace`, service `srv-dar0nu49v7es7392lim0`은 active/not suspended이며 latest observed deployed commit `a92dde2822714449bdc75753af80e5fc800547de` deploy `dep-dbaamjoae00c739i74l0`가 live다.
+- Render 외부 런타임 직접 실행: job `render-env2-1b884da07fa3`, execution `render-exec-7b56d5405e85`, result `render-result-0fbaa8daf95e`, ack `render-ack-9d73bcc6ea2b`.
+- 외부 job claim/heartbeat/checkpoint/expected-actual 실행은 PASS했다.
+- 동일 직접 실행의 CENTRAL result return은 `BLOCKED_NO_RETURN_AUTH`였다. GitHub Actions ephemeral token이 주입되는 기존 authenticated roundtrip만 PASS_LOCKED이며, Render 단독 실행에는 지속 return credential이 없다.
+- 강화 directive revision 3 저장 commit: `a92dde2822714449bdc75753af80e5fc800547de`.
+- 기존 intake Actions가 revision 3을 실제 `SUPERSEDE`하고 evidence를 저장한 commit: `ec51226d09fedacfd4f99aaba63123346b1552fb`.
+
+### 이관 판정
+- GitHub canonical + scheduled Actions top controller: `PASS_EXTERNAL_INDEPENDENT_CONTROL_PLANE` (기존 PASS 재사용 + 최신 cycle 실제 실행).
+- Render execution worker: `PASS_EXTERNAL_EXECUTION`.
+- GitHub Actions가 발급한 ephemeral token을 사용한 Render→repository_dispatch→canonical ACK: `PASS_LOCKED_EXISTING_PATH`.
+- Render 단독 durable result return/ACK: `HOLD_NO_PERSISTENT_RETURN_AUTH`.
+- Kestra/Node-RED: `HOLD_LOCAL_PC_DEPENDENT_NOT_EXTERNAL_OWNER`.
+- 실제 병렬 business execution: `HOLD_NO_EXECUTABLE_ACTUAL_PAYLOAD`; 최신 controller가 deferred 6만 확인했다.
+- natural continuity: `HOLD_SCHEDULE_GAP`; 최근 evidence max gap 4.927h가 contract 2.5h를 초과했다.
+- 따라서 `EXTERNAL_PLATFORM_COMPLETE_MIGRATION=HOLD`. 코드/설정/저장/화면만으로 완료 처리하지 않는다.
+
+### TOOL013 재조립 gate
+TOOL013 코드 중심 단독 재조립은 계속 STOP한다. 다음이 모두 실제 증명된 뒤에만 재개한다.
+1. 기존 외부 controller가 TOOL013 actual job을 생성·소유한다.
+2. 외부 Workspace/Worker가 pinned D: XLSX 또는 hash-identical authorized mount를 읽는다.
+3. result return과 ACK가 대화창·Work 없이 durable canonical state에 저장된다.
+4. 독립 validator가 filename, exact `N Pages`, row identity, download/reopen을 검증한다.
+5. failure isolation/recovery와 deploy/remote read-back이 동일 job identity로 연결된다.
+
+동일 인증·mount 조건에서 재시도하지 않는다. 해제조건 변화 전에는 `SKIP_NO_VALUE`다.
