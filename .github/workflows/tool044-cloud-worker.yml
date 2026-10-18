@@ -66,7 +66,8 @@ jobs:
           p = Path('feedback_pipeline/evidence/tool016_tool044_full_accessible_sweep_20260908.json')
           e = json.loads(p.read_text(encoding='utf-8'))
           assert e['counts']['checked_record_sources'] == 7
-          assert e['counts']['queue_lineage_missing'] if 'queue_lineage_missing' in e['counts'] else e.get('queue_lineage_missing') == 38
+          missing = e.get('queue_lineage_missing', e.get('counts', {}).get('queue_lineage_missing'))
+          assert missing == 38, missing
           print('SKIP_REUSE: bounded sweep checkpoint retained; discovery/ready-package lanes continue independently')
           PY
       - name: Harvest official pre-qualified candidates and test compositions
