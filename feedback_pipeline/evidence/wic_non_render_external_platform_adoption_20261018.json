@@ -1,0 +1,104 @@
+{
+  "schema": "wic.external-platform-adoption-attempt.v1",
+  "recorded_at": "2026-10-18T20:40:00+09:00",
+  "directive": "16_FINAL_INTEGRATED_EXECUTION_EXTERNAL_NON_RENDER_FIRST",
+  "canonical_input_reused": {
+    "dynamic_candidates": 777,
+    "verified_components": 14,
+    "verified_compositions": 1,
+    "ready_packages": 2,
+    "prior_success_run_id": 39123529432
+  },
+  "repeated_discovery": "STOPPED_SKIPPED_WHILE_READY_INVENTORY_PRESENT",
+  "github_internal_attempt": {
+    "commit": "957995ef1ce231e0bcb95aa00849318ecec3b226",
+    "run_id": 39123814427,
+    "result": "FAIL_WORKFLOW_INVALID_NO_JOBS",
+    "qualifying_external_platform": false,
+    "same_method_retry": false,
+    "cleanup_commit": "3c8a43f1eb6c06eaf7ef04efb09487d7b69d5261",
+    "temporary_push_trigger_removed": true
+  },
+  "non_render_external_candidates": [
+    {
+      "platform": "Kestra OSS 2.0.4",
+      "provider": "Kestra",
+      "existing_execution_id": "3c8RXzA4u3Yp865cCb1vs7",
+      "verified_functions": [
+        "scheduler",
+        "durable execution state",
+        "retry/recovery",
+        "workflow orchestration",
+        "result storage"
+      ],
+      "current_connection": "LOCAL_EXISTING_ASSET_ONLY",
+      "pc_off_independent": false,
+      "hosted_auth_connected": false,
+      "adoption": "BLOCKED_EXTERNAL_HOST_AND_AUTH_REQUIRED"
+    },
+    {
+      "platform": "Node-RED 4.1.0",
+      "provider": "OpenJS Foundation / Node-RED",
+      "existing_execution_id": "DISCOVERY-1790831631040",
+      "linked_kestra_execution_id": "2d9ZFxcbcWc5LuLLEgJ33u",
+      "verified_functions": [
+        "event automation",
+        "HTTP adapter",
+        "durable result storage",
+        "runtime probe queue"
+      ],
+      "current_connection": "LOCAL_EXISTING_ASSET_ONLY",
+      "pc_off_independent": false,
+      "hosted_auth_connected": false,
+      "adoption": "BLOCKED_EXTERNAL_HOST_AND_AUTH_REQUIRED"
+    },
+    {
+      "platform": "Pipedream",
+      "provider": "Pipedream",
+      "existing_execution_id": null,
+      "current_connection": "DISCOVERED_SOURCE_ONLY",
+      "hosted_auth_connected": false,
+      "commercial_free_terms_verified": false,
+      "adoption": "BLOCKED_ACCOUNT_AUTH_LICENSE_AND_EXECUTION_EVIDENCE_REQUIRED"
+    }
+  ],
+  "adoption_result": "BLOCKED_NO_RENDER_EXTERNAL_HOSTED_RUNTIME_CONNECTED",
+  "exact_blocker": "No existing non-Render hosted account/runtime credential or callable platform connection is available to execute a WIC business job and return durable ACK.",
+  "resume_condition": [
+    "Authorize/connect one non-Render hosted runtime account or existing hosted Kestra/Node-RED endpoint",
+    "Provide its supported credential through the platform connection without pasting secrets into chat",
+    "Execute one existing Job Pack item and persist external execution ID, result URI, ACK, and GitHub read-back"
+  ],
+  "common_roots": {
+    "AUTHORIZATION_DATA_ACCESS": [
+      "external hosted account/credential",
+      "TOOL013 authorized XLSX mount"
+    ],
+    "EXTERNAL_PLATFORM_CONNECTION": [
+      "non-Render hosted worker endpoint absent"
+    ],
+    "EXECUTOR_JOB_DELIVERY": [
+      "existing Job Pack cannot be delivered outside GitHub/local PC"
+    ],
+    "FILE_PROCESSING_OUTPUT": [
+      "TOOL013 actual XLSX unavailable to hosted runtime"
+    ],
+    "RESULT_ACK": [
+      "non-Render external result callback not connected"
+    ],
+    "STATE_RECOVERY": [
+      "24h continuity not proven outside GitHub/local PC"
+    ],
+    "DEPLOY_REMOTE_VALIDATION": [
+      "no validated TOOL013 artifact"
+    ]
+  },
+  "tool013": {
+    "state": "STOP",
+    "reason": "EXTERNAL_MIGRATION_GATE_NOT_PASSED_AND_ACTUAL_XLSX_NOT_MOUNTED",
+    "code_changes": 0,
+    "deployment_changes": 0
+  },
+  "pass_preservation": "ALL_EXISTING_PASS_EVIDENCE_CHECKPOINTS_SKIPPED_REUSED",
+  "final_result": "BLOCKED"
+}
