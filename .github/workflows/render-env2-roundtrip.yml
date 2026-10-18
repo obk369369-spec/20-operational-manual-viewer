@@ -1,7 +1,17 @@
 name: WIC Render ENV2 authenticated round trip
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render-env2-roundtrip.yml'
+  schedule:
+    - cron: '27 * * * *'
   workflow_dispatch:
+
+concurrency:
+  group: wic-render-env2-authenticated-roundtrip
+  cancel-in-progress: false
 
 permissions:
   contents: write
