@@ -737,20 +737,26 @@
       "directive_id": "WIC-TOOL013-EXTERNAL-PARALLEL-ASSEMBLY-20261018",
       "target_tool": "TOOL013",
       "root_id": "TOOL013",
-      "revision": 4,
+      "revision": 5,
       "priority": "CRITICAL_TOP",
-      "status": "OPEN",
+      "status": "BLOCKED_EXTERNAL_HOST_AUTH",
       "user_action": "NONE",
       "created_at": "2026-10-18",
-      "directive": "LATEST OVERRIDE: stop all Render-centered work and do not add, modify, or validate render-env2-roundtrip scheduling. Preserve the verified manual roundtrip and all PASS/Evidence. Highest priority is continuous bounded discovery, evaluation, and socket-style composition of already complete external development/execution devices, plus proof of a genuinely independent 24-hour operating platform. Reuse canonical checkpoints and verified components; do not create duplicate Worker/Workspace/Job Pack/UI/DB/pipeline. Independent lanes may continue despite another lane HOLD. Admission requires live connection, actual execution, failure isolation/recovery, durable state, validation, automatic next-work and remote readback without GPT/Codex/Work chat dependence. TOOL013 modification, assembly, and deployment remain forbidden until complete migration evidence is verified. Do not retry D: access by the same method, bypass security, or move user files without authorization.",
+      "directive": "LATEST OVERRIDE: stop repeated candidate discovery and stop the doit+fastjsonschema+GitHub-Actions internal composition expansion. Preserve the existing 5-minute bootstrap schedule and every PASS/Evidence/checkpoint, but run new discovery only when verified inventory lacks a required part. Render-centered work remains stopped. The highest-priority gate is actual adoption of a non-Render hosted complete execution platform with account/auth, a real WIC business job, external execution ID, durable result, ACK, recovery/state evidence, and GitHub remote read-back. Existing Kestra and Node-RED assets are reusable but are local-PC dependent and therefore do not pass this gate; Pipedream is discovery-only without auth, license, or execution evidence. Until a supported non-Render hosted account/endpoint is connected, record BLOCKED_EXTERNAL_HOST_AUTH and do not substitute GitHub-internal workflow work. TOOL013 remains STOP until both that migration gate and an authorized actual XLSX mount pass. Do not repeat D: access denial or the invalid workflow attempt.",
       "execution_gate": {
         "render_centered_work": "STOP",
-        "render_roundtrip_schedule": "MANUAL_ONLY_PRESERVE_PASS",
-        "primary_work": "EXTERNAL_READY_MADE_DEVICE_DISCOVERY_EVALUATION_COMPOSITION_AND_24H_INDEPENDENT_PLATFORM",
-        "tool013_reassembly": "STOP_UNTIL_COMPLETE_MIGRATION_VERIFIED",
-        "same_d_access_retry": "BLOCKED",
+        "repeated_candidate_discovery": "SKIP_REUSE_UNLESS_REQUIRED_COMPONENT_MISSING",
+        "github_internal_composition_as_external_platform": "FORBIDDEN",
+        "non_render_external_platform": "BLOCKED_EXTERNAL_HOST_AUTH",
+        "external_evidence": "feedback_pipeline/evidence/wic_non_render_external_platform_adoption_20261018.json",
+        "tool013_reassembly": "STOP",
+        "tool013_resume_requires": [
+          "NON_RENDER_EXTERNAL_JOB_RESULT_ACK_READBACK_PASS",
+          "AUTHORIZED_ACTUAL_XLSX_MOUNT"
+        ],
         "user_manual_relay_required": 0
-      }
+      },
+      "updated_at": "2026-10-18"
     }
   ]
 }
