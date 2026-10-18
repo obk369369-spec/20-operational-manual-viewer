@@ -387,3 +387,29 @@ TOOL013 코드 중심 단독 재조립은 계속 STOP한다. 다음이 모두 �
 5. failure isolation/recovery와 deploy/remote read-back이 동일 job identity로 연결된다.
 
 동일 인증·mount 조건에서 재시도하지 않는다. 해제조건 변화 전에는 `SKIP_NO_VALUE`다.
+
+
+## 16. 2026-10-18 Render 작업 중단 및 외부 완성형 탐색 우선 전환
+
+- Render 중심 추가 작업은 중단했다.
+- `.github/workflows/render-env2-roundtrip.yml`에 추가됐던 schedule/push/concurrency만 제거했다. 최종 blob SHA `5d8582092ea45f589c45a96d245414483c2ba527`는 변경 전 원본과 동일하며 기존 수동 authenticated roundtrip과 PASS/Evidence는 보존했다.
+- 중지 commit: `6a7b1d78fd59c4ed83239e867a94c4f139f2eaad`. Render roundtrip 신규 실행 0건을 원격 확인했다.
+- 최우선 directive revision 4: 외부 완성형 개발·실행장치의 지속 탐색/평가/조합과 24시간 독립 운영 플랫폼. commit `b09feafb2d2b2e29c917d4ee06d2183456834750`, intake evidence commit `3ceb74f7eb4c93b956e514b22130f684d2b0dd0e`.
+
+### 기존 외부 탐색 lane 연결 복구
+- 기존 `tool044-cloud-worker.yml`의 dynamic discovery는 실제 후보 771건/신규 150건까지 처리했으나, 후속 full-accessible sweep의 `queue_lineage_missing` 38건 때문에 harvest/composition/ready-package가 매번 skip됐다.
+- 전수 sweep 재실행을 제거하고 최신 bounded checkpoint의 7 source/38 lineage-gap 목록을 SKIP_REUSE하도록 해당 연결만 수정했다.
+- 수정 commits: `87134c508d2bf033af321adbfdca4f2323e9411e`, `3d7144bcef1d7b1a806ab7a93a425d1c1b5c0177`, schema-shape 1회 수정 `d8b451d7bf7dea8662590df8c086763e4982b29b`.
+- 실제 외부 GitHub Actions run `39123529432`: SUCCESS.
+- 실제 통과 단계: restart/resume, request decomposition, dynamic discovery, fail-closed rollback fixture, public-safe handoff, lineage, bounded checkpoint reuse, official candidate harvest/composition, parallel discovery, ready-package build, durable checkpoint persist 모두 PASS.
+- 임시 1회 push trigger는 제거했다. commit `a1d5e08bd2da866834081fe4fe7ffdacbba273fa`; 기존 5분 schedule만 보존한다.
+
+### 실제 결과와 HOLD
+- dynamic candidates: 777.
+- verified external components: 14.
+- verified composition: 1 (`VALIDATORS_URL_THEN_WIC_PROVENANCE_V1`, TOOL042 한정; publisher ownership/page semantics는 미증명).
+- ready-to-plug packages: 2 (`doit 0.37.0`, `fastjsonschema 2.21.2`).
+- rejected: 12. Kestra/Node-RED는 external ready package 필수 install/validator/rollback/source hash가 없어 승격 차단 유지.
+- cloud worker run_count 717, heartbeat_count 712, failure isolation PASS, queue length 0, status `STRUCTURE_READY_NOT_REMOTE_VERIFIED`.
+- 따라서 24시간 독립 운영 플랫폼 완료는 아직 HOLD다. 후보/부품 탐색 실행은 복구됐지만 독립 외부 runtime의 24h continuity와 완전 remote verification은 미확정이다.
+- TOOL013 수정·조립·배포는 계속 금지한다. 완전 이관 evidence 전에는 재개하지 않는다.
