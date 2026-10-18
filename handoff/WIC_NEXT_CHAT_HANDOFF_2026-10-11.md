@@ -290,3 +290,18 @@ FINAL
 - `WIC-PARALLEL-RESIDUAL-20260903`: 기존 policy restore와 Job Pack을 재사용한다. 허용된 local-browser test path 또는 concrete business handler/input이 확보된 독립 lane부터 진행하며, 다른 HOLD 때문에 전체를 중단하지 않는다.
 - TOOL013/043 및 기존 완료 범위는 변경 직접 영향이 없으면 `SKIP_REUSE`한다.
 
+### 2026-10-18 NEXT_WORK 실제 재개 시도 checkpoint
+- 최신 CENTRAL loader: `RESUME_LOADED` at `c5ecfe0c5f9de4195a6499615d6bc39392ff368d`.
+- 기존 Job Pack `feedback_pipeline/external_factory_job_pack_20261016.json`을 재사용했다. 새 Job Pack/Worker/Workspace는 만들지 않았다.
+- `WIC-JP-ACTUAL-INPUT-BINDING`과 `WIC-JP-ASSEMBLY-OUTPUT-IDENTITY`의 TOOL013 lane에서 기존 실제 입력 경로와 운영본 경로를 복원했다.
+  - 실제 입력: `D:\홈페이지 자료 입력\Metadata Sheet (Market Report)\MarketsandMarkets\입력전\MarketsandMarkets_Latest_엑셀파일만_평면압축\MarketsandMarkets New Reports Metadata 01072025.xlsx`
+  - 운영본 후보: `D:\GPT 도구 작업\13번 엑셀 업로드 도구\index.html`
+  - canonical: `obk369369-spec/13-excel-upload@3a70d84161d0cff9916a7a37d6c88d279df111eb`
+  - MASTER 계약: 원본 파일명 + ` - 월드 입력.xlsx`, 시장보고서 체제 `숫자 + Pages`.
+- Windows에서는 USB가 `D:`로 정상 연결됐지만 현재 Work 샌드박스는 승인된 위 두 정확한 경로에도 `Access denied`를 반환했다. 파일 부재나 USB 고장으로 재분류하지 않는다.
+- 실제 XLSX read/open/browser/download/reopen 검증을 수행하지 못했으므로 TOOL013 runtime을 수정·배포하지 않았고 PASS를 선언하지 않는다.
+- 동일 sandbox 조건에서 재시도하지 않는다. 재개 조건은 `EXTERNAL_WORKER_OR_WORKSPACE_WITH_READ_ACCESS_TO_THE_TWO_PINNED_D_PATHS` 또는 해당 실제 입력이 이미 허용된 canonical execution workspace에 자동 mount되는 것이다.
+- TOOL043/044는 concrete real business input/handler/verifier가 여전히 없으므로 기존 HOLD를 재사용한다.
+- TOOL041/042, TOOL001/006/007은 trigger 변화가 없어 `SKIP_NO_VALUE`; 기존 PASS/HOLD를 재실행하지 않았다.
+- 한 lane의 차단을 다른 독립 lane의 실패로 확대하지 않는다. 현재 독립 lane들도 각 필수 actual input/contract가 없어 변경 없는 HOLD로 남긴다.
+
