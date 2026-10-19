@@ -1,4 +1,13 @@
-from CONTROL_TOWER.controller.runtime_progress_gate import evaluate, initial_state
+import importlib.util
+from pathlib import Path
+
+module_path = Path(__file__).resolve().parents[1] / "CONTROL_TOWER" / "controller" / "runtime_progress_gate.py"
+spec = importlib.util.spec_from_file_location("runtime_progress_gate", module_path)
+runtime_progress_gate = importlib.util.module_from_spec(spec)
+assert spec and spec.loader
+spec.loader.exec_module(runtime_progress_gate)
+evaluate = runtime_progress_gate.evaluate
+initial_state = runtime_progress_gate.initial_state
 
 CASES = [
     ({"central_record_status": "PASS_LOCKED"}, "COMPLETED_WORK_REENTRY_BLOCKED"),
