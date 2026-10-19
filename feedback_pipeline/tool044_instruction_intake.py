@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-import argparse, copy, hashlib, json, re, tempfile
+import argparse, copy, hashlib, json, re, sys, tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from CONTROL_TOWER.controller.runtime_progress_gate import canonical_rule_manifest, verify_rule_context
 QUEUE=HERE/"tool044_atomic_demand_queue.json"
 INBOX=HERE/"tool044_instruction_inbox.json"
 STATE=HERE/"evidence"/"tool044_instruction_intake_state.json"
@@ -112,6 +114,10 @@ def ingest(inbox,queue,state):
                     "checkpoint":{"stage":"INTAKE_ACCEPTED","resume_from":"INTAKE_ACCEPTED"},
                     "result_return":None}
             queue.setdefault("demands",[]).append(target)
+        manifest=canonical_rule_manifest(HERE.parent, canonical_target)
+        target["rule_context"]={**manifest,
+            "source_records_verified": d.get("source_records_verified") is True,
+            "conflicts": d.get("rule_conflicts", [])}
         state["seen_signatures"].append(s)
         events.append({"directive_id":d["directive_id"],"action":action,"root_id":effective_root_id(d),
                        "canonical_target":canonical_target,"alias_resolved":alias_resolved})
@@ -122,13 +128,20 @@ def claim(queue,tool,owner):
     tool=effective_target_tool({"target_tool":tool})
     for d in queue.get("demands",[]):
         if effective_target_tool(d)==tool and d.get("status")=="OPEN" and not d.get("claim"):
+            rule_receipt=verify_rule_context(
+                d.get("rule_context"), repo_root=HERE.parent, task_id=tool)
+            if rule_receipt["decision"]!="ALLOW":
+                d["rule_gate_receipt"]=rule_receipt
+                continue
+            d["rule_gate_receipt"]=rule_receipt
             d["claim"]={"owner":owner,"claimed_at":datetime.now(timezone.utc).isoformat()}
             d["status"]="CLAIMED"; d["checkpoint"]={"stage":"CLAIMED","resume_from":"CLAIMED"}
             return d
 def self_test():
     q={"demands":[]}; s={}; 
     a={"directive_id":"A1","target_tool":"TOOL044","root_id":"R1","revision":1,"directive":"first"}
-    b={"directive_id":"B1","target_tool":"TOOL013","root_id":"R2","revision":1,"directive":"other"}
+    b={"directive_id":"B1","target_tool":"TOOL013","root_id":"R2","revision":1,"directive":"other",
+       "source_records_verified":True}
     assert ingest({"directives":[a,b]},q,s)[0]["action"]=="NEW_ROOT"
     assert len(q["demands"])==2 and q["demands"][0]["target_tool"]!=q["demands"][1]["target_tool"]
     assert ingest({"directives":[a]},q,s)[0]["action"]=="SKIP_DUPLICATE"
@@ -150,6 +163,7 @@ def self_test():
     legacy_event=ingest({"directives":[legacy]},q,s)[0]
     assert legacy_event["root_id"]=="LEGACY1"
     assert any(x.get("root_id")=="LEGACY1" and x.get("target_tool")=="TOOL044" and x.get("latest_directive")=="legacy row without canonical fields" for x in q["demands"])
+    assert claim(q,"TOOL044","runner-blocked") is None
     c=claim(q,"TOOL013","runner-A"); assert c and c["status"]=="CLAIMED"
     c["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; c["claim"]=None; c["status"]="OPEN"
     c2=claim(q,"TOOL013","runner-B"); assert c2["checkpoint"]["resume_from"]=="CLAIMED"
