@@ -1,0 +1,22 @@
+name: WIC Permanent Reentry Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "CONTROL_TOWER/controller/runtime_progress_gate.py"
+      - "tests/test_permanent_reentry_gate.py"
+      - ".github/workflows/wic-permanent-reentry-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  block-before-execution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prove permanent reentry blocks
+        run: python tests/test_permanent_reentry_gate.py
