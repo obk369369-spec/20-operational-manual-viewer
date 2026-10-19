@@ -162,6 +162,12 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
     if required.difference(envelope) or not all(envelope.get(key) for key in required):
         return {"status": "BLOCKED", "reason": "HANDOFF_CONTRACT_INCOMPLETE"}
     trace_id = str(envelope["trace_id"])
+    traces = state.setdefault("handoff_traces", {})
+    pass_locked_roots = set(state.get("pass_locked_roots", []))
+    if str(envelope["root_id"]) in pass_locked_roots:
+        return {"status": "BLOCKED", "reason": "PASS_LOCKED_SCOPE", "trace_id": trace_id}
+    if trace_id in traces:
+        return {"status": "BLOCKED", "reason": "DUPLICATE_TRACE", "trace_id": trace_id}
     task_id = str(envelope.get("task_id", ""))
     repo_root = Path(__file__).resolve().parents[2]
     rule_receipt = verify_rule_context(
@@ -170,12 +176,6 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
     if rule_receipt["decision"] != "ALLOW":
         return {"status": "BLOCKED", "reason": rule_receipt["reason"], "trace_id": trace_id,
                 "blocked_before_execution": True, "rule_gate_receipt": rule_receipt}
-    traces = state.setdefault("handoff_traces", {})
-    pass_locked_roots = set(state.get("pass_locked_roots", []))
-    if str(envelope["root_id"]) in pass_locked_roots:
-        return {"status": "BLOCKED", "reason": "PASS_LOCKED_SCOPE", "trace_id": trace_id}
-    if trace_id in traces:
-        return {"status": "BLOCKED", "reason": "DUPLICATE_TRACE", "trace_id": trace_id}
     receipt_gate = evaluate(gate, {"root_id": envelope["root_id"],
         "scope": envelope.get("scope", "COMMON_PLATFORM"), "action_kind": "EXECUTION",
         "target": envelope["expected_output"], "checkpoint": envelope.get("checkpoint", trace_id),
