@@ -65,7 +65,7 @@ jobs:
               with tempfile.TemporaryDirectory() as d:
                   base = Path(d)
                   runtime, cloud, local = [base / name for name in ('runtime.json','cloud.json','local.json')]
-                  tool044_cloud_worker.save(runtime, {'jobs': {'NEW': {'job_id':'NEW','source':'TOOL016_FUNCTION_STATE',
+                  tool044_cloud_worker.save(runtime, {'jobs': {'NEW': {'job_id':'NEW','source':'TOOL016_FUNCTION_STATE','missing_capabilities':['URL'],
                                                                        'status':'QUEUED'}}})
                   state = tool044_cloud_worker.run(runtime, cloud, local)
                   assert state['jobs']['NEW']['status'] == 'BLOCKED_RULE_ADMISSION', state['jobs']['NEW']
