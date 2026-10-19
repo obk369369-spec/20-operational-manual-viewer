@@ -44,3 +44,24 @@ fresh = evaluate(initial_state(), {
 })
 assert fresh["decision"] == "ALLOW", fresh
 print({"blocked_cases": len(receipts), "fresh_allowed": True, "receipts": receipts})
+
+# The same gate now guards fresh handoffs against missing or stale canonical rules.
+root = module_path.parents[2]
+manifest = runtime_progress_gate.canonical_rule_manifest(root, "TOOL042")
+assert not manifest["missing"], manifest
+context = {**manifest, "source_records_verified": True, "conflicts": []}
+registry = {"components": [{"id": "EXISTING", "status": "VERIFIED_REUSE"}]}
+def handoff(trace_id, supplied):
+    return runtime_progress_gate.accept_handoff(
+        {}, {"handoff_inbox": []}, registry,
+        {"trace_id": trace_id, "root_id": "RULE-LIFECYCLE", "task_id": "TOOL042",
+         "input": {"source": "verified"}, "expected_output": "receipt",
+         "rule_context": supplied}, initial_state())
+
+assert handoff("missing", None)["reason"] == "RULE_CONTEXT_MISSING"
+assert handoff("stale", {**context, "version": "old"})["reason"] == "RULE_CONTEXT_STALE_OR_TAMPERED"
+assert handoff("conflict", {**context, "conflicts": ["unresolved"]})["reason"] == "RULE_CONFLICT_UNRESOLVED"
+assert handoff("source", {**context, "source_records_verified": False})["reason"] == "REQUIRED_SOURCE_RECORDS_UNVERIFIED"
+allowed = handoff("verified", context)
+assert allowed["status"] == "ACCEPTED" and allowed["rule_gate_receipt"]["decision"] == "ALLOW", allowed
+print({"rule_gate_negative_cases": 4, "verified_handoff": "ACCEPTED", "rule_version": manifest["version"]})
