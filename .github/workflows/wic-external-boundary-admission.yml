@@ -1,0 +1,76 @@
+name: WIC External Boundary Admission Delta
+
+on:
+  push:
+    paths:
+      - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
+      - 'feedback_pipeline/global_pipeline.py'
+      - 'feedback_pipeline/tool044_cloud_worker.py'
+      - '.github/workflows/wic-external-boundary-admission.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  changed-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify external pre-start and completion promotion fail closed
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import sys
+          import tempfile
+          from pathlib import Path
+          root = Path.cwd()
+          sys.path.insert(0, str(root / 'CONTROL_TOWER' / 'controller'))
+          sys.path.insert(0, str(root / 'feedback_pipeline'))
+          from runtime_progress_gate import canonical_rule_manifest, verify_work_admission
+          import global_pipeline
+          import tool044_cloud_worker
+          work_id, task_id = 'requirement:42', 'TOOL042'
+          context = canonical_rule_manifest(root, task_id)
+          assert not context['missing'], context
+          context.update(conflicts=[], source_records_verified=True)
+          assert verify_work_admission(None, repo_root=root, work_id=work_id, task_id=task_id)['decision'] == 'BLOCK'
+          with tempfile.NamedTemporaryFile(mode='w', suffix='.json', dir=root / 'feedback_pipeline' / 'evidence',
+                                           encoding='utf-8', delete=False) as fixture:
+              json.dump({'work_id': work_id, 'task_id': task_id, 'source_records_verified': True,
+                         'validation_result': 'PASS', 'validator_id': 'DELTA_TEST',
+                         'source_refs': ['ISOLATED_SOURCE']}, fixture)
+              path = Path(fixture.name)
+          try:
+              source = {'path': path.relative_to(root).as_posix(),
+                        'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+              admission = {'work_id': work_id, 'task_id': task_id,
+                           'rule_context': context, 'source_receipt': source}
+              assert verify_work_admission(admission, repo_root=root, work_id=work_id, task_id=task_id)['decision'] == 'ALLOW'
+              assert verify_work_admission(admission, repo_root=root, work_id='requirement:43', task_id=task_id)['decision'] == 'BLOCK'
+              stale = dict(admission, rule_context=dict(context, version='stale'))
+              assert verify_work_admission(stale, repo_root=root, work_id=work_id, task_id=task_id)['reason'] == 'RULE_CONTEXT_STALE_OR_TAMPERED'
+              bad_source = dict(admission, source_receipt=dict(source, sha256='bad'))
+              assert verify_work_admission(bad_source, repo_root=root, work_id=work_id, task_id=task_id)['reason'] == 'SOURCE_VALIDATION_RECEIPT_STALE_OR_TAMPERED'
+              event = {'event_kind':'ACTUAL_USER','source_chat':'TOOL042','source_ref':'DELTA_TEST',
+                       'feedback':'test','work_id':work_id,'task_id':task_id}
+              registry = {'targets':{}}
+              blocked = global_pipeline.execute_actual_transport(event, registry, root)
+              assert blocked['status'] != 'PASS' and blocked.get('stage') == 'PRE_EXECUTION', blocked
+              with tempfile.TemporaryDirectory() as d:
+                  base = Path(d)
+                  runtime, cloud, local = [base / name for name in ('runtime.json','cloud.json','local.json')]
+                  tool044_cloud_worker.save(runtime, {'jobs': {'NEW': {'job_id':'NEW','source':'TOOL016_FUNCTION_STATE',
+                                                                       'status':'QUEUED'}}})
+                  state = tool044_cloud_worker.run(runtime, cloud, local)
+                  assert state['jobs']['NEW']['status'] == 'BLOCKED_RULE_ADMISSION', state['jobs']['NEW']
+                  assert state['completed'] == 0
+          finally:
+              path.unlink()
+          print('PASS EXTERNAL_BOUNDARY_BLOCK_AND_VALIDATED_ADMISSION')
+          PY

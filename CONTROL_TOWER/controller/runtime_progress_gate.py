@@ -64,6 +64,49 @@ def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[
 
 
 
+
+def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task_id: str) -> dict[str, Any]:
+    """Require current per-task rules and a matching independently validated source receipt."""
+    reason = None
+    if not task_id:
+        reason = "CONTRACT_TASK_ID_MISSING"
+    elif not isinstance(admission, dict) or admission.get("work_id") != work_id or admission.get("task_id") != task_id:
+        reason = "WORK_ADMISSION_IDENTITY_MISMATCH"
+    else:
+        context = admission.get("rule_context")
+        rule = verify_rule_context(context, repo_root=repo_root, task_id=task_id)
+        if rule["decision"] != "ALLOW":
+            reason = rule["reason"]
+        elif context.get("task_id") != task_id:
+            reason = "RULE_CONTEXT_TASK_MISMATCH"
+        else:
+            source = admission.get("source_receipt")
+            relative = source.get("path") if isinstance(source, dict) else None
+            if not isinstance(relative, str) or not relative.endswith(".json"):
+                reason = "SOURCE_VALIDATION_RECEIPT_MISSING"
+            else:
+                allowed_roots = ((repo_root / "feedback_pipeline" / "evidence").resolve(),
+                                 (repo_root / "CONTROL_TOWER" / "ledger" / "evidence").resolve())
+                target = (repo_root / relative).resolve()
+                if not any(target.is_relative_to(root) for root in allowed_roots) or not target.is_file():
+                    reason = "SOURCE_VALIDATION_RECEIPT_PATH_INVALID"
+                elif hashlib.sha256(target.read_bytes()).hexdigest() != source.get("sha256"):
+                    reason = "SOURCE_VALIDATION_RECEIPT_STALE_OR_TAMPERED"
+                else:
+                    try:
+                        evidence = json.loads(target.read_text(encoding="utf-8"))
+                    except (OSError, ValueError):
+                        evidence = {}
+                    if not (evidence.get("work_id") == work_id and evidence.get("task_id") == task_id
+                            and evidence.get("source_records_verified") is True
+                            and evidence.get("validation_result") == "PASS"
+                            and evidence.get("validator_id") and evidence.get("source_refs")):
+                        reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
+    return {"work_id": work_id, "task_id": task_id,
+            "decision": "BLOCK" if reason else "ALLOW", "reason": reason}
+
+
+
 def signature(action: dict[str, Any]) -> str:
     selected = {key: action.get(key) for key in ("root_id", "action_kind", "target", "checkpoint")}
     return hashlib.sha256(json.dumps(selected, sort_keys=True, ensure_ascii=False).encode()).hexdigest()

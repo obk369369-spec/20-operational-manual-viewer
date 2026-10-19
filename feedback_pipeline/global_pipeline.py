@@ -13,6 +13,10 @@ import subprocess
 from pathlib import Path
 from typing import Any, Mapping
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "CONTROL_TOWER" / "controller"))
+from runtime_progress_gate import verify_work_admission
+
 ROOT = Path(__file__).resolve().parent
 REGISTRY = ROOT / "wic_target_registry.json"
 ROUTE_REGISTRY = ROOT.parent / "WIC_CHAT_ROUTING_REGISTRY.md"
@@ -273,6 +277,17 @@ def execute_actual_transport(event: Mapping[str, Any], registry: Mapping[str, An
     missing_event=sorted(required_event-set(event))
     if missing_event:
         return fail({"stage":"CAPTURED","status":"RUNNING"},"CAPTURED",f"event missing {missing_event}",True,"RECOVER_FIELDS_FROM_SOURCE_CHAT")
+    work_id = event.get("work_id")
+    task_id = event.get("task_id")
+    admission = event.get("rule_admission")
+    if not isinstance(work_id, str) or not work_id or not isinstance(task_id, str) or not task_id:
+        return fail({"stage":"PRE_EXECUTION","status":"RUNNING"},"PRE_EXECUTION",
+                    "WORK_ADMISSION_IDENTITY_MISSING",True,"SUPPLY_VALIDATED_WORK_ADMISSION")
+    rule_admission = verify_work_admission(admission, repo_root=ROOT.parent,
+                                           work_id=work_id, task_id=task_id)
+    if rule_admission["decision"] != "ALLOW":
+        return fail({"stage":"PRE_EXECUTION","status":"RUNNING","RULE_ADMISSION":rule_admission},
+                    "PRE_EXECUTION",str(rule_admission["reason"]),True,"SUPPLY_VALIDATED_WORK_ADMISSION")
     target,row = resolve_event(registry,event)
     if target in registry['targets']:
         validate_registry(registry, target=target)

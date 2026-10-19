@@ -5,6 +5,10 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "CONTROL_TOWER" / "controller"))
+from runtime_progress_gate import verify_work_admission
+
 HERE = Path(__file__).resolve().parent
 RUNTIME = HERE / "tool044_factory_runtime.json"
 CLOUD = HERE / "tool044_cloud_state.json"
@@ -63,11 +67,19 @@ def run(runtime=RUNTIME, cloud=CLOUD, local=LOCAL):
         elif old.get("status") == "COMPLETED":
             row = old
         else:
-            claimed += 1
-            row.update(status="COMPLETED", last_checked=now,
-                       result="PUBLIC_SAFE_HANDOFF_ACCEPTED",
-                       receipt=hashlib.sha256(json.dumps(job, sort_keys=True).encode()).hexdigest())
-            completed += 1
+            admission = verify_work_admission(job.get("rule_admission"),
+                                               repo_root=HERE.parent,
+                                               work_id=job_id,
+                                               task_id=job.get("task_id"))
+            if admission["decision"] != "ALLOW":
+                row.update(status="BLOCKED_RULE_ADMISSION", last_checked=now,
+                           reason=admission["reason"], start_blocked=True)
+            else:
+                claimed += 1
+                row.update(status="ADMITTED_HANDOFF", last_checked=now,
+                           result="PUBLIC_SAFE_HANDOFF_ACCEPTED",
+                           receipt=hashlib.sha256(json.dumps(job, sort_keys=True).encode()).hexdigest(),
+                           rule_admission=admission)
         prior["jobs"][job_id] = row
     if os.environ.get("GITHUB_ACTIONS") == "true":
         fixture_id = "LOCAL-E2E-TOOL044-CLOUD-HANDOFF"
@@ -118,13 +130,13 @@ def self_test():
         root=Path(d); runtime=root/"runtime.json"; cloud=root/"cloud.json"; local=root/"local.json"
         save(runtime,{"jobs":{"A":{"job_id":"A","source":"TOOL016_FUNCTION_STATE","missing_capabilities":["URL"],"status":"QUEUED"},"B":{"job_id":"B","source":"LOCAL_FILE","missing_capabilities":[],"status":"QUEUED"}}})
         first=run(runtime,cloud,local); second=run(runtime,cloud,local)
-        assert first["jobs"]["A"]["status"] == "COMPLETED"
-        assert second["jobs"]["A"]["receipt"] == first["jobs"]["A"]["receipt"]
+        assert first["jobs"]["A"]["status"] == "BLOCKED_RULE_ADMISSION"
+        assert second["jobs"]["A"]["reason"] == "CONTRACT_TASK_ID_MISSING"
         assert load(local,{})["jobs"]["B"]["reason"] == "PRIVATE_OR_LOCAL_SENSITIVE_WORK"
         assert second["run_count"] == 2 and second["paid_api_calls"] == 0
         assert second["verified_asset_count"] == 2
         assert second["failure_isolation"] == second["invalid_asset_promotion_block"] == "PASS"
-    return "PASS: public claim + sensitive local routing + persisted restart/resume + idempotency"
+    return "PASS: unadmitted claim blocked + sensitive local routing + persisted restart/resume"
 
 if __name__ == "__main__":
     p=argparse.ArgumentParser(); p.add_argument("--self-test",action="store_true"); a=p.parse_args()
