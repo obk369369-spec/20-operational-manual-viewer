@@ -1,0 +1,58 @@
+name: WIC Top Rule Admission Boundary
+
+on:
+  push:
+    paths:
+      - 'CONTROL_TOWER/controller/github_runtime_cycle.py'
+      - '.github/workflows/wic-top-rule-admission.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  changed-boundary-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prove pre-execution block and current-rule allow
+        env:
+          PYTHONPATH: CONTROL_TOWER/controller
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import wic_top_controller as body
+          import github_runtime_cycle as runtime
+          from runtime_progress_gate import canonical_rule_manifest
+
+          root = body.ROOT
+          valid = canonical_rule_manifest(root)
+          assert not valid['missing'], valid
+          valid['conflicts'] = []
+          valid['source_records_verified'] = True
+          assert runtime.top_level_rule_admission(None)['reason'] == 'RULE_CONTEXT_MISSING'
+          assert runtime.top_level_rule_admission('{bad')['decision'] == 'BLOCK'
+          assert runtime.top_level_rule_admission(json.dumps(valid))['decision'] == 'ALLOW'
+          stale = dict(valid, version='stale')
+          assert runtime.top_level_rule_admission(json.dumps(stale))['reason'] == 'RULE_CONTEXT_STALE_OR_TAMPERED'
+          conflicted = dict(valid, conflicts=['unresolved'])
+          assert runtime.top_level_rule_admission(json.dumps(conflicted))['reason'] == 'RULE_CONFLICT_UNRESOLVED'
+          unverified = dict(valid, source_records_verified=False)
+          assert runtime.top_level_rule_admission(json.dumps(unverified))['reason'] == 'REQUIRED_SOURCE_RECORDS_UNVERIFIED'
+          os.environ.pop('WIC_RULE_CONTEXT_JSON', None)
+          def forbidden_lock():
+              raise AssertionError('QUEUE_OR_WORKER_REACHED_BEFORE_RULE_GATE')
+          body.acquire_lock = forbidden_lock
+          try:
+              runtime.main()
+          except PermissionError as exc:
+              assert 'TOP_LEVEL_RULE_ADMISSION_DENIED:RULE_CONTEXT_MISSING' in str(exc), exc
+          else:
+              raise AssertionError('UNAUTHORIZED_RUNTIME_STARTED')
+          print('PASS TOP_LEVEL_PRE_EXECUTION_BLOCK_AND_CURRENT_RULE_ALLOW')
+          PY
