@@ -6,6 +6,12 @@ on:
     paths:
       - "CONTROL_TOWER/controller/runtime_progress_gate.py"
       - "tests/test_permanent_reentry_gate.py"
+      - "feedback_pipeline/tool044_instruction_intake.py"
+      - "customer_pipeline/tool42_contract_runner.js"
+      - "WIC_GLOBAL_OPERATING_RULES.md"
+      - "AGENTS.md"
+      - "CUSTOMER_GUIDE_OUTPUT_LOCK.md"
+      - "WIC_CHAT_ROUTING_REGISTRY.md"
       - ".github/workflows/wic-permanent-reentry-gate.yml"
   workflow_dispatch:
 
@@ -18,5 +24,10 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Prove permanent reentry blocks
+      - name: Prove reentry and current-rule handoff gate
         run: python tests/test_permanent_reentry_gate.py
+      - name: Prove existing intake carries and checks rule context
+        run: python feedback_pipeline/tool044_instruction_intake.py --self-test
+      - name: Prove TOOL042 output is blocked without central gate receipt
+        run: |
+          printf '{"state":{},"candidates":[]}' | node customer_pipeline/tool42_contract_runner.js | node -e 'let s="";process.stdin.on("data",c=>s+=c).on("end",()=>{const r=JSON.parse(s);if(r.decision!=="HOLD"||r.reason!=="RULE_GATE_NOT_VERIFIED"||r.send_allowed!==false)process.exit(1);console.log(r)})'
