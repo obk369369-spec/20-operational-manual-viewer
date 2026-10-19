@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import os
 import urllib.request
@@ -397,8 +398,66 @@ def top_level_rule_admission(raw_context: str | None) -> dict[str, Any]:
         context = json.loads(raw_context) if raw_context else None
     except (TypeError, ValueError):
         context = None
-    task_id = str(context.get("task_id", "")) if isinstance(context, dict) else ""
-    return verify_rule_context(context, repo_root=body.ROOT, task_id=task_id)
+    receipt = verify_rule_context(context, repo_root=body.ROOT, task_id="CENTRAL")
+    if receipt["decision"] == "ALLOW" and context.get("task_id") != "CENTRAL":
+        receipt.update(decision="BLOCK", reason="RULE_CONTEXT_TASK_MISMATCH",
+                       blocked_before_execution=True)
+    return receipt
+
+
+def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> dict[str, Any]:
+    """Bind each selected job to its own current rules and validated source receipt."""
+    contracts = registry.get("execution_contracts", [])
+    backlog = {item.get("root_id"): item for item in registry.get("backlog_execution_contracts", [])}
+    selected = [(f"backlog:{root}", backlog.get(root)) for root in queue.get("backlog_root_ids", [])]
+    for raw_id in queue.get("queued_requirement_ids", []):
+        requirement_id = int(raw_id)
+        matches = [item for item in contracts if requirement_id in map(int, item.get("requirement_ids", []))]
+        selected.append((f"requirement:{requirement_id}", matches[0] if len(matches) == 1 else None))
+    admissions = queue.get("rule_admissions", {})
+    receipts = []
+    allowed_roots = ((body.ROOT / "feedback_pipeline" / "evidence").resolve(),
+                     (body.ROOT / "CONTROL_TOWER" / "ledger" / "evidence").resolve())
+    for work_id, contract in selected:
+        task_id = contract.get("task_id") if isinstance(contract, dict) else None
+        admission = admissions.get(work_id) if isinstance(admissions, dict) else None
+        reason = None
+        if not isinstance(task_id, str) or not task_id.strip():
+            reason = "CONTRACT_TASK_ID_MISSING"
+        elif not isinstance(admission, dict) or admission.get("work_id") != work_id or admission.get("task_id") != task_id:
+            reason = "WORK_ADMISSION_IDENTITY_MISMATCH"
+        else:
+            context = admission.get("rule_context")
+            rule = verify_rule_context(context, repo_root=body.ROOT, task_id=task_id)
+            if rule["decision"] != "ALLOW":
+                reason = rule["reason"]
+            elif context.get("task_id") != task_id:
+                reason = "RULE_CONTEXT_TASK_MISMATCH"
+            else:
+                source = admission.get("source_receipt")
+                relative = source.get("path") if isinstance(source, dict) else None
+                if not isinstance(relative, str) or not relative.endswith(".json"):
+                    reason = "SOURCE_VALIDATION_RECEIPT_MISSING"
+                else:
+                    target = (body.ROOT / relative).resolve()
+                    if not any(target.is_relative_to(root) for root in allowed_roots) or not target.is_file():
+                        reason = "SOURCE_VALIDATION_RECEIPT_PATH_INVALID"
+                    elif hashlib.sha256(target.read_bytes()).hexdigest() != source.get("sha256"):
+                        reason = "SOURCE_VALIDATION_RECEIPT_STALE_OR_TAMPERED"
+                    else:
+                        try:
+                            evidence = json.loads(target.read_text(encoding="utf-8"))
+                        except (OSError, ValueError):
+                            evidence = {}
+                        if not (evidence.get("work_id") == work_id and evidence.get("task_id") == task_id
+                                and evidence.get("source_records_verified") is True
+                                and evidence.get("validation_result") == "PASS"
+                                and evidence.get("validator_id") and evidence.get("source_refs")):
+                            reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
+        receipts.append({"work_id": work_id, "task_id": task_id,
+                         "decision": "BLOCK" if reason else "ALLOW", "reason": reason})
+    return {"decision": "ALLOW" if all(item["decision"] == "ALLOW" for item in receipts) else "BLOCK",
+            "selected_count": len(selected), "receipts": receipts}
 
 
 def main() -> None:
@@ -427,6 +486,11 @@ def main() -> None:
         ledger_path = body.ROOT / "feedback_pipeline" / "unified_open_ledger.json"
         ledger = body.load(ledger_path)
         backlog = reconcile_central_backlog(queue, ledger)
+        queued_admission = queued_work_admission(queue, registry)
+        if queued_admission["decision"] != "ALLOW":
+            print(json.dumps({"start_blocked": True, "queued_work_admission": queued_admission},
+                             ensure_ascii=False))
+            raise PermissionError("QUEUED_WORK_RULE_ADMISSION_DENIED")
         backlog_execution = execute_central_backlog(queue, ledger, registry)
         body.atomic_json(ledger_path, ledger)
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"

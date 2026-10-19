@@ -31,7 +31,7 @@ jobs:
           from runtime_progress_gate import canonical_rule_manifest
 
           root = body.ROOT
-          valid = canonical_rule_manifest(root)
+          valid = canonical_rule_manifest(root, 'CENTRAL')
           assert not valid['missing'], valid
           valid['conflicts'] = []
           valid['source_records_verified'] = True
@@ -44,6 +44,44 @@ jobs:
           assert runtime.top_level_rule_admission(json.dumps(conflicted))['reason'] == 'RULE_CONFLICT_UNRESOLVED'
           unverified = dict(valid, source_records_verified=False)
           assert runtime.top_level_rule_admission(json.dumps(unverified))['reason'] == 'REQUIRED_SOURCE_RECORDS_UNVERIFIED'
+          import hashlib
+          from pathlib import Path
+          import tempfile
+          task = canonical_rule_manifest(root, 'TOOL042')
+          task.update(conflicts=[], source_records_verified=True)
+          work_id = 'requirement:42'
+          contract = {'execution_contracts': [{'id': 'TEST-42', 'requirement_ids': [42], 'task_id': 'TOOL042'}]}
+          with tempfile.NamedTemporaryFile(mode='w', suffix='.json', prefix='rule-admission-',
+                                           dir=root / 'feedback_pipeline' / 'evidence',
+                                           encoding='utf-8', delete=False) as fixture:
+              json.dump({'work_id': work_id, 'task_id': 'TOOL042', 'source_records_verified': True,
+                         'validation_result': 'PASS', 'validator_id': 'ISOLATED_TEST_VALIDATOR',
+                         'source_refs': ['ISOLATED_TEST_SOURCE']}, fixture)
+              fixture_path = Path(fixture.name)
+          try:
+              source = {'path': fixture_path.relative_to(root).as_posix(),
+                        'sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest()}
+              admission = {'work_id': work_id, 'task_id': 'TOOL042',
+                           'rule_context': task, 'source_receipt': source}
+              queue = {'queued_requirement_ids': [42], 'rule_admissions': {work_id: admission}}
+              assert runtime.queued_work_admission(queue, contract)['decision'] == 'ALLOW'
+              for change, expected in [
+                  ({'work_id': 'requirement:43'}, 'WORK_ADMISSION_IDENTITY_MISMATCH'),
+                  ({'task_id': 'TOOL013'}, 'WORK_ADMISSION_IDENTITY_MISMATCH'),
+                  ({'rule_context': dict(task, version='stale')}, 'RULE_CONTEXT_STALE_OR_TAMPERED'),
+                  ({'rule_context': dict(task, conflicts=['unresolved'])}, 'RULE_CONFLICT_UNRESOLVED'),
+                  ({'rule_context': dict(task, source_records_verified=False)}, 'REQUIRED_SOURCE_RECORDS_UNVERIFIED'),
+                  ({'source_receipt': dict(source, sha256='bad')}, 'SOURCE_VALIDATION_RECEIPT_STALE_OR_TAMPERED'),
+              ]:
+                  test_queue = {'queued_requirement_ids': [42],
+                                'rule_admissions': {work_id: dict(admission, **change)}}
+                  result = runtime.queued_work_admission(test_queue, contract)
+                  assert result['decision'] == 'BLOCK' and result['receipts'][0]['reason'] == expected, result
+              assert runtime.queued_work_admission({'queued_requirement_ids': [42]}, contract)['decision'] == 'BLOCK'
+              assert runtime.queued_work_admission(queue, {'execution_contracts': [
+                  {'id': 'NO-TASK', 'requirement_ids': [42]}]})['decision'] == 'BLOCK'
+          finally:
+              fixture_path.unlink()
           os.environ.pop('WIC_RULE_CONTEXT_JSON', None)
           def forbidden_lock():
               raise AssertionError('QUEUE_OR_WORKER_REACHED_BEFORE_RULE_GATE')
