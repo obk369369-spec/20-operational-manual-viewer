@@ -7,6 +7,11 @@ from typing import Any
 
 FORBIDDEN_SCOPES = {"ALL_TOOLS", "FILE_DISCOVERY", "HISTORICAL_CHAT_AUDIT"}
 READ_HEAVY_ACTIONS = {"SEARCH", "READBACK", "PLANNING", "HISTORY", "EVIDENCE_REGEN", "TEST", "E2E"}
+COMPLETED_RECORD_STATES = {"COMPLETE", "COMPLETED", "PASS", "PASS_LOCK", "PASS_LOCKED", "CLOSED"}
+FAILED_RECORD_STATES = {"FAIL", "FAILED", "ERROR"}
+STOPPED_SERVICE_STATES = {"DISCONTINUED", "RETIRED", "STOPPED", "USE_STOPPED", "QUARANTINED"}
+INVESTIGATED_RECORD_STATES = {"INVESTIGATED", "RESEARCHED", "REJECTED"}
+VERIFIED_DIRECTIVE_STATES = {"VERIFIED", "UNCHANGED_VERIFIED", "CANONICAL_VERIFIED"}
 
 
 def signature(action: dict[str, Any]) -> str:
@@ -51,11 +56,35 @@ def record_permission_batch(gate: dict[str, Any], *, root_id: str, operations: l
     return receipt
 
 
+def _permanent_reentry_block(action: dict[str, Any]) -> str | None:
+    """Return the durable pre-execution block reason for an unchanged central record."""
+    record_state = str(action.get("central_record_status", "")).upper()
+    service_state = str(action.get("service_status", "")).upper()
+    directive_state = str(action.get("directive_status", "")).upper()
+    unchanged = bool(action.get("unchanged_since_verification", True))
+    same_method = bool(action.get("same_method", True))
+
+    if record_state in COMPLETED_RECORD_STATES:
+        return "COMPLETED_WORK_REENTRY_BLOCKED"
+    if record_state in FAILED_RECORD_STATES and same_method:
+        return "FAILED_METHOD_REENTRY_BLOCKED"
+    if service_state in STOPPED_SERVICE_STATES:
+        return "DISCONTINUED_SERVICE_REENTRY_BLOCKED"
+    if record_state in INVESTIGATED_RECORD_STATES and unchanged:
+        return "INVESTIGATED_CANDIDATE_REENTRY_BLOCKED"
+    if directive_state in VERIFIED_DIRECTIVE_STATES and unchanged:
+        return "VERIFIED_DIRECTIVE_RELOAD_BLOCKED"
+    return None
+
+
 def evaluate(gate: dict[str, Any], action: dict[str, Any]) -> dict[str, Any]:
     root = str(action["root_id"])
     action_signature = signature(action)
     decision, reason = "ALLOW", None
-    if action.get("scope") in FORBIDDEN_SCOPES:
+    permanent_reason = _permanent_reentry_block(action)
+    if permanent_reason:
+        decision, reason = "BLOCK", permanent_reason
+    elif action.get("scope") in FORBIDDEN_SCOPES:
         decision, reason = "BLOCK", "DEFERRED_SCOPE_LOCKED"
     elif action_signature in set(gate["seen_signatures"]):
         decision, reason = "BLOCK", "REPEAT_AROUND_COMPLETED_SCOPE"
@@ -71,7 +100,8 @@ def evaluate(gate: dict[str, Any], action: dict[str, Any]) -> dict[str, Any]:
     if any(deltas):
         gate["last_checkpoint"][root] = action.get("checkpoint")
     receipt = {"root_id": root, "decision": decision, "reason": reason,
-               "signature": action_signature, "deltas": deltas}
+               "signature": action_signature, "deltas": deltas,
+               "blocked_before_execution": decision == "BLOCK"}
     gate["events"] = (gate["events"] + [receipt])[-100:]
     return receipt
 
@@ -91,9 +121,15 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
     receipt_gate = evaluate(gate, {"root_id": envelope["root_id"],
         "scope": envelope.get("scope", "COMMON_PLATFORM"), "action_kind": "EXECUTION",
         "target": envelope["expected_output"], "checkpoint": envelope.get("checkpoint", trace_id),
-        "checkpoint_advance": 1})
+        "checkpoint_advance": 1,
+        "central_record_status": envelope.get("central_record_status", ""),
+        "service_status": envelope.get("service_status", ""),
+        "directive_status": envelope.get("directive_status", ""),
+        "unchanged_since_verification": envelope.get("unchanged_since_verification", True),
+        "same_method": envelope.get("same_method", True)})
     if receipt_gate["decision"] != "ALLOW":
-        return {"status": "BLOCKED", "reason": receipt_gate["reason"], "trace_id": trace_id}
+        return {"status": "BLOCKED", "reason": receipt_gate["reason"], "trace_id": trace_id,
+                "blocked_before_execution": True}
     selected = [item["id"] for item in registry.get("components", []) if item.get("status") == "VERIFIED_REUSE"]
     if not selected:
         return {"status": "HOLD", "reason": "NO_VERIFIED_COMPONENT", "trace_id": trace_id}
