@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from pathlib import Path
 from typing import Any
 
 FORBIDDEN_SCOPES = {"ALL_TOOLS", "FILE_DISCOVERY", "HISTORICAL_CHAT_AUDIT"}
@@ -12,6 +13,55 @@ FAILED_RECORD_STATES = {"FAIL", "FAILED", "ERROR"}
 STOPPED_SERVICE_STATES = {"DISCONTINUED", "RETIRED", "STOPPED", "USE_STOPPED", "QUARANTINED"}
 INVESTIGATED_RECORD_STATES = {"INVESTIGATED", "RESEARCHED", "REJECTED"}
 VERIFIED_DIRECTIVE_STATES = {"VERIFIED", "UNCHANGED_VERIFIED", "CANONICAL_VERIFIED"}
+CANONICAL_RULE_FILES = (
+    "WIC_GLOBAL_OPERATING_RULES.md",
+    "AGENTS.md",
+    "WIC_CHAT_ROUTING_REGISTRY.md",
+)
+TASK_RULE_FILES = {
+    "TOOL042": ("CUSTOMER_GUIDE_OUTPUT_LOCK.md",),
+}
+
+
+def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any]:
+    """Build the only accepted rule snapshot from existing canonical files."""
+    required = list(CANONICAL_RULE_FILES) + list(TASK_RULE_FILES.get(task_id.upper(), ()))
+    files: dict[str, str] = {}
+    missing: list[str] = []
+    for relative in required:
+        target = repo_root / relative
+        if not target.is_file():
+            missing.append(relative)
+            continue
+        files[relative] = hashlib.sha256(target.read_bytes()).hexdigest()
+    version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
+    return {"task_id": task_id.upper(), "files": files, "missing": missing, "version": version}
+
+
+def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[str, Any]:
+    """Fail closed when a worker did not load the exact current global/task rules."""
+    expected = canonical_rule_manifest(repo_root, task_id)
+    reason = None
+    if expected["missing"]:
+        reason = "CANONICAL_RULE_SOURCE_MISSING"
+    elif not isinstance(context, dict):
+        reason = "RULE_CONTEXT_MISSING"
+    elif context.get("version") != expected["version"] or context.get("files") != expected["files"]:
+        reason = "RULE_CONTEXT_STALE_OR_TAMPERED"
+    elif context.get("conflicts"):
+        reason = "RULE_CONFLICT_UNRESOLVED"
+    elif context.get("source_records_verified") is not True:
+        reason = "REQUIRED_SOURCE_RECORDS_UNVERIFIED"
+    decision = "ALLOW" if reason is None else "BLOCK"
+    return {
+        "decision": decision,
+        "reason": reason,
+        "task_id": task_id.upper(),
+        "version": expected["version"],
+        "files": expected["files"],
+        "blocked_before_execution": decision == "BLOCK",
+    }
+
 
 
 def signature(action: dict[str, Any]) -> str:
@@ -112,6 +162,14 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
     if required.difference(envelope) or not all(envelope.get(key) for key in required):
         return {"status": "BLOCKED", "reason": "HANDOFF_CONTRACT_INCOMPLETE"}
     trace_id = str(envelope["trace_id"])
+    task_id = str(envelope.get("task_id", ""))
+    repo_root = Path(__file__).resolve().parents[2]
+    rule_receipt = verify_rule_context(
+        envelope.get("rule_context"), repo_root=repo_root, task_id=task_id
+    )
+    if rule_receipt["decision"] != "ALLOW":
+        return {"status": "BLOCKED", "reason": rule_receipt["reason"], "trace_id": trace_id,
+                "blocked_before_execution": True, "rule_gate_receipt": rule_receipt}
     traces = state.setdefault("handoff_traces", {})
     pass_locked_roots = set(state.get("pass_locked_roots", []))
     if str(envelope["root_id"]) in pass_locked_roots:
@@ -140,7 +198,8 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
                "ready_made_first": True, "selected_components": selected,
                "backend_route": "CENTRAL_COMMON_PLATFORM", "intent_quality_lock": intent_lock,
                "registry_prelookup": True, "pass_lock_prelookup": True,
-               "user_manual_repetition": 0}
+               "user_manual_repetition": 0, "rule_gate_receipt": rule_receipt,
+               "rule_context_verified": True}
     traces[trace_id] = receipt
     queue.setdefault("handoff_inbox", []).append(receipt)
     return receipt
