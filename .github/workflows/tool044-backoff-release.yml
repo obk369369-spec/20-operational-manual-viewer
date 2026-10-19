@@ -20,6 +20,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - name: Enforce central admission and user stop before work
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id workflow:tool044-backoff-release --task-id TOOL044
       - name: Remove 24-hour external-search wait from TOOL044 state
         run: |
           python - <<'PY'

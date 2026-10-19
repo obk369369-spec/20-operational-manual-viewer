@@ -243,11 +243,33 @@ def bootstrap_evidence(git_sha: str, output: Path) -> dict[str, Any]:
     return final
 
 
+def require_external_admission(work_id: str, task_id: str) -> dict[str, Any]:
+    """Shared pre-start boundary for independently triggered mutating workflows."""
+    from runtime_progress_gate import verify_work_admission
+    root = Path(__file__).resolve().parents[2]
+    if os.environ.get("WIC_USER_STOP") != "0":
+        return {"decision": "BLOCK", "reason": "USER_STOP_OR_START_BLOCKED",
+                "work_id": work_id, "task_id": task_id}
+    try:
+        admission = json.loads(os.environ.get("WIC_RULE_ADMISSION_JSON", "null"))
+    except ValueError:
+        admission = None
+    return verify_work_admission(admission, repo_root=root,
+                                 work_id=work_id, task_id=task_id)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--bootstrap-evidence", type=Path)
     parser.add_argument("--git-sha", default=os.environ.get("GITHUB_SHA", "LOCAL"))
+    parser.add_argument("--require-admission", action="store_true")
+    parser.add_argument("--work-id")
+    parser.add_argument("--task-id")
     args = parser.parse_args()
+    if args.require_admission:
+        receipt = require_external_admission(args.work_id or "", args.task_id or "")
+        print(json.dumps(receipt, ensure_ascii=False))
+        return 0 if receipt["decision"] == "ALLOW" else 1
     if not args.bootstrap_evidence:
         raise SystemExit("bootstrap evidence path required")
     print(json.dumps(bootstrap_evidence(args.git_sha, args.bootstrap_evidence), ensure_ascii=False))

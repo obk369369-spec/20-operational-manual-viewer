@@ -6,6 +6,14 @@ on:
       - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
       - 'feedback_pipeline/global_pipeline.py'
       - 'feedback_pipeline/tool044_cloud_worker.py'
+      - 'CONTROL_TOWER/controller/pre_work_admission.py'
+      - '.github/workflows/tool045-cloud-worker.yml'
+      - '.github/workflows/tool044-production-improvement-loop.yml'
+      - '.github/workflows/tool044-canonical-instruction-intake.yml'
+      - '.github/workflows/tool044-minimum-circulation.yml'
+      - '.github/workflows/tool044-backoff-release.yml'
+      - '.github/workflows/wic-24h-tools-revenue-cycle.yml'
+      - '.github/workflows/tool043-pages.yml'
       - '.github/workflows/wic-external-boundary-admission.yml'
   workflow_dispatch:
 
@@ -35,6 +43,7 @@ jobs:
           from runtime_progress_gate import canonical_rule_manifest, verify_work_admission
           import global_pipeline
           import tool044_cloud_worker
+          import pre_work_admission
           work_id, task_id = 'requirement:42', 'TOOL042'
           context = canonical_rule_manifest(root, task_id)
           assert not context['missing'], context
@@ -52,6 +61,14 @@ jobs:
               admission = {'work_id': work_id, 'task_id': task_id,
                            'rule_context': context, 'source_receipt': source}
               assert verify_work_admission(admission, repo_root=root, work_id=work_id, task_id=task_id)['decision'] == 'ALLOW'
+              import os
+              os.environ['WIC_USER_STOP'] = '1'
+              os.environ['WIC_RULE_ADMISSION_JSON'] = json.dumps(admission)
+              assert pre_work_admission.require_external_admission(work_id, task_id)['reason'] == 'USER_STOP_OR_START_BLOCKED'
+              os.environ['WIC_USER_STOP'] = '0'
+              assert pre_work_admission.require_external_admission(work_id, task_id)['decision'] == 'ALLOW'
+              os.environ.pop('WIC_USER_STOP')
+              os.environ.pop('WIC_RULE_ADMISSION_JSON')
               assert verify_work_admission(admission, repo_root=root, work_id='requirement:43', task_id=task_id)['decision'] == 'BLOCK'
               stale = dict(admission, rule_context=dict(context, version='stale'))
               assert verify_work_admission(stale, repo_root=root, work_id=work_id, task_id=task_id)['reason'] == 'RULE_CONTEXT_STALE_OR_TAMPERED'
@@ -72,5 +89,17 @@ jobs:
                   assert state['completed'] == 0
           finally:
               path.unlink()
+          protected = [
+              'tool045-cloud-worker', 'tool044-production-improvement-loop',
+              'tool044-canonical-instruction-intake', 'tool044-minimum-circulation',
+              'tool044-backoff-release', 'wic-24h-tools-revenue-cycle', 'tool043-pages',
+          ]
+          for name in protected:
+              text = (root / '.github' / 'workflows' / (name + '.yml')).read_text()
+              gate = text.index('--require-admission --work-id workflow:' + name)
+              first_work = text.find('run: python feedback_pipeline/')
+              if first_work >= 0:
+                  assert gate < first_work, name
+              assert 'WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}' in text, name
           print('PASS EXTERNAL_BOUNDARY_BLOCK_AND_VALIDATED_ADMISSION')
           PY
