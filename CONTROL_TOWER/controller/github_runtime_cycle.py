@@ -13,7 +13,8 @@ import wic_top_controller as body
 from pre_work_admission import activate_token, issue_token, runtime_pack
 from runtime_progress_gate import (accept_feedback, accept_handoff,
                                    evaluate as evaluate_progress,
-                                   initial_state as progress_state)
+                                   initial_state as progress_state,
+                                   verify_rule_context)
 from universal_enforcement import closure_verdict, self_test as enforcement_self_test
 
 
@@ -390,7 +391,22 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
     body.atomic_json(body.ROOT / "public" / "wic_observer_state.json", payload)
 
 
+def top_level_rule_admission(raw_context: str | None) -> dict[str, Any]:
+    """Authorize the common runtime boundary before token, queue, or worker activity."""
+    try:
+        context = json.loads(raw_context) if raw_context else None
+    except (TypeError, ValueError):
+        context = None
+    task_id = str(context.get("task_id", "")) if isinstance(context, dict) else ""
+    return verify_rule_context(context, repo_root=body.ROOT, task_id=task_id)
+
+
 def main() -> None:
+    rule_admission = top_level_rule_admission(os.environ.get("WIC_RULE_CONTEXT_JSON"))
+    if rule_admission["decision"] != "ALLOW":
+        print(json.dumps({"start_blocked": True, "top_rule_admission": rule_admission},
+                         ensure_ascii=False))
+        raise PermissionError("TOP_LEVEL_RULE_ADMISSION_DENIED:" + str(rule_admission["reason"]))
     repository = os.environ.get("GITHUB_REPOSITORY", "UNKNOWN")
     run_id = os.environ.get("GITHUB_RUN_ID", "LOCAL-NO-RUN-ID")
     git_sha = os.environ.get("GITHUB_SHA", "LOCAL")
