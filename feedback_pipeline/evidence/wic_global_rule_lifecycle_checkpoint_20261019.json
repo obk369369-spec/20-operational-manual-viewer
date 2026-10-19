@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "root_id": "WIC_GLOBAL_RULE_LIFECYCLE_AND_EXECUTION_BOUNDARY_DISCONNECTED",
+  "start_blocked": true,
+  "base_commit": "537cacf1eded997b6e87318b94a13082ebbc50ea",
+  "verified_main_commit": "42447388313224a9b7585f29e6a17e07e8afdc51",
+  "changed_files": [
+    "CONTROL_TOWER/controller/runtime_progress_gate.py",
+    "feedback_pipeline/tool044_instruction_intake.py",
+    "customer_pipeline/tool42_contract_runner.js",
+    "tests/test_permanent_reentry_gate.py",
+    ".github/workflows/wic-permanent-reentry-gate.yml"
+  ],
+  "workflow_run_id": 39215798197,
+  "workflow_result": "PASS",
+  "verified_boundaries": [
+    "canonical global and TOOL042 rule file hashes checked at handoff",
+    "Intake carries rule context and claim blocks missing/stale/source-unverified context",
+    "TOOL042 runner blocks output without matching central gate receipt"
+  ],
+  "unverified": [
+    "general ChatGPT chat to canonical authenticated automatic rule event",
+    "TOOL042 upstream verified source receipt production and actual customer normal output",
+    "all Work/Codex/external connector start points using this gate",
+    "independent TOOL042 actual E2E and output read-back"
+  ],
+  "latest_attachment_original": "UNVERIFIED_NOT_READ",
+  "existing_pass_lock": "PRESERVED",
+  "next_resume": "Connect an authenticated source event to canonical inbox and a verified TOOL042 source receipt producer; test only those changed paths before reconsidering START_BLOCKED."
+}
