@@ -1,7 +1,7 @@
 {
   "schema": "wic.top_controller.state.v1",
   "controller_id": "WIC_TOP_CONTROLLER",
-  "updated_at": "2026-10-19T00:14:41.030952+00:00",
+  "updated_at": "2026-10-19T04:54:25.256611+00:00",
   "source_matrix": "CONTROL_TOWER/ledger/evidence/WIC_FINAL_READY_MADE_STACK_75_CLOSURE_20261005.json",
   "source_matrix_sha256": "826EFE2F46CBFEDD75C77E1483C767391DEE1E59D2CEF97096D2B961BB530E39",
   "requirements_registered": 75,
@@ -921,11 +921,11 @@
   },
   "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
   "independent_runtime": "GITHUB_ACTIONS_SCHEDULED_PASS",
-  "next_run_at": "2026-10-19T01:14:41.030958+00:00",
+  "next_run_at": "2026-10-19T05:54:25.256616+00:00",
   "handoff_traces": {
-    "REMOTE-39179877596": {
+    "REMOTE-39201799429": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-39179877596",
+      "trace_id": "REMOTE-39201799429",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -942,40 +942,42 @@
   },
   "runtime_progress_gate": {
     "seen_signatures": [
-      "edbbd347eaeef5abd127d73fcc9bf0011a339b79835980e9a09eeb4f7d137137",
-      "340d0d2a489729889a4fa9ad700e8c4894dae417e32edf15b2a62c2cc8dfadaa"
+      "d2aded76ec581ae8e76eac5100ff9e994a4f5aeda609b0807173452286f00e61",
+      "bba47b933d1a63b0e3fdca8b2cdfe7c29d94ad2bb4b8302591147b04543bb6a4"
     ],
     "stopped_roots": {},
     "last_checkpoint": {
-      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-39179877596",
-      "CENTRAL_RUNTIME_CYCLE": "39179877596"
+      "CENTRAL_AUTONOMY_REPEAT_ASSURANCE": "REMOTE-39201799429",
+      "CENTRAL_RUNTIME_CYCLE": "39201799429"
     },
     "events": [
       {
         "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "edbbd347eaeef5abd127d73fcc9bf0011a339b79835980e9a09eeb4f7d137137",
+        "signature": "d2aded76ec581ae8e76eac5100ff9e994a4f5aeda609b0807173452286f00e61",
         "deltas": [
           0,
           0,
           1,
           0,
           0
-        ]
+        ],
+        "blocked_before_execution": false
       },
       {
         "root_id": "CENTRAL_RUNTIME_CYCLE",
         "decision": "ALLOW",
         "reason": null,
-        "signature": "340d0d2a489729889a4fa9ad700e8c4894dae417e32edf15b2a62c2cc8dfadaa",
+        "signature": "bba47b933d1a63b0e3fdca8b2cdfe7c29d94ad2bb4b8302591147b04543bb6a4",
         "deltas": [
           0,
           0,
           1,
           0,
           0
-        ]
+        ],
+        "blocked_before_execution": false
       }
     ],
     "permission_metrics": {
@@ -989,10 +991,10 @@
   "runtime_continuity": {
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
-    "first_started_at": "2026-10-06T11:03:05+00:00",
-    "last_finished_at": "2026-10-18T21:33:58+00:00",
-    "elapsed_hours": 298.515,
-    "window_start": "2026-10-17T21:33:58+00:00",
+    "first_started_at": "2026-10-06T17:16:06+00:00",
+    "last_finished_at": "2026-10-19T00:14:27+00:00",
+    "elapsed_hours": 294.973,
+    "window_start": "2026-10-18T00:14:27+00:00",
     "run_count": 11,
     "success_count": 11,
     "failure_count": 0,
@@ -1040,6 +1042,14 @@
         "right_created_at": "2026-10-18T21:33:58Z",
         "gap_hours": 2.879,
         "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 39168401178,
+        "left_created_at": "2026-10-18T21:33:58Z",
+        "right_run_id": 39179877596,
+        "right_created_at": "2026-10-19T00:14:27Z",
+        "gap_hours": 2.675,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
       }
     ],
     "schedule_gap_detected": true,
@@ -1048,13 +1058,13 @@
   },
   "github_runtime": {
     "repository": "obk369369-spec/20-operational-manual-viewer",
-    "run_id": "39179877596",
+    "run_id": "39201799429",
     "run_attempt": "1",
     "processed": [],
     "held": [],
     "handoff": {
       "status": "ACCEPTED",
-      "trace_id": "REMOTE-39179877596",
+      "trace_id": "REMOTE-39201799429",
       "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
       "ready_made_first": true,
       "selected_components": [
@@ -1073,14 +1083,15 @@
       "root_id": "CENTRAL_RUNTIME_CYCLE",
       "decision": "ALLOW",
       "reason": null,
-      "signature": "340d0d2a489729889a4fa9ad700e8c4894dae417e32edf15b2a62c2cc8dfadaa",
+      "signature": "bba47b933d1a63b0e3fdca8b2cdfe7c29d94ad2bb4b8302591147b04543bb6a4",
       "deltas": [
         0,
         0,
         1,
         0,
         0
-      ]
+      ],
+      "blocked_before_execution": false
     },
     "queue_continues": false,
     "queue_drained": true
