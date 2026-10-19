@@ -254,8 +254,48 @@ def require_external_admission(work_id: str, task_id: str) -> dict[str, Any]:
         admission = json.loads(os.environ.get("WIC_RULE_ADMISSION_JSON", "null"))
     except ValueError:
         admission = None
+    if isinstance(admission, dict) and isinstance(admission.get("admissions"), dict):
+        admission = admission["admissions"].get(work_id)
     return verify_work_admission(admission, repo_root=root,
                                  work_id=work_id, task_id=task_id)
+
+
+def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
+    """Refuse PASS promotion without a read-back-bound independent closure receipt."""
+    from universal_enforcement import closure_verdict
+    root = Path(__file__).resolve().parents[2]
+    try:
+        refs = json.loads(os.environ.get("WIC_CLOSURE_RECEIPTS_JSON", "null"))
+    except ValueError:
+        refs = None
+    item = refs.get(work_id) if isinstance(refs, dict) else None
+    relative = item.get("path") if isinstance(item, dict) else None
+    reason = None
+    if not isinstance(relative, str) or not relative.endswith(".json"):
+        reason = "CLOSURE_RECEIPT_MISSING"
+    else:
+        target = (root / relative).resolve()
+        allowed = ((root / "feedback_pipeline" / "evidence").resolve(),
+                   (root / "CONTROL_TOWER" / "ledger" / "evidence").resolve())
+        if not any(target.is_relative_to(base) for base in allowed) or not target.is_file():
+            reason = "CLOSURE_RECEIPT_PATH_INVALID"
+        elif hashlib.sha256(target.read_bytes()).hexdigest() != item.get("sha256"):
+            reason = "CLOSURE_RECEIPT_STALE_OR_TAMPERED"
+        else:
+            try:
+                receipt = json.loads(target.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                receipt = {}
+            if receipt.get("work_id") != work_id or receipt.get("task_id") != task_id:
+                reason = "CLOSURE_IDENTITY_MISMATCH"
+            elif os.environ.get("GITHUB_RUN_ID") and str(receipt.get("run_id")) != os.environ["GITHUB_RUN_ID"]:
+                reason = "CLOSURE_RUN_ID_MISMATCH"
+            elif not receipt.get("independent_validator_id") or not receipt.get("execution_id"):
+                reason = "INDEPENDENT_VALIDATION_EVIDENCE_MISSING"
+            elif closure_verdict(receipt) != "PASS":
+                reason = "CLOSURE_VERDICT_NOT_PASS"
+    return {"decision": "BLOCK" if reason else "ALLOW", "reason": reason,
+            "work_id": work_id, "task_id": task_id}
 
 
 def main() -> int:
@@ -263,9 +303,14 @@ def main() -> int:
     parser.add_argument("--bootstrap-evidence", type=Path)
     parser.add_argument("--git-sha", default=os.environ.get("GITHUB_SHA", "LOCAL"))
     parser.add_argument("--require-admission", action="store_true")
+    parser.add_argument("--require-completion", action="store_true")
     parser.add_argument("--work-id")
     parser.add_argument("--task-id")
     args = parser.parse_args()
+    if args.require_completion:
+        receipt = require_external_completion(args.work_id or "", args.task_id or "")
+        print(json.dumps(receipt, ensure_ascii=False))
+        return 0 if receipt["decision"] == "ALLOW" else 1
     if args.require_admission:
         receipt = require_external_admission(args.work_id or "", args.task_id or "")
         print(json.dumps(receipt, ensure_ascii=False))

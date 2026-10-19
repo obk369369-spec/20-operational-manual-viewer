@@ -19,6 +19,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - name: Enforce central admission and user stop for validate
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool044-registered-target-deploy-validation:validate' --task-id TOOL044
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -56,6 +61,10 @@ jobs:
           out.write_text(json.dumps(result,indent=2)+"\n")
           print(json.dumps(result))
           PY
+      - name: Verify independent closure before validation PASS promotion
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool044-registered-target-deploy-validation:validate' --task-id TOOL044
       - name: Persist evidence
         run: |
           git config user.name 'github-actions[bot]'

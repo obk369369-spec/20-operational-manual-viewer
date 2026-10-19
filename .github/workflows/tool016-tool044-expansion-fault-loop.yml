@@ -24,6 +24,11 @@ jobs:
       matrix: ${{ steps.build.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce central admission and user stop for prepare
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool016-tool044-expansion-fault-loop:prepare' --task-id TOOL016
       - id: build
         name: Derive deduplicated executable OPEN roots
         run: |
@@ -61,6 +66,12 @@ jobs:
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Enforce central admission and user stop for workers
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool016-tool044-expansion-fault-loop:workers:${{ matrix.demand_id }}' --task-id TOOL044
       - name: Claim, heartbeat, checkpoint, expected/actual
         env:
           ROOT_ID: ${{ matrix.root }}
@@ -84,6 +95,10 @@ jobs:
           safe=''.join(c if c.isalnum() or c in '-_' else '_' for c in root)
           json.dump(row,open(f'receipts/{safe}.json','w'),indent=2)
           PY
+      - name: Verify independent closure before worker PASS promotion
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool016-tool044-expansion-fault-loop:workers:${{ matrix.demand_id }}' --task-id TOOL044
       - uses: actions/upload-artifact@v4
         with:
           name: root-${{ strategy.job-index }}
@@ -94,6 +109,12 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Enforce central admission and user stop for aggregate
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool016-tool044-expansion-fault-loop:aggregate' --task-id TOOL016
       - uses: actions/download-artifact@v4
         with:
           pattern: root-*
@@ -123,6 +144,10 @@ jobs:
               'jobs':rows,'timestamp':now}
           json.dump(ev,open('mass_parallel_evidence.json','w'),indent=2)
           PY
+      - name: Verify independent closure before aggregate PASS promotion
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool016-tool044-expansion-fault-loop:aggregate' --task-id TOOL016
       - uses: actions/upload-artifact@v4
         with:
           name: mass-parallel-evidence
@@ -136,10 +161,19 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - name: Enforce central admission and user stop for persist
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool016-tool044-expansion-fault-loop:persist' --task-id TOOL016
       - uses: actions/download-artifact@v4
         with:
           name: mass-parallel-evidence
           path: runtime
+      - name: Verify independent closure before persist PASS promotion
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool016-tool044-expansion-fault-loop:persist' --task-id TOOL016
       - name: Persist batch evidence
         run: |
           cp runtime/mass_parallel_evidence.json feedback_pipeline/evidence/T16-T44-MASS-PARALLEL-20260925-001.json

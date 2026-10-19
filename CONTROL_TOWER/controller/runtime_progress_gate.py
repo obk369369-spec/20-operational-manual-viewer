@@ -68,8 +68,10 @@ def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[
 def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task_id: str) -> dict[str, Any]:
     """Require current per-task rules and a matching independently validated source receipt."""
     reason = None
-    if not task_id:
+    if not isinstance(task_id, str) or not task_id.strip():
         reason = "CONTRACT_TASK_ID_MISSING"
+    elif task_id.upper() != "CENTRAL" and task_id.upper() not in TASK_RULE_FILES:
+        reason = "TASK_RULE_SOURCE_UNMAPPED"
     elif not isinstance(admission, dict) or admission.get("work_id") != work_id or admission.get("task_id") != task_id:
         reason = "WORK_ADMISSION_IDENTITY_MISMATCH"
     else:

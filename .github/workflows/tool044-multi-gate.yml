@@ -35,6 +35,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - name: Enforce central admission and user stop for prepare
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool044-multi-gate:prepare' --task-id TOOL044
       - id: plan
         name: Persist claims before execution
         run: >-
@@ -78,6 +83,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Enforce central admission and user stop for lane
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool044-multi-gate:lane:${{ matrix.job_id }}' --task-id TOOL044
       - name: Run isolated component lane
         run: >-
           python feedback_pipeline/tool044_multi_gate.py run-lane
@@ -85,6 +95,10 @@ jobs:
           --owner '${{ matrix.owner }}'
           --fencing-token '${{ matrix.fencing_token }}'
           --result 'tool044-result-${{ matrix.gate_id }}.json'
+      - name: Verify independent closure before lane PASS promotion
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool044-multi-gate:lane:${{ matrix.job_id }}' --task-id TOOL044
       - if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
@@ -101,6 +115,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - name: Enforce central admission and user stop for aggregate
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool044-multi-gate:aggregate' --task-id TOOL044
       - uses: actions/download-artifact@v4
         with:
           pattern: tool044-result-*
@@ -110,8 +129,12 @@ jobs:
         run: |
           python feedback_pipeline/tool044_multi_gate.py aggregate tool044-results/*.json
           python feedback_pipeline/tool016_visible_handoff.py
+      - name: Verify independent closure before aggregate PASS promotion
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool044-multi-gate:aggregate' --task-id TOOL044
       - name: Persist result and checkpoint
-        if: ${{ always() }}
+        if: ${{ success() }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'

@@ -23,6 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce central admission and user stop for deploy
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:wic-observer-pages:deploy' --task-id CENTRAL
       - uses: actions/configure-pages@v5
       - name: Preserve existing pages and add observer dashboard
         run: |
@@ -34,5 +39,9 @@ jobs:
           cp -R public/revenue-lab/. _site/revenue-lab/
       - uses: actions/upload-pages-artifact@v3
         with: {path: _site}
+      - name: Verify independent closure before observer deployment
+        env:
+          WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:wic-observer-pages:deploy' --task-id CENTRAL
       - id: deployment
         uses: actions/deploy-pages@v4
