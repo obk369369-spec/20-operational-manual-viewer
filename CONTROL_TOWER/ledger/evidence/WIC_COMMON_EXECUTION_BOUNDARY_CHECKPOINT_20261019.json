@@ -1,0 +1,69 @@
+{
+  "schema": "wic.common-execution-boundary-checkpoint.v1",
+  "date": "2026-10-19",
+  "start_blocked": true,
+  "base_reused": {
+    "commit": "3a4382260a685dd9f672df2827f4cbde1dfc5844",
+    "existing_pass_and_job_packs": "PRESERVED_NOT_RETESTED"
+  },
+  "delta_commit": "071c54c02bd7c492a66fac04cd6d452aea686ed8",
+  "focused_validation": {
+    "run_id": 39237037396,
+    "conclusion": "success",
+    "scope": "shared CLI admission + user stop + seven workflow start bindings"
+  },
+  "observed_prestart_blocks": [
+    {
+      "workflow": "tool044-production-improvement-loop",
+      "run_id": 39237037398,
+      "reason": "USER_STOP_OR_START_BLOCKED"
+    },
+    {
+      "workflow": "tool044-canonical-instruction-intake",
+      "run_id": 39237037425,
+      "reason": "USER_STOP_OR_START_BLOCKED"
+    },
+    {
+      "workflow": "tool044-minimum-circulation",
+      "run_id": 39237037855,
+      "reason": "USER_STOP_OR_START_BLOCKED"
+    },
+    {
+      "workflow": "tool043-pages",
+      "run_id": 39237037549,
+      "reason": "USER_STOP_OR_START_BLOCKED"
+    }
+  ],
+  "guarded_workflows": [
+    "tool045-cloud-worker",
+    "tool044-production-improvement-loop",
+    "tool044-canonical-instruction-intake",
+    "tool044-minimum-circulation",
+    "tool044-backoff-release",
+    "wic-24h-tools-revenue-cycle",
+    "tool043-pages"
+  ],
+  "user_control": {
+    "stop_flag": "WIC_USER_STOP",
+    "default": "BLOCK",
+    "required_allow_value": "0",
+    "rule_admission": "WIC_RULE_ADMISSION_JSON",
+    "negative_test": "PASS",
+    "positive_fixture_test": "PASS",
+    "actual_user_setting_change": "NOT_TESTED",
+    "observer_surface": "GitHub Actions run and logs; existing WIC observer dashboard not proven to show each block"
+  },
+  "remaining_unverified_controllable": [
+    "tool044-multi-gate parallel prepare/lane/aggregate",
+    "tool016-tool044-expansion-fault-loop parallel prepare/workers/aggregate/persist",
+    "tool044-registered-target-deploy-validation",
+    "wic-observer-pages deployment",
+    "other independently triggered workflow starts not covered by focused delta"
+  ],
+  "platform_limit": [
+    "general ChatGPT conversations cannot be directly forced through repository Gate"
+  ],
+  "product_work": "NOT_STARTED",
+  "overall_control": "NOT_VERIFIED",
+  "delta_commit_remote_readback": "PASS"
+}
