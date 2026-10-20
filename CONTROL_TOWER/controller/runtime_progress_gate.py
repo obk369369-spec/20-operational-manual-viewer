@@ -23,6 +23,7 @@ TASK_RULE_FILES = {
     "TOOL042": ("CUSTOMER_GUIDE_OUTPUT_LOCK.md",),
     "TOOL037": ("feedback_pipeline/TOOL037_MASTER.md",),
     "TOOL043": ("tool043/WIC_RULE_SOURCE.md",),
+    "EMAIL_DB": ("EMAIL_COLLECTION_COMMON_RULES.md",),
     "TOOL044": ("feedback_pipeline/TOOL044_MASTER.md",),
 }
 
