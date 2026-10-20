@@ -1,14 +1,14 @@
 {
-  "applied_rule_version": "84084b4187dea4f765ce28382083e888ae6fc68e26fcb8c774d1356adb789aee",
+  "applied_rule_version": "53fde54e66821e047404cb79226fd788e5f177c915af51a4d0dfb5c1f9350766",
   "applied_rule_files": {
-    "WIC_GLOBAL_OPERATING_RULES.md": "c3c1e2fc36a56e4a9f3caa5d6c0529c77364911f9dd32c176d41ff1a1bfb0f2a",
+    "WIC_GLOBAL_OPERATING_RULES.md": "58383f3a55c84dea52806cfcd31d3011f5a6be92b9c00a7712598ba00fca969c",
     "AGENTS.md": "f6174412ddd5432d56b298159d910e9960403295119b9f4a1670bc8467c9366d",
     "WIC_CHAT_ROUTING_REGISTRY.md": "0dafc1ed1573b525fa36701061d0bbb29c0ff831ebaa87cd0ffbb74251319527"
   },
   "original_refs": [
     {
       "path": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_EXECUTION_BOUNDARY_CHECKPOINT_20261019.json",
-      "sha256": "e3246e1508a00c1913e0c8b9c31b711a20bc171ddd19b11660001758120167ab"
+      "sha256": "731540ba07367fdd28f35f07138c389da845d5e71266010b112fda1e494b8345"
     },
     {
       "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
@@ -22,7 +22,7 @@
   "validation_method": "compare checkpoint stop/control and queue/production source hashes",
   "expected_start_blocked": true,
   "rule_compliance_verdict": "PASS",
-  "generated_at_utc": "2026-10-20T01:16:42.820276+00:00",
+  "generated_at_utc": "2026-10-20T01:19:00.980202+00:00",
   "source": "FREE_GITHUB_ACTIONS_NO_CHATGPT_CODEX_WORK_SCHEDULE",
   "production_loop_status": "START_BLOCKED",
   "historical_production_status": "PASS",
