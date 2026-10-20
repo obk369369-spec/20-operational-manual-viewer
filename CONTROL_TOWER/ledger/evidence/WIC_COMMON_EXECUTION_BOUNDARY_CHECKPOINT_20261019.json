@@ -57,16 +57,18 @@
       "run_id": 39351746872,
       "status": "PASS_ISOLATED_FIXTURE_ONLY",
       "actual_repository_setting_change": "NOT_TESTED",
-      "production_normal_job": "NOT_STARTED"
+      "production_normal_job": "NOT_STARTED",
+      "run_conclusion": "success"
     }
   },
   "remaining_unverified_controllable": [
-    "positive production admission with canonical per-task rule and source receipt for TOOL016/TOOL043/TOOL044",
-    "actual independently validated completion and deployed read-back",
-    "actual user stop setting and reauthorization",
-    "observer live dashboard linkage to block/allow/closure",
-    "TOOL042 latest customer source records, original correspondence and attachments, publisher replies, customer-facing output validation",
-    "uncovered independent mutation boundaries outside this delta"
+    "real production admission and source receipts for TOOL016/TOOL042/TOOL044",
+    "real independently validated customer/product completion and deployment read-back",
+    "actual GitHub user stop variable change and reauthorization in normal workflow",
+    "live Observer Pages deployment blocked at start gate; remote JSON status available",
+    "TOOL042 current publisher replies, original email/attachments, customer source and output validation not in canonical checkpoint",
+    "TOOL043 dedicated rule source not identified; fail-closed",
+    "external connector/API and general ChatGPT paths not enforceable solely by repository workflows"
   ],
   "platform_limit": [
     "general ChatGPT conversations cannot be directly forced through repository Gate"
@@ -174,6 +176,19 @@
     "source_test_run_id": 39351559300,
     "actual_live_deployment": "BLOCKED_AT_START_GATE",
     "deployment_run_id": 39351559206,
-    "prior_complete_counts": "HISTORICAL_ONLY_WHILE_START_BLOCKED"
+    "prior_complete_counts": "HISTORICAL_ONLY_WHILE_START_BLOCKED",
+    "remote_status": {
+      "workflow_commit": "d9b4b379a38467e3a7d38af2bfec05f553eae382",
+      "run_id": 39351934116,
+      "result": "success",
+      "path": "observer/runtime/hourly-status.json",
+      "blob_sha": "e7de936523c3407395591f2158a153223a83de38",
+      "readback": {
+        "start_blocked": true,
+        "overall_control": "NOT_VERIFIED",
+        "tool042_customer_output": "START_BLOCKED",
+        "observer_live_deployment": "BLOCKED_AT_START_GATE"
+      }
+    }
   }
 }
