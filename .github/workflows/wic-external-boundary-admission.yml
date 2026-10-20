@@ -73,5 +73,49 @@ jobs:
               target = Path(folder) / 'observer.js'
               target.write_text(script, encoding='utf-8')
               subprocess.run(['node', '--check', str(target)], check=True)
+          import hashlib
+          import sys
+          from runtime_progress_gate import canonical_rule_manifest
+          work_id, task_id = 'workflow:tool044-cloud-worker:public-safe-worker', 'TOOL044'
+          with tempfile.TemporaryDirectory(dir=Path('feedback_pipeline/evidence')) as folder:
+              source = (Path(folder) / 'source.json').resolve()
+              marker_path = (Path(folder) / 'isolated-execution.txt').resolve()
+              closure = (Path(folder) / 'closure.json').resolve()
+              source.write_text(json.dumps({'work_id':work_id,'task_id':task_id,'source_records_verified':True,
+                                            'validation_result':'PASS','validator_id':'ISOLATED_VALIDATOR',
+                                            'source_refs':['ISOLATED_SOURCE']}) + '\n', encoding='utf-8')
+              context = canonical_rule_manifest(Path.cwd(), task_id)
+              assert not context['missing']
+              context.update(conflicts=[], source_records_verified=True)
+              admission = {'work_id':work_id,'task_id':task_id,'rule_context':context,
+                           'source_receipt':{'path':source.relative_to(Path.cwd()).as_posix(),
+                                             'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}}
+              env = dict(os.environ, WIC_RULE_ADMISSION_JSON=json.dumps({'admissions':{work_id:admission}}),
+                         WIC_USER_STOP='1')
+              cmd = [sys.executable, 'CONTROL_TOWER/controller/pre_work_admission.py',
+                     '--require-admission','--work-id',work_id,'--task-id',task_id]
+              stopped = subprocess.run(cmd, env=env, capture_output=True, text=True)
+              assert stopped.returncode == 1 and 'USER_STOP_OR_START_BLOCKED' in stopped.stdout
+              assert not marker_path.exists()
+              env['WIC_USER_STOP'] = '0'
+              allowed = subprocess.run(cmd, env=env, capture_output=True, text=True)
+              assert allowed.returncode == 0 and 'ALLOW' in allowed.stdout, allowed.stdout
+              marker_path.write_text('ACTUAL_ISOLATED_EXECUTION\n', encoding='utf-8')
+              assert marker_path.read_text(encoding='utf-8') == 'ACTUAL_ISOLATED_EXECUTION\n'
+              receipt = {'work_id':work_id,'task_id':task_id,'execution_id':'ISOLATED_EXECUTION',
+                         'run_id':os.environ['GITHUB_RUN_ID'],'independent_validator_id':'ISOLATED_VALIDATOR',
+                         'actual_input':'fixture','actual_output':'MATCH','expected_output':'MATCH',
+                         'validation_pass':True,'positive_pass':True,'negative_pass':True,
+                         'failure_injection_pass':True,'recovery_pass':True,'rollback_pass':True,
+                         'evidence_ref':str(marker_path),'readback_pass':True}
+              closure.write_text(json.dumps(receipt) + '\n', encoding='utf-8')
+              env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
+                  'path':closure.relative_to(Path.cwd()).as_posix(),
+                  'sha256':hashlib.sha256(closure.read_bytes()).hexdigest()}})
+              completed = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+                                          '--require-completion','--work-id',work_id,'--task-id',task_id],
+                                         env=env,capture_output=True,text=True)
+              assert completed.returncode == 0 and 'ALLOW' in completed.stdout, completed.stdout
+          print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
           print('PASS COMMON_MUTATING_BOUNDARY_AND_OBSERVER_DELTA', sum(map(len, paths.values())))
           PY
