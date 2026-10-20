@@ -1,6 +1,9 @@
 name: WIC Hourly Free Status Report
 
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/wic-hourly-free-status.yml']
   schedule:
     - cron: '5 * * * *'
   workflow_dispatch:
@@ -47,21 +50,23 @@ jobs:
               s = str(d.get('status', 'UNKNOWN'))
               counts[s] = counts.get(s, 0) + 1
 
-          latest_checkpoint = None
-          latest_evidence = None
-          files = [p for p in evidence_dir.rglob('*') if p.is_file()]
-          if files:
-              latest = max(files, key=lambda p: p.stat().st_mtime)
-              latest_evidence = str(latest)
-
-          checkpoint_candidates = [p for p in root.rglob('*checkpoint*') if p.is_file()]
-          if checkpoint_candidates:
-              latest_checkpoint = str(max(checkpoint_candidates, key=lambda p: p.stat().st_mtime))
+          gate_path = Path('CONTROL_TOWER/ledger/evidence/WIC_COMMON_EXECUTION_BOUNDARY_CHECKPOINT_20261019.json')
+          gate = read_json(gate_path) or {}
+          latest_checkpoint = str(gate_path) if gate_path.is_file() else None
+          latest_evidence = latest_checkpoint
 
           report = {
               'generated_at_utc': datetime.now(timezone.utc).isoformat(),
               'source': 'FREE_GITHUB_ACTIONS_NO_CHATGPT_CODEX_WORK_SCHEDULE',
-              'production_loop_status': production.get('results', [{}])[-1].get('status') if production.get('results') else production.get('status'),
+              'production_loop_status': 'START_BLOCKED' if gate.get('start_blocked', True) else (production.get('results', [{}])[-1].get('status') if production.get('results') else production.get('status')),
+              'historical_production_status': production.get('results', [{}])[-1].get('status') if production.get('results') else production.get('status'),
+              'start_blocked': gate.get('start_blocked', True),
+              'overall_control': gate.get('overall_control', 'NOT_VERIFIED'),
+              'latest_gate_commit': (gate.get('latest_mutating_boundary_delta') or {}).get('commit'),
+              'latest_gate_test_run': (gate.get('latest_mutating_boundary_delta') or {}).get('focused_run_id'),
+              'unverified_control_boundaries': gate.get('remaining_unverified_controllable', []),
+              'tool042_customer_output': (gate.get('tool042_actual_customer_validation') or {}).get('status', 'NOT_VERIFIED'),
+              'observer_live_deployment': (gate.get('observer_surface') or {}).get('actual_live_deployment', 'NOT_VERIFIED'),
               'production_run_id': production.get('run_id'),
               'queue_status_counts': counts,
               'latest_evidence': latest_evidence,
