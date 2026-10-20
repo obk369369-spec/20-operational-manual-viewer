@@ -18,3 +18,10 @@
 - Textile Chemicals Market (2026-2033) — Grand View Research, 80 pages, USD 5,950: 기능성 가공에 유용하나 이번 3종에서는 제외.
 - 발송 전 기존 2026년 전체 발송함/구매기록과 제목·개정판·유사주제 대조, 공식 발행사 현행 가격/페이지/발행일 검증 필요.
 - 기존 PASS_LOCK, Evidence, checkpoint 유지; 약 3200건 전체 재스캔 금지. 본 파일은 신규 증분 고객 사례이며 16번 자동 실행 큐 접수 및 메일 발송 증거가 아님.
+
+
+## 2026-10-20 추가 정정 — 3번 미완성 안내서 대체
+- 기존 3번 Bio Based Functional Polymers Market: 안내서 작성 미완성으로 발송 후보에서 제외 (NOT_SEND_READY).
+- 대체 3번 Textile Chemicals Market (2026-2033) — Grand View Research; 80 pages; June 2026; 내부 안내서 표기 USD 5,950. 내부 안내서 DOC 존재 확인 이력. 발행사 공식 페이지 https://www.grandviewresearch.com/industry-analysis/textile-chemical-market (2026-10-20 웹 확인). 섬유 전처리, 코팅, 염색/가공 약품, 지속가능한 기능성 가공과 연결. 2026-09-28 기존 3종과 제목 중복 없음.
+- 주의: 3번은 기존 1,2번과 발행사 다르지만, 최긍지 고객 전체 과거 발송함과의 유사주제·개정판 완전 대조는 미완료. 공급가 미확정. 신규 안내서 작성 완료 여부는 파일별 확인 필요. 공식 페이지는 현재 보고서 존재 확인이지 내부 DOC 작성 완료 증명이 아님.
+- 최종 제안 순서: 1 Nanofabrics Market, 2 Natural Fiber Reinforced Plastic Market, 3 Textile Chemicals Market. 메일 발송 미실행.
