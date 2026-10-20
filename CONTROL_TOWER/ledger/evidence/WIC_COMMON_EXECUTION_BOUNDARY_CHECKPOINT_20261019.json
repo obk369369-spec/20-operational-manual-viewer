@@ -1,12 +1,12 @@
 {
   "schema": "wic.common-execution-boundary-checkpoint.v1",
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "start_blocked": true,
   "base_reused": {
     "commit": "3a4382260a685dd9f672df2827f4cbde1dfc5844",
     "existing_pass_and_job_packs": "PRESERVED_NOT_RETESTED"
   },
-  "delta_commit": "071c54c02bd7c492a66fac04cd6d452aea686ed8",
+  "delta_commit": "9d06784f22a4561bc666d49f35704d58eac84c35",
   "focused_validation": {
     "run_id": 39237037396,
     "conclusion": "success",
@@ -54,16 +54,57 @@
     "observer_surface": "GitHub Actions run and logs; existing WIC observer dashboard not proven to show each block"
   },
   "remaining_unverified_controllable": [
-    "tool044-multi-gate parallel prepare/lane/aggregate",
-    "tool016-tool044-expansion-fault-loop parallel prepare/workers/aggregate/persist",
-    "tool044-registered-target-deploy-validation",
-    "wic-observer-pages deployment",
-    "other independently triggered workflow starts not covered by focused delta"
+    "positive production admission with canonical per-task rule and source receipt for TOOL016/TOOL043/TOOL044 (unmapped task rule sources fail closed)",
+    "actual independently validated completion receipt and deployment/read-back",
+    "actual user stop setting and observer operating surface",
+    "other independently triggered workflow starts not covered by focused delta",
+    "multi-cloud/multi-factory end-to-end and failover"
   ],
   "platform_limit": [
     "general ChatGPT conversations cannot be directly forced through repository Gate"
   ],
   "product_work": "NOT_STARTED",
   "overall_control": "NOT_VERIFIED",
-  "delta_commit_remote_readback": "PASS"
+  "delta_commit_remote_readback": "PASS",
+  "previous_delta_commit": "071c54c02bd7c492a66fac04cd6d452aea686ed8",
+  "latest_delta": {
+    "root": "CONTROLLED_EXECUTION_ADMISSION_AND_VERIFIED_COMPLETION_BOUNDARY",
+    "scope": [
+      "tool044-multi-gate prepare/lane/aggregate",
+      "tool016-tool044-expansion-fault-loop prepare/workers/aggregate/persist",
+      "tool044-registered-target-deploy-validation validate",
+      "wic-observer-pages deploy"
+    ],
+    "commit": "9d06784f22a4561bc666d49f35704d58eac84c35",
+    "focused_validation": {
+      "run_id": 39238119170,
+      "conclusion": "success",
+      "nature": "fixture and static workflow-delta tests; not production positive E2E"
+    },
+    "observed_prestart_blocks": [
+      {
+        "workflow": "tool044-registered-target-deploy-validation",
+        "run_id": 39238118905,
+        "job_id": 118012074337,
+        "reason": "USER_STOP_OR_START_BLOCKED",
+        "downstream": "skipped"
+      },
+      {
+        "workflow": "tool016-tool044-expansion-fault-loop",
+        "run_id": 39238119027,
+        "job_id": 118012075189,
+        "reason": "USER_STOP_OR_START_BLOCKED",
+        "downstream": "skipped"
+      },
+      {
+        "workflow": "wic-observer-pages",
+        "run_id": 39238119044,
+        "job_id": 118012077247,
+        "reason": "USER_STOP_OR_START_BLOCKED",
+        "downstream": "skipped"
+      }
+    ],
+    "remote_readback": "commit retained on main through 73fafdb0f3db6b3502250a7fe8146ddb22066940",
+    "product_work": "NOT_STARTED"
+  }
 }
