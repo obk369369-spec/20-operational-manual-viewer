@@ -29,6 +29,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Enforce central admission and user stop for apply-feedback
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:wic-feedback-event:apply-feedback' --task-id CENTRAL
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -355,6 +360,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Enforce central admission and user stop for receive-render-env2
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:wic-feedback-event:receive-render-env2' --task-id CENTRAL
       - name: Validate identity, reject stale or duplicate result, and persist ACK
         env:
           RESULT_JSON: ${{ toJson(github.event.client_payload.result) }}

@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce central admission and user stop for env1_fault
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:root-a-fault-e2e:env1_fault' --task-id CENTRAL
       - run: |
           mkdir -p /tmp/root-a
           id="ROOT-A-FAULT-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
@@ -29,6 +34,14 @@ jobs:
       sha: ${{ steps.h.outputs.sha }}
       cid: ${{ steps.h.outputs.cid }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Enforce central admission and user stop for watchdog_handoff
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:root-a-fault-e2e:watchdog_handoff' --task-id CENTRAL
       - uses: actions/download-artifact@v4
         with: {name: root-a-fault-checkpoint, path: /tmp/root-a}
       - uses: actions/checkout@v4
@@ -70,6 +83,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: {ref: main, fetch-depth: 0}
+      - name: Enforce central admission and user stop for final_readback
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:root-a-fault-e2e:final_readback' --task-id CENTRAL
       - env:
           GH_TOKEN: ${{ github.token }}
           HANDOFF_SHA: ${{ needs.watchdog_handoff.outputs.sha }}

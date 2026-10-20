@@ -12,6 +12,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce central admission and user stop for verify-release-rollback
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:wic-external-development-structure-probe:verify-release-rollback' --task-id CENTRAL
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

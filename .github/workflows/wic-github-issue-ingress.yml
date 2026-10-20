@@ -16,6 +16,14 @@ jobs:
     if: github.event.issue.user.login == github.repository_owner && (startsWith(github.event.issue.title, '[WIC]') || startsWith(github.event.issue.title, '[WIC FEEDBACK]') || startsWith(github.event.issue.title, 'TOOL'))
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Enforce central admission and user stop for dispatch-wic-feedback
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:wic-github-issue-ingress:dispatch-wic-feedback' --task-id CENTRAL
       - name: Normalize real GitHub issue and dispatch canonical WIC event
         uses: actions/github-script@v9
         with:

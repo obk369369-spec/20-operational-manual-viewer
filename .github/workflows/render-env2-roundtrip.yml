@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Enforce central admission and user stop for issue-job
+        env:
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
+        run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:render-env2-roundtrip:issue-job' --task-id CENTRAL
       - name: Persist issued identity before external execution
         env:
           RUN_ID: ${{ github.run_id }}

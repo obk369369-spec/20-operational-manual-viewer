@@ -1,14 +1,19 @@
-name: WIC Parallel Boundary Admission Delta
+name: WIC Common Mutating Boundary Delta
 
 on:
   push:
     paths:
-      - 'CONTROL_TOWER/controller/pre_work_admission.py'
-      - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
-      - '.github/workflows/tool044-multi-gate.yml'
-      - '.github/workflows/tool016-tool044-expansion-fault-loop.yml'
-      - '.github/workflows/tool044-registered-target-deploy-validation.yml'
-      - '.github/workflows/wic-observer-pages.yml'
+      - 'WIC_GLOBAL_OPERATING_RULES.md'
+      - '.github/workflows/render-env2-roundtrip.yml'
+      - '.github/workflows/root-a-env1-circleci-readback.yml'
+      - '.github/workflows/root-a-fault-e2e.yml'
+      - '.github/workflows/root-a-recovery-supervisor.yml'
+      - '.github/workflows/tool044-cloud-worker.yml'
+      - '.github/workflows/wic-external-development-structure-probe.yml'
+      - '.github/workflows/wic-feedback-event.yml'
+      - '.github/workflows/wic-github-issue-ingress.yml'
+      - '.github/workflows/wic-stall-monitor.yml'
+      - '.github/workflows/wic-top-controller-runtime.yml'
       - '.github/workflows/wic-external-boundary-admission.yml'
   workflow_dispatch:
 
@@ -21,68 +26,34 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Verify per-job admission, user stop and closure promotion
+      - name: Verify only new common admission bindings and fail-closed default
         run: |
           python - <<'PY'
-          import hashlib, json, os, sys, tempfile
+          import json, os, re
           from pathlib import Path
-          root = Path.cwd()
-          sys.path.insert(0, str(root / 'CONTROL_TOWER' / 'controller'))
-          import pre_work_admission as gate
-          from runtime_progress_gate import canonical_rule_manifest
-          work_id, task_id = 'workflow:tool044-multi-gate:lane:TEST_JOB', 'TOOL042'
-          context = canonical_rule_manifest(root, task_id)
-          assert not context['missing'], context
-          context.update(conflicts=[], source_records_verified=True)
-          with tempfile.NamedTemporaryFile(mode='w', suffix='.json', dir=root / 'feedback_pipeline' / 'evidence',
-                                           encoding='utf-8', delete=False) as source_file:
-              json.dump({'work_id':work_id,'task_id':task_id,'source_records_verified':True,
-                         'validation_result':'PASS','validator_id':'INDEPENDENT_DELTA',
-                         'source_refs':['ISOLATED_SOURCE']}, source_file)
-              source = Path(source_file.name)
-          with tempfile.NamedTemporaryFile(mode='w', suffix='.json', dir=root / 'feedback_pipeline' / 'evidence',
-                                           encoding='utf-8', delete=False) as closure_file:
-              json.dump({'work_id':work_id,'task_id':task_id,'execution_id':'ISOLATED_EXECUTION','run_id':os.environ.get('GITHUB_RUN_ID'),
-                         'independent_validator_id':'INDEPENDENT_DELTA',
-                         'actual_input':'fixture','actual_output':'MATCH','expected_output':'MATCH',
-                         'validation_pass':True,'positive_pass':True,'negative_pass':True,
-                         'failure_injection_pass':True,'recovery_pass':True,'rollback_pass':True,
-                         'evidence_ref':'ISOLATED_EVIDENCE','readback_pass':True}, closure_file)
-              closure = Path(closure_file.name)
-          try:
-              admission = {'work_id':work_id,'task_id':task_id,'rule_context':context,
-                           'source_receipt':{'path':source.relative_to(root).as_posix(),
-                                             'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}}
-              os.environ['WIC_RULE_ADMISSION_JSON'] = json.dumps({'admissions':{work_id:admission}})
-              os.environ['WIC_USER_STOP'] = '1'
-              assert gate.require_external_admission(work_id, task_id)['reason'] == 'USER_STOP_OR_START_BLOCKED'
-              os.environ['WIC_USER_STOP'] = '0'
-              assert gate.require_external_admission(work_id, task_id)['decision'] == 'ALLOW'
-              assert gate.require_external_admission(work_id + ':OTHER', task_id)['decision'] == 'BLOCK'
-              assert gate.require_external_admission(work_id, 'TOOL044')['reason'] == 'TASK_RULE_SOURCE_UNMAPPED'
-              assert gate.require_external_completion(work_id, task_id)['decision'] == 'BLOCK'
-              ref = {'path':closure.relative_to(root).as_posix(),
-                     'sha256':hashlib.sha256(closure.read_bytes()).hexdigest()}
-              os.environ['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:ref})
-              assert gate.require_external_completion(work_id, task_id)['decision'] == 'ALLOW'
-              os.environ['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:dict(ref,sha256='bad')})
-              assert gate.require_external_completion(work_id, task_id)['reason'] == 'CLOSURE_RECEIPT_STALE_OR_TAMPERED'
-              paths = {
-                  'tool044-multi-gate.yml':(3,2),
-                  'tool016-tool044-expansion-fault-loop.yml':(4,3),
-                  'tool044-registered-target-deploy-validation.yml':(1,1),
-                  'wic-observer-pages.yml':(1,1),
-              }
-              for name,(starts,closures) in paths.items():
-                  text = (root/'.github'/'workflows'/name).read_text()
-                  assert text.count('--require-admission') == starts, name
-                  assert text.count('--require-completion') == closures, name
-                  assert text.count('WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}') == starts, name
-          finally:
-              source.unlink()
-              closure.unlink()
-          print('PASS PARALLEL_PER_JOB_ADMISSION_USER_STOP_AND_CLOSURE_DELTA')
+          import sys
+          sys.path.insert(0, str(Path.cwd() / 'CONTROL_TOWER' / 'controller'))
+          from pre_work_admission import require_external_admission
+          paths = json.loads("{\"render-env2-roundtrip.yml\":{\"issue-job\":\"Persist issued identity before external execution\"},\"root-a-env1-circleci-readback.yml\":{\"readback\":\"Read CircleCI result from GitHub commit status\"},\"root-a-fault-e2e.yml\":{\"env1_fault\":\"mkdir -p /tmp/root-a\",\"watchdog_handoff\":\"actions/download-artifact@v4\",\"final_readback\":\"HANDOFF_SHA\"},\"root-a-recovery-supervisor.yml\":{\"supervise\":\"Inspect primary TOOL044 worker\"},\"tool044-cloud-worker.yml\":{\"public-safe-worker\":\"Contract and restart-resume test\",\"isolated-central-return\":\"Restore previous isolated state\"},\"wic-external-development-structure-probe.yml\":{\"verify-release-rollback\":\"Baseline health and requirements lock\"},\"wic-feedback-event.yml\":{\"apply-feedback\":\"Materialize authenticated event\",\"receive-render-env2\":\"Validate identity, reject stale\"},\"wic-github-issue-ingress.yml\":{\"dispatch-wic-feedback\":\"Normalize real GitHub issue\"},\"wic-stall-monitor.yml\":{\"watchdog\":\"TOOL044 watchdog\"},\"wic-top-controller-runtime.yml\":{\"controller-cycle\":\"Provide existing reconciler repository path\"}}")
+          for filename, jobs in paths.items():
+              text = (Path('.github/workflows') / filename).read_text(encoding='utf-8')
+              for job, first_effect in jobs.items():
+                  match = re.search(r'(?m)^  ' + re.escape(job) + r':\s*$', text)
+                  assert match, (filename, job, 'JOB_MISSING')
+                  tail = text[match.end():]
+                  next_job = re.search(r'(?m)^  [A-Za-z0-9_-]+:\s*$', tail)
+                  body = tail[:next_job.start()] if next_job else tail
+                  identity = 'workflow:' + filename[:-4] + ':' + job
+                  gate = body.find('pre_work_admission.py --require-admission --work-id ' + chr(39) + identity + chr(39))
+                  first = body.find(first_effect)
+                  assert gate >= 0 and first > gate, (filename, job, 'ADMISSION_NOT_BEFORE_EFFECT')
+                  assert 'WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}' in body, (filename, job, 'USER_STOP_NOT_BOUND')
+                  assert 'WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}' in body, (filename, job, 'RULE_ADMISSION_NOT_BOUND')
+          assert '## 2026-10-20 관찰자·중앙 실행허가 우선 규칙' in Path('WIC_GLOBAL_OPERATING_RULES.md').read_text(encoding='utf-8')
+          os.environ.pop('WIC_USER_STOP', None)
+          os.environ.pop('WIC_RULE_ADMISSION_JSON', None)
+          assert require_external_admission('workflow:wic-top-controller-runtime:controller-cycle', 'CENTRAL')['reason'] == 'USER_STOP_OR_START_BLOCKED'
+          os.environ['WIC_USER_STOP'] = '0'
+          assert require_external_admission('workflow:wic-top-controller-runtime:controller-cycle', 'CENTRAL')['decision'] == 'BLOCK'
+          print('PASS COMMON_MUTATING_BOUNDARY_DELTA', sum(map(len, paths.values())))
           PY
