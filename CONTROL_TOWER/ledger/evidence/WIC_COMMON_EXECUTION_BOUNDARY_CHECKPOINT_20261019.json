@@ -135,5 +135,35 @@
       }
     ],
     "scope": "start gate before mutable work/dispatch; no positive production completion implied"
+  },
+  "latest_task_rule_binding": {
+    "commit": "2e601ec71a2f425810751c4c5aff5a16e701b047",
+    "focused_run_id": 39351331870,
+    "result": "success",
+    "mapped": {
+      "TOOL016": "feedback_pipeline/TOOL016_MASTER.md",
+      "TOOL044": "feedback_pipeline/TOOL044_MASTER.md"
+    },
+    "still_unmapped": [
+      "TOOL043"
+    ],
+    "production_admission": "NOT_PROVEN"
+  },
+  "tool042_actual_customer_validation": {
+    "status": "START_BLOCKED",
+    "rule_source": "CUSTOMER_GUIDE_OUTPUT_LOCK.md",
+    "checkpoint": "handoff/TOOL042_PUBLISHER_INQUIRY_CHECKPOINT_2026-10-14.md",
+    "missing": [
+      "latest publisher replies",
+      "original full email and attachments in canonical evidence",
+      "current customer source and sent-history validation receipt",
+      "customer output independent validation"
+    ],
+    "customer_facing_output": "NOT_STARTED"
+  },
+  "observer_surface": {
+    "source_linkage": "PENDING_REMOTE_TEST_AND_DEPLOYMENT",
+    "actual_live_deployment": "NOT_VERIFIED",
+    "prior_complete_counts": "HISTORICAL_ONLY_WHILE_START_BLOCKED"
   }
 }
