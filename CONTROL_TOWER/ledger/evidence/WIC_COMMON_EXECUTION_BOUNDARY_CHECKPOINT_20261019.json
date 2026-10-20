@@ -255,7 +255,8 @@
     "focused_result": "success",
     "newly_bound": {
       "TOOL037": "feedback_pipeline/TOOL037_MASTER.md",
-      "TOOL043": "tool043/WIC_RULE_SOURCE.md"
+      "TOOL043": "tool043/WIC_RULE_SOURCE.md",
+      "EMAIL_DB": "EMAIL_COLLECTION_COMMON_RULES.md"
     },
     "scope": "Rule-source identity and hash only; no product admission or completion",
     "external_dependency": [
@@ -271,9 +272,54 @@
       "TOOL007",
       "TOOL013",
       "TOOL027",
-      "EMAIL_DB",
       "WORK_GATE"
     ],
-    "prior_product_passes": "PRESERVED_NOT_REOPENED"
+    "prior_product_passes": "PRESERVED_NOT_REOPENED",
+    "additional_commit": "411abfba7298ebcac39b3d000c2bb07497df0264",
+    "additional_remote_run_id": 39355060363
+  },
+  "final_incremental_20261020": {
+    "scope": "REGISTRY_KNOWN_UNMAPPED_TASK_RULE_SOURCES_AND_CURRENT_OBSERVER_STATE_ONLY",
+    "newly_verified_rule_source_identity": [
+      "TOOL037 active master",
+      "TOOL043 active rule pointer",
+      "EMAIL_DB active single source"
+    ],
+    "corrected_stale_pointer": "TOOL042 routing pointer now CUSTOMER_GUIDE_OUTPUT_LOCK.md; former docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md returned GitHub 404",
+    "commits": [
+      "ac97beb86fc39892af0ef1735e5defc900a89b69",
+      "9682fb75f7093db3b278201fb7d1f7d5d1b29670",
+      "411abfba7298ebcac39b3d000c2bb07497df0264"
+    ],
+    "remote_runs": [
+      39354315429,
+      39354573550,
+      39355060363
+    ],
+    "new_actual_business_result_pass": 0,
+    "existing_actual_operational_pass_reused": 39354441784,
+    "remaining_start_blocked": [
+      "TOOL001",
+      "TOOL002",
+      "TOOL006",
+      "TOOL007",
+      "TOOL013 new work",
+      "TOOL027",
+      "WORK_GATE",
+      "TOOL037 runtime/originals",
+      "TOOL043 actual external execution/originals",
+      "EMAIL_DB actual customer DB input and result",
+      "TOOL042 latest customer mail/attachments"
+    ],
+    "remaining_completion_blocked": [
+      "customer/product/document/TOC/Excel/email/automation current outputs without independent actual source-to-result validation"
+    ],
+    "platform_limit": [
+      "general ChatGPT direct enforcement",
+      "external Connector/API outside repository Gate",
+      "live Observer Pages deployment remains blocked at Gate"
+    ],
+    "overall_control": "NOT_VERIFIED",
+    "start_blocked": true
   }
 }
