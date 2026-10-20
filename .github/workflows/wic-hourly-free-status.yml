@@ -3,7 +3,7 @@ name: WIC Hourly Free Status Report
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/wic-hourly-free-status.yml', 'WIC_GLOBAL_OPERATING_RULES.md']
+    paths: ['.github/workflows/wic-hourly-free-status.yml', 'WIC_GLOBAL_OPERATING_RULES.md', 'CONTROL_TOWER/ledger/evidence/WIC_COMMON_EXECUTION_BOUNDARY_CHECKPOINT_20261019.json']
   schedule:
     - cron: '5 * * * *'
   workflow_dispatch:
