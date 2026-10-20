@@ -190,5 +190,34 @@
         "observer_live_deployment": "BLOCKED_AT_START_GATE"
       }
     }
+  },
+  "scope_correction_20261020": {
+    "scope": "ALL_WIC_CONTROLLABLE_WORK_AND_RESULT_PROMOTION_NOT_TOOL042_ONLY",
+    "common_root": "SELF_ATTESTED_SOURCE_AND_COMPLETION_RECEIPTS_NOT_BOUND_TO_ACTUAL_ORIGINALS_AND_INDEPENDENT_RESULT",
+    "gate_commit": "6e106d7fefc2ab871df787b480dc252669ea5ebe",
+    "source_closure_link_commit": "1a9e2d2d068d683232f136377769f44cc59b49d4",
+    "delta_test_runs": [
+      39352423792,
+      39352589544
+    ],
+    "delta_test_results": [
+      "success",
+      "success"
+    ],
+    "real_representative_scope": "PASSIVE_CENTRAL_STATUS_REPORT_ONLY",
+    "real_representative_workflow_run": 39352524133,
+    "real_result": "observer/runtime/hourly-status.json",
+    "independent_validation": "CONTROL_TOWER/ledger/evidence/WIC_STATUS_ACTUAL_RULE_VALIDATION_39352524133.json",
+    "independent_validation_result": "PASS",
+    "remote_readback": "PASS",
+    "blocked_business_start": true,
+    "unverified": [
+      "TOOL016/TOOL042/TOOL044 real business originals, admission and independent result validation",
+      "other WIC task-specific rule sources not mapped into shared Gate",
+      "actual business output and deployment readback",
+      "external Connector/API and general ChatGPT paths beyond repository-controlled boundary",
+      "live Observer Pages remains blocked by mixed product deployment gate",
+      "actual GitHub user stop setting and normal-workflow reauthorization not tested"
+    ]
   }
 }
