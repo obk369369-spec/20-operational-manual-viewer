@@ -302,7 +302,7 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                 elif not receipt.get("source_receipt_sha256") or not receipt.get("rule_compliance_verdict") == "PASS":
                     reason = "CLOSURE_SOURCE_OR_RULE_COMPLIANCE_UNVERIFIED"
                 else:
-                    for key in ("actual_result_ref", "independent_validation_ref", "remote_readback_ref"):
+                    for key in ("source_receipt_ref", "actual_result_ref", "independent_validation_ref", "remote_readback_ref"):
                         ref = receipt.get(key)
                         if not isinstance(ref, dict) or not isinstance(ref.get("path"), str) or not isinstance(ref.get("sha256"), str):
                             reason = key.upper() + "_MISSING"
@@ -312,6 +312,14 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                                 or hashlib.sha256(artifact.read_bytes()).hexdigest() != ref["sha256"]):
                             reason = key.upper() + "_MISSING_OR_CHANGED"
                             break
+                    if reason is None and receipt["source_receipt_ref"]["sha256"] != receipt["source_receipt_sha256"]:
+                        reason = "CLOSURE_SOURCE_RECEIPT_MISMATCH"
+                    if reason is None:
+                        source = json.loads((root / receipt["source_receipt_ref"]["path"]).read_text(encoding="utf-8"))
+                        if (source.get("work_id") != work_id or source.get("task_id") != task_id
+                                or source.get("rule_version") != manifest["version"]
+                                or source.get("validation_result") != "PASS"):
+                            reason = "CLOSURE_SOURCE_RECEIPT_UNVERIFIED"
                     if reason is None:
                         validator = json.loads((root / receipt["independent_validation_ref"]["path"]).read_text(encoding="utf-8"))
                         if (validator.get("work_id") != work_id or validator.get("task_id") != task_id
