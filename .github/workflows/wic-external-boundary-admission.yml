@@ -68,7 +68,12 @@ jobs:
               manifest = canonical_rule_manifest(Path.cwd(), task_id)
               assert rule_path in manifest['files'] and not manifest['missing'], (task_id, manifest)
               assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id=task_id)['decision'] == 'BLOCK'
-          assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id='TOOL043')['reason'] == 'TASK_RULE_SOURCE_UNMAPPED'
+          for task_id, rule_path in (('TOOL037', 'feedback_pipeline/TOOL037_MASTER.md'),
+                                     ('TOOL043', 'tool043/WIC_RULE_SOURCE.md')):
+              manifest = canonical_rule_manifest(Path.cwd(), task_id)
+              assert rule_path in manifest['files'] and not manifest['missing'], (task_id, manifest)
+              assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id=task_id)['decision'] == 'BLOCK'
+          assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id='TOOL027')['reason'] == 'TASK_RULE_SOURCE_UNMAPPED'
           import subprocess, tempfile
           html = Path('observer/index.html').read_text(encoding='utf-8')
           assert 'const GATE=' in html and 'gate.start_blocked?' in html

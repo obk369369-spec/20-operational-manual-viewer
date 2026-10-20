@@ -21,6 +21,8 @@ CANONICAL_RULE_FILES = (
 TASK_RULE_FILES = {
     "TOOL016": ("feedback_pipeline/TOOL016_MASTER.md",),
     "TOOL042": ("CUSTOMER_GUIDE_OUTPUT_LOCK.md",),
+    "TOOL037": ("feedback_pipeline/TOOL037_MASTER.md",),
+    "TOOL043": ("tool043/WIC_RULE_SOURCE.md",),
     "TOOL044": ("feedback_pipeline/TOOL044_MASTER.md",),
 }
 
