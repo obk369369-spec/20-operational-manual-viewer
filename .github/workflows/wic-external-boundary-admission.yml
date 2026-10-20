@@ -159,7 +159,7 @@ jobs:
               changed_original = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                                  '--require-completion','--work-id',work_id,'--task-id',task_id],
                                                 env=env,capture_output=True,text=True)
-              assert changed_original.returncode == 1 and 'CLOSURE_ORIGINAL_CHANGED_DURING_EXECUTION' in changed_original.stdout
+              assert changed_original.returncode == 1 and 'CURRENT_ADMISSION_ORIGINAL_SOURCE_MISSING_OR_CHANGED' in changed_original.stdout, changed_original.stdout
               original.write_text('ISOLATED_SOURCE\n', encoding='utf-8')
               tampered = dict(receipt, rule_compliance_verdict='FAIL')
               closure.write_text(json.dumps(tampered) + '\n', encoding='utf-8')
