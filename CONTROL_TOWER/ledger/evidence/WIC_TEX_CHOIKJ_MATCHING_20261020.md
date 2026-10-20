@@ -25,3 +25,12 @@
 - 대체 3번 Textile Chemicals Market (2026-2033) — Grand View Research; 80 pages; June 2026; 내부 안내서 표기 USD 5,950. 내부 안내서 DOC 존재 확인 이력. 발행사 공식 페이지 https://www.grandviewresearch.com/industry-analysis/textile-chemical-market (2026-10-20 웹 확인). 섬유 전처리, 코팅, 염색/가공 약품, 지속가능한 기능성 가공과 연결. 2026-09-28 기존 3종과 제목 중복 없음.
 - 주의: 3번은 기존 1,2번과 발행사 다르지만, 최긍지 고객 전체 과거 발송함과의 유사주제·개정판 완전 대조는 미완료. 공급가 미확정. 신규 안내서 작성 완료 여부는 파일별 확인 필요. 공식 페이지는 현재 보고서 존재 확인이지 내부 DOC 작성 완료 증명이 아님.
 - 최종 제안 순서: 1 Nanofabrics Market, 2 Natural Fiber Reinforced Plastic Market, 3 Textile Chemicals Market. 메일 발송 미실행.
+
+
+## 2026-10-20 후속 정정 — 80페이지 후보 대체 검토
+- 사용자가 Textile Chemicals Market (80p)는 분량 부족으로 제외 요청.
+- 새 우선 후보: Textile Coatings Market Report 2026, The Business Research Company, 250 pages, Sep 2026, USD 4,490, https://www.thebusinessresearchcompany.com/report/textile-coatings-global-market-report . 발행사 공식 페이지에서 페이지·가격·발행 정보 확인.
+- 2026-09-28 발송 3종과 제목 중복 없음. 코팅 방식, 바이오 기반 코팅, 기능성 섬유 응용으로 차별화.
+- 이전 정호정 고객에게도 이 제목이 추천된 이력이 있으므로 고객별 별도 중복 관리 필요.
+- 내부 안내서 원본 DOC의 실제 존재 및 완성 상태는 이번 턴에서 재확인하지 못함: EXTERNAL_VERIFIED / INTERNAL_CATALOG_PENDING. 실제 발송 준비 완료 아님.
+- 1,2번 유지; 3번 Textile Chemicals Market은 추천에서 제외, Textile Coatings Market 250p를 검증 대기 후보로 설정.
