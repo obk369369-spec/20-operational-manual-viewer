@@ -54,11 +54,12 @@
     "observer_surface": "GitHub Actions run and logs; existing WIC observer dashboard not proven to show each block"
   },
   "remaining_unverified_controllable": [
-    "positive production admission with canonical per-task rule and source receipt for TOOL016/TOOL043/TOOL044 (unmapped task rule sources fail closed)",
-    "actual independently validated completion receipt and deployment/read-back",
-    "actual user stop setting and observer operating surface",
-    "other independently triggered workflow starts not covered by focused delta",
-    "multi-cloud/multi-factory end-to-end and failover"
+    "positive production admission with canonical per-task rule and source receipt for TOOL016/TOOL043/TOOL044",
+    "actual independently validated completion and deployed read-back",
+    "actual user stop setting and reauthorization",
+    "observer live dashboard linkage to block/allow/closure",
+    "TOOL042 latest customer source records, original correspondence and attachments, publisher replies, customer-facing output validation",
+    "uncovered independent mutation boundaries outside this delta"
   ],
   "platform_limit": [
     "general ChatGPT conversations cannot be directly forced through repository Gate"
@@ -106,5 +107,33 @@
     ],
     "remote_readback": "commit retained on main through 73fafdb0f3db6b3502250a7fe8146ddb22066940",
     "product_work": "NOT_STARTED"
+  },
+  "latest_mutating_boundary_delta": {
+    "commit": "e16cbea231edd705fd99bbc42b4dfcfbafcc0b40",
+    "global_rule_source": "WIC_GLOBAL_OPERATING_RULES.md",
+    "global_rule_blob_sha": "3b7231be6d41dc90e8fa3cf5a0c02b3127b285eb",
+    "workflow_count": 10,
+    "job_count": 14,
+    "focused_run_id": 39351113561,
+    "focused_result": "success",
+    "observed_prestart_blocks": [
+      {
+        "workflow": "root-a-env1-circleci-readback",
+        "run_id": 39351113548
+      },
+      {
+        "workflow": "wic-stall-monitor",
+        "run_id": 39351113538
+      },
+      {
+        "workflow": "root-a-recovery-supervisor",
+        "run_id": 39351113544
+      },
+      {
+        "workflow": "root-a-fault-e2e",
+        "run_id": 39351113534
+      }
+    ],
+    "scope": "start gate before mutable work/dispatch; no positive production completion implied"
   }
 }
