@@ -321,13 +321,44 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                                 or source.get("validation_result") != "PASS"):
                             reason = "CLOSURE_SOURCE_RECEIPT_UNVERIFIED"
                     if reason is None:
+                        originals = source.get("source_refs")
+                        plan = source.get("validation_plan")
+                        if (not isinstance(originals, list) or not originals
+                                or not isinstance(plan, dict)
+                                or plan.get("expected_result") != receipt.get("expected_output")):
+                            reason = "CLOSURE_ORIGINALS_OR_EXPECTED_RESULT_MISMATCH"
+                        else:
+                            for ref in originals:
+                                if not isinstance(ref, dict) or not isinstance(ref.get("path"), str):
+                                    reason = "CLOSURE_ORIGINAL_REFERENCE_INVALID"
+                                    break
+                                original = (root / ref["path"]).resolve()
+                                if (not original.is_relative_to(root.resolve()) or not original.is_file()
+                                        or original.stat().st_size == 0
+                                        or hashlib.sha256(original.read_bytes()).hexdigest() != ref.get("sha256")):
+                                    reason = "CLOSURE_ORIGINAL_CHANGED_DURING_EXECUTION"
+                                    break
+                    if reason is None:
                         validator = json.loads((root / receipt["independent_validation_ref"]["path"]).read_text(encoding="utf-8"))
+                        rule_checks = validator.get("rule_checks")
+                        source_checks = validator.get("source_checks")
+                        expected_rules = [{"path": path, "sha256": digest, "verdict": "PASS"}
+                                          for path, digest in sorted(manifest["files"].items())]
+                        expected_sources = [{"path": ref["path"], "sha256": ref["sha256"], "verdict": "PASS"}
+                                            for ref in originals]
                         if (validator.get("work_id") != work_id or validator.get("task_id") != task_id
                                 or validator.get("validator_id") != receipt["independent_validator_id"]
                                 or validator.get("execution_id") != receipt["execution_id"]
+                                or not validator.get("validator_job_id")
+                                or not receipt.get("execution_job_id")
+                                or validator["validator_job_id"] == receipt["execution_job_id"]
                                 or validator.get("actual_result_sha256") != receipt["actual_result_ref"]["sha256"]
                                 or validator.get("rule_version") != manifest["version"]
                                 or validator.get("source_receipt_sha256") != receipt["source_receipt_sha256"]
+                                or validator.get("expected_result") != plan["expected_result"]
+                                or validator.get("observed_result") != receipt.get("actual_output")
+                                or rule_checks != expected_rules
+                                or source_checks != expected_sources
                                 or validator.get("rule_compliance_verdict") != "PASS"
                                 or validator.get("validation_result") != "PASS"):
                             reason = "INDEPENDENT_VALIDATION_MISMATCH"

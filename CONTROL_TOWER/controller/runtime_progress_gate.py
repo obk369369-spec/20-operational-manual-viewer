@@ -119,6 +119,7 @@ def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task
                                 break
                             original = (repo_root / ref["path"]).resolve()
                             if (not original.is_relative_to(repo_root.resolve()) or not original.is_file()
+                                    or original.stat().st_size == 0
                                     or hashlib.sha256(original.read_bytes()).hexdigest() != ref["sha256"]):
                                 reason = "ORIGINAL_SOURCE_MISSING_OR_CHANGED"
                                 break
