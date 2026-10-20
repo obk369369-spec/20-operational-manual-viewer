@@ -19,7 +19,9 @@ CANONICAL_RULE_FILES = (
     "WIC_CHAT_ROUTING_REGISTRY.md",
 )
 TASK_RULE_FILES = {
+    "TOOL016": ("feedback_pipeline/TOOL016_MASTER.md",),
     "TOOL042": ("CUSTOMER_GUIDE_OUTPUT_LOCK.md",),
+    "TOOL044": ("feedback_pipeline/TOOL044_MASTER.md",),
 }
 
 

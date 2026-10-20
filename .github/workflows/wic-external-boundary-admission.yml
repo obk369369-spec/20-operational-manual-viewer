@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'WIC_GLOBAL_OPERATING_RULES.md'
+      - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
       - '.github/workflows/render-env2-roundtrip.yml'
       - '.github/workflows/root-a-env1-circleci-readback.yml'
       - '.github/workflows/root-a-fault-e2e.yml'
@@ -55,5 +56,12 @@ jobs:
           assert require_external_admission('workflow:wic-top-controller-runtime:controller-cycle', 'CENTRAL')['reason'] == 'USER_STOP_OR_START_BLOCKED'
           os.environ['WIC_USER_STOP'] = '0'
           assert require_external_admission('workflow:wic-top-controller-runtime:controller-cycle', 'CENTRAL')['decision'] == 'BLOCK'
+          from runtime_progress_gate import canonical_rule_manifest, verify_work_admission
+          for task_id, rule_path in (('TOOL016', 'feedback_pipeline/TOOL016_MASTER.md'),
+                                     ('TOOL044', 'feedback_pipeline/TOOL044_MASTER.md')):
+              manifest = canonical_rule_manifest(Path.cwd(), task_id)
+              assert rule_path in manifest['files'] and not manifest['missing'], (task_id, manifest)
+              assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id=task_id)['decision'] == 'BLOCK'
+          assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id='TOOL043')['reason'] == 'TASK_RULE_SOURCE_UNMAPPED'
           print('PASS COMMON_MUTATING_BOUNDARY_DELTA', sum(map(len, paths.values())))
           PY
