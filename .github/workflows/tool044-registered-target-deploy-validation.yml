@@ -64,6 +64,8 @@ jobs:
       - name: Verify independent closure before validation PASS promotion
         env:
           WIC_CLOSURE_RECEIPTS_JSON: ${{ vars.WIC_CLOSURE_RECEIPTS_JSON }}
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
         run: python CONTROL_TOWER/controller/pre_work_admission.py --require-completion --work-id 'workflow:tool044-registered-target-deploy-validation:validate' --task-id TOOL044
       - name: Persist evidence
         run: |

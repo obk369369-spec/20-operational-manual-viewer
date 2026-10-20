@@ -261,7 +261,11 @@ def require_external_admission(work_id: str, task_id: str) -> dict[str, Any]:
 
 
 def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
-    """Refuse PASS promotion without a read-back-bound independent closure receipt."""
+    """Refuse PASS promotion without current admission and read-back-bound closure."""
+    admission = require_external_admission(work_id, task_id)
+    if admission["decision"] != "ALLOW":
+        return {"decision": "BLOCK", "reason": "CURRENT_ADMISSION_" + str(admission["reason"]),
+                "work_id": work_id, "task_id": task_id}
     from universal_enforcement import closure_verdict
     root = Path(__file__).resolve().parents[2]
     try:

@@ -18,6 +18,10 @@ on:
       - '.github/workflows/wic-stall-monitor.yml'
       - '.github/workflows/wic-top-controller-runtime.yml'
       - '.github/workflows/wic-external-boundary-admission.yml'
+      - '.github/workflows/wic-observer-pages.yml'
+      - '.github/workflows/tool044-multi-gate.yml'
+      - '.github/workflows/tool016-tool044-expansion-fault-loop.yml'
+      - '.github/workflows/tool044-registered-target-deploy-validation.yml'
   workflow_dispatch:
 
 permissions:
@@ -145,6 +149,12 @@ jobs:
                                           '--require-completion','--work-id',work_id,'--task-id',task_id],
                                          env=env,capture_output=True,text=True)
               assert completed.returncode == 0 and 'ALLOW' in completed.stdout, completed.stdout
+              env['WIC_USER_STOP'] = '1'
+              stopped_completion = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+                                                    '--require-completion','--work-id',work_id,'--task-id',task_id],
+                                                   env=env,capture_output=True,text=True)
+              assert stopped_completion.returncode == 1 and 'CURRENT_ADMISSION_USER_STOP_OR_START_BLOCKED' in stopped_completion.stdout
+              env['WIC_USER_STOP'] = '0'
               original.write_text('CHANGED_AFTER_START\n', encoding='utf-8')
               changed_original = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                                  '--require-completion','--work-id',work_id,'--task-id',task_id],
@@ -170,6 +180,14 @@ jobs:
               env['WIC_RULE_ADMISSION_JSON'] = json.dumps({'admissions':{work_id:admission}})
               rejected_start = subprocess.run(cmd, env=env,capture_output=True,text=True)
               assert rejected_start.returncode == 1 and 'ORIGINAL_SOURCE_MISSING_OR_CHANGED' in rejected_start.stdout
+          for filename in ('wic-observer-pages.yml','tool044-multi-gate.yml',
+                           'tool016-tool044-expansion-fault-loop.yml',
+                           'tool044-registered-target-deploy-validation.yml'):
+              workflow = (Path('.github/workflows') / filename).read_text(encoding='utf-8')
+              assert workflow.count('WIC_CLOSURE_RECEIPTS_JSON:') == workflow.count('--require-completion')
+              assert workflow.count('WIC_USER_STOP:') >= workflow.count('--require-completion')
+              assert workflow.count('WIC_RULE_ADMISSION_JSON:') >= workflow.count('--require-completion')
+          print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
           print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
           print('PASS COMMON_MUTATING_BOUNDARY_AND_OBSERVER_DELTA', sum(map(len, paths.values())))
           PY
