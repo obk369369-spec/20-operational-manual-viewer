@@ -294,6 +294,37 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                 reason = "INDEPENDENT_VALIDATION_EVIDENCE_MISSING"
             elif closure_verdict(receipt) != "PASS":
                 reason = "CLOSURE_VERDICT_NOT_PASS"
+            else:
+                from runtime_progress_gate import canonical_rule_manifest
+                manifest = canonical_rule_manifest(root, task_id)
+                if manifest["missing"] or receipt.get("applied_rule_version") != manifest["version"]:
+                    reason = "CLOSURE_RULE_VERSION_UNVERIFIED"
+                elif not receipt.get("source_receipt_sha256") or not receipt.get("rule_compliance_verdict") == "PASS":
+                    reason = "CLOSURE_SOURCE_OR_RULE_COMPLIANCE_UNVERIFIED"
+                else:
+                    for key in ("actual_result_ref", "independent_validation_ref", "remote_readback_ref"):
+                        ref = receipt.get(key)
+                        if not isinstance(ref, dict) or not isinstance(ref.get("path"), str) or not isinstance(ref.get("sha256"), str):
+                            reason = key.upper() + "_MISSING"
+                            break
+                        artifact = (root / ref["path"]).resolve()
+                        if (not artifact.is_relative_to(root.resolve()) or not artifact.is_file()
+                                or hashlib.sha256(artifact.read_bytes()).hexdigest() != ref["sha256"]):
+                            reason = key.upper() + "_MISSING_OR_CHANGED"
+                            break
+                    if reason is None:
+                        validator = json.loads((root / receipt["independent_validation_ref"]["path"]).read_text(encoding="utf-8"))
+                        if (validator.get("work_id") != work_id or validator.get("task_id") != task_id
+                                or validator.get("validator_id") != receipt["independent_validator_id"]
+                                or validator.get("execution_id") != receipt["execution_id"]
+                                or validator.get("actual_result_sha256") != receipt["actual_result_ref"]["sha256"]
+                                or validator.get("rule_version") != manifest["version"]
+                                or validator.get("source_receipt_sha256") != receipt["source_receipt_sha256"]
+                                or validator.get("rule_compliance_verdict") != "PASS"
+                                or validator.get("validation_result") != "PASS"):
+                            reason = "INDEPENDENT_VALIDATION_MISMATCH"
+                        elif receipt["remote_readback_ref"]["sha256"] != receipt["actual_result_ref"]["sha256"]:
+                            reason = "REMOTE_READBACK_RESULT_MISMATCH"
     return {"decision": "BLOCK" if reason else "ALLOW", "reason": reason,
             "work_id": work_id, "task_id": task_id}
 

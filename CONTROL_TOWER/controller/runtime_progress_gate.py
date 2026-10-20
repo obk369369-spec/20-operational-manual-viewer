@@ -106,6 +106,22 @@ def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task
                             and evidence.get("validation_result") == "PASS"
                             and evidence.get("validator_id") and evidence.get("source_refs")):
                         reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
+                    elif evidence.get("rule_version") != context.get("version"):
+                        reason = "SOURCE_RECEIPT_RULE_VERSION_MISMATCH"
+                    elif not isinstance(evidence.get("validation_plan"), dict) or not all(
+                            evidence["validation_plan"].get(key) for key in
+                            ("method", "expected_result", "evidence_required")):
+                        reason = "WORK_VALIDATION_PLAN_MISSING"
+                    else:
+                        for ref in evidence["source_refs"]:
+                            if not isinstance(ref, dict) or not isinstance(ref.get("path"), str) or not isinstance(ref.get("sha256"), str):
+                                reason = "ORIGINAL_SOURCE_REFERENCE_UNVERIFIED"
+                                break
+                            original = (repo_root / ref["path"]).resolve()
+                            if (not original.is_relative_to(repo_root.resolve()) or not original.is_file()
+                                    or hashlib.sha256(original.read_bytes()).hexdigest() != ref["sha256"]):
+                                reason = "ORIGINAL_SOURCE_MISSING_OR_CHANGED"
+                                break
     return {"work_id": work_id, "task_id": task_id,
             "decision": "BLOCK" if reason else "ALLOW", "reason": reason}
 
