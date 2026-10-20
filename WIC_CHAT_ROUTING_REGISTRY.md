@@ -25,7 +25,7 @@
 | TOOL001 | FULL/INTERMEDIATE 안내서 | 기존 1번 흐름 재사용 |
 | TOOL006 | TOC 정리 | 기존 6번/TOC 흐름 재사용 |
 | TOOL027 | 기술도서 검증·추천·1번 이관 | 기존 27번 기술도서 검증 흐름 재사용 |
-| TOOL042 | 고객 안내·추천자료·메일 문안·중간/최종 안내서 | `docs/UNIFIED_CUSTOMER_GUIDANCE_RULES.md` 흐름 재사용 |
+| TOOL042 | 고객 안내·추천자료·메일 문안·중간/최종 안내서 | `CUSTOMER_GUIDE_OUTPUT_LOCK.md` 흐름 재사용 |
 | TOOL043 | 일반 ChatGPT 가능 작업 연속 실행층 | 기존 TOOL043 실행/관찰 흐름 재사용; 수익화 소형앱 출시 lane과 병합 금지 |
 | CRM_RESPONSE | 통화/회신 후 분기·다음행동 | 기존 고객후속/CRM 흐름 재사용 |
 
