@@ -286,6 +286,29 @@
           "evidence_ref": "6c815da42ae95b8b238e2baa425465089a87cbfe:customer_pipeline/TOOL041_042_DEDICATED_MVP_20260831.json"
         }
       ]
+    },
+    {
+      "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+      "layer": "WORK",
+      "target": "TOOL043 / WORK_GATE / GITHUB_ACTIONS",
+      "source": "CURRENT_USER_DIRECTIVE_WIC_CENTRAL_MAINTENANCE_20261021",
+      "type": "NONPRODUCTION_MAINTENANCE",
+      "status": "OPEN",
+      "evidence": [
+        "Current user directive authorizes scoped nonproduction maintenance",
+        "Existing five canonical input SHA-256 values match Observer record; Observer freshness remains expired",
+        "Current Actions lack night_observer.py and --resume-latest --candidate invocation"
+      ],
+      "actual_action": "REPAIR_EXISTING_REMOTE_OBSERVER_AND_CANDIDATE_GATE_PATHS",
+      "result": "UNRESOLVED",
+      "planned_operation_id": "restore-observer-and-candidate-gate-remote-path-20261021",
+      "cause_id": "STALE_OBSERVER_PROJECTION_AND_MISSING_REMOTE_CANDIDATE_ENTRY",
+      "method_id": "REUSE_EXISTING_GENERATOR_GATE_AND_ACTIONS_RUNNER",
+      "rollback_point": "d42a18f860798804148c1ab66805f123fb58e11f",
+      "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
+      "execution_receipts": []
     }
   ],
   "open_internal_total": 1,
@@ -465,6 +488,29 @@
           "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json"
         ],
         "scope": "TOOL013 existing body and direct external ready-component pilot only; no whole-tool audit or unrelated changes"
+      },
+      {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC_CENTRAL_MAINTENANCE_20261021",
+        "actions": [
+          "REPAIR_EXISTING_REMOTE_OBSERVER_AND_CANDIDATE_GATE_PATHS"
+        ],
+        "assets": [
+          ".github/workflows/wic-hourly-free-status.yml",
+          ".github/workflows/work-gate-handoff-audit.yml",
+          "tool043/status.json",
+          "tool043/status_snapshot.js",
+          "tool043/night_queue.json",
+          "tool043/chat_coordination_state.json"
+        ],
+        "reusable_assets": [
+          "tool043/night_observer.py",
+          "feedback_pipeline/work_gate_handoff.py",
+          "existing GitHub Actions hourly status runner",
+          "existing GitHub Actions handoff audit runner"
+        ],
+        "scope": "User-authorized isolated-branch nonproduction repair and changed-boundary tests only. No main update, STOP release, business execution, deployment, PASS promotion, paid resource, or prior completed test rerun. This registration is preparatory until exact candidate admission and remote test evidence.",
+        "registration_state": "ISOLATED_BRANCH_ONLY_NOT_MAIN_ADMISSION"
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
