@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   public-safe-worker:
-    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.isolated_test }}
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' && (github.event_name != 'workflow_dispatch' || !inputs.isolated_test) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -142,7 +142,7 @@ jobs:
           git push origin HEAD:main
 
   isolated-central-return:
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.isolated_test) }}
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.isolated_test)) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
