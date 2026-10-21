@@ -1,0 +1,5140 @@
+# WIC 16 무손실 원문 결합 + 단일 통로 복구
+
+===== ORIGINAL 1 START =====
+WIC 16번 · 사무실 데스크톱 Work · 3개 지시문 전체 원문 통합본
+
+[적용 관계]
+- 앞의 기존 통합 지시문 전체를 원문 그대로 유지한다.
+- 뒤에 추가된 '전 영역 무제한 연결 감사·자동개선·완료검증' 지시문도 원문 그대로 유지한다.
+- 양쪽의 모든 의무를 누적 적용한다. 충돌 가능성이 있으면 기존 PASS/Evidence 보존, 실제 접근 권한, 안전한 승인, credit 보호, 증분 감사 원칙을 우선한다.
+- '무제한'은 연결 영향 범위를 고정된 도구 번호로 임의 제한하지 않는다는 의미이며, 접근 권한·사용량·시간의 무제한 보장을 뜻하지 않는다.
+- 전 영역 구성요소 발견과 연결 영향 추적은 수행하되, 기존 3,200건 전수 재실행 및 무관한 PASS 재검사는 금지한다.
+- 사무실 데스크톱에서 실제 런타임을 1회 확인하고, 가능한 작업을 즉시 진행하며 막힌 lane만 격리한다.
+- 아래 텍스트는 실행 지시이며, 이 파일을 작성했다는 사실은 GitHub 반영 또는 실제 WIC 실행 완료를 의미하지 않는다.
+
+WIC 16번 · 최상위 플랫폼 · 사무실 데스크톱 Work 단일 통합 최종 실행 지시문
+원본 1 ZERO-RECURRENCE/FAIL-CLOSED/행 격리/레코드 무결성 + 원본 2 선행 원인 A~F/사무실 환경 독립 실행/CREDIT 보호
+
+[최상위 통합 적용 규칙 — 아래 두 원문은 이 문서 안에서 하나의 작업으로 함께 실행한다]
+1. 아래 제I부와 제II부는 별개 작업 지시가 아니다. 원본의 모든 요구를 유지하고 공통 검사·증거·수정은 단 한 번 실행하여 양쪽 조건에 함께 적용한다. 어느 한쪽의 세부 Hard Gate, 테스트, 산출물, 보고 항목도 생략하지 않는다.
+2. 실행 장소는 사무실 데스크톱의 Work다. 전날 노트북의 sandbox DNS 오류, network restricted, config.toml network_access=true 미반영, Python 경고, GitHub 연결 문제를 사무실 환경의 사실로 전제하지 않는다. 사무실의 실제 세션 권한과 네트워크를 필요한 범위에서 한 번만 확인한다. 환경이 정상이면 노트북 장애 재현/추가 진단 없이 본 작업에 진입한다.
+3. 사무실 환경의 일부 lane만 막혔다면 해당 lane만 BLOCKED로 격리하고, 해당 lane의 필수 Gate를 우회하지 않는 범위에서 독립적으로 가능한 작업은 계속한다. 필수 PRE-WORK HARD GATE가 FAIL인 대상은 운영 본 작업과 FINAL PASS를 금지한다. 단, Gate 통과에 필요한 최소한의 비파괴적 원인 수정과 해당 수정의 검증은 preflight remediation으로 허용한다. 이것을 전체 본 작업 PASS로 오인하지 않는다.
+4. 기존 canonical repo, PASS_LOCK, Evidence, Registry, Queue, Backlog, Checkpoint, Golden/Negative Fixture를 재사용한다. 약 3,200건 전수 재검사, 이미 검증된 PASS 재실행, 원본 재업로드 요구, 새 프로그램/새 대화창 남발 금지. 변경된 부분에만 증분·영향기반 검증한다.
+5. 제I부의 고정 checkpoint/commit/미완료 수량은 그 당시의 역사적 기준점이지 현재 최신값의 증거가 아니다. 먼저 실제 저장소에서 최신 verified checkpoint, branch/HEAD, 원격 상태, PASS_LOCK 및 NEXT_ROOT를 read-back하고, 일치하지 않으면 기존 자료를 덮어쓰지 말고 충돌을 기록·해결한다. 특히 과거 commit SHA를 무조건 강제 checkout하거나 최신 증거를 되돌리지 않는다.
+6. 제II부 A~F는 검증해야 할 선행 원인 후보로 받아들인다. CONFIRMED/REJECTED/ADDITIONAL_ROOT_CAUSE로 기존 증거를 통해 분류하고, 확인된 원인만 실제 구조에서 수정한다. 동일 원인에 대한 분석·수정·테스트·Evidence를 두 번 수행하지 않는다.
+7. 원인 조사는 실제 작업 진전과 연결한다. 환경이 허용하면 수정 → 최소 회귀검증 → 실제 최신 입력 FULL PLATFORM E2E 1회 → Negative/Recovery/Restart/False-Pass/Read-back/Observer로 종료한다. 전체 E2E가 실제 원본/권한 부재로 불가능하면 절대 가짜 PASS하지 않고, 실행 가능한 독립 작업의 실제 산출물과 차단된 lane을 분리 기록한다.
+8. TOOL013의 actual input, 440건 실데이터 E2E, 원본 XLSX reopen 및 record identity, 24시간 자연시간 검증은 각자의 선행 조건과 범위를 유지한다. 24시간 PENDING을 임의 PASS하거나 자연시간 검증을 다시 시작하지 않는다. 한 작업의 PASS를 전체 WIC의 PASS로 승격하지 않는다.
+9. 사용자 역할은 OBSERVER/FINAL APPROVER다. 사용자 반복 설명·복사·재실행은 금지하되, 권한 승인, 외부 원본 부재, 서비스·플랫폼이 허용하지 않는 동작은 실제로 우회했다고 주장하지 말고 명확한 BLOCK 증거와 자동 재개 가능한 체크포인트를 남긴다.
+10. Work 크레딧을 환경 진단에 소진하지 않는다. 한 번의 빠른 startup check 후 정상 lane을 바로 실행하고, 중단 전에는 반드시 수정 파일, 실제 산출물, 검증 결과, Evidence, GitHub commit/remote read-back 여부, BLOCK, 정확한 NEXT_ROOT/resume point를 저장한다. 원격 저장이 막히면 로컬 저장과 remote PENDING을 구분한다.
+11. 서로 다른 문장 간 해석 충돌 시, (a) 실제 입력·권한·증거 없는 PASS 금지, (b) 원본/기존 PASS 보존, (c) 필수 Gate 우회 금지, (d) 안전한 독립 lane 계속 실행, (e) 중복 실행 최소화 순으로 판단한다. 수행할 수 없는 조건은 완료로 바꾸지 않는다.
+12. 이 문서의 제I부와 제II부는 축약본이 아닌 사용자가 제공한 원문 전체이며, 제I부의 구체적 실행·검증 규칙과 제II부의 사무실 환경·선행원인·범위·크레딧 규칙을 모두 강제한다.
+
+============================================================
+제I부 — 기존 최상위 ZERO-RECURRENCE / FAIL-CLOSED / ROW ISOLATION / RECORD IDENTITY 원문 전체
+============================================================
+
+[WIC 통합 실행지시문
+ZERO-RECURRENCE / FAIL-CLOSED
++ USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY
++ ROW ISOLATION
++ RECORD IDENTITY INTEGRITY]
+
+============================================================
+최상위 실행 원칙
+============================================================
+
+이 지시문은 기존
+[WIC 16번 ZERO-RECURRENCE / FAIL-CLOSED 최상위 실행지시문]
+전체 요구사항과
+
+현재 NEXT_ROOT:
+
+USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY
+
+를 하나의 실행으로 통합한다.
+
+둘을 별개의 작업으로 두 번 실행하지 마라.
+
+동일한
+Registry 조회,
+Master 조회,
+Requirements 조회,
+Failure History 조회,
+E2E,
+Negative Test,
+Recovery Test,
+Regression,
+Evidence,
+Read-back
+
+결과가 양쪽 요구조건을 동시에 충족한다면
+동일 Evidence를 공동 재사용한다.
+
+중복 검증을 이유 없이 다시 실행하지 않는다.
+
+USER = OBSERVER
+USER_MANUAL_REPETITION = 0
+
+사용자에게
+파일 검색,
+Excel 수정,
+행 수정,
+오류판정,
+재업로드 반복,
+수동 테스트,
+PASS 확인
+
+을 넘기지 않는다.
+
+
+============================================================
+현재 CANONICAL 시작점
+============================================================
+
+Canonical repository:
+
+obk369369-spec/20-operational-manual-viewer
+
+현재 최종 checkpoint:
+
+WIC-CP-20261010-18PCT-FINAL-PRESERVATION-HANDOFF
+
+현재 기준 GitHub commit:
+
+f0d5533bf72b0fa491bf28107cece7ef0e17556a
+
+현재 NEXT_ROOT:
+
+USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY
+
+공통 자동복구 규칙:
+
+CONTROL_TOWER/ledger/evidence/
+WIC_GLOBAL_ROW_ISOLATION_AUTORECOVERY_RULE_20261010.md
+
+현재 TOOL013:
+
+USER_USABLE_FINAL = HOLD
+
+현재 24시간 검증:
+
+PENDING_NATURAL_TIME_DO_NOT_RESTART
+
+
+============================================================
+절대 목표
+============================================================
+
+이번 Work의 목적은 단순히 현재 발견된 오류를 수정하는 것이 아니다.
+
+같은 Root Cause가 동일하거나 다른 형태로 다시 발생해도
+잘못된 결과가 최종 출력·배포·PASS까지 통과할 수 없는
+FAIL-CLOSED 구조를 만드는 것이다.
+
+"오류 자체가 세상에서 다시 발생하지 않는다"를
+근거 없이 0%라고 주장하지 마라.
+
+대신 다음을 절대 조건으로 한다.
+
+오류가 발생하더라도
+탐지되지 않은 채 PASS/완료/배포되는 경로 = 0개
+
+검증되지 않은 결과가
+FINAL OUTPUT을 통과하는 경로 = 0개
+
+Evidence 없는 PASS 경로 = 0개
+
+기존과 동일한 Root Cause가
+사용자 지적으로 다시 발견되어야 하는 경로 = 0개
+
+그리고 행/레코드 단위로 독립 처리 가능한 오류는:
+
+문제행 발견
+→ 자동수정
+→ 자동 재검증
+→ 수정 성공 시 정상 결과에 포함
+→ 수정 불가능하면 해당 행만 격리
+→ 나머지 정상행 계속 처리
+
+되어야 한다.
+
+한 개 또는 일부 문제행 때문에
+안전한 나머지 결과 전체를 사용할 수 없게 만들지 않는다.
+
+단,
+
+RECORD IDENTITY 훼손
+CROSS-ROW DATA MIXING
+SOURCE-OUTPUT 연결 상실
+
+등으로 다른 정상행까지 신뢰할 수 없는 경우에는
+영향받은 FINAL OUTPUT을 차단한다.
+
+위 조건을 실제 구조와 테스트로 증명하지 못하면
+FINAL PASS하지 마라.
+
+
+============================================================
+0. PRE-WORK HARD GATE
+============================================================
+
+어떠한 수정·개발·대규모 실행보다 먼저
+현재 지시문을 실제 시스템이 강제할 수 있는지 검사한다.
+
+다음을 각각 YES/NO + Evidence로 판정한다.
+
+A. 현재 실제 업무 입력을 식별할 수 있는가?
+B. 해당 업무의 Canonical Registry를 찾을 수 있는가?
+C. 최신 Master를 실제 실행 전에 강제로 읽는가?
+D. Current Requirements를 실행 전에 강제로 읽는가?
+E. 과거 Feedback/Failure/Recurrence를 회수할 수 있는가?
+F. 실행 결과를 Validator가 검사하는가?
+G. 필수 Evidence가 없으면 PASS를 차단하는가?
+H. 일부만 성공하면 전체 PASS를 차단하는가?
+I. 실패한 항목을 Queue에 남길 수 있는가?
+J. 실패 원인을 분류할 수 있는가?
+K. 가능한 대체 경로를 자동 시도할 수 있는가?
+L. 수정 후 실제 입력으로 E2E 검증할 수 있는가?
+M. Negative Test가 가능한가?
+N. 실패 후 Recovery Test가 가능한가?
+O. 저장 후 실제 Read-back이 가능한가?
+P. 변경 영향 범위 Regression Test가 가능한가?
+Q. 최종 Output Gate를 우회할 수 없는가?
+R. Work 중단 시 마지막 VERIFIED CHECKPOINT에서 재개 가능한가?
+S. 기존 PASS 자산을 손상시키지 않고 보존 가능한가?
+T. 실제 결과와 Observer Report를 구분하여 확인 가능한가?
+
+추가로 이번 ROOT에 대해:
+
+U. record 단위 identity를 생성·유지할 수 있는가?
+V. 정상행과 문제행을 독립 처리할 수 있는가?
+W. deterministic 오류를 자동수정할 수 있는가?
+X. 수정 후 해당 행을 자동 재검증할 수 있는가?
+Y. unresolved 행만 격리할 수 있는가?
+Z. 정상행 처리를 계속할 수 있는가?
+AA. 최종 XLSX를 실제 reopen할 수 있는가?
+AB. source와 final record identity를 대조할 수 있는가?
+AC. 누락·중복·identity swap·cross-row mixing을 검출할 수 있는가?
+
+하나라도 NO / UNKNOWN / 증거 없음이면:
+
+PRE_WORK_GATE = FAIL
+
+즉시 대규모 본 작업 시작 금지.
+
+코드 수정 금지.
+대규모 조사 금지.
+새 플랫폼 설치 금지.
+기존 PASS 변경 금지.
+FINAL PASS 금지.
+
+오직 다음만 수행한다.
+
+"어떤 조건이 왜 증명되지 않았는지"
+"어느 연결이 없는지"
+"그 연결을 만들기 위해 필요한 최소 작업"
+"현재 권한/환경에서 자동 해결 가능한지"
+
+를 판정한다.
+
+자동 해결 가능한 Preflight 결함이면
+그 결함만 최소 수정하고
+PRE-WORK HARD GATE를 다시 실행한다.
+
+모든 필수 항목이 PASS하기 전에는
+본 작업 단계로 진입하지 않는다.
+
+단,
+이미 현재 checkpoint/Evidence에서 검증되어 있고
+변경되지 않은 항목은
+Evidence를 재사용한다.
+
+동일 검증을 처음부터 다시 하지 않는다.
+
+
+============================================================
+1. ZERO-BYPASS 원칙
+============================================================
+
+모든 실제 WIC 업무는 반드시 다음 경로를 통과해야 한다.
+
+INPUT
+→ IDENTITY
+→ REGISTRY
+→ LATEST MASTER
+→ CURRENT REQUIREMENTS
+→ FEEDBACK HISTORY
+→ FAILURE/RECURRENCE HISTORY
+→ REQUIRED DATA
+→ EXECUTION
+→ AUTO-RECOVERY WHEN REQUIRED
+→ ROW ISOLATION WHEN REQUIRED
+→ VALIDATOR
+→ INDEPENDENT/EXTERNAL VALIDATION WHEN REQUIRED
+→ EVIDENCE
+→ COMPLETION MATH
+→ REGRESSION
+→ READ-BACK
+→ OUTPUT GATE
+→ FINAL OUTPUT
+→ OBSERVER REPORT
+
+이 경로 중 필수 Gate를 건너뛰어도
+최종 결과가 생성되는 BYPASS가 단 하나라도 발견되면:
+
+ZERO_RECURRENCE_GATE = FAIL
+
+본 작업의 FINAL PASS를 금지한다.
+
+
+============================================================
+2. 오류 발생과 오류 통과를 분리한다
+============================================================
+
+외부 서비스 장애,
+새로운 입력,
+네트워크 장애,
+API 변경,
+파일 손상,
+새로운 발행사 데이터,
+예상하지 못한 필드값
+
+등으로 오류 자체는 미래에 발생할 수 있다.
+
+따라서 목표를 거짓으로
+
+"오류 발생 확률 0%"
+
+라고 정의하지 않는다.
+
+목표는 다음이다.
+
+ERROR MAY OCCUR
+
+BUT
+
+UNDETECTED ERROR → FINAL PASS = FORBIDDEN
+
+
+행 단위로 안전하게 처리 가능한 오류는:
+
+ERROR
+→ DETECT
+→ CLASSIFY
+→ AUTO-REPAIR
+→ RETEST
+→ PASS RECORD
+
+또는
+
+ERROR
+→ DETECT
+→ CLASSIFY
+→ AUTO-REPAIR ATTEMPT
+→ UNRESOLVED
+→ QUARANTINE RECORD
+→ CONTINUE OTHER SAFE RECORDS
+
+둘 중 하나로 처리한다.
+
+
+그러나 record identity 자체가 신뢰할 수 없는 경우:
+
+IDENTITY ERROR
+→ DETECT
+→ BLOCK AFFECTED OUTPUT
+→ HOLD
+
+한다.
+
+
+다음 경로는 금지한다.
+
+ERROR
+→ UNDETECTED
+→ PASS
+
+ERROR
+→ USER MANUAL MASS REPAIR
+→ PASS
+
+ONE BAD ROW
+→ BLOCK ALL OTHERWISE SAFE ROWS
+
+경로는 0개여야 한다.
+
+
+============================================================
+3. 부분 완료 오판을 구조적으로 금지한다
+============================================================
+
+모든 Batch 작업은 시작할 때 TOTAL을 고정한다.
+
+작업 종료 시 반드시 계산한다.
+
+TOTAL
+PROCESSED
+VALIDATED
+PASS
+AUTO_REPAIRED
+QUARANTINED
+MISMATCH
+UNVERIFIED
+FAILED
+BLOCKED
+SKIPPED
+UNRESOLVED
+
+그리고 다음 불변식을 검사한다.
+
+TOTAL =
+FINAL_USABLE
++ QUARANTINED
++ 명시적으로 허용된 기타 최종상태
+
+숫자가 맞지 않으면 OUTPUT BLOCK.
+
+이번 행 처리 작업에서는 특히:
+
+INPUT_RECORD_COUNT
+NORMAL_RECORD_COUNT
+AUTO_REPAIRED_COUNT
+QUARANTINED_COUNT
+FINAL_USABLE_COUNT
+
+MISSING_RECORD_COUNT
+DUPLICATE_RECORD_COUNT
+IDENTITY_SWAP_COUNT
+CROSS_ROW_MIX_COUNT
+
+를 반드시 계산한다.
+
+그리고:
+
+INPUT_RECORD_COUNT
+=
+FINAL_USABLE_COUNT
++
+QUARANTINED_COUNT
++
+명시적으로 허용된 비업무 record
+
+관계를 증명한다.
+
+검증완료가 필수인 업무에서
+
+VALIDATED != 검증대상 TOTAL
+
+이면 FINAL PASS 금지.
+
+따라서 다시는
+
+51건 중 9건 검증
+→ 51건 완료본 생성
+
+같은 경로를 허용하지 않는다.
+
+동시에:
+
+1,000행 중 5행 문제
+→ 1,000행 전체 사용불가
+
+도 자동적으로 허용하지 않는다.
+
+identity가 안전하다면:
+
+980 정상
++ 15 자동수정
++ 5 격리
+=
+995 사용가능
++ 5 격리
+
+형태가 되어야 한다.
+
+
+============================================================
+4. FIELD-LEVEL EVIDENCE LOCK
+============================================================
+
+문서 전체에 PASS 하나만 붙이지 않는다.
+
+필수 필드마다:
+
+ORIGINAL_VALUE
+VALIDATED_VALUE
+SOURCE
+EVIDENCE
+VALIDATION_METHOD
+STATUS
+
+를 연결한다.
+
+자동수정된 필드에는 추가로:
+
+AUTO_REPAIR_METHOD
+BEFORE_VALUE
+AFTER_VALUE
+REVALIDATION_STATUS
+
+를 연결한다.
+
+필수 필드 중 하나라도 Evidence가 없으면
+해당 Record의 FINAL PASS를 차단한다.
+
+그러나 독립 record 하나의 field 실패를
+다른 안전한 record의 실패로 전파하지 않는다.
+
+Record-level failure와
+Batch-level identity corruption을 구분한다.
+
+
+============================================================
+5. 동일 오류 재발 차단
+============================================================
+
+모든 Failure에 ROOT_FINGERPRINT를 만든다.
+
+새 오류 발생 시:
+
+NEW FAILURE
+→ EXISTING ROOT SEARCH
+→ SAME ROOT?
+   YES → RECURRENCE
+   NO → NEW ROOT
+
+동일 Root의 Recurrence가 발생하면
+단순히 그 한 건만 다시 고치지 않는다.
+
+OLD PASS INVALIDATE
+→ ROOT REOPEN
+→ 왜 기존 Validator가 막지 못했는지 조사
+→ Validator/Enforcement 수정
+→ 기존 Negative Fixture 추가
+→ RED TEST
+→ FIX
+→ GREEN TEST
+→ REGRESSION
+→ NEW PASS
+
+동일 Root Cause가 사용자에게 다시 발견되면
+기존 구조의 FINAL PASS는 잘못된 것으로 간주한다.
+
+이번 TOOL013 사용자 실제 결과는
+Negative Golden으로 유지한다.
+
+포함:
+
+USER_FORCED_MANUAL_VALIDATION
+
+BLOCK_WITHOUT_AUTONOMOUS_RECOVERY
+
+RECORD_IDENTITY_INTEGRITY_UNPROVEN
+
+PASS_CONTRADICTED_BY_ACTUAL_USER_OUTPUT
+
+CATEGORY_CODE_AS_DISPLAY_VALUE
+
+EXCEL_DATE_SERIAL_LEAKAGE
+
+WRONG_COLUMN_MAPPING
+
+BLANK_REQUIRED_OUTPUT
+
+CROSS_ROW_FIELD_MIXING
+
+DUPLICATE_RECORD
+
+MISSING_RECORD
+
+IDENTITY_SWAP
+
+OUTPUT_NOT_REOPENED
+
+
+============================================================
+6. UNKNOWN도 실패 측에 둔다
+============================================================
+
+확인하지 못한 것을 PASS로 추정하지 않는다.
+
+UNKNOWN
+UNVERIFIED
+NO_EVIDENCE
+NOT_TESTED
+
+는 모두 FINAL PASS 계산에서 제외한다.
+
+UNKNOWN_CRITICAL > 0이면
+FINAL PLATFORM PASS 금지.
+
+실제 TOOL013 입력에 접근하지 못하면
+fixture 성공을 실제입력 성공으로 바꾸어 기록하지 않는다.
+
+ACTUAL_INPUT = HOLD
+
+로 정확하게 남긴다.
+
+
+============================================================
+7. 자동 복구 경로를 강제한다
+============================================================
+
+한 실행방법이 실패했다고
+사용자에게 바로 넘기지 않는다.
+
+실패 시:
+
+PRIMARY PATH
+→ RETRY IF SAFE
+→ EXISTING PASS COMPONENT
+→ ALTERNATIVE CONNECTOR
+→ ALTERNATIVE VERIFIED TOOL
+→ ALTERNATIVE SOURCE
+→ RECOVERY
+→ VALIDATION
+→ EVIDENCE
+
+순으로 허용된 경로를 탐색한다.
+
+행 단위 오류에서는:
+
+RECORD ERROR
+→ EXISTING APPROVED RULE
+→ EXISTING TRANSLATION
+→ EXISTING CATEGORY LOGIC
+→ EXISTING DATE CONVERSION
+→ EXISTING FIELD MAPPING
+→ EXISTING VALIDATOR
+→ AUTO REPAIR
+→ REVALIDATE
+
+를 우선한다.
+
+새 기능을 만들기 전에
+기존 검증된 기능을 재사용한다.
+
+자동 복구 불가능한
+권한/외부서비스/플랫폼 제한만 HOLD한다.
+
+HOLD를 PASS로 계산하지 않는다.
+
+
+============================================================
+7-A. ROW-LEVEL AUTO-RECOVERY 강제
+============================================================
+
+모든 separable record 업무에 대해:
+
+문제행 발견
+→ 자동 원인 판정
+→ deterministic 여부 판정
+
+deterministic이면:
+
+AUTO REPAIR
+→ AUTO REVALIDATE
+→ SUCCESS
+→ FINAL USABLE
+
+deterministic하지 않거나
+안전한 자동판정이 불가능하면:
+
+QUARANTINE ONLY THAT RECORD
+
+한다.
+
+나머지 정상 record 처리를 계속한다.
+
+사용자에게
+수백 행의 Excel을 수정하라고 요구하지 않는다.
+
+사용자는 repair operator가 아니다.
+
+정말 사람 판단이 필요한 소수의 모호한 건만
+Observer 대상으로 남긴다.
+
+Observer에게 보여줄 경우에도:
+
+origin_file
+origin_row
+stable_record_id
+문제 field
+실제값
+판정조건
+격리 이유
+자동수정 시도 결과
+가능한 후보값
+근거
+
+를 함께 제공한다.
+
+
+============================================================
+7-B. TOOL013 773행 사례 처리원칙
+============================================================
+
+기존 실제 사용자 흐름:
+
+"자동검사에서 773행을 차단했습니다.
+오류 수정용 파일을 내려받았습니다.
+파일의 오류_필드·오류_실제값·오류_기대값·오류_이유를
+수정한 뒤 다시 업로드하세요."
+
+는 성공 사례가 아니다.
+
+ERROR DETECTION = 가능
+ERROR EXPLANATION = 가능
+
+하더라도
+
+AUTONOMOUS RECOVERY = 실패
+
+USER_MANUAL_REPETITION = 실패
+
+이다.
+
+773행 각각을 Work에서 수동 수정하지 않는다.
+
+해당 workbook은
+사용자 작업지시서가 아니라
+
+AUTO-RECOVERY AUDIT
++
+QUARANTINE REPORT
+
+로 사용한다.
+
+시스템이 먼저 가능한 오류를 자동수정한다.
+
+수정 불가능한 행만 별도로 격리한다.
+
+
+============================================================
+8. MASTER_FIXED != RUNTIME_FIXED
+============================================================
+
+규칙 파일을 수정했다고 끝내지 않는다.
+
+반드시:
+
+MASTER CHANGE
+→ ROUTER
+→ RUNTIME
+→ ACTUAL INPUT
+→ ACTUAL EXECUTION
+→ VALIDATOR
+→ OUTPUT GATE
+
+까지 실제 적용을 확인한다.
+
+Master에는 규칙이 있는데
+실제 Runtime이 옛 동작을 하면 FAIL.
+
+이번에 이미 GitHub에 존재하는:
+
+WIC_GLOBAL_ROW_ISOLATION_AUTORECOVERY_RULE_20261010.md
+
+도 단순 저장 PASS를
+Runtime 적용 PASS로 오인하지 않는다.
+
+
+============================================================
+9. FIXTURE_PASS != ACTUAL_E2E_PASS
+============================================================
+
+fixture 성공은 Regression Evidence다.
+
+실제 업무 성공의 대체물이 아니다.
+
+필요한 업무에서는 반드시:
+
+ACTUAL WIC INPUT
+→ ACTUAL EXECUTION
+→ ACTUAL OUTPUT
+→ ACTUAL VALIDATION
+→ ACTUAL EVIDENCE
+→ READ-BACK
+
+을 검증한다.
+
+TOOL013을 이번 공통장치의
+첫 실제 Proof Case로 사용한다.
+
+가능하면 이미 Registry/Evidence/Handoff에 알려진:
+
+MarketsandMarkets Revamped Reports Metadata 17072025
+
+관련 실제 입력/현재 실행경로를 사용한다.
+
+실제 자료를 찾기 위해
+드라이브 전체를 재검색하지 않는다.
+
+알려진 Registry/Evidence/Handoff 경로에 없으면
+ACTUAL_INPUT = HOLD
+
+로 남긴다.
+
+
+============================================================
+9-A. RECORD IDENTITY INTEGRITY
+============================================================
+
+모든 record는 입력 순간부터:
+
+origin_file
++
+origin_row
++
+stable_record_id
+
+를 가져야 한다.
+
+이 identity는:
+
+INPUT
+→ MERGE
+→ TRANSLATION
+→ CATEGORY
+→ DATE CONVERSION
+→ FIELD MAPPING
+→ VALIDATION
+→ AUTO-REPAIR
+→ QUARANTINE
+→ FINAL OUTPUT
+
+끝까지 유지한다.
+
+출력 순서 변경은 허용한다.
+
+그러나 다음은 허용하지 않는다.
+
+identity loss
+identity swap
+duplicate identity
+missing identity
+cross-row field mixing
+
+최종적으로:
+
+MISSING_RECORD_COUNT = 0
+
+DUPLICATE_RECORD_COUNT = 0
+
+IDENTITY_SWAP_COUNT = 0
+
+CROSS_ROW_MIX_COUNT = 0
+
+을 실제 비교로 증명해야 한다.
+
+단순 field 오류와
+record identity corruption을 혼동하지 않는다.
+
+FIELD ERROR
+→ ROW RECOVERY / QUARANTINE
+
+IDENTITY CORRUPTION
+→ AFFECTED OUTPUT BLOCK
+
+
+============================================================
+10. NEGATIVE TEST 강제
+============================================================
+
+정상 입력만 시험하지 않는다.
+
+이번에 수정한 Root마다
+과거 실제 실패 사례를 Negative Fixture로 만든다.
+
+일부러 실패 조건을 넣었을 때
+Output Gate가 반드시 STOP 또는 QUARANTINE 해야 한다.
+
+STOP/QUARANTINE하지 않으면 수정 실패다.
+
+예:
+
+TOTAL=51
+VERIFIED=9
+
+를 넣었는데
+FINAL COMPLETE가 나오면 FAIL.
+
+또한:
+
+CATEGORY CODE가 DISPLAY VALUE로 들어감
+→ 검출해야 한다.
+
+Excel serial date
+→ 검출해야 한다.
+
+잘못된 column mapping
+→ 검출해야 한다.
+
+필수값 blank
+→ 검출해야 한다.
+
+duplicate record
+→ 검출해야 한다.
+
+missing record
+→ 검출해야 한다.
+
+identity swap
+→ 검출해야 한다.
+
+cross-row mixing
+→ 검출해야 한다.
+
+deterministic field error 하나 때문에
+정상행 전체가 차단됨
+→ FAIL.
+
+deterministic 오류를
+사용자 수동수정으로 넘김
+→ FAIL.
+
+
+============================================================
+11. RECOVERY TEST 강제
+============================================================
+
+Negative Test에서 STOP/QUARANTINE한 뒤
+정상 데이터/연결을 복구한다.
+
+그 다음 실패 지점부터 재개하여
+정상 PASS까지 가는지 확인한다.
+
+STOP만 잘하고
+복구하지 못하는 구조도 FINAL PASS 금지.
+
+행 오류라면:
+
+ERROR
+→ AUTO REPAIR
+→ REVALIDATE
+→ NORMAL OUTPUT
+
+을 증명한다.
+
+자동수정 불가능한 행이면:
+
+ERROR
+→ QUARANTINE
+→ OTHER RECORDS CONTINUE
+
+를 증명한다.
+
+
+============================================================
+12. CROSS-CHAT / CROSS-TOOL 강제
+============================================================
+
+CHAT
+→ DOMAIN/TOOL
+→ REGISTRY
+→ TARGET MASTER
+→ CENTRAL MASTER WHEN REQUIRED
+→ RUNTIME
+
+경로를 확인한다.
+
+Registry 밖의 WIC 업무를
+정상 등록된 것으로 가정하지 않는다.
+
+Global Root는 특정 도구 하나만 고치지 않는다.
+
+공통 Gate/Validator에 반영하고
+영향받는 최소 대표 경로에서 검증한다.
+
+이번 ROOT를 TOOL013 전용 patch로 끝내지 않는다.
+
+TOOL013은 첫 Proof Case다.
+
+공통장치가 실제로 증명되면:
+
+COMMON COMPONENT
+→ UNIVERSAL CONNECTION
+→ IMPACT-BASED VALIDATION
+
+방식으로 다른 해당 도구에 적용한다.
+
+각 도구마다 같은 자동복구 기능을
+새로 만들지 않는다.
+
+
+============================================================
+13. 저장 완료 검증
+============================================================
+
+SAVE/COMMIT 성공 메시지만 믿지 않는다.
+
+WRITE
+→ COMMIT/SAVE
+→ REMOTE/FUNCTIONAL READ-BACK
+→ CONTENT MATCH
+
+까지 확인한다.
+
+Read-back 실패 시 저장 완료 금지.
+
+
+============================================================
+14. WORK 중단 안전
+============================================================
+
+작업 중간에 크레딧이 0이 되거나
+실행이 강제로 종료되어도
+운영 HEAD에는 마지막 VERIFIED 상태만 남긴다.
+
+미완성 변경을 운영 경로에 노출하지 않는다.
+
+각 최소 단위:
+
+CHANGE
+→ TEST
+→ EVIDENCE
+→ COMMIT
+→ READ-BACK
+→ CHECKPOINT
+
+후 다음 단위로 진행한다.
+
+재개는 마지막 VERIFIED CHECKPOINT 다음부터 한다.
+
+같은 실패를 반복 실행해
+크레딧을 소모하지 않는다.
+
+동일 segment가 반복 실패하면:
+
+FAIL
+→ ROOT FINGERPRINT
+→ EVIDENCE
+→ LAST VERIFIED STATE ROLLBACK
+→ CHECKPOINT
+→ NEXT RESUME POSITION
+
+으로 처리한다.
+
+
+============================================================
+15. 종료 전 공격적 역방향 감사
+============================================================
+
+최종 PASS 직전에
+정방향만 검사하지 않는다.
+
+FINAL OUTPUT
+← OUTPUT GATE
+← COMPLETION MATH
+← VALIDATOR
+← EVIDENCE
+← EXECUTION
+← REQUIREMENTS
+← MASTER
+← REGISTRY
+← IDENTITY
+← INPUT
+
+을 역방향으로 추적한다.
+
+각 핵심 결과가 원본까지 추적되지 않으면 FAIL.
+
+각 최종 record도:
+
+FINAL RECORD
+← stable_record_id
+← origin_row
+← origin_file
+
+까지 추적되어야 한다.
+
+
+============================================================
+16. FALSE-PASS ATTACK
+============================================================
+
+FINAL PASS 직전에 시스템 스스로 다음 질문으로
+자기 완료판정을 공격한다.
+
+"어떤 방법으로 아직 미완료인데도
+이 결과가 PASS될 수 있는가?"
+
+가능한 우회경로를 탐색한다.
+
+하나라도 발견하면
+FINAL PASS를 취소하고 Root를 OPEN한다.
+
+다음도 공격한다.
+
+- 일부 항목 누락
+- Evidence 삭제
+- 오래된 Master
+- 오래된 Runtime
+- Registry 누락
+- Validator 미실행
+- External validation 실패
+- 저장 실패
+- Read-back 실패
+- 중간 실행 중단
+- 동일 오류 recurrence
+- 잘못된 target routing
+- stale state
+- fixture만 성공
+- 보고만 성공
+- 실행은 성공했으나 전달 실패
+- 문제행 때문에 정상행 전체가 차단됨
+- deterministic 오류가 사용자에게 전달됨
+- correction workbook이 사용자 작업지시서가 됨
+- identity 누락
+- duplicate
+- identity swap
+- cross-row mixing
+- 실제 XLSX를 reopen하지 않음
+- 내부 객체만 정상이고 실제 파일은 잘못됨
+
+위 상황에서 잘못된 FINAL PASS가 하나라도 가능하면 FAIL.
+
+
+============================================================
+17. 기존 PASS 보호 / 비용 보호
+============================================================
+
+기존 유효 PASS는 SKIP-REUSE.
+
+전체 3200건 재스캔 금지.
+
+모든 저장소 무차별 재검증 금지.
+
+USB 전체검색 금지.
+
+C/D/F 드라이브 광역검색 금지.
+
+과거 버전 전체 탐색 금지.
+
+Root A failover 재검사 금지.
+
+24시간 검증 재시작 금지.
+
+TOOL013 전체 재개발 금지.
+
+773행 수동 개별 수정 금지.
+
+변경된 Root와 영향범위만 검사한다.
+
+같은 Failure는 Root Fingerprint로 병합한다.
+
+이미 존재하는 완성 Component를 우선 사용한다.
+
+불필요한 신규 개발 금지.
+
+동일 Evidence가 여러 Gate를 만족하면
+한 번 생성하고 재사용한다.
+
+동일 E2E를
+두 지시문이 요구한다는 이유로 두 번 실행하지 않는다.
+
+동일 Negative Test를
+중복 실행하지 않는다.
+
+동일 Read-back을
+중복 실행하지 않는다.
+
+이번 통합지시문의 목적 중 하나는
+검증 강도를 낮추지 않으면서
+중복 Work 실행을 제거하는 것이다.
+
+
+============================================================
+18. PLATFORM LIMIT 정직성
+============================================================
+
+ChatGPT UI,
+외부 API,
+권한,
+외부 서비스 등
+WIC가 강제 통제할 수 없는 영역을
+통제 완료라고 주장하지 않는다.
+
+통제 불가능한 외부 영역 때문에
+"미래 오류 발생 0%"를 보장하지 않는다.
+
+대신 WIC 통제 경계 안에서는:
+
+미검증 결과가 PASS되는 경로 = 0
+
+을 실제 테스트로 증명한다.
+
+통제 경계 밖의 위험은
+PLATFORM_LIMIT/HOLD로 명시한다.
+
+
+============================================================
+19. WORK START LOCK
+============================================================
+
+가장 중요하다.
+
+위 PRE-WORK HARD GATE를
+실제 Evidence로 전부 PASS하지 못하면
+본 구조개선 작업을 시작하지 마라.
+
+"일단 만들어 놓고 나중에 검증"
+방식을 금지한다.
+
+"크레딧을 먼저 사용하고 마지막에 확인"
+방식을 금지한다.
+
+먼저 이 작업을 안전하게 수행할
+검증·증거·복구·중단안전 경로가 있는지 증명한다.
+
+증명하지 못하면:
+
+WORK_EXECUTION = BLOCKED_BY_PREFLIGHT
+
+로 종료한다.
+
+이 경우 Work는 구조를 임의로 수정하지 않고
+정확히 실패한 Preflight Gate와 Evidence만 보고한다.
+
+단,
+이미 checkpoint에서 검증되어 있고
+이번 변경의 영향을 받지 않는 Gate는
+기존 Evidence를 재사용한다.
+
+재검사하지 않는다.
+
+
+============================================================
+20. 이번 ROOT 실제 실행
+============================================================
+
+PRE-WORK가 PASS한 경우에만:
+
+NEXT_ROOT:
+
+USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY
+
+를 실행한다.
+
+이번 Work의 핵심 구현은:
+
+1.
+공통 Record Identity 생성/유지
+
+origin_file
++
+origin_row
++
+stable_record_id
+
+2.
+문제 record 자동검출
+
+3.
+deterministic 오류 자동수정
+
+4.
+수정 record 자동 재검증
+
+5.
+자동수정 불가능 record만 격리
+
+6.
+정상 record 계속 처리
+
+7.
+사용가능 결과와 격리 결과 분리
+
+8.
+누락/중복/identity swap/cross-row mixing 자동검사
+
+9.
+실제 최종 XLSX 생성
+
+10.
+실제 XLSX reopen
+
+11.
+source와 final business field 및 identity 대조
+
+12.
+Evidence 생성
+
+이다.
+
+
+============================================================
+20-A. 기존 기능 재사용 우선
+============================================================
+
+다음 기존 기능이 존재하면 새로 만들지 않는다.
+
+번역
+18개 카테고리 분류
+카테고리 표시명 변환
+날짜 변환
+필드 mapping
+validation
+XLSX 생성
+다운로드
+오류 탐지
+기존 recovery
+Registry
+Evidence
+PASS_LOCK
+Observer
+
+기존 검증 Component를 조합한다.
+
+없는 연결만 최소 구현한다.
+
+
+============================================================
+20-B. TOOL013 첫 Proof Case
+============================================================
+
+공통장치 구현 후
+TOOL013 실제 경로에서 증명한다.
+
+TOOL013만을 위한 별도 임시 엔진을 만들지 않는다.
+
+실제 입력이 기존 알려진 경로에서 접근 가능하면
+그 실제 입력을 사용한다.
+
+사용자가 실제로 확인했던:
+
+MarketsandMarkets Revamped Reports Metadata 17072025
+
+관련 데이터가
+현재 Registry/Evidence/Handoff에 존재하면
+그것을 사용한다.
+
+114 files / 823 rows라는 기존 사용자 실제 상황은
+실제 원본에서 다시 확인될 때만
+검증 수치로 확정한다.
+
+숫자를 추정해서 PASS하지 않는다.
+
+실제 입력이 현재 접근 불가능하면:
+
+TOOL013_ACTUAL_INPUT = HOLD
+
+로 남긴다.
+
+이를 찾기 위해 광역검색하지 않는다.
+
+
+============================================================
+20-C. 실제 사용자 결과 검증
+============================================================
+
+내부 함수만 PASS시키지 않는다.
+
+실제 흐름:
+
+ACTUAL INPUT
+→ UPLOAD
+→ PROCESS
+→ ERROR DETECTION
+→ AUTO RECOVERY
+→ REVALIDATION
+→ QUARANTINE IF REQUIRED
+→ SAFE RECORD CONTINUATION
+→ FINAL XLSX
+→ DOWNLOAD
+→ REOPEN
+→ BUSINESS FIELD VALIDATION
+→ RECORD IDENTITY VALIDATION
+
+까지 검증한다.
+
+실제 최종 XLSX에서 최소한:
+
+상품명
+한글명
+1차카테고리
+2차카테고리
+3차카테고리
+발행일
+기타 주요 business field
+
+를 검사한다.
+
+내부 메모리 값이 아니라
+실제 저장된 파일 값을 확인한다.
+
+
+============================================================
+20-D. Validator-of-Validator
+============================================================
+
+기존 Validator가 PASS했다고
+그 결과를 그대로 신뢰하지 않는다.
+
+별도 검증에서:
+
+ACTUAL SOURCE
+vs
+ACTUAL FINAL XLSX
+
+를 비교한다.
+
+Validator가 Negative Golden을
+실제로 차단하는지 확인한다.
+
+Validator가 잘못된 결과를 PASS시키면
+Validator 자체를 FAIL 처리한다.
+
+
+============================================================
+20-E. TOOL013 HOLD 해제 조건
+============================================================
+
+다음을 모두 실제 Evidence로 증명할 때만
+TOOL013 USER-USABLE HOLD를 해제한다.
+
+A. 정상행 계속 처리
+
+B. deterministic 오류 자동수정
+
+C. 자동수정 후 자동 재검증
+
+D. 해결 불가능 행만 격리
+
+E. 사용자 대량 Excel 수정 요구 없음
+
+F. origin_file + origin_row + stable_record_id 유지
+
+G. 누락 0
+
+H. 중복 0
+
+I. identity swap 0
+
+J. cross-row mixing 0
+
+K. 실제 최종 XLSX reopen PASS
+
+L. 실제 business field 비교 PASS
+
+M. Evidence 생성 PASS
+
+N. GitHub remote read-back PASS
+
+O. Negative Test PASS
+
+P. Recovery Test PASS
+
+Q. False-Pass Attack PASS
+
+하나라도 실제 증거가 없으면
+해당 상태는 HOLD/FAIL로 남긴다.
+
+
+============================================================
+20-F. 다른 도구로 공통 적용
+============================================================
+
+TOOL013 Proof가 PASS하면
+같은 공통장치를 재사용한다.
+
+도구별로 별도 엔진을 새로 만들지 않는다.
+
+영향받는 실행경로만 연결한다.
+
+기존 PASS_LOCK unrelated segment는 재검사하지 않는다.
+
+COMMON COMPONENT
+→ UNIVERSAL CONNECTION
+→ IMPACT-BASED VALIDATION
+
+으로 처리한다.
+
+
+============================================================
+20-G. 기존 남은 작업
+============================================================
+
+기존 checkpoint의:
+
+actual-input 대기 = 3건
+
+external-original 대기 = 1건
+
+을 유지한다.
+
+공통장치와 TOOL013 Proof가 먼저다.
+
+이 ROOT가 실제로 끝난 뒤
+크레딧과 실행환경이 충분한 경우에만
+기존 Registry/Evidence 경로를 이용해
+다음 작업을 계속한다.
+
+광역검색하지 않는다.
+
+크레딧이 부족하거나
+안전하게 완료할 수 없으면:
+
+현재 VERIFIED CHECKPOINT
++
+정확한 NEXT_ROOT
+
+를 저장하고 종료한다.
+
+
+============================================================
+20-H. 24시간 검증 분리
+============================================================
+
+Root A:
+
+PENDING_NATURAL_TIME_DO_NOT_RESTART
+
+유지.
+
+이미 검증된 failover를 다시 실행하지 않는다.
+
+24시간 자연시간 검증과
+현재 기능 오류를 섞지 않는다.
+
+현재 기능 오류는 이번 ROOT에서 처리한다.
+
+
+============================================================
+21. FINAL PASS 조건
+============================================================
+
+다음 조건을 모두 만족해야 한다.
+
+PRE_WORK_GATE = PASS
+
+ZERO_BYPASS = PASS
+
+MASTER_RUNTIME = PASS
+
+ACTUAL_E2E = PASS
+
+NEGATIVE_TEST = PASS
+
+RECOVERY_TEST = PASS
+
+EVIDENCE_LOCK = PASS
+
+COMPLETION_MATH = PASS
+
+READ_BACK = PASS
+
+REGRESSION = PASS
+
+FALSE_PASS_ATTACK = PASS
+
+UNKNOWN_CRITICAL = 0
+
+UNRESOLVED_REQUIRED_GATE = 0
+
+그리고 이번 ROOT에 대해서:
+
+AUTO_RECOVERY = PASS
+
+ROW_ISOLATION = PASS
+
+RECORD_IDENTITY = PASS
+
+FINAL_XLSX_REOPEN = PASS
+
+USER_MANUAL_EXCEL_CORRECTION = 0
+
+MISSING_RECORD = 0
+
+DUPLICATE_RECORD = 0
+
+IDENTITY_SWAP = 0
+
+CROSS_ROW_MIX = 0
+
+이어야 한다.
+
+하나라도 만족하지 못하면:
+
+FINAL PASS 금지.
+
+상태는 정확히:
+
+HOLD
+FAIL
+BLOCKED
+PARTIAL
+
+중 하나로 남긴다.
+
+
+============================================================
+22. 저장 및 체크포인트
+============================================================
+
+실제 변경 및 검증 결과는:
+
+Evidence
+→ Registry/상태
+→ checkpoint
+→ Git commit
+→ main push
+→ remote read-back
+
+순서로 저장한다.
+
+"반영했다"
+"연결했다"
+"완료했다"
+"PASS다"
+
+라는 보고만으로 완료 처리하지 않는다.
+
+Remote에서 실제 내용을 다시 읽어
+일치 여부를 확인한다.
+
+
+============================================================
+23. 최종 보고 형식
+============================================================
+
+최종 보고는 아래 형식으로 한다.
+
+PRE-WORK:
+PASS / FAIL
+
+본 작업 시작 허용:
+YES / NO
+
+COMMON AUTO-RECOVERY:
+PASS / HOLD / FAIL
+
+ROW ISOLATION:
+PASS / HOLD / FAIL
+
+RECORD IDENTITY:
+PASS / HOLD / FAIL
+
+TOOL013 ACTUAL INPUT:
+실제 입력명 / 접근불가
+
+INPUT RECORDS:
+숫자
+
+NORMAL:
+숫자
+
+AUTO-REPAIRED:
+숫자
+
+QUARANTINED:
+숫자
+
+FINAL USABLE:
+숫자
+
+MISSING:
+숫자
+
+DUPLICATE:
+숫자
+
+IDENTITY SWAP:
+숫자
+
+CROSS-ROW MIX:
+숫자
+
+FINAL XLSX REOPEN:
+PASS / HOLD / FAIL
+
+USER MANUAL EXCEL CORRECTION:
+0 / 숫자
+
+TOOL013 USER-USABLE:
+PASS / HOLD / FAIL
+
+발견 Root:
+수
+
+새 Root:
+수
+
+기존 Root Recurrence:
+수
+
+수정 Root:
+수
+
+Negative Test:
+PASS / FAIL
+
+Recovery Test:
+PASS / FAIL
+
+Actual E2E:
+PASS / FAIL
+
+Evidence 없는 PASS:
+수
+
+Output bypass:
+수
+
+Critical Unknown:
+수
+
+Regression:
+PASS / FAIL
+
+GLOBAL PROPAGATION:
+PASS / PARTIAL / HOLD
+
+ACTUAL-INPUT REMAINING:
+숫자
+
+EXTERNAL-ORIGINAL REMAINING:
+숫자
+
+24H:
+상태
+
+PLATFORM_LIMIT:
+수
+
+CHECKPOINT:
+ID
+
+GITHUB:
+commit SHA
+
+REMOTE READ-BACK:
+PASS / FAIL
+
+NEXT_ROOT:
+정확한 다음 ROOT / NONE
+
+FINAL:
+PASS / HOLD / FAIL / BLOCKED
+
+
+============================================================
+24. 절대 금지
+============================================================
+
+근거 없는 "100%"
+
+근거 없는 "0%"
+
+근거 없는 "완전 해결"
+
+근거 없는 "연결 완료"
+
+근거 없는 "자동화 완료"
+
+fixture만 성공하고 실제 성공이라고 보고
+
+일부만 검사하고 전체 완료라고 보고
+
+사용자에게 최종 검사를 떠넘김
+
+사용자에게 수백 행 수정 요구
+
+한 행 오류 때문에 안전한 전체 record 차단
+
+identity가 깨졌는데 부분 출력 강행
+
+실제 파일 reopen 없이 PASS
+
+Evidence 없이 PASS
+
+GitHub write만 하고 read-back 없이 완료
+
+이미 검증된 PASS 전체 재검사
+
+동일 작업 중복 실행
+
+금지.
+
+
+============================================================
+25. 최종 성공 정의
+============================================================
+
+이번 Work의 성공은
+
+"TOOL013의 773행을 고쳤다"
+
+가 아니다.
+
+성공은 앞으로
+어떤 발행사,
+어떤 입력파일,
+어떤 해당 WIC 도구에서
+
+일부 record에 문제가 발생하더라도:
+
+정상 record는 계속 처리되고,
+
+규칙으로 고칠 수 있는 오류는
+시스템이 자동수정하고,
+
+자동수정한 결과를 다시 자동검증하고,
+
+안전하게 고칠 수 없는 record만 격리하고,
+
+다른 정상 record는 사용가능한 결과로 계속 출력하고,
+
+각 record가 원본부터 최종 결과까지
+동일 identity를 유지했음을 자동 증명하고,
+
+누락·중복·행 바뀜·다른 행 데이터 혼합을 차단하며,
+
+사용자가 다시
+테스터·Excel 수정자·오류 탐색자가 되지 않는
+
+공통 구조가
+ACTUAL E2E + NEGATIVE + RECOVERY + EVIDENCE
+로 실제 증명되는 것이다.
+
+FINAL PASS는 말이 아니라
+실제 Gate + Test + Evidence의 결과여야 한다.
+
+============================================================
+26. 즉시 실행
+============================================================
+
+현재 checkpoint에서 바로 이어서 실행한다.
+
+과거 완료 작업을 처음부터 다시 하지 않는다.
+
+PRE-WORK HARD GATE를 먼저 실행하되,
+변경되지 않은 기존 PASS Evidence는 SKIP-REUSE한다.
+
+Preflight가 PASS하면:
+
+USER_VISIBLE_OUTPUT_AUTONOMOUS_RECOVERY_AND_RECORD_IDENTITY
+
+ROOT를 즉시 실행한다.
+
+중복 검사 없이
+한 번의 실제 검증 Evidence를
+ZERO-RECURRENCE Gate와
+현재 Auto-Recovery Root 양쪽에서 공동 사용한다.
+
+사용자에게 과거 자료·지시·파일을
+다시 요구하지 않는다.
+
+작업 중 안전하게 끝낼 수 없는 지점에 도달하면
+미완성 변경을 운영에 남기지 말고
+마지막 VERIFIED CHECKPOINT를 보존한 뒤
+정확한 NEXT_ROOT를 기록하고 종료한다.
+
+============================================================
+제II부 — 16번 실패 원인 선행분석 / 사무실 Work 환경독립 실행 / CREDIT 보호 / FULL E2E 원문 전체
+============================================================
+
+# WIC 최상위 플랫폼
+# 16번 실패 원인 선행분석 + 사무실 Work 환경독립 실행
+# + CREDIT 보호 + 구조수정 + FULL E2E 최종 실행 지시문
+
+============================================================
+0. 이번 작업의 성격과 절대 목표
+============================================================
+
+이 작업은 지금까지의 작업을 다시 한 번 반복하는 작업이 아니다.
+
+지난 1년 이상 사용자가 반복하여 만든 규칙·피드백·코드·GitHub 자산·도구·
+Hard Gate·PASS_LOCK·Evidence/read-back·Recovery·Observer·Control Tower·
+Registry·Queue·Backlog·Incomplete Register·Checkpoint 및 기존 실행구조가 있는데도
+왜 실제 작업을 100% 강제하지 못했는지를 기존 증거를 바탕으로 확정하고,
+그 원인을 실제 구조에서 제거하는 작업이다.
+
+사용자에게 기존 목적·규칙·자료·작업 내용을 다시 설명하게 하지 마라.
+
+USER MANUAL REPETITION = 0을 절대 목표로 유지한다.
+
+사용자는 반복 작업자가 아니다.
+사용자는 관찰자이며 필요한 경우 최종 승인자다.
+
+이번 실행의 성공 기준은 새로운 지시문·문서·샘플·껍데기 프로그램을
+하나 더 만드는 것이 아니다.
+
+기존 자산을 실제 실행구조로 연결하여
+
+규칙
+→ 실제 입력
+→ 실행
+→ 실패복구
+→ 실제 산출물
+→ 독립검증
+→ Evidence
+→ Read-back
+→ Observer
+→ PASS
+
+가 사용자 반복 개입 없이 끝까지 이어지는지를 실제로 검증하는 것이다.
+
+
+============================================================
+1. 기존 상태를 유지하고 절대로 초기화하지 말 것
+============================================================
+
+기존 canonical GitHub 저장소와 현재 상태를 먼저 사용한다.
+
+기존 저장소:
+
+obk369369-spec/20-operational-manual-viewer
+
+기존에 존재하는 다음 자산을 우선 회수하고 재사용한다.
+
+- PASS_LOCK
+- Registry
+- Evidence
+- Queue
+- Backlog
+- Incomplete Register
+- Observer
+- Control Tower
+- Checkpoint
+- 기존 실행코드
+- 기존 Workflow
+- 기존 배포본
+- 기존 handoff
+- 기존 압축본
+- Golden Sample
+- Negative/Failure 사례
+- 기존 검증된 PASS
+- 기존 실제 실행 로그
+- 기존 GitHub Actions
+- 기존 Recovery 관련 자산
+- 기존 중앙 자동접수 구조
+- 기존 공통 규칙
+- 기존 Tool 1~47 관련 자산
+- 기존 ROOT 구조
+- 기존 전역 Hard Gate
+- 기존 read-back 구조
+- 기존 restart/recovery 구조
+
+기존 완료 작업을 초기화하거나 처음부터 다시 만들지 마라.
+
+기존 약 3,200건 전체 재스캔 금지.
+
+이미 검증된 PASS는 이유 없이 재실행하지 않는다.
+
+기존 PASS_LOCK과 Evidence를 재사용한다.
+
+기존 기준점 이후 새로 발생했거나 변경된 부분과,
+현재 실패 원인과 직접 관련된 부분을 우선 대상으로 한다.
+
+
+============================================================
+2. 현재까지 선행분석으로 파악된 핵심 원인
+============================================================
+
+아래 A~F는 Work가 처음부터 다시 찾아야 하는 막연한 질문이 아니다.
+
+현재까지의 실행과 실패를 바탕으로 이미 선행분석된 원인 후보이다.
+
+Work는 광범위한 원인 탐색부터 다시 시작하지 말고
+기존 코드·로그·Evidence·실행기록과 대조하여
+
+CONFIRMED
+REJECTED
+ADDITIONAL_ROOT_CAUSE
+
+중 하나로 빠르게 확정한다.
+
+CONFIRMED는 즉시 실제 수정으로 연결한다.
+
+
+------------------------------------------------------------
+원인 A — 규칙 존재와 실제 실행 강제가 분리되어 있다
+------------------------------------------------------------
+
+규칙·지시문·GitHub 문서가 존재하는 것과
+실제 실행기가 반드시 그 규칙을 거치도록 강제하는 것은 다른 문제다.
+
+현재까지는 규칙이 저장되어 있어도
+
+- 일반 대화창
+- Work
+- Codex
+- 프로그램
+- GitHub Actions
+- 외부 도구
+- Connector
+- Workflow
+- App
+- Skill
+- MCP
+- Template
+- Ready-made tool
+
+등 모든 실제 실행경로가 반드시 동일한 상위 규칙을 읽고,
+그 규칙을 위반하면 실행을 차단한다는 전역 E2E 증거가 충분하지 않다.
+
+따라서 우선 가설은
+
+"사용자가 규칙을 충분히 설명하지 않았다"
+
+가 아니라
+
+"규칙이 있어도 실행경로가 이를 우회할 수 있는 부분이 남아 있다"
+
+이다.
+
+규칙을 더 작성하는 것으로 해결하지 말고
+실제 실행경로에서 강제되는 구조를 확인하고 수정하라.
+
+
+------------------------------------------------------------
+원인 B — 실제 입력이 연결되지 않았는데 상위 PASS가 만들어진 사례
+------------------------------------------------------------
+
+기존 감사 과정에서
+
+actual_wic_input = null
+
+또는 증분 Evidence MISSING 등 실제 입력/증거 문제가 있는데도
+상위 PASS와 실제 하위 상태가 완전히 일치하지 않는 사례가 있었다.
+
+하위에
+
+OPEN
+HOLD
+PARTIAL
+RETEST_REQUIRED
+
+등이 존재하는데도 상위 PASS가 만들어질 수 있었다면,
+기존 완료 차단장치가 하위 실제 상태와 상위 PASS를
+완전히 묶지 못했다는 뜻이다.
+
+ROOT PASS를 별도의 선언값으로 임의 생성하지 못하게 하라.
+
+ROOT PASS는 반드시 실제 하위 상태와 Evidence로부터 계산되어야 한다.
+
+하위 상태와 모순되는 ROOT PASS는 구조적으로 생성 불가능해야 한다.
+
+
+------------------------------------------------------------
+원인 C — 실행환경 실패와 업무 실패가 섞였다
+------------------------------------------------------------
+
+최근 실행에서는
+
+WINDOWS_SANDBOX_HELPER_SETUP_REFRESH_ERROR
+
+등 실행환경 문제가 발생했다.
+
+또 어떤 실행에서는
+
+Codex
+Node
+Python
+GitHub
+
+접근 자체는 가능했더라도
+LOCAL HEAD와 원격 CENTRAL 상태 차이 등의 이유로
+CENTRAL resume 또는 PRE-WORK HARD GATE가 차단되는 문제가 있었다.
+
+따라서
+
+업무 로직 실패
+
+와
+
+실행환경·권한·동기화 실패
+
+를 분리해서 처리해야 한다.
+
+환경 한 부분의 실패가 전체 업무 실패로 전파되어
+모든 작업이 중단되는 구조를 허용하지 마라.
+
+
+------------------------------------------------------------
+원인 D — 설정값과 실제 세션 권한이 일치하지 않는 문제
+------------------------------------------------------------
+
+설정 파일에
+
+network_access = true
+
+가 존재하더라도
+실제 새 세션에서는
+
+Network access is restricted
+
+로 실행된 사례가 있었다.
+
+따라서 앞으로 설정 파일의 선언값을
+실제 성공 증거로 사용하지 마라.
+
+반드시 실제 세션에서 read-back한 권한과
+실제 연결 시험 결과를 진실값으로 사용한다.
+
+CONFIG VALUE ≠ RUNTIME TRUTH
+
+원칙을 적용한다.
+
+
+------------------------------------------------------------
+원인 E — 자동 실행 계층 자체의 반복 실패
+------------------------------------------------------------
+
+최근 자동 실행 기록에서는 다음과 같은 유형의 실패가 존재했다.
+
+- Verified Component Multi Gate의 prepare 실패
+- prepare 실패로 lane/aggregate 미실행
+- Hourly Status 작업 실패
+- Public Safe Cloud Worker 실패
+- Canonical Instruction Intake에서 intake/cross-runner 성공 후
+  apply-and-readback 실패
+- Recovery Supervisor 실패 사례
+
+따라서
+
+규칙 전달
+→ 적용
+→ read-back
+→ 실제 실행
+→ 검증
+→ Recovery
+
+사슬 가운데 일부가 실제로 끊겨 있을 가능성이 높다.
+
+단순히 Workflow가 존재한다는 이유로 연결 완료라고 판단하지 마라.
+
+
+------------------------------------------------------------
+원인 F — 실패복구가 사용자 개입 없이 폐쇄되지 않았다
+------------------------------------------------------------
+
+사용자가 요구한 구조는 실패하면
+
+기존 실행수단
+→ 기존 다른 도구
+→ 연결된 완성품
+→ 대체 실행경로
+
+등을 시스템이 스스로 찾아 계속 처리하고,
+
+사용자에게
+
+- 다시 설명
+- 다시 복사
+- 다시 붙여넣기
+- 다시 실행
+- 다시 세션 생성
+- 같은 자료 재첨부
+- 같은 규칙 재설명
+
+을 요구하지 않는 구조다.
+
+그러나 실제로는 실행 실패 후
+사용자가 다시 지시하거나 새 세션을 만들고
+지시문을 다시 넣어야 하는 상황이 반복됐다.
+
+따라서 현재 Recovery가 존재하더라도
+
+USER_MANUAL_REPETITION = 0
+
+을 실제로 보장하는 폐쇄형 Recovery라고 아직 검증할 수 없다.
+
+이 부분을 실제 실행경로에서 수정·검증하라.
+
+
+============================================================
+3. 추가로 반드시 확인해야 하는 구조적 원인
+============================================================
+
+A~F만 확인하고 끝내지 마라.
+
+기존 Evidence에서 추가 원인이 발견되면
+ADDITIONAL_ROOT_CAUSE로 등록한다.
+
+특히 다음을 확인한다.
+
+1. 기존 규칙이 어느 계층까지 실제 전달되는가.
+
+2. 어느 지점부터 규칙이 전달되지 않거나 강제되지 않는가.
+
+3. 일반 ChatGPT 대화창, Work, Codex, GitHub Actions,
+   프로그램, 외부 도구 등 실행환경이 바뀔 때 무엇이 끊기는가.
+
+4. 도구 선택, 권한, Network, Sandbox, 상태 유지,
+   재시작, Recovery 중 어디에서 실제 단절이 발생하는가.
+
+5. 왜 실패 후 사용자가 다시 설명하거나
+   다시 지시해야 하는 상황이 생기는가.
+
+6. 기존 Hard Gate와 Output Block이 왜 이를 차단하지 못했는가.
+
+7. PASS_LOCK이 실제 하위 상태와 항상 일치하는가.
+
+8. Evidence가 실제 실행 후 생성되는가,
+   아니면 선언·문서만 존재하는가.
+
+9. Read-back이 실제 변경 결과를 다시 읽는가.
+
+10. Restart 후 이전 상태가 실제 복구되는가.
+
+11. Recovery 실패 시 다른 실행경로로 넘어가는가.
+
+12. 새로운 업무가 들어왔을 때 기존 공통 기능을 재사용하는가,
+    아니면 다시 별도 프로그램을 만드는가.
+
+13. 사용자 반복 개입 없이 처음부터 끝까지 닫히는가.
+
+
+============================================================
+4. 절대로 다시 하지 말아야 할 것
+============================================================
+
+사용자에게 기존 목적과 규칙을 다시 물어보지 마라.
+
+새로운 지시문을 계속 추가하는 것으로
+문제를 해결했다고 판단하지 마라.
+
+3,200건 전체 재검사 금지.
+
+기존 PASS 전체 재실행 금지.
+
+기존 프로그램을 이유 없이 처음부터 다시 만들지 마라.
+
+기존 완성품이 있는데 새 프로그램을 별도로 만들지 마라.
+
+문서에 규칙이 있다는 이유로 PASS하지 마라.
+
+설정값만 보고 실제 권한이 있다고 판단하지 마라.
+
+일부 샘플 성공을 전체 성공으로 승격하지 마라.
+
+샘플 전용 구현을 전체 연결이라고 하지 마라.
+
+부분 연결을 전체 PASS라고 하지 마라.
+
+가짜 PASS 금지.
+
+하위 OPEN/HOLD/PARTIAL/RETEST_REQUIRED와
+ROOT PASS가 모순되는 상태를 허용하지 마라.
+
+원인 조사만 하고 작업을 종료하지 마라.
+
+사용자에게 수동 복구를 떠넘기지 마라.
+
+이미 확인된 동일 오류를 반복 실행하여
+Work credit을 소비하지 마라.
+
+
+============================================================
+5. 사무실 Work 환경 독립 실행 — CREDIT 보호 HARD GATE
+============================================================
+
+중요:
+
+이번 실행 환경은 오늘 사용한 노트북과 다른
+사무실 PC의 Work 환경이다.
+
+따라서 오늘 노트북에서 발생한
+
+Network access restricted
+Sandbox
+권한
+설정
+실행기
+
+문제가 사무실 PC에도 동일하게 존재한다고 가정하지 마라.
+
+반대로 사무실 PC가 정상이라고 가정하지도 마라.
+
+환경은 실제 runtime 결과로 판단한다.
+
+목표는 환경이
+
+정상
+
+이든
+
+일부 이상
+
+이든
+
+가능한 작업은 즉시 계속 진행하여
+Work credit을 환경 조사에 낭비하지 않는 것이다.
+
+
+------------------------------------------------------------
+5-1. STARTUP FAST CHECK
+------------------------------------------------------------
+
+Work 시작 직후 장시간 환경조사를 하지 마라.
+
+실제 본 작업에 필요한 최소 항목만 1회 빠르게 확인한다.
+
+최소 확인 항목:
+
+- 현재 실제 Network 접근
+- GitHub/CENTRAL 접근
+- 현재 repository
+- 현재 branch
+- LOCAL HEAD
+- REMOTE/CENTRAL 상태
+- 필요한 실행기 접근
+- 기존 Checkpoint 접근
+- PASS_LOCK 접근
+- Evidence 접근
+- Registry 접근
+- 기존 resume point 접근
+
+설정파일의 선언값이 아니라
+실제 세션 read-back을 기준으로 한다.
+
+이미 확인된 정상 항목을 반복 검사하지 마라.
+
+
+------------------------------------------------------------
+5-2. CASE A — 사무실 환경 정상
+------------------------------------------------------------
+
+환경이 정상이면 환경검사를 즉시 종료한다.
+
+추가적인 환경 조사 금지.
+
+오늘 노트북의 오류를 재현하려고
+Work credit을 사용하지 마라.
+
+기존 Checkpoint/resume point에서 바로 이어서
+
+선행 원인 A~F 확정
+→ 추가 ROOT CAUSE 최소 확인
+→ 실제 구조 수정
+→ 최소 검증
+→ FULL PLATFORM E2E
+
+로 진행한다.
+
+
+------------------------------------------------------------
+5-3. CASE B — 일부 환경만 이상
+------------------------------------------------------------
+
+일부 기능에 문제가 있어도
+전체 작업을 중단하지 마라.
+
+막힌 기능만 BLOCKED LANE으로 격리한다.
+
+막힌 기능을 사용하지 않고도 가능한 작업은 즉시 계속한다.
+
+예:
+
+Network만 차단된 경우:
+
+- 기존 로컬 코드 분석
+- 기존 Evidence 분석
+- 기존 로그 분석
+- Registry 분석
+- 가능한 구조 수정
+- 로컬 검증
+
+등은 계속한다.
+
+GitHub push만 막힌 경우:
+
+- 로컬 수정
+- 로컬 검증
+- Evidence 생성
+- 변경사항 저장
+
+등 가능한 작업을 먼저 완료하고
+push만 Pending/BLOCKED로 남긴다.
+
+특정 실행기만 실패한 경우:
+
+기존 연결된 다른 실행기,
+완성 도구,
+Workflow,
+Connector,
+App,
+Skill,
+MCP,
+Template,
+Ready-made tool
+
+중 실제 사용 가능한 대체경로가 있는지 확인하고
+가능하면 즉시 전환한다.
+
+환경 하나의 실패 때문에
+전체 Work를 조기 종료하지 마라.
+
+
+------------------------------------------------------------
+5-4. CASE C — 핵심 실행 자체가 실제로 불가능
+------------------------------------------------------------
+
+모든 유효 실행경로가 실제로 막힌 경우에만
+전체 BLOCK을 허용한다.
+
+이 경우에도 같은 실패를 반복 재시도하여
+credit을 소모하지 마라.
+
+처리 순서:
+
+1. 최초 실제 실패 확인
+2. 기존 대체경로 확인
+3. 대체경로 실제 사용 가능 여부 확인
+4. 모두 불가능하면 정확한 blocker 특정
+5. Evidence 저장
+6. 현재 Checkpoint 저장
+7. 다음 resume point 저장
+8. 중단
+
+"안 된다"는 문장만 남기지 마라.
+
+무엇이,
+어디에서,
+어떤 실제 결과로,
+왜 차단됐는지를 증거로 남긴다.
+
+
+------------------------------------------------------------
+5-5. CREDIT BUDGET
+------------------------------------------------------------
+
+환경 진단 자체가 이번 Work의 목적이 아니다.
+
+Work credit의 대부분은
+
+실제 원인 확정
+→ 구조 수정
+→ 실제 검증
+→ E2E
+→ Recovery 검증
+
+에 사용한다.
+
+따라서:
+
+- 이미 확인한 검사를 반복하지 않는다.
+- 3,200건 재검사 금지.
+- 기존 PASS 재실행 금지.
+- 동일 명령 무의미한 반복 금지.
+- 실패한 설치 반복 금지.
+- 실패한 Network 요청 무의미한 반복 금지.
+- 동일 Sandbox 실패 반복 금지.
+- 새 프로그램 제작보다 기존 완성품/기존 코드 수정 우선.
+- 원인 조사만 하다가 credit을 소진하지 않는다.
+- 광범위 탐색보다 이미 확보된 Evidence를 우선 사용한다.
+
+
+------------------------------------------------------------
+5-6. CREDIT LOW WATERMARK
+------------------------------------------------------------
+
+남은 Work credit이 낮아지면
+새로운 광범위 조사를 시작하지 마라.
+
+우선 다음을 영구 저장한다.
+
+- 실제 변경사항
+- 현재 Evidence
+- 현재 PASS/FAIL/BLOCK 상태
+- 현재 Checkpoint
+- 남은 정확한 작업
+- 다음 resume point
+- 실패 원인
+- 실행 가능한 다음 명령/경로
+
+다음 Work가 처음부터 다시 시작되지 않게 한다.
+
+credit 종료 직전까지 조사만 하다가
+
+수정사항 없음
+Evidence 없음
+Checkpoint 없음
+resume point 없음
+
+상태로 끝내지 마라.
+
+
+------------------------------------------------------------
+5-7. 환경별 핵심 원칙
+------------------------------------------------------------
+
+사무실 환경 정상
+→ 환경조사 즉시 종료
+→ 본 작업 즉시 실행
+
+일부 이상
+→ 막힌 lane만 격리
+→ 가능한 본 작업 계속
+
+전체 실행 불가능
+→ 반복 재시도 금지
+→ 증거 + Checkpoint + resume point 저장
+
+어떤 경우에도 환경 차이를 이유로
+사용자에게 기존 지시를 다시 요구하거나
+전체 작업을 처음부터 다시 시작하지 마라.
+
+
+============================================================
+6. Work 시작 직후 실제 처리 순서
+============================================================
+
+다음 순서를 강제한다.
+
+STEP 1.
+기존 canonical 저장소와 Checkpoint를 읽는다.
+
+STEP 2.
+STARTUP FAST CHECK를 1회 수행한다.
+
+STEP 3.
+환경 상태를 CASE A/B/C로 즉시 분류한다.
+
+STEP 4.
+기존 선행분석 A~F를
+기존 코드·로그·Evidence와 대조한다.
+
+STEP 5.
+각 항목을
+
+CONFIRMED
+REJECTED
+ADDITIONAL_ROOT_CAUSE
+
+로 확정한다.
+
+STEP 6.
+CONFIRMED 원인은 즉시 수정한다.
+
+STEP 7.
+공통 원인은 개별 도구마다 반복 수정하지 말고
+상위 공통 계층에서 한 번 수정하여
+하위 전체에 전파한다.
+
+STEP 8.
+기존 검증된 PASS와 Evidence를 재사용한다.
+
+STEP 9.
+수정 부분에 필요한 최소 회귀검증을 수행한다.
+
+STEP 10.
+실제 최신 입력으로 FULL PLATFORM E2E를 수행한다.
+
+STEP 11.
+실패/재시작/Recovery 경로를 검증한다.
+
+STEP 12.
+Evidence/read-back/Observer를 확인한다.
+
+STEP 13.
+PASS 조건을 모두 만족할 때만 최종 PASS한다.
+
+
+============================================================
+7. 수정해야 할 최종 강제 실행 체인
+============================================================
+
+최종 실행경로는 다음 체인으로 연결한다.
+
+Instruction / Rule
+↓
+Actual Input
+↓
+Runner
+↓
+Registry / Factory / Socket
+↓
+Tool / Workflow / Connector / App
+↓
+Hard Gate
+↓
+Failure Detection
+↓
+Recovery / Alternate Route / Rollback
+↓
+Actual Output
+↓
+Independent Validation
+↓
+Evidence
+↓
+Read-back
+↓
+Observer / Control Tower
+↓
+ROOT PASS
+
+중간 어느 한 단계라도
+
+실제 입력 없음
+실행 없음
+산출물 없음
+검증 없음
+Evidence 없음
+Read-back 없음
+
+이면 다음 단계의 PASS를 만들 수 없어야 한다.
+
+ROOT PASS는 실제 하위 상태에서 계산되어야 하며
+별도로 임의 생성할 수 없어야 한다.
+
+
+============================================================
+8. 실행환경 문제도 자동 처리 대상으로 포함
+============================================================
+
+다음은 사용자가 해결할 문제가 아니다.
+
+- Network
+- Sandbox
+- 권한
+- CENTRAL/LOCAL 차이
+- GitHub 상태
+- 실행기 상태
+- Dependency
+- Runtime
+- Restart
+- Recovery
+- 외부 연결
+
+업무 실행 전에 실제 runtime을 read-back한다.
+
+실행 가능
+→ 즉시 진행
+
+일시적 환경 실패
+→ Recovery 또는 대체 실행경로
+
+일부 기능 실패
+→ 해당 lane 격리 + 나머지 계속
+
+플랫폼 자체에서 해결 불가능
+→ 정확한 BLOCK Evidence 저장
+
+설정 파일과 실제 세션 상태가 다르면
+실제 세션 상태를 우선한다.
+
+
+============================================================
+9. Discovery 원칙
+============================================================
+
+개별 프로그램을 새로 만드는 것을 기본값으로 하지 마라.
+
+우선순위:
+
+1. 기존 WIC 자산
+2. 기존 연결된 완제품
+3. 기존 Skill
+4. 기존 App
+5. 기존 MCP
+6. 기존 Connector
+7. 기존 Workflow
+8. 기존 Template
+9. 기존 Ready-made Team/Tool
+10. 필요한 경우 외부 완성품/오픈소스/무료티어/무료 모델
+11. 정말 필요한 경우에만 신규 개발
+
+공통 기능:
+
+- 조사
+- 검증
+- 검색
+- 중복검사
+- 문서
+- 메일
+- 발송
+- DB
+- 품질
+- Evidence
+- Recovery
+
+는 각 도구마다 따로 만들지 말고 재사용한다.
+
+
+============================================================
+10. 기존 WIC 업무 범위 유지
+============================================================
+
+기존 1~47 전 업무의 공통 구조를 유지한다.
+
+특히 기존 고객 안내 자동화의 목표:
+
+신규자료
+→ 발행사 판정
+→ 공식 상세정보 확보
+→ 제목
+→ 발행일
+→ 페이지
+→ 가격
+→ 라이선스
+→ URL
+→ TOC
+→ 규칙 검증
+→ 안내서 생성
+→ 검증
+→ DB 등록
+→ 고객 자동매칭
+→ 중복검사
+→ 연구분야 의미매칭
+→ 부족자료 자동탐색
+→ 메일 제목/본문/배치
+→ 발송 준비
+→ 출력 다변화
+
+구조를 개별 수작업으로 되돌리지 마라.
+
+기존 Golden Sample과
+기존 Negative/Failure 사례를 회귀검증에 활용한다.
+
+
+============================================================
+11. 42번 및 실데이터 원칙
+============================================================
+
+샘플만 성공시키고 전체 성공이라고 하지 마라.
+
+440개 실데이터 E2E 연결 요구를 유지한다.
+
+다만 기존 검증된 데이터를 전부 다시 처리하지 않는다.
+
+기존 PASS/Evidence를 재사용하고
+변경된 공통 구조가 실제 데이터 경로에서 작동하는지를 검증한다.
+
+안내서 매칭 자체를 이번 원인감사의 목적과 혼동하지 마라.
+
+이번 핵심은 매칭을 다시 수행하는 것이 아니라
+매칭을 포함한 실제 업무가 상위 구조를 우회하지 못하게 하는 것이다.
+
+
+============================================================
+12. 규칙 전파 검증
+============================================================
+
+GitHub에 규칙을 저장했다고 해서
+자동으로 모든 실행환경에 적용됐다고 판단하지 마라.
+
+반드시 확인한다.
+
+- 새 Work에서 실제 적용되는가.
+- 새 실행기에서 실제 적용되는가.
+- 재시작 후 유지되는가.
+- 외부 도구 호출에도 적용되는가.
+- 일반 ChatGPT 대화와 실행환경 사이의 한계를 구분하는가.
+- 규칙을 읽지 않은 실행이 가능한가.
+- 가능하다면 Hard Gate가 차단하는가.
+
+"저장됨"과 "강제 적용됨"을 구분한다.
+
+
+============================================================
+13. 검증 방식
+============================================================
+
+기존 약 3,200건 전체를 다시 검사하지 않는다.
+
+기존 PASS_LOCK/Evidence는 재사용한다.
+
+수정된 공통 구조에 대해서만 필요한 최소 검증을 한다.
+
+그 뒤 실제 최신 입력으로
+FULL PLATFORM E2E를 정확하게 수행한다.
+
+검증 경로:
+
+실제 입력
+→ 실제 실행
+→ 실제 산출물
+→ 독립 검증
+→ Hard Gate
+→ Evidence
+→ Read-back
+→ Observer
+
+그리고 반드시
+
+재시작
+또는
+실패
+
+상황에서도 같은 작업이
+사용자 재설명 없이 이어지는지 확인한다.
+
+
+============================================================
+14. 최종 PASS 조건
+============================================================
+
+다음 조건을 모두 만족하기 전에는
+전체 PASS 금지.
+
+- 실제 입력 존재
+- 실제 실행 성공
+- 실제 산출물 존재
+- 독립 검증 성공
+- Hard Gate 성공
+- Evidence 존재
+- Read-back 성공
+- Recovery 검증
+- Restart/recovery 검증
+- Observer 확인
+- GitHub/원격 상태 확인
+- 하위 상태와 ROOT PASS 일치
+- OPEN/HOLD/PARTIAL/RETEST_REQUIRED 모순 없음
+- REMAINING_EXECUTABLE = 0
+- USER_MANUAL_REPETITION = 0 경로 검증
+
+하나라도 확인되지 않으면
+전체 완료라고 하지 마라.
+
+상태는 정확히 다음 중 하나로 기록한다.
+
+완료/PASS
+진행 중
+미실행
+BLOCKED
+확인 필요
+
+
+============================================================
+15. Evidence 규칙
+============================================================
+
+"완료했다"
+"연결했다"
+"누적했다"
+"반영했다"
+"GitHub에 넣었다"
+"PASS다"
+
+라는 문장만으로 완료 처리하지 않는다.
+
+최소한 실제 확인 가능한 증거를 남긴다.
+
+GitHub 작업이면:
+
+- repository
+- 파일
+- 변경사항
+- commit
+- 필요 시 remote 확인
+
+파일 작업이면:
+
+- 실제 파일명
+- 경로
+- 변경내용
+- read-back
+
+실행 작업이면:
+
+- 실제 입력
+- 실행 결과
+- 실제 산출물
+- 검증 결과
+
+연결 작업이면:
+
+- 실제 호출
+- 실제 응답
+- 실패 시 Recovery 결과
+
+증거가 없으면 완료라고 하지 마라.
+
+
+============================================================
+16. CREDIT 낭비 방지 우선순위
+============================================================
+
+Work credit은 다음 순서로 사용한다.
+
+1. 기존 Checkpoint/PASS/Evidence 재사용
+2. 최소 환경검사
+3. 기존 선행분석 A~F 확정
+4. 실제 ROOT CAUSE 수정
+5. 최소 회귀검증
+6. FULL PLATFORM E2E
+7. Recovery/restart 검증
+8. Evidence 저장
+
+반대로 다음에는 credit을 사용하지 않는다.
+
+- 이미 알려진 내용을 다시 요약
+- 사용자 지시를 다시 문서화만 하는 작업
+- 기존 전체 데이터 재검색
+- 동일 실패 반복
+- 기존 PASS 재검사
+- 불필요한 새 프로그램 개발
+- 불필요한 환경조사
+- 결과 없는 장시간 탐색
+
+
+============================================================
+17. 새로운 AI 작업까지 포함하는 최종 범위
+============================================================
+
+이 구조는 WIC 업무만을 위한 것이 아니다.
+
+향후 사용자가 AI를 이용해 수행하는 가능한 작업 전반에서
+동일한 상위 원칙을 재사용할 수 있어야 한다.
+
+예:
+
+- 음성 분석
+- 음성 전사
+- 심리 분석
+- 조사
+- 웹 조사
+- 파일 분석
+- PDF 분석
+- 문서 작성
+- Excel/DB 처리
+- 고객 매칭
+- 시장보고서 조사
+- 이메일 업무
+- 프로그램 제작
+- 기존 프로그램 수정
+- 데이터 처리
+- 외부 도구 연결
+- 새로운 AI 서비스 활용
+- 반복 업무 자동화
+- 검증
+- Evidence
+- 실패복구
+
+새로운 업무가 생길 때마다
+사용자가 다시 시스템 전체를 가르치는 구조는 실패다.
+
+새 업무는 기존 상위 구조에서
+
+업무 분류
+→ 기존 기능 검색
+→ 기존 완제품 재사용
+→ 부족 기능만 보완
+→ 실행
+→ 검증
+→ Evidence
+
+순서로 처리한다.
+
+
+============================================================
+18. 사용자 역할
+============================================================
+
+사용자는 작업자가 아니다.
+
+사용자에게 다음을 반복 요구하지 마라.
+
+- 과거 규칙 다시 설명
+- 과거 자료 다시 제출
+- 같은 파일 다시 첨부
+- 같은 명령 다시 복사
+- 같은 명령 다시 붙여넣기
+- 실패한 작업 수동 재시작
+- 이미 존재하는 프로그램 재설명
+- 기존 완료 작업 재검증
+
+사용자는 Observer / Final Approver다.
+
+사용자의 개입이 반드시 필요한
+권한 승인·법적 승인·최종 의사결정 등이 아니라면
+기존 시스템과 실행도구가 먼저 처리한다.
+
+
+============================================================
+19. Work 종료 직전 강제 저장
+============================================================
+
+Work가 정상 완료되든,
+credit이 부족하든,
+환경 문제가 발생하든,
+
+종료 전에 반드시 다음을 남긴다.
+
+- 현재 실제 상태
+- CONFIRMED ROOT CAUSE
+- REJECTED 원인
+- ADDITIONAL ROOT CAUSE
+- 실제 수정사항
+- 실제 검증 결과
+- Evidence
+- PASS/FAIL/BLOCKED 상태
+- 남은 작업
+- 정확한 Checkpoint
+- 정확한 resume point
+
+다음 Work가 같은 조사를 처음부터 다시 하는 것을 금지한다.
+
+
+============================================================
+20. 최종 명령
+============================================================
+
+원인을 처음부터 다시 찾는 데
+Work credit을 낭비하지 마라.
+
+위 선행분석 A~F를
+기존 코드·로그·Evidence와 대조하여 먼저 확정하라.
+
+확정된 원인은 즉시 실제 구조에서 수정하라.
+
+공통 원인은 한 번만 수정하여
+모든 하위 작업에 전파하라.
+
+기존 검증 자산을 재사용하라.
+
+사무실 환경이 정상이라면
+환경조사를 즉시 끝내고 본 작업으로 들어가라.
+
+사무실 환경에 일부 문제가 있다면
+막힌 lane만 격리하고 가능한 작업은 계속하라.
+
+모든 실행경로가 실제로 막힌 경우에만
+반복 재시도 없이 Evidence와 Checkpoint를 남기고 BLOCK하라.
+
+마지막에는
+
+실제 FULL PLATFORM E2E
++
+실패/재시작 Recovery 검증
++
+Evidence/read-back
++
+Observer 확인
+
+으로 닫아라.
+
+사용자에게 기존 내용을 다시 설명하거나
+반복 입력하게 하지 마라.
+
+이번 작업의 성공 기준은
+새로운 지시문이나 프로그램을 하나 더 만드는 것이 아니다.
+
+사용자가 1년 넘게 반복해 온 설명과 개입이
+더 이상 필요하지 않도록
+
+기존 규칙
+기존 자산
+기존 도구
+실제 실행
+실패복구
+검증
+Evidence
+
+를 하나의 폐쇄된 실행경로로 만드는 것이다.
+
+USER MANUAL REPETITION = 0
+
+OBSERVER = USER
+
+UNVERIFIED PASS = FORBIDDEN
+
+FULL RE-SCAN = FORBIDDEN
+
+EXISTING VERIFIED PASS = REUSE
+
+ENVIRONMENT FAILURE ≠ WHOLE WORK FAILURE
+
+CREDIT WASTE = FORBIDDEN
+
+
+====================================================================
+[세 번째 지시문: 전체 원문 추가 / 생략 없음]
+====================================================================
+
+# 16번 Work — WIC 최상위 플랫폼 전 영역 무제한 연결 감사·자동개선·완료검증 영구 통합 지시문
+
+## 1. 최상위 절대 원칙
+
+WIC 최상위 플랫폼의 모든 구조, 프로그램, 도구, 자동화, 데이터, 외부 시스템, 실행 환경을 대상으로 범용 감사·개선·복구 체계를 적용한다.
+
+특정 도구 번호, 오류 유형, 작업 건수, 파일 수, 저장소, 연결 단계에 조사 범위를 제한하지 않는다.
+
+오류가 하나라도 발견되면 해당 오류와 연결된 모든 구조를 끝까지 추적한다.
+
+**오류 발견 → 영향 범위 추적 → 근본 원인 분석 → 연결 구조 수정 → 실제 실행 테스트 → 증거 저장 → 재발 방지 → 최종 검증**을 하나의 작업으로 처리한다.
+
+단순 보고서, 설계안, 목업, 임시 우회 조치만으로 완료 처리하지 않는다.
+
+## 2. 기존 플랫폼 우선 재사용
+
+기존 canonical GitHub 저장소를 기준으로 시작한다.
+
+`obk369369-spec/20-operational-manual-viewer`
+
+기존 Registry, Master, PASS_LOCK, Evidence, Queue, Backlog, Incomplete Register, Checkpoint, Control Tower, Observer, Watchdog, 16번, 44번 및 모든 관련 실행 구조를 확인한다.
+
+기존에 검증된 코드·설정·Workflow·테스트 증거를 우선 재사용한다.
+
+- 기존 PASS 초기화 금지
+- 약 3,200건의 기존 검증 대상 전체 재스캔 금지
+- 정상 작동하는 프로그램의 불필요한 재구현 금지
+- 기존 파일·규칙·기능의 무단 삭제 및 덮어쓰기 금지
+- 기존 도구와 동일한 기능을 가진 중복 프로그램 생성 금지
+
+새로운 기능이 필요하면 기존 구조에 통합할 수 있는지 먼저 판단한다.
+
+## 3. 전 영역 자동 발견 및 연결 관계 조사
+
+플랫폼에 등록된 모든 구성요소를 실제 코드·설정·저장소·실행 기록을 통해 발견한다.
+
+조사 대상에는 다음이 포함되며, 이 목록으로 범위를 제한하지 않는다.
+
+- 모든 기존 및 신규 도구
+- 중앙 플랫폼과 하위 실행기
+- 모든 GitHub 저장소와 Workflow
+- Registry·Master·Queue·Backlog
+- 데이터베이스·파일·원본 자료
+- 외부 API·연결 앱·에이전트
+- 클라우드·로컬·모바일 실행 환경
+- 자동화 스케줄러·트리거
+- 작업 전달·상태 동기화 구조
+- 검증·승인·배포·복구 구조
+- 사용자 화면·상태판·보고 체계
+- 보안·권한·인증·비밀정보 관리
+- 비용·사용량·실행 제한 관리
+
+각 구성요소의 입력, 출력, 실행 조건, 의존성, 담당 실행기, 오류 처리, 증거 저장 위치를 조사한다.
+
+**연결 관계를 실제로 확인할 수 없는 구성요소는 정상 연결로 간주하지 않는다.**
+
+## 4. 오류 발생 시 전체 연결망 추적
+
+어느 한 구조에서 오류가 발생해도 해당 부분만 조사하지 않는다.
+
+다음 방향을 모두 추적한다.
+
+1. 상위 구조: 오류를 발생시킨 지시·규칙·설정·작업 전달 경로
+2. 하위 구조: 오류 결과가 전달되는 실행기·데이터·고객 서비스
+3. 병렬 구조: 동일한 공통 기능을 사용하는 다른 도구
+4. 외부 구조: GitHub·API·클라우드·연결 앱·외부 실행기
+5. 과거 구조: 같은 원인이 반복된 기록과 기존 개선 이력
+6. 미래 구조: 동일 오류가 신규 도구에서 재발할 가능성
+
+추적은 고정된 단계 수나 도구 번호로 중단하지 않는다.
+
+새로운 연결과 영향 범위가 발견되면 감사 대상을 자동 확장한다.
+
+다만 실제 접근 권한이 없는 외부 시스템은 임의로 접근하거나 수정하지 않고, 확인 불가 원인과 필요한 조치를 기록한다.
+
+## 5. 공통 완료검증 엔진 강제
+
+모든 작업은 유형에 맞는 필수 완료 조건을 등록한다.
+
+공통 검증 흐름:
+
+INPUT → IDENTITY → REQUIREMENTS → REGISTRY → EXECUTION → RESULT VALIDATION → INDEPENDENT EVIDENCE → COUNT RECONCILIATION → PERSISTENCE → READ-BACK → REGRESSION → OUTPUT GATE → OBSERVER
+
+다음 상황에서는 최종 PASS를 금지한다.
+
+- 작업이 일부만 실행된 경우
+- 필수 결과가 누락된 경우
+- 실제 테스트를 실행하지 않은 경우
+- 증거 없이 성공했다고 보고한 경우
+- 저장만 하고 재확인하지 않은 경우
+- 외부 시스템 접근 실패를 성공으로 처리한 경우
+- 실제 실행 상태와 사용자 보고가 다른 경우
+
+작업별 완료 조건이 다르므로 하나의 고정된 검증표를 모든 작업에 기계적으로 적용하지 않는다.
+
+각 작업의 필수 조건을 만족했는지 중앙 완료검증 엔진이 확인한다.
+
+## 6. 범용 자동복구 및 재발 방지
+
+오류를 발견하면 기존 복구 규칙을 먼저 검색한다.
+
+동일한 원인에 대한 검증된 해결책이 있으면 재사용한다.
+
+해결책이 없으면 영향 범위를 분석하여 수정한다.
+
+수정 후에는 정상 실행, 실패 입력, 중복 실행, 중단 후 재시작, 증거 누락, 연결 실패, 회귀 테스트를 수행한다.
+
+반복되는 오류는 개별 도구마다 임시 수정하지 않고 가능한 경우 공통 구조에서 해결한다.
+
+복구 실패 시에는 원인·실패 위치·남은 작업·재개 조건을 저장한다.
+
+자동복구가 실제로 작동하지 않는 환경에서는 자동복구 완료라고 표시하지 않는다.
+
+## 7. 16번·44번·Control Tower 범용 통합
+
+16번은 전체 플랫폼의 작업 규칙·연결·검증·개선 상태를 관리한다.
+
+44번은 기존 자동접수 및 순환 구조를 활용하여 신규 작업·오류·개선 요청을 중앙 관리 구조에 전달한다.
+
+Control Tower는 실제 실행 상태와 증거를 기준으로 진행 상황을 관리한다.
+
+Observer는 사용자가 결과와 오류를 확인할 수 있도록 보고한다.
+
+이 역할은 기존 구현을 우선 확인한 뒤 유지하거나 개선한다.
+
+특정 도구에만 적용되는 별도의 중앙 관리 체계를 중복 생성하지 않는다.
+
+**모든 신규 도구와 기능도 등록 시점부터 공통 감사·검증·복구 규칙의 적용 대상이 되도록 한다.**
+
+## 8. 영구적인 증분 감사 구조
+
+일회성 전수감사로 종료하지 않는다.
+
+기존 검증 증거를 기준점으로 삼아 변경된 코드·설정·데이터·연결·실행 결과를 중심으로 증분 감사를 수행한다.
+
+새로운 오류가 발견되면 기존에 PASS였던 관련 구조도 영향 분석 대상으로 포함하되, 실제 영향이 없는 과거 검증은 반복하지 않는다.
+
+다음 상황에서 자동 감사가 시작되도록 기존 실행 구조와 연결한다.
+
+- 새로운 도구 등록
+- 기존 도구 수정
+- Workflow 또는 실행 환경 변경
+- 외부 API·연결 앱 변경
+- 오류 또는 실행 중단 발생
+- 증거 누락·상태 불일치 발견
+- 배포 전후 검증
+- 정기 감시 및 복구 점검
+
+자동 실행은 실제 스케줄러·권한·실행기가 준비된 범위에서만 활성화한다.
+
+## 9. 기존 문제 및 사례의 활용
+
+기존 WIC 감사에서 발견된 ROOT-01~14를 초기 검증 사례로 활용한다.
+
+51건 안내서 중복감사, 공식 발행사 검증 누락, 일부 작업만 완료한 상태에서 결과물을 제출한 문제도 재발 방지 테스트에 포함한다.
+
+그러나 해당 사례만 해결하는 것으로 전체 플랫폼 개선이 끝났다고 판단하지 않는다.
+
+모든 도구와 작업에서 같은 유형의 문제가 발생할 가능성을 조사한다.
+
+기존 감사 기록과 최신 실행 상태가 다르면 최신 증거를 우선한다.
+
+## 10. 안전한 변경·검증·배포
+
+수정 전 기존 상태와 체크포인트를 보존한다.
+
+영향 범위와 복구 방법을 확인한 뒤 최소 변경으로 수정한다.
+
+공통 기능을 변경할 때는 해당 기능을 사용하는 다른 도구까지 회귀 테스트한다.
+
+데이터 삭제, 외부 발송, 결제, 고객 정보 변경, 운영 환경의 중대한 변경 등은 기존 승인 규칙과 권한 범위를 준수한다.
+
+검증 실패 시 이전 정상 상태로 되돌리거나 안전한 HOLD 상태를 유지한다.
+
+완료되지 않은 변경을 운영 환경에 정상 배포된 것으로 표시하지 않는다.
+
+## 11. GitHub 영구 저장과 증거 관리
+
+기존 canonical 저장소와 실제 관련 저장소를 기준으로 변경 이력을 관리한다.
+
+각 개선 작업에 다음 정보를 연결한다.
+
+- 고유 작업 ID 및 오류 ID
+- 영향을 받는 구성요소
+- 근본 원인과 연결 관계
+- 수정 파일과 변경 내용
+- 실제 테스트 결과
+- Evidence 및 Checkpoint
+- Commit SHA
+- Read-back 결과
+- 최종 PASS 또는 HOLD 상태
+
+기존 PASS_LOCK과 원본 증거는 보존한다.
+
+작업이 중단되면 검증된 지점까지 저장하고 다음 실행에서 이어받는다.
+
+## 12. 최종 통합 보고
+
+사용자에게는 다음 내용을 한 번에 보고한다.
+
+| 구분       | 필수 보고                            |
+| -------- | -------------------------------- |
+| 전체 조사 범위 | 실제 조사한 구성요소 및 연결 수               |
+| 기존 정상 구조 | 재사용한 검증 증거                       |
+| 발견된 오류   | 신규·기존·반복 오류                      |
+| 연결 영향    | 상위·하위·병렬·외부 영향                   |
+| 근본 원인    | 실제 증거로 확인한 원인                    |
+| 수정 결과    | 실제 변경된 코드·설정·연결                  |
+| 테스트 결과   | 성공·실패·미실행                        |
+| 자동복구     | 실제 복구 및 재시작 결과                   |
+| 남은 문제    | HOLD 사유·재개 조건                    |
+| 영구 저장    | GitHub Commit·Evidence·Read-back |
+| 최종 상태    | 실제 검증된 PASS 범위                   |
+
+완료한 작업과 아직 실행하지 않은 작업을 명확히 구분한다.
+
+## 13. 최종 실행 명령
+
+**지금부터 기존 WIC 최상위 플랫폼의 실제 상태를 읽고, 검증된 체크포인트부터 전 영역 연결 감사를 시작한다.**
+
+특정 오류나 도구에 조사 범위를 제한하지 않는다.
+
+문제가 발견되면 연결된 모든 구조를 추적하고, 수정 가능한 문제는 실제 수정·테스트·증거 저장까지 처리한다.
+
+기존 정상 구조는 보존하고 중복 개발을 금지한다.
+
+사용자는 관찰자 역할을 유지한다.
+
+일회성 수정으로 끝내지 않고 신규 도구·신규 작업·향후 변경사항에도 적용되는 공통 구조로 통합한다.
+
+**최종 PASS는 실제 증거가 확보된 범위에서만 선언하며, 미완료 사항은 정확한 재개 지점과 함께 남긴다.**
+===== ORIGINAL 1 END =====
+
+===== ORIGINAL 2 START =====
+[WIC 16번 최상위 실행지시]
+외부 완성형 개발 플랫폼 전수조사
++ 무료 실행형 개발도구 통합
++ 최대공통 ROOT
++ 기존 1년치 WIC 개발자산 통합
++ 실제 개발·테스트·검증·배포
++ 증거 없는 실행 및 완료 원천 차단
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+0. 최상위 명령
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+이번 작업의 목적은 단순히 외부 도구를 조사하거나
+연결하는 것이 아니다.
+
+Claude Code 수준의 실행형 개발 능력을
+기존 WIC 최상위 플랫폼에 실제 도입한다.
+
+최종 목표:
+
+사용자 작업 지시
+→ 기존 프로그램 자동 탐색
+→ 기존 코드 및 완료 부품 재사용
+→ 실제 코드 개발
+→ 자동 실행
+→ 자동 테스트
+→ 오류 원인 분석
+→ 자동 수정
+→ 재실행
+→ 회귀 테스트
+→ 최종 배포
+→ 배포본 실제 작동 검증
+→ 검증 증거 영구 보존
+→ 사용자 결과 확인
+
+사용자는 관찰자다.
+
+사용자에게 개발, 테스트, 명령어 입력,
+파일 수정, 오류 해결을 떠넘기지 않는다.
+
+외부 플랫폼과 최상위 실행 구조가
+실제로 검증되기 전에는
+본격적인 WIC 도구 개발을 시작하지 않는다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. 기존 WIC 자산 우선 복구
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Canonical GitHub:
+
+obk369369-spec/20-operational-manual-viewer
+
+기존 다음 자료를 먼저 읽는다.
+
+Registry
+Evidence
+PASS_LOCK
+Checkpoint
+Handoff
+Incomplete Register
+Control Tower
+Observer
+Queue
+Workflow
+배포 기록
+실행 코드
+최근 1년 Failure/Feedback
+
+특히:
+
+handoff/WIC_NEXT_CHAT_HANDOFF_2026-10-11.md
+
+기존 검증 결과와 완료된 부품을 보존한다.
+
+기존 약 3200건 전체 재검색 금지.
+기존 PASS 무조건 재실행 금지.
+기존 13번 전체 재개발 금지.
+이미 확인한 외부 도구 반복 조사 금지.
+
+기존 자산의 실제 존재 여부와 최신 상태는
+GitHub 원격 저장소에서 확인한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. 외부 개발 플랫폼 전수조사
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+조사 대상은 특정 AI 회사에 제한하지 않는다.
+
+무료 또는 무료 사용 구간이 존재하는
+오픈소스, 공유 가능한 실행형 개발도구,
+자동 테스트 도구, 배포 플랫폼,
+오류 자동복구 도구를 모두 포함한다.
+
+아래 후보는 필수 조사 대상이다.
+
+[A. AI 개발 실행 엔진]
+
+1. Claude Code
+2. Claude Code GitHub Action
+3. OpenAI Codex
+4. Codex GitHub Action
+5. OpenHands
+6. Aider
+7. 기타 오픈소스 코딩 에이전트
+
+[B. 실행 및 자동화]
+
+8. GitHub Actions
+9. act
+10. Dagger
+11. Docker
+12. Docker Compose
+13. 기존 WIC Cloud Worker
+14. 기존 WIC 자동접수 및 실행 구조
+
+[C. 자동 테스트]
+
+15. Playwright
+16. pytest
+17. Vitest
+18. Jest
+19. Schemathesis
+20. Grafana k6
+
+[D. 코드 품질 및 보안]
+
+21. Semgrep Community Edition
+22. Trivy
+23. OWASP ZAP
+24. Renovate
+25. Dependabot
+
+[E. 배포 및 운영]
+
+26. GitHub Pages
+27. Cloudflare Pages/Workers
+28. Render
+29. Argo CD
+30. OpenTofu
+
+[F. 증거 및 운영 감시]
+
+31. GitHub Actions Artifacts
+32. Playwright Trace Viewer
+33. 테스트 HTML/JUnit 보고서
+34. Sentry
+35. 기존 WIC Evidence Ledger
+36. 기존 WIC Observer
+
+이 목록은 조사 범위의 하한선이다.
+
+여기에 없는 우수한 외부 도구도
+추가로 찾아야 한다.
+
+단, 인터넷상의 모든 도구를 빠짐없이
+발견했다고 주장해서는 안 된다.
+
+공식 문서, 공개 저장소, 라이선스,
+현재 배포 상태를 기준으로
+조사 범위와 누락 가능성을 기록한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. 무료 여부와 실제 사용 가능성 검증
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+각 외부 도구에 대해 다음을 확인한다.
+
+도구 이름
+공식 사이트
+공식 GitHub 저장소
+라이선스
+무료 사용 가능 여부
+무료 사용 제한
+유료 API 필요 여부
+추가 서버 비용
+실행 환경
+GitHub 연결 방식
+자동 실행 가능 여부
+자동 코드 수정 가능 여부
+테스트 지원 여부
+배포 지원 여부
+실행 증거 생성 여부
+모바일 관찰 가능 여부
+기존 WIC 재사용 가능 여부
+
+중요:
+
+오픈소스라는 이유만으로
+완전 무료라고 판단하지 않는다.
+
+프로그램 무료와
+AI 모델 호출 무료는 구분한다.
+
+무료 소프트웨어라도
+서버, API, 저장 공간,
+실행 시간에 비용이 발생할 수 있다.
+
+비용이 발생하는 후보는
+사용자 승인 없이 결제하지 않는다.
+
+무료로 동일 기능을 수행할 수 있다면
+무료 방식을 우선한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. 현재 Codex Work와 외부 구조 비교
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+단순 기능표 비교 금지.
+
+기존 WIC 환경에서
+실제로 어느 방식이 작동하는지 검증한다.
+
+비교 기준:
+
+① 기존 코드 읽기
+② 기존 프로그램 수정
+③ 실제 프로그램 실행
+④ 테스트 자동 생성
+⑤ 오류 자동 수정
+⑥ 재테스트
+⑦ 회귀 테스트
+⑧ 실제 배포
+⑨ 배포 후 검증
+⑩ 실패 시 자동 복구
+⑪ 실행 중단 후 재개
+⑫ 증거 자동 보존
+⑬ 사용자 수동 개입
+⑭ 무료 사용 가능 범위
+⑮ 기존 WIC 연결 난이도
+⑯ 실제 작업 완료 시간
+
+각 항목에 대해:
+
+현재 WIC 방식
+외부 후보 방식
+차이
+실제 개선 효과
+필요한 연결
+실제 테스트 결과
+
+를 기록한다.
+
+문서상 기능과 실제 검증된 기능을 구분한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. 외부 완성품 우선 도입
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+외부 도구의 기능을
+WIC 내부에서 처음부터 다시 만들지 않는다.
+
+우선순위:
+
+1순위:
+기존 완성형 플랫폼을 그대로 사용
+
+2순위:
+기존 완성형 플랫폼을 공식 연결 방식으로 결합
+
+3순위:
+검증된 완성 부품을 소켓 형태로 조합
+
+4순위:
+부족한 연결부만 최소 개발
+
+5순위:
+다른 방법이 없는 경우에만 신규 개발
+
+소켓이란:
+
+이미 완성된 외부 프로그램을
+표준 인터페이스로 연결하여
+재개발 없이 사용하는 구조다.
+
+지원 방식:
+
+공식 API
+공식 SDK
+GitHub Action
+CLI
+컨테이너
+웹훅
+표준 파일 입출력
+MCP 등 공식 지원 인터페이스
+
+실제 지원하지 않는 연결 방식은
+임의로 존재한다고 가정하지 않는다.
+
+연결을 위해 몇 주 또는 몇 달 동안
+새 플랫폼을 개발하는 방식은 금지한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. 최상위 플랫폼 구조
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+최상위 구조는 다음 기능을 제공해야 한다.
+
+[사용자 작업 접수]
+        ↓
+[WIC 중앙 Control Tower]
+        ↓
+[기존 코드·규칙·증거 확인]
+        ↓
+[최대공통 ROOT 분석]
+        ↓
+[실행형 개발 엔진]
+        ↓
+[독립 실행 환경]
+        ↓
+[자동 테스트 엔진]
+        ↓
+[오류 분석 및 자동 수정]
+        ↓
+[재테스트·회귀 테스트]
+        ↓
+[배포 엔진]
+        ↓
+[실제 배포본 검증]
+        ↓
+[증거 저장]
+        ↓
+[최종 완료 판정]
+        ↓
+[모바일 Observer 보고]
+
+이 구조를 새로 설계하기 전에
+기존 WIC에서 이미 구현된 부분을 확인한다.
+
+기존 부품은 그대로 재사용한다.
+
+외부 완성품은 해당 기능에 직접 결합한다.
+
+중복 플랫폼 생성 금지.
+중복 실행기 생성 금지.
+중복 Registry 생성 금지.
+중복 Evidence 저장소 생성 금지.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. 외부 도구 연결 경로 전 구간 검증
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+각 외부 도구마다 다음 경로를 기록한다.
+
+SOURCE
+→ DOWNLOAD/INSTALL
+→ VERSION
+→ LICENSE
+→ AUTHENTICATION
+→ PERMISSION
+→ EXECUTION ENVIRONMENT
+→ ADAPTER/SOCKET
+→ WIC CONTROL TOWER
+→ INPUT
+→ EXECUTION
+→ OUTPUT
+→ VALIDATOR
+→ EVIDENCE
+→ DEPLOYMENT
+→ DEPLOYED READ-BACK
+
+각 구간의 실제 성공 여부를 확인한다.
+
+필수 증거:
+
+공식 출처
+버전 및 해시
+설치/호출 성공
+인증 및 권한 확인
+실제 입력 전달
+실제 실행 로그
+실제 출력 생성
+출력 검증
+오류 처리 결과
+배포 결과
+원격 재확인
+
+단순 연결 성공만으로 PASS 금지.
+
+각 연결 구간이 실제 기능을 수행해야 한다.
+
+외부에서 가져온 코드와 컨테이너는
+신뢰할 수 없는 입력으로 취급한다.
+
+비밀키 노출 방지,
+최소 권한,
+버전 고정,
+공급망 보안 검사를 적용한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8. 최상위 플랫폼 HARD GATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+가장 중요한 규칙이다.
+
+외부 실행형 개발 구조가
+실제로 검증되지 않았다면
+본격적인 WIC 도구 개발을 시작하지 않는다.
+
+다음 조건을 모두 확인한다.
+
+GATE 1:
+기존 WIC 자산 정상 접근
+
+GATE 2:
+기존 PASS 및 Checkpoint 보존
+
+GATE 3:
+선택한 외부 실행 엔진 실제 실행
+
+GATE 4:
+기존 코드 수정 가능
+
+GATE 5:
+자동 테스트 실제 실행
+
+GATE 6:
+의도적으로 만든 오류 탐지 성공
+
+GATE 7:
+오류 수정 후 재테스트 성공
+
+GATE 8:
+기존 정상 기능 유지
+
+GATE 9:
+실제 시험 배포 성공
+
+GATE 10:
+배포된 프로그램 직접 재확인
+
+GATE 11:
+증거 파일 생성
+
+GATE 12:
+GitHub 원격 저장 및 Read-back
+
+GATE 13:
+실패 시 복구 및 재개 가능성 검증
+
+GATE 14:
+사용자 수동 개입 없이 작업 수행
+
+GATE 15:
+최종 결과가 Observer에 표시
+
+모든 Gate가 PASS해야
+본격적인 WIC 도구 개발을 시작한다.
+
+중요:
+
+이 Gate를 통과하기 위한
+최소한의 시험 개발과 시험 배포는 허용한다.
+
+그러나 실제 WIC 업무도구의 대규모 수정,
+기존 PASS 변경, 운영 배포는 금지한다.
+
+시험은 격리 환경에서 수행한다.
+
+실패하면:
+
+PLATFORM_PREFLIGHT_BLOCKED
+
+상태로 기록한다.
+
+증거 없는 예외 통과 금지.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+9. 플랫폼 자체의 검증
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+개별 외부 도구만 검증해서는 안 된다.
+
+외부 도구들을 조합한
+최상위 플랫폼 자체를 검증한다.
+
+필수 시험:
+
+실제 지시 접수
+→ 실행 엔진 호출
+→ 기존 코드 수정
+→ 테스트
+→ 오류 자동 수정
+→ 재테스트
+→ 시험 배포
+→ 배포본 재확인
+→ 증거 보존
+→ Observer 결과 표시
+
+추가 시험:
+
+연결 끊김
+실행 환경 장애
+인증 실패
+작업 중단
+중복 실행
+출력 누락
+잘못된 PASS
+증거 손실
+배포 실패
+복구 실패
+
+각 상황에서
+정상적인 실패 판정과 복구가 가능한지 확인한다.
+
+기존 정상 운영 상태를 훼손하지 않는
+격리 시험을 사용한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+10. 최근 1년치 WIC 전체 도구 통합
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+최상위 플랫폼 Gate를 통과한 후
+최근 1년치 WIC 도구 개발을 시작한다.
+
+대상:
+
+1번 고객 자동 안내
+2번 입찰
+6번 목차 정리
+7번 연락 판단
+9번 콘텐츠 안내
+10번 재무 대시보드
+11번 재무 시뮬레이션
+13번 Excel 자동 업로드
+16번 중앙 개발 관리
+24번 영상
+25번 메타데이터
+27번 대용량 CSV
+28번 외부툴 운영센터
+42번 고객 안내
+43번 소형 앱 출시
+44번 중앙 자동접수
+기타 기존 Registry에 등록된 모든 도구
+
+번호 목록에 없는 도구도 제외하지 않는다.
+
+최근 1년 동안 누적된
+Failure/Feedback/Incomplete 항목을
+모두 ROOT 발견 범위에 포함한다.
+
+기존 검증 증거를 재사용하며
+전체 도구를 무조건 재실행하지 않는다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+11. 최대공통 ROOT 처리
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+같은 원인으로 발생한 오류는
+최대한 하나의 ROOT로 묶는다.
+
+예:
+
+실행 환경 문제
+인증 문제
+외부 연결 문제
+자동 실행 문제
+출력 검증 문제
+데이터 무결성 문제
+자동 복구 문제
+배포 문제
+증거 관리 문제
+상태 전달 문제
+
+단순히 증상이 비슷하다는 이유로
+서로 다른 원인을 하나로 묶지 않는다.
+
+실제 원인과 영향 범위를 확인한다.
+
+공통 ROOT 수정
+→ 공통 부품 검증
+→ 관련 도구 연결
+→ 영향받은 도구 테스트
+→ 실제 배포
+→ 증거 저장
+
+방식으로 처리한다.
+
+각 도구를 처음부터 다시 만드는 방식은 금지한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+12. 13번은 조립 우선
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+13번은 이미 개발된 부품을 우선 사용한다.
+
+전체 재개발 금지.
+
+기존 기능:
+
+파일 입력
+데이터 변환
+카테고리 처리
+날짜 처리
+필드 매핑
+검증
+오류 처리
+XLSX 생성
+다운로드
+
+등을 재사용한다.
+
+부족한 연결만 조립한다.
+
+기존 실제 입력을 사용해
+전체 업무 흐름을 검증한다.
+
+특히:
+
+정상 행 계속 처리
+자동 수정
+수정 후 재검증
+해결 불가능한 행만 격리
+행 간 데이터 혼합 방지
+누락 0
+중복 0
+식별자 교환 0
+최종 XLSX 재열기
+실제 업무 필드 비교
+
+를 증명한다.
+
+13번에서 검증된 공통 부품은
+다른 관련 도구에도 재사용한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+13. 실제 배포 완료 조건
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+각 도구는 다음 조건을 충족해야 한다.
+
+실제 코드 변경
+실제 테스트
+오류 수정
+회귀 테스트
+최종 빌드
+실제 배포
+배포 대상 재접속
+실제 기능 재실행
+사용자 출력 확인
+Evidence 생성
+GitHub Commit
+Remote Read-back
+
+웹 프로그램은
+실제 배포 주소에서 기능을 확인한다.
+
+파일 생성 도구는
+최종 파일을 다시 열어 검증한다.
+
+API는
+실제 엔드포인트 응답을 검증한다.
+
+자동화 도구는
+실제 작업 흐름의 입력부터 출력까지 검증한다.
+
+배포 대상이 없는 도구는
+실제 사용자 실행 가능한 최종 산출물을 검증한다.
+
+단순 테스트 PASS는
+최종 배포 완료가 아니다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+14. 증거 위조 및 잘못된 완료 차단
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+다음 행위를 금지한다.
+
+실행하지 않은 테스트를 PASS 처리
+가짜 로그 생성
+샘플 실행을 실제 실행으로 보고
+코드 존재를 배포 완료로 보고
+오래된 Evidence를 최신 결과로 사용
+부분 성공을 전체 성공으로 보고
+배포되지 않은 코드를 완료 처리
+사용자 출력 오류를 무시
+검증하지 않은 외부 도구를 정상 연결로 보고
+
+실제 증거에는 다음을 기록한다.
+
+실행 시각
+도구 이름
+버전
+실행 환경
+입력 식별자
+코드 Commit
+테스트 결과
+실패 및 수정 기록
+배포 대상
+배포 버전
+최종 출력
+검증 결과
+증거 파일 경로
+
+증거가 없으면 COMPLETE 금지.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+15. 실행 시간과 자동 복구
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+기본 목표는
+대표적인 개발 작업 하나를
+가능하면 30분 이내에
+실제 실행·테스트·검증하는 것이다.
+
+단, 30분은 목표이지
+무조건 성공을 선언하는 제한 시간이 아니다.
+
+작업이 중단되면
+마지막 VERIFIED CHECKPOINT에서 재개한다.
+
+같은 오류를 무한 반복하지 않는다.
+
+반복 실패하면:
+
+원인 기록
+→ 증거 저장
+→ 안전한 상태 보존
+→ 대체 실행 환경 검토
+→ 자동 재개 가능 여부 판정
+
+으로 처리한다.
+
+사용자에게 반복적인 재시작을 요구하지 않는다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+16. 비용 및 보안
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+무료 완성품 우선.
+
+유료 서비스 자동 결제 금지.
+
+API 비용 발생 여부 확인.
+
+고객 개인정보와 내부 영업자료를
+공개 저장소 또는 외부 AI 서비스로
+무단 전송하지 않는다.
+
+오픈소스 라이선스와
+상업적 이용 가능 여부를 확인한다.
+
+외부 코드 실행은 격리한다.
+
+운영 데이터 삭제,
+기존 PASS 훼손,
+검증되지 않은 운영 배포를 금지한다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+17. 최종 증거 보고
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+최종 보고에는 다음을 포함한다.
+
+[외부 플랫폼]
+
+조사한 후보 수
+실제 무료 사용 가능 후보 수
+실제 실행 검증 후보 수
+최종 선택한 실행 엔진
+선택 이유
+제외 후보와 이유
+
+[최상위 구조]
+
+기존 WIC 재사용 부품
+외부에서 가져온 완성품
+소켓 연결 부품
+신규 개발한 연결부
+각 연결 구간 검증 결과
+HARD GATE 통과 여부
+
+[실제 개발]
+
+전체 WIC 대상 도구 수
+최대공통 ROOT 수
+수정 완료 ROOT 수
+영향받은 도구 수
+실제 테스트 PASS 수
+실제 배포 PASS 수
+배포 후 검증 PASS 수
+남은 BLOCKED 수
+
+[증거]
+
+실제 실행 로그
+테스트 보고서
+오류 수정 기록
+배포 결과
+배포 주소 또는 산출물
+GitHub Commit
+Remote Read-back
+Evidence 파일
+Checkpoint
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+18. 최종 강제 규칙
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+외부 완성형 플랫폼을 가져오거나
+검증된 소켓으로 조합한
+최상위 실행 구조가 실제로 작동하지 않으면
+
+PLATFORM_GATE = FAIL
+
+본격적인 WIC 도구 개발 시작 금지.
+
+최상위 플랫폼이 검증되면
+
+PLATFORM_GATE = PASS
+
+그때부터 기존 1년치 WIC 도구를
+최대공통 ROOT 방식으로 실제 개발한다.
+
+각 도구는
+실제 테스트·검증·배포·재확인 증거가
+모두 존재할 때만 COMPLETE 처리한다.
+
+플랫폼 PASS와
+개별 도구 COMPLETE는 별도로 판정한다.
+
+최종 목표는
+외부 도구를 많이 연결하는 것이 아니다.
+
+지난 1년간 개발이 지연된
+실제 WIC 프로그램들이
+사용 가능한 완성품으로 배포되는 것이다.
+
+설계서 작성이나 지시문 작성만으로
+작업을 종료하지 않는다.
+===== ORIGINAL 2 END =====
+
+===== ORIGINAL 3 START =====
+[16번 WIC 최상위 실행 지시문
+— 완성품 최우선 / 증거 선행 시작게이트 / 반복작업 차단 / 1년치 전체자산 활용 /
+최단경로 사전계획 / 완성품+조합 병렬운영 / GPT·Codex·Work 상시의존 제거]
+
+이 지시는 특정 13번 도구 하나만을 위한 지시가 아니다.
+
+WIC에서 지난 1년 이상
+GPT 대화창, Codex, Work, 각 번호별 도구 작업창,
+37번 규칙 작업, 실제 업무, 실제 파일, 홈페이지 입력,
+사용자 피드백과 반복 테스트 등을 통해 축적한
+모든 프로그램·도구·업무 자동화에 공통 적용하는
+최상위 실행 원칙이다.
+
+아래 규칙 중 일부만 선택하여 적용하지 마라.
+전체를 하나의 실행체계로 적용한다.
+
+
+==================================================
+0. 최상위 목적
+==================================================
+
+앞으로 WIC의 기본 전략을
+
+필요한 기능 발견
+→ 다시 개발
+→ 수정
+→ 재수정
+→ 다른 환경으로 이전
+→ 다시 조립
+→ 다시 테스트
+
+방식에서 탈피한다.
+
+새 기본경로는 다음이다.
+
+기존 1년치 전체 증거 회수
+→ 실제 업무 요구사항 복원
+→ 이미 완성되어 있는 제품/플랫폼/서비스/도구 탐색
+→ 가장 적합한 완성품 확보
+→ 플랫폼 내부에 소켓을 꽂듯 연결
+→ 실제 업무자료 입력
+→ 실제 최종 결과 생성
+→ 기존 정답과 자동 대조
+→ 증거 확보
+→ PASS면 즉시 실무 사용
+
+완성품이 존재한다면
+직접 개발·재개발·반복 개선·대규모 조립보다
+완성품 도입을 무조건 우선한다.
+
+최상위 우선순위는
+
+1. 완성품
+2. 기존 검증부품의 최소 조합
+3. 신규 제작
+
+순서다.
+
+
+==================================================
+1. 최상위 선행 게이트
+— 증거를 남길 수 없는 작업은 시작 자체 금지
+==================================================
+
+이 규칙은 아래의 모든 규칙보다 우선한다.
+
+"일단 시작하고 나중에 증거를 찾는 방식"을 금지한다.
+
+어떠한
+
+완성품 도입
+연결
+설정
+검증
+조합
+이전
+개선
+조사
+테스트
+
+작업도
+
+"이번 작업이 끝났을 때 정확히 어떤 증거가 남는가"
+
+가 시작 전에 확정되지 않았다면
+작업을 시작하지 마라.
+
+목적은
+
+조사만 반복
+후보만 반복 탐색
+테스트만 반복
+개선만 반복
+환경만 반복 이동
+크레딧만 소비
+결과물 없는 작업
+
+을 작업 시작 단계에서 차단하는 것이다.
+
+
+==================================================
+2. 작업 시작 전에 반드시 확정할 12개 항목
+==================================================
+
+모든 실행 전에 반드시 다음을 확정한다.
+
+1. 가져올 완성품의 정확한 이름
+
+2. 해당 완성품으로 대체하려는
+   기존 WIC 업무/도구/기능
+
+3. 기존 1년치 자료에서 회수한 전체 요구사항
+
+4. 실제 검증에 사용할 원본 업무자료
+
+5. 완성품에 실제 입력할 자료
+
+6. 정상이라면 생성되어야 하는 실제 최종 결과물
+
+7. 기존 정상결과와 비교할 기준
+
+8. 반드시 남겨야 할 실행증거
+
+9. PASS 판정조건
+
+10. FAIL/HOLD 판정조건
+
+11. 허용할 최대 시간/크레딧
+
+12. 실패했을 때 즉시 이동할
+    다음 완성품/다음 최단경로
+
+12개가 확정되지 않으면 실행하지 마라.
+
+특히 다음 방식으로 시작하지 마라.
+
+"우선 조사해보자"
+
+"일단 들어가 보자"
+
+"먼저 테스트해보자"
+
+"써보면서 생각하자"
+
+"문제가 생기면 고치자"
+
+"안 되면 그때 다른 제품을 찾자"
+
+"일단 조립해보자"
+
+끝을 정의하지 않은 작업은 시작하지 않는다.
+
+완료조건이 없는 조사는 시작하지 않는다.
+
+상한 없는 테스트는 시작하지 않는다.
+
+다음 경로가 준비되지 않은 후보 실험도 시작하지 않는다.
+
+
+==================================================
+3. 지난 1년치 WIC 자산 전부 회수
+==================================================
+
+사용자에게 과거 요구사항을 다시 설명시키지 마라.
+
+지난 1년 이상 축적된 모든 관련 자료를 우선 회수한다.
+
+단순 기능목록만 회수하지 않는다.
+
+반드시 포함:
+
+- 최초 도구 목적
+- 실제 업무 목적
+- 사용자 지시
+- 사용자 피드백
+- 반복 수정사항
+- 실제 입력자료
+- 실제 정상 출력자료
+- 실패 사례
+- 성공 사례
+- PASS 증거
+- HOLD 증거
+- 테스트 결과
+- 실제 사용결과
+- 발행사별 규칙
+- 자료 종류별 규칙
+- 공통 규칙
+- 예외 규칙
+- UI 사용방식
+- 자동화 방식
+- 사용자가 거부한 방식
+- 사용자가 최종 선택한 방식
+- 실제 홈페이지 요구조건
+- 파일 형식
+- 필드 규칙
+- 번역 규칙
+- 카테고리 규칙
+- 가격 규칙
+- 날짜 규칙
+- 단위 규칙
+- 검증 규칙
+- 누락 방지 규칙
+- 중복 방지 규칙
+- 행 섞임 방지 규칙
+- 원본 추적 규칙
+- 기존 PASS
+- DO_NOT_TOUCH 범위
+- 실제 배포/실행 증거
+- 기타 각 도구에서 1년 이상 축적된 모든 관련 정보
+
+일부 대표 기능만 골라서
+전체 요구사항인 것처럼 판단하지 마라.
+
+기존 자료 전체를
+
+"또 프로그램을 만드는 사양서"
+
+로만 사용하지 말고,
+
+"이미 존재하는 완성품이 WIC 업무를 정말 대체할 수 있는지
+판정하는 정답지"
+
+로 최우선 사용한다.
+
+
+==================================================
+4. 13번은 첫 실제 적용사례
+==================================================
+
+13번은 단순 Excel 변환기가 아니다.
+
+13번/37번 및 관련 대화와 실제 업무에서
+지난 1년간 축적된 전체 자료를 회수한다.
+
+최소한 다음을 포함하되,
+아래 목록만으로 제한하지 마라.
+
+- 세계 여러 발행사의 서로 다른 원본 파일 처리
+- 서로 다른 컬럼 구조 인식
+- 발행사 자동 판별
+- 자료 유형 자동 판별
+- 헤더 자동 판별
+- 자동 필드 매칭
+- 상품명
+- 한글명
+- 영문 원제 보존
+- WIC 방식 한글 제목 자동번역
+- 원제 구조/순서 보존
+- 기존 WIC 번역 스타일/용어 활용
+- 잘못된 기존 번역의 맹목적 재사용 방지
+- WIC 실제 카테고리 체계 사용
+- 원본 카테고리/제목/내용을 이용한 자동 카테고리 매칭
+- 1차카테고리
+- 2차카테고리
+- 3차카테고리 최종 처리규칙
+- 페이지수
+- 체제
+- "299"가 아니라 "299 Pages"와 같은 실제 홈페이지 형식
+- 개요
+- 목차
+- 발행일
+- 통화
+- 환(u,e,g,j)
+- PDF가격
+- Hardcopy가격
+- 저자
+- ISBN/CODE
+- 파일명
+- 판매유형
+- 날짜 정규화
+- 가격 정규화
+- 통화 정규화
+- 단위 정규화
+- 여러 파일 일괄처리
+- 대량 행 처리
+- 원본 파일 추적
+- 원본 행 추적
+- 변환 행 추적
+- 원본 ↔ 변환 ↔ 다운로드 결과 1:1 검증
+- 행수 검증
+- 누락 검증
+- 중복 검증
+- 행 섞임 방지
+- 필수값 검증
+- 발행사별 예상 패턴 검증
+- 기존 VERIFIED 규칙
+- 공통규칙
+- 발행사별 규칙
+- 예외규칙
+- 불확실한 값의 임의 추측 금지
+- 새로운 형식/불확실한 결과 HOLD
+- PASS/HOLD 구분
+- 최종 WIC 홈페이지 업로드 형식 Excel 생성
+- 다운로드 결과 재검사
+- 실제 홈페이지 정상자료와 비교
+- 기타 13번/37번에서 지난 1년간 축적된 모든 피드백과 규칙
+
+위 목록에 없다는 이유로
+기존 요구사항을 누락하지 마라.
+
+13번 기존 프로그램 자체를 다시 고치는 것이
+현재 본선이 아니다.
+
+기존 13번과 1년치 관련자료는
+완성품의 정상 여부를 판정하는
+기준자료/정답지로 우선 사용한다.
+
+
+==================================================
+5. 완성품의 정의
+==================================================
+
+완성품은
+
+"개발하면 가능한 제품"
+
+을 뜻하지 않는다.
+
+이미 필요한 핵심 기능이 제품 안에 존재하고
+정상적인 최초 설정만 하면 사용할 수 있어야 한다.
+
+허용되는 것:
+
+- 계정 연결
+- 로그인
+- 정상적인 최초 설정
+- WIC 출력 필드 등록
+- WIC 카테고리표 등록
+- 정상적인 매핑 설정
+- 제품이 원래 제공하는 기능 활성화
+- 실제 입력자료 등록
+
+이것은 완성품 사용을 위한
+초기 설정으로 볼 수 있다.
+
+반면 다음은 완성품으로 보지 않는다.
+
+- 별도 프로그램 신규 개발 필요
+- 제품 내부 대규모 코드작성 필요
+- 제품에 없는 핵심기능 직접 구현 필요
+- 대규모 커스터마이징 필요
+- 새로운 변환엔진 제작 필요
+- 새로운 번역시스템 제작 필요
+- 새로운 분류엔진 제작 필요
+- 기존 13번을 다시 이식해야만 사용 가능
+
+"코딩하면 된다"
+
+"API를 새로 만들면 된다"
+
+"조금 개발하면 된다"
+
+를 이유로 완성품이라고 판정하지 마라.
+
+
+==================================================
+6. 완성품 후보는 작업 전에 순위를 준비
+==================================================
+
+후보를 하나만 찾고 시작하지 않는다.
+
+기존 1년치 요구사항과 증거를 이용하여
+가능한 완성품 후보를 미리 우선순위화한다.
+
+예:
+
+후보 A
+후보 B
+후보 C
+후보 D
+...
+
+후보 A를 시작하기 전에
+A가 실패했을 경우 이동할 B가 준비되어 있어야 한다.
+
+B가 실패할 경우 C가 준비되어 있어야 한다.
+
+단순히 이름이 비슷한 제품을
+후보로 넣지 않는다.
+
+핵심기능이 제품 자체에 존재하는지
+먼저 확인한다.
+
+
+==================================================
+7. 막힌 길을 계속 파지 않는 최단경로 규칙
+==================================================
+
+후보 A에서 결정적인 장애가 발견되면
+A를 계속 붙잡고 개선하지 않는다.
+
+다음과 같이 처리한다.
+
+A 실행
+→ 장애 발생
+→ 실제 실패증거 저장
+→ 실패 원인 저장
+→ 소비 자원 기록
+→ B로 이동
+
+B 실패
+→ 증거 저장
+→ C로 이동
+
+이 경로를 실행 전에 계획한다.
+
+중간에서 막힌 뒤
+처음부터 다시 조사하지 않는다.
+
+16번은 항상
+
+현재 경로
+다음 경로
+그 다음 경로
+
+를 알고 있어야 한다.
+
+
+==================================================
+8. 반복작업 자동 차단
+==================================================
+
+같은 원인으로
+
+조사
+테스트
+설정
+수정
+재시도
+
+가 반복되려 하면
+
+REPEAT_BLOCKED
+
+로 판정한다.
+
+즉시 남길 것:
+
+- 지금까지 확보한 증거
+- 정확히 막힌 원인
+- 반복된 단계
+- 소비한 시간/크레딧
+- 다음 최단경로
+
+그리고 다음 경로로 이동한다.
+
+"조금만 더 해보자"는 이유로
+같은 경로를 계속 반복하지 마라.
+
+
+==================================================
+9. 증거의 최소조건
+==================================================
+
+제품 홈페이지 설명은 증거가 아니다.
+
+기능목록도 증거가 아니다.
+
+AI 기능이 있다고 쓰여 있는 것도 증거가 아니다.
+
+화면에 SUCCESS라고 뜨는 것도
+단독으로는 충분한 증거가 아니다.
+
+AI나 작업자의 완료 선언도 증거가 아니다.
+
+최소한 다음 실행사슬의 실제 증거가 필요하다.
+
+실제 원본 업무자료
+→ 실제 완성품 입력
+→ 완성품 실제 처리기록
+→ 실제 생성된 최종 결과물
+→ 기존 WIC 정상결과/규칙과 대조
+→ 누락/오류/HOLD 확인
+→ 최종 PASS 또는 FAIL 판정
+
+가능하면 증거에는 다음을 포함한다.
+
+- 사용한 원본 파일
+- 제품명/버전 또는 사용환경
+- 입력시각 또는 실행 식별정보
+- 실제 입력건수
+- 실제 출력건수
+- 필드별 결과
+- 누락건수
+- 오류건수
+- HOLD건수
+- 원본↔결과 추적정보
+- 실제 생성 결과파일
+- 기존 정답과 비교결과
+- 최종 판정
+
+
+==================================================
+10. PASS 선언 조건
+==================================================
+
+실제 WIC 자료가
+
+입력
+→ 처리
+→ 변환
+→ 검증
+→ 최종 실무 결과물 생성
+
+까지 통과하고,
+
+기존 1년치 정상결과/규칙과 대조하여
+요구사항을 만족했다는 실제 증거가 있을 때만
+
+"완성품 확보"
+"검증완료"
+"PASS"
+"실무 사용 가능"
+
+이라고 선언한다.
+
+부분 성공은 전체 PASS가 아니다.
+
+실행하지 않은 항목이 있으면
+미실행으로 표시한다.
+
+확인하지 않은 항목은
+확인완료라고 하지 않는다.
+
+
+==================================================
+11. FAIL/HOLD 처리
+==================================================
+
+정해진 상한 내에서
+핵심 요구사항을 충족하지 못하면
+
+FAIL 또는 HOLD
+
+로 판정한다.
+
+그 제품을 계속 고쳐서
+새로운 프로그램으로 만들지 않는다.
+
+다음을 남긴다.
+
+- 실패한 정확한 기능
+- 실제 입력
+- 기대결과
+- 실제결과
+- 실패증거
+- 다음 후보
+
+그 다음
+사전에 정해놓은 다음 완성품으로 이동한다.
+
+다음 후보 역시
+동일한 증거 선행게이트를 통과해야 한다.
+
+
+==================================================
+12. 시간/크레딧 상한
+==================================================
+
+완성품 하나 때문에
+전체 작업자원을 소비하지 않는다.
+
+13번 같은 단일 완성품 도입은
+
+목표:
+전체 가용 크레딧 약 10~15% 이내
+
+상한:
+약 20%
+
+를 기본 계획으로 한다.
+
+더 적게 끝낼 수 있으면
+더 적게 사용한다.
+
+50~100%를 하나의 완성품 후보에
+소모하는 것을 금지한다.
+
+20% 가까이 사용했는데도
+
+계속 수정
+계속 조립
+계속 조사
+계속 테스트
+계속 설정
+
+상태라면
+완성품 도입경로에서 벗어났을 가능성을 판정한다.
+
+증거를 남기고 다음 최단경로로 이동한다.
+
+단, % 자체를 기계적으로 소비 목표로 삼지 않는다.
+
+핵심은
+최소 자원으로 실제 증거까지 도달하는 것이다.
+
+
+==================================================
+13. 완성품과 기존 조합을 병렬 운영
+==================================================
+
+두 경로를 처음부터 계획한다.
+
+[본선]
+
+완성품
+→ 연결
+→ 실제 자료
+→ 실제 결과
+→ 증거
+→ 즉시 실무사용
+
+
+[병렬 보조선]
+
+기존 1년치 검증부품
+→ 필요한 부분만 보존/정리
+→ 최소 조합 가능성 확보
+
+두 경로를 동시에 계획할 수 있다.
+
+그러나 조합이 끝날 때까지
+완성품 사용을 기다리지 않는다.
+
+완성품이 먼저 성공하면
+즉시 실무에 투입한다.
+
+
+==================================================
+14. 조합의 역할 제한
+==================================================
+
+조합으로 또 거대한 프로그램을 만드는 것을
+기본목표로 삼지 않는다.
+
+기존 조합부품의 주요 활용처는:
+
+1. 완성품에서 빠진 아주 작은 기능 보완
+
+2. 완성품 A와 완성품 B 연결
+
+3. 완성품 결과 자동검사
+
+4. WIC 고유 특수규칙 보조
+
+5. 완성품 장애 시 비상 대체수단
+
+6. 다른 완성품으로 교체할 때 변환부품
+
+7. 최상위 플랫폼에서 여러 완성품을 연결하는 어댑터
+
+8. 향후 더 좋은 완성품으로 이전할 때 재사용
+
+9. 완성품 결과와 기존 정답을 비교하는 검증기
+
+10. 완성품으로 처리하기 어려운 극히 작은 마지막 빈칸 보완
+
+즉,
+
+완성품 = 실제 업무 주 실행장치
+
+기존 조합부품 = 어댑터 / 검사기 / 연결부품 / 예비부품
+
+으로 역할을 분리한다.
+
+
+==================================================
+15. 기존 PASS 보호
+==================================================
+
+지난 1년 동안 이미 실제로 검증된 자산을
+다시 처음부터 만들지 않는다.
+
+기존 PASS는
+
+SKIP-REUSE
+DO_NOT_TOUCH
+
+대상으로 관리한다.
+
+완성품 도입 때문에
+기존 정상 증거나 정답자료를 덮어쓰지 않는다.
+
+완성품이 실패해도
+기존 검증자산은 그대로 보존한다.
+
+
+==================================================
+16. 13번 성공 후 플랫폼 전체 확대
+==================================================
+
+13번을 첫 실제 사례로 사용한다.
+
+13번에서
+
+완성품 확보
+→ 실제 발행사 원본 입력
+→ 자동 처리
+→ WIC 최종 결과 생성
+→ 기존 1년치 정답과 대조
+→ 실제 증거 확보
+→ PASS
+
+가 성공하면
+
+같은 방법을 다른 WIC 도구에도 확대한다.
+
+그때 기존 1년치 도구들을
+모두 플랫폼 내부에서 다시 제작하거나
+다시 조립하는 것을 기본경로로 삼지 않는다.
+
+각 도구별로
+
+1년치 증거 회수
+→ 실제 전체 요구사항 복원
+→ 완성품 후보 사전선정
+→ 증거조건 사전확정
+→ 완성품 연결
+→ 실제자료 실행
+→ 기존 증거와 비교
+→ PASS면 즉시 채택
+→ FAIL이면 사전선정된 다음 완성품
+
+순으로 진행한다.
+
+
+==================================================
+17. 1년치 작업을 버리지 않는 방법
+==================================================
+
+기존 1년치 작업을 폐기하지 않는다.
+
+하지만 그 프로그램들을
+전부 다시 완성시키는 데
+또 1년을 사용하지도 않는다.
+
+지난 1년치의 가장 중요한 가치는
+
+"무엇이 정상인가"
+
+를 이미 사용자가 수백 번 가르치고
+실제 업무에서 시험했다는 것이다.
+
+따라서 기존 자산을
+
+완성품 선정기준
+검증기준
+회귀검사 기준
+실패판정 기준
+정답자료
+
+로 적극 재사용한다.
+
+
+==================================================
+18. 16번의 역할
+==================================================
+
+16번은 계속 코드를 만드는 곳이 아니다.
+
+전체 경로를 통제하는
+최상위 관제 역할을 한다.
+
+모든 작업 시작 전에 16번은 최소한 다음을 관리한다.
+
+- 업무 목적
+- 기존 1년치 증거
+- 보호해야 할 기존 자산
+- 전체 요구사항
+- 완성품 후보 순위
+- 후보별 예상 자원
+- 증거 생성방법
+- PASS 조건
+- FAIL/HOLD 조건
+- 중단조건
+- 다음 우회경로
+- 병렬 가능한 작업
+- 기존 조합부품의 보조 역할
+- 최종 증거 저장위치
+
+한 경로가 막혀도
+전체 작업이 멈추지 않게 한다.
+
+
+==================================================
+19. 단일 통로와 최종 검증 게이트
+==================================================
+
+완성품이든 기존 조합부품이든
+최종 실무 결과는 검증을 우회할 수 없게 한다.
+
+정상 실행경로를 가능한 한 하나로 통일한다.
+
+입력
+→ 실행
+→ 결과
+→ 검증게이트
+→ PASS/HOLD
+→ 실무사용
+
+검증을 거치지 않고
+별도 경로로 결과가 빠져나가는 구조를 만들지 않는다.
+
+오류마다 별도의 검증기를 계속 추가하는 방식보다
+
+모든 최종 결과가
+공통 검증게이트를 반드시 지나도록 한다.
+
+단,
+각 도구의 실제 업무별 검사항목은 유지한다.
+
+즉,
+
+검증 통로는 공통화하고
+검사항목은 업무별 증거를 사용한다.
+
+
+==================================================
+20. GPT/Codex/Work 상시의존 최소화
+==================================================
+
+최종 목표는
+
+사용자가 업무를 할 때마다
+
+GPT에게 설명
+→ Codex 이동
+→ Work 실행
+→ 다시 수정
+→ 다시 GPT
+
+를 반복하는 구조가 아니다.
+
+가능하면 최종 정상경로를
+
+사용자
+→ WIC 플랫폼
+→ 연결된 완성품
+→ 공통 검증게이트
+→ 최종 결과
+
+로 만든다.
+
+GPT/Codex/Work는
+완성품을 대신해서 프로그램을 계속 만드는
+상시 실행장치가 되어서는 안 된다.
+
+필요한 경우
+
+초기 자산 회수
+후보 판정
+이전
+예외처리
+
+등에 제한적으로 사용할 수 있으나,
+
+최종 반복 실무경로에서는
+제거하거나 최소화하는 것을 목표로 한다.
+
+
+==================================================
+21. 일반 대화창의 순간적 추론에 실행경로를 맡기지 않는다
+==================================================
+
+매 대화마다 AI가 다시 판단하여
+
+A 추천
+→ B 추천
+→ 다시 조사
+→ 다른 구조 제안
+
+식으로 실행경로가 흔들리지 않게 한다.
+
+16번에서
+
+완성품 우선순위
+증거조건
+중단조건
+다음 경로
+크레딧 상한
+
+을 먼저 고정한다.
+
+이후 실행은
+그 계획을 따른다.
+
+새로운 근거가 생겨 경로 변경이 필요한 경우에는
+
+변경 이유
+새 증거
+기존 경로를 버리는 이유
+새 경로의 증거조건
+
+을 남기고 변경한다.
+
+
+==================================================
+22. 조사 자체가 목적이 되는 것을 금지
+==================================================
+
+"더 좋은 제품이 있을 수도 있다"는 이유만으로
+무한 검색하지 않는다.
+
+조사는 실제 완성품을 확보하기 위한
+제한된 단계일 뿐이다.
+
+후보 선정기준을 충족하는 제품이 확보되면
+다음 단계로 진행한다.
+
+반대로 핵심조건을 충족하지 않는 제품은
+장시간 조사하지 않는다.
+
+조사 결과에도 반드시
+
+채택
+탈락
+보류
+
+판정을 남긴다.
+
+
+==================================================
+23. 완성품 이름을 성급하게 확정하지 않는다
+==================================================
+
+제품을 발견한 것과
+WIC 완성품으로 검증된 것을 구분한다.
+
+상태를 다음처럼 구분한다.
+
+CANDIDATE
+= 후보 발견
+
+ELIGIBLE
+= 공식 기능상 요구조건 충족 가능성이 확인됨
+
+RUNNING
+= 실제 WIC 자료 실행 중
+
+PASS
+= 실제 WIC 결과와 증거까지 확보
+
+FAIL
+= 핵심조건 미충족 증거 확보
+
+HOLD
+= 외부조건 등으로 판정 보류
+
+CANDIDATE나 ELIGIBLE 상태를
+"가져왔다", "완료", "검증완료"라고 부르지 않는다.
+
+
+==================================================
+24. 작업 종료 시 강제 보고
+==================================================
+
+모든 실행이 끝날 때 다음을 반드시 보고한다.
+
+- 요구사항 총수
+- 실제 확인한 요구사항 수
+- PASS 수
+- FAIL 수
+- HOLD 수
+- 미실행 수
+- 사용한 완성품
+- 실제 입력자료
+- 실제 생성 결과물
+- 사용한 시간/크레딧
+- 증거 위치
+- 다음 경로 필요 여부
+
+FAIL/HOLD/미실행이 존재하면
+전체 PASS라고 선언하지 않는다.
+
+
+==================================================
+25. 절대 최종 원칙
+==================================================
+
+증거를 만들 계획이 없는 작업은 하지 않는다.
+
+끝을 정의하지 않은 작업은 시작하지 않는다.
+
+완료조건 없는 조사는 시작하지 않는다.
+
+상한 없는 테스트는 시작하지 않는다.
+
+다음 경로 없는 후보 실험은 시작하지 않는다.
+
+이미 검증된 것을 다시 만들지 않는다.
+
+완성품이 있는데 새로 만들지 않는다.
+
+하나의 실패한 후보를 계속 고쳐
+새 프로그램으로 만들지 않는다.
+
+지난 1년치 사용자 학습·피드백·테스트·실제 업무자료를
+누락시키지 않는다.
+
+모든 작업은 시작하는 순간부터
+
+"실제 최종 결과 + 검증 가능한 증거"
+
+를 향해 한 방향으로 진행한다.
+
+최종 운영원칙:
+
+완성품 최우선
+→ 기존 1년치 증거로 빠른 검증
+→ PASS면 즉시 실무사용
+→ 실패하면 증거를 남기고 사전계획된 다음 완성품
+→ 기존 검증부품 조합은 병렬 보조
+→ 신규개발은 마지막 수단
+
+이 원칙을 WIC 전체에 범용 적용한다.
+===== ORIGINAL 3 END =====
+
+===== NEW REQUIREMENTS =====
+# 신규 최상위 강제 조항 (기존 원문 보존)
+1. WIC 통제 가능한 모든 공식 업무와 외부 완성품 도입은 기존 하나의 중앙 실행·최종 승인 통로를 공유한다. 규칙 자동 조회→원본·STOP·권한 확인→증거 사전계획→실행→실제 결과→업무별 검사→단일 중앙 최종 PASS/HOLD→공식 출력·증거 저장을 강제한다.
+2. 사용자 규칙을 한 번 등록하면 원문·해시·버전·적용범위를 중앙 정본에 보존하고 후속 공식 업무 시작 전에 반드시 자동 조회한다. 조회 실패는 FAIL-CLOSED/HOLD. 동일 지시 반복은 REPEATED_USER_DIRECTIVE로 기록하고 저장/조회/실행/검증/배포/승계 단절을 ROOT로 고친다.
+3. API·파일·CLI·컨테이너·웹 등 제품별 연결 어댑터는 유지하되 독립적인 공식 최종 승인 경로는 폐쇄한다. 외부 완성품 여러 개를 공통 계약으로 병렬 접수·격리 시험·실제 WIC 자료 처리·기존 골드 비교하고 PASS된 것만 운영에 편입한다.
+4. 기존 도구별 검사기는 중앙 최종 검증기의 하위 모듈로 재사용한다. 우회 경로는 기능·PASS·원본·복구 증거를 보존하여 이전·회귀시험 후 폐쇄한다. 기존 3200건 전체 재스캔, 무단 유료 서비스, STOP 해제, 6 Job Pack 임의 실행 금지.
+5. Codex가 첨부를 읽지 못한 장애는 첨부 텍스트를 GitHub 정본에서 직접 읽도록 복구한다. 정본 경로·원문 해시·줄 수·버전 확인. 접근 불가면 SOURCE_NOT_RETRIEVED로 HOLD. 원문 저장 성공과 START_BLOCKED 해제는 별개이며 검증된 해제 조건 없이 작업 시작·PASS 승격 금지.
+6. 공통 ROOT(규칙 미조회, 첨부·원본 접근 실패, 검증 우회, 외부제품 중복 개발, 출력·배포 단절, 상태·증거 승계 실패, 무한 재시도)를 한 번 수정하고 연결 영향 범위를 회귀시험한다. 독립 조사·제품 시험은 병렬, 같은 정본/Queue/배포 쓰기는 순차 처리한다. REPEAT_BLOCKED와 사전 후보·증거·크레딧 상한 적용.
+7. 실제 운영 환경·사용자 화면·제품 연결·원본 입력·결과 출력·재시작 복구·원격 read-back까지 검증한다. 코드나 문서만 저장하고 전체 완료 선언 금지. ChatGPT 자체 자유 응답처럼 강제 불가능한 경로는 PLATFORM_LIMIT로 표시한다.
