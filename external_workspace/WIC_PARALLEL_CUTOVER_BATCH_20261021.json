@@ -1,0 +1,133 @@
+{
+  "schema": "wic_parallel_cutover_batch_v1",
+  "date": "2026-10-21",
+  "mode": "ISOLATED_NONPRODUCTION",
+  "status": "BATCH_PREPARED_NOT_EXECUTED",
+  "inputs": [
+    "RULES",
+    "COMPONENTS"
+  ],
+  "shared_route": "existing admission Gate -> existing Queue/Worker -> existing validator -> existing Evidence",
+  "protection": {
+    "main_unchanged": true,
+    "stop_preserved": true,
+    "start_blocked": true,
+    "pass_lock_preserved": true,
+    "customer_jobs_not_authorized": true
+  },
+  "batches": [
+    {
+      "id": "A",
+      "group": "canonical evidence and observer",
+      "roots": [
+        "CR-LEDGER-QUEUE-RECONCILIATION",
+        "CR-CONTROL-TOWER-STATE-INTEGRITY",
+        "CR-TOOL044-AUTONOMOUS-CIRCULATION-RESIDUAL"
+      ],
+      "parallel_with": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "next_action": "reconcile existing ledgers by incremental manifests",
+      "status": "PENDING"
+    },
+    {
+      "id": "B",
+      "group": "bounded source recovery",
+      "roots": [
+        "CR-ACCESSIBLE-BUSINESS-ASSET-CANONICALIZATION",
+        "CR-TOOL001-006-SOURCE-RECOVERY",
+        "CR-WIC-SCOPED-RECOVERY-0702"
+      ],
+      "parallel_with": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "next_action": "verify accessible source manifests and hashes; isolate inaccessible USB/PC assets",
+      "status": "HOLD_AUTHENTIC_SOURCES"
+    },
+    {
+      "id": "C",
+      "group": "external finished products and sockets",
+      "roots": [
+        "TOOL013",
+        "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE",
+        "WIC_EXTERNAL_COMPONENT_RECEIPT_ASSEMBLY_LAYER"
+      ],
+      "parallel_with": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "next_action": "deploy official turnkey products to authenticated free external runtime; require native execution receipts",
+      "status": "HOLD_REMOTE_RUNTIME"
+    },
+    {
+      "id": "D",
+      "group": "existing 8 verified components and 6 Job Packs",
+      "roots": [
+        "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+        "six_existing_Job_Packs"
+      ],
+      "parallel_with": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "next_action": "reuse PASS without retesting; validate authentic target outputs independently",
+      "status": "PENDING_AUTHORIZED_TARGETS"
+    },
+    {
+      "id": "E",
+      "group": "external auth, runtime, FlowWink/Supabase",
+      "roots": [
+        "CR-INDEPENDENT-24H-EXTERNAL-RUNTIME",
+        "CR-FLOWWINK-SUPABASE-E2E",
+        "CR-T41-T42-CUSTOMER-NATIVE-E2E"
+      ],
+      "parallel_with": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "next_action": "verify actual remote endpoint, authorized credentials, free tier, native scheduler, persistent worker",
+      "status": "HOLD_AUTH_REMOTE_ENDPOINT"
+    },
+    {
+      "id": "F",
+      "group": "restricted native interceptor and deferred final slot",
+      "roots": [
+        "CR-CHAT-SOURCE-NATIVE-INTERCEPTOR",
+        "PAPERCLIP-FINAL-SLOT"
+      ],
+      "parallel_with": [],
+      "next_action": "preserve existing platform HOLD and deferred order",
+      "status": "PLATFORM_HOLD"
+    }
+  ],
+  "acceptance": {
+    "required": [
+      "external_runtime_url",
+      "deployment_id",
+      "native_schedule_run_id",
+      "durable_evidence_hash",
+      "two_authentic_job_receipts",
+      "parallel_overlap_evidence",
+      "restart_failover_receipt",
+      "independent_validator_receipt"
+    ],
+    "cutover_pass": false
+  },
+  "provenance": [
+    "CONTROL_TOWER/ledger/evidence/WIC_COMMON_PARALLEL_MIGRATION_BOUNDARY_20261021.md",
+    "external_workspace/WIC_EXTERNAL_WORKSPACE_CUTOVER_ACCEPTANCE_20261021.md"
+  ],
+  "note": "Grouping is not deployment, remote execution or business migration. No existing PASS re-run."
+}
