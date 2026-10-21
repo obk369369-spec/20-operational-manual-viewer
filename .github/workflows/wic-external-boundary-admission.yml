@@ -56,9 +56,9 @@ jobs:
           from pathlib import Path
           import time
           def task_tool016():
-              return {'actions':[(lambda: (time.sleep(0.3),Path('TOOL016.result').write_text('ISOLATED_RULES_COMPONENT_TEST\\n')))], 'verbosity':0}
+              return {'actions':[(lambda: (time.sleep(0.3),Path('TOOL016.result').write_text('ISOLATED_RULES_COMPONENT_TEST\\n'),None)[-1])], 'verbosity':0}
           def task_tool044():
-              return {'actions':[(lambda: (time.sleep(0.3),Path('TOOL044.result').write_text('ISOLATED_RULES_COMPONENT_TEST\\n')))], 'verbosity':0}
+              return {'actions':[(lambda: (time.sleep(0.3),Path('TOOL044.result').write_text('ISOLATED_RULES_COMPONENT_TEST\\n'),None)[-1])], 'verbosity':0}
           """.lstrip(),encoding='utf-8')
               env=os.environ.copy()
               env['PYTHONPATH']=str(wheel)
