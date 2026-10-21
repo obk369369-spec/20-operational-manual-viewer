@@ -248,6 +248,11 @@ jobs:
               assert workflow.count('WIC_CLOSURE_RECEIPTS_JSON:') == workflow.count('--require-completion')
               assert workflow.count('WIC_USER_STOP:') >= workflow.count('--require-completion')
               assert workflow.count('WIC_RULE_ADMISSION_JSON:') >= workflow.count('--require-completion')
+          intake_delta = subprocess.run([sys.executable, 'feedback_pipeline/tool044_instruction_intake.py',
+                                         '--self-test'], capture_output=True, text=True)
+          assert intake_delta.returncode == 0, intake_delta.stdout + intake_delta.stderr
+          assert json.loads(intake_delta.stdout)['CHECKPOINT_RESUME_PASS'] is True
+          print('PASS TWO_LANE_INTAKE_CLAIM_STOP_AND_ADMISSION_DELTA')
           print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
           print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
           print('PASS COMMON_MUTATING_BOUNDARY_AND_OBSERVER_DELTA', sum(map(len, paths.values())))

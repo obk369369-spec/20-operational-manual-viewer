@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-import argparse, copy, hashlib, json, re, sys, tempfile
+import argparse, copy, hashlib, json, os, re, sys, tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
-from CONTROL_TOWER.controller.runtime_progress_gate import canonical_rule_manifest, verify_rule_context
+from CONTROL_TOWER.controller.runtime_progress_gate import canonical_rule_manifest, verify_work_admission
 QUEUE=HERE/"tool044_atomic_demand_queue.json"
 INBOX=HERE/"tool044_instruction_inbox.json"
 STATE=HERE/"evidence"/"tool044_instruction_intake_state.json"
@@ -118,6 +118,7 @@ def ingest(inbox,queue,state):
         target["rule_context"]={**manifest,
             "source_records_verified": d.get("source_records_verified") is True,
             "conflicts": d.get("rule_conflicts", [])}
+        target["work_admission"]=d.get("work_admission")
         state["seen_signatures"].append(s)
         events.append({"directive_id":d["directive_id"],"action":action,"root_id":effective_root_id(d),
                        "canonical_target":canonical_target,"alias_resolved":alias_resolved})
@@ -128,8 +129,12 @@ def claim(queue,tool,owner):
     tool=effective_target_tool({"target_tool":tool})
     for d in queue.get("demands",[]):
         if effective_target_tool(d)==tool and d.get("status")=="OPEN" and not d.get("claim"):
-            rule_receipt=verify_rule_context(
-                d.get("rule_context"), repo_root=HERE.parent, task_id=tool)
+            if os.environ.get("WIC_USER_STOP") != "0":
+                d["rule_gate_receipt"]={"decision":"BLOCK","reason":"USER_STOP_OR_START_BLOCKED"}
+                continue
+            rule_receipt=verify_work_admission(
+                d.get("work_admission"), repo_root=HERE.parent,
+                work_id=str(d.get("demand_id","")), task_id=tool)
             if rule_receipt["decision"]!="ALLOW":
                 d["rule_gate_receipt"]=rule_receipt
                 continue
@@ -164,12 +169,45 @@ def self_test():
     assert legacy_event["root_id"]=="LEGACY1"
     assert any(x.get("root_id")=="LEGACY1" and x.get("target_tool")=="TOOL044" and x.get("latest_directive")=="legacy row without canonical fields" for x in q["demands"])
     assert claim(q,"TOOL044","runner-blocked") is None
-    c=claim(q,"TOOL013","runner-A"); assert c and c["status"]=="CLAIMED"
-    c["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; c["claim"]=None; c["status"]="OPEN"
-    c2=claim(q,"TOOL013","runner-B"); assert c2["checkpoint"]["resume_from"]=="CLAIMED"
-    # checkpoint payload survives owner change through explicit saved stage
-    c2["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; snap=json.loads(json.dumps(q))
-    recovered=next(x for x in snap["demands"] if x["demand_id"]=="B1"); assert recovered["checkpoint"]["resume_from"]=="HALF"
+    previous_stop=os.environ.get("WIC_USER_STOP")
+    try:
+        os.environ["WIC_USER_STOP"]="0"
+        assert claim(q,"TOOL044","runner-blocked") is None
+        with tempfile.TemporaryDirectory(dir=HERE/"evidence") as folder:
+            original=Path(folder)/"original.txt"
+            original.write_text("ISOLATED_SOURCE\n",encoding="utf-8")
+            context=canonical_rule_manifest(HERE.parent,"TOOL044")
+            assert not context["missing"]
+            context.update(source_records_verified=True,conflicts=[])
+            source=Path(folder)/"source.json"
+            source.write_text(json.dumps({
+                "work_id":"A1","task_id":"TOOL044","source_records_verified":True,
+                "validation_result":"PASS","validator_id":"ISOLATED_SELF_TEST_VALIDATOR",
+                "rule_version":context["version"],
+                "validation_plan":{"method":"isolated source comparison",
+                                   "expected_result":"MATCH","evidence_required":"source and validator"},
+                "source_refs":[{"path":original.relative_to(HERE.parent).as_posix(),
+                                "sha256":hashlib.sha256(original.read_bytes()).hexdigest()}]
+            })+"\n",encoding="utf-8")
+            registry=HERE/"VERIFIED_COMPONENT_REGISTRY.json"
+            target=next(x for x in q["demands"] if x.get("demand_id")=="A1")
+            target["work_admission"]={
+                "work_id":"A1","task_id":"TOOL044","rule_context":context,
+                "source_receipt":{"path":source.relative_to(HERE.parent).as_posix(),
+                                  "sha256":hashlib.sha256(source.read_bytes()).hexdigest()},
+                "official_lanes":{
+                    "RULES":{"work_id":"A1","task_id":"TOOL044","rule_version":context["version"]},
+                    "COMPONENTS":{"work_id":"A1","task_id":"TOOL044","component_ids":[],
+                                  "registry_sha256":hashlib.sha256(registry.read_bytes()).hexdigest()}}}
+            c=claim(q,"TOOL044","runner-A"); assert c and c["status"]=="CLAIMED"
+            c["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; c["claim"]=None; c["status"]="OPEN"
+            c2=claim(q,"TOOL044","runner-B"); assert c2["checkpoint"]["resume_from"]=="CLAIMED"
+            c2["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; snap=json.loads(json.dumps(q))
+            recovered=next(x for x in snap["demands"] if x["demand_id"]=="A1")
+            assert recovered["checkpoint"]["resume_from"]=="HALF"
+    finally:
+        if previous_stop is None: os.environ.pop("WIC_USER_STOP",None)
+        else: os.environ["WIC_USER_STOP"]=previous_stop
     return {"PERMANENT_RULE_PASS":True,"CONFLICT_FREE_INTAKE_PASS":True,"DUPLICATE_BLOCK_PASS":True,
             "ROOT_MERGE_PASS":True,"CHECKPOINT_RESUME_PASS":True,"LATEST_DIRECTIVE_SUPERSEDE_PASS":True,
             "AUTO_INSTRUCTION_INTAKE_PASS":True,"STABLE_ALIAS_IDENTITY_PASS":True,
