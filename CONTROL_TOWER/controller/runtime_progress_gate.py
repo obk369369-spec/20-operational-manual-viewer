@@ -26,6 +26,7 @@ TASK_RULE_FILES = {
     "TOOL043": ("tool043/WIC_RULE_SOURCE.md",),
     "EMAIL_DB": ("EMAIL_COLLECTION_COMMON_RULES.md",),
     "TOOL044": ("feedback_pipeline/TOOL044_MASTER.md",),
+    "WORK_GATE": ("feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md",),
 }
 
 

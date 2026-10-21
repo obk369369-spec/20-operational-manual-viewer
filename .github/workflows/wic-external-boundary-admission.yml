@@ -73,6 +73,11 @@ jobs:
               manifest = canonical_rule_manifest(Path.cwd(), task_id)
               assert rule_path in manifest['files'] and not manifest['missing'], (task_id, manifest)
               assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id=task_id)['decision'] == 'BLOCK'
+          work_gate_manifest = canonical_rule_manifest(Path.cwd(), 'WORK_GATE')
+          assert work_gate_manifest['files'].get('feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md')
+          assert not work_gate_manifest['missing']
+          assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED',
+                                       task_id='WORK_GATE')['reason'] == 'WORK_ADMISSION_IDENTITY_MISMATCH'
           email_manifest = canonical_rule_manifest(Path.cwd(), 'EMAIL_DB')
           assert email_manifest['files'].get('EMAIL_COLLECTION_COMMON_RULES.md') and not email_manifest['missing']
           assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id='EMAIL_DB')['decision'] == 'BLOCK'
