@@ -1,0 +1,81 @@
+{
+  "schema": "wic_external_socket_candidates_v1",
+  "date": "2026-10-21",
+  "status": "CANDIDATES_STAGED_NOT_INSTALLED",
+  "inputs": [
+    "RULES",
+    "COMPONENTS"
+  ],
+  "production_guard": "STOP_START_BLOCKED_TRUE_PASS_LOCK_PRESERVED",
+  "execution_owner": "EXTERNAL_PLATFORM_ONLY_NOT_CHATGPT_SCHEDULER",
+  "candidates": [
+    {
+      "name": "Kestra",
+      "source": "https://github.com/kestra-io/kestra",
+      "role": "durable_orchestration",
+      "reuse_existing": true,
+      "connection_status": "NOT_VERIFIED"
+    },
+    {
+      "name": "Windmill",
+      "source": "https://github.com/windmill-labs/windmill",
+      "role": "remote_worker_ui",
+      "connection_status": "NOT_INSTALLED"
+    },
+    {
+      "name": "Activepieces",
+      "source": "https://github.com/activepieces/activepieces",
+      "role": "connector_automation",
+      "connection_status": "NOT_INSTALLED"
+    },
+    {
+      "name": "n8n",
+      "source": "https://github.com/n8n-io/n8n",
+      "role": "connector_automation",
+      "connection_status": "NOT_INSTALLED"
+    },
+    {
+      "name": "Temporal",
+      "source": "https://github.com/temporalio/temporal",
+      "role": "durable_workflow_recovery",
+      "connection_status": "NOT_INSTALLED"
+    },
+    {
+      "name": "Apache Airflow",
+      "source": "https://github.com/apache/airflow",
+      "role": "scheduled_workflows",
+      "connection_status": "NOT_INSTALLED"
+    },
+    {
+      "name": "Prefect",
+      "source": "https://github.com/PrefectHQ/prefect",
+      "role": "remote_workflow_workers",
+      "connection_status": "NOT_INSTALLED"
+    },
+    {
+      "name": "Dagster",
+      "source": "https://github.com/dagster-io/dagster",
+      "role": "orchestration_monitoring",
+      "connection_status": "NOT_INSTALLED"
+    }
+  ],
+  "external_schedule_contract": {
+    "required": "native_scheduler_only",
+    "interval": "hourly_or_more_frequent_if_native_supported",
+    "operations": [
+      "discover_official_releases",
+      "compare_existing_registry",
+      "verify_license_and_provenance",
+      "run_isolated_nonproduction_smoke",
+      "store_receipt",
+      "handoff_to_allowed_socket"
+    ],
+    "failover": [
+      "provider_A",
+      "provider_B",
+      "provider_C"
+    ],
+    "status": "DEFINED_NOT_RUNNING"
+  },
+  "truth_boundary": "Creating this inventory in GitHub does not install, deploy, schedule or connect any external product."
+}
