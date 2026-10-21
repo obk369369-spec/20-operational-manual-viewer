@@ -77,6 +77,17 @@ jobs:
               }
               queue = {'queued_requirement_ids': [42], 'rule_admissions': {work_id: admission}}
               assert runtime.queued_work_admission(queue, contract)['decision'] == 'ALLOW'
+              receipt_payload = json.loads(fixture_path.read_text(encoding='utf-8'))
+              try:
+                  fixture_path.write_text(json.dumps(dict(receipt_payload, validation_plan={})), encoding='utf-8')
+                  invalid_source = {'path': source['path'],
+                                    'sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest()}
+                  invalid_queue = {'queued_requirement_ids': [42],
+                                   'rule_admissions': {work_id: dict(admission, source_receipt=invalid_source)}}
+                  invalid_result = runtime.queued_work_admission(invalid_queue, contract)
+                  assert invalid_result['receipts'][0]['reason'] == 'WORK_VALIDATION_PLAN_MISSING', invalid_result
+              finally:
+                  fixture_path.write_text(json.dumps(receipt_payload), encoding='utf-8')
               from runtime_progress_gate import accept_handoff
               fixture_registry = json.loads((root / 'CONTROL_TOWER/controller/component_registry.json').read_text(
                   encoding='utf-8'))

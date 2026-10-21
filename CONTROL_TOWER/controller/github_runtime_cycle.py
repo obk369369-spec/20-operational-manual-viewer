@@ -15,7 +15,7 @@ from pre_work_admission import activate_token, issue_token, runtime_pack
 from runtime_progress_gate import (accept_feedback, accept_handoff,
                                    evaluate as evaluate_progress,
                                    initial_state as progress_state,
-                                   verify_rule_context, verify_official_lanes)
+                                   verify_rule_context, verify_work_admission)
 from universal_enforcement import closure_verdict, self_test as enforcement_self_test
 
 
@@ -416,48 +416,12 @@ def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> di
         selected.append((f"requirement:{requirement_id}", matches[0] if len(matches) == 1 else None))
     admissions = queue.get("rule_admissions", {})
     receipts = []
-    allowed_roots = ((body.ROOT / "feedback_pipeline" / "evidence").resolve(),
-                     (body.ROOT / "CONTROL_TOWER" / "ledger" / "evidence").resolve())
     for work_id, contract in selected:
         task_id = contract.get("task_id") if isinstance(contract, dict) else None
         admission = admissions.get(work_id) if isinstance(admissions, dict) else None
-        reason = None
-        if not isinstance(task_id, str) or not task_id.strip():
-            reason = "CONTRACT_TASK_ID_MISSING"
-        elif not isinstance(admission, dict) or admission.get("work_id") != work_id or admission.get("task_id") != task_id:
-            reason = "WORK_ADMISSION_IDENTITY_MISMATCH"
-        else:
-            context = admission.get("rule_context")
-            rule = verify_rule_context(context, repo_root=body.ROOT, task_id=task_id)
-            if rule["decision"] != "ALLOW":
-                reason = rule["reason"]
-            elif context.get("task_id") != task_id:
-                reason = "RULE_CONTEXT_TASK_MISMATCH"
-            else:
-                source = admission.get("source_receipt")
-                relative = source.get("path") if isinstance(source, dict) else None
-                if not isinstance(relative, str) or not relative.endswith(".json"):
-                    reason = "SOURCE_VALIDATION_RECEIPT_MISSING"
-                else:
-                    target = (body.ROOT / relative).resolve()
-                    if not any(target.is_relative_to(root) for root in allowed_roots) or not target.is_file():
-                        reason = "SOURCE_VALIDATION_RECEIPT_PATH_INVALID"
-                    elif hashlib.sha256(target.read_bytes()).hexdigest() != source.get("sha256"):
-                        reason = "SOURCE_VALIDATION_RECEIPT_STALE_OR_TAMPERED"
-                    else:
-                        try:
-                            evidence = json.loads(target.read_text(encoding="utf-8"))
-                        except (OSError, ValueError):
-                            evidence = {}
-                        if not (evidence.get("work_id") == work_id and evidence.get("task_id") == task_id
-                                and evidence.get("source_records_verified") is True
-                                and evidence.get("validation_result") == "PASS"
-                                and evidence.get("validator_id") and evidence.get("source_refs")):
-                            reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
-        if reason is None:
-            lane = verify_official_lanes(admission, repo_root=body.ROOT,
-                                         work_id=work_id, task_id=task_id)
-            reason = lane["reason"]
+        receipt = verify_work_admission(admission, repo_root=body.ROOT,
+                                        work_id=work_id, task_id=task_id)
+        reason = receipt["reason"]
         receipts.append({"work_id": work_id, "task_id": task_id,
                          "decision": "BLOCK" if reason else "ALLOW", "reason": reason})
     return {"decision": "ALLOW" if all(item["decision"] == "ALLOW" for item in receipts) else "BLOCK",
