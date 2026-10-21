@@ -1,0 +1,86 @@
+{
+  "name": "WIC External Socket Discovery — hourly nonproduction",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "wic-hourly",
+      "name": "Every hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/kestra-io/kestra/releases/latest",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "wic-source-kestra",
+      "name": "Official Kestra release",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map(i => ({json: {schema:'wic_discovery_nonproduction_v1',repo:'kestra-io/kestra',tag:i.json.tag_name ?? null,source:i.json.html_url ?? null,published_at:i.json.published_at ?? null,observed_at:new Date().toISOString(),production_mutation:false,connection_verified:false}}));"
+      },
+      "id": "wic-evidence",
+      "name": "Evidence only",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Every hour": {
+      "main": [
+        [
+          {
+            "node": "Official Kestra release",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Official Kestra release": {
+      "main": [
+        [
+          {
+            "node": "Evidence only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}
