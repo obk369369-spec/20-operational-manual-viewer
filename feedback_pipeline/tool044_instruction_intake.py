@@ -138,6 +138,21 @@ def claim(queue,tool,owner):
             if rule_receipt["decision"]!="ALLOW":
                 d["rule_gate_receipt"]=rule_receipt
                 continue
+            component_lane=d["work_admission"]["official_lanes"]["COMPONENTS"]
+            registry_path=HERE/"VERIFIED_COMPONENT_REGISTRY.json"
+            registry_bytes=registry_path.read_bytes()
+            if hashlib.sha256(registry_bytes).hexdigest()!=component_lane["registry_sha256"]:
+                d["rule_gate_receipt"]={"decision":"BLOCK","reason":"COMPONENT_REGISTRY_CHANGED_BEFORE_CLAIM"}
+                continue
+            components={item["component_id"]:item for item in json.loads(registry_bytes).get("components",[])}
+            d["component_selection"]=[{
+                "component_id":component_id,
+                "source_repository":components[component_id].get("source_repository"),
+                "source_file":components[component_id].get("source_file"),
+                "input_contract":components[component_id].get("input_contract"),
+                "output_contract":components[component_id].get("output_contract"),
+                "target_validation_receipt":component_lane.get("target_validation_receipt"),
+            } for component_id in component_lane["component_ids"]]
             d["rule_gate_receipt"]=rule_receipt
             d["claim"]={"owner":owner,"claimed_at":datetime.now(timezone.utc).isoformat()}
             d["status"]="CLAIMED"; d["checkpoint"]={"stage":"CLAIMED","resume_from":"CLAIMED"}
@@ -199,7 +214,22 @@ def self_test():
                     "RULES":{"work_id":"A1","task_id":"TOOL044","rule_version":context["version"]},
                     "COMPONENTS":{"work_id":"A1","task_id":"TOOL044","component_ids":[],
                                   "registry_sha256":hashlib.sha256(registry.read_bytes()).hexdigest()}}}
+            component_ids=[item["component_id"] for item in
+                           json.loads(registry.read_text(encoding="utf-8"))["components"]]
+            component_receipt=Path(folder)/"isolated-component-target.json"
+            component_receipt.write_text(json.dumps({
+                "work_id":"A1","task_id":"TOOL044","component_ids":component_ids,
+                "validation_result":"PASS","target_test_result":"PASS","remote_readback":"PASS",
+                "validator_id":"ISOLATED_ONLY_VALIDATOR","execution_id":"ISOLATED_ONLY_EXECUTION"
+            })+"\n",encoding="utf-8")
+            target["work_admission"]["official_lanes"]["COMPONENTS"].update({
+                "component_ids":component_ids,
+                "target_validation_receipt":{
+                    "path":component_receipt.relative_to(HERE.parent).as_posix(),
+                    "sha256":hashlib.sha256(component_receipt.read_bytes()).hexdigest()}})
             c=claim(q,"TOOL044","runner-A"); assert c and c["status"]=="CLAIMED"
+            assert [item["component_id"] for item in c["component_selection"]]==component_ids
+            assert all(item["source_file"] for item in c["component_selection"])
             c["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; c["claim"]=None; c["status"]="OPEN"
             c2=claim(q,"TOOL044","runner-B"); assert c2["checkpoint"]["resume_from"]=="CLAIMED"
             c2["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; snap=json.loads(json.dumps(q))
