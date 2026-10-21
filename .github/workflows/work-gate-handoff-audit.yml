@@ -17,11 +17,13 @@ on:
         type: string
   schedule:
     - cron: '7,37 * * * *'
+  pull_request:
+    paths: ['.github/workflows/work-gate-handoff-audit.yml', 'feedback_pipeline/unified_open_ledger.json']
 permissions:
   contents: read
 jobs:
   work-gate-audit:
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.candidate_json == '' }}
+    if: ${{ github.event_name != 'pull_request' && (github.event_name != 'workflow_dispatch' || inputs.candidate_json == '') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -87,3 +89,38 @@ jobs:
         with:
           name: wic-candidate-gate-decision
           path: ${{ runner.temp }}/wic-candidate-decision.json
+
+  nonproduction-candidate-scope:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Evaluate exact branch scope without main admission or mutation
+        run: |
+          python - <<'PY'
+          import json, sys
+          sys.path.insert(0, 'feedback_pipeline')
+          from work_gate_handoff import evaluate_candidate
+          ledger = json.load(open('feedback_pipeline/unified_open_ledger.json', encoding='utf-8'))
+          candidate = {
+              'root_id': 'WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021',
+              'operation_id': 'restore-observer-and-candidate-gate-remote-path-20261021',
+              'directive_ref': 'CURRENT_USER_DIRECTIVE_WIC_CENTRAL_MAINTENANCE_20261021',
+              'action': 'REPAIR_EXISTING_REMOTE_OBSERVER_AND_CANDIDATE_GATE_PATHS',
+              'target_assets': ['.github/workflows/wic-hourly-free-status.yml', '.github/workflows/work-gate-handoff-audit.yml'],
+              'cause_id': 'STALE_OBSERVER_PROJECTION_AND_MISSING_REMOTE_CANDIDATE_ENTRY',
+              'method_id': 'REUSE_EXISTING_GENERATOR_GATE_AND_ACTIONS_RUNNER',
+              'gates': {'chat_files': False, 'github': True, 'ordinary_runtime': False},
+              'blocker': 'fresh main Observer and remote candidate gate path not yet available',
+              'restart_point': 'run exact candidate after canonical Observer refresh',
+              'target_repository': 'obk369369-spec/20-operational-manual-viewer',
+              'execution_goal': 'restore Observer and candidate evaluation without business execution',
+              'success_evidence': ['real Observer hash and age', 'remote candidate decision', 'read-back'],
+              'rollback_point': '23710c011ec3e9452b55bbe808b4ef2038789376',
+          }
+          result = evaluate_candidate(candidate, ledger)
+          assert result['decision'] == 'WORK_DEFER_DENIED', result
+          print(json.dumps({'decision': result['decision'], 'root_id': candidate['root_id'], 'operation_id': candidate['operation_id']}, ensure_ascii=False))
+          PY
