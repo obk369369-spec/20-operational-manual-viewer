@@ -26,6 +26,7 @@ concurrency:
 
 jobs:
   supervise:
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
