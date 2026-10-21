@@ -107,6 +107,22 @@ jobs:
               assert runtime.queued_work_admission({'queued_requirement_ids': [42]}, contract)['decision'] == 'BLOCK'
               assert runtime.queued_work_admission(queue, {'execution_contracts': [
                   {'id': 'NO-TASK', 'requirement_ids': [42]}]})['decision'] == 'BLOCK'
+              from runtime_progress_gate import accept_feedback
+              failure = {'work_id': work_id, 'task_id': 'TOOL042', 'work_admission': admission,
+                         'failure_class': 'ISOLATED_FEEDBACK', 'root_cause': 'MISSING_GATE',
+                         'bad_input': 'unauthorized correction', 'expected_behavior': 'BLOCK',
+                         'scope': 'COMMON_PLATFORM'}
+              feedback_state = {}
+              stopped = accept_feedback(feedback_state, failure, repo_root=root, user_stop='1')
+              assert stopped['reason'] == 'USER_STOP_ACTIVE' and not feedback_state, stopped
+              missing = accept_feedback(feedback_state, dict(failure, work_admission=None),
+                                        repo_root=root, user_stop='0')
+              assert missing['reason'] == 'WORK_ADMISSION_IDENTITY_MISMATCH' and not feedback_state, missing
+              cross_work = accept_feedback(feedback_state, dict(failure, work_id='requirement:43'),
+                                           repo_root=root, user_stop='0')
+              assert cross_work['reason'] == 'WORK_ADMISSION_IDENTITY_MISMATCH' and not feedback_state, cross_work
+              allowed = accept_feedback(feedback_state, failure, repo_root=root, user_stop='0')
+              assert allowed['status'] == 'PROMOTED' and len(feedback_state['shared_failure_rules']) == 1, allowed
           finally:
               fixture_path.unlink()
           os.environ.pop('WIC_RULE_CONTEXT_JSON', None)

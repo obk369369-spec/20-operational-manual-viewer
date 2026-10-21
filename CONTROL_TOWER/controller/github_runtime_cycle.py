@@ -509,7 +509,9 @@ def main() -> None:
                 state, queue, registry, json.loads(os.environ["WIC_HANDOFF_INPUT_JSON"]), progress)
         feedback_receipt = None
         if os.environ.get("WIC_FEEDBACK_JSON"):
-            feedback_receipt = accept_feedback(state, json.loads(os.environ["WIC_FEEDBACK_JSON"]))
+            feedback_receipt = accept_feedback(
+                state, json.loads(os.environ["WIC_FEEDBACK_JSON"]),
+                repo_root=body.ROOT, user_stop=os.environ.get("WIC_USER_STOP", ""))
         processed, held = route_contracts(state, queue, registry)
         progress_receipt = evaluate_progress(progress, {
             "root_id": "CENTRAL_RUNTIME_CYCLE", "scope": "COMMON_PLATFORM",

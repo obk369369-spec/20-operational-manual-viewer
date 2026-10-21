@@ -379,8 +379,21 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
     return receipt
 
 
-def accept_feedback(state: dict[str, Any], feedback: dict[str, Any]) -> dict[str, Any]:
-    """Persist one correction as a shared failure-class rule, never a local-only patch."""
+def accept_feedback(state: dict[str, Any], feedback: dict[str, Any], *,
+                    repo_root: Path, user_stop: str) -> dict[str, Any]:
+    """Admit a correction only for its own current work before changing shared rules."""
+    if user_stop != "0":
+        return {"status": "BLOCKED", "reason": "USER_STOP_ACTIVE", "blocked_before_mutation": True}
+    if not isinstance(feedback, dict):
+        return {"status": "BLOCKED", "reason": "FEEDBACK_IDENTITY_MISSING", "blocked_before_mutation": True}
+    work_id, task_id = feedback.get("work_id"), feedback.get("task_id")
+    if not isinstance(work_id, str) or not work_id or not isinstance(task_id, str) or not task_id:
+        return {"status": "BLOCKED", "reason": "FEEDBACK_IDENTITY_MISSING", "blocked_before_mutation": True}
+    receipt = verify_work_admission(feedback.get("work_admission"), repo_root=repo_root,
+                                    work_id=work_id, task_id=task_id)
+    if receipt["decision"] != "ALLOW":
+        return {"status": "BLOCKED", "reason": receipt["reason"],
+                "blocked_before_mutation": True, "rule_gate_receipt": receipt}
     from universal_enforcement import promote_failure
     promoted = promote_failure(feedback)
     if promoted["status"] != "PROMOTED":
