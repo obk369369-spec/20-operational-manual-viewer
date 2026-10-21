@@ -342,8 +342,9 @@ def accept_handoff(state: dict[str, Any], queue: dict[str, Any], registry: dict[
         return {"status": "BLOCKED", "reason": "DUPLICATE_TRACE", "trace_id": trace_id}
     task_id = str(envelope.get("task_id", ""))
     repo_root = Path(__file__).resolve().parents[2]
-    rule_receipt = verify_rule_context(
-        envelope.get("rule_context"), repo_root=repo_root, task_id=task_id
+    rule_receipt = verify_work_admission(
+        envelope.get("work_admission"), repo_root=repo_root,
+        work_id=trace_id, task_id=task_id
     )
     if rule_receipt["decision"] != "ALLOW":
         return {"status": "BLOCKED", "reason": rule_receipt["reason"], "trace_id": trace_id,

@@ -56,7 +56,13 @@ jobs:
                                            encoding='utf-8', delete=False) as fixture:
               json.dump({'work_id': work_id, 'task_id': 'TOOL042', 'source_records_verified': True,
                          'validation_result': 'PASS', 'validator_id': 'ISOLATED_TEST_VALIDATOR',
-                         'source_refs': ['ISOLATED_TEST_SOURCE']}, fixture)
+                         'rule_version': task['version'],
+                         'validation_plan': {'method': 'isolated exact-source check',
+                                             'expected_result': 'MATCH',
+                                             'evidence_required': 'original and independent verdict'},
+                         'source_refs': [{'path': 'WIC_GLOBAL_OPERATING_RULES.md',
+                                          'sha256': hashlib.sha256(
+                                              (root / 'WIC_GLOBAL_OPERATING_RULES.md').read_bytes()).hexdigest()}]}, fixture)
               fixture_path = Path(fixture.name)
           try:
               source = {'path': fixture_path.relative_to(root).as_posix(),
@@ -71,6 +77,20 @@ jobs:
               }
               queue = {'queued_requirement_ids': [42], 'rule_admissions': {work_id: admission}}
               assert runtime.queued_work_admission(queue, contract)['decision'] == 'ALLOW'
+              from runtime_progress_gate import accept_handoff
+              fixture_registry = json.loads((root / 'CONTROL_TOWER/controller/component_registry.json').read_text(
+                  encoding='utf-8'))
+              envelope = {'trace_id': work_id, 'root_id': 'ISOLATED-TWO-LANE-HANDOFF',
+                          'task_id': 'TOOL042', 'input': 'isolated input',
+                          'expected_output': 'isolated output', 'work_admission': admission}
+              gate_state = {'seen_signatures': [], 'stopped_roots': {},
+                            'last_checkpoint': {}, 'events': []}
+              blocked_handoff = accept_handoff({}, {}, fixture_registry,
+                  dict(envelope, work_admission=None), dict(gate_state))
+              assert blocked_handoff['status'] == 'BLOCKED' and (
+                  blocked_handoff['reason'] == 'WORK_ADMISSION_IDENTITY_MISMATCH'), blocked_handoff
+              accepted_handoff = accept_handoff({}, {}, fixture_registry, envelope, gate_state)
+              assert accepted_handoff['status'] == 'ACCEPTED', accepted_handoff
               for change, expected in [
                   ({'work_id': 'requirement:43'}, 'WORK_ADMISSION_IDENTITY_MISMATCH'),
                   ({'task_id': 'TOOL013'}, 'WORK_ADMISSION_IDENTITY_MISMATCH'),
