@@ -36,6 +36,39 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+      - name: Execute pinned reusable DAG component on remote runner (isolated)
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, subprocess, sys, tempfile
+          from pathlib import Path
+          from CONTROL_TOWER.controller.runtime_progress_gate import canonical_rule_manifest
+          root=Path.cwd()
+          registry=json.loads((root/'feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json').read_text(encoding='utf-8'))
+          component=next(item for item in registry['components'] if item['component_id']=='DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE')
+          wheel=root/component['source_file']
+          assert wheel.is_file() and hashlib.sha256(wheel.read_bytes()).hexdigest()==component['source_sha256']
+          for task_id in ('TOOL016','TOOL044'):
+              rules=canonical_rule_manifest(root,task_id)
+              assert not rules['missing'], (task_id,rules['missing'])
+          with tempfile.TemporaryDirectory() as folder:
+              target=Path(folder)
+              (target/'dodo.py').write_text("""
+          from pathlib import Path
+          import time
+          def task_tool016():
+              return {'actions':[(lambda: (time.sleep(0.3),Path('TOOL016.result').write_text('ISOLATED_RULES_COMPONENT_TEST\\n')))], 'verbosity':0}
+          def task_tool044():
+              return {'actions':[(lambda: (time.sleep(0.3),Path('TOOL044.result').write_text('ISOLATED_RULES_COMPONENT_TEST\\n')))], 'verbosity':0}
+          """.lstrip(),encoding='utf-8')
+              env=os.environ.copy()
+              env['PYTHONPATH']=str(wheel)
+              result=subprocess.run([sys.executable,'-m','doit','-f','dodo.py','-n','2','run'],
+                                    cwd=target,env=env,capture_output=True,text=True)
+              assert result.returncode==0, result.stdout+result.stderr
+              for task_id in ('TOOL016','TOOL044'):
+                  assert (target/(task_id+'.result')).read_text(encoding='utf-8')=='ISOLATED_RULES_COMPONENT_TEST\\n'
+          print('PASS ISOLATED_REMOTE_PINNED_COMPONENT_TWO_INDEPENDENT_TASKS')
+          PY
       - name: Verify only new common admission bindings and fail-closed default
         run: |
           python - <<'PY'
