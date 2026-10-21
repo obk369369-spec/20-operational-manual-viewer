@@ -111,6 +111,38 @@ jobs:
               admission = {'work_id':work_id,'task_id':task_id,'rule_context':context,
                            'source_receipt':{'path':source.relative_to(Path.cwd()).as_posix(),
                                              'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}}
+              admission['official_lanes'] = {
+                  'RULES': {'work_id': work_id, 'task_id': task_id, 'rule_version': context['version']},
+                  'COMPONENTS': {'work_id': work_id, 'task_id': task_id, 'component_ids': [],
+                                 'registry_sha256': hashlib.sha256(
+                                     Path('feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json').read_bytes()).hexdigest()}
+              }
+              assert verify_work_admission(dict(admission, official_lanes={}), repo_root=Path.cwd(),
+                                           work_id=work_id, task_id=task_id)['reason'] == 'OFFICIAL_LANES_MISSING_OR_EXTRA'
+              assert verify_work_admission(dict(admission, official_lanes=dict(
+                  admission['official_lanes'], COMPONENTS=dict(admission['official_lanes']['COMPONENTS'],
+                  component_ids=['UNREGISTERED']))), repo_root=Path.cwd(),
+                  work_id=work_id, task_id=task_id)['reason'] == 'COMPONENT_NOT_VERIFIED_REUSABLE'
+              component_id = json.loads(Path('feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json').read_text(
+                  encoding='utf-8'))['components'][0]['component_id']
+              component_path = (Path(folder) / 'component-target.json').resolve()
+              component_path.write_text(json.dumps({
+                  'work_id': work_id, 'task_id': task_id, 'component_ids': [component_id],
+                  'validation_result': 'PASS', 'target_test_result': 'PASS',
+                  'remote_readback': 'PASS', 'validator_id': 'ISOLATED_COMPONENT_VALIDATOR',
+                  'execution_id': 'ISOLATED_COMPONENT_EXECUTION'}) + '\n', encoding='utf-8')
+              selected = dict(admission, official_lanes=dict(admission['official_lanes'],
+                  COMPONENTS=dict(admission['official_lanes']['COMPONENTS'],
+                      component_ids=[component_id],
+                      target_validation_receipt={
+                          'path': component_path.relative_to(Path.cwd()).as_posix(),
+                          'sha256': hashlib.sha256(component_path.read_bytes()).hexdigest()})))
+              assert verify_work_admission(selected, repo_root=Path.cwd(),
+                                           work_id=work_id, task_id=task_id)['decision'] == 'ALLOW'
+              assert verify_work_admission(dict(admission, official_lanes=dict(
+                  admission['official_lanes'], COMPONENTS=dict(admission['official_lanes']['COMPONENTS'],
+                  component_ids=[component_id]))), repo_root=Path.cwd(),
+                  work_id=work_id, task_id=task_id)['reason'] == 'COMPONENT_TARGET_VALIDATION_MISSING'
               env = dict(os.environ, WIC_RULE_ADMISSION_JSON=json.dumps({'admissions':{work_id:admission}}),
                          WIC_USER_STOP='1')
               cmd = [sys.executable, 'CONTROL_TOWER/controller/pre_work_admission.py',

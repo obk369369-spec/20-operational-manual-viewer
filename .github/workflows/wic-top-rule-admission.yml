@@ -63,6 +63,12 @@ jobs:
                         'sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest()}
               admission = {'work_id': work_id, 'task_id': 'TOOL042',
                            'rule_context': task, 'source_receipt': source}
+              admission['official_lanes'] = {
+                  'RULES': {'work_id': work_id, 'task_id': 'TOOL042', 'rule_version': task['version']},
+                  'COMPONENTS': {'work_id': work_id, 'task_id': 'TOOL042', 'component_ids': [],
+                                 'registry_sha256': hashlib.sha256(
+                                     (root / 'feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json').read_bytes()).hexdigest()}
+              }
               queue = {'queued_requirement_ids': [42], 'rule_admissions': {work_id: admission}}
               assert runtime.queued_work_admission(queue, contract)['decision'] == 'ALLOW'
               for change, expected in [
@@ -72,6 +78,7 @@ jobs:
                   ({'rule_context': dict(task, conflicts=['unresolved'])}, 'RULE_CONFLICT_UNRESOLVED'),
                   ({'rule_context': dict(task, source_records_verified=False)}, 'REQUIRED_SOURCE_RECORDS_UNVERIFIED'),
                   ({'source_receipt': dict(source, sha256='bad')}, 'SOURCE_VALIDATION_RECEIPT_STALE_OR_TAMPERED'),
+                  ({'official_lanes': {}}, 'OFFICIAL_LANES_MISSING_OR_EXTRA'),
               ]:
                   test_queue = {'queued_requirement_ids': [42],
                                 'rule_admissions': {work_id: dict(admission, **change)}}

@@ -126,9 +126,80 @@ def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task
                                     or hashlib.sha256(original.read_bytes()).hexdigest() != ref["sha256"]):
                                 reason = "ORIGINAL_SOURCE_MISSING_OR_CHANGED"
                                 break
+    if reason is None:
+        lane = verify_official_lanes(admission, repo_root=repo_root, work_id=work_id, task_id=task_id)
+        reason = lane["reason"]
     return {"work_id": work_id, "task_id": task_id,
             "decision": "BLOCK" if reason else "ALLOW", "reason": reason}
 
+
+
+
+def verify_official_lanes(admission: Any, *, repo_root: Path, work_id: str, task_id: str) -> dict[str, Any]:
+    """Bind the only two intake lanes to one work identity without promoting reuse to execution."""
+    lanes = admission.get("official_lanes") if isinstance(admission, dict) else None
+    reason = None
+    if not isinstance(lanes, dict) or set(lanes) != {"RULES", "COMPONENTS"}:
+        reason = "OFFICIAL_LANES_MISSING_OR_EXTRA"
+    else:
+        rules, components = lanes["RULES"], lanes["COMPONENTS"]
+        context = admission.get("rule_context")
+        if not isinstance(rules, dict) or not isinstance(context, dict) or (
+            rules.get("work_id") != work_id or rules.get("task_id") != task_id
+            or rules.get("rule_version") != context.get("version")
+        ):
+            reason = "RULE_LANE_IDENTITY_OR_VERSION_MISMATCH"
+        elif not isinstance(components, dict) or (
+            components.get("work_id") != work_id or components.get("task_id") != task_id
+        ):
+            reason = "COMPONENT_LANE_IDENTITY_MISMATCH"
+        else:
+            ids = components.get("component_ids")
+            registry_path = repo_root / "feedback_pipeline" / "VERIFIED_COMPONENT_REGISTRY.json"
+            if not isinstance(ids, list) or any(not isinstance(item, str) or not item for item in ids) or len(ids) != len(set(ids)):
+                reason = "COMPONENT_LANE_IDS_INVALID"
+            elif not registry_path.is_file():
+                reason = "COMPONENT_REGISTRY_MISSING"
+            elif components.get("registry_sha256") != hashlib.sha256(registry_path.read_bytes()).hexdigest():
+                reason = "COMPONENT_REGISTRY_STALE_OR_TAMPERED"
+            else:
+                try:
+                    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    registry = {}
+                if registry.get("policy") != "EVIDENCE_REQUIRED_REUSE_FIRST":
+                    reason = "COMPONENT_REGISTRY_POLICY_INVALID"
+                else:
+                    available = {item.get("component_id"): item for item in registry.get("components", []) if isinstance(item, dict)}
+                    if any(available.get(item, {}).get("status") != "VERIFIED_REUSABLE" for item in ids):
+                        reason = "COMPONENT_NOT_VERIFIED_REUSABLE"
+                    elif ids:
+                        ref = components.get("target_validation_receipt")
+                        relative = ref.get("path") if isinstance(ref, dict) else None
+                        if not isinstance(relative, str) or not relative.endswith(".json"):
+                            reason = "COMPONENT_TARGET_VALIDATION_MISSING"
+                        else:
+                            allowed_roots = ((repo_root / "feedback_pipeline" / "evidence").resolve(),
+                                             (repo_root / "CONTROL_TOWER" / "ledger" / "evidence").resolve())
+                            target = (repo_root / relative).resolve()
+                            if not any(target.is_relative_to(root) for root in allowed_roots) or not target.is_file():
+                                reason = "COMPONENT_TARGET_VALIDATION_PATH_INVALID"
+                            elif hashlib.sha256(target.read_bytes()).hexdigest() != ref.get("sha256"):
+                                reason = "COMPONENT_TARGET_VALIDATION_STALE_OR_TAMPERED"
+                            else:
+                                try:
+                                    evidence = json.loads(target.read_text(encoding="utf-8"))
+                                except (OSError, ValueError):
+                                    evidence = {}
+                                if not (evidence.get("work_id") == work_id and evidence.get("task_id") == task_id
+                                        and evidence.get("component_ids") == ids
+                                        and evidence.get("validation_result") == "PASS"
+                                        and evidence.get("target_test_result") == "PASS"
+                                        and evidence.get("remote_readback") == "PASS"
+                                        and evidence.get("validator_id") and evidence.get("execution_id")):
+                                    reason = "COMPONENT_TARGET_VALIDATION_UNVERIFIED"
+    return {"work_id": work_id, "task_id": task_id,
+            "decision": "BLOCK" if reason else "ALLOW", "reason": reason}
 
 
 def signature(action: dict[str, Any]) -> str:

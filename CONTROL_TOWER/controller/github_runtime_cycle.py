@@ -15,7 +15,7 @@ from pre_work_admission import activate_token, issue_token, runtime_pack
 from runtime_progress_gate import (accept_feedback, accept_handoff,
                                    evaluate as evaluate_progress,
                                    initial_state as progress_state,
-                                   verify_rule_context)
+                                   verify_rule_context, verify_official_lanes)
 from universal_enforcement import closure_verdict, self_test as enforcement_self_test
 
 
@@ -454,6 +454,10 @@ def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> di
                                 and evidence.get("validation_result") == "PASS"
                                 and evidence.get("validator_id") and evidence.get("source_refs")):
                             reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
+        if reason is None:
+            lane = verify_official_lanes(admission, repo_root=body.ROOT,
+                                         work_id=work_id, task_id=task_id)
+            reason = lane["reason"]
         receipts.append({"work_id": work_id, "task_id": task_id,
                          "decision": "BLOCK" if reason else "ALLOW", "reason": reason})
     return {"decision": "ALLOW" if all(item["decision"] == "ALLOW" for item in receipts) else "BLOCK",
