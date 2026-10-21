@@ -10,12 +10,18 @@ on:
       - 'WIC_EXECUTION_STATE.json'
       - '.github/workflows/work-gate-handoff-audit.yml'
   workflow_dispatch:
+    inputs:
+      candidate_json:
+        description: 'Exact scoped maintenance candidate JSON; empty runs the existing audit only'
+        required: false
+        type: string
   schedule:
     - cron: '7,37 * * * *'
 permissions:
   contents: read
 jobs:
   work-gate-audit:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.candidate_json == '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,3 +57,33 @@ jobs:
           path: |
             work-handoff.json
             work-exit-checkpoint-template.json
+
+  candidate-gate-evaluation:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.candidate_json != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Evaluate candidate with pinned fresh CENTRAL
+        env:
+          CANDIDATE_JSON: ${{ inputs.candidate_json }}
+        run: |
+          printf '%s' "$CANDIDATE_JSON" > "$RUNNER_TEMP/wic-candidate.json"
+          python feedback_pipeline/work_gate_handoff.py --resume-latest --candidate "$RUNNER_TEMP/wic-candidate.json" > "$RUNNER_TEMP/wic-candidate-decision.json" || result=$?
+          cat "$RUNNER_TEMP/wic-candidate-decision.json"
+          python - "$RUNNER_TEMP/wic-candidate.json" "$RUNNER_TEMP/wic-candidate-decision.json" <<'PY'
+          import json, sys
+          candidate = json.load(open(sys.argv[1], encoding='utf-8'))
+          result = json.load(open(sys.argv[2], encoding='utf-8'))
+          assert result.get('status') == 'RESUME_LOADED', result
+          admission = result.get('work_admission') or {}
+          decision = admission.get('decision')
+          assert decision == 'WORK_DEFER_DENIED' and candidate.get('gates', {}).get('github') is True, admission
+          print('PASS: scoped candidate evaluated; lower-cost GitHub lane retained, Work execution denied')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: wic-candidate-gate-decision
+          path: ${{ runner.temp }}/wic-candidate-decision.json
