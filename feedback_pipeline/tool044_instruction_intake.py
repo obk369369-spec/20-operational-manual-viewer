@@ -149,6 +149,10 @@ def claim(queue,tool,owner):
                 "component_id":component_id,
                 "source_repository":components[component_id].get("source_repository"),
                 "source_file":components[component_id].get("source_file"),
+                "source_commit":components[component_id].get("source_commit"),
+                "source_sha256":components[component_id].get("source_sha256"),
+                "evidence_commit":components[component_id].get("evidence_commit"),
+                "reuse_requires_target_retest":components[component_id].get("reuse_requires_target_retest"),
                 "input_contract":components[component_id].get("input_contract"),
                 "output_contract":components[component_id].get("output_contract"),
                 "target_validation_receipt":component_lane.get("target_validation_receipt"),
@@ -230,6 +234,11 @@ def self_test():
             c=claim(q,"TOOL044","runner-A"); assert c and c["status"]=="CLAIMED"
             assert [item["component_id"] for item in c["component_selection"]]==component_ids
             assert all(item["source_file"] for item in c["component_selection"])
+            registry_components={item["component_id"]:item for item in json.loads(registry.read_text(encoding="utf-8"))["components"]}
+            for selection in c["component_selection"]:
+                registered=registry_components[selection["component_id"]]
+                for key in ("source_commit","source_sha256","evidence_commit","reuse_requires_target_retest"):
+                    assert selection[key]==registered.get(key)
             c["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; c["claim"]=None; c["status"]="OPEN"
             c2=claim(q,"TOOL044","runner-B"); assert c2["checkpoint"]["resume_from"]=="CLAIMED"
             c2["checkpoint"]={"stage":"HALF","resume_from":"HALF"}; snap=json.loads(json.dumps(q))
