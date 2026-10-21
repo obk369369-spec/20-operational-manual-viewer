@@ -1,0 +1,44 @@
+id: wic_external_socket_discovery_hourly
+namespace: wic.external_workspace
+description: "Isolated hourly discovery of official turnkey platform releases. No production WIC job execution."
+labels:
+  owner: external-platform
+  mode: nonproduction
+  credits: no-chatgpt-codex-scheduler
+triggers:
+  - id: hourly
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 * * * *"
+    timezone: Asia/Seoul
+tasks:
+  - id: discover_official_releases
+    type: io.kestra.plugin.scripts.python.Script
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+    containerImage: python:3.12-alpine
+    script: |
+      import json, urllib.request, datetime, hashlib
+      repos = [
+        "kestra-io/kestra", "windmill-labs/windmill",
+        "activepieces/activepieces", "n8n-io/n8n",
+        "temporalio/temporal", "apache/airflow",
+        "PrefectHQ/prefect", "dagster-io/dagster"
+      ]
+      results = []
+      for repo in repos:
+          url = "https://api.github.com/repos/" + repo + "/releases/latest"
+          request = urllib.request.Request(url, headers={"User-Agent":"wic-external-socket-discovery/1.0","Accept":"application/vnd.github+json"})
+          try:
+              with urllib.request.urlopen(request, timeout=15) as response:
+                  data = json.load(response)
+              results.append({"repo":repo,"status":"FOUND","tag":data.get("tag_name"),"url":data.get("html_url"),"published_at":data.get("published_at")})
+          except Exception as error:
+              results.append({"repo":repo,"status":"HOLD","error_type":type(error).__name__})
+      evidence = {"schema":"wic_discovery_nonproduction_v1","observed_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"results":results,"production_mutation":0,"connected_products":0,"external_job_migration_pass":False}
+      payload = json.dumps(evidence, ensure_ascii=False, sort_keys=True)
+      evidence["sha256"] = hashlib.sha256(payload.encode()).hexdigest()
+      with open("wic-discovery-evidence.json","w",encoding="utf-8") as output:
+          json.dump(evidence,output,ensure_ascii=False,indent=2)
+      print(json.dumps(evidence,ensure_ascii=False))
+    outputFiles:
+      - wic-discovery-evidence.json
