@@ -24,6 +24,8 @@ jobs:
         with:
           ref: main
           fetch-depth: 1
+      - name: Refresh TOOL043 from canonical inputs
+        run: python tool043/night_observer.py
       - name: Build hourly status snapshot from existing evidence
         run: |
           python - <<'PY'
@@ -97,7 +99,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add observer/runtime/hourly-status.json observer/runtime/hourly-status-history.jsonl
+          git add observer/runtime/hourly-status.json observer/runtime/hourly-status-history.jsonl tool043/status.json tool043/status_snapshot.js tool043/night_queue.json tool043/chat_coordination_state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'observer: record hourly free runtime status'
           git pull --rebase origin main
@@ -119,6 +121,16 @@ jobs:
           import hashlib, json, os
           from pathlib import Path
           report = json.loads(Path('observer/runtime/hourly-status.json').read_text(encoding='utf-8'))
+          observer = json.loads(Path('tool043/status.json').read_text(encoding='utf-8'))
+          required = {'feedback_pipeline/work16_root_ledger.json', 'feedback_pipeline/incomplete_register.json', 'feedback_pipeline/unified_open_ledger.json', 'feedback_pipeline/approval_queue.json', 'feedback_pipeline/evidence/work_execution_audit_20260827.json'}
+          fingerprints = observer.get('central_input_sha256') or {}
+          assert set(fingerprints) == required
+          assert all(hashlib.sha256(Path(p).read_bytes().replace(b'\r\n', b'\n')).hexdigest() == fingerprints[p] for p in required)
+          assert observer.get('observer_health') == 'OK'
+          assert observer.get('github_actions_run')
+          assert observer.get('observer_generated_at')
+          assert Path('tool043/status_snapshot.js').read_text(encoding='utf-8').startswith('window.TOOL043_STATUS_SNAPSHOT = ')
+
           checkpoint = json.loads(Path('CONTROL_TOWER/ledger/evidence/WIC_COMMON_EXECUTION_BOUNDARY_CHECKPOINT_20261019.json').read_text(encoding='utf-8'))
           rules = report.get('applied_rule_files') or {}
           assert set(rules) == {'WIC_GLOBAL_OPERATING_RULES.md','AGENTS.md','WIC_CHAT_ROUTING_REGISTRY.md'}
