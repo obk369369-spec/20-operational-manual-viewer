@@ -1,7 +1,7 @@
 """Fail-closed source/local receipt and assembly gate for external components."""
 from __future__ import annotations
 
-import argparse, base64, gzip, hashlib, io, json, tarfile, urllib.request
+import argparse, base64, gzip, hashlib, io, json, os, sys, tarfile, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
@@ -233,7 +233,17 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--registry", type=Path)
     args = parser.parse_args()
-    result = orchestrate(json.loads(args.manifest.read_text(encoding="utf-8")))
+    manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+    work_id, task_id = manifest.get("work_id"), manifest.get("task_id")
+    if not isinstance(work_id, str) or not work_id or not isinstance(task_id, str) or not task_id:
+        raise PermissionError("COMPONENT_WORK_IDENTITY_MISSING")
+    controller_path = Path(__file__).resolve().parents[1] / "CONTROL_TOWER" / "controller"
+    sys.path.insert(0, str(controller_path))
+    from pre_work_admission import require_external_admission
+    admission = require_external_admission(work_id, task_id)
+    if admission["decision"] != "ALLOW":
+        raise PermissionError("COMPONENT_LANE_ADMISSION_DENIED:" + str(admission["reason"]))
+    result = orchestrate(manifest)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if args.registry:

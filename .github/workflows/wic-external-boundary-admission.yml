@@ -6,6 +6,7 @@ on:
       - 'WIC_GLOBAL_OPERATING_RULES.md'
       - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
       - 'CONTROL_TOWER/controller/pre_work_admission.py'
+      - 'feedback_pipeline/wic_component_receipts.py'
       - 'observer/index.html'
       - '.github/workflows/render-env2-roundtrip.yml'
       - '.github/workflows/root-a-env1-circleci-readback.yml'
@@ -174,6 +175,22 @@ jobs:
               env['WIC_USER_STOP'] = '0'
               allowed = subprocess.run(cmd, env=env, capture_output=True, text=True)
               assert allowed.returncode == 0 and 'ALLOW' in allowed.stdout, allowed.stdout
+              component_manifest = Path(folder) / 'component-manifest.json'
+              component_output = Path(folder) / 'component-result.json'
+              component_manifest.write_text(json.dumps({
+                  'work_id': work_id, 'task_id': task_id,
+                  'components': [{'component_id': 'ISOLATED_NO_READY',
+                                  'availability': 'NO_READY_COMPONENT',
+                                  'reason': 'isolated non-operational test'}]}), encoding='utf-8')
+              component_cmd = [sys.executable, 'feedback_pipeline/wic_component_receipts.py',
+                               '--manifest', str(component_manifest), '--output', str(component_output)]
+              env['WIC_USER_STOP'] = '1'
+              component_stopped = subprocess.run(component_cmd, env=env, capture_output=True, text=True)
+              assert component_stopped.returncode != 0 and not component_output.exists(), component_stopped
+              env['WIC_USER_STOP'] = '0'
+              component_allowed = subprocess.run(component_cmd, env=env, capture_output=True, text=True)
+              assert component_allowed.returncode == 2 and component_output.is_file(), component_allowed
+              assert json.loads(component_output.read_text(encoding='utf-8'))['status'] == 'PARTIAL'
               marker_path.write_text('ACTUAL_ISOLATED_EXECUTION\n', encoding='utf-8')
               assert marker_path.read_text(encoding='utf-8') == 'ACTUAL_ISOLATED_EXECUTION\n'
               result_ref = {'path':marker_path.relative_to(Path.cwd()).as_posix(),
