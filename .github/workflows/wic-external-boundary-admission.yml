@@ -188,6 +188,11 @@ jobs:
               component_stopped = subprocess.run(component_cmd, env=env, capture_output=True, text=True)
               assert component_stopped.returncode != 0 and not component_output.exists(), component_stopped
               env['WIC_USER_STOP'] = '0'
+              component_mismatch = subprocess.run(component_cmd, env=env, capture_output=True, text=True)
+              assert component_mismatch.returncode != 0 and not component_output.exists(), component_mismatch
+              assert 'COMPONENT_SELECTION_IDENTITY_MISMATCH' in component_mismatch.stderr
+              component_manifest.write_text(json.dumps({
+                  'work_id': work_id, 'task_id': task_id, 'components': []}), encoding='utf-8')
               component_allowed = subprocess.run(component_cmd, env=env, capture_output=True, text=True)
               assert component_allowed.returncode == 2 and component_output.is_file(), component_allowed
               assert json.loads(component_output.read_text(encoding='utf-8'))['status'] == 'PARTIAL'

@@ -243,6 +243,19 @@ def main() -> None:
     admission = require_external_admission(work_id, task_id)
     if admission["decision"] != "ALLOW":
         raise PermissionError("COMPONENT_LANE_ADMISSION_DENIED:" + str(admission["reason"]))
+    try:
+        envelope = json.loads(os.environ.get("WIC_RULE_ADMISSION_JSON", "null"))
+    except ValueError:
+        envelope = None
+    if isinstance(envelope, dict) and isinstance(envelope.get("admissions"), dict):
+        envelope = envelope["admissions"].get(work_id)
+    lane = envelope.get("official_lanes", {}).get("COMPONENTS", {}) if isinstance(envelope, dict) else {}
+    selected = lane.get("component_ids")
+    requested = [item.get("component_id") for item in manifest.get("components", [])
+                 if isinstance(item, dict)]
+    if (not isinstance(selected, list) or len(requested) != len(manifest.get("components", []))
+            or len(requested) != len(set(requested)) or requested != selected):
+        raise PermissionError("COMPONENT_SELECTION_IDENTITY_MISMATCH")
     result = orchestrate(manifest)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
