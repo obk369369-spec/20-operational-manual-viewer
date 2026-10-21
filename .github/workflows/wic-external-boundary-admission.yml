@@ -66,7 +66,7 @@ jobs:
                                     cwd=target,env=env,capture_output=True,text=True)
               assert result.returncode==0, result.stdout+result.stderr
               for task_id in ('TOOL016','TOOL044'):
-                  assert (target/(task_id+'.result')).read_text(encoding='utf-8')=='ISOLATED_RULES_COMPONENT_TEST\\n'
+                  assert (target/(task_id+'.result')).read_text(encoding='utf-8').strip()=='ISOLATED_RULES_COMPONENT_TEST'
           print('PASS ISOLATED_REMOTE_PINNED_COMPONENT_TWO_INDEPENDENT_TASKS')
           PY
       - name: Verify only new common admission bindings and fail-closed default
