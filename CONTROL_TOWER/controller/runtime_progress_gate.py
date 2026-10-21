@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import urllib.request
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +29,33 @@ TASK_RULE_FILES = {
 }
 
 
+# Existing independently read-back rule originals. A changed or unreachable upstream fails closed.
+REMOTE_TASK_RULE_FILES = {
+    "TOOL001": (("obk369369-spec/01-auto-guide-v1", "TOOL001_MASTER.md",
+                 "4025a7d0c9fc92d66feb8cb608345edf3d5ae42a647e247f8031b8400289320b"),),
+    "TOOL002": (("obk369369-spec/02-auto-bid-narajangter-v1", "TOOL002_MASTER.md",
+                 "6e1f66abbe1d1d3b892aab2f08dc27fa225577167c2f8b87ed898a852e2578a7"),),
+    "TOOL006": (("obk369369-spec/06-toc-check", "TOOL006_MASTER.md",
+                 "0fae51ccc51d0e1bbee4e4307e84e0971849d7fd853a977652e415db1d16acdd"),),
+    "TOOL013": (("obk369369-spec/13-excel-upload", "TOOL013_MASTER.md",
+                 "de07fb62da9dab03d395d9cf65eb9b4771056752eff040aab05bfaed5e3c23bf"),
+                ("obk369369-spec/13-excel-upload", "WIC_RULE_SOURCE.md",
+                 "892b96b8eccd7724e26ff26e43391ffc17c0a89ee2ec479be371f20e684cf7ac")),
+}
+
+
+def _verified_remote_rule(repository: str, path: str, expected_sha256: str) -> bool:
+    """Read the actual GitHub canonical original; a stale pinned receipt never admits work."""
+    url = f"https://raw.githubusercontent.com/{repository}/main/{path}"
+    try:
+        request = urllib.request.Request(url, headers={"User-Agent": "WIC-RULE-LANE/1.0"})
+        with urllib.request.urlopen(request, timeout=8) as response:
+            actual = response.read()
+    except (OSError, ValueError):
+        return False
+    return bool(actual) and hashlib.sha256(actual).hexdigest() == expected_sha256
+
+
 def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any]:
     """Build the only accepted rule snapshot from existing canonical files."""
     required = list(CANONICAL_RULE_FILES) + list(TASK_RULE_FILES.get(task_id.upper(), ()))
@@ -39,6 +67,12 @@ def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any
             missing.append(relative)
             continue
         files[relative] = hashlib.sha256(target.read_bytes()).hexdigest()
+    for repository, path, expected_sha256 in REMOTE_TASK_RULE_FILES.get(task_id.upper(), ()):
+        key = f"github://{repository}/{path}"
+        if _verified_remote_rule(repository, path, expected_sha256):
+            files[key] = expected_sha256
+        else:
+            missing.append(key)
     version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
     return {"task_id": task_id.upper(), "files": files, "missing": missing, "version": version}
 
@@ -75,7 +109,7 @@ def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task
     reason = None
     if not isinstance(task_id, str) or not task_id.strip():
         reason = "CONTRACT_TASK_ID_MISSING"
-    elif task_id.upper() != "CENTRAL" and task_id.upper() not in TASK_RULE_FILES:
+    elif task_id.upper() != "CENTRAL" and task_id.upper() not in TASK_RULE_FILES and task_id.upper() not in REMOTE_TASK_RULE_FILES:
         reason = "TASK_RULE_SOURCE_UNMAPPED"
     elif not isinstance(admission, dict) or admission.get("work_id") != work_id or admission.get("task_id") != task_id:
         reason = "WORK_ADMISSION_IDENTITY_MISMATCH"

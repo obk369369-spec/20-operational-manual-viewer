@@ -77,6 +77,12 @@ jobs:
           assert email_manifest['files'].get('EMAIL_COLLECTION_COMMON_RULES.md') and not email_manifest['missing']
           assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id='EMAIL_DB')['decision'] == 'BLOCK'
           assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED', task_id='TOOL027')['reason'] == 'TASK_RULE_SOURCE_UNMAPPED'
+          for task_id in ('TOOL001', 'TOOL002', 'TOOL006', 'TOOL013'):
+              remote_rules = canonical_rule_manifest(Path.cwd(), task_id)
+              assert not remote_rules['missing'], (task_id, remote_rules['missing'])
+              assert any(path.startswith('github://') for path in remote_rules['files']), task_id
+          assert verify_work_admission(None, repo_root=Path.cwd(), work_id='ISOLATED',
+                                       task_id='TOOL007')['reason'] == 'TASK_RULE_SOURCE_UNMAPPED'
           import subprocess, tempfile
           html = Path('observer/index.html').read_text(encoding='utf-8')
           assert 'const GATE=' in html and 'gate.start_blocked?' in html
@@ -123,6 +129,16 @@ jobs:
                   admission['official_lanes'], COMPONENTS=dict(admission['official_lanes']['COMPONENTS'],
                   component_ids=['UNREGISTERED']))), repo_root=Path.cwd(),
                   work_id=work_id, task_id=task_id)['reason'] == 'COMPONENT_NOT_VERIFIED_REUSABLE'
+              registry_components = json.loads(Path('feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json').read_text(
+                  encoding='utf-8'))['components']
+              assert len(registry_components) == 8
+              for item in registry_components:
+                  assert item['status'] == 'VERIFIED_REUSABLE'
+                  untested = dict(admission, official_lanes=dict(admission['official_lanes'],
+                      COMPONENTS=dict(admission['official_lanes']['COMPONENTS'],
+                                      component_ids=[item['component_id']])))
+                  assert verify_work_admission(untested, repo_root=Path.cwd(),
+                      work_id=work_id, task_id=task_id)['reason'] == 'COMPONENT_TARGET_VALIDATION_MISSING'
               component_id = json.loads(Path('feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json').read_text(
                   encoding='utf-8'))['components'][0]['component_id']
               component_path = (Path(folder) / 'component-target.json').resolve()
