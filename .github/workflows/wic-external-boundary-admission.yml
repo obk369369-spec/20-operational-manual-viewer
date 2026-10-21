@@ -8,6 +8,7 @@ on:
       - 'CONTROL_TOWER/controller/pre_work_admission.py'
       - 'feedback_pipeline/wic_component_receipts.py'
       - 'feedback_pipeline/tool044_instruction_intake.py'
+      - 'WIC_CHAT_ROUTING_REGISTRY.md'
       - 'observer/index.html'
       - '.github/workflows/render-env2-roundtrip.yml'
       - '.github/workflows/root-a-env1-circleci-readback.yml'
@@ -275,6 +276,16 @@ jobs:
                                          '--self-test'], capture_output=True, text=True)
           assert intake_delta.returncode == 0, intake_delta.stdout + intake_delta.stderr
           assert json.loads(intake_delta.stdout)['CHECKPOINT_RESUME_PASS'] is True
+          sys.path.insert(0, str(Path.cwd() / 'feedback_pipeline'))
+          from cross_chat_feedback_ingest import load_route_registry, route_targets
+          route_map = load_route_registry()
+          for task_id, phrase, master in (
+              ('TOOL016', '16번 업무', 'feedback_pipeline/TOOL016_MASTER.md'),
+              ('TOOL044', '44번 외부 부품', 'feedback_pipeline/TOOL044_MASTER.md')):
+              assert task_id in route_targets(phrase, route_map)
+              mapped = canonical_rule_manifest(Path.cwd(), task_id)
+              assert master in mapped['files'] and not mapped['missing'], mapped
+          print('PASS RULES_ROUTE_DELTA_TOOL016_TOOL044')
           print('PASS TWO_LANE_INTAKE_CLAIM_STOP_AND_ADMISSION_DELTA')
           print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
           print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
