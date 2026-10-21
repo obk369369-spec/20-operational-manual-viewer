@@ -444,6 +444,48 @@
         "preserved_hold_count": 1,
         "deployment_increment_commit": "486257dab8509c90f997f791e2e9f13d65738b90"
       }
+    },
+    "TOOL016": {
+      "chat_ids": [
+        "TOOL016"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "wic16-two-lane-integration-20261021",
+      "master_paths": [
+        "feedback_pipeline/TOOL016_MASTER.md"
+      ],
+      "state_path": "feedback_pipeline/state.json",
+      "evidence_path": "feedback_pipeline/evidence",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "feedback_pipeline/TOOL016_MASTER.md"
+      ],
+      "latest_safe_checkpoint": "4513733a0e0190a0b95e7286b1a086adca1245bd",
+      "latest_verified_commit": "4513733a0e0190a0b95e7286b1a086adca1245bd",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE",
+      "validated_scope": "ISOLATED_RULES_ROUTE_ONLY_NO_BUSINESS_EXECUTION"
+    },
+    "TOOL044": {
+      "chat_ids": [
+        "TOOL044"
+      ],
+      "repository": "obk369369-spec/20-operational-manual-viewer",
+      "branch": "wic16-two-lane-integration-20261021",
+      "master_paths": [
+        "feedback_pipeline/TOOL044_MASTER.md"
+      ],
+      "state_path": "feedback_pipeline/state.json",
+      "evidence_path": "feedback_pipeline/evidence",
+      "test_command": [
+        "WIC_BUILTIN_REQUIRED_FILES",
+        "feedback_pipeline/TOOL044_MASTER.md"
+      ],
+      "latest_safe_checkpoint": "4513733a0e0190a0b95e7286b1a086adca1245bd",
+      "latest_verified_commit": "4513733a0e0190a0b95e7286b1a086adca1245bd",
+      "adapter": "CENTRAL_LANE_DIFF_ONLY",
+      "status": "ACTIVE",
+      "validated_scope": "ISOLATED_RULES_ROUTE_ONLY_NO_BUSINESS_EXECUTION"
     }
   },
   "registration_holds": {},
