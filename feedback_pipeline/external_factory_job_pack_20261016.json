@@ -354,5 +354,19 @@
     "HISTORICAL_JOB_READY": true,
     "EXTERNAL_FACTORY_HANDOFF_READY": "PASS",
     "queue_action": "CLAIM_PARALLEL_NOW_THEN_RELEASE_DEPENDENT_JOBS"
+  },
+  "reconciliation_20261021": {
+    "status": "EVIDENCE_REUSE_NOT_JOB_PASS",
+    "evidence": [
+      "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_ASSEMBLY_FINAL_20261010.json",
+      "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_PRODUCT_CLOSURE_20261014.json"
+    ],
+    "locked_tool013_scopes": [
+      "TOOL013_ASSEMBLY_FINAL",
+      "TOOL013_ACTUAL_PRODUCT_CLOSURE"
+    ],
+    "distinct_unresolved": "CURRENT_CHAT_ACTUAL_DATASET_TO_RUNTIME_HANDOFF",
+    "remaining_status": "HOLD_EXTERNAL_INPUT",
+    "rule": "Do not reopen closed TOOL013 scopes; proceed in parallel on other unclosed roots and actual source binding when available."
   }
 }
