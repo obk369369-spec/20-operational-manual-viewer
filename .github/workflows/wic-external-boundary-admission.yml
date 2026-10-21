@@ -62,7 +62,7 @@ jobs:
           """.lstrip(),encoding='utf-8')
               env=os.environ.copy()
               env['PYTHONPATH']=str(wheel)
-              result=subprocess.run([sys.executable,'-m','doit','-f','dodo.py','-n','2','run'],
+              result=subprocess.run([sys.executable,'-m','doit','-f','dodo.py','-n','2'],
                                     cwd=target,env=env,capture_output=True,text=True)
               assert result.returncode==0, result.stdout+result.stderr
               for task_id in ('TOOL016','TOOL044'):
