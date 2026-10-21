@@ -26,6 +26,7 @@ concurrency:
 
 jobs:
   intake-contract:
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,6 +59,7 @@ jobs:
           path: resume-proof/checkpoint.json
 
   cross-runner-resume:
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' }}
     needs: intake-contract
     runs-on: ubuntu-latest
     steps:
@@ -84,6 +86,7 @@ jobs:
           path: resume-proof/resumed.json
 
   apply-and-readback:
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' }}
     needs: [intake-contract, cross-runner-resume]
     runs-on: ubuntu-latest
     steps:

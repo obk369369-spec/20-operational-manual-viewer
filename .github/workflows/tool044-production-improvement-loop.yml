@@ -18,6 +18,7 @@ concurrency:
 
 jobs:
   production-loop:
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' }}
     runs-on: ubuntu-latest
     env:
       PYTHONDONTWRITEBYTECODE: '1'
