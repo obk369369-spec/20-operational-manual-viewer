@@ -309,7 +309,7 @@
       "method_id": "REUSE_EXISTING_GENERATOR_GATE_AND_ACTIONS_RUNNER",
       "rollback_point": "d42a18f860798804148c1ab66805f123fb58e11f",
       "last_actual_point": "PR #43/#44 and main Observer run 39702205421 remain verified. Segment 1 on 2026-10-22 inspected the existing exact candidate workflow_dispatch entry and official RULES/COMPONENTS bindings; the connected GitHub tool exposes no workflow_dispatch POST, so no main --resume-latest --candidate run or new business execution occurred.",
-      "next_trigger": "APPROVED_GITHUB_WORKFLOW_DISPATCH_CAPABILITY_AVAILABLE",
+      "next_trigger": "IMMEDIATE",
       "next_start": "On main, dispatch .github/workflows/work-gate-handoff-audit.yml with the exact WIC16 candidate_json, then read the workflow run ID and wic-candidate-gate-decision artifact. Keep STOP/START_BLOCKED and do not claim full Gate PASS before this evidence.",
       "execution_receipts": [
         {
@@ -342,7 +342,13 @@
         "next_segment": "NOT_STARTED",
         "changed_assets": [
           "feedback_pipeline/unified_open_ledger.json"
-        ]
+        ],
+        "failure_injection": {
+          "run_id": "39704245194",
+          "result": "SKIP_NO_VALUE",
+          "cause": "Changing root next_trigger to auth availability blocked the existing independent candidate-scope evaluation",
+          "recovery": "Restore existing IMMEDIATE trigger; retain dispatch limitation only in pending_validation HOLD"
+        }
       }
     }
   ],
