@@ -134,6 +134,24 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(ledger["entries"][1]["status"], "HOLD_EXECUTION_ADMISSION")
         self.assertEqual(ledger["entries"][1]["next_trigger"], "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED")
 
+    def test_backlog_supply_requires_contract_and_source_admission(self) -> None:
+        ledger = {"entries": [{"root_id": root, "status": "OPEN", "next_trigger": "IMMEDIATE"}
+                              for root in ("A", "B", "C")]}
+        queue = {"queued_requirement_ids": [], "backlog_root_ids": [],
+                 "rule_admissions": {"backlog:A": self.admission("backlog:A")}}
+        registry = {"backlog_execution_contracts": [
+            {"root_id": root, "task_id": "TOOL044"} for root in ("A", "C")]}
+        supply = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(queue["backlog_root_ids"], ["A"])
+        self.assertEqual(supply["executable_count"], 1)
+        self.assertEqual({row["root_id"]: row["defer_reason"] for row in supply["deferred"]}, {
+            "B": "EXECUTION_CONTRACT_MISSING",
+            "C": "WORK_ADMISSION_OR_SOURCE_RECEIPT_MISSING",
+        })
+        receipt = runtime.isolate_denied_queued_work({"requirements": []}, queue, ledger, registry)
+        self.assertEqual((receipt["decision"], receipt["allowed_count"]), ("ALLOW", 1))
+        self.assertTrue(all(row["status"] == "OPEN" for row in ledger["entries"]))
+
     def test_authoritative_global_stop_still_blocks(self) -> None:
         with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
             receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
