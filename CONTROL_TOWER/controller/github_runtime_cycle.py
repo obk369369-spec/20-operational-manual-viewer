@@ -134,13 +134,17 @@ def load_github_runtime_history() -> list[dict[str, Any]]:
             for item in payload.get("workflow_runs", [])]
 
 
-def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> dict[str, Any]:
+def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
+                              registry: dict[str, Any] | None = None) -> dict[str, Any]:
     """Bind the canonical open ledger to runtime selection without reopening PASS locks."""
     executable: list[dict[str, Any]] = []
     deferred: list[dict[str, Any]] = []
     ledger_quarantine: dict[str, dict[str, Any]] = {
         item.get("root_id"): item for item in queue.get("backlog_quarantine", []) if item.get("root_id")
     }
+    contracts = ({item.get("root_id") for item in registry.get("backlog_execution_contracts", [])
+                  if item.get("root_id")} if registry is not None else None)
+    admissions = queue.get("rule_admissions", {})
     for entry in ledger.get("entries", []):
         status = str(entry.get("status", "UNKNOWN"))
         if status in CLOSED_LEDGER_STATUSES:
@@ -151,7 +155,17 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> 
             "next_trigger": entry.get("next_trigger"),
             "next_start": entry.get("next_start"),
         }
-        if status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE":
+        ready = status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE"
+        work_id = f"backlog:{entry.get('root_id')}"
+        admission = admissions.get(work_id) if isinstance(admissions, dict) else None
+        if ready and contracts is not None and entry.get("root_id") not in contracts:
+            summary["defer_reason"] = "EXECUTION_CONTRACT_MISSING"
+            deferred.append(summary)
+        elif ready and contracts is not None and (
+                not isinstance(admission, dict) or not isinstance(admission.get("source_receipt"), dict)):
+            summary["defer_reason"] = "WORK_ADMISSION_OR_SOURCE_RECEIPT_MISSING"
+            deferred.append(summary)
+        elif ready:
             executable.append(summary)
         else:
             summary["defer_reason"] = (
@@ -543,7 +557,7 @@ def main() -> None:
         continuity = evaluate_runtime_continuity(load_github_runtime_history())
         ledger_path = body.ROOT / "feedback_pipeline" / "unified_open_ledger.json"
         ledger = body.load(ledger_path)
-        backlog = reconcile_central_backlog(queue, ledger)
+        backlog = reconcile_central_backlog(queue, ledger, registry)
         queued_admission = isolate_denied_queued_work(
             state, queue, ledger, registry)
         backlog_execution = execute_central_backlog(queue, ledger, registry)
