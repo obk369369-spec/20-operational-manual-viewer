@@ -37,7 +37,7 @@
     {
       "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
       "root_id": "WIC-0702-SCOPED-RECOVERY",
-      "status": "OPEN",
+      "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
       "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds.",
       "next_trigger": "IMMEDIATE",
       "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification."
@@ -51,17 +51,25 @@
       "next_start": "Parallel scoped residual lanes; one CENTRAL writer. Admit current scope, close representative TOOL013 output DIFF, preserve exact external holds; do not repeat completed adapters."
     },
     {
+      "target": "TOOL043 / WORK_GATE / GITHUB_ACTIONS",
+      "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+      "status": "OPEN",
+      "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution"
+    },
+    {
       "kind": "SAFE_NIGHT_TASK",
       "task_id": "T43-NIGHT-REAL-RUN-20260829-01",
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "action": "REFRESH_OBSERVER_FROM_CENTRAL",
       "safe": true,
       "execution_status": "COMPLETED",
-      "completed_at": "2026-10-01T05:27:02.333596+00:00",
-      "github_actions_run": "LOCAL_ONLY",
-      "source_revision": "LOCAL_ONLY",
+      "completed_at": "2026-10-22T00:45:33.097368+00:00",
+      "github_actions_run": "39701598976",
+      "source_revision": "a2eb916a311dff73aac76bd3927fb66bfd114845",
       "execution_mode": "RECURRING",
-      "execution_count": 152,
+      "execution_count": 153,
       "result": "CENTRAL_OBSERVER_REFRESHED"
     }
   ]

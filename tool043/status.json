@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
-    "feedback_pipeline/unified_open_ledger.json": "5ee3ce07d2caf545aa2fe43441353b2ab8bdcd9813cceb62b74eb137fd47aa31",
+    "feedback_pipeline/unified_open_ledger.json": "e689c926a753b56edeb3f81de2b320ab84bc4478f8956698909b81f512fb87ac",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -32,17 +32,17 @@
   "tool_function_improvement": {
     "source": "feedback_pipeline/tool044_function_state.json",
     "classification_counts": {
-      "IMPROVED_VERIFIED": 9,
-      "IMPROVED_PARTIAL": 15,
+      "IMPROVED_VERIFIED": 10,
+      "IMPROVED_PARTIAL": 18,
       "REPEATED_ERROR": 0,
-      "HOLD": 3,
+      "HOLD": 4,
       "FAIL": 0,
-      "MISSING_CAPABILITY": 101,
+      "MISSING_CAPABILITY": 114,
       "NO_READY_COMPONENT": 0,
       "RUNTIME_NOT_ENFORCED": 0,
       "ACTUAL_USE_NOT_VERIFIED": 8,
       "DEPLOYMENT_NOT_VERIFIED": 0,
-      "UNKNOWN": 5
+      "UNKNOWN": 3
     },
     "functions": [
       {
@@ -287,10 +287,20 @@
         "TOOL_ID": "TOOL016 / TOOL044 / GITHUB_ACTIONS",
         "FUNCTION_ID": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
         "FUNCTION_NAME": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
-        "CURRENT_STATUS": "UNKNOWN",
+        "CURRENT_STATUS": "IMPROVED_VERIFIED",
         "LAST_VERIFIED_DATE": null,
-        "IMPROVEMENT_EVIDENCE": null,
-        "REMAINING_ERROR": "The existing controller passed local normal and recovery E2E, but independent scheduled runtime, persisted state, multiple-requirement continuation, and remote evidence read-back are not yet proven.",
+        "IMPROVEMENT_EVIDENCE": {
+          "repository": "obk369369-spec/20-operational-manual-viewer",
+          "commit": "3af0909d6e796ced534404f25ad67c91aa10b237",
+          "path": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+          "remote_blob_sha": "ed84089a6b163445213760bcdd23115b840d9858",
+          "workflow_runs": [
+            "37279406712",
+            "37280663400"
+          ],
+          "scope": "Independent hosted runtime structure, two persisted cycles, completed-item blocking, multi-requirement auto-processing, queue continuation, recovery, and remote read-back; excludes actual 24-hour elapsed proof"
+        },
+        "REMAINING_ERROR": null,
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -298,7 +308,7 @@
         "MISSING_CAPABILITY": null,
         "TOOL044_SEARCH_REQUIRED": false,
         "SEARCH_PRIORITY": "NONE",
-        "ACTION": "TOOL016_OR_EXTERNAL_EVIDENCE_GATE"
+        "ACTION": "SKIP_REUSE"
       },
       {
         "TOOL_ID": "TOOL016 / TOOL044 / KESTRA / NODE_RED / GITHUB_PAGES",
@@ -327,10 +337,10 @@
         "TOOL_ID": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
         "FUNCTION_ID": "WIC-0702-SCOPED-RECOVERY",
         "FUNCTION_NAME": "WIC-0702-SCOPED-RECOVERY",
-        "CURRENT_STATUS": "UNKNOWN",
+        "CURRENT_STATUS": "HOLD",
         "LAST_VERIFIED_DATE": null,
         "IMPROVEMENT_EVIDENCE": null,
-        "REMAINING_ERROR": "Actual3customer feedback cases recovered; named canonical ID linkage absent in examined current master. Official KIRO2026-06-01 title evidence recovered; other employee phone excluded. TOOL013 full A-E retained: category source unresolved, translation uninstalled, protected browser path unchanged. No target runtime edits or deployments.",
+        "REMAINING_ERROR": "Runtime selected and attempted this root; no verified execution contract or actual input was bound.",
         "REPEATED_ERROR_COUNT": 0,
         "ROOT_ID": "WIC-0702-SCOPED-RECOVERY",
         "EXISTING_VERIFIED_COMPONENT": null,
@@ -2853,6 +2863,314 @@
         "TOOL044_SEARCH_REQUIRED": true,
         "SEARCH_PRIORITY": "NORMAL",
         "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "TOOL016,TOOL044,WORK_HANDOFF,OBSERVER_REPORT",
+        "FUNCTION_ID": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+        "FUNCTION_NAME": "Wic Historical Work Directive Audit Autorequeue 20260929",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "TOOL016-TOOL044-WORK-HANDOFF",
+        "FUNCTION_ID": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+        "FUNCTION_NAME": "Wic Nontool Common Residual Bundle 20260929",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "WIC-NONTOOL-COMMON-RESIDUAL-BUNDLE-20260929",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "TOOL044",
+        "FUNCTION_ID": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+        "FUNCTION_NAME": "Global Confirmed Rule Recall Enforcement 20260930",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "GLOBAL-CONFIRMED-RULE-RECALL-ENFORCEMENT-20260930",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "TOOL044",
+        "FUNCTION_ID": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+        "FUNCTION_NAME": "Tool042 User Final Golden Autodiff 20260930",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "TOOL042-USER-FINAL-GOLDEN-AUTODIFF-20260930",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "ALL_WIC_EXISTING_AND_FUTURE_TOOLS_PROGRAMS_WORKFLOWS_PLATFORM",
+        "FUNCTION_ID": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+        "FUNCTION_NAME": "Wic Global Failure Slice Narrowing 20261009",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "WIC-GLOBAL-FAILURE-SLICE-NARROWING-20261009",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "TOOL016-TOOL028-TOOL044-TOOL048",
+        "FUNCTION_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+        "FUNCTION_NAME": "Wic Root Max Platform Factory 20261012",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "WIC-ROOT-MAX-PLATFORM-FACTORY-20261012",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "TOOL044",
+        "FUNCTION_ID": "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
+        "FUNCTION_NAME": "Wic Top Level Integrated Batch Execution 20261015",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "WIC-TOP-LEVEL-INTEGRATED-BATCH-EXECUTION-20261015",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+        "FUNCTION_NAME": "3Aa732397D7F42Fcf487 Input_Contract_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "3aa732397d7f42fcf487-INPUT_CONTRACT_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+        "FUNCTION_NAME": "3Aa732397D7F42Fcf487 Expected_Actual_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "3aa732397d7f42fcf487-EXPECTED_ACTUAL_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
+        "FUNCTION_NAME": "3Aa732397D7F42Fcf487 Failure_Isolation",
+        "CURRENT_STATUS": "IMPROVED_PARTIAL",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "3aa732397d7f42fcf487-FAILURE_ISOLATION",
+        "EXISTING_VERIFIED_COMPONENT": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION",
+        "FUNCTION_NAME": "E80923A16E0Fae2Ea5E9 Input_Contract_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "e80923a16e0fae2ea5e9-INPUT_CONTRACT_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
+        "FUNCTION_NAME": "E80923A16E0Fae2Ea5E9 Expected_Actual_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "e80923a16e0fae2ea5e9-EXPECTED_ACTUAL_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION",
+        "FUNCTION_NAME": "E80923A16E0Fae2Ea5E9 Failure_Isolation",
+        "CURRENT_STATUS": "IMPROVED_PARTIAL",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "e80923a16e0fae2ea5e9-FAILURE_ISOLATION",
+        "EXISTING_VERIFIED_COMPONENT": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
+        "FUNCTION_NAME": "932359Acefe36952E706 Input_Contract_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "932359acefe36952e706-INPUT_CONTRACT_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "INPUT_CONTRACT_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
+        "FUNCTION_NAME": "932359Acefe36952E706 Expected_Actual_Validation",
+        "CURRENT_STATUS": "MISSING_CAPABILITY",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [],
+        "REMAINING_ERROR": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "932359acefe36952e706-EXPECTED_ACTUAL_VALIDATION",
+        "EXISTING_VERIFIED_COMPONENT": [],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [
+          "EXPECTED_ACTUAL_VALIDATION"
+        ],
+        "TOOL044_SEARCH_REQUIRED": true,
+        "SEARCH_PRIORITY": "NORMAL",
+        "ACTION": "SEARCH"
+      },
+      {
+        "TOOL_ID": "CENTRAL",
+        "FUNCTION_ID": "932359acefe36952e706-FAILURE_ISOLATION",
+        "FUNCTION_NAME": "932359Acefe36952E706 Failure_Isolation",
+        "CURRENT_STATUS": "IMPROVED_PARTIAL",
+        "LAST_VERIFIED_DATE": null,
+        "IMPROVEMENT_EVIDENCE": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "REMAINING_ERROR": "TARGET_TOOL_DEPLOYED_COPY_NOT_VERIFIED",
+        "REPEATED_ERROR_COUNT": 0,
+        "ROOT_ID": "932359acefe36952e706-FAILURE_ISOLATION",
+        "EXISTING_VERIFIED_COMPONENT": [
+          "DOIT_0_37_0_LOCAL_DAG_EXECUTION_ENGINE"
+        ],
+        "EXISTING_VERIFIED_FRAMEWORK": "DUAL_RECEIPT_ASSEMBLY_GATE",
+        "MISSING_CAPABILITY": [],
+        "TOOL044_SEARCH_REQUIRED": false,
+        "SEARCH_PRIORITY": "NONE",
+        "ACTION": "ASSEMBLY_AND_DEPLOY_VALIDATION_REQUIRED"
       }
     ],
     "observer_labels": {
@@ -2881,7 +3199,7 @@
     "execution_location": "LOCAL",
     "cloud": {
       "status": "VERIFIED",
-      "checkpoint": "37279388484",
+      "checkpoint": "39348637442",
       "jobs": 5,
       "deferred_backoff": 4,
       "paid_api_calls": 0,
@@ -2890,18 +3208,18 @@
     "local_required_queue": 1,
     "operational_counts": {
       "open_error_count": 0,
-      "open_capability_count": 116,
-      "atomic_demand_count": 116,
-      "external_candidates_found": 602,
+      "open_capability_count": 132,
+      "atomic_demand_count": 132,
+      "external_candidates_found": 777,
       "verified_component_count": 14,
-      "verified_atomic_count": 6,
+      "verified_atomic_count": 7,
       "verified_composition_count": 1,
       "rejected_component_count": 0,
       "shell_suspect_count": 0,
       "ready_for_integration_count": 1,
       "deployed_count": 0,
       "fixture_rollback_verified": true,
-      "blocked_count": 4,
+      "blocked_count": 5,
       "user_action_queue": 0,
       "demand_source_tool_counts": {
         "TOOL042": 4,
@@ -2909,7 +3227,7 @@
         "TOOL016_FUNCTION_STATE": 4,
         "TOOL016": 12,
         "TOOL013": 2,
-        "CENTRAL": 22,
+        "CENTRAL": 31,
         "TOOL016/TOOL044": 16,
         "TOOL016/TOOL044/WORK_HANDOFF": 2,
         "TOOL016,TOOL044,WORK,CONTROL_TOWER": 2,
@@ -3039,7 +3357,7 @@
         "root_id": "WIC-0702-SCOPED-RECOVERY",
         "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
         "label": "WIC-0702-SCOPED-RECOVERY",
-        "status": "OPEN",
+        "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
         "sources": [
           "unified",
           "night_queue"
@@ -3060,6 +3378,18 @@
         "next_trigger": "IMMEDIATE",
         "next_start": "Parallel scoped residual lanes; one CENTRAL writer. Admit current scope, close representative TOOL013 output DIFF, preserve exact external holds; do not repeat completed adapters.",
         "last_actual_point": "Latest resume 10f40460 loaded. Completed proof/cache adapters SKIP_REUSE; existing external holds remain unchanged. TOOL013 master-to-output residual identified: filename and N Pages casing."
+      },
+      {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "target": "TOOL043 / WORK_GATE / GITHUB_ACTIONS",
+        "label": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
+        "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED"
       }
     ],
     "running": [],
@@ -3124,14 +3454,12 @@
         "next_trigger": "FIVE_ACTUAL_VERIFIED_REPORT_PAYLOADS_AVAILABLE",
         "next_start": "Load five actual payloads into canonical index.html and run customer-to-guide actual E2E",
         "last_actual_point": "SCOPED_RECOVERY_COMPLETE_ZERO_ACTUAL_REPORT_SETS"
-      }
-    ],
-    "pending": [
+      },
       {
         "root_id": "WIC-0702-SCOPED-RECOVERY",
         "target": "TOOL013 / TOOL041 / TOOL042 / TOOL043 / TOOL044",
         "label": "WIC-0702-SCOPED-RECOVERY",
-        "status": "OPEN",
+        "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
         "sources": [
           "unified",
           "night_queue"
@@ -3139,7 +3467,9 @@
         "next_trigger": "IMMEDIATE",
         "next_start": "Read current customer/history index, category/model evidence and existing handlers only; no full scans, no prohibited browser workaround or untested runtime modification.",
         "last_actual_point": "User explicitly requests broader customer evidence and existing ready-component recovery before missing-evidence decisions. Does not release existing native auth or browser policy holds."
-      },
+      }
+    ],
+    "pending": [
       {
         "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
         "target": "TOOL044 / TOOL043 / TOOL041 / TOOL042 / TOOL006 / TOOL001 / TOOL013 / TOOL007",
@@ -3152,16 +3482,28 @@
         "next_trigger": "IMMEDIATE",
         "next_start": "Parallel scoped residual lanes; one CENTRAL writer. Admit current scope, close representative TOOL013 output DIFF, preserve exact external holds; do not repeat completed adapters.",
         "last_actual_point": "Latest resume 10f40460 loaded. Completed proof/cache adapters SKIP_REUSE; existing external holds remain unchanged. TOOL013 master-to-output residual identified: filename and N Pages casing."
+      },
+      {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "target": "TOOL043 / WORK_GATE / GITHUB_ACTIONS",
+        "label": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
+        "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED"
       }
     ],
-    "remaining_total": 6,
+    "remaining_total": 7,
     "running_total": 0,
-    "waiting_total": 4,
+    "waiting_total": 5,
     "pending_total": 2,
     "open_internal_total": 2,
     "open_internal_roots": [
-      "WIC-0702-SCOPED-RECOVERY",
-      "WIC-PARALLEL-RESIDUAL-20260903"
+      "WIC-PARALLEL-RESIDUAL-20260903",
+      "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021"
     ],
     "checkpoint_open_internal_total": 0,
     "checkpoint_open_internal_roots": [],
@@ -3206,8 +3548,8 @@
   "max_status_age_seconds": 28800,
   "night_processed": 1,
   "new_open": 2,
-  "blocked_work": 4,
-  "next_work": "WIC-0702-SCOPED-RECOVERY / WIC-PARALLEL-RESIDUAL-20260903",
+  "blocked_work": 5,
+  "next_work": "WIC-PARALLEL-RESIDUAL-20260903 / WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -3260,7 +3602,7 @@
   },
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 6,
+  "incomplete_total": 7,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -3268,9 +3610,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-10-18T10:51:58.732Z",
-  "source_revision": "21188486b9743dd41203a95b0996a9276eac0205",
-  "github_actions_run": "LOCAL_ONLY",
+  "observer_generated_at": "2026-10-22T00:45:33.097718+00:00",
+  "source_revision": "a2eb916a311dff73aac76bd3927fb66bfd114845",
+  "github_actions_run": "39701598976",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -3282,9 +3624,8 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-10-01T05:27:02.333596+00:00",
+      "executed_at": "2026-10-22T00:45:33.097368+00:00",
       "status": "COMPLETED"
     }
-  ],
-  "status_projection_at": "2026-10-18T10:51:58.732Z"
+  ]
 }
