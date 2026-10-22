@@ -297,18 +297,38 @@
       "evidence": [
         "Current user directive authorizes scoped nonproduction maintenance",
         "Existing five canonical input SHA-256 values match Observer record; Observer freshness remains expired",
-        "Current Actions lack night_observer.py and --resume-latest --candidate invocation"
+        "Current Actions lack night_observer.py and --resume-latest --candidate invocation",
+        "PR #43 merge a2eb916a311dff73aac76bd3927fb66bfd114845; only three approved files",
+        "Main TOOL043 canonical Observer run 39701598976, hourly-status job 119571863487 PASS, independent validation job 119571923905 PASS",
+        "tool043/status.json remote blob 3c5f6df6c8b6c5aa72c5a45f7f486a12be06c542; observer/runtime/hourly-status.json start_blocked=true"
       ],
       "actual_action": "REPAIR_EXISTING_REMOTE_OBSERVER_AND_CANDIDATE_GATE_PATHS",
-      "result": "UNRESOLVED",
+      "result": "OBSERVER_MAIN_VERIFIED_GATE_DISPATCH_PENDING",
       "planned_operation_id": "restore-observer-and-candidate-gate-remote-path-20261021",
       "cause_id": "STALE_OBSERVER_PROJECTION_AND_MISSING_REMOTE_CANDIDATE_ENTRY",
       "method_id": "REUSE_EXISTING_GENERATOR_GATE_AND_ACTIONS_RUNNER",
       "rollback_point": "d42a18f860798804148c1ab66805f123fb58e11f",
-      "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED",
+      "last_actual_point": "PR #43 merged a2eb916a; main TOOL043 canonical reprojection and independent validation passed in run 39701598976. Full main --resume-latest --candidate dispatch has not run.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
-      "execution_receipts": []
+      "next_start": "Dispatch .github/workflows/work-gate-handoff-audit.yml on main with exact WIC16 candidate_json; verify pinned fresh CENTRAL and record actual decision artifact. Do not treat branch WORK_DEFER_DENIED as main run evidence.",
+      "execution_receipts": [
+        {
+          "operation_id": "restore-main-tool043-observer-20261022",
+          "status": "PASS",
+          "scope": "OBSERVER_REPROJECTION_ONLY",
+          "evidence_ref": "39701598976:CONTROL_TOWER/ledger/evidence/WIC_STATUS_ACTUAL_RULE_VALIDATION_39701598976.json",
+          "source_commit": "a2eb916a311dff73aac76bd3927fb66bfd114845"
+        }
+      ],
+      "pending_validation": {
+        "operation_id": "main-candidate-workflow-dispatch-20261022",
+        "status": "HOLD_NOT_RUN",
+        "reason": "Connected GitHub tool does not expose workflow_dispatch; do not claim full main candidate admission",
+        "required_evidence": [
+          "main Actions workflow_dispatch run ID",
+          "--resume-latest --candidate decision artifact"
+        ]
+      }
     }
   ],
   "open_internal_total": 1,
@@ -511,6 +531,23 @@
         ],
         "scope": "User-authorized isolated-branch nonproduction repair and changed-boundary tests only. No main update, STOP release, business execution, deployment, PASS promotion, paid resource, or prior completed test rerun. This registration is preparatory until exact candidate admission and remote test evidence.",
         "registration_state": "ISOLATED_BRANCH_ONLY_NOT_MAIN_ADMISSION"
+      },
+      {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC_COMMON_ROOT_CONTINUATION_20261022",
+        "actions": [
+          "RECONCILE_CANONICAL_OBSERVER_TRIGGER_AND_RECEIPT"
+        ],
+        "assets": [
+          ".github/workflows/wic-hourly-free-status.yml",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing TOOL043 observer projector",
+          "existing WIC hourly GitHub Actions workflow",
+          "PR #43 merge and main run 39701598976"
+        ],
+        "scope": "Incremental nonproduction synchronization of canonical Observer trigger and actual WIC16 recovery receipts only. Preserve STOP, START_BLOCKED, PASS_LOCK, six Job Packs, business operations and deployment."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
