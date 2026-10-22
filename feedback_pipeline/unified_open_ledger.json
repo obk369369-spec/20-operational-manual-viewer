@@ -308,9 +308,9 @@
       "cause_id": "STALE_OBSERVER_PROJECTION_AND_MISSING_REMOTE_CANDIDATE_ENTRY",
       "method_id": "REUSE_EXISTING_GENERATOR_GATE_AND_ACTIONS_RUNNER",
       "rollback_point": "d42a18f860798804148c1ab66805f123fb58e11f",
-      "last_actual_point": "PR #43 merged a2eb916a; main TOOL043 canonical reprojection and independent validation passed in run 39701598976. Full main --resume-latest --candidate dispatch has not run.",
+      "last_actual_point": "PR #43/#44 and main Observer run 39702205421 remain verified. Segment 1 on 2026-10-22 inspected the existing exact candidate workflow_dispatch entry and official RULES/COMPONENTS bindings; the connected GitHub tool exposes no workflow_dispatch POST, so no main --resume-latest --candidate run or new business execution occurred.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Dispatch .github/workflows/work-gate-handoff-audit.yml on main with exact WIC16 candidate_json; verify pinned fresh CENTRAL and record actual decision artifact. Do not treat branch WORK_DEFER_DENIED as main run evidence.",
+      "next_start": "On main, dispatch .github/workflows/work-gate-handoff-audit.yml with the exact WIC16 candidate_json, then read the workflow run ID and wic-candidate-gate-decision artifact. Keep STOP/START_BLOCKED and do not claim full Gate PASS before this evidence.",
       "execution_receipts": [
         {
           "operation_id": "restore-main-tool043-observer-20261022",
@@ -323,11 +323,32 @@
       "pending_validation": {
         "operation_id": "main-candidate-workflow-dispatch-20261022",
         "status": "HOLD_NOT_RUN",
-        "reason": "Connected GitHub tool does not expose workflow_dispatch; do not claim full main candidate admission",
+        "reason": "Existing workflow accepts candidate_json only on workflow_dispatch; connected GitHub tool supports GET/file/PR operations but no workflow_dispatch POST. Push/schedule run only audit fixtures and cannot substitute for candidate evaluation.",
         "required_evidence": [
           "main Actions workflow_dispatch run ID",
-          "--resume-latest --candidate decision artifact"
+          "actual --resume-latest --candidate decision artifact"
         ]
+      },
+      "segment1_checkpoint": {
+        "scope": "WIC16_STAGE1_ONLY",
+        "status": "HOLD_GATE_REMOTE_DISPATCH_UNAVAILABLE",
+        "candidate_gate_actual_remote_run_id": null,
+        "new_business_execution_count": 0,
+        "official_lanes": {
+          "RULES": "CODE_BOUND; no new stage-1 actual run evidence",
+          "COMPONENTS": "CODE_BOUND; no new stage-1 actual component execution evidence"
+        },
+        "observer_reuse_run_id": "39702205421",
+        "next_segment": "NOT_STARTED",
+        "changed_assets": [
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "failure_injection": {
+          "run_id": "39704245194",
+          "result": "SKIP_NO_VALUE",
+          "cause": "Changing root next_trigger to auth availability blocked the existing independent candidate-scope evaluation",
+          "recovery": "Restore existing IMMEDIATE trigger; retain dispatch limitation only in pending_validation HOLD"
+        }
       }
     }
   ],
@@ -548,6 +569,24 @@
           "PR #43 merge and main run 39701598976"
         ],
         "scope": "Incremental nonproduction synchronization of canonical Observer trigger and actual WIC16 recovery receipts only. Preserve STOP, START_BLOCKED, PASS_LOCK, six Job Packs, business operations and deployment."
+      },
+      {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_SEGMENT1_ONLY_20261022",
+        "actions": [
+          "RECORD_SEGMENT1_GATE_HOLD_AND_CANONICAL_HANDOFF"
+        ],
+        "assets": [
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "PR #43 a2eb916a311dff73aac76bd3927fb66bfd114845",
+          "PR #44 dfed783be7bbfaab1eee1f9344e29b140b366913",
+          "main Observer run 39702205421",
+          "existing RULES/COMPONENTS admission code"
+        ],
+        "scope": "Record exact 1-segment remote candidate dispatch limitation and handoff only; no Gate bypass, STOP change, business job execution, deployment, or segment 2 start.",
+        "registration_state": "CHECKPOINT_ONLY_NO_CANDIDATE_ADMISSION"
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
