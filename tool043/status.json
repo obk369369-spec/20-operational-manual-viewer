@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
-    "feedback_pipeline/unified_open_ledger.json": "e689c926a753b56edeb3f81de2b320ab84bc4478f8956698909b81f512fb87ac",
+    "feedback_pipeline/unified_open_ledger.json": "652a58b91686fb74c606d000b50d8514c0e7073866be26e980d24574bcad347c",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -3385,7 +3385,8 @@
         "label": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
         "status": "OPEN",
         "sources": [
-          "unified"
+          "unified",
+          "night_queue"
         ],
         "next_trigger": "IMMEDIATE",
         "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
@@ -3489,7 +3490,8 @@
         "label": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
         "status": "OPEN",
         "sources": [
-          "unified"
+          "unified",
+          "night_queue"
         ],
         "next_trigger": "IMMEDIATE",
         "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
@@ -3610,9 +3612,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-10-22T00:45:33.097718+00:00",
-  "source_revision": "a2eb916a311dff73aac76bd3927fb66bfd114845",
-  "github_actions_run": "39701598976",
+  "observer_generated_at": "2026-10-22T00:51:33.197853+00:00",
+  "source_revision": "dfed783be7bbfaab1eee1f9344e29b140b366913",
+  "github_actions_run": "39702205421",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -3624,7 +3626,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-10-22T00:45:33.097368+00:00",
+      "executed_at": "2026-10-22T00:51:33.197157+00:00",
       "status": "COMPLETED"
     }
   ]
