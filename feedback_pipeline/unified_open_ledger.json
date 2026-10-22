@@ -587,6 +587,24 @@
         ],
         "scope": "Record exact 1-segment remote candidate dispatch limitation and handoff only; no Gate bypass, STOP change, business job execution, deployment, or segment 2 start.",
         "registration_state": "CHECKPOINT_ONLY_NO_CANDIDATE_ADMISSION"
+      },
+      {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_EXTERNAL_FREE_RUNTIME_20261022",
+        "actions": [
+          "RECORD_EXTERNAL_RUNTIME_AUTHORIZATION_HOLD"
+        ],
+        "assets": [
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "PR #43/#44/#45",
+          "existing RULES/COMPONENTS contracts",
+          "GitHub Actions runtime evidence",
+          "Kestra/Node-RED historical evidence"
+        ],
+        "scope": "Read-only current external runtime authorization/cost check plus canonical checkpoint only. No STOP release, account creation, deployment, business execution, TOOL044 redevelopment, or PASS promotion.",
+        "registration_state": "CHECKPOINT_ONLY_NO_WORKER_ADMISSION"
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
@@ -630,5 +648,57 @@
     "evidence_ref": "feedback_pipeline/evidence/tool012_open_closure_20260901.json",
     "closed_reason": "Canonical COMPLETE contract already passed; stale pre-fix queue projections removed",
     "user_action_count": 0
+  },
+  "latest_external_workspace_checkpoint": {
+    "scope": "WIC16_EXTERNAL_FREE_RUNTIME_AND_TWO_LANE_CONNECTION_20261022",
+    "status": "HOLD_NO_AUTHORIZED_WORKER_EXECUTION",
+    "selected_existing_runtime": {
+      "platform": "GitHub Actions hosted standard runner",
+      "repository_visibility": "public",
+      "cost_scope": "GitHub documentation: standard hosted runners free for public repositories; no paid resource created",
+      "operation_mode": "scheduled/event-triggered restart, not a continuously running server",
+      "connected_account": "GitHub connector installed",
+      "latest_controller_run": {
+        "run_id": "39686495480",
+        "decision": "BLOCK",
+        "reason": "USER_STOP_OR_START_BLOCKED",
+        "failed_step": "Enforce central admission and user stop for controller-cycle"
+      },
+      "latest_tool044_run": {
+        "run_id": "39703072560",
+        "public_safe_worker": "SKIPPED",
+        "isolated_central_return": "SKIPPED"
+      }
+    },
+    "historical_other_platforms": {
+      "kestra": "Historical success x8ZWTrUFdJYBI56GNZyvE; current authorized socket unverified",
+      "node_red": "Historical result recovery PASS; current remote worker/auth unverified",
+      "render": "Plugin available but not installed; prior failed path not retried"
+    },
+    "official_lanes": {
+      "RULES": "Existing verify_official_lanes and per-work rule admission code reused; no new external worker admission PASS",
+      "COMPONENTS": "Existing VERIFIED_COMPONENT_REGISTRY contract reused; no new external component target execution PASS"
+    },
+    "actual_external_jobs_started": 0,
+    "parallel_jobs_verified": 0,
+    "checkpoint_recovery_verified_this_run": false,
+    "actual_24h_elapsed_verified": false,
+    "stop_unchanged": true,
+    "start_blocked_unchanged": true,
+    "pass_lock_unchanged": true,
+    "next_segment_started": false,
+    "required_next_evidence": [
+      "authorized per-work rule/source admission with STOP satisfied",
+      "two independent actual external run IDs and result artifacts",
+      "independent validation and central ACK/read-back",
+      "failure checkpoint recovery and natural 24-hour elapsed observation"
+    ],
+    "evidence_refs": [
+      "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/39686495480",
+      "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/39703072560",
+      "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
+      "feedback_pipeline/evidence/wic_24h_tools_revenue_closeout_20261001.json"
+    ],
+    "next_start": "Do not repeat failed services or completed tests. Resume only after a currently authorized external worker/socket and per-work STOP/rule admission exist; then execute two independent nonproduction WIC jobs through existing RULES/COMPONENTS and central result/ACK path."
   }
 }
