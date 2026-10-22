@@ -361,9 +361,21 @@
       "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
       "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
       "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
-      "last_actual_point": "Isolated nonproduction patch in wic16-nonprod-queue-isolation-20261022; seven synthetic changed-boundary tests passed locally; no GitHub code commit or external job.",
+      "last_actual_point": "Existing three-file Queue isolation patch plus existing changed-boundary workflow are on isolated PR #49 head bcd00030fc048747e9a2fbb8979f36091fff5279. GitHub Actions run 39747686488 job 119720145658 executed seven synthetic Queue tests, all OK, and top-level rule admission boundary PASS. Remote file read-back matched local contents. No main code merge, external Job, customer output, ACK, or incomplete-root closure.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Evaluate exact candidate with pinned main ledger before publishing the three changed files; preserve STOP, START_BLOCKED, PASS_LOCK and existing PASS."
+      "next_start": "Preserve PR #49 and remote test evidence. Main code merge remains outside current scope; obtain exact main integration authorization and protections. Execute only newly admitted actual Queue jobs when rule/source receipts and user STOP permit; current Queue has zero selected jobs.",
+      "execution_receipts": [
+        {
+          "operation_id": "isolate-queue-admission-per-work-20261022",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION",
+          "evidence_ref": "39747686488:119720145658:tests/test_wic16_queue_isolation.py",
+          "source_commit": "bcd00030fc048747e9a2fbb8979f36091fff5279",
+          "scope": "Seven synthetic Queue isolation tests; STOP/PASS_LOCK preserved; no actual business Job",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        }
+      ]
     }
   ],
   "open_internal_total": 1,
