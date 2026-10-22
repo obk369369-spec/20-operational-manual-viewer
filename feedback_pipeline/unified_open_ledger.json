@@ -350,6 +350,20 @@
           "recovery": "Restore existing IMMEDIATE trigger; retain dispatch limitation only in pending_validation HOLD"
         }
       }
+    },
+    {
+      "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+      "layer": "WORK",
+      "target": "CONTROL_TOWER/controller/github_runtime_cycle.py / wic_top_controller.py / synthetic boundary test",
+      "source": "CURRENT_USER_DIRECTIVE_WIC16_CENTRAL_QUEUE_RECOVERY_20261022",
+      "type": "NONPRODUCTION_MAINTENANCE",
+      "status": "OPEN",
+      "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
+      "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
+      "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
+      "last_actual_point": "Isolated nonproduction patch in wic16-nonprod-queue-isolation-20261022; seven synthetic changed-boundary tests passed locally; no GitHub code commit or external job.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Evaluate exact candidate with pinned main ledger before publishing the three changed files; preserve STOP, START_BLOCKED, PASS_LOCK and existing PASS."
     }
   ],
   "open_internal_total": 1,
@@ -605,6 +619,24 @@
         ],
         "scope": "Read-only current external runtime authorization/cost check plus canonical checkpoint only. No STOP release, account creation, deployment, business execution, TOOL044 redevelopment, or PASS promotion.",
         "registration_state": "CHECKPOINT_ONLY_NO_WORKER_ADMISSION"
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_CENTRAL_QUEUE_RECOVERY_20261022",
+        "actions": [
+          "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "CONTROL_TOWER/controller/wic_top_controller.py",
+          "tests/test_wic16_queue_isolation.py"
+        ],
+        "reusable_assets": [
+          "existing queued_work_admission and rule receipt verification",
+          "existing controller queue and ledger",
+          "existing seven synthetic changed-boundary tests"
+        ],
+        "scope": "Isolated-branch nonproduction queue admission isolation and changed-boundary tests only. No main code merge, STOP release, START_BLOCKED change, PASS_LOCK mutation, customer job, external deployment, or PASS promotion without separate evidence."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
