@@ -134,13 +134,17 @@ def load_github_runtime_history() -> list[dict[str, Any]]:
             for item in payload.get("workflow_runs", [])]
 
 
-def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> dict[str, Any]:
+def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
+                              registry: dict[str, Any] | None = None) -> dict[str, Any]:
     """Bind the canonical open ledger to runtime selection without reopening PASS locks."""
     executable: list[dict[str, Any]] = []
     deferred: list[dict[str, Any]] = []
     ledger_quarantine: dict[str, dict[str, Any]] = {
         item.get("root_id"): item for item in queue.get("backlog_quarantine", []) if item.get("root_id")
     }
+    contracts = ({item.get("root_id") for item in registry.get("backlog_execution_contracts", [])
+                  if item.get("root_id")} if registry is not None else None)
+    admissions = queue.get("rule_admissions", {})
     for entry in ledger.get("entries", []):
         status = str(entry.get("status", "UNKNOWN"))
         if status in CLOSED_LEDGER_STATUSES:
@@ -151,7 +155,17 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any]) -> 
             "next_trigger": entry.get("next_trigger"),
             "next_start": entry.get("next_start"),
         }
-        if status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE":
+        ready = status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE"
+        work_id = f"backlog:{entry.get('root_id')}"
+        admission = admissions.get(work_id) if isinstance(admissions, dict) else None
+        if ready and contracts is not None and entry.get("root_id") not in contracts:
+            summary["defer_reason"] = "EXECUTION_CONTRACT_MISSING"
+            deferred.append(summary)
+        elif ready and contracts is not None and (
+                not isinstance(admission, dict) or not isinstance(admission.get("source_receipt"), dict)):
+            summary["defer_reason"] = "WORK_ADMISSION_OR_SOURCE_RECEIPT_MISSING"
+            deferred.append(summary)
+        elif ready:
             executable.append(summary)
         else:
             summary["defer_reason"] = (
@@ -422,7 +436,11 @@ def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> di
         task_id = contract.get("task_id") if isinstance(contract, dict) else None
         admission = admissions.get(work_id) if isinstance(admissions, dict) else None
         reason = None
-        if not isinstance(task_id, str) or not task_id.strip():
+        if (isinstance(contract, dict) and contract.get("user_stop") is True) or (
+                isinstance(admission, dict) and (admission.get("user_stop") is True
+                                                 or admission.get("start_blocked") is True)):
+            reason = "USER_STOP_OR_START_BLOCKED"
+        elif not isinstance(task_id, str) or not task_id.strip():
             reason = "CONTRACT_TASK_ID_MISSING"
         elif not isinstance(admission, dict) or admission.get("work_id") != work_id or admission.get("task_id") != task_id:
             reason = "WORK_ADMISSION_IDENTITY_MISMATCH"
@@ -456,8 +474,62 @@ def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> di
                             reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
         receipts.append({"work_id": work_id, "task_id": task_id,
                          "decision": "BLOCK" if reason else "ALLOW", "reason": reason})
-    return {"decision": "ALLOW" if all(item["decision"] == "ALLOW" for item in receipts) else "BLOCK",
-            "selected_count": len(selected), "receipts": receipts}
+    allowed_count = sum(item["decision"] == "ALLOW" for item in receipts)
+    return {"decision": ("ALLOW" if allowed_count == len(receipts) else
+                         "PARTIAL" if allowed_count else "BLOCK"),
+            "selected_count": len(selected), "allowed_count": allowed_count,
+            "blocked_count": len(receipts) - allowed_count, "receipts": receipts}
+
+
+def isolate_denied_queued_work(state: dict[str, Any], queue: dict[str, Any],
+                               ledger: dict[str, Any], registry: dict[str, Any]) -> dict[str, Any]:
+    """Keep only admitted jobs executable; persist each denial for explicit recovery."""
+    queued = {int(value) for value in queue.get("queued_requirement_ids", [])}
+    locked = {int(row["id"]) for row in state.get("requirements", [])
+              if int(row["id"]) in queued and row.get("queue_status") == "PASS_LOCKED"}
+    queue["queued_requirement_ids"] = [value for value in queue.get("queued_requirement_ids", [])
+                                       if int(value) not in locked]
+    admission = queued_work_admission(queue, registry)
+    denied = {item["work_id"]: item for item in admission["receipts"]
+              if item["decision"] != "ALLOW"}
+    queue["backlog_root_ids"] = [root for root in queue.get("backlog_root_ids", [])
+                                 if f"backlog:{root}" not in denied]
+    queue["next_backlog_root"] = next(iter(queue["backlog_root_ids"]), None)
+    queue["queued_requirement_ids"] = [value for value in queue["queued_requirement_ids"]
+                                       if f"requirement:{int(value)}" not in denied]
+    backlog_quarantine = {item["root_id"]: item for item in queue.get("backlog_quarantine", [])
+                          if item.get("root_id")}
+    requirement_quarantine = {int(item["requirement_id"]): item
+                              for item in queue.get("quarantined_requirements", [])
+                              if item.get("requirement_id") is not None}
+    for work_id, receipt in denied.items():
+        reason = receipt["reason"] or "WORK_ADMISSION_BLOCKED"
+        if work_id.startswith("backlog:"):
+            root_id = work_id.removeprefix("backlog:")
+            entry = next((item for item in ledger.get("entries", [])
+                          if item.get("root_id") == root_id), None)
+            if entry is not None and entry.get("status") not in CLOSED_LEDGER_STATUSES:
+                entry.update(status="HOLD_EXECUTION_ADMISSION",
+                             next_trigger="CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
+                             last_actual_point="Blocked before execution: " + reason)
+            backlog_quarantine[root_id] = {
+                "root_id": root_id, "status": "HOLD", "reason": reason,
+                "resume_condition": "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
+            }
+        elif work_id.startswith("requirement:"):
+            requirement_id = int(work_id.removeprefix("requirement:"))
+            row = next((item for item in state.get("requirements", [])
+                        if int(item["id"]) == requirement_id), None)
+            if row is not None and row.get("queue_status") != "PASS_LOCKED":
+                row.update(status="HOLD", queue_status="WAITING", block_reason=reason,
+                           next_action="REQUEUE_ONLY_AFTER_RULE_OR_SOURCE_ADMISSION_CHANGE")
+            requirement_quarantine[requirement_id] = {
+                "requirement_id": requirement_id, "status": "HOLD", "reason": reason,
+                "resume_condition": "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
+            }
+    queue["backlog_quarantine"] = list(backlog_quarantine.values())
+    queue["quarantined_requirements"] = list(requirement_quarantine.values())
+    return {**admission, "skipped_pass_locked": sorted(locked)}
 
 
 def main() -> None:
@@ -485,12 +557,9 @@ def main() -> None:
         continuity = evaluate_runtime_continuity(load_github_runtime_history())
         ledger_path = body.ROOT / "feedback_pipeline" / "unified_open_ledger.json"
         ledger = body.load(ledger_path)
-        backlog = reconcile_central_backlog(queue, ledger)
-        queued_admission = queued_work_admission(queue, registry)
-        if queued_admission["decision"] != "ALLOW":
-            print(json.dumps({"start_blocked": True, "queued_work_admission": queued_admission},
-                             ensure_ascii=False))
-            raise PermissionError("QUEUED_WORK_RULE_ADMISSION_DENIED")
+        backlog = reconcile_central_backlog(queue, ledger, registry)
+        queued_admission = isolate_denied_queued_work(
+            state, queue, ledger, registry)
         backlog_execution = execute_central_backlog(queue, ledger, registry)
         body.atomic_json(ledger_path, ledger)
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"
@@ -528,6 +597,7 @@ def main() -> None:
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
         state["github_runtime"] = {"repository": repository, "run_id": run_id,
             "run_attempt": run_attempt, "processed": processed, "held": held,
+            "queued_work_admission": queued_admission,
             "handoff": handoff_receipt, "feedback": feedback_receipt,
             "progress_gate": progress_receipt,
             "queue_continues": not queue_drained, "queue_drained": queue_drained}
@@ -552,6 +622,7 @@ def main() -> None:
             "dynamic_requirement_router": True, "hardcoded_requirement_pass_routes": 0,
             "parallel_contract_workers": min(4, len(registry.get("execution_contracts", []))),
             "processed": processed, "held": held,
+            "queued_work_admission": queued_admission,
             "multiple_requirement_auto_processing": len(processed) >= 2,
             "locked_contract_requirements": locked_contract_requirements,
             "contract_state_readback_pass": len(locked_contract_requirements) >= 2,
@@ -652,3 +723,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

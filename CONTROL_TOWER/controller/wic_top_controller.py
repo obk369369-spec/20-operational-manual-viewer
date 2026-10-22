@@ -97,6 +97,9 @@ def preserved_queue_runtime_fields(previous_queue: dict[str, Any]) -> dict[str, 
         "next_backlog_root": previous_queue.get("next_backlog_root"),
         "backlog_quarantine": previous_queue.get("backlog_quarantine", []),
         "quarantined_requirements": previous_queue.get("quarantined_requirements", []),
+        # Persist identities only; every admission is rechecked against current rules
+        # and source receipts by the runtime before any queued work is executed.
+        "rule_admissions": previous_queue.get("rule_admissions", {}),
     }
 
 
@@ -345,3 +348,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
