@@ -1,0 +1,59 @@
+{
+  "schema": "wic.batch-intake.v1",
+  "status": "PLANNED_NOT_EXECUTED",
+  "canonical_lanes": [
+    "RULES",
+    "COMPONENTS"
+  ],
+  "work_credit_remaining_percent_reported": 36,
+  "external_workspaces": {
+    "goal": "parallel independent 24h workers",
+    "reuse_existing_before_new": true,
+    "batch_approval": true,
+    "require_per_worker_admission": true,
+    "verified_new_workers": 0
+  },
+  "tool013": {
+    "goal": "prebuilt product actual WIC Excel E2E",
+    "candidates": [
+      "Akeneo Supplier Data Manager",
+      "WeTransform AI Data Onboarding",
+      "LCM TradeIntel",
+      "WISEPIM"
+    ],
+    "fallback": [
+      "Claro",
+      "SKU Launch",
+      "openProd.io + Pimcore"
+    ],
+    "status": "CANDIDATE",
+    "actual_e2e_verified": 0
+  },
+  "shared_evidence": {
+    "reuse": [
+      "feedback_pipeline/VERIFIED_COMPONENT_REGISTRY.json",
+      "feedback_pipeline/external_factory_job_pack_20261016.json",
+      "feedback_pipeline/approval_queue.json",
+      "feedback_pipeline/approval_batch_gate.py"
+    ],
+    "requirements": [
+      "source identity",
+      "license",
+      "source hash",
+      "job-specific admission",
+      "actual input/output",
+      "independent verification",
+      "remote readback",
+      "ACK",
+      "checkpoint recovery"
+    ],
+    "no_cross_job_pass_inheritance": true
+  },
+  "safety": {
+    "preserve_stop": true,
+    "preserve_start_blocked": true,
+    "no_user_local_execution": true,
+    "no_paid_auto_billing": true
+  },
+  "next_action": "Obtain authenticated existing external worker access and actual Tool013 publisher input; perform approved nonproduction E2E; do not claim PASS before evidence."
+}
