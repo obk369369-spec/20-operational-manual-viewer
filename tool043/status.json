@@ -3,7 +3,7 @@
   "central_input_sha256": {
     "feedback_pipeline/work16_root_ledger.json": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
     "feedback_pipeline/incomplete_register.json": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
-    "feedback_pipeline/unified_open_ledger.json": "8c92f803ed22891ede3dca23b2dc1b8c6f8070094375e7bc80a7e53172deb669",
+    "feedback_pipeline/unified_open_ledger.json": "e88c11727c7fe865fe9b42c56f93b2c95cf0c27844b3fa00c7c7c4de82989bc9",
     "feedback_pipeline/approval_queue.json": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
     "feedback_pipeline/evidence/work_execution_audit_20260827.json": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf"
   },
@@ -3391,6 +3391,18 @@
         "next_trigger": "IMMEDIATE",
         "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
         "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED"
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "target": "CONTROL_TOWER/controller/github_runtime_cycle.py / wic_top_controller.py / synthetic boundary test",
+        "label": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Evaluate exact candidate with pinned main ledger before publishing the three changed files; preserve STOP, START_BLOCKED, PASS_LOCK and existing PASS.",
+        "last_actual_point": "Isolated nonproduction patch in wic16-nonprod-queue-isolation-20261022; seven synthetic changed-boundary tests passed locally; no GitHub code commit or external job."
       }
     ],
     "running": [],
@@ -3496,15 +3508,28 @@
         "next_trigger": "IMMEDIATE",
         "next_start": "Use isolated branch for nonproduction changes and tests only; preserve main, STOP, START_BLOCKED and PASS_LOCK; require separate main admission before any main publication or business execution",
         "last_actual_point": "READ_ONLY_INPUT_HASH_AND_REMOTE_ENTRY_AUDIT_COMPLETE_NO_CHANGE_EXECUTED"
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "target": "CONTROL_TOWER/controller/github_runtime_cycle.py / wic_top_controller.py / synthetic boundary test",
+        "label": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "status": "OPEN",
+        "sources": [
+          "unified"
+        ],
+        "next_trigger": "IMMEDIATE",
+        "next_start": "Evaluate exact candidate with pinned main ledger before publishing the three changed files; preserve STOP, START_BLOCKED, PASS_LOCK and existing PASS.",
+        "last_actual_point": "Isolated nonproduction patch in wic16-nonprod-queue-isolation-20261022; seven synthetic changed-boundary tests passed locally; no GitHub code commit or external job."
       }
     ],
-    "remaining_total": 7,
+    "remaining_total": 8,
     "running_total": 0,
     "waiting_total": 5,
-    "pending_total": 2,
-    "open_internal_total": 2,
+    "pending_total": 3,
+    "open_internal_total": 3,
     "open_internal_roots": [
       "WIC-PARALLEL-RESIDUAL-20260903",
+      "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
       "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021"
     ],
     "checkpoint_open_internal_total": 0,
@@ -3549,9 +3574,9 @@
   },
   "max_status_age_seconds": 28800,
   "night_processed": 1,
-  "new_open": 2,
+  "new_open": 3,
   "blocked_work": 5,
-  "next_work": "WIC-PARALLEL-RESIDUAL-20260903 / WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+  "next_work": "WIC-PARALLEL-RESIDUAL-20260903 / WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021 / WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
   "safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
   "safe_checkpoint_evidence": {
     "scope": "TOOL043 current agreed scope only",
@@ -3604,7 +3629,7 @@
   },
   "unified_open_ledger": "feedback_pipeline/unified_open_ledger.json",
   "hidden_gap_total": 0,
-  "incomplete_total": 7,
+  "incomplete_total": 8,
   "remote_pending_total": 0,
   "deployment_pending_total": 1,
   "real_use_not_verified_total": 2,
@@ -3612,9 +3637,9 @@
   "approval_pending_total": 0,
   "approval_wait_does_not_block_safe_work": true,
   "approval_items": [],
-  "observer_generated_at": "2026-10-22T04:31:22.766216+00:00",
-  "source_revision": "a5f384d3362d5f0c0af15b1e853c7a0432f0ebf9",
-  "github_actions_run": "39722834215",
+  "observer_generated_at": "2026-10-22T07:56:08.508676+00:00",
+  "source_revision": "a60e3d7dd1cbe7f05a3b42c3705d55141b8811ac",
+  "github_actions_run": "39744013705",
   "tool043_role": "OBSERVATION_STATE_HANDOFF_BRIDGE",
   "smartphone_role": "OBSERVER_VIEW_ONLY",
   "smartphone_direct_work_execution": "FORBIDDEN",
@@ -3626,7 +3651,7 @@
     {
       "task_name": "TOOL043_NOW_SAFE_CENTRAL_OBSERVER_REFRESH_20260829",
       "result": "CENTRAL_OBSERVER_REFRESHED",
-      "executed_at": "2026-10-22T04:31:22.765672+00:00",
+      "executed_at": "2026-10-22T07:56:08.507911+00:00",
       "status": "COMPLETED"
     }
   ]
