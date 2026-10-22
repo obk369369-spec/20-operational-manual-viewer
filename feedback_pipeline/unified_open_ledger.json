@@ -629,14 +629,15 @@
         "assets": [
           "CONTROL_TOWER/controller/github_runtime_cycle.py",
           "CONTROL_TOWER/controller/wic_top_controller.py",
-          "tests/test_wic16_queue_isolation.py"
+          "tests/test_wic16_queue_isolation.py",
+          ".github/workflows/wic-top-rule-admission.yml"
         ],
         "reusable_assets": [
           "existing queued_work_admission and rule receipt verification",
           "existing controller queue and ledger",
           "existing seven synthetic changed-boundary tests"
         ],
-        "scope": "Isolated-branch nonproduction queue admission isolation and changed-boundary tests only. No main code merge, STOP release, START_BLOCKED change, PASS_LOCK mutation, customer job, external deployment, or PASS promotion without separate evidence."
+        "scope": "Isolated-branch nonproduction queue admission isolation, existing changed-boundary workflow test wiring, and remote branch tests only. No main code merge, STOP release, START_BLOCKED change, PASS_LOCK mutation, customer job, external deployment, or PASS promotion without separate evidence."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
