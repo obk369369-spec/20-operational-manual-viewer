@@ -660,6 +660,25 @@
           "existing seven synthetic changed-boundary tests"
         ],
         "scope": "Isolated-branch nonproduction queue admission isolation, existing changed-boundary workflow test wiring, and remote branch tests only. No main code merge, STOP release, START_BLOCKED change, PASS_LOCK mutation, customer job, external deployment, or PASS promotion without separate evidence."
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_ACTUAL_EXECUTION_RECOVERY_20261022",
+        "actions": [
+          "INTEGRATE_VERIFIED_QUEUE_REPAIR_MAIN"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "CONTROL_TOWER/controller/wic_top_controller.py",
+          "tests/test_wic16_queue_isolation.py",
+          ".github/workflows/wic-top-rule-admission.yml"
+        ],
+        "reusable_assets": [
+          "PR #49 isolated verified Queue repair at 38fac2571277f3dca3a23aabc5a3f624a42d2520",
+          "GitHub Actions changed-boundary eight-test success 39748874624",
+          "existing Gate, Registry, Queue, Evidence and checkpoint"
+        ],
+        "scope": "Current user authorizes integration of the already verified PR #49 Queue repair into main only through existing candidate Gate and repository protection. No STOP or START_BLOCKED release, PASS_LOCK change, synthetic-to-business PASS promotion, fabricated work contract/admission/input, or unauthorized external Job."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
