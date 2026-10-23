@@ -470,7 +470,7 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "PR #65 isolated branch now prevents Queue-empty false completion and conditionally reselects held roots only when an existing contract, validated actual source receipt, and per-work rule admission pass. GitHub Actions 39937421953 job 120360272225: 13 changed-boundary tests PASS. Actual canonical held roots remain without current contract/input/admission; no customer Job, external component run, ACK, or root closure.",
+      "last_actual_point": "PR #65 isolated branch adds post-execution backlog re-projection; Actions 39939875834 job 120368394776 ran 14 changed-boundary tests PASS. Canonical customer execution remains blocked by missing task-specific contract/input/admission; no external Job, ACK, or root closure.",
       "next_trigger": "VERIFIED_REAL_INPUT_CONTRACT_ADMISSION_OR_AUTHORIZED_MAIN_INTEGRATION",
       "next_start": "Do not merge PR65 without separate main integration authorization. For real external failover, bind existing approved worker routes to a task-specific verified execution contract, actual input and current admission; then validate Job/result/ACK/checkpoint.",
       "execution_receipts": [
@@ -503,6 +503,15 @@
           "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
           "evidence_ref": "PR65:ed0468d604b7eabdf7b4a2a8a5df3edabb39610d;Actions39937421953:job120360272225;branch-file-readback",
           "scope": "Held root reentry requires existing current contract, original source validation, and task admission; STOP or changed original remains isolated. 13 changed-boundary tests PASS. No business output or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "repair-post-execution-backlog-consistency-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:de9e2598cc4d88210b8c596883d26f35762ca5fa;Actions39939875834:job120368394776;branch-file-readback",
+          "scope": "Selected backlog root moved to HOLD during execution is reprojected into same-cycle Queue, central summary and Observer before consistency gate. 14 changed-boundary tests PASS. No actual customer job, external component execution, central ACK, or root closure.",
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
