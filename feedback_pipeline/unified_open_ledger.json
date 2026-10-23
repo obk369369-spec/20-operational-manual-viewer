@@ -373,9 +373,9 @@
       "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
       "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
       "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
-      "last_actual_point": "PR #56 merged to main as 74141e39c3f2ffae601f97a54e476bacede2463c after exact scope grant PR #57 and remote candidate evaluation 39892492071. Changed-boundary Actions 39891782300 succeeded; three merged files read back from main. No business Job: canonical Queue has no selected jobs or rule_admissions and Registry has no backlog_execution_contracts.",
+      "last_actual_point": "Nonproduction isolated external Job Actions 39898838405 processed one synthetic demand and returned central ACK; recovery Job 39899033405 restored exact artifact/checkpoint with zero duplicate processing. PR #60/#61 workflow fixes merged. Customer business Queue/contracts/admissions remain unavailable; operating STOP/START_BLOCKED/PASS_LOCK unchanged.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Connect only verified real work with task-specific rules, original input, execution contract and current admission; keep STOP/START_BLOCKED/PASS_LOCK and require independent result/ACK/checkpoint before root closure.",
+      "next_start": "Business execution HOLD until task-specific original input, verified Registry contract, current rule admission and operating STOP permission are independently present. Do not reuse isolated grant for customer work.",
       "execution_receipts": [
         {
           "operation_id": "isolate-queue-admission-per-work-20261022",
@@ -414,6 +414,26 @@
           "source_commit": "74141e39c3f2ffae601f97a54e476bacede2463c",
           "scope": "Full per-work source admission and contract-only root closure block merged; ten synthetic tests plus existing rule-boundary check passed. No actual business Job or external migration PASS.",
           "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "isolated-external-initial-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION",
+          "evidence_ref": "Actions39898838405:job120235456949:artifact12477542654:sha256:155d44e41c8a3bcad9d70fc81b2be015b7c569c6d438ddbfd730a6f1880dc904",
+          "source_commit": "649533f91bf7404af8893ecf2987cc4020fe708f",
+          "scope": "Explicit user-approved synthetic isolated TOOL044 demand; processed=1, central_returns=1, central_ack=PASS, TOOL016_CENTRAL_RECEIVED; production_mutations=0; public-safe-worker skipped; not customer work",
+          "external_job_count": 1,
+          "central_ack_count": 1,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "isolated-external-restore-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION",
+          "evidence_ref": "Actions39899033405:job120236061740:artifact12478011832:sha256:ca165c36107ad5098f43d5fd91c4498e8490e163d6686a1b4bc2731a06ec582c:source39898838405",
+          "source_commit": "6dc2867e39f62f3cea4c0430f1db161ef8a57cbd",
+          "scope": "Exact prior artifact restored; previous_state_restored=true, checkpoint_preserved=true, completed_reprocessed=0, duplicate_central_returns=0, new_processed=0, production_mutations=0; public-safe-worker skipped",
+          "external_job_count": 1,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
         }
