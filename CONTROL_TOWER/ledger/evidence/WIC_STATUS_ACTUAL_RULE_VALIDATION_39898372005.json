@@ -1,0 +1,27 @@
+{
+  "work_id": "workflow:wic-hourly-free-status:hourly-status",
+  "task_id": "CENTRAL",
+  "run_id": "39898372005",
+  "independent_validator_id": "validate-persisted-status",
+  "actual_result_ref": "observer/runtime/hourly-status.json",
+  "actual_result_sha256": "5e6b6befa8edfcb94326aa247e0617a92b900f618745b6092fa128ace7bd01cc",
+  "applied_rule_version": "3fda33ca791da9a5e47472643b3ea4915297c225749521cb2e35f22337e986fe",
+  "original_refs": [
+    {
+      "path": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_EXECUTION_BOUNDARY_CHECKPOINT_20261019.json",
+      "sha256": "94d9b8b83e0cf85162850b6c4adcc3f9bae1f6d0fec6f9a3306981a4186ea15a"
+    },
+    {
+      "path": "feedback_pipeline/tool044_atomic_demand_queue.json",
+      "sha256": "66b70a8a9c8148cac730d3bbded9f2db2e263a625d038467041e7ecd070a06b9"
+    },
+    {
+      "path": "feedback_pipeline/evidence/tool044_production_loop.json",
+      "sha256": "8c6a53588c4723ec2ac013b880b3fe14f3ba701c5188649d71ea58833fb6f4f6"
+    }
+  ],
+  "rule_compliance_verdict": "PASS",
+  "validation_result": "PASS",
+  "scope": "PASSIVE_STATUS_REPORT_ONLY",
+  "product_start_blocked": true
+}
