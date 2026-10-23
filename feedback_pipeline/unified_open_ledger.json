@@ -470,7 +470,7 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "PR #65 isolated branch adds post-execution backlog re-projection; Actions 39939875834 job 120368394776 ran 14 changed-boundary tests PASS. Canonical customer execution remains blocked by missing task-specific contract/input/admission; no external Job, ACK, or root closure.",
+      "last_actual_point": "PR #65 isolated branch now reprojects execution-induced HOLD into same-cycle central surfaces and isolates malformed contract validation per worker. Actions 39940387315 job 120370084284: 15 changed-boundary tests PASS. Canonical business execution still lacks task-specific contract/input/admission; no external Job or root closure.",
       "next_trigger": "VERIFIED_REAL_INPUT_CONTRACT_ADMISSION_OR_AUTHORIZED_MAIN_INTEGRATION",
       "next_start": "Do not merge PR65 without separate main integration authorization. For real external failover, bind existing approved worker routes to a task-specific verified execution contract, actual input and current admission; then validate Job/result/ACK/checkpoint.",
       "execution_receipts": [
@@ -512,6 +512,15 @@
           "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
           "evidence_ref": "PR65:de9e2598cc4d88210b8c596883d26f35762ca5fa;Actions39939875834:job120368394776;branch-file-readback",
           "scope": "Selected backlog root moved to HOLD during execution is reprojected into same-cycle Queue, central summary and Observer before consistency gate. 14 changed-boundary tests PASS. No actual customer job, external component execution, central ACK, or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "isolate-one-malformed-contract-worker-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:d394cd68e77a058554e10fbf1f2dcafb895d6972;Actions39940387315:job120370084284;branch-file-readback",
+          "scope": "One malformed validation contract yields per-work HOLD while an independent valid contract continues. 15 changed-boundary tests PASS. No actual customer Job, external component execution, ACK, or root closure.",
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
