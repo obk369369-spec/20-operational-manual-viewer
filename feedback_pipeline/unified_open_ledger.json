@@ -308,9 +308,9 @@
       "cause_id": "STALE_OBSERVER_PROJECTION_AND_MISSING_REMOTE_CANDIDATE_ENTRY",
       "method_id": "REUSE_EXISTING_GENERATOR_GATE_AND_ACTIONS_RUNNER",
       "rollback_point": "d42a18f860798804148c1ab66805f123fb58e11f",
-      "last_actual_point": "PR #43/#44 and main Observer run 39702205421 remain verified. Segment 1 on 2026-10-22 inspected the existing exact candidate workflow_dispatch entry and official RULES/COMPONENTS bindings; the connected GitHub tool exposes no workflow_dispatch POST, so no main --resume-latest --candidate run or new business execution occurred.",
+      "last_actual_point": "Existing Observer verification reused. Exact scoped candidate dispatched on main via existing workflow: run 39888198647, candidate-gate-evaluation job 120201295603 success; artifact 12473478217 digest sha256:9e93245b0af4e97b3b9515aed0867061d1c975f6053114478f697c312680c437. Actual decision WORK_DEFER_DENIED because GitHub lane remains available; no Work or business execution authorized.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "On main, dispatch .github/workflows/work-gate-handoff-audit.yml with the exact WIC16 candidate_json, then read the workflow run ID and wic-candidate-gate-decision artifact. Keep STOP/START_BLOCKED and do not claim full Gate PASS before this evidence.",
+      "next_start": "Do not repeat exact candidate dispatch. Continue only independently authorized GitHub maintenance or real work with current contract/input/admission; no business PASS from this Gate run.",
       "execution_receipts": [
         {
           "operation_id": "restore-main-tool043-observer-20261022",
@@ -318,16 +318,28 @@
           "scope": "OBSERVER_REPROJECTION_ONLY",
           "evidence_ref": "39701598976:CONTROL_TOWER/ledger/evidence/WIC_STATUS_ACTUAL_RULE_VALIDATION_39701598976.json",
           "source_commit": "a2eb916a311dff73aac76bd3927fb66bfd114845"
+        },
+        {
+          "operation_id": "main-candidate-workflow-dispatch-20261022",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION",
+          "evidence_ref": "39888198647:120201295603:artifact12473478217",
+          "source_commit": "1defa4e17467363b1cbb3cf7fb552d827194f021",
+          "scope": "Exact candidate remote Gate evaluation; WORK_DEFER_DENIED; no business execution",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
         }
       ],
       "pending_validation": {
         "operation_id": "main-candidate-workflow-dispatch-20261022",
-        "status": "HOLD_NOT_RUN",
-        "reason": "Existing workflow accepts candidate_json only on workflow_dispatch; connected GitHub tool supports GET/file/PR operations but no workflow_dispatch POST. Push/schedule run only audit fixtures and cannot substitute for candidate evaluation.",
-        "required_evidence": [
-          "main Actions workflow_dispatch run ID",
-          "actual --resume-latest --candidate decision artifact"
-        ]
+        "status": "REMOTE_VERIFIED_WORK_DEFER_DENIED",
+        "run_id": 39888198647,
+        "job_id": 120201295603,
+        "artifact_id": 12473478217,
+        "artifact_digest": "sha256:9e93245b0af4e97b3b9515aed0867061d1c975f6053114478f697c312680c437",
+        "decision": "WORK_DEFER_DENIED",
+        "reason": "GitHub lower-cost lane available; no business execution authorization",
+        "evidence_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/39888198647"
       },
       "segment1_checkpoint": {
         "scope": "WIC16_STAGE1_ONLY",
@@ -689,6 +701,23 @@
           "existing Gate, Registry, Queue, Evidence and checkpoint"
         ],
         "scope": "Current user authorizes integration of the already verified PR #49 Queue repair into main only through existing candidate Gate and repository protection. No STOP or START_BLOCKED release, PASS_LOCK change, synthetic-to-business PASS promotion, fabricated work contract/admission/input, or unauthorized external Job."
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC_GLOBAL_ROOT_BATCH_20261023",
+        "actions": [
+          "REPAIR_QUEUE_ADMISSION_AND_COMPLETION_BOUNDARY"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py"
+        ],
+        "reusable_assets": [
+          "existing runtime_progress_gate.verify_work_admission",
+          "existing universal_enforcement.closure_verdict",
+          "existing PR #49 Queue isolation and synthetic tests"
+        ],
+        "scope": "Current user's common-ROOT recovery request permits isolated nonproduction repair of the existing Queue admission and completion boundary only, with changed-boundary tests. No fabricated execution contract, admission, source receipt, external business Job, STOP release, PASS_LOCK mutation, or main code integration without separate protection and proof."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
