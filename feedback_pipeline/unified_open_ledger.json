@@ -361,9 +361,9 @@
       "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
       "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
       "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
-      "last_actual_point": "PR #49 isolated head 38fac2571277f3dca3a23aabc5a3f624a42d2520 adds incremental backlog supply that requires a registered execution contract and work-specific source admission; main code is unchanged. GitHub Actions run 39748874624 job 119724098830 completed eight synthetic changed-boundary tests OK, including new backlog supply case, and top-level rule admission test PASS. Remote file read-back matched. Current canonical Queue has zero selected jobs and Registry has zero backlog execution contracts; no external Job, ACK or incomplete-root closure.",
+      "last_actual_point": "PR #49 merged to main as 16f2815dd5c1f26cdb41adc45c90811d061c652e after current user directive was recorded in PR #53 (aeed4c1ced9f6956fc905a3c8947bb9384429dd8). Existing changed-boundary Actions run 39748874624 job 119724098830 passed eight synthetic tests; four merged files were read back from main, including contract-gated backlog supply. No new business execution: canonical Registry has zero backlog_execution_contracts and Queue has zero work-specific admissions/selected jobs; external Job, ACK, and incomplete-root closure each remain zero.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Keep PR #49 isolated; main code integration requires separate scope authorization/protection. Supply only future roots with verified contract, current work-specific rule/source receipt, and STOP clearance. Do not treat synthetic test as business completion.",
+      "next_start": "Connect only a verified existing incomplete ROOT to an actual execution contract, current task-specific rule/source admission and real input; STOP/START_BLOCKED/PASS_LOCK remain. Do not fabricate contract/admission or promote code verification to business PASS.",
       "execution_receipts": [
         {
           "operation_id": "isolate-queue-admission-per-work-20261022",
@@ -381,6 +381,16 @@
           "evidence_ref": "39748874624:119724098830:tests/test_wic16_queue_isolation.py",
           "source_commit": "38fac2571277f3dca3a23aabc5a3f624a42d2520",
           "scope": "Incremental backlog supply boundary; eight synthetic tests; no actual business Job",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "integrate-pr49-main-20261022",
+          "status": "REMOTE_VERIFIED_MAIN_CODE_ONLY",
+          "evidence_ref": "PR49:16f2815dd5c1f26cdb41adc45c90811d061c652e;Actions39748874624:job119724098830;main-file-readback",
+          "source_commit": "16f2815dd5c1f26cdb41adc45c90811d061c652e",
+          "scope": "Protected GitHub merge of four Queue repair files; eight synthetic tests previously passed; no actual business Job",
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
