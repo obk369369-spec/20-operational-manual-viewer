@@ -182,6 +182,26 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertNotEqual(ledger["entries"][0]["status"], "VERIFIED_CLOSED")
         self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
 
+    def test_evidence_route_fallback_only_after_readback_failure(self) -> None:
+        recovery = self.root / "feedback_pipeline" / "evidence" / "recovery.json"
+        recovery.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        contract = {"evidence": "feedback_pipeline/evidence/missing.json",
+                    "recovery_evidence": "feedback_pipeline/evidence/recovery.json",
+                    "rules": [{"path": "verified", "operation": "truthy"}]}
+        receipt = runtime.validate_contract(contract)
+        self.assertEqual(receipt["status"], "PASS")
+        self.assertEqual(receipt["evidence_route"], "RECOVERY_EVIDENCE")
+        self.assertEqual([item["status"] for item in receipt["route_attempts"]],
+                         ["READBACK_FAILED", "READBACK_PASS"])
+        primary = self.root / "feedback_pipeline" / "evidence" / "primary.json"
+        primary.write_text(json.dumps({"verified": False}), encoding="utf-8")
+        contract["evidence"] = "feedback_pipeline/evidence/primary.json"
+        blocked = runtime.validate_contract(contract)
+        self.assertEqual(blocked["status"], "HOLD")
+        self.assertEqual(blocked["reason"], "CONTRACT_VALIDATION_FAILED")
+        self.assertEqual(blocked["evidence_route"], "PRIMARY_EVIDENCE")
+        self.assertEqual(len(blocked["route_attempts"]), 1)
+
     def test_authoritative_global_stop_still_blocks(self) -> None:
         with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
             receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
