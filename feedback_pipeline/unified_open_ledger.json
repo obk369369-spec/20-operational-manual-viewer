@@ -718,6 +718,24 @@
           "existing PR #49 Queue isolation and synthetic tests"
         ],
         "scope": "Current user's common-ROOT recovery request permits isolated nonproduction repair of the existing Queue admission and completion boundary only, with changed-boundary tests. No fabricated execution contract, admission, source receipt, external business Job, STOP release, PASS_LOCK mutation, or main code integration without separate protection and proof."
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_PR56_VERIFIED_REPAIR_20261023",
+        "actions": [
+          "INTEGRATE_VERIFIED_PR56_MAIN"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          ".github/workflows/wic-top-rule-admission.yml"
+        ],
+        "reusable_assets": [
+          "PR #56 f71c4f2aa38877431127c06a3b559b9c49608878",
+          "GitHub Actions run 39891782300 changed-boundary success",
+          "existing STOP/START_BLOCKED/PASS_LOCK and Queue admission"
+        ],
+        "scope": "Current user conditionally authorizes merging verified PR #56 into main after exact candidate scope evaluation and repository checks. No STOP or START_BLOCKED release, PASS_LOCK mutation, fabricated work contract/admission/input, customer job, external deployment, or business PASS promotion."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
