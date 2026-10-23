@@ -72,3 +72,19 @@ TOOL041 and TOOL042 remain outside fleet execution until the fleet orchestrator 
 ## External component receipt binding
 
 External component promotion must pass `feedback_pipeline/wic_component_receipts.py`: official SOURCE_RECEIPT, actual LOCAL_RECEIPT, immutable identity comparison, execution evidence, and assembly verification. Mismatch, insufficient evidence, shell artifacts, and unavailable ready components remain isolated and cannot enter canonical assets.
+
+## Permanent priority: free ready-made plug-in platforms first (2026-10-23)
+
+This priority applies to all WIC tools, chats, external workspaces, and future platform migration work. It is a permanent task-selection policy, not a per-chat request.
+
+Priority order for each authorized capability gap:
+1. FIRST: find and reuse an actually runnable, maintained, legally usable FREE ready-made platform/product/system/structure that can be attached to the existing WIC socket and used immediately. Verify that free use covers the intended deployment, not merely a trial or a paid cloud tier.
+2. IN PARALLEL: independently verify multiple ready-made candidates, their official source, license, cost, security, dependencies, compatibility, runnable package, socket contract, recovery and portability. Reuse existing component receipts and PASS evidence; do not repeatedly search unchanged candidates.
+3. SECOND: assemble existing verified components in parallel only where a complete ready-made option cannot satisfy the verified requirement.
+4. LAST: implement the smallest missing adapter or feature only after recording why reuse and assembly do not work. No new platform rebuild by default.
+
+Before migration, prepare verified components, adapters, source/receipt manifests, execution contracts, environment requirements, checkpoints and isolated deployment tests outside the destination platform so they can be moved and activated without repeating tool-by-tool integration. Keep business logic portable; treat credentials, storage and network bindings as environment-specific. A ready-made package is not automatically operational: admission, authorized real inputs, security, licenses and deployed-copy proof remain mandatory.
+
+Use existing fleet orchestration for independent lanes, and serialize shared repository/canonical-asset locks. Use existing component receipt verification before promotion. 24-hour discovery, ingestion, installation and execution are target capabilities requiring a separately verified scheduler, allowed source access, cost bounds and real elapsed-time evidence; do not claim they already operate continuously. Never automatically execute untrusted downloaded code or bypass STOP, START_BLOCKED, PASS_LOCK, customer data permissions or delivery authorization.
+
+For every future task, record in the existing canonical ledger whether READY_MADE_REUSE, VERIFIED_ASSEMBLY, MINIMAL_ADAPTER or HOLD was selected, with evidence and the reason a higher-priority option was unavailable. Do not create duplicate priority ledgers or ask the user to restate this priority in each conversation.
