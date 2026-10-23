@@ -470,15 +470,24 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "Existing AGENTS.md permanent policy updated on main at 77500bb3d26945066e0492592367b13b1d0b97f3. Previous run 39900182686 evaluated only Work admission and denied Work due to available GitHub lane; actual customer job, ready-made component installation, socket connection and production output remained zero. Root classification is based on observed behavior, not confirmed single-code defect.",
-      "next_trigger": "IMMEDIATE",
-      "next_start": "Evaluate exact nonproduction controller route-repair candidate; no customer execution without separate source, contract and admission.",
+      "last_actual_point": "PR65 isolated branch: top-rule receipt separated and evidence recovery route trace added; 11 changed-boundary tests PASS at Actions39921083083. External worker route failover and actual business Job remain unverified.",
+      "next_trigger": "VERIFIED_EXECUTION_CONTRACT_ACTUAL_INPUT_AND_TASK_ADMISSION_AVAILABLE",
+      "next_start": "Do not merge PR65 without separate main integration authorization. For real external failover, bind existing approved worker routes to a task-specific verified execution contract, actual input and current admission; then validate Job/result/ACK/checkpoint.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
           "status": "POLICY_REGISTERED_NOT_IMPLEMENTED",
           "evidence_ref": "AGENTS.md@77500bb3d26945066e0492592367b13b1d0b97f3;Actions39900182686",
           "scope": "Root grouping and plain-Korean response rule only; automatic routing and actual customer execution not verified"
+        },
+        {
+          "operation_id": "repair-policy-execution-route-selection-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION",
+          "evidence_ref": "PR65:8a582915cff65c29222ae512febd14f9c4c0ffa2;Actions39921083083:job120306195313",
+          "scope": "Existing controller now records top-rule admission separately and primary/recovery evidence route; 11 changed-boundary tests PASS. Does not implement external worker failover or actual WIC business execution.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
         }
       ],
       "trigger_release": {
