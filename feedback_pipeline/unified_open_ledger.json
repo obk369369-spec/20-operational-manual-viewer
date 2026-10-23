@@ -460,6 +460,27 @@
           "incomplete_root_closure_delta": 0
         }
       ]
+    },
+    {
+      "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+      "layer": "L5",
+      "target": "CENTRAL startup policy loader / work admission / alternate execution route / user reporting",
+      "source": "USER_COMMON_ROOT_DIRECTIVE_20261023",
+      "type": "CROSS_TOOL_COMMON_ROOT",
+      "status": "OPEN",
+      "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
+      "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
+      "last_actual_point": "Existing AGENTS.md permanent policy updated on main at 77500bb3d26945066e0492592367b13b1d0b97f3. Previous run 39900182686 evaluated only Work admission and denied Work due to available GitHub lane; actual customer job, ready-made component installation, socket connection and production output remained zero. Root classification is based on observed behavior, not confirmed single-code defect.",
+      "next_trigger": "AUTHORIZED_CONCRETE_NONPRODUCTION_JOB_OR_EXISTING_APPROVED_EXECUTION_CONTRACT_WITH_INPUT",
+      "next_start": "Keep pinned policy retrieval and actual work execution as distinct interfaces. Reuse existing approved fallback lanes for independently authorized jobs; quarantine blocked work only. Verify end-to-end receipt before closing. Never manufacture Queue contracts or bypass STOP/START_BLOCKED/PASS_LOCK.",
+      "execution_receipts": [
+        {
+          "operation_id": "classify-policy-execution-boundary-common-root-20261023",
+          "status": "POLICY_REGISTERED_NOT_IMPLEMENTED",
+          "evidence_ref": "AGENTS.md@77500bb3d26945066e0492592367b13b1d0b97f3;Actions39900182686",
+          "scope": "Root grouping and plain-Korean response rule only; automatic routing and actual customer execution not verified"
+        }
+      ]
     }
   ],
   "open_internal_total": 1,
