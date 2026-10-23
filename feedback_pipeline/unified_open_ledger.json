@@ -964,6 +964,24 @@
           "existing runtime_consistency"
         ],
         "scope": "Current user requests bounded nonproduction platform repair so a selected backlog root moved to HOLD during execution is reflected in the same cycle's Queue, central summary and Observer. Isolated branch only; preserve STOP, START_BLOCKED, PASS_LOCK and per-work admission. This records directive scope, not Gate ALLOW, customer business authorization or main integration approval."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_ISOLATE_CONTRACT_SCHEMA_FAILURE_20261023",
+        "actions": [
+          "ISOLATE_ONE_CONTRACT_VALIDATION_SCHEMA_FAILURE"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing PR #65 isolated branch",
+          "existing route_contracts concurrent validator",
+          "existing per-requirement HOLD and retry budget"
+        ],
+        "scope": "Current user requests bounded nonproduction platform repair so a single selected contract with malformed validation evidence is quarantined without aborting independent contracts. Preserve STOP, START_BLOCKED, PASS_LOCK, task admission and evidence validation. Isolated branch only; this does not authorize customer execution, main integration, or fabricated source/contract/admission."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
