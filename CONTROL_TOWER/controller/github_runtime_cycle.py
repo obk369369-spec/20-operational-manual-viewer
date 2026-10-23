@@ -295,22 +295,29 @@ def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
         candidate_sets.append(recovery_refs)
     last_reason = "EVIDENCE_NOT_FOUND"
     attempts = 0
+    route_attempts: list[dict[str, Any]] = []
     for candidate_index, candidates in enumerate(candidate_sets):
         attempts += 1
+        route = "PRIMARY_EVIDENCE" if candidate_index == 0 else "RECOVERY_EVIDENCE"
         try:
             payloads = [body.load(body.ROOT / ref) for ref in candidates]
             results = [{"rule": rule, "pass": rule_passes(payloads[int(rule.get("source", 0))], rule)}
                        for rule in contract["rules"]]
             passed = bool(results) and all(item["pass"] for item in results)
+            route_attempts.append({"route": route, "status": "READBACK_PASS",
+                                   "validation": "PASS" if passed else "HOLD"})
             return {"status": "PASS" if passed else "HOLD",
                     "reason": None if passed else "CONTRACT_VALIDATION_FAILED",
                     "evidence": candidates, "rules": results,
                     "readback_pass": True, "attempts": attempts,
-                    "evidence_recovered": candidate_index > 0}
+                    "evidence_recovered": candidate_index > 0,
+                    "evidence_route": route, "route_attempts": route_attempts}
         except (OSError, ValueError):
             last_reason = "EVIDENCE_READBACK_FAILED"
+            route_attempts.append({"route": route, "status": "READBACK_FAILED"})
     return {"status": "HOLD", "reason": last_reason, "evidence": evidence_refs,
-            "readback_pass": False, "attempts": attempts, "evidence_recovered": False}
+            "readback_pass": False, "attempts": attempts, "evidence_recovered": False,
+            "evidence_route": None, "route_attempts": route_attempts}
 
 
 def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -570,6 +577,7 @@ def main() -> None:
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
         state["github_runtime"] = {"repository": repository, "run_id": run_id,
             "run_attempt": run_attempt, "processed": processed, "held": held,
+            "top_rule_admission": rule_admission,
             "queued_work_admission": queued_admission,
             "handoff": handoff_receipt, "feedback": feedback_receipt,
             "progress_gate": progress_receipt,
@@ -595,6 +603,7 @@ def main() -> None:
             "dynamic_requirement_router": True, "hardcoded_requirement_pass_routes": 0,
             "parallel_contract_workers": min(4, len(registry.get("execution_contracts", []))),
             "processed": processed, "held": held,
+            "top_rule_admission": rule_admission,
             "queued_work_admission": queued_admission,
             "multiple_requirement_auto_processing": len(processed) >= 2,
             "locked_contract_requirements": locked_contract_requirements,
