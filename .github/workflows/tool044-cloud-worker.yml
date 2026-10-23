@@ -11,6 +11,10 @@ on:
         description: Run one synthetic demand without touching production state
         type: boolean
         default: false
+      restore_from_run:
+        description: Restore an exact isolated artifact run without production changes
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -142,27 +146,64 @@ jobs:
           git push origin HEAD:main
 
   isolated-central-return:
-    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.isolated_test)) }}
+    if: ${{ (github.event_name == 'schedule' && vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '') || (github.event_name == 'workflow_dispatch' && (inputs.isolated_test || inputs.restore_from_run != '')) }}
+    permissions:
+      contents: read
+      actions: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Enforce exact nonproduction scope before isolated work
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          WIC_RESTORE_FROM_RUN: ${{ inputs.restore_from_run }}
+        run: |
+          python - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          sys.path.insert(0, 'feedback_pipeline')
+          from work_gate_handoff import evaluate_candidate
+          ledger = json.loads(Path('feedback_pipeline/unified_open_ledger.json').read_text(encoding='utf-8'))
+          restore = os.environ.get('WIC_RESTORE_FROM_RUN', '')
+          if restore and not restore.isdigit():
+              raise SystemExit('INVALID_ISOLATED_SOURCE_RUN')
+          candidate = {
+              'root_id': 'WIC16-CENTRAL-QUEUE-ISOLATION-20261022',
+              'operation_id': 'isolated-external-restore-20261023' if restore else 'isolated-external-initial-20261023',
+              'directive_ref': 'CURRENT_USER_DIRECTIVE_WIC16_NONPROD_EXTERNAL_TEST_20261023',
+              'action': 'RUN_SCOPED_ISOLATED_EXTERNAL_JOB_AND_RECOVERY',
+              'target_assets': ['.github/workflows/tool044-cloud-worker.yml'],
+              'gates': {'chat_files': False, 'github': True, 'ordinary_runtime': False},
+          }
+          decision = evaluate_candidate(candidate, ledger)
+          assert decision['decision'] == 'WORK_DEFER_DENIED', decision
+          print('NONPRODUCTION_SCOPE_VERIFIED_GITHUB_LANE')
+          PY
       - name: Enforce central admission and user stop for isolated-central-return
+        if: ${{ github.event_name == 'schedule' }}
         env:
           WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
           WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
         run: python CONTROL_TOWER/controller/pre_work_admission.py --require-admission --work-id 'workflow:tool044-cloud-worker:isolated-central-return' --task-id TOOL044
       - name: Restore previous isolated state
-        if: ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.restore_from_run != '') }}
         id: restore
         env:
           GH_TOKEN: ${{ github.token }}
           WIC_ISOLATED_DIR: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}
+          WIC_RESTORE_FROM_RUN: ${{ inputs.restore_from_run }}
         run: |
           set -euo pipefail
-          artifact=$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?per_page=100" --jq '[.artifacts[] | select((.name | startswith("wic-isolated-")) and (.expired == false))] | sort_by(.created_at) | last | "\(.workflow_run.id) \(.name)"')
-          read -r source_run artifact_name <<< "$artifact"
+          if [ -n "$WIC_RESTORE_FROM_RUN" ]; then
+            [[ "$WIC_RESTORE_FROM_RUN" =~ ^[0-9]+$ ]] || exit 1
+            source_run="$WIC_RESTORE_FROM_RUN"
+            artifact_name="wic-isolated-$source_run"
+          else
+            artifact=$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?per_page=100" --jq '[.artifacts[] | select((.name | startswith("wic-isolated-")) and (.expired == false))] | sort_by(.created_at) | last | "\(.workflow_run.id) \(.name)"')
+            read -r source_run artifact_name <<< "$artifact"
+          fi
           test -n "$source_run" && test "$source_run" != null
           mkdir -p "$WIC_ISOLATED_DIR"
           gh run download "$source_run" --repo "$GITHUB_REPOSITORY" --name "$artifact_name" --dir "$WIC_ISOLATED_DIR"
@@ -223,7 +264,7 @@ jobs:
           print(json.dumps(receipt))
           PY
       - name: Verify scheduled isolated cross-run continuity
-        if: ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.restore_from_run != '') }}
         env:
           WIC_ISOLATED_DIR: ${{ runner.temp }}/wic-isolated-${{ github.run_id }}
           WIC_SOURCE_RUN: ${{ steps.restore.outputs.source_run }}
