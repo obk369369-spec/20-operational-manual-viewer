@@ -373,9 +373,9 @@
       "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
       "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
       "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
-      "last_actual_point": "PR #49 merged to main as 16f2815dd5c1f26cdb41adc45c90811d061c652e after current user directive was recorded in PR #53 (aeed4c1ced9f6956fc905a3c8947bb9384429dd8). Existing changed-boundary Actions run 39748874624 job 119724098830 passed eight synthetic tests; four merged files were read back from main, including contract-gated backlog supply. No new business execution: canonical Registry has zero backlog_execution_contracts and Queue has zero work-specific admissions/selected jobs; external Job, ACK, and incomplete-root closure each remain zero.",
+      "last_actual_point": "PR #56 merged to main as 74141e39c3f2ffae601f97a54e476bacede2463c after exact scope grant PR #57 and remote candidate evaluation 39892492071. Changed-boundary Actions 39891782300 succeeded; three merged files read back from main. No business Job: canonical Queue has no selected jobs or rule_admissions and Registry has no backlog_execution_contracts.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Connect only a verified existing incomplete ROOT to an actual execution contract, current task-specific rule/source admission and real input; STOP/START_BLOCKED/PASS_LOCK remain. Do not fabricate contract/admission or promote code verification to business PASS.",
+      "next_start": "Connect only verified real work with task-specific rules, original input, execution contract and current admission; keep STOP/START_BLOCKED/PASS_LOCK and require independent result/ACK/checkpoint before root closure.",
       "execution_receipts": [
         {
           "operation_id": "isolate-queue-admission-per-work-20261022",
@@ -403,6 +403,16 @@
           "evidence_ref": "PR49:16f2815dd5c1f26cdb41adc45c90811d061c652e;Actions39748874624:job119724098830;main-file-readback",
           "source_commit": "16f2815dd5c1f26cdb41adc45c90811d061c652e",
           "scope": "Protected GitHub merge of four Queue repair files; eight synthetic tests previously passed; no actual business Job",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "integrate-pr56-main-20261023",
+          "status": "REMOTE_VERIFIED_MAIN_CODE_ONLY",
+          "evidence_ref": "PR56:74141e39c3f2ffae601f97a54e476bacede2463c;Actions39891782300:job120212990127;Gate39892492071:job120215265470;main-file-readback",
+          "source_commit": "74141e39c3f2ffae601f97a54e476bacede2463c",
+          "scope": "Full per-work source admission and contract-only root closure block merged; ten synthetic tests plus existing rule-boundary check passed. No actual business Job or external migration PASS.",
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
