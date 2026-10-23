@@ -908,6 +908,25 @@
           "existing PR #65 isolated branch and changed-boundary workflow"
         ],
         "scope": "Current user authorizes bounded nonproduction repair of false completion reporting when the Queue is empty but held or unfinished work remains. Preserve STOP, START_BLOCKED, PASS_LOCK and per-work admission. No fabricated input/contract/authorization, business execution, deployment, or main integration from this grant alone."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_CONTINUOUS_QUEUE_RECOVERY_20261023",
+        "actions": [
+          "REPAIR_CONDITIONAL_HELD_BACKLOG_REENTRY"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing reconcile_central_backlog",
+          "existing queued_work_admission",
+          "existing source receipt and STOP validation",
+          "existing PR #65 isolated branch"
+        ],
+        "scope": "Current user requests bounded nonproduction recovery of held backlog supply only after a newly present real contract, current source receipt, and per-work rule admission pass the existing validator. No fabricated inputs, contracts, permissions, customer execution, STOP/START_BLOCKED/PASS_LOCK change, or main integration."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
