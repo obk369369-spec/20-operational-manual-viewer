@@ -341,6 +341,17 @@ def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
             "evidence_route": None, "route_attempts": route_attempts}
 
 
+def validate_contract_isolated(contract: dict[str, Any]) -> dict[str, Any]:
+    """Fail closed for one malformed contract without aborting independent workers."""
+    try:
+        return validate_contract(contract)
+    except (KeyError, IndexError, TypeError, AttributeError):
+        return {"status": "HOLD", "reason": "CONTRACT_SCHEMA_INVALID",
+                "evidence": [], "readback_pass": False, "attempts": 1,
+                "evidence_recovered": False, "evidence_route": None,
+                "route_attempts": []}
+
+
 def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     queued = set(map(int, queue["queued_requirement_ids"]))
     contracts = [item for item in registry.get("execution_contracts", [])
@@ -354,7 +365,7 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
                 raise RuntimeError("DUPLICATE_REQUIREMENT_CONTRACT")
             owners[requirement_id] = contract["id"]
     with ThreadPoolExecutor(max_workers=max(1, min(4, len(contracts)))) as executor:
-        receipts = list(executor.map(validate_contract, contracts))
+        receipts = list(executor.map(validate_contract_isolated, contracts))
     processed: list[dict[str, Any]] = []
     held: list[dict[str, Any]] = []
     for contract, receipt in zip(contracts, receipts):
