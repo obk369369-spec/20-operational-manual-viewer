@@ -373,9 +373,9 @@
       "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
       "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
       "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
-      "last_actual_point": "Nonproduction isolated external Job Actions 39898838405 processed one synthetic demand and returned central ACK; recovery Job 39899033405 restored exact artifact/checkpoint with zero duplicate processing. PR #60/#61 workflow fixes merged. Customer business Queue/contracts/admissions remain unavailable; operating STOP/START_BLOCKED/PASS_LOCK unchanged.",
+      "last_actual_point": "Current user-directed universal binding scope registered. Canonical 15 target registrations and 3 shared components exist, but Queue selected jobs/backlog/admissions=0 and Registry verified backlog execution contracts=0. Existing proof contracts are not operational business contracts. No new external business run.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Business execution HOLD until task-specific original input, verified Registry contract, current rule admission and operating STOP permission are independently present. Do not reuse isolated grant for customer work.",
+      "next_start": "Run exact candidate evaluation in existing authorized GitHub lane; only if allowed, change shared binding minimally. Business Queue requires independently verified per-work source/contract/admission and operating permission; TOOL042 send requires separate verified customer/publisher/license and send approval.",
       "execution_receipts": [
         {
           "operation_id": "isolate-queue-admission-per-work-20261022",
@@ -434,6 +434,18 @@
           "source_commit": "6dc2867e39f62f3cea4c0430f1db161ef8a57cbd",
           "scope": "Exact prior artifact restored; previous_state_restored=true, checkpoint_preserved=true, completed_reprocessed=0, duplicate_central_returns=0, new_processed=0, production_mutations=0; public-safe-worker skipped",
           "external_job_count": 1,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "universal-external-binding-admission-20261023",
+          "status": "HOLD_CANDIDATE_EVALUATION_NOT_RUN",
+          "evidence_ref": "CONTROL_TOWER/controller/runtime/requirement_queue.json@e854d282ff0e633d189f1355d662f64cd908533b;CONTROL_TOWER/controller/component_registry.json@ea51bcface032b35afbf9d6cc5f776778ef64369;feedback_pipeline/wic_target_registry.json@97fd92d4428d775917de7c382d7cb88e7fa7ed65",
+          "cause_id": "NO_CURRENT_WORK_OR_BUSINESS_EXECUTION_BINDING",
+          "method_id": "EXACT_SCOPED_GATE_BEFORE_MUTATION",
+          "condition_fingerprint": "queued=0;backlog=0;rule_admissions=0;backlog_execution_contracts=0;15_registered_targets;11_proof_contracts_not_BUSINESS",
+          "scope": "Current directive registered; no code mutation, external business Job, customer send, or root closure",
+          "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
         }
@@ -784,6 +796,27 @@
           "existing GitHub Actions artifact handoff"
         ],
         "scope": "Current user explicitly authorizes nonproduction external execution connection, automatic start, result collection, central ACK and isolated checkpoint recovery test. Allows minimum workflow adjustment and protected main integration after changed-boundary tests. Preserve production workflow STOP and current business admission; do not set WIC_USER_STOP=0, fabricate WIC_RULE_ADMISSION_JSON, run customer work, deploy, release START_BLOCKED or alter PASS_LOCK."
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_UNIVERSAL_EXTERNAL_EXECUTION_20261023",
+        "actions": [
+          "REPAIR_EXISTING_UNIVERSAL_EXTERNAL_EXECUTION_BINDING"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "CONTROL_TOWER/controller/component_registry.json",
+          "CONTROL_TOWER/controller/runtime/requirement_queue.json",
+          ".github/workflows/tool044-cloud-worker.yml"
+        ],
+        "reusable_assets": [
+          "existing Queue/Controller/Gate/Registry",
+          "WIC_ACTUAL_CUSTOMER_UNIVERSAL_SOCKET",
+          "ACTUAL_WIC_CUSTOMER_E2E",
+          "nonproduction Actions 39898838405 and recovery 39899033405"
+        ],
+        "scope": "User requests minimum reusable cross-tool external execution binding and changed-boundary validation; code changes require exact candidate Gate and repository protection. No fabricated task-specific contract, source, price, license, admission, customer job, email, payment, delivery, operating STOP release, START_BLOCKED/PASS_LOCK change, or prior PASS rerun.",
+        "registration_state": "SCOPE_REGISTERED_CANDIDATE_EVALUATION_PENDING"
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
