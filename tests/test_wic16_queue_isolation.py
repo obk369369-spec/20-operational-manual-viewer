@@ -87,6 +87,26 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(called.call_count, 3)
         self.assertEqual(state["requirements"][3]["queue_status"], "WAITING")
 
+    def test_malformed_contract_is_held_without_aborting_independent_work(self) -> None:
+        evidence = self.root / "feedback_pipeline" / "evidence" / "good.json"
+        evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        state = self.state(1, 2)
+        queue = {"queued_requirement_ids": [1, 2], "backlog_root_ids": []}
+        registry = {"execution_contracts": [
+            {"id": "BAD", "task_id": "TOOL044", "requirement_ids": [1],
+             "proof": "synthetic", "rules": [{"path": "verified", "operation": "truthy"}]},
+            {"id": "GOOD", "task_id": "TOOL044", "requirement_ids": [2],
+             "proof": "synthetic", "evidence": "feedback_pipeline/evidence/good.json",
+             "rules": [{"path": "verified", "operation": "truthy"}]},
+        ]}
+        processed, held = runtime.route_contracts(state, queue, registry)
+        self.assertEqual([item["requirement_id"] for item in processed], [2])
+        self.assertEqual([item["requirement_id"] for item in held], [1])
+        self.assertEqual(held[0]["reason"], "CONTRACT_SCHEMA_INVALID")
+        self.assertEqual(state["requirements"][0]["status"], "HOLD")
+        self.assertEqual(state["requirements"][1]["queue_status"], "PASS_LOCKED")
+        self.assertEqual(queue["queued_requirement_ids"], [1])
+
     def test_two_allowed_one_explicit_stop(self) -> None:
         state = self.state(1, 2, 3)
         queue = {"queued_requirement_ids": [1, 2, 3], "backlog_root_ids": [],
