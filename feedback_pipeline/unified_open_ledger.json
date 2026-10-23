@@ -746,6 +746,24 @@
           "existing STOP/START_BLOCKED/PASS_LOCK and Queue admission"
         ],
         "scope": "Current user conditionally authorizes merging verified PR #56 into main after exact candidate scope evaluation and repository checks. No STOP or START_BLOCKED release, PASS_LOCK mutation, fabricated work contract/admission/input, customer job, external deployment, or business PASS promotion."
+      },
+      {
+        "root_id": "WIC16-CENTRAL-QUEUE-ISOLATION-20261022",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_NONPROD_EXTERNAL_TEST_20261023",
+        "actions": [
+          "REPAIR_EXISTING_ISOLATED_EXTERNAL_JOB_ADMISSION",
+          "RUN_SCOPED_ISOLATED_EXTERNAL_JOB_AND_RECOVERY"
+        ],
+        "assets": [
+          ".github/workflows/tool044-cloud-worker.yml",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing tool044-cloud-worker isolated-central-return job",
+          "existing TOOL044 atomic watch v2 isolated ACK and checkpoint code",
+          "existing GitHub Actions artifact handoff"
+        ],
+        "scope": "Current user explicitly authorizes nonproduction external execution connection, automatic start, result collection, central ACK and isolated checkpoint recovery test. Allows minimum workflow adjustment and protected main integration after changed-boundary tests. Preserve production workflow STOP and current business admission; do not set WIC_USER_STOP=0, fabricate WIC_RULE_ADMISSION_JSON, run customer work, deploy, release START_BLOCKED or alter PASS_LOCK."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
