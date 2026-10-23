@@ -936,6 +936,25 @@
           "existing PR #65 isolated branch"
         ],
         "scope": "Current user requests bounded nonproduction recovery of held backlog supply only after a newly present real contract, current source receipt, and per-work rule admission pass the existing validator. No fabricated inputs, contracts, permissions, customer execution, STOP/START_BLOCKED/PASS_LOCK change, or main integration."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_PLATFORM_REPAIR_POST_EXECUTION_CONSISTENCY_20261023",
+        "actions": [
+          "REPAIR_POST_EXECUTION_BACKLOG_STATE_CONSISTENCY"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing PR #65 isolated branch",
+          "existing reconcile_central_backlog",
+          "existing execute_central_backlog",
+          "existing runtime_consistency"
+        ],
+        "scope": "Current user requests bounded nonproduction platform repair so a selected backlog root moved to HOLD during execution is reflected in the same cycle's Queue, central summary and Observer. Isolated branch only; preserve STOP, START_BLOCKED, PASS_LOCK and per-work admission. This records directive scope, not Gate ALLOW, customer business authorization or main integration approval."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
