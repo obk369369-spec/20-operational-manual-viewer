@@ -202,6 +202,24 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(blocked["evidence_route"], "PRIMARY_EVIDENCE")
         self.assertEqual(len(blocked["route_attempts"]), 1)
 
+    def test_empty_queue_with_unfinished_work_is_not_reported_complete(self) -> None:
+        state = {"requirements": [{"id": 1, "name": "held work", "status": "HOLD",
+                                    "queue_status": "WAITING", "next_action": "SOURCE_AVAILABLE"}],
+                 "central_backlog": {"deferred": [{"root_id": "HELD", "status": "HOLD"}]}}
+        queue = {"queued_requirement_ids": [], "backlog_root_ids": [],
+                 "backlog_quarantine": [{"root_id": "HELD", "resume_condition": "SOURCE_AVAILABLE"}]}
+        with patch.object(body, "atomic_json") as write:
+            runtime.write_observer_state(state, queue, {"execution_contracts": []}, [], [], "synthetic-run")
+        self.assertEqual(write.call_args.args[1]["current"]["status"], "보류")
+        self.assertEqual(write.call_args.args[1]["current"]["queue"], 0)
+        state["requirements"][0]["status"] = "VERIFIED_CLOSED"
+        state["requirements"][0]["queue_status"] = "PASS_LOCKED"
+        state["central_backlog"]["deferred"] = []
+        queue["backlog_quarantine"] = []
+        with patch.object(body, "atomic_json") as write:
+            runtime.write_observer_state(state, queue, {"execution_contracts": []}, [], [], "synthetic-run")
+        self.assertEqual(write.call_args.args[1]["current"]["status"], "완료")
+
     def test_authoritative_global_stop_still_blocks(self) -> None:
         with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
             receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
