@@ -73,18 +73,19 @@ TOOL041 and TOOL042 remain outside fleet execution until the fleet orchestrator 
 
 External component promotion must pass `feedback_pipeline/wic_component_receipts.py`: official SOURCE_RECEIPT, actual LOCAL_RECEIPT, immutable identity comparison, execution evidence, and assembly verification. Mismatch, insufficient evidence, shell artifacts, and unavailable ready components remain isolated and cannot enter canonical assets.
 
-## Permanent priority: free ready-made plug-in platforms first (2026-10-23)
+## Permanent priority: outcome-first, portable, free ready-made first (2026-10-23)
 
-This priority applies to all WIC tools, chats, external workspaces, and future platform migration work. It is a permanent task-selection policy, not a per-chat request.
+This is a permanent WIC-wide task-selection and migration rule, not a preference for any named platform. The user's requested business outcome and observable acceptance tests define the work. Do not assume the platform named in an example is the chosen solution.
 
-Priority order for each authorized capability gap:
-1. FIRST: find and reuse an actually runnable, maintained, legally usable FREE ready-made platform/product/system/structure that can be attached to the existing WIC socket and used immediately. Verify that free use covers the intended deployment, not merely a trial or a paid cloud tier.
-2. IN PARALLEL: independently verify multiple ready-made candidates, their official source, license, cost, security, dependencies, compatibility, runnable package, socket contract, recovery and portability. Reuse existing component receipts and PASS evidence; do not repeatedly search unchanged candidates.
-3. SECOND: assemble existing verified components in parallel only where a complete ready-made option cannot satisfy the verified requirement.
-4. LAST: implement the smallest missing adapter or feature only after recording why reuse and assembly do not work. No new platform rebuild by default.
+For each authorized capability gap, perform these independent lanes concurrently where feasible:
+- PRIMARY, READY-MADE FIRST: discover and validate complete, immediately usable, legally free-for-intended-commercial-use platforms/products/structures with a verified plug-in/socket path. Prefer direct reuse without assembly, custom development, paid subscription or migration-specific rewiring.
+- PARALLEL FALLBACK PREPARATION: evaluate how existing verified WIC internal components could deliver the same acceptance tests without rebuilding the platform. Prepare only bounded reversible work; do not duplicate implementation while a suitable ready-made candidate is being validated.
+- LAST RESORT, ASSEMBLY: compose multiple verified components only when no single ready-made product and no existing internal structure satisfies the outcome. Any new adapter is minimal and justified by an evidenced gap.
 
-Before migration, prepare verified components, adapters, source/receipt manifests, execution contracts, environment requirements, checkpoints and isolated deployment tests outside the destination platform so they can be moved and activated without repeating tool-by-tool integration. Keep business logic portable; treat credentials, storage and network bindings as environment-specific. A ready-made package is not automatically operational: admission, authorized real inputs, security, licenses and deployed-copy proof remain mandatory.
+Select the first actually verified solution that meets the user's functional requirements, security, cost, license, portability, recoverability and deployment acceptance tests. Parallel discovery and validation must not be misrepresented as permission to build competing implementations or to promote unverified packages.
 
-Use existing fleet orchestration for independent lanes, and serialize shared repository/canonical-asset locks. Use existing component receipt verification before promotion. 24-hour discovery, ingestion, installation and execution are target capabilities requiring a separately verified scheduler, allowed source access, cost bounds and real elapsed-time evidence; do not claim they already operate continuously. Never automatically execute untrusted downloaded code or bypass STOP, START_BLOCKED, PASS_LOCK, customer data permissions or delivery authorization.
+Before destination migration, prepare the approved package and reusable socket interface outside the destination: source receipts, immutable identities, execution contracts, environment-specific binding manifest, tests, checkpoint and rollback proof. Reuse the same contracts after migration; validate destination credentials, storage, network and deployed-copy behavior rather than claiming zero migration work.
 
-For every future task, record in the existing canonical ledger whether READY_MADE_REUSE, VERIFIED_ASSEMBLY, MINIMAL_ADAPTER or HOLD was selected, with evidence and the reason a higher-priority option was unavailable. Do not create duplicate priority ledgers or ask the user to restate this priority in each conversation.
+Group repeated failures by common root cause across WIC tools and chats, preserve each source/evidence lineage, reuse PASS evidence, and run independent fleet lanes concurrently while serializing shared repository/canonical locks. The platform must eventually support continuous free-source discovery and pre-migration readiness, but 24-hour collection/installation/execution is NOT complete without an operating scheduler, lawful source access, safety/cost limits, and real elapsed-time evidence. Never auto-run untrusted fetched code or bypass STOP, START_BLOCKED, PASS_LOCK, customer permissions or delivery authorization.
+
+For future authorized tasks, record in the existing canonical ledger the outcome requirement, evaluated ready-made options, internal fallback, assembly necessity, selected route, evidence, and unfulfilled acceptance tests. Avoid a duplicate ledger or per-chat repetition of this policy.
