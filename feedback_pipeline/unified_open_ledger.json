@@ -373,9 +373,9 @@
       "actual_action": "REPAIR_EXISTING_CONTROLLER_QUEUE_ADMISSION",
       "cause_id": "QUEUE_WIDE_BLOCK_FROM_SINGLE_WORK_DENIAL",
       "method_id": "REUSE_EXISTING_GATE_AND_QUARANTINE",
-      "last_actual_point": "Current user-directed universal binding scope registered. Canonical 15 target registrations and 3 shared components exist, but Queue selected jobs/backlog/admissions=0 and Registry verified backlog execution contracts=0. Existing proof contracts are not operational business contracts. No new external business run.",
+      "last_actual_point": "Exact universal external binding candidate evaluated remotely: Actions 39900182686 job 120239736171 success, decision WORK_DEFER_DENIED, reason lower-cost GitHub lane available. This is not business approval or code implementation. Existing Queue=0, admissions=0, backlog contracts=0; customer execution remains blocked.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Run exact candidate evaluation in existing authorized GitHub lane; only if allowed, change shared binding minimally. Business Queue requires independently verified per-work source/contract/admission and operating permission; TOOL042 send requires separate verified customer/publisher/license and send approval.",
+      "next_start": "Use existing scoped GitHub maintenance lane for minimum verified shared binding only; require separate task-specific source, business contract and current admission for any real Job. Do not rerun this unchanged Gate candidate.",
       "execution_receipts": [
         {
           "operation_id": "isolate-queue-admission-per-work-20261022",
@@ -445,6 +445,16 @@
           "method_id": "EXACT_SCOPED_GATE_BEFORE_MUTATION",
           "condition_fingerprint": "queued=0;backlog=0;rule_admissions=0;backlog_execution_contracts=0;15_registered_targets;11_proof_contracts_not_BUSINESS",
           "scope": "Current directive registered; no code mutation, external business Job, customer send, or root closure",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "universal-external-binding-gate-20261023",
+          "status": "WORK_DEFER_DENIED_GITHUB_LANE_AVAILABLE",
+          "evidence_ref": "Actions39900182686:job120239736171:artifact12479045122:sha256:cd1bca249f8fb681cd4f4dc0f46efff1d5c4cfb138408cf91bf04b9fa10adb59",
+          "source_commit": "999764a300e27f275a676cc8734d304e41fd0e18",
+          "scope": "Exact candidate evaluated against pinned CENTRAL; Work execution_allowed=false because lower-cost GitHub lane available. No business admission, code change or external customer job.",
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
