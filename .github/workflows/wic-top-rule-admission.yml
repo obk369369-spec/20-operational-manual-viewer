@@ -55,12 +55,22 @@ jobs:
           task.update(conflicts=[], source_records_verified=True)
           work_id = 'requirement:42'
           contract = {'execution_contracts': [{'id': 'TEST-42', 'requirement_ids': [42], 'task_id': 'TOOL042'}]}
+          with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', prefix='rule-original-',
+                                           dir=root / 'feedback_pipeline' / 'evidence',
+                                           encoding='utf-8', delete=False) as original:
+              original.write('synthetic original input')
+              original_path = Path(original.name)
           with tempfile.NamedTemporaryFile(mode='w', suffix='.json', prefix='rule-admission-',
                                            dir=root / 'feedback_pipeline' / 'evidence',
                                            encoding='utf-8', delete=False) as fixture:
               json.dump({'work_id': work_id, 'task_id': 'TOOL042', 'source_records_verified': True,
                          'validation_result': 'PASS', 'validator_id': 'ISOLATED_TEST_VALIDATOR',
-                         'source_refs': ['ISOLATED_TEST_SOURCE']}, fixture)
+                         'rule_version': task['version'],
+                         'validation_plan': {'method': 'synthetic original comparison',
+                                             'expected_result': 'match',
+                                             'evidence_required': 'original and receipt'},
+                         'source_refs': [{'path': original_path.relative_to(root).as_posix(),
+                                          'sha256': hashlib.sha256(original_path.read_bytes()).hexdigest()}]}, fixture)
               fixture_path = Path(fixture.name)
           try:
               source = {'path': fixture_path.relative_to(root).as_posix(),
@@ -86,6 +96,7 @@ jobs:
                   {'id': 'NO-TASK', 'requirement_ids': [42]}]})['decision'] == 'BLOCK'
           finally:
               fixture_path.unlink()
+              original_path.unlink()
           os.environ.pop('WIC_RULE_CONTEXT_JSON', None)
           def forbidden_lock():
               raise AssertionError('QUEUE_OR_WORKER_REACHED_BEFORE_RULE_GATE')
