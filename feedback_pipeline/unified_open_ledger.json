@@ -848,6 +848,24 @@
         ],
         "scope": "User requests minimum reusable cross-tool external execution binding and changed-boundary validation; code changes require exact candidate Gate and repository protection. No fabricated task-specific contract, source, price, license, admission, customer job, email, payment, delivery, operating STOP release, START_BLOCKED/PASS_LOCK change, or prior PASS rerun.",
         "registration_state": "SCOPE_REGISTERED_CANDIDATE_EVALUATION_PENDING"
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_POLICY_EXECUTION_ROUTING_20261023",
+        "actions": [
+          "REPAIR_EXISTING_POLICY_EXECUTION_ROUTE_SELECTION"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing per-work admission and quarantine",
+          "existing Queue/Registry/Controller",
+          "existing GitHub changed-boundary workflow"
+        ],
+        "scope": "Isolated nonproduction minimum repair of policy/execution handoff and failover selection. Only temporary runtime failure may advance to a separately approved available route. STOP, START_BLOCKED, PASS_LOCK, missing source/contract/admission, customer execution and main integration are not authorized by this grant; require independent validation and repository protection."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
