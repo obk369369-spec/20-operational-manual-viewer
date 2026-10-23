@@ -35,13 +35,14 @@ class QueueIsolationTest(unittest.TestCase):
     def admission(self, work_id: str, *, stop: bool = False, bad_hash: bool = False) -> dict:
         relative = f"feedback_pipeline/evidence/{work_id.replace(':', '_')}.json"
         target = self.root / relative
-        original = self.root / "input.txt"
+        source_name = f"input_{work_id.replace(':', '_')}.txt"
+        original = self.root / source_name
         original.write_text("synthetic source", encoding="utf-8")
         target.write_text(json.dumps({
             "work_id": work_id, "task_id": "TOOL044",
             "source_records_verified": True, "validation_result": "PASS",
             "validator_id": "synthetic-independent-validator",
-            "source_refs": [{"path": "input.txt", "sha256": hashlib.sha256(original.read_bytes()).hexdigest()}],
+            "source_refs": [{"path": source_name, "sha256": hashlib.sha256(original.read_bytes()).hexdigest()}],
             "rule_version": "synthetic-current",
             "validation_plan": {"method": "synthetic compare", "expected_result": "match",
                                 "evidence_required": "original and receipt"},
@@ -161,7 +162,7 @@ class QueueIsolationTest(unittest.TestCase):
     def test_changed_original_blocks_only_affected_job(self) -> None:
         state = self.state(1, 2)
         first = self.admission("requirement:1")
-        (self.root / "input.txt").write_text("changed source", encoding="utf-8")
+        (self.root / "input_requirement_1.txt").write_text("changed source", encoding="utf-8")
         second = self.admission("requirement:2")
         queue = {"queued_requirement_ids": [1, 2], "backlog_root_ids": [],
                  "rule_admissions": {"requirement:1": first, "requirement:2": second}}
