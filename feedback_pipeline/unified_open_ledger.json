@@ -471,8 +471,8 @@
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
       "last_actual_point": "Existing AGENTS.md permanent policy updated on main at 77500bb3d26945066e0492592367b13b1d0b97f3. Previous run 39900182686 evaluated only Work admission and denied Work due to available GitHub lane; actual customer job, ready-made component installation, socket connection and production output remained zero. Root classification is based on observed behavior, not confirmed single-code defect.",
-      "next_trigger": "AUTHORIZED_CONCRETE_NONPRODUCTION_JOB_OR_EXISTING_APPROVED_EXECUTION_CONTRACT_WITH_INPUT",
-      "next_start": "Keep pinned policy retrieval and actual work execution as distinct interfaces. Reuse existing approved fallback lanes for independently authorized jobs; quarantine blocked work only. Verify end-to-end receipt before closing. Never manufacture Queue contracts or bypass STOP/START_BLOCKED/PASS_LOCK.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Evaluate exact nonproduction controller route-repair candidate; no customer execution without separate source, contract and admission.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
@@ -480,7 +480,13 @@
           "evidence_ref": "AGENTS.md@77500bb3d26945066e0492592367b13b1d0b97f3;Actions39900182686",
           "scope": "Root grouping and plain-Korean response rule only; automatic routing and actual customer execution not verified"
         }
-      ]
+      ],
+      "trigger_release": {
+        "trigger": "AUTHORIZED_CONCRETE_NONPRODUCTION_JOB_OR_EXISTING_APPROVED_EXECUTION_CONTRACT_WITH_INPUT",
+        "evidence_ref": "PR63:763cf22fb868df132ca77aa64e241343e2042d3d;CURRENT_USER_DIRECTIVE_WIC16_POLICY_EXECUTION_ROUTING_20261023",
+        "previous_fingerprint": "NO_SCOPED_NONPRODUCTION_ROUTE_REPAIR_GRANT",
+        "current_fingerprint": "SCOPED_ROUTE_REPAIR_GRANT_PR63_763cf22"
+      }
     }
   ],
   "open_internal_total": 1,
