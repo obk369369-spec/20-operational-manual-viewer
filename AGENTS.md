@@ -72,3 +72,20 @@ TOOL041 and TOOL042 remain outside fleet execution until the fleet orchestrator 
 ## External component receipt binding
 
 External component promotion must pass `feedback_pipeline/wic_component_receipts.py`: official SOURCE_RECEIPT, actual LOCAL_RECEIPT, immutable identity comparison, execution evidence, and assembly verification. Mismatch, insufficient evidence, shell artifacts, and unavailable ready components remain isolated and cannot enter canonical assets.
+
+## Permanent priority: outcome-first, portable, free ready-made first (2026-10-23)
+
+This is a permanent WIC-wide task-selection and migration rule, not a preference for any named platform. The user's requested business outcome and observable acceptance tests define the work. Do not assume the platform named in an example is the chosen solution.
+
+For each authorized capability gap, perform these independent lanes concurrently where feasible:
+- PRIMARY, READY-MADE FIRST: discover and validate complete, immediately usable, legally free-for-intended-commercial-use platforms/products/structures with a verified plug-in/socket path. Prefer direct reuse without assembly, custom development, paid subscription or migration-specific rewiring.
+- PARALLEL FALLBACK PREPARATION: evaluate how existing verified WIC internal components could deliver the same acceptance tests without rebuilding the platform. Prepare only bounded reversible work; do not duplicate implementation while a suitable ready-made candidate is being validated.
+- LAST RESORT, ASSEMBLY: compose multiple verified components only when no single ready-made product and no existing internal structure satisfies the outcome. Any new adapter is minimal and justified by an evidenced gap.
+
+Select the first actually verified solution that meets the user's functional requirements, security, cost, license, portability, recoverability and deployment acceptance tests. Parallel discovery and validation must not be misrepresented as permission to build competing implementations or to promote unverified packages.
+
+Before destination migration, prepare the approved package and reusable socket interface outside the destination: source receipts, immutable identities, execution contracts, environment-specific binding manifest, tests, checkpoint and rollback proof. Reuse the same contracts after migration; validate destination credentials, storage, network and deployed-copy behavior rather than claiming zero migration work.
+
+Group repeated failures by common root cause across WIC tools and chats, preserve each source/evidence lineage, reuse PASS evidence, and run independent fleet lanes concurrently while serializing shared repository/canonical locks. The platform must eventually support continuous free-source discovery and pre-migration readiness, but 24-hour collection/installation/execution is NOT complete without an operating scheduler, lawful source access, safety/cost limits, and real elapsed-time evidence. Never auto-run untrusted fetched code or bypass STOP, START_BLOCKED, PASS_LOCK, customer permissions or delivery authorization.
+
+For future authorized tasks, record in the existing canonical ledger the outcome requirement, evaluated ready-made options, internal fallback, assembly necessity, selected route, evidence, and unfulfilled acceptance tests. Avoid a duplicate ledger or per-chat repetition of this policy.
