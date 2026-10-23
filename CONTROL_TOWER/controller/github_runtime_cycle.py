@@ -257,6 +257,13 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
     return receipts
 
 
+def execute_and_reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
+                                          registry: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Project execution-induced HOLD changes before persisting state and Observer."""
+    receipts = execute_central_backlog(queue, ledger, registry)
+    return reconcile_central_backlog(queue, ledger, registry), receipts
+
+
 def nested(value: Any, dotted: str) -> Any:
     for part in dotted.split("."):
         if not isinstance(value, dict) or part not in value:
@@ -558,7 +565,7 @@ def main() -> None:
         backlog = reconcile_central_backlog(queue, ledger, registry)
         queued_admission = isolate_denied_queued_work(
             state, queue, ledger, registry)
-        backlog_execution = execute_central_backlog(queue, ledger, registry)
+        backlog, backlog_execution = execute_and_reconcile_central_backlog(queue, ledger, registry)
         body.atomic_json(ledger_path, ledger)
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"
                           for item in registry["components"])
