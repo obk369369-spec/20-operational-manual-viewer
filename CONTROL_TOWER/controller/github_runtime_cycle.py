@@ -155,9 +155,22 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
             "next_trigger": entry.get("next_trigger"),
             "next_start": entry.get("next_start"),
         }
-        ready = status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE"
         work_id = f"backlog:{entry.get('root_id')}"
         admission = admissions.get(work_id) if isinstance(admissions, dict) else None
+        ready = status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE"
+        recoverable_hold = (status.startswith("HOLD_EXECUTION_") and
+                            entry.get("next_trigger") in {
+                                "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+                                "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+                                "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
+                            } and registry is not None and entry.get("root_id") in contracts and
+                            isinstance(admission, dict) and
+                            isinstance(admission.get("source_receipt"), dict))
+        if recoverable_hold:
+            isolated = {"queued_requirement_ids": [],
+                        "backlog_root_ids": [entry["root_id"]],
+                        "rule_admissions": {work_id: admission}}
+            ready = queued_work_admission(isolated, registry)["decision"] == "ALLOW"
         if ready and contracts is not None and entry.get("root_id") not in contracts:
             summary["defer_reason"] = "EXECUTION_CONTRACT_MISSING"
             deferred.append(summary)
@@ -166,6 +179,7 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
             summary["defer_reason"] = "WORK_ADMISSION_OR_SOURCE_RECEIPT_MISSING"
             deferred.append(summary)
         elif ready:
+            ledger_quarantine.pop(summary["root_id"], None)
             executable.append(summary)
         else:
             summary["defer_reason"] = (
