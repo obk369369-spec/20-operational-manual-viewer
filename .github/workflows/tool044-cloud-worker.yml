@@ -159,6 +159,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           WIC_RESTORE_FROM_RUN: ${{ inputs.restore_from_run }}
+          PYTHONDONTWRITEBYTECODE: '1'
         run: |
           python - <<'PY'
           import json, os, sys
@@ -258,8 +259,9 @@ jobs:
           assert receipt['tool044_processed'] == 1 and receipt['central_returns'] == 1
           assert receipt['central_ack'] == 'PASS' and receipt['central_received'] == 'TOOL016_CENTRAL_RECEIVED'
           assert receipt['isolated_persistence'] and receipt['production_mutations'] == 0
-          assert not subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True,
-                                    check=True).stdout.strip()
+          git_changes = subprocess.run(['git', 'status', '--porcelain'], capture_output=True,
+                                       text=True, check=True).stdout.strip()
+          assert not git_changes, git_changes
           (root / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
           print(json.dumps(receipt))
           PY
