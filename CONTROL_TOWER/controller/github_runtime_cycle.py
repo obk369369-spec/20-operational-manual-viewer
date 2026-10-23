@@ -377,6 +377,9 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
     queued_ids = set(map(int, queue["queued_requirement_ids"]))
     queued = [row for row in rows if int(row["id"]) in queued_ids]
     backlog_quarantine = queue.get("backlog_quarantine", [])
+    unfinished = bool(backlog_quarantine or queue.get("quarantined_requirements")
+                      or state.get("central_backlog", {}).get("deferred")
+                      or any(row.get("queue_status") != "PASS_LOCKED" for row in rows))
     next_work = (str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"]
                  else queue.get("next_backlog_root"))
     if next_work is None and backlog_quarantine:
@@ -393,7 +396,8 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         "PLATFORM_HOLD": [item(row, "PLATFORM_HOLD") for row in waiting], "LONG_TERM_HOLD": [],
         "NEXT_WORK": next_work,
         "current": {"run_id": run_id, "runtime": "GitHub Actions",
-                    "status": "작업 중" if queued or queue.get("backlog_root_ids") else "완료",
+                    "status": ("작업 중" if queued or queue.get("backlog_root_ids") else
+                               "보류" if unfinished else "완료"),
                     "queue": len(queued), "pass_locked": len(complete), "hold": len(waiting),
                     "fail": sum(1 for row in rows if row["status"] == "FAIL"),
                     "processing": len(processed), "factory": "공통 실행계약 Large Factory",
