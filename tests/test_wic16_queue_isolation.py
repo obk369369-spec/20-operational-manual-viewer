@@ -202,6 +202,28 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(blocked["evidence_route"], "PRIMARY_EVIDENCE")
         self.assertEqual(len(blocked["route_attempts"]), 1)
 
+    def test_held_backlog_reenters_only_with_current_contract_source_and_admission(self) -> None:
+        trigger = "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+        ledger = {"entries": [{"root_id": root, "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+                               "next_trigger": trigger} for root in ("A", "B", "C")] +
+                             [{"root_id": "LOCKED", "status": "VERIFIED_CLOSED"}]}
+        queue = {"queued_requirement_ids": [], "backlog_root_ids": [],
+                 "backlog_quarantine": [{"root_id": root, "status": "HOLD",
+                                         "resume_condition": trigger} for root in ("A", "B", "C")],
+                 "rule_admissions": {"backlog:A": self.admission("backlog:A"),
+                                     "backlog:B": self.admission("backlog:B", stop=True)}}
+        registry = {"backlog_execution_contracts": [
+            {"root_id": root, "task_id": "TOOL044"} for root in ("A", "B")]}
+        result = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(result["executable_count"], 1)
+        self.assertEqual(queue["backlog_root_ids"], ["A"])
+        self.assertEqual({item["root_id"] for item in queue["backlog_quarantine"]}, {"B", "C"})
+        self.assertNotIn("LOCKED", queue["backlog_root_ids"])
+        (self.root / "input_backlog_A.txt").write_text("changed original", encoding="utf-8")
+        repeat = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(repeat["executable_count"], 0)
+        self.assertEqual(queue["backlog_root_ids"], [])
+
     def test_empty_queue_with_unfinished_work_is_not_reported_complete(self) -> None:
         state = {"requirements": [{"id": 1, "name": "held work", "status": "HOLD",
                                     "queue_status": "WAITING", "next_action": "SOURCE_AVAILABLE"}],
