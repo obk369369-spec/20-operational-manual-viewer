@@ -470,8 +470,8 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "Isolated PR #65 branch corrected false Observer completion when Queue is empty but unresolved ledger/requirement/quarantine remains. GitHub Actions 39924943690 job 120318916952 passed 12 changed-boundary tests. Branch commit 6cb9b19cb7ab3120622d53aa3df945c61d9be810; no main integration, customer job, or incomplete-root closure.",
-      "next_trigger": "AUTHORIZED_MAIN_INTEGRATION_AND_VERIFIED_BUSINESS_INPUT_CONTRACT_ADMISSION",
+      "last_actual_point": "PR #65 isolated branch now prevents Queue-empty false completion and conditionally reselects held roots only when an existing contract, validated actual source receipt, and per-work rule admission pass. GitHub Actions 39937421953 job 120360272225: 13 changed-boundary tests PASS. Actual canonical held roots remain without current contract/input/admission; no customer Job, external component run, ACK, or root closure.",
+      "next_trigger": "VERIFIED_REAL_INPUT_CONTRACT_ADMISSION_OR_AUTHORIZED_MAIN_INTEGRATION",
       "next_start": "Do not merge PR65 without separate main integration authorization. For real external failover, bind existing approved worker routes to a task-specific verified execution contract, actual input and current admission; then validate Job/result/ACK/checkpoint.",
       "execution_receipts": [
         {
@@ -494,6 +494,15 @@
           "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
           "evidence_ref": "PR65:6cb9b19cb7ab3120622d53aa3df945c61d9be810;Actions39924943690:job120318916952;branch-file-readback",
           "scope": "Observer current status remains HOLD when unresolved work exists; 12 changed-boundary tests PASS. No business execution, external component connection, automatic resume proof, or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "conditional-held-backlog-reentry-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:ed0468d604b7eabdf7b4a2a8a5df3edabb39610d;Actions39937421953:job120360272225;branch-file-readback",
+          "scope": "Held root reentry requires existing current contract, original source validation, and task admission; STOP or changed original remains isolated. 13 changed-boundary tests PASS. No business output or root closure.",
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
