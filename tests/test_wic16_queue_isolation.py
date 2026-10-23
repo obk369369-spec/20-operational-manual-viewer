@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "CONTROL_TOWER" / "controller"))
 import github_runtime_cycle as runtime  # noqa: E402
 import pre_work_admission  # noqa: E402
+import runtime_progress_gate  # noqa: E402
 import wic_top_controller as body  # noqa: E402
 
 
@@ -24,7 +25,7 @@ class QueueIsolationTest(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / "feedback_pipeline" / "evidence").mkdir(parents=True)
         self.root_patch = patch.object(runtime.body, "ROOT", self.root)
-        self.rule_patch = patch.object(runtime, "verify_rule_context",
+        self.rule_patch = patch.object(runtime_progress_gate, "verify_rule_context",
                                        return_value={"decision": "ALLOW", "reason": None})
         self.root_patch.start()
         self.rule_patch.start()
@@ -34,15 +35,21 @@ class QueueIsolationTest(unittest.TestCase):
     def admission(self, work_id: str, *, stop: bool = False, bad_hash: bool = False) -> dict:
         relative = f"feedback_pipeline/evidence/{work_id.replace(':', '_')}.json"
         target = self.root / relative
+        source_name = f"input_{work_id.replace(':', '_')}.txt"
+        original = self.root / source_name
+        original.write_text("synthetic source", encoding="utf-8")
         target.write_text(json.dumps({
             "work_id": work_id, "task_id": "TOOL044",
             "source_records_verified": True, "validation_result": "PASS",
             "validator_id": "synthetic-independent-validator",
-            "source_refs": [{"path": "synthetic-only", "sha256": "synthetic-only"}],
+            "source_refs": [{"path": source_name, "sha256": hashlib.sha256(original.read_bytes()).hexdigest()}],
+            "rule_version": "synthetic-current",
+            "validation_plan": {"method": "synthetic compare", "expected_result": "match",
+                                "evidence_required": "original and receipt"},
         }), encoding="utf-8")
         digest = hashlib.sha256(target.read_bytes()).hexdigest()
         return {"work_id": work_id, "task_id": "TOOL044",
-                "user_stop": stop, "rule_context": {"task_id": "TOOL044"},
+                "user_stop": stop, "rule_context": {"task_id": "TOOL044", "version": "synthetic-current"},
                 "source_receipt": {"path": relative, "sha256": "stale" if bad_hash else digest}}
 
     @staticmethod
@@ -151,6 +158,29 @@ class QueueIsolationTest(unittest.TestCase):
         receipt = runtime.isolate_denied_queued_work({"requirements": []}, queue, ledger, registry)
         self.assertEqual((receipt["decision"], receipt["allowed_count"]), ("ALLOW", 1))
         self.assertTrue(all(row["status"] == "OPEN" for row in ledger["entries"]))
+
+    def test_changed_original_blocks_only_affected_job(self) -> None:
+        state = self.state(1, 2)
+        first = self.admission("requirement:1")
+        (self.root / "input_requirement_1.txt").write_text("changed source", encoding="utf-8")
+        second = self.admission("requirement:2")
+        queue = {"queued_requirement_ids": [1, 2], "backlog_root_ids": [],
+                 "rule_admissions": {"requirement:1": first, "requirement:2": second}}
+        result = runtime.isolate_denied_queued_work(state, queue, {"entries": []}, self.registry(1, 2))
+        self.assertEqual(queue["queued_requirement_ids"], [2])
+        self.assertEqual(result["receipts"][0]["reason"], "ORIGINAL_SOURCE_MISSING_OR_CHANGED")
+
+    def test_contract_pass_cannot_close_root_without_actual_result(self) -> None:
+        ledger = {"entries": [{"root_id": "A", "status": "OPEN", "next_trigger": "IMMEDIATE"}]}
+        queue = {"backlog_root_ids": ["A"], "backlog_quarantine": []}
+        registry = {"backlog_execution_contracts": [{"root_id": "A", "task_id": "TOOL044"}]}
+        with patch.object(runtime, "validate_contract", return_value={
+                "status": "PASS", "evidence": ["synthetic-contract.json"], "readback_pass": True}):
+            receipts = runtime.execute_central_backlog(queue, ledger, registry)
+        self.assertEqual(receipts[0]["reason"], "ACTUAL_RESULT_AND_INDEPENDENT_COMPLETION_MISSING")
+        self.assertEqual(ledger["entries"][0]["status"], "HOLD_EXECUTION_COMPLETION")
+        self.assertNotEqual(ledger["entries"][0]["status"], "VERIFIED_CLOSED")
+        self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
 
     def test_authoritative_global_stop_still_blocks(self) -> None:
         with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
