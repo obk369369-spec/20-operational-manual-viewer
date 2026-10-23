@@ -182,6 +182,32 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertNotEqual(ledger["entries"][0]["status"], "VERIFIED_CLOSED")
         self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
 
+    def test_execution_hold_is_reflected_in_same_cycle_canonical_surfaces(self) -> None:
+        for result in ("PASS", "HOLD"):
+            with self.subTest(validation=result):
+                ledger = {"entries": [{"root_id": "A", "status": "OPEN",
+                                       "next_trigger": "IMMEDIATE"}]}
+                queue = {"queued_requirement_ids": [], "backlog_root_ids": ["A"],
+                         "backlog_quarantine": []}
+                registry = {"backlog_execution_contracts": [
+                    {"root_id": "A", "task_id": "TOOL044"}]}
+                with patch.object(runtime, "validate_contract", return_value={
+                        "status": result, "evidence": ["synthetic-contract.json"],
+                        "readback_pass": True, "reason": None if result == "PASS" else "SYNTHETIC_INVALID"}):
+                    summary, receipts = runtime.execute_and_reconcile_central_backlog(
+                        queue, ledger, registry)
+                self.assertEqual(len(receipts), 1)
+                self.assertEqual(summary["executable_count"], 0)
+                self.assertEqual(summary["deferred_count"], 1)
+                self.assertEqual(queue["backlog_root_ids"], [])
+                self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
+                self.assertTrue(ledger["entries"][0]["status"].startswith("HOLD_EXECUTION_"))
+                state = {"central_backlog": summary}
+                observer = {"backlog_recovery": {
+                    "quarantined": queue["backlog_quarantine"]}}
+                self.assertEqual(runtime.runtime_consistency(
+                    queue, ledger, state, observer)["status"], "PASS")
+
     def test_evidence_route_fallback_only_after_readback_failure(self) -> None:
         recovery = self.root / "feedback_pipeline" / "evidence" / "recovery.json"
         recovery.write_text(json.dumps({"verified": True}), encoding="utf-8")
