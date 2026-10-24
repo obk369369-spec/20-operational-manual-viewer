@@ -470,9 +470,9 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "PR #65 isolated branch now reprojects execution-induced HOLD into same-cycle central surfaces and isolates malformed contract validation per worker. Actions 39940387315 job 120370084284: 15 changed-boundary tests PASS. Canonical business execution still lacks task-specific contract/input/admission; no external Job or root closure.",
-      "next_trigger": "VERIFIED_REAL_INPUT_CONTRACT_ADMISSION_OR_AUTHORIZED_MAIN_INTEGRATION",
-      "next_start": "Do not merge PR65 without separate main integration authorization. For real external failover, bind existing approved worker routes to a task-specific verified execution contract, actual input and current admission; then validate Job/result/ACK/checkpoint.",
+      "last_actual_point": "PR65 branch d5a8caedf40b534f43c1f833f427860a7fbfae0a reuses validate_contract_isolated in execute_central_backlog. Actions40066288291/job120790135381:16 boundary tests PASS including malformed backlog isolation, independent root continuation and same-cycle Queue/ledger/Observer consistency. Nonproduction only; root remains OPEN.",
+      "next_trigger": "AUTHORIZED_MAIN_PROTECTION_READ_AND_CURRENT_EXECUTION_ADMISSION",
+      "next_start": "Reuse exact remote boundary evidence; verify main required checks/protection with authorized administration access before integration. Do not repeat unchanged tests. Production requires current RULES admission and existing STOP clearance by authorized owner, then genuine source and task contracts.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
@@ -527,14 +527,23 @@
         },
         {
           "operation_id": "isolate-backlog-contract-schema-boundary-20261024",
-          "status": "PREPARED_NOT_TESTED",
-          "evidence_ref": "PR65@67753fb76b02185be4489fc204f4cb0c3ef8a592",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40066288291/job/120790135381",
           "cause_id": "BACKLOG_BYPASSES_SHARED_CONTRACT_FAILURE_ISOLATION",
           "method_id": "REUSE_VALIDATE_CONTRACT_ISOLATED",
           "condition_fingerprint": "BACKLOG_DIRECT_VALIDATE_CONTRACT",
           "lane": "GITHUB_MAINTENANCE",
           "work_gate_decision": "WORK_DEFER_DENIED",
-          "scope": "Branch-only; reuse existing isolation helper. Work execution not admitted."
+          "scope": "Branch-only; reuse existing isolation helper. Work execution not admitted.",
+          "code_commit": "d5a8caedf40b534f43c1f833f427860a7fbfae0a",
+          "runtime_commit": "309905ae804610f09785b8d7db22e43a034fe350",
+          "tests_total": 16,
+          "new_regression_tests": 1,
+          "new_subcases": 2,
+          "tests_elapsed_seconds": 0.093,
+          "business_pass": false,
+          "deployed_pass": false,
+          "remote_readback": true
         }
       ],
       "trigger_release": {
@@ -542,6 +551,76 @@
         "evidence_ref": "PR63:763cf22fb868df132ca77aa64e241343e2042d3d;CURRENT_USER_DIRECTIVE_WIC16_POLICY_EXECUTION_ROUTING_20261023",
         "previous_fingerprint": "NO_SCOPED_NONPRODUCTION_ROUTE_REPAIR_GRANT",
         "current_fingerprint": "SCOPED_ROUTE_REPAIR_GRANT_PR63_763cf22"
+      },
+      "latest_checkpoint": {
+        "recorded_at": "2026-10-24",
+        "central_revision": "140ed1e668fa4379fd477a8682977ac7d5a5e89d",
+        "branch": "wic16-routing-repair-code-20261023",
+        "last_actual_commit": "d5a8caedf40b534f43c1f833f427860a7fbfae0a",
+        "last_success_run": 40066288291,
+        "rollback_point": "67753fb76b02185be4489fc204f4cb0c3ef8a592",
+        "main_updated": false,
+        "root_complete": false,
+        "areas": {
+          "common_root": {
+            "status": "진행 중",
+            "actual": "Existing isolation helper connected in backlog path; branch remote verification passed",
+            "remaining": "main integration and actual operating validation"
+          },
+          "rules_components": {
+            "status": "진행 중",
+            "actual": "RULES fail-closed and shared COMPONENTS contract isolation boundary tested",
+            "remaining": "No universal enforcement claim; business contracts/admissions absent"
+          },
+          "external_platform": {
+            "status": "진행 중",
+            "actual": "Existing GitHub hosted runner executes nonproduction verification",
+            "remaining": "Full runtime control migration unverified; existing Kestra/Node-RED hosted bindings unavailable"
+          },
+          "automation_24h": {
+            "status": "확인 필요",
+            "actual": "Schedule run40050829549/job120742897206 blocked at central admission",
+            "reason": "USER_STOP_OR_START_BLOCKED",
+            "evidence_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40050829549/job/120742897206",
+            "verified_24h": false,
+            "next_trigger": "Current authorized stop/admission condition changes; retain existing scheduler"
+          },
+          "mobile": {
+            "status": "확인 필요",
+            "official_source": "https://learn.chatgpt.com/docs/mobile",
+            "actual": "Official Cloud/connected Mac or Windows mobile task controls documented; no device E2E performed",
+            "policy_gap": "Existing observer-only mobile restriction must be reconciled with this latest user directive in existing RULES before mobile business dispatch",
+            "next_trigger": "Account rollout, Cloud environment or paired device available; user-only pairing if required"
+          },
+          "external_components": {
+            "status": "확인 필요",
+            "actual": "Historical verified components reused as references only",
+            "remaining": "Current endpoint/auth/license/cost/source and execution receipts required before promotion"
+          },
+          "business": {
+            "status": "미실행",
+            "actual_outputs": 0,
+            "reason": "No task-scoped actual input, business contract and current admission bound"
+          },
+          "savings": {
+            "status": "미실행",
+            "measured": "Boundary test execution 0.093 seconds; no before/after efficiency baseline or credit attribution",
+            "claimed_savings_percent": null
+          },
+          "merge": {
+            "status": "확인 필요",
+            "actual": "Protection API403 Resource not accessible by integration; no main merge attempted",
+            "circleci": "Existing67753fb status error No configuration was found; required-check status unknown"
+          }
+        },
+        "zero_scan": {
+          "scope": "Authorized A-G outcome inventory and changed-boundary evidence only; no registry-wide scan",
+          "result": "NOT_COMPLETE",
+          "open": "main integration, active runtime admission, actual contracts/input, hosted bindings, elapsed24h and mobile device E2E",
+          "whole_registry_rescanned": false
+        },
+        "exact_next_step": "Continue PR65 integration only after verified repository protections; reuse run40066288291. Keep STOP/START_BLOCKED/PASS_LOCK. Resume existing scheduler only after genuine current admission. Bind authorized actual job source+contract through RULES/COMPONENTS; independently validate external and mobile routes.",
+        "user_action_batch": "Repository administrator must make protection requirements readable; only if connecting a personal device, account owner completes official pairing/verification. Do not ask user to rerun synthetic tests or reupload already supplied data."
       }
     }
   ],
