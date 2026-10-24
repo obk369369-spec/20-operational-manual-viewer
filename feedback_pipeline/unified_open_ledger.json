@@ -524,6 +524,17 @@
           "external_job_count": 0,
           "central_ack_count": 0,
           "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "isolate-backlog-contract-schema-boundary-20261024",
+          "status": "PREPARED_NOT_TESTED",
+          "evidence_ref": "PR65@67753fb76b02185be4489fc204f4cb0c3ef8a592",
+          "cause_id": "BACKLOG_BYPASSES_SHARED_CONTRACT_FAILURE_ISOLATION",
+          "method_id": "REUSE_VALIDATE_CONTRACT_ISOLATED",
+          "condition_fingerprint": "BACKLOG_DIRECT_VALIDATE_CONTRACT",
+          "lane": "GITHUB_MAINTENANCE",
+          "work_gate_decision": "WORK_DEFER_DENIED",
+          "scope": "Branch-only; reuse existing isolation helper. Work execution not admitted."
         }
       ],
       "trigger_release": {
@@ -991,6 +1002,24 @@
           "existing per-requirement HOLD and retry budget"
         ],
         "scope": "Current user requests bounded nonproduction platform repair so a single selected contract with malformed validation evidence is quarantined without aborting independent contracts. Preserve STOP, START_BLOCKED, PASS_LOCK, task admission and evidence validation. Isolated branch only; this does not authorize customer execution, main integration, or fabricated source/contract/admission."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "USER_WIC16_COMMON_ROOT_EXTERNAL_MOBILE_20261024",
+        "actions": [
+          "REPAIR_EXISTING_POLICY_EXECUTION_ROUTE_SELECTION"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "PR65 validate_contract_isolated",
+          "existing GitHub changed-boundary workflow",
+          "existing canonical ledger and checkpoint"
+        ],
+        "scope": "Reuse existing contract failure isolation in backlog path; isolated nonproduction GitHub maintenance, no main merge without verified protections, no STOP/START_BLOCKED/PASS_LOCK release or business PASS."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
