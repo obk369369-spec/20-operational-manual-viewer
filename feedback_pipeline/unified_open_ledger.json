@@ -470,15 +470,104 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "Existing AGENTS.md permanent policy updated on main at 77500bb3d26945066e0492592367b13b1d0b97f3. Previous run 39900182686 evaluated only Work admission and denied Work due to available GitHub lane; actual customer job, ready-made component installation, socket connection and production output remained zero. Root classification is based on observed behavior, not confirmed single-code defect.",
-      "next_trigger": "IMMEDIATE",
-      "next_start": "Evaluate exact nonproduction controller route-repair candidate; no customer execution without separate source, contract and admission.",
+      "last_actual_point": "PR65 branch d5a8caedf40b534f43c1f833f427860a7fbfae0a reuses validate_contract_isolated in execute_central_backlog. Actions40066288291/job120790135381:16 boundary tests PASS including malformed backlog isolation, independent root continuation and same-cycle Queue/ledger/Observer consistency. Nonproduction only; root remains OPEN.",
+      "next_trigger": "AUTHORIZED_MAIN_PROTECTION_READ_AND_CURRENT_EXECUTION_ADMISSION",
+      "next_start": "Reuse exact remote boundary evidence; verify main required checks/protection with authorized administration access before integration. Do not repeat unchanged tests. Production requires current RULES admission and existing STOP clearance by authorized owner, then genuine source and task contracts.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
           "status": "POLICY_REGISTERED_NOT_IMPLEMENTED",
           "evidence_ref": "AGENTS.md@77500bb3d26945066e0492592367b13b1d0b97f3;Actions39900182686",
           "scope": "Root grouping and plain-Korean response rule only; automatic routing and actual customer execution not verified"
+        },
+        {
+          "operation_id": "repair-policy-execution-route-selection-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION",
+          "evidence_ref": "PR65:8a582915cff65c29222ae512febd14f9c4c0ffa2;Actions39921083083:job120306195313",
+          "scope": "Existing controller now records top-rule admission separately and primary/recovery evidence route; 11 changed-boundary tests PASS. Does not implement external worker failover or actual WIC business execution.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "repair-empty-queue-false-completion-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:6cb9b19cb7ab3120622d53aa3df945c61d9be810;Actions39924943690:job120318916952;branch-file-readback",
+          "scope": "Observer current status remains HOLD when unresolved work exists; 12 changed-boundary tests PASS. No business execution, external component connection, automatic resume proof, or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "conditional-held-backlog-reentry-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:ed0468d604b7eabdf7b4a2a8a5df3edabb39610d;Actions39937421953:job120360272225;branch-file-readback",
+          "scope": "Held root reentry requires existing current contract, original source validation, and task admission; STOP or changed original remains isolated. 13 changed-boundary tests PASS. No business output or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "repair-post-execution-backlog-consistency-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:de9e2598cc4d88210b8c596883d26f35762ca5fa;Actions39939875834:job120368394776;branch-file-readback",
+          "scope": "Selected backlog root moved to HOLD during execution is reprojected into same-cycle Queue, central summary and Observer before consistency gate. 14 changed-boundary tests PASS. No actual customer job, external component execution, central ACK, or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "isolate-one-malformed-contract-worker-20261023",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "PR65:d394cd68e77a058554e10fbf1f2dcafb895d6972;Actions39940387315:job120370084284;branch-file-readback",
+          "scope": "One malformed validation contract yields per-work HOLD while an independent valid contract continues. 15 changed-boundary tests PASS. No actual customer Job, external component execution, ACK, or root closure.",
+          "external_job_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0
+        },
+        {
+          "operation_id": "isolate-backlog-contract-schema-boundary-20261024",
+          "status": "REMOTE_VERIFIED",
+          "evidence_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40066288291/job/120790135381",
+          "cause_id": "BACKLOG_BYPASSES_SHARED_CONTRACT_FAILURE_ISOLATION",
+          "method_id": "REUSE_VALIDATE_CONTRACT_ISOLATED",
+          "condition_fingerprint": "BACKLOG_DIRECT_VALIDATE_CONTRACT",
+          "lane": "GITHUB_MAINTENANCE",
+          "work_gate_decision": "WORK_DEFER_DENIED",
+          "scope": "Branch-only; reuse existing isolation helper. Work execution not admitted.",
+          "code_commit": "d5a8caedf40b534f43c1f833f427860a7fbfae0a",
+          "runtime_commit": "309905ae804610f09785b8d7db22e43a034fe350",
+          "tests_total": 16,
+          "new_regression_tests": 1,
+          "new_subcases": 2,
+          "tests_elapsed_seconds": 0.093,
+          "business_pass": false,
+          "deployed_pass": false,
+          "remote_readback": true
+        },
+        {
+          "operation_id": "bind-original-mobile-thread-acceptance-20261024",
+          "status": "REQUIREMENT_RECORDED_MOBILE_UNVERIFIED",
+          "directive_ref": "USER_WIC16_SAME_ORIGINAL_CODEX_WORK_MOBILE_REQUIRED_20261024",
+          "evidence_ref": "App list_threads/read_thread; official remote/mobile docs; signed-out original-chat URL attempt",
+          "mobile_pass": false,
+          "business_pass": false
+        },
+        {
+          "operation_id": "require-bidirectional-original-chat-laptop-off-user-confirmed-20261024",
+          "status": "REQUIREMENT_RECORDED_NOT_CONNECTED",
+          "evidence_ref": "https://learn.chatgpt.com/docs/remote-connections#local-computer-access-with-work-cloud-and-remote-connections",
+          "official_constraint": "Existing connected-host access requires awake online host; cloud sync not retroactive",
+          "mobile_pass": false,
+          "user_confirmed": false
+        },
+        {
+          "operation_id": "four-point-work-credit-segment-precheck-20261024",
+          "status": "HOLD_USAGE_MEASUREMENT",
+          "evidence_ref": "mcp__codex_app__get_usage_limits limitId=codex primary used26 secondary used4",
+          "condition_fingerprint": "CODEX_LIMIT_AVAILABLE_CHATGPT_WORK_BALANCE_UNAVAILABLE",
+          "business_pass": false,
+          "external_dispatch": false
         }
       ],
       "trigger_release": {
@@ -486,6 +575,196 @@
         "evidence_ref": "PR63:763cf22fb868df132ca77aa64e241343e2042d3d;CURRENT_USER_DIRECTIVE_WIC16_POLICY_EXECUTION_ROUTING_20261023",
         "previous_fingerprint": "NO_SCOPED_NONPRODUCTION_ROUTE_REPAIR_GRANT",
         "current_fingerprint": "SCOPED_ROUTE_REPAIR_GRANT_PR63_763cf22"
+      },
+      "latest_checkpoint": {
+        "recorded_at": "2026-10-24",
+        "central_revision": "140ed1e668fa4379fd477a8682977ac7d5a5e89d",
+        "branch": "wic16-routing-repair-code-20261023",
+        "last_actual_commit": "d5a8caedf40b534f43c1f833f427860a7fbfae0a",
+        "last_success_run": 40066288291,
+        "rollback_point": "67753fb76b02185be4489fc204f4cb0c3ef8a592",
+        "main_updated": false,
+        "root_complete": false,
+        "areas": {
+          "common_root": {
+            "status": "진행 중",
+            "actual": "Existing isolation helper connected in backlog path; branch remote verification passed",
+            "remaining": "main integration and actual operating validation"
+          },
+          "rules_components": {
+            "status": "진행 중",
+            "actual": "RULES fail-closed and shared COMPONENTS contract isolation boundary tested",
+            "remaining": "No universal enforcement claim; business contracts/admissions absent"
+          },
+          "external_platform": {
+            "status": "진행 중",
+            "actual": "Existing GitHub hosted runner executes nonproduction verification",
+            "remaining": "Full runtime control migration unverified; existing Kestra/Node-RED hosted bindings unavailable"
+          },
+          "automation_24h": {
+            "status": "확인 필요",
+            "actual": "Schedule run40050829549/job120742897206 blocked at central admission",
+            "reason": "USER_STOP_OR_START_BLOCKED",
+            "evidence_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40050829549/job/120742897206",
+            "verified_24h": false,
+            "next_trigger": "Current authorized stop/admission condition changes; retain existing scheduler"
+          },
+          "mobile": {
+            "status": "확인 필요",
+            "complete": false,
+            "priority": "HIGHEST_PARALLEL",
+            "requirement": "Bidirectional smartphone/laptop continuation of the SAME existing Codex and WIC16 Work conversations with original identity/history/state, including actual execution with laptop powered off and without office visit. User must personally confirm before completion.",
+            "targets": [
+              {
+                "kind": "codex",
+                "thread_id": "01a16c5c-7d1a-7370-b56e-607be4e8929b",
+                "title": "WIC 16번 통합 복구 실행",
+                "host": "local"
+              },
+              {
+                "kind": "codex",
+                "thread_id": "01a045e8-5bfa-7cf0-956f-6deaca0c0c48",
+                "title": "노트북 환경 복원 및 TOOL043 P0 계속",
+                "host": "local"
+              },
+              {
+                "kind": "chatgpt",
+                "thread_id": "6ad87af7-9dac-83ee-bb4b-1200fc2a2c36",
+                "title": "16번 워크작업 (다음9)",
+                "desktop_history_read": true
+              }
+            ],
+            "acceptance": {
+              "same_account_workspace_verified": false,
+              "original_threads_opened_on_phone": false,
+              "history_state_match": false,
+              "followup_from_phone_in_same_thread": false,
+              "response_result_in_same_thread": false,
+              "phone_started_turn_visible_and_continuable_on_laptop": false,
+              "laptop_powered_off_actual_execution_and_results": false,
+              "user_personally_confirmed": false
+            },
+            "excluded_completion": [
+              "dashboard",
+              "GitHub execution button",
+              "separate remote task screen",
+              "new/copied chat",
+              "shared snapshot",
+              "PC-only proof"
+            ],
+            "official_sources": [
+              "https://learn.chatgpt.com/docs/remote-connections",
+              "https://developers.openai.com/training/walkthroughs/working-on-your-phone"
+            ],
+            "official_support": "Mobile Work continues cloud conversations; supported host connection continues existing host chats. New cloud local-access sync does not retrofit existing tasks.",
+            "actual_attempt": {
+              "surface": "IAB browser, not smartphone",
+              "url": "https://chatgpt.com/c/6ad87af7-9dac-83ee-bb4b-1200fc2a2c36",
+              "result": "Redirect to signed-out chatgpt.com login screen; original conversation not displayed",
+              "decision": "AUTH_REQUIRED_MOBILE_UNVERIFIED"
+            },
+            "limits": [
+              "No physical smartphone control surface",
+              "Connector exposes no device-pairing status/control",
+              "Windows Computer Use guidance forbids ChatGPT desktop app UI automation and security/privacy settings; no bypass attempted"
+            ],
+            "next_step": "Verify exact original Work conversation cloud/local execution mode and same-account mobile availability. Only a supported same-identity host-independent route can satisfy laptop-off requirement. Need actual bidirectional original-thread execution with laptop off, then user's explicit confirmation. Never substitute new/copied chat, remote buttons or a laptop-dependent host.",
+            "new_dashboard_built": false,
+            "user_confirmation_required": true,
+            "user_confirmed": false,
+            "laptop_power_required": false,
+            "remote_host_only_is_insufficient": true,
+            "support_matrix": {
+              "existing_local_codex": {
+                "same_thread_mobile": "Official connected-host route documented; account/device unverified",
+                "laptop_off_execution": "Connected original laptop must be awake/online; route fails requirement5",
+                "status": "확인 필요"
+              },
+              "existing_work": {
+                "same_thread_mobile": "Mobile Work cloud continuation documented; exact original conversation mode/eligibility unverified",
+                "laptop_off_execution": "Eligible cloud work may execute without laptop; local files/tools unavailable while host offline",
+                "status": "확인 필요"
+              },
+              "retrofit_existing_local_chats": {
+                "status": "NOT_ESTABLISHED",
+                "reason": "Official cloud local-access sync applies only to newly created tasks; does not convert existing tasks"
+              },
+              "bidirectional_actual_execution": {
+                "status": "미실행",
+                "reason": "No authenticated physical smartphone surface/account capability probe available"
+              }
+            }
+          },
+          "external_components": {
+            "status": "확인 필요",
+            "actual": "Historical verified components reused as references only",
+            "remaining": "Current endpoint/auth/license/cost/source and execution receipts required before promotion"
+          },
+          "business": {
+            "status": "미실행",
+            "actual_outputs": 0,
+            "reason": "No task-scoped actual input, business contract and current admission bound"
+          },
+          "savings": {
+            "status": "미실행",
+            "measured": "Boundary test execution 0.093 seconds; no before/after efficiency baseline or credit attribution",
+            "claimed_savings_percent": null
+          },
+          "merge": {
+            "status": "확인 필요",
+            "actual": "Protection API403 Resource not accessible by integration; no main merge attempted",
+            "circleci": "Existing67753fb status error No configuration was found; required-check status unknown"
+          }
+        },
+        "zero_scan": {
+          "scope": "Authorized A-G outcome inventory and changed-boundary evidence only; no registry-wide scan",
+          "result": "NOT_COMPLETE",
+          "open": "main integration, active runtime admission, actual contracts/input, hosted bindings, elapsed24h and mobile device E2E",
+          "whole_registry_rescanned": false
+        },
+        "exact_next_step": "Prioritize exact original Codex/Work smartphone thread access in parallel with migration/automation. No dashboard or new-chat substitution. Complete acceptance against recorded original IDs. Reuse prior boundary tests and preserve main protections/STOP.",
+        "user_action_batch": "Repository administrator must make protection requirements readable; only if connecting a personal device, account owner completes official pairing/verification. Do not ask user to rerun synthetic tests or reupload already supplied data.",
+        "credit_segment": {
+          "recorded_date_kst": "2026-10-24",
+          "directive": "USER_WIC16_EXTERNAL_INDEPENDENT_RUNTIME_FOUR_POINT_SEGMENTS_20261024",
+          "status": "NOT_STARTED_USAGE_MEASUREMENT_UNAVAILABLE",
+          "user_reported_work_remaining_percent": 74,
+          "requested_first_target_percent": 70,
+          "observed_usage": {
+            "source": "mcp__codex_app__get_usage_limits",
+            "limit_id": "codex",
+            "primary_window_minutes": 300,
+            "primary_used_percent": 26,
+            "primary_remaining_percent": 74,
+            "secondary_window_minutes": 10080,
+            "secondary_used_percent": 4,
+            "secondary_remaining_percent": 96,
+            "chatgpt_work_remaining_percent": null,
+            "note": "Codex account rate limits are not independently verified ChatGPT Work credit balances; do not equate them."
+          },
+          "work_segment_start_percent": null,
+          "work_segment_end_percent": null,
+          "work_credit_delta": null,
+          "new_code_changes": 0,
+          "new_business_outputs": 0,
+          "new_closed_roots": 0,
+          "platform_migration_percent": null,
+          "external_runtime_continues_verified": false,
+          "mobile_complete": false,
+          "user_mobile_confirmation": false,
+          "reuse_evidence": "PR65 code d5a8cae / Actions40066288291 job120790135381 16 boundary tests; no unchanged rerun",
+          "preserved": [
+            "STOP",
+            "START_BLOCKED",
+            "PASS_LOCK",
+            "existing evidence and original thread IDs",
+            "zero recurring Work credit target",
+            "no main merge without protections"
+          ],
+          "next_trigger": "DIRECT_CHATGPT_WORK_USAGE_MEASUREMENT_AVAILABLE_OR_USER_EXPLICITLY_SELECTS_CODEX_RATE_LIMIT_AS_SEGMENT_METRIC",
+          "next_root": "Existing policy-to-execution routing root; task-scoped external controller admission/actual input/contract, with original-thread mobile verification in parallel after usage gate. Do not clear operational STOP implicitly.",
+          "reason": "User explicitly requires conservative stop if credits cannot be directly verified; no development or external execution dispatched in this segment."
+        }
       }
     }
   ],
@@ -872,6 +1151,98 @@
           "existing GitHub changed-boundary workflow"
         ],
         "scope": "Isolated nonproduction minimum repair of policy/execution handoff and failover selection. Only temporary runtime failure may advance to a separately approved available route. STOP, START_BLOCKED, PASS_LOCK, missing source/contract/admission, customer execution and main integration are not authorized by this grant; require independent validation and repository protection."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_CONTINUOUS_QUEUE_EMPTY_REPAIR_20261023",
+        "actions": [
+          "REPAIR_FALSE_COMPLETION_WHEN_QUEUE_EMPTY_WITH_UNFINISHED_WORK"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing reconcile_central_backlog",
+          "existing backlog_quarantine",
+          "existing PR #65 isolated branch and changed-boundary workflow"
+        ],
+        "scope": "Current user authorizes bounded nonproduction repair of false completion reporting when the Queue is empty but held or unfinished work remains. Preserve STOP, START_BLOCKED, PASS_LOCK and per-work admission. No fabricated input/contract/authorization, business execution, deployment, or main integration from this grant alone."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_CONTINUOUS_QUEUE_RECOVERY_20261023",
+        "actions": [
+          "REPAIR_CONDITIONAL_HELD_BACKLOG_REENTRY"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing reconcile_central_backlog",
+          "existing queued_work_admission",
+          "existing source receipt and STOP validation",
+          "existing PR #65 isolated branch"
+        ],
+        "scope": "Current user requests bounded nonproduction recovery of held backlog supply only after a newly present real contract, current source receipt, and per-work rule admission pass the existing validator. No fabricated inputs, contracts, permissions, customer execution, STOP/START_BLOCKED/PASS_LOCK change, or main integration."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_PLATFORM_REPAIR_POST_EXECUTION_CONSISTENCY_20261023",
+        "actions": [
+          "REPAIR_POST_EXECUTION_BACKLOG_STATE_CONSISTENCY"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing PR #65 isolated branch",
+          "existing reconcile_central_backlog",
+          "existing execute_central_backlog",
+          "existing runtime_consistency"
+        ],
+        "scope": "Current user requests bounded nonproduction platform repair so a selected backlog root moved to HOLD during execution is reflected in the same cycle's Queue, central summary and Observer. Isolated branch only; preserve STOP, START_BLOCKED, PASS_LOCK and per-work admission. This records directive scope, not Gate ALLOW, customer business authorization or main integration approval."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_ISOLATE_CONTRACT_SCHEMA_FAILURE_20261023",
+        "actions": [
+          "ISOLATE_ONE_CONTRACT_VALIDATION_SCHEMA_FAILURE"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing PR #65 isolated branch",
+          "existing route_contracts concurrent validator",
+          "existing per-requirement HOLD and retry budget"
+        ],
+        "scope": "Current user requests bounded nonproduction platform repair so a single selected contract with malformed validation evidence is quarantined without aborting independent contracts. Preserve STOP, START_BLOCKED, PASS_LOCK, task admission and evidence validation. Isolated branch only; this does not authorize customer execution, main integration, or fabricated source/contract/admission."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "USER_WIC16_COMMON_ROOT_EXTERNAL_MOBILE_20261024",
+        "actions": [
+          "REPAIR_EXISTING_POLICY_EXECUTION_ROUTE_SELECTION"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "PR65 validate_contract_isolated",
+          "existing GitHub changed-boundary workflow",
+          "existing canonical ledger and checkpoint"
+        ],
+        "scope": "Reuse existing contract failure isolation in backlog path; isolated nonproduction GitHub maintenance, no main merge without verified protections, no STOP/START_BLOCKED/PASS_LOCK release or business PASS."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
