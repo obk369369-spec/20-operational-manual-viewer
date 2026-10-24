@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "recorded_at_kst": "2026-10-24",
+  "root_id": "WIC-GITHUB-AUTH-CANDIDATE-GATE-20261024",
+  "status": "HOLD_GH_CLI_DEVICE_FLOW_PROCESS_PERSISTENCE",
+  "scope": "NONPRODUCTION_CANDIDATE_GATE_ONLY",
+  "reused_pass": [
+    "WIC_RULE_ADMISSION_JSON_TO_WIC_RULE_CONTEXT_JSON@3ba21796b76492be8d3840fa6b753488292490b9",
+    "boundary_run_40070709167_PASS",
+    "temporary_trigger_removed@a7d7cd5d13e44b0703157d7adaf1fccf5b111914"
+  ],
+  "verified": {
+    "github_connector_read_write_authenticated": true,
+    "gh_cli_token_valid": false,
+    "gh_hosts_file": "C:/Users/obk36/AppData/Roaming/GitHub CLI/hosts.yml",
+    "gh_hosts_oauth_token_present": false,
+    "os_acl_user_full_control": true,
+    "turn_scoped_write_test": true,
+    "auth_wait_process_survives_user_turn": false,
+    "browser_login_shared_with_gh_cli": false
+  },
+  "candidate_gate": {
+    "workflow": ".github/workflows/work-gate-handoff-audit.yml",
+    "operation_id": "restore-observer-and-candidate-gate-remote-path-20261021",
+    "execution_status": "NOT_EXECUTED",
+    "blocker": "Available GitHub connector exposes repository contents but no workflow_dispatch; CLI device-flow process terminates across user turns before token persistence.",
+    "protections_preserved": [
+      "WIC_USER_STOP",
+      "WIC_RULE_ADMISSION_JSON",
+      "START_BLOCKED",
+      "PASS_LOCK",
+      "production STOP"
+    ]
+  },
+  "actual_counts": {
+    "new_business_executions": 0,
+    "external_finished_product_passes": 0,
+    "new_workflow_run_ids": []
+  },
+  "next_resume": {
+    "preferred_path": "Use a turn-independent authenticated GitHub Actions dispatch API/connector. Do not repeat CLI device flow.",
+    "exact_action": "Dispatch work-gate-handoff-audit.yml on main with the already-pinned candidate_json, then verify candidate-gate-evaluation job, artifact wic-candidate-gate-decision, and remote read-back.",
+    "forbidden": [
+      "repeat completed PASS",
+      "issue another device code without a persistent callback process",
+      "modify production admission or STOP",
+      "rebuild TOOL013"
+    ]
+  }
+}
