@@ -231,7 +231,7 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
                 "resume_condition": entry["next_trigger"],
             })
             continue
-        receipt = validate_contract(handler)
+        receipt = validate_contract_isolated(handler)
         if receipt["status"] == "PASS":
             # A contract proves evidence shape, not an executed business result.
             # This adapter has no worker result/independent completion receipt to close the root.
