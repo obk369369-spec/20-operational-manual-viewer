@@ -544,6 +544,14 @@
           "business_pass": false,
           "deployed_pass": false,
           "remote_readback": true
+        },
+        {
+          "operation_id": "bind-original-mobile-thread-acceptance-20261024",
+          "status": "REQUIREMENT_RECORDED_MOBILE_UNVERIFIED",
+          "directive_ref": "USER_WIC16_SAME_ORIGINAL_CODEX_WORK_MOBILE_REQUIRED_20261024",
+          "evidence_ref": "App list_threads/read_thread; official remote/mobile docs; signed-out original-chat URL attempt",
+          "mobile_pass": false,
+          "business_pass": false
         }
       ],
       "trigger_release": {
@@ -587,10 +595,62 @@
           },
           "mobile": {
             "status": "확인 필요",
-            "official_source": "https://learn.chatgpt.com/docs/mobile",
-            "actual": "Official Cloud/connected Mac or Windows mobile task controls documented; no device E2E performed",
-            "policy_gap": "Existing observer-only mobile restriction must be reconciled with this latest user directive in existing RULES before mobile business dispatch",
-            "next_trigger": "Account rollout, Cloud environment or paired device available; user-only pairing if required"
+            "complete": false,
+            "priority": "HIGHEST_PARALLEL",
+            "requirement": "Same original laptop Codex and WIC16 Work chats on smartphone: same account/workspace/conversation identity/history/current state and continued instructions.",
+            "targets": [
+              {
+                "kind": "codex",
+                "thread_id": "01a16c5c-7d1a-7370-b56e-607be4e8929b",
+                "title": "WIC 16번 통합 복구 실행",
+                "host": "local"
+              },
+              {
+                "kind": "codex",
+                "thread_id": "01a045e8-5bfa-7cf0-956f-6deaca0c0c48",
+                "title": "노트북 환경 복원 및 TOOL043 P0 계속",
+                "host": "local"
+              },
+              {
+                "kind": "chatgpt",
+                "thread_id": "6ad87af7-9dac-83ee-bb4b-1200fc2a2c36",
+                "title": "16번 워크작업 (다음9)",
+                "desktop_history_read": true
+              }
+            ],
+            "acceptance": {
+              "same_account_workspace_verified": false,
+              "original_threads_opened_on_phone": false,
+              "history_state_match": false,
+              "followup_from_phone_in_same_thread": false,
+              "response_result_in_same_thread": false
+            },
+            "excluded_completion": [
+              "dashboard",
+              "GitHub execution button",
+              "separate remote task screen",
+              "new/copied chat",
+              "shared snapshot",
+              "PC-only proof"
+            ],
+            "official_sources": [
+              "https://learn.chatgpt.com/docs/remote-connections",
+              "https://developers.openai.com/training/walkthroughs/working-on-your-phone"
+            ],
+            "official_support": "Mobile Work continues cloud conversations; supported host connection continues existing host chats. New cloud local-access sync does not retrofit existing tasks.",
+            "actual_attempt": {
+              "surface": "IAB browser, not smartphone",
+              "url": "https://chatgpt.com/c/6ad87af7-9dac-83ee-bb4b-1200fc2a2c36",
+              "result": "Redirect to signed-out chatgpt.com login screen; original conversation not displayed",
+              "decision": "AUTH_REQUIRED_MOBILE_UNVERIFIED"
+            },
+            "limits": [
+              "No physical smartphone control surface",
+              "Connector exposes no device-pairing status/control",
+              "Windows Computer Use guidance forbids ChatGPT desktop app UI automation and security/privacy settings; no bypass attempted"
+            ],
+            "next_step": "If absent, account owner completes official Settings > Connections > Control this Mac or PC pairing. In same account/workspace, open exact original Work or connected-host Codex/Remote conversations and verify followup/result in each original chat.",
+            "new_dashboard_built": false
           },
           "external_components": {
             "status": "확인 필요",
@@ -619,7 +679,7 @@
           "open": "main integration, active runtime admission, actual contracts/input, hosted bindings, elapsed24h and mobile device E2E",
           "whole_registry_rescanned": false
         },
-        "exact_next_step": "Continue PR65 integration only after verified repository protections; reuse run40066288291. Keep STOP/START_BLOCKED/PASS_LOCK. Resume existing scheduler only after genuine current admission. Bind authorized actual job source+contract through RULES/COMPONENTS; independently validate external and mobile routes.",
+        "exact_next_step": "Prioritize exact original Codex/Work smartphone thread access in parallel with migration/automation. No dashboard or new-chat substitution. Complete acceptance against recorded original IDs. Reuse prior boundary tests and preserve main protections/STOP.",
         "user_action_batch": "Repository administrator must make protection requirements readable; only if connecting a personal device, account owner completes official pairing/verification. Do not ask user to rerun synthetic tests or reupload already supplied data."
       }
     }

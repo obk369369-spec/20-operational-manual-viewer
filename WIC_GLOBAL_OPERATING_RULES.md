@@ -600,8 +600,13 @@ C. 단순 붙여넣기 데이터만 제공하는 방식은 파일 직접 생성�
 - `CANONICAL_NORMAL`은 기존 GitHub 중앙 구조에 정상 commit하고 remote SHA/content read-back 및 필요한 최초 검증이 끝나기 전까지 USB 삭제 준비로 판정하지 않는다.
 - `HOLD_UNKNOWN`과 USB에만 존재하는 미보존 자산은 삭제하지 않는다. 파일 삭제, USB 삭제, force push, destructive reset, repo 초기화·생성은 일반 SAFE 승인 배치에서 제외한다.
 - 실제 작업 주체는 Work/Codex 또는 기존 승인불필요 자동 실행 엔진이다. TOOL043은 실제 작업을 수행하지 않고 실행상태를 Observer와 다음 Work 인계에 연결하는 `OBSERVATION/STATE/HANDOFF BRIDGE`다.
-- Observer는 TOOL043 상태와 실제 실행상태를 관찰하고, 스마트폰은 Observer 결과만 표시한다. `SMARTPHONE_DIRECT_WORK_EXECUTION=FORBIDDEN`.
-- 스마트폰 원격 승인은 플랫폼 경계로 `BLOCKED_PLATFORM / NON_BLOCKING / SKIP_REUSE`하며 TOOL043 완료조건으로 사용하지 않는다.
+- Observer와 TOOL043의 관찰 전용 역할은 유지한다.
+- 2026-10-24 최신 사용자 지시: 스마트폰에서 기존 노트북 Codex·16번 Work 작업창을 동일 계정·워크스페이스·대화 식별자·과거 메시지·현재 상태로 직접 열고 같은 대화를 이어서 지시한다. 과거 스마트폰 Observer 전용 제한은 이 공식 기존 대화 접근 범위에서 대체한다.
+- 공식 모바일 Work 또는 기존 호스트의 Codex/Remote 대화를 재사용한다. 별도 대시보드, GitHub 실행 버튼, 별도 원격 작업 화면, 복제/새 대화, 공유 스냅샷은 완료 증거가 아니다.
+- 각 기존 작업창의 실제 스마트폰 열기 → 과거 기록·현재 상태 대조 → 같은 대화의 후속 지시 → 같은 대화의 응답·결과 확인을 모두 검증하기 전 MOBILE_COMPLETE=false다. 공식 문서·PC 측 조회만으로 PASS하지 않는다.
+- 기존 로컬 작업에 새 클라우드 동기화가 소급 적용된다고 주장하지 않는다. 계정 제공 범위·스마트폰 OS·공식 호스트 연결을 실제 확인하고, 인증·QR·MFA는 공식 절차를 사용한다.
+- STOP·START_BLOCKED·PASS_LOCK·RULES·COMPONENTS·고객 권한·비용·승인 게이트를 유지한다. 모바일 접근 허용은 차단된 업무의 실행 허가가 아니다.
+- 기존 작업창 모바일 동일 접근은 외부 이전·24시간 자동화와 병렬 최우선이다. 각 영역의 차단은 다른 독립 작업을 중단시키지 않는다.
 - 승인 대기 작업은 `WAIT_APPROVAL`로 분리하고 다음 SAFE 작업을 계속한다. 14:00 KST는 고정 정지시각이 아니라 fallback 확인시각이다.
 - 각 도구 완료 보고에는 `CANONICAL_NORMAL`, `SHELL_OR_STALE`, `HOLD_UNKNOWN`, `GITHUB_ARCHIVE_STATUS`, `REMOTE_EVIDENCE`, `USB_DELETE_READY`를 포함한다.
 
