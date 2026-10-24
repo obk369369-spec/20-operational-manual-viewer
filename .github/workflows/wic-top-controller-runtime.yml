@@ -1,9 +1,6 @@
 name: WIC Top Controller Independent Runtime
 
 on:
-  push:
-    paths:
-      - '.github/workflows/wic-top-controller-runtime.yml'
   workflow_dispatch:
   schedule:
     - cron: "17 * * * *"
