@@ -2,8 +2,8 @@
   "schema_version": 1,
   "recorded_at_kst": "2026-10-24",
   "root_id": "WIC-GITHUB-AUTH-CANDIDATE-GATE-20261024",
-  "status": "HOLD_GH_CLI_DEVICE_FLOW_PROCESS_PERSISTENCE",
-  "scope": "NONPRODUCTION_CANDIDATE_GATE_ONLY",
+  "status": "HOLD_NO_EXECUTABLE_INDEPENDENT_LANE",
+  "scope": "NONPRODUCTION_CANDIDATE_GATE_AND_UNCHANGED_RESIDUAL_ROOTS",
   "reused_pass": [
     "WIC_RULE_ADMISSION_JSON_TO_WIC_RULE_CONTEXT_JSON@3ba21796b76492be8d3840fa6b753488292490b9",
     "boundary_run_40070709167_PASS",
@@ -11,8 +11,8 @@
   ],
   "verified": {
     "github_connector_read_write_authenticated": true,
+    "github_connector_workflow_dispatch_available": false,
     "gh_cli_token_valid": false,
-    "gh_hosts_file": "C:/Users/obk36/AppData/Roaming/GitHub CLI/hosts.yml",
     "gh_hosts_oauth_token_present": false,
     "os_acl_user_full_control": true,
     "turn_scoped_write_test": true,
@@ -23,7 +23,7 @@
     "workflow": ".github/workflows/work-gate-handoff-audit.yml",
     "operation_id": "restore-observer-and-candidate-gate-remote-path-20261021",
     "execution_status": "NOT_EXECUTED",
-    "blocker": "Available GitHub connector exposes repository contents but no workflow_dispatch; CLI device-flow process terminates across user turns before token persistence.",
+    "root_fingerprint": "GITHUB_ACTIONS_DISPATCH_AUTH_UNAVAILABLE",
     "protections_preserved": [
       "WIC_USER_STOP",
       "WIC_RULE_ADMISSION_JSON",
@@ -32,19 +32,55 @@
       "production STOP"
     ]
   },
+  "residual_root_fingerprints": {
+    "WIC-0702-SCOPED-RECOVERY": {
+      "fingerprint": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_UNAVAILABLE",
+      "status": "HOLD_UNCHANGED",
+      "retry": "SKIP_SAME_CONDITION"
+    },
+    "WIC-PARALLEL-RESIDUAL-20260903": {
+      "fingerprint": "AUTHORIZED_BROWSER_PATH_OR_CONCRETE_HANDLER_INPUT_UNAVAILABLE",
+      "status": "HOLD_UNCHANGED",
+      "retry": "SKIP_SAME_CONDITION"
+    },
+    "TOOL013_EXTERNAL_FINISHED_PRODUCT": {
+      "fingerprint": "AUTHENTICATED_TENANT_APPROVED_ORIGINAL_AND_GOLDEN_OUTPUT_UNAVAILABLE",
+      "status": "HOLD_UNCHANGED",
+      "retry": "DO_NOT_TOUCH_EXISTING_PROGRAM"
+    },
+    "WIC_24H_NATURAL_ELAPSED": {
+      "fingerprint": "ACTUAL_24H_NATURAL_ELAPSED_EXTERNAL_LOG_NOT_AVAILABLE",
+      "status": "PENDING",
+      "retry": "WAIT_EXTERNAL_EVIDENCE"
+    },
+    "SMARTPHONE_ORIGINAL_WORK": {
+      "fingerprint": "REMOTE_CONTROL_DEVICE_PAIRING_NOT_VERIFIED",
+      "status": "HOLD_USER_DEVICE_ACTION",
+      "retry": "WAIT_PAIRING_EVIDENCE"
+    }
+  },
   "actual_counts": {
-    "new_business_executions": 0,
+    "newly_executed_work": 0,
+    "newly_completed": 0,
+    "newly_incomplete": 0,
+    "hold_roots_preserved": 5,
     "external_finished_product_passes": 0,
     "new_workflow_run_ids": []
   },
   "next_resume": {
-    "preferred_path": "Use a turn-independent authenticated GitHub Actions dispatch API/connector. Do not repeat CLI device flow.",
-    "exact_action": "Dispatch work-gate-handoff-audit.yml on main with the already-pinned candidate_json, then verify candidate-gate-evaluation job, artifact wic-candidate-gate-decision, and remote read-back.",
-    "forbidden": [
-      "repeat completed PASS",
-      "issue another device code without a persistent callback process",
-      "modify production admission or STOP",
-      "rebuild TOOL013"
-    ]
+    "exact_first_action": "Use a turn-independent authenticated workflow_dispatch capability to run the pinned candidate_json; do not issue another CLI device code.",
+    "candidate_success_evidence": [
+      "workflow run id",
+      "candidate decision",
+      "artifact wic-candidate-gate-decision",
+      "remote read-back"
+    ],
+    "independent_triggers": {
+      "WIC-0702-SCOPED-RECOVERY": "verified execution contract plus actual input",
+      "WIC-PARALLEL-RESIDUAL-20260903": "authorized browser path or concrete handler/input",
+      "TOOL013_EXTERNAL_FINISHED_PRODUCT": "authenticated tenant plus approved original and golden output",
+      "WIC_24H_NATURAL_ELAPSED": "natural elapsed external log",
+      "SMARTPHONE_ORIGINAL_WORK": "actual Remote Control pairing evidence"
+    }
   }
 }
