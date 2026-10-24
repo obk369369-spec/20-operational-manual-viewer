@@ -560,6 +560,14 @@
           "official_constraint": "Existing connected-host access requires awake online host; cloud sync not retroactive",
           "mobile_pass": false,
           "user_confirmed": false
+        },
+        {
+          "operation_id": "four-point-work-credit-segment-precheck-20261024",
+          "status": "HOLD_USAGE_MEASUREMENT",
+          "evidence_ref": "mcp__codex_app__get_usage_limits limitId=codex primary used26 secondary used4",
+          "condition_fingerprint": "CODEX_LIMIT_AVAILABLE_CHATGPT_WORK_BALANCE_UNAVAILABLE",
+          "business_pass": false,
+          "external_dispatch": false
         }
       ],
       "trigger_release": {
@@ -715,7 +723,48 @@
           "whole_registry_rescanned": false
         },
         "exact_next_step": "Prioritize exact original Codex/Work smartphone thread access in parallel with migration/automation. No dashboard or new-chat substitution. Complete acceptance against recorded original IDs. Reuse prior boundary tests and preserve main protections/STOP.",
-        "user_action_batch": "Repository administrator must make protection requirements readable; only if connecting a personal device, account owner completes official pairing/verification. Do not ask user to rerun synthetic tests or reupload already supplied data."
+        "user_action_batch": "Repository administrator must make protection requirements readable; only if connecting a personal device, account owner completes official pairing/verification. Do not ask user to rerun synthetic tests or reupload already supplied data.",
+        "credit_segment": {
+          "recorded_date_kst": "2026-10-24",
+          "directive": "USER_WIC16_EXTERNAL_INDEPENDENT_RUNTIME_FOUR_POINT_SEGMENTS_20261024",
+          "status": "NOT_STARTED_USAGE_MEASUREMENT_UNAVAILABLE",
+          "user_reported_work_remaining_percent": 74,
+          "requested_first_target_percent": 70,
+          "observed_usage": {
+            "source": "mcp__codex_app__get_usage_limits",
+            "limit_id": "codex",
+            "primary_window_minutes": 300,
+            "primary_used_percent": 26,
+            "primary_remaining_percent": 74,
+            "secondary_window_minutes": 10080,
+            "secondary_used_percent": 4,
+            "secondary_remaining_percent": 96,
+            "chatgpt_work_remaining_percent": null,
+            "note": "Codex account rate limits are not independently verified ChatGPT Work credit balances; do not equate them."
+          },
+          "work_segment_start_percent": null,
+          "work_segment_end_percent": null,
+          "work_credit_delta": null,
+          "new_code_changes": 0,
+          "new_business_outputs": 0,
+          "new_closed_roots": 0,
+          "platform_migration_percent": null,
+          "external_runtime_continues_verified": false,
+          "mobile_complete": false,
+          "user_mobile_confirmation": false,
+          "reuse_evidence": "PR65 code d5a8cae / Actions40066288291 job120790135381 16 boundary tests; no unchanged rerun",
+          "preserved": [
+            "STOP",
+            "START_BLOCKED",
+            "PASS_LOCK",
+            "existing evidence and original thread IDs",
+            "zero recurring Work credit target",
+            "no main merge without protections"
+          ],
+          "next_trigger": "DIRECT_CHATGPT_WORK_USAGE_MEASUREMENT_AVAILABLE_OR_USER_EXPLICITLY_SELECTS_CODEX_RATE_LIMIT_AS_SEGMENT_METRIC",
+          "next_root": "Existing policy-to-execution routing root; task-scoped external controller admission/actual input/contract, with original-thread mobile verification in parallel after usage gate. Do not clear operational STOP implicitly.",
+          "reason": "User explicitly requires conservative stop if credits cannot be directly verified; no development or external execution dispatched in this segment."
+        }
       }
     }
   ],
