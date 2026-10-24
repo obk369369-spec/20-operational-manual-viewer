@@ -552,6 +552,14 @@
           "evidence_ref": "App list_threads/read_thread; official remote/mobile docs; signed-out original-chat URL attempt",
           "mobile_pass": false,
           "business_pass": false
+        },
+        {
+          "operation_id": "require-bidirectional-original-chat-laptop-off-user-confirmed-20261024",
+          "status": "REQUIREMENT_RECORDED_NOT_CONNECTED",
+          "evidence_ref": "https://learn.chatgpt.com/docs/remote-connections#local-computer-access-with-work-cloud-and-remote-connections",
+          "official_constraint": "Existing connected-host access requires awake online host; cloud sync not retroactive",
+          "mobile_pass": false,
+          "user_confirmed": false
         }
       ],
       "trigger_release": {
@@ -597,7 +605,7 @@
             "status": "확인 필요",
             "complete": false,
             "priority": "HIGHEST_PARALLEL",
-            "requirement": "Same original laptop Codex and WIC16 Work chats on smartphone: same account/workspace/conversation identity/history/current state and continued instructions.",
+            "requirement": "Bidirectional smartphone/laptop continuation of the SAME existing Codex and WIC16 Work conversations with original identity/history/state, including actual execution with laptop powered off and without office visit. User must personally confirm before completion.",
             "targets": [
               {
                 "kind": "codex",
@@ -623,7 +631,10 @@
               "original_threads_opened_on_phone": false,
               "history_state_match": false,
               "followup_from_phone_in_same_thread": false,
-              "response_result_in_same_thread": false
+              "response_result_in_same_thread": false,
+              "phone_started_turn_visible_and_continuable_on_laptop": false,
+              "laptop_powered_off_actual_execution_and_results": false,
+              "user_personally_confirmed": false
             },
             "excluded_completion": [
               "dashboard",
@@ -649,8 +660,32 @@
               "Connector exposes no device-pairing status/control",
               "Windows Computer Use guidance forbids ChatGPT desktop app UI automation and security/privacy settings; no bypass attempted"
             ],
-            "next_step": "If absent, account owner completes official Settings > Connections > Control this Mac or PC pairing. In same account/workspace, open exact original Work or connected-host Codex/Remote conversations and verify followup/result in each original chat.",
-            "new_dashboard_built": false
+            "next_step": "Verify exact original Work conversation cloud/local execution mode and same-account mobile availability. Only a supported same-identity host-independent route can satisfy laptop-off requirement. Need actual bidirectional original-thread execution with laptop off, then user's explicit confirmation. Never substitute new/copied chat, remote buttons or a laptop-dependent host.",
+            "new_dashboard_built": false,
+            "user_confirmation_required": true,
+            "user_confirmed": false,
+            "laptop_power_required": false,
+            "remote_host_only_is_insufficient": true,
+            "support_matrix": {
+              "existing_local_codex": {
+                "same_thread_mobile": "Official connected-host route documented; account/device unverified",
+                "laptop_off_execution": "Connected original laptop must be awake/online; route fails requirement5",
+                "status": "확인 필요"
+              },
+              "existing_work": {
+                "same_thread_mobile": "Mobile Work cloud continuation documented; exact original conversation mode/eligibility unverified",
+                "laptop_off_execution": "Eligible cloud work may execute without laptop; local files/tools unavailable while host offline",
+                "status": "확인 필요"
+              },
+              "retrofit_existing_local_chats": {
+                "status": "NOT_ESTABLISHED",
+                "reason": "Official cloud local-access sync applies only to newly created tasks; does not convert existing tasks"
+              },
+              "bidirectional_actual_execution": {
+                "status": "미실행",
+                "reason": "No authenticated physical smartphone surface/account capability probe available"
+              }
+            }
           },
           "external_components": {
             "status": "확인 필요",
