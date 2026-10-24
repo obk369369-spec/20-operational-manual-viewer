@@ -288,6 +288,43 @@ class QueueIsolationTest(unittest.TestCase):
             runtime.write_observer_state(state, queue, {"execution_contracts": []}, [], [], "synthetic-run")
         self.assertEqual(write.call_args.args[1]["current"]["status"], "완료")
 
+    def test_malformed_backlog_contract_does_not_abort_independent_roots(self) -> None:
+        evidence = self.root / "feedback_pipeline" / "evidence" / "valid.json"
+        evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        for malformed in (
+                {"root_id": "A", "task_id": "TOOL044"},
+                {"root_id": "A", "task_id": "TOOL044",
+                 "evidence": "feedback_pipeline/evidence/valid.json",
+                 "rules": [{"path": "verified", "source": 4}]}):
+            with self.subTest(contract=malformed):
+                ledger = {"entries": [
+                    {"root_id": root, "status": "OPEN", "next_trigger": "IMMEDIATE"}
+                    for root in ("A", "B")]}
+                queue = {"queued_requirement_ids": [], "backlog_root_ids": ["A", "B"],
+                         "backlog_quarantine": []}
+                registry = {"backlog_execution_contracts": [
+                    malformed,
+                    {"root_id": "B", "task_id": "TOOL044",
+                     "evidence": "feedback_pipeline/evidence/valid.json",
+                     "rules": [{"path": "verified", "operation": "truthy"}]}]}
+                summary, receipts = runtime.execute_and_reconcile_central_backlog(
+                    queue, ledger, registry)
+                self.assertEqual([item["root_id"] for item in receipts], ["A", "B"])
+                self.assertEqual(receipts[0]["reason"], "CONTRACT_SCHEMA_INVALID")
+                self.assertEqual(receipts[1]["reason"],
+                                 "ACTUAL_RESULT_AND_INDEPENDENT_COMPLETION_MISSING")
+                self.assertEqual(receipts[1]["rules"][0]["pass"], True)
+                self.assertEqual([row["status"] for row in ledger["entries"]],
+                                 ["HOLD_EXECUTION_VALIDATION", "HOLD_EXECUTION_COMPLETION"])
+                self.assertEqual(summary["executable_count"], 0)
+                self.assertEqual(queue["backlog_root_ids"], [])
+                self.assertEqual({item["root_id"] for item in queue["backlog_quarantine"]},
+                                 {"A", "B"})
+                self.assertEqual(runtime.runtime_consistency(
+                    queue, ledger, {"central_backlog": summary},
+                    {"backlog_recovery": {"quarantined": queue["backlog_quarantine"]}}
+                )["status"], "PASS")
+
     def test_authoritative_global_stop_still_blocks(self) -> None:
         with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
             receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
