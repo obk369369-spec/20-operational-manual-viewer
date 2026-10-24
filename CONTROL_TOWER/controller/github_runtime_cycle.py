@@ -411,6 +411,24 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
     body.atomic_json(body.ROOT / "public" / "wic_observer_state.json", payload)
 
 
+def controller_rule_context_json() -> str | None:
+    """Reuse the rule context from the exact admission already checked by the workflow."""
+    direct = os.environ.get("WIC_RULE_CONTEXT_JSON")
+    if direct:
+        return direct
+    try:
+        bundle = json.loads(os.environ.get("WIC_RULE_ADMISSION_JSON", "null"))
+    except (TypeError, ValueError):
+        return None
+    work_id = "workflow:wic-top-controller-runtime:controller-cycle"
+    if isinstance(bundle, dict) and isinstance(bundle.get("admissions"), dict):
+        admission = bundle["admissions"].get(work_id)
+    else:
+        admission = bundle
+    context = admission.get("rule_context") if isinstance(admission, dict) else None
+    return json.dumps(context, ensure_ascii=False) if isinstance(context, dict) else None
+
+
 def top_level_rule_admission(raw_context: str | None) -> dict[str, Any]:
     """Authorize the common runtime boundary before token, queue, or worker activity."""
     try:
@@ -506,7 +524,7 @@ def isolate_denied_queued_work(state: dict[str, Any], queue: dict[str, Any],
 
 
 def main() -> None:
-    rule_admission = top_level_rule_admission(os.environ.get("WIC_RULE_CONTEXT_JSON"))
+    rule_admission = top_level_rule_admission(controller_rule_context_json())
     if rule_admission["decision"] != "ALLOW":
         print(json.dumps({"start_blocked": True, "top_rule_admission": rule_admission},
                          ensure_ascii=False))
