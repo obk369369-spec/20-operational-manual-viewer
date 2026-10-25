@@ -101,8 +101,8 @@
         "current_fingerprint": "339edf186d3bfb642452072541506ac06974eef1",
         "scope": "TOOL013_RULE_RETRIEVAL_AND_FAIL_CLOSED_OUTPUT_GATE_ONLY"
       },
-      "last_actual_point": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
-      "next_start": "Reuse policy restore, no repeat. TOOL013 resumes filename/N Pages only when permitted actual local browser test is available. TOOL043/044 require concrete real business handler/input before queue integration. Existing 001/006/041/042/007 external holds unchanged. Reconcile CI registry contract separately within authorized scope, preserving pre-existing patch.",
+      "last_actual_point": "TOOL013 common resolver repaired: pinned remote MASTER/RULE_SOURCE receipts at 9212abf..., human-golden provenance fail-closed gate, and seven independent output checks passed bounded regression with remote read-back. Actual user-authored golden workbook bytes remain unavailable; no actual XLSX E2E or PASS promotion.",
+      "next_start": "When an already-approved user-authored golden workbook becomes accessible, run one actual TOOL013 source-to-18-column-XLSX execution, independent field/row diff and download reopen. Until then reuse the common gate repair and keep only BLOCKED_GOLDEN_SOURCE.",
       "lane_evidence": "feedback_pipeline/evidence/parallel_resume_result_20260903.json",
       "execution_receipts": [
         {
@@ -111,6 +111,15 @@
           "evidence_ref": "feedback_pipeline/evidence/parallel_lane_stop_20260903.json",
           "condition_fingerprint": "1a79d25d15c97126e152927f9ad9632ef4526ec3:ab06cd6217464b4e686ec080ddc09f24a62dd49cde34d23ac6801f390cddc7ee",
           "persistence": "LOCAL_ONLY_REMOTE_PENDING"
+        },
+        {
+          "operation_id": "repair-tool013-rule-resolution-output-gate-20261025",
+          "status": "PASS_COMMON_GATE_REPAIR_BLOCKED_ACTUAL_GOLDEN",
+          "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "cause_id": "RULE_RETRIEVAL_CANONICAL_VERSION_TRANSFORM_VALIDATION_DISCONNECT",
+          "method_id": "REUSE_EXISTING_REGISTRY_RUNTIME_GATE_AND_PROVENANCE_VALIDATOR",
+          "condition_fingerprint": "339edf186d3bfb642452072541506ac06974eef1",
+          "remaining_hold": "BLOCKED_GOLDEN_SOURCE"
         }
       ]
     },
