@@ -411,6 +411,9 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         next_work = backlog_quarantine[0].get("resume_condition")
     revenue_path = body.ROOT / "feedback_pipeline" / "evidence" / "wic_24h_tools_revenue_closeout_20261001.json"
     revenue = body.load(revenue_path) if revenue_path.exists() else {}
+    quality_path = body.ROOT / "CONTROL_TOWER" / "ledger" / "evidence" / "WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json"
+    quality = body.load(quality_path) if quality_path.exists() else {}
+    quality_counts = quality.get("counts", {}) if isinstance(quality, dict) else {}
     def item(row: dict[str, Any], status: str) -> dict[str, Any]:
         return {"requirement_id": str(row["id"]), "name": row["name"], "status": status,
                 "evidence": row.get("evidence"), "resume_condition": row.get("next_action")}
@@ -436,6 +439,30 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         "business": {"public_pilot": revenue.get("public_pilot", {}).get("name"),
                      "customer_response": revenue.get("public_pilot", {}).get("customer_response", "WAITING"),
                      "actual_revenue": revenue.get("truth", {}).get("actual_revenue", False)},
+        "output_quality": {
+            "scope": quality.get("scope_name"),
+            "scope_limit": quality.get("scope_limit"),
+            "inspected": quality_counts.get("unique_errors", 0),
+            "resolved_and_revalidated": quality_counts.get("resolved_and_revalidated", 0),
+            "unresolved": quality_counts.get("unresolved", 0),
+            "hold": quality_counts.get("hold", 0),
+            "recurrence": quality_counts.get("recurrence", 0),
+            "inspection_rate_percent": quality_counts.get("inspection_rate_percent"),
+            "repair_rate_percent": quality_counts.get("repair_rate_percent"),
+            "overall_complete": quality_counts.get("overall_complete", False),
+            "easy_korean": quality.get("korean_summary", "검증된 품질 집계가 아직 없습니다."),
+            "evidence": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json",
+        },
+        "environment_quality_boundaries": {
+            "CHATGPT_GENERAL": {"pre_output_gate": False, "automatic_canonical_ingest": False,
+                                "status": "PLATFORM_HOLD"},
+            "CODEX_WORK": {"pre_output_gate": False, "canonical_evidence_write": True,
+                           "status": "PARTIAL_POST_OUTPUT_EVIDENCE"},
+            "WIC_PLATFORM": {"controlled_executor_gate": True,
+                             "verified_execution_contracts": len(registry.get("backlog_execution_contracts", [])),
+                             "status": ("READY" if registry.get("backlog_execution_contracts")
+                                        else "HOLD_EXECUTION_CONTRACT_REQUIRED")},
+        },
         "observer_reinstruction_required": 0,
         "backlog_recovery": {
             "quarantined": backlog_quarantine,
