@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "recorded_at_kst": "2026-10-25",
+  "root_id": "WIC-CLOUD-CENTRAL-RESUME-20261025",
+  "lane": "D/E_EXISTING_CLOUD_RUNTIME_READONLY",
+  "status": "HOLD_CLOUD_NETWORK_POLICY_API_GITHUB",
+  "execution": {
+    "thread_id": "01a16d3f-c795-7326-aeed-aa2049d990a7",
+    "host_id": "durable",
+    "turn_id": "01a1713c-7266-7627-aa7a-bcff83c018ca",
+    "command": "python feedback_pipeline/work_gate_handoff.py --resume-latest",
+    "execution_count": 1,
+    "exit_code": 2,
+    "result": {
+      "status": "HOLD_CENTRAL_RESUME_UNAVAILABLE",
+      "reason": "<urlopen error [Errno 1] Operation not permitted>",
+      "memory_fallback": false
+    }
+  },
+  "verified": {
+    "cloud_job_executed": true,
+    "api_github_effective_allowlist": false,
+    "allowed_hosts": [],
+    "network_policy_status": "unknown",
+    "github_connector_remote_read": true,
+    "remote_main": "c1c957329049a390a4757fb8ea520ff7a5719cf8",
+    "local_head": "25b1927f2aadf6d50afd5008162f9ffecd011364",
+    "local_checkout_stale": true,
+    "pinned_revision_loaded": false,
+    "open_hold_next_work_loaded": false,
+    "worktree_clean": true,
+    "code_changes": 0,
+    "production_execution": 0
+  },
+  "protections": {
+    "pass_lock_count_remote": 46,
+    "start_blocked": true,
+    "production_stop_preserved": true,
+    "wic_user_stop_not_changed": true
+  },
+  "pass_scope": "Actual existing published Cloud thread execution and exact fail-closed boundary only; not CENTRAL resume PASS, PC-off proof, business E2E, external worker, TOOL013, 24h continuity, TOOL049 or TOOL051 implementation.",
+  "next_resume": {
+    "exact_action": "Edit the existing published Cloud environment network policy so api.github.com is actually present in the effective allowlist, republish that same environment, refresh its checkout to remote main c1c957329049a390a4757fb8ea520ff7a5719cf8, then run the loader once.",
+    "success_evidence": [
+      "effective allowed_hosts contains api.github.com",
+      "CENTRAL_RESUME=PASS",
+      "pinned revision equals current remote main or documented immutable revision",
+      "OPEN/HOLD/NEXT_WORK emitted"
+    ],
+    "do_not_repeat": [
+      "new environment creation",
+      "loader retry before effective allowlist changes",
+      "memory fallback",
+      "production execution",
+      "TOOL013 modification"
+    ]
+  }
+}
