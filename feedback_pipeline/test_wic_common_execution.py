@@ -37,7 +37,17 @@ def run():
         resumed = store.claim("CLAIM-TEST", "B")
         checks["resume"] = resumed["status"] == "CLAIMED"
         store.release_for_resume("CLAIM-TEST", "B", resumed["fencing_token"], {"stage": "RESUMED"})
-        # A successful process and an existing file are insufficient without\r\n        # a content-bound expected digest.\r\n        no_digest = {"demand_id": "NO-DIGEST", "execution_contract":\r\n            {**contract, "output": "no-digest.txt", "expected": {"returncode": 0, "output_exists": True}}}\r\n        no_digest_result = execute_registered(no_digest, root, store, "RUNNER-A")\r\n        checks["missing_digest_fails_closed"] = no_digest_result["final_state"] == "FAIL"\r\n        wrong_digest = {"demand_id": "WRONG-DIGEST", "execution_contract":\r\n            {**contract, "output": "wrong-digest.txt", "expected": {**contract["expected"], "output_sha256": "0" * 64}}}\r\n        wrong_digest_result = execute_registered(wrong_digest, root, store, "RUNNER-A")\r\n        checks["wrong_digest_fails_closed"] = wrong_digest_result["final_state"] == "FAIL"\r\n        result = execute_registered(demand, root, store, "RUNNER-A")
+        # A successful process and an existing file are insufficient without
+        # a content-bound expected digest.
+        no_digest = {"demand_id": "NO-DIGEST", "execution_contract":
+            {**contract, "output": "no-digest.txt", "expected": {"returncode": 0, "output_exists": True}}}
+        no_digest_result = execute_registered(no_digest, root, store, "RUNNER-A")
+        checks["missing_digest_fails_closed"] = no_digest_result["final_state"] == "FAIL"
+        wrong_digest = {"demand_id": "WRONG-DIGEST", "execution_contract":
+            {**contract, "output": "wrong-digest.txt", "expected": {**contract["expected"], "output_sha256": "0" * 64}}}
+        wrong_digest_result = execute_registered(wrong_digest, root, store, "RUNNER-A")
+        checks["wrong_digest_fails_closed"] = wrong_digest_result["final_state"] == "FAIL"
+        result = execute_registered(demand, root, store, "RUNNER-A")
         checks["handler_execution"] = result["actual"]["returncode"] == 0
         checks["output_created"] = (root / "output.txt").read_text() == "WIC"
         checks["expected_actual"] = all(result["comparison"].values())
