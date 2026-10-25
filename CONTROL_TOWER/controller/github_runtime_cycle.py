@@ -234,7 +234,10 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
                 "resume_condition": entry["next_trigger"],
             })
             continue
-        receipt = validate_contract(handler)
+        work_id = f"backlog:{root_id}"
+        execution_context = queue.get("admitted_rule_contexts", {}).get(work_id)
+        bound_handler = {**handler, "execution_context": execution_context}
+        receipt = validate_contract(bound_handler)
         if receipt["status"] == "PASS":
             # A contract proves evidence shape, not an executed business result.
             # This adapter has no worker result/independent completion receipt to close the root.
@@ -303,6 +306,15 @@ def rule_passes(payload: dict[str, Any], rule: dict[str, Any]) -> bool:
 
 
 def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
+    contexts = ([contract.get("execution_context")]
+                if "execution_context" in contract else contract.get("execution_contexts"))
+    if contexts is not None and (not isinstance(contexts, list) or not contexts or any(
+            not isinstance(context, dict)
+            or not isinstance(context.get("rule_records"), list)
+            or not context["rule_records"] for context in contexts)):
+        return {"status": "HOLD", "reason": "VERIFIED_RULE_RECORDS_NOT_BOUND_TO_HANDLER",
+                "evidence": [], "readback_pass": False, "attempts": 0,
+                "evidence_recovered": False}
     evidence_refs = contract.get("evidence_files") or [contract["evidence"]]
     candidate_sets = [evidence_refs]
     recovery_refs = contract.get("recovery_evidence_files") or (
@@ -342,8 +354,14 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
             if requirement_id in owners:
                 raise RuntimeError("DUPLICATE_REQUIREMENT_CONTRACT")
             owners[requirement_id] = contract["id"]
-    with ThreadPoolExecutor(max_workers=max(1, min(4, len(contracts)))) as executor:
-        receipts = list(executor.map(validate_contract, contracts))
+    rule_contexts = queue.get("admitted_rule_contexts", {})
+    bound_contracts = []
+    for contract in contracts:
+        requirement_ids = [int(value) for value in contract.get("requirement_ids", []) if int(value) in queued]
+        contexts = [rule_contexts.get(f"requirement:{value}") for value in requirement_ids]
+        bound_contracts.append({**contract, "execution_contexts": contexts})
+    with ThreadPoolExecutor(max_workers=max(1, min(4, len(bound_contracts)))) as executor:
+        receipts = list(executor.map(validate_contract, bound_contracts))
     processed: list[dict[str, Any]] = []
     held: list[dict[str, Any]] = []
     for contract, receipt in zip(contracts, receipts):
@@ -481,6 +499,10 @@ def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> di
         else:
             receipt = verify_work_admission(
                 admission, repo_root=body.ROOT, work_id=work_id, task_id=task_id)
+            if receipt["decision"] == "ALLOW":
+                # Bind the exact verified records to the selected handler.  A
+                # digest-only identity is not sufficient transformation input.
+                receipt["rule_context"] = copy.deepcopy(admission["rule_context"])
         receipts.append(receipt)
     allowed_count = sum(item["decision"] == "ALLOW" for item in receipts)
     return {"decision": ("ALLOW" if allowed_count == len(receipts) else
@@ -498,6 +520,10 @@ def isolate_denied_queued_work(state: dict[str, Any], queue: dict[str, Any],
     queue["queued_requirement_ids"] = [value for value in queue.get("queued_requirement_ids", [])
                                        if int(value) not in locked]
     admission = queued_work_admission(queue, registry)
+    queue["admitted_rule_contexts"] = {
+        item["work_id"]: item["rule_context"] for item in admission["receipts"]
+        if item["decision"] == "ALLOW" and isinstance(item.get("rule_context"), dict)
+    }
     denied = {item["work_id"]: item for item in admission["receipts"]
               if item["decision"] != "ALLOW"}
     queue["backlog_root_ids"] = [root for root in queue.get("backlog_root_ids", [])
@@ -731,4 +757,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
