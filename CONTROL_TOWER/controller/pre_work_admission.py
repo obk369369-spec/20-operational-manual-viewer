@@ -350,6 +350,12 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                                           for path, digest in sorted(manifest["files"].items())]
                         expected_sources = [{"path": ref["path"], "sha256": ref["sha256"], "verdict": "PASS"}
                                             for ref in originals]
+                        tool013_checks = validator.get("tool013_output_checks", {})
+                        tool013_required = (
+                            "exact_18_columns", "full_title_translation", "approved_taxonomy",
+                            "price_and_date", "original_preserved", "no_missing_duplicate_mixed_rows",
+                            "download_reopened"
+                        )
                         if (validator.get("work_id") != work_id or validator.get("task_id") != task_id
                                 or validator.get("validator_id") != receipt["independent_validator_id"]
                                 or validator.get("execution_id") != receipt["execution_id"]
@@ -366,6 +372,9 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                                 or validator.get("rule_compliance_verdict") != "PASS"
                                 or validator.get("validation_result") != "PASS"):
                             reason = "INDEPENDENT_VALIDATION_MISMATCH"
+                        elif task_id.upper() == "TOOL013" and not all(
+                                tool013_checks.get(key) is True for key in tool013_required):
+                            reason = "TOOL013_OUTPUT_CHECKS_INCOMPLETE"
                         elif receipt["remote_readback_ref"]["sha256"] != receipt["actual_result_ref"]["sha256"]:
                             reason = "REMOTE_READBACK_RESULT_MISMATCH"
     return {"decision": "BLOCK" if reason else "ALLOW", "reason": reason,
@@ -397,3 +406,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
