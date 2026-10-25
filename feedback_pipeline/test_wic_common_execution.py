@@ -39,6 +39,11 @@ def run():
         checks["handler_execution"] = result["actual"]["returncode"] == 0
         checks["output_created"] = (root / "output.txt").read_text() == "WIC"
         checks["expected_actual"] = all(result["comparison"].values())
+        checks["handler_record_gate"] = (
+            result["record_gate"]["final_usable_count"] == 1
+            and result["record_gate"]["quarantined_count"] == 0
+            and result["record_gate"]["record_evidence"][0]["result"] == "NORMAL"
+        )
         checks["terminal_state"] = result["final_state"] == "PASS" and store.terminal("REAL-DEMAND-1").exists()
         checks["result_return"] = result["result_return"] == {"status": "PASS", "tool016_ack": "RECEIVED"}
         repeat = execute_registered(demand, root, store, "RUNNER-B")
@@ -49,6 +54,8 @@ def run():
             failed["final_state"] == "FAIL"
             and not store.terminal("REAL-DEMAND-FAIL").exists()
             and any(store.recovery.glob("*.json"))
+            and failed["record_gate"]["final_usable_count"] == 0
+            and failed["record_gate"]["quarantined_count"] == 1
         )
         (root / "stable.txt").write_text("OLD", encoding="utf-8")
         stable = integrate_component({"component_id": "STABLE-1", "target": "stable.txt",
@@ -65,7 +72,7 @@ def run():
             "handler": ["{python}", "-c", "raise SystemExit(9)"]}}, root, store, "RUNNER-A")
         checks["failed_validation_rollback"] = failed_component["rollback"] and not failed_component["deployed"] and (root / "stable.txt").read_text() == "KEEP"
         checks["component_lifecycle_admission"] = stable["registered"] and next_result["registered"] and failed_component["registered"]
-    return {"status": "PASS" if all(checks.values()) and len(checks) == 16 else "FAIL",
+    return {"status": "PASS" if all(checks.values()) and len(checks) == 17 else "FAIL",
             "checks": checks, "passed": sum(checks.values()), "total": len(checks)}
 
 
@@ -73,3 +80,4 @@ if __name__ == "__main__":
     result = run()
     print(json.dumps(result, ensure_ascii=False))
     raise SystemExit(0 if result["status"] == "PASS" else 1)
+
