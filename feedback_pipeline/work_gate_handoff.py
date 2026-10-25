@@ -21,12 +21,57 @@ from typing import Any, Mapping
 
 SHORT_RESUME_DIRECTIVES = {"진행", "계속 진행", "전체 진행"}
 PASS_REUSE_STATUSES = {"PASS", "VERIFIED", "REMOTE_VERIFIED", "DEPLOYED_PASS", "VERIFIED_CLOSED", "DEPLOYED_COMPLETE"}
+EXTERNAL_PRODUCT_STAGES = ("DISCOVERED", "CONNECTED", "EXECUTED", "VERIFIED", "DEPLOYED_COMPLETE")
+EXTERNAL_PRODUCT_EVIDENCE = (
+    "actual_input", "execution_log", "output_file", "reopen_result",
+    "functional_validation", "wic_repeat_execution", "remote_readback",
+)
+TOOL_EXECUTION_CONTRACTS = {
+    "TOOL013": {
+        "scope": "EXTERNAL_TOOL_VALIDATION_ONLY_DO_NOT_MODIFY_EXISTING_PROGRAM",
+        "unique_validation": "ACTUAL_WIC_EXCEL_INPUT_OUTPUT_REPEAT_EVIDENCE",
+    },
+    "TOOL049": {
+        "scope": "RESTORE_CANONICAL_EXTERNAL_BUSINESS_REVIEW_PURPOSE_BEFORE_EXECUTION",
+        "unique_validation": "HOLD_REQUIREMENTS_SOURCE_REQUIRED",
+    },
+    "TOOL051": {
+        "scope": "NEW_PRODUCT_IDEA_AND_VIRTUAL_PRODUCT_DEVELOPMENT",
+        "unique_validation": (
+            "PHOTO_VIDEO_TEXT_INPUT;AI_DESIGN;EDITABLE_3D_CAD;DIMENSION_PART_EDIT;"
+            "VIRTUAL_ASSEMBLY_MOTION_WEARABILITY;STL_STEP_DRAWINGS;COST_VENDOR_PREP;"
+            "HISTORY;DIFFERENTIATION_COMMERCIALIZATION"
+        ),
+        "safety": "NO_PHYSICAL_SAFETY_CLAIM_NO_PURCHASE_OR_ORDER_WITHOUT_USER_APPROVAL",
+    },
+}
 
 
 def normalize_resume_directive(value: str | None) -> str | None:
     """Map the three permanent short commands to one canonical resume action."""
     normalized = re.sub(r"\\s+", " ", str(value or "").strip())
     return "RESUME_LATEST_COMMON_ROOTS" if normalized in SHORT_RESUME_DIRECTIVES else None
+
+
+def external_product_verdict(record: Mapping[str, Any]) -> dict[str, Any]:
+    """Fail closed: only repeatable WIC use plus remote evidence can close an external product."""
+    evidence = record.get("evidence") or {}
+    achieved = "DISCOVERED"
+    if record.get("connected") is True:
+        achieved = "CONNECTED"
+    if record.get("executed") is True and evidence.get("actual_input") and evidence.get("execution_log"):
+        achieved = "EXECUTED"
+    verified_fields = ("output_file", "reopen_result", "functional_validation")
+    if achieved == "EXECUTED" and all(evidence.get(k) for k in verified_fields):
+        achieved = "VERIFIED"
+    deployed_fields = ("wic_repeat_execution", "remote_readback")
+    if achieved == "VERIFIED" and all(evidence.get(k) for k in deployed_fields):
+        achieved = "DEPLOYED_COMPLETE"
+    return {
+        "status": achieved,
+        "pass": achieved == "DEPLOYED_COMPLETE",
+        "missing_evidence": [k for k in EXTERNAL_PRODUCT_EVIDENCE if not evidence.get(k)],
+    }
 
 
 def build_root_execution_plan(rows) -> dict[str, Any]:
@@ -61,6 +106,15 @@ def build_root_execution_plan(rows) -> dict[str, Any]:
             "same_asset_parallel_mutation": False,
             "tool013_policy": "EXTERNAL_TOOL_VALIDATION_ONLY_DO_NOT_MODIFY_EXISTING_PROGRAM",
             "tool049_tool051_policy": "PRESERVE_UNIQUE_FUNCTIONS_REUSE_COMMON_PLATFORM",
+            "external_product_lifecycle": list(EXTERNAL_PRODUCT_STAGES),
+            "external_product_final_pass": "DEPLOYED_COMPLETE_WITH_ACTUAL_EVIDENCE_ONLY",
+            "tool_execution_contracts": TOOL_EXECUTION_CONTRACTS,
+            "common_external_roots": [
+                "DISCOVERY", "AUTHENTICATION", "API_CONNECTION", "EXECUTION_ENVIRONMENT",
+                "FILE_INPUT_OUTPUT", "EVIDENCE", "REPEAT_EXECUTION", "INTERNAL_DEPLOYMENT",
+            ],
+            "tool049_restore_hold": "HOLD_REQUIREMENTS_SOURCE_REQUIRED",
+            "tool051_first_case": "NEW_IDEA_USING_GOGGLE_DECORATION_HAT_AS_REFERENCE_NOT_REPLICA",
             "top_platform_migration_included": True}
 
 
@@ -330,6 +384,15 @@ def self_test() -> None:
     assert grouped["hold_reuse_root_fingerprints"] == ["AUTH"]
     assert grouped["skip_reuse_root_ids"] == ["done"]
     assert grouped["tool013_policy"].startswith("EXTERNAL_TOOL_VALIDATION_ONLY")
+    assert grouped["tool049_restore_hold"] == "HOLD_REQUIREMENTS_SOURCE_REQUIRED"
+    assert grouped["tool_execution_contracts"]["TOOL051"]["scope"] == "NEW_PRODUCT_IDEA_AND_VIRTUAL_PRODUCT_DEVELOPMENT"
+    partial = external_product_verdict({"connected": True, "executed": True, "evidence": {
+        "actual_input": "input.xlsx", "execution_log": "run-1", "output_file": "out.step",
+        "reopen_result": "PASS", "functional_validation": "PASS"}})
+    assert partial["status"] == "VERIFIED" and partial["pass"] is False
+    completed = external_product_verdict({"connected": True, "executed": True, "evidence": {
+        key: "PASS" for key in EXTERNAL_PRODUCT_EVIDENCE}})
+    assert completed["status"] == "DEPLOYED_COMPLETE" and completed["pass"] is True
 
     # Existing lower-cost fixtures receive explicit scoped authority; they do
     # not bypass the newly connected preflight in production.
