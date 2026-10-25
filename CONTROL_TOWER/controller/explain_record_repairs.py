@@ -35,7 +35,7 @@ def explain_repairs(before_records, gate_result, *, source_ref, rule_ref, output
             continue
         changes = []
         if entry.get("result") == "AUTO_REPAIRED" and new is not None:
-            for field in sorted(set(old) | set(new)):
+            for field in sorted((set(old) | set(new)) - {"stable_record_id"}):
                 if old.get(field) != new.get(field):
                     changes.append({"field": field, "before": old.get(field), "after": new.get(field)})
         status = {"NORMAL": "원래 정상", "AUTO_REPAIRED": "수정 후 재검사 통과",
