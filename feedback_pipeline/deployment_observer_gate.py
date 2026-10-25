@@ -58,7 +58,9 @@ def evaluate(row:dict)->dict:
 
 def audit(doc:dict)->dict:
     rows=[evaluate(r) for r in doc["targets"]]
-    return {"schema_version":1,"targets":rows,"implemented_not_deployed_total":sum(r["status"]=="IMPLEMENTED_NOT_DEPLOYED" for r in rows),"external_limit_total":sum(r["status"]=="VERIFIED_EXTERNAL_LIMIT" for r in rows),"observer_intent_gap_total":sum(not r["observer_reachable"] for r in rows),"pass":not any(r["status"]=="IMPLEMENTED_NOT_DEPLOYED" for r in rows)}
+    incomplete=sum(r["status"]=="IMPLEMENTED_NOT_DEPLOYED" for r in rows)
+    external=sum(r["status"]=="VERIFIED_EXTERNAL_LIMIT" for r in rows)
+    return {"schema_version":1,"targets":rows,"implemented_not_deployed_total":incomplete,"external_limit_total":external,"observer_intent_gap_total":sum(not r["observer_reachable"] for r in rows),"pass":incomplete==0 and external==0}
 
 def self_test()->None:
     complete={"target":"OK","root_id":"R1","release_gate_required":True,
@@ -71,6 +73,7 @@ def self_test()->None:
     assert result["targets"][0]["status"]=="DEPLOYED_COMPLETE"
     assert result["targets"][1]["status"]=="IMPLEMENTED_NOT_DEPLOYED"
     assert result["targets"][2]["status"]=="VERIFIED_EXTERNAL_LIMIT"
+    assert result["external_limit_total"]==1 and result["pass"] is False
     assert result["targets"][3]["status"]=="IMPLEMENTED_NOT_DEPLOYED"
     for field in ("test_executed","test_input_recorded","expected_defined","actual_captured",
                   "expected_actual_match","regression_passed","pass_evidence_recorded",*PHASE5_FIELDS):
