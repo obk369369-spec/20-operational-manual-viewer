@@ -53,3 +53,9 @@ User observer; no request to manually enumerate translation mistakes or re-teach
 - Tests: py_compile PASS; tests/test_permanent_reentry_gate.py PASS; work_execution_enforcer.py --self-test PASS; TOOL013 manifest missing=[] and both remote rule identities present.
 - Remote code commits: d7dd2bb5545dfe3b7e8ea5ef97abd49d25e51e21, 4e3b90ce34a13da953207e588d4c76d3c4e73e33, 8dcd8a5aa458703db8766350b00ce24cf760b7bb, e3efa220ebff88709c03db81c5f0f36c4b473a05; remote blob read-back matched each uploaded blob.
 - Status: COMMON RESOLVER/PROVENANCE/OUTPUT GATE REPAIR PASS. Actual workbook E2E remains BLOCKED_GOLDEN_SOURCE because no accessible user-authored golden workbook bytes exist; no synthetic workbook promoted to PASS.
+
+## 2026-10-25 follow-up: verified 3 commits and remaining common breaks
+- Verified via GitHub commit fetch: 093dd140 modified CONTROL_TOWER/controller/github_runtime_cycle.py; 76fbb742 modified tests/test_wic16_queue_isolation.py; 500310e6 modified feedback_pipeline/deployment_observer_gate.py.
+- Reported by Work, not independently reproduced here: Python compile PASS; 12 queue isolation tests PASS; observer fail-closed self-test PASS; three remote blob read-backs PASS.
+- Remaining open: R1/R3 rule body not delivered to transformer; TOOL013 title field direction inconsistent; R4 row quarantine/self-repair not wired; R5 non-Excel independent reopen/receipts missing; R6 remote receipt may be satisfiable from local hash alone.
+- Next execution must repair common runtime edges in parallel on isolated files, with genuine remote blob retrieval and independent artifact reopen receipts; no code-only PASS as business/output PASS. Golden user-authored workbook remains BLOCKED_GOLDEN_SOURCE, no synthetic substitute.
