@@ -30,64 +30,91 @@ TASK_RULE_FILES = {
 }
 
 
-def _external_rule_receipts(repo_root: Path, task_id: str) -> tuple[dict[str, str], list[str]]:
-    """Resolve immutable cross-repository rule receipts from the existing target registry."""
+def _external_rule_receipts(
+        repo_root: Path, task_id: str) -> tuple[dict[str, str], list[dict[str, Any]], list[str]]:
+    """Resolve content-bound cross-repository rules from the target registry."""
     if task_id.upper() == "CENTRAL":
-        return {}, []
+        return {}, [], []
     registry_path = repo_root / "feedback_pipeline" / "wic_target_registry.json"
     if not registry_path.is_file():
-        return {}, ["feedback_pipeline/wic_target_registry.json"]
+        return {}, [], ["feedback_pipeline/wic_target_registry.json"]
     try:
         target = json.loads(registry_path.read_text(encoding="utf-8"))["targets"][task_id.upper()]
     except (KeyError, TypeError, ValueError):
-        return {}, [f"REGISTRY_TARGET:{task_id.upper()}"]
+        return {}, [], [f"REGISTRY_TARGET:{task_id.upper()}"]
     receipts = target.get("rule_receipts", [])
     files: dict[str, str] = {}
+    records: list[dict[str, Any]] = []
     missing: list[str] = []
-    for receipt in sorted(receipts, key=lambda row: int(row.get("priority", 0)), reverse=True):
+    for receipt in receipts:
         repo = receipt.get("repository")
         revision = receipt.get("revision")
         path = receipt.get("path")
         digest = str(receipt.get("sha256", "")).lower()
+        content = receipt.get("content")
+        affected_fields = receipt.get("affected_fields")
+        priority = receipt.get("priority")
         identity = f"{repo}@{revision}:{path}"
         if (not isinstance(repo, str) or not isinstance(path, str)
                 or not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision)
-                or not re.fullmatch(r"[0-9a-f]{64}", digest)):
+                or not re.fullmatch(r"[0-9a-f]{64}", digest)
+                or not isinstance(content, str) or not content
+                or not isinstance(priority, int) or isinstance(priority, bool)
+                or not isinstance(affected_fields, list) or not affected_fields
+                or not all(isinstance(field, str) and field for field in affected_fields)
+                or hashlib.sha256(content.encode("utf-8")).hexdigest() != digest):
             missing.append(identity)
             continue
         files[identity] = digest
+        records.append({
+            "source": repo, "path": path, "version": revision, "priority": priority,
+            "hash": digest, "affected_fields": list(affected_fields), "content": content,
+        })
     if target.get("master_paths") and not receipts and not TASK_RULE_FILES.get(task_id.upper()):
         missing.append(f"REGISTRY_RULE_RECEIPTS:{task_id.upper()}")
-    return files, missing
+    return files, records, missing
 
 
 def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any]:
-    """Build the only accepted rule snapshot from existing canonical files."""
+    """Build a content-bound rule snapshot for execution and downstream transformation."""
     required = list(CANONICAL_RULE_FILES) + list(TASK_RULE_FILES.get(task_id.upper(), ()))
     files: dict[str, str] = {}
+    records: list[dict[str, Any]] = []
     missing: list[str] = []
     for relative in required:
         target = repo_root / relative
         if not target.is_file():
             missing.append(relative)
             continue
-        files[relative] = hashlib.sha256(target.read_bytes()).hexdigest()
-    external, external_missing = _external_rule_receipts(repo_root, task_id)
+        content = target.read_text(encoding="utf-8")
+        digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
+        files[relative] = digest
+        records.append({
+            "source": "CENTRAL", "path": relative, "version": "LOCAL_CANONICAL",
+            "priority": 0, "hash": digest, "affected_fields": ["*"], "content": content,
+        })
+    external, external_records, external_missing = _external_rule_receipts(repo_root, task_id)
     files.update(external)
+    records.extend(external_records)
     missing.extend(external_missing)
-    version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
-    return {"task_id": task_id.upper(), "files": files, "missing": missing, "version": version}
+    records.sort(key=lambda record: (-record["priority"], record["source"], record["path"]))
+    version = hashlib.sha256(json.dumps(
+        {"files": files, "records": records}, sort_keys=True).encode()).hexdigest()
+    return {"task_id": task_id.upper(), "files": files, "rule_records": records,
+            "missing": missing, "version": version}
 
 
 def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[str, Any]:
-    """Fail closed when a worker did not load the exact current global/task rules."""
+    """Fail closed unless workers receive the exact current rule bodies and scopes."""
     expected = canonical_rule_manifest(repo_root, task_id)
     reason = None
     if expected["missing"]:
         reason = "CANONICAL_RULE_SOURCE_MISSING"
     elif not isinstance(context, dict):
         reason = "RULE_CONTEXT_MISSING"
-    elif context.get("version") != expected["version"] or context.get("files") != expected["files"]:
+    elif (context.get("version") != expected["version"]
+          or context.get("files") != expected["files"]
+          or context.get("rule_records") != expected["rule_records"]):
         reason = "RULE_CONTEXT_STALE_OR_TAMPERED"
     elif context.get("conflicts"):
         reason = "RULE_CONFLICT_UNRESOLVED"
@@ -95,16 +122,10 @@ def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[
         reason = "REQUIRED_SOURCE_RECORDS_UNVERIFIED"
     decision = "ALLOW" if reason is None else "BLOCK"
     return {
-        "decision": decision,
-        "reason": reason,
-        "task_id": task_id.upper(),
-        "version": expected["version"],
-        "files": expected["files"],
-        "blocked_before_execution": decision == "BLOCK",
+        "decision": decision, "reason": reason, "task_id": task_id.upper(),
+        "version": expected["version"], "files": expected["files"],
+        "rule_records": expected["rule_records"], "blocked_before_execution": decision == "BLOCK",
     }
-
-
-
 
 def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task_id: str) -> dict[str, Any]:
     """Require current per-task rules and a matching independently validated source receipt."""
