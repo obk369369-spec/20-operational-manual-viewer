@@ -123,7 +123,23 @@
         "WIC_TARGET_APPLY_STATE.json"
       ],
       "latest_safe_checkpoint": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
-      "latest_verified_commit": "820ea587d5b8acbeb48dd761df72db59a03f4a73",
+      "latest_verified_commit": "9212abf64f67e56d934c84efb0b91a97253a7203",
+      "rule_receipts": [
+        {
+          "repository": "obk369369-spec/13-excel-upload",
+          "revision": "9212abf64f67e56d934c84efb0b91a97253a7203",
+          "path": "TOOL013_MASTER.md",
+          "sha256": "2d5eb4c3f0646be77c65a1f87cc9166eb14e58eb60c5bbbd7d34bb919051f4f7",
+          "priority": 20
+        },
+        {
+          "repository": "obk369369-spec/13-excel-upload",
+          "revision": "9212abf64f67e56d934c84efb0b91a97253a7203",
+          "path": "WIC_RULE_SOURCE.md",
+          "sha256": "4803a717491d7965026074c9b8055a179e8226f2900fbab0f157b333e1f32e32",
+          "priority": 10
+        }
+      ],
       "adapter": "REPOSITORY_DIFF_ONLY",
       "status": "ACTIVE",
       "first_validation": {
@@ -485,3 +501,4 @@
     "work_without_pass_receipt": false
   }
 }
+
