@@ -703,8 +703,8 @@
       SAVE_HEADERS.forEach(h=> o[h] = applyField(h, r));
       const originalTitle = str(r['Report Title'] || r['Title'] || o['상품명'] || o['한글명']);
       const approvedTitle = v2ApprovedTranslation(originalTitle);
-      o['상품명'] = originalTitle;
-      o['한글명'] = approvedTitle;
+      o['상품명'] = approvedTitle;
+      o['한글명'] = originalTitle;
       const category = v2Category(r, originalTitle);
       if(category){
         o['2차카테고리'] = category.name;
@@ -730,8 +730,8 @@
       field, actual: str(actual), expected, reason
     });
     for(const row of state.previewRows){
-      if(!str(row['상품명'])) push(row,'상품명',row['상품명'],'영문 원본 상품명','필수값이 비어 있습니다.');
-      if(!str(row['한글명']) || !/[가-힣]/.test(str(row['한글명']))) push(row,'한글명',row['한글명'],'승인된 한글 번역','번역이 없거나 승인 형식이 아닙니다.');
+      if(!str(row['상품명']) || !/[가-힣]/.test(str(row['상품명']))) push(row,'상품명',row['상품명'],'승인된 한글 번역','번역이 없거나 승인 형식이 아닙니다.');
+      if(!str(row['한글명'])) push(row,'한글명',row['한글명'],'영문 원본 상품명','원본 제목이 비어 있습니다.');
       if(str(row['1차카테고리'])!==DEFAULT_PRIMARY_CATEGORY) push(row,'1차카테고리',row['1차카테고리'],DEFAULT_PRIMARY_CATEGORY,'공식 상위 카테고리가 아닙니다.');
       if(!categoryNames.has(str(row['2차카테고리']))) push(row,'2차카테고리',row['2차카테고리'],'공식 18개 카테고리명','코드·빈값·비공식 값은 표시명으로 사용할 수 없습니다.');
       if(/^\d+(?:\.\d+)?$/.test(str(row['발행일']))) push(row,'발행일',row['발행일'],'YYYY-MM-DD','Excel 날짜 일련번호가 그대로 노출되었습니다.');
