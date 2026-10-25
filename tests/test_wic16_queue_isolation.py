@@ -221,6 +221,15 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertNotEqual(ledger["entries"][0]["status"], "VERIFIED_CLOSED")
         self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
 
+    def test_handler_without_verified_rule_records_is_fail_closed(self) -> None:
+        receipt = runtime.validate_contract({
+            "execution_context": {"rule_records": []},
+            "evidence": "must-not-be-read.json", "rules": [],
+        })
+        self.assertEqual(receipt["status"], "HOLD")
+        self.assertEqual(receipt["reason"], "VERIFIED_RULE_RECORDS_NOT_BOUND_TO_HANDLER")
+        self.assertEqual(receipt["attempts"], 0)
+
     def test_authoritative_global_stop_still_blocks(self) -> None:
         with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
             receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
@@ -230,4 +239,5 @@ class QueueIsolationTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 
