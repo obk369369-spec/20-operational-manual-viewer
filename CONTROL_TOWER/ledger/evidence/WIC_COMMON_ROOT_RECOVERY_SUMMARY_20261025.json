@@ -100,7 +100,11 @@
         "git_blob:72c432ddb2a776a482f3a8f50dcbbe81b3e13bc6"
       ],
       "finding": "A1:R3, 18 columns, 2 data rows. B(상품명)=영문, C(한글명)=한글로 현행 규칙과 반대.",
-      "resume_condition": "승인된 실제 transformer 계약과 입력으로 안전수정 1회 후 독립 재열기"
+      "resume_condition": "승인된 실제 transformer 계약과 입력으로 안전수정 1회 후 독립 재열기",
+      "root_cause": "OPERATIONAL_TRANSFORMER_NOT_CONNECTED",
+      "candidate_code_fix": "6e41d3a916e5a340ba287aa52b938409ca1686cd",
+      "candidate_limited_regression": "PASS_2_OF_2",
+      "operational_actual_revalidation": false
     },
     {
       "issue_id": "EXPLANATION_INTERNAL_ID_FALSE_CHANGE",
@@ -135,6 +139,69 @@
     "final_normal_output_pass": false,
     "overall_platform_zero_error": false
   },
-  "korean_summary": "검사한 범위의 오류 8개 중 4개를 고치고 재검사했습니다. 4개가 남았으며, 그중 HOLD 3개와 재발 1개가 있습니다. 검사율은 100%, 수정률은 50%입니다. 전체 완료나 오류 0건으로 선언할 수 없습니다.",
-  "next_resume_point": "VERIFIED_EXECUTION_CONTRACT 확보 후 TOOL013_TITLE_FIELD_DIRECTION_RECURRENCE에 안전수정 1회만 적용하고 같은 실제 입력을 독립 재열기·원격 blob receipt까지 검증"
+  "korean_summary": "검사한 제한 범위의 고유 오류는 8개입니다. 4개는 고치고 다시 검사했으며 4개가 남았습니다. 후보 코드의 제목 방향은 2건 제한검사를 통과했지만 실제 운영 transformer와 실제 입력에 연결되지 않아 재발 오류는 아직 해결로 승격하지 않았습니다. 검사율 100%, 수정률 50%, 전체 완료 아님.",
+  "next_resume_point": "승인된 실제 input/handler/output/expected 계약과 승인 번역 component를 운영 target에 연결한 뒤 같은 실제 입력으로 preview→download→reopen→remote blob receipt를 1회 검증",
+  "updated_at": "2026-10-25T21:05:00+09:00",
+  "canonical_head_checked": "6e41d3a916e5a340ba287aa52b938409ca1686cd",
+  "current_cycle": {
+    "tool013_candidate_fix": {
+      "commit": "6e41d3a916e5a340ba287aa52b938409ca1686cd",
+      "file": "CONTROL_TOWER/work/tool013_user_output_closure/13번_V2_최종운영판.html",
+      "blob": "d381e5f07d59f59db915cc700529718f7071f923",
+      "limited_changed_boundary_cases": 2,
+      "limited_regression_pass": true,
+      "actual_business_pass": false
+    },
+    "deepest_root": "OPERATIONAL_TRANSFORMER_NOT_CONNECTED",
+    "operational_target": {
+      "repository": "obk369369-spec/13-excel-upload",
+      "file": "index.html",
+      "blob": "0f2848e56587559446e665e1452f1d76dc7b2ed9",
+      "finding": "Registry 운영 target은 applyField 기반이며 승인된 한국어 번역 component와 B=한국어/C=영문 override가 연결되지 않음.",
+      "mutation": "NOT_APPLIED_UNVERIFIED_COMPONENT_MISSING"
+    },
+    "implemented_output_adapters": {
+      "implemented": [
+        "XLS/XLSX producer and reopen tests",
+        "JSON state/evidence",
+        "limited text/Markdown"
+      ],
+      "partial": [
+        "CSV input only",
+        "static HTML/web display"
+      ],
+      "unsupported_in_scoped_production": [
+        "CSV output",
+        "DOC/DOCX",
+        "PDF",
+        "PPT/PPTX",
+        "email/EML",
+        "image"
+      ]
+    },
+    "execution_boundary": {
+      "backlog_execution_contracts": 0,
+      "verified_actual_input_bound": false,
+      "authorized_dispatch": false,
+      "result": "HOLD_AUTHORIZED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT"
+    },
+    "remote_receipt_boundary": {
+      "workflow": ".github/workflows/wic-feedback-event.yml",
+      "reusable": [
+        "checkout",
+        "admission",
+        "provenance precheck",
+        "scoped commit/push",
+        "origin fetch",
+        "remote path blob comparison"
+      ],
+      "blocked": [
+        "workflow_dispatch authorization",
+        "WIC_USER_STOP=0 reauthorization",
+        "exact work-id admission",
+        "artifact-scoped event contract"
+      ],
+      "result": "HOLD_REMOTE_ARTIFACT_NOT_CANONICALIZED"
+    }
+  }
 }
