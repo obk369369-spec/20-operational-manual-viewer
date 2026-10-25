@@ -45,6 +45,23 @@
         "OUTPUT_BLOCK",
         "RECOVERY"
       ]
+    },
+    {
+      "id": "WIC_EXTERNAL_PRODUCT_LIFECYCLE_GATE",
+      "type": "ENFORCEMENT",
+      "path": "feedback_pipeline/deployment_observer_gate.py",
+      "status": "VERIFIED_REUSE",
+      "runtime": "PYTHON_GITHUB_ACTIONS",
+      "capabilities": [
+        "DISCOVERED_CONNECTED_EXECUTED_VERIFIED_DEPLOYED_COMPLETE",
+        "ACTUAL_INPUT_EVIDENCE",
+        "OUTPUT_REOPEN_VALIDATION",
+        "WIC_REPEAT_EXECUTION",
+        "REMOTE_READBACK",
+        "TOOL013_EXTERNAL_ONLY",
+        "TOOL049_REQUIREMENTS_RESTORE_HOLD",
+        "TOOL051_UNIQUE_PRODUCT_DEVELOPMENT_CONTRACT"
+      ]
     }
   ],
   "execution_contracts": [
