@@ -76,3 +76,50 @@ def save_explanation(report, target):
     if path.read_text(encoding="utf-8") != payload:
         raise IOError("REPORT_LOCAL_READBACK_FAILED")
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def summarize_recovery(issues, *, scope_name):
+    """Deduplicate evidence-backed issues and compute honest recovery statistics."""
+    unique = {}
+    for issue in issues:
+        key = issue.get("issue_id") or issue.get("root_fingerprint")
+        if not key:
+            raise ValueError("ISSUE_ID_OR_ROOT_FINGERPRINT_REQUIRED")
+        if key in unique:
+            continue
+        if not issue.get("evidence_refs"):
+            raise ValueError("ISSUE_EVIDENCE_REQUIRED")
+        unique[key] = issue
+    rows = list(unique.values())
+    total = len(rows)
+    resolved = sum(row.get("status") == "RESOLVED"
+                   and row.get("revalidated") is True for row in rows)
+    failed = sum(row.get("status") == "REPAIR_FAILED" for row in rows)
+    holds = sum(row.get("status") == "HOLD" for row in rows)
+    recurrence = sum(row.get("status") == "RECURRENT" for row in rows)
+    unresolved = total - resolved
+    inspected = sum(row.get("inspected") is True for row in rows)
+    initial = sum(row.get("discovery_phase") == "INITIAL" for row in rows)
+    additional = sum(row.get("discovery_phase") == "ADDITIONAL" for row in rows)
+    inspection_rate = round((inspected / total * 100) if total else 100.0, 2)
+    repair_rate = round((resolved / total * 100) if total else 100.0, 2)
+    complete = (inspection_rate == 100.0 and repair_rate == 100.0
+                and unresolved == 0 and holds == 0 and recurrence == 0)
+    return {
+        "scope_name": scope_name,
+        "initial_errors": initial,
+        "additional_errors": additional,
+        "unique_errors": total,
+        "resolved_and_revalidated": resolved,
+        "repair_failed": failed,
+        "unresolved": unresolved,
+        "hold": holds,
+        "recurrence": recurrence,
+        "inspection_rate_percent": inspection_rate,
+        "repair_rate_percent": repair_rate,
+        "overall_complete": complete,
+        "result_korean": ("검사한 범위의 오류가 모두 해결되었습니다." if complete else
+                          f"아직 완료되지 않았습니다. 확인한 오류 {total}개 중 "
+                          f"{resolved}개를 고쳤고 {unresolved}개가 남았습니다."),
+        "issues": rows,
+    }
