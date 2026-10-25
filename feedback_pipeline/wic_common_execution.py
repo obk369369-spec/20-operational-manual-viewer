@@ -175,6 +175,13 @@ def execute_registered(demand: dict, workspace: Path, store: ClaimStore, owner: 
         checks["output_sha256"] = actual.get("output_sha256") == expected["output_sha256"]
     if "stdout_contains" in expected:
         checks["stdout_contains"] = expected["stdout_contains"] in actual["stdout"]
+    # Never certify an arbitrary pre-existing or unchecked artifact from exit code alone.
+    # A content-bound expected digest is required for a terminal PASS.
+    checks["output_content_bound"] = (
+        isinstance(expected.get("output_sha256"), str)
+        and len(expected["output_sha256"]) == 64
+        and actual.get("output_sha256") == expected["output_sha256"]
+    )
     passed = all(checks.values())
     # Bind the real handler result to the shared record-level fail-closed gate.
     # A failed command is not retried here: only a separately approved adapter
