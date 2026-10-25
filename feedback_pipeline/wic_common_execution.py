@@ -11,6 +11,11 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+from CONTROL_TOWER.controller.universal_enforcement import enforce_record_isolation
+
 REQUIRED_CONTRACT = ("input", "handler", "output", "expected")
 
 
@@ -171,8 +176,28 @@ def execute_registered(demand: dict, workspace: Path, store: ClaimStore, owner: 
     if "stdout_contains" in expected:
         checks["stdout_contains"] = expected["stdout_contains"] in actual["stdout"]
     passed = all(checks.values())
+    # Bind the real handler result to the shared record-level fail-closed gate.
+    # A failed command is not retried here: only a separately approved adapter
+    # may provide a deterministic repair callback.  The execution is therefore
+    # quarantined while unrelated jobs remain runnable.
+    record_gate = enforce_record_isolation(
+        [{
+            "origin_file": contract["input"],
+            "origin_row": 1,
+            "job_id": job_id,
+            "handler_returncode": actual["returncode"],
+            "output_exists": actual["output_exists"],
+            "checks": checks,
+        }],
+        lambda row: {
+            "valid": all(row["checks"].values()),
+            "failed_checks": sorted(key for key, value in row["checks"].items() if not value),
+        },
+    )
+    passed = passed and record_gate["final_usable_count"] == 1
     result = {"job_id": job_id, "owner": owner, "fencing_token": token,
               "expected": expected, "actual": actual, "comparison": checks,
+              "record_gate": record_gate,
               "final_state": "PASS" if passed else "FAIL",
               "checkpoint": "TERMINAL" if passed else "FAILED_RETRYABLE",
               "result_return": {"status": "PASS" if passed else "FAIL", "tool016_ack": "RECEIVED"}}
@@ -226,3 +251,4 @@ def integrate_component(component: dict, workspace: Path, store: ClaimStore, own
     readback = target.read_bytes() == output.read_bytes()
     return {**result, "route": "STABLE", "deployed": readback, "rollback": False,
             "registered": created, "readback": readback}
+
