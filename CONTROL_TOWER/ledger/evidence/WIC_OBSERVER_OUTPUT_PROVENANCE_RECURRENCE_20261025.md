@@ -77,3 +77,14 @@ User observer; no request to manually enumerate translation mistakes or re-teach
 - Remote readback: all seven changed code/registry/test paths were re-fetched through the GitHub connector and matched expected blob identities/content markers.
 - Completion classification: CODE PASS and TEST PASS only. ACTUAL BUSINESS PASS and FINAL OUTPUT PASS remain HOLD_GOLDEN_SOURCE; no model-generated workbook was promoted.
 - Remaining exact edge: an approved real transformer/format adapter must consume rule_records and produce an actual artifact plus independent reopen/diff receipt. Golden user-authored workbook bytes remain unavailable.
+
+
+## 2026-10-25 final handler/output-boundary continuation
+- ROOT A: verified rule_context/rule_records are copied from admission into queue.admitted_rule_contexts and passed to requirement/backlog handler contracts. Missing/nonempty rule_records now fails before evidence or handler validation with VERIFIED_RULE_RECORDS_NOT_BOUND_TO_HANDLER.
+- ROOT B: the existing common handler execute_registered now sends its actual return code/output existence/content checks through enforce_record_isolation. A failed record is quarantined without rerunning the handler; unrelated jobs continue. No unapproved repair callback was invented.
+- ROOT D: terminal PASS requires a 64-hex expected output SHA-256 matching the generated artifact. Missing digest and mismatched digest both fail; matching digest succeeds. The malformed literal line breaks introduced in remote test commit 54d67118 were repaired in 7637d34e1553fc420853d7d5a2e055d706cb7765.
+- Changed-boundary evidence: exact remote runner blob 8bef1f7011c89d48b9ac0e8165f9d18a64c860b4 and repaired remote test blob 016ed2a034dbe3727b250b04c0ceef4345268248 executed together: 19/19 PASS. Queue isolation impact suite: 13/13 PASS locally before upload.
+- Commits: aa9104d4809d9275b15936cd896dd8870ca3c5b5, 9dd08fb7545cc36a686d20faa69ff1830e3038f7, 999ed61410f03e7504094f0904d0be9e4ed4413b, b3222edfb5ccc80e627c98c3a5053443a82b24ab, 0bc7e754d0d2ce25994e6ad6f71858f85c97913a, 54d671182b67eac0f0e4e15369f056ce033d7821, 7637d34e1553fc420853d7d5a2e055d706cb7765.
+- Actual business/output classification: HOLD_ACTUAL_INPUT_UNAVAILABLE_AND_NO_REGISTERED_TRANSFORMER_ADAPTER. The known C: TOOL013 input path is absent and D: is outside the current sandbox; existing generated XLSX is prior output, not new input.
+- ROOT C/E exact hold: HOLD_REMOTE_ARTIFACT_NOT_CANONICALIZED. The only current producer creates an untracked temporary isolated-execution.txt and reuses that local ref as remote_readback_ref. It cannot truthfully supply a remote commit/blob/retrieved SHA until an approved producer stores and pushes the actual output and a separate readback retrieves that exact commit/path.
+- No actual business PASS, auto-repair PASS, or final-output PASS was promoted from fixtures.
