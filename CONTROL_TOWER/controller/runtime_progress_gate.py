@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +20,7 @@ CANONICAL_RULE_FILES = (
     "WIC_CHAT_ROUTING_REGISTRY.md",
 )
 TASK_RULE_FILES = {
+    "TOOL013": (),
     "TOOL016": ("feedback_pipeline/TOOL016_MASTER.md",),
     "TOOL042": ("CUSTOMER_GUIDE_OUTPUT_LOCK.md",),
     "TOOL037": ("feedback_pipeline/TOOL037_MASTER.md",),
@@ -26,6 +28,37 @@ TASK_RULE_FILES = {
     "EMAIL_DB": ("EMAIL_COLLECTION_COMMON_RULES.md",),
     "TOOL044": ("feedback_pipeline/TOOL044_MASTER.md",),
 }
+
+
+def _external_rule_receipts(repo_root: Path, task_id: str) -> tuple[dict[str, str], list[str]]:
+    """Resolve immutable cross-repository rule receipts from the existing target registry."""
+    if task_id.upper() == "CENTRAL":
+        return {}, []
+    registry_path = repo_root / "feedback_pipeline" / "wic_target_registry.json"
+    if not registry_path.is_file():
+        return {}, ["feedback_pipeline/wic_target_registry.json"]
+    try:
+        target = json.loads(registry_path.read_text(encoding="utf-8"))["targets"][task_id.upper()]
+    except (KeyError, TypeError, ValueError):
+        return {}, [f"REGISTRY_TARGET:{task_id.upper()}"]
+    receipts = target.get("rule_receipts", [])
+    files: dict[str, str] = {}
+    missing: list[str] = []
+    for receipt in sorted(receipts, key=lambda row: int(row.get("priority", 0)), reverse=True):
+        repo = receipt.get("repository")
+        revision = receipt.get("revision")
+        path = receipt.get("path")
+        digest = str(receipt.get("sha256", "")).lower()
+        identity = f"{repo}@{revision}:{path}"
+        if (not isinstance(repo, str) or not isinstance(path, str)
+                or not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision)
+                or not re.fullmatch(r"[0-9a-f]{64}", digest)):
+            missing.append(identity)
+            continue
+        files[identity] = digest
+    if target.get("master_paths") and not receipts and not TASK_RULE_FILES.get(task_id.upper()):
+        missing.append(f"REGISTRY_RULE_RECEIPTS:{task_id.upper()}")
+    return files, missing
 
 
 def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any]:
@@ -39,6 +72,9 @@ def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any
             missing.append(relative)
             continue
         files[relative] = hashlib.sha256(target.read_bytes()).hexdigest()
+    external, external_missing = _external_rule_receipts(repo_root, task_id)
+    files.update(external)
+    missing.extend(external_missing)
     version = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
     return {"task_id": task_id.upper(), "files": files, "missing": missing, "version": version}
 
@@ -109,6 +145,15 @@ def verify_work_admission(admission: Any, *, repo_root: Path, work_id: str, task
                             and evidence.get("validation_result") == "PASS"
                             and evidence.get("validator_id") and evidence.get("source_refs")):
                         reason = "SOURCE_VALIDATION_RECEIPT_UNVERIFIED"
+                    elif task_id.upper() == "TOOL013" and not (
+                            isinstance(evidence.get("golden_provenance"), dict)
+                            and evidence["golden_provenance"].get("author_type") == "HUMAN_USER"
+                            and evidence["golden_provenance"].get("path")
+                            and evidence["golden_provenance"].get("sha256")
+                            and any(ref.get("path") == evidence["golden_provenance"]["path"]
+                                    and ref.get("sha256") == evidence["golden_provenance"]["sha256"]
+                                    for ref in evidence.get("source_refs", []) if isinstance(ref, dict))):
+                        reason = "TOOL013_HUMAN_GOLDEN_PROVENANCE_UNVERIFIED"
                     elif evidence.get("rule_version") != context.get("version"):
                         reason = "SOURCE_RECEIPT_RULE_VERSION_MISMATCH"
                     elif not isinstance(evidence.get("validation_plan"), dict) or not all(
@@ -285,3 +330,4 @@ def accept_feedback(state: dict[str, Any], feedback: dict[str, Any]) -> dict[str
         return {**promoted, "status": "SYSTEM_CONTROL_FAILURE", "repeat_count": rules[key]["repeat_count"]}
     rules[key] = {**promoted, "repeat_count": 1}
     return promoted
+
