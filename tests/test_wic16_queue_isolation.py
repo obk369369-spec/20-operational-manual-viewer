@@ -159,6 +159,45 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual((receipt["decision"], receipt["allowed_count"]), ("ALLOW", 1))
         self.assertTrue(all(row["status"] == "OPEN" for row in ledger["entries"]))
 
+    def test_changed_condition_release_enters_queue_once_without_reopening_pass(self) -> None:
+        release = {"trigger": "ACTUAL_INPUT_AVAILABLE", "evidence_ref": "evidence/change.json",
+                   "previous_fingerprint": "old", "current_fingerprint": "new"}
+        ledger = {
+            "entries": [
+                {"root_id": "A", "status": "OPEN", "next_trigger": "ACTUAL_INPUT_AVAILABLE",
+                 "trigger_release": release},
+                {"root_id": "B", "status": "OPEN", "next_trigger": "ACTUAL_INPUT_AVAILABLE",
+                 "trigger_release": {**release, "current_fingerprint": "old"}},
+                {"root_id": "C", "status": "VERIFIED_CLOSED", "next_trigger": "IMMEDIATE"},
+            ],
+            "execution_policy": {"scope_grants": [{"root_id": "A"}, {"root_id": "B"}]},
+        }
+        queue = {"backlog_root_ids": [], "rule_admissions": {
+            "backlog:A": self.admission("backlog:A"),
+            "backlog:B": self.admission("backlog:B"),
+        }}
+        registry = {"backlog_execution_contracts": [
+            {"root_id": "A", "task_id": "TOOL013"}, {"root_id": "B", "task_id": "TOOL013"}
+        ]}
+        supplied = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(queue["backlog_root_ids"], ["A"])
+        self.assertTrue(supplied["executable"][0]["trigger_release_verified"])
+        self.assertEqual({row["root_id"]: row["defer_reason"] for row in supplied["deferred"]},
+                         {"B": "TRIGGER_NOT_READY"})
+        self.assertEqual(supplied["pass_locked_reopened"], 0)
+
+    def test_trigger_release_without_scope_grant_remains_deferred(self) -> None:
+        ledger = {"entries": [{"root_id": "A", "status": "OPEN", "next_trigger": "INPUT_CHANGED",
+                                "trigger_release": {"trigger": "INPUT_CHANGED", "evidence_ref": "e",
+                                                    "previous_fingerprint": "old",
+                                                    "current_fingerprint": "new"}}]}
+        queue = {"backlog_root_ids": [], "rule_admissions": {
+            "backlog:A": self.admission("backlog:A")}}
+        registry = {"backlog_execution_contracts": [{"root_id": "A", "task_id": "TOOL013"}]}
+        supplied = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(queue["backlog_root_ids"], [])
+        self.assertEqual(supplied["deferred"][0]["defer_reason"], "TRIGGER_NOT_READY")
+
     def test_changed_original_blocks_only_affected_job(self) -> None:
         state = self.state(1, 2)
         first = self.admission("requirement:1")
