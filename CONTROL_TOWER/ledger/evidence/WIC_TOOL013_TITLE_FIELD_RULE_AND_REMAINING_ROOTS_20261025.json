@@ -1,0 +1,58 @@
+{
+  "schema": "wic.tool013.title-rule-and-root-resume.v1",
+  "source": "user reiterated approved historical TOOL013 column semantics in chat 2026-10-25; consistent with previously stored translation acceptance and canonical handoff",
+  "status": "CANONICAL_RULE_RECONFIRMED_NOT_BUSINESS_PASS",
+  "title_field_contract": {
+    "상품명": "원본 영문 보고서 제목을 완전하게 한국어로 번역한 제목",
+    "한글명": "원본 영문 보고서 제목 그대로, 영문 원문 보존",
+    "column_names_must_not_override_semantics": true,
+    "translation": "approved exact title or verifiable translation; unknown title HOLD, never guess",
+    "regression_gate": "B 상품명 must be verified Korean translated title; C 한글명 must be verbatim original English; compare to original title and approved translation, not just script detection",
+    "preserve_other_16_fields": true
+  },
+  "already_existing_evidence": [
+    "CONTROL_TOWER/ledger/evidence/WIC_TOOL013_NEXT_WORK_HANDOFF_20261008.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json",
+    "docs/WIC_WORK_FINAL_BULK_HANDOFF_20260927.md"
+  ],
+  "reported_scope_counts": {
+    "unique": 8,
+    "resolved": 4,
+    "unresolved": 4,
+    "hold": 3,
+    "recurrence": 1,
+    "rate_percent": 50,
+    "not_platform_wide": true
+  },
+  "remaining_roots": [
+    {
+      "id": "TOOL013_TITLE_FIELD_DIRECTION_RECURRENCE",
+      "action": "Find and correct producer/transformer root, not merely swap cells in an archived evidence XLSX. Use approved exact translation + original English, real source, actual execution, independent reopen and regression tests. Do not overwrite original evidence."
+    },
+    {
+      "id": "VERIFIED_EXECUTION_CONTRACT_MISSING",
+      "action": "Locate and bind approved real input/handler/output/expected contract; if absent retain scoped HOLD."
+    },
+    {
+      "id": "REMOTE_ARTIFACT_RECEIPT_MISSING",
+      "action": "Store same-run actual output in canonical commit and independently re-fetch exact commit/path/blob and hash."
+    },
+    {
+      "id": "GOLDEN_SOURCE_UNAVAILABLE",
+      "action": "Recover authorized access to user-authored Golden original, preserve original; otherwise HOLD only Golden-dependent comparisons."
+    }
+  ],
+  "execution_constraints": [
+    "parallelize independent ROOT groups with serialized writes to same path",
+    "reuse verified PASS and existing records; do not rescan ~3200 history",
+    "no fabricated real input, repair adapter, PASS, receipts, or 0-error claim",
+    "provide plain Korean per-row before/after/source/rule/recheck and remote receipt",
+    "recount errors after real independent execution; unverified stays HOLD"
+  ],
+  "this_action": {
+    "rule_persisted": true,
+    "actual_transformer_run": false,
+    "actual_xlsx_repair": false,
+    "independent_business_recheck": false
+  }
+}
