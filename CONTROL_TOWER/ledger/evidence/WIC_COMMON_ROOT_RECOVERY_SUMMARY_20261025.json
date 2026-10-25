@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-25T20:45:00+09:00",
+  "scope_name": "CURRENT_CONNECTED_COMMON_ROOTS_AND_CANONICAL_TOOL013_XLSX",
+  "scope_limit": "증분 연결 경계와 접근 가능한 canonical TOOL013 XLSX 1건만 검사. 전체 WIC/약 3200건 전수조사가 아님.",
+  "canonical_head_before_evidence": "55abb1f1bc55c77803f6924f4d5943c1ca7252e8",
+  "counts": {
+    "initial_errors": 6,
+    "additional_errors": 2,
+    "unique_errors": 8,
+    "resolved_and_revalidated": 4,
+    "repair_failed": 0,
+    "unresolved": 4,
+    "hold": 3,
+    "recurrence": 1,
+    "inspection_rate_percent": 100,
+    "repair_rate_percent": 50,
+    "overall_complete": false
+  },
+  "issues": [
+    {
+      "issue_id": "RULE_RECORD_HANDLER_BINDING",
+      "discovery_phase": "INITIAL",
+      "status": "RESOLVED",
+      "inspected": true,
+      "revalidated": true,
+      "evidence_refs": [
+        "commit:aa9104d4809d9275b15936cd896dd8870ca3c5b5",
+        "commit:9dd08fb7545cc36a686d20faa69ff1830e3038f7"
+      ]
+    },
+    {
+      "issue_id": "COMMON_HANDLER_RECORD_ISOLATION",
+      "discovery_phase": "INITIAL",
+      "status": "RESOLVED",
+      "inspected": true,
+      "revalidated": true,
+      "evidence_refs": [
+        "commit:999ed61410f03e7504094f0904d0be9e4ed4413b",
+        "commit:b3222edfb5ccc80e627c98c3a5053443a82b24ab"
+      ]
+    },
+    {
+      "issue_id": "OUTPUT_DIGEST_GATE",
+      "discovery_phase": "INITIAL",
+      "status": "RESOLVED",
+      "inspected": true,
+      "revalidated": true,
+      "evidence_refs": [
+        "commit:0bc7e754d0d2ce25994e6ad6f71858f85c97913a",
+        "commit:54d671182b67eac0f0e4e15369f056ce033d7821",
+        "commit:7637d34e1553fc420853d7d5a2e055d706cb7765",
+        "test:exact-remote-blob-19-of-19-pass"
+      ]
+    },
+    {
+      "issue_id": "VERIFIED_EXECUTION_CONTRACT_MISSING",
+      "discovery_phase": "INITIAL",
+      "status": "HOLD",
+      "inspected": true,
+      "revalidated": false,
+      "evidence_refs": [
+        "CONTROL_TOWER/ledger/component_registry.json",
+        "WIC-0702-SCOPED-RECOVERY:HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT"
+      ],
+      "resume_condition": "승인된 실제 input/handler argv/output/expected 계약"
+    },
+    {
+      "issue_id": "REMOTE_ARTIFACT_RECEIPT_MISSING",
+      "discovery_phase": "INITIAL",
+      "status": "HOLD",
+      "inspected": true,
+      "revalidated": false,
+      "evidence_refs": [
+        ".github/workflows/wic-external-boundary-admission.yml",
+        "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md"
+      ],
+      "resume_condition": "동일 실행의 실제 remote commit/blob 재취득 receipt"
+    },
+    {
+      "issue_id": "GOLDEN_SOURCE_UNAVAILABLE",
+      "discovery_phase": "INITIAL",
+      "status": "HOLD",
+      "inspected": true,
+      "revalidated": false,
+      "evidence_refs": [
+        "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md"
+      ],
+      "resume_condition": "사용자 작성 Golden 원본의 기존 승인 경로 접근"
+    },
+    {
+      "issue_id": "TOOL013_TITLE_FIELD_DIRECTION_RECURRENCE",
+      "discovery_phase": "ADDITIONAL",
+      "status": "RECURRENT",
+      "inspected": true,
+      "revalidated": false,
+      "evidence_refs": [
+        "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_UPLOAD.xlsx",
+        "sha256:fa96ab203b167a038f6e90a2089c7ab20e54f1d0d8fd5642c9710fe21c61ba4b",
+        "git_blob:72c432ddb2a776a482f3a8f50dcbbe81b3e13bc6"
+      ],
+      "finding": "A1:R3, 18 columns, 2 data rows. B(상품명)=영문, C(한글명)=한글로 현행 규칙과 반대.",
+      "resume_condition": "승인된 실제 transformer 계약과 입력으로 안전수정 1회 후 독립 재열기"
+    },
+    {
+      "issue_id": "EXPLANATION_INTERNAL_ID_FALSE_CHANGE",
+      "discovery_phase": "ADDITIONAL",
+      "status": "RESOLVED",
+      "inspected": true,
+      "revalidated": true,
+      "evidence_refs": [
+        "commit:55abb1f1bc55c77803f6924f4d5943c1ca7252e8",
+        "limited_test:explanation_internal_identity_filtered",
+        "limited_test:recovery_summary_counts"
+      ]
+    }
+  ],
+  "xlsx_independent_reopen": {
+    "path": "CONTROL_TOWER/ledger/evidence/tool013_user_usable_20261010/TOOL013_USER_E2E_FINAL_UPLOAD.xlsx",
+    "sha256": "fa96ab203b167a038f6e90a2089c7ab20e54f1d0d8fd5642c9710fe21c61ba4b",
+    "git_blob_oid": "72c432ddb2a776a482f3a8f50dcbbe81b3e13bc6",
+    "zip_integrity_bad_member": null,
+    "sheet": "upload",
+    "dimension": "A1:R3",
+    "rows_total": 3,
+    "data_rows": 2,
+    "columns": 18,
+    "result": "FAIL_CURRENT_RULE_TITLE_FIELDS_REVERSED"
+  },
+  "pass_levels": {
+    "code_implementation_pass": true,
+    "limited_test_pass": true,
+    "actual_business_execution_pass": false,
+    "actual_auto_repair_pass": false,
+    "final_normal_output_pass": false,
+    "overall_platform_zero_error": false
+  },
+  "korean_summary": "검사한 범위의 오류 8개 중 4개를 고치고 재검사했습니다. 4개가 남았으며, 그중 HOLD 3개와 재발 1개가 있습니다. 검사율은 100%, 수정률은 50%입니다. 전체 완료나 오류 0건으로 선언할 수 없습니다.",
+  "next_resume_point": "VERIFIED_EXECUTION_CONTRACT 확보 후 TOOL013_TITLE_FIELD_DIRECTION_RECURRENCE에 안전수정 1회만 적용하고 같은 실제 입력을 독립 재열기·원격 blob receipt까지 검증"
+}
