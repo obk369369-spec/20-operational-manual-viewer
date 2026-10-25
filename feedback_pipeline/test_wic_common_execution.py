@@ -1,4 +1,5 @@
 import json
+import hashlib
 import tempfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -16,7 +17,8 @@ def run():
             "input": "input.txt",
             "output": "output.txt",
             "handler": ["{python}", "-c", "from pathlib import Path; Path(r'{output}').write_text(Path(r'{input}').read_text().upper())"],
-            "expected": {"returncode": 0, "output_exists": True},
+            "expected": {"returncode": 0, "output_exists": True,
+                         "output_sha256": hashlib.sha256(b"WIC").hexdigest()},
         }
         demand, created = auto_register(queue, {"demand_id": "REAL-DEMAND-1", "execution_contract": contract})
         _, duplicate_created = auto_register(queue, {"demand_id": "REAL-DEMAND-1", "execution_contract": contract})
@@ -35,7 +37,7 @@ def run():
         resumed = store.claim("CLAIM-TEST", "B")
         checks["resume"] = resumed["status"] == "CLAIMED"
         store.release_for_resume("CLAIM-TEST", "B", resumed["fencing_token"], {"stage": "RESUMED"})
-        result = execute_registered(demand, root, store, "RUNNER-A")
+        # A successful process and an existing file are insufficient without\r\n        # a content-bound expected digest.\r\n        no_digest = {"demand_id": "NO-DIGEST", "execution_contract":\r\n            {**contract, "output": "no-digest.txt", "expected": {"returncode": 0, "output_exists": True}}}\r\n        no_digest_result = execute_registered(no_digest, root, store, "RUNNER-A")\r\n        checks["missing_digest_fails_closed"] = no_digest_result["final_state"] == "FAIL"\r\n        wrong_digest = {"demand_id": "WRONG-DIGEST", "execution_contract":\r\n            {**contract, "output": "wrong-digest.txt", "expected": {**contract["expected"], "output_sha256": "0" * 64}}}\r\n        wrong_digest_result = execute_registered(wrong_digest, root, store, "RUNNER-A")\r\n        checks["wrong_digest_fails_closed"] = wrong_digest_result["final_state"] == "FAIL"\r\n        result = execute_registered(demand, root, store, "RUNNER-A")
         checks["handler_execution"] = result["actual"]["returncode"] == 0
         checks["output_created"] = (root / "output.txt").read_text() == "WIC"
         checks["expected_actual"] = all(result["comparison"].values())
@@ -72,7 +74,7 @@ def run():
             "handler": ["{python}", "-c", "raise SystemExit(9)"]}}, root, store, "RUNNER-A")
         checks["failed_validation_rollback"] = failed_component["rollback"] and not failed_component["deployed"] and (root / "stable.txt").read_text() == "KEEP"
         checks["component_lifecycle_admission"] = stable["registered"] and next_result["registered"] and failed_component["registered"]
-    return {"status": "PASS" if all(checks.values()) and len(checks) == 17 else "FAIL",
+    return {"status": "PASS" if all(checks.values()) and len(checks) == 19 else "FAIL",
             "checks": checks, "passed": sum(checks.values()), "total": len(checks)}
 
 
