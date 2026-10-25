@@ -29,3 +29,11 @@ Real manually prepared historical WIC upload XLSX -> read-only golden provenance
 
 ## Current execution state
 Incident identified, consolidated and committed only. NO code/runtime patch, NO actual E2E, NO valid external A product, NO golden-file match, NO validated final upload. Work budget percent is user-reported, not tool-verified. User is observer only.
+
+## 2026-10-25 additional recurrence: rule retrieval and output-calculation contract
+User reports TOOL013 cannot retrieve and apply the latest accumulated rules; produces outputs so far from expected that an observer cannot identify a small bounded diff. This is not an isolated mistranslation; it is a common root of RULE_SOURCE_RESOLUTION -> VERSION_PRECEDENCE -> FIELD_TRANSFORMATION -> INDEPENDENT_EXPECTED_ACTUAL_VALIDATION -> FAIL_CLOSED_OUTPUT.
+No user re-explanation of historical rules, translation choices, or row-by-row correction is permitted.
+The required acceptance gate is NOT an arbitrary promise of at most one error. Instead independently verify every field against approved user-authored golden workbook and machine-readable approved rules; zero silent differences; unresolved fields quarantined with machine-generated cause and source citation.
+For each rule, record source path, version/priority, hash, affected output fields, fixture ID, expected value, actual value, mismatch root, corrective action and test result. A model-produced workbook cannot be a golden fixture. If rule conflicts exist, use established canonical priority; otherwise BLOCK_RULE_CONFLICT, not arbitrary selection.
+For Korean title translation, preserve full original meaning, parenthetical segments, regions, forecast periods and qualifiers; compare with approved translations, reject truncation/topic-only translation and report precise diff automatically.
+Repair the shared rule resolver and output gate before any TOOL013-specific per-cell patch. Batch related open roots; reuse existing evidence and PASS, targeted RED->GREEN->regression->actual E2E->download/reopen->GitHub remote read-back. Never claim runtime fixed solely from this ledger update.
