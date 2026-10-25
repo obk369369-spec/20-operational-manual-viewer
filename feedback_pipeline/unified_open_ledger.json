@@ -486,9 +486,9 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "Common rule bodies/field scopes now bind into runtime contexts; one-pass safe repair/revalidation/quarantine and independent reopen plus remote blob receipt gates are implemented and bounded-tested. No actual Golden workbook was available, so business/output PASS remains blocked.",
+      "last_actual_point": "Verified rule_records are now bound from admission into requirement/backlog handlers; common handler results pass through record isolation; terminal PASS requires a matching expected output SHA-256. Exact remote runner/test blobs passed 19/19 changed-boundary checks.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Bind a real approved transformer adapter to rule_records and run actual input -> output -> independent reopen/diff when user-authored Golden bytes become available; do not rerun completed gate tests.",
+      "next_start": "Do not rerun these gates. Resume only with an admitted real transformer contract plus accessible actual input, and canonicalize its output before producing the independent reopen and remote blob receipt.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
@@ -503,6 +503,23 @@
           "commit": "8e3fcb0df2333c0aa2ef20ab7882424cb3a91b9f",
           "remote_readback": "PASS",
           "actual_business_output": "HOLD_GOLDEN_SOURCE"
+        },
+        {
+          "operation_id": "common-handler-rule-record-and-output-digest-binding-20261025",
+          "status": "CODE_AND_CHANGED_BOUNDARY_TEST_VERIFIED",
+          "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "commits": [
+            "aa9104d4809d9275b15936cd896dd8870ca3c5b5",
+            "9dd08fb7545cc36a686d20faa69ff1830e3038f7",
+            "999ed61410f03e7504094f0904d0be9e4ed4413b",
+            "b3222edfb5ccc80e627c98c3a5053443a82b24ab",
+            "0bc7e754d0d2ce25994e6ad6f71858f85c97913a",
+            "54d671182b67eac0f0e4e15369f056ce033d7821",
+            "7637d34e1553fc420853d7d5a2e055d706cb7765"
+          ],
+          "remote_test": "19/19 PASS using exact remote runner and test blobs",
+          "actual_business_output": "HOLD_ACTUAL_INPUT_UNAVAILABLE",
+          "remote_artifact": "HOLD_REMOTE_ARTIFACT_NOT_CANONICALIZED"
         }
       ],
       "trigger_release": {
@@ -922,7 +939,8 @@
         "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
         "directive_ref": "CURRENT_USER_DIRECTIVE_WIC_ALL_PLATFORM_SELF_RECOVERY_20261025",
         "actions": [
-          "REPAIR_EXISTING_COMMON_RULE_REPAIR_OUTPUT_AND_EVIDENCE_GATES"
+          "REPAIR_EXISTING_COMMON_RULE_REPAIR_OUTPUT_AND_EVIDENCE_GATES",
+          "BIND_RULE_RECORDS_AND_RECORD_ISOLATION_TO_EXISTING_HANDLER"
         ],
         "assets": [
           "CONTROL_TOWER/controller/runtime_progress_gate.py",
@@ -932,7 +950,12 @@
           "tests/test_permanent_reentry_gate.py",
           "CONTROL_TOWER/controller/test_record_isolation.py",
           "tests/test_output_reopen_remote_gate.py",
-          "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md"
+          "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/wic_common_execution.py",
+          "feedback_pipeline/test_wic_common_execution.py",
+          ".github/workflows/wic-external-boundary-admission.yml"
         ],
         "reusable_assets": [
           "existing canonical rule manifest and target registry receipts",
