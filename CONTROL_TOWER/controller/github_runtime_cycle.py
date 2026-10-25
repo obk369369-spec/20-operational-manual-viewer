@@ -145,6 +145,10 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
     contracts = ({item.get("root_id") for item in registry.get("backlog_execution_contracts", [])
                   if item.get("root_id")} if registry is not None else None)
     admissions = queue.get("rule_admissions", {})
+    granted_roots = {
+        item.get("root_id") for item in ledger.get("execution_policy", {}).get("scope_grants", [])
+        if isinstance(item, dict) and item.get("root_id")
+    }
     for entry in ledger.get("entries", []):
         status = str(entry.get("status", "UNKNOWN"))
         if status in CLOSED_LEDGER_STATUSES:
@@ -155,7 +159,20 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
             "next_trigger": entry.get("next_trigger"),
             "next_start": entry.get("next_start"),
         }
-        ready = status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE"
+        trigger = entry.get("next_trigger")
+        release = entry.get("trigger_release") if isinstance(entry.get("trigger_release"), dict) else {}
+        release_ready = bool(
+            trigger not in {None, "", "IMMEDIATE", "NONE"}
+            and release.get("trigger") == trigger
+            and release.get("evidence_ref")
+            and release.get("previous_fingerprint")
+            and release.get("current_fingerprint")
+            and release.get("previous_fingerprint") != release.get("current_fingerprint")
+            and entry.get("root_id") in granted_roots
+        )
+        ready = status == "OPEN" and (trigger == "IMMEDIATE" or release_ready)
+        if release_ready:
+            summary["trigger_release_verified"] = True
         work_id = f"backlog:{entry.get('root_id')}"
         admission = admissions.get(work_id) if isinstance(admissions, dict) else None
         if ready and contracts is not None and entry.get("root_id") not in contracts:
