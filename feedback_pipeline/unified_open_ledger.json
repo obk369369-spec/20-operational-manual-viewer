@@ -94,6 +94,13 @@
       "status": "OPEN",
       "source": "USER_PARALLEL_LANES_20260903",
       "next_trigger": "AUTHORIZED_LOCAL_BROWSER_TEST_PATH_OR_CONCRETE_BUSINESS_HANDLER_INPUT_AVAILABLE",
+      "trigger_release": {
+        "trigger": "AUTHORIZED_LOCAL_BROWSER_TEST_PATH_OR_CONCRETE_BUSINESS_HANDLER_INPUT_AVAILABLE",
+        "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+        "previous_fingerprint": "1a79d25d15c97126e152927f9ad9632ef4526ec3:ab06cd6217464b4e686ec080ddc09f24a62dd49cde34d23ac6801f390cddc7ee",
+        "current_fingerprint": "339edf186d3bfb642452072541506ac06974eef1",
+        "scope": "TOOL013_RULE_RETRIEVAL_AND_FAIL_CLOSED_OUTPUT_GATE_ONLY"
+      },
       "last_actual_point": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
       "next_start": "Reuse policy restore, no repeat. TOOL013 resumes filename/N Pages only when permitted actual local browser test is available. TOOL043/044 require concrete real business handler/input before queue integration. Existing 001/006/041/042/007 external holds unchanged. Reconcile CI registry contract separately within authorized scope, preserving pre-existing patch.",
       "lane_evidence": "feedback_pipeline/evidence/parallel_resume_result_20260903.json",
@@ -632,6 +639,14 @@
           "existing tool MASTER/checkpoint/runtime pointers"
         ],
         "scope": "User named parallel lanes only, no unchanged HOLD execution, no whole-tool/history scan, no completed cache/proof tests"
+      },
+      {
+        "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_TOOL013_COMMON_ROOT_RECOVERY_20261025",
+        "actions": ["REPAIR_EXISTING_TOOL013_RULE_AND_OUTPUT_GATE_CONNECTION"],
+        "assets": ["CONTROL_TOWER/controller/runtime_progress_gate.py", "CONTROL_TOWER/controller/pre_work_admission.py", "feedback_pipeline/wic_target_registry.json", "tests/test_permanent_reentry_gate.py", "feedback_pipeline/unified_open_ledger.json"],
+        "reusable_assets": ["existing canonical_rule_manifest and verify_work_admission", "existing require_external_completion independent validator boundary", "existing TOOL013 registry and immutable rule receipts", "existing recurrence and TOOL013 handoff evidence"],
+        "scope": "Minimum repair of existing TOOL013 rule retrieval, pinned-version resolution and fail-closed provenance/output validation. No TOOL013 product redevelopment, no fabricated golden workbook, no PASS promotion without actual XLSX bytes and independent reopen comparison."
       },
       {
         "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
