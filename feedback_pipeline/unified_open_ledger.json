@@ -1395,6 +1395,24 @@
           "existing artifact reopen and remote receipt gate"
         ],
         "scope": "Keep nonproduction changed-boundary test fail-closed when independent artifact reopen and remote receipt are absent. No fake business PASS, STOP release, or main merge."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "USER_WIC16_PR65_RULE_CONTEXT_TRANSPORT_REPAIR_20261026",
+        "actions": [
+          "REPAIR_EXISTING_RULE_ADMISSION_TRANSPORT"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/pre_work_admission.py",
+          ".github/workflows/wic-external-boundary-admission.yml",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing RULES admission JSON",
+          "existing Evidence roots",
+          "existing per-work rule and source validators"
+        ],
+        "scope": "Allow bounded nonproduction repair of oversized admission transport with Evidence file fallback. Preserve exact rule validation, STOP, source receipt and PASS_LOCK. No customer run or main merge."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",

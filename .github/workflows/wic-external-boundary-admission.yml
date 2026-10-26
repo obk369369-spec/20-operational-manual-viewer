@@ -111,8 +111,11 @@ jobs:
               admission = {'work_id':work_id,'task_id':task_id,'rule_context':context,
                            'source_receipt':{'path':source.relative_to(Path.cwd()).as_posix(),
                                              'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}}
-              env = dict(os.environ, WIC_RULE_ADMISSION_JSON=json.dumps({'admissions':{work_id:admission}}),
+              admission_file = Path(folder) / 'admission.json'
+              admission_file.write_text(json.dumps({'admissions':{work_id:admission}}, ensure_ascii=False), encoding='utf-8')
+              env = dict(os.environ, WIC_RULE_ADMISSION_FILE=admission_file.relative_to(Path.cwd()).as_posix(),
                          WIC_USER_STOP='1')
+              env.pop('WIC_RULE_ADMISSION_JSON', None)
               cmd = [sys.executable, 'CONTROL_TOWER/controller/pre_work_admission.py',
                      '--require-admission','--work-id',work_id,'--task-id',task_id]
               stopped = subprocess.run(cmd, env=env, capture_output=True, text=True)
@@ -185,7 +188,7 @@ jobs:
                   'evidence_required':'original, result, independent validation, readback'},
                   'source_refs':[{'path':'missing/original.txt','sha256':'0'*64}]}) + '\n', encoding='utf-8')
               admission['source_receipt']['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
-              env['WIC_RULE_ADMISSION_JSON'] = json.dumps({'admissions':{work_id:admission}})
+              admission_file.write_text(json.dumps({'admissions':{work_id:admission}}, ensure_ascii=False), encoding='utf-8')
               rejected_start = subprocess.run(cmd, env=env,capture_output=True,text=True)
               assert rejected_start.returncode == 1 and 'ORIGINAL_SOURCE_MISSING_OR_CHANGED' in rejected_start.stdout
           for filename in ('wic-observer-pages.yml','tool044-multi-gate.yml',

@@ -251,10 +251,27 @@ def require_external_admission(work_id: str, task_id: str) -> dict[str, Any]:
     if os.environ.get("WIC_USER_STOP") != "0":
         return {"decision": "BLOCK", "reason": "USER_STOP_OR_START_BLOCKED",
                 "work_id": work_id, "task_id": task_id}
-    try:
-        admission = json.loads(os.environ.get("WIC_RULE_ADMISSION_JSON", "null"))
-    except ValueError:
-        admission = None
+    admission = None
+    inline = os.environ.get("WIC_RULE_ADMISSION_JSON")
+    if inline:
+        try:
+            admission = json.loads(inline)
+        except ValueError:
+            admission = None
+    else:
+        # Full canonical rule records may exceed the OS per-variable limit.
+        # Keep file transport inside existing Evidence roots; the same admission
+        # identity, source receipt and rule content checks still run below.
+        relative = os.environ.get("WIC_RULE_ADMISSION_FILE")
+        if relative:
+            target = (root / relative).resolve()
+            allowed = ((root / "feedback_pipeline" / "evidence").resolve(),
+                       (root / "CONTROL_TOWER" / "ledger" / "evidence").resolve())
+            if relative.endswith(".json") and any(target.is_relative_to(base) for base in allowed):
+                try:
+                    admission = json.loads(target.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    admission = None
     if isinstance(admission, dict) and isinstance(admission.get("admissions"), dict):
         admission = admission["admissions"].get(work_id)
     return verify_work_admission(admission, repo_root=root,
