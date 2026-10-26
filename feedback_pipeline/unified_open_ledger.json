@@ -486,9 +486,9 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "Verified rule_records are now bound from admission into requirement/backlog handlers; common handler results pass through record isolation; terminal PASS requires a matching expected output SHA-256. Exact remote runner/test blobs passed 19/19 changed-boundary checks.",
+      "last_actual_point": "PR #65 branch conflicts resolved; remote changed-boundaries run 40255589652 succeeded. No business job, XLSX, ACK or ROOT closure.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Do not rerun these gates. Resume only with an admitted real transformer contract plus accessible actual input, and canonicalize its output before producing the independent reopen and remote blob receipt.",
+      "next_start": "Review PR #65 protection and approval separately; actual backlog execution requires current contract, actual source, task admission, handler and expected result.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
@@ -609,6 +609,32 @@
           "condition_fingerprint": "CODEX_LIMIT_AVAILABLE_CHATGPT_WORK_BALANCE_UNAVAILABLE",
           "business_pass": false,
           "external_dispatch": false
+        },
+        {
+          "operation_id": "pr65-conflict-and-central-rule-transport-repair-20261026",
+          "status": "REMOTE_VERIFIED_NONPRODUCTION_CODE_ONLY",
+          "evidence_ref": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40255589652",
+          "pr": "https://github.com/obk369369-spec/20-operational-manual-viewer/pull/65",
+          "commits": [
+            "1ba2ab1352120cc05df94fdd0b3e07fe68c7e48d",
+            "40cd3b0948cf203ccba959acf465f7a2bffcffbd",
+            "c0aa63286ebb65ee98a277fe0e7c9cf7523825d5",
+            "928a928"
+          ],
+          "changed_boundary_tests": "20/20 LOCAL PASS; exact GitHub changed-boundaries SUCCESS 40255589652",
+          "remote_readback": true,
+          "merge_conflicts_resolved": 3,
+          "main_merged": false,
+          "business_job_count": 0,
+          "actual_xlsx_count": 0,
+          "central_ack_count": 0,
+          "incomplete_root_closure_delta": 0,
+          "checkpoint": {
+            "last_success_stage": "PR_BRANCH_REMOTE_CHANGED_BOUNDARY_PASS",
+            "next_start": "Review PR #65 protection and approval separately; actual backlog execution requires current contract, actual source, task admission, handler and expected result.",
+            "rollback_point": "056d9fc34346f49e0251d7d87e7875757376c4c1"
+          },
+          "scope": "Existing PR branch conflict and common rule admission transport repair only; no customer work or main integration."
         }
       ],
       "trigger_release": {
