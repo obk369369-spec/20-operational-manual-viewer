@@ -1,0 +1,23 @@
+{
+  "classification": "NONPRODUCTION_INTERNAL_CAPABILITY_PASS_BUSINESS_HOLD",
+  "job_id": "WIC16-INTERNAL-UNRESOLVED-PROJECTION-20261026",
+  "source": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json",
+  "input_sha256": "55ce92137b43d2e462d969fddb9050b5558835be6ef7437a8a2d24e9cd202a2b",
+  "output": "CONTROL_TOWER/ledger/evidence/WIC16_INTERNAL_UNRESOLVED_PROJECTION_20261026.json",
+  "expected_output_sha256": "004790b717a3369712ab7126006c45c32242de3085e790920db87431a97bf44d",
+  "actual_output_sha256": "004790b717a3369712ab7126006c45c32242de3085e790920db87431a97bf44d",
+  "checks": {
+    "returncode": true,
+    "output_exists": true,
+    "output_sha256": true,
+    "output_content_bound": true
+  },
+  "ack": {
+    "status": "PASS",
+    "tool016_ack": "RECEIVED"
+  },
+  "checkpoint": "TERMINAL",
+  "negative_changed_input": "ACTUAL_INPUT_CHANGED",
+  "unresolved_root_delta": 0,
+  "actual_customer_execution": false
+}

@@ -10,6 +10,8 @@ import re
 import secrets
 import sys
 import tempfile
+import urllib.parse
+import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -276,6 +278,39 @@ def require_external_admission(work_id: str, task_id: str) -> dict[str, Any]:
         admission = admission["admissions"].get(work_id)
     return verify_work_admission(admission, repo_root=root,
                                  work_id=work_id, task_id=task_id)
+
+
+
+def retrieve_remote_blob_receipt(repository: str, commit_sha: str, artifact_path: str,
+                                 expected_sha256: str, *, max_bytes: int = 50_000_000) -> dict[str, Any]:
+    """Read a pinned GitHub blob before issuing a remote result receipt."""
+    if (not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository)
+            or not re.fullmatch(r"[0-9a-fA-F]{40}", commit_sha)
+            or not re.fullmatch(r"[0-9a-fA-F]{64}", expected_sha256)
+            or not isinstance(artifact_path, str) or not artifact_path
+            or artifact_path.startswith("/") or "\\" in artifact_path
+            or any(part in {"", ".", ".."} for part in artifact_path.split("/"))
+            or not isinstance(max_bytes, int) or max_bytes <= 0):
+        return {"validation_result": "HOLD", "reason": "REMOTE_BLOB_IDENTITY_INVALID"}
+    url = ("https://raw.githubusercontent.com/" + repository + "/" + commit_sha.lower()
+           + "/" + urllib.parse.quote(artifact_path, safe="/"))
+    try:
+        request = urllib.request.Request(url, headers={"User-Agent": "WIC-remote-blob-readback"})
+        with urllib.request.urlopen(request, timeout=20) as response:
+            payload = response.read(max_bytes + 1)
+    except (OSError, ValueError):
+        return {"validation_result": "HOLD", "reason": "REMOTE_BLOB_READBACK_UNAVAILABLE"}
+    if len(payload) > max_bytes:
+        return {"validation_result": "HOLD", "reason": "REMOTE_BLOB_SIZE_LIMIT"}
+    retrieved_sha = hashlib.sha256(payload).hexdigest()
+    if retrieved_sha != expected_sha256.lower():
+        return {"validation_result": "HOLD", "reason": "REMOTE_BLOB_CONTENT_MISMATCH",
+                "retrieved_sha256": retrieved_sha}
+    git_blob = hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\0" + payload).hexdigest()
+    return {"commit_sha": commit_sha.lower(), "blob_oid": git_blob,
+            "retrieval_id": "github-raw-" + secrets.token_hex(12), "remote_url": url,
+            "artifact_path": artifact_path, "retrieved_sha256": retrieved_sha,
+            "validation_result": "PASS"}
 
 
 def validate_output_reopen_and_remote(receipt: dict[str, Any], reopen: Any, remote: Any) -> str | None:
