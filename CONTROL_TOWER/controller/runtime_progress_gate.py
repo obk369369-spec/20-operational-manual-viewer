@@ -33,7 +33,9 @@ TASK_RULE_FILES = {
 def _external_rule_receipts(
         repo_root: Path, task_id: str) -> tuple[dict[str, str], list[dict[str, Any]], list[str]]:
     """Resolve content-bound cross-repository rules from the target registry."""
-    if task_id.upper() == "CENTRAL":
+    # TOOL016 is governed by its CENTRAL master in TASK_RULE_FILES; it has no
+    # separate target repository or external rule receipt to resolve.
+    if task_id.upper() in {"CENTRAL", "TOOL016"}:
         return {}, [], []
     registry_path = repo_root / "feedback_pipeline" / "wic_target_registry.json"
     if not registry_path.is_file():

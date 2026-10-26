@@ -1361,6 +1361,24 @@
           "canonical ledger"
         ],
         "scope": "Resolve PR #65 conflicts on existing branch; changed-boundary tests and remote readback. Preserve main, STOP, START_BLOCKED, PASS_LOCK and existing PASS. No business execution or main merge authorization."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "USER_WIC16_PR65_REMOTE_CHANGED_BOUNDARY_REPAIR_20261026",
+        "actions": [
+          "REPAIR_CENTRAL_RULE_LOOKUP"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/runtime_progress_gate.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing TOOL016_MASTER.md",
+          "existing canonical_rule_manifest",
+          "existing PR #65 changed-boundary check"
+        ],
+        "scope": "Bounded nonproduction repair of TOOL016 central rule lookup on existing PR #65 branch. No customer execution, STOP release, PASS_LOCK change, or main merge."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",
