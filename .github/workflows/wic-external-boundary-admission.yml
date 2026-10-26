@@ -156,7 +156,7 @@ jobs:
               completed = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                           '--require-completion','--work-id',work_id,'--task-id',task_id],
                                          env=env,capture_output=True,text=True)
-              assert completed.returncode == 0 and 'ALLOW' in completed.stdout, completed.stdout
+              assert completed.returncode == 1 and 'ARTIFACT_REOPEN_REF_MISSING' in completed.stdout, completed.stdout
               env['WIC_USER_STOP'] = '1'
               stopped_completion = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                                     '--require-completion','--work-id',work_id,'--task-id',task_id],
@@ -196,6 +196,6 @@ jobs:
               assert workflow.count('WIC_USER_STOP:') >= workflow.count('--require-completion')
               assert workflow.count('WIC_RULE_ADMISSION_JSON:') >= workflow.count('--require-completion')
           print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
-          print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
+          print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETION_BLOCKED_WITHOUT_REOPEN_REMOTE')
           print('PASS COMMON_MUTATING_BOUNDARY_AND_OBSERVER_DELTA', sum(map(len, paths.values())))
           PY

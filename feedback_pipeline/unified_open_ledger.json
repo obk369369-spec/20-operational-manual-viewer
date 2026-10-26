@@ -1379,6 +1379,22 @@
           "existing PR #65 changed-boundary check"
         ],
         "scope": "Bounded nonproduction repair of TOOL016 central rule lookup on existing PR #65 branch. No customer execution, STOP release, PASS_LOCK change, or main merge."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "USER_WIC16_PR65_REMOTE_COMPLETION_FIXTURE_20261026",
+        "actions": [
+          "REPAIR_NONPRODUCTION_COMPLETION_FIXTURE"
+        ],
+        "assets": [
+          ".github/workflows/wic-external-boundary-admission.yml",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing changed-boundaries workflow",
+          "existing artifact reopen and remote receipt gate"
+        ],
+        "scope": "Keep nonproduction changed-boundary test fail-closed when independent artifact reopen and remote receipt are absent. No fake business PASS, STOP release, or main merge."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",

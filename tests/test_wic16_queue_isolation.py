@@ -391,11 +391,16 @@ class QueueIsolationTest(unittest.TestCase):
                 )["status"], "PASS")
 
 
-    def test_central_tool016_master_has_no_external_registry_dependency(self) -> None:
-        manifest = runtime_progress_gate.canonical_rule_manifest(ROOT, "TOOL016")
-        self.assertIn("feedback_pipeline/TOOL016_MASTER.md", manifest["files"])
-        self.assertNotIn("REGISTRY_TARGET:TOOL016", manifest["missing"])
-        self.assertEqual(manifest["missing"], [])
+    def test_central_masters_have_no_external_registry_dependency(self) -> None:
+        for task_id, master in (
+            ("TOOL016", "feedback_pipeline/TOOL016_MASTER.md"),
+            ("TOOL044", "feedback_pipeline/TOOL044_MASTER.md"),
+            ("EMAIL_DB", "EMAIL_COLLECTION_COMMON_RULES.md"),
+        ):
+            with self.subTest(task_id=task_id):
+                manifest = runtime_progress_gate.canonical_rule_manifest(ROOT, task_id)
+                self.assertIn(master, manifest["files"])
+                self.assertEqual(manifest["missing"], [])
 
 
 if __name__ == "__main__":
