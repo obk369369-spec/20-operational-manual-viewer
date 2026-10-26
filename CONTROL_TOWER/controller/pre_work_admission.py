@@ -6,6 +6,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import secrets
 import sys
 import tempfile
@@ -260,6 +261,46 @@ def require_external_admission(work_id: str, task_id: str) -> dict[str, Any]:
                                  work_id=work_id, task_id=task_id)
 
 
+def validate_output_reopen_and_remote(receipt: dict[str, Any], reopen: Any, remote: Any) -> str | None:
+    """Bind completion to an independently reopened artifact and a remote blob retrieval."""
+    actual_ref = receipt.get("actual_result_ref")
+    if not isinstance(actual_ref, dict) or not isinstance(actual_ref.get("sha256"), str):
+        return "ACTUAL_RESULT_IDENTITY_MISSING"
+    actual_sha = actual_ref["sha256"].lower()
+    if not re.fullmatch(r"[0-9a-f]{64}", actual_sha):
+        return "ACTUAL_RESULT_IDENTITY_INVALID"
+    if not isinstance(reopen, dict):
+        return "ARTIFACT_REOPEN_RECEIPT_INVALID"
+    checks = reopen.get("format_checks")
+    if (reopen.get("work_id") != receipt.get("work_id")
+            or reopen.get("task_id") != receipt.get("task_id")
+            or not reopen.get("parser_id")
+            or not reopen.get("validator_id")
+            or reopen.get("validator_id") != receipt.get("independent_validator_id")
+            or not reopen.get("reopen_execution_id")
+            or reopen.get("reopen_execution_id") == receipt.get("execution_id")
+            or not reopen.get("artifact_format")
+            or reopen.get("artifact_sha256") != actual_sha
+            or reopen.get("source_receipt_sha256") != receipt.get("source_receipt_sha256")
+            or reopen.get("validation_result") != "PASS"
+            or not isinstance(checks, dict) or not checks
+            or not all(value is True for value in checks.values())):
+        return "ARTIFACT_REOPEN_INDEPENDENT_VALIDATION_MISMATCH"
+    if not isinstance(remote, dict):
+        return "REMOTE_READBACK_RECEIPT_INVALID"
+    commit = str(remote.get("commit_sha", "")).lower()
+    blob_oid = str(remote.get("blob_oid", "")).lower()
+    if (not re.fullmatch(r"[0-9a-f]{40}", commit)
+            or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", blob_oid)
+            or not remote.get("retrieval_id")
+            or not remote.get("remote_url")
+            or remote.get("artifact_path") != actual_ref.get("path")
+            or remote.get("retrieved_sha256") != actual_sha
+            or remote.get("validation_result") != "PASS"):
+        return "REMOTE_READBACK_IDENTITY_MISMATCH"
+    return None
+
+
 def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
     """Refuse PASS promotion without current admission and read-back-bound closure."""
     admission = require_external_admission(work_id, task_id)
@@ -306,7 +347,8 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                 elif not receipt.get("source_receipt_sha256") or not receipt.get("rule_compliance_verdict") == "PASS":
                     reason = "CLOSURE_SOURCE_OR_RULE_COMPLIANCE_UNVERIFIED"
                 else:
-                    for key in ("source_receipt_ref", "actual_result_ref", "independent_validation_ref", "remote_readback_ref"):
+                    for key in ("source_receipt_ref", "actual_result_ref", "independent_validation_ref",
+                                "artifact_reopen_ref", "remote_readback_ref"):
                         ref = receipt.get(key)
                         if not isinstance(ref, dict) or not isinstance(ref.get("path"), str) or not isinstance(ref.get("sha256"), str):
                             reason = key.upper() + "_MISSING"
@@ -350,6 +392,12 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                                           for path, digest in sorted(manifest["files"].items())]
                         expected_sources = [{"path": ref["path"], "sha256": ref["sha256"], "verdict": "PASS"}
                                             for ref in originals]
+                        tool013_checks = validator.get("tool013_output_checks", {})
+                        tool013_required = (
+                            "exact_18_columns", "full_title_translation", "approved_taxonomy",
+                            "price_and_date", "original_preserved", "no_missing_duplicate_mixed_rows",
+                            "download_reopened"
+                        )
                         if (validator.get("work_id") != work_id or validator.get("task_id") != task_id
                                 or validator.get("validator_id") != receipt["independent_validator_id"]
                                 or validator.get("execution_id") != receipt["execution_id"]
@@ -366,8 +414,17 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                                 or validator.get("rule_compliance_verdict") != "PASS"
                                 or validator.get("validation_result") != "PASS"):
                             reason = "INDEPENDENT_VALIDATION_MISMATCH"
-                        elif receipt["remote_readback_ref"]["sha256"] != receipt["actual_result_ref"]["sha256"]:
-                            reason = "REMOTE_READBACK_RESULT_MISMATCH"
+                        elif task_id.upper() == "TOOL013" and not all(
+                                tool013_checks.get(key) is True for key in tool013_required):
+                            reason = "TOOL013_OUTPUT_CHECKS_INCOMPLETE"
+                        else:
+                            try:
+                                reopen = json.loads((root / receipt["artifact_reopen_ref"]["path"]).read_text(encoding="utf-8"))
+                                remote = json.loads((root / receipt["remote_readback_ref"]["path"]).read_text(encoding="utf-8"))
+                            except (OSError, ValueError, TypeError):
+                                reason = "OUTPUT_REOPEN_OR_REMOTE_RECEIPT_INVALID"
+                            else:
+                                reason = validate_output_reopen_and_remote(receipt, reopen, remote)
     return {"decision": "BLOCK" if reason else "ALLOW", "reason": reason,
             "work_id": work_id, "task_id": task_id}
 
@@ -397,3 +454,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

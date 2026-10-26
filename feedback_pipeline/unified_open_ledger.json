@@ -94,8 +94,15 @@
       "status": "OPEN",
       "source": "USER_PARALLEL_LANES_20260903",
       "next_trigger": "AUTHORIZED_LOCAL_BROWSER_TEST_PATH_OR_CONCRETE_BUSINESS_HANDLER_INPUT_AVAILABLE",
-      "last_actual_point": "CENTRAL policy restored e4b007c834aeef98ad99e18278be539aec371c8d; live RESUME_LOADED and WORK_ELIGIBLE. Parallel lanes resumed: TOOL013 browser URL policy blocks canonical file testing; no untestable edits started. TOOL043 has no real business task payload/handler. TOOL001 dirty pre-existing edits preserved; TOOL006 current checkpoint has no code pending. CI separately fails unsupported TOOL014 registry status; existing local global_pipeline patch preserved, not published.",
-      "next_start": "Reuse policy restore, no repeat. TOOL013 resumes filename/N Pages only when permitted actual local browser test is available. TOOL043/044 require concrete real business handler/input before queue integration. Existing 001/006/041/042/007 external holds unchanged. Reconcile CI registry contract separately within authorized scope, preserving pre-existing patch.",
+      "trigger_release": {
+        "trigger": "AUTHORIZED_LOCAL_BROWSER_TEST_PATH_OR_CONCRETE_BUSINESS_HANDLER_INPUT_AVAILABLE",
+        "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+        "previous_fingerprint": "1a79d25d15c97126e152927f9ad9632ef4526ec3:ab06cd6217464b4e686ec080ddc09f24a62dd49cde34d23ac6801f390cddc7ee",
+        "current_fingerprint": "339edf186d3bfb642452072541506ac06974eef1",
+        "scope": "TOOL013_RULE_RETRIEVAL_AND_FAIL_CLOSED_OUTPUT_GATE_ONLY"
+      },
+      "last_actual_point": "TOOL013 common resolver repaired: pinned remote MASTER/RULE_SOURCE receipts at 9212abf..., human-golden provenance fail-closed gate, and seven independent output checks passed bounded regression with remote read-back. Actual user-authored golden workbook bytes remain unavailable; no actual XLSX E2E or PASS promotion.",
+      "next_start": "When an already-approved user-authored golden workbook becomes accessible, run one actual TOOL013 source-to-18-column-XLSX execution, independent field/row diff and download reopen. Until then reuse the common gate repair and keep only BLOCKED_GOLDEN_SOURCE.",
       "lane_evidence": "feedback_pipeline/evidence/parallel_resume_result_20260903.json",
       "execution_receipts": [
         {
@@ -104,6 +111,15 @@
           "evidence_ref": "feedback_pipeline/evidence/parallel_lane_stop_20260903.json",
           "condition_fingerprint": "1a79d25d15c97126e152927f9ad9632ef4526ec3:ab06cd6217464b4e686ec080ddc09f24a62dd49cde34d23ac6801f390cddc7ee",
           "persistence": "LOCAL_ONLY_REMOTE_PENDING"
+        },
+        {
+          "operation_id": "repair-tool013-rule-resolution-output-gate-20261025",
+          "status": "PASS_COMMON_GATE_REPAIR_BLOCKED_ACTUAL_GOLDEN",
+          "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "cause_id": "RULE_RETRIEVAL_CANONICAL_VERSION_TRANSFORM_VALIDATION_DISCONNECT",
+          "method_id": "REUSE_EXISTING_REGISTRY_RUNTIME_GATE_AND_PROVENANCE_VALIDATOR",
+          "condition_fingerprint": "339edf186d3bfb642452072541506ac06974eef1",
+          "remaining_hold": "BLOCKED_GOLDEN_SOURCE"
         }
       ]
     },
@@ -470,15 +486,40 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "PR65 branch d5a8caedf40b534f43c1f833f427860a7fbfae0a reuses validate_contract_isolated in execute_central_backlog. Actions40066288291/job120790135381:16 boundary tests PASS including malformed backlog isolation, independent root continuation and same-cycle Queue/ledger/Observer consistency. Nonproduction only; root remains OPEN.",
-      "next_trigger": "AUTHORIZED_MAIN_PROTECTION_READ_AND_CURRENT_EXECUTION_ADMISSION",
-      "next_start": "Reuse exact remote boundary evidence; verify main required checks/protection with authorized administration access before integration. Do not repeat unchanged tests. Production requires current RULES admission and existing STOP clearance by authorized owner, then genuine source and task contracts.",
+      "last_actual_point": "Verified rule_records are now bound from admission into requirement/backlog handlers; common handler results pass through record isolation; terminal PASS requires a matching expected output SHA-256. Exact remote runner/test blobs passed 19/19 changed-boundary checks.",
+      "next_trigger": "IMMEDIATE",
+      "next_start": "Do not rerun these gates. Resume only with an admitted real transformer contract plus accessible actual input, and canonicalize its output before producing the independent reopen and remote blob receipt.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
           "status": "POLICY_REGISTERED_NOT_IMPLEMENTED",
           "evidence_ref": "AGENTS.md@77500bb3d26945066e0492592367b13b1d0b97f3;Actions39900182686",
           "scope": "Root grouping and plain-Korean response rule only; automatic routing and actual customer execution not verified"
+        },
+        {
+          "operation_id": "common-r1-r3-r4-r5-r6-runtime-edge-repair-20261025",
+          "status": "CODE_AND_TEST_VERIFIED_NOT_BUSINESS_OUTPUT",
+          "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "commit": "8e3fcb0df2333c0aa2ef20ab7882424cb3a91b9f",
+          "remote_readback": "PASS",
+          "actual_business_output": "HOLD_GOLDEN_SOURCE"
+        },
+        {
+          "operation_id": "common-handler-rule-record-and-output-digest-binding-20261025",
+          "status": "CODE_AND_CHANGED_BOUNDARY_TEST_VERIFIED",
+          "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "commits": [
+            "aa9104d4809d9275b15936cd896dd8870ca3c5b5",
+            "9dd08fb7545cc36a686d20faa69ff1830e3038f7",
+            "999ed61410f03e7504094f0904d0be9e4ed4413b",
+            "b3222edfb5ccc80e627c98c3a5053443a82b24ab",
+            "0bc7e754d0d2ce25994e6ad6f71858f85c97913a",
+            "54d671182b67eac0f0e4e15369f056ce033d7821",
+            "7637d34e1553fc420853d7d5a2e055d706cb7765"
+          ],
+          "remote_test": "19/19 PASS using exact remote runner and test blobs",
+          "actual_business_output": "HOLD_ACTUAL_INPUT_UNAVAILABLE",
+          "remote_artifact": "HOLD_REMOTE_ARTIFACT_NOT_CANONICALIZED"
         },
         {
           "operation_id": "repair-policy-execution-route-selection-20261023",
@@ -878,13 +919,20 @@
         "root_id": "CI-REGISTRY-STAGING-STATUS",
         "directive_ref": "USER_0702A258_RESUME",
         "actions": [
-          "REPAIR_REGISTRY_STATUS"
+          "REPAIR_REGISTRY_STATUS",
+          "SCOPED_READ_ONLY_RECOVERY"
         ],
         "assets": [
-          "CENTRAL_REGISTRY_CONTRACT"
+          "CENTRAL_REGISTRY_CONTRACT",
+          "TOOL013",
+          "TOOL041",
+          "TOOL042",
+          "TOOL043",
+          "TOOL044"
         ],
         "reusable_assets": [
-          "feedback_pipeline/global_pipeline.py"
+          "feedback_pipeline/global_pipeline.py",
+          "current canonical MASTER/checkpoint/evidence/history index"
         ],
         "scope": "Existing local staging-status compatibility patch and direct regression; no TOOL014 runtime development"
       },
@@ -911,6 +959,27 @@
           "existing tool MASTER/checkpoint/runtime pointers"
         ],
         "scope": "User named parallel lanes only, no unchanged HOLD execution, no whole-tool/history scan, no completed cache/proof tests"
+      },
+      {
+        "root_id": "WIC-PARALLEL-RESIDUAL-20260903",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_TOOL013_COMMON_ROOT_RECOVERY_20261025",
+        "actions": [
+          "REPAIR_EXISTING_TOOL013_RULE_AND_OUTPUT_GATE_CONNECTION"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/runtime_progress_gate.py",
+          "CONTROL_TOWER/controller/pre_work_admission.py",
+          "feedback_pipeline/wic_target_registry.json",
+          "tests/test_permanent_reentry_gate.py",
+          "feedback_pipeline/unified_open_ledger.json"
+        ],
+        "reusable_assets": [
+          "existing canonical_rule_manifest and verify_work_admission",
+          "existing require_external_completion independent validator boundary",
+          "existing TOOL013 registry and immutable rule receipts",
+          "existing recurrence and TOOL013 handoff evidence"
+        ],
+        "scope": "Minimum repair of existing TOOL013 rule retrieval, pinned-version resolution and fail-closed provenance/output validation. No TOOL013 product redevelopment, no fabricated golden workbook, no PASS promotion without actual XLSX bytes and independent reopen comparison."
       },
       {
         "root_id": "TOOL044-PRODUCTION-TOOL043-PROOF-CONTRACT",
@@ -1154,6 +1223,36 @@
       },
       {
         "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "CURRENT_USER_DIRECTIVE_WIC_ALL_PLATFORM_SELF_RECOVERY_20261025",
+        "actions": [
+          "REPAIR_EXISTING_COMMON_RULE_REPAIR_OUTPUT_AND_EVIDENCE_GATES",
+          "BIND_RULE_RECORDS_AND_RECORD_ISOLATION_TO_EXISTING_HANDLER"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/runtime_progress_gate.py",
+          "CONTROL_TOWER/controller/universal_enforcement.py",
+          "CONTROL_TOWER/controller/pre_work_admission.py",
+          "feedback_pipeline/wic_target_registry.json",
+          "tests/test_permanent_reentry_gate.py",
+          "CONTROL_TOWER/controller/test_record_isolation.py",
+          "tests/test_output_reopen_remote_gate.py",
+          "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "tests/test_wic16_queue_isolation.py",
+          "feedback_pipeline/wic_common_execution.py",
+          "feedback_pipeline/test_wic_common_execution.py",
+          ".github/workflows/wic-external-boundary-admission.yml"
+        ],
+        "reusable_assets": [
+          "existing canonical rule manifest and target registry receipts",
+          "existing universal record isolation engine",
+          "existing external completion and independent validator gate",
+          "existing PASS_LOCK and STOP enforcement"
+        ],
+        "scope": "Incremental common R1/R3/R4/R5/R6 repair with bounded negative and regression tests. No PASS_LOCK or STOP bypass, no full scan, no fabricated Golden workbook, and no business/output PASS without actual artifact."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
         "directive_ref": "CURRENT_USER_DIRECTIVE_WIC16_CONTINUOUS_QUEUE_EMPTY_REPAIR_20261023",
         "actions": [
           "REPAIR_FALSE_COMPLETION_WHEN_QUEUE_EMPTY_WITH_UNFINISHED_WORK"
@@ -1243,6 +1342,25 @@
           "existing canonical ledger and checkpoint"
         ],
         "scope": "Reuse existing contract failure isolation in backlog path; isolated nonproduction GitHub maintenance, no main merge without verified protections, no STOP/START_BLOCKED/PASS_LOCK release or business PASS."
+      },
+      {
+        "root_id": "WIC-COMMON-POLICY-TO-EXECUTION-ROUTING-20261023",
+        "directive_ref": "USER_WIC16_PR65_CONFLICT_REPAIR_20261026",
+        "actions": [
+          "REPAIR_PR65_MERGE_CONFLICTS"
+        ],
+        "assets": [
+          "CONTROL_TOWER/controller/github_runtime_cycle.py",
+          "feedback_pipeline/unified_open_ledger.json",
+          "tests/test_wic16_queue_isolation.py"
+        ],
+        "reusable_assets": [
+          "PR #65 branch",
+          "main current handler rule binding",
+          "existing Queue isolation tests",
+          "canonical ledger"
+        ],
+        "scope": "Resolve PR #65 conflicts on existing branch; changed-boundary tests and remote readback. Preserve main, STOP, START_BLOCKED, PASS_LOCK and existing PASS. No business execution or main merge authorization."
       }
     ],
     "default": "HOLD unless exact canonical directive/action/assets authorize incremental work",

@@ -87,26 +87,6 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(called.call_count, 3)
         self.assertEqual(state["requirements"][3]["queue_status"], "WAITING")
 
-    def test_malformed_contract_is_held_without_aborting_independent_work(self) -> None:
-        evidence = self.root / "feedback_pipeline" / "evidence" / "good.json"
-        evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
-        state = self.state(1, 2)
-        queue = {"queued_requirement_ids": [1, 2], "backlog_root_ids": []}
-        registry = {"execution_contracts": [
-            {"id": "BAD", "task_id": "TOOL044", "requirement_ids": [1],
-             "proof": "synthetic", "rules": [{"path": "verified", "operation": "truthy"}]},
-            {"id": "GOOD", "task_id": "TOOL044", "requirement_ids": [2],
-             "proof": "synthetic", "evidence": "feedback_pipeline/evidence/good.json",
-             "rules": [{"path": "verified", "operation": "truthy"}]},
-        ]}
-        processed, held = runtime.route_contracts(state, queue, registry)
-        self.assertEqual([item["requirement_id"] for item in processed], [2])
-        self.assertEqual([item["requirement_id"] for item in held], [1])
-        self.assertEqual(held[0]["reason"], "CONTRACT_SCHEMA_INVALID")
-        self.assertEqual(state["requirements"][0]["status"], "HOLD")
-        self.assertEqual(state["requirements"][1]["queue_status"], "PASS_LOCKED")
-        self.assertEqual(queue["queued_requirement_ids"], [1])
-
     def test_two_allowed_one_explicit_stop(self) -> None:
         state = self.state(1, 2, 3)
         queue = {"queued_requirement_ids": [1, 2, 3], "backlog_root_ids": [],
@@ -179,6 +159,45 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual((receipt["decision"], receipt["allowed_count"]), ("ALLOW", 1))
         self.assertTrue(all(row["status"] == "OPEN" for row in ledger["entries"]))
 
+    def test_changed_condition_release_enters_queue_once_without_reopening_pass(self) -> None:
+        release = {"trigger": "ACTUAL_INPUT_AVAILABLE", "evidence_ref": "evidence/change.json",
+                   "previous_fingerprint": "old", "current_fingerprint": "new"}
+        ledger = {
+            "entries": [
+                {"root_id": "A", "status": "OPEN", "next_trigger": "ACTUAL_INPUT_AVAILABLE",
+                 "trigger_release": release},
+                {"root_id": "B", "status": "OPEN", "next_trigger": "ACTUAL_INPUT_AVAILABLE",
+                 "trigger_release": {**release, "current_fingerprint": "old"}},
+                {"root_id": "C", "status": "VERIFIED_CLOSED", "next_trigger": "IMMEDIATE"},
+            ],
+            "execution_policy": {"scope_grants": [{"root_id": "A"}, {"root_id": "B"}]},
+        }
+        queue = {"backlog_root_ids": [], "rule_admissions": {
+            "backlog:A": self.admission("backlog:A"),
+            "backlog:B": self.admission("backlog:B"),
+        }}
+        registry = {"backlog_execution_contracts": [
+            {"root_id": "A", "task_id": "TOOL013"}, {"root_id": "B", "task_id": "TOOL013"}
+        ]}
+        supplied = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(queue["backlog_root_ids"], ["A"])
+        self.assertTrue(supplied["executable"][0]["trigger_release_verified"])
+        self.assertEqual({row["root_id"]: row["defer_reason"] for row in supplied["deferred"]},
+                         {"B": "TRIGGER_NOT_READY"})
+        self.assertEqual(supplied["pass_locked_reopened"], 0)
+
+    def test_trigger_release_without_scope_grant_remains_deferred(self) -> None:
+        ledger = {"entries": [{"root_id": "A", "status": "OPEN", "next_trigger": "INPUT_CHANGED",
+                                "trigger_release": {"trigger": "INPUT_CHANGED", "evidence_ref": "e",
+                                                    "previous_fingerprint": "old",
+                                                    "current_fingerprint": "new"}}]}
+        queue = {"backlog_root_ids": [], "rule_admissions": {
+            "backlog:A": self.admission("backlog:A")}}
+        registry = {"backlog_execution_contracts": [{"root_id": "A", "task_id": "TOOL013"}]}
+        supplied = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(queue["backlog_root_ids"], [])
+        self.assertEqual(supplied["deferred"][0]["defer_reason"], "TRIGGER_NOT_READY")
+
     def test_changed_original_blocks_only_affected_job(self) -> None:
         state = self.state(1, 2)
         first = self.admission("requirement:1")
@@ -201,6 +220,46 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(ledger["entries"][0]["status"], "HOLD_EXECUTION_COMPLETION")
         self.assertNotEqual(ledger["entries"][0]["status"], "VERIFIED_CLOSED")
         self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
+
+    def test_handler_without_verified_rule_records_is_fail_closed(self) -> None:
+        receipt = runtime.validate_contract({
+            "execution_context": {"rule_records": []},
+            "evidence": "must-not-be-read.json", "rules": [],
+        })
+        self.assertEqual(receipt["status"], "HOLD")
+        self.assertEqual(receipt["reason"], "VERIFIED_RULE_RECORDS_NOT_BOUND_TO_HANDLER")
+        self.assertEqual(receipt["attempts"], 0)
+
+    def test_authoritative_global_stop_still_blocks(self) -> None:
+        with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
+            receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
+        self.assertEqual(receipt["decision"], "BLOCK")
+        self.assertEqual(receipt["reason"], "USER_STOP_OR_START_BLOCKED")
+
+
+    def test_malformed_contract_is_held_without_aborting_independent_work(self) -> None:
+        evidence = self.root / "feedback_pipeline" / "evidence" / "good.json"
+        evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        state = self.state(1, 2)
+        queue = {"queued_requirement_ids": [1, 2], "backlog_root_ids": [],
+                 "admitted_rule_contexts": {
+                     f"requirement:{value}": {"rule_records": [{"id": "synthetic-current"}]}
+                     for value in (1, 2)}}
+        registry = {"execution_contracts": [
+            {"id": "BAD", "task_id": "TOOL044", "requirement_ids": [1],
+             "proof": "synthetic", "rules": [{"path": "verified", "operation": "truthy"}]},
+            {"id": "GOOD", "task_id": "TOOL044", "requirement_ids": [2],
+             "proof": "synthetic", "evidence": "feedback_pipeline/evidence/good.json",
+             "rules": [{"path": "verified", "operation": "truthy"}]},
+        ]}
+        processed, held = runtime.route_contracts(state, queue, registry)
+        self.assertEqual([item["requirement_id"] for item in processed], [2])
+        self.assertEqual([item["requirement_id"] for item in held], [1])
+        self.assertEqual(held[0]["reason"], "CONTRACT_SCHEMA_INVALID")
+        self.assertEqual(state["requirements"][0]["status"], "HOLD")
+        self.assertEqual(state["requirements"][1]["queue_status"], "PASS_LOCKED")
+        self.assertEqual(queue["queued_requirement_ids"], [1])
+
 
     def test_execution_hold_is_reflected_in_same_cycle_canonical_surfaces(self) -> None:
         for result in ("PASS", "HOLD"):
@@ -228,6 +287,7 @@ class QueueIsolationTest(unittest.TestCase):
                 self.assertEqual(runtime.runtime_consistency(
                     queue, ledger, state, observer)["status"], "PASS")
 
+
     def test_evidence_route_fallback_only_after_readback_failure(self) -> None:
         recovery = self.root / "feedback_pipeline" / "evidence" / "recovery.json"
         recovery.write_text(json.dumps({"verified": True}), encoding="utf-8")
@@ -247,6 +307,7 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(blocked["reason"], "CONTRACT_VALIDATION_FAILED")
         self.assertEqual(blocked["evidence_route"], "PRIMARY_EVIDENCE")
         self.assertEqual(len(blocked["route_attempts"]), 1)
+
 
     def test_held_backlog_reenters_only_with_current_contract_source_and_admission(self) -> None:
         trigger = "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
@@ -270,6 +331,7 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(repeat["executable_count"], 0)
         self.assertEqual(queue["backlog_root_ids"], [])
 
+
     def test_empty_queue_with_unfinished_work_is_not_reported_complete(self) -> None:
         state = {"requirements": [{"id": 1, "name": "held work", "status": "HOLD",
                                     "queue_status": "WAITING", "next_action": "SOURCE_AVAILABLE"}],
@@ -288,6 +350,7 @@ class QueueIsolationTest(unittest.TestCase):
             runtime.write_observer_state(state, queue, {"execution_contracts": []}, [], [], "synthetic-run")
         self.assertEqual(write.call_args.args[1]["current"]["status"], "완료")
 
+
     def test_malformed_backlog_contract_does_not_abort_independent_roots(self) -> None:
         evidence = self.root / "feedback_pipeline" / "evidence" / "valid.json"
         evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
@@ -301,7 +364,9 @@ class QueueIsolationTest(unittest.TestCase):
                     {"root_id": root, "status": "OPEN", "next_trigger": "IMMEDIATE"}
                     for root in ("A", "B")]}
                 queue = {"queued_requirement_ids": [], "backlog_root_ids": ["A", "B"],
-                         "backlog_quarantine": []}
+                         "backlog_quarantine": [], "admitted_rule_contexts": {
+                              f"backlog:{root}": {"rule_records": [{"id": "synthetic-current"}]}
+                              for root in ("A", "B")}}
                 registry = {"backlog_execution_contracts": [
                     malformed,
                     {"root_id": "B", "task_id": "TOOL044",
@@ -325,13 +390,6 @@ class QueueIsolationTest(unittest.TestCase):
                     {"backlog_recovery": {"quarantined": queue["backlog_quarantine"]}}
                 )["status"], "PASS")
 
-    def test_authoritative_global_stop_still_blocks(self) -> None:
-        with patch.dict(os.environ, {"WIC_USER_STOP": "1"}):
-            receipt = pre_work_admission.require_external_admission("synthetic-work", "TOOL044")
-        self.assertEqual(receipt["decision"], "BLOCK")
-        self.assertEqual(receipt["reason"], "USER_STOP_OR_START_BLOCKED")
-
 
 if __name__ == "__main__":
     unittest.main()
-

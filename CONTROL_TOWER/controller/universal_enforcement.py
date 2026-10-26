@@ -29,7 +29,14 @@ def enforce_record_isolation(
     *,
     allowed_repair_fields: set[str] | None = None,
 ) -> dict[str, Any]:
-    """Validate, safely repair, or quarantine each record while preserving identity."""
+    """Validate, repair once, revalidate, or quarantine while preserving identity.
+
+    ``repairer`` is deliberately invoked at most once per invalid record.  Callers
+    may return validation metadata (``{"valid": bool, ...}``); it is retained in
+    the per-record evidence so an adapter does not need a second, private retry
+    loop.  Callback failures are fail-closed and isolated to the affected record.
+    Identity or protected-field mutations remain output-wide integrity failures.
+    """
     allowed = set(allowed_repair_fields or ())
     source = [deepcopy(item) for item in records]
     normal: list[dict[str, Any]] = []
@@ -55,16 +62,45 @@ def enforce_record_isolation(
             continue
         seen.add(expected_id)
         item["stable_record_id"] = expected_id
-        validation = validator(deepcopy(item))
+        try:
+            validation = validator(deepcopy(item))
+        except Exception as exc:  # adapter failure must not abort unrelated records
+            quarantined.append(item)
+            evidence.append({
+                "stable_record_id": expected_id,
+                "result": "QUARANTINED",
+                "reason": "VALIDATOR_ERROR",
+                "error_type": type(exc).__name__,
+                "repair_attempts": 0,
+            })
+            continue
         valid = validation if isinstance(validation, bool) else bool(validation.get("valid"))
         if valid:
             normal.append(item)
-            evidence.append({"stable_record_id": expected_id, "result": "NORMAL"})
+            evidence.append({"stable_record_id": expected_id, "result": "NORMAL",
+                             "repair_attempts": 0, "validation": validation})
             continue
 
-        candidate = repairer(deepcopy(item)) if repairer else None
+        candidate = None
+        repair_error = None
+        repair_attempts = 0
+        if repairer:
+            repair_attempts = 1
+            try:
+                candidate = repairer(deepcopy(item))
+            except Exception as exc:  # one failed repair is quarantined, never retried
+                repair_error = {"reason": "REPAIRER_ERROR", "error_type": type(exc).__name__}
         if candidate is not None:
-            candidate_id = stable_record_id(candidate)
+            if not isinstance(candidate, dict):
+                quarantined.append(item)
+                evidence.append({"stable_record_id": expected_id, "result": "QUARANTINED",
+                                 "reason": "INVALID_REPAIR_RESULT",
+                                 "repair_attempts": repair_attempts})
+                continue
+            try:
+                candidate_id = stable_record_id(candidate)
+            except ValueError:
+                candidate_id = None
             changed = {key for key in set(item) | set(candidate) if item.get(key) != candidate.get(key)}
             forbidden = changed - allowed
             if candidate_id != expected_id or "stable_record_id" in forbidden or forbidden:
@@ -72,17 +108,34 @@ def enforce_record_isolation(
                     "stable_record_id": expected_id,
                     "reason": "CROSS_RECORD_OR_PROTECTED_FIELD_CHANGE",
                     "changed_fields": sorted(changed),
+                    "repair_attempts": repair_attempts,
                 })
                 continue
             candidate["stable_record_id"] = expected_id
-            revalidation = validator(deepcopy(candidate))
+            try:
+                revalidation = validator(deepcopy(candidate))
+            except Exception as exc:
+                quarantined.append(item)
+                evidence.append({"stable_record_id": expected_id, "result": "QUARANTINED",
+                                 "reason": "REVALIDATOR_ERROR",
+                                 "error_type": type(exc).__name__,
+                                 "repair_attempts": repair_attempts})
+                continue
             repaired_valid = revalidation if isinstance(revalidation, bool) else bool(revalidation.get("valid"))
             if repaired_valid:
                 repaired.append(candidate)
-                evidence.append({"stable_record_id": expected_id, "result": "AUTO_REPAIRED"})
+                evidence.append({"stable_record_id": expected_id, "result": "AUTO_REPAIRED",
+                                 "repair_attempts": repair_attempts,
+                                 "validation_before": validation,
+                                 "validation_after": revalidation,
+                                 "changed_fields": sorted(changed)})
                 continue
         quarantined.append(item)
-        evidence.append({"stable_record_id": expected_id, "result": "QUARANTINED"})
+        evidence.append({"stable_record_id": expected_id, "result": "QUARANTINED",
+                         "reason": (repair_error or {}).get("reason", "UNRESOLVED_AFTER_REPAIR"),
+                         "error_type": (repair_error or {}).get("error_type"),
+                         "repair_attempts": repair_attempts,
+                         "validation_before": validation})
 
     if integrity_failures:
         return {
@@ -201,3 +254,4 @@ def self_test() -> dict[str, Any]:
     return {"pass": actual == expected and extended == expected_extended,
             "total": len(cases) + len(expected_extended), "checked": len(actual) + len(extended),
             "expected": {**expected, **expected_extended}, "actual": {**actual, **extended}}
+

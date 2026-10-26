@@ -19,7 +19,106 @@ from pathlib import Path
 from typing import Any, Mapping
 
 
-def load_latest_resume(candidate=None) -> dict[str, Any]:
+SHORT_RESUME_DIRECTIVES = {"진행", "계속 진행", "전체 진행"}
+PASS_REUSE_STATUSES = {"PASS", "VERIFIED", "REMOTE_VERIFIED", "DEPLOYED_PASS", "VERIFIED_CLOSED", "DEPLOYED_COMPLETE"}
+EXTERNAL_PRODUCT_STAGES = ("DISCOVERED", "CONNECTED", "EXECUTED", "VERIFIED", "DEPLOYED_COMPLETE")
+EXTERNAL_PRODUCT_EVIDENCE = (
+    "actual_input", "execution_log", "output_file", "reopen_result",
+    "functional_validation", "wic_repeat_execution", "remote_readback",
+)
+TOOL_EXECUTION_CONTRACTS = {
+    "TOOL013": {
+        "scope": "EXTERNAL_TOOL_VALIDATION_ONLY_DO_NOT_MODIFY_EXISTING_PROGRAM",
+        "unique_validation": "ACTUAL_WIC_EXCEL_INPUT_OUTPUT_REPEAT_EVIDENCE",
+    },
+    "TOOL049": {
+        "scope": "RESTORE_CANONICAL_EXTERNAL_BUSINESS_REVIEW_PURPOSE_BEFORE_EXECUTION",
+        "unique_validation": "HOLD_REQUIREMENTS_SOURCE_REQUIRED",
+    },
+    "TOOL051": {
+        "scope": "NEW_PRODUCT_IDEA_AND_VIRTUAL_PRODUCT_DEVELOPMENT",
+        "unique_validation": (
+            "PHOTO_VIDEO_TEXT_INPUT;AI_DESIGN;EDITABLE_3D_CAD;DIMENSION_PART_EDIT;"
+            "VIRTUAL_ASSEMBLY_MOTION_WEARABILITY;STL_STEP_DRAWINGS;COST_VENDOR_PREP;"
+            "HISTORY;DIFFERENTIATION_COMMERCIALIZATION"
+        ),
+        "safety": "NO_PHYSICAL_SAFETY_CLAIM_NO_PURCHASE_OR_ORDER_WITHOUT_USER_APPROVAL",
+    },
+}
+
+
+def normalize_resume_directive(value: str | None) -> str | None:
+    """Map the three permanent short commands to one canonical resume action."""
+    normalized = re.sub(r"\\s+", " ", str(value or "").strip())
+    return "RESUME_LATEST_COMMON_ROOTS" if normalized in SHORT_RESUME_DIRECTIVES else None
+
+
+def external_product_verdict(record: Mapping[str, Any]) -> dict[str, Any]:
+    """Fail closed: only repeatable WIC use plus remote evidence can close an external product."""
+    evidence = record.get("evidence") or {}
+    achieved = "DISCOVERED"
+    if record.get("connected") is True:
+        achieved = "CONNECTED"
+    if record.get("executed") is True and evidence.get("actual_input") and evidence.get("execution_log"):
+        achieved = "EXECUTED"
+    verified_fields = ("output_file", "reopen_result", "functional_validation")
+    if achieved == "EXECUTED" and all(evidence.get(k) for k in verified_fields):
+        achieved = "VERIFIED"
+    deployed_fields = ("wic_repeat_execution", "remote_readback")
+    if achieved == "VERIFIED" and all(evidence.get(k) for k in deployed_fields):
+        achieved = "DEPLOYED_COMPLETE"
+    return {
+        "status": achieved,
+        "pass": achieved == "DEPLOYED_COMPLETE",
+        "missing_evidence": [k for k in EXTERNAL_PRODUCT_EVIDENCE if not evidence.get(k)],
+    }
+
+
+def build_root_execution_plan(rows) -> dict[str, Any]:
+    """Deduplicate remaining work by persisted bottom-root fingerprint."""
+    groups: dict[str, dict[str, Any]] = {}
+    skipped_pass = []
+    held = []
+    for row in rows:
+        root_id = row.get("root_id") or row.get("id") or "UNKNOWN_ROOT"
+        status = str(row.get("status", "")).upper()
+        if status in PASS_REUSE_STATUSES or status.startswith(("PASS_", "VERIFIED_", "REMOTE_VERIFIED_")):
+            skipped_pass.append(root_id)
+            continue
+        fingerprint = (row.get("root_fingerprint") or row.get("condition_fingerprint") or
+                       row.get("cause_id") or root_id)
+        group = groups.setdefault(str(fingerprint), {"root_fingerprint": str(fingerprint), "root_ids": [],
+                                                      "statuses": [], "asset_locks": [], "execution": "READY"})
+        group["root_ids"].append(root_id)
+        group["statuses"].append(status)
+        group["asset_locks"].extend(row.get("target_assets") or [])
+        if "HOLD" in status or "BLOCK" in status or status in {"PLATFORM_LIMIT", "PENDING"}:
+            group["execution"] = "HOLD_REUSE"
+    for group in groups.values():
+        group["root_ids"] = sorted(set(group["root_ids"]))
+        group["statuses"] = sorted(set(group["statuses"]))
+        group["asset_locks"] = sorted(set(group["asset_locks"]))
+        if group["execution"] == "HOLD_REUSE":
+            held.append(group["root_fingerprint"])
+    ready = sorted(k for k, v in groups.items() if v["execution"] == "READY")
+    return {"groups": groups, "parallel_ready_root_fingerprints": ready,
+            "hold_reuse_root_fingerprints": sorted(held), "skip_reuse_root_ids": sorted(set(skipped_pass)),
+            "same_asset_parallel_mutation": False,
+            "tool013_policy": "EXTERNAL_TOOL_VALIDATION_ONLY_DO_NOT_MODIFY_EXISTING_PROGRAM",
+            "tool049_tool051_policy": "PRESERVE_UNIQUE_FUNCTIONS_REUSE_COMMON_PLATFORM",
+            "external_product_lifecycle": list(EXTERNAL_PRODUCT_STAGES),
+            "external_product_final_pass": "DEPLOYED_COMPLETE_WITH_ACTUAL_EVIDENCE_ONLY",
+            "tool_execution_contracts": TOOL_EXECUTION_CONTRACTS,
+            "common_external_roots": [
+                "DISCOVERY", "AUTHENTICATION", "API_CONNECTION", "EXECUTION_ENVIRONMENT",
+                "FILE_INPUT_OUTPUT", "EVIDENCE", "REPEAT_EXECUTION", "INTERNAL_DEPLOYMENT",
+            ],
+            "tool049_restore_hold": "HOLD_REQUIREMENTS_SOURCE_REQUIRED",
+            "tool051_first_case": "NEW_IDEA_USING_GOGGLE_DECORATION_HAT_AS_REFERENCE_NOT_REPLICA",
+            "top_platform_migration_included": True}
+
+
+def load_latest_resume(candidate=None, directive: str | None = None) -> dict[str, Any]:
     """Read one immutable CENTRAL revision; never fall back to remembered state."""
     repo = "obk369369-spec/20-operational-manual-viewer"
     def read(url):
@@ -78,7 +177,12 @@ def load_latest_resume(candidate=None) -> dict[str, Any]:
     admission = (evaluate_candidate(candidate, canonical_inputs['feedback_pipeline/unified_open_ledger.json'])
                  if candidate is not None else {'decision': 'WORK_HOLD_CANDIDATE_REQUIRED'})
     admission['execution_allowed'] = admission['decision'] == 'WORK_ELIGIBLE'
+    normalized_directive = normalize_resume_directive(directive)
+    root_execution_plan = build_root_execution_plan(remaining)
     return {"status": "RESUME_LOADED", "central_revision": head,
+            "resume_directive": normalized_directive,
+            "automatic_root_classification_started": normalized_directive is not None,
+            "root_execution_plan": root_execution_plan,
             "common_execution_block": {'path': common_path, 'sha256': hashlib.sha256(common.encode()).hexdigest(),
                                        'content': common, 'policy': 'PERMANENT_FAIL_CLOSED_V1'},
             "work_admission": admission,
@@ -266,6 +370,30 @@ def build_exit_templates(handoff: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def self_test() -> None:
+    for short in ("진행", "계속 진행", "전체 진행"):
+        assert normalize_resume_directive(short) == "RESUME_LATEST_COMMON_ROOTS"
+    assert normalize_resume_directive("새 도구 만들어") is None
+    grouped = build_root_execution_plan([
+        {"root_id": "done", "status": "VERIFIED"},
+        {"root_id": "a", "status": "OPEN", "root_fingerprint": "NETWORK"},
+        {"root_id": "b", "status": "OPEN", "root_fingerprint": "NETWORK"},
+        {"root_id": "c", "status": "HOLD_EXTERNAL", "condition_fingerprint": "AUTH"},
+    ])
+    assert grouped["groups"]["NETWORK"]["root_ids"] == ["a", "b"]
+    assert grouped["parallel_ready_root_fingerprints"] == ["NETWORK"]
+    assert grouped["hold_reuse_root_fingerprints"] == ["AUTH"]
+    assert grouped["skip_reuse_root_ids"] == ["done"]
+    assert grouped["tool013_policy"].startswith("EXTERNAL_TOOL_VALIDATION_ONLY")
+    assert grouped["tool049_restore_hold"] == "HOLD_REQUIREMENTS_SOURCE_REQUIRED"
+    assert grouped["tool_execution_contracts"]["TOOL051"]["scope"] == "NEW_PRODUCT_IDEA_AND_VIRTUAL_PRODUCT_DEVELOPMENT"
+    partial = external_product_verdict({"connected": True, "executed": True, "evidence": {
+        "actual_input": "input.xlsx", "execution_log": "run-1", "output_file": "out.step",
+        "reopen_result": "PASS", "functional_validation": "PASS"}})
+    assert partial["status"] == "VERIFIED" and partial["pass"] is False
+    completed = external_product_verdict({"connected": True, "executed": True, "evidence": {
+        key: "PASS" for key in EXTERNAL_PRODUCT_EVIDENCE}})
+    assert completed["status"] == "DEPLOYED_COMPLETE" and completed["pass"] is True
+
     # Existing lower-cost fixtures receive explicit scoped authority; they do
     # not bypass the newly connected preflight in production.
     production_evaluate = globals()['evaluate_candidate']
@@ -347,12 +475,13 @@ def main() -> None:
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--resume-latest", action="store_true")
     parser.add_argument("--candidate", default="", help="Exact Work candidate; evaluated after fresh CENTRAL load")
+    parser.add_argument("--directive", default="", help="Permanent short resume command: 진행 / 계속 진행 / 전체 진행")
     args = parser.parse_args()
 
     if args.resume_latest:
         try:
             candidate = json.loads(Path(args.candidate).read_text(encoding='utf-8')) if args.candidate else None
-            result = load_latest_resume(candidate)
+            result = load_latest_resume(candidate, args.directive)
             print(json.dumps(result, ensure_ascii=False, indent=2))
             if candidate is not None and not result['execution_allowed']:
                 raise SystemExit(2)

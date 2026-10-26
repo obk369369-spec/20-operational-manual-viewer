@@ -145,6 +145,10 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
     contracts = ({item.get("root_id") for item in registry.get("backlog_execution_contracts", [])
                   if item.get("root_id")} if registry is not None else None)
     admissions = queue.get("rule_admissions", {})
+    granted_roots = {
+        item.get("root_id") for item in ledger.get("execution_policy", {}).get("scope_grants", [])
+        if isinstance(item, dict) and item.get("root_id")
+    }
     for entry in ledger.get("entries", []):
         status = str(entry.get("status", "UNKNOWN"))
         if status in CLOSED_LEDGER_STATUSES:
@@ -155,20 +159,36 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
             "next_trigger": entry.get("next_trigger"),
             "next_start": entry.get("next_start"),
         }
+        trigger = entry.get("next_trigger")
+        release = entry.get("trigger_release") if isinstance(entry.get("trigger_release"), dict) else {}
+        release_ready = bool(
+            trigger not in {None, "", "IMMEDIATE", "NONE"}
+            and release.get("trigger") == trigger
+            and release.get("evidence_ref")
+            and release.get("previous_fingerprint")
+            and release.get("current_fingerprint")
+            and release.get("previous_fingerprint") != release.get("current_fingerprint")
+            and entry.get("root_id") in granted_roots
+        )
+        ready = status == "OPEN" and (trigger == "IMMEDIATE" or release_ready)
+        if release_ready:
+            summary["trigger_release_verified"] = True
         work_id = f"backlog:{entry.get('root_id')}"
         admission = admissions.get(work_id) if isinstance(admissions, dict) else None
-        ready = status == "OPEN" and entry.get("next_trigger") == "IMMEDIATE"
-        recoverable_hold = (status.startswith("HOLD_EXECUTION_") and
-                            entry.get("next_trigger") in {
-                                "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
-                                "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
-                                "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
-                            } and registry is not None and entry.get("root_id") in contracts and
-                            isinstance(admission, dict) and
-                            isinstance(admission.get("source_receipt"), dict))
+        recoverable_hold = (
+            status.startswith("HOLD_EXECUTION_")
+            and trigger in {
+                "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+                "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+                "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
+            }
+            and registry is not None
+            and entry.get("root_id") in contracts
+            and isinstance(admission, dict)
+            and isinstance(admission.get("source_receipt"), dict)
+        )
         if recoverable_hold:
-            isolated = {"queued_requirement_ids": [],
-                        "backlog_root_ids": [entry["root_id"]],
+            isolated = {"queued_requirement_ids": [], "backlog_root_ids": [entry["root_id"]],
                         "rule_admissions": {work_id: admission}}
             ready = queued_work_admission(isolated, registry)["decision"] == "ALLOW"
         if ready and contracts is not None and entry.get("root_id") not in contracts:
@@ -231,7 +251,10 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
                 "resume_condition": entry["next_trigger"],
             })
             continue
-        receipt = validate_contract_isolated(handler)
+        work_id = f"backlog:{root_id}"
+        execution_context = queue.get("admitted_rule_contexts", {}).get(work_id)
+        bound_handler = {**handler, "execution_context": execution_context}
+        receipt = validate_contract_isolated(bound_handler)
         if receipt["status"] == "PASS":
             # A contract proves evidence shape, not an executed business result.
             # This adapter has no worker result/independent completion receipt to close the root.
@@ -307,6 +330,15 @@ def rule_passes(payload: dict[str, Any], rule: dict[str, Any]) -> bool:
 
 
 def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
+    contexts = ([contract.get("execution_context")]
+                if "execution_context" in contract else contract.get("execution_contexts"))
+    if contexts is not None and (not isinstance(contexts, list) or not contexts or any(
+            not isinstance(context, dict)
+            or not isinstance(context.get("rule_records"), list)
+            or not context["rule_records"] for context in contexts)):
+        return {"status": "HOLD", "reason": "VERIFIED_RULE_RECORDS_NOT_BOUND_TO_HANDLER",
+                "evidence": [], "readback_pass": False, "attempts": 0,
+                "evidence_recovered": False}
     evidence_refs = contract.get("evidence_files") or [contract["evidence"]]
     candidate_sets = [evidence_refs]
     recovery_refs = contract.get("recovery_evidence_files") or (
@@ -364,8 +396,14 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
             if requirement_id in owners:
                 raise RuntimeError("DUPLICATE_REQUIREMENT_CONTRACT")
             owners[requirement_id] = contract["id"]
-    with ThreadPoolExecutor(max_workers=max(1, min(4, len(contracts)))) as executor:
-        receipts = list(executor.map(validate_contract_isolated, contracts))
+    rule_contexts = queue.get("admitted_rule_contexts", {})
+    bound_contracts = []
+    for contract in contracts:
+        requirement_ids = [int(value) for value in contract.get("requirement_ids", []) if int(value) in queued]
+        contexts = [rule_contexts.get(f"requirement:{value}") for value in requirement_ids]
+        bound_contracts.append({**contract, "execution_contexts": contexts})
+    with ThreadPoolExecutor(max_workers=max(1, min(4, len(bound_contracts)))) as executor:
+        receipts = list(executor.map(validate_contract_isolated, bound_contracts))
     processed: list[dict[str, Any]] = []
     held: list[dict[str, Any]] = []
     for contract, receipt in zip(contracts, receipts):
@@ -418,6 +456,9 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         next_work = backlog_quarantine[0].get("resume_condition")
     revenue_path = body.ROOT / "feedback_pipeline" / "evidence" / "wic_24h_tools_revenue_closeout_20261001.json"
     revenue = body.load(revenue_path) if revenue_path.exists() else {}
+    quality_path = body.ROOT / "CONTROL_TOWER" / "ledger" / "evidence" / "WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json"
+    quality = body.load(quality_path) if quality_path.exists() else {}
+    quality_counts = quality.get("counts", {}) if isinstance(quality, dict) else {}
     def item(row: dict[str, Any], status: str) -> dict[str, Any]:
         return {"requirement_id": str(row["id"]), "name": row["name"], "status": status,
                 "evidence": row.get("evidence"), "resume_condition": row.get("next_action")}
@@ -444,6 +485,30 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         "business": {"public_pilot": revenue.get("public_pilot", {}).get("name"),
                      "customer_response": revenue.get("public_pilot", {}).get("customer_response", "WAITING"),
                      "actual_revenue": revenue.get("truth", {}).get("actual_revenue", False)},
+        "output_quality": {
+            "scope": quality.get("scope_name"),
+            "scope_limit": quality.get("scope_limit"),
+            "inspected": quality_counts.get("unique_errors", 0),
+            "resolved_and_revalidated": quality_counts.get("resolved_and_revalidated", 0),
+            "unresolved": quality_counts.get("unresolved", 0),
+            "hold": quality_counts.get("hold", 0),
+            "recurrence": quality_counts.get("recurrence", 0),
+            "inspection_rate_percent": quality_counts.get("inspection_rate_percent"),
+            "repair_rate_percent": quality_counts.get("repair_rate_percent"),
+            "overall_complete": quality_counts.get("overall_complete", False),
+            "easy_korean": quality.get("korean_summary", "검증된 품질 집계가 아직 없습니다."),
+            "evidence": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json",
+        },
+        "environment_quality_boundaries": {
+            "CHATGPT_GENERAL": {"pre_output_gate": False, "automatic_canonical_ingest": False,
+                                "status": "PLATFORM_HOLD"},
+            "CODEX_WORK": {"pre_output_gate": False, "canonical_evidence_write": True,
+                           "status": "PARTIAL_POST_OUTPUT_EVIDENCE"},
+            "WIC_PLATFORM": {"controlled_executor_gate": True,
+                             "verified_execution_contracts": len(registry.get("backlog_execution_contracts", [])),
+                             "status": ("READY" if registry.get("backlog_execution_contracts")
+                                        else "HOLD_EXECUTION_CONTRACT_REQUIRED")},
+        },
         "observer_reinstruction_required": 0,
         "backlog_recovery": {
             "quarantined": backlog_quarantine,
@@ -452,6 +517,24 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         },
     }
     body.atomic_json(body.ROOT / "public" / "wic_observer_state.json", payload)
+
+
+def controller_rule_context_json() -> str | None:
+    """Reuse the rule context from the exact admission already checked by the workflow."""
+    direct = os.environ.get("WIC_RULE_CONTEXT_JSON")
+    if direct:
+        return direct
+    try:
+        bundle = json.loads(os.environ.get("WIC_RULE_ADMISSION_JSON", "null"))
+    except (TypeError, ValueError):
+        return None
+    work_id = "workflow:wic-top-controller-runtime:controller-cycle"
+    if isinstance(bundle, dict) and isinstance(bundle.get("admissions"), dict):
+        admission = bundle["admissions"].get(work_id)
+    else:
+        admission = bundle
+    context = admission.get("rule_context") if isinstance(admission, dict) else None
+    return json.dumps(context, ensure_ascii=False) if isinstance(context, dict) else None
 
 
 def top_level_rule_admission(raw_context: str | None) -> dict[str, Any]:
@@ -489,6 +572,10 @@ def queued_work_admission(queue: dict[str, Any], registry: dict[str, Any]) -> di
         else:
             receipt = verify_work_admission(
                 admission, repo_root=body.ROOT, work_id=work_id, task_id=task_id)
+            if receipt["decision"] == "ALLOW":
+                # Bind the exact verified records to the selected handler.  A
+                # digest-only identity is not sufficient transformation input.
+                receipt["rule_context"] = copy.deepcopy(admission["rule_context"])
         receipts.append(receipt)
     allowed_count = sum(item["decision"] == "ALLOW" for item in receipts)
     return {"decision": ("ALLOW" if allowed_count == len(receipts) else
@@ -506,6 +593,10 @@ def isolate_denied_queued_work(state: dict[str, Any], queue: dict[str, Any],
     queue["queued_requirement_ids"] = [value for value in queue.get("queued_requirement_ids", [])
                                        if int(value) not in locked]
     admission = queued_work_admission(queue, registry)
+    queue["admitted_rule_contexts"] = {
+        item["work_id"]: item["rule_context"] for item in admission["receipts"]
+        if item["decision"] == "ALLOW" and isinstance(item.get("rule_context"), dict)
+    }
     denied = {item["work_id"]: item for item in admission["receipts"]
               if item["decision"] != "ALLOW"}
     queue["backlog_root_ids"] = [root for root in queue.get("backlog_root_ids", [])
@@ -549,7 +640,7 @@ def isolate_denied_queued_work(state: dict[str, Any], queue: dict[str, Any],
 
 
 def main() -> None:
-    rule_admission = top_level_rule_admission(os.environ.get("WIC_RULE_CONTEXT_JSON"))
+    rule_admission = top_level_rule_admission(controller_rule_context_json())
     if rule_admission["decision"] != "ALLOW":
         print(json.dumps({"start_blocked": True, "top_rule_admission": rule_admission},
                          ensure_ascii=False))
@@ -741,4 +832,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
