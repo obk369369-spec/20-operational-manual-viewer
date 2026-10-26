@@ -631,10 +631,40 @@
           "incomplete_root_closure_delta": 0,
           "checkpoint": {
             "last_success_stage": "PR_BRANCH_REMOTE_CHANGED_BOUNDARY_PASS",
-            "next_start": "Review PR #65 protection and approval separately; actual backlog execution requires current contract, actual source, task admission, handler and expected result.",
-            "rollback_point": "056d9fc34346f49e0251d7d87e7875757376c4c1"
+            "next_start": "PR #65: confirm main protection and required reviews/checks; resolve CircleCI configuration if required. Keep main unmerged until then.",
+            "rollback_point": "056d9fc34346f49e0251d7d87e7875757376c4c1",
+            "last_remote_readback_commit": "e204eb9361345e8dd80563f770172667a0c900ec"
           },
-          "scope": "Existing PR branch conflict and common rule admission transport repair only; no customer work or main integration."
+          "scope": "Existing PR branch conflict and common rule admission transport repair only; no customer work or main integration.",
+          "remaining_blockers": [
+            {
+              "item": "MAIN_PROTECTION_READ",
+              "status": "HOLD",
+              "reason": "GitHub integration received HTTP 403 Resource not accessible by integration for main branch protection",
+              "resume_condition": "Authorized protection review or repository administrator confirms required checks and approval"
+            },
+            {
+              "item": "CIRCLECI_PIPELINE",
+              "status": "ERROR",
+              "reason": "Commit status reports No configuration was found in your project",
+              "resume_condition": "Repository owner resolves CircleCI configuration or confirms this status is not required"
+            },
+            {
+              "item": "MAIN_MERGE",
+              "status": "HOLD",
+              "reason": "Required protection and approval conditions unverified; PR remains unmerged",
+              "resume_condition": "Confirm required checks and authorized main integration"
+            }
+          ],
+          "changed_files_readback": [
+            ".github/workflows/wic-external-boundary-admission.yml",
+            "CONTROL_TOWER/controller/github_runtime_cycle.py",
+            "CONTROL_TOWER/controller/pre_work_admission.py",
+            "CONTROL_TOWER/controller/runtime_progress_gate.py",
+            "WIC_GLOBAL_OPERATING_RULES.md",
+            "feedback_pipeline/unified_open_ledger.json",
+            "tests/test_wic16_queue_isolation.py"
+          ]
         }
       ],
       "trigger_release": {
