@@ -189,6 +189,63 @@ def verdict(receipt: dict[str, Any]) -> str:
     return "PASS"
 
 
+def output_self_audit_verdict(receipt: dict[str, Any]) -> str:
+    """Gate a new output on complete, independently evidenced self-audit coverage.
+
+    This validates the receipt supplied by the task-specific checker.  It does
+    not infer semantic correctness from an AI result or from a successful export.
+    Existing locked results are not reopened by this function.
+    """
+    audit = receipt.get("self_audit")
+    if not isinstance(audit, dict):
+        return "HOLD"
+    stages = audit.get("stages")
+    if not isinstance(stages, dict) or set(stages) != {
+        "detect", "cause", "repair_revalidate", "prevent_recurrence"
+    }:
+        return "HOLD"
+    if any(not isinstance(stage, dict) or stage.get("executed") is not True
+           or not stage.get("evidence_ref") for stage in stages.values()):
+        return "HOLD"
+    count_keys = ("source_rows", "output_rows", "required_cells", "checked_cells",
+                  "initial_errors", "corrected_errors", "residual_errors",
+                  "unverified_required")
+    if any(type(audit.get(key)) is not int or audit[key] < 0 for key in count_keys):
+        return "HOLD"
+    expected = audit.get("expected_columns")
+    actual = audit.get("actual_columns")
+    if (not isinstance(expected, list) or not expected
+            or any(not isinstance(name, str) or not name for name in expected)
+            or actual != expected):
+        return "HOLD"
+    if audit["source_rows"] == 0 or audit["source_rows"] != audit["output_rows"]:
+        return "FAIL"
+    if (audit["required_cells"] != audit["output_rows"] * len(expected)
+            or audit["checked_cells"] != audit["required_cells"]):
+        return "HOLD"
+    if audit["initial_errors"] != audit["corrected_errors"] + audit["residual_errors"]:
+        return "HOLD"
+    changes = audit.get("before_after")
+    if not isinstance(changes, list) or len(changes) != audit["corrected_errors"]:
+        return "HOLD"
+    if any(not isinstance(change, dict) or not all(
+            key in change for key in ("record_id", "field", "before", "after", "cause_id"))
+            for change in changes):
+        return "HOLD"
+    if any(not change["record_id"] or not change["field"] or not change["cause_id"]
+           or change["before"] == change["after"] for change in changes):
+        return "HOLD"
+    if (audit.get("full_revalidation_pass") is not True
+            or audit.get("independent_validation_pass") is not True
+            or audit.get("source_identity_pass") is not True
+            or audit.get("no_duplicate_or_loss_pass") is not True
+            or not audit.get("recurrence_rule_ref")):
+        return "HOLD"
+    if audit["residual_errors"] or audit["unverified_required"]:
+        return "HOLD"
+    return "PASS"
+
+
 def closure_verdict(receipt: dict[str, Any]) -> str:
     """Fail closed unless an execution receipt proves the complete shared contract."""
     if REQUIRED_CLOSURE_FIELDS.difference(receipt):

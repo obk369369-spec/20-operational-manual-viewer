@@ -359,7 +359,7 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
     if admission["decision"] != "ALLOW":
         return {"decision": "BLOCK", "reason": "CURRENT_ADMISSION_" + str(admission["reason"]),
                 "work_id": work_id, "task_id": task_id}
-    from universal_enforcement import closure_verdict
+    from universal_enforcement import closure_verdict, output_self_audit_verdict
     root = Path(__file__).resolve().parents[2]
     try:
         refs = json.loads(os.environ.get("WIC_CLOSURE_RECEIPTS_JSON", "null"))
@@ -389,6 +389,8 @@ def require_external_completion(work_id: str, task_id: str) -> dict[str, Any]:
                 reason = "CLOSURE_RUN_ID_MISMATCH"
             elif not receipt.get("independent_validator_id") or not receipt.get("execution_id"):
                 reason = "INDEPENDENT_VALIDATION_EVIDENCE_MISSING"
+            elif output_self_audit_verdict(receipt) != "PASS":
+                reason = "SELF_AUDIT_NOT_PASS"
             elif closure_verdict(receipt) != "PASS":
                 reason = "CLOSURE_VERDICT_NOT_PASS"
             else:
