@@ -572,5 +572,43 @@
     },
     "platform_scope": "Only this OpenRefine synthetic flow audited. Common WIC all-tool enforcement not implemented or claimed. Existing PASS_LOCK and previous evidence untouched.",
     "next_start": "Obtain approved semantic expected values and authorized real publisher source. Separately admit a change to the existing universal_enforcement verdict path so all WIC tools must submit full self-audit receipts before new PASS."
+  },
+  "publisher_unattended_self_validation_handoff_20261027": {
+    "classification": "HOLD_NO_NEW_UNATTENDED_RUN",
+    "requested_scope": "first-approved publisher source/output/rules/repair history baseline; new-file comparison; four-stage self-audit; zero residual and zero unverified mandatory fields before automatic release",
+    "reusable_existing_evidence": [
+      {
+        "repository": "obk369369-spec/13-excel-upload",
+        "ref": "9212abf64f67e56d934c84efb0b91a97253a7203",
+        "path": "tool13_v2/OPERATIONS_READY.json",
+        "scope": "TOOL013_V2 translation acceptance and actual XLS E2E PASS; does not by itself approve arbitrary OpenRefine publisher workflows"
+      },
+      {
+        "repository": "obk369369-spec/13-excel-upload",
+        "ref": "9212abf64f67e56d934c84efb0b91a97253a7203",
+        "path": "evidence/tool13_v2_translation_acceptance.json",
+        "scope": "one exact approved Korean title fixture"
+      },
+      {
+        "repository": "obk369369-spec/13-excel-upload",
+        "ref": "9212abf64f67e56d934c84efb0b91a97253a7203",
+        "path": "evidence/tool13_v2_actual_template_e2e.json",
+        "scope": "one-row actual XLS 18-column shape, source/output hashes and 12 negative cases; source/output bytes not available through this GitHub evidence read"
+      }
+    ],
+    "current_openrefine_status": "synthetic corrected XLSX HOLD; translation/category semantic checks not approved; 10 blank output fields whose mandatory status for a real publisher is unverified",
+    "automatic_pass_admission": "DENIED_UNTIL_PUBLISHER_BASELINE_AND_FULL_SELF_AUDIT",
+    "new_publisher_files_processed": 0,
+    "new_unattended_outputs": 0,
+    "new_auto_repairs": 0,
+    "accuracy_metrics": {
+      "approved_case_match_rate": null,
+      "error_discovery_rate": null,
+      "auto_repair_success_rate": null,
+      "recurrence_count": null,
+      "reason": "no authorized new publisher run with complete approved expected output"
+    },
+    "platform_enforcement": "NOT_IMPLEMENTED; existing universal_enforcement.verdict checks total/checked/skipped/unresolved/evidence/readback but does not require four-stage counts, residual_error_count, unverified_required_count for all new outputs",
+    "next_start": "Use a formally admitted change to existing shared output-verdict path, with migration-safe receipt schema and targeted remote tests; bind actual approved per-publisher source/output bytes and expected semantic fields before enabling unattended PASS. Do not promote the synthetic file or a one-title fixture to a full publisher baseline."
   }
 }
