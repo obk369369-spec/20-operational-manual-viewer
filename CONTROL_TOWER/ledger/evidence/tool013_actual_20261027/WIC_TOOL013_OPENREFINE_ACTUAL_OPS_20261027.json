@@ -487,5 +487,90 @@
       "ROOT-E": "PARTIAL_REMOTE_EVIDENCE_ONLY; no external runtime handoff"
     },
     "next_start": "Obtain authorized unseen publisher input and approved expected fields; test semantic header mapping before claiming generic reuse. Reuse project 2238989884816 history and output hash; do not rerun MarketsandMarkets six rows."
+  },
+  "openrefine_synthetic_4_stage_self_audit_20261027": {
+    "scope": "existing isolated synthetic project 2238989884816; one row, 18 output columns; no real publisher processing",
+    "final_verdict": "HOLD",
+    "stage_1_detection": {
+      "status": "EXECUTED",
+      "input_rows": 1,
+      "output_rows": 1,
+      "output_cells": 18,
+      "first_detected_errors": 1,
+      "first_error_rate_percent_of_output_cells": 5.56,
+      "error": "Cost=3500 was mapped to PDF가격 without source evidence of price type or currency",
+      "repeat_check": "same unsupported mapping found once in this project; no cross-publisher recurrence claim"
+    },
+    "stage_2_cause": {
+      "status": "EXECUTED",
+      "root_cause": "generic Cost source header lacks PDF price type and currency semantics",
+      "recurrence_scope": "any file with undifferentiated Cost header",
+      "unrelated_causes": [
+        "AI translation semantic accuracy lacks approved expected value",
+        "AI category semantic accuracy lacks approved expected value",
+        "publisher-specific requiredness of blank output fields unverified"
+      ]
+    },
+    "stage_3_repair_revalidate": {
+      "status": "EXECUTED_WITH_HOLD",
+      "openrefine_operation": "core/text-transform on PDF가격, grel:null",
+      "history_id": 1793091462743,
+      "before": {
+        "PDF가격": 3500
+      },
+      "after": {
+        "PDF가격": null
+      },
+      "corrected_cells": 1,
+      "changed_cells_total": 1,
+      "revalidated_rows": 1,
+      "revalidated_columns": 18,
+      "independent_checks_total": 11,
+      "independent_checks_passed": 11,
+      "checks": [
+        "source/output row count",
+        "18 column count",
+        "18 column order",
+        "English title preservation",
+        "page count",
+        "date",
+        "product code",
+        "Pages format",
+        "unsupported PDF price cleared",
+        "no duplicate code",
+        "all other output cells unchanged"
+      ],
+      "confirmed_residual_errors": 0,
+      "confirmed_residual_error_rate_percent_of_output_cells": 0,
+      "unverified_semantic_fields": 2,
+      "unverified_semantic_field_names": [
+        "상품명 translation accuracy",
+        "2차카테고리 classification accuracy"
+      ],
+      "blank_output_fields": 10,
+      "blank_fields_requiredness_unverified": true,
+      "pass_prohibited": true
+    },
+    "stage_4_prevention": {
+      "status": "PARTIAL_RULE_RECORDED_NOT_PLATFORM_ENFORCED",
+      "rule": "Do not assign a generic Cost value to PDF가격 or a currency code without source evidence of sale format and currency; leave blank and HOLD if required.",
+      "recorded_in": [
+        "OpenRefine project history",
+        "this existing GitHub Evidence"
+      ],
+      "not_verified": [
+        "automatic reapplication to a new publisher",
+        "all-tool WIC common admission or output enforcement"
+      ]
+    },
+    "corrected_output": {
+      "local_path": "C:\\Users\\obk36\\AppData\\Local\\Temp\\WIC16_OpenRefine_Synthetic_18col_corrected_20261027.xlsx",
+      "sha256": "0D117DCF1E895A13E7442EBF769C1F851B969C5108331FC5933F419F7BFCD8D1",
+      "bytes": 3866,
+      "producer": "OpenRefine 3.10.0 direct XLSX export",
+      "independent_reader": "openpyxl read_only"
+    },
+    "platform_scope": "Only this OpenRefine synthetic flow audited. Common WIC all-tool enforcement not implemented or claimed. Existing PASS_LOCK and previous evidence untouched.",
+    "next_start": "Obtain approved semantic expected values and authorized real publisher source. Separately admit a change to the existing universal_enforcement verdict path so all WIC tools must submit full self-audit receipts before new PASS."
   }
 }
