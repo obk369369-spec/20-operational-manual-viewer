@@ -309,7 +309,7 @@
       "https://github.com/sunilnatraj/llm-extension"
     ],
     "extension_install_assessment": {
-      "status": "RELEASE_ACQUIRED_ISOLATED_NOT_ACTIVE",
+      "status": "ISOLATED_RUNTIME_LOADED_LOCAL_PROVIDER_SYNTHETIC_ONLY",
       "candidate": "OpenRefine AI Extension",
       "release": "v0.1.2.3",
       "release_asset": "openrefine-llm-extension-0.1.2.zip",
@@ -353,11 +353,58 @@
           "result": "PROCESS_EXITED_SERVER_NOT_STARTED"
         }
       ],
-      "active_extension_menu_verified": false,
-      "translation_runtime_verified": false,
-      "category_runtime_verified": false,
+      "active_extension_menu_verified": true,
+      "translation_runtime_verified": "SYNTHETIC_ONLY",
+      "category_runtime_verified": "SYNTHETIC_ONLY",
       "reason_for_stop": "No verified Java runtime for isolated launcher and no verified local LLM provider; do not restart or modify existing OpenRefine projects or transmit publisher data."
     },
     "resume_from": "Existing 18-column output and project 2761202237829 remain preserved. Official AI extension v0.1.2.3 ZIP is acquired and unpacked only in isolated Temp workspace. Next identify an authorized Java runtime and verified local model/provider, start isolated OpenRefine with extension, verify menu, then test only a new publisher with expected WIC output. Do not repeat MarketsandMarkets 6-row validation or re-query project list."
+  },
+  "openrefine_extension_runtime_probe_20261027": {
+    "classification": "PARTIAL_ISOLATED_SYNTHETIC_ONLY",
+    "existing_evidence_reused": [
+      "b17a96323297bc686faf0f50cff67ff6e43dbb0f",
+      "dbae265715d80656925c3906677be5fd507da8f0",
+      "533395841731f7952050ee1c5c1868709adc4b41"
+    ],
+    "root_status": {
+      "ROOT-A": "PARTIAL: bundled Temurin 11.0.30 discovered and isolated OpenRefine 3334 started with llm-extension module loaded; original 3333/project 2761202237829 untouched",
+      "ROOT-B": "PARTIAL: installed local llama3:latest model connected to extension using loopback 127.0.0.1; persisted provider and synthetic translation/classification only",
+      "ROOT-C": "HOLD: no unseen real publisher schema processed; automatic semantic header mapping unverified",
+      "ROOT-D": "HOLD: BCC Research source read approval rejected; no actual new publisher WIC 18-column XLSX",
+      "ROOT-E": "PARTIAL: this evidence stored remotely; no WIC platform worker handoff, ACK, checkpoint recovery or PC-independent execution"
+    },
+    "execution": {
+      "isolated_workspace": "C:/Users/obk36/AppData/Local/Temp/WIC16_OpenRefine_Extension_Probe_20261027",
+      "isolated_port": 3334,
+      "openrefine_version": "3.10.0",
+      "java_home_process_only": "C:/Users/obk36/AppData/Local/Temp/OR310/openrefine-3.10.0/server/target/jre",
+      "java_version": "11.0.30",
+      "extension_module_loaded": true,
+      "extension_release": "v0.1.2.3",
+      "local_provider_label": "WIC_LOCAL_LLAMA3_PROBE",
+      "local_provider_url": "http://127.0.0.1:11434/v1/chat/completions",
+      "provider_saved_and_readback": true,
+      "external_publisher_data_transmitted": false,
+      "synthetic_project_id": "2238989884816",
+      "synthetic_input_title": "Industrial Heat Pump Outlook 2027",
+      "synthetic_korean_title": "2027년 산업 열펌프 전망",
+      "synthetic_wic_category": "에너지",
+      "official_category_source": "obk369369-spec/13-excel-upload@9212abf64f67e56d934c84efb0b91a97253a7203:tool13_v2/official_world_categories.json",
+      "translation_history_id": 1793089538785,
+      "classification_history_id": 1793090353250,
+      "synthetic_only": true
+    },
+    "blocker": {
+      "actual_bcc_source_read": "REJECTED_BY_USER_APPROVAL",
+      "actual_new_publisher_xlsx": false,
+      "automatic_header_semantics": false,
+      "translation_accuracy_vs_approved_expected": false,
+      "category_accuracy_vs_approved_expected": false,
+      "independent_reopen_new_publisher": false,
+      "external_platform_migration": false
+    },
+    "incomplete_root_delta": 0,
+    "next_start": "Reuse isolated port 3334/project 2238989884816 and local provider if still running. Do not requery project list or rerun MarketsandMarkets six rows. Obtain authorized read access to one actual new-publisher source and approved expected title/category; then import a work copy into isolated OpenRefine, test semantic header mapping, direct 18-column XLSX export and independent reopen. If source approval remains denied, keep ROOT-C/D HOLD; do not bypass. Platform migration remains a separate acceptance."
   }
 }
