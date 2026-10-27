@@ -273,5 +273,40 @@
   "incomplete_root_delta": 0,
   "operational_deployment": false,
   "github_main_merged": false,
-  "next_step": "From PR #65 isolated branch evidence, verify operational TOOL013 upload requirements and complete protected main/deployment approval; do not rerun prior 2-row or 6-row fixtures."
+  "next_step": "From PR #65 isolated branch evidence, verify operational TOOL013 upload requirements and complete protected main/deployment approval; do not rerun prior 2-row or 6-row fixtures.",
+  "generic_capability_review_20261027": {
+    "classification": "GENERIC_MULTI_PUBLISHER_NOT_VERIFIED",
+    "new_runtime_configuration_applied": false,
+    "new_business_output_generated": false,
+    "installed_openrefine_version": "3.10.0",
+    "installed_modules_observed": [
+      "core",
+      "database",
+      "jython",
+      "pc-axis",
+      "wikibase"
+    ],
+    "native_capabilities_confirmed": {
+      "manual_column_rename_move": true,
+      "grel_date_number_identifier_transform": true,
+      "xlsx_export": true,
+      "operations_replay_requires_matching_column_names": true,
+      "approved_title_lookup_via_cross_possible_only_for_available_reference_values": true
+    },
+    "unmet_requirements": [
+      "Unknown publisher schemas require verified header/field normalization before replay of named-column operations",
+      "New English report titles require approved Korean translation; bundled GREL documents language detection but not a translation function",
+      "Publisher-independent WIC category assignment requires approved classification mapping or independently verified external component"
+    ],
+    "external_completed_component_candidate": "OpenRefine AI Extension (third party) exists but is not installed; provider, authentication, license for WIC business data, translation accuracy and WIC taxonomy accuracy are unverified",
+    "stop_condition": "Do not repeat six-row verification or create a custom translation engine. No universal automation PASS.",
+    "next_start": "At existing TOOL013 evidence on PR #65, secure an authorized completed translation/classification component and a different publisher's approved input with expected output; configure OpenRefine field normalization and validate only the new format before operational deployment.",
+    "sources": [
+      "https://openrefine.org/docs/manual/columnediting",
+      "https://openrefine.org/docs/manual/grelfunctions",
+      "https://openrefine.org/docs/manual/exporting",
+      "https://openrefine.org/extensions",
+      "https://github.com/sunilnatraj/llm-extension"
+    ]
+  }
 }
