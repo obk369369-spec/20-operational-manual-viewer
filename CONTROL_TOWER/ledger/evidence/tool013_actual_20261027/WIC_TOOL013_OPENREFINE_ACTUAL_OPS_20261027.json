@@ -309,7 +309,7 @@
       "https://github.com/sunilnatraj/llm-extension"
     ],
     "extension_install_assessment": {
-      "status": "HOLD_NOT_INSTALLED",
+      "status": "RELEASE_ACQUIRED_ISOLATED_NOT_ACTIVE",
       "candidate": "OpenRefine AI Extension",
       "release": "v0.1.2.3",
       "release_asset": "openrefine-llm-extension-0.1.2.zip",
@@ -336,8 +336,28 @@
         "https://github.com/sunilnatraj/llm-extension/releases/tag/v0.1.2.3",
         "https://raw.githubusercontent.com/sunilnatraj/llm-extension/master/llm-provider-guide.md",
         "https://raw.githubusercontent.com/sunilnatraj/llm-extension/master/ollama-guide.md"
-      ]
+      ],
+      "release_zip_sha256": "F1726C95B70D1DA05220E5404042C3A7B053F615481FA41BBD3E6928A66FDF4A",
+      "release_zip_size_verified": true,
+      "zip_paths_checked_safe": true,
+      "isolated_workspace": "C:/Users/obk36/AppData/Local/Temp/WIC16_OpenRefine_Extension_Probe_20261027",
+      "extension_files_extracted": 22,
+      "current_project_2761202237829_untouched": true,
+      "isolated_launch_attempts": [
+        {
+          "method": "refine.bat",
+          "result": "JAVA_HOME_REQUIRED"
+        },
+        {
+          "method": "openrefine.exe with separate /d and /p 3334",
+          "result": "PROCESS_EXITED_SERVER_NOT_STARTED"
+        }
+      ],
+      "active_extension_menu_verified": false,
+      "translation_runtime_verified": false,
+      "category_runtime_verified": false,
+      "reason_for_stop": "No verified Java runtime for isolated launcher and no verified local LLM provider; do not restart or modify existing OpenRefine projects or transmit publisher data."
     },
-    "resume_from": "OpenRefine projects already enumerated: only existing fixture 2192553527159 and actual MarketsandMarkets 2761202237829. Do not query again. Keep b17a963 output/18 operations. Next obtain a verified local model/provider or authorization for external data transmission, then install release in an isolated OpenRefine instance, test a new publisher with expected translation/category, and only then consider updating current runtime."
+    "resume_from": "Existing 18-column output and project 2761202237829 remain preserved. Official AI extension v0.1.2.3 ZIP is acquired and unpacked only in isolated Temp workspace. Next identify an authorized Java runtime and verified local model/provider, start isolated OpenRefine with extension, verify menu, then test only a new publisher with expected WIC output. Do not repeat MarketsandMarkets 6-row validation or re-query project list."
   }
 }
