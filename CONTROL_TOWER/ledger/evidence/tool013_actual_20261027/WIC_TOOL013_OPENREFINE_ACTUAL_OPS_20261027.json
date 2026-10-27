@@ -1,0 +1,277 @@
+{
+  "classification": "OPENREFINE_ACTUAL_18_COLUMN_REVIEW_OUTPUT_VERIFIED_DEPLOYMENT_PENDING",
+  "tool": "TOOL013",
+  "product": "OpenRefine 3.10.0",
+  "project_id": "2761202237829",
+  "source_file": "MarketsandMarkets New Reports Metadata 01072025.xlsx",
+  "source_copy_sha256": "853f9cf911ac9a4bc9f1cdde304da4c71a0c1395c6ea858fd36ea659b17d7761",
+  "source_rows": 6,
+  "output_rows": 6,
+  "output_columns": 18,
+  "output_sha256": "e18130485641c51de01343c42eaad2e2bea5505c43110ac5a59b639b6cb83bb1",
+  "mapping_operations": [
+    {
+      "op": "core/column-addition",
+      "description": "Map 발행사 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "발행사",
+      "columnInsertIndex": 21,
+      "baseColumnName": "Report Title",
+      "expression": "grel:\"MarketsandMarkets\"",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 상품명 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "상품명",
+      "columnInsertIndex": 22,
+      "baseColumnName": "Report Title",
+      "expression": "grel:if(value==\"China Semiconductor Market for Automotive by Component (Microcontroller, Power Semiconductor, Sensor & MEMS Device, Memory Chip, Analog & Mixed Signal IC), Global & China Semiconductor Export, Alternate Destination - Trends and Strategic Recommendation\",\"중국 자동차용 반도체 시장: 구성 요소별(마이크로컨트롤러, 전력 반도체, 센서 및 MEMS 소자, 메모리 칩, 아날로그 및 혼합 신호 IC), 글로벌 및 중국 반도체 수출, 대체 목적지 - 동향 및 전략적 제언\",if(value==\"Sports Shotgun Market by Application (Competition (Clay, Trap, Skeet Shooting) and Hunting), Action Type (Over and Under, Side by Side, Semi-automatic, Pump Action), Gauge (12, 20, 28, .410 Bore) and Region Global Forecast to 2030\",\"스포츠용 산탄총 시장: 용도별(경기(클레이, 트랩, 스키트 사격) 및 사냥), 작동 방식별(상하 쌍대식(O/U), 좌우 쌍대식(S/S), 반자동, 펌프 액션), 구경별(12, 20, 28, .410 보어) 및 지역별 - 2030년까지의 글로벌 전망\",if(value==\"Emollient Market by Type (Esters, Fatty Alcohols, Fatty Acids, Ethers, Silicones, and Other Types), Form (Solid, Liquid), Application (Skin Care, Hair Care, Deodorants, Oral Care, and Other Applications), and Region - Global Forecast to 2030\",\"에몰리언트(피부 유연제) 시장: 유형별(에스테르, 지방 알코올, 지방산, 에테르, 실리콘 등), 형태별(고체, 액체), 용도별(스킨케어, 헤어케어, 데오도란트, 구강 관리 등) 및 지역별 - 2030년까지의 글로벌 전망\",if(value==\"Level 3 Autonomous Vehicle Market by Region (Asia Pacific, North America, Europe) - Global Forecast to 2035\",\"레벨 3 자율주행차 시장: 지역별(아시아 태평양, 북미, 유럽) - 2035년까지의 글로벌 전망\",if(value==\"Tower Crane Rental Market by Capacity (Low (5–20 tons), Low to Medium (20–100 tons), Heavy (100–500 tons), Extreme Heavy (>500 tons)), End-use industry (Building & Construction, Infrastructure, Energy & Power), and Region - Global Forecast to 2030\",\"타워 크레인 임대 시장: 용량별(소형(5~20톤), 중소형(20~100톤), 대형(100~500톤), 초대형(500톤 초과)), 최종 사용 산업별(건축 및 건설, 인프라, 에너지 및 전력) 및 지역별 - 2030년까지의 글로벌 전망\",if(value==\"Ophthalmology Drugs Market by Molecule (Faricimab, Aflibercept, Ranibizumab), Modality (Monoclonal Antibodies & Fusion Proteins), RoA (Intravitreal, Topical), Indication (AMD, Diabetic Retinopathy (DR), DME), End User - Global Forecast to 2030\",\"안과용 의약품 시장: 분자 유형별(파리시맙, 아플리버셉트, 라니비주맙), 모달리티별(단일클론항체 및 융합 단백질), 투여 경로별(유리체 내 주사, 국소 투여), 적응증별(황반변성(AMD), 당뇨병성 망막병증(DR), 당뇨병성 황반부종(DME)), 최종 사용자별 - 2030년까지의 글로벌 전망\",null))))))",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 한글명 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "한글명",
+      "columnInsertIndex": 23,
+      "baseColumnName": "Report Title",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 1차카테고리 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "1차카테고리",
+      "columnInsertIndex": 24,
+      "baseColumnName": "Report Title",
+      "expression": "grel:\"시장 조사 자료 - 영문판\"",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 2차카테고리 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "2차카테고리",
+      "columnInsertIndex": 25,
+      "baseColumnName": "Report Category",
+      "expression": "grel:if(value==\"Automotive and Transportation\",\"자동차/우주항공\",if(value==\"Aerospace & Defence\",\"자동차/우주항공\",if(value==\"Chemicals\",\"화학/정밀화학\",if(value==\"Building and Construction\",\"토목/건축\",if(value==\"Pharmaceuticals\",\"신약 산업/제약\",null)))))",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 3차카테고리 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "3차카테고리",
+      "columnInsertIndex": 26,
+      "baseColumnName": "Report Category",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 페이지수 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "페이지수",
+      "columnInsertIndex": 27,
+      "baseColumnName": "No.of Pages",
+      "expression": "grel:toNumber(value)",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 개요 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "개요",
+      "columnInsertIndex": 28,
+      "baseColumnName": "Report Description",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 목차 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "목차",
+      "columnInsertIndex": 29,
+      "baseColumnName": "Table of Contents",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 발행일 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "발행일",
+      "columnInsertIndex": 30,
+      "baseColumnName": "Date Published",
+      "expression": "grel:with(value.match(/.*?(\\d{1,2})월\\s+(\\d{1,2}),\\s+(\\d{4}).*/),a,if(a==null,null,a[2]+\"-\"+(\"0\"+a[0]).substring(-2)+\"-\"+(\"0\"+a[1]).substring(-2)))",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 파일명 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "파일명",
+      "columnInsertIndex": 31,
+      "baseColumnName": "File Name",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 판매유형 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "판매유형",
+      "columnInsertIndex": 32,
+      "baseColumnName": "Report Title",
+      "expression": "grel:null",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 환(u,e,g,j) from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "환(u,e,g,j)",
+      "columnInsertIndex": 33,
+      "baseColumnName": "Report Title",
+      "expression": "grel:\"u\"",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map HardCapy가격 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "HardCapy가격",
+      "columnInsertIndex": 34,
+      "baseColumnName": "Report Title",
+      "expression": "grel:null",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map PDF가격 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "PDF가격",
+      "columnInsertIndex": 35,
+      "baseColumnName": "Single user Price in US$",
+      "expression": "grel:toNumber(value)",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 저자 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "저자",
+      "columnInsertIndex": 36,
+      "baseColumnName": "Author Name",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 체제 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "체제",
+      "columnInsertIndex": 37,
+      "baseColumnName": "No.of Pages",
+      "expression": "grel:if(isBlank(value),null,value+\" Pages\")",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map ISBN/CODE from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "ISBN/CODE",
+      "columnInsertIndex": 38,
+      "baseColumnName": "Report Code",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    }
+  ],
+  "source_columns_removed_from_derived_upload_view_only": true,
+  "source_file_unchanged": true,
+  "rows_removed": 0,
+  "independent_reopen": {
+    "tool": "openpyxl",
+    "source_rows": 6,
+    "output_rows": 6,
+    "output_columns": 18,
+    "source_identifiers_titles_pages_pdf_prices_match": true,
+    "korean_titles_present": 6,
+    "iso_dates": [
+      "2025-06-19",
+      "2025-06-23",
+      "2025-06-23",
+      "2025-06-24",
+      "2025-06-27",
+      "2025-06-27"
+    ]
+  },
+  "missing_values": {
+    "판매유형": 6,
+    "HardCapy가격": 6
+  },
+  "export_issue": "First export returned CSRF error; token added and XLSX export succeeded. No data rows removed.",
+  "scope": "Actual 6-row publisher file, review output only",
+  "incomplete_root_delta": 0,
+  "operational_deployment": false,
+  "github_main_merged": false,
+  "next_step": "From PR #65 isolated branch evidence, verify operational TOOL013 upload requirements and complete protected main/deployment approval; do not rerun prior 2-row or 6-row fixtures."
+}
