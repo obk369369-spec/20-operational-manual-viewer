@@ -486,9 +486,9 @@
       "status": "OPEN",
       "cause_id": "POLICY_RETRIEVAL_APPLICATION_EXECUTION_HANDOFF_AND_FALLBACK_DISCONNECT",
       "method_id": "SEPARATE_POLICY_READ_FROM_AUTHORIZED_JOB_EXECUTION_AND_ROUTE_SWITCH",
-      "last_actual_point": "Nonproduction internal input-bound Job produced checked output/ACK/checkpoint; pinned GitHub result blob readback PASS. Four business ROOTs remain unresolved.",
+      "last_actual_point": "Actual six-row TOOL013 XLSX generated with approved title mapping, independently reopened in LibreOffice, pinned GitHub result blob read back; operational branch remains isolated.",
       "next_trigger": "IMMEDIATE",
-      "next_start": "Use approved actual business source/handler/expected contract for business Job; obtain original Golden bytes and actual TOOL013 transform before business PASS.",
+      "next_start": "Review isolated TOOL013 operational branch and required checks; deploy only with formal protection approval, then validate wider approved input and Golden original.",
       "execution_receipts": [
         {
           "operation_id": "classify-policy-execution-boundary-common-root-20261023",
@@ -681,6 +681,25 @@
           "business_job_count": 0,
           "incomplete_root_closure_delta": 0,
           "remaining": "Actual business contract, approved source, Golden ZIP bytes and TOOL013 real XLSX validation remain HOLD/RECURRENT"
+        },
+        {
+          "operation_id": "tool013-real-six-row-output-libreoffice-remote-readback-20261027",
+          "status": "SCOPED_ACTUAL_OUTPUT_VERIFIED_DEPLOYMENT_PENDING",
+          "operational_commit": "51f455bb7bb69d2c9758b337adce78c5b0dbde06",
+          "canonical_result_commit": "d1876435abd65d85447e42174679f020edbac95f",
+          "result_path": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/TOOL013_ACTUAL_UPLOAD_20261027.xlsx",
+          "result_sha256": "27ba94dfaab7c363185ee498dc3311aedc5a137d9c2c42acb1268edb8babc60f",
+          "remote_retrieval_id": "github-raw-39b61fa694919cc6786f603c",
+          "remote_blob_oid": "568e13275b37a4955d9466fa222a9bdefb77c068",
+          "evidence_ref": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/WIC_TOOL013_ACTUAL_OPS_20261027.json",
+          "external_completed_product": "LibreOffice 25.8.3.2",
+          "source_rows": 6,
+          "output_rows": 6,
+          "field_comparison": "6/6 B approved Korean, C original English, code, page count, date format; 18 columns",
+          "independent_reopen": "LibreOffice CSV 6 rows/18 columns",
+          "business_root_closed": false,
+          "incomplete_root_closure_delta": 0,
+          "remaining": "Operating branch not merged/deployed; wider actual input set and Golden ZIP not validated"
         }
       ],
       "trigger_release": {
@@ -690,10 +709,10 @@
         "current_fingerprint": "SCOPED_ROUTE_REPAIR_GRANT_PR63_763cf22"
       },
       "latest_checkpoint": {
-        "recorded_at": "2026-10-26",
+        "recorded_at": "2026-10-27",
         "central_revision": "140ed1e668fa4379fd477a8682977ac7d5a5e89d",
         "branch": "wic16-routing-repair-code-20261023",
-        "last_actual_commit": "6c79e1339a7ef19ce964ec5c4d7d08348563f759",
+        "last_actual_commit": "d1876435abd65d85447e42174679f020edbac95f",
         "last_success_run": 40066288291,
         "rollback_point": "67753fb76b02185be4489fc204f4cb0c3ef8a592",
         "main_updated": false,
@@ -878,8 +897,8 @@
           "next_root": "Existing policy-to-execution routing root; task-scoped external controller admission/actual input/contract, with original-thread mobile verification in parallel after usage gate. Do not clear operational STOP implicitly.",
           "reason": "User explicitly requires conservative stop if credits cannot be directly verified; no development or external execution dispatched in this segment."
         },
-        "last_success_stage": "NONPRODUCTION_INTERNAL_RESULT_REMOTE_READBACK",
-        "evidence_ref": "CONTROL_TOWER/ledger/evidence/WIC16_REMOTE_BLOB_READBACK_20261026.json",
+        "last_success_stage": "TOOL013_SCOPED_ACTUAL_OUTPUT_REMOTE_VERIFIED",
+        "evidence_ref": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/WIC_TOOL013_ACTUAL_OPS_20261027.json",
         "incomplete_root_closure_delta": 0
       }
     }
