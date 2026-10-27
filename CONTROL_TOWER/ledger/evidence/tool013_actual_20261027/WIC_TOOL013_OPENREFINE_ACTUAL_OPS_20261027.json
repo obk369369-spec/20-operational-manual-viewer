@@ -307,6 +307,37 @@
       "https://openrefine.org/docs/manual/exporting",
       "https://openrefine.org/extensions",
       "https://github.com/sunilnatraj/llm-extension"
-    ]
+    ],
+    "extension_install_assessment": {
+      "status": "HOLD_NOT_INSTALLED",
+      "candidate": "OpenRefine AI Extension",
+      "release": "v0.1.2.3",
+      "release_asset": "openrefine-llm-extension-0.1.2.zip",
+      "release_asset_bytes": 178320,
+      "declared_compatibility": "OpenRefine 3.8.7 or later; installed OpenRefine 3.10.0 is within declared range",
+      "installed_modules": [
+        "core",
+        "database",
+        "jython",
+        "pc-axis",
+        "wikibase"
+      ],
+      "ai_extension_installed": false,
+      "provider_required": true,
+      "provider_options": "Remote chat-completion API requires an account/key and sends data to the provider; local Ollama path requires a verified running model and service, not established by existing evidence",
+      "cost": "Extension release asset available without purchase; inference costs depend on chosen provider and were not verified as zero",
+      "license": "Repository LICENSE.txt permits redistribution in source and binary form subject to conditions; third-party model/provider terms remain unverified",
+      "installation_impact": "Requires unpacking extension into OpenRefine extensions directory and making it active; existing runtime would be changed/restarted",
+      "decision": "Do not install into current working OpenRefine or transmit publisher data without a verified local provider and compatibility/safety acceptance",
+      "automatic_translation_verified": false,
+      "automatic_wic_classification_verified": false,
+      "first_unseen_publisher_processed": false,
+      "sources": [
+        "https://github.com/sunilnatraj/llm-extension/releases/tag/v0.1.2.3",
+        "https://raw.githubusercontent.com/sunilnatraj/llm-extension/master/llm-provider-guide.md",
+        "https://raw.githubusercontent.com/sunilnatraj/llm-extension/master/ollama-guide.md"
+      ]
+    },
+    "resume_from": "OpenRefine projects already enumerated: only existing fixture 2192553527159 and actual MarketsandMarkets 2761202237829. Do not query again. Keep b17a963 output/18 operations. Next obtain a verified local model/provider or authorization for external data transmission, then install release in an isolated OpenRefine instance, test a new publisher with expected translation/category, and only then consider updating current runtime."
   }
 }
