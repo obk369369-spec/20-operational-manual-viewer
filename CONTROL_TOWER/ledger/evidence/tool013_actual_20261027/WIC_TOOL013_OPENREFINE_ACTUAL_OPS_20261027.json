@@ -406,5 +406,86 @@
     },
     "incomplete_root_delta": 0,
     "next_start": "Reuse isolated port 3334/project 2238989884816 and local provider if still running. Do not requery project list or rerun MarketsandMarkets six rows. Obtain authorized read access to one actual new-publisher source and approved expected title/category; then import a work copy into isolated OpenRefine, test semantic header mapping, direct 18-column XLSX export and independent reopen. If source approval remains denied, keep ROOT-C/D HOLD; do not bypass. Platform migration remains a separate acceptance."
+  },
+  "openrefine_synthetic_18_column_flow_20261027": {
+    "classification": "SYNTHETIC_18_COLUMN_EXPORT_VERIFIED_NOT_GENERIC_OR_BUSINESS_PASS",
+    "project_id": "2238989884816",
+    "local_instance": "http://127.0.0.1:3334",
+    "source_kind": "isolated synthetic one-row CSV; no publisher or USB source accessed",
+    "source_headers": [
+      "Item",
+      "Released",
+      "Length",
+      "Cost",
+      "SKU"
+    ],
+    "existing_ai_history_ids": [
+      1793089538785,
+      1793090353250
+    ],
+    "new_history": {
+      "korean_title_to_product": 1793090011826,
+      "final_reorder": 1793090205018,
+      "total_entries_after": 21
+    },
+    "output_columns": [
+      "발행사",
+      "상품명",
+      "한글명",
+      "1차카테고리",
+      "2차카테고리",
+      "3차카테고리",
+      "페이지수",
+      "개요",
+      "목차",
+      "발행일",
+      "파일명",
+      "판매유형",
+      "환(u,e,g,j)",
+      "HardCapy가격",
+      "PDF가격",
+      "저자",
+      "체제",
+      "ISBN/CODE"
+    ],
+    "applied_rules": [
+      "상품명=AI-generated KoreanTitle; 한글명=original English Item",
+      "1차카테고리=시장 조사 자료 - 영문판; 2차카테고리=AI WIC_Category from existing official taxonomy",
+      "페이지수=Length toNumber; 체제=Length + ' Pages'; 발행일=nonblank Released; PDF가격=Cost toNumber; ISBN/CODE=SKU",
+      "unproven publisher, currency, author, summary, TOC, filename, sale type, hardcopy price remain blank; no row removal",
+      "core/column-reorder retained 18 derived columns in WIC order; original synthetic CSV remained separate"
+    ],
+    "output": {
+      "local_path": "C:\\Users\\obk36\\AppData\\Local\\Temp\\WIC16_OpenRefine_Synthetic_18col_20261027.xlsx",
+      "bytes": 3871,
+      "sha256": "E4720F3064A420728DC22C1189D919A381BB611B6FB08998C3EF92BF81E9BD12",
+      "producer": "OpenRefine 3.10.0 export-rows format=xlsx",
+      "independent_reopen": {
+        "reader": "openpyxl read_only",
+        "rows": 1,
+        "columns": 18,
+        "korean_product": "2027년 산업 열펌프 전망",
+        "english_original": "Industrial Heat Pump Outlook 2027",
+        "wic_category": "에너지",
+        "pages": 120,
+        "date": "2026-03-14",
+        "price_number": 3500,
+        "format": "120 Pages",
+        "code": "TEST-001"
+      }
+    },
+    "limitations": [
+      "Semantic matching of previously unseen publisher headers was not implemented or verified; current OpenRefine column additions bind to named source columns.",
+      "AI translation and category output have no approved expected-value comparison on real publisher data.",
+      "Currency and price type are unknown; numeric Cost mapping is synthetic only.",
+      "No actual publisher XLSX, production upload, independent worker, ACK, checkpoint recovery, or platform migration.",
+      "No upper ROOT completed; incomplete_root_delta=0."
+    ],
+    "root_status": {
+      "ROOT-C": "PARTIAL_SYNTHETIC_18_COLUMN_FLOW; semantic arbitrary-header mapping HOLD",
+      "ROOT-D": "HOLD_REAL_PUBLISHER_SOURCE_NOT_AUTHORIZED",
+      "ROOT-E": "PARTIAL_REMOTE_EVIDENCE_ONLY; no external runtime handoff"
+    },
+    "next_start": "Obtain authorized unseen publisher input and approved expected fields; test semantic header mapping before claiming generic reuse. Reuse project 2238989884816 history and output hash; do not rerun MarketsandMarkets six rows."
   }
 }
