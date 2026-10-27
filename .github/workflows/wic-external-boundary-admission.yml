@@ -152,6 +152,27 @@ jobs:
                          'validation_pass':True,'positive_pass':True,'negative_pass':True,
                          'failure_injection_pass':True,'recovery_pass':True,'rollback_pass':True,
                          'evidence_ref':str(marker_path),'readback_pass':True}
+              receipt['self_audit'] = {
+                  'stages': {stage: {'executed': True, 'evidence_ref': str(marker_path)}
+                             for stage in ('detect','cause','repair_revalidate','prevent_recurrence')},
+                  'source_rows':1,'output_rows':1,
+                  'expected_columns':['payload'],'actual_columns':['payload'],
+                  'required_cells':1,'checked_cells':1,
+                  'initial_errors':0,'corrected_errors':0,'residual_errors':0,
+                  'unverified_required':0,'before_after':[],
+                  'full_revalidation_pass':True,'independent_validation_pass':True,
+                  'source_identity_pass':True,'no_duplicate_or_loss_pass':True,
+                  'recurrence_rule_ref':'CONTROL_TOWER/controller/universal_enforcement.py'}
+              missing_audit = dict(receipt)
+              missing_audit.pop('self_audit')
+              closure.write_text(json.dumps(missing_audit) + '\n', encoding='utf-8')
+              env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
+                  'path':closure.relative_to(Path.cwd()).as_posix(),
+                  'sha256':hashlib.sha256(closure.read_bytes()).hexdigest()}})
+              blocked_audit = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+                                              '--require-completion','--work-id',work_id,'--task-id',task_id],
+                                             env=env,capture_output=True,text=True)
+              assert blocked_audit.returncode == 1 and 'SELF_AUDIT_NOT_PASS' in blocked_audit.stdout, blocked_audit.stdout
               closure.write_text(json.dumps(receipt) + '\n', encoding='utf-8')
               env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
                   'path':closure.relative_to(Path.cwd()).as_posix(),
