@@ -173,6 +173,10 @@ def _expand(argv: list[str], workspace: Path, contract: dict) -> list[str]:
 
 def execute_registered(demand: dict, workspace: Path, store: ClaimStore, owner: str) -> dict:
     job_id = identity(demand)
+    if demand.get("status") != "READY":
+        return {"job_id": job_id, "final_state": "HOLD", "reason": "DEMAND_NOT_READY",
+                "demand_status": demand.get("status"),
+                "result_return": {"status": "HOLD", "tool016_ack": "RECEIVED"}}
     contract = demand.get("execution_contract") or {}
     missing = validate_contract(contract)
     if missing:
@@ -297,4 +301,5 @@ def integrate_component(component: dict, workspace: Path, store: ClaimStore, own
     readback = target.read_bytes() == output.read_bytes()
     return {**result, "route": "STABLE", "deployed": readback, "rollback": False,
             "registered": created, "readback": readback}
+
 

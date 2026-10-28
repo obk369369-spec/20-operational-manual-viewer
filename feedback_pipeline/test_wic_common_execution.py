@@ -39,11 +39,11 @@ def run():
         store.release_for_resume("CLAIM-TEST", "B", resumed["fencing_token"], {"stage": "RESUMED"})
         # A successful process and an existing file are insufficient without
         # a content-bound expected digest.
-        no_digest = {"demand_id": "NO-DIGEST", "execution_contract":
+        no_digest = {"demand_id": "NO-DIGEST", "status": "READY", "execution_contract":
             {**contract, "output": "no-digest.txt", "expected": {"returncode": 0, "output_exists": True}}}
         no_digest_result = execute_registered(no_digest, root, store, "RUNNER-A")
         checks["missing_digest_fails_closed"] = no_digest_result["final_state"] == "FAIL"
-        wrong_digest = {"demand_id": "WRONG-DIGEST", "execution_contract":
+        wrong_digest = {"demand_id": "WRONG-DIGEST", "status": "READY", "execution_contract":
             {**contract, "output": "wrong-digest.txt", "expected": {**contract["expected"], "output_sha256": "0" * 64}}}
         wrong_digest_result = execute_registered(wrong_digest, root, store, "RUNNER-A")
         checks["wrong_digest_fails_closed"] = wrong_digest_result["final_state"] == "FAIL"
@@ -60,7 +60,7 @@ def run():
         checks["result_return"] = result["result_return"] == {"status": "PASS", "tool016_ack": "RECEIVED"}
         repeat = execute_registered(demand, root, store, "RUNNER-B")
         checks["completed_reselection_blocked"] = repeat["reason"] == "BLOCKED_COMPLETED"
-        bad = {"demand_id": "REAL-DEMAND-FAIL", "execution_contract": {**contract, "handler": ["{python}", "-c", "raise SystemExit(7)"]}}
+        bad = {"demand_id": "REAL-DEMAND-FAIL", "status": "READY", "execution_contract": {**contract, "handler": ["{python}", "-c", "raise SystemExit(7)"]}}
         failed = execute_registered(bad, root, store, "RUNNER-A")
         checks["failure_not_complete_and_checkpointed"] = (
             failed["final_state"] == "FAIL"
@@ -69,6 +69,15 @@ def run():
             and failed["record_gate"]["final_usable_count"] == 0
             and failed["record_gate"]["quarantined_count"] == 1
         )
+        for blocked_status in ("BLOCK", "STOP", "HOLD", "PASS_LOCKED", "OPEN", None):
+            blocked = {"demand_id": f"ISOLATED-{blocked_status}", "status": blocked_status,
+                       "execution_contract": {**contract, "output": f"blocked-{blocked_status}.txt"}}
+            denied = execute_registered(blocked, root, store, "RUNNER-A")
+            checks[f"{blocked_status}_isolated"] = (
+                denied["reason"] == "DEMAND_NOT_READY"
+                and not (root / f"blocked-{blocked_status}.txt").exists()
+                and not store.terminal(blocked["demand_id"]).exists()
+            )
         (root / "stable.txt").write_text("OLD", encoding="utf-8")
         stable = integrate_component({"component_id": "STABLE-1", "target": "stable.txt",
             "channel": "STABLE", "execution_contract": {**contract, "output": "stable-output.txt"}},
@@ -84,7 +93,7 @@ def run():
             "handler": ["{python}", "-c", "raise SystemExit(9)"]}}, root, store, "RUNNER-A")
         checks["failed_validation_rollback"] = failed_component["rollback"] and not failed_component["deployed"] and (root / "stable.txt").read_text() == "KEEP"
         checks["component_lifecycle_admission"] = stable["registered"] and next_result["registered"] and failed_component["registered"]
-    return {"status": "PASS" if all(checks.values()) and len(checks) == 19 else "FAIL",
+    return {"status": "PASS" if all(checks.values()) and len(checks) == 25 else "FAIL",
             "checks": checks, "passed": sum(checks.values()), "total": len(checks)}
 
 
@@ -92,4 +101,5 @@ if __name__ == "__main__":
     result = run()
     print(json.dumps(result, ensure_ascii=False))
     raise SystemExit(0 if result["status"] == "PASS" else 1)
+
 
