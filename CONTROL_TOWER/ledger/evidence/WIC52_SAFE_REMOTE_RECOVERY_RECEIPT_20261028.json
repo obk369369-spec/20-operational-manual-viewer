@@ -88,5 +88,28 @@
     "user_final_approval": false,
     "originals_deleted": 0
   },
-  "overall": "LOCAL_RECOVERY_PRESERVED_SAFE_REMOTE_EVIDENCE_BACKUP_ONLY"
+  "overall": "LOCAL_RECOVERY_PRESERVED_SAFE_REMOTE_EVIDENCE_BACKUP_ONLY",
+  "new_rule_gated_source_query": {
+    "scope": "LOCAL_WIC52_SOURCE_QUERY_ONLY",
+    "pinned_rule_revision": "664e61b63fdf70c0bfb9a6dc106c1dae08697bd8",
+    "rule_blob_sha": "24342c34f73616a3fde4b10958525d3c39f78792",
+    "controller_after_sha256": "79bb982d88fc2a9e75c561c68311d87333d27e0f9146dfc3a5b16c1e32211884",
+    "actual_cli_executions": 2,
+    "source_results_per_execution": 3,
+    "output_sha256": "5a7048250e3856813104ebd001fe4c1a8b3b6e94563eb28dafbdd48699d077fd",
+    "checks": {
+      "missing_rules_blocked": true,
+      "tampered_rules_blocked": true,
+      "empty_query_blocked": true,
+      "missing_source_blocks_inference": true,
+      "same_input_same_rule_same_output_hash": true,
+      "lookup_before_source_before_output": true,
+      "existing_functions_unchanged": true
+    },
+    "original_extraction_reexecuted": false,
+    "original_backup_reexecuted": false,
+    "SOURCE_LOADED_reexecuted": false,
+    "current_business_rules_globally_applied": false,
+    "raw_source_data_published": false
+  }
 }
