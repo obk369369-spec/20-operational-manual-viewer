@@ -88,7 +88,7 @@
     "user_final_approval": false,
     "originals_deleted": 0
   },
-  "overall": "LOCAL_RECOVERY_PRESERVED_SAFE_REMOTE_EVIDENCE_BACKUP_ONLY",
+  "overall": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
   "new_rule_gated_source_query": {
     "scope": "LOCAL_WIC52_SOURCE_QUERY_ONLY",
     "pinned_rule_revision": "664e61b63fdf70c0bfb9a6dc106c1dae08697bd8",
@@ -111,5 +111,66 @@
     "SOURCE_LOADED_reexecuted": false,
     "current_business_rules_globally_applied": false,
     "raw_source_data_published": false
+  },
+  "closeout": {
+    "state": "EVIDENCE_WRITTEN_AWAITING_REMOTE_READBACK",
+    "target_final_state": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
+    "source_evidence_reused": true,
+    "completed": [
+      "Top-level raw extraction 18518; failures 0; unprocessed 0",
+      "Nested/attachment provenance occurrences 24411; unique original objects 9955",
+      "Verified text 9702; Word text 8676",
+      "Local platform16 SOURCE_LOADED 9702",
+      "Rule prelookup negative tests and same-input output consistency PASS"
+    ],
+    "locations": {
+      "path_format": "ENVIRONMENT_VARIABLE_BASED_NO_USERNAME_OR_CUSTOMER_FILENAMES",
+      "session_root": "%USERPROFILE%/.codex/visualizations/2026/10/28/01a181ec-e9ca-76d3-9956-fd690b4e6cfe",
+      "originals": "%USERPROFILE%/.codex/visualizations/2026/10/28/01a181ec-e9ca-76d3-9956-fd690b4e6cfe/WIC52_INPUT",
+      "recovery": "%USERPROFILE%/.codex/visualizations/2026/10/28/01a181ec-e9ca-76d3-9956-fd690b4e6cfe/WIC52_RECOVERY/CONTROL_TOWER",
+      "catalog": "WIC52_RECOVERY/CONTROL_TOWER/file_catalog.csv",
+      "database": "WIC52_RECOVERY/CONTROL_TOWER/recovery.sqlite",
+      "text": "WIC52_RECOVERY/CONTROL_TOWER/text",
+      "classification": "WIC52_RECOVERY/CONTROL_TOWER/classified_candidates.jsonl",
+      "local_backup": "%USERPROFILE%/.codex/visualizations/2026/10/28/01a181ec-e9ca-76d3-9956-fd690b4e6cfe/WIC52_BACKUP",
+      "local_body": "<WIC34_C_REBUILD>/CONTROL_TOWER/controller/wic_top_controller.py",
+      "binding_state": "<WIC34_C_REBUILD>/CONTROL_TOWER/controller/runtime/source_bindings.json",
+      "binding_receipt": "WIC52_RECOVERY/CONTROL_TOWER/platform16_binding_receipt.json",
+      "rule_test_receipt": "WIC52_RECOVERY/CONTROL_TOWER/rule_gate_execution_evidence.json"
+    },
+    "retained_issues": {
+      "text_failed": 1,
+      "no_text": 7,
+      "partial_text": 2,
+      "remote_backup_status": "HOLD_GITHUB_CLI_INVALID_AUTHENTICATION",
+      "zip_upload_performed": false,
+      "remote_download_restore_performed": false,
+      "raw_remote_backup_pass": false,
+      "global_cross_tool_rule_enforcement_complete": false,
+      "hosted_runtime_connected": false,
+      "local_additional_backup_stopped_by_user": true,
+      "I_drive_final_safe_backup": false
+    },
+    "preservation": {
+      "reextraction": 0,
+      "reverification_of_completed_work": 0,
+      "recopy": 0,
+      "original_zip_deleted": 0,
+      "existing_C_I_files_changed": 0,
+      "pass_lock_changed": false,
+      "queue_changed": false,
+      "execution_state_changed": false
+    },
+    "next_resume_only": [
+      "Restore GitHub CLI authentication",
+      "Establish authorized private or encrypted storage and verify quota/key custody",
+      "Upload the four original ZIPs",
+      "Verify hashes and file counts and perform downloaded restoration"
+    ],
+    "next_user_action": "gh auth login -h github.com",
+    "remote_readback": {
+      "status": "PENDING_THIS_CLOSEOUT_COMMIT",
+      "previous_verified_evidence_commit": "8c899025a882ac36176f927937691cebe8c7112d"
+    }
   }
 }

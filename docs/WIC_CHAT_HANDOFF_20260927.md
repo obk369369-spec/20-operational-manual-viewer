@@ -199,3 +199,18 @@ The next conversation must NOT ask the user to restate this work.
 First read this GitHub checkpoint and continue from Section 14 collision audit.
 Do the collision audit in a large consolidated pass rather than sending small incremental reports.
 After collision audit, continue the execution order in Section 12.
+
+
+## WIC52 closeout — 2026-10-28
+
+상태: 추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD.
+최종 종료 확정 조건: 이번 증거·인계 커밋의 원격 재조회 일치. 현재 재조회 대기.
+
+- 기존 실적 재사용: 최상위 18,518개 처리, 고유 내용 9,659개, 중복 8,859개, 압축 추출 실패·미처리 0개. 중첩·첨부 포함 출처 항목 24,411개, 고유 원본 9,955개, 본문 검증 9,702개(Word 8,676개).
+- 16번 로컬 SOURCE_LOADED 9,702건. WIC52 자료 조회의 규칙 누락·변조 차단과 동일 입력 출력 일치 시험 PASS. 전 도구 강제 적용·클라우드 연결 완료로 확대하지 않는다.
+- 파일 위치는 같은 커밋의 `CONTROL_TOWER/ledger/evidence/WIC52_SAFE_REMOTE_RECOVERY_RECEIPT_20261028.json` → `closeout.locations`에 환경변수 기반으로 기록했다. 파일명·원본 출처 매핑은 로컬 catalog/SQLite에 보존하며 공개 GitHub에 고객 원문·개인정보·원본 ZIP·검색 DB를 게시하지 않는다.
+- 기존 로컬 백업의 원본·본문·메타데이터 해시 불일치 0건, SQLite 재열기·무결성 ok 증거 재사용. C:·I: 추가 백업은 사용자 중지 상태를 유지한다. I: Warning 장치는 최종 안전 백업으로 인정하지 않는다.
+- 남은 추출 예외: 암호화 PDF 1건, 본문 없음 7건, 손상 문서 부분 복구 2건. 원본 바이트 보존.
+- 원격 원본 백업: GitHub CLI 인증 오류로 HOLD. ZIP 업로드와 원격 다운로드 복원 검증은 수행하지 않았고 PASS가 아니다. 공개 저장소의 현재 원격 보존 범위는 비식별 증거뿐이다.
+- 재개 작업은 GitHub CLI 인증 복구 → 비공개/암호화 저장소 및 용량·복호키 보관 확인 → ZIP 4개 업로드 → 해시·파일 수·다운로드 복원 검증으로 한정한다. 사용자 조작: `gh auth login -h github.com`.
+- 재추출·재검증·재복사·원본 ZIP 삭제·기존 C:/I: 파일 변경·PASS_LOCK/Queue/실행 상태 변경은 하지 않았다. 원본 삭제는 최종 사용자 승인 전 금지.
