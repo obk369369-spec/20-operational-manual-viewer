@@ -1,0 +1,92 @@
+{
+  "schema": "wic52.public-safe-remote-recovery-receipt.v1",
+  "recorded_date": "2026-10-28",
+  "scope": "SANITIZED_EVIDENCE_ONLY_NOT_RESTORABLE_SOURCE_DATA_BACKUP",
+  "completed_results_preserved": true,
+  "source_zip_count": 4,
+  "source_archives": [
+    {
+      "bytes": 427863225,
+      "sha256": "20ace81c0f0a4eacb4ff30c1d1da19ac5be62f88a31046dc592c1800a12d2343",
+      "zip_integrity": "PASS"
+    },
+    {
+      "bytes": 269776293,
+      "sha256": "a06393a1f4259d95a6c362917f8d83185847225ca782ad8f835aee6431631ee6",
+      "zip_integrity": "PASS"
+    },
+    {
+      "bytes": 2325085,
+      "sha256": "908f1d0de6ba004621c7502d5905a0a5c1b01012318a662caace286ce1db919f",
+      "zip_integrity": "PASS"
+    },
+    {
+      "bytes": 356166558,
+      "sha256": "ba64fee34b19890b4850528c8864f9b49517a62fe376e7659c204043fc1e8a2f",
+      "zip_integrity": "PASS"
+    }
+  ],
+  "top_level_files": {
+    "processed": 18518,
+    "unique_content": 9659,
+    "duplicate_occurrences": 8859,
+    "raw_extraction_failures": 0,
+    "raw_unprocessed": 0,
+    "source_locations_preserved_in_local_catalog": true
+  },
+  "including_nested": {
+    "source_occurrences": 24411,
+    "unique_raw_objects": 9955,
+    "text_verified": 9702,
+    "text_failed": 1,
+    "no_text": 7,
+    "partial_text": 2,
+    "preserved_binary": 243
+  },
+  "platform16": {
+    "status": "SOURCE_LOADED",
+    "scope": "LOCAL_SOURCE_EVIDENCE_ONLY",
+    "records_loaded": 9702,
+    "actual_source_read": true,
+    "package_sha256": "CD87A9013E4840818EA0A6484822CCA0207C05C63F9E6843A8D4F437C91E0443",
+    "source_records_sha256": "12d8419a48591c43fff0e60159a540c1e86894494508bf82a5a94b1d81668311",
+    "sqlite_integrity": "ok",
+    "business_job_started": false,
+    "historical_rules_promoted": false,
+    "queue_modified": false,
+    "pass_lock_modified": false,
+    "hosted_runtime_connected": false,
+    "global_platform_work_complete": false
+  },
+  "verification_reused": {
+    "raw_and_text_hash_mismatches": 0,
+    "local_backup_hash_mismatches": 0,
+    "metadata_backup_hash_mismatches": 0,
+    "sqlite_integrity": "ok",
+    "local_backup_sqlite_integrity": "ok"
+  },
+  "latest_user_stop": {
+    "additional_C_I_backup_stopped": true,
+    "remaining_backup_processes_terminated": 1,
+    "existing_files_deleted": 0,
+    "existing_files_recopied": 0,
+    "extra_permanent_backup_verified": false,
+    "existing_extraction_reexecuted": false
+  },
+  "remote_backup": {
+    "repository_visibility": "PUBLIC",
+    "published_content": "AGGREGATE_COUNTS_AND_HASH_RECEIPTS_ONLY",
+    "raw_archives_uploaded": false,
+    "customer_content_uploaded": false,
+    "source_filenames_or_local_user_paths_uploaded": false,
+    "sqlite_uploaded": false,
+    "restore_capable_remote_data_backup_complete": false,
+    "missing_prerequisite": "PRIVATE_AUTHORIZED_STORAGE_OR_ENCRYPTED_BINARY_STORAGE_WITH_VERIFIED_RESTORE_AND_KEY_CUSTODY"
+  },
+  "original_zip_deletion": {
+    "allowed": false,
+    "user_final_approval": false,
+    "originals_deleted": 0
+  },
+  "overall": "LOCAL_RECOVERY_PRESERVED_SAFE_REMOTE_EVIDENCE_BACKUP_ONLY"
+}
