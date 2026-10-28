@@ -113,7 +113,7 @@
     "raw_source_data_published": false
   },
   "closeout": {
-    "state": "EVIDENCE_WRITTEN_AWAITING_REMOTE_READBACK",
+    "state": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
     "target_final_state": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
     "source_evidence_reused": true,
     "completed": [
@@ -169,8 +169,21 @@
     ],
     "next_user_action": "gh auth login -h github.com",
     "remote_readback": {
-      "status": "PENDING_THIS_CLOSEOUT_COMMIT",
-      "previous_verified_evidence_commit": "8c899025a882ac36176f927937691cebe8c7112d"
+      "status": "PASS",
+      "commit": "611b4e1d1937ef173508dad871a509669a1ed4b2",
+      "files": [
+        {
+          "path": "CONTROL_TOWER/ledger/evidence/WIC52_SAFE_REMOTE_RECOVERY_RECEIPT_20261028.json",
+          "blob_sha": "eafdd7f96091b3481fa3dcf88c015e3aab419ade",
+          "content_match": true
+        },
+        {
+          "path": "docs/WIC_CHAT_HANDOFF_20260927.md",
+          "blob_sha": "b478205e5b3a48d1213ac2f380dee267998b815a",
+          "content_match": true
+        }
+      ],
+      "scope": "SANITIZED_EVIDENCE_AND_HANDOFF_ONLY_NOT_SOURCE_ARCHIVE_RESTORE"
     }
   }
 }
