@@ -39,8 +39,14 @@ def _external_rule_receipts(
     if not registry_path.is_file():
         return {}, [], ["feedback_pipeline/wic_target_registry.json"]
     try:
-        target = json.loads(registry_path.read_text(encoding="utf-8"))["targets"][task_id.upper()]
-    except (KeyError, TypeError, ValueError):
+        targets = json.loads(registry_path.read_text(encoding="utf-8"))["targets"]
+        target = targets.get(task_id.upper())
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return {}, [], [f"REGISTRY_TARGET:{task_id.upper()}"]
+    if target is None:
+        # A task with a pinned local canonical master needs no external receipt.
+        if TASK_RULE_FILES.get(task_id.upper()):
+            return {}, [], []
         return {}, [], [f"REGISTRY_TARGET:{task_id.upper()}"]
     receipts = target.get("rule_receipts", [])
     files: dict[str, str] = {}
