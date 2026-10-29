@@ -479,3 +479,14 @@ TOOL013 코드 중심 단독 재조립은 계속 STOP한다. 다음이 모두 �
 - Actions PASS: https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40801400894
 - ZIP 참조 연결: https://github.com/obk369369-spec/20-operational-manual-viewer/commit/463801b426d63982774a149df0887d9e0d65eaff
 - 해당 섹션은 2026-10-29 대화 내용과 GitHub 파일 조회에 근거하며, 외부 플랫폼 실제 도입/ROOT 완료를 새로 주장하지 않는다.
+
+## 19. 2026-10-29 WIC16 PR66·운영 중단 인계
+
+- 사용자 보고 Work 잔여 약 20%; 실제 계정 사용량은 이번 배치에서 확인하지 않음. 기존 PASS·PASS_LOCK·52번 원본은 재실행하거나 변경하지 않음.
+- 52번 원격 입력 검증 Actions #40846906310 PASS는 읽기·해시·입력 인식 범위만 보존. 업무 Job·출력 PASS 아님.
+- TOOL044 최소 순환 Job `T16-T44-MINCIRC-20260925-001`은 기존 Actions #39212594664와 cloud_state COMPLETED를 근거로 격리 브랜치의 오래된 QUEUED 기록을 완료 증거에 맞춰 수정. 커밋 `375325e14886f2388907acdcd2be36d59521b091`; 신규 Job 실행 아님.
+- 감독 Workflow 9,000초→5,400초 변경 원본 커밋 `28ef2b1e2e78b412a0082ca9d9896b4f94f44440`. 정식 검토용 draft PR #66: https://github.com/obk369369-spec/20-operational-manual-viewer/pull/66, head `27ae65ccf5c095b00d753eff7b2fb94bfda2d017`. 변경 3파일: 감독 Workflow, TOOL016 Registry fallback, admission 경계 시험. 기존 격리 브랜치 검증 변경을 재사용했고 GitHub Actions changed-boundaries #40854022297 PASS. CircleCI는 프로젝트 설정 없음 오류; 별도 상태. main 병합·운영 반영 안 함.
+- 최근 감독 Workflow 5건은 main에서 skipped. 저장소 Actions 변수 목록에 `WIC_USER_STOP`과 `WIC_RULE_ADMISSION_JSON`이 없음. 기존 정본 Evidence `CONTROL_TOWER/ledger/evidence/WIC_COMMON_EXECUTION_BOUNDARY_CHECKPOINT_20261019.json`은 실제 GitHub 설정 변경을 NOT_TESTED, 격리 fixture 재허가만 PASS로 기록. `observer/runtime/hourly-status.json`은 START_BLOCKED / overall_control NOT_VERIFIED. 따라서 두 변수 모두 기존 운영 승인값으로 복원 불가; 임의 설정 금지. 5,400초 변경 자체는 24시간 지속 실행 PASS가 아님.
+- PR #66 GitHub check PASS 뒤에도 main 반영은 명시적 승인 필요. CircleCI 설정 오류가 필수 검사인지 저장소 정책과 함께 검토하고, 중단 해제는 실제 업무별 원본·계약·허가가 승인된 범위에서만 별도 처리. 기존 STOP/START_BLOCKED를 우회하지 않음.
+- 현재 신규 실제 업무 Job 0, 신규 업무 출력 0, 상위 미완료 ROOT 감소 0. 중앙 원장 집계 단위가 다른 수치(미완료 28 주장, incomplete 4, unified OPEN 등)를 임의 합산하지 말 것.
+- **다음 시작점:** PR #66의 현재 head와 검사 증거를 재사용하고 재시험하지 않는다. 사용자 승인 전 main 병합 금지. 새 허가·원본·계약 증거가 생긴 독립 ROOT만 실행하고, 동일 STOP/Queue/HOLD 조회를 반복하지 않는다.
