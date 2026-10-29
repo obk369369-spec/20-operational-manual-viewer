@@ -1,0 +1,47 @@
+{
+  "classification": "SCOPED_ACTUAL_OUTPUT_VERIFIED_DEPLOYMENT_PENDING",
+  "tool": "TOOL013",
+  "source_file": "MarketsandMarkets New Reports Metadata 01072025.xlsx",
+  "source_sha256": "853f9cf911ac9a4bc9f1cdde304da4c71a0c1395c6ea858fd36ea659b17d7761",
+  "operational_repository": "obk369369-spec/13-excel-upload",
+  "operational_branch": "wic16-tool013-title-direction-20261026",
+  "operational_commit": "51f455bb7bb69d2c9758b337adce78c5b0dbde06",
+  "actual_output_file": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/TOOL013_ACTUAL_UPLOAD_20261027.xlsx",
+  "actual_output_sha256": "27ba94dfaab7c363185ee498dc3311aedc5a137d9c2c42acb1268edb8babc60f",
+  "actual_input_rows": 6,
+  "actual_output_rows": 6,
+  "output_columns": 18,
+  "comparison": {
+    "korean_b_approved": 6,
+    "english_c_original": 6,
+    "report_code": 6,
+    "page_count": 6,
+    "date_format": 6,
+    "browser_page_errors": 0
+  },
+  "external_completed_product": {
+    "name": "LibreOffice",
+    "version": "25.8.3.2",
+    "license": "MPL-2.0",
+    "license_source": "https://www.libreoffice.org/licenses/",
+    "independent_reopen": "PASS",
+    "csv_rows": 6,
+    "csv_columns": 18,
+    "csv_sha256": "487dd54ee68df391ae268c3aea1059470b0104eba6966c74881e82fdd0227472"
+  },
+  "invalid_row_behavior": "Existing bounded negative test reused; this actual file contained six valid rows",
+  "business_root_status": "RECURRENT_UNTIL_OPERATIONAL_DEPLOYMENT",
+  "incomplete_root_delta": 0,
+  "main_merged": false,
+  "actual_result_remote_receipt": {
+    "commit_sha": "d1876435abd65d85447e42174679f020edbac95f",
+    "blob_oid": "568e13275b37a4955d9466fa222a9bdefb77c068",
+    "retrieval_id": "github-raw-39b61fa694919cc6786f603c",
+    "remote_url": "https://raw.githubusercontent.com/obk369369-spec/20-operational-manual-viewer/d1876435abd65d85447e42174679f020edbac95f/CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/TOOL013_ACTUAL_UPLOAD_20261027.xlsx",
+    "artifact_path": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/TOOL013_ACTUAL_UPLOAD_20261027.xlsx",
+    "retrieved_sha256": "27ba94dfaab7c363185ee498dc3311aedc5a137d9c2c42acb1268edb8babc60f",
+    "validation_result": "PASS"
+  },
+  "operational_code_remote_sha256": "5a123f2f766135c5881224764f7b7a4e4d6c3cb55e78f9f0f97533faa196a761",
+  "operational_code_remote_readback": "PASS"
+}

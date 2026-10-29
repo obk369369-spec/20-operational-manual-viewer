@@ -1,0 +1,614 @@
+{
+  "classification": "OPENREFINE_ACTUAL_18_COLUMN_REVIEW_OUTPUT_VERIFIED_DEPLOYMENT_PENDING",
+  "tool": "TOOL013",
+  "product": "OpenRefine 3.10.0",
+  "project_id": "2761202237829",
+  "source_file": "MarketsandMarkets New Reports Metadata 01072025.xlsx",
+  "source_copy_sha256": "853f9cf911ac9a4bc9f1cdde304da4c71a0c1395c6ea858fd36ea659b17d7761",
+  "source_rows": 6,
+  "output_rows": 6,
+  "output_columns": 18,
+  "output_sha256": "e18130485641c51de01343c42eaad2e2bea5505c43110ac5a59b639b6cb83bb1",
+  "mapping_operations": [
+    {
+      "op": "core/column-addition",
+      "description": "Map 발행사 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "발행사",
+      "columnInsertIndex": 21,
+      "baseColumnName": "Report Title",
+      "expression": "grel:\"MarketsandMarkets\"",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 상품명 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "상품명",
+      "columnInsertIndex": 22,
+      "baseColumnName": "Report Title",
+      "expression": "grel:if(value==\"China Semiconductor Market for Automotive by Component (Microcontroller, Power Semiconductor, Sensor & MEMS Device, Memory Chip, Analog & Mixed Signal IC), Global & China Semiconductor Export, Alternate Destination - Trends and Strategic Recommendation\",\"중국 자동차용 반도체 시장: 구성 요소별(마이크로컨트롤러, 전력 반도체, 센서 및 MEMS 소자, 메모리 칩, 아날로그 및 혼합 신호 IC), 글로벌 및 중국 반도체 수출, 대체 목적지 - 동향 및 전략적 제언\",if(value==\"Sports Shotgun Market by Application (Competition (Clay, Trap, Skeet Shooting) and Hunting), Action Type (Over and Under, Side by Side, Semi-automatic, Pump Action), Gauge (12, 20, 28, .410 Bore) and Region Global Forecast to 2030\",\"스포츠용 산탄총 시장: 용도별(경기(클레이, 트랩, 스키트 사격) 및 사냥), 작동 방식별(상하 쌍대식(O/U), 좌우 쌍대식(S/S), 반자동, 펌프 액션), 구경별(12, 20, 28, .410 보어) 및 지역별 - 2030년까지의 글로벌 전망\",if(value==\"Emollient Market by Type (Esters, Fatty Alcohols, Fatty Acids, Ethers, Silicones, and Other Types), Form (Solid, Liquid), Application (Skin Care, Hair Care, Deodorants, Oral Care, and Other Applications), and Region - Global Forecast to 2030\",\"에몰리언트(피부 유연제) 시장: 유형별(에스테르, 지방 알코올, 지방산, 에테르, 실리콘 등), 형태별(고체, 액체), 용도별(스킨케어, 헤어케어, 데오도란트, 구강 관리 등) 및 지역별 - 2030년까지의 글로벌 전망\",if(value==\"Level 3 Autonomous Vehicle Market by Region (Asia Pacific, North America, Europe) - Global Forecast to 2035\",\"레벨 3 자율주행차 시장: 지역별(아시아 태평양, 북미, 유럽) - 2035년까지의 글로벌 전망\",if(value==\"Tower Crane Rental Market by Capacity (Low (5–20 tons), Low to Medium (20–100 tons), Heavy (100–500 tons), Extreme Heavy (>500 tons)), End-use industry (Building & Construction, Infrastructure, Energy & Power), and Region - Global Forecast to 2030\",\"타워 크레인 임대 시장: 용량별(소형(5~20톤), 중소형(20~100톤), 대형(100~500톤), 초대형(500톤 초과)), 최종 사용 산업별(건축 및 건설, 인프라, 에너지 및 전력) 및 지역별 - 2030년까지의 글로벌 전망\",if(value==\"Ophthalmology Drugs Market by Molecule (Faricimab, Aflibercept, Ranibizumab), Modality (Monoclonal Antibodies & Fusion Proteins), RoA (Intravitreal, Topical), Indication (AMD, Diabetic Retinopathy (DR), DME), End User - Global Forecast to 2030\",\"안과용 의약품 시장: 분자 유형별(파리시맙, 아플리버셉트, 라니비주맙), 모달리티별(단일클론항체 및 융합 단백질), 투여 경로별(유리체 내 주사, 국소 투여), 적응증별(황반변성(AMD), 당뇨병성 망막병증(DR), 당뇨병성 황반부종(DME)), 최종 사용자별 - 2030년까지의 글로벌 전망\",null))))))",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 한글명 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "한글명",
+      "columnInsertIndex": 23,
+      "baseColumnName": "Report Title",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 1차카테고리 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "1차카테고리",
+      "columnInsertIndex": 24,
+      "baseColumnName": "Report Title",
+      "expression": "grel:\"시장 조사 자료 - 영문판\"",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 2차카테고리 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "2차카테고리",
+      "columnInsertIndex": 25,
+      "baseColumnName": "Report Category",
+      "expression": "grel:if(value==\"Automotive and Transportation\",\"자동차/우주항공\",if(value==\"Aerospace & Defence\",\"자동차/우주항공\",if(value==\"Chemicals\",\"화학/정밀화학\",if(value==\"Building and Construction\",\"토목/건축\",if(value==\"Pharmaceuticals\",\"신약 산업/제약\",null)))))",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 3차카테고리 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "3차카테고리",
+      "columnInsertIndex": 26,
+      "baseColumnName": "Report Category",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 페이지수 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "페이지수",
+      "columnInsertIndex": 27,
+      "baseColumnName": "No.of Pages",
+      "expression": "grel:toNumber(value)",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 개요 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "개요",
+      "columnInsertIndex": 28,
+      "baseColumnName": "Report Description",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 목차 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "목차",
+      "columnInsertIndex": 29,
+      "baseColumnName": "Table of Contents",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 발행일 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "발행일",
+      "columnInsertIndex": 30,
+      "baseColumnName": "Date Published",
+      "expression": "grel:with(value.match(/.*?(\\d{1,2})월\\s+(\\d{1,2}),\\s+(\\d{4}).*/),a,if(a==null,null,a[2]+\"-\"+(\"0\"+a[0]).substring(-2)+\"-\"+(\"0\"+a[1]).substring(-2)))",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 파일명 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "파일명",
+      "columnInsertIndex": 31,
+      "baseColumnName": "File Name",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 판매유형 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "판매유형",
+      "columnInsertIndex": 32,
+      "baseColumnName": "Report Title",
+      "expression": "grel:null",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 환(u,e,g,j) from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "환(u,e,g,j)",
+      "columnInsertIndex": 33,
+      "baseColumnName": "Report Title",
+      "expression": "grel:\"u\"",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map HardCapy가격 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "HardCapy가격",
+      "columnInsertIndex": 34,
+      "baseColumnName": "Report Title",
+      "expression": "grel:null",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map PDF가격 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "PDF가격",
+      "columnInsertIndex": 35,
+      "baseColumnName": "Single user Price in US$",
+      "expression": "grel:toNumber(value)",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 저자 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "저자",
+      "columnInsertIndex": 36,
+      "baseColumnName": "Author Name",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map 체제 from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "체제",
+      "columnInsertIndex": 37,
+      "baseColumnName": "No.of Pages",
+      "expression": "grel:if(isBlank(value),null,value+\" Pages\")",
+      "onError": "set-to-blank"
+    },
+    {
+      "op": "core/column-addition",
+      "description": "Map ISBN/CODE from approved WIC contract",
+      "engineConfig": {
+        "mode": "row-based",
+        "facets": []
+      },
+      "newColumnName": "ISBN/CODE",
+      "columnInsertIndex": 38,
+      "baseColumnName": "Report Code",
+      "expression": "grel:value",
+      "onError": "set-to-blank"
+    }
+  ],
+  "source_columns_removed_from_derived_upload_view_only": true,
+  "source_file_unchanged": true,
+  "rows_removed": 0,
+  "independent_reopen": {
+    "tool": "openpyxl",
+    "source_rows": 6,
+    "output_rows": 6,
+    "output_columns": 18,
+    "source_identifiers_titles_pages_pdf_prices_match": true,
+    "korean_titles_present": 6,
+    "iso_dates": [
+      "2025-06-19",
+      "2025-06-23",
+      "2025-06-23",
+      "2025-06-24",
+      "2025-06-27",
+      "2025-06-27"
+    ]
+  },
+  "missing_values": {
+    "판매유형": 6,
+    "HardCapy가격": 6
+  },
+  "export_issue": "First export returned CSRF error; token added and XLSX export succeeded. No data rows removed.",
+  "scope": "Actual 6-row publisher file, review output only",
+  "incomplete_root_delta": 0,
+  "operational_deployment": false,
+  "github_main_merged": false,
+  "next_step": "From PR #65 isolated branch evidence, verify operational TOOL013 upload requirements and complete protected main/deployment approval; do not rerun prior 2-row or 6-row fixtures.",
+  "generic_capability_review_20261027": {
+    "classification": "GENERIC_MULTI_PUBLISHER_NOT_VERIFIED",
+    "new_runtime_configuration_applied": false,
+    "new_business_output_generated": false,
+    "installed_openrefine_version": "3.10.0",
+    "installed_modules_observed": [
+      "core",
+      "database",
+      "jython",
+      "pc-axis",
+      "wikibase"
+    ],
+    "native_capabilities_confirmed": {
+      "manual_column_rename_move": true,
+      "grel_date_number_identifier_transform": true,
+      "xlsx_export": true,
+      "operations_replay_requires_matching_column_names": true,
+      "approved_title_lookup_via_cross_possible_only_for_available_reference_values": true
+    },
+    "unmet_requirements": [
+      "Unknown publisher schemas require verified header/field normalization before replay of named-column operations",
+      "New English report titles require approved Korean translation; bundled GREL documents language detection but not a translation function",
+      "Publisher-independent WIC category assignment requires approved classification mapping or independently verified external component"
+    ],
+    "external_completed_component_candidate": "OpenRefine AI Extension (third party) exists but is not installed; provider, authentication, license for WIC business data, translation accuracy and WIC taxonomy accuracy are unverified",
+    "stop_condition": "Do not repeat six-row verification or create a custom translation engine. No universal automation PASS.",
+    "next_start": "At existing TOOL013 evidence on PR #65, secure an authorized completed translation/classification component and a different publisher's approved input with expected output; configure OpenRefine field normalization and validate only the new format before operational deployment.",
+    "sources": [
+      "https://openrefine.org/docs/manual/columnediting",
+      "https://openrefine.org/docs/manual/grelfunctions",
+      "https://openrefine.org/docs/manual/exporting",
+      "https://openrefine.org/extensions",
+      "https://github.com/sunilnatraj/llm-extension"
+    ],
+    "extension_install_assessment": {
+      "status": "ISOLATED_RUNTIME_LOADED_LOCAL_PROVIDER_SYNTHETIC_ONLY",
+      "candidate": "OpenRefine AI Extension",
+      "release": "v0.1.2.3",
+      "release_asset": "openrefine-llm-extension-0.1.2.zip",
+      "release_asset_bytes": 178320,
+      "declared_compatibility": "OpenRefine 3.8.7 or later; installed OpenRefine 3.10.0 is within declared range",
+      "installed_modules": [
+        "core",
+        "database",
+        "jython",
+        "pc-axis",
+        "wikibase"
+      ],
+      "ai_extension_installed": false,
+      "provider_required": true,
+      "provider_options": "Remote chat-completion API requires an account/key and sends data to the provider; local Ollama path requires a verified running model and service, not established by existing evidence",
+      "cost": "Extension release asset available without purchase; inference costs depend on chosen provider and were not verified as zero",
+      "license": "Repository LICENSE.txt permits redistribution in source and binary form subject to conditions; third-party model/provider terms remain unverified",
+      "installation_impact": "Requires unpacking extension into OpenRefine extensions directory and making it active; existing runtime would be changed/restarted",
+      "decision": "Do not install into current working OpenRefine or transmit publisher data without a verified local provider and compatibility/safety acceptance",
+      "automatic_translation_verified": false,
+      "automatic_wic_classification_verified": false,
+      "first_unseen_publisher_processed": false,
+      "sources": [
+        "https://github.com/sunilnatraj/llm-extension/releases/tag/v0.1.2.3",
+        "https://raw.githubusercontent.com/sunilnatraj/llm-extension/master/llm-provider-guide.md",
+        "https://raw.githubusercontent.com/sunilnatraj/llm-extension/master/ollama-guide.md"
+      ],
+      "release_zip_sha256": "F1726C95B70D1DA05220E5404042C3A7B053F615481FA41BBD3E6928A66FDF4A",
+      "release_zip_size_verified": true,
+      "zip_paths_checked_safe": true,
+      "isolated_workspace": "C:/Users/obk36/AppData/Local/Temp/WIC16_OpenRefine_Extension_Probe_20261027",
+      "extension_files_extracted": 22,
+      "current_project_2761202237829_untouched": true,
+      "isolated_launch_attempts": [
+        {
+          "method": "refine.bat",
+          "result": "JAVA_HOME_REQUIRED"
+        },
+        {
+          "method": "openrefine.exe with separate /d and /p 3334",
+          "result": "PROCESS_EXITED_SERVER_NOT_STARTED"
+        }
+      ],
+      "active_extension_menu_verified": true,
+      "translation_runtime_verified": "SYNTHETIC_ONLY",
+      "category_runtime_verified": "SYNTHETIC_ONLY",
+      "reason_for_stop": "No verified Java runtime for isolated launcher and no verified local LLM provider; do not restart or modify existing OpenRefine projects or transmit publisher data."
+    },
+    "resume_from": "Existing 18-column output and project 2761202237829 remain preserved. Official AI extension v0.1.2.3 ZIP is acquired and unpacked only in isolated Temp workspace. Next identify an authorized Java runtime and verified local model/provider, start isolated OpenRefine with extension, verify menu, then test only a new publisher with expected WIC output. Do not repeat MarketsandMarkets 6-row validation or re-query project list."
+  },
+  "openrefine_extension_runtime_probe_20261027": {
+    "classification": "PARTIAL_ISOLATED_SYNTHETIC_ONLY",
+    "existing_evidence_reused": [
+      "b17a96323297bc686faf0f50cff67ff6e43dbb0f",
+      "dbae265715d80656925c3906677be5fd507da8f0",
+      "533395841731f7952050ee1c5c1868709adc4b41"
+    ],
+    "root_status": {
+      "ROOT-A": "PARTIAL: bundled Temurin 11.0.30 discovered and isolated OpenRefine 3334 started with llm-extension module loaded; original 3333/project 2761202237829 untouched",
+      "ROOT-B": "PARTIAL: installed local llama3:latest model connected to extension using loopback 127.0.0.1; persisted provider and synthetic translation/classification only",
+      "ROOT-C": "HOLD: no unseen real publisher schema processed; automatic semantic header mapping unverified",
+      "ROOT-D": "HOLD: BCC Research source read approval rejected; no actual new publisher WIC 18-column XLSX",
+      "ROOT-E": "PARTIAL: this evidence stored remotely; no WIC platform worker handoff, ACK, checkpoint recovery or PC-independent execution"
+    },
+    "execution": {
+      "isolated_workspace": "C:/Users/obk36/AppData/Local/Temp/WIC16_OpenRefine_Extension_Probe_20261027",
+      "isolated_port": 3334,
+      "openrefine_version": "3.10.0",
+      "java_home_process_only": "C:/Users/obk36/AppData/Local/Temp/OR310/openrefine-3.10.0/server/target/jre",
+      "java_version": "11.0.30",
+      "extension_module_loaded": true,
+      "extension_release": "v0.1.2.3",
+      "local_provider_label": "WIC_LOCAL_LLAMA3_PROBE",
+      "local_provider_url": "http://127.0.0.1:11434/v1/chat/completions",
+      "provider_saved_and_readback": true,
+      "external_publisher_data_transmitted": false,
+      "synthetic_project_id": "2238989884816",
+      "synthetic_input_title": "Industrial Heat Pump Outlook 2027",
+      "synthetic_korean_title": "2027년 산업 열펌프 전망",
+      "synthetic_wic_category": "에너지",
+      "official_category_source": "obk369369-spec/13-excel-upload@9212abf64f67e56d934c84efb0b91a97253a7203:tool13_v2/official_world_categories.json",
+      "translation_history_id": 1793089538785,
+      "classification_history_id": 1793090353250,
+      "synthetic_only": true
+    },
+    "blocker": {
+      "actual_bcc_source_read": "REJECTED_BY_USER_APPROVAL",
+      "actual_new_publisher_xlsx": false,
+      "automatic_header_semantics": false,
+      "translation_accuracy_vs_approved_expected": false,
+      "category_accuracy_vs_approved_expected": false,
+      "independent_reopen_new_publisher": false,
+      "external_platform_migration": false
+    },
+    "incomplete_root_delta": 0,
+    "next_start": "Reuse isolated port 3334/project 2238989884816 and local provider if still running. Do not requery project list or rerun MarketsandMarkets six rows. Obtain authorized read access to one actual new-publisher source and approved expected title/category; then import a work copy into isolated OpenRefine, test semantic header mapping, direct 18-column XLSX export and independent reopen. If source approval remains denied, keep ROOT-C/D HOLD; do not bypass. Platform migration remains a separate acceptance."
+  },
+  "openrefine_synthetic_18_column_flow_20261027": {
+    "classification": "SYNTHETIC_18_COLUMN_EXPORT_VERIFIED_NOT_GENERIC_OR_BUSINESS_PASS",
+    "project_id": "2238989884816",
+    "local_instance": "http://127.0.0.1:3334",
+    "source_kind": "isolated synthetic one-row CSV; no publisher or USB source accessed",
+    "source_headers": [
+      "Item",
+      "Released",
+      "Length",
+      "Cost",
+      "SKU"
+    ],
+    "existing_ai_history_ids": [
+      1793089538785,
+      1793090353250
+    ],
+    "new_history": {
+      "korean_title_to_product": 1793090011826,
+      "final_reorder": 1793090205018,
+      "total_entries_after": 21
+    },
+    "output_columns": [
+      "발행사",
+      "상품명",
+      "한글명",
+      "1차카테고리",
+      "2차카테고리",
+      "3차카테고리",
+      "페이지수",
+      "개요",
+      "목차",
+      "발행일",
+      "파일명",
+      "판매유형",
+      "환(u,e,g,j)",
+      "HardCapy가격",
+      "PDF가격",
+      "저자",
+      "체제",
+      "ISBN/CODE"
+    ],
+    "applied_rules": [
+      "상품명=AI-generated KoreanTitle; 한글명=original English Item",
+      "1차카테고리=시장 조사 자료 - 영문판; 2차카테고리=AI WIC_Category from existing official taxonomy",
+      "페이지수=Length toNumber; 체제=Length + ' Pages'; 발행일=nonblank Released; PDF가격=Cost toNumber; ISBN/CODE=SKU",
+      "unproven publisher, currency, author, summary, TOC, filename, sale type, hardcopy price remain blank; no row removal",
+      "core/column-reorder retained 18 derived columns in WIC order; original synthetic CSV remained separate"
+    ],
+    "output": {
+      "local_path": "C:\\Users\\obk36\\AppData\\Local\\Temp\\WIC16_OpenRefine_Synthetic_18col_20261027.xlsx",
+      "bytes": 3871,
+      "sha256": "E4720F3064A420728DC22C1189D919A381BB611B6FB08998C3EF92BF81E9BD12",
+      "producer": "OpenRefine 3.10.0 export-rows format=xlsx",
+      "independent_reopen": {
+        "reader": "openpyxl read_only",
+        "rows": 1,
+        "columns": 18,
+        "korean_product": "2027년 산업 열펌프 전망",
+        "english_original": "Industrial Heat Pump Outlook 2027",
+        "wic_category": "에너지",
+        "pages": 120,
+        "date": "2026-03-14",
+        "price_number": 3500,
+        "format": "120 Pages",
+        "code": "TEST-001"
+      }
+    },
+    "limitations": [
+      "Semantic matching of previously unseen publisher headers was not implemented or verified; current OpenRefine column additions bind to named source columns.",
+      "AI translation and category output have no approved expected-value comparison on real publisher data.",
+      "Currency and price type are unknown; numeric Cost mapping is synthetic only.",
+      "No actual publisher XLSX, production upload, independent worker, ACK, checkpoint recovery, or platform migration.",
+      "No upper ROOT completed; incomplete_root_delta=0."
+    ],
+    "root_status": {
+      "ROOT-C": "PARTIAL_SYNTHETIC_18_COLUMN_FLOW; semantic arbitrary-header mapping HOLD",
+      "ROOT-D": "HOLD_REAL_PUBLISHER_SOURCE_NOT_AUTHORIZED",
+      "ROOT-E": "PARTIAL_REMOTE_EVIDENCE_ONLY; no external runtime handoff"
+    },
+    "next_start": "Obtain authorized unseen publisher input and approved expected fields; test semantic header mapping before claiming generic reuse. Reuse project 2238989884816 history and output hash; do not rerun MarketsandMarkets six rows."
+  },
+  "openrefine_synthetic_4_stage_self_audit_20261027": {
+    "scope": "existing isolated synthetic project 2238989884816; one row, 18 output columns; no real publisher processing",
+    "final_verdict": "HOLD",
+    "stage_1_detection": {
+      "status": "EXECUTED",
+      "input_rows": 1,
+      "output_rows": 1,
+      "output_cells": 18,
+      "first_detected_errors": 1,
+      "first_error_rate_percent_of_output_cells": 5.56,
+      "error": "Cost=3500 was mapped to PDF가격 without source evidence of price type or currency",
+      "repeat_check": "same unsupported mapping found once in this project; no cross-publisher recurrence claim"
+    },
+    "stage_2_cause": {
+      "status": "EXECUTED",
+      "root_cause": "generic Cost source header lacks PDF price type and currency semantics",
+      "recurrence_scope": "any file with undifferentiated Cost header",
+      "unrelated_causes": [
+        "AI translation semantic accuracy lacks approved expected value",
+        "AI category semantic accuracy lacks approved expected value",
+        "publisher-specific requiredness of blank output fields unverified"
+      ]
+    },
+    "stage_3_repair_revalidate": {
+      "status": "EXECUTED_WITH_HOLD",
+      "openrefine_operation": "core/text-transform on PDF가격, grel:null",
+      "history_id": 1793091462743,
+      "before": {
+        "PDF가격": 3500
+      },
+      "after": {
+        "PDF가격": null
+      },
+      "corrected_cells": 1,
+      "changed_cells_total": 1,
+      "revalidated_rows": 1,
+      "revalidated_columns": 18,
+      "independent_checks_total": 11,
+      "independent_checks_passed": 11,
+      "checks": [
+        "source/output row count",
+        "18 column count",
+        "18 column order",
+        "English title preservation",
+        "page count",
+        "date",
+        "product code",
+        "Pages format",
+        "unsupported PDF price cleared",
+        "no duplicate code",
+        "all other output cells unchanged"
+      ],
+      "confirmed_residual_errors": 0,
+      "confirmed_residual_error_rate_percent_of_output_cells": 0,
+      "unverified_semantic_fields": 2,
+      "unverified_semantic_field_names": [
+        "상품명 translation accuracy",
+        "2차카테고리 classification accuracy"
+      ],
+      "blank_output_fields": 10,
+      "blank_fields_requiredness_unverified": true,
+      "pass_prohibited": true
+    },
+    "stage_4_prevention": {
+      "status": "PARTIAL_RULE_RECORDED_NOT_PLATFORM_ENFORCED",
+      "rule": "Do not assign a generic Cost value to PDF가격 or a currency code without source evidence of sale format and currency; leave blank and HOLD if required.",
+      "recorded_in": [
+        "OpenRefine project history",
+        "this existing GitHub Evidence"
+      ],
+      "not_verified": [
+        "automatic reapplication to a new publisher",
+        "all-tool WIC common admission or output enforcement"
+      ]
+    },
+    "corrected_output": {
+      "local_path": "C:\\Users\\obk36\\AppData\\Local\\Temp\\WIC16_OpenRefine_Synthetic_18col_corrected_20261027.xlsx",
+      "sha256": "0D117DCF1E895A13E7442EBF769C1F851B969C5108331FC5933F419F7BFCD8D1",
+      "bytes": 3866,
+      "producer": "OpenRefine 3.10.0 direct XLSX export",
+      "independent_reader": "openpyxl read_only"
+    },
+    "platform_scope": "Only this OpenRefine synthetic flow audited. Common WIC all-tool enforcement not implemented or claimed. Existing PASS_LOCK and previous evidence untouched.",
+    "next_start": "Obtain approved semantic expected values and authorized real publisher source. Separately admit a change to the existing universal_enforcement verdict path so all WIC tools must submit full self-audit receipts before new PASS."
+  },
+  "publisher_unattended_self_validation_handoff_20261027": {
+    "classification": "HOLD_NO_NEW_UNATTENDED_RUN",
+    "requested_scope": "first-approved publisher source/output/rules/repair history baseline; new-file comparison; four-stage self-audit; zero residual and zero unverified mandatory fields before automatic release",
+    "reusable_existing_evidence": [
+      {
+        "repository": "obk369369-spec/13-excel-upload",
+        "ref": "9212abf64f67e56d934c84efb0b91a97253a7203",
+        "path": "tool13_v2/OPERATIONS_READY.json",
+        "scope": "TOOL013_V2 translation acceptance and actual XLS E2E PASS; does not by itself approve arbitrary OpenRefine publisher workflows"
+      },
+      {
+        "repository": "obk369369-spec/13-excel-upload",
+        "ref": "9212abf64f67e56d934c84efb0b91a97253a7203",
+        "path": "evidence/tool13_v2_translation_acceptance.json",
+        "scope": "one exact approved Korean title fixture"
+      },
+      {
+        "repository": "obk369369-spec/13-excel-upload",
+        "ref": "9212abf64f67e56d934c84efb0b91a97253a7203",
+        "path": "evidence/tool13_v2_actual_template_e2e.json",
+        "scope": "one-row actual XLS 18-column shape, source/output hashes and 12 negative cases; source/output bytes not available through this GitHub evidence read"
+      }
+    ],
+    "current_openrefine_status": "synthetic corrected XLSX HOLD; translation/category semantic checks not approved; 10 blank output fields whose mandatory status for a real publisher is unverified",
+    "automatic_pass_admission": "DENIED_UNTIL_PUBLISHER_BASELINE_AND_FULL_SELF_AUDIT",
+    "new_publisher_files_processed": 0,
+    "new_unattended_outputs": 0,
+    "new_auto_repairs": 0,
+    "accuracy_metrics": {
+      "approved_case_match_rate": null,
+      "error_discovery_rate": null,
+      "auto_repair_success_rate": null,
+      "recurrence_count": null,
+      "reason": "no authorized new publisher run with complete approved expected output"
+    },
+    "platform_enforcement": "NOT_IMPLEMENTED; existing universal_enforcement.verdict checks total/checked/skipped/unresolved/evidence/readback but does not require four-stage counts, residual_error_count, unverified_required_count for all new outputs",
+    "next_start": "Use a formally admitted change to existing shared output-verdict path, with migration-safe receipt schema and targeted remote tests; bind actual approved per-publisher source/output bytes and expected semantic fields before enabling unattended PASS. Do not promote the synthetic file or a one-title fixture to a full publisher baseline."
+  }
+}

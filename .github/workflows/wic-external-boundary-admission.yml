@@ -6,6 +6,8 @@ on:
       - 'WIC_GLOBAL_OPERATING_RULES.md'
       - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
       - 'CONTROL_TOWER/controller/pre_work_admission.py'
+      - 'feedback_pipeline/wic_common_execution.py'
+      - 'feedback_pipeline/test_wic_common_execution.py'
       - 'observer/index.html'
       - '.github/workflows/render-env2-roundtrip.yml'
       - '.github/workflows/root-a-env1-circleci-readback.yml'
@@ -33,6 +35,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+      - name: Verify shared executor isolates non-ready demands
+        run: python feedback_pipeline/test_wic_common_execution.py
       - name: Verify only new common admission bindings and fail-closed default
         run: |
           python - <<'PY'
@@ -111,8 +115,11 @@ jobs:
               admission = {'work_id':work_id,'task_id':task_id,'rule_context':context,
                            'source_receipt':{'path':source.relative_to(Path.cwd()).as_posix(),
                                              'sha256':hashlib.sha256(source.read_bytes()).hexdigest()}}
-              env = dict(os.environ, WIC_RULE_ADMISSION_JSON=json.dumps({'admissions':{work_id:admission}}),
+              admission_file = Path(folder) / 'admission.json'
+              admission_file.write_text(json.dumps({'admissions':{work_id:admission}}, ensure_ascii=False), encoding='utf-8')
+              env = dict(os.environ, WIC_RULE_ADMISSION_FILE=admission_file.relative_to(Path.cwd()).as_posix(),
                          WIC_USER_STOP='1')
+              env.pop('WIC_RULE_ADMISSION_JSON', None)
               cmd = [sys.executable, 'CONTROL_TOWER/controller/pre_work_admission.py',
                      '--require-admission','--work-id',work_id,'--task-id',task_id]
               stopped = subprocess.run(cmd, env=env, capture_output=True, text=True)
@@ -149,6 +156,27 @@ jobs:
                          'validation_pass':True,'positive_pass':True,'negative_pass':True,
                          'failure_injection_pass':True,'recovery_pass':True,'rollback_pass':True,
                          'evidence_ref':str(marker_path),'readback_pass':True}
+              receipt['self_audit'] = {
+                  'stages': {stage: {'executed': True, 'evidence_ref': str(marker_path)}
+                             for stage in ('detect','cause','repair_revalidate','prevent_recurrence')},
+                  'source_rows':1,'output_rows':1,
+                  'expected_columns':['payload'],'actual_columns':['payload'],
+                  'required_cells':1,'checked_cells':1,
+                  'initial_errors':0,'corrected_errors':0,'residual_errors':0,
+                  'unverified_required':0,'before_after':[],
+                  'full_revalidation_pass':True,'independent_validation_pass':True,
+                  'source_identity_pass':True,'no_duplicate_or_loss_pass':True,
+                  'recurrence_rule_ref':'CONTROL_TOWER/controller/universal_enforcement.py'}
+              missing_audit = dict(receipt)
+              missing_audit.pop('self_audit')
+              closure.write_text(json.dumps(missing_audit) + '\n', encoding='utf-8')
+              env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
+                  'path':closure.relative_to(Path.cwd()).as_posix(),
+                  'sha256':hashlib.sha256(closure.read_bytes()).hexdigest()}})
+              blocked_audit = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+                                              '--require-completion','--work-id',work_id,'--task-id',task_id],
+                                             env=env,capture_output=True,text=True)
+              assert blocked_audit.returncode == 1 and 'SELF_AUDIT_NOT_PASS' in blocked_audit.stdout, blocked_audit.stdout
               closure.write_text(json.dumps(receipt) + '\n', encoding='utf-8')
               env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
                   'path':closure.relative_to(Path.cwd()).as_posix(),
@@ -156,7 +184,7 @@ jobs:
               completed = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                           '--require-completion','--work-id',work_id,'--task-id',task_id],
                                          env=env,capture_output=True,text=True)
-              assert completed.returncode == 0 and 'ALLOW' in completed.stdout, completed.stdout
+              assert completed.returncode == 1 and 'ARTIFACT_REOPEN_REF_MISSING' in completed.stdout, completed.stdout
               env['WIC_USER_STOP'] = '1'
               stopped_completion = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                                     '--require-completion','--work-id',work_id,'--task-id',task_id],
@@ -185,7 +213,7 @@ jobs:
                   'evidence_required':'original, result, independent validation, readback'},
                   'source_refs':[{'path':'missing/original.txt','sha256':'0'*64}]}) + '\n', encoding='utf-8')
               admission['source_receipt']['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
-              env['WIC_RULE_ADMISSION_JSON'] = json.dumps({'admissions':{work_id:admission}})
+              admission_file.write_text(json.dumps({'admissions':{work_id:admission}}, ensure_ascii=False), encoding='utf-8')
               rejected_start = subprocess.run(cmd, env=env,capture_output=True,text=True)
               assert rejected_start.returncode == 1 and 'ORIGINAL_SOURCE_MISSING_OR_CHANGED' in rejected_start.stdout
           for filename in ('wic-observer-pages.yml','tool044-multi-gate.yml',
@@ -196,6 +224,6 @@ jobs:
               assert workflow.count('WIC_USER_STOP:') >= workflow.count('--require-completion')
               assert workflow.count('WIC_RULE_ADMISSION_JSON:') >= workflow.count('--require-completion')
           print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
-          print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
+          print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETION_BLOCKED_WITHOUT_REOPEN_REMOTE')
           print('PASS COMMON_MUTATING_BOUNDARY_AND_OBSERVER_DELTA', sum(map(len, paths.values())))
           PY

@@ -47,6 +47,32 @@ def validate_contract(contract: dict) -> list[str]:
     return missing
 
 
+def bind_existing_execution_contract(workspace: Path, source: str, handler: list[str],
+                                     output: str, expected_output_sha256: str) -> dict:
+    """Bind an existing source and exact expected result without inventing either."""
+    workspace = workspace.resolve()
+    if (not isinstance(source, str) or not isinstance(output, str)
+            or not isinstance(handler, list) or not handler
+            or not all(isinstance(part, str) and part for part in handler)
+            or not isinstance(expected_output_sha256, str)
+            or len(expected_output_sha256) != 64
+            or any(char not in "0123456789abcdefABCDEF" for char in expected_output_sha256)):
+        return {"status": "HOLD", "reason": "EXECUTION_CONTRACT_FIELDS_UNVERIFIED"}
+    original = (workspace / source).resolve()
+    result = (workspace / output).resolve()
+    if (original == result or not original.is_relative_to(workspace)
+            or not result.is_relative_to(workspace)):
+        return {"status": "HOLD", "reason": "EXECUTION_CONTRACT_PATH_OUTSIDE_WORKSPACE"}
+    if not original.is_file():
+        return {"status": "HOLD", "reason": "ACTUAL_INPUT_MISSING"}
+    return {"status": "READY", "contract": {
+        "input": source, "input_sha256": hashlib.sha256(original.read_bytes()).hexdigest(),
+        "handler": handler, "output": output,
+        "expected": {"returncode": 0, "output_exists": True,
+                     "output_sha256": expected_output_sha256.lower()},
+    }}
+
+
 class ClaimStore:
     """Atomic on a shared filesystem. Cross-provider use requires a shared mount."""
     def __init__(self, root: Path):
@@ -147,11 +173,28 @@ def _expand(argv: list[str], workspace: Path, contract: dict) -> list[str]:
 
 def execute_registered(demand: dict, workspace: Path, store: ClaimStore, owner: str) -> dict:
     job_id = identity(demand)
+    if demand.get("status") != "READY":
+        return {"job_id": job_id, "final_state": "HOLD", "reason": "DEMAND_NOT_READY",
+                "demand_status": demand.get("status"),
+                "result_return": {"status": "HOLD", "tool016_ack": "RECEIVED"}}
     contract = demand.get("execution_contract") or {}
     missing = validate_contract(contract)
     if missing:
         return {"job_id": job_id, "final_state": "HOLD", "reason": "EXECUTABLE_CONTRACT_REQUIRED",
                 "missing": missing, "result_return": {"status": "HOLD", "tool016_ack": "RECEIVED"}}
+    input_path = (workspace / contract["input"]).resolve()
+    output_path = (workspace / contract["output"]).resolve()
+    if (not input_path.is_relative_to(workspace.resolve())
+            or not output_path.is_relative_to(workspace.resolve())
+            or input_path == output_path):
+        return {"job_id": job_id, "final_state": "HOLD", "reason": "CONTRACT_PATH_OUTSIDE_WORKSPACE",
+                "result_return": {"status": "HOLD", "tool016_ack": "RECEIVED"}}
+    if not input_path.is_file():
+        return {"job_id": job_id, "final_state": "HOLD", "reason": "ACTUAL_INPUT_MISSING",
+                "result_return": {"status": "HOLD", "tool016_ack": "RECEIVED"}}
+    if contract.get("input_sha256") and hashlib.sha256(input_path.read_bytes()).hexdigest() != contract["input_sha256"]:
+        return {"job_id": job_id, "final_state": "HOLD", "reason": "ACTUAL_INPUT_CHANGED",
+                "result_return": {"status": "HOLD", "tool016_ack": "RECEIVED"}}
     claim = store.claim(job_id, owner)
     if claim["status"] != "CLAIMED":
         return {"job_id": job_id, "final_state": "BLOCKED", "reason": claim["status"],
@@ -258,4 +301,5 @@ def integrate_component(component: dict, workspace: Path, store: ClaimStore, own
     readback = target.read_bytes() == output.read_bytes()
     return {**result, "route": "STABLE", "deployed": readback, "rollback": False,
             "registered": created, "readback": readback}
+
 

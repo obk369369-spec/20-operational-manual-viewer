@@ -175,6 +175,22 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
             summary["trigger_release_verified"] = True
         work_id = f"backlog:{entry.get('root_id')}"
         admission = admissions.get(work_id) if isinstance(admissions, dict) else None
+        recoverable_hold = (
+            status.startswith("HOLD_EXECUTION_")
+            and trigger in {
+                "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
+                "LIBRARY_BYTES_ACCESSIBLE_TO_WORK_RUNTIME",
+                "CURRENT_RULE_OR_SOURCE_ADMISSION_CHANGED",
+            }
+            and registry is not None
+            and entry.get("root_id") in contracts
+            and isinstance(admission, dict)
+            and isinstance(admission.get("source_receipt"), dict)
+        )
+        if recoverable_hold:
+            isolated = {"queued_requirement_ids": [], "backlog_root_ids": [entry["root_id"]],
+                        "rule_admissions": {work_id: admission}}
+            ready = queued_work_admission(isolated, registry)["decision"] == "ALLOW"
         if ready and contracts is not None and entry.get("root_id") not in contracts:
             summary["defer_reason"] = "EXECUTION_CONTRACT_MISSING"
             deferred.append(summary)
@@ -183,6 +199,7 @@ def reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
             summary["defer_reason"] = "WORK_ADMISSION_OR_SOURCE_RECEIPT_MISSING"
             deferred.append(summary)
         elif ready:
+            ledger_quarantine.pop(summary["root_id"], None)
             executable.append(summary)
         else:
             summary["defer_reason"] = (
@@ -237,7 +254,7 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
         work_id = f"backlog:{root_id}"
         execution_context = queue.get("admitted_rule_contexts", {}).get(work_id)
         bound_handler = {**handler, "execution_context": execution_context}
-        receipt = validate_contract(bound_handler)
+        receipt = validate_contract_isolated(bound_handler)
         if receipt["status"] == "PASS":
             # A contract proves evidence shape, not an executed business result.
             # This adapter has no worker result/independent completion receipt to close the root.
@@ -261,6 +278,13 @@ def execute_central_backlog(queue: dict[str, Any], ledger: dict[str, Any], regis
     queue["next_backlog_root"] = None
     queue["backlog_quarantine"] = list(existing_quarantine.values())
     return receipts
+
+
+def execute_and_reconcile_central_backlog(queue: dict[str, Any], ledger: dict[str, Any],
+                                          registry: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Project execution-induced HOLD changes before persisting state and Observer."""
+    receipts = execute_central_backlog(queue, ledger, registry)
+    return reconcile_central_backlog(queue, ledger, registry), receipts
 
 
 def nested(value: Any, dotted: str) -> Any:
@@ -324,22 +348,40 @@ def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
         candidate_sets.append(recovery_refs)
     last_reason = "EVIDENCE_NOT_FOUND"
     attempts = 0
+    route_attempts: list[dict[str, Any]] = []
     for candidate_index, candidates in enumerate(candidate_sets):
         attempts += 1
+        route = "PRIMARY_EVIDENCE" if candidate_index == 0 else "RECOVERY_EVIDENCE"
         try:
             payloads = [body.load(body.ROOT / ref) for ref in candidates]
             results = [{"rule": rule, "pass": rule_passes(payloads[int(rule.get("source", 0))], rule)}
                        for rule in contract["rules"]]
             passed = bool(results) and all(item["pass"] for item in results)
+            route_attempts.append({"route": route, "status": "READBACK_PASS",
+                                   "validation": "PASS" if passed else "HOLD"})
             return {"status": "PASS" if passed else "HOLD",
                     "reason": None if passed else "CONTRACT_VALIDATION_FAILED",
                     "evidence": candidates, "rules": results,
                     "readback_pass": True, "attempts": attempts,
-                    "evidence_recovered": candidate_index > 0}
+                    "evidence_recovered": candidate_index > 0,
+                    "evidence_route": route, "route_attempts": route_attempts}
         except (OSError, ValueError):
             last_reason = "EVIDENCE_READBACK_FAILED"
+            route_attempts.append({"route": route, "status": "READBACK_FAILED"})
     return {"status": "HOLD", "reason": last_reason, "evidence": evidence_refs,
-            "readback_pass": False, "attempts": attempts, "evidence_recovered": False}
+            "readback_pass": False, "attempts": attempts, "evidence_recovered": False,
+            "evidence_route": None, "route_attempts": route_attempts}
+
+
+def validate_contract_isolated(contract: dict[str, Any]) -> dict[str, Any]:
+    """Fail closed for one malformed contract without aborting independent workers."""
+    try:
+        return validate_contract(contract)
+    except (KeyError, IndexError, TypeError, AttributeError):
+        return {"status": "HOLD", "reason": "CONTRACT_SCHEMA_INVALID",
+                "evidence": [], "readback_pass": False, "attempts": 1,
+                "evidence_recovered": False, "evidence_route": None,
+                "route_attempts": []}
 
 
 def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -361,7 +403,7 @@ def route_contracts(state: dict[str, Any], queue: dict[str, Any], registry: dict
         contexts = [rule_contexts.get(f"requirement:{value}") for value in requirement_ids]
         bound_contracts.append({**contract, "execution_contexts": contexts})
     with ThreadPoolExecutor(max_workers=max(1, min(4, len(bound_contracts)))) as executor:
-        receipts = list(executor.map(validate_contract, bound_contracts))
+        receipts = list(executor.map(validate_contract_isolated, bound_contracts))
     processed: list[dict[str, Any]] = []
     held: list[dict[str, Any]] = []
     for contract, receipt in zip(contracts, receipts):
@@ -405,6 +447,9 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
     queued_ids = set(map(int, queue["queued_requirement_ids"]))
     queued = [row for row in rows if int(row["id"]) in queued_ids]
     backlog_quarantine = queue.get("backlog_quarantine", [])
+    unfinished = bool(backlog_quarantine or queue.get("quarantined_requirements")
+                      or state.get("central_backlog", {}).get("deferred")
+                      or any(row.get("queue_status") != "PASS_LOCKED" for row in rows))
     next_work = (str(queue["queued_requirement_ids"][0]) if queue["queued_requirement_ids"]
                  else queue.get("next_backlog_root"))
     if next_work is None and backlog_quarantine:
@@ -424,7 +469,8 @@ def write_observer_state(state: dict[str, Any], queue: dict[str, Any], registry:
         "PLATFORM_HOLD": [item(row, "PLATFORM_HOLD") for row in waiting], "LONG_TERM_HOLD": [],
         "NEXT_WORK": next_work,
         "current": {"run_id": run_id, "runtime": "GitHub Actions",
-                    "status": "작업 중" if queued or queue.get("backlog_root_ids") else "완료",
+                    "status": ("작업 중" if queued or queue.get("backlog_root_ids") else
+                               "보류" if unfinished else "완료"),
                     "queue": len(queued), "pass_locked": len(complete), "hold": len(waiting),
                     "fail": sum(1 for row in rows if row["status"] == "FAIL"),
                     "processing": len(processed), "factory": "공통 실행계약 Large Factory",
@@ -621,7 +667,7 @@ def main() -> None:
         backlog = reconcile_central_backlog(queue, ledger, registry)
         queued_admission = isolate_denied_queued_work(
             state, queue, ledger, registry)
-        backlog_execution = execute_central_backlog(queue, ledger, registry)
+        backlog, backlog_execution = execute_and_reconcile_central_backlog(queue, ledger, registry)
         body.atomic_json(ledger_path, ledger)
         registry_ok = all((body.ROOT / item["path"]).exists() and item["status"] == "VERIFIED_REUSE"
                           for item in registry["components"])
@@ -658,6 +704,7 @@ def main() -> None:
         state["next_run_at"] = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
         state["github_runtime"] = {"repository": repository, "run_id": run_id,
             "run_attempt": run_attempt, "processed": processed, "held": held,
+            "top_rule_admission": rule_admission,
             "queued_work_admission": queued_admission,
             "handoff": handoff_receipt, "feedback": feedback_receipt,
             "progress_gate": progress_receipt,
@@ -683,6 +730,7 @@ def main() -> None:
             "dynamic_requirement_router": True, "hardcoded_requirement_pass_routes": 0,
             "parallel_contract_workers": min(4, len(registry.get("execution_contracts", []))),
             "processed": processed, "held": held,
+            "top_rule_admission": rule_admission,
             "queued_work_admission": queued_admission,
             "multiple_requirement_auto_processing": len(processed) >= 2,
             "locked_contract_requirements": locked_contract_requirements,
@@ -784,5 +832,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

@@ -237,7 +237,171 @@ class QueueIsolationTest(unittest.TestCase):
         self.assertEqual(receipt["reason"], "USER_STOP_OR_START_BLOCKED")
 
 
+    def test_malformed_contract_is_held_without_aborting_independent_work(self) -> None:
+        evidence = self.root / "feedback_pipeline" / "evidence" / "good.json"
+        evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        state = self.state(1, 2)
+        queue = {"queued_requirement_ids": [1, 2], "backlog_root_ids": [],
+                 "admitted_rule_contexts": {
+                     f"requirement:{value}": {"rule_records": [{"id": "synthetic-current"}]}
+                     for value in (1, 2)}}
+        registry = {"execution_contracts": [
+            {"id": "BAD", "task_id": "TOOL044", "requirement_ids": [1],
+             "proof": "synthetic", "rules": [{"path": "verified", "operation": "truthy"}]},
+            {"id": "GOOD", "task_id": "TOOL044", "requirement_ids": [2],
+             "proof": "synthetic", "evidence": "feedback_pipeline/evidence/good.json",
+             "rules": [{"path": "verified", "operation": "truthy"}]},
+        ]}
+        processed, held = runtime.route_contracts(state, queue, registry)
+        self.assertEqual([item["requirement_id"] for item in processed], [2])
+        self.assertEqual([item["requirement_id"] for item in held], [1])
+        self.assertEqual(held[0]["reason"], "CONTRACT_SCHEMA_INVALID")
+        self.assertEqual(state["requirements"][0]["status"], "HOLD")
+        self.assertEqual(state["requirements"][1]["queue_status"], "PASS_LOCKED")
+        self.assertEqual(queue["queued_requirement_ids"], [1])
+
+
+    def test_execution_hold_is_reflected_in_same_cycle_canonical_surfaces(self) -> None:
+        for result in ("PASS", "HOLD"):
+            with self.subTest(validation=result):
+                ledger = {"entries": [{"root_id": "A", "status": "OPEN",
+                                       "next_trigger": "IMMEDIATE"}]}
+                queue = {"queued_requirement_ids": [], "backlog_root_ids": ["A"],
+                         "backlog_quarantine": []}
+                registry = {"backlog_execution_contracts": [
+                    {"root_id": "A", "task_id": "TOOL044"}]}
+                with patch.object(runtime, "validate_contract", return_value={
+                        "status": result, "evidence": ["synthetic-contract.json"],
+                        "readback_pass": True, "reason": None if result == "PASS" else "SYNTHETIC_INVALID"}):
+                    summary, receipts = runtime.execute_and_reconcile_central_backlog(
+                        queue, ledger, registry)
+                self.assertEqual(len(receipts), 1)
+                self.assertEqual(summary["executable_count"], 0)
+                self.assertEqual(summary["deferred_count"], 1)
+                self.assertEqual(queue["backlog_root_ids"], [])
+                self.assertEqual(queue["backlog_quarantine"][0]["root_id"], "A")
+                self.assertTrue(ledger["entries"][0]["status"].startswith("HOLD_EXECUTION_"))
+                state = {"central_backlog": summary}
+                observer = {"backlog_recovery": {
+                    "quarantined": queue["backlog_quarantine"]}}
+                self.assertEqual(runtime.runtime_consistency(
+                    queue, ledger, state, observer)["status"], "PASS")
+
+
+    def test_evidence_route_fallback_only_after_readback_failure(self) -> None:
+        recovery = self.root / "feedback_pipeline" / "evidence" / "recovery.json"
+        recovery.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        contract = {"evidence": "feedback_pipeline/evidence/missing.json",
+                    "recovery_evidence": "feedback_pipeline/evidence/recovery.json",
+                    "rules": [{"path": "verified", "operation": "truthy"}]}
+        receipt = runtime.validate_contract(contract)
+        self.assertEqual(receipt["status"], "PASS")
+        self.assertEqual(receipt["evidence_route"], "RECOVERY_EVIDENCE")
+        self.assertEqual([item["status"] for item in receipt["route_attempts"]],
+                         ["READBACK_FAILED", "READBACK_PASS"])
+        primary = self.root / "feedback_pipeline" / "evidence" / "primary.json"
+        primary.write_text(json.dumps({"verified": False}), encoding="utf-8")
+        contract["evidence"] = "feedback_pipeline/evidence/primary.json"
+        blocked = runtime.validate_contract(contract)
+        self.assertEqual(blocked["status"], "HOLD")
+        self.assertEqual(blocked["reason"], "CONTRACT_VALIDATION_FAILED")
+        self.assertEqual(blocked["evidence_route"], "PRIMARY_EVIDENCE")
+        self.assertEqual(len(blocked["route_attempts"]), 1)
+
+
+    def test_held_backlog_reenters_only_with_current_contract_source_and_admission(self) -> None:
+        trigger = "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE"
+        ledger = {"entries": [{"root_id": root, "status": "HOLD_EXECUTION_CONTRACT_OR_ACTUAL_INPUT",
+                               "next_trigger": trigger} for root in ("A", "B", "C")] +
+                             [{"root_id": "LOCKED", "status": "VERIFIED_CLOSED"}]}
+        queue = {"queued_requirement_ids": [], "backlog_root_ids": [],
+                 "backlog_quarantine": [{"root_id": root, "status": "HOLD",
+                                         "resume_condition": trigger} for root in ("A", "B", "C")],
+                 "rule_admissions": {"backlog:A": self.admission("backlog:A"),
+                                     "backlog:B": self.admission("backlog:B", stop=True)}}
+        registry = {"backlog_execution_contracts": [
+            {"root_id": root, "task_id": "TOOL044"} for root in ("A", "B")]}
+        result = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(result["executable_count"], 1)
+        self.assertEqual(queue["backlog_root_ids"], ["A"])
+        self.assertEqual({item["root_id"] for item in queue["backlog_quarantine"]}, {"B", "C"})
+        self.assertNotIn("LOCKED", queue["backlog_root_ids"])
+        (self.root / "input_backlog_A.txt").write_text("changed original", encoding="utf-8")
+        repeat = runtime.reconcile_central_backlog(queue, ledger, registry)
+        self.assertEqual(repeat["executable_count"], 0)
+        self.assertEqual(queue["backlog_root_ids"], [])
+
+
+    def test_empty_queue_with_unfinished_work_is_not_reported_complete(self) -> None:
+        state = {"requirements": [{"id": 1, "name": "held work", "status": "HOLD",
+                                    "queue_status": "WAITING", "next_action": "SOURCE_AVAILABLE"}],
+                 "central_backlog": {"deferred": [{"root_id": "HELD", "status": "HOLD"}]}}
+        queue = {"queued_requirement_ids": [], "backlog_root_ids": [],
+                 "backlog_quarantine": [{"root_id": "HELD", "resume_condition": "SOURCE_AVAILABLE"}]}
+        with patch.object(body, "atomic_json") as write:
+            runtime.write_observer_state(state, queue, {"execution_contracts": []}, [], [], "synthetic-run")
+        self.assertEqual(write.call_args.args[1]["current"]["status"], "보류")
+        self.assertEqual(write.call_args.args[1]["current"]["queue"], 0)
+        state["requirements"][0]["status"] = "VERIFIED_CLOSED"
+        state["requirements"][0]["queue_status"] = "PASS_LOCKED"
+        state["central_backlog"]["deferred"] = []
+        queue["backlog_quarantine"] = []
+        with patch.object(body, "atomic_json") as write:
+            runtime.write_observer_state(state, queue, {"execution_contracts": []}, [], [], "synthetic-run")
+        self.assertEqual(write.call_args.args[1]["current"]["status"], "완료")
+
+
+    def test_malformed_backlog_contract_does_not_abort_independent_roots(self) -> None:
+        evidence = self.root / "feedback_pipeline" / "evidence" / "valid.json"
+        evidence.write_text(json.dumps({"verified": True}), encoding="utf-8")
+        for malformed in (
+                {"root_id": "A", "task_id": "TOOL044"},
+                {"root_id": "A", "task_id": "TOOL044",
+                 "evidence": "feedback_pipeline/evidence/valid.json",
+                 "rules": [{"path": "verified", "source": 4}]}):
+            with self.subTest(contract=malformed):
+                ledger = {"entries": [
+                    {"root_id": root, "status": "OPEN", "next_trigger": "IMMEDIATE"}
+                    for root in ("A", "B")]}
+                queue = {"queued_requirement_ids": [], "backlog_root_ids": ["A", "B"],
+                         "backlog_quarantine": [], "admitted_rule_contexts": {
+                              f"backlog:{root}": {"rule_records": [{"id": "synthetic-current"}]}
+                              for root in ("A", "B")}}
+                registry = {"backlog_execution_contracts": [
+                    malformed,
+                    {"root_id": "B", "task_id": "TOOL044",
+                     "evidence": "feedback_pipeline/evidence/valid.json",
+                     "rules": [{"path": "verified", "operation": "truthy"}]}]}
+                summary, receipts = runtime.execute_and_reconcile_central_backlog(
+                    queue, ledger, registry)
+                self.assertEqual([item["root_id"] for item in receipts], ["A", "B"])
+                self.assertEqual(receipts[0]["reason"], "CONTRACT_SCHEMA_INVALID")
+                self.assertEqual(receipts[1]["reason"],
+                                 "ACTUAL_RESULT_AND_INDEPENDENT_COMPLETION_MISSING")
+                self.assertEqual(receipts[1]["rules"][0]["pass"], True)
+                self.assertEqual([row["status"] for row in ledger["entries"]],
+                                 ["HOLD_EXECUTION_VALIDATION", "HOLD_EXECUTION_COMPLETION"])
+                self.assertEqual(summary["executable_count"], 0)
+                self.assertEqual(queue["backlog_root_ids"], [])
+                self.assertEqual({item["root_id"] for item in queue["backlog_quarantine"]},
+                                 {"A", "B"})
+                self.assertEqual(runtime.runtime_consistency(
+                    queue, ledger, {"central_backlog": summary},
+                    {"backlog_recovery": {"quarantined": queue["backlog_quarantine"]}}
+                )["status"], "PASS")
+
+
+    def test_central_masters_have_no_external_registry_dependency(self) -> None:
+        for task_id, master in (
+            ("TOOL016", "feedback_pipeline/TOOL016_MASTER.md"),
+            ("TOOL044", "feedback_pipeline/TOOL044_MASTER.md"),
+            ("EMAIL_DB", "EMAIL_COLLECTION_COMMON_RULES.md"),
+        ):
+            with self.subTest(task_id=task_id):
+                manifest = runtime_progress_gate.canonical_rule_manifest(ROOT, task_id)
+                self.assertIn(master, manifest["files"])
+                self.assertEqual(manifest["missing"], [])
+
+
 if __name__ == "__main__":
     unittest.main()
-
-

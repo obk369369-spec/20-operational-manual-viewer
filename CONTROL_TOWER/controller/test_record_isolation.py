@@ -1,9 +1,35 @@
 import unittest
 
-from universal_enforcement import enforce_record_isolation, stable_record_id
+from universal_enforcement import (enforce_record_isolation, output_self_audit_verdict,
+                                   stable_record_id)
 
 
 class RecordIsolationTest(unittest.TestCase):
+    def test_new_output_self_audit_requires_zero_residual_and_full_coverage(self):
+        audit = {
+            "stages": {name: {"executed": True, "evidence_ref": name + ".json"}
+                       for name in ("detect", "cause", "repair_revalidate", "prevent_recurrence")},
+            "source_rows": 2, "output_rows": 2,
+            "expected_columns": ["title", "code"], "actual_columns": ["title", "code"],
+            "required_cells": 4, "checked_cells": 4,
+            "initial_errors": 1, "corrected_errors": 1, "residual_errors": 0,
+            "unverified_required": 0,
+            "before_after": [{"record_id": "2", "field": "code", "before": "bad",
+                              "after": "fixed", "cause_id": "CODE_FORMAT"}],
+            "full_revalidation_pass": True, "independent_validation_pass": True,
+            "source_identity_pass": True, "no_duplicate_or_loss_pass": True,
+            "recurrence_rule_ref": "existing-rule-v2",
+        }
+        self.assertEqual(output_self_audit_verdict({"self_audit": audit}), "PASS")
+        for key, value in (("residual_errors", 1), ("unverified_required", 1),
+                           ("checked_cells", 3), ("source_rows", 3)):
+            changed = {**audit, key: value}
+            self.assertNotEqual(output_self_audit_verdict({"self_audit": changed}), "PASS")
+        self.assertEqual(output_self_audit_verdict({}), "HOLD")
+        self.assertEqual(output_self_audit_verdict({"self_audit": {
+            **audit, "source_rows": 0, "output_rows": 0,
+            "required_cells": 0, "checked_cells": 0}}), "FAIL")
+
     def test_positive_and_quarantine_continue(self):
         records = [
             {"origin_file": "a.doc", "origin_row": 1, "value": "ok"},
