@@ -4505,7 +4505,16 @@
         "resume_from": "INTAKE_ACCEPTED"
       },
       "result_return": null,
-      "residual_classification": "PARTIAL"
+      "residual_classification": "PARTIAL",
+      "verified_external_result": {
+        "scope": "FOUR_ORIGINAL_ZIPS_ONLY",
+        "status": "PRIVATE_REMOTE_BACKUP_AND_RESTORE_VERIFIED",
+        "evidence_path": "CONTROL_TOWER/ledger/evidence/WIC52_SAFE_REMOTE_RECOVERY_RECEIPT_20261028.json",
+        "evidence_blob_sha": "21c99193f4ff3ead8eae415b4567e7a8c31c7832",
+        "evidence_commit": "65a32a3d3044b23e26465fc348b9977de61479c0",
+        "not_included": "EXTRACTED_SQLITE_AND_TEXT_REMOTE_COPY",
+        "root_completion": "NOT_PROMOTED"
+      }
     },
     {
       "demand_id": "WIC-BACKLOG-GITHUB-REMOTE-20260927",
