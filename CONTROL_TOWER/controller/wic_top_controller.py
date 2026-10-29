@@ -329,10 +329,38 @@ def run() -> dict[str, Any]:
         release_lock(fd)
 
 
+def verify_wic52_nonprod_input() -> dict[str, Any]:
+    """Read only the approved remote sample in the private Actions checkout."""
+    if (os.environ.get("GITHUB_REPOSITORY") != "obk369369-spec/wic52-source-backup"
+            or os.environ.get("GITHUB_REF_NAME") != "wic52-one-record-worker-read-20261029"):
+        raise ValueError("WIC52_APPROVED_REMOTE_SCOPE_REQUIRED")
+    workspace = Path(os.environ["GITHUB_WORKSPACE"]).resolve(strict=True)
+    relative = Path("nonprod/wic52/000265092782cde33f4efee27cc37e81fdc80637bbdfab14f0e0ee575e9e64b3.txt")
+    source = (workspace / relative).resolve(strict=True)
+    if not source.is_relative_to(workspace) or not source.is_file():
+        raise ValueError("WIC52_APPROVED_INPUT_MISSING")
+    expected = "1e06f48d6eac8549bb0c77fe3652e0121d5f981cc92460db890d554407335621"
+    actual = sha256(source).lower()
+    if actual != expected or not source.read_text(encoding="utf-8").strip():
+        raise ValueError("WIC52_APPROVED_INPUT_HASH_OR_TEXT_MISMATCH")
+    return {
+        "mode": "NONPRODUCTION_READ_ONLY_INPUT_BINDING",
+        "input_recognized": True,
+        "repository": os.environ["GITHUB_REPOSITORY"],
+        "ref": os.environ["GITHUB_REF_NAME"],
+        "path": relative.as_posix(),
+        "sha256": actual,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-once", action="store_true")
+    parser.add_argument("--verify-wic52-nonprod-input", action="store_true")
     args = parser.parse_args()
+    if args.verify_wic52_nonprod_input:
+        print(json.dumps(verify_wic52_nonprod_input(), ensure_ascii=False))
+        return
     if not args.run_once:
         parser.error("--run-once is required")
     result = run()
