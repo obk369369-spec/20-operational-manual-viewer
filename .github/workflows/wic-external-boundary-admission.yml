@@ -147,12 +147,29 @@ jobs:
                   'rule_compliance_verdict':'PASS','validation_result':'PASS'}) + '\n', encoding='utf-8')
               independent_ref = {'path':independent.relative_to(Path.cwd()).as_posix(),
                                  'sha256':hashlib.sha256(independent.read_bytes()).hexdigest()}
+              reopen = (Path(folder) / 'reopen.json').resolve()
+              remote = (Path(folder) / 'remote.json').resolve()
+              reopen.write_text(json.dumps({'work_id':work_id,'task_id':task_id,
+                  'parser_id':'ISOLATED_TEXT_PARSER','validator_id':'ISOLATED_VALIDATOR',
+                  'reopen_execution_id':'ISOLATED_REOPEN','artifact_format':'text/plain',
+                  'artifact_sha256':result_ref['sha256'],
+                  'source_receipt_sha256':admission['source_receipt']['sha256'],
+                  'validation_result':'PASS','format_checks':{'exact_text':True}}) + '\n', encoding='utf-8')
+              remote.write_text(json.dumps({'commit_sha':'0'*40,'blob_oid':'0'*40,
+                  'retrieval_id':'ISOLATED_READBACK','remote_url':'https://example.invalid/isolated',
+                  'artifact_path':result_ref['path'],'retrieved_sha256':result_ref['sha256'],
+                  'validation_result':'PASS'}) + '\n', encoding='utf-8')
+              reopen_ref = {'path':reopen.relative_to(Path.cwd()).as_posix(),
+                            'sha256':hashlib.sha256(reopen.read_bytes()).hexdigest()}
+              remote_ref = {'path':remote.relative_to(Path.cwd()).as_posix(),
+                            'sha256':hashlib.sha256(remote.read_bytes()).hexdigest()}
               receipt = {'work_id':work_id,'task_id':task_id,'execution_id':'ISOLATED_EXECUTION',
                          'applied_rule_version':context['version'],
                          'source_receipt_sha256':admission['source_receipt']['sha256'],
                          'source_receipt_ref':dict(admission['source_receipt']),
                          'rule_compliance_verdict':'PASS','actual_result_ref':result_ref,
-                         'independent_validation_ref':independent_ref,'remote_readback_ref':result_ref,
+                         'independent_validation_ref':independent_ref,'artifact_reopen_ref':reopen_ref,
+                         'remote_readback_ref':remote_ref,
                          'run_id':os.environ['GITHUB_RUN_ID'],'execution_job_id':'ISOLATED_EXECUTION_JOB',
                          'independent_validator_id':'ISOLATED_VALIDATOR',
                          'actual_input':'fixture','actual_output':'MATCH','expected_output':'MATCH',
