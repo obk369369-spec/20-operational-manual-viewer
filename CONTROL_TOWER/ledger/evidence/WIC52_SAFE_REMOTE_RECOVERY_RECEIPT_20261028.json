@@ -176,6 +176,24 @@
     "next_user_action": "No authentication or upload action required for completed four-ZIP backup. Any deletion still requires explicit final approval.",
     "remote_readback": {
       "status": "PASS",
+      "commit": "e5cbcf820808f15fd0df417c3ce62e099c0a3b37",
+      "scope": "SANITIZED_PRIVATE_ZIP_RESTORE_EVIDENCE_AND_HANDOFF",
+      "files": [
+        {
+          "path": "CONTROL_TOWER/ledger/evidence/WIC52_SAFE_REMOTE_RECOVERY_RECEIPT_20261028.json",
+          "blob_sha": "0d7a7be4943c6ae08096c1352d9fd5195210afd1",
+          "content_match": true
+        },
+        {
+          "path": "docs/WIC_CHAT_HANDOFF_20260927.md",
+          "blob_sha": "69bacd5373000be5051afed7472a5b3a47e12661",
+          "content_match": true
+        }
+      ]
+    },
+    "remote_readback_followup": "PASS",
+    "prior_local_closeout_remote_readback": {
+      "status": "PASS",
       "commit": "611b4e1d1937ef173508dad871a509669a1ed4b2",
       "files": [
         {
@@ -190,8 +208,7 @@
         }
       ],
       "scope": "SANITIZED_EVIDENCE_AND_HANDOFF_ONLY_NOT_SOURCE_ARCHIVE_RESTORE"
-    },
-    "remote_readback_followup": "Required after this sanitized evidence update"
+    }
   },
   "private_original_zip_remote_restore": {
     "status": "PASS",
