@@ -95,7 +95,7 @@ jobs:
           with tempfile.TemporaryDirectory() as folder:
               target = Path(folder) / 'observer.js'
               target.write_text(script, encoding='utf-8')
-              run_gate(['node', '--check', str(target)], check=True)
+              subprocess.run(['node', '--check', str(target)], check=True)
           import hashlib
           import sys
           from runtime_progress_gate import canonical_rule_manifest
