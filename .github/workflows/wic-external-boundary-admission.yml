@@ -125,7 +125,7 @@ jobs:
                          WIC_USER_STOP='1')
               cmd = [sys.executable, 'CONTROL_TOWER/controller/pre_work_admission.py',
                      '--require-admission','--work-id',work_id,'--task-id',task_id]
-              stopped = subprocess.run(cmd, env=env, capture_output=True, text=True)
+              stopped = run_gate(cmd, env=env, capture_output=True, text=True)
               assert stopped.returncode == 1 and 'USER_STOP_OR_START_BLOCKED' in stopped.stdout
               assert not marker_path.exists()
               env['WIC_USER_STOP'] = '0'
