@@ -63,16 +63,19 @@
         "EXPECTED_ACTUAL_VALIDATION",
         "FAILURE_ISOLATION"
       ],
-      "status": "QUEUED",
+      "status": "COMPLETED",
       "target": "TOOL044",
-      "user_manual_relay": 0
+      "user_manual_relay": 0,
+      "completion_evidence": "feedback_pipeline/evidence/T16-T44-MINCIRC-20260925-001_minimum_circulation.json",
+      "completion_run_id": "39212594664",
+      "completion_scope": "HISTORICAL_MINIMUM_CIRCULATION_ONLY_NOT_24H_OR_ENV2"
     }
   },
   "last_failure": null,
   "current_stage": "CHECKPOINT",
   "queue_length": 4,
   "updated_at": "2026-09-08T05:50:20.765725+00:00",
-  "completed_jobs": 0,
+  "completed_jobs": 1,
   "active_workers": 0,
   "last_success": null,
   "last_heartbeat": "2026-09-08T05:50:20.765725+00:00",
