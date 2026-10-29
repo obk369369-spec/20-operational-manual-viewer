@@ -116,7 +116,8 @@ jobs:
           if [ -n "$last" ]; then
             last_epoch=$(date -u -d "$last" +%s)
             age_seconds=$((now-last_epoch))
-            if [ "$age_seconds" -lt 9000 ]; then stale=0; fi
+            # Recover before the 2.5-hour continuity limit; scheduled triggers can be delayed.
+            if [ "$age_seconds" -lt 5400 ]; then stale=0; fi
           fi
           echo "top_controller_active=$active last_success=${last:-none} age_seconds=$age_seconds stale=$stale"
           if [ "$active" -eq 0 ] && [ "$stale" -eq 1 ]; then
