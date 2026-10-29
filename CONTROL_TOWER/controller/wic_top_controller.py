@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 import subprocess
+import tarfile
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -353,11 +354,74 @@ def verify_wic52_nonprod_input() -> dict[str, Any]:
     }
 
 
+
+def verify_wic52_nonprod_archive_input(source_sha256: str) -> dict[str, Any]:
+    """Bind one indexed WIC52 text record without starting an operational job."""
+    if (os.environ.get("GITHUB_REPOSITORY") != "obk369369-spec/wic52-source-backup"
+            or os.environ.get("GITHUB_REF_NAME") != "wic52-one-record-worker-read-20261029"):
+        raise ValueError("WIC52_APPROVED_REMOTE_SCOPE_REQUIRED")
+    key = source_sha256.lower()
+    if len(key) != 64 or any(ch not in "0123456789abcdef" for ch in key):
+        raise ValueError("WIC52_SOURCE_IDENTIFIER_INVALID")
+    workspace = Path(os.environ["GITHUB_WORKSPACE"]).resolve(strict=True)
+    relative = Path("nonprod/wic52/wic52_verified_text_9702.tar.gz")
+    archive = (workspace / relative).resolve(strict=True)
+    if not archive.is_relative_to(workspace) or not archive.is_file():
+        raise ValueError("WIC52_REMOTE_ARCHIVE_MISSING")
+    expected_archive_sha = "26cd8bc5bc6245154f3226fa01e63b1187d1694b6e18332951ede096d04067ae"
+    if sha256(archive).lower() != expected_archive_sha:
+        raise ValueError("WIC52_REMOTE_ARCHIVE_CHANGED")
+    selected_path = f"text/{key}.txt"
+    index_bytes = text_bytes = None
+    with tarfile.open(archive, "r:gz") as bundle:
+        for member in bundle:
+            if member.name in (selected_path, "platform16_records.jsonl"):
+                source = bundle.extractfile(member)
+                if source is None:
+                    raise ValueError("WIC52_ARCHIVE_MEMBER_UNREADABLE")
+                data = source.read()
+                if member.name == selected_path:
+                    text_bytes = data
+                else:
+                    index_bytes = data
+    if index_bytes is None or text_bytes is None:
+        raise ValueError("WIC52_INDEX_OR_TEXT_MISSING")
+    records = [json.loads(line) for line in index_bytes.decode("utf-8").splitlines()]
+    if len(records) != 9702:
+        raise ValueError("WIC52_INDEX_COUNT_MISMATCH")
+    matched = [record for record in records if record["source_sha256"].lower() == key]
+    if len(matched) != 1 or matched[0]["text_path"].replace("\\", "/") != selected_path:
+        raise ValueError("WIC52_SOURCE_BINDING_MISMATCH")
+    text_hash = hashlib.sha256(text_bytes).hexdigest()
+    if text_hash != matched[0]["text_sha256"].lower() or not text_bytes.decode("utf-8").strip():
+        raise ValueError("WIC52_SOURCE_TEXT_MISMATCH")
+    return {
+        "mode": "NONPRODUCTION_READ_ONLY_ARCHIVE_INPUT_BINDING",
+        "input_recognized": True,
+        "repository": os.environ["GITHUB_REPOSITORY"],
+        "ref": os.environ["GITHUB_REF_NAME"],
+        "archive_path": relative.as_posix(),
+        "archive_sha256": expected_archive_sha,
+        "records_indexed": len(records),
+        "source_sha256": key,
+        "text_sha256": text_hash,
+        "text_bytes": len(text_bytes),
+        "business_job_started": False,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-once", action="store_true")
     parser.add_argument("--verify-wic52-nonprod-input", action="store_true")
+    parser.add_argument("--verify-wic52-nonprod-archive-input", action="store_true")
+    parser.add_argument("--source-sha256")
     args = parser.parse_args()
+    if args.verify_wic52_nonprod_archive_input:
+        if not args.source_sha256:
+            parser.error("--source-sha256 is required")
+        print(json.dumps(verify_wic52_nonprod_archive_input(args.source_sha256), ensure_ascii=False))
+        return
     if args.verify_wic52_nonprod_input:
         print(json.dumps(verify_wic52_nonprod_input(), ensure_ascii=False))
         return
