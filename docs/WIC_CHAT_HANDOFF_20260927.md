@@ -214,3 +214,18 @@ After collision audit, continue the execution order in Section 12.
 - 원격 원본 백업: GitHub CLI 인증 오류로 HOLD. ZIP 업로드와 원격 다운로드 복원 검증은 수행하지 않았고 PASS가 아니다. 공개 저장소의 현재 원격 보존 범위는 비식별 증거뿐이다.
 - 재개 작업은 GitHub CLI 인증 복구 → 비공개/암호화 저장소 및 용량·복호키 보관 확인 → ZIP 4개 업로드 → 해시·파일 수·다운로드 복원 검증으로 한정한다. 사용자 조작: `gh auth login -h github.com`.
 - 재추출·재검증·재복사·원본 ZIP 삭제·기존 C:/I: 파일 변경·PASS_LOCK/Queue/실행 상태 변경은 하지 않았다. 원본 삭제는 최종 사용자 승인 전 금지.
+
+
+## WIC52 private original ZIP remote restore — 2026-10-29
+
+최종 갱신: 추출 및 로컬 연결 완료 / 원본 ZIP 4개 비공개 원격 복원 PASS.
+이 절은 앞선 인증 오류에 따른 원격 원본 백업 HOLD를 ZIP 4개 범위에서 해소한다.
+
+- 기존 로그인 세션 성공 확인 후 비공개 저장소 `obk369369-spec/wic52-source-backup`에 원본 ZIP 4개를 Git LFS로 업로드했다. 비공개 상태 확인. 원격 커밋: `fbb2d764bc52824b9e0031b464fe097fa001b28d`.
+- 업로드를 반복하지 않고 중단된 다운로드만 재개했다. 독립 다운로드 LFS 저장소에서 ZIP 4개 모두 원본 SHA-256·크기 일치, 내부 18,518개 파일 압축 해제 CRC PASS. 각 ZIP의 실제 파일 복원·재열기 표본 1개씩 총 4개 PASS.
+- 공개 중앙에는 비식별 해시·수량·검증 결과만 게시했다. 원래 파일명 매핑과 원문은 비공개 저장소에만 있다. 상세 증거: `CONTROL_TOWER/ledger/evidence/WIC52_SAFE_REMOTE_RECOVERY_RECEIPT_20261028.json`의 `private_original_zip_remote_restore`.
+- 로컬 상세 영수증: `WIC52_RECOVERY/CONTROL_TOWER/private_remote_restore_receipt.json`. 다운로드: `WIC52_REMOTE/downloaded/source01.zip` ~ `source04.zip`. 기준 루트는 기존 closeout.locations.session_root.
+- 이전 중단으로 남은 다운로드 복제본의 index.lock 때문에 Git 인덱스 갱신 경고가 발생했다. 파일은 삭제하지 않았다. 실제 ZIP 바이트·전체 CRC·물리 복원 표본의 검증은 별개로 모두 통과했다.
+- 기존 추출 18,518건·본문 검증 9,702건·16번 SOURCE_LOADED·규칙 선조회 시험은 재사용했다. PASS_LOCK·Queue·공개 실행 상태를 변경하지 않았다. I:는 최종 안전 백업으로 인정하지 않는다.
+- PASS 범위는 원본 ZIP 4개의 비공개 원격 보관·다운로드 복원이다. 추출 SQLite/본문 전체의 원격 사본과 전 도구 강제 적용 완료를 뜻하지 않는다.
+- Library·로컬 원본 삭제 0건. 최종 삭제 승인 없음. 삭제 가능 여부는 자동 PASS로 승격하지 않으며, 승인 전까지 원본 4개와 기존 C:/I: 파일을 유지한다. 이미 통과한 ZIP 업로드·다운로드·추출을 반복하지 않는다.
