@@ -437,3 +437,45 @@ TOOL013 코드 중심 단독 재조립은 계속 STOP한다. 다음이 모두 �
 3. 외부 execution ID, 결과 URI, ACK, 상태/복구 evidence와 GitHub remote read-back을 동일 job identity로 확보한다.
 4. 이후에만 external migration PASS 판정 가능.
 5. TOOL013은 위 gate와 authorized actual XLSX mount가 모두 PASS하기 전까지 `STOP`. 이번 변경/조립/배포 0건.
+
+
+## 18. 2026-10-29 대화창 이동 인계 — 외부 완성형 우선 / Work 33% 절약
+
+### 사용자 최신 지시 (기존 지시보다 우선)
+- 현재 긴 대화창 응답 지연으로 새 채팅 이동 적절. 진행 중 Work는 중단/초기화하지 않는다. 사용자는 직전 작성된 외부 완성형 우선 지시문을 현재 Work에 투입할 예정.
+- 잔여 Work 사용량 사용자 보고 33% (2026-10-29 오전). 실시간 잔량 자동조회 근거는 없음. Work를 조사/상태보고/반복 PASS 시험/커밋 승인에 소비하지 않는다.
+- 1년 이상 누적된 도구별 대화/피드백/파일/GitHub/ZIP 추출물을 재활용한다. '입력·계약·부품 없음'으로 단정하고 0건 종료하는 패턴 금지. 실제 접근 가능한 과거 자산과 원본을 먼저 찾아 연결한다.
+- 기존 자체 도구를 내부에서 다시 완성/재개발하지 않는다. 기능·입출력·성공 기준·실패 피드백을 추출해 **동일/유사 기능을 가진 외부 완성형 도구/프로그램을 검색·검증·도입해 상위 플랫폼에 연결**하는 것이 최우선이다.
+- 공통 ROOT가 실제로 같으면 묶어 처리하고 독립적이면 개별 병렬 처리한다. 개별 처리 중 공통 원인 발견 시 다시 합친다. 한 경로가 인증/권한/외부 호스팅으로 막히면 기존 허가된 다른 독립 경로를 사용한다. 같은 BLOCKED_AUTH 재시도 금지. 없는 허가를 생성하거나 START_BLOCKED/WIC_USER_STOP/PASS_LOCK 우회 금지.
+- 기존 handoff의 2% Work slice, Work 이전 무료 외부 후보 선별/사전검증 원칙 재사용. 변경은 충돌 없는 범위에서 일괄 처리, 승인·커밋 최소화. ChatGPT Library 용량 경고는 GitHub 실행 차단과 별개. 파일/ZIP 임의 삭제 금지.
+
+### 이번 대화의 실제 실행과 한계
+- 원격 Actions run 40801400894 PASS: TOOL016 로컬 MASTER 참조 및 Controller 허가 변수 전달 관련 격리 브랜치 수정 검증. 테스트 PASS는 실제 운영 PASS 아님.
+- 격리 브랜치: wic16-controller-admission-forward-20261029. main 반영 승인 없음. main 및 운영 중단 상태 변경 없음.
+- Work 반복 배치에서 실제 Job 시작/완료 0/0, 감소 ROOT 0. 기존 Queue의 READY_AUTO_REQUEUED 3 및 OPEN 14 등 17 후보 좁혀 확인했으나 입력/계약/권한 부족 보고만 반복. 이것은 '기존 자료 전체가 없음'의 증거가 아니다.
+- 사용자가 승인한 commit 463801b426d63982774a149df0887d9e0d65eaff: feedback_pipeline/tool044_atomic_demand_queue.json의 WIC-BACKLOG-SOURCE-ZIP-20260927에 **52번 ZIP 원본 4개의 비공개 백업·복원 증거 참조만 연결**. 추출 SQLite/본문 원격 복사 미검증, ROOT OPEN. 재작업/재백업/삭제 금지.
+- 52번 ZIP 4개는 원본 보관/복원 증거와 실제 추출된 데이터의 범위를 구분해 확인. 실제 추출물 접근 가능하면 재활용. 사용자가 이미 제공한 자료를 재요청하지 않는다.
+- Observer main observer/runtime/hourly-status.json: START_BLOCKED, overall_control NOT_VERIFIED, 실제 production source/receipts 미검증. 인증/운영 차단은 유지한다.
+- ChatGPT Library 저장 용량 경고가 표시됨. 새 Library 파일 저장 제한일 뿐 기존 GitHub repo를 자동 차단하는 증거는 없음.
+
+### 실제로 확인한 재활용 자산과 중요 경계
+- WIC_HISTORICAL_EVIDENCE_INDEX.md: 역사 피드백, 성공판, fixture 후보, 실제 도구별 repo 위치. 동일 역사 자료 전수 재분석 금지.
+- WIC_CHAT_ROUTING_REGISTRY.md, WIC_GLOBAL_OPERATING_RULES.md, AGENTS.md: 업무 연결·관찰자 모드·ROOT 묶음·증분 재사용.
+- feedback_pipeline/evidence/tool001_actual_report_input_registry_20260907.json: 실제 고객 fixture 기반 보고서 기록 3개(BCC Research, Technavio, Stratistics MRC) 존재; 공급가/정가 일부 미확인, 운영 payload 0건. '입력 전무' 아님. 외부 보고서 검색·검증 완성형 도구 연결 우선.
+- feedback_pipeline/evidence/tool044_verified_external_component_pool.json: doit 0.37.0 격리 설치/검증 PASS 증거 존재. **doit은 로컬 DAG 실행 부품이며 독립 외부 hosted 플랫폼 도입 PASS가 아님**.
+- external_runtime/render_env2.py: 기존 외부 실행 관련 코드/경로. 운영 가능 여부는 독립 증거 필요.
+- handoff/WIC_NEXT_CHAT_HANDOFF_2026-10-11.md §17: Kestra OSS / Node-RED 과거 로컬 실행 증거 있으나 pc_off_independent=false. Render 외 hosted endpoint/auth 미확인. 기존 후보 777/검증 부품 14/조합 1/ready package 2를 재검색하지 말고 검증된 기존 자산 활용. Pipedream은 발견 후보이며 인증/실행 증거 없음. TOOL013 재개발 STOP 유지.
+- docs/WIC_NEXT_CHAT_HANDOFF_2026-09-23.md: Work 전에 무료 외부 완성형 후보/패키지 준비, Work는 대량 연결·실제 실행·검증·원격 재조회에만 사용. 2% slice, 동일 인증/후보 재시도 금지.
+
+### 다음 대화에서 해야 할 일
+1. 먼저 이 섹션과 최신 branch 상태/현재 Work 결과만 증분 조회하고, 이미 PASS/OPEN 기록을 다시 전수 조사하지 않는다.
+2. 기존 historical index, 외부 검증 부품 풀, 실제 ZIP 추출 결과/Library/대화 인계/도구 repo를 **기존 색인으로 찾아** 요구기능·재사용 가능 입력·검증기준만 회수한다.
+3. 기능별 기존 외부 완성형 후보 및 실제 hosted 실행 경로를 비교해 **허가된 즉시 연결 가능 경로**부터 우선 선정. 단순 내부 DAG 부품과 실제 외부 호스팅 플랫폼을 혼동하지 않는다.
+4. 공통/개별/병렬/대체 경로를 정해 Work 밖에서 준비 가능한 작업을 먼저 완료하고, Work에 넣을 최소 실행 지시만 구성한다. 인증 차단 후보 반복·대량 재조회·새 내부 도구 개발 금지.
+5. 실제 연결/외부 Job ID/원격 결과/검증된 사용자 출력이 없으면 완료라 하지 않는다. 승인 필요한 변경은 일괄 제시하고 main/운영 허가 변경은 별도 동의.
+6. 사용자가 이미 받은 직전 Work 지시문(외부 완성형 우선, ZIP/과거 자료 재활용, 33% 절약)을 Work에 넣기로 했으므로 새 대화에서 이를 중복 작성하거나 진행 중인 Work를 중단시키지 않는다. 결과가 나오면 그 결과부터 재개.
+
+### 인계 증거
+- Actions PASS: https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/40801400894
+- ZIP 참조 연결: https://github.com/obk369369-spec/20-operational-manual-viewer/commit/463801b426d63982774a149df0887d9e0d65eaff
+- 해당 섹션은 2026-10-29 대화 내용과 GitHub 파일 조회에 근거하며, 외부 플랫폼 실제 도입/ROOT 완료를 새로 주장하지 않는다.
