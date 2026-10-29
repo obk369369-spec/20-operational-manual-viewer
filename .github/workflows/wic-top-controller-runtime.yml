@@ -33,6 +33,7 @@ jobs:
         run: ln -s . _wic_speed_runner_audit
       - name: Run existing controller through independent adapter
         env:
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WIC_HANDOFF_INPUT_JSON: >-
             {"trace_id":"REMOTE-${{ github.run_id }}","root_id":"CENTRAL_AUTONOMY_REPEAT_ASSURANCE","input":"사용자 입력 1회","expected_output":"central execution evidence","scope":"COMMON_PLATFORM","checkpoint":"REMOTE-${{ github.run_id }}"}
