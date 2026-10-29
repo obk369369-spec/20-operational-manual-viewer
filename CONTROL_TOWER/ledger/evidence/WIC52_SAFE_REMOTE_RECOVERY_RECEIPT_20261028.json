@@ -81,14 +81,20 @@
     "source_filenames_or_local_user_paths_uploaded": false,
     "sqlite_uploaded": false,
     "restore_capable_remote_data_backup_complete": false,
-    "missing_prerequisite": "PRIVATE_AUTHORIZED_STORAGE_OR_ENCRYPTED_BINARY_STORAGE_WITH_VERIFIED_RESTORE_AND_KEY_CUSTODY"
+    "missing_prerequisite": "NONE_FOR_FOUR_ORIGINAL_ZIPS; EXTRACTED_DATABASE_REMOTE_COPY_NOT_INCLUDED",
+    "public_raw_archives_uploaded": false,
+    "private_original_zip_backup_status": "PASS",
+    "private_original_zip_backup_repository": "https://github.com/obk369369-spec/wic52-source-backup",
+    "private_original_zip_restore_verified": true,
+    "source_zip_backup_complete": true,
+    "restore_capable_remote_data_backup_scope_note": "Four original ZIPs now remotely restorable. Extracted SQLite/text corpus itself was not copied remotely."
   },
   "original_zip_deletion": {
     "allowed": false,
     "user_final_approval": false,
     "originals_deleted": 0
   },
-  "overall": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
+  "overall": "추출 및 로컬 연결 완료 / 원본 ZIP 4개 비공개 원격 복원 PASS",
   "new_rule_gated_source_query": {
     "scope": "LOCAL_WIC52_SOURCE_QUERY_ONLY",
     "pinned_rule_revision": "664e61b63fdf70c0bfb9a6dc106c1dae08697bd8",
@@ -113,8 +119,8 @@
     "raw_source_data_published": false
   },
   "closeout": {
-    "state": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
-    "target_final_state": "추출 및 로컬 연결 완료 / 원격 원본 백업 HOLD",
+    "state": "추출 및 로컬 연결 완료 / 원본 ZIP 4개 비공개 원격 복원 PASS",
+    "target_final_state": "추출 및 로컬 연결 완료 / 원본 ZIP 4개 비공개 원격 복원 PASS",
     "source_evidence_reused": true,
     "completed": [
       "Top-level raw extraction 18518; failures 0; unprocessed 0",
@@ -142,14 +148,15 @@
       "text_failed": 1,
       "no_text": 7,
       "partial_text": 2,
-      "remote_backup_status": "HOLD_GITHUB_CLI_INVALID_AUTHENTICATION",
-      "zip_upload_performed": false,
-      "remote_download_restore_performed": false,
-      "raw_remote_backup_pass": false,
+      "remote_backup_status": "PRIVATE_ORIGINAL_ZIP_RESTORE_PASS",
+      "zip_upload_performed": true,
+      "remote_download_restore_performed": true,
+      "raw_remote_backup_pass": true,
       "global_cross_tool_rule_enforcement_complete": false,
       "hosted_runtime_connected": false,
       "local_additional_backup_stopped_by_user": true,
-      "I_drive_final_safe_backup": false
+      "I_drive_final_safe_backup": false,
+      "extracted_database_remote_copy_included": false
     },
     "preservation": {
       "reextraction": 0,
@@ -162,12 +169,11 @@
       "execution_state_changed": false
     },
     "next_resume_only": [
-      "Restore GitHub CLI authentication",
-      "Establish authorized private or encrypted storage and verify quota/key custody",
-      "Upload the four original ZIPs",
-      "Verify hashes and file counts and perform downloaded restoration"
+      "Do not repeat completed four-ZIP remote backup or extraction",
+      "Retain Library/local originals pending explicit final deletion approval",
+      "Treat extracted-database remote copying and global platform enforcement as separate unfinished scope"
     ],
-    "next_user_action": "gh auth login -h github.com",
+    "next_user_action": "No authentication or upload action required for completed four-ZIP backup. Any deletion still requires explicit final approval.",
     "remote_readback": {
       "status": "PASS",
       "commit": "611b4e1d1937ef173508dad871a509669a1ed4b2",
@@ -184,6 +190,69 @@
         }
       ],
       "scope": "SANITIZED_EVIDENCE_AND_HANDOFF_ONLY_NOT_SOURCE_ARCHIVE_RESTORE"
-    }
+    },
+    "remote_readback_followup": "Required after this sanitized evidence update"
+  },
+  "private_original_zip_remote_restore": {
+    "status": "PASS",
+    "verified_date": "2026-10-29",
+    "repository": "https://github.com/obk369369-spec/wic52-source-backup",
+    "private": true,
+    "commit": "fbb2d764bc52824b9e0031b464fe097fa001b28d",
+    "storage": "Git LFS",
+    "uploaded_files": 4,
+    "downloaded_files": 4,
+    "files": [
+      {
+        "file": "source01.zip",
+        "bytes": 427863225,
+        "sha256": "20ace81c0f0a4eacb4ff30c1d1da19ac5be62f88a31046dc592c1800a12d2343",
+        "internal_files": 9652,
+        "sha256_match": true,
+        "zip_restore_crc": "PASS"
+      },
+      {
+        "file": "source02.zip",
+        "bytes": 269776293,
+        "sha256": "a06393a1f4259d95a6c362917f8d83185847225ca782ad8f835aee6431631ee6",
+        "internal_files": 1226,
+        "sha256_match": true,
+        "zip_restore_crc": "PASS"
+      },
+      {
+        "file": "source03.zip",
+        "bytes": 2325085,
+        "sha256": "908f1d0de6ba004621c7502d5905a0a5c1b01012318a662caace286ce1db919f",
+        "internal_files": 57,
+        "sha256_match": true,
+        "zip_restore_crc": "PASS"
+      },
+      {
+        "file": "source04.zip",
+        "bytes": 356166558,
+        "sha256": "ba64fee34b19890b4850528c8864f9b49517a62fe376e7659c204043fc1e8a2f",
+        "internal_files": 7583,
+        "sha256_match": true,
+        "zip_restore_crc": "PASS"
+      }
+    ],
+    "sha256_all_match": true,
+    "zip_members_decompressed_crc_pass": 18518,
+    "physical_restore_and_reopen_probes": 4,
+    "physical_probe_results": "ALL_PASS",
+    "download_used_independent_lfs_store": true,
+    "original_local_extraction_repeated": false,
+    "original_upload_repeated_on_resume": false,
+    "git_index_warning": "Interrupted clone left a pre-existing index.lock. Preserved without deletion; index update warned but all downloaded ZIP bytes, CRCs and physical restore probes passed independently.",
+    "public_original_zip_or_customer_content_uploaded": false,
+    "library_originals_deleted": 0,
+    "local_originals_deleted": 0,
+    "pass_lock_modified": false,
+    "queue_modified": false,
+    "extraction_database_remote_copy_included": false,
+    "global_platform_work_complete": false,
+    "lfs_remaining_account_quota": "Not readable with current OAuth scope; actual four-file LFS upload and download succeeded",
+    "local_receipt": "WIC52_RECOVERY/CONTROL_TOWER/private_remote_restore_receipt.json",
+    "manifest_original_filenames": "Stored only in PRIVATE repository SOURCE_MANIFEST.json"
   }
 }
