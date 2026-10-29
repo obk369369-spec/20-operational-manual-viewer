@@ -41,6 +41,16 @@ jobs:
           import sys
           sys.path.insert(0, str(Path.cwd() / 'CONTROL_TOWER' / 'controller'))
           from pre_work_admission import require_external_admission
+          from pre_work_admission import main as admission_main
+          from contextlib import redirect_stdout
+          from io import StringIO
+          from types import SimpleNamespace
+          from unittest.mock import patch
+          def run_gate(cmd, env, **_):
+              output = StringIO()
+              with patch.dict(os.environ, env, clear=True), patch.object(sys, 'argv', cmd), redirect_stdout(output):
+                  code = admission_main()
+              return SimpleNamespace(returncode=code, stdout=output.getvalue())
           paths = json.loads("{\"render-env2-roundtrip.yml\":{\"issue-job\":\"Persist issued identity before external execution\"},\"root-a-env1-circleci-readback.yml\":{\"readback\":\"Read CircleCI result from GitHub commit status\"},\"root-a-fault-e2e.yml\":{\"env1_fault\":\"mkdir -p /tmp/root-a\",\"watchdog_handoff\":\"actions/download-artifact@v4\",\"final_readback\":\"HANDOFF_SHA\"},\"root-a-recovery-supervisor.yml\":{\"supervise\":\"Inspect primary TOOL044 worker\"},\"tool044-cloud-worker.yml\":{\"public-safe-worker\":\"Contract and restart-resume test\",\"isolated-central-return\":\"Restore previous isolated state\"},\"wic-external-development-structure-probe.yml\":{\"verify-release-rollback\":\"Baseline health and requirements lock\"},\"wic-feedback-event.yml\":{\"apply-feedback\":\"Materialize authenticated event\",\"receive-render-env2\":\"Validate identity, reject stale\"},\"wic-github-issue-ingress.yml\":{\"dispatch-wic-feedback\":\"Normalize real GitHub issue\"},\"wic-stall-monitor.yml\":{\"watchdog\":\"TOOL044 watchdog\"},\"wic-top-controller-runtime.yml\":{\"controller-cycle\":\"Provide existing reconciler repository path\"}}")
           for filename, jobs in paths.items():
               text = (Path('.github/workflows') / filename).read_text(encoding='utf-8')
@@ -85,7 +95,7 @@ jobs:
           with tempfile.TemporaryDirectory() as folder:
               target = Path(folder) / 'observer.js'
               target.write_text(script, encoding='utf-8')
-              subprocess.run(['node', '--check', str(target)], check=True)
+              run_gate(['node', '--check', str(target)], check=True)
           import hashlib
           import sys
           from runtime_progress_gate import canonical_rule_manifest
@@ -119,7 +129,7 @@ jobs:
               assert stopped.returncode == 1 and 'USER_STOP_OR_START_BLOCKED' in stopped.stdout
               assert not marker_path.exists()
               env['WIC_USER_STOP'] = '0'
-              allowed = subprocess.run(cmd, env=env, capture_output=True, text=True)
+              allowed = run_gate(cmd, env=env, capture_output=True, text=True)
               assert allowed.returncode == 0 and 'ALLOW' in allowed.stdout, allowed.stdout
               marker_path.write_text('ACTUAL_ISOLATED_EXECUTION\n', encoding='utf-8')
               assert marker_path.read_text(encoding='utf-8') == 'ACTUAL_ISOLATED_EXECUTION\n'
@@ -153,18 +163,18 @@ jobs:
               env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
                   'path':closure.relative_to(Path.cwd()).as_posix(),
                   'sha256':hashlib.sha256(closure.read_bytes()).hexdigest()}})
-              completed = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+              completed = run_gate([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                           '--require-completion','--work-id',work_id,'--task-id',task_id],
                                          env=env,capture_output=True,text=True)
               assert completed.returncode == 0 and 'ALLOW' in completed.stdout, completed.stdout
               env['WIC_USER_STOP'] = '1'
-              stopped_completion = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+              stopped_completion = run_gate([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                                     '--require-completion','--work-id',work_id,'--task-id',task_id],
                                                    env=env,capture_output=True,text=True)
               assert stopped_completion.returncode == 1 and 'CURRENT_ADMISSION_USER_STOP_OR_START_BLOCKED' in stopped_completion.stdout
               env['WIC_USER_STOP'] = '0'
               original.write_text('CHANGED_AFTER_START\n', encoding='utf-8')
-              changed_original = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+              changed_original = run_gate([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                                  '--require-completion','--work-id',work_id,'--task-id',task_id],
                                                 env=env,capture_output=True,text=True)
               assert changed_original.returncode == 1 and 'CURRENT_ADMISSION_ORIGINAL_SOURCE_MISSING_OR_CHANGED' in changed_original.stdout, changed_original.stdout
@@ -174,7 +184,7 @@ jobs:
               env['WIC_CLOSURE_RECEIPTS_JSON'] = json.dumps({work_id:{
                   'path':closure.relative_to(Path.cwd()).as_posix(),
                   'sha256':hashlib.sha256(closure.read_bytes()).hexdigest()}})
-              rejected = subprocess.run([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
+              rejected = run_gate([sys.executable,'CONTROL_TOWER/controller/pre_work_admission.py',
                                          '--require-completion','--work-id',work_id,'--task-id',task_id],
                                         env=env,capture_output=True,text=True)
               assert rejected.returncode == 1 and 'CLOSURE_SOURCE_OR_RULE_COMPLIANCE_UNVERIFIED' in rejected.stdout
@@ -186,7 +196,7 @@ jobs:
                   'source_refs':[{'path':'missing/original.txt','sha256':'0'*64}]}) + '\n', encoding='utf-8')
               admission['source_receipt']['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
               env['WIC_RULE_ADMISSION_JSON'] = json.dumps({'admissions':{work_id:admission}})
-              rejected_start = subprocess.run(cmd, env=env,capture_output=True,text=True)
+              rejected_start = run_gate(cmd, env=env,capture_output=True,text=True)
               assert rejected_start.returncode == 1 and 'ORIGINAL_SOURCE_MISSING_OR_CHANGED' in rejected_start.stdout
           for filename in ('wic-observer-pages.yml','tool044-multi-gate.yml',
                            'tool016-tool044-expansion-fault-loop.yml',
