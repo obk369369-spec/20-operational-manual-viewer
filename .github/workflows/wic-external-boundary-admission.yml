@@ -48,7 +48,7 @@ jobs:
           from unittest.mock import patch
           def run_gate(cmd, env, **_):
               output = StringIO()
-              with patch.dict(os.environ, env, clear=True), patch.object(sys, 'argv', cmd), redirect_stdout(output):
+              with patch.dict(os.environ, env, clear=True), patch.object(sys, 'argv', cmd[1:]), redirect_stdout(output):
                   code = admission_main()
               return SimpleNamespace(returncode=code, stdout=output.getvalue())
           paths = json.loads("{\"render-env2-roundtrip.yml\":{\"issue-job\":\"Persist issued identity before external execution\"},\"root-a-env1-circleci-readback.yml\":{\"readback\":\"Read CircleCI result from GitHub commit status\"},\"root-a-fault-e2e.yml\":{\"env1_fault\":\"mkdir -p /tmp/root-a\",\"watchdog_handoff\":\"actions/download-artifact@v4\",\"final_readback\":\"HANDOFF_SHA\"},\"root-a-recovery-supervisor.yml\":{\"supervise\":\"Inspect primary TOOL044 worker\"},\"tool044-cloud-worker.yml\":{\"public-safe-worker\":\"Contract and restart-resume test\",\"isolated-central-return\":\"Restore previous isolated state\"},\"wic-external-development-structure-probe.yml\":{\"verify-release-rollback\":\"Baseline health and requirements lock\"},\"wic-feedback-event.yml\":{\"apply-feedback\":\"Materialize authenticated event\",\"receive-render-env2\":\"Validate identity, reject stale\"},\"wic-github-issue-ingress.yml\":{\"dispatch-wic-feedback\":\"Normalize real GitHub issue\"},\"wic-stall-monitor.yml\":{\"watchdog\":\"TOOL044 watchdog\"},\"wic-top-controller-runtime.yml\":{\"controller-cycle\":\"Provide existing reconciler repository path\"}}")
