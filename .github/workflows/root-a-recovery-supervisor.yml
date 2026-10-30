@@ -63,17 +63,17 @@ jobs:
           echo "active=$active last_success=${last:-none} stale=$stale"
           if [ "$active" -eq 0 ] && [ "$stale" -eq 1 ]; then
             if ! python - <<'PY'
-              import json
-              import sys
-              from pathlib import Path
-              sys.path.insert(0, str(Path.cwd() / 'feedback_pipeline'))
-              from work_execution_enforcer_legacy import preflight_attempt
-              ledger = json.loads(Path('feedback_pipeline/unified_open_ledger.json').read_text(encoding='utf-8'))
-              candidate = {'root_id': 'WIC16-CENTRAL-QUEUE-ISOLATION-20261022', 'operation_id': 'universal-external-binding-admission-20261023', 'cause_id': 'NO_CURRENT_WORK_OR_BUSINESS_EXECUTION_BINDING', 'method_id': 'EXACT_SCOPED_GATE_BEFORE_MUTATION', 'directive_ref': 'CURRENT_USER_DIRECTIVE_WIC16_NONPROD_EXTERNAL_TEST_20261023', 'action': 'RUN_SCOPED_ISOLATED_EXTERNAL_JOB_AND_RECOVERY', 'target_assets': ['.github/workflows/tool044-cloud-worker.yml', 'feedback_pipeline/unified_open_ledger.json']}
-              result = preflight_attempt(candidate, ledger)
-              print('PREFLIGHT_DECISION=' + result['decision'])
-              sys.exit(0 if result['execution_allowed'] else 1)
-              PY
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path.cwd() / 'feedback_pipeline'))
+          from work_execution_enforcer_legacy import preflight_attempt
+          ledger = json.loads(Path('feedback_pipeline/unified_open_ledger.json').read_text(encoding='utf-8'))
+          candidate = {'root_id': 'WIC16-CENTRAL-QUEUE-ISOLATION-20261022', 'operation_id': 'universal-external-binding-admission-20261023', 'cause_id': 'NO_CURRENT_WORK_OR_BUSINESS_EXECUTION_BINDING', 'method_id': 'EXACT_SCOPED_GATE_BEFORE_MUTATION', 'directive_ref': 'CURRENT_USER_DIRECTIVE_WIC16_NONPROD_EXTERNAL_TEST_20261023', 'action': 'RUN_SCOPED_ISOLATED_EXTERNAL_JOB_AND_RECOVERY', 'target_assets': ['.github/workflows/tool044-cloud-worker.yml', 'feedback_pipeline/unified_open_ledger.json']}
+          result = preflight_attempt(candidate, ledger)
+          print('PREFLIGHT_DECISION=' + result['decision'])
+          sys.exit(0 if result['execution_allowed'] else 1)
+          PY
             then
               echo "PREFLIGHT_BLOCKED_WORKER=1"
               echo "run_id=" >> "$GITHUB_OUTPUT"
@@ -139,17 +139,17 @@ jobs:
           echo "top_controller_active=$active last_success=${last:-none} age_seconds=$age_seconds stale=$stale"
           if [ "$active" -eq 0 ] && [ "$stale" -eq 1 ]; then
             if ! python - <<'PY'
-              import json
-              import sys
-              from pathlib import Path
-              sys.path.insert(0, str(Path.cwd() / 'feedback_pipeline'))
-              from work_execution_enforcer_legacy import preflight_attempt
-              ledger = json.loads(Path('feedback_pipeline/unified_open_ledger.json').read_text(encoding='utf-8'))
-              candidate = {'root_id': 'WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005', 'operation_id': 'deploy-existing-controller-runtime', 'cause_id': 'TOP_CONTROLLER_SCHEDULE_STALE', 'method_id': 'EXISTING_GITHUB_ACTIONS_RECOVERY', 'directive_ref': 'USER_CURRENT_REMAINING_WORK_ONLY_20261005', 'action': 'DEPLOY_EXISTING_CONTROLLER_RUNTIME', 'target_assets': ['TOOL016', 'TOOL044', 'GITHUB_ACTIONS', 'WIC_TOP_CONTROLLER', 'CONTROLLER_RUNTIME_STATE']}
-              result = preflight_attempt(candidate, ledger)
-              print('PREFLIGHT_DECISION=' + result['decision'])
-              sys.exit(0 if result['execution_allowed'] else 1)
-              PY
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path.cwd() / 'feedback_pipeline'))
+          from work_execution_enforcer_legacy import preflight_attempt
+          ledger = json.loads(Path('feedback_pipeline/unified_open_ledger.json').read_text(encoding='utf-8'))
+          candidate = {'root_id': 'WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005', 'operation_id': 'deploy-existing-controller-runtime', 'cause_id': 'TOP_CONTROLLER_SCHEDULE_STALE', 'method_id': 'EXISTING_GITHUB_ACTIONS_RECOVERY', 'directive_ref': 'USER_CURRENT_REMAINING_WORK_ONLY_20261005', 'action': 'DEPLOY_EXISTING_CONTROLLER_RUNTIME', 'target_assets': ['TOOL016', 'TOOL044', 'GITHUB_ACTIONS', 'WIC_TOP_CONTROLLER', 'CONTROLLER_RUNTIME_STATE']}
+          result = preflight_attempt(candidate, ledger)
+          print('PREFLIGHT_DECISION=' + result['decision'])
+          sys.exit(0 if result['execution_allowed'] else 1)
+          PY
             then
               echo "PREFLIGHT_BLOCKED_CONTROLLER=1"
               exit 0
