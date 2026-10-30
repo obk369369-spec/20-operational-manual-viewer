@@ -222,6 +222,7 @@ jobs:
               assert workflow.count('WIC_CLOSURE_RECEIPTS_JSON:') == workflow.count('--require-completion')
               assert workflow.count('WIC_USER_STOP:') >= workflow.count('--require-completion')
               assert workflow.count('WIC_RULE_ADMISSION_JSON:') >= workflow.count('--require-completion')
+          sys.path.insert(0, str(Path.cwd() / 'feedback_pipeline'))
           from work_execution_enforcer_legacy import preflight_attempt
           preflight_candidate = {'root_id':'R','operation_id':'op','cause_id':'C','method_id':'M',
               'directive_ref':'D','action':'RUN','target_assets':['X']}
