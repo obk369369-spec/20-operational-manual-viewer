@@ -246,7 +246,7 @@ jobs:
           for block in dispatch_blocks[1:]:
               assert block.index('preflight_attempt(candidate, ledger)') < block.index('gh workflow run')
           print('PASS ROOT_A_PREFLIGHT_DUPLICATE_BLOCK_AND_CHANGED_CONDITION_RESUME')
-                    print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
+          print('PASS COMPLETION_RECHECKS_CURRENT_ADMISSION_AND_SEVEN_BOUNDARIES')
           print('PASS ISOLATED_REMOTE_STOP_REAUTHORIZE_EXECUTE_COMPLETE')
           print('PASS COMMON_MUTATING_BOUNDARY_AND_OBSERVER_DELTA', sum(map(len, paths.values())))
           PY
