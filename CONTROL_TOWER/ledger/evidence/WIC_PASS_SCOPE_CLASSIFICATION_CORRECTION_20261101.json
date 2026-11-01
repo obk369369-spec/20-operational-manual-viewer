@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-01",
+  "correction_id": "PASS_SCOPE_CONFLATION_STATUS_VALIDATION_VS_PRODUCT_EXECUTION",
+  "evidence_basis": [
+    "CONTROL_TOWER/ledger/evidence/WIC_STATUS_ACTUAL_RULE_VALIDATION_40167532957.json",
+    "CONTROL_TOWER/ledger/evidence/WIC_OBSERVER_OUTPUT_PROVENANCE_RECURRENCE_20261025.md",
+    "handoff/WIC_FREE_PLATFORM_RESEARCH_CLOSURE_2026-10-22.md"
+  ],
+  "authoritative_interpretation": {
+    "run_id": "40167532957",
+    "preserved_pass": "PASSIVE_STATUS_REPORT_ONLY",
+    "product_start_blocked": true,
+    "forbidden_promotions": [
+      "PRODUCT_EXECUTION_PASS",
+      "EXTERNAL_PLATFORM_ADOPTION_PASS",
+      "TOOL013_USER_OUTPUT_PASS",
+      "24H_OPERATION_PASS"
+    ]
+  },
+  "affected_consumers": [
+    "hourly_observer_status",
+    "product_completion_counter",
+    "TOOL013_output_gate",
+    "external_platform_research_status"
+  ],
+  "root_resolution": {
+    "status": "RESOLVED_AS_CLASSIFICATION_RULE",
+    "actual_product_roots_closed": 0,
+    "incomplete_items_closed": 0,
+    "purpose": "prevent false PASS promotion and duplicate reopen without rerunning existing PASS"
+  },
+  "remaining_holds": [
+    "BLOCKED_GOLDEN_SOURCE",
+    "EXTERNAL_PLATFORM_ACTUAL_EXECUTION",
+    "OPERATIONAL_DEPLOYMENT",
+    "ACTUAL_BUSINESS_HANDLER_INPUT_ADMISSION"
+  ],
+  "protections": [
+    "SKIP_REUSE_EXISTING_PASS",
+    "NO_USB53",
+    "NO_ZIP52",
+    "NO_OPENREFINE_RESEARCH",
+    "NO_PRODUCT_EXECUTION_WITHOUT_CONTRACT"
+  ]
+}
