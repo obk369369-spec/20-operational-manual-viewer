@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-01",
+  "scope": "EVIDENCE_PROJECTION_ONLY_NO_EXECUTION",
+  "product": {
+    "name": "OpenRefine",
+    "version": "3.10.0",
+    "acquisition_evidence_status": "VERIFIED_HISTORICAL",
+    "current_runtime_status": "HOLD_UNVERIFIED_CURRENT_ACCESS"
+  },
+  "isolated_evidence": {
+    "source_commit_abbrev": "b17a963",
+    "output_path": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/TOOL013_OPENREFINE_ACTUAL_UPLOAD_20261027.xlsx",
+    "output_blob_sha": "506c637f99ff5c17ef5f9f611655312279c9e419",
+    "output_sha256": "e18130485641c51de01343c42eaad2e2bea5505c43110ac5a59b639b6cb83bb1",
+    "receipt_path": "CONTROL_TOWER/ledger/evidence/tool013_actual_20261027/WIC_TOOL013_OPENREFINE_ACTUAL_OPS_20261027.json",
+    "receipt_blob_sha": "b89864f37d5aadcc325502e8f2245c6b03d45ab4",
+    "source_filename": "MarketsandMarkets New Reports Metadata 01072025.xlsx",
+    "source_sha256": "853f9cf911ac9a4bc9f1cdde304da4c71a0c1395c6ea858fd36ea659b17d7761",
+    "verified_scope": {
+      "source_rows": 6,
+      "output_rows": 6,
+      "output_columns": 18,
+      "independent_reopen_matches": 6,
+      "source_file_unchanged": true,
+      "rows_removed": 0
+    },
+    "unresolved": {
+      "missing_판매유형_rows": 6,
+      "missing_HardCapy가격_rows": 6,
+      "operational_deployment": false,
+      "source_bytes_in_main": false
+    },
+    "verdict": "PARTIAL_VERIFIED_REVIEW_OUTPUT_NOT_OPERATIONAL_PASS"
+  },
+  "pr_65": {
+    "relation_to_openrefine": "UNRELATED",
+    "action": "DO_NOT_USE_AS_OPENREFINE_EVIDENCE"
+  },
+  "root_consolidation": {
+    "before": [
+      "ROOT-A",
+      "ROOT-B",
+      "ROOT-C",
+      "ROOT-D"
+    ],
+    "resolved": [
+      "ROOT-A",
+      "ROOT-D"
+    ],
+    "remaining": {
+      "ROOT-B": "CURRENT_EXTERNAL_RUNTIME_ACCESS_UNVERIFIED",
+      "ROOT-C": "APPROVED_ACTUAL_INPUT_OUTPUT_CONTRACT_NOT_BOUND"
+    },
+    "after_count": 2,
+    "duplicate_roots_removed": 0,
+    "actual_roots_resolved": 2
+  },
+  "protections": [
+    "DO_NOT_CLAIM_CURRENT_RUNTIME_PASS_FROM_HISTORICAL_EVIDENCE",
+    "DO_NOT_CLAIM_OPERATIONAL_PASS",
+    "DO_NOT_SEARCH_USB_OR_ZIP",
+    "DO_NOT_REEXECUTE_EXISTING_PASS"
+  ]
+}
