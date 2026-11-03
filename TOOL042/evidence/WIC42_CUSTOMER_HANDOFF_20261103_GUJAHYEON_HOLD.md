@@ -26,3 +26,17 @@
 - 후속: 기존 안내 보고서와 중복 제거. 신규 안내서 발송 보류.
 - CAR-040 여상영은 기존 42번 대화에서 2026-09-22 발송 처리(PASS) 기록이 있어 건너뜀. 이번 턴에서 EML 재확인하지는 않음.
 - **다음 고객: CAR-041 정원영**, 한국생산기술연구원 섬유솔루션부문 수석연구원. 장부 전화 031-8040-6233, 이메일 미확인. 최신 연구분야/연락처/발송 이력 재검증 후 보고서 3종 매칭.
+
+## 2026-11-03 CAR-041 정원영 발송 증빙 5건 추가
+- 한국생산기술연구원 정원영 박사 / wyjeong@kitech.re.kr.
+- 2026-10-29 16:11:17 KST 발송: '[신간자료 안내] 한국생산기술연구원 정원영 박사님 - 전자섬유 및 스마트 섬유 관련 보고서'. 3종: E-Textiles Market Report 2026 (The Business Research Company); Global Smart Textile Market (Maximize Market Research); Smart Textiles Market Size, Share & Industry Analysis ... 2026-2034 (Fortune Business Insights). 최근 발송 완료, 재안내 SKIP.
+- 2025-10-16 17:29:29 발송: Plant-based Fiber Market (Market Research Future); Vehicle Recycling Market (Lucintel); Automotive Recycling Market (Cognitive Market Research); Textile Recycling Market (MarketsandMarkets) 외 원문 내용 참조.
+- 2025-06-02 10:30:08 발송: Plant-based Fiber Market (Market Research Future); Textile Recycling Market (Market Research Future); Plant Fiber Market (Cognitive Market Research); Natural Fiber Market (Grand View Research) 외 원문 참조.
+- 2024-09-09 17:45:06 발송: Nonwoven Fabric Market (Persistence Market Research); Nonwoven Fabrics Market (Market Research Future); E-Textiles Market (DataM Intelligence); Industrial Textiles (HNY Research).
+- 2024-07-11 17:36:48 발송: Conductive Textile Market (Market Research Future); Conductive Textiles Market (Persistence Market Research).
+- 주의: 2026-10-29 추가 16:05 메일 존재; 중복 제목 여부 별도 확인. 향후 새 안내는 기존 제목·발행사·목차 중복검사.
+- CAR-042 김도군: 2026-10-21 발송 메일 확인; SKIP.
+- CAR-043 김윤진: 2026-10-21 및 10-22 발송 메일 확인; SKIP.
+- CAR-044 김정연: 2026-09-30 발송 메일 확인; SKIP.
+- NEXT CAR-045 김채화: 한국생산기술연구원 섬유솔루션부문, purech@kitech.re.kr, 031-8040-6066 (기존 장부값); 분야 나노섬유 치료소재·섬유형 인공근육. 최신 재직/직함/연구분야 및 실제 발송 이력 온라인·메일 확인 후 연락 멘트 작성. 미검증 사항 확정 금지.
+- 42번 고객 연락 워크플로: 사용자가 고객별 발송 이력을 업데이트할 때마다 GitHub 기록 → 최근 발송 SKIP → 다음 고객 최신 온라인 재직/직함/업무 조사 → 과거 접촉 이력 반영한 전화 컨택 멘트 작성.
