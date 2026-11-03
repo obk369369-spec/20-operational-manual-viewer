@@ -16,3 +16,13 @@
 - 연구분야: 의료용 고분자, 바이오메디컬 소재, 조직공학, 3D 바이오프린팅, 약물전달시스템.
 - 공식/기관 관련 프로필: https://kamic.or.kr/people/%EA%B9%80%ED%83%9C%ED%9D%AC/
 - 다음 작업: 최신 개인 정보 추가 검증, 과거 발송 중복 검사, 2026 내부 안내서 3종 매칭.
+
+## 2026-11-03 김태희 추가 발송 이력 정정
+- CAR-039 김태희 / 한국생산기술연구원 / 수석연구원 / thkim75@kitech.re.kr.
+- **2026-10-21 16:09:48 KST 발송 EML 확인**. 기존 고객 마스터의 '확인된 실제 발송 원문 없음/UNSENT'는 사실과 다름. 최근 발송 고객으로 이번 안내 순서에서 SKIP.
+- 2026-10-21 발송 자료 3종: Biotechnology Market (Fortune Business Insights); Nanofabrics Market (Fortune Business Insights); Antimicrobial Textile Market (DataIntelo).
+- **2024-09-09 발송 EML 확인**: Nonwoven Fabric Market (Persistence Market Research), Nonwoven Fabrics Market (Market Research Future), E-Textiles Market (DataM Intelligence), Industrial Textiles report (HNY Research).
+- **2024-05-22 회신 EML 확인**: Nanofibers Market (Allied Market Research), Nanofiber Materials Market (Market Monitor Global). 인용된 2016년 김태희 고객 원문에서 관심분야는 코스메틱, 조직공학, 재생의학이며 과거 구매 이력을 언급함(구체 구매 완료 여부는 별도 증빙 필요).
+- 후속: 기존 안내 보고서와 중복 제거. 신규 안내서 발송 보류.
+- CAR-040 여상영은 기존 42번 대화에서 2026-09-22 발송 처리(PASS) 기록이 있어 건너뜀. 이번 턴에서 EML 재확인하지는 않음.
+- **다음 고객: CAR-041 정원영**, 한국생산기술연구원 섬유솔루션부문 수석연구원. 장부 전화 031-8040-6233, 이메일 미확인. 최신 연구분야/연락처/발송 이력 재검증 후 보고서 3종 매칭.
