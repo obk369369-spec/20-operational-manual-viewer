@@ -256,10 +256,15 @@ def failure_cycle(state: dict[str, Any], queue: dict[str, Any]) -> dict[str, Any
 
 def write_tool_state(state: dict[str, Any], overall: str) -> None:
     closed = sum(row["status"] == "VERIFIED_CLOSED" for row in state["requirements"])
+    # Accept both the historical local proof and the existing GitHub Actions proof.
+    # A PASS for an isolated cycle is not proof of independent 24h operation.
+    runtime_verified = (overall == "PASS"
+                        and state.get("independent_runtime") in ("PROVEN", "GITHUB_ACTIONS_SCHEDULED_PASS")
+                        and state.get("actual_24h_elapsed_validation") == "PASS")
     payload = {
         "CURRENT_TOOL": "WIC_TOP_CONTROLLER",
-        "ENGINE_STATUS": "RUNNING" if overall == "PASS" else "HOLD",
-        "FINAL_STATUS": overall,
+        "ENGINE_STATUS": "RUNNING" if runtime_verified else "HOLD",
+        "FINAL_STATUS": "PASS" if runtime_verified else ("FAIL" if overall == "FAIL" else "HOLD"),
         "CURRENT_STEP": "75개 미완료 자동개선 순환",
         "EASY_EXPLAIN": "상위 제어기가 미완료를 읽고, 기존 검증부품을 실행하고, 실패를 복구한 뒤 다음 작업을 다시 대기열에 넣었습니다.",
         "PROGRESS": int(closed * 100 / 75),
