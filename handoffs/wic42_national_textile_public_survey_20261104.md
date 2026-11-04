@@ -35,3 +35,12 @@
 - DYETEC 장수정 전임연구원 2026-11-04 통화(사용자 제공): 본인 소속 부서는 연구비 전용 부서가 아님. 다른 부서 연구비 존재 가능성만 언급(확정 아님). 기존 안내서를 참고하여 필요시 연락하겠다고 함. 상태 '고객 연락 대기'; 예산은 '미확인'; 임의 재접촉 추천 금지. 현재 재직/직함은 통화 진술 기반이며 공식 조직도 검증은 별도.
 - 최종 집계: 조사 대상/완료 기관, 기존/신규/중복 고객, 재직·직함 확인/미확인, 구매 담당 확인, 미조사 기관·부서·담당자와 사유.
 - 이 기록은 조사 규칙 및 사용자 제공 통화 사실의 반영이며, 전국 전수조사 완료나 엑셀 반영 완료를 뜻하지 않음.
+
+## 2026-11-04 교차 대화창 누락 감사 및 WIC16 상향 요청
+- 확인한 기존 기준: WIC_CHAT_ROUTING_REGISTRY.md(라우팅 전용), MASTER_RULES/CROSS_CHAT_FEEDBACK_MASTER.md(참고 문서, 규범 아님), WIC_UNIVERSAL_INTEGRATION_ARCHITECTURE.md(범용 구조), handoffs/WIC42_FIBER_CHAT_HANDOFF_20261103.md.
+- 감사에서 확인된 증거: 11/03 인계는 과거 대화 전체 원문 백업이 아님; 최신 GitHub와 채팅 상태 차이 가능; 최근 고객 상태 재대조 필요. 모든 대화창의 변경 누락 0건 증거는 없음.
+- ROOT_CAUSE_HYPOTHESIS: 채팅별 변경의 중앙 수집/동기화/승인 상태가 단일 진실 원장으로 연결되지 않고, commit/read-back만으로 원본 이벤트 전체 반영을 증명하지 못함. 원인 가설과 실제 입증을 구분.
+- WIC16 요구: 상위 규범 WIC_GLOBAL_OPERATING_RULES.md를 먼저 확인하고 중복 규칙 추가 없이 기존 cross_chat_feedback_ingest.py 및 중앙 데이터 계약 재사용. 변경 이벤트의 source_chat/source_message(or evidence)/customer_id/field/old/new/effective_at/observed_at/commit/verification_status 추적; 누락·중복·충돌·순서 역전 검출; 미검증 HOLD; 고객정보 공개 저장소 업로드 금지; 변경분 재처리 멱등성; 사용자 재붙여넣기 금지.
+- 범용 범위: 모든 기존/미래 대화창, 업무군, 16번 중앙 제어, 외부 앱/파일/원장/실행층까지. 규칙(최상위)/라우팅/데이터/증거 구분.
+- PASS 조건: 원본 이벤트 개수와 중앙 반영 개수 대조, 변경 필드 및 과거 기록 보존, 재실행 중복 0, 충돌 HOLD, 실제 중앙 데이터 읽기 검증, GitHub commit+remote read-back, 중단/재개 후 결과 일치. 원본 채팅 접근 불가 시 FULL_PASS 금지.
+- 16번 실제 실행층 적용·전체 데이터 백필·자동 검증은 미실행. 이 항목은 상향 요구사항 기록만 완료.
