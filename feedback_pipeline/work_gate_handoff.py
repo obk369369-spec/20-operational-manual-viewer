@@ -13,6 +13,7 @@ import argparse
 import json
 import hashlib
 import re
+import sys
 from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from pathlib import Path
@@ -467,6 +468,8 @@ def self_test() -> None:
 
 
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser()
     parser.add_argument("--state", default="WIC_EXECUTION_STATE.json")
     parser.add_argument("--output", default="work-handoff.json")
