@@ -1,0 +1,32 @@
+{
+  "root": "ROOT-C",
+  "subtest": "SMARTPHONE_SCREEN_OFF",
+  "execution_id": "WIC16-ROOT-C-SCREEN-OFF-20261104T125149Z-74b63efe",
+  "executor_session_id": 14335,
+  "executor_start_chunk_id": "ebd8e5",
+  "server_sequence": "PASS",
+  "duration_seconds": 240.001,
+  "record_count": 9,
+  "record_hash_chain": "PASS",
+  "same_process_pid": 56339,
+  "minimum_interval_seconds": 29.999967,
+  "maximum_interval_seconds": 30.000147,
+  "utc_records": [
+    "2026-11-04T12:51:49.303646+00:00",
+    "2026-11-04T12:52:19.303793+00:00",
+    "2026-11-04T12:52:49.303801+00:00",
+    "2026-11-04T12:53:19.303773+00:00",
+    "2026-11-04T12:53:49.303777+00:00",
+    "2026-11-04T12:54:19.303787+00:00",
+    "2026-11-04T12:54:49.303754+00:00",
+    "2026-11-04T12:55:19.303819+00:00",
+    "2026-11-04T12:55:49.303795+00:00"
+  ],
+  "verified_at_utc": "2026-11-04T12:56:22.502129+00:00",
+  "smartphone_off_on_interval": null,
+  "screen_off_execution_verdict": "UNVERIFIED_PENDING_USER_OFF_ON_INTERVAL",
+  "reason": "Server cannot observe smartphone display power. Timestamped user OFF/ON interval must overlap server records before PASS/FAIL can be assigned.",
+  "desktop_process_continuity": "OUT_OF_SCOPE",
+  "operational_jobs": 0,
+  "main_modified": false
+}
