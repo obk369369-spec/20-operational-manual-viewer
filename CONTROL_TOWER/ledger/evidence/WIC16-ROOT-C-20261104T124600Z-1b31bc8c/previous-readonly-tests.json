@@ -1,0 +1,135 @@
+{
+  "scope": "READ_ONLY_DIAGNOSTICS_ONLY_NO_PRODUCTION_RESUME_OR_CI_DISPATCH",
+  "recorded_at": "2026-11-04T12:39:40.411210+00:00",
+  "main": "ee377196e0c946e60e796cf22890d0bd54a31731",
+  "pr66": "d66f3adfe64f0fb597e378bf69c8c34e3c8f13d4",
+  "external_jobs_created": 0,
+  "production_mutations": 0,
+  "ROOT_C": {
+    "checkpoint": "handoff/WIC_CROSS_CHAT_MOBILE_CLOUD_AND_PLATFORM_HISTORY_20261024.md",
+    "checkpoint_sha256": "27f0a4a6b6ee0a50626f4649189a72c0a3e5639a7b85fbbb383f2d874569cd79",
+    "git_vs_https_exact_match": true,
+    "central_input_checks": [
+      {
+        "path": "feedback_pipeline/work16_root_ledger.json",
+        "expected": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
+        "actual": "b511716372148056b155715a7365436152d5a471ca1f1df18668091aca07aca9",
+        "match": true
+      },
+      {
+        "path": "feedback_pipeline/incomplete_register.json",
+        "expected": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
+        "actual": "6f601931ab2af3161dec30d82aeccdf27c147f0644368a6a4aafb6cbb01731e2",
+        "match": true
+      },
+      {
+        "path": "feedback_pipeline/unified_open_ledger.json",
+        "expected": "9bf7a63edbeb78235fc13797d6ea2f91cff1664e4578f345b8a14c49f6915477",
+        "actual": "9bf7a63edbeb78235fc13797d6ea2f91cff1664e4578f345b8a14c49f6915477",
+        "match": true
+      },
+      {
+        "path": "feedback_pipeline/approval_queue.json",
+        "expected": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
+        "actual": "9d53ff06505403659be48c97bb14eec923ff2f4f5aa7a8c47738432e01ae3a4a",
+        "match": true
+      },
+      {
+        "path": "feedback_pipeline/evidence/work_execution_audit_20260827.json",
+        "expected": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf",
+        "actual": "b023aaea5ec57a38611a272cbc37e5ed47d40c7c1f9392098d8fe0b3ec2cdebf",
+        "match": true
+      }
+    ],
+    "observer_generated_at": "2026-11-04T08:59:55.147995+00:00",
+    "observer_safe_checkpoint": "0b2984fb29ac2bbb24a235002a2675aed58a2610",
+    "central_loader_executed": false,
+    "central_loader_skip_reason": "unchanged API proxy denial; user forbids identical 403 retry",
+    "desktop_checkpoint_provenance": "canonical handoff records desktop/mobile history; not an independently observed desktop filesystem",
+    "desktop_process_continuity": "UNVERIFIED",
+    "desktop_power_off_continuity": "UNVERIFIED",
+    "mobile_result_display": "AWAITING_USER_OBSERVATION",
+    "runtime_status_unit_tests": {
+      "exit_code": 0,
+      "log": "runtime-status-tests.log",
+      "output": "test_existing_github_actions_proof_runs (test_runtime_status_contract.RuntimeStatusContract.test_existing_github_actions_proof_runs) ... ok\ntest_failure_never_runs (test_runtime_status_contract.RuntimeStatusContract.test_failure_never_runs) ... ok\ntest_github_actions_without_24h_holds (test_runtime_status_contract.RuntimeStatusContract.test_github_actions_without_24h_holds) ... ok\ntest_local_proof_runs (test_runtime_status_contract.RuntimeStatusContract.test_local_proof_runs) ... ok\ntest_missing_proof_holds (test_runtime_status_contract.RuntimeStatusContract.test_missing_proof_holds) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.015s\n\nOK\n",
+      "classification": "ISOLATED_UNIT_TEST_NOT_OPERATIONAL_PROOF"
+    },
+    "environment_id": "ccarenv_b64_Y2NhcmVudl82ODBlZTQ3YThkOTA4MTkxOThlZmQ1ZjUzM2VlMDNlYQ",
+    "environment_identity_comparison": "Managed environment ID matches this chat previous observations; does not identify the desktop OS, process or VM boot instance.",
+    "restoration_mode": "Pinned canonical files copied to diagnostic directory; original checkout HEAD and production state unchanged.",
+    "remote_result_writeback": "NOT_PERFORMED: read-only scope; result returned in chat and local evidence only."
+  },
+  "ROOT_B": {
+    "recovery_threshold_tests": [
+      {
+        "age_seconds": 5399,
+        "stale": false,
+        "expected_stale": false,
+        "pass": true
+      },
+      {
+        "age_seconds": 5400,
+        "stale": true,
+        "expected_stale": true,
+        "pass": true
+      }
+    ],
+    "preflight_tests": [
+      {
+        "case": "no scope grant",
+        "result": {
+          "decision": "WORK_HOLD_SCOPE",
+          "reason": "No canonical current scoped authorization",
+          "execution_allowed": false,
+          "missing_handoff": []
+        }
+      },
+      {
+        "case": "unchanged HOLD",
+        "result": {
+          "decision": "SKIP_NO_VALUE",
+          "reason": "HOLD condition has no canonical changed-condition evidence",
+          "execution_allowed": false,
+          "missing_handoff": []
+        }
+      },
+      {
+        "case": "synthetic changed-condition receipt",
+        "result": {
+          "decision": "ATTEMPT_ALLOWED",
+          "execution_allowed": true,
+          "reason": "Scoped incremental work; lower-cost/handoff gates still required"
+        }
+      },
+      {
+        "case": "completed root locked",
+        "result": {
+          "decision": "SKIP_REUSE",
+          "reason": "Canonical completed evidence; do not execute again",
+          "execution_allowed": false,
+          "missing_handoff": []
+        }
+      }
+    ],
+    "fixture_only": true,
+    "real_admission_issued": false,
+    "circleci_execution": "NOT_EXECUTED",
+    "merged": false
+  },
+  "ROOT_A": {
+    "isolated_missing_stop_guard_test": {
+      "decision": "BLOCK",
+      "reason": "USER_STOP_OR_START_BLOCKED",
+      "work_id": "workflow:wic-top-controller-runtime:controller-cycle",
+      "task_id": "CENTRAL"
+    },
+    "real_approval_validity": "UNVERIFIED",
+    "operational_execution": "NOT_EXECUTED",
+    "403_location": "HTTP CONNECT egress proxy before GitHub/CircleCI application authentication",
+    "api_allowlist_present": false,
+    "circleci_project_connected": "UNKNOWN; proxy denial cannot establish project disconnection"
+  },
+  "repository_status_after": "",
+  "evidence_reopen": "PASS: saved results parsed and restored canonical input files independently rehashed"
+}

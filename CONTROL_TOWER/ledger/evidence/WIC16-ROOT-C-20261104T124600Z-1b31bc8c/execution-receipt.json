@@ -1,0 +1,38 @@
+{
+  "root": "ROOT-C",
+  "execution_id": "WIC16-ROOT-C-20261104T124600Z-1b31bc8c",
+  "managed_executor_command_chunk_id": "e4b0da",
+  "command_chunk_id_kind": "actual exec tool chunk identifier, not GitHub Actions provider run ID",
+  "validation": {
+    "execution_id": "WIC16-ROOT-C-20261104T124600Z-1b31bc8c",
+    "result_file": "/workspace/scratch/WIC16-ROOT-C-20261104T124600Z-1b31bc8c/result.json",
+    "result_sha256": "d094586358aead30e5e219c0260b7a21e8095721f04f3dbf787dab7ed0ddd530",
+    "saved_and_reopened_identical": true,
+    "result_json_reopened": true,
+    "checkpoint_restore": "PASS",
+    "cloud_readonly_execution": "PASS_WITH_USER_CONFIRMED_DESKTOP_OFF",
+    "desktop_power_evidence_type": "USER_ATTESTATION",
+    "mobile_display": "RESULT_RETURNED_TO_CHAT; independent screen observation unavailable",
+    "git_base_commit": "ee377196e0c946e60e796cf22890d0bd54a31731"
+  },
+  "ROOT_A": {
+    "status": "HOLD",
+    "reachable_existing_route": "Git HTTPS read succeeds; GitHub raw content readable",
+    "canonical_approval_queue_batches": 0,
+    "last_completed_approval_purpose": "TOOL043_SAFE_REMOTE_FINALIZE; not approval for PR68 operational execution",
+    "current_task_specific_operational_approval": "UNVERIFIED",
+    "operational_execution": "NOT_RUN",
+    "proxy_403": "PREVIOUS_CONNECT_DENIAL_REUSED; GitHub permission failure not established"
+  },
+  "ROOT_B": {
+    "status": "HOLD_FOR_LIVE_CI",
+    "pr66_head": "d66f3adfe64f0fb597e378bf69c8c34e3c8f13d4",
+    "boundary_tests": "REUSED_PASS: 5399 not stale; 5400 stale",
+    "preflight_tests": "REUSED_PASS: 4/4",
+    "historical_circleci_status_id": 54852461741,
+    "historical_circleci_job_url": "https://circleci.com/gh/obk369369-spec/20-operational-manual-viewer/2",
+    "current_circleci_connection": "UNVERIFIED; CONNECT proxy denial does not imply project disconnected",
+    "merged": false
+  },
+  "publication_scope": "Evidence-only branch; not production admission, operational PASS, main merge or GitHub Actions run"
+}
