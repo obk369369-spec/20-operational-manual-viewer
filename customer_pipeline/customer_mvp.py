@@ -11,6 +11,7 @@ import importlib.util
 import io
 import json
 import os
+import re
 import sys
 from pathlib import Path
 import customer_release_gate as gate
@@ -57,6 +58,11 @@ class Runtime:
             context[key] = base64.b64decode(blob['content']).decode('utf-8-sig')
             context['source_sha256'][key] = gate.digest(context[key])
             self.locations[key] = (TOOL42, path)
+        hold_path = 'handoffs/wic42_textile_outreach_sent_history_2026-10-30.md'
+        blob = self.native.api(gate.CENTRAL + '/contents/' + hold_path + '?ref=main')
+        context['latest_contact_hold'] = base64.b64decode(blob['content']).decode('utf-8-sig')
+        context['source_sha256']['latest_contact_hold'] = gate.digest(context['latest_contact_hold'])
+        self.locations['latest_contact_hold'] = (gate.CENTRAL, hold_path)
         # Verify the locally reused generator/guard is the same pinned native code.
         repo = self.native.TOOL
         for path in ('src/customer_work_start.py', 'src/customer_integrity.py'):
@@ -72,6 +78,12 @@ class Runtime:
         if len(matches) != 1:
             raise Hold('CUSTOMER_EVIDENCE_REQUIRED')
         row = matches[0]
+        latest_hold = context.get('latest_contact_hold', '')
+        hold_entries = re.findall(r'^-\s*([^()\n]+)\(([^)\n]+)\):[^\n]*\bCONTACT_HOLD\b', latest_hold, re.MULTILINE)
+        if any(gate.normalize(name) == gate.normalize(row.get('이름', ''))
+               and gate.normalize(org) == gate.normalize(row.get('기관', ''))
+               for name, org in hold_entries):
+            raise Hold('LATEST_CONTACT_HOLD')
         if not row.get('접촉이력') or not row.get('공식출처'):
             raise Hold('CUSTOMER_HISTORY_EVIDENCE_REQUIRED')
         candidate = {key: row.get(key, '') for key in
