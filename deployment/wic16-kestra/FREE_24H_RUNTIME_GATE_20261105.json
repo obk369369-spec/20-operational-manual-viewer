@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-05",
+  "scope": "WIC16 external runtime migration prerequisite",
+  "verified_render": {
+    "free_services": [
+      "srv-dbm0obp42hec73a57d3g",
+      "srv-dar0nu49v7es7392lim0"
+    ],
+    "postgres_instances": 0,
+    "key_value_instances": 0,
+    "always_on": false,
+    "durable_database": false
+  },
+  "oracle": {
+    "prior_signup": "FAILED",
+    "support_incident": "261031-000191",
+    "account_active": "NOT_VERIFIED",
+    "always_free_a1_current_limit": "2 OCPU 12 GB",
+    "docs": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm",
+    "caution": "idle reclamation possible; not guaranteed uptime"
+  },
+  "gates": {
+    "kestra_production": "HOLD",
+    "erpnext_install": "HOLD",
+    "dify_install": "HOLD",
+    "paid_resources": "FORBIDDEN",
+    "data_migration": "HOLD"
+  },
+  "next_actions": [
+    "Restore or verify free always-on account eligibility through existing Oracle support incident without new card verification",
+    "Obtain persistent volume and independent backup",
+    "Validate free tier resource capacity and authentication",
+    "Install and test ERPNext and Dify on qualified host",
+    "Run WIC end-to-end and restart/readback verification"
+  ],
+  "outcome": "AUDIT_AND_GATE_RECORDED_ONLY; NO_NEW_HOST_PROVISIONED; NO_24H_CLAIM",
+  "originals_modified": false
+}
