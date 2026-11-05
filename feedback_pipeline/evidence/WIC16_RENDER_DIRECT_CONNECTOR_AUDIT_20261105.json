@@ -1,0 +1,61 @@
+{
+  "schema": "wic16_render_direct_connector_audit_v1",
+  "date": "2026-11-05",
+  "scope": "WIC16 existing external infrastructure verification; not full platform admission",
+  "render": {
+    "workspace_id": "tea-dar0hq8473hc739cic00",
+    "service_id": "srv-dar0nu49v7es7392lim0",
+    "service_name": "20-operational-manual-viewer",
+    "plan": "free",
+    "auto_deploy": "yes",
+    "latest_verified_deploy_id": "dep-dblur1ijnfac73cop9b0",
+    "latest_verified_deploy_status": "live",
+    "latest_verified_commit": "ad39a4c30207083cc810daf2eb1cf21f28345345",
+    "logs_confirm_build_success": true,
+    "logs_confirm_process_start": "python external_runtime/render_env2.py",
+    "logs_confirm_port": 10000,
+    "key_value_instances": 0,
+    "postgres_instances": 0
+  },
+  "source_audit": {
+    "path": "external_runtime/render_env2.py",
+    "confirmed_routes": [
+      "GET /health",
+      "GET /selftest",
+      "POST /execute"
+    ],
+    "execution_type": "probe contract only",
+    "state_storage": "in-process memory; lost on restart",
+    "return_path": "GitHub repository dispatch, requires configured auth",
+    "independent_business_job": "NOT_VERIFIED"
+  },
+  "make": {
+    "connected": true,
+    "team_id": 646929,
+    "scenarios_found": 1,
+    "wic16_scenario_found": false
+  },
+  "network_probe": {
+    "environment": "current tool container",
+    "result": "DNS_UNAVAILABLE",
+    "conclusion": "Cannot claim direct HTTP /health response from this probe"
+  },
+  "gates": {
+    "render_direct_management": "PASS",
+    "existing_service_deployed": "PASS",
+    "prebuilt_external_controller_hosted": "NOT_DONE",
+    "durable_state": "NOT_DONE",
+    "durable_queue": "NOT_DONE",
+    "business_job_e2e": "NOT_DONE",
+    "restart_recovery": "NOT_DONE",
+    "free_24h_autonomy": "NOT_PROVEN",
+    "overall": "BLOCKED"
+  },
+  "safety": {
+    "new_paid_resources": 0,
+    "new_resources": 0,
+    "existing_service_changed": false,
+    "originals_deleted": 0
+  },
+  "next_action": "Select existing prebuilt platform deployment compatible with free hosting and durable storage; verify license and startup; deploy isolated without replacing existing Render service; run business job and verify durable ACK/restart recovery. Do not mark PASS from commit/deploy alone."
+}
