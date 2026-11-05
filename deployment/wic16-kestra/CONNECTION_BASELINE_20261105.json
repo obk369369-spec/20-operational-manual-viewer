@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-05",
+  "purpose": "Work installation and assistant connection work partition",
+  "render_workspace": "tea-dar0hq8473hc739cic00",
+  "verified_services": [
+    {
+      "id": "srv-dbm0obp42hec73a57d3g",
+      "name": "wic16-kestra-install-probe",
+      "plan": "free",
+      "status": "live deploy",
+      "branch": "wic16-kestra-render-isolated-install-20261105",
+      "auto_deploy": false,
+      "role": "Kestra installation probe, not production"
+    },
+    {
+      "id": "srv-dar0nu49v7es7392lim0",
+      "name": "20-operational-manual-viewer",
+      "plan": "free",
+      "branch": "main",
+      "auto_deploy": true,
+      "role": "Existing runtime, preserve"
+    }
+  ],
+  "render_postgres_count": 0,
+  "render_key_value_count": 0,
+  "connection_status": "NOT_COMPLETE",
+  "next": "secure Kestra, verify durable external storage, establish actual workflow execution and readback; Work owns other app installation",
+  "constraints": [
+    "no paid tiers",
+    "no duplicate installs",
+    "no customer data until access control verified",
+    "no destructive changes to existing service"
+  ]
+}
