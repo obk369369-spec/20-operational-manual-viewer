@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-05",
+  "status": "INSTALL_SOURCE_STAGED_NOT_DEPLOYED",
+  "official_sources": [
+    "https://render.com/docs/docker",
+    "https://kestra.io/docs/installation/docker",
+    "https://kestra.io/docs/installation/docker-compose"
+  ],
+  "source_branch": "wic16-kestra-render-isolated-install-20261105",
+  "dockerfile": "deployment/wic16-kestra/Dockerfile",
+  "dockerfile_commit": "ee9d94312d9e65a2a02c3c0cdca15cae5348ce67",
+  "isolation": "existing main Render service unchanged; candidate branch is not auto-deployed",
+  "runtime": "official Kestra LTS slim image",
+  "remaining_gates": [
+    "public service authentication must be configured before deployment",
+    "Render free memory and startup compatibility unverified",
+    "durable database and file storage unprovisioned",
+    "Render free instance sleep means 24h operation not guaranteed",
+    "business workflow and readback not tested"
+  ],
+  "deployment_performed": false,
+  "business_execution_performed": false,
+  "pass": false
+}
