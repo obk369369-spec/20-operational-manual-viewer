@@ -1,0 +1,25 @@
+name: WIC16 Kestra Read-Only Auth Probe
+on:
+  push:
+    branches:
+      - wic16-kestra-render-isolated-install-20261105
+    paths:
+      - .github/workflows/wic16-kestra-auth-readonly-20261106.yml
+
+permissions:
+  contents: read
+
+jobs:
+  auth-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check unauthenticated Kestra API response without reading data
+        shell: bash
+        run: |
+          code="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' --connect-timeout 15 --max-time 95 'https://wic16-kestra-install-probe.onrender.com/api/v1/main/flows' || true)"
+          echo "KES_TUNNEL_HTTP_STATUS=$code"
+          case "$code" in
+            401|403) echo "KES_UNAUTH_API_BLOCKED=PASS" ;;
+            *) echo "KES_UNAUTH_API_BLOCKED=UNVERIFIED"; exit 1 ;;
+          esac
