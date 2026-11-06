@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-06",
+  "scope": "KES_TRA_RENDER_ANONYMOUS_API_READ_ONLY",
+  "service_id": "srv-dbm0obp42hec73a57d3g",
+  "service_name": "wic16-kestra-install-probe",
+  "source_branch": "wic16-kestra-render-isolated-install-20261105",
+  "workflow_path": ".github/workflows/wic16-kestra-auth-readonly-20261106.yml",
+  "workflow_run_id": 42179586212,
+  "job_id": 127765835038,
+  "run_url": "https://github.com/obk369369-spec/20-operational-manual-viewer/actions/runs/42179586212",
+  "observed_at_utc": "2026-11-06T07:14:45Z",
+  "request": "GET /api/v1/main/flows without credentials; response body discarded",
+  "http_status": 401,
+  "verdict": "PASS_ANONYMOUS_API_BLOCKED_ONLY",
+  "not_verified": [
+    "authenticated Kestra job execution",
+    "persistent database and restart recovery",
+    "24-hour continuous server operation",
+    "customer-data readiness"
+  ],
+  "next_trigger": "Existing approved Kestra API credential and durable datastore access; preserve WIC_USER_STOP, task admission and PASS_LOCK.",
+  "protections": [
+    "no customer data sent",
+    "no existing service reinstalled or restarted",
+    "no STOP or PASS_LOCK changes"
+  ]
+}
