@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   controller-cycle:
+    if: ${{ vars.WIC_USER_STOP == '0' && vars.WIC_RULE_ADMISSION_JSON != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
