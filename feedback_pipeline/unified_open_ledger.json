@@ -575,6 +575,24 @@
     "schema_version": 1,
     "scope_grants": [
       {
+        "root_id": "WIC16-OBSERVER-GATE-REMOTE-REPAIR-20261021",
+        "directive_ref": "USER_WIC16_KESTRA_SELECTIVE_CANONICALIZATION_20261108",
+        "actions": [
+          "CANONICALIZE_VERIFIED_KESTRA_DEPLOYMENT_ASSETS"
+        ],
+        "assets": [
+          "deployment/wic16-kestra/Dockerfile",
+          "deployment/wic16-kestra/INSTALL_EVIDENCE.json",
+          "deployment/wic16-kestra/INSTALLATION_ACCEPTANCE_20261105.md"
+        ],
+        "reusable_assets": [
+          "wic16-kestra-render-isolated-install-20261105 verified deployment assets",
+          "Render service srv-dbm0obp42hec73a57d3g",
+          "Kestra 2.0.9 HTTP 401 evidence run 42179586212"
+        ],
+        "scope": "Authorize only the selective canonical review of the three named verified Kestra deployment assets. Do not merge the isolated branch, deploy, change STOP/PASS_LOCK/Queue/START_BLOCKED, expose secrets, or execute customer work."
+      },
+      {
         "root_id": "WIC-TOP-CONTROLLER-INDEPENDENT-RUNTIME-20261005",
         "directive_ref": "USER_CURRENT_REMAINING_WORK_ONLY_20261005",
         "actions": [
@@ -1061,3 +1079,4 @@
     "next_start": "Do not repeat failed services or completed tests. Resume only after a currently authorized external worker/socket and per-work STOP/rule admission exist; then execute two independent nonproduction WIC jobs through existing RULES/COMPONENTS and central result/ACK path."
   }
 }
+
