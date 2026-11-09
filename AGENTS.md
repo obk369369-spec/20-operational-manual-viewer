@@ -1,5 +1,20 @@
 # WIC CENTRAL startup and handoff
 
+## TOP PRIORITY: zero-credit external 24-hour platform and drift return (2026-11-09)
+This is the mandatory first decision gate for every WIC CENTRAL/16 task routed through this repository. Read the full canonical policy in `feedback_pipeline/WIC_WORK_COMMON_EXECUTION_BLOCK.md` under "최상위 복귀 기준 — 외부 완성형 24시간 무크레딧 플랫폼" before selecting or executing a task.
+
+PRIMARY OUTCOME: acquire and actually verify an already-finished external top-level operating platform that runs WIC workflows independently, 24 hours a day, without recurring Work/Codex credits or paid usage. Only after the platform passes may finished external WIC business tools be selected and attached beneath it. No new internal software, scripts, API glue, bespoke assembly, repeated signups, or resurrection of failed tools as a substitute.
+
+MANDATORY DRIFT CHECK BEFORE EACH TASK AND AT EACH HANDOFF:
+1. Compare the proposed action with PRIMARY OUTCOME and existing CENTRAL evidence; if it is a downstream tool action before platform acceptance, STOP and return to platform acquisition/verification.
+2. Reuse existing verified results and examine only unmet acceptance evidence; never re-research unchanged candidates, repeat failed attempts, or equate policy commits with actual operation.
+3. For an existing hosted controller, verify actual schedule continuity, no recurring charges/credits, autonomous recovery, durable state, and a real WIC business end-to-end result. The saved evidence `CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json` reports `actual_24h_elapsed_validation=HOLD_SCHEDULE_GAP`; do not mark 24-hour runtime PASS without new real evidence.
+4. If the existing platform cannot meet all conditions, prioritize one externally finished platform that can, and verify its license, free execution, persistence, operations, and real workflow without custom development.
+5. Record gate verdict `ALIGNED / DRIFT_BLOCKED / PLATFORM_HOLD / PLATFORM_VERIFIED`, evidence, blocker, and next action in the existing canonical ledger when execution tooling permits. Never claim that this prose policy alone intercepts arbitrary ChatGPT/Work sessions or enforces a technical runtime gate.
+
+Return phrase: "16번 최상위 기준으로 복귀". If drift is detected, stop the divergent action, reload this rule, and continue only the platform-first work. Platform acquisition, autonomous drift interception, and actual 24-hour verification remain NOT COMPLETE until demonstrated by deployed execution evidence.
+
+
 For tasks in this repository, before task selection, run:
 
 `python feedback_pipeline/work_gate_handoff.py --resume-latest`
