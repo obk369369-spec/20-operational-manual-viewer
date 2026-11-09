@@ -419,3 +419,14 @@ WORK_UI_BYPASS = FORBIDDEN
 - 동일 조사/비교/테스트 반복을 금지한다. 기존 증거에서 부족한 실제 검증 항목만 좁게 확인하고, 실패 원인→남은 차단 조건→실제 다음 작업을 하나의 흐름으로 보고한다.
 - 사용자가 '16번 최상위 기준으로 복귀'라고 말하거나, 작업이 플랫폼 확보라는 목표에서 벗어나면 이 항목을 먼저 읽고 현재 행동을 대조한다. 불일치 작업은 중단하고 상위 플랫폼의 무료·독립·24시간 운영 검증으로 돌아온다.
 - 이 규칙을 저장했다는 사실은 플랫폼 설치·운영 완료를 의미하지 않는다. 완료는 독립 운영 및 실제 WIC 업무 E2E 검증 증거가 있을 때만 선언한다.
+
+## 2026-11-09 unified execution: parallel alternative free server and mobile continuity
+TOP-LEVEL SINGLE GOAL: Reuse existing assets to obtain an EXTERNAL FINISHED upper-level platform that runs real WIC work 24 hours independently of ChatGPT Work/Codex credits, then connect finished external WIC tools. Do not confuse documentation, successful deployment, a phone UI, or a GitHub Actions schedule with proof of uninterrupted execution.
+
+PARALLEL WORKSTREAM A — PLATFORM: Keep Oracle Always Free incident 261031-000191 awaiting response without repeated card verification. Independently compare and pursue alternative genuinely zero-cost 24-hour runtimes, including Google Cloud Always Free e2-micro only if region, quota, account billing/risk, and continuous-operation terms are verified. Reuse existing GitHub CENTRAL assets and Render/Kestra probe evidence; do not present sleeping Render free web services as a verified 24-hour platform. Select an external finished orchestration platform before WIC tool selection; no bespoke scripts, internal platform, or paid recurring/credit-metered services. Never claim platform secured until an actually provisioned instance and 24-hour runtime/business execution are evidenced.
+
+PARALLEL WORKSTREAM B — MOBILE: Reuse existing TOOL043 mobile observer and existing canonical GitHub checkpoints. On a phone, provide short command/resume and readable status without requiring long repeated prompts, desktop-sized Work UI, or an open screen. Runtime must continue server-side after phone/browser disconnection and must resume without duplicate business actions. Mobile observer is not the 24-hour runtime.
+
+INTEGRATION AND ACCEPTANCE: After A and B converge, verify independent no-credit/no-recurring-charge operation; real 24-hour continuity; crash/restart and state persistence; actual WIC work output; external finished WIC tools; mobile-to-office continuity; and runtime automatic drift blocking at the execution entrypoint. Distinguish VERIFIED, IN PROGRESS, UNVERIFIED, BLOCKED, and user-only one-time permissions. No STOP merely because Oracle support is pending; work on alternative candidates and mobile in parallel. Do not falsely mark any verification complete. Return phrase: 16번 최상위 기준으로 복귀.
+
+CURRENT EVIDENCE: rules linked; runtime drift blocking unverified; Render free services deployed but uninterrupted execution unverified, Kestra termination seen in logs; Oracle signup unresolved; alternative zero-cost 24h platform not secured; mobile operational continuity not end-to-end verified. Continue with evidence-producing tool actions, not repeated policy drafting.
