@@ -149,7 +149,7 @@ def load_latest_resume(candidate=None, directive: str | None = None) -> dict[str
     canonical_inputs = {}
     for path in sorted(required_inputs):
         current = read(f'https://raw.githubusercontent.com/{repo}/{head}/{path}')
-        if hashlib.sha256(current).hexdigest() != hashes[path]:
+        if hashlib.sha256(current.replace(b'\r\n', b'\n')).hexdigest() != hashes[path]:
             raise ValueError('CENTRAL changed after projection: ' + path)
         canonical_inputs[path] = json.loads(current)
     work = state["current_work"]
