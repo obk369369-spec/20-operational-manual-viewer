@@ -86,3 +86,14 @@
 - 2026-11-03 15:21:48 최초 안내 EML 확인: Bio-based Textile Fibers Market (Grand View Research), Nanofabrics Market (Fortune Business Insights), Antimicrobial Textile Market (DataIntelo), 회사소개서.
 - 2026-11-10 14:43 전화 연락 결과: 다른 업무로 자리에 없으며 10분 뒤 다시 연락해 달라는 안내를 받음. 연구원 본인과 통화했다는 증거 없음. 메일 수신·열람 및 구매 의사 확인 없음.
 - 상태: CALL_ATTEMPTED / TEMPORARILY_ABSENT / CALLBACK_REQUESTED_AFTER_10_MIN / FOLLOW_UP_PENDING. 기준 시각 14:43, 안내된 재통화 시각 약 14:53. 실제 재통화 미확인.
+
+## 2026-11-10 김채화 후속 통화 결과 (사용자 직접 보고)
+- 한국생산기술연구원 / 섬유솔루션부문 / 연구원 김채화 / 031-8040-6066 / purech@kitech.re.kr.
+- 2026-11-10 후속 연락 성사: 고객은 예산이 조금 있기는 하지만 확실한 답변을 하지 않음. 담당자는 필요 시 사무실에서 가격 네고를 고려할 수 있다고 설명함.
+- 상태: CONTACT_COMPLETED / LIMITED_BUDGET_MENTIONED / PURCHASE_UNDECIDED / NEGOTIATION_POSSIBLE_NOT_PROMISED. 앞서 14:43 부재·재통화 요청은 이 후속 기록으로 보완. 구매 의사 확정, 할인 확정, 주문으로 처리 금지.
+
+## 2026-11-10 남인우 전화 결과 (사용자 직접 보고)
+- 한국생산기술연구원 / 섬유솔루션부문 / 연구원 남인우 / 031-8040-6076 / iwnam79@kitech.re.kr.
+- 2026-11-03 15:40 최초 안내 메일: 바이오 기반 섬유, 천연섬유, 기술섬유 시장보고서 3종 및 회사소개서.
+- 2026-11-10 연락 결과: 자리에 안 계심. 본인과 통화하지 못함.
+- 상태: CALL_ATTEMPTED / ABSENT / CALLBACK_PENDING. 구매 의사, 수신·열람 여부 미확인.
