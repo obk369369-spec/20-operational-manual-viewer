@@ -80,3 +80,9 @@
 - 2026-09-10 플렉시블 디스플레이 등 시장자료 안내 메일 발송 기록.
 - 상태: FUTURE_INTEREST_UNCERTAIN_2027_2028 / CALL_ATTEMPTED_ABSENT_2026-06-10 / EMAIL_SENT_2026-09-10. 올해 구매 확정으로 처리하지 않음.
 - 후속: 기존 통화의 2027~2028년 검토 가능성을 존중하여 반복적인 구매 권유보다 자료 수신 여부와 향후 계획을 가볍게 확인. 최신 직함·연구분야는 별도 공식 검증 필요.
+
+## 2026-11-10 김채화 전화 시도 기록 (사용자 직접 보고)
+- 고객: 김채화 / 한국생산기술연구원 섬유솔루션부문 / purech@kitech.re.kr / 기존 장부 전화 031-8040-6066.
+- 2026-11-03 15:21:48 최초 안내 EML 확인: Bio-based Textile Fibers Market (Grand View Research), Nanofabrics Market (Fortune Business Insights), Antimicrobial Textile Market (DataIntelo), 회사소개서.
+- 2026-11-10 14:43 전화 연락 결과: 다른 업무로 자리에 없으며 10분 뒤 다시 연락해 달라는 안내를 받음. 연구원 본인과 통화했다는 증거 없음. 메일 수신·열람 및 구매 의사 확인 없음.
+- 상태: CALL_ATTEMPTED / TEMPORARILY_ABSENT / CALLBACK_REQUESTED_AFTER_10_MIN / FOLLOW_UP_PENDING. 기준 시각 14:43, 안내된 재통화 시각 약 14:53. 실제 재통화 미확인.
