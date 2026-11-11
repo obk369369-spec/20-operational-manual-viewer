@@ -7,7 +7,7 @@ from tool7_contact_judgment import prepare_contact_copy, validate_contact_copy
 
 HERE = Path(__file__).parent
 data = json.loads((HERE / 'contact_copy_actual_cases.json').read_text(encoding='utf-8'))
-base = dict(current_employment_verified=True, company_direction_verified=True, phone_allowed=True)
+base = dict(current_employment_verified=True, company_direction_verified=True, contact_history_verified=True, phone_allowed=True)
 results = []
 for case in data['cases']:
     out = prepare_contact_copy(base, case['context'])
