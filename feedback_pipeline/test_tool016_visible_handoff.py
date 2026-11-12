@@ -1,7 +1,8 @@
 import json
+from datetime import datetime, timedelta, timezone
 
 from tool016_visible_handoff import (build, reconcile_registry_pass_locks,
-                                     import_verified_closure_receipts)
+                                     import_verified_closure_receipts, _schedule_history)
 
 
 def test_visible_handoff_groups_work_and_auto_routes_external():
@@ -94,3 +95,41 @@ def test_pass_lock_never_reopens_without_legacy_result_ack():
     assert updated["demands"][0]["status"] == "PASS_LOCKED"
     assert report["COMPLETE"] == ["LOCKED"]
     assert report["AUTO_REQUEUED"] == []
+
+
+def test_schedule_history_requires_unbroken_recent_24_hours():
+    start = datetime(2026, 11, 11, tzinfo=timezone.utc)
+
+    def row(hour):
+        return {"run_id": str(hour), "observed_at":
+                (start + timedelta(hours=hour)).isoformat(), "event": "schedule"}
+
+    continuous = [row(hour) for hour in range(25)]
+    valid = _schedule_history({"SCHEDULE_EVIDENCE": {"runs": continuous}},
+                              continuous[-1]["observed_at"], "manual", "")
+    assert valid["status"] == "PASS"
+    assert valid["actual_24h"] is True
+    assert valid["gap_incidents"] == []
+
+    with_gap = continuous[:11] + continuous[20:]
+    blocked = _schedule_history({"SCHEDULE_EVIDENCE": {"runs": with_gap}},
+                                with_gap[-1]["observed_at"], "manual", "")
+    assert blocked["status"] == "HOLD_SCHEDULE_GAP"
+    assert blocked["actual_24h"] is False
+    assert blocked["gap_incidents"][0]["gap_hours"] == 10
+    projected = build({"demands": []}, {"components": []}, {"jobs": {}},
+                      with_gap[-1]["observed_at"],
+                      previous={"SCHEDULE_EVIDENCE": {"runs": with_gap}})
+    assert projected["SCHEDULE_EVIDENCE"]["status"] == "HOLD_SCHEDULE_GAP"
+    assert projected["SCHEDULE_EVIDENCE"]["actual_24h"] is False
+
+    recent_recovery = [row(-30)] + continuous
+    recovered = _schedule_history({"SCHEDULE_EVIDENCE": {"runs": recent_recovery}},
+                                  continuous[-1]["observed_at"], "manual", "")
+    assert recovered["status"] == "PASS"
+    assert recovered["gap_incidents"] == []
+
+    no_full_window = _schedule_history({"SCHEDULE_EVIDENCE": {"runs": continuous[1:]}},
+                                       continuous[-1]["observed_at"], "manual", "")
+    assert no_full_window["status"] == "WAITING"
+    assert no_full_window["actual_24h"] is False
