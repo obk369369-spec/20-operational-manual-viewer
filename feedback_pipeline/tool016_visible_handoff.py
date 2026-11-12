@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from wic_non_tool_common_closeout import run as run_non_tool_closeout
@@ -33,6 +33,7 @@ CLOSURE_RECEIPTS = (
 )
 TERMINAL = {"PASS", "COMPLETED", "SATISFIED_BY_COMMON_COMPONENT", "PASS_LOCKED"}
 READY_PREFIXES = ("READY", "OPEN", "QUEUED")
+MAX_SCHEDULE_GAP_HOURS = 2.5  # Same bound as github_runtime_cycle.CONTINUITY_MAX_GAP_HOURS.
 
 
 def load(path: Path, default: dict) -> dict:
@@ -252,13 +253,31 @@ def _schedule_history(previous: dict, now: str, trigger: str, run_id: str) -> di
         history.append({"run_id": run_id, "observed_at": now, "event": "schedule"})
     history = history[-400:]
     elapsed = 0.0
+    gap_incidents = []
+    covered = False
     if len(history) > 1:
-        start = datetime.fromisoformat(history[0]["observed_at"].replace("Z", "+00:00"))
-        end = datetime.fromisoformat(history[-1]["observed_at"].replace("Z", "+00:00"))
-        elapsed = max(0.0, (end - start).total_seconds() / 3600)
-    continuous = len(history) > 1 and elapsed >= 24
+        ordered = sorted(history, key=lambda row: datetime.fromisoformat(
+            row["observed_at"].replace("Z", "+00:00")))
+        stamps = [(datetime.fromisoformat(row["observed_at"].replace("Z", "+00:00")), row)
+                  for row in ordered]
+        end = stamps[-1][0]
+        elapsed = max(0.0, (end - stamps[0][0]).total_seconds() / 3600)
+        window_start = end - timedelta(hours=24)
+        before = [entry for entry in stamps if entry[0] <= window_start]
+        window = ([before[-1]] if before else []) + [
+            entry for entry in stamps if entry[0] > window_start]
+        covered = bool(before)
+        for left, right in zip(window, window[1:]):
+            gap_hours = (right[0] - left[0]).total_seconds() / 3600
+            if gap_hours > MAX_SCHEDULE_GAP_HOURS:
+                gap_incidents.append({"left_run_id": left[1].get("run_id"),
+                                      "right_run_id": right[1].get("run_id"),
+                                      "gap_hours": round(gap_hours, 3)})
+    continuous = covered and not gap_incidents
+    status = "HOLD_SCHEDULE_GAP" if gap_incidents else ("PASS" if continuous else "WAITING")
     return {"runs": history, "run_count": len(history), "elapsed_hours": round(elapsed, 3),
-            "status": "PASS" if continuous else "WAITING", "actual_24h": continuous}
+            "status": status, "actual_24h": continuous,
+            "max_allowed_gap_hours": MAX_SCHEDULE_GAP_HOURS, "gap_incidents": gap_incidents}
 
 
 def build(queue: dict, pool: dict, gates: dict, now: str, providers: dict | None = None,
