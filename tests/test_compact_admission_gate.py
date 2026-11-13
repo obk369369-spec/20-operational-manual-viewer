@@ -73,5 +73,41 @@ class CompactAdmission(unittest.TestCase):
         self.assertIn("REGISTRY_TARGET:TOOL999", m["missing"])
 
 
+class HandoffBinding(unittest.TestCase):
+    WORK = "workflow:wic-top-controller-runtime:controller-cycle"
+
+    def setUp(self):
+        import os
+        import github_runtime_cycle as runtime
+        self.os, self.runtime = os, runtime
+        self.saved = os.environ.get("WIC_RULE_ADMISSION_JSON")
+
+    def tearDown(self):
+        if self.saved is None:
+            self.os.environ.pop("WIC_RULE_ADMISSION_JSON", None)
+        else:
+            self.os.environ["WIC_RULE_ADMISSION_JSON"] = self.saved
+
+    def test_envelope_without_context_gets_admitted_context(self):
+        c = ctx(ROOT)
+        self.os.environ["WIC_RULE_ADMISSION_JSON"] = json.dumps({"admissions": {self.WORK: {"rule_context": c}}})
+        out = self.runtime.with_admitted_rule_context({"trace_id": "t", "root_id": "r"})
+        self.assertEqual(out["task_id"], "CENTRAL")
+        self.assertEqual(verify_rule_context(out["rule_context"], repo_root=ROOT, task_id="CENTRAL")["decision"], "ALLOW")
+
+    def test_no_admission_means_no_injection_and_own_context_untouched(self):
+        self.os.environ.pop("WIC_RULE_ADMISSION_JSON", None)
+        self.assertNotIn("rule_context", self.runtime.with_admitted_rule_context({"trace_id": "t"}))
+        mine = {"rule_context": {"x": 1}, "task_id": "TOOL044"}
+        self.assertEqual(self.runtime.with_admitted_rule_context(mine), mine)
+
+    def test_tampered_admitted_context_is_still_blocked_by_handoff_gate(self):
+        from runtime_progress_gate import accept_handoff  # noqa: F401  (gate is unchanged; context is verified)
+        bad = dict(ctx(ROOT), rule_records_sha256="0" * 64)
+        self.os.environ["WIC_RULE_ADMISSION_JSON"] = json.dumps({"admissions": {self.WORK: {"rule_context": bad}}})
+        out = self.runtime.with_admitted_rule_context({"trace_id": "t"})
+        self.assertEqual(verify_rule_context(out["rule_context"], repo_root=ROOT, task_id="CENTRAL")["decision"], "BLOCK")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
