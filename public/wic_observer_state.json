@@ -1,6 +1,6 @@
 {
   "schema": "wic.observer.actual_state.v1",
-  "updated_at": "2026-10-19T04:54:25.256722+00:00",
+  "updated_at": "2026-11-13T07:43:47.972830+00:00",
   "COMPLETE": [
     {
       "requirement_id": "1",
@@ -575,7 +575,7 @@
   "LONG_TERM_HOLD": [],
   "NEXT_WORK": "VERIFIED_EXECUTION_CONTRACT_AND_ACTUAL_INPUT_AVAILABLE",
   "current": {
-    "run_id": "39201799429",
+    "run_id": "43387796196",
     "runtime": "GitHub Actions",
     "status": "완료",
     "queue": 0,
@@ -588,7 +588,7 @@
     "errors": 3,
     "recovery": "복구할 수 없는 작업은 격리했고 다른 작업은 계속합니다",
     "evidence": "CONTROL_TOWER/ledger/evidence/WIC_TOP_CONTROLLER_INDEPENDENT_RUNTIME.json",
-    "actual_24h": "HOLD_SCHEDULE_GAP",
+    "actual_24h": "HOLD_UNRECOVERED_RUNTIME_FAILURE",
     "recent_completed": [],
     "queue_reduction": 0
   },
@@ -596,6 +596,37 @@
     "public_pilot": "WIC 웹사이트 안심 점검",
     "customer_response": "WAITING",
     "actual_revenue": false
+  },
+  "output_quality": {
+    "scope": "CURRENT_CONNECTED_COMMON_ROOTS_AND_CANONICAL_TOOL013_XLSX",
+    "scope_limit": "증분 연결 경계와 접근 가능한 canonical TOOL013 XLSX 1건만 검사. 전체 WIC/약 3200건 전수조사가 아님.",
+    "inspected": 8,
+    "resolved_and_revalidated": 4,
+    "unresolved": 4,
+    "hold": 3,
+    "recurrence": 1,
+    "inspection_rate_percent": 100,
+    "repair_rate_percent": 50,
+    "overall_complete": false,
+    "easy_korean": "검사한 제한 범위의 고유 오류는 8개입니다. 4개는 고치고 다시 검사했으며 4개가 남았습니다. 후보 코드의 제목 방향은 2건 제한검사를 통과했지만 실제 운영 transformer와 실제 입력에 연결되지 않아 재발 오류는 아직 해결로 승격하지 않았습니다. 검사율 100%, 수정률 50%, 전체 완료 아님.",
+    "evidence": "CONTROL_TOWER/ledger/evidence/WIC_COMMON_ROOT_RECOVERY_SUMMARY_20261025.json"
+  },
+  "environment_quality_boundaries": {
+    "CHATGPT_GENERAL": {
+      "pre_output_gate": false,
+      "automatic_canonical_ingest": false,
+      "status": "PLATFORM_HOLD"
+    },
+    "CODEX_WORK": {
+      "pre_output_gate": false,
+      "canonical_evidence_write": true,
+      "status": "PARTIAL_POST_OUTPUT_EVIDENCE"
+    },
+    "WIC_PLATFORM": {
+      "controlled_executor_gate": true,
+      "verified_execution_contracts": 0,
+      "status": "HOLD_EXECUTION_CONTRACT_REQUIRED"
+    }
   },
   "observer_reinstruction_required": 0,
   "backlog_recovery": {
