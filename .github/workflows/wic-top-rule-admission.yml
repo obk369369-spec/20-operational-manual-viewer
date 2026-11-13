@@ -6,6 +6,8 @@ on:
       - 'CONTROL_TOWER/controller/github_runtime_cycle.py'
       - 'CONTROL_TOWER/controller/wic_top_controller.py'
       - 'tests/test_wic16_queue_isolation.py'
+      - 'tests/test_compact_admission_gate.py'
+      - 'CONTROL_TOWER/controller/runtime_progress_gate.py'
       - '.github/workflows/wic-top-rule-admission.yml'
   workflow_dispatch:
 
@@ -23,6 +25,10 @@ jobs:
           python-version: '3.12'
       - name: Prove per-work Queue isolation and checkpoint recovery
         run: python tests/test_wic16_queue_isolation.py -v
+      - name: Prove hash-only admission keeps tamper resistance
+        env:
+          PYTHONPATH: CONTROL_TOWER/controller
+        run: python tests/test_compact_admission_gate.py -v
       - name: Prove pre-execution block and current-rule allow
         env:
           PYTHONPATH: CONTROL_TOWER/controller
