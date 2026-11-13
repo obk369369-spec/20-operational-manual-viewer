@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-11-13T07:43:47.979259+00:00",
+  "created_at": "2026-11-13T09:40:57.885377+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "43387796196",
+  "run_id": "43403321407",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "ffcb0c51be25877ea70bc294f2675c0c",
+    "token_id": "79d6aaf53afd4dac6701d78f605d7713",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "40eb40853ef6d8383d3624dfad7bff1a7235d90a",
+    "git_sha": "10bc79ebb7178d5b2b70d0bad7603ae0f8f55a44",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -133,7 +133,7 @@
   "central_backlog_execution": [],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-43387796196",
+    "trace_id": "REMOTE-43403321407",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -201,7 +201,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "26aa0e3315150b5f3647b95d01eea402bcf02fb3321658b78b654c41a62b1711",
+    "signature": "914a6ff14e40aa220d7fe68024d5c28cec34cd670a7716f7f2bb61a573d169b3",
     "deltas": [
       0,
       0,
@@ -253,48 +253,48 @@
   "work_dependency": 0,
   "codex_dependency": 0,
   "user_device_dependency": 0,
-  "actual_24h_elapsed_validation": "HOLD_UNRECOVERED_RUNTIME_FAILURE",
+  "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
   "runtime_continuity": {
-    "status": "HOLD_UNRECOVERED_RUNTIME_FAILURE",
-    "actual_24h_elapsed_validation": "HOLD_UNRECOVERED_RUNTIME_FAILURE",
-    "first_started_at": "2026-10-21T07:46:47+00:00",
-    "last_finished_at": "2026-11-13T07:29:19+00:00",
-    "elapsed_hours": 551.709,
-    "window_start": "2026-11-12T07:29:19+00:00",
-    "run_count": 7,
-    "success_count": 0,
+    "status": "HOLD_SCHEDULE_GAP",
+    "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
+    "first_started_at": "2026-10-21T13:54:53+00:00",
+    "last_finished_at": "2026-11-13T07:43:34+00:00",
+    "elapsed_hours": 545.811,
+    "window_start": "2026-11-12T07:43:34+00:00",
+    "run_count": 8,
+    "success_count": 1,
     "failure_count": 7,
-    "recovered_failures": [],
-    "unrecovered_failures": [
+    "recovered_failures": [
       {
         "run_id": 43151150301,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       },
       {
         "run_id": 43222034009,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       },
       {
         "run_id": 43304919347,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       },
       {
         "run_id": 43348364159,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       },
       {
         "run_id": 43385800719,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       },
       {
         "run_id": 43385868510,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       },
       {
         "run_id": 43386094507,
-        "recovery_run_id": null
+        "recovery_run_id": 43387796196
       }
     ],
+    "unrecovered_failures": [],
     "max_gap_hours": 8.999,
     "max_allowed_gap_hours": 2.5,
     "gap_incidents": [
