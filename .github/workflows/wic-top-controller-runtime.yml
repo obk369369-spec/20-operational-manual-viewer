@@ -34,6 +34,8 @@ jobs:
       - name: Run existing controller through independent adapter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WIC_USER_STOP: ${{ vars.WIC_USER_STOP }}
+          WIC_RULE_ADMISSION_JSON: ${{ vars.WIC_RULE_ADMISSION_JSON }}
           WIC_HANDOFF_INPUT_JSON: >-
             {"trace_id":"REMOTE-${{ github.run_id }}","root_id":"CENTRAL_AUTONOMY_REPEAT_ASSURANCE","input":"사용자 입력 1회","expected_output":"central execution evidence","scope":"COMMON_PLATFORM","checkpoint":"REMOTE-${{ github.run_id }}"}
         run: python CONTROL_TOWER/controller/github_runtime_cycle.py
