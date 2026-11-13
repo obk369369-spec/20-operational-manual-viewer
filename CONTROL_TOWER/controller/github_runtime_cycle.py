@@ -491,6 +491,25 @@ def controller_rule_context_json() -> str | None:
     return json.dumps(context, ensure_ascii=False) if isinstance(context, dict) else None
 
 
+def with_admitted_rule_context(envelope: dict[str, Any]) -> dict[str, Any]:
+    """Bind a workflow-supplied handoff to the already-verified CENTRAL admission context.
+
+    Only fills task_id/rule_context when the envelope omits them; an envelope that carries its own
+    rule_context is left untouched and is verified as-is by accept_handoff.
+    """
+    bound = dict(envelope)
+    if "rule_context" not in bound:
+        raw = controller_rule_context_json()
+        try:
+            context = json.loads(raw) if raw else None
+        except (TypeError, ValueError):
+            context = None
+        if isinstance(context, dict):
+            bound["rule_context"] = context
+            bound.setdefault("task_id", context.get("task_id", "CENTRAL"))
+    return bound
+
+
 def top_level_rule_admission(raw_context: str | None) -> dict[str, Any]:
     """Authorize the common runtime boundary before token, queue, or worker activity."""
     try:
@@ -632,7 +651,8 @@ def main() -> None:
         handoff_receipt = None
         if os.environ.get("WIC_HANDOFF_INPUT_JSON"):
             handoff_receipt = accept_handoff(
-                state, queue, registry, json.loads(os.environ["WIC_HANDOFF_INPUT_JSON"]), progress)
+                state, queue, registry,
+                with_admitted_rule_context(json.loads(os.environ["WIC_HANDOFF_INPUT_JSON"])), progress)
         feedback_receipt = None
         if os.environ.get("WIC_FEEDBACK_JSON"):
             feedback_receipt = accept_feedback(state, json.loads(os.environ["WIC_FEEDBACK_JSON"]))
