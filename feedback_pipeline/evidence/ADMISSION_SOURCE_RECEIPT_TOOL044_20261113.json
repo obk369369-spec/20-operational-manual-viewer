@@ -1,0 +1,31 @@
+{
+ "work_id": "workflow:tool044-multi-gate:prepare",
+ "task_id": "TOOL044",
+ "source_records_verified": true,
+ "validation_result": "PASS",
+ "validator_id": "claude-code:mechanical-sha256-source-check (owner-authorized 2026-11-13)",
+ "rule_version": "c32512b083a73b7413bac7b147c029cabf0c6bcd1a895cadcaa3877ba6c443d7",
+ "source_refs": [
+  {
+   "path": "WIC_GLOBAL_OPERATING_RULES.md",
+   "sha256": "e33ad45bd6fc2a9db95f7e2ed72f1b0231489434123534423c7968ca5940e224"
+  },
+  {
+   "path": "AGENTS.md",
+   "sha256": "f40217992fb357f5fe70f72f91548aeaf6e6c19305246c363425658039fbe37f"
+  },
+  {
+   "path": "WIC_CHAT_ROUTING_REGISTRY.md",
+   "sha256": "46ba599058d4abd1fd5ba87ba61c3ba0e6efa78b2e016e75188a4cc26f46f86a"
+  },
+  {
+   "path": "feedback_pipeline/TOOL044_MASTER.md",
+   "sha256": "1723047f5e688e3954708fe7992f7582bdcd236437e5de11c2384edaa4371881"
+  }
+ ],
+ "validation_plan": {
+  "method": "Recompute SHA-256 of each rule source file from committed git blobs and compare with the admitted manifest",
+  "expected_result": "All source hashes equal; manifest version equals rule_version",
+  "evidence_required": "This receipt committed to main plus a passing pre_work_admission run"
+ }
+}
