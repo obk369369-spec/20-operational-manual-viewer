@@ -41,6 +41,9 @@ def _external_rule_receipts(
     try:
         target = json.loads(registry_path.read_text(encoding="utf-8"))["targets"][task_id.upper()]
     except (KeyError, TypeError, ValueError):
+        if TASK_RULE_FILES.get(task_id.upper()):
+            # Local content-bound masters are already required above; no external receipts to resolve.
+            return {}, [], []
         return {}, [], [f"REGISTRY_TARGET:{task_id.upper()}"]
     receipts = target.get("rule_receipts", [])
     files: dict[str, str] = {}
@@ -104,6 +107,27 @@ def canonical_rule_manifest(repo_root: Path, task_id: str = "") -> dict[str, Any
             "missing": missing, "version": version}
 
 
+def rule_records_digest(records: list[dict[str, Any]]) -> str:
+    """Content digest of the full rule records (bodies included) for hash-only admission."""
+    return hashlib.sha256(json.dumps(records, sort_keys=True, ensure_ascii=True).encode()).hexdigest()
+
+
+def compact_rule_context(manifest: dict[str, Any], *, conflicts: list[Any] | None = None,
+                         source_records_verified: bool = False) -> dict[str, Any]:
+    """Hash-only admission context (no rule bodies) that stays far below the 48KB variable limit."""
+    return {"task_id": manifest["task_id"], "version": manifest["version"], "files": manifest["files"],
+            "rule_records_sha256": rule_records_digest(manifest["rule_records"]),
+            "conflicts": list(conflicts or []), "source_records_verified": source_records_verified}
+
+
+def _records_match(context: dict[str, Any], expected_records: list[dict[str, Any]]) -> bool:
+    """Full bodies must equal the repo bodies; hash-only form must equal the repo digest. Never both absent."""
+    if "rule_records" in context:
+        return context["rule_records"] == expected_records
+    digest = context.get("rule_records_sha256")
+    return isinstance(digest, str) and digest == rule_records_digest(expected_records)
+
+
 def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[str, Any]:
     """Fail closed unless workers receive the exact current rule bodies and scopes."""
     expected = canonical_rule_manifest(repo_root, task_id)
@@ -114,7 +138,7 @@ def verify_rule_context(context: Any, *, repo_root: Path, task_id: str) -> dict[
         reason = "RULE_CONTEXT_MISSING"
     elif (context.get("version") != expected["version"]
           or context.get("files") != expected["files"]
-          or context.get("rule_records") != expected["rule_records"]):
+          or not _records_match(context, expected["rule_records"])):
         reason = "RULE_CONTEXT_STALE_OR_TAMPERED"
     elif context.get("conflicts"):
         reason = "RULE_CONFLICT_UNRESOLVED"
