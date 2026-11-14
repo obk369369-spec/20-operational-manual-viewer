@@ -1,6 +1,20 @@
 # PROGRESS (최신 항목이 위)
 
-## 2026-11-14 — ROOT A Recovery Supervisor 실패 원인 수정
+## 대화창 번호 대장
+| 번호 | 날짜 | 주제 |
+|---|---|---|
+| #20-01 | 2026-11-14 | 감독 워크플로 admission 수정, CLAUDE.md·PROGRESS.md 고정, 13번 아카이브 확인 |
+
+## 2026-11-14 — [대화창 #20-01] 13번 아카이브 읽기 전용 확인 및 CLAUDE.md 반영
+- 결과: PASS(확인·기록) / 이슈 해결은 해당 없음
+- 증거: 13번 main 8f52c3d, `GPT_18M_PART_01~12.bin` 합침 → ZIP 무결성 통과(138개 파일). 상세는 CLAUDE.md 5절.
+- 사실 정정: 범위는 2026-07-13~11-12(약 4개월), `EXTRACTED_ALL_RULES.md` 없음, 새 업무 규칙 없음(기존 정본과 동일 내용).
+- 개인정보 위험(사용자 전용 조치): 공개 저장소 13번에 개인 대화(건강·육아 등)와 업무 자료 약 600MB가 올라가 있음. 비공개 전환 또는 삭제 검토 필요.
+  삭제해도 git 기록에 남으므로 비공개 전환이 먼저.
+- 마지막 실제 지점: CLAUDE.md 0절(번호 규칙)·5절 반영.
+- 다음 트리거: 이슈 #73~#78은 승인·외부 증거 필요로 HOLD 유지.
+
+## 2026-11-14 — [대화창 #20-01] ROOT A Recovery Supervisor 실패 원인 수정
 - 결과: 수정 커밋 준비 완료(브랜치 푸시) / 실제 복구는 **HOLD — 사용자 전용 조치 1건 필요**
 - 원인: 저장소 변수 `WIC_RULE_ADMISSION_JSON`에 `workflow:root-a-recovery-supervisor:supervise` 항목이 없어
   `pre_work_admission.py`가 `WORK_ADMISSION_IDENTITY_MISMATCH`로 BLOCK (런 43589793491 로그 확인, 최근 8회 연속 실패).
