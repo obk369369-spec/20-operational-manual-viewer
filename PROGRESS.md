@@ -3,7 +3,17 @@
 ## 대화창 번호 대장
 | 번호 | 날짜 | 주제 |
 |---|---|---|
-| #20-01 | 2026-11-14 | 감독 워크플로 admission 수정, CLAUDE.md·PROGRESS.md 고정, 13번 아카이브 확인 |
+| #20-01 | 2026-11-14 | 감독 워크플로 admission 수정, CLAUDE.md·PROGRESS.md 고정, 13번 아카이브 확인, 최종 무결성 점검 |
+
+## 2026-11-14 — [대화창 #20-01] 초기화 전 최종 무결성 점검
+- 결과: PASS(아래 항목) / 기준 문서 2건 없음으로 HOLD
+- 기준 문서: `ALL_PROJECTS_18MONTHS_MASTER.md`, `EXTRACTED_ALL_RULES.md`는 이 저장소·13번 main 어디에도 없음 → "최신 규칙 기준 전수 재점검"은 수행 불가. 기존 정본(AGENTS.md 등) 기준 테스트만 재실행.
+- 테스트: 이 저장소 tests/test_*.py 4종 PASS. 13번 저장소 rules_spec.js, openrefine_integration_template.test.js, tool13_batch_resume.test.js, tool13_v2_translation_acceptance.py PASS (실행 후 덮어쓴 추적 파일 2개는 원복).
+- index.html: 변경 없음(origin/main과 동일, sha256 bed349ca…, `tool044_thin_observer_deployed.json` 기록값과 일치). 네트워크 차단 상태에서 정상 로드.
+- 13번 V2 최종운영판(13번 main 8f52c3d): 네트워크 차단 상태에서 오류·외부 요청 0건, XLSX·idbKeyval 로드 확인. 단 **단일 파일이 아님** — `vendor/`, `scripts/`를 같은 폴더에 두어야 동작.
+- 주의: 이 저장소의 `CONTROL_TOWER/work/tool013_user_output_closure/13번_V2_최종운영판.html`은 13번 main 버전과 내용이 다른 옛 사본이며 vendor 없이는 깨짐. 최종 산출물로 쓰지 말 것.
+- git: 브랜치 claude/vigilant-brown-je3j6n 푸시 완료·작업 트리 깨끗. main에는 자동 기록 커밋만 추가됨(정본 규칙·index.html·테스트 변경 없음). main은 건드리지 않음.
+- 마지막 실제 지점: 위 점검 완료. 다음 트리거: main 병합 + 변수 `WIC_RULE_ADMISSION_JSON` 교체(이전 항목), 13번 비공개 전환(개인정보).
 
 ## 2026-11-14 — [대화창 #20-01] 13번 아카이브 읽기 전용 확인 및 CLAUDE.md 반영
 - 결과: PASS(확인·기록) / 이슈 해결은 해당 없음
