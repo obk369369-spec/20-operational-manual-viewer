@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-17 15:37:13",
+ "updated": "2026-11-17 15:47:38",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,26 +997,27 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-17 14:43:35",
-   "pid": 7004,
-   "cycle": 3,
-   "ok": false,
-   "checked": 0,
-   "total": null,
-   "fails": 1
+   "at": "2026-11-17 15:38:52",
+   "pid": 27160,
+   "cycle": 4,
+   "ok": true,
+   "checked": 53,
+   "total": 53,
+   "fails": 0,
+   "self_verify": "SELF-VERIFY: 46 PASS / 0 FAIL"
   },
   "receipts": {
    "자가검증_영수증_최신.json": {
-    "sha256_16": "c51ad7612699d4e0"
+    "sha256_16": "a35bb71f12bf567c"
    },
    "qa_receipt_latest.json": {
-    "sha256_16": "3af026c805b26f1c"
+    "sha256_16": "b29c3aed31bfea82"
    },
    "ux_receipt_latest.json": {
-    "sha256_16": "83c207a797f037e5"
+    "sha256_16": "1422e28f7d68d8ea"
    },
    "fuzz_receipt_latest.json": {
-    "sha256_16": "317b601a1f308c7a"
+    "sha256_16": "d34611f9e9116ca1"
    },
    "resume_state.json": {
     "sha256_16": "a192c9f45f88862f"
@@ -1113,6 +1114,31 @@
    "at": "2026-11-17 15:37:13",
    "src": "claude",
    "text": "공유 허브 구축·데몬 연동 1회 테스트"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:37:28] 데몬 시작 pid=27160 once=False root=상대경로 기준",
+   "at": "2026-11-17 15:47:38"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:37:29] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-17 15:47:38"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:38:52] 순찰 #4 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-17 15:47:38"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:47:36] self_verify: SELF-VERIFY: 46 PASS / 0 FAIL ",
+   "at": "2026-11-17 15:47:38"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:47:38] GitHub 로그 반영 성공",
+   "at": "2026-11-17 15:47:38"
   }
  ]
 }
