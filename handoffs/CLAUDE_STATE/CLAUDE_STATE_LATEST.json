@@ -1,0 +1,21 @@
+{
+ "schema": "wic.claude_state.v1",
+ "written_by": "claude-code",
+ "date": "2026-11-17",
+ "protocol_read": "handoffs/CHATGPT_CLAUDE_SHARED_WORK_PROTOCOL_20261117.md",
+ "ledgers": 42,
+ "source_files": 1736,
+ "chat42": {
+  "ledger": "42_고객 안내 (누락 작업).md",
+  "status": "원장 복원 PASS / 안내서 신규 출력은 이번 작업에서 실행하지 않음"
+ },
+ "last_verified": "Claude 측 원장 생성·resume.js 조회 PASS",
+ "customer_send_status": "기록 없음 — 발송 상태는 CUSTOMER_GUIDE_SENT_LEDGER_2026.md 가 정본, Claude 는 발송하지 않음",
+ "holds": [
+  "conversations.json 이 로컬에서 발견되지 않음(실제 백업은 .doc/.txt 1,736건)",
+  ".doc 본문은 휴리스틱 추출 — 원본이 정본",
+  "양방향 PASS 는 ChatGPT 역방향 읽기 시험 후에만",
+  "고객 개인정보·대화 원문은 GitHub 미업로드"
+ ],
+ "privacy": "no customer PII or chat bodies in this repo from Claude"
+}
