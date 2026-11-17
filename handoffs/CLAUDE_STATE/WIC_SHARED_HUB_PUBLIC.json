@@ -1,0 +1,1118 @@
+{
+ "schema": "wic.hub.v1",
+ "updated": "2026-11-17 15:37:13",
+ "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
+ "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
+ "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
+ "envelope": {
+  "fields": [
+   "tool",
+   "kind",
+   "schema",
+   "ts",
+   "payload"
+  ],
+  "formats": [
+   "json",
+   "csv"
+  ],
+  "schemas": {
+   "wic.reports.v1": [
+    "titleEn",
+    "titleKo",
+    "publisher",
+    "publishDate(YYYY-MM-DD)",
+    "pages",
+    "listPriceUsd",
+    "link",
+    "toc"
+   ],
+   "wic.customers.v1": [
+    "org",
+    "dept",
+    "name",
+    "pos",
+    "email",
+    "field",
+    "interest"
+   ]
+  }
+ },
+ "tool_count": 53,
+ "tools": [
+  {
+   "tool": 1,
+   "name": "고객 자동화 안내서",
+   "href": "02_실행도구_완성본/tools/고객안내서/1번_고객자동화안내서_최종완결판.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool1.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_1"
+   }
+  },
+  {
+   "tool": 2,
+   "name": "입찰 도구",
+   "href": "02_실행도구_완성본/tools/02_bid/02_bid.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool2.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_2"
+   }
+  },
+  {
+   "tool": 3,
+   "name": "코딩 기초 연습 도구",
+   "href": "02_실행도구_완성본/tools/03_coding_practice/03_coding_practice.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool3.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_3"
+   }
+  },
+  {
+   "tool": 4,
+   "name": "연구비 박사 엑셀 생성기",
+   "href": "02_실행도구_완성본/tools/04_research_funding/04_research_funding.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool4.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_4"
+   }
+  },
+  {
+   "tool": 5,
+   "name": "보고서 생성기",
+   "href": "02_실행도구_완성본/tools/05_report_generator/05_report_generator.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool5.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_5"
+   }
+  },
+  {
+   "tool": 6,
+   "name": "목차 정리",
+   "href": "02_실행도구_완성본/tools/06_toc/6번_목차정리_실사용.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool6.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_6"
+   }
+  },
+  {
+   "tool": 7,
+   "name": "고객 컨택 판단",
+   "href": "02_실행도구_완성본/tools/07_contact_judge/7번_고객추적_컨택판단.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool7.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_7"
+   }
+  },
+  {
+   "tool": 8,
+   "name": "고객 추적 후 복원",
+   "href": "02_실행도구_완성본/tools/08_person_trace/08_person_trace.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool8.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_8"
+   }
+  },
+  {
+   "tool": 9,
+   "name": "컨텐츠 자료 안내",
+   "href": "02_실행도구_완성본/tools/09_content_guide/09_content_guide.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool9.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_9"
+   }
+  },
+  {
+   "tool": 10,
+   "name": "재무 회계",
+   "href": "02_실행도구_완성본/tools/10_finance_ledger/10_finance_ledger.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool10.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_10"
+   }
+  },
+  {
+   "tool": 11,
+   "name": "재테크 시뮬레이터",
+   "href": "02_실행도구_완성본/tools/11_wealth_sim/11_wealth_sim.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool11.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_11"
+   }
+  },
+  {
+   "tool": 12,
+   "name": "서브 웹사이트 제작",
+   "href": "02_실행도구_완성본/tools/12_subsite_builder/12_subsite_builder.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool12.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_12"
+   }
+  },
+  {
+   "tool": 13,
+   "name": "엑셀 자동 업로드 (13번)",
+   "href": "02_실행도구_완성본/13번_V2_최종운영판.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool13.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_13"
+   }
+  },
+  {
+   "tool": 14,
+   "name": "홈페이지 수정 프로그램",
+   "href": "02_실행도구_완성본/tools/14_prospect_judge/14_prospect_judge.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool14.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_14"
+   }
+  },
+  {
+   "tool": 15,
+   "name": "공통엔진 모듈 테스트기",
+   "href": "02_실행도구_완성본/tools/15_partner_hub/15_partner_hub.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool15.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_15"
+   }
+  },
+  {
+   "tool": 16,
+   "name": "Work(최상위 플랫폼)",
+   "href": "02_실행도구_완성본/tools/16_work_platform/16_work_platform.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool16.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_16"
+   }
+  },
+  {
+   "tool": 17,
+   "name": "PC 화면 녹화",
+   "href": "02_실행도구_완성본/tools/17_screen_rec/17_screen_rec.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool17.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_17"
+   }
+  },
+  {
+   "tool": 18,
+   "name": "도구 기능 정책",
+   "href": "02_실행도구_완성본/tools/18_tool_policy/18_tool_policy.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool18.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_18"
+   }
+  },
+  {
+   "tool": 19,
+   "name": "사업장 홍보",
+   "href": "02_실행도구_완성본/tools/19_promo_posts/19_promo_posts.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool19.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_19"
+   }
+  },
+  {
+   "tool": 20,
+   "name": "운영 매뉴얼 버전",
+   "href": "02_실행도구_완성본/tools/20_manual_versions/20_manual_versions.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool20.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_20"
+   }
+  },
+  {
+   "tool": 21,
+   "name": "영업 도우미",
+   "href": "02_실행도구_완성본/tools/21_sales_route/21_sales_route.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool21.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_21"
+   }
+  },
+  {
+   "tool": 22,
+   "name": "공통 준비물 (열 매핑)",
+   "href": "02_실행도구_완성본/tools/22_prep_profile/22_prep_profile.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool22.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_22"
+   }
+  },
+  {
+   "tool": 23,
+   "name": "월드 어드바이저",
+   "href": "02_실행도구_완성본/tools/23_trend_advisor/23_trend_advisor.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool23.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_23"
+   }
+  },
+  {
+   "tool": 24,
+   "name": "동영상 제작 보조",
+   "href": "02_실행도구_완성본/tools/24_video_script/24_video_script.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool24.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_24"
+   }
+  },
+  {
+   "tool": 25,
+   "name": "판단 코어",
+   "href": "02_실행도구_완성본/tools/25_judgment_core/25_judgment_core.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool25.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_25"
+   }
+  },
+  {
+   "tool": 26,
+   "name": "WIC 자동화 시스템 (\"껍데기 WIC 자동화 시스템 2\")",
+   "href": "02_실행도구_완성본/tools/26_wic_automation/26_wic_automation.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool26.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_26"
+   }
+  },
+  {
+   "tool": 27,
+   "name": "공학도서 안내 (1번에 통합)",
+   "href": "02_실행도구_완성본/tools/고객안내서/1번_고객자동화안내서_최종완결판.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool27.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_27"
+   }
+  },
+  {
+   "tool": 28,
+   "name": "외부툴 운영센터",
+   "href": "02_실행도구_완성본/tools/28_external_tools_pub_discovery/28_external_tools_pub_discovery.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool28.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_28"
+   }
+  },
+  {
+   "tool": 29,
+   "name": "해외 발행사 파트너십·계약·정산",
+   "href": "02_실행도구_완성본/tools/29_pub_partnership/29_pub_partnership.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool29.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_29"
+   }
+  },
+  {
+   "tool": 30,
+   "name": "일본 발행사 파트너십·계약 (+30번-2 검증 전용=13번)",
+   "href": "02_실행도구_완성본/tools/30_jp_pub_partnership/30_jp_pub_partnership.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool30.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_30"
+   }
+  },
+  {
+   "tool": 31,
+   "name": "일본 신규 발행사 발굴",
+   "href": "02_실행도구_완성본/tools/31_jp_pub_discovery/31_jp_pub_discovery.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool31.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_31"
+   }
+  },
+  {
+   "tool": 32,
+   "name": "(연구-월드 안내 연구 대화창만 확인)",
+   "href": "02_실행도구_완성본/tools/32_research_guide_quote/32_research_guide_quote.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool32.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_32"
+   }
+  },
+  {
+   "tool": 34,
+   "name": "통합 관제",
+   "href": "02_실행도구_완성본/tools/34_control_tower/34_control_tower.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool34.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_34"
+   }
+  },
+  {
+   "tool": 35,
+   "name": "월드 운영 시스템 구축",
+   "href": "02_실행도구_완성본/tools/35_ops_inbound/35_ops_inbound.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool35.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_35"
+   }
+  },
+  {
+   "tool": 36,
+   "name": "이메일 수집(반도체)",
+   "href": "02_실행도구_완성본/tools/36_email_collect_semicon/36_email_collect_semicon.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool36.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_36"
+   }
+  },
+  {
+   "tool": 37,
+   "name": "13번 출력 검수기",
+   "href": "02_실행도구_완성본/tools/37_meta_check/37_meta_check.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool37.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_37"
+   }
+  },
+  {
+   "tool": 38,
+   "name": "고객 매일 장부 안내",
+   "href": "02_실행도구_완성본/tools/38_daily_ledger_guide/38_daily_ledger_guide.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool38.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_38"
+   }
+  },
+  {
+   "tool": 39,
+   "name": "전체 도구 구조 지도",
+   "href": "02_실행도구_완성본/tools/39_tool_map/39_tool_map.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool39.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_39"
+   }
+  },
+  {
+   "tool": 40,
+   "name": "출시 앱 도구",
+   "href": "02_실행도구_완성본/tools/40_launch_app/40_launch_app.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool40.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_40"
+   }
+  },
+  {
+   "tool": 41,
+   "name": "이메일 수집",
+   "href": "02_실행도구_완성본/tools/41_email_collect/41_email_collect.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool41.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_41"
+   }
+  },
+  {
+   "tool": 42,
+   "name": "고객 조사·안내서 (한 줄 입력)",
+   "href": "02_실행도구_완성본/tools/42_customer_notice/42번_고객조사_안내서_독립실행.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool42.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_42"
+   }
+  },
+  {
+   "tool": 43,
+   "name": "소형 앱 출시 실행",
+   "href": "02_실행도구_완성본/tools/43_release_runner/43_release_runner.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool43.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_43"
+   }
+  },
+  {
+   "tool": 44,
+   "name": "완성부품 가져오기·시간별 보고 (TOOL044)",
+   "href": "02_실행도구_완성본/tools/44_component_import/44_component_import.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool44.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_44"
+   }
+  },
+  {
+   "tool": 45,
+   "name": "1년치 오류·피드백 자동 추출 (TOOL045)",
+   "href": "02_실행도구_완성본/tools/45_error_extract/45_error_extract.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool45.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_45"
+   }
+  },
+  {
+   "tool": 46,
+   "name": "모든 대화창 오류 정리",
+   "href": "02_실행도구_완성본/tools/46_error_per_chat/46_error_per_chat.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool46.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_46"
+   }
+  },
+  {
+   "tool": 47,
+   "name": "전체 대화창 오류·피드백 16번 등록",
+   "href": "02_실행도구_완성본/tools/47_error_register16/47_error_register16.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool47.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_47"
+   }
+  },
+  {
+   "tool": 48,
+   "name": "보낸 메일 오류·피드백 분석 + 부품 DB",
+   "href": "02_실행도구_완성본/tools/48_sent_mail_analysis/48_sent_mail_analysis.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool48.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_48"
+   }
+  },
+  {
+   "tool": 49,
+   "name": "외부 사업 검토",
+   "href": "02_실행도구_완성본/tools/49_external_biz_review/49_external_biz_review.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool49.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_49"
+   }
+  },
+  {
+   "tool": 50,
+   "name": "알바·부업 조사",
+   "href": "02_실행도구_완성본/tools/50_side_income_research/50_side_income_research.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool50.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_50"
+   }
+  },
+  {
+   "tool": 51,
+   "name": "신제품 아이디어·3D",
+   "href": "02_실행도구_완성본/tools/51_new_product_3d/51_new_product_3d.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool51.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_51"
+   }
+  },
+  {
+   "tool": 52,
+   "name": "파일 추출·복구",
+   "href": "02_실행도구_완성본/tools/52_file_recovery/52_file_recovery.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool52.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_52"
+   }
+  },
+  {
+   "tool": 53,
+   "name": "USB 추출·정리",
+   "href": "02_실행도구_완성본/tools/53_usb_cleanup/53_usb_cleanup.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool53.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_53"
+   }
+  },
+  {
+   "tool": 54,
+   "name": "외부 AI 소켓 허브",
+   "href": "02_실행도구_완성본/tools/54_socket_hub/54_socket_hub.html",
+   "socket": {
+    "hub": 54,
+    "schema": "wic.tool54.v1",
+    "in": [
+     "json",
+     "csv"
+    ],
+    "out": [
+     "json",
+     "csv"
+    ],
+    "bus": "localStorage wicbus_v1_54"
+   }
+  }
+ ],
+ "status": {
+  "daemon_heartbeat": {
+   "at": "2026-11-17 14:43:35",
+   "pid": 7004,
+   "cycle": 3,
+   "ok": false,
+   "checked": 0,
+   "total": null,
+   "fails": 1
+  },
+  "receipts": {
+   "자가검증_영수증_최신.json": {
+    "sha256_16": "c51ad7612699d4e0"
+   },
+   "qa_receipt_latest.json": {
+    "sha256_16": "3af026c805b26f1c"
+   },
+   "ux_receipt_latest.json": {
+    "sha256_16": "83c207a797f037e5"
+   },
+   "fuzz_receipt_latest.json": {
+    "sha256_16": "317b601a1f308c7a"
+   },
+   "resume_state.json": {
+    "sha256_16": "a192c9f45f88862f"
+   }
+  }
+ },
+ "events": [
+  {
+   "src": "daemon",
+   "text": "[[tel]:14:15] 데몬 시작 pid=17556 once=False root=상대경로 기준",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:15:39] 순찰 #1 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:24:23] self_verify: SELF-VERIFY: 46 PASS / 0 FAIL ",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:24:24] GitHub 로그 반영 성공",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:34:31] 순찰 #2 결함 1건: [{\"no\": 0, \"name\": \"순찰기\", \"problem\": \"순찰 결과 없음: e */);\\n    ^\\n\\nbrowser.newContext: Target page, context or browser has been closed\\n    at I:\\\\WIC_MASTER\\\\02_실행도구_완성본\\\\async I:\\\\WIC_MASTER\\\\02_실행도구_완성본\\\\tools\\\\_daemon\\\\daemon_sweep.js:9:17\\n\\nNode.js v26.13.1\\n\"}]",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:34:32] 자동 수정 HOLD: claude 로그인 필요(한 번만 터미널에서 `claude /login` 또는 ANTHROPIC_API_KEY 설정). 결함은 로그에만 기록하고 다음 주기에 재시도",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:39:21] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:39:22] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:42:48] 데몬 시작 pid=7004 once=False root=상대경로 기준",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:42:53] 사장님폴더 동기화: 갱신 6건 ['1번_신간보고서_안내문_생성기.html', '13번_엑셀_자동변환_업로드.html', '42번_고객조사_안내서_자동화.html', '14대_산업분야별_고객장부.xlsx', '14대_산업분야별_고객장부.csv', '전체_대화창_복원목록.md']",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:43:35] 순찰 #3 결함 1건: [{\"no\": 0, \"name\": \"순찰기\", \"problem\": \"순찰 결과 없음: is\\\\gcm\\\\engine\\\\registration_request.cc:275] Registration URL fetching failed.\\n[pid=16028] <gracefully close start>\\n    at I:\\\\WIC_MASTER\\\\02_실행도구_완성본\\\\tools\\\\_daemon\\\\daemon_sweep.js:9:96\\n\\nNode.js v26.13.1\\n\"}]",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:43:35] 자동 수정 HOLD: claude 로그인 필요(한 번만 터미널에서 `claude /login` 또는 ANTHROPIC_API_KEY 설정). 결함은 로그에만 기록하고 다음 주기에 재시도",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:46:59] 데몬 시작 pid=1668 once=False root=상대경로 기준",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:47:03] 사장님폴더 동기화: 갱신 6건 ['1번_신간보고서_안내문_생성기.html', '13번_엑셀_자동변환_업로드.html', '42번_고객조사_안내서_자동화.html', '14대_산업분야별_고객장부.xlsx', '14대_산업분야별_고객장부.csv', '전체_대화창_복원목록.md']",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:28:52] 데몬 시작 pid=3000 once=False root=상대경로 기준",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:28:55] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:30:19] 순찰 #4 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-17 15:37:13"
+  },
+  {
+   "at": "2026-11-17 15:37:13",
+   "src": "claude",
+   "text": "공유 허브 구축·데몬 연동 1회 테스트"
+  }
+ ]
+}
