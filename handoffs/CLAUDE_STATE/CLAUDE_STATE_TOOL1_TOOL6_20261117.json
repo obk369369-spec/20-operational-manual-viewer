@@ -1,0 +1,36 @@
+{
+ "date": "2026-11-17",
+ "tool1": {
+  "change": "공급가격 = 정가(USD) x 적용환율(건별 입력), 천원 반올림. commissionPct 차감 제외(내부 참고용). 환율 고정값 1380 폐지, 카드별 환율 저장, 할인율 입력칸 제거",
+  "basis": "정본 안내서 709건 실측(구 산식 571건 중 0건 일치) + 사용자 확정",
+  "checks": {
+   "golden_compare": "259 PASS / 0 FAIL",
+   "final_e2e": "26 PASS / 0 FAIL",
+   "ui_fill_e2e": "16 PASS / 0 FAIL",
+   "core_lock": "17 PASS / 0 FAIL (사유: 정본 실측 기준 공급가격 산식(정가x적용환율) 확정)",
+   "self_verify": "46 PASS / 0 FAIL",
+   "audit_loop": "14,15,16회전 발견 0건"
+  },
+  "open": [
+   "정가 $3,939 x 1380 -> 정본 5,435,000 vs 산식 5,436,000 (원문 미기재)",
+   "GitHub 정본 문서 2종 로컬 미보유, 원문 대조 미실시",
+   "환율 입력칸 file:/// 클릭 영수증/캡처 미작성"
+  ]
+ },
+ "tool6": {
+  "status": "6번 목차 정리(toc_engine.js) 수정은 별도 세션이 수행. 사용자 보고상 정상 완료. 본 세션은 해당 파일을 수정하지 않았고 재빌드 후 golden 259 PASS로 영향 없음만 확인",
+  "verified_in_this_session": "toc_engine.js 문법 OK, 1번 golden/self_verify 통과. 6번 도구 자체 시험은 미실시"
+ },
+ "files_sha256_16": {
+  "02_실행도구_완성본/tools/_common/pubdb.js": "28c537179b2c7124",
+  "02_실행도구_완성본/tools/고객안내서/1번_src.html": "a0f099cb59740256",
+  "02_실행도구_완성본/tools/고객안내서/1번_고객자동화안내서_최종완결판.html": "7b69610a51d40b25",
+  "02_실행도구_완성본/tools/_common/ux_cfg.js": "2e43f95bd92ca91c",
+  "02_실행도구_완성본/tools/자가검증/fuzz_all.js": "c0e8d29057b4392d",
+  "02_실행도구_완성본/tools/고객안내서/tests/final_e2e.js": "1e624a38e9e06342",
+  "02_실행도구_완성본/tools/고객안내서/tests/ui_fill_e2e.js": "cdcdd113400248b2",
+  "02_실행도구_완성본/tools/자가검증/core_lock.json": "6b24a4207e66ff09",
+  "02_실행도구_완성본/tools/_common/toc_engine.js": "71c1a9b286495551"
+ },
+ "privacy": "개인정보·대화 원문 미포함"
+}
