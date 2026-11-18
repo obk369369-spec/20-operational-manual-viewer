@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-18 17:06:03",
+ "updated": "2026-11-18 17:24:09",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,17 +997,18 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-18 17:06:03",
+   "at": "2026-11-18 17:17:28",
    "pid": 22732,
-   "cycle": 11,
+   "cycle": 12,
    "ok": true,
    "checked": 53,
    "total": 53,
-   "fails": 0
+   "fails": 0,
+   "self_verify": "SELF-VERIFY: 45 PASS / 4 FAIL"
   },
   "receipts": {
    "자가검증_영수증_최신.json": {
-    "sha256_16": "7c7df39f3c6d4271"
+    "sha256_16": "ae631a19721f07f6"
    },
    "qa_receipt_latest.json": {
     "sha256_16": "1661aa70c3740dcf"
@@ -1016,7 +1017,7 @@
     "sha256_16": "7bee19fbd50be505"
    },
    "fuzz_receipt_latest.json": {
-    "sha256_16": "4e1aed2299eb65f0"
+    "sha256_16": "cd5ce7d48ad23b25"
    },
    "resume_state.json": {
     "sha256_16": "5ecd9697eb9c64a9"
@@ -1278,6 +1279,31 @@
    "src": "daemon",
    "text": "[[tel]:06:03] 순찰 #11 정상: 도구 53/53 전부 통과",
    "at": "2026-11-18 17:06:03"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:06:06] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 d6bd3f13",
+   "at": "2026-11-18 17:24:09"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:16:06] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-18 17:24:09"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:17:28] 순찰 #12 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-18 17:24:09"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:24:07] self_verify: SELF-VERIFY: 45 PASS / 4 FAIL [\"FAIL [QA ①점검] 전 도구 1920x1080 버튼·레이아웃·빈칸 전수 QA :: \", \"FAIL [UX ①점검] ux_qa.js 기대값 대조 :: 결과 줄 없음: %84%EC%B2%B4%EB%8F%84%EA%B5%AC_%ED%86%B5%ED%95%A9%EB%9F%B0%EC%B2%98.html\\\", waiting until \\\"load\\\"' ], name: 'Error' } \", \"FAIL [런처 ①점검] launcher_",
+   "at": "2026-11-18 17:24:09"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:24:09] GitHub 로그 반영 성공",
+   "at": "2026-11-18 17:24:09"
   }
  ]
 }
