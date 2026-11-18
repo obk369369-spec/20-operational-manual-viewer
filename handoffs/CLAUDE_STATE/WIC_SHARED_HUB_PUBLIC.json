@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-18 16:08:53",
+ "updated": "2026-11-18 16:20:20",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,14 +997,13 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-18 15:51:17",
+   "at": "2026-11-18 16:20:20",
    "pid": 22732,
-   "cycle": 6,
+   "cycle": 7,
    "ok": true,
    "checked": 53,
    "total": 53,
-   "fails": 1,
-   "self_verify": "SELF-VERIFY: 45 PASS / 4 FAIL"
+   "fails": 0
   },
   "receipts": {
    "자가검증_영수증_최신.json": {
@@ -1204,6 +1203,21 @@
    "src": "daemon",
    "text": "[[tel]:08:53] GitHub 로그 반영 성공",
    "at": "2026-11-18 16:08:53"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:08:55] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 f1bbeaf4",
+   "at": "2026-11-18 16:20:20"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:18:58] 사장님폴더 동기화: 갱신 1건 ['1번_신간보고서_안내문_생성기.html']",
+   "at": "2026-11-18 16:20:20"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:20:20] 순찰 #7 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-18 16:20:20"
   }
  ]
 }
