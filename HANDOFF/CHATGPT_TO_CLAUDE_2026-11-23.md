@@ -81,3 +81,21 @@ Additional automation families:
 Google AI independent audit: verify completeness of inventory against filesystem/Git manifest, challenge gaps, compare Claude's changes with old TOOL002, inspect regression tests, confirm source-specific live E2E and measured user effort reduction. Require correction loops until remaining HOLDs are explicit. Keep KRICT 2026-11-25 10:00 KST bid preparation separately prioritized.
 
 Required deliverables: COMPLETE_SOURCE_MANIFEST with item count and hashes; FUNCTIONAL_DIFF_MATRIX; PROCUREMENT_SOURCE_COVERAGE_MATRIX; TENDER_METHOD_MATRIX; DOCUMENT_AUTOMATION_MATRIX; TEST_EVIDENCE_AND_HOLDS; RELEASE_READINESS_GATE. A claim of 'nothing omitted' is forbidden until every in-scope accessible asset is accounted for and inaccessible assets are separately listed.
+
+
+## Additional direct GitHub audit 2026-11-23
+Git tree of TOOL002 main at commit 733eb198b65b81339873156d9330b31e538c40a1 was retrieved with recursive=true, truncated=false. It contains current index.html, historical index(예전 버전).html, core institution accumulator, XLSX worker, 2 tests, 2 workflows, docs and handoff. Vendor XLSX minified bundle is third-party and should be inventoried by checksum/license, not rewritten.
+
+Directly read:
+- TOOL002_MASTER.md: stated MVP is paste/upload -> 입찰/내부안내/X classification -> verified notice-specific bid calculation -> institution accumulation; not just XLSX counter.
+- WIC_TARGET_APPLY_STATE.json: 48,486-row fixture / 48,481 deduplicated / 6,264 institutions, CI PASS, but external independent verifier explicitly HOLD.
+- docs/BID_ARCHIVE_AUDIT_20261026.md: historical archive 220 files (~173.4 MB), 114 KISTI-related, 3 duplicate hash groups; original archive NOT directly accessible/independently re-read in this session. Do not claim archive source audit PASS from summary.
+- handoff/TOOL002_KISTI_BID_READY_20261022.md: prior locked core, observer not yet E2E-PASS.
+- index.html: visible entrypoint is an XLSX institution-accumulation screen; no visible bid classification/pricing/submit preparation in this entrypoint.
+- src/institution-accumulator-core.js: detects header within first 20 rows, dedupes by noticeNo only, counts institutions by agency || demandAgency. Verify amended notice rounds and same number across sites; normalize institution aliases; distinguish issuing vs demand agency.
+- .github/workflows/actual-bid-business-e2e.yml: tests historical index(예전 버전).html localStorage bid/item add/save/readback; separately tests synthetic 48,486-row XLSX fixture on current index.html. These tests do NOT establish live public-source ingestion or current UI integrated bid classification/calculation. Do not describe synthetic fixture as fresh live procurement input.
+- docs/TOOL002_OPERATING_RULES_20261026.md, docs/BID_PRACTICAL_MANUAL_20261026.md, docs/EXTERNAL_BID_AUTOMATION_20261026.md: already read and preserved in earlier handoff.
+
+Priority gap discovered: reconcile older bid-entry UI and newer XLSX institution UI into one working practical workflow without destroying locked functions. Require real notice-to-eligibility-to-method-to-price-to-docs-to-evidence test, not merely localStorage or XLSX fixture. Keep each legacy feature and measured test evidence; flag missing source adapters and classification/pricing implementation explicitly.
+
+Additional unverified assets: full original archive bytes, Claude Code's local working tree and unpushed commits, GitHub Actions downloadable evidence artifacts, independent deployed UI accessibility, historical chat-only materials and any private institution portal credentials. All remain HOLD, not 'fully checked'. Claude/Google AI should fetch only from authorized existing workspaces, record inaccessible items, and not falsely assert total completeness.
