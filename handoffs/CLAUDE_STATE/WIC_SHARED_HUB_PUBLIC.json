@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-24 22:30:58",
+ "updated": "2026-11-24 22:42:24",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,9 +997,9 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-24 22:30:58",
+   "at": "2026-11-24 22:42:24",
    "pid": 18604,
-   "cycle": 29,
+   "cycle": 30,
    "ok": true,
    "checked": 53,
    "total": 53,
@@ -1024,21 +1024,6 @@
   }
  },
  "events": [
-  {
-   "src": "daemon",
-   "text": "[[tel]:24:07] self_verify: SELF-VERIFY: 45 PASS / 4 FAIL [\"FAIL [QA ①점검] 전 도구 1920x1080 버튼·레이아웃·빈칸 전수 QA :: \", \"FAIL [UX ①점검] ux_qa.js 기대값 대조 :: 결과 줄 없음: %84%EC%B2%B4%EB%8F%84%EA%B5%AC_%ED%86%B5%ED%95%A9%EB%9F%B0%EC%B2%98.html\\\", waiting until \\\"load\\\"' ], name: 'Error' } \", \"FAIL [런처 ①점검] launcher_",
-   "at": "2026-11-18 17:24:09"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:24:09] GitHub 로그 반영 성공",
-   "at": "2026-11-18 17:24:09"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:24:11] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 6563fb94",
-   "at": "2026-11-18 17:35:35"
-  },
   {
    "src": "daemon",
    "text": "[[tel]:34:11] 사장님폴더 동기화: 갱신 0건 []",
@@ -1323,6 +1308,21 @@
    "src": "daemon",
    "text": "[[tel]:30:58] 순찰 #29 정상: 도구 53/53 전부 통과",
    "at": "2026-11-24 22:30:58"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:31:00] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 6ccc3662",
+   "at": "2026-11-24 22:42:24"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:41:01] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-24 22:42:24"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:42:24] 순찰 #30 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-24 22:42:24"
   }
  ]
 }
