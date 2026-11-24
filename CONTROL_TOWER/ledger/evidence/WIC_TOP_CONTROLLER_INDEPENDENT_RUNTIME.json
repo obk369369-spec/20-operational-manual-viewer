@@ -1,13 +1,13 @@
 {
   "schema": "wic.top_controller.independent_runtime.v2",
-  "created_at": "2026-11-24T13:55:23.374114+00:00",
+  "created_at": "2026-11-24T23:30:56.415990+00:00",
   "repository": "obk369369-spec/20-operational-manual-viewer",
-  "run_id": "45408409710",
+  "run_id": "45510567537",
   "run_attempt": "1",
   "work_start_token": {
-    "token_id": "aa3b16c79b7bda9ecaf9e8d5267e8199",
+    "token_id": "aeaa34bbba35c72e897d999d3ea5957c",
     "work_id": "WIC-RUNTIME-CYCLE",
-    "git_sha": "d50c3e4f841d25a3f3fa1f2a430a65b8d24d9a1c",
+    "git_sha": "ed3db23e3f335e126c631f07a2517ff746efe3ec",
     "scope_verified": true
   },
   "runtime": "GITHUB_ACTIONS_HOSTED",
@@ -133,7 +133,7 @@
   "central_backlog_execution": [],
   "handoff": {
     "status": "ACCEPTED",
-    "trace_id": "REMOTE-45408409710",
+    "trace_id": "REMOTE-45510567537",
     "root_id": "CENTRAL_AUTONOMY_REPEAT_ASSURANCE",
     "ready_made_first": true,
     "selected_components": [
@@ -201,7 +201,7 @@
     "root_id": "CENTRAL_RUNTIME_CYCLE",
     "decision": "ALLOW",
     "reason": null,
-    "signature": "434286084acdb961d4de6d3d1b3c037087b3c2eeb2c7b600a3de5e750171a7c9",
+    "signature": "2cd0a750f0a5bc18d77afc88b18d69aeb29171c1f5843a7e36fef0b94ca4bcb9",
     "deltas": [
       0,
       0,
@@ -257,26 +257,18 @@
   "runtime_continuity": {
     "status": "HOLD_SCHEDULE_GAP",
     "actual_24h_elapsed_validation": "HOLD_SCHEDULE_GAP",
-    "first_started_at": "2026-10-28T13:09:23+00:00",
-    "last_finished_at": "2026-11-24T02:18:11+00:00",
-    "elapsed_hours": 637.147,
-    "window_start": "2026-11-23T02:18:11+00:00",
+    "first_started_at": "2026-10-28T18:54:43+00:00",
+    "last_finished_at": "2026-11-24T13:55:11+00:00",
+    "elapsed_hours": 643.008,
+    "window_start": "2026-11-23T13:55:11+00:00",
     "run_count": 4,
     "success_count": 4,
     "failure_count": 0,
     "recovered_failures": [],
     "unrecovered_failures": [],
-    "max_gap_hours": 11.43,
+    "max_gap_hours": 11.617,
     "max_allowed_gap_hours": 2.5,
     "gap_incidents": [
-      {
-        "left_run_id": 45078166816,
-        "left_created_at": "2026-11-22T22:31:12Z",
-        "right_run_id": 45107840196,
-        "right_created_at": "2026-11-23T03:45:27Z",
-        "gap_hours": 5.237,
-        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
-      },
       {
         "left_run_id": 45107840196,
         "left_created_at": "2026-11-23T03:45:27Z",
@@ -291,6 +283,14 @@
         "right_run_id": 45311366514,
         "right_created_at": "2026-11-24T02:18:11Z",
         "gap_hours": 11.43,
+        "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
+      },
+      {
+        "left_run_id": 45311366514,
+        "left_created_at": "2026-11-24T02:18:11Z",
+        "right_run_id": 45408409710,
+        "right_created_at": "2026-11-24T13:55:11Z",
+        "gap_hours": 11.617,
         "cause_class": "SCHEDULE_TRIGGER_MISSING_OR_DELAYED_BEFORE_JOB_START"
       }
     ],
