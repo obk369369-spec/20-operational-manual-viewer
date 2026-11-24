@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-24 20:01:52",
+ "updated": "2026-11-24 20:13:18",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,9 +997,9 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-24 20:01:52",
+   "at": "2026-11-24 20:13:17",
    "pid": 18604,
-   "cycle": 18,
+   "cycle": 19,
    "ok": true,
    "checked": 53,
    "total": 53,
@@ -1024,21 +1024,6 @@
   }
  },
  "events": [
-  {
-   "at": "2026-11-17 15:37:13",
-   "src": "claude",
-   "text": "공유 허브 구축·데몬 연동 1회 테스트"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:37:28] 데몬 시작 pid=27160 once=False root=상대경로 기준",
-   "at": "2026-11-17 15:47:38"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:37:29] 사장님폴더 동기화: 갱신 0건 []",
-   "at": "2026-11-17 15:47:38"
-  },
   {
    "src": "daemon",
    "text": "[[tel]:38:52] 순찰 #4 정상: 도구 53/53 전부 통과",
@@ -1323,6 +1308,21 @@
    "src": "daemon",
    "text": "[[tel]:01:52] 순찰 #18 정상: 도구 53/53 전부 통과",
    "at": "2026-11-24 20:01:52"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:01:55] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 848f3f75",
+   "at": "2026-11-24 20:13:18"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:11:55] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-24 20:13:18"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:13:17] 순찰 #19 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-24 20:13:18"
   }
  ]
 }
