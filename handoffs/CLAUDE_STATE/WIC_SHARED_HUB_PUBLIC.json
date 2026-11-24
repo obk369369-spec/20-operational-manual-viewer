@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-24 20:47:51",
+ "updated": "2026-11-24 20:59:16",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,14 +997,13 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-24 20:36:07",
+   "at": "2026-11-24 20:59:16",
    "pid": 18604,
-   "cycle": 21,
+   "cycle": 22,
    "ok": true,
    "checked": 53,
    "total": 53,
-   "fails": 0,
-   "self_verify": "SELF-VERIFY: 54 PASS / 1 FAIL"
+   "fails": 0
   },
   "receipts": {
    "자가검증_영수증_최신.json": {
@@ -1025,21 +1024,6 @@
   }
  },
  "events": [
-  {
-   "src": "daemon",
-   "text": "[[tel]:49:30] 데몬 시작 pid=22732 once=False root=상대경로 기준",
-   "at": "2026-11-18 16:08:53"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:49:38] 사장님폴더 동기화: 갱신 3건 ['1번_신간보고서_안내문_생성기.html', '13번_엑셀_자동변환_업로드.html', '전체_54개_도구_현황표.md']",
-   "at": "2026-11-18 16:08:53"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:51:17] 순찰 #6 결함 1건: [{\"no\": 13, \"name\": \"엑셀 자동 업로드 (13번)\", \"problem\": \"필수 요소 없음 #uploadBtn\"}]",
-   "at": "2026-11-18 16:08:53"
-  },
   {
    "src": "daemon",
    "text": "[[tel]:51:57] 자동 수정 시작(claude -p) sig=b8fce40d710c fails=1 스냅샷=20261118_155122",
@@ -1324,6 +1308,21 @@
    "src": "daemon",
    "text": "[[tel]:47:51] GitHub 로그 반영 성공",
    "at": "2026-11-24 20:47:51"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:47:53] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 5f91abe9",
+   "at": "2026-11-24 20:59:16"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:57:53] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-24 20:59:16"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:59:16] 순찰 #22 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-24 20:59:16"
   }
  ]
 }
