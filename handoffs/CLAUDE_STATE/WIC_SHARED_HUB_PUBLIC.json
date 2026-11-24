@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-24 19:27:35",
+ "updated": "2026-11-24 19:39:02",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,14 +997,13 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-24 19:15:09",
+   "at": "2026-11-24 19:39:02",
    "pid": 18604,
-   "cycle": 15,
+   "cycle": 16,
    "ok": true,
    "checked": 53,
    "total": 53,
-   "fails": 0,
-   "self_verify": "SELF-VERIFY: 53 PASS / 2 FAIL"
+   "fails": 0
   },
   "receipts": {
    "자가검증_영수증_최신.json": {
@@ -1025,21 +1024,6 @@
   }
  },
  "events": [
-  {
-   "src": "daemon",
-   "text": "[[tel]:42:48] 데몬 시작 pid=7004 once=False root=상대경로 기준",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:42:53] 사장님폴더 동기화: 갱신 6건 ['1번_신간보고서_안내문_생성기.html', '13번_엑셀_자동변환_업로드.html', '42번_고객조사_안내서_자동화.html', '14대_산업분야별_고객장부.xlsx', '14대_산업분야별_고객장부.csv', '전체_대화창_복원목록.md']",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:43:35] 순찰 #3 결함 1건: [{\"no\": 0, \"name\": \"순찰기\", \"problem\": \"순찰 결과 없음: is\\\\gcm\\\\engine\\\\registration_request.cc:275] Registration URL fetching failed.\\n[pid=16028] <gracefully close start>\\n    at I:\\\\WIC_MASTER\\\\02_실행도구_완성본\\\\tools\\\\_daemon\\\\daemon_sweep.js:9:96\\n\\nNode.js v26.13.1\\n\"}]",
-   "at": "2026-11-17 15:37:13"
-  },
   {
    "src": "daemon",
    "text": "[[tel]:43:35] 자동 수정 HOLD: claude 로그인 필요(한 번만 터미널에서 `claude /login` 또는 ANTHROPIC_API_KEY 설정). 결함은 로그에만 기록하고 다음 주기에 재시도",
@@ -1324,6 +1308,21 @@
    "src": "daemon",
    "text": "[[tel]:27:34] GitHub 로그 반영 성공",
    "at": "2026-11-24 19:27:34"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:27:37] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 47055db6",
+   "at": "2026-11-24 19:39:02"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:37:39] 사장님폴더 동기화: 갱신 0건 []",
+   "at": "2026-11-24 19:39:02"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:39:02] 순찰 #16 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-24 19:39:02"
   }
  ]
 }
