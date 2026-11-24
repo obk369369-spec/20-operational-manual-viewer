@@ -1,6 +1,6 @@
 {
  "schema": "wic.hub.v1",
- "updated": "2026-11-18 17:46:59",
+ "updated": "2026-11-24 19:27:35",
  "principle": "모든 도구·AI·브라우저 확장은 이 허브의 표준 JSON/CSV 로만 입출력한다. 개인정보·원문 없음(해시·건수·ID·상태만).",
  "local_hub": "00_사장님_핵심파일_모음/WIC_SHARED_HUB.json",
  "central_repo": "obk369369-spec/20-operational-manual-viewer:handoffs/CLAUDE_STATE/WIC_SHARED_HUB_PUBLIC.json",
@@ -997,26 +997,27 @@
  ],
  "status": {
   "daemon_heartbeat": {
-   "at": "2026-11-18 17:46:59",
-   "pid": 22732,
-   "cycle": 14,
+   "at": "2026-11-24 19:15:09",
+   "pid": 18604,
+   "cycle": 15,
    "ok": true,
    "checked": 53,
    "total": 53,
-   "fails": 0
+   "fails": 0,
+   "self_verify": "SELF-VERIFY: 53 PASS / 2 FAIL"
   },
   "receipts": {
    "자가검증_영수증_최신.json": {
-    "sha256_16": "ae631a19721f07f6"
+    "sha256_16": "bd8022e7a2bfe784"
    },
    "qa_receipt_latest.json": {
-    "sha256_16": "1661aa70c3740dcf"
+    "sha256_16": "b498974c3d83f4a7"
    },
    "ux_receipt_latest.json": {
-    "sha256_16": "7bee19fbd50be505"
+    "sha256_16": "c4a3a477fd4771c4"
    },
    "fuzz_receipt_latest.json": {
-    "sha256_16": "cd5ce7d48ad23b25"
+    "sha256_16": "10acd1af370d8c0d"
    },
    "resume_state.json": {
     "sha256_16": "5ecd9697eb9c64a9"
@@ -1024,36 +1025,6 @@
   }
  },
  "events": [
-  {
-   "src": "daemon",
-   "text": "[[tel]:24:23] self_verify: SELF-VERIFY: 46 PASS / 0 FAIL ",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:24:24] GitHub 로그 반영 성공",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:34:31] 순찰 #2 결함 1건: [{\"no\": 0, \"name\": \"순찰기\", \"problem\": \"순찰 결과 없음: e */);\\n    ^\\n\\nbrowser.newContext: Target page, context or browser has been closed\\n    at I:\\\\WIC_MASTER\\\\02_실행도구_완성본\\\\async I:\\\\WIC_MASTER\\\\02_실행도구_완성본\\\\tools\\\\_daemon\\\\daemon_sweep.js:9:17\\n\\nNode.js v26.13.1\\n\"}]",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:34:32] 자동 수정 HOLD: claude 로그인 필요(한 번만 터미널에서 `claude /login` 또는 ANTHROPIC_API_KEY 설정). 결함은 로그에만 기록하고 다음 주기에 재시도",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:39:21] 사장님폴더 동기화: 갱신 0건 []",
-   "at": "2026-11-17 15:37:13"
-  },
-  {
-   "src": "daemon",
-   "text": "[[tel]:39:22] 사장님폴더 동기화: 갱신 0건 []",
-   "at": "2026-11-17 15:37:13"
-  },
   {
    "src": "daemon",
    "text": "[[tel]:42:48] 데몬 시작 pid=7004 once=False root=상대경로 기준",
@@ -1323,6 +1294,36 @@
    "src": "daemon",
    "text": "[[tel]:46:59] 순찰 #14 정상: 도구 53/53 전부 통과",
    "at": "2026-11-18 17:46:59"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:47:02] 공유 허브 동기화: 로컬 갱신 / GitHub 푸시 3fc22b4f",
+   "at": "2026-11-24 19:27:34"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:13:21] 데몬 시작 pid=18604 once=False root=상대경로 기준",
+   "at": "2026-11-24 19:27:34"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:13:28] 사장님폴더 동기화: 갱신 1건 ['1번_신간보고서_안내문_생성기.html']",
+   "at": "2026-11-24 19:27:34"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:15:09] 순찰 #15 정상: 도구 53/53 전부 통과",
+   "at": "2026-11-24 19:27:34"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:27:33] self_verify: SELF-VERIFY: 53 PASS / 2 FAIL [\"FAIL [1번 ①점검] ui_fill_e2e.js 기대값 대조 :: 15 PASS / 1 FAIL\", \"FAIL [감사루프 ①점검] 애매함 감사 이력: 최소 3회전 + 마지막 2회전 연속 발견 0건 :: 1:4 → 2:2 → 3:0 → 4:7 → 5:11 → 6:0 → 7:0 → 8:2 → 9:2 → 10:2 → 11:1 → 12:0 → 13:0 → 14:0 → 15:0 → 16:0 → 1:94 → 1:94 → 2:94 → 1",
+   "at": "2026-11-24 19:27:34"
+  },
+  {
+   "src": "daemon",
+   "text": "[[tel]:27:34] GitHub 로그 반영 성공",
+   "at": "2026-11-24 19:27:34"
   }
  ]
 }
