@@ -1,0 +1,6 @@
+# WIC rule retrieval 2026-11-25
+Status: PARTIAL / SOURCE_NOT_RETRIEVED for missing historical originals. No customer personal data.
+Sources: CUSTOMER_GUIDE_FORMAT_MASTER.md (clauses 20–34 CRM); CUSTOMER_GUIDE_OUTPUT_LOCK.md (metadata, TOC, pricing, source, customer output); WIC_GLOBAL_OPERATING_RULES.md; WIC_EXECUTION_STATE.json.
+Recovered: trading publishers only; Future Market Insights excluded per 2026-09-16 conversation; SNE Research excluded per OUTPUT LOCK. CRM: actual spoken script, separate short arrow cue card, 2–4 plain-language directions each grounded in at least one actual saleable title, internal evidence. Output: official source, exact title, original TOC, actual license price, blank supply price unless provided, type-specific format, pre-output gates. Preserve current canonical files rather than duplicating normative rules.
+Unresolved: 78 publisher roster, Industry Experts exception, S01–S13 exact scripts, page limits, full title exclusion list, four campaign templates, complete commission/margin/bid formulas, marketing prohibited words, CTA and platform constraints. Historical conversation search is not exhaustive. TOOL042 directory fetch failed. Marketing document search surfaced SEO, SNS cards, video plan, CTA and operation without uploaded mp4, but not exact constraints.
+No operational PASS or full historical completeness claimed.
