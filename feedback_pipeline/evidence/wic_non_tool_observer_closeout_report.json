@@ -1,20 +1,4 @@
 {
-  "PARTIAL": [
-    {
-      "requirement_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
-      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "PARTIAL",
-      "remaining_work": [],
-      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
-      "pass_lock": false,
-      "actionable_requeued": false
-    }
-  ],
   "UNFINISHED": [
     {
       "requirement_id": "TOOL016-RETROSPECTIVE-WIC-ERROR-SWEEP-20260908-PAST_FAILURE_FIXTURE_GENERATION",
@@ -111,6 +95,78 @@
         "AUTH_FREE_EXTERNAL_RUNNER_PROVIDER_DISCOVERY"
       ],
       "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
+  "LONG_TERM_HOLD": [
+    {
+      "requirement_id": "WIC-BACKLOG-24H-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
+      "root_id": "24H-AUTONOMOUS-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
+      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
+      "pass_lock": false,
+      "actionable_requeued": false
+    },
+    {
+      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
+      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "LONG_TERM_HOLD",
+      "remaining_work": [],
+      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
       "pass_lock": false,
       "actionable_requeued": false
     }
@@ -237,7 +293,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -290,7 +346,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -343,7 +399,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -396,7 +452,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -449,7 +505,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -502,7 +558,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -555,7 +611,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -608,7 +664,7 @@
       ],
       "implementation_location": [],
       "actual_evidence": [
-        "45491513543"
+        "45546904922"
       ],
       "status": "COMPLETE",
       "remaining_work": [],
@@ -2685,78 +2741,6 @@
       "actionable_requeued": false
     }
   ],
-  "LONG_TERM_HOLD": [
-    {
-      "requirement_id": "WIC-BACKLOG-24H-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-BACKLOG-24H-OBSERVER-EVIDENCE-20260927",
-      "root_id": "24H-AUTONOMOUS-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION-COMMONROOT-20260928",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION-20260929",
-      "root_id": "WIC-STAGE1-3-INCOMPLETE-24H-CIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    },
-    {
-      "requirement_id": "TOOL044-MAX-FREE-PARALLEL-MULTIRUNNER-24H-EXPANSION-20260929",
-      "root_id": "WIC-24H-MULTI-WORK-AUTOCIRCULATION",
-      "original_requirement": [],
-      "implementation_location": [],
-      "actual_evidence": [
-        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
-      ],
-      "status": "LONG_TERM_HOLD",
-      "remaining_work": [],
-      "resume_condition": "RESUME_WHEN_REQUIRED_NATURAL_TIME_EVIDENCE_EXISTS",
-      "pass_lock": false,
-      "actionable_requeued": false
-    }
-  ],
   "PLATFORM_HOLD": [
     {
       "requirement_id": "WIC-COMMON-AUTOMATION-BLOCKERS-20260923-AUTHENTICATED_SOURCE_EVENT_PRODUCER",
@@ -2879,6 +2863,22 @@
         "SEPARATE_CHATGPT_AND_EXISTING_CIRCULATION_OVERLAP_REEVALUATION"
       ],
       "resume_condition": "RESUME_ONLY_IN_A_SEPARATE_EXPLICIT_TOOL043_REEVALUATION",
+      "pass_lock": false,
+      "actionable_requeued": false
+    }
+  ],
+  "PARTIAL": [
+    {
+      "requirement_id": "WIC-HISTORICAL-WORK-DIRECTIVE-AUDIT-AUTOREQUEUE-20260929",
+      "root_id": "WIC-COMMON-HISTORICAL-WORK-AUDIT-AND-OBSERVER-DELIVERY",
+      "original_requirement": [],
+      "implementation_location": [],
+      "actual_evidence": [
+        "{'stage': 'INTAKE_ACCEPTED', 'resume_from': 'INTAKE_ACCEPTED'}"
+      ],
+      "status": "PARTIAL",
+      "remaining_work": [],
+      "resume_condition": "AUTO_REQUEUE_WHEN_VERIFIED_EXECUTION_CONTRACT_IS_AVAILABLE",
       "pass_lock": false,
       "actionable_requeued": false
     }
