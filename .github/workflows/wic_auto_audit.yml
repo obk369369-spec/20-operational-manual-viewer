@@ -1,0 +1,24 @@
+name: WIC 54-Tools Zero-Error Auto Audit
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  playwright-full-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Auditors
+        run: |
+          npm install -g htmlhint
+          pip install playwright
+          playwright install chromium
+      - name: Run 24-Layer Mechanical Audit on All Tools
+        run: |
+          python3 tools/daemon/playwright_auditor.py 02_실행도구_완성본/tools/01_customer_guide/01_customer_guide.html
