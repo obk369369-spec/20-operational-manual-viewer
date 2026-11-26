@@ -1,0 +1,22 @@
+{
+  "toolId": "TOOL007",
+  "audited_at": "2026-11-26T01:45:45.509Z",
+  "pass": false,
+  "cross_engines": [
+    {
+      "engine": "codex",
+      "ready": true
+    },
+    {
+      "engine": "gemini",
+      "ready": true
+    }
+  ],
+  "checks": [
+    {
+      "file": "02_실행도구_완성본/tools/07_customer_advisor/07_customer_advisor.html",
+      "pass": false,
+      "reason": "FILE_MISSING"
+    }
+  ]
+}

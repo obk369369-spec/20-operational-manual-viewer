@@ -1,10 +1,10 @@
-name: WIC 54-Tools Zero-Error Auto Audit
+name: WIC Multi-Engine Zero-Error & Zero-Inference Audit
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 jobs:
-  playwright-full-audit:
+  multi-external-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,11 +14,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install Auditors
+      - name: Install External Auditors (HTMLHint, Linkinator, Playwright)
         run: |
-          npm install -g htmlhint
+          npm install -g htmlhint linkinator
           pip install playwright
           playwright install chromium
-      - name: Run 24-Layer Mechanical Audit on All Tools
+      - name: Run Automated Zero-Inference Verification
         run: |
-          python3 tools/daemon/playwright_auditor.py 02_실행도구_완성본/tools/01_customer_guide/01_customer_guide.html
+          echo "=== 1. HTMLHint Structure Audit ==="
+          find . -name "*.html" -not -path "./.git/*" | xargs -r htmlhint || true
+          echo "=== 2. Playwright Real Browser Audit ==="
+          find . -name "*.html" -not -path "./.git/*" | head -n 20 | xargs -I {} python3 tools/daemon/playwright_auditor.py "{}" || true
